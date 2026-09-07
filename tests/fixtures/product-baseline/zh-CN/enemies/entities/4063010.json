@@ -1,0 +1,72 @@
+{
+  "catalog": {
+    "description": "流光忆庭的模因生命遭遇「毁灭」金血糅合而成的扭曲怪物。略有翼蛇雏形，足以装神弄鬼。\n它那扭曲的理智在黑潮中彻底疯狂，那强烈的自我防御冲动，无形中染上了一层幻想色彩。",
+    "id": "4063010",
+    "name": "金血忆灵•翼蛇形",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4063010",
+    "defaultMonsterRef": "e8e476a76767d455fc9e158b81478de2b79d2461c48c6a22a80c8ba1b9111a76",
+    "description": "流光忆庭的模因生命遭遇「毁灭」金血糅合而成的扭曲怪物。略有翼蛇雏形，足以装神弄鬼。\n它那扭曲的理智在黑潮中彻底疯狂，那强烈的自我防御冲动，无形中染上了一层幻想色彩。",
+    "id": "4063010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e8e476a76767d455fc9e158b81478de2b79d2461c48c6a22a80c8ba1b9111a76",
+      "0d291a5e696d767b9df68c5a255ffddbf5ecce7ae339fec211778ed7ed9b34fd",
+      "189460347f05b7d82aa859a3c00934b19ff5e439a9f91602cc1cd021093fd298",
+      "b3fa5318dfa0833e81a69e7de5cafac4d4e5498848ce3d540cec9576898c845a",
+      "517b0497a3f4a4e53fb6e5e5a6729ccd184c13d8dc2efc26782a97d8cab50f0f",
+      "6ebb5223db45bcb210f38f1a3889ffc67f05e9ae31845b9d1abf59cab0f50da6",
+      "300c07f9fea2cb9b6012254a38303b144da8fd4e9c835d0832675e6ab9141bbd"
+    ],
+    "name": "金血忆灵•翼蛇形",
+    "rank": "Elite",
+    "templateRef": "a089f7e85c22546cdce3a1dbb5564f96a1e9b8a66a73ad02d9969ec0d05f8c7f",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4063010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4063010",
+    "selectableMonsterIds": [
+      "4063010",
+      "406301001",
+      "406301002",
+      "406301003",
+      "406301004",
+      "406301005",
+      "406301006"
+    ]
+  }
+}

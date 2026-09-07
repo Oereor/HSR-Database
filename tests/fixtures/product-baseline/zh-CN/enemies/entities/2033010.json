@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "博识学会研发的战斗机器。以步离人的生物组织为部件，兼具长生种顽强的生命力与无数岁月进化所得的「杀戮算法」。",
+    "id": "2033010",
+    "name": "咆哮灵柩",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2033010",
+    "defaultMonsterRef": "911c805465068faac5f16d169869663df6a4084aa2793f7ce7866586348421f4",
+    "description": "博识学会研发的战斗机器。以步离人的生物组织为部件，兼具长生种顽强的生命力与无数岁月进化所得的「杀戮算法」。",
+    "id": "2033010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "911c805465068faac5f16d169869663df6a4084aa2793f7ce7866586348421f4",
+      "72c33d743595af648ddf7a051a69040f52f650bdb449af85a72c97ec7addc85a",
+      "40abca87bdc8a80876df9380138febceadf64a94415cf47206e8f18dc07a9da3",
+      "73d88329364c879c25706e14be3c5db543b13d560524142413e668397d7530da",
+      "dd23c44025240cf1f399ad5f4b6d0c1e6f0326de88f5ae087605ca7990611ec2",
+      "be762a0e03541b9f49f3688c7b638903913d5bf67c6041d6408592a1c216ed73",
+      "99d39941970de685a2e517e41153b5a7026b8ffd4ce05d0966fa145ea5da2498",
+      "f17ce99b0d154a7a603ae03949dd161c587aa6532ef5ac48de0931ba9b69bd0e",
+      "15047159c656b9a04903774490cf81ef3586bc28214b86892fcbd0e996967c45"
+    ],
+    "name": "咆哮灵柩",
+    "rank": "Elite",
+    "templateRef": "08b2f7e0204b0ea75fc91c00b51574029affde671f3a6d20f4031007647cabe0",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2033010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2033010",
+    "selectableMonsterIds": [
+      "2033010",
+      "203301001",
+      "203301002",
+      "203301003",
+      "203301004",
+      "203301005",
+      "203301006",
+      "203301007",
+      "203301008"
+    ]
+  }
+}

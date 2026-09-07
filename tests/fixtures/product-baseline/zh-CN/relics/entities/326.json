@@ -1,0 +1,103 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：装备者施放追加攻击时，攻击力提高24%，持续2回合。当敌方目标被消灭时，我方全体在本场战斗中暴击伤害提高12%，该效果无法叠加。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "326",
+    "name": "千星荟萃之城",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "4.1"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：装备者施放追加攻击时，攻击力提高24%，持续2回合。当敌方目标被消灭时，我方全体在本场战斗中暴击伤害提高12%，该效果无法叠加。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "装备者施放追加攻击时，攻击力提高24%，持续2回合。当敌方目标被消灭时，我方全体在本场战斗中暴击伤害提高12%，该效果无法叠加。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "装备者施放追加攻击时，攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "24%"
+          },
+          {
+            "type": "text",
+            "value": "，持续"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "2"
+          },
+          {
+            "type": "text",
+            "value": "回合。当敌方目标被消灭时，我方全体在本场战斗中暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "，该效果无法叠加。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "326",
+    "kind": "relic",
+    "name": "千星荟萃之城",
+    "pieces": [
+      {
+        "description": "位面球中封装着「星际和平娱乐」的巨构总部——千星城。这座打造过无数巨星的传媒之都，以极高的工业化水准向寰宇放送各类娱乐产品。",
+        "id": "33265",
+        "name": "千星城的传媒总部",
+        "slot": "NECK"
+      },
+      {
+        "description": "千星城员工的凭证，标有职级与人员信息。云顶之上与云顶之下，这或许是为数不多共享的事物。",
+        "id": "33266",
+        "name": "千星城的雇员凭证",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "4.1"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33265"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33266"
+      }
+    ],
+    "route": "/relics/326"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的能量恢复效率提高5%。当装备者的速度大于等于120时，进入战斗时立刻使行动提前40%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "308",
+    "name": "生命的翁瓦克",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.0"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的能量恢复效率提高5%。当装备者的速度大于等于120时，进入战斗时立刻使行动提前40%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的能量恢复效率提高5%。当装备者的速度大于等于120时，进入战斗时立刻使行动提前40%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的能量恢复效率提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "5%"
+          },
+          {
+            "type": "text",
+            "value": "。当装备者的速度大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "120"
+          },
+          {
+            "type": "text",
+            "value": "时，进入战斗时立刻使行动提前"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "40%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "308",
+    "kind": "relic",
+    "name": "生命的翁瓦克",
+    "pieces": [
+      {
+        "description": "位面封装的翁瓦克星球上最著名的岛屿——瓦克岛。整座岛屿郁郁葱葱，在名为「西斯腾」的大树上，结满了各式动物的果实。",
+        "id": "33085",
+        "name": "翁瓦克的诞生之岛",
+        "slot": "NECK"
+      },
+      {
+        "description": "瓦克岛的海岸线上，海面时高时低，浪潮时涨时落…千年不变的风景，见证了如同潮汐一般的兴衰。",
+        "id": "33086",
+        "name": "翁瓦克的环岛海岸",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「模拟宇宙•第四世界」沉浸装置兑换",
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33085"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33086"
+      }
+    ],
+    "route": "/relics/308"
+  }
+}

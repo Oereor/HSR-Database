@@ -1,0 +1,139 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：攻击力提高12%。 4件：敌方目标每承受1个持续伤害效果，装备者对其造成伤害时就无视其6%的防御力，最多计入3个持续伤害效果。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "116",
+    "name": "幽锁深牢的系囚",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.5"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：攻击力提高12%。 4件：敌方目标每承受1个持续伤害效果，装备者对其造成伤害时就无视其6%的防御力，最多计入3个持续伤害效果。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "攻击力提高12%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "敌方目标每承受1个持续伤害效果，装备者对其造成伤害时就无视其6%的防御力，最多计入3个持续伤害效果。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "敌方目标每承受1个持续伤害效果，装备者对其造成伤害时就无视其"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "6%"
+          },
+          {
+            "type": "text",
+            "value": "的防御力，最多计入"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "3"
+          },
+          {
+            "type": "text",
+            "value": "个持续伤害效果。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "116",
+    "kind": "relic",
+    "name": "幽锁深牢的系囚",
+    "pieces": [
+      {
+        "description": "紧扣兽面囚徒面部的犬嘴笼，严防末路恶逆露出獠牙伤人。",
+        "id": "31161",
+        "name": "系囚的合啮拘笼",
+        "slot": "HEAD"
+      },
+      {
+        "description": "紧缚魔手的沉重镣铐，钢针钉腕，钳制凶爪恶逆再造杀孽。",
+        "id": "31162",
+        "name": "系囚的铅石梏铐",
+        "slot": "HAND"
+      },
+      {
+        "description": "捆缚危险重犯的拘束囚服，反扣关节，限制囚徒身体的变化能力。",
+        "id": "31163",
+        "name": "系囚的幽闭缚束",
+        "slot": "BODY"
+      },
+      {
+        "description": "桎缚兽足的金属脚镣，禁锢末路恶逆，以防脱逃酿祸。",
+        "id": "31164",
+        "name": "系囚的绝足锁桎",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【绥园】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.5"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31161"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31162"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31163"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31164"
+      }
+    ],
+    "route": "/relics/116"
+  }
+}

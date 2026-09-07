@@ -8,13 +8,14 @@ import {
 
 export const prerender = true;
 
-export async function load() {
+export async function load({ locals }) {
+  const locale = locals.locale;
   const [searchIndex, characters, lightCones, relics, enemies, portraitMap] = await Promise.all([
-    getSearchIndex(),
-    getCatalog('characters'),
-    getCatalog('light-cones'),
-    getRelicCatalog(),
-    getEnemyCatalog(),
+    getSearchIndex(locale),
+    getCatalog(locale, 'characters'),
+    getCatalog(locale, 'light-cones'),
+    getRelicCatalog(locale),
+    getEnemyCatalog(locale),
     getEnemyPortraitMap()
   ]);
   const enemyIds = new Set(enemies.map((entry) => entry.id));

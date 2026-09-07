@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的错误投影。参照本体为刻录着《十王武经》，听命于十王司的执法金人。\n血肉易受五阴之苦所执，唯有金铁不动其心，奉行十王敕令不渝。\n这些金人执法者以力降伏脱离生命秩序的邪物，将之带入幽府，接受判罚，其权限有时甚于判官。",
+    "id": "2013021",
+    "name": "金人勾魂使（错误）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2013021",
+    "defaultMonsterRef": "5433e1efb385c611fe007b5ceb40906c9cf8c98c8616df7d3fc36673836f6e24",
+    "description": "代码受到影响后的错误投影。参照本体为刻录着《十王武经》，听命于十王司的执法金人。\n血肉易受五阴之苦所执，唯有金铁不动其心，奉行十王敕令不渝。\n这些金人执法者以力降伏脱离生命秩序的邪物，将之带入幽府，接受判罚，其权限有时甚于判官。",
+    "id": "2013021",
+    "kind": "enemy",
+    "monsterRefs": [
+      "5433e1efb385c611fe007b5ceb40906c9cf8c98c8616df7d3fc36673836f6e24"
+    ],
+    "name": "金人勾魂使（错误）",
+    "rank": "Elite",
+    "templateRef": "ab48e81fccb0755258a20b5781200661a5ba6268b6cacac7ec89f5f4a139077f",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2013021",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2013021",
+    "selectableMonsterIds": [
+      "2013021"
+    ]
+  }
+}

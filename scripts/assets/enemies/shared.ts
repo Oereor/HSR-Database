@@ -15,7 +15,13 @@ export const enemyAssetRoot = path.join(siteRoot, 'static', 'generated-enemy-ass
 export const enemyIconRoot = path.join(enemyAssetRoot, 'icons');
 export const enemyAssetManifestPath = path.join(enemyAssetRoot, 'index.json');
 export const enemyAssetReadmePath = path.join(enemyAssetRoot, 'README.md');
-export const enemyCatalogPath = path.join(generatedRoot, 'catalogs', 'enemies.json');
+export const enemyCatalogPath = path.join(
+  generatedRoot,
+  'views',
+  'zh-CN',
+  'catalogs',
+  'enemies.json'
+);
 
 export const SANITY_CHECK_IDS = ['4064012', '1004014', '1004026', '4034013'] as const;
 

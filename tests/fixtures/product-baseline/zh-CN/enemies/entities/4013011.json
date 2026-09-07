@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血，能承载泰坦灵魂的强大造物。以巨剑抵挡黑潮的侵袭，亦会用巨剑带来战争的侵袭。\n天谴先锋会献祭弱小的眷属，以此暴行换得泰坦的天罚。",
+    "id": "4013011",
+    "name": "天谴先锋",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4013011",
+    "defaultMonsterRef": "fda1a2f69fced5dd44151b6e83c8005d1b503c26c0876450e245451771dfdf2d",
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血，能承载泰坦灵魂的强大造物。以巨剑抵挡黑潮的侵袭，亦会用巨剑带来战争的侵袭。\n天谴先锋会献祭弱小的眷属，以此暴行换得泰坦的天罚。",
+    "id": "4013011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "fda1a2f69fced5dd44151b6e83c8005d1b503c26c0876450e245451771dfdf2d",
+      "3ee7764f07224abc4fc9b6574c42d0bb1eb402511325a3f047293afe4483175e"
+    ],
+    "name": "天谴先锋",
+    "rank": "Elite",
+    "templateRef": "526325b8cf8a31a1858b8c03bd5395651378d3ca06456e0c6dfe6b4521e0d732",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4013011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4013011",
+    "selectableMonsterIds": [
+      "4013011",
+      "401301101"
+    ]
+  }
+}

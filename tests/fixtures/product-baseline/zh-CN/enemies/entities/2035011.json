@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "借由「赤月」的转移死而不绝的呼雷，以飞霄形貌现身，与本尊相对而立，宛如镜照。",
+    "id": "2035011",
+    "name": "「飞霄」之影",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2035011",
+    "defaultMonsterRef": "9a7ccf15b3267c5dee916510757ffd4e0ca77d35e5dd1ca29db0ee6289258c25",
+    "description": "借由「赤月」的转移死而不绝的呼雷，以飞霄形貌现身，与本尊相对而立，宛如镜照。",
+    "id": "2035011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "9a7ccf15b3267c5dee916510757ffd4e0ca77d35e5dd1ca29db0ee6289258c25"
+    ],
+    "name": "「飞霄」之影",
+    "rank": "BigBoss",
+    "templateRef": "5be255f76e7847899e62c8038255d2c0816b0c0b252365d59e1b6a3f811317e0",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2035011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2035011",
+    "selectableMonsterIds": [
+      "2035011"
+    ]
+  }
+}

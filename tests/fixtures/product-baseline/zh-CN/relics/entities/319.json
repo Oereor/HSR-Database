@@ -1,0 +1,103 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的生命上限提高12%。当装备者的生命上限大于等于5000点时，使装备者及其忆灵的暴击伤害提高28%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "319",
+    "name": "谧宁拾骨地",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "3.1"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的生命上限提高12%。当装备者的生命上限大于等于5000点时，使装备者及其忆灵的暴击伤害提高28%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的生命上限提高12%。当装备者的生命上限大于等于5000点时，使装备者及其忆灵的暴击伤害提高28%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的生命上限提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。当装备者的生命上限大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "5000"
+          },
+          {
+            "type": "text",
+            "value": "点时，使装备者及其忆灵的暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "28%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "319",
+    "kind": "relic",
+    "name": "谧宁拾骨地",
+    "pieces": [
+      {
+        "description": "位面球中封存着翁法罗斯的哀地里亚，信仰{RUBY_B#死亡之泰坦}塞纳托斯{RUBY_E#}的民众们在雪原上修筑起巨碑，敬奉为他们带来死亡祝福的圣女。",
+        "id": "33195",
+        "name": "哀地里亚的殁名祭碑",
+        "slot": "NECK"
+      },
+      {
+        "description": "兽骨、箭镞与铁蒺藜，将哀地里亚人与那亡者的世界相连。荒原上的苦行者只愿自己的灵魂能够渡过寒溟，不因其贫瘠与软弱而彷徨失落于面见尊神的路上。",
+        "id": "33196",
+        "name": "哀地里亚的入溟骨链",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "3.1"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33195"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33196"
+      }
+    ],
+    "route": "/relics/319"
+  }
+}

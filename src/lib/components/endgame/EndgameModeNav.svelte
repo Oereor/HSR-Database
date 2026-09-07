@@ -3,6 +3,9 @@
   import { ENDGAME_MODES, ENDGAME_MODE_META } from '$lib/domain/endgame-view';
   import type { EndgameMode } from '$lib/domain/endgame';
   import EndgameModeIcon from './EndgameModeIcon.svelte';
+  import { localizedHref } from '$lib/i18n/routing';
+  import { getEndgameModeCopy } from '$lib/i18n/endgame';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let activeMode: EndgameMode | undefined = undefined;
 
@@ -16,15 +19,19 @@
 </script>
 
 <div class="endgame-mode-switcher">
-  <nav class="endgame-mode-switcher__island" aria-label="高难模式切换" bind:this={navigation}>
+  <nav
+    class="endgame-mode-switcher__island"
+    aria-label={m.endgame_mode_switcher_aria()}
+    bind:this={navigation}
+  >
     {#each ENDGAME_MODES as mode}
       <a
-        href={`/endgame/${mode}`}
+        href={localizedHref(`/endgame/${mode}`)}
         aria-current={activeMode === mode ? 'page' : undefined}
         style={`--endgame-accent: ${ENDGAME_MODE_META[mode].accent};`}
       >
         <span class="endgame-mode-switcher__icon"><EndgameModeIcon {mode} /></span>
-        <strong>{ENDGAME_MODE_META[mode].label}</strong>
+        <strong>{getEndgameModeCopy(mode).label}</strong>
       </a>
     {/each}
   </nav>

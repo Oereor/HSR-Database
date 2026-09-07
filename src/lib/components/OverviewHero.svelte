@@ -1,7 +1,8 @@
 <script lang="ts">
-  export let eyebrow = 'DATABASE';
-  export let title = '角色';
-  export let description = '浏览、搜索并筛选角色资料。';
+  import { m } from '$lib/paraglide/messages.js';
+  export let eyebrow: string = m.overview_eyebrow();
+  export let title: string = m.characters_title();
+  export let description: string = m.characters_description();
   export let countLabel = '';
   export let artwork: Array<{ id: string; url: string }> = [];
 </script>

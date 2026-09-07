@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "一切妄图逃离终局的生者，皆要面对来自冥土的追索。",
+    "id": "4012077",
+    "name": "哀悯长臂",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012077",
+    "defaultMonsterRef": "84d7e8d59ef014eb7b0c8ecf5758e9d8a5cef9dbda910b07da5dd0131a82e9d1",
+    "description": "一切妄图逃离终局的生者，皆要面对来自冥土的追索。",
+    "id": "4012077",
+    "kind": "enemy",
+    "monsterRefs": [
+      "84d7e8d59ef014eb7b0c8ecf5758e9d8a5cef9dbda910b07da5dd0131a82e9d1",
+      "789f01e230c522b3065c97b33d1d8c9d5a0d95a9e4f376949a365d353360ccab",
+      "d4022d087d5287b892931a99a531ebece5be92ff09cbd3840e54dcd220455fc4",
+      "4183b0afecab28e7a3dda4d7d66f99f161760f2efafbe534e3b403cc94937bc5",
+      "3ff14fbc0ad8045a6eeb97f6b2542b8e94a9bd621f3037736c1a89991b30cba2"
+    ],
+    "name": "哀悯长臂",
+    "rank": "MinionLv2",
+    "templateRef": "30ae639fea2be484d5ccb708c3688d1753cf14f9520bab1d254349ef0c80b8af",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012077",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012077",
+    "selectableMonsterIds": [
+      "4012077",
+      "401207701",
+      "401207702",
+      "401207703",
+      "401207704"
+    ]
+  }
+}

@@ -5,33 +5,49 @@ import type {
   DataManifest,
   EnemyCatalogEntry,
   HomepageRecentWarpData,
+  PublicSiteVersion,
   RelicCatalogEntry,
   RelicProperty
 } from '$lib/domain/types';
-import type { GlobalSearchIndex } from '$lib/domain/search-index';
+import type { GlobalSearchIndex, SearchLocale } from '$lib/domain/search-index';
 import type { CategorySlug } from '$lib/domain/constants';
 
 const root = path.resolve('src', 'lib', 'generated');
 const staticGeneratedRoot = path.resolve('static', 'generated');
-let searchIndexCache: Promise<GlobalSearchIndex> | undefined;
+const searchIndexCache = new Map<string, Promise<GlobalSearchIndex>>();
 
-async function readJson<T>(...segments: string[]): Promise<T> {
+async function readJson<T>(locale: SearchLocale, ...segments: string[]): Promise<T> {
+  return JSON.parse(await readFile(path.join(root, 'views', locale, ...segments), 'utf8')) as T;
+}
+
+async function readRootJson<T>(...segments: string[]): Promise<T> {
   return JSON.parse(await readFile(path.join(root, ...segments), 'utf8')) as T;
 }
 
-export const getManifest = () => readJson<DataManifest>('manifest.json');
-export const getHomepageRecentWarps = () => readJson<HomepageRecentWarpData>('homepage.json');
-export const getCatalog = (category: CategorySlug) =>
-  readJson<CatalogEntry[]>('catalogs', `${category}.json`);
-export const getEnemyCatalog = () => readJson<EnemyCatalogEntry[]>('catalogs', 'enemies.json');
-export const getRelicCatalog = () => readJson<RelicCatalogEntry[]>('catalogs', 'relics.json');
-export const getRelicProperties = () =>
-  readJson<RelicProperty[]>('catalogs', 'relic-properties.json');
-export const getDetail = (category: CategorySlug, id: string) =>
-  readJson<Record<string, unknown>>('details', category, `${id}.json`);
-export const getSearchIndex = () => {
-  searchIndexCache ??= readFile(path.join(staticGeneratedRoot, 'search.json'), 'utf8').then(
-    (contents) => JSON.parse(contents) as GlobalSearchIndex
-  );
-  return searchIndexCache;
+export const getManifest = () => readRootJson<DataManifest>('manifest.json');
+export const getPublicSiteVersion = async (): Promise<PublicSiteVersion> => {
+  const manifest = await getManifest();
+  return { gameVersion: manifest.gameVersion, dataRevision: manifest.dataRevision.slice(0, 8) };
+};
+export const getHomepageRecentWarps = (locale: SearchLocale) =>
+  readJson<HomepageRecentWarpData>(locale, 'homepage.json');
+export const getCatalog = (locale: SearchLocale, category: CategorySlug) =>
+  readJson<CatalogEntry[]>(locale, 'catalogs', `${category}.json`);
+export const getEnemyCatalog = (locale: SearchLocale) =>
+  readJson<EnemyCatalogEntry[]>(locale, 'catalogs', 'enemies.json');
+export const getRelicCatalog = (locale: SearchLocale) =>
+  readJson<RelicCatalogEntry[]>(locale, 'catalogs', 'relics.json');
+export const getRelicProperties = (locale: SearchLocale) =>
+  readJson<RelicProperty[]>(locale, 'catalogs', 'relic-properties.json');
+export const getDetail = (locale: SearchLocale, category: CategorySlug, id: string) =>
+  readJson<Record<string, unknown>>(locale, 'details', category, `${id}.json`);
+export const getSearchIndex = (locale: SearchLocale) => {
+  let cached = searchIndexCache.get(locale);
+  if (!cached) {
+    cached = readFile(path.join(staticGeneratedRoot, locale, 'search.json'), 'utf8').then(
+      (contents) => JSON.parse(contents) as GlobalSearchIndex
+    );
+    searchIndexCache.set(locale, cached);
+  }
+  return cached;
 };

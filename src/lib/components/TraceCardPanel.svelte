@@ -6,6 +6,7 @@
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import { groupTracesForDisplay } from '$lib/domain/trace-groups';
   import type { Trace } from '$lib/domain/types';
+  import * as m from '$lib/paraglide/messages.js';
 
   export let traces: Trace[];
 
@@ -23,7 +24,9 @@
         >
           <TraceAbilityHeading trace={group.ability} />
           <p class="trace-card__description">
-            <GameText text={group.ability.description || '上游未提供本地化描述。'} />
+            <GameText
+              text={group.ability.description || m.common_localized_description_unavailable()}
+            />
           </p>
           <SkillExtraEffects effects={group.ability.extraEffects ?? []} />
         </article>
@@ -42,10 +45,10 @@
                   ><GameText text={stat.name} /></span
                 >
               </h3>
-              <span class="skill-effect-tag">属性加成</span>
+              <span class="skill-effect-tag">{m.trace_stat_bonus()}</span>
             </div>
             <p class="trace-card__description">
-              <GameText text={stat.description || '上游未提供本地化描述。'} />
+              <GameText text={stat.description || m.common_localized_description_unavailable()} />
             </p>
             <SkillExtraEffects effects={stat.extraEffects ?? []} />
           </article>
@@ -57,7 +60,9 @@
   {#if groups.specialAbilities.length || groups.standaloneStats.length}
     <section class="trace-independent-section" data-trace-independent-section>
       <SectionHeading level={3} headingLevel={3}
-        >{groups.specialAbilities.length ? '独立行迹' : '独立属性加成'}</SectionHeading
+        >{groups.specialAbilities.length
+          ? m.trace_independent()
+          : m.trace_independent_stats()}</SectionHeading
       >
       {#each groups.specialAbilities as ability (ability.id)}
         <article
@@ -68,7 +73,7 @@
         >
           <TraceAbilityHeading trace={ability} />
           <p class="trace-card__description">
-            <GameText text={ability.description || '上游未提供本地化描述。'} />
+            <GameText text={ability.description || m.common_localized_description_unavailable()} />
           </p>
           <SkillExtraEffects effects={ability.extraEffects ?? []} />
         </article>
@@ -88,10 +93,10 @@
                   ><GameText text={stat.name} /></span
                 >
               </h3>
-              <span class="skill-effect-tag">属性加成</span>
+              <span class="skill-effect-tag">{m.trace_stat_bonus()}</span>
             </div>
             <p class="trace-card__description">
-              <GameText text={stat.description || '上游未提供本地化描述。'} />
+              <GameText text={stat.description || m.common_localized_description_unavailable()} />
             </p>
             <SkillExtraEffects effects={stat.extraEffects ?? []} />
           </article>

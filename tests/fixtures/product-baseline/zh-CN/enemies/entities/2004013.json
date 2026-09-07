@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "「星核猎手」的一员，面带莫测笑容的杀手丽人，善用种类纷繁的武器和心控之术。正是她将星穹列车引至此处，以实现某个计划……出现于此的是基于你的记忆模拟出的幻影。",
+    "id": "2004013",
+    "name": "「星核猎手」卡芙卡（幻象）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2004013",
+    "defaultMonsterRef": "c7873098b5a61b2c503a823d83eea49a33360d7a1616577eb8042f522ff1ef89",
+    "description": "「星核猎手」的一员，面带莫测笑容的杀手丽人，善用种类纷繁的武器和心控之术。正是她将星穹列车引至此处，以实现某个计划……出现于此的是基于你的记忆模拟出的幻影。",
+    "id": "2004013",
+    "kind": "enemy",
+    "monsterRefs": [
+      "c7873098b5a61b2c503a823d83eea49a33360d7a1616577eb8042f522ff1ef89"
+    ],
+    "name": "「星核猎手」卡芙卡（幻象）",
+    "rank": "LittleBoss",
+    "templateRef": "9b8deef9ffc30019615f67444cfa8ae40af32734e922f9c17d1564a8fd07cb57",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2004013",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2004013",
+    "selectableMonsterIds": [
+      "2004013"
+    ]
+  }
+}

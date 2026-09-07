@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "心兽之首，饮星辉，喰云埃。",
+    "id": "2032042",
+    "name": "喰云之首",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2032042",
+    "defaultMonsterRef": "cd7e9737204f44f461f59a6c968c6705c18a13f52e61d4caa5c24f144dd3ce17",
+    "description": "心兽之首，饮星辉，喰云埃。",
+    "id": "2032042",
+    "kind": "enemy",
+    "monsterRefs": [
+      "cd7e9737204f44f461f59a6c968c6705c18a13f52e61d4caa5c24f144dd3ce17"
+    ],
+    "name": "喰云之首",
+    "rank": "MinionLv2",
+    "templateRef": "6120177562dfaeb5319bee131af1b10c232254bec3b86f38eb2fce06bc8f9098",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2032042",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2032042",
+    "selectableMonsterIds": [
+      "2032042"
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "原本是搭载了财富学院教材的「幸运贩售」，受到模因病毒的影响，教材变成了蕉材。市场中蕉黠的头脑便是最强的武器，腹中满是福祸难测的蕉易，令猴蕉绿不已。",
+    "id": "3002021",
+    "name": "蕉研组的财富蕉师",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3002021",
+    "defaultMonsterRef": "f3aa999e2d2d101b005f0d5326903d4bfef7c57531c75e5f38a0d952fe422ac6",
+    "description": "原本是搭载了财富学院教材的「幸运贩售」，受到模因病毒的影响，教材变成了蕉材。市场中蕉黠的头脑便是最强的武器，腹中满是福祸难测的蕉易，令猴蕉绿不已。",
+    "id": "3002021",
+    "kind": "enemy",
+    "monsterRefs": [
+      "f3aa999e2d2d101b005f0d5326903d4bfef7c57531c75e5f38a0d952fe422ac6",
+      "11bde1ce5a24a83516b88e3295d593aef135c10af3de0a9aa0798cfa855f8b53",
+      "5502b5eb4ca37d60e14967f7dc98c63869208772343e59c9d296ff054c1b7a79"
+    ],
+    "name": "蕉研组的财富蕉师",
+    "rank": "MinionLv2",
+    "templateRef": "5666631d4d1965c0b394fa403060cc66bba3b66577886b9929ba89a742a296a9",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3002021",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3002021",
+    "selectableMonsterIds": [
+      "3002021",
+      "300202101",
+      "300202102"
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的错误投影。参照本体为匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是烹饪食物的料理机器，失控后仍在喷吐炙烤食材的烈焰，企图将食客一同烧成焦炭。",
+    "id": "3003012",
+    "name": "惊梦剧团的十七分熟（错误）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3003012",
+    "defaultMonsterRef": "94cfd8ed6bca2eaff9cdfcae688e1c6e3e5932157a70378e8c418e10a13f2778",
+    "description": "代码受到影响后的错误投影。参照本体为匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是烹饪食物的料理机器，失控后仍在喷吐炙烤食材的烈焰，企图将食客一同烧成焦炭。",
+    "id": "3003012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "94cfd8ed6bca2eaff9cdfcae688e1c6e3e5932157a70378e8c418e10a13f2778",
+      "3cda2439ecd631c2fff98902fd4cafa59d7969e52e767823f810a3482dd3f3ce",
+      "a6e35125b962a2f927d1165880e7e77aba28af067b2643290a10750129264792",
+      "64e0e1adf7a1d6aecf81c5d081ed183b399c0045ca6987d25dc5b81d695edfae"
+    ],
+    "name": "惊梦剧团的十七分熟（错误）",
+    "rank": "Elite",
+    "templateRef": "951b28c7d558eaf9ef37a76074936fe3d324eb551615b4ca4aad5d27f626cece",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3003012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3003012",
+    "selectableMonsterIds": [
+      "3003012",
+      "300301201",
+      "300301202",
+      "300301203"
+    ]
+  }
+}

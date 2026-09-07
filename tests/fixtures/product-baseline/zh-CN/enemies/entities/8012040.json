@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "由伪觉者「归寂」分裂出部分所创造，尝试以分析喜剧的方式彻底解构欢愉。\n它的存在为毁灭存在而生，以悲剧为喜剧的内核，以「毁灭」为「欢愉」的真谛。",
+    "id": "8012040",
+    "name": "喜剧学家",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8012040",
+    "defaultMonsterRef": "4c5aa60d24fb8bde440d41218ac984cd2953d9e7f54fca1ea90195311c2ebab7",
+    "description": "由伪觉者「归寂」分裂出部分所创造，尝试以分析喜剧的方式彻底解构欢愉。\n它的存在为毁灭存在而生，以悲剧为喜剧的内核，以「毁灭」为「欢愉」的真谛。",
+    "id": "8012040",
+    "kind": "enemy",
+    "monsterRefs": [
+      "4c5aa60d24fb8bde440d41218ac984cd2953d9e7f54fca1ea90195311c2ebab7",
+      "f0ca272b1835dfc63eaa6542ad5290a12206fa76eac2fc73c6e1c8675a68fb38"
+    ],
+    "name": "喜剧学家",
+    "rank": "MinionLv2",
+    "templateRef": "724c1ffc8f2398e6d6686a3a3c19740f5f86cdf1b707206aa29200b9cd7caf51",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8012040",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8012040",
+    "selectableMonsterIds": [
+      "8012040",
+      "801204001"
+    ]
+  }
+}

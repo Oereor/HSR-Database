@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "火花的直播小助手。\n协助主播进行场控工作，也会亲自下场与黑粉对线。\n尽职尽责，相当难缠。",
+    "id": "5014011",
+    "name": "直播小助手",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5014011",
+    "defaultMonsterRef": "0b1433985080f009006e1729c4152b034a96ca3441a9c95f4a484236d2a5ca05",
+    "description": "火花的直播小助手。\n协助主播进行场控工作，也会亲自下场与黑粉对线。\n尽职尽责，相当难缠。",
+    "id": "5014011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "0b1433985080f009006e1729c4152b034a96ca3441a9c95f4a484236d2a5ca05",
+      "a4bd5a4c1243592252eda25a13291a1c18770b40172bda326f310726fa420869",
+      "57d67cdbfa600a43dee0e2f30e0a7a816d27a65b07088bd73b732c15331333dc",
+      "72f9e8a58aaec301f0c438f9bf89f1c62be95a1e1b6103a5b51b3642354e9073",
+      "27677d67ae6ee25369bcacf00dcbbe3b3ffc45eed2efb4b7b7523b09fde50cc1",
+      "b8d8e9c7fcb8e6b37713663f65c7deb49bfd6f1d05464d2bbde9f19030757e09",
+      "740d951615feaf0f6a6ee4129acffff5044342e0ad392f7ee380b8b074baba93",
+      "e5c71e6fa210bc312a69b45365f9ac28b2d7dcd47012e6f0768e0be074cda251",
+      "8edeadef8daacc56a917bebda947c942545c54d26e87dce3136fb5ca562165a8"
+    ],
+    "name": "直播小助手",
+    "rank": "LittleBoss",
+    "templateRef": "a128d5015900ede2bd6c3a5806f843292e0b5595981a47d10c823c6092794e8b",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5014011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5014011",
+    "selectableMonsterIds": [
+      "5014011",
+      "501401101",
+      "501401102",
+      "501401103",
+      "501401104",
+      "501401105",
+      "501401106",
+      "501401107",
+      "501401108"
+    ]
+  }
+}

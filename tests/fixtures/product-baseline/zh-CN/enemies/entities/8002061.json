@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "迷失在群星中的跨维度生物，性温，味甘，不可食用。一生中大部分时间花在进食和逃跑上。偶遇它的旅行者视之为吉兆。",
+    "id": "8002061",
+    "name": "毁灭扑满",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8002061",
+    "defaultMonsterRef": "827e39329271d7fea6f136a339ac6c2cc2f43476f929572a25f67174d35fd95d",
+    "description": "迷失在群星中的跨维度生物，性温，味甘，不可食用。一生中大部分时间花在进食和逃跑上。偶遇它的旅行者视之为吉兆。",
+    "id": "8002061",
+    "kind": "enemy",
+    "monsterRefs": [
+      "827e39329271d7fea6f136a339ac6c2cc2f43476f929572a25f67174d35fd95d",
+      "19328c5eb5da8ecc9729005dd85a7cee67493b2af564cb3211a48a22365de258"
+    ],
+    "name": "毁灭扑满",
+    "rank": "MinionLv2",
+    "templateRef": "3193c631a3bc0b75ac863393f802c0670e6f067c3ba6b62a8889abf1a332bd6c",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8002061",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8002061",
+    "selectableMonsterIds": [
+      "8002061",
+      "800206101"
+    ]
+  }
+}

@@ -1,11 +1,12 @@
 import { createHash } from 'node:crypto';
-import { readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { gameTextToPlain } from '../../src/lib/domain/game-text.js';
 import type {
-  EndgameSearchNameEntry,
+  EndgameSearchTargetEntry,
   GlobalSearchIndex
 } from '../../src/lib/domain/search-index.js';
+import { endgameOccurrenceLocatorKey } from '../../src/lib/domain/search-index.js';
 import type { EntityKind } from '../../src/lib/domain/types.js';
 import {
   SEARCH_DOCUMENT_SCHEMA_VERSION,
@@ -24,23 +25,39 @@ import {
 } from '../../src/lib/search/normalization.js';
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
 import { assertCompletePlayerAliasSkeleton, playerAliasesPath } from './player-aliases.js';
+import type { Locale } from './locale-registry.js';
 export { playerAliasesPath } from './player-aliases.js';
 
 export type SearchCatalogs = Record<EntityKind, Array<{ id: string; name: string }>>;
 export interface SearchBuildInputs {
   official: CharacterNameSnapshot;
   catalogs: SearchCatalogs;
-  endgameEnemies: EndgameSearchNameEntry[];
+  endgameTargets: EndgameSearchTargetEntry[];
 }
-export const searchInputsPath = path.join(generatedRoot, 'search-inputs.json');
-export const searchBundlePath = path.join(staticGeneratedRoot, 'search.json');
+export type SearchAliasSource = { kind: 'maintained'; value: unknown } | { kind: 'none' };
+export const searchArtifactPaths = (locale: Locale) => ({
+  inputs: path.join(generatedRoot, 'views', locale, 'search-inputs.json'),
+  bundle: path.join(staticGeneratedRoot, locale, 'search.json')
+});
+export const searchInputsPath = searchArtifactPaths('zh-CN').inputs;
+export const searchBundlePath = searchArtifactPaths('zh-CN').bundle;
 
 export function buildSearchDocuments(
   inputs: SearchBuildInputs,
-  manual: unknown
+  locale: Locale,
+  aliasSource: SearchAliasSource
 ): GlobalSearchIndex {
-  const aliases = validatePlayerAliases(manual, inputs.official);
-  assertCompletePlayerAliasSkeleton(aliases, inputs.official);
+  const aliases =
+    aliasSource.kind === 'maintained'
+      ? validatePlayerAliases(aliasSource.value, inputs.official)
+      : {
+          schemaVersion: 1 as const,
+          characters: Object.fromEntries(
+            Object.keys(inputs.official.characters).map((id) => [id, { playerAliases: [] }])
+          )
+        };
+  if (aliasSource.kind === 'maintained')
+    assertCompletePlayerAliasSkeleton(aliases, inputs.official);
   const documents: SearchDocument[] = [];
   for (const kind of ['character', 'light-cone', 'relic', 'enemy'] as const) {
     for (const catalog of inputs.catalogs[kind]) {
@@ -60,8 +77,8 @@ export function buildSearchDocuments(
   }
   if (inputs.catalogs.character.length !== Object.keys(inputs.official.characters).length)
     throw new Error('官方角色 metadata 与 catalog 数量不一致');
-  for (const entry of inputs.endgameEnemies) {
-    const target = { kind: 'endgame-name' as const, entryId: entry.entryId };
+  for (const entry of inputs.endgameTargets) {
+    const target = { kind: 'endgame' as const, id: entry.id };
     documents.push({
       key: searchTargetKey(target),
       target,
@@ -78,7 +95,8 @@ export function buildSearchDocuments(
         normalizationVersion: SEARCH_NORMALIZATION_VERSION,
         namingPolicyVersion: CHARACTER_NAMING_POLICY_VERSION,
         official: inputs.official,
-        aliases
+        aliases,
+        aliasSource: aliasSource.kind
       })
     )
     .digest('hex');
@@ -89,17 +107,44 @@ export function buildSearchDocuments(
     sourceCommit: inputs.official.sourceCommit,
     metadataDigest,
     documents,
-    endgameEnemies: inputs.endgameEnemies
+    locale,
+    endgameTargets: inputs.endgameTargets
   };
-  validateSearchTargets(bundle, inputs.catalogs);
+  validateSearchTargets(bundle, inputs.catalogs, locale);
   return bundle;
 }
 
-export function validateSearchTargets(bundle: GlobalSearchIndex, catalogs: SearchCatalogs): void {
+export function validateSearchTargets(
+  bundle: GlobalSearchIndex,
+  catalogs: SearchCatalogs,
+  locale: Locale = bundle.locale
+): void {
+  if (bundle.locale !== locale) throw new Error(`无效 Search locale：${bundle.locale}`);
   const targets = new Set(
     Object.entries(catalogs).flatMap(([kind, entries]) => entries.map(({ id }) => `${kind}:${id}`))
   );
-  for (const entry of bundle.endgameEnemies) targets.add(`endgame-name:${entry.entryId}`);
+  const endgameTargetIds = new Set<string>();
+  const occurrenceKeys = new Set<string>();
+  for (const entry of bundle.endgameTargets) {
+    if (
+      !/^\d+$/.test(entry.id) ||
+      endgameTargetIds.has(entry.id) ||
+      !normalizeSearchLabel(entry.name) ||
+      !entry.occurrences.length
+    )
+      throw new Error(`无效 Endgame Search target：${entry.id}`);
+    endgameTargetIds.add(entry.id);
+    targets.add(`endgame:${entry.id}`);
+    for (const { locator, order } of entry.occurrences) {
+      const locatorKey = endgameOccurrenceLocatorKey(locator);
+      if (
+        occurrenceKeys.has(locatorKey) ||
+        !Object.values(order).every((value) => Number.isSafeInteger(value) && value >= 0)
+      )
+        throw new Error(`无效或重复 Endgame Search locator：${locatorKey}`);
+      occurrenceKeys.add(locatorKey);
+    }
+  }
   const seen = new Set<string>();
   for (const doc of bundle.documents) {
     if (
@@ -110,6 +155,11 @@ export function validateSearchTargets(bundle: GlobalSearchIndex, catalogs: Searc
     )
       throw new Error(`无效 SearchDocument target：${doc.key}`);
     seen.add(doc.key);
+    if (doc.target.kind === 'endgame') {
+      const entry = bundle.endgameTargets.find(({ id }) => id === doc.target.id);
+      if (!entry || gameTextToPlain(entry.name) !== doc.canonicalName)
+        throw new Error(`Endgame Search label 与 projected Enemy 不一致：${doc.key}`);
+    }
   }
   if (seen.size !== targets.size) throw new Error('SearchDocument 未覆盖全部 targets');
 }
@@ -121,7 +171,8 @@ export async function loadPlayerAliases(file = playerAliasesPath): Promise<unkno
 /** Alias-only edits rebuild search artifacts, never full domain data or tracked snapshots. */
 export async function ensureSearchDocuments(
   expectedSourceCommit: string,
-  files = { inputs: searchInputsPath, bundle: searchBundlePath, aliases: playerAliasesPath }
+  files = { inputs: searchInputsPath, bundle: searchBundlePath, aliases: playerAliasesPath },
+  locale: Locale = 'zh-CN'
 ): Promise<boolean> {
   const inputs = JSON.parse(await readFile(files.inputs, 'utf8')) as SearchBuildInputs;
   if (
@@ -131,9 +182,13 @@ export async function ensureSearchDocuments(
     inputs.official.namingPolicyVersion !== CHARACTER_NAMING_POLICY_VERSION
   )
     throw new Error('名称生成缓存已过期；请运行 pnpm data:sync');
-  const next = buildSearchDocuments(inputs, await loadPlayerAliases(files.aliases));
+  const next = buildSearchDocuments(inputs, locale, {
+    kind: 'maintained',
+    value: await loadPlayerAliases(files.aliases)
+  });
   const serialized = `${JSON.stringify(next)}\n`;
   if ((await readFile(files.bundle, 'utf8').catch(() => '')) === serialized) return false;
+  await mkdir(path.dirname(files.bundle), { recursive: true });
   await writeFile(files.bundle, serialized, 'utf8');
   console.log(
     `搜索数据已更新：${next.documents.length} documents，metadata ${next.metadataDigest.slice(0, 12)}`

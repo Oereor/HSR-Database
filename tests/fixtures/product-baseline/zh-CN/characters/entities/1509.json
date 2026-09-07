@@ -1,0 +1,4894 @@
+{
+  "catalog": {
+    "baseName": "吉尔伽美什",
+    "description": "在宇宙之外的某个世界中，人类历史最初的英雄王。\n三分之二是神、三分之一是人的他，理所当然地拥有支配一切的特权（自称）。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "id": "1509",
+    "name": "吉尔伽美什",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "吉尔伽美什",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 125,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 97
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 97.68,
+            "perLevel": 4.884
+          },
+          "defence": {
+            "base": 69.3,
+            "perLevel": 3.465
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 153.12,
+            "perLevel": 7.656
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 136.752,
+            "perLevel": 4.884
+          },
+          "defence": {
+            "base": 97.02,
+            "perLevel": 3.465
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 214.368,
+            "perLevel": 7.656
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 175.824,
+            "perLevel": 4.884
+          },
+          "defence": {
+            "base": 124.74,
+            "perLevel": 3.465
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 275.616,
+            "perLevel": 7.656
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 214.896,
+            "perLevel": 4.884
+          },
+          "defence": {
+            "base": 152.46,
+            "perLevel": 3.465
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 336.864,
+            "perLevel": 7.656
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 253.968,
+            "perLevel": 4.884
+          },
+          "defence": {
+            "base": 180.18,
+            "perLevel": 3.465
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 398.112,
+            "perLevel": 7.656
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 293.04,
+            "perLevel": 4.884
+          },
+          "defence": {
+            "base": 207.9,
+            "perLevel": 3.465
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 459.36,
+            "perLevel": 7.656
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 332.112,
+            "perLevel": 4.884
+          },
+          "defence": {
+            "base": 235.62,
+            "perLevel": 3.465
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 520.608,
+            "perLevel": 7.656
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "在宇宙之外的某个世界中，人类历史最初的英雄王。\n三分之二是神、三分之一是人的他，理所当然地拥有支配一切的特权（自称）。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "equipmentRecommendation": {
+      "avatarId": "1509",
+      "cavernSetIds": [
+        "122",
+        "131",
+        "109"
+      ],
+      "lightConeIds": [
+        "23062",
+        "23045",
+        "24000"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "ThunderAddedRatio",
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "328",
+        "313",
+        "306"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "吉尔伽美什",
+    "id": "1509",
+    "kind": "character",
+    "name": "吉尔伽美什",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "当吉尔伽美什持有【王来承认】时，【王来承认】无视防御力的效果对其他队友也生效，且【王来承认】额外使吉尔伽美什攻击力提高<unbreak>60%</unbreak>。施放战技时额外固定恢复<unbreak>40</unbreak>能量。",
+            "iconKey": "rank--150901",
+            "id": "150901",
+            "name": "见证一切之人",
+            "rank": 1
+          },
+          {
+            "description": "吉尔伽美什进入战斗时获得<unbreak>5</unbreak>点【兴致】，施放终结技时额外获得<unbreak>5</unbreak>点【兴致】。战技【王之财宝】对主目标造成的伤害倍率提高<unbreak>100%</unbreak>，对相邻目标造成的伤害倍率提高<unbreak>50%</unbreak>。",
+            "iconKey": "rank--150902",
+            "id": "150902",
+            "name": "通晓万物之智",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--150903",
+            "id": "150903",
+            "name": "跋涉千里之旅",
+            "rank": 3
+          },
+          {
+            "description": "吉尔伽美什的<u>能量恢复效率</u>提高<unbreak>20%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "能量恢复效率能够提高角色在施放技能、消灭敌人、受到攻击等行为时获取的能量值。\n这个数值越高，角色能量恢复得越快。\n部分恢复我方目标能量的效果所恢复的能量值不会受到能量恢复效率的影响。",
+                "id": "30000007",
+                "name": "能量恢复效率"
+              }
+            ],
+            "iconKey": "rank--150904",
+            "id": "150904",
+            "name": "唯我独尊之王",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--150905",
+            "id": "150905",
+            "name": "人神诀别之剑",
+            "rank": 5
+          },
+          {
+            "description": "终结技【天地乖离•开辟之星】的弹射伤害倍率提高<unbreak>80%</unbreak>。吉尔伽美什在场时，使我方角色的全属性<u>抗性穿透</u>提高<unbreak>20%</unbreak>。队友施放终结技时，吉尔伽美什获得1点【黄金律】，最多累计<unbreak>3</unbreak>点。自身施放终结技时消耗全部【黄金律】，每消耗1点【黄金律】使造成的终结技伤害的暴击伤害提高<unbreak>100%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                "id": "30000005",
+                "name": "抗性穿透"
+              }
+            ],
+            "iconKey": "rank--150906",
+            "id": "150906",
+            "name": "挚友淬锻之魂",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 360
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1509001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1509001",
+                "variantIds": [
+                  "150901"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "150901",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于吉尔伽美什50%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于吉尔伽美什60%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于吉尔伽美什70%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于吉尔伽美什80%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于吉尔伽美什90%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于吉尔伽美什100%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于吉尔伽美什110%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于吉尔伽美什120%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于吉尔伽美什130%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于吉尔伽美什140%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "漫不经心",
+                "progressionId": "1509001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1509002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1509002",
+                "variantIds": [
+                  "150902"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "150902",
+                "levels": [
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标15%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什140%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什70%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标17%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什154%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什77%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标18%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什168%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什84%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标20%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什182%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什91%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "182%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "91%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标21%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什196%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什98%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "196%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标23%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什210%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什105%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标24%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什228%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什114%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "228%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "114%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标26%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什245%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什123%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "245%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "123%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标28%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什263%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什131%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "263%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "131%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标30%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什280%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什140%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "280%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标32%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什294%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什147%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "294%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "147%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标33%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什308%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什154%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "308%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标35%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什322%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什161%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "322%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "161%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标36%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什336%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什168%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "336%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "获得【王来承认】，使自身造成伤害时无视目标38%的防御力，持续3回合。\n对指定敌方单体造成等同于吉尔伽美什350%攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什175%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【王来承认】，使自身造成伤害时无视目标"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对指定敌方单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "350%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对相邻目标造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "王之财宝",
+                "progressionId": "1509002",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2,
+                  4
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1509003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1509003",
+                "variantIds": [
+                  "150903"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 2
+                    },
+                    {
+                      "type": "aoe",
+                      "value": 40
+                    }
+                  ]
+                },
+                "id": "150903",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什200%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什50%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什220%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什55%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什240%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什60%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什260%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什65%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "260%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什280%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什70%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "280%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什300%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什75%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什325%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什81%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "325%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什350%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什88%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "350%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什375%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什94%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "375%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什400%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什100%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "400%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什420%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什105%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "420%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什440%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什110%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "440%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什460%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什115%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "460%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "115%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什480%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什120%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "480%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于吉尔伽美什500%攻击力的雷属性伤害。并额外造成10次伤害，每次对敌方随机单体造成等同于吉尔伽美什125%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "500%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "天地乖离•开辟之星",
+                "progressionId": "1509003",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1509004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1509004",
+                "variantIds": [
+                  "150904",
+                  "150905"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "energyGain": 10
+                },
+                "id": "150904",
+                "levels": [
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高20%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高22%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高24%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高26%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高28%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高30%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高33%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高35%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高38%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高40%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高42%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高44%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高46%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高48%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高50%，持续3回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高10%。\n当【兴致】首次达到10点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方队友施放终结技时，吉尔伽美什获得【王来背负】，使自身造成的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n初始自身回合开始时自动施放普攻。我方其他目标行动时，吉尔伽美什获得1点【兴致】，每拥有1点【兴致】使自身速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当【兴致】首次达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，进入【来兴致了！】状态，该状态下仅能施放战技，且持续整场战斗。施放战技后，清空自身【兴致】。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "「尽情取悦本王吧」",
+                "progressionId": "1509004",
+                "scalingParamIndexes": [
+                  2
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              },
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 10,
+                  "extraEffects": [
+                    {
+                      "description": "多个目标在一次行动中，分别对敌方目标施放攻击。",
+                      "id": "10000019",
+                      "name": "连携攻击"
+                    },
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "150905",
+                "levels": [
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什200%攻击力的雷属性伤害以及Saber300%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的120%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什220%攻击力的雷属性伤害以及Saber330%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的128%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "330%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "128%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什240%攻击力的雷属性伤害以及Saber360%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的136%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "360%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "136%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什260%攻击力的雷属性伤害以及Saber390%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的144%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "260%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "390%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什280%攻击力的雷属性伤害以及Saber420%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的152%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "280%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "420%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "152%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什300%攻击力的雷属性伤害以及Saber450%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的160%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "450%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什325%攻击力的雷属性伤害以及Saber488%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的170%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "325%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "488%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "170%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什350%攻击力的雷属性伤害以及Saber525%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的180%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "350%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "525%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什375%攻击力的雷属性伤害以及Saber563%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的190%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "375%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "563%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "190%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什400%攻击力的雷属性伤害以及Saber600%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的200%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "400%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "600%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什420%攻击力的雷属性伤害以及Saber630%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的208%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "420%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "630%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "208%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什440%攻击力的雷属性伤害以及Saber660%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的216%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "440%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "660%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什460%攻击力的雷属性伤害以及Saber690%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的224%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "460%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "690%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "224%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什480%攻击力的雷属性伤害以及Saber720%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的232%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "480%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "720%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "232%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "吉尔伽美什或Saber攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到8，吉尔伽美什和Saber发动连携追加攻击，对敌方全体分别造成等同于吉尔伽美什500%攻击力的雷属性伤害以及Saber750%攻击力的风属性伤害，随后吉尔伽美什获得3点【兴致】，Saber固定恢复120点能量并使自身下一次施放终结技时，造成的伤害为原伤害的240%。\n施放连携追加攻击后清空累计攻击计数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "吉尔伽美什或"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击时累计1点攻击计数，任意单位攻击后若累计攻击计数达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，吉尔伽美什和"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于吉尔伽美什"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "500%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害以及Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "750%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后吉尔伽美什获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并使自身下一次施放终结技时，造成的伤害为原伤害的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "后清空累计攻击计数。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "「本王允许你进攻」",
+                "progressionId": "1509004",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  5
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1509007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1509007",
+                "variantIds": [
+                  "150907"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  }
+                },
+                "id": "150907",
+                "levels": [
+                  {
+                    "description": "使用秘技后，制造1片持续10秒的特殊领域，处于特殊领域内的敌人陷入【王来允许】状态，【王来允许】状态下的敌人会停止所有行动。\n主动攻击陷入【王来允许】的敌人进入战斗时，使所有处于【王来允许】状态的敌人同时进入战斗，进入战斗后对敌方全体造成等同于吉尔伽美什200%攻击力的雷属性伤害，且吉尔伽美什立即获得3点【兴致】。我方制造的领域效果最多存在1个。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，制造1片持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的特殊领域，处于特殊领域内的敌人陷入【王来允许】状态，【王来允许】状态下的敌人会停止所有行动。\n主动攻击陷入【王来允许】的敌人进入战斗时，使所有处于【王来允许】状态的敌人同时进入战斗，进入战斗后对敌方全体造成等同于吉尔伽美什"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且吉尔伽美什立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【兴致】。我方制造的领域效果最多存在1个。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "天之锁",
+                "progressionId": "1509007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "吉尔伽美什施放终结技时，获得<unbreak>2</unbreak>点【兴致】。我方其他角色施放终结技时，吉尔伽美什额外获得<unbreak>2</unbreak>点【兴致】，并固定恢复等同于本次消耗能量值<unbreak>30%</unbreak>的能量。",
+            "iconKey": "skill-tree--1509101",
+            "id": "1509101",
+            "name": "史诗的源头",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "本场战斗中，吉尔伽美什每获得1点【兴致】，使自身暴击伤害提高<unbreak>25%</unbreak>，该效果最多叠加<unbreak>6</unbreak>层。",
+            "iconKey": "skill-tree--1509102",
+            "id": "1509102",
+            "name": "英雄的孤傲",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "吉尔伽美什在场时，使我方全体目标攻击力提高<unbreak>20%</unbreak>，暴击伤害提高<unbreak>20%</unbreak>。若目标能量上限大于<unbreak>140</unbreak>，每超过1点能量上限使攻击力和暴击伤害额外提高<unbreak>1%</unbreak>，最多额外提高<unbreak>100%</unbreak>。",
+            "iconKey": "skill-tree--1509103",
+            "id": "1509103",
+            "name": "王霸的竞逐",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1509201",
+            "name": "暴击率强化",
+            "prerequisiteIds": [],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1509202",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1509101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1509203",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1509202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "雷属性伤害提高3.2%",
+            "iconKey": "property--ThunderAddedRatio",
+            "id": "1509204",
+            "name": "伤害强化•雷",
+            "prerequisiteIds": [
+              "1509203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "ThunderAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1509205",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1509102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1509206",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1509205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1509207",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1509206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "雷属性伤害提高4.8%",
+            "iconKey": "property--ThunderAddedRatio",
+            "id": "1509208",
+            "name": "伤害强化•雷",
+            "prerequisiteIds": [
+              "1509103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "ThunderAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1509209",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1509208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "暴击率提高5.3%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1509210",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1509208"
+            ],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1509001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150901",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1509002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150902",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1509003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150903",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1509004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150904",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150905",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1509007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150907",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1509",
+    "subtitleRendered": false
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "catalog": {
+    "description": "星际和平公司「战略投资部」的高级干部，「石心十人」之一。借由基石分得「存护」令使的权能，以身作骰，置之死地而后生。",
+    "id": "8034010",
+    "name": "「石心十人」诡弈砂金",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8034010",
+    "defaultMonsterRef": "f885e4e7c5b638997c90adf5672d8f3a09a9c936358813649a6fd8b634683673",
+    "description": "星际和平公司「战略投资部」的高级干部，「石心十人」之一。借由基石分得「存护」令使的权能，以身作骰，置之死地而后生。",
+    "id": "8034010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "f885e4e7c5b638997c90adf5672d8f3a09a9c936358813649a6fd8b634683673",
+      "4b1bc7483040b051d779c956b585fc826e62fdd8d61c3eb7f92fb65dc8d16d9a",
+      "711dc822e8e16d8b6506002685736f7e303a8cd69863e64d51407e8a3b967192",
+      "2605724b7df748518ae81273e5b8a6f8514249f5afac26d7994eccef810e4110",
+      "19dd1481d23b4f76e87be4f613ecfff16466f4684b2291f2d0de751378a5f371",
+      "b30345f2c0e26bf028453e96a8f5542c0b7337c11e683c56a8d1fa168173abf3"
+    ],
+    "name": "「石心十人」诡弈砂金",
+    "rank": "LittleBoss",
+    "templateRef": "db9bb5fa4fa29b38b28a81db36b6f12b4b0e040822e201bd4960eaff3be1b010",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8034010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8034010",
+    "selectableMonsterIds": [
+      "8034010",
+      "803401001",
+      "803401002",
+      "803401003",
+      "803401004",
+      "803401005"
+    ]
+  }
+}

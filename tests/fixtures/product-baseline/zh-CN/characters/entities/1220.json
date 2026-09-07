@@ -1,0 +1,4870 @@
+{
+  "catalog": {
+    "baseName": "飞霄",
+    "description": "仙舟「曜青」的天击将军，帝弓七天将之一，为人不拘一格，率直潇洒。\n精通百般武艺，炼化躯体至极致，享有「大捷将军」美名，深受仙舟军民爱戴。\n但身负「月狂」之症，如要在时限内猎尽孽物——飞霄唯一的敌手，便是自己。",
+    "element": "Wind",
+    "elementName": "风",
+    "id": "1220",
+    "name": "飞霄",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "飞霄",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 112
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 81.84,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 2.64
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 142.56,
+            "perLevel": 7.128
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 114.576,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 73.92,
+            "perLevel": 2.64
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 199.584,
+            "perLevel": 7.128
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 147.312,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 95.04,
+            "perLevel": 2.64
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 256.608,
+            "perLevel": 7.128
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 180.048,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 116.16,
+            "perLevel": 2.64
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 313.632,
+            "perLevel": 7.128
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 212.784,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 137.28,
+            "perLevel": 2.64
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 370.656,
+            "perLevel": 7.128
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 245.52,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 158.4,
+            "perLevel": 2.64
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 427.68,
+            "perLevel": 7.128
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 278.256,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 179.52,
+            "perLevel": 2.64
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 484.704,
+            "perLevel": 7.128
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "仙舟「曜青」的天击将军，帝弓七天将之一，为人不拘一格，率直潇洒。\n精通百般武艺，炼化躯体至极致，享有「大捷将军」美名，深受仙舟军民爱戴。\n但身负「月狂」之症，如要在时限内猎尽孽物——飞霄唯一的敌手，便是自己。",
+    "element": "Wind",
+    "elementName": "风",
+    "equipmentRecommendation": {
+      "avatarId": "1220",
+      "cavernSetIds": [
+        "120",
+        "110",
+        "115"
+      ],
+      "lightConeIds": [
+        "23031",
+        "23020",
+        "24001"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "WindAddedRatio",
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "315",
+        "306",
+        "311"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "飞霄",
+    "id": "1220",
+    "kind": "character",
+    "name": "飞霄",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "发动【闪裂刃舞】或【钺贯天冲】后，使飞霄造成的终结技伤害额外提高，提高数值等同于原伤害的<unbreak>10%</unbreak>，最多叠加<unbreak>5</unbreak>层，持续至终结技行动结束。",
+            "iconKey": "rank--122001",
+            "id": "122001",
+            "name": "镇绥天钧",
+            "rank": 1
+          },
+          {
+            "description": "天赋效果中，我方目标每施放1次<u>追加攻击</u>即可使飞霄获得1点【飞黄】。该效果每回合最多触发<unbreak>6</unbreak>次。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--122002",
+            "id": "122002",
+            "name": "礼辰祷月",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--122003",
+            "id": "122003",
+            "name": "景星出宿",
+            "rank": 3
+          },
+          {
+            "description": "天赋的<u>追加攻击</u>的削韧值提高<unbreak>100%</unbreak>，并且发动时使自身速度提高<unbreak>8%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--122004",
+            "id": "122004",
+            "name": "驱飓听冰",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--122005",
+            "id": "122005",
+            "name": "擢登霄汉",
+            "rank": 5
+          },
+          {
+            "description": "飞霄造成的终结技伤害的全属性<u>抗性穿透</u>提高<unbreak>20%</unbreak>。天赋的<u>追加攻击</u>伤害同时视为终结技伤害，并且伤害倍率提高<unbreak>140%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                "id": "30000005",
+                "name": "抗性穿透"
+              },
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--122006",
+            "id": "122006",
+            "name": "惟首正丘",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--SpecialMaxSP",
+          "kind": "special",
+          "max": 0
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1220001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1220001",
+                "variantIds": [
+                  "122001"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "122001",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄50%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄60%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄70%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄80%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄90%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄100%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄110%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄120%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄130%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄140%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "闪裂",
+                "progressionId": "1220001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1220002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1220002",
+                "variantIds": [
+                  "122002"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "122002",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄100%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄110%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄120%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄130%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄140%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄150%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄163%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "163%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄175%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄188%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄200%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄210%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄220%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄230%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄240%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于飞霄250%攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，随后立即对该目标额外发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "钺贯",
+                "progressionId": "1220002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1220003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1220003",
+                "variantIds": [
+                  "122003",
+                  "122008",
+                  "122009"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "当敌方目标的韧性被削减至0时进入的特殊状态，进入该状态的目标行动会被延后。",
+                      "id": "10000006",
+                      "name": "弱点击破状态"
+                    }
+                  ],
+                  "specialResource": "<unbreak>6</unbreak>点【飞黄】",
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "122003",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄402%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄96%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "402%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄432%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄102%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "432%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "102%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄462%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄109%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "462%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "109%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄491%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄115%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "491%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "115%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄521%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄122%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "521%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "122%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄551%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄128%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "551%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "128%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄588%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄136%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "588%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "136%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄626%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄144%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "626%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄663%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄152%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "663%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "152%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄700%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄160%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "700%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄730%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄166%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "730%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "166%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄760%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄173%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "760%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄789%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄179%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "789%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "179%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄819%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄186%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "819%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "186%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成最多等同于飞霄849%攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于弱点击破状态时飞霄的弱点击破效率提高100%。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计6次。最后对该目标造成等同于飞霄192%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成最多等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "849%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，期间可无视弱点属性削减目标韧性，目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时飞霄的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n其中，飞霄先对该目标发动【闪裂刃舞】或【钺贯天冲】，总计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。最后对该目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "凿破大荒",
+                "progressionId": "1220003",
+                "scalingParamIndexes": [
+                  0,
+                  3
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              },
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "当敌方目标的韧性被削减至0时进入的特殊状态，进入该状态的目标行动会被延后。",
+                      "id": "10000006",
+                      "name": "弱点击破状态"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 5
+                    }
+                  ]
+                },
+                "id": "122008",
+                "levels": [
+                  {
+                    "description": "对所选目标造成等同于飞霄36%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄38%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高17%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄41%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高18%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄43%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄46%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高21%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄48%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高23%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄51%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高24%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "51%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄54%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高26%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄57%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高28%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄60%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高30%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄62%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高32%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄65%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高33%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄67%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高35%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "67%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄70%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高36%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄72%攻击力的风属性伤害。若目标处于弱点击破状态，伤害倍率提高38%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "闪裂刃舞",
+                "progressionId": "1220003",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              },
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "当敌方目标的韧性被削减至0时进入的特殊状态，进入该状态的目标行动会被延后。",
+                      "id": "10000006",
+                      "name": "弱点击破状态"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 5
+                    }
+                  ]
+                },
+                "id": "122009",
+                "levels": [
+                  {
+                    "description": "对所选目标造成等同于飞霄36%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄38%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高17%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄41%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高18%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄43%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄46%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高21%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄48%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高23%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄51%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高24%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "51%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄54%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高26%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄57%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高28%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄60%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高30%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄62%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高32%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄65%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高33%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄67%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高35%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "67%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄70%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高36%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对所选目标造成等同于飞霄72%攻击力的风属性伤害。若目标未处于弱点击破状态，伤害倍率提高38%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对所选目标造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "钺贯天冲",
+                "progressionId": "1220003",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1220004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1220004",
+                "variantIds": [
+                  "122004"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 5
+                    }
+                  ]
+                },
+                "id": "122004",
+                "levels": [
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄55%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高30%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄61%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高33%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄66%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高36%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄72%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高39%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄77%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高42%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄83%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高45%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄89%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高49%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "89%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄96%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高53%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄103%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高56%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "103%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄110%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高60%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄116%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高63%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "116%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄121%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高66%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "121%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄126%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高69%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄132%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高72%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "【飞黄】达到6点时可激活终结技，最多累计12点。我方目标每施放2次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动追加攻击，造成等同于飞霄138%攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高75%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【飞黄】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技，最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。我方目标每施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击，飞霄获得1点【飞黄】，飞霄的终结技攻击不计入次数。\n当飞霄的队友对敌方目标施放攻击后，飞霄立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于飞霄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "138%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次，飞霄回合开始时重置可触发次数。发动此攻击时使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "雷狩",
+                "progressionId": "1220004",
+                "scalingParamIndexes": [
+                  0,
+                  4
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1220007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1220007",
+                "variantIds": [
+                  "122007"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "122007",
+                "levels": [
+                  {
+                    "description": "使用秘技后进入持续20秒的【陷锋】状态。【陷锋】状态下会牵引一定范围内的敌人，并且自身移动速度提高50%，进入战斗后获得1点【飞黄】。\n【陷锋】状态下主动攻击会使所有牵引的敌人进入战斗。进入战斗后，每个波次开始时对敌方全体造成等同于飞霄200%攻击力的风属性伤害，该伤害必定造成暴击。若牵引了超过1个敌人，每超过1个敌人，该伤害的倍率提高100%，最多提高至1000%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后进入持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的【陷锋】状态。【陷锋】状态下会牵引一定范围内的敌人，并且自身移动速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，进入战斗后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【飞黄】。\n【陷锋】状态下主动攻击会使所有牵引的敌人进入战斗。进入战斗后，每个波次开始时对敌方全体造成等同于飞霄"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，该伤害必定造成暴击。若牵引了超过1个敌人，每超过1个敌人，该伤害的倍率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多提高至"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1000%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "岚身",
+                "progressionId": "1220007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "战斗开始时，获得<unbreak>3</unbreak>点【飞黄】。\n回合开始时，若上回合未通过天赋发动<u>追加攻击</u>，计入1次获得【飞黄】所需的攻击次数。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "skill-tree--1220101",
+            "id": "1220101",
+            "name": "天通",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "施放终结技对敌方目标造成伤害时，被视为发动了<u>追加攻击</u>。<u>追加攻击</u>的暴击伤害提高<unbreak>36%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "skill-tree--1220102",
+            "id": "1220102",
+            "name": "解形",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放战技时，攻击力提高<unbreak>48%</unbreak>，持续<unbreak>3</unbreak>回合。",
+            "iconKey": "skill-tree--1220103",
+            "id": "1220103",
+            "name": "电举",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1220201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1220202",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1220101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1220203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1220202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1220204",
+            "name": "防御强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1220205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1220102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1220206",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1220205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1220207",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1220208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1220103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击率提高5.3%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1220209",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1220208"
+            ],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1220210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1220208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1220001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122001",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1220002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122002",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1220003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122003",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122008",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122009",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1220004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122004",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1220007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122007",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1220",
+    "subtitleRendered": false
+  }
+}

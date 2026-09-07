@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "无望冽风的幻灭者秉持传承自历代守护者的神迹权能，在战斗中号令冰雪的力量冻结敌人。",
+    "id": "1004014",
+    "name": "无望冽风的幻灭者",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1004014",
+    "defaultMonsterRef": "27217f7dafa735c9a2c62e5b2d82d196e30750f034234b4ea0f55b386305702d",
+    "description": "无望冽风的幻灭者秉持传承自历代守护者的神迹权能，在战斗中号令冰雪的力量冻结敌人。",
+    "id": "1004014",
+    "kind": "enemy",
+    "monsterRefs": [
+      "27217f7dafa735c9a2c62e5b2d82d196e30750f034234b4ea0f55b386305702d",
+      "a94680be679d8877af2b87ff143eef94cae23c7a573c1c5ce18c762ba2ca2f5d",
+      "ac46e727224e2144f8d3a39e1cb96a187b3db04ebaa68c6d3703c00b69c940ff",
+      "444125d63143cb25d81e1f3eb991984eda9c984a05d9024ae4b5d8c1974c12a2",
+      "be98ab185ca682a36acce610a960d82ae160acc36696528c8bd4b6f7ebd59601"
+    ],
+    "name": "无望冽风的幻灭者",
+    "rank": "LittleBoss",
+    "templateRef": "3d1617a8ecc5fd6d0317d397f56e1b44c77922b814887af76f3b5a5bc0eb8847",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1004014",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1004014",
+    "selectableMonsterIds": [
+      "1004014",
+      "100401401",
+      "100401402",
+      "100401403",
+      "100401404"
+    ]
+  }
+}

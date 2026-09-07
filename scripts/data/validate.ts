@@ -1,4 +1,10 @@
 import {
+  loadEnemySkillInclusionPolicy,
+  isIncludedEnemySkill,
+  normalizeEnemySkillKind,
+  normalizeEnemySkillTag
+} from './enemy-skill-policy.js';
+import {
   buildSearchDocuments,
   loadPlayerAliases,
   searchInputsPath,
@@ -21,7 +27,8 @@ import type {
   RelicSlot
 } from '../../src/lib/domain/types.js';
 import {
-  collectEndgameSearchNames,
+  collectEndgameSearchOccurrences,
+  collectEndgameSearchTargets,
   endgameOccurrenceLocatorKey,
   GLOBAL_SEARCH_SCHEMA_VERSION,
   type GlobalSearchIndex
@@ -50,11 +57,7 @@ import {
 } from './avatar-special-skills.js';
 import { assertDataRoot, auditRoot, generatedRoot, staticGeneratedRoot } from './paths.js';
 import { readTable } from './raw.js';
-import {
-  enemySkillTagCodes,
-  enemySpecialResistanceLabels,
-  resolveCanonicalEnemyStats
-} from './enemy-detail.js';
+import { enemySpecialResistanceLabels, resolveCanonicalEnemyStats } from './enemy-detail.js';
 import {
   addDecimals,
   decimalOf,
@@ -66,18 +69,27 @@ import {
 import type { EndgameAudit } from './endgame.js';
 import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-fiction-hp.js';
 import { parseGameVersion } from './source-metadata.js';
+import { readDataManifest, validateGeneratedArtifacts } from './generated-artifacts.js';
+import { getGeneratedLocales, type Locale } from './locale-registry.js';
+import { assertCrossLocaleStructuralParity } from './structural-parity.js';
+import { assertEnglishCjkReport, auditEnglishCjk } from './english-cjk.js';
 import {
   assertHomepageRecentWarpData,
   buildHomepageRecentWarpData,
   type HomepageGachaRow
 } from './homepage.js';
 
-const manifest = JSON.parse(
-  await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
-) as DataManifest;
-if (manifest.schemaVersion !== 35)
-  throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
-if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
+const manifest: DataManifest = await readDataManifest();
+await validateGeneratedArtifacts(manifest);
+if (
+  manifest.publicLocale !== 'zh-CN' ||
+  JSON.stringify(manifest.generatedLocales) !== '["zh-CN","en"]' ||
+  JSON.stringify(manifest.publicLocales) !== '["zh-CN","en"]' ||
+  manifest.routePaths.some((route) => route.startsWith('/zh-CN')) ||
+  manifest.locales['zh-CN'].textMapCode !== 'CHS' ||
+  manifest.locales.en.textMapCode !== 'EN'
+)
+  throw new Error('生成数据 locale/TextMap 配置错误');
 const parsedGameVersion = parseGameVersion(manifest.sourceVersion);
 if (
   manifest.gameVersionFull !== parsedGameVersion.gameVersionFull ||
@@ -86,15 +98,30 @@ if (
   throw new Error('生成数据的游戏版本与 TurnBasedGameData sourceVersion 不一致');
 
 const rawRoot = assertDataRoot();
+const productRoot = path.join(generatedRoot, 'views', 'zh-CN');
+const currentTextMaps = Object.fromEntries(
+  await Promise.all(
+    getGeneratedLocales().map(async ({ locale, textMapCode }) => {
+      const textMap = JSON.parse(
+        await readFile(path.join(rawRoot, 'TextMap', `TextMap${textMapCode}.json`), 'utf8')
+      ) as Record<string, string>;
+      const digest = createHash('sha256').update(JSON.stringify(textMap)).digest('hex');
+      if (manifest.locales[locale].textMapDigest !== digest)
+        throw new Error(`${locale} view TextMap digest 已过期`);
+      return [locale, textMap] as const;
+    })
+  )
+) as Record<Locale, Record<string, string>>;
 const [homepage, homepageCharacterCatalog, homepageLightConeCatalog, homepageGachaRows] =
   await Promise.all([
-    readFile(path.join(generatedRoot, 'homepage.json'), 'utf8').then(
+    readFile(path.join(productRoot, 'homepage.json'), 'utf8').then(
       (value) => JSON.parse(value) as HomepageRecentWarpData
     ),
-    readFile(path.join(generatedRoot, 'catalogs', 'characters.json'), 'utf8').then(
-      (value) => JSON.parse(value) as CatalogEntry[]
-    ),
-    readFile(path.join(generatedRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
+    readFile(
+      path.join(generatedRoot, 'views', 'zh-CN', 'catalogs', 'characters.json'),
+      'utf8'
+    ).then((value) => JSON.parse(value) as CatalogEntry[]),
+    readFile(path.join(productRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
       (value) => JSON.parse(value) as CatalogEntry[]
     ),
     readTable<HomepageGachaRow>(rawRoot, 'GachaBasicInfo')
@@ -180,7 +207,7 @@ const endgame = Object.fromEntries(
   await Promise.all(
     endgameModes.map(async (mode) => [
       mode,
-      JSON.parse(await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8'))
+      JSON.parse(await readFile(path.join(productRoot, 'endgame', `${mode}.json`), 'utf8'))
     ])
   )
 ) as EndgameDatasetByMode;
@@ -194,7 +221,7 @@ const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
 
 for (const mode of endgameModes) {
   const dataset = endgame[mode];
-  if (dataset.schemaVersion !== 22 || dataset.mode !== mode)
+  if (dataset.schemaVersion !== 23 || dataset.mode !== mode)
     throw new Error(`Endgame ${mode} schema 或模式标记错误`);
   if (new Set(dataset.groups.map((group) => group.groupId)).size !== dataset.groups.length)
     throw new Error(`Endgame ${mode} 存在重复 GroupID`);
@@ -441,9 +468,10 @@ if (
     '坚防守备,丰亨豫大,如鹿添翼,仙光夺目' ||
   !gameTextToPlain(asSlotOneGuide.traits[0]?.description).includes('50%') ||
   !gameTextToPlain(asSlotOneGuide.traits[0]?.description).includes('100%') ||
-  asSlotOneGuide.traits[0]?.linkedEffects.length !== 0 ||
-  asSlotOneGuide.traits[3]?.linkedEffects.map((effect) => effect.id).join(',') !== '220240163' ||
-  asSlotThreeGuide?.traits[1]?.linkedEffects.map((effect) => effect.id).join(',') !==
+  (asSlotOneGuide.traits[0]?.linkedEffects ?? []).length !== 0 ||
+  (asSlotOneGuide.traits[3]?.linkedEffects ?? []).map((effect) => effect.id).join(',') !==
+    '220240163' ||
+  (asSlotThreeGuide?.traits[1]?.linkedEffects ?? []).map((effect) => effect.id).join(',') !==
     '501401001,70000318'
 )
   throw new Error('AS 3020/30204 关卡效果 relation、参数插值或 EffectID 解析异常');
@@ -483,6 +511,7 @@ for (const mode of endgameModes) {
   const projection = structuredClone(endgame[mode].groups);
   for (const group of projection) {
     const groupRecord = group as unknown as Record<string, unknown>;
+    delete groupRecord.recommendationEligible;
     for (const field of modifierGroupFields[mode]) delete groupRecord[field];
     for (const encounter of group.encounters) {
       const encounterRecord = encounter as unknown as Record<string, unknown>;
@@ -612,19 +641,20 @@ const expected: Record<string, number> = {
   enemies: manifest.counts.enemies
 };
 for (const [category, count] of Object.entries(expected)) {
+  const categoryRoot = productRoot;
   const catalog = JSON.parse(
-    await readFile(path.join(generatedRoot, 'catalogs', `${category}.json`), 'utf8')
+    await readFile(path.join(categoryRoot, 'catalogs', `${category}.json`), 'utf8')
   ) as CatalogEntry[];
   if (catalog.length !== count)
     throw new Error(`${category} 数量不一致：${catalog.length} != ${count}`);
   if (new Set(catalog.map((item) => item.id)).size !== catalog.length)
     throw new Error(`${category} 存在重复 ID`);
   for (const item of catalog)
-    await access(path.join(generatedRoot, 'details', category, `${item.id}.json`));
+    await access(path.join(categoryRoot, 'details', category, `${item.id}.json`));
 }
 
 const relicProperties = JSON.parse(
-  await readFile(path.join(generatedRoot, 'catalogs', 'relic-properties.json'), 'utf8')
+  await readFile(path.join(productRoot, 'catalogs', 'relic-properties.json'), 'utf8')
 ) as RelicProperty[];
 if (relicProperties.length !== manifest.counts.relicProperties || relicProperties.length !== 21)
   throw new Error(`遗器属性数量异常：${relicProperties.length}`);
@@ -636,7 +666,7 @@ const relicPropertiesByType = new Map(
   relicProperties.map((property) => [property.propertyType, property])
 );
 const relicCatalog = JSON.parse(
-  await readFile(path.join(generatedRoot, 'catalogs', 'relics.json'), 'utf8')
+  await readFile(path.join(productRoot, 'catalogs', 'relics.json'), 'utf8')
 ) as RelicCatalogEntry[];
 if (relicCatalog.filter((set) => set.category === 'cavern').length !== 32)
   throw new Error('隧洞遗器套装数量异常');
@@ -647,7 +677,7 @@ const relicDetails = await Promise.all(
   manifest.routes.relics.map(
     async (id) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'relics', `${id}.json`), 'utf8')
+        await readFile(path.join(productRoot, 'details', 'relics', `${id}.json`), 'utf8')
       ) as RelicSet
   )
 );
@@ -677,16 +707,19 @@ const enemyDetails = await Promise.all(
   manifest.routes.enemies.map(
     async (id) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'enemies', `${id}.json`), 'utf8')
+        await readFile(path.join(productRoot, 'details', 'enemies', `${id}.json`), 'utf8')
       ) as Enemy
   )
 );
-const [rawTemplates, rawConfigs, rawHardLevels, rawElites] = await Promise.all([
+const [rawTemplates, rawConfigs, rawHardLevels, rawElites, rawEnemySkills] = await Promise.all([
   readTable<Record<string, any>>(rawRoot, 'MonsterTemplateConfig'),
   readTable<Record<string, any>>(rawRoot, 'MonsterConfig'),
   readTable<Record<string, any>>(rawRoot, 'HardLevelGroup'),
-  readTable<Record<string, any>>(rawRoot, 'EliteGroup')
+  readTable<Record<string, any>>(rawRoot, 'EliteGroup'),
+  readTable<Record<string, any>>(rawRoot, 'MonsterSkillConfig')
 ]);
+const inclusionPolicy = await loadEnemySkillInclusionPolicy();
+const rawSkillById = new Map(rawEnemySkills.map((row) => [String(row.SkillID), row]));
 const rawTemplateById = new Map(
   rawTemplates.map((row) => [String(row.MonsterTemplateID), row] as const)
 );
@@ -778,15 +811,38 @@ for (const enemy of enemyDetails) {
 
     const rawSkillIds = (rawMonster.SkillList ?? []).map(String);
     const generatedSkillIds = monster.skills.map((skill) => skill.id);
+    const expectedSkillIds = rawSkillIds.filter((id: string) => {
+      const row = rawSkillById.get(id);
+      return row && isIncludedEnemySkill(row, inclusionPolicy);
+    });
+    if (
+      JSON.stringify([...new Set(generatedSkillIds)]) !==
+      JSON.stringify([...new Set(expectedSkillIds)])
+    )
+      throw new Error(
+        `Monster ${monster.monsterId} neutral skill inclusion differs from reviewed policy`
+      );
     let generatedIndex = 0;
     for (const rawSkillId of rawSkillIds)
       if (rawSkillId === generatedSkillIds[generatedIndex]) generatedIndex += 1;
     if (generatedIndex !== generatedSkillIds.length)
       throw new Error(`Monster ${monster.monsterId} 技能链或顺序异常`);
     for (const skill of monster.skills) {
-      if (!skill.description.trim() || skill.description === '资料未提供')
+      if (
+        skill.localizedTextStatus !== 'available' ||
+        !skill.description.trim() ||
+        skill.description === '资料未提供'
+      )
         throw new Error(`Monster ${monster.monsterId} 技能 ${skill.id} 缺少公开描述`);
-      if (skill.tag.known && enemySkillTagCodes[skill.tag.label] !== skill.tag.code)
+      const rawSkill = rawSkillById.get(skill.id);
+      const context = { enemyId: enemy.id, skillId: skill.id };
+      if (
+        !rawSkill ||
+        normalizeEnemySkillKind(rawSkill.SkillTypeDesc, skill.kindLabel, context) !== skill.kind ||
+        normalizeEnemySkillTag(rawSkill.SkillTag, skill.tag.label, context).code !==
+          skill.tag.code ||
+        !skill.tag.known
+      )
         throw new Error(`Monster ${monster.monsterId} 技能 ${skill.id} tag 映射异常`);
       if (skill.phases.some((phase) => !Number.isSafeInteger(phase) || phase <= 0))
         throw new Error(`Monster ${monster.monsterId} 技能 ${skill.id} PhaseList 无效`);
@@ -863,32 +919,38 @@ for (const [label, unresolved] of [
 ] as const)
   if (unresolved.length) console.warn(`Enemy 警告：${unresolved.length} 个 unresolved ${label}`);
 const search = JSON.parse(
-  await readFile(path.join(staticGeneratedRoot, 'search.json'), 'utf8')
+  await readFile(path.join(staticGeneratedRoot, 'zh-CN', 'search.json'), 'utf8')
 ) as GlobalSearchIndex;
 if (search.schemaVersion !== GLOBAL_SEARCH_SCHEMA_VERSION) throw new Error('搜索索引 schema 异常');
 const searchInputs = JSON.parse(await readFile(searchInputsPath, 'utf8')) as SearchBuildInputs;
-const expectedSearch = buildSearchDocuments(searchInputs, await loadPlayerAliases());
+const expectedSearch = buildSearchDocuments(searchInputs, 'zh-CN', {
+  kind: 'maintained',
+  value: await loadPlayerAliases()
+});
 if (JSON.stringify(search) !== JSON.stringify(expectedSearch))
   throw new Error('搜索文档与当前 metadata/catalog 不一致');
 if (
-  search.documents.filter((doc) => doc.target.kind !== 'endgame-name').length !==
+  search.documents.filter((doc) => doc.target.kind !== 'endgame').length !==
   Object.values(expected).reduce((sum, value) => sum + value, 0)
 )
   throw new Error('搜索文档数量与目录数量不一致');
-const expectedEndgameSearch = collectEndgameSearchNames(endgame, (name) =>
-  createHash('sha256').update(name).digest('hex').slice(0, 16)
+const projectedEndgameNames = new Map(
+  collectEndgameSearchOccurrences(endgame).map(({ occurrence }) => [
+    String(occurrence.monsterTemplateId),
+    occurrence.name ?? ''
+  ])
 );
-if (search.endgameEnemies.length !== expectedEndgameSearch.length)
-  throw new Error('Endgame 搜索名称索引数量异常');
-if (
-  new Set(search.endgameEnemies.map(({ entryId }) => entryId)).size !== search.endgameEnemies.length
-)
-  throw new Error('Endgame 搜索 entryId 冲突');
-const indexedLocatorKeys = search.endgameEnemies.flatMap(({ locators }) =>
-  locators.map(endgameOccurrenceLocatorKey)
+const expectedEndgameSearch = collectEndgameSearchTargets(endgame, projectedEndgameNames);
+if (search.locale !== 'zh-CN') throw new Error('搜索索引 locale 异常');
+if (search.endgameTargets.length !== expectedEndgameSearch.length)
+  throw new Error('Endgame 搜索 template target 数量异常');
+if (new Set(search.endgameTargets.map(({ id }) => id)).size !== search.endgameTargets.length)
+  throw new Error('Endgame 搜索 target ID 冲突');
+const indexedLocatorKeys = search.endgameTargets.flatMap(({ occurrences }) =>
+  occurrences.map(({ locator }) => endgameOccurrenceLocatorKey(locator))
 );
-const expectedLocatorKeys = expectedEndgameSearch.flatMap(({ locators }) =>
-  locators.map(endgameOccurrenceLocatorKey)
+const expectedLocatorKeys = expectedEndgameSearch.flatMap(({ occurrences }) =>
+  occurrences.map(({ locator }) => endgameOccurrenceLocatorKey(locator))
 );
 if (JSON.stringify(indexedLocatorKeys) !== JSON.stringify(expectedLocatorKeys))
   throw new Error('Endgame 搜索 locator 无法按展示模型解析');
@@ -906,7 +968,7 @@ const characters = await Promise.all(
   manifest.routes.characters.map(
     async (id) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(productRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character
   )
 );
@@ -1204,7 +1266,7 @@ const profileIds = (profile: CharacterProfile): Set<string> =>
   ]);
 
 const lightConeCatalog = JSON.parse(
-  await readFile(path.join(generatedRoot, 'catalogs', 'light-cones.json'), 'utf8')
+  await readFile(path.join(productRoot, 'catalogs', 'light-cones.json'), 'utf8')
 ) as CatalogEntry[];
 const lightConeIds = new Set(lightConeCatalog.map((entry) => entry.id));
 const recommendationMainSlots = ['BODY', 'FOOT', 'NECK', 'OBJECT'] as const;
@@ -1345,7 +1407,7 @@ const lightCones = await Promise.all(
   manifest.routes['light-cones'].map(
     async (id) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'light-cones', `${id}.json`), 'utf8')
+        await readFile(path.join(productRoot, 'details', 'light-cones', `${id}.json`), 'utf8')
       ) as LightCone
   )
 );
@@ -1371,12 +1433,12 @@ const enemies = await Promise.all(
   manifest.routes.enemies.map(
     async (id) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'enemies', `${id}.json`), 'utf8')
+        await readFile(path.join(productRoot, 'details', 'enemies', `${id}.json`), 'utf8')
       ) as Enemy
   )
 );
 const enemyCatalog = JSON.parse(
-  await readFile(path.join(generatedRoot, 'catalogs', 'enemies.json'), 'utf8')
+  await readFile(path.join(productRoot, 'catalogs', 'enemies.json'), 'utf8')
 ) as import('../../src/lib/domain/types.js').EnemyCatalogEntry[];
 for (const enemy of enemies) {
   const catalogEntry = enemyCatalog.find((entry) => entry.id === enemy.id);
@@ -1767,6 +1829,118 @@ if (skillVariant(baseProfile(huntMarch), '122401')?.combatMeta.extraEffects !== 
 if (skillVariant(baseProfile(huntMarch), '122408')?.combatMeta.extraEffects?.[0]?.id !== '30000002')
   throw new Error('技能 ExtraEffect 归属失败：三月七·巡猎强化普攻');
 
+async function readLocaleProjection(locale: Locale) {
+  const root = path.join(generatedRoot, 'views', locale);
+  const [catalogs, details, properties, datasets, localeHomepage, localeSearch] = await Promise.all(
+    [
+      Promise.all(
+        ['characters', 'light-cones', 'relics', 'enemies'].map(async (category) => [
+          category,
+          JSON.parse(await readFile(path.join(root, 'catalogs', `${category}.json`), 'utf8'))
+        ])
+      ).then(Object.fromEntries),
+      Promise.all(
+        Object.entries(manifest.routes).map(async ([category, ids]) => [
+          category,
+          await Promise.all(
+            ids.map((id) =>
+              readFile(path.join(root, 'details', category, `${id}.json`), 'utf8').then(JSON.parse)
+            )
+          )
+        ])
+      ).then(Object.fromEntries),
+      readFile(path.join(root, 'catalogs', 'relic-properties.json'), 'utf8').then(JSON.parse),
+      Promise.all(
+        endgameModes.map(async (mode) => [
+          mode,
+          JSON.parse(await readFile(path.join(root, 'endgame', `${mode}.json`), 'utf8'))
+        ])
+      ).then(Object.fromEntries),
+      readFile(path.join(root, 'homepage.json'), 'utf8').then(JSON.parse),
+      readFile(path.join(staticGeneratedRoot, locale, 'search.json'), 'utf8').then(
+        (value) => JSON.parse(value) as GlobalSearchIndex
+      )
+    ]
+  );
+  return {
+    catalogs,
+    details,
+    relicProperties: properties,
+    endgame: { datasets },
+    globalSearchIndex: localeSearch,
+    homepage: localeHomepage,
+    occurrenceShards: Object.fromEntries(
+      localeSearch.endgameTargets.map(({ id, occurrences }) => [id, { id, occurrences }])
+    )
+  };
+}
+
+const [zhProjection, enProjection, enSearchInputs] = await Promise.all([
+  readLocaleProjection('zh-CN'),
+  readLocaleProjection('en'),
+  readFile(path.join(generatedRoot, 'views', 'en', 'search-inputs.json'), 'utf8').then(
+    (value) => JSON.parse(value) as SearchBuildInputs
+  )
+]);
+assertCrossLocaleStructuralParity(zhProjection, enProjection);
+
+const enSearch = enProjection.globalSearchIndex;
+const expectedEnSearch = buildSearchDocuments(enSearchInputs, 'en', { kind: 'none' });
+if (JSON.stringify(enSearch) !== JSON.stringify(expectedEnSearch))
+  throw new Error('English Search documents do not match the current projected catalogs');
+if (
+  enSearch.locale !== 'en' ||
+  enSearch.documents.some(({ playerAliases }) => playerAliases.length > 0)
+)
+  throw new Error(
+    'English Search must be locale-qualified and contain no maintained player aliases'
+  );
+
+const expectedShardIds = enSearch.endgameTargets.map(({ id }) => id).sort();
+const manifestShardIds = Object.keys(manifest.artifacts)
+  .filter((logicalPath) => logicalPath.startsWith('static/generated/en/endgame-occurrences/'))
+  .map((logicalPath) => logicalPath.split('/').at(-1)!)
+  .sort();
+if (JSON.stringify(expectedShardIds) !== JSON.stringify(manifestShardIds))
+  throw new Error('English Endgame occurrence shard target inventory is incomplete');
+for (const target of enSearch.endgameTargets) {
+  const shard = JSON.parse(
+    await readFile(path.join(staticGeneratedRoot, 'en', 'endgame-occurrences', target.id), 'utf8')
+  ) as {
+    schemaVersion: number;
+    locale: string;
+    target: { kind: string; id: string };
+    occurrences: Record<string, { key: string; occurrence: { monsterId: number } }>;
+  };
+  const expectedKeys = target.occurrences.map(({ locator }) =>
+    endgameOccurrenceLocatorKey(locator)
+  );
+  if (
+    shard.schemaVersion !== 2 ||
+    shard.locale !== 'en' ||
+    shard.target.kind !== 'endgame' ||
+    shard.target.id !== target.id ||
+    JSON.stringify(Object.keys(shard.occurrences)) !== JSON.stringify(expectedKeys)
+  )
+    throw new Error(`English Endgame occurrence shard is invalid: ${target.id}`);
+  for (const { locator } of target.occurrences) {
+    const key = endgameOccurrenceLocatorKey(locator);
+    if (
+      shard.occurrences[key]?.key !== key ||
+      shard.occurrences[key]?.occurrence.monsterId !== locator.monsterId
+    )
+      throw new Error(`English Endgame occurrence shard locator is invalid: ${key}`);
+  }
+}
+
+const englishCjk = await auditEnglishCjk({
+  generatedViewRoot: path.join(generatedRoot, 'views', 'en'),
+  staticLocaleRoot: path.join(staticGeneratedRoot, 'en'),
+  siteMessages: JSON.parse(await readFile(path.resolve('messages', 'en.json'), 'utf8')),
+  textMap: currentTextMaps.en
+});
+assertEnglishCjkReport(englishCjk);
+
 if (emptySkillDescriptions)
   console.warn(`数据警告：${emptySkillDescriptions} 条技能等级的原始描述为空，已保留明确降级。`);
 if (textDiagnostics['unresolved-hash'].count)
@@ -1795,5 +1969,5 @@ if (audit.avatarSpecialSkillTreeAudit.diagnostics.length)
     `AvatarSpecialSkillTree relation 警告：${audit.avatarSpecialSkillTreeAudit.diagnostics.length} 条诊断，详见 data/audit/latest.json。`
   );
 console.log(
-  `数据验证通过：${manifest.sourceCommit.slice(0, 12)}，${search.documents.length} 条简中搜索记录。`
+  `数据验证通过：${manifest.sourceCommit.slice(0, 12)}，zh-CN/en 各 ${search.documents.length} 条搜索记录，${expectedShardIds.length} 个 English Endgame shards。`
 );

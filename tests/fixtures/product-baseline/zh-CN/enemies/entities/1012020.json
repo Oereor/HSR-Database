@@ -1,0 +1,58 @@
+{
+  "catalog": {
+    "description": "以旧世界遗留的科技拼凑制造的自动机器单元，负责替代人类进行最基础的体力劳动。\n战斗中，自动机兵「蜘蛛」的动力非常不稳定，极易在损毁时发生殉爆事故。",
+    "id": "1012020",
+    "name": "自动机兵•蜘蛛",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1012020",
+    "defaultMonsterRef": "508c4b90413f735c6b8114e6d06f058fd0d34d2c2c2cc6525d43e3cf7df2dc56",
+    "description": "以旧世界遗留的科技拼凑制造的自动机器单元，负责替代人类进行最基础的体力劳动。\n战斗中，自动机兵「蜘蛛」的动力非常不稳定，极易在损毁时发生殉爆事故。",
+    "id": "1012020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "508c4b90413f735c6b8114e6d06f058fd0d34d2c2c2cc6525d43e3cf7df2dc56",
+      "9cf85cac3983a988eb0ed36f1e3f6ecdcd6231614163064c526408dcc1e0058c",
+      "6b6c33bf272004d10150520c8b5e7fb3f7f6d53443dc500ab6cc86f77b69608e",
+      "5187e60f1724b70ad20a665f02f348dee3565de249272bf92d530bdc76cf0efd"
+    ],
+    "name": "自动机兵•蜘蛛",
+    "rank": "MinionLv2",
+    "templateRef": "dec2841692906cafb34ef2e81d189ab35e11a056c6d1b982c89ccf5bf5960d3d",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1012020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1012020",
+    "selectableMonsterIds": [
+      "1012020",
+      "101202001",
+      "101202002",
+      "101202003"
+    ]
+  }
+}

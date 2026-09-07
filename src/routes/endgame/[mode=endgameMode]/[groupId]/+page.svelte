@@ -18,6 +18,8 @@
   } from '$lib/domain/endgame-navigation';
   import type { EndgameGroupView } from '$lib/domain/endgame-view';
   import { formatDocumentTitle } from '$lib/site';
+  import { localizedHref } from '$lib/i18n/routing';
+  import { m } from '$lib/paraglide/messages.js';
   export let data;
 
   function buildLocalNavigation(group: EndgameGroupView, selectedId: string) {
@@ -51,13 +53,16 @@
   <title>{formatDocumentTitle(`${data.group.period.name} · ${data.group.modeLabel}`)}</title>
   <meta
     name="description"
-    content={`${data.group.modeLabel}「${data.group.period.name}」的关卡敌方实例、弱点与配置生命值。`}
+    content={m.endgame_group_description({
+      mode: data.group.modeLabel,
+      period: data.group.period.name
+    })}
   />
 </svelte:head>
 
 <header class="endgame-page-header">
-  <a class="back-link endgame-breadcrumb" href={`/endgame/${data.group.mode}`}
-    >← {data.group.modeLabel}赛期</a
+  <a class="back-link endgame-breadcrumb" href={localizedHref(`/endgame/${data.group.mode}`)}
+    >← {m.endgame_group_back({ mode: data.group.modeLabel })}</a
   >
 </header>
 
@@ -100,7 +105,7 @@
     </div>
   </div>
 {:else}
-  <p class="data-placeholder">该赛期暂无可展示的关卡数据。</p>
+  <p class="data-placeholder">{m.endgame_group_empty()}</p>
 {/if}
 
 <style>

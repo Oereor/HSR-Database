@@ -1,0 +1,5467 @@
+{
+  "catalog": {
+    "baseName": "爻光",
+    "description": "神秘，大胆，激进，求变之举令人瞠目结舌。\n以巡猎之「眼」遍观吉凶，明知天意难违，「戎韬将军」仍旧孤身涉险。\n这一支下下签，如何能够改运换天？",
+    "element": "Physical",
+    "elementName": "物理",
+    "id": "1502",
+    "name": "爻光",
+    "path": "Elation",
+    "pathName": "欢愉",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "爻光",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 101
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 63.36,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 89.1,
+            "perLevel": 4.455
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 168.96,
+            "perLevel": 8.448
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 88.704,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 124.74,
+            "perLevel": 4.455
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 236.544,
+            "perLevel": 8.448
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 114.048,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 160.38,
+            "perLevel": 4.455
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 304.128,
+            "perLevel": 8.448
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 139.392,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 196.02,
+            "perLevel": 4.455
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 371.712,
+            "perLevel": 8.448
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 164.736,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 231.66,
+            "perLevel": 4.455
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 439.296,
+            "perLevel": 8.448
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 190.08,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 267.3,
+            "perLevel": 4.455
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 506.88,
+            "perLevel": 8.448
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 215.424,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 302.94,
+            "perLevel": 4.455
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 574.464,
+            "perLevel": 8.448
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "神秘，大胆，激进，求变之举令人瞠目结舌。\n以巡猎之「眼」遍观吉凶，明知天意难违，「戎韬将军」仍旧孤身涉险。\n这一支下下签，如何能够改运换天？",
+    "element": "Physical",
+    "elementName": "物理",
+    "equipmentRecommendation": {
+      "avatarId": "1502",
+      "cavernSetIds": [
+        "130",
+        "114"
+      ],
+      "lightConeIds": [
+        "23054",
+        "21064"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalDamageBase",
+            "CriticalChanceBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "DefenceAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "317",
+        "308",
+        "310"
+      ],
+      "subStatPropertyTypes": [
+        "SpeedDelta",
+        "CriticalDamageBase",
+        "CriticalChanceBase"
+      ]
+    },
+    "fullName": "爻光",
+    "id": "1502",
+    "kind": "character",
+    "name": "爻光",
+    "path": "Elation",
+    "pathName": "欢愉",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "终结技触发的<u>阿哈</u>的<u>额外回合</u>固定计入<u>笑点</u>数提高至<unbreak>40</unbreak>个。我方全体目标造成<u>欢愉伤害</u>时无视目标<unbreak>20%</unbreak>防御力。",
+            "extraEffects": [
+              {
+                "description": "行动时，发动阿哈时刻，并使可施放欢愉技的单位各自施放1次欢愉技。若阿哈行动时不存在可施放欢愉技的单位，则阿哈施放【要有笑声】。\n阿哈时刻持续至本次最后一个欢愉技施放结束。\n阿哈时刻结束时，使参演的角色获得本次计入笑点的【好活当赏】状态，持续2回合。阿哈行动后会消耗全部笑点。",
+                "id": "10000026",
+                "name": "阿哈"
+              },
+              {
+                "description": "获得1个不消耗回合数的额外回合，在此回合中无法插入施放终结技。",
+                "id": "10000000",
+                "name": "额外回合"
+              },
+              {
+                "description": "笑点为全队共享。造成欢愉伤害时，计入的笑点越多，欢愉伤害越高。",
+                "id": "10000027",
+                "name": "笑点"
+              },
+              {
+                "description": "计入的笑点越多，欢愉度、角色等级越高，则造成的欢愉伤害越高。\n欢愉伤害不受伤害提高类效果所影响。",
+                "id": "10000028",
+                "name": "欢愉伤害"
+              }
+            ],
+            "iconKey": "rank--150201",
+            "id": "150201",
+            "name": "何处落玉，盈盈笑语",
+            "rank": 1
+          },
+          {
+            "description": "结界持续期间，我方全体目标速度提高<unbreak>12%</unbreak>，欢愉度额外提高<unbreak>16%</unbreak>。",
+            "iconKey": "rank--150202",
+            "id": "150202",
+            "name": "飞箭无目，青翎为瞳",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级；欢愉技等级+1，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--150203",
+            "id": "150203",
+            "name": "十方世界，光映符中",
+            "rank": 3
+          },
+          {
+            "description": "爻光终结技触发的<u>阿哈</u>的<u>额外回合</u>中，我方全体角色欢愉技造成的伤害为原伤害的<unbreak>150%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "行动时，发动阿哈时刻，并使可施放欢愉技的单位各自施放1次欢愉技。若阿哈行动时不存在可施放欢愉技的单位，则阿哈施放【要有笑声】。\n阿哈时刻持续至本次最后一个欢愉技施放结束。\n阿哈时刻结束时，使参演的角色获得本次计入笑点的【好活当赏】状态，持续2回合。阿哈行动后会消耗全部笑点。",
+                "id": "10000026",
+                "name": "阿哈"
+              },
+              {
+                "description": "获得1个不消耗回合数的额外回合，在此回合中无法插入施放终结技。",
+                "id": "10000000",
+                "name": "额外回合"
+              }
+            ],
+            "iconKey": "rank--150204",
+            "id": "150204",
+            "name": "命若素绡，拈羽点彩",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级；欢愉技等级+1，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--150205",
+            "id": "150205",
+            "name": "璎珞严饰，身如琉璃",
+            "rank": 5
+          },
+          {
+            "description": "我方全体目标的<u>欢愉伤害</u><u>增笑</u><unbreak>25%</unbreak>。爻光欢愉技的伤害倍率提高原倍率的<unbreak>100%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "计入的笑点越多，欢愉度、角色等级越高，则造成的欢愉伤害越高。\n欢愉伤害不受伤害提高类效果所影响。",
+                "id": "10000028",
+                "name": "欢愉伤害"
+              },
+              {
+                "description": "影响欢愉伤害的特殊效果，可额外提高造成的欢愉伤害。",
+                "id": "30000011",
+                "name": "增笑"
+              }
+            ],
+            "iconKey": "rank--150206",
+            "id": "150206",
+            "name": "牵丝渡引，天星垂虹",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 180
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1502001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1502001",
+                "variantIds": [
+                  "150201"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    },
+                    {
+                      "type": "blast",
+                      "value": 5
+                    }
+                  ]
+                },
+                "id": "150201",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于爻光45%攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光15%攻击力的物理属性伤害。普攻恢复的能量提高至30点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。普攻恢复的能量提高至"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于爻光54%攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光18%攻击力的物理属性伤害。普攻恢复的能量提高至30点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。普攻恢复的能量提高至"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于爻光63%攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光21%攻击力的物理属性伤害。普攻恢复的能量提高至30点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。普攻恢复的能量提高至"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于爻光72%攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光24%攻击力的物理属性伤害。普攻恢复的能量提高至30点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。普攻恢复的能量提高至"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于爻光81%攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光27%攻击力的物理属性伤害。普攻恢复的能量提高至30点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。普攻恢复的能量提高至"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于爻光90%攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光30%攻击力的物理属性伤害。普攻恢复的能量提高至30点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。普攻恢复的能量提高至"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于爻光99%攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光33%攻击力的物理属性伤害。普攻恢复的能量提高至30点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "99%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。普攻恢复的能量提高至"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于爻光108%攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光36%攻击力的物理属性伤害。普攻恢复的能量提高至30点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。普攻恢复的能量提高至"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于爻光117%攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光39%攻击力的物理属性伤害。普攻恢复的能量提高至30点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "117%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。普攻恢复的能量提高至"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于爻光126%攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光42%攻击力的物理属性伤害。普攻恢复的能量提高至30点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，同时对其相邻目标造成等同于爻光"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。普攻恢复的能量提高至"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "雀翎鸣镝，过招有喜",
+                "progressionId": "1502001",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1502002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1502002",
+                "variantIds": [
+                  "150202"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "笑点为全队共享。造成欢愉伤害时，计入的笑点越多，欢愉伤害越高。",
+                      "id": "10000027",
+                      "name": "笑点"
+                    }
+                  ]
+                },
+                "id": "150202",
+                "levels": [
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的10.0%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的11.0%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的12.0%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的13.0%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的14.0%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的15.0%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的16.3%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的17.5%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的18.8%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的20.0%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的21.0%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的22.0%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的23.0%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的24.0%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "展开结界，持续3回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的25.0%，且爻光施放普攻、战技后获得3个笑点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。结界持续期间，我方全体目标欢愉度提高，提高数值等同于爻光欢愉度的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且爻光施放普攻、战技后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "十方光映，万法皆明",
+                "progressionId": "1502002",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1502003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1502003",
+                "variantIds": [
+                  "150203"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "笑点为全队共享。造成欢愉伤害时，计入的笑点越多，欢愉伤害越高。",
+                      "id": "10000027",
+                      "name": "笑点"
+                    },
+                    {
+                      "description": "行动时，发动阿哈时刻，并使可施放欢愉技的单位各自施放1次欢愉技。若阿哈行动时不存在可施放欢愉技的单位，则阿哈施放【要有笑声】。\n阿哈时刻持续至本次最后一个欢愉技施放结束。\n阿哈时刻结束时，使参演的角色获得本次计入笑点的【好活当赏】状态，持续2回合。阿哈行动后会消耗全部笑点。",
+                      "id": "10000026",
+                      "name": "阿哈"
+                    },
+                    {
+                      "description": "获得1个不消耗回合数的额外回合，在此回合中无法插入施放终结技。",
+                      "id": "10000000",
+                      "name": "额外回合"
+                    },
+                    {
+                      "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                      "id": "30000005",
+                      "name": "抗性穿透"
+                    }
+                  ]
+                },
+                "id": "150203",
+                "levels": [
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高10.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高11.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高12.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高13.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高14.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高15.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高16.3%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高17.5%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高18.8%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高20.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高21.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高22.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高23.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高24.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "获得5个笑点。使阿哈立即获得1个固定计入20笑点的额外回合，该回合不消耗笑点，并使我方全体目标全属性抗性穿透提高25.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。使"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "阿哈"
+                      },
+                      {
+                        "type": "text",
+                        "value": "立即获得1个固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该回合不消耗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "霓裳铁羽，六爻皆吉",
+                "progressionId": "1502003",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1502004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1502004",
+                "variantIds": [
+                  "150204"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "使参演阿哈时刻的角色获得【好活当赏】状态，并将本次阿哈时刻的笑点计入该状态，持续2回合。【好活当赏】状态产生的技能效果和欢愉伤害以【好活当赏】计入的笑点数计算。\n多个【好活当赏】计入的笑点数合并计算。\n各个【好活当赏】的持续时间各自独立计算。",
+                      "id": "10000029",
+                      "name": "好活当赏"
+                    },
+                    {
+                      "description": "计入的笑点越多，欢愉度、角色等级越高，则造成的欢愉伤害越高。\n欢愉伤害不受伤害提高类效果所影响。",
+                      "id": "10000028",
+                      "name": "欢愉伤害"
+                    }
+                  ]
+                },
+                "id": "150204",
+                "levels": [
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次10.0%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次11.0%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次12.0%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次13.0%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次14.0%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次15.0%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次16.3%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次17.5%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次18.8%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次20.0%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次21.0%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次22.0%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次23.0%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次24.0%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "爻光持有【好活当赏】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次25.0%的对应属性欢愉伤害，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次欢愉伤害使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "爻光持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时：\n使我方目标施放攻击后触发【大吉大利】效果，对随机1个击中的目标额外造成1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的对应属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，本次攻击若消耗战技点，则额外触发1次【大吉大利】效果。\n触发【大吉大利】效果时若攻击者欢愉度低于爻光，则该次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使用爻光欢愉度来计算。\n触发【大吉大利】效果不视为1次攻击。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "屏开千光，遍观自在",
+                "progressionId": "1502004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "elation-skill",
+            "displayLabel": "欢愉技",
+            "iconKey": "skill-tree--1502420",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1502420",
+                "variantIds": [
+                  "150220"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "ElationDamage",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "计入的笑点越多，欢愉度、角色等级越高，则造成的欢愉伤害越高。\n欢愉伤害不受伤害提高类效果所影响。",
+                      "id": "10000028",
+                      "name": "欢愉伤害"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 5
+                    },
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "150220",
+                "levels": [
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成50%的物理属性欢愉伤害，随后对敌方随机单体造成5次10%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成55%的物理属性欢愉伤害，随后对敌方随机单体造成5次11%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成60%的物理属性欢愉伤害，随后对敌方随机单体造成5次12%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成65%的物理属性欢愉伤害，随后对敌方随机单体造成5次13%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成70%的物理属性欢愉伤害，随后对敌方随机单体造成5次14%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成75%的物理属性欢愉伤害，随后对敌方随机单体造成5次15%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成81%的物理属性欢愉伤害，随后对敌方随机单体造成5次16%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成88%的物理属性欢愉伤害，随后对敌方随机单体造成5次18%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成94%的物理属性欢愉伤害，随后对敌方随机单体造成5次19%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成100%的物理属性欢愉伤害，随后对敌方随机单体造成5次20%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成105%的物理属性欢愉伤害，随后对敌方随机单体造成5次21%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成110%的物理属性欢愉伤害，随后对敌方随机单体造成5次22%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成115%的物理属性欢愉伤害，随后对敌方随机单体造成5次23%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "115%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成120%的物理属性欢愉伤害，随后对敌方随机单体造成5次24%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使敌方全体陷入【凶星低语】状态，持续3回合。【凶星低语】状态下的敌方目标受到的伤害提高16.0%。对敌方全体造成125%的物理属性欢愉伤害，随后对敌方随机单体造成5次25%的物理属性欢愉伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【凶星低语】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。【凶星低语】状态下的敌方目标受到的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。对敌方全体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方随机单体造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "赠君一卦，火树银花",
+                "progressionId": "1502420",
+                "scalingParamIndexes": [
+                  1,
+                  5
+                ],
+                "source": "avatar",
+                "type": "欢愉技"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1502007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1502007",
+                "variantIds": [
+                  "150207"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  }
+                },
+                "id": "150207",
+                "levels": [
+                  {
+                    "description": "使用秘技后，使下一次战斗开始时自动触发1次战技，此次触发不消耗战技点。爻光在队伍中时，击碎可破坏物时立刻获得「红包」，每个地球周内最多获得8个。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，使下一次战斗开始时自动触发1次战技，此次触发不消耗战技点。爻光在队伍中时，击碎可破坏物时立刻获得「红包」，每个地球周内最多获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "浮光过隙，百无禁忌",
+                "progressionId": "1502007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "爻光的速度大于等于<unbreak>120</unbreak>时，使自身欢愉度提高<unbreak>30%</unbreak>，之后每超过<unbreak>1</unbreak>点速度使自身欢愉度提高<unbreak>1%</unbreak>，最多计入<unbreak>200</unbreak>点超出的速度。",
+            "iconKey": "skill-tree--1502101",
+            "id": "1502101",
+            "name": "开屏有礼",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "自身暴击伤害提高<unbreak>60%</unbreak>，施放欢愉技后，为我方恢复<unbreak>1</unbreak>个战技点。",
+            "iconKey": "skill-tree--1502102",
+            "id": "1502102",
+            "name": "神闲意满",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "爻光获得【<u>好活当赏</u>】时，使其持续时间增加<unbreak>1</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "使参演阿哈时刻的角色获得【好活当赏】状态，并将本次阿哈时刻的笑点计入该状态，持续2回合。【好活当赏】状态产生的技能效果和欢愉伤害以【好活当赏】计入的笑点数计算。\n多个【好活当赏】计入的笑点数合并计算。\n各个【好活当赏】的持续时间各自独立计算。",
+                "id": "10000029",
+                "name": "好活当赏"
+              }
+            ],
+            "iconKey": "skill-tree--1502103",
+            "id": "1502103",
+            "name": "鸿运鳞集",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1502201",
+            "name": "暴击率强化",
+            "prerequisiteIds": [],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "速度提高2",
+            "iconKey": "property--SpeedDelta",
+            "id": "1502202",
+            "name": "速度强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1502203",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1502101"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "欢愉度提高4.0%",
+            "iconKey": "property--ElationDamageAddedRatioBase",
+            "id": "1502204",
+            "name": "欢愉度强化",
+            "prerequisiteIds": [
+              "1502101"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "ElationDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1502205",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1502102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "速度提高3",
+            "iconKey": "property--SpeedDelta",
+            "id": "1502206",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1502205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1502207",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1502206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "欢愉度提高6.0%",
+            "iconKey": "property--ElationDamageAddedRatioBase",
+            "id": "1502208",
+            "name": "欢愉度强化",
+            "prerequisiteIds": [
+              "1502103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "ElationDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "速度提高4",
+            "iconKey": "property--SpeedDelta",
+            "id": "1502209",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1502208"
+            ],
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "暴击率提高5.3%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1502210",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1502209"
+            ],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1502001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150201",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1502002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150202",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1502003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150203",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1502004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150204",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "elation-skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1502420",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150220",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1502007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150207",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1502",
+    "subtitleRendered": false
+  }
+}

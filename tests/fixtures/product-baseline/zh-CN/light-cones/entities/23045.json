@@ -1,0 +1,498 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>毁灭</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23045",
+    "name": "没有回报的加冕",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 26.4,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 58.08,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 100.32,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 142.56,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 184.8,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 227.04,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 269.28,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>毁灭</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23045",
+    "kind": "light-cone",
+    "name": "没有回报的加冕",
+    "passive": {
+      "id": "23045",
+      "name": "骑士之王",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的暴击伤害提高36%。施放终结技时，使装备者的攻击力提高40%，若装备者的能量上限大于等于300点，为装备者固定恢复等同于装备者能量上限10%的能量，并再次使装备者的攻击力提高40%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "。施放终结技时，使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "，若装备者的能量上限大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "300"
+              },
+              {
+                "type": "text",
+                "value": "点，为装备者固定恢复等同于装备者能量上限"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "的能量，并再次使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的暴击伤害提高45%。施放终结技时，使装备者的攻击力提高50%，若装备者的能量上限大于等于300点，为装备者固定恢复等同于装备者能量上限10%的能量，并再次使装备者的攻击力提高50%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "45%"
+              },
+              {
+                "type": "text",
+                "value": "。施放终结技时，使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "，若装备者的能量上限大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "300"
+              },
+              {
+                "type": "text",
+                "value": "点，为装备者固定恢复等同于装备者能量上限"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "的能量，并再次使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的暴击伤害提高54%。施放终结技时，使装备者的攻击力提高60%，若装备者的能量上限大于等于300点，为装备者固定恢复等同于装备者能量上限10%的能量，并再次使装备者的攻击力提高60%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "54%"
+              },
+              {
+                "type": "text",
+                "value": "。施放终结技时，使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "，若装备者的能量上限大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "300"
+              },
+              {
+                "type": "text",
+                "value": "点，为装备者固定恢复等同于装备者能量上限"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "的能量，并再次使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的暴击伤害提高63%。施放终结技时，使装备者的攻击力提高70%，若装备者的能量上限大于等于300点，为装备者固定恢复等同于装备者能量上限10%的能量，并再次使装备者的攻击力提高70%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "63%"
+              },
+              {
+                "type": "text",
+                "value": "。施放终结技时，使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "70%"
+              },
+              {
+                "type": "text",
+                "value": "，若装备者的能量上限大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "300"
+              },
+              {
+                "type": "text",
+                "value": "点，为装备者固定恢复等同于装备者能量上限"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "的能量，并再次使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "70%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的暴击伤害提高72%。施放终结技时，使装备者的攻击力提高80%，若装备者的能量上限大于等于300点，为装备者固定恢复等同于装备者能量上限10%的能量，并再次使装备者的攻击力提高80%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "72%"
+              },
+              {
+                "type": "text",
+                "value": "。施放终结技时，使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "80%"
+              },
+              {
+                "type": "text",
+                "value": "，若装备者的能量上限大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "300"
+              },
+              {
+                "type": "text",
+                "value": "点，为装备者固定恢复等同于装备者能量上限"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "的能量，并再次使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "80%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          5
+        ]
+      }
+    },
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 5,
+    "story": "幻境中，少女的耳畔回响起那日的对谈。\n\n<i>「梅林，这柄剑一点儿也不难拔。」</i>\n<i>「的确如此。对你来说，成为大家期待中的王，一点儿也不困难。毕竟有我在指导你嘛。但，阿尔托莉雅…真正困难的是，你不可能永远都符合大家的期待。」</i>\n<i>「到时候，他们可以选一个更合适的王。我不会有意见。」</i>\n<i>「如果这种人根本就不存在呢？」</i>\n<i>「…那我会努力回应大家的期待。」</i>\n\n如今，少女早已明白这将是何等的悲剧。如果此刻便是最初的那个时刻，她是否会选择放弃？\n\n王无言。她只是握紧了剑。\n岩石再度发出拔剑的轰鸣。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23045",
+    "storyFallbackRendered": false
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：速度提高6%。 4件：当装备者对我方目标施放终结技时，我方全体速度提高12%，持续1回合，该效果无法叠加。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "114",
+    "name": "骇域漫游的信使",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.2"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：速度提高6%。 4件：当装备者对我方目标施放终结技时，我方全体速度提高12%，持续1回合，该效果无法叠加。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "速度提高6%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "速度提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "6%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "当装备者对我方目标施放终结技时，我方全体速度提高12%，持续1回合，该效果无法叠加。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "当装备者对我方目标施放终结技时，我方全体速度提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "，持续"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "1"
+          },
+          {
+            "type": "text",
+            "value": "回合，该效果无法叠加。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "114",
+    "kind": "relic",
+    "name": "骇域漫游的信使",
+    "pieces": [
+      {
+        "description": "外形酷似滑雪目镜，不仅能防眩光，还能看虚拟人直播。",
+        "id": "31141",
+        "name": "信使的全息目镜",
+        "slot": "HEAD"
+      },
+      {
+        "description": "可随便拆卸的机械义手，能够将指节像子弹一样发射出去。",
+        "id": "31142",
+        "name": "信使的百变义手",
+        "slot": "HAND"
+      },
+      {
+        "description": "时尚的信使邮差包，添加了各种挂件，看上去有些可爱。",
+        "id": "31143",
+        "name": "信使的密信挎包",
+        "slot": "BODY"
+      },
+      {
+        "description": "支持自由跑酷的滑板鞋，穿上去很舒服，仅此而已。",
+        "id": "31144",
+        "name": "信使的酷跑板鞋",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【丹鼎司】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.2"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31141"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31142"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31143"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31144"
+      }
+    ],
+    "route": "/relics/114"
+  }
+}

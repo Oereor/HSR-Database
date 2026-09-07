@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "冥河中沉眠的死龙，受炼成召引再度苏醒，化成槁骨腐肉的模样。\n它曾是「死亡」的泰坦，逆溯冥河向上，离开乌有之界于现世搁浅。它曾随冥河潮汐涌上大地，为翁法罗斯的万事万物烙上命定的终局。那些将死的，或已死的存在，皆会因它的归来感受到灵魂深处的颤栗。",
+    "id": "4014036",
+    "name": "枯茎朽骨的引路人",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4014036",
+    "defaultMonsterRef": "0265d9aa25f2e632b3a474c30a3ec4049121ca70fd4e2fe9359cc16c381ea659",
+    "description": "冥河中沉眠的死龙，受炼成召引再度苏醒，化成槁骨腐肉的模样。\n它曾是「死亡」的泰坦，逆溯冥河向上，离开乌有之界于现世搁浅。它曾随冥河潮汐涌上大地，为翁法罗斯的万事万物烙上命定的终局。那些将死的，或已死的存在，皆会因它的归来感受到灵魂深处的颤栗。",
+    "id": "4014036",
+    "kind": "enemy",
+    "monsterRefs": [
+      "0265d9aa25f2e632b3a474c30a3ec4049121ca70fd4e2fe9359cc16c381ea659",
+      "f1e08053d1a92c115b245f5f1374309cc67905f87c1ef9dbfe66350dd53fa4e0",
+      "4c4414a5fc0dffdd8d307e2dd26420b3d734f67faff5b644f01adce6bb118cf4",
+      "1fca7a75d0b1b72bfd235f522470f6cb4b96885ab435e31f08e10b0cd2d819a4",
+      "ff740bcaad0270da68e01d583d829b3e881ad83a86628de2c0473b07c51946fd"
+    ],
+    "name": "枯茎朽骨的引路人",
+    "rank": "LittleBoss",
+    "templateRef": "e62fccb786a9007c7bf93f220bdecf331dadddc462410dd5c87a406d2f47c9af",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4014036",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4014036",
+    "selectableMonsterIds": [
+      "4014036",
+      "401403601",
+      "401403602",
+      "401403603",
+      "401403604"
+    ]
+  }
+}

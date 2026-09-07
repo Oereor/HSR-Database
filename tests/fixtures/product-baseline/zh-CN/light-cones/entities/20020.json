@@ -1,0 +1,306 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20020",
+    "name": "睿见",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 3
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 16.8,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 12,
+            "perLevel": 1.8
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 33.6,
+            "perLevel": 5.04
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 36.96,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 26.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 73.92,
+            "perLevel": 5.04
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 63.84,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 45.6,
+            "perLevel": 1.8
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 127.68,
+            "perLevel": 5.04
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 90.72,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 64.8,
+            "perLevel": 1.8
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 181.44,
+            "perLevel": 5.04
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 117.6,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 84,
+            "perLevel": 1.8
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 235.2,
+            "perLevel": 5.04
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 144.48,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 103.2,
+            "perLevel": 1.8
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 288.96,
+            "perLevel": 5.04
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 171.36,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 122.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 342.72,
+            "perLevel": 5.04
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20020",
+    "kind": "light-cone",
+    "name": "睿见",
+    "passive": {
+      "id": "20020",
+      "name": "天才",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "当装备者施放终结技时，攻击力提高24%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者施放终结技时，攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "当装备者施放终结技时，攻击力提高30%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者施放终结技时，攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "当装备者施放终结技时，攻击力提高36%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者施放终结技时，攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "当装备者施放终结技时，攻击力提高42%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者施放终结技时，攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "42%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "当装备者施放终结技时，攻击力提高48%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者施放终结技时，攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "48%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0
+        ]
+      }
+    },
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 3,
+    "story": "自时光中凝取的稀薄力量。正是所有微不足道的刹那，编织成了壮绝的命运。\n\n<i>「智慧之人如果无法抛弃人的身份，则会被智慧抛弃。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/20020",
+    "storyFallbackRendered": false
+  }
+}

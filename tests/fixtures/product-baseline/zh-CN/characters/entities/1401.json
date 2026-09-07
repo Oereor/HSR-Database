@@ -1,0 +1,4270 @@
+{
+  "catalog": {
+    "baseName": "大黑塔",
+    "description": "尊贵的「天才俱乐部」#83，人类，女性，年轻，貌美，可爱。\n传说她隐居在银河边境，几乎不踏出其间，想必此次现身——\n一定是为了某个不得不亲自出马的问题吧？",
+    "element": "Ice",
+    "elementName": "冰",
+    "id": "1401",
+    "name": "大黑塔",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "大黑塔",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 99
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 92.4,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 66,
+            "perLevel": 3.3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 158.4,
+            "perLevel": 7.92
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 129.36,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 92.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 221.76,
+            "perLevel": 7.92
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 166.32,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 3.3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 285.12,
+            "perLevel": 7.92
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 203.28,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 145.2,
+            "perLevel": 3.3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 348.48,
+            "perLevel": 7.92
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 240.24,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 171.6,
+            "perLevel": 3.3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 411.84,
+            "perLevel": 7.92
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 277.2,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 198,
+            "perLevel": 3.3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 475.2,
+            "perLevel": 7.92
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 314.16,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 224.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 538.56,
+            "perLevel": 7.92
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "尊贵的「天才俱乐部」#83，人类，女性，年轻，貌美，可爱。\n传说她隐居在银河边境，几乎不踏出其间，想必此次现身——\n一定是为了某个不得不亲自出马的问题吧？",
+    "element": "Ice",
+    "elementName": "冰",
+    "equipmentRecommendation": {
+      "avatarId": "1401",
+      "cavernSetIds": [
+        "122",
+        "104",
+        "102"
+      ],
+      "lightConeIds": [
+        "23037",
+        "24004",
+        "23000"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "IceAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "314",
+        "309",
+        "313"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "大黑塔",
+    "id": "1401",
+    "kind": "character",
+    "name": "大黑塔",
+    "path": "Mage",
+    "pathName": "智识",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "强化战技计算【解读】层数时，额外计算主目标及相邻目标中层数最高的1个目标当前【解读】层数的<unbreak>50%</unbreak>。施放强化战技重置【解读】时，改为将层数重置为<unbreak>15</unbreak>层。",
+            "iconKey": "rank--140101",
+            "id": "140101",
+            "name": "群星岸落之夜",
+            "rank": 1
+          },
+          {
+            "description": "大黑塔进入战斗和施放终结技后，额外获得1层【灵感】。施放强化战技后，大黑塔的下一次<u>行动提前</u><unbreak>35%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "rank--140102",
+            "id": "140102",
+            "name": "穿过锁孔之风",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--140103",
+            "id": "140103",
+            "name": "进入盛夏之门",
+            "rank": 3
+          },
+          {
+            "description": "队伍中的「智识」命途角色的速度提高<unbreak>12%</unbreak>。",
+            "iconKey": "rank--140104",
+            "id": "140104",
+            "name": "第十六把钥匙",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--140105",
+            "id": "140105",
+            "name": "苦药似的真理",
+            "rank": 5
+          },
+          {
+            "description": "大黑塔的冰属性抗性穿透提高<unbreak>20%</unbreak>，当场上敌方目标数量等于3或以上/2/1名时，终结技的伤害倍率提高<unbreak>140%</unbreak>/<unbreak>250%</unbreak>/<unbreak>400%</unbreak>。",
+            "iconKey": "rank--140106",
+            "id": "140106",
+            "name": "甜饵般的答案",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 220
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1401001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1401001",
+                "variantIds": [
+                  "140101"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "140101",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔50%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔60%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔70%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔80%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔90%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔100%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔110%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔120%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔130%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔140%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "开窍了吗",
+                "progressionId": "1401001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1401002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1401002",
+                "variantIds": [
+                  "140102",
+                  "140109"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 15
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "140102",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔35%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔35%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔39%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔39%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔42%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔42%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔46%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔46%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔49%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔49%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔53%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔53%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔57%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔57%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔61%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔61%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔66%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔66%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔70%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔70%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔74%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔74%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "74%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "74%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔77%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔77%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔81%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔81%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔84%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔84%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大黑塔88%攻击力的冰属性伤害并施加1层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔88%攻击力的冰属性伤害，该效果可重复2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技命中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果可重复2次。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "格局打开",
+                "progressionId": "1401002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              },
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "140109",
+                "levels": [
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔40%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔40%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔20%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔44%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔44%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔22%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔48%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔48%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔24%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔52%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔52%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔26%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔56%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔56%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔28%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔60%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔60%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔30%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔65%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔65%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔33%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔70%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔70%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔35%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔75%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔75%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔38%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔80%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔80%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔40%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔84%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔84%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔42%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔88%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔88%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔44%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔92%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔92%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔46%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔96%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔96%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔48%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔100%攻击力的冰属性伤害并施加1层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔100%攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔50%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【灵感】，对指定敌方单体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害并施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】。对本次战技中被击中过的目标及其相邻目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，重复2次，最后，对所有敌方目标造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "我有一个大胆的想法",
+                "progressionId": "1401002",
+                "scalingParamIndexes": [
+                  0,
+                  2
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1401003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1401003",
+                "variantIds": [
+                  "140103"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "140103",
+                "levels": [
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔100%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高40%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔110%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高44%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔120%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高48%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔130%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高52%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔140%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高56%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔150%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高60%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔163%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高65%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "163%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔175%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高70%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔188%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高75%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔200%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高80%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔210%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高84%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔220%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高88%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔230%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高92%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔240%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高96%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔250%攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高100%，持续3回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有4层，持有【灵感】时，战技强化为【我有一个大胆的想法】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方全体的【解读】层数重新排序，较高层数的【解读】将优先转移到精英级别及以上的目标，并对敌方全体造成等同于大黑塔"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。终结技施放时，使大黑塔攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，施放后使大黑塔立即行动，并获得1层【灵感】。【灵感】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持有【灵感】时，战技强化为【我有一个大胆的想法】。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "早说了是魔法吧",
+                "progressionId": "1401003",
+                "scalingParamIndexes": [
+                  0,
+                  3
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1401004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1401004",
+                "variantIds": [
+                  "140104"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "energyGain": 30
+                },
+                "id": "140104",
+                "levels": [
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高4.0%/2.0%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高4.0%/2.0%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高4.4%/2.2%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高4.4%/2.2%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高4.8%/2.4%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高4.8%/2.4%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高5.2%/2.6%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高5.2%/2.6%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高5.6%/2.8%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高5.6%/2.8%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高6.0%/3.0%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高6.0%/3.0%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高6.5%/3.3%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高6.5%/3.3%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高7.0%/3.5%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高7.0%/3.5%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高7.5%/3.8%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高7.5%/3.8%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高8.0%/4.0%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高8.0%/4.0%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高8.4%/4.2%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高8.4%/4.2%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高8.8%/4.4%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高8.8%/4.4%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高9.2%/4.6%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高9.2%/4.6%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高9.6%/4.8%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高9.6%/4.8%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加25层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高10.0%/5.0%，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高10.0%/5.0%。【解读】最多可叠加42层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标进入战斗时，大黑塔对其施加1层【解读】。每个波次开始时，对一个随机敌方目标施加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【解读】，优先施加给精英级别及以上的目标。强化战技的主目标持有【解读】时，造成的伤害倍率提高，每层对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若队伍中的「智识」命途角色大于等于2名，每层额外对主目标/其他目标提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【解读】最多可叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，使用强化战技时，将主目标的【解读】重置为1层。敌方目标离场或被任意单位消灭后，【解读】会被转移，优先转移到精英级别及以上的目标。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "拿来吧你",
+                "progressionId": "1401004",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1401007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1401007",
+                "variantIds": [
+                  "140107"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "不受任何效果所影响的无属性伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000017",
+                      "name": "真实伤害"
+                    }
+                  ]
+                },
+                "id": "140107",
+                "levels": [
+                  {
+                    "description": "使用秘技后，下一次战斗开始时大黑塔攻击力提高60%，持续2回合。\n若当前场景存在普通战利品，使用秘技后标记最多3个普通战利品的位置。\n在模拟宇宙、差分宇宙中使用秘技进入战斗后，每个波次开始时对精英级别以下的敌方目标造成等同于目标99%生命上限的真实伤害，对精英级别及以上的目标造成等同于目标30%生命上限的真实伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，下一次战斗开始时大黑塔攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若当前场景存在普通战利品，使用秘技后标记最多"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个普通战利品的位置。\n在模拟宇宙、差分宇宙中使用秘技进入战斗后，每个波次开始时对精英级别以下的敌方目标造成等同于目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "99%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对精英级别及以上的目标造成等同于目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "看看好看的",
+                "progressionId": "1401007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "我方目标攻击时，对被击中的敌方目标施加1层【解读】。攻击后，本次攻击每击中1个目标就使大黑塔固定恢复<unbreak>3</unbreak>点能量，最多计算5个目标。施放强化战技时，若主目标的【解读】层数达到<unbreak>42</unbreak>，使大黑塔造成的伤害提高<unbreak>50%</unbreak>，持续到本次攻击结束。",
+            "iconKey": "skill-tree--1401101",
+            "id": "1401101",
+            "name": "冷漠的诚实",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "进入战斗时，若队伍中的「智识」命途角色大于等于2名，使我方全体暴击伤害提高<unbreak>80%</unbreak>，行迹【冷漠的诚实】计算击中目标数时至少计算<unbreak>3</unbreak>个目标，攻击后对被击中的敌方目标中【解读】层数最高的目标施加<unbreak>1</unbreak>层【解读】，若攻击者为「智识」命途角色则额外施加<unbreak>2</unbreak>层【解读】。",
+            "iconKey": "skill-tree--1401102",
+            "id": "1401102",
+            "name": "视界外来信",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "敌方目标每被施加1层【解读】，大黑塔获得1层【谜底】，最多叠加<unbreak>99</unbreak>层。施放终结技时，每持有1层【谜底】，使本次终结技的伤害倍率提高<unbreak>1.0%</unbreak>。",
+            "iconKey": "skill-tree--1401103",
+            "id": "1401103",
+            "name": "饥饿的地景",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "冰属性伤害提高3.2%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1401201",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [],
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1401202",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1401101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "冰属性伤害提高3.2%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1401203",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1401202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "速度提高2",
+            "iconKey": "property--SpeedDelta",
+            "id": "1401204",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1401202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "冰属性伤害提高4.8%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1401205",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1401102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1401206",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1401205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "冰属性伤害提高4.8%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1401207",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1401205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "速度提高3",
+            "iconKey": "property--SpeedDelta",
+            "id": "1401208",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1401103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1401209",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1401103"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "冰属性伤害提高6.4%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1401210",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [],
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1401001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140101",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1401002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140102",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140109",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1401003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140103",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1401004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140104",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1401007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140107",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1401",
+    "subtitleRendered": false
+  }
+}

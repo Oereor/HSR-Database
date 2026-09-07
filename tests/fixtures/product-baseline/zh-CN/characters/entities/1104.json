@@ -1,0 +1,3146 @@
+{
+  "catalog": {
+    "baseName": "杰帕德",
+    "description": "银鬃铁卫的戍卫官，贝洛伯格数一数二的战士。\n表里如一，一丝不苟，从不懈怠。",
+    "element": "Ice",
+    "elementName": "冰",
+    "id": "1104",
+    "name": "杰帕德",
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "杰帕德",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 150,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 92
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 73.92,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 89.1,
+            "perLevel": 4.455
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 190.08,
+            "perLevel": 9.504
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 103.488,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 124.74,
+            "perLevel": 4.455
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 266.112,
+            "perLevel": 9.504
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 133.056,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 160.38,
+            "perLevel": 4.455
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 342.144,
+            "perLevel": 9.504
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 162.624,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 196.02,
+            "perLevel": 4.455
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 418.176,
+            "perLevel": 9.504
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 192.192,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 231.66,
+            "perLevel": 4.455
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 494.208,
+            "perLevel": 9.504
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 221.76,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 267.3,
+            "perLevel": 4.455
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 570.24,
+            "perLevel": 9.504
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 251.328,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 302.94,
+            "perLevel": 4.455
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 646.272,
+            "perLevel": 9.504
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "银鬃铁卫的戍卫官，贝洛伯格数一数二的战士。\n表里如一，一丝不苟，从不懈怠。",
+    "element": "Ice",
+    "elementName": "冰",
+    "equipmentRecommendation": {
+      "avatarId": "1104",
+      "cavernSetIds": [
+        "103",
+        "128",
+        "106"
+      ],
+      "lightConeIds": [
+        "23005",
+        "21002",
+        "21016"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "DefenceAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "DefenceAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase",
+            "DefenceAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "304",
+        "310",
+        "317"
+      ],
+      "subStatPropertyTypes": [
+        "DefenceAddedRatio",
+        "SpeedDelta",
+        "StatusProbabilityBase",
+        "StatusResistanceBase"
+      ]
+    },
+    "fullName": "杰帕德",
+    "id": "1104",
+    "kind": "character",
+    "name": "杰帕德",
+    "path": "Knight",
+    "pathName": "存护",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "施放战技时，使受到攻击的敌方目标陷入冻结状态的<u>基础概率</u>提高<unbreak>35%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                "id": "30000001",
+                "name": "基础概率"
+              }
+            ],
+            "iconKey": "rank--110401",
+            "id": "110401",
+            "name": "恪尽职守",
+            "rank": 1
+          },
+          {
+            "description": "战技使敌方目标陷入的冻结状态解除后，目标的速度降低<unbreak>20%</unbreak>，持续<unbreak>1</unbreak>回合。",
+            "iconKey": "rank--110402",
+            "id": "110402",
+            "name": "余寒",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--110403",
+            "id": "110403",
+            "name": "永不陷落",
+            "rank": 3
+          },
+          {
+            "description": "杰帕德在场时，我方全体的效果抵抗提高<unbreak>20%</unbreak>。",
+            "iconKey": "rank--110404",
+            "id": "110404",
+            "name": "精诚所至",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--110405",
+            "id": "110405",
+            "name": "拳似寒铁",
+            "rank": 5
+          },
+          {
+            "description": "触发天赋时杰帕德立即行动，且当前生命值的回复量额外增加自身生命上限的<unbreak>50%</unbreak>。",
+            "iconKey": "rank--110406",
+            "id": "110406",
+            "name": "不屈的决意",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 100
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1104001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1104001",
+                "variantIds": [
+                  "110401"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "110401",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德50%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德60%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德70%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德80%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德90%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德100%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德110%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德120%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德130%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德140%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "一意之拳",
+                "progressionId": "1104001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1104002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1104002",
+                "variantIds": [
+                  "110402"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    },
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "110402",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德100%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德30%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德110%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德33%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德120%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德36%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德130%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德39%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德140%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德42%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德150%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德45%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德163%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德49%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "163%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德175%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德53%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德188%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德56%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德200%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德60%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德210%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德63%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德220%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德66%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德230%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德69%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德240%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德72%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于杰帕德250%攻击力的冰属性伤害，同时有65%的基础概率使受到攻击的敌方目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德75%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "震慑之击",
+                "progressionId": "1104002",
+                "scalingParamIndexes": [
+                  0,
+                  3
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1104003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1104003",
+                "variantIds": [
+                  "110403"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Defence",
+                    "known": true,
+                    "label": "防御"
+                  },
+                  "energyGain": 5
+                },
+                "id": "110403",
+                "levels": [
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德30%防御力+150伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德32%防御力+240伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德34%防御力+308伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "308"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德36%防御力+375伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "375"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德38%防御力+420伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "420"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德39%防御力+465伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "465"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德41%防御力+499伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "499"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德42%防御力+533伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "533"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德44%防御力+566伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "566"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德45%防御力+600伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "600"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德47%防御力+634伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "634"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德48%防御力+668伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "668"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德50%防御力+701伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "701"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德51%防御力+735伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "51%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "735"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于杰帕德53%防御力+769伤害的护盾，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "769"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "永屹之壁",
+                "progressionId": "1104003",
+                "scalingParamIndexes": [
+                  0,
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1104004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1104004",
+                "variantIds": [
+                  "110404"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                      "id": "10000007",
+                      "name": "无法战斗状态"
+                    }
+                  ]
+                },
+                "id": "110404",
+                "levels": [
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限25%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限28%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限30%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限33%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限35%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限38%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限41%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限44%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限47%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限50%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限53%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限55%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限57%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限60%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "受到致命攻击时杰帕德不会陷入无法战斗状态，并立即回复等同于自身生命上限63%的生命值。该效果单场战斗中只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "受到致命攻击时杰帕德不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并立即回复等同于自身生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中只能触发1次。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "不屈之身",
+                "progressionId": "1104004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1104007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1104007",
+                "variantIds": [
+                  "110407"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Defence",
+                    "known": true,
+                    "label": "防御"
+                  }
+                },
+                "id": "110407",
+                "levels": [
+                  {
+                    "description": "使用秘技后，下一次战斗开始时为我方全体提供能够抵消等同于杰帕德24%防御力+150伤害的护盾，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，下一次战斗开始时为我方全体提供能够抵消等同于杰帕德"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "有情之证",
+                "progressionId": "1104007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "杰帕德被敌方攻击的概率提高。",
+            "iconKey": "skill-tree--1104101",
+            "id": "1104101",
+            "name": "刚正",
+            "prerequisiteIds": [
+              "1104201"
+            ],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "【不屈之身】触发后，杰帕德的能量立即恢复至<unbreak>100%</unbreak>。",
+            "iconKey": "skill-tree--1104102",
+            "id": "1104102",
+            "name": "统领",
+            "prerequisiteIds": [
+              "1104201"
+            ],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "杰帕德提高等同于自身当前防御力<unbreak>35%</unbreak>的攻击力，每回合开始时刷新。",
+            "iconKey": "skill-tree--1104103",
+            "id": "1104103",
+            "name": "战意",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "冰属性伤害提高3.2%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1104201",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [],
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1104202",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1104101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "冰属性伤害提高3.2%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1104203",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1104202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1104204",
+            "name": "防御强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "冰属性伤害提高4.8%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1104205",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1104102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1104206",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1104205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "冰属性伤害提高4.8%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1104207",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1104208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1104103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "效果抵抗提高8.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1104209",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1104208"
+            ],
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "冰属性伤害提高6.4%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1104210",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1104208"
+            ],
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1104001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110401",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1104002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110402",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1104003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110403",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1104004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110404",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1104007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110407",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1104",
+    "subtitleRendered": false
+  }
+}

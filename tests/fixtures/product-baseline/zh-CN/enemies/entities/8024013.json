@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "成熟体的真蛰虫；博识学会的杜卢伊爵士遨游星海，曾写下三十卷《诸界异虫札记》。书中详实记载了迄今为止被确认的十几种蠹虫种类，以及星系间数之不尽的亚种。",
+    "id": "8024013",
+    "name": "虫群•真蛰虫",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8024013",
+    "defaultMonsterRef": "bda9f1438946e027e8fb859938ae624f2342ad53a0791c4785f43b2aac41fb66",
+    "description": "成熟体的真蛰虫；博识学会的杜卢伊爵士遨游星海，曾写下三十卷《诸界异虫札记》。书中详实记载了迄今为止被确认的十几种蠹虫种类，以及星系间数之不尽的亚种。",
+    "id": "8024013",
+    "kind": "enemy",
+    "monsterRefs": [
+      "bda9f1438946e027e8fb859938ae624f2342ad53a0791c4785f43b2aac41fb66",
+      "0c20172e1baecb0c34fa006f133136a4490d29c80e9fe4c6d30ed131879def33"
+    ],
+    "name": "虫群•真蛰虫",
+    "rank": "LittleBoss",
+    "templateRef": "2f59a09b3ea06ec4e15c2e5ae02d6ffc4f4b87d70d005e8fe87aab2da1778923",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8024013",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8024013",
+    "selectableMonsterIds": [
+      "8024013",
+      "802401301"
+    ]
+  }
+}

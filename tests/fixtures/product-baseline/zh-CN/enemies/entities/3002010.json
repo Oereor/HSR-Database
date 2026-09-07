@@ -1,0 +1,82 @@
+{
+  "catalog": {
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是电视节目中的娱乐演员，失控后仍在演绎自己多变的身份，为观众带来惊喜或是惊吓。",
+    "id": "3002010",
+    "name": "惊梦剧团的圆幕先生",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3002010",
+    "defaultMonsterRef": "389f9c78651b2eff9cbe84e61e96a907a0763cfd669af9e4da07b3938e56d6cc",
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是电视节目中的娱乐演员，失控后仍在演绎自己多变的身份，为观众带来惊喜或是惊吓。",
+    "id": "3002010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "389f9c78651b2eff9cbe84e61e96a907a0763cfd669af9e4da07b3938e56d6cc",
+      "8124157d8fe33b1351c3c349679e26bfd135d3b2cf0c77c9f7d9040626b45e18",
+      "602b69b220ff145b5c2619254637014993ec253f5fdc266638fbee6657a8a02d",
+      "b8ca02405c386c781d9325c5383497b3f966d381ce7b6764f60d379bbb0638d9",
+      "8b36ef036f0075c18d79d4137b7f886c734f54f4c83c1a062ff33c287b94d851",
+      "6483001517c69bc27981914c365949ddaf00cba5cac4b236706a33b5e1c26009",
+      "a964774cdacf4844e583fa5e99fc47c5a4c8d808c34832c326374d9e4d18c2a4",
+      "76734913d8c63489bea5a063f245918b5b27354f40e39a394f7169f82646fd05",
+      "b0bd6aa23132ebb6b131916363c0c35f0a45aca52a1e8d7d81d4505297021c9d",
+      "dbb435bfd429f2412a2548c8260dcb7fca792b9dbdadc01fa8c62e02f9a068c5",
+      "b987a856d9ec7f207dccc4573168ebe574c8179a5b51228ea846cbbeb438fc4f",
+      "d23fc70aa1bdf49c847ffcb8339343b78b1e312e52a9b5437da45ce449a9d04a"
+    ],
+    "name": "惊梦剧团的圆幕先生",
+    "rank": "MinionLv2",
+    "templateRef": "dabe6d783fcfbe25e83fd588001a6b3c225b7f1f81787c00e2f25503d7f5e79d",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3002010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3002010",
+    "selectableMonsterIds": [
+      "3002010",
+      "300201001",
+      "300201002",
+      "300201003",
+      "300201004",
+      "300201005",
+      "300201006",
+      "300201007",
+      "300201008",
+      "300201009",
+      "300201010",
+      "300201011"
+    ]
+  }
+}

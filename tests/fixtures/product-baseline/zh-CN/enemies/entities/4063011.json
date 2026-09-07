@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的错误投影。参照本体为金血忆灵•翼蛇形，流光忆庭的模因生命遭遇「毁灭」金血糅合而成的扭曲怪物。略有翼蛇雏形，足以装神弄鬼。\n它那扭曲的理智在黑潮中彻底疯狂，那强烈的自我防御冲动，无形中染上了一层幻想色彩。",
+    "id": "4063011",
+    "name": "金血忆灵•翼蛇形（错误）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4063011",
+    "defaultMonsterRef": "5a93ab2c2d49ef8809e5ac16c64c89dab21469cbb600b0de2176cc7faf3a224c",
+    "description": "代码受到影响后的错误投影。参照本体为金血忆灵•翼蛇形，流光忆庭的模因生命遭遇「毁灭」金血糅合而成的扭曲怪物。略有翼蛇雏形，足以装神弄鬼。\n它那扭曲的理智在黑潮中彻底疯狂，那强烈的自我防御冲动，无形中染上了一层幻想色彩。",
+    "id": "4063011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "5a93ab2c2d49ef8809e5ac16c64c89dab21469cbb600b0de2176cc7faf3a224c"
+    ],
+    "name": "金血忆灵•翼蛇形（错误）",
+    "rank": "Elite",
+    "templateRef": "d69b91423b6cdbc0ffc2b161541403309bc3875aff1c2a60825927e3e134da7b",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4063011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4063011",
+    "selectableMonsterIds": [
+      "4063011"
+    ]
+  }
+}

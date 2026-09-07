@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n本是牌桌上的娱乐道具，失控后仍在舞动着手中的骰子，用粗鲁的方式进行游戏。",
+    "id": "3001010",
+    "name": "惊梦剧团的弹簧荷官",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3001010",
+    "defaultMonsterRef": "5c3aa90103fe34f8050c592bcbc32d59b748fa214309e1bc2e12127e35b130cc",
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n本是牌桌上的娱乐道具，失控后仍在舞动着手中的骰子，用粗鲁的方式进行游戏。",
+    "id": "3001010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "5c3aa90103fe34f8050c592bcbc32d59b748fa214309e1bc2e12127e35b130cc",
+      "4b02516e7516eaf3a98dee78ddb1c0270d8cb38869c37e3466e26d76dfd2f34e",
+      "49aa582e2d3dbb1dc8bccf540ad5aa01bd1583748b3acb1a5d18264bf3f5fa62",
+      "c05a68d97221e367d73af81c529f9a02a1eb3182cd6dceac60300a10a9fe66f3",
+      "62fc4c0d0f387f4ce57e24a72db8245f1d20ca9008d123985ae37e7bba011071",
+      "f162c7582202e8f049ce5089a14d5651e2eae3e0efb17a0c2fad65525e6abae2",
+      "e12e36ca1f4817a531180e79ac9ad801a03ac550eb8a967eab4fa22462a35e42",
+      "d17fb3c80f08a79e1cd95af36ddc20ddef07488435fd5f14834128eede3e4ba7"
+    ],
+    "name": "惊梦剧团的弹簧荷官",
+    "rank": "Minion",
+    "templateRef": "51f4f785f2eaf9d689d238a8adbf6cf11a99369d6710569d6575208a6c339a8b",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3001010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3001010",
+    "selectableMonsterIds": [
+      "3001010",
+      "300101001",
+      "300101002",
+      "300101003",
+      "300101004",
+      "300101005",
+      "300101006",
+      "300101007"
+    ]
+  }
+}

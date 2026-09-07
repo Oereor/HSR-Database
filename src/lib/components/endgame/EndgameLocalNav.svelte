@@ -2,6 +2,7 @@
   import { tick } from 'svelte';
   import GameText from '$lib/components/GameText.svelte';
   import type { EndgameLocalNavigationModel } from '$lib/domain/endgame-navigation';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let navigation: EndgameLocalNavigationModel;
 
@@ -55,12 +56,15 @@
     aria-haspopup="dialog"
     aria-expanded={menuOpen}
     aria-controls="endgame-local-navigation-menu"
-    aria-label={`${navigation.menuLabel}，当前${navigation.currentLabel}`}
+    aria-label={m.endgame_local_current_aria({
+      menu: navigation.menuLabel,
+      current: navigation.currentLabel
+    })}
     bind:this={trigger}
     on:click={openMenu}
   >
     <span><GameText text={navigation.currentLabel} /></span>
-    <span aria-hidden="true">选择⌄</span>
+    <span aria-hidden="true">{m.endgame_local_select()}</span>
   </button>
 
   <dialog
@@ -76,7 +80,7 @@
       <button
         class="endgame-local-menu__close"
         type="button"
-        aria-label="关闭节点选择"
+        aria-label={m.endgame_local_close()}
         on:click={closeMenu}>×</button
       >
     </header>

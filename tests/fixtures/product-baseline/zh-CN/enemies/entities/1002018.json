@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "可可利亚召唤出的巨大冰矛，环绕着能如刀刃般撕裂肉身的极寒气流。",
+    "id": "1002018",
+    "name": "无尽寒冬之槊",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1002018",
+    "defaultMonsterRef": "273655fce6e404db633a3d8358ec9dde9d92e0680027cf16520ad0bb38edaa39",
+    "description": "可可利亚召唤出的巨大冰矛，环绕着能如刀刃般撕裂肉身的极寒气流。",
+    "id": "1002018",
+    "kind": "enemy",
+    "monsterRefs": [
+      "273655fce6e404db633a3d8358ec9dde9d92e0680027cf16520ad0bb38edaa39",
+      "514368637af5f128fd532331345e25e7f0eb5515b5883509ba107a4272b337e6",
+      "bfcc139356fdc7346d5b51907db180da6109cfd5a25eada92a42d7aee046e678",
+      "243ec4260e52a50d7d3a68c846b989f8df024095b3ef6bb437256029eeba6654",
+      "965f79144726555ed69299bfd0c65418a83403c8842e86d96f55e055a48ee9f9",
+      "65d94c59b2eba6fbdbe9379bbdd2b95726dc90c7b4cf8e24e4d9aaab1958aa43"
+    ],
+    "name": "无尽寒冬之槊",
+    "rank": "MinionLv2",
+    "templateRef": "79e7fa479dbcc8dbb9ce8fe3f491368fcbdd42b57a8d7dcb6c370f032c443533",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1002018",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1002018",
+    "selectableMonsterIds": [
+      "1002018",
+      "100201802",
+      "100201803",
+      "100201804",
+      "100201805",
+      "100201806"
+    ]
+  }
+}

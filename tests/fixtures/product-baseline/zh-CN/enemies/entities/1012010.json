@@ -1,0 +1,100 @@
+{
+  "catalog": {
+    "description": "以旧世界遗留的科技拼凑制造的自动机器单元，形如某种载具，然而人们似乎早就忘却了它载具的用途。\n战斗中自动机兵「战犬」能提供支援，回复战友的生命。",
+    "id": "1012010",
+    "name": "自动机兵•战犬",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1012010",
+    "defaultMonsterRef": "cea9b3572f9b804b3552a4abfaea3a1f4ead0e4c8e0c0c36f650f6f6065ed31e",
+    "description": "以旧世界遗留的科技拼凑制造的自动机器单元，形如某种载具，然而人们似乎早就忘却了它载具的用途。\n战斗中自动机兵「战犬」能提供支援，回复战友的生命。",
+    "id": "1012010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "cea9b3572f9b804b3552a4abfaea3a1f4ead0e4c8e0c0c36f650f6f6065ed31e",
+      "26ce9ef621b361c64d960db3d9d0ca7beff136df93146ae716e38f7de23ece43",
+      "95f604c9ce71333e1f4baf334e8c4e1be50eed34a9609b0559aff1456157165a",
+      "6e50bd72463d93dd8054baba201f8cebd977c5f023de841ba2bb5bd49979d701",
+      "3f5049ceee23c73cab6d517990f57255949d7e63f87dff4bdf819532ef60b67b",
+      "6252d52fc804200b05d9977728f04e96efe8d000a82a54c27f008430fc45f9cc",
+      "70cae11a7a5ad02effa1ee01affac5b0cbfe71ac28be6416535f2a2f10946879",
+      "84c7bc27e7a9384b14582f4f0c1617e659c6374f38df6eb3ca589dd1228955d4",
+      "a18e040a561dcd98773d813fb00cb8cff0d2004f19f48654d6ceafdb11505269",
+      "969ca486e378cd1678af9de10030ffd5c7b4d9eeab73ec7ad76a45f54b841145",
+      "f9f37495bfd159f3e3ecf8abc27eda71fff69809ddd9efa75b8b47fe54d9dd25",
+      "f84c1c3f6a65931ff86960c71a2044d91b5395e24c103c8f921c0fd2c10b2273",
+      "cd6efdc23f1a0d49e810ca2485c3934234ff1cdf578b8840cd5de4a267a727a6",
+      "bddca49bda7fe924777732f505b521b2bf33cc0f71153fc5bbd58526c8d1bcb1",
+      "4a9bdfcbb58832878a7b999e717877839ad0696fc29bd92db51c7a1cf644a26b",
+      "2d25f15d14d4ce3f2c41afb1f98d9a2553e720777e3292ed6c014c43c34be01c",
+      "65ae6c7cf92926e84acfa8fa2e8b5bc1d427f44154cd97323898c7622a7c2f01",
+      "0c1085bd27c56036e4f4ddfe56ed55b4f2b3792ae4d77205da4f8c40388267e6",
+      "59b5493f3351be1e35d3f4951b7b311b1212af75c6c12a5b8e7f7f9ba0455687",
+      "ba75c53bd0407560f3a07b4a07890c4440867c3128075cd45cf23f1c4f9424a0",
+      "0abdcc1ecee06f79400d15190cbb924670ebcc6cee9312578eb1d4aaeb9322e6",
+      "b294b711c3ec56fb107a3708f722616943f86967a48234796fcb22d700cc79b3",
+      "17b7cfdbd4206fb88ac08c9a1838a7c98710bd299453a6cc9e68cacb9d76b7a8",
+      "a8a60ade6d8a491fab5d72614ee7b8030f6bc9ad7eb45dda9bcbcbedf887578c",
+      "d9c239579a8f15f51f1028041c2d74087380fba207bdfafe756b914caebf723e"
+    ],
+    "name": "自动机兵•战犬",
+    "rank": "MinionLv2",
+    "templateRef": "957dbfb2c2d746e68efd5e79c475eee2db2c091503203dd4250b0eb5cc989654",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1012010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1012010",
+    "selectableMonsterIds": [
+      "1012010",
+      "101201001",
+      "101201002",
+      "101201003",
+      "101201004",
+      "101201005",
+      "101201006",
+      "101201007",
+      "101201008",
+      "101201009",
+      "101201010",
+      "101201011",
+      "101201012",
+      "101201013",
+      "101201014",
+      "101201015",
+      "101201016",
+      "101201017",
+      "101201018",
+      "101201019",
+      "101201020",
+      "101201021",
+      "101201022",
+      "101201023",
+      "101201024"
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "徘徊在裂界中的机械单元，但毫无疑问这并非人类技术造就的产物，而是裂界扭曲的力量模仿而成的怪物。\n深寒徘徊者会吸引永冬灾影，同时能降低我方的速度与冰属性抗性。",
+    "id": "1023020",
+    "name": "深寒徘徊者",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1023020",
+    "defaultMonsterRef": "2363ebb84f6725b5ba7e17c2efe10fe91d0bd7fbc3705b5f20114716ab7a13fd",
+    "description": "徘徊在裂界中的机械单元，但毫无疑问这并非人类技术造就的产物，而是裂界扭曲的力量模仿而成的怪物。\n深寒徘徊者会吸引永冬灾影，同时能降低我方的速度与冰属性抗性。",
+    "id": "1023020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "2363ebb84f6725b5ba7e17c2efe10fe91d0bd7fbc3705b5f20114716ab7a13fd",
+      "f9278745532d42fdec38335382d0233067a28de16ec60f7cccccd49bad3efc07",
+      "09bbfad5fa1c776d9b192f0a0ec3bbb5a8468f92866ff3615aa90c0e0b6a44dc",
+      "1ca9a307d1f9e92236f0915df16e287044c6529843e64a033c04a29ac8398fc2",
+      "36062cb0b40f53ffa878c3b00f2e1141bafc74307f53aa70691cbfe5c4c2b69b",
+      "af0d9c6b4ed6cb2b0fb242e1476149ddea18cde1c513148be1ee1a4899f8a480",
+      "a2ea28df15c7a31d24fd9c6beee087f8ab40c9577599175b0c6a23e596a6c943",
+      "d78112595fa79ae6b885220be93912f9fa117ba8bc1dc39478e5fcd3d0dc3f47",
+      "0b333878690021ffa44750d9c5c5bf6746cb3e99088f72d6b10b6bf34a675d74"
+    ],
+    "name": "深寒徘徊者",
+    "rank": "Elite",
+    "templateRef": "0f6004c34c49a07720f182dd2613884302d6da4fef5673b0fa46c25612b7f7b3",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1023020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1023020",
+    "selectableMonsterIds": [
+      "1023020",
+      "102302001",
+      "102302002",
+      "102302003",
+      "102302004",
+      "102302005",
+      "102302007",
+      "102302008",
+      "102302009"
+    ]
+  }
+}

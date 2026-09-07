@@ -1,0 +1,94 @@
+{
+  "catalog": {
+    "description": "银鬃铁卫的戍卫长。\n杰帕德会指挥麾下士兵集中攻击，并且能为士兵提供免疫一次攻击的屏障。",
+    "id": "1004020",
+    "name": "杰帕德",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1004020",
+    "defaultMonsterRef": "486cdbe41b750ca2aba2c6160fd1d39fab64748f4897b07935f1cb7458217940",
+    "description": "银鬃铁卫的戍卫长。\n杰帕德会指挥麾下士兵集中攻击，并且能为士兵提供免疫一次攻击的屏障。",
+    "id": "1004020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "486cdbe41b750ca2aba2c6160fd1d39fab64748f4897b07935f1cb7458217940",
+      "e83a74cc70f76892781ef5747db2a4094b7c4c6bb3d03a9d190d74c7e18fc5cb",
+      "200c06abb6276640cb7ed8211ccc961d562e20cc54f794104ad1b0602e32164b",
+      "95e463629c03c67cdbf58b4f47bc3773b3ea6ec5bad411be76aa5b56866ee8c3",
+      "aca3783a0e3abe031d0618e3ce6ef09917116118c8732f323f1fa3af2c3be207",
+      "55e243262ea943a8a7b8bfb901fed6d4ab3e07cf154e6c18780d13e1f76338bd",
+      "fd2a01efa69fdfafe73e45abcd6e6fad46665c7c5d13372709db0adcb99da1a3",
+      "f838e0d43fe78d0790629b258f16b3a3462d9fc15ba6692542d70d51705ac3ca",
+      "cb9ccade33ca60db22b7028620c5a0a60a345e5efdb2a3193942bf6026fbd982",
+      "1ff508fbeefa76071903382a3048a89ce3469781222a4bb38f055219a608d754",
+      "fcce2436d47225ff9cfc03a0a2a8ad3573bf26dcc5b3fe5f886a8b2486e5dff8",
+      "91db27bb974287c06eab65a03b86bc224abd94902f5f179a46e257bb040aaf6b",
+      "bfdeb8aff77b57274b5b8d36771b127b6f0486b5950b08fabe4f8b6bcc66ca5e",
+      "7eb3fc6d8d35b5ae6488786bb67e118b5cfead3be8e9ee61f5063705dec2e8b0",
+      "e898c5237333dc1ac0bb46c4aecc96813ca0c56d1be98a2d993e0670f9377881",
+      "6b678bd08bae63acbeb876a643edbaaf55e49616a97e692249b34521f0070a41",
+      "89d0667c9cb76f824b66c922e16345d7e1b734cc3584a39a22b6661ba9e65b90",
+      "c16a49d47f58b2de214e69e8ee47b419626d2453c9190ef78f44eae42d1bf145"
+    ],
+    "name": "杰帕德",
+    "rank": "LittleBoss",
+    "templateRef": "23f316d857c349da863000aa1b1c2c30cba98a1fcbad3089b85f421d33472453",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1004020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1004020",
+    "selectableMonsterIds": [
+      "1004020",
+      "100402001",
+      "100402002",
+      "100402003",
+      "100402004",
+      "100402005",
+      "100402006",
+      "100402007",
+      "100402008",
+      "100402009",
+      "100402010",
+      "100402011",
+      "100402012",
+      "100402013",
+      "100402014",
+      "100402015",
+      "100402016",
+      "100402017"
+    ]
+  }
+}

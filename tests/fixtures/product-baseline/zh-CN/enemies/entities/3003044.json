@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "美梦剧团中演奏谐乐的琴师。本应于「谐乐大典」之中献奏，如今却被「秩序」所缚，上演着关于「未来」的剧目。来日是永恒的长歌，幸福的愿景汇于弦上，以琴声呼唤谱曲的君王。",
+    "id": "3003044",
+    "name": "散装英雄王",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3003044",
+    "defaultMonsterRef": "785d8f2afece1eeea4407e940714a555be66d0db62d2753469420053fcac2037",
+    "description": "美梦剧团中演奏谐乐的琴师。本应于「谐乐大典」之中献奏，如今却被「秩序」所缚，上演着关于「未来」的剧目。来日是永恒的长歌，幸福的愿景汇于弦上，以琴声呼唤谱曲的君王。",
+    "id": "3003044",
+    "kind": "enemy",
+    "monsterRefs": [
+      "785d8f2afece1eeea4407e940714a555be66d0db62d2753469420053fcac2037",
+      "91bc170b1874c22a3e427a868580539bb2b1aea9227ad605d7b77e0c4b50f9cc"
+    ],
+    "name": "散装英雄王",
+    "rank": "Elite",
+    "templateRef": "28a6ab4dcd2994bfa8a67b6ae188da3a15290514e7d18791dcee54b28fd1698f",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3003044",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3003044",
+    "selectableMonsterIds": [
+      "3003044",
+      "300304401"
+    ]
+  }
+}

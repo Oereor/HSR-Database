@@ -1,0 +1,4828 @@
+{
+  "catalog": {
+    "baseName": "Saber",
+    "description": "孤独的英灵走过命运的长夜， 圆桌的旗帜仍在梦中舒展。卡美洛的骑士之王，此时尚未抵达理想乡。\n仍是少女的她于这场特殊的「圣杯战争」中应召前来，当再度面临石中剑的抉择，她将如何突破过往的幻境？\n——<i>「我未实现的愿望，也将在此作结。」</i>",
+    "element": "Wind",
+    "elementName": "风",
+    "id": "1014",
+    "name": "Saber",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "Saber",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 125,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 101
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 81.84,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 89.1,
+            "perLevel": 4.455
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 168.96,
+            "perLevel": 8.448
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 114.576,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 124.74,
+            "perLevel": 4.455
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 236.544,
+            "perLevel": 8.448
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 147.312,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 160.38,
+            "perLevel": 4.455
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 304.128,
+            "perLevel": 8.448
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 180.048,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 196.02,
+            "perLevel": 4.455
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 371.712,
+            "perLevel": 8.448
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 212.784,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 231.66,
+            "perLevel": 4.455
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 439.296,
+            "perLevel": 8.448
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 245.52,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 267.3,
+            "perLevel": 4.455
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 506.88,
+            "perLevel": 8.448
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 278.256,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 302.94,
+            "perLevel": 4.455
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 574.464,
+            "perLevel": 8.448
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "孤独的英灵走过命运的长夜， 圆桌的旗帜仍在梦中舒展。卡美洛的骑士之王，此时尚未抵达理想乡。\n仍是少女的她于这场特殊的「圣杯战争」中应召前来，当再度面临石中剑的抉择，她将如何突破过往的幻境？\n——<i>「我未实现的愿望，也将在此作结。」</i>",
+    "element": "Wind",
+    "elementName": "风",
+    "equipmentRecommendation": {
+      "avatarId": "1014",
+      "cavernSetIds": [
+        "126",
+        "131",
+        "122"
+      ],
+      "lightConeIds": [
+        "23045",
+        "24000"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "WindAddedRatio",
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "328",
+        "306",
+        "301"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "Saber",
+    "id": "1014",
+    "kind": "character",
+    "name": "Saber",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "<unbreak>Saber</unbreak>造成的终结技伤害提高<unbreak>60%</unbreak>。<unbreak>Saber</unbreak>施放普攻或战技后，获得<unbreak>1</unbreak>点【炉心共鸣】。",
+            "iconKey": "rank--101401",
+            "id": "101401",
+            "name": "失落的白垩坚城",
+            "rank": 1
+          },
+          {
+            "description": "本场战斗中每获得1点【炉心共鸣】，使<unbreak>Saber</unbreak>造成的伤害无视目标<unbreak>1.0%</unbreak>的防御力，该效果最多叠加<unbreak>15</unbreak>层。触发【炉心共鸣】提高战技倍率的效果时，每点【炉心共鸣】额外使本次战技的伤害倍率提高<unbreak>7%</unbreak>。",
+            "iconKey": "rank--101402",
+            "id": "101402",
+            "name": "尘封的圆桌誓言",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--101403",
+            "id": "101403",
+            "name": "十五个世纪的追寻",
+            "rank": 3
+          },
+          {
+            "description": "<unbreak>Saber</unbreak>的风属性<u>抗性穿透</u>提高<unbreak>8%</unbreak>。施放终结技后，<unbreak>Saber</unbreak>的风属性<u>抗性穿透</u>提高<unbreak>4%</unbreak>，该效果最多叠加<unbreak>3</unbreak>层。",
+            "extraEffects": [
+              {
+                "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                "id": "30000005",
+                "name": "抗性穿透"
+              }
+            ],
+            "iconKey": "rank--101404",
+            "id": "101404",
+            "name": "十六个冬日的奇遇",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--101405",
+            "id": "101405",
+            "name": "于抵达理想的黎明",
+            "rank": 5
+          },
+          {
+            "description": "<unbreak>Saber</unbreak>造成的终结技伤害的风属性<u>抗性穿透</u>提高<unbreak>20%</unbreak>，行迹【湖之祝福】可积攒的溢出能量提高到<unbreak>200</unbreak>点。进入战斗首次施放终结技后，为<unbreak>Saber</unbreak>固定恢复<unbreak>300</unbreak>点能量，该效果每再施放<unbreak>3</unbreak>次终结技可触发1次。",
+            "extraEffects": [
+              {
+                "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                "id": "30000005",
+                "name": "抗性穿透"
+              }
+            ],
+            "iconKey": "rank--101406",
+            "id": "101406",
+            "name": "守护命运长夜",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 360
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1014001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1014001",
+                "variantIds": [
+                  "101401",
+                  "101408"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "101401",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于Saber50%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber60%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber70%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber80%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber90%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber100%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber110%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber120%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber130%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber140%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "风王结界",
+                "progressionId": "1014001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              },
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "101408",
+                "levels": [
+                  {
+                    "description": "获得2点【炉心共鸣】，并对敌方全体造成等同于Saber75%攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于Saber75%/110%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】，并对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "获得2点【炉心共鸣】，并对敌方全体造成等同于Saber90%攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于Saber90%/132%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】，并对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "获得2点【炉心共鸣】，并对敌方全体造成等同于Saber105%攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于Saber105%/154%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】，并对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "获得2点【炉心共鸣】，并对敌方全体造成等同于Saber120%攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于Saber120%/176%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】，并对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "176%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "获得2点【炉心共鸣】，并对敌方全体造成等同于Saber135%攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于Saber135%/198%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】，并对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "135%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "135%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "198%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "获得2点【炉心共鸣】，并对敌方全体造成等同于Saber150%攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于Saber150%/220%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】，并对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "获得2点【炉心共鸣】，并对敌方全体造成等同于Saber165%攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于Saber165%/242%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】，并对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "165%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "165%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "242%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "获得2点【炉心共鸣】，并对敌方全体造成等同于Saber180%攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于Saber180%/264%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】，并对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "264%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "获得2点【炉心共鸣】，并对敌方全体造成等同于Saber195%攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于Saber195%/286%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】，并对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "195%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "195%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "286%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "获得2点【炉心共鸣】，并对敌方全体造成等同于Saber210%攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于Saber210%/308%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】，并对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，若施放时敌方目标数量为2/1，额外对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "308%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "解放的金色王权",
+                "progressionId": "1014001",
+                "scalingParamIndexes": [
+                  0,
+                  2,
+                  3
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1014002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1014002",
+                "variantIds": [
+                  "101402"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "101402",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于Saber75%攻击力的风属性伤害，对相邻目标造成等同于Saber38%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高7.0%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber83%攻击力的风属性伤害，对相邻目标造成等同于Saber41%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高7.7%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber90%攻击力的风属性伤害，对相邻目标造成等同于Saber45%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高8.4%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber98%攻击力的风属性伤害，对相邻目标造成等同于Saber49%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高9.1%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber105%攻击力的风属性伤害，对相邻目标造成等同于Saber53%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高9.8%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber113%攻击力的风属性伤害，对相邻目标造成等同于Saber56%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高10.5%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber122%攻击力的风属性伤害，对相邻目标造成等同于Saber61%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高11.4%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "122%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber131%攻击力的风属性伤害，对相邻目标造成等同于Saber66%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高12.3%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "131%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber141%攻击力的风属性伤害，对相邻目标造成等同于Saber70%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高13.1%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "141%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber150%攻击力的风属性伤害，对相邻目标造成等同于Saber75%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高14.0%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber158%攻击力的风属性伤害，对相邻目标造成等同于Saber79%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高14.7%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "158%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "79%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber165%攻击力的风属性伤害，对相邻目标造成等同于Saber83%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高15.4%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "165%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber173%攻击力的风属性伤害，对相邻目标造成等同于Saber86%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高16.1%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "86%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber180%攻击力的风属性伤害，对相邻目标造成等同于Saber90%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高16.8%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Saber188%攻击力的风属性伤害，对相邻目标造成等同于Saber94%攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为Saber恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高17.5%，并在攻击后消耗所有【炉心共鸣】为Saber恢复能量，否则立即获得3点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，对相邻目标造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。若当前持有【炉心共鸣】，且本次战技攻击后消耗【炉心共鸣】可为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复满能量，则使本次战技倍率提高，每有1点【炉心共鸣】使本次战技的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在攻击后消耗所有【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复能量，否则立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "风王铁槌",
+                "progressionId": "1014002",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  3
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1014003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1014003",
+                "variantIds": [
+                  "101403"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "aoe",
+                      "value": 40
+                    }
+                  ]
+                },
+                "id": "101403",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于Saber140%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber55%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于Saber154%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber61%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于Saber168%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber66%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于Saber182%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber72%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "182%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于Saber196%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber77%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "196%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于Saber210%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber83%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于Saber228%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber89%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "228%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "89%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于Saber245%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber96%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "245%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于Saber263%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber103%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "263%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "103%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于Saber280%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber110%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "280%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于Saber294%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber116%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "294%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "116%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于Saber308%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber121%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "308%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "121%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于Saber322%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber126%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "322%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于Saber336%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber132%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "336%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于Saber350%攻击力的风属性伤害。并额外造成10次伤害，每次伤害对随机敌方单体造成等同于Saber138%攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "350%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "138%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。施放终结技后下次普攻会被替换为【解放的金色王权】且仅能施放【解放的金色王权】。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "誓约胜利之剑",
+                "progressionId": "1014003",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1014004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1014004",
+                "variantIds": [
+                  "101404"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "energyGain": 10
+                },
+                "id": "101404",
+                "levels": [
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高30%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高33%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高36%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高39%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高42%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高45%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高49%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高53%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高56%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高60%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高63%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高66%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高69%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高72%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "进入战斗时，获得1点【炉心共鸣】。我方任意目标施放终结技时，Saber造成的伤害提高75%，持续2回合，并获得3点【炉心共鸣】。每消耗1点【炉心共鸣】为Saber固定恢复8.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。我方任意目标施放终结技时，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。每消耗1点【炉心共鸣】为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "龙之炉心",
+                "progressionId": "1014004",
+                "scalingParamIndexes": [
+                  2,
+                  5
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1014007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1014007",
+                "variantIds": [
+                  "101407"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "101407",
+                "levels": [
+                  {
+                    "description": "使用秘技后，下一次战斗开始时Saber攻击力提高35%，持续2回合，并获得2点【炉心共鸣】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，下一次战斗开始时"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Saber"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【炉心共鸣】。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "骑士王的登场",
+                "progressionId": "1014007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "<unbreak>Saber</unbreak>的暴击率提高<unbreak>20%</unbreak>。进入战斗和施放强化普攻时，获得【魔力放出】效果，该效果下，若<unbreak>Saber</unbreak>持有【炉心共鸣】，且施放战技并消耗【炉心共鸣】可为<unbreak>Saber</unbreak>恢复满能量，则消耗【魔力放出】为我方恢复1个战技点并使<unbreak>Saber</unbreak>立即行动。",
+            "iconKey": "skill-tree--1014101",
+            "id": "1014101",
+            "name": "龙之骑士",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "<unbreak>Saber</unbreak>可积攒最多<unbreak>120</unbreak>点溢出能量，施放终结技后清空并恢复相应的能量值。战斗开始时若能量不足<unbreak>60%</unbreak>则使其恢复至<unbreak>60%</unbreak>。",
+            "iconKey": "skill-tree--1014102",
+            "id": "1014102",
+            "name": "湖之祝福",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放战技时，使<unbreak>Saber</unbreak>的暴击伤害提高<unbreak>50%</unbreak>，持续<unbreak>2</unbreak>回合。本场战斗中每获得1点【炉心共鸣】，使<unbreak>Saber</unbreak>的暴击伤害提高<unbreak>4%</unbreak>，该效果最多叠加<unbreak>8</unbreak>层。",
+            "iconKey": "skill-tree--1014103",
+            "id": "1014103",
+            "name": "星之冠冕",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "风属性伤害提高3.2%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1014201",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [],
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1014202",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1014101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "风属性伤害提高3.2%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1014203",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [
+              "1014202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1014204",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1014203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "风属性伤害提高4.8%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1014205",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [
+              "1014102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1014206",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1014205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "风属性伤害提高4.8%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1014207",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [
+              "1014206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1014208",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1014103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击率提高5.3%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1014209",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1014208"
+            ],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "风属性伤害提高6.4%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1014210",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [
+              "1014208"
+            ],
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1014001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "101401",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "101408",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1014002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "101402",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1014003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "101403",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1014004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "101404",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1014007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "101407",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1014",
+    "subtitleRendered": false
+  }
+}

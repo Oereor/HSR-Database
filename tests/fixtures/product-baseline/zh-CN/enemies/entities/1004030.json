@@ -1,0 +1,84 @@
+{
+  "catalog": {
+    "description": "贝洛伯格守护者的继任者，银鬃铁卫的统帅。\n布洛妮娅会使用多种战术攻击敌人，并大幅提升友军的作战能力。",
+    "id": "1004030",
+    "name": "布洛妮娅",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1004030",
+    "defaultMonsterRef": "89085bb11071e3d16aa065300ebb7e62621b35e085284008148d9fb7ec6b42db",
+    "description": "贝洛伯格守护者的继任者，银鬃铁卫的统帅。\n布洛妮娅会使用多种战术攻击敌人，并大幅提升友军的作战能力。",
+    "id": "1004030",
+    "kind": "enemy",
+    "monsterRefs": [
+      "89085bb11071e3d16aa065300ebb7e62621b35e085284008148d9fb7ec6b42db",
+      "2770701d211fed22d22d6e5b424b98ba02fa11f0bb21049e0bf07995a72af249",
+      "13f68ab9748e5b8deffa4bc005f61f582ee1f68bf2b5e3553d3b32daa20191dd",
+      "9566bb99844392203672bef9a7f6d3c8fdfc887eec9d8f7b9d84d35380772045",
+      "476445b7af1ef67328def55d08b6b75fea59c71b3cfb81a4af344411bc98894e",
+      "a4cb0555cdfe68e5bbc083afeca606e0a9f3c90230a9b3f12bf44380a77ba014",
+      "5d0c43921713c93a650c76c1e089d78adb76e271c5d4e03e321877e210a571f3",
+      "3a62210cadfed8a12ec5ca156152477e2100292b3174a532b153255243253611",
+      "bf0eea1f9e6d186b492c6ea978b4764558a049da163581bc9df5f46916865ba7",
+      "603cd41a6ab7b63190b2b109439a376ca56981bbc65ec6ddd08e51fa37eff452",
+      "eb73a3ae3bc55f450771c966ba884fe6ed8597d5c0a6296f3a4d7a69c9677e83",
+      "f21745b2a0b28fa68dd68d6e291c9ab398fbe279223de8b810462905b1d5ea3d",
+      "bc62c29b56c262117ae32ca342f89bc79bf0fb610e3f1f4965245d9205444cc6"
+    ],
+    "name": "布洛妮娅",
+    "rank": "LittleBoss",
+    "templateRef": "047a0981d13ebd4f313ef8b7a4912930eff5b0c22e8277c1a8402bedbe0e7989",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1004030",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1004030",
+    "selectableMonsterIds": [
+      "1004030",
+      "100403001",
+      "100403002",
+      "100403003",
+      "100403004",
+      "100403005",
+      "100403006",
+      "100403007",
+      "100403008",
+      "100403009",
+      "100403010",
+      "100403011",
+      "100403012"
+    ]
+  }
+}

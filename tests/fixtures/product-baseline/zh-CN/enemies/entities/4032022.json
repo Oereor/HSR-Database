@@ -1,0 +1,74 @@
+{
+  "catalog": {
+    "description": "自无穷灾难中倒映的残像，皆是寄宿着破坏意志的祸端。",
+    "id": "4032022",
+    "name": "残破容器",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4032022",
+    "defaultMonsterRef": "f8aaf34bd1b094dfa3912874e2a2f6ad899ec4bcd6641cf2218866af55dd5a0a",
+    "description": "自无穷灾难中倒映的残像，皆是寄宿着破坏意志的祸端。",
+    "id": "4032022",
+    "kind": "enemy",
+    "monsterRefs": [
+      "f8aaf34bd1b094dfa3912874e2a2f6ad899ec4bcd6641cf2218866af55dd5a0a",
+      "2666845e6490b9fa378cc5a64bb92a6ec4b560d887725dbe5df253ee6d5550c8",
+      "33e0d19c84350f69501e4c3ead4106505325d4b6ac31d4024f65dd647ef83b82",
+      "7bd27f0cd56f370591cbbc256d41f16c8eb6893611d02420fd9817b6c0a8468a",
+      "39c9cde6eb4faf599d0fa2ce85d325d2546df575dd055186a627d93045f8c953",
+      "58c4fb12ea1965ea8d1c74f242d03a5c233e9107be1ba86af92c0dd0745f6551",
+      "ecdd02b163224fae7f9d83cec72b69d12511b1f99840974ae0588b3ede541a64",
+      "d71514482efe313da6fc743029e40ca8e39a811ed632e48bbb4b42d6b0b318cc"
+    ],
+    "name": "残破容器",
+    "rank": "MinionLv2",
+    "templateRef": "f0d0fdb2620be751d9c2140766c8b5e791eb78d1e3b948e46e104d070356b269",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4032022",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4032022",
+    "selectableMonsterIds": [
+      "4032022",
+      "403202201",
+      "403202202",
+      "403202203",
+      "403202204",
+      "403202205",
+      "403202206",
+      "403202207"
+    ]
+  }
+}

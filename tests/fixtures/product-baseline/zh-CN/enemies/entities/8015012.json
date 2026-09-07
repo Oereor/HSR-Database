@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "「反物质军团」以黄昏古兽的残片为基「战争熔炉」的万骸哀怨为引所铸炼而成「末日兽」之一。怨灵的痴缠化作有形之手，旧日的灾影凝为掩映诸天之尾。「末日兽」拘禁了未释然亦未死灭的众生意志。或嗔怒，或忧恸，或妄喜——迷相既露，诸邪肆动。「末日兽」的核心为一颗暗物质驱动的引擎。",
+    "id": "8015012",
+    "name": "诛尽杀绝的灭星兽",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8015012",
+    "defaultMonsterRef": "ffff21bc217b95c2deee64b591490c2e681f4460616a49b3733878167cd74e09",
+    "description": "「反物质军团」以黄昏古兽的残片为基「战争熔炉」的万骸哀怨为引所铸炼而成「末日兽」之一。怨灵的痴缠化作有形之手，旧日的灾影凝为掩映诸天之尾。「末日兽」拘禁了未释然亦未死灭的众生意志。或嗔怒，或忧恸，或妄喜——迷相既露，诸邪肆动。「末日兽」的核心为一颗暗物质驱动的引擎。",
+    "id": "8015012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "ffff21bc217b95c2deee64b591490c2e681f4460616a49b3733878167cd74e09",
+      "48417855ba811ef041ca9b89362cde47a56caae87c1b0a68033fcca76a1161e0",
+      "b1aaf0ba63d28ad0bfe47140d724a91499962199ac58b567fa6115c9daf300b7",
+      "2c41b63c75c880543dbe012de518f151e975d68cb36fee01bfb4326dbf3010ae",
+      "0fda7e582eac2960583ae6141f853092de32516f0d620c6b3d994acb9725ef76"
+    ],
+    "name": "诛尽杀绝的灭星兽",
+    "rank": "BigBoss",
+    "templateRef": "14c14961a6e6166eb01125ec176deec1281f65385edc0ca6976dca6730d07e9a",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8015012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8015012",
+    "selectableMonsterIds": [
+      "8015012",
+      "801501201",
+      "801501202",
+      "801501203",
+      "801501204"
+    ]
+  }
+}

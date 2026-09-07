@@ -1,0 +1,5319 @@
+{
+  "catalog": {
+    "baseName": "希儿",
+    "description": "地底反抗组织「地火」的骨干，别号「蝴蝶」。\n性格率真直爽，内心隐藏着细腻敏锐的一面。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "id": "1102",
+    "name": "希儿",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "希儿",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 115
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 87.12,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 49.5,
+            "perLevel": 2.475
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 126.72,
+            "perLevel": 6.336
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 121.968,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 69.3,
+            "perLevel": 2.475
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 177.408,
+            "perLevel": 6.336
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 156.816,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 89.1,
+            "perLevel": 2.475
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 228.096,
+            "perLevel": 6.336
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 191.664,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 108.9,
+            "perLevel": 2.475
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 278.784,
+            "perLevel": 6.336
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 226.512,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 128.7,
+            "perLevel": 2.475
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 329.472,
+            "perLevel": 6.336
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 261.36,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 148.5,
+            "perLevel": 2.475
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 380.16,
+            "perLevel": 6.336
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 296.208,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 168.3,
+            "perLevel": 2.475
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 430.848,
+            "perLevel": 6.336
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "地底反抗组织「地火」的骨干，别号「蝴蝶」。\n性格率真直爽，内心隐藏着细腻敏锐的一面。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "equipmentRecommendation": {
+      "avatarId": "1102",
+      "cavernSetIds": [
+        "108",
+        "122",
+        "102"
+      ],
+      "lightConeIds": [
+        "23001",
+        "24001",
+        "23012"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "QuantumAddedRatio",
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "311",
+        "301",
+        "306"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "希儿",
+    "id": "1102",
+    "kind": "character",
+    "name": "希儿",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "对当前生命值百分比小于等于<unbreak>80%</unbreak>的敌方目标造成伤害时，暴击率提高<unbreak>15%</unbreak>。",
+            "iconKey": "rank--110201",
+            "id": "110201",
+            "name": "斩尽",
+            "rank": 1
+          },
+          {
+            "description": "战技的加速效果可以叠加，最多叠加<unbreak>2</unbreak>层。",
+            "iconKey": "rank--110202",
+            "id": "110202",
+            "name": "蝶舞",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--110203",
+            "id": "110203",
+            "name": "缭乱",
+            "rank": 3
+          },
+          {
+            "description": "希儿消灭敌方目标时，自身恢复<unbreak>15</unbreak>点能量。",
+            "iconKey": "rank--110204",
+            "id": "110204",
+            "name": "掠影",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--110205",
+            "id": "110205",
+            "name": "锋锐",
+            "rank": 5
+          },
+          {
+            "description": "施放终结技攻击后使受到攻击的敌方单体陷入【乱蝶】状态，持续<unbreak>1</unbreak>回合。【乱蝶】状态下的敌方目标受到攻击后，额外受到1次等同于希儿终结技伤害<unbreak>15%</unbreak>的量子属性<u>附加伤害</u>。若该目标被我方其他目标触发【乱蝶】状态的<u>附加伤害</u>消灭，将不会触发希儿的天赋。\n当希儿陷入<u>无法战斗状态</u>时，敌方目标的【乱蝶】状态被解除。",
+            "extraEffects": [
+              {
+                "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                "id": "10000005",
+                "name": "附加伤害"
+              },
+              {
+                "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                "id": "10000007",
+                "name": "无法战斗状态"
+              }
+            ],
+            "iconKey": "rank--110206",
+            "id": "110206",
+            "name": "离析",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 120
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1102001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1102001",
+                "variantIds": [
+                  "110201"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "110201",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于希儿50%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿60%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿70%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿80%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿90%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿100%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿110%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿120%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿130%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿140%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "强袭",
+                "progressionId": "1102001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1102002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1102002",
+                "variantIds": [
+                  "110202"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "110202",
+                "levels": [
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿110%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿121%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "121%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿132%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿143%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "143%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿154%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿165%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "165%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿179%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "179%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿193%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "193%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿206%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "206%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿220%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿231%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "231%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿242%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "242%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿253%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "253%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿264%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "264%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿275%攻击力的量子属性伤害，速度提高效果持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "275%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "归刃",
+                "progressionId": "1102002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1102003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1102003",
+                "variantIds": [
+                  "110203"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "110203",
+                "levels": [
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿255%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "255%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿272%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "272%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿289%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "289%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿306%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "306%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿323%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "323%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿340%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "340%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿361%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "361%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿383%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "383%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿404%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "404%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿425%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "425%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿442%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "442%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿459%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "459%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿476%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "476%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿493%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "493%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿510%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "510%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "乱蝶",
+                "progressionId": "1102003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1102004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1102004",
+                "variantIds": [
+                  "110204"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "获得1个不消耗回合数的额外回合，在此回合中无法插入施放终结技。",
+                      "id": "10000000",
+                      "name": "额外回合"
+                    }
+                  ]
+                },
+                "id": "110204",
+                "levels": [
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高40%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高44%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高48%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高52%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高56%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高60%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高65%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高70%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高75%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高80%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高84%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高88%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高92%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高96%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高100%，持续1回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿施放攻击造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "再现",
+                "progressionId": "1102004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1102007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1102007",
+                "variantIds": [
+                  "110207"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "110207",
+                "levels": [
+                  {
+                    "description": "使用秘技后进入持续20秒的隐身状态。隐身状态下不会被敌人发现，且主动攻击敌人进入战斗时，希儿立即进入增幅状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后进入持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的隐身状态。隐身状态下不会被敌人发现，且主动攻击敌人进入战斗时，希儿立即进入增幅状态。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "幻身",
+                "progressionId": "1102007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "若当前生命值百分比小于等于<unbreak>50%</unbreak>，则被敌方目标攻击的概率降低。",
+            "iconKey": "skill-tree--1102101",
+            "id": "1102101",
+            "name": "夜行",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "增幅状态下希儿的量子属性<u>抗性穿透</u>提高<unbreak>20%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                "id": "30000005",
+                "name": "抗性穿透"
+              }
+            ],
+            "iconKey": "skill-tree--1102102",
+            "id": "1102102",
+            "name": "割裂",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放普攻后，希儿的下一次<u>行动提前</u><unbreak>20%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "skill-tree--1102103",
+            "id": "1102103",
+            "name": "涟漪",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1102201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1102202",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1102101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1102203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1102202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1102204",
+            "name": "防御强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1102205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1102102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1102206",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1102205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1102207",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1102208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1102103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击伤害提高10.7%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1102209",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1102208"
+            ],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1102210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1102208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      },
+      "enhanced": {
+        "eidolons": [
+          {
+            "description": "对当前生命值百分比小于等于<unbreak>80%</unbreak>的敌方目标造成伤害时，暴击率提高<unbreak>15%</unbreak>且无视目标<unbreak>20%</unbreak>的防御力。",
+            "iconKey": "rank--1110201",
+            "id": "1110201",
+            "name": "斩尽",
+            "rank": 1
+          },
+          {
+            "description": "战技的加速效果可以叠加，最多叠加<unbreak>2</unbreak>层。",
+            "iconKey": "rank--1110202",
+            "id": "1110202",
+            "name": "蝶舞",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--1110203",
+            "id": "1110203",
+            "name": "缭乱",
+            "rank": 3
+          },
+          {
+            "description": "希儿消灭敌方目标时，自身恢复<unbreak>15</unbreak>点能量。",
+            "iconKey": "rank--1110204",
+            "id": "1110204",
+            "name": "掠影",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--1110205",
+            "id": "1110205",
+            "name": "锋锐",
+            "rank": 5
+          },
+          {
+            "description": "施放终结技后使目标陷入【乱蝶】状态，持续<unbreak>3</unbreak>回合。【乱蝶】状态下的敌方目标受到攻击后，额外受到1次等同于希儿本次终结技伤害<unbreak>30%</unbreak>的<u>真实伤害</u>。处于【乱蝶】状态下的敌人被任意单位消灭时，也会触发希儿的天赋。\n当希儿陷入<u>无法战斗状态</u>时，敌方目标的【乱蝶】状态被解除。",
+            "extraEffects": [
+              {
+                "description": "不受任何效果所影响的无属性伤害，本次伤害不视为造成了1次攻击。",
+                "id": "10000017",
+                "name": "真实伤害"
+              },
+              {
+                "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                "id": "10000007",
+                "name": "无法战斗状态"
+              }
+            ],
+            "iconKey": "rank--1110206",
+            "id": "1110206",
+            "name": "离析",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 120
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--11102001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "11102001",
+                "variantIds": [
+                  "1110201"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "1110201",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于希儿50%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿60%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿70%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿80%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿90%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿100%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿110%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿120%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿130%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于希儿140%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "强袭",
+                "progressionId": "11102001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--11102002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "11102002",
+                "variantIds": [
+                  "1110202"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "1110202",
+                "levels": [
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿180%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿198%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "198%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿216%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿234%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "234%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿252%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿270%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "270%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿293%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "293%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿315%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "315%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿338%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "338%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿360%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "360%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿378%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "378%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿396%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "396%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿414%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "414%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿432%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "432%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使希儿的速度提高25%，并对指定敌方单体造成等同于希儿450%攻击力的量子属性伤害，速度提高效果持续3回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于50%，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使希儿的速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "450%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，速度提高效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n我方目标攻击后，被攻击目标当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则希儿自动对其施放1次战技，此次战技不消耗战技点且不恢复能量，该效果每个回合最多触发1次，希儿回合开始时重置可触发次数。若不存在可攻击的目标，则攻击生命值最低的敌方单体目标。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "归刃",
+                "progressionId": "11102002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--11102003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "11102003",
+                "variantIds": [
+                  "1110203"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "1110203",
+                "levels": [
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿360%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "360%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿396%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "396%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿432%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "432%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿468%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "468%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿504%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "504%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿540%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "540%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿585%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "585%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿630%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "630%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿675%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "675%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿720%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "720%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿756%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "756%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿792%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "792%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿828%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "828%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿864%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "864%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "立即进入增幅状态，并对指定敌方单体造成等同于希儿900%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即进入增幅状态，并对指定敌方单体造成等同于希儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "900%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "乱蝶",
+                "progressionId": "11102003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--11102004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "11102004",
+                "variantIds": [
+                  "1110204"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "获得1个不消耗回合数的额外回合，在此回合中无法插入施放终结技。",
+                      "id": "10000000",
+                      "name": "额外回合"
+                    }
+                  ]
+                },
+                "id": "1110204",
+                "levels": [
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高40%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高44%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高48%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高52%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高56%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高60%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高65%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高70%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高75%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高80%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高84%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高88%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高92%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高96%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技消灭敌方目标时立即获得1个额外回合并进入增幅状态，增幅状态下希儿造成的伤害提高100%，持续3回合。\n若希儿在因天赋【再现】获得的额外回合中消灭敌方目标，此天赋不会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技消灭敌方目标时立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并进入增幅状态，增幅状态下希儿造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若希儿在因天赋【再现】获得的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "中消灭敌方目标，此天赋不会生效。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "再现",
+                "progressionId": "11102004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--11102007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "11102007",
+                "variantIds": [
+                  "1110207"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "1110207",
+                "levels": [
+                  {
+                    "description": "使用秘技后进入持续20秒的隐身状态。隐身状态下不会被敌人发现，主动攻击敌人进入战斗时，希儿立即进入增幅状态且对随机敌方目标造成1次等同于希儿战技伤害倍率的量子属性伤害，该伤害必定暴击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后进入持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的隐身状态。隐身状态下不会被敌人发现，主动攻击敌人进入战斗时，希儿立即进入增幅状态且对随机敌方目标造成1次等同于希儿战技伤害倍率的量子属性伤害，该伤害必定暴击。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "幻身",
+                "progressionId": "11102007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "消灭敌方目标时，使自身造成的伤害提高<unbreak>50%</unbreak>，该效果最多叠加<unbreak>3</unbreak>层，持续<unbreak>3</unbreak>回合。",
+            "iconKey": "skill-tree--11102101",
+            "id": "11102101",
+            "name": "夜行",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "增幅状态下希儿的量子属性<u>抗性穿透</u>提高<unbreak>25%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                "id": "30000005",
+                "name": "抗性穿透"
+              }
+            ],
+            "iconKey": "skill-tree--11102102",
+            "id": "11102102",
+            "name": "割裂",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放普攻后，希儿的下一次<u>行动提前</u><unbreak>20%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "skill-tree--11102103",
+            "id": "11102103",
+            "name": "涟漪",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "11102201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "11102202",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "11102101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "11102203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "11102202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "11102204",
+            "name": "防御强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "11102205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "11102102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "11102206",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "11102205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "11102207",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "11102208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "11102103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击伤害提高10.7%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "11102209",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "11102208"
+            ],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "11102210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "11102208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": true,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1102001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110201",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1102002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110202",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1102003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110203",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1102004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110204",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1102007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110207",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      },
+      "enhanced": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "11102001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "1110201",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "11102002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "1110202",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "11102003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "1110203",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "11102004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "1110204",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "11102007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "1110207",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1102",
+    "subtitleRendered": false
+  }
+}

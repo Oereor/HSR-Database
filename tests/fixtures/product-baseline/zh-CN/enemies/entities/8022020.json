@@ -1,0 +1,72 @@
+{
+  "catalog": {
+    "description": "真蛰虫幼体；「真蛰虫」幼体依据生长程度可被划分为「幼蛰虫」与「次蛰虫」。",
+    "id": "8022020",
+    "name": "次蛰虫",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8022020",
+    "defaultMonsterRef": "f3cfaf36d0448bf948ffc1c1b9c2af2aa24ff5f989a938c1acb0f5d9597f80c3",
+    "description": "真蛰虫幼体；「真蛰虫」幼体依据生长程度可被划分为「幼蛰虫」与「次蛰虫」。",
+    "id": "8022020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "f3cfaf36d0448bf948ffc1c1b9c2af2aa24ff5f989a938c1acb0f5d9597f80c3",
+      "1db2ab933ced6f17b635b60055b2e0b39cda5a59de8114546df950df080068e3",
+      "3e85bd57c7061647a4965d4fa53d1555386a031b7ad458152b257fc88e3ff34a",
+      "4cd614da33f7a989e3ba1c814c23861425ce7742b1a738c5b34c936416eba167",
+      "fc83ae26f3a4437e8c6d9a358cd147f33ba7df6148b448a1797404da4005cebc",
+      "edabf58305e2cb94a2cd2863fb730548c1276d5fd3b2182000d368972276efdc",
+      "6c99be012ef256d4d9cb747a69b17347f66219cec4785695eab598af69efdf8c"
+    ],
+    "name": "次蛰虫",
+    "rank": "MinionLv2",
+    "templateRef": "aa8ebc905cc43b2b4296eb7bf5c99d9490fb3f97f229a570bdf43cc7f03d1dcd",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8022020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8022020",
+    "selectableMonsterIds": [
+      "8022020",
+      "802202001",
+      "802202002",
+      "802202003",
+      "802202004",
+      "802202005",
+      "802202006"
+    ]
+  }
+}

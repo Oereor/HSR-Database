@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "那众多金血忆灵的残躯中一丝尚存的疯狂，被长夜月抽取提炼，融合成了更为扭曲怪异的怪物。\n它将遵守造物主的指示，裁定何物应被记起，何物应被忘却，它会吞噬掉徒劳无功的冗余记忆，使它们在岁月中沉默。\n「新的生命若要萌芽，它的种子须是死的。」",
+    "id": "4064012",
+    "name": "迷惘之渊的裁定者",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4064012",
+    "defaultMonsterRef": "032fb8e6a975c99623a5dfab066d3542ee76b20ac8d137e4dc02f38209e98d4a",
+    "description": "那众多金血忆灵的残躯中一丝尚存的疯狂，被长夜月抽取提炼，融合成了更为扭曲怪异的怪物。\n它将遵守造物主的指示，裁定何物应被记起，何物应被忘却，它会吞噬掉徒劳无功的冗余记忆，使它们在岁月中沉默。\n「新的生命若要萌芽，它的种子须是死的。」",
+    "id": "4064012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "032fb8e6a975c99623a5dfab066d3542ee76b20ac8d137e4dc02f38209e98d4a",
+      "dc4fe1b65612fa32361bd775aceb1a573cf7d95549007ad7ce820b5d72230457",
+      "ca48c351f4ee6c3b6b7e18f6ba393486c4fe47eaca551044fc00ca012f818965",
+      "ede730fdded7b641558eef30f17fb33f2e0245a0c9a2aabcee1bd2b9b1a23897",
+      "5915381e2a9b633106b121a8d7cef5d3c5616fc27ab880e2fbca56aa3de99706"
+    ],
+    "name": "迷惘之渊的裁定者",
+    "rank": "LittleBoss",
+    "templateRef": "1c5b11be79afdcc73be6f8a6a5532c5601b8432f0a8cdee3fb5628b8ca28e292",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4064012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4064012",
+    "selectableMonsterIds": [
+      "4064012",
+      "406401201",
+      "406401202",
+      "406401203",
+      "406401204"
+    ]
+  }
+}

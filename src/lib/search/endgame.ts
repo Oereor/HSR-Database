@@ -6,9 +6,10 @@ import {
 } from '../domain/endgame-view.js';
 import {
   endgameOccurrenceLocatorKey,
-  type EndgameOccurrenceLocator,
+  type EndgameOccurrenceOrder,
   type EndgameOccurrenceShard,
-  type EndgameSearchNameEntry
+  type EndgameSearchTargetEntry,
+  type SearchLocale
 } from '../domain/search-index.js';
 
 export interface EndgameSearchSeasonResult {
@@ -46,51 +47,63 @@ export interface ExpandedEndgameResults {
   unavailable: boolean;
 }
 
-export type ShardFetcher = (entryId: string) => Promise<EndgameOccurrenceShard>;
+export type ShardFetcher = (
+  targetId: string,
+  locale: SearchLocale
+) => Promise<EndgameOccurrenceShard>;
 
-function locatorOrder(a: EndgameOccurrenceLocator, b: EndgameOccurrenceLocator): number {
+function occurrenceOrder(a: EndgameOccurrenceOrder, b: EndgameOccurrenceOrder): number {
   return (
-    a.encounterIndex - b.encounterIndex ||
-    a.battleIndex - b.battleIndex ||
-    a.stageIndex - b.stageIndex ||
-    a.waveIndex - b.waveIndex ||
-    a.occurrenceIndex - b.occurrenceIndex
+    a.encounter - b.encounter ||
+    a.battle - b.battle ||
+    a.stage - b.stage ||
+    a.wave - b.wave ||
+    a.card - b.card
   );
 }
 
 export function createEndgameSearchExpander(
-  fetchShard: ShardFetcher = async (entryId) => {
-    const response = await fetch(`/generated/endgame-occurrences/${entryId}`);
+  fetchShard: ShardFetcher = async (targetId, locale) => {
+    const response = await fetch(`/generated/${locale}/endgame-occurrences/${targetId}`);
     if (!response.ok) throw new Error(`Endgame 搜索分片加载失败：${response.status}`);
     return (await response.json()) as EndgameOccurrenceShard;
-  }
+  },
+  locale: SearchLocale = 'zh-CN'
 ) {
   const shardCache = new Map<string, Promise<EndgameOccurrenceShard>>();
-  const loadShard = (entryId: string) => {
-    let pending = shardCache.get(entryId);
+  const loadShard = (targetId: string) => {
+    const cacheKey = `${locale}:${targetId}`;
+    let pending = shardCache.get(cacheKey);
     if (!pending) {
       pending = Promise.resolve()
-        .then(() => fetchShard(entryId))
+        .then(() => fetchShard(targetId, locale))
         .then((shard) => {
-          if (shard.entryId !== entryId || shard.schemaVersion !== 1)
-            throw new Error(`Endgame 分片身份错误：${entryId}`);
+          if (
+            shard.schemaVersion !== 2 ||
+            shard.locale !== locale ||
+            shard.target.kind !== 'endgame' ||
+            shard.target.id !== targetId
+          )
+            throw new Error(`Endgame 分片身份错误：${targetId}`);
           return shard;
         })
         .catch((error: unknown) => {
-          if (shardCache.get(entryId) === pending) shardCache.delete(entryId);
+          if (shardCache.get(cacheKey) === pending) shardCache.delete(cacheKey);
           throw error;
         });
-      shardCache.set(entryId, pending);
+      shardCache.set(cacheKey, pending);
     }
     return pending;
   };
-  async function expandEndgame(matches: EndgameSearchNameEntry[]): Promise<ExpandedEndgameResults> {
+  async function expandEndgame(
+    matches: EndgameSearchTargetEntry[]
+  ): Promise<ExpandedEndgameResults> {
     const loaded = await Promise.all(
       matches.map(async (entry) => {
         try {
-          return { entry, shard: await loadShard(entry.entryId) };
+          return { entry, shard: await loadShard(entry.id) };
         } catch (error) {
-          console.error(`Endgame 搜索分片不可用：${entry.entryId}`, error);
+          console.error(`Endgame 搜索分片不可用：${entry.id}`, error);
           return { entry, shard: undefined };
         }
       })
@@ -100,7 +113,7 @@ export function createEndgameSearchExpander(
       {
         mode: EndgameMode;
         period: EndgamePeriodView;
-        enemies: Array<{ locator: EndgameOccurrenceLocator; item: EndgameEnemyGridItem }>;
+        enemies: Array<{ order: EndgameOccurrenceOrder; item: EndgameEnemyGridItem }>;
       }
     >();
     let unavailable = false;
@@ -113,20 +126,20 @@ export function createEndgameSearchExpander(
       const periods = new Map(
         shard.periods.map(({ mode, period }) => [`${mode}:${period.groupId}`, period])
       );
-      for (const locator of entry.locators) {
+      for (const { locator, order } of entry.occurrences) {
         const locatorKey = endgameOccurrenceLocatorKey(locator);
         if (seenLocators.has(locatorKey)) continue;
         const key = `${locator.mode}:${locator.groupId}`;
         const period = periods.get(key);
         const item = shard.occurrences[endgameOccurrenceLocatorKey(locator)];
         if (!period || !item) {
-          console.error(`Endgame 搜索引用缺失：${entry.entryId} / ${locatorKey}`);
+          console.error(`Endgame 搜索引用缺失：${entry.id} / ${locatorKey}`);
           unavailable = true;
           continue;
         }
         const season = grouped.get(key) ?? { mode: locator.mode, period, enemies: [] };
         seenLocators.add(locatorKey);
-        season.enemies.push({ locator, item });
+        season.enemies.push({ order, item });
         grouped.set(key, season);
       }
     }
@@ -137,9 +150,7 @@ export function createEndgameSearchExpander(
         .sort((a, b) => b.period.groupId - a.period.groupId)
         .map(({ period, enemies }) => ({
           period,
-          enemies: enemies
-            .sort((a, b) => locatorOrder(a.locator, b.locator))
-            .map(({ item }) => item)
+          enemies: enemies.sort((a, b) => occurrenceOrder(a.order, b.order)).map(({ item }) => item)
         }));
     }
     return { results, unavailable };

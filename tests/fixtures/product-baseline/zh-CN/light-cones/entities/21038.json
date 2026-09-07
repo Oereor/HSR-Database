@@ -1,0 +1,486 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>毁灭</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21038",
+    "name": "在火的远处",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 12,
+            "perLevel": 1.8
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 26.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 45.6,
+            "perLevel": 1.8
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 64.8,
+            "perLevel": 1.8
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 84,
+            "perLevel": 1.8
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 103.2,
+            "perLevel": 1.8
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 122.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>毁灭</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21038",
+    "kind": "light-cone",
+    "name": "在火的远处",
+    "passive": {
+      "id": "21038",
+      "name": "爆燃",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "当装备者在单次受到攻击中累计损失的生命值超过最大生命值的25%，或单次消耗自身生命值超过最大生命值的25%，则立即回复等同于装备者生命上限15%的生命值，同时使装备者造成的伤害提高25%，持续2回合。该效果每3回合只能触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者在单次受到攻击中累计损失的生命值超过最大生命值的"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "，或单次消耗自身生命值超过最大生命值的"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "，则立即回复等同于装备者生命上限"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值，同时使装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。该效果每"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合只能触发1次。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "当装备者在单次受到攻击中累计损失的生命值超过最大生命值的25%，或单次消耗自身生命值超过最大生命值的25%，则立即回复等同于装备者生命上限15%的生命值，同时使装备者造成的伤害提高31%，持续2回合。该效果每3回合只能触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者在单次受到攻击中累计损失的生命值超过最大生命值的"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "，或单次消耗自身生命值超过最大生命值的"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "，则立即回复等同于装备者生命上限"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值，同时使装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "31%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。该效果每"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合只能触发1次。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "当装备者在单次受到攻击中累计损失的生命值超过最大生命值的25%，或单次消耗自身生命值超过最大生命值的25%，则立即回复等同于装备者生命上限15%的生命值，同时使装备者造成的伤害提高38%，持续2回合。该效果每3回合只能触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者在单次受到攻击中累计损失的生命值超过最大生命值的"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "，或单次消耗自身生命值超过最大生命值的"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "，则立即回复等同于装备者生命上限"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值，同时使装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "38%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。该效果每"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合只能触发1次。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "当装备者在单次受到攻击中累计损失的生命值超过最大生命值的25%，或单次消耗自身生命值超过最大生命值的25%，则立即回复等同于装备者生命上限15%的生命值，同时使装备者造成的伤害提高44%，持续2回合。该效果每3回合只能触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者在单次受到攻击中累计损失的生命值超过最大生命值的"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "，或单次消耗自身生命值超过最大生命值的"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "，则立即回复等同于装备者生命上限"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值，同时使装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "44%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。该效果每"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合只能触发1次。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "当装备者在单次受到攻击中累计损失的生命值超过最大生命值的25%，或单次消耗自身生命值超过最大生命值的25%，则立即回复等同于装备者生命上限15%的生命值，同时使装备者造成的伤害提高50%，持续2回合。该效果每3回合只能触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者在单次受到攻击中累计损失的生命值超过最大生命值的"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "，或单次消耗自身生命值超过最大生命值的"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "，则立即回复等同于装备者生命上限"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值，同时使装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。该效果每"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合只能触发1次。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          1
+        ]
+      }
+    },
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 4,
+    "story": "<i>「东西到手了，交给你断后咯。」</i>\n通讯器里传来同伴的声音。\n\n他看向周围，废弃的巨型建筑内，残存的敌人仍在复杂的结构中穿行，向他逼近。\n<i>「稍等片刻。」</i>\n\n一瞬寂静之后，宛如末日灾难的剧烈爆炸冲天而起。气浪吹起尘埃，烟云四散，致人目盲的强光令夜空亮如白昼。\n<i>「你知道那里面都是他们故意设置的火药吧？」</i>\n\n斗篷猎猎张开，他如同完成了一场悠闲散步。\n<i>「当然。」</i>\n<i>「所以点燃他们，我只需当那根火柴就好。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21038",
+    "storyFallbackRendered": false
+  }
+}

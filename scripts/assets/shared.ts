@@ -28,7 +28,7 @@ import {
   ENDGAME_MODE_META,
   type EndgameModeIconKey
 } from '../../src/lib/domain/endgame-view.js';
-import { NAVIGATION_ITEMS, type NavigationIconKey } from '../../src/lib/navigation.js';
+import { NAVIGATION_ICON_KEYS, type NavigationIconKey } from '../../src/lib/navigation.js';
 import { generatedRoot } from '../data/paths.js';
 import {
   assetManifestPath,
@@ -54,7 +54,7 @@ import {
 // Windows may otherwise retain recently inspected files in libvips' cache during rollback cleanup.
 sharp.cache(false);
 
-export const VISUAL_ASSET_SCHEMA_VERSION = 14 as const;
+export const VISUAL_ASSET_SCHEMA_VERSION = 15 as const;
 
 export const ELEMENT_SOURCE_NAMES: Readonly<Record<string, string>> = {
   Physical: 'Physical',
@@ -92,7 +92,8 @@ export const BRAND_ICON_SOURCE_NAMES: Readonly<Record<BrandIconKey, string>> = {
 };
 
 export const UTILITY_ICON_SOURCE_NAMES: Readonly<Record<UtilityIconKey, string>> = {
-  changelog: 'SettingsPushIcon'
+  changelog: 'SettingsPushIcon',
+  settings: 'SettingsIcon'
 };
 
 export interface AssetRequirements {
@@ -184,10 +185,11 @@ const uniqueSorted = (values: Array<string | undefined>): string[] =>
   );
 
 export async function readAssetRequirements(): Promise<AssetRequirements> {
-  const characterCatalogPath = path.join(generatedRoot, 'catalogs', 'characters.json');
-  const lightConeCatalogPath = path.join(generatedRoot, 'catalogs', 'light-cones.json');
-  const relicCatalogPath = path.join(generatedRoot, 'catalogs', 'relics.json');
-  const relicPropertyCatalogPath = path.join(generatedRoot, 'catalogs', 'relic-properties.json');
+  const productRoot = path.join(generatedRoot, 'views', 'zh-CN');
+  const characterCatalogPath = path.join(productRoot, 'catalogs', 'characters.json');
+  const lightConeCatalogPath = path.join(productRoot, 'catalogs', 'light-cones.json');
+  const relicCatalogPath = path.join(productRoot, 'catalogs', 'relics.json');
+  const relicPropertyCatalogPath = path.join(productRoot, 'catalogs', 'relic-properties.json');
   let characterCatalog: CatalogEntry[];
   let characterDetails: Character[];
   let lightConeCatalog: CatalogEntry[];
@@ -203,7 +205,7 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
     relicDetails = await Promise.all(
       relicCatalog.map(async (set) =>
         JSON.parse(
-          await readFile(path.join(generatedRoot, 'details', 'relics', `${set.id}.json`), 'utf8')
+          await readFile(path.join(productRoot, 'details', 'relics', `${set.id}.json`), 'utf8')
         )
       )
     );
@@ -211,7 +213,7 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
       characterCatalog.map(async (character) =>
         JSON.parse(
           await readFile(
-            path.join(generatedRoot, 'details', 'characters', `${character.id}.json`),
+            path.join(productRoot, 'details', 'characters', `${character.id}.json`),
             'utf8'
           )
         )
@@ -251,15 +253,11 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
     ),
     elements: uniqueSorted(characterCatalog.map((entry) => entry.element)),
     paths: uniqueSorted([...characterCatalog, ...lightConeCatalog].map((entry) => entry.path)),
-    navigationIcons: NAVIGATION_ITEMS.map((item) => item.iconKey),
+    navigationIcons: [...NAVIGATION_ICON_KEYS],
     brandIcons: [...BRAND_ICON_KEYS],
     utilityIcons: [...UTILITY_ICON_KEYS],
     endgameModeIcons: ENDGAME_MODES.map((mode) => ENDGAME_MODE_META[mode].iconKey)
   };
-}
-
-export async function readCharacterIds(): Promise<string[]> {
-  return (await readAssetRequirements()).characterIds;
 }
 
 export async function readAssetManifest(): Promise<VisualAssetManifest | undefined> {
@@ -997,17 +995,6 @@ export function manifestCoversRequirements(
     collectionCovers(manifest.branding.icons, requirements.brandIcons) &&
     collectionCovers(manifest.utility.icons, requirements.utilityIcons) &&
     collectionCovers(manifest.endgame.modeIcons, requirements.endgameModeIcons)
-  );
-}
-
-export function manifestCoversCharacters(
-  manifest: VisualAssetManifest,
-  characterIds: string[]
-): boolean {
-  return (
-    manifest.schemaVersion === VISUAL_ASSET_SCHEMA_VERSION &&
-    collectionCovers(manifest.characters.previews, characterIds) &&
-    collectionCovers(manifest.characters.portraits, characterIds)
   );
 }
 

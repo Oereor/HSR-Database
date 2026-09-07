@@ -1,24 +1,30 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   import { afterNavigate } from '$app/navigation';
   import { page } from '$app/stores';
   import { onDestroy } from 'svelte';
   import { getBrandIconUrl, getUtilityIconUrl } from '$lib/data/visual-assets';
-  import type { DataManifest } from '$lib/domain/types';
-  import { SITE_NAME } from '$lib/site';
+  import type { PublicSiteVersion } from '$lib/domain/types';
+  import { localizedHref } from '$lib/i18n/routing';
+  import { siteName } from '$lib/site';
   import PrimaryNavigation from './PrimaryNavigation.svelte';
   import SearchBar from './SearchBar.svelte';
 
-  export let manifest: DataManifest;
+  export let siteVersion: PublicSiteVersion;
   export let onOpenChangelog: () => void = () => undefined;
 
   let navigatorPane: HTMLDialogElement;
   let expanded = false;
   const trainPartyIconUrl = getBrandIconUrl('train-party');
   const changelogIconUrl = getUtilityIconUrl('changelog');
+  const homeHref = localizedHref('/');
+  const name = siteName();
 
-  $: revision = manifest.sourceCommit.slice(0, 8);
-  $: versionLabel = manifest.gameVersion ? `数据版本 ${manifest.gameVersion}` : '数据版本未知';
-  $: snapshotLabel = `${versionLabel} · ${revision}`;
+  $: revision = siteVersion.dataRevision;
+  $: versionLabel = siteVersion.gameVersion
+    ? m.navigation_data_version({ version: siteVersion.gameVersion })
+    : m.navigation_unknown_version();
+  $: snapshotLabel = m.navigation_snapshot({ versionLabel, revision });
 
   function lockPage(locked: boolean) {
     document.body.classList.toggle('navigator-open', locked);
@@ -58,8 +64,12 @@
   });
 </script>
 
-<aside class="navigator-rail" aria-label="紧凑导航栏">
-  <a class="brand navigator-rail__brand" href="/" aria-label={`${SITE_NAME}首页`}>
+<aside class="navigator-rail" aria-label={m.navigation_compact_aria()}>
+  <a
+    class="brand navigator-rail__brand"
+    href={homeHref}
+    aria-label={m.navigation_home_aria({ siteName: name })}
+  >
     <span class="brand-icon" aria-hidden="true">
       {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
     </span>
@@ -67,18 +77,23 @@
   <button
     class="navigator-toggle"
     type="button"
-    aria-label="打开导航"
+    aria-label={m.navigation_open()}
     aria-expanded={expanded}
     aria-controls="primary-navigator-pane"
     on:click={openNavigator}
   >
     <span aria-hidden="true"><i></i><i></i><i></i></span>
   </button>
-  <button class="changelog-trigger" type="button" aria-label="更新日志" on:click={onOpenChangelog}>
+  <button
+    class="changelog-trigger"
+    type="button"
+    aria-label={m.navigation_changelog()}
+    on:click={onOpenChangelog}
+  >
     {#if changelogIconUrl}<img src={changelogIconUrl} alt="" />{:else}<span aria-hidden="true"
-        >更</span
+        >{m.navigation_changelog_fallback()}</span
       >{/if}
-    <span class="changelog-trigger__tooltip" role="tooltip">更新日志</span>
+    <span class="changelog-trigger__tooltip" role="tooltip">{m.navigation_changelog()}</span>
   </button>
   <PrimaryNavigation pathname={$page.url.pathname} compact />
   <div class="navigator-rail__snapshot" role="status" aria-label={snapshotLabel}>
@@ -88,27 +103,27 @@
 </aside>
 
 <header class="mobile-header">
-  <a class="brand" href="/">
+  <a class="brand" href={homeHref}>
     <span class="brand-icon" aria-hidden="true">
       {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
-    </span><strong>{SITE_NAME}</strong>
+    </span><strong>{name}</strong>
   </a>
   <div class="mobile-header__actions">
     <button
       class="changelog-trigger mobile-header__changelog"
       type="button"
-      aria-label="更新日志"
+      aria-label={m.navigation_changelog()}
       on:click={onOpenChangelog}
     >
       {#if changelogIconUrl}<img src={changelogIconUrl} alt="" />{:else}<span aria-hidden="true"
-          >更</span
+          >{m.navigation_changelog_fallback()}</span
         >{/if}
-      <span class="changelog-trigger__tooltip" role="tooltip">更新日志</span>
+      <span class="changelog-trigger__tooltip" role="tooltip">{m.navigation_changelog()}</span>
     </button>
     <button
       class="navigator-toggle"
       type="button"
-      aria-label="打开导航"
+      aria-label={m.navigation_open()}
       aria-expanded={expanded}
       aria-controls="primary-navigator-pane"
       on:click={openNavigator}
@@ -122,23 +137,23 @@
   id="primary-navigator-pane"
   class="navigator-pane"
   bind:this={navigatorPane}
-  aria-label="完整导航"
+  aria-label={m.navigation_full_aria()}
   on:click={handlePaneClick}
   on:close={handlePaneClose}
   on:cancel={handlePaneClose}
 >
   <div class="navigator-pane__surface">
     <div class="navigator-pane__heading">
-      <a class="brand navigator-pane__brand" href="/" on:click={closeNavigator}>
+      <a class="brand navigator-pane__brand" href={homeHref} on:click={closeNavigator}>
         <span class="brand-icon" aria-hidden="true">
           {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
         </span>
-        <span><strong>{SITE_NAME}</strong><small>HSR Data Archive</small></span>
+        <span><strong>{name}</strong><small>{m.site_short_tagline()}</small></span>
       </a>
       <button
         class="navigator-toggle"
         type="button"
-        aria-label="关闭导航"
+        aria-label={m.navigation_close()}
         aria-expanded={expanded}
         aria-controls="primary-navigator-pane"
         on:click={closeNavigator}
@@ -149,8 +164,8 @@
 
     <SearchBar
       id="global-search"
-      label="全局搜索"
-      placeholder="搜索角色、光锥…"
+      label={m.navigation_search_label()}
+      placeholder={m.navigation_search_placeholder()}
       variant="sidebar"
     />
 

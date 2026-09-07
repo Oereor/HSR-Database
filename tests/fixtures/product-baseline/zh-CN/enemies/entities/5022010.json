@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "倏忽血肉无限增生所延展出的枝蔓，由一切颠倒梦想滋养而成的恶之花。",
+    "id": "5022010",
+    "name": "邪愿莲华",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5022010",
+    "defaultMonsterRef": "0b3f65e34a9c37de78e2d042ceb3cffb58049ea86cae30e8377db9385755cbd5",
+    "description": "倏忽血肉无限增生所延展出的枝蔓，由一切颠倒梦想滋养而成的恶之花。",
+    "id": "5022010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "0b3f65e34a9c37de78e2d042ceb3cffb58049ea86cae30e8377db9385755cbd5",
+      "4287512384102a4ebfe53da3b4bb238f8f432f0b6296d369f8d89268bb430444"
+    ],
+    "name": "邪愿莲华",
+    "rank": "MinionLv2",
+    "templateRef": "8bf4921b34078534b0ad463fb40135b2b30b54b4692d5ee689a50a6a4e00b83e",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5022010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5022010",
+    "selectableMonsterIds": [
+      "5022010",
+      "502201001"
+    ]
+  }
+}

@@ -1,0 +1,1416 @@
+{
+  "presentation": {
+    "defaultEncounterId": "30184",
+    "encounters": [
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方目标被<color=#f29e38ff>弱点击破</color>时，使我方全体目标解除控制状态、行动提前并使阿哈立即获得一个额外回合（本回合固定计入<color=#f29e38ff><unbreak>10</unbreak></color>笑点）。\n敌方全体目标受到的终结技伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，欢愉伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110017,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3018:BuffList1",
+              "options": [
+                {
+                  "description": "我方目标施放攻击造成欢愉伤害后，使受到欢愉伤害的目标陷入易伤状态，受到的伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。该效果每次攻击对每名敌方目标最多触发1次。",
+                  "id": 3111090,
+                  "name": "沦为笑谈",
+                  "order": 1
+                },
+                {
+                  "description": "我方目标对敌方目标施加负面状态后，使自身暴击伤害提高<color=#f29e38ff><unbreak>75%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111091,
+                  "name": "有机可趁",
+                  "order": 2
+                },
+                {
+                  "description": "敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>。击破敌方弱点后，我方全体速度提高<color=#f29e38ff><unbreak>15%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111086,
+                  "name": "望风瓦解",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30181:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101501,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "战斗开始时和转阶段时，首领幻影分裂为5只【金血忆灵】并为这些召唤物施加【<u>合而为一</u>】。当拥有【合而为一】的【金血忆灵】全部陷入【<u>假死</u>】状态时，它们重新合体成为首领幻影。",
+                  "id": 101502,
+                  "linkedEffects": [
+                    {
+                      "description": "受到致命伤害时陷入【假死】状态。当拥有【合而为一】的【金血忆灵】全部陷入【假死】状态时，它们重新合体为【迷惘之渊的裁定者】。",
+                      "id": "240640122",
+                      "name": "合而为一"
+                    },
+                    {
+                      "description": "无法被选中，无法行动。",
+                      "id": "240640123",
+                      "name": "假死"
+                    }
+                  ],
+                  "name": "化整为零",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420401-0",
+                "level": 60,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4064012",
+                        "hp": {
+                          "exactPerBar": "294200.7458400",
+                          "phaseCount": 2,
+                          "roundedPerBar": "294,201"
+                        },
+                        "identity": "[406401201,4064012,\"27900\",\"1\",\"52.724148\",\"0.2\",\"294200.7458400\",\"resolved\",\"294200.7458400\",896,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"144\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"360\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"120\"},\"barCount\":8,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[406201002,406201007,406202002,406301003],true,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 406401201,
+                        "monsterTemplateId": 4064012,
+                        "name": "迷惘之渊的裁定者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4064010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "144",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 8,
+                          "exactPerBar": "120",
+                          "roundedPerBar": "120"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3018:BuffList2",
+              "options": [
+                {
+                  "description": "我方全体造成的物理属性伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，敌方全体的物理属性抗性降低<color=#f29e38ff><unbreak>20%</unbreak></color>。",
+                  "id": 3111068,
+                  "name": "披坚执锐",
+                  "order": 1
+                },
+                {
+                  "description": "敌方全体受到的欢愉伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>。我方队伍中存在欢愉命途的角色时，我方全体的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111089,
+                  "name": "喜上眉梢",
+                  "order": 2
+                },
+                {
+                  "description": "我方全体造成的追加攻击和终结技伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，对弱点击破状态下的敌方目标额外提高<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111085,
+                  "name": "可乘之隙",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30181:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100101,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "杰帕德会加入战斗并为首领幻影提供保护。首领幻影会将自身弱点属性<color=#f29e38ff><u>转移</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                  "id": 100102,
+                  "linkedEffects": [
+                    {
+                      "description": "将弱点属性转移给目标，弱点属性会在目标被消灭后返回，并造成额外韧性值削减。",
+                      "id": "70000304",
+                      "name": "转移"
+                    }
+                  ],
+                  "name": "阵地转移",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420451-0",
+                "level": 60,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1004014",
+                        "hp": {
+                          "exactPerBar": "122583.64410000",
+                          "phaseCount": 2,
+                          "roundedPerBar": "122,584"
+                        },
+                        "identity": "[100401401,1004014,\"5812.5\",\"1\",\"52.724148\",\"0.4\",\"122583.64410000\",\"resolved\",\"122583.64410000\",904,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"130\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"130\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"300\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-120\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[100402601,100501401,100201502,100201602],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100401401,
+                        "monsterTemplateId": 1004014,
+                        "name": "无望冽风的幻灭者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "130",
+                          "rounded": "130"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1004026",
+                        "hp": {
+                          "exactPerBar": "58840.1491680",
+                          "roundedPerBar": "58,840"
+                        },
+                        "identity": "[100402601,1004026,\"2790\",\"1\",\"52.724148\",\"0.4\",\"58840.1491680\",\"resolved\",\"58840.1491680\",904,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"125\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"125\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"600\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-300\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"300\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"100\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100402601,
+                        "monsterTemplateId": 1004026,
+                        "name": "杰帕德",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004020.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "125",
+                          "rounded": "125"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "100",
+                          "roundedPerBar": "100"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30181",
+        "label": "遗忘冽风·难度<unbreak>01</unbreak>",
+        "mode": "as",
+        "ordinal": 1,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方目标被<color=#f29e38ff>弱点击破</color>时，使我方全体目标解除控制状态、行动提前并使阿哈立即获得一个额外回合（本回合固定计入<color=#f29e38ff><unbreak>10</unbreak></color>笑点）。\n敌方全体目标受到的终结技伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，欢愉伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110017,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3018:BuffList1",
+              "options": [
+                {
+                  "description": "我方目标施放攻击造成欢愉伤害后，使受到欢愉伤害的目标陷入易伤状态，受到的伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。该效果每次攻击对每名敌方目标最多触发1次。",
+                  "id": 3111090,
+                  "name": "沦为笑谈",
+                  "order": 1
+                },
+                {
+                  "description": "我方目标对敌方目标施加负面状态后，使自身暴击伤害提高<color=#f29e38ff><unbreak>75%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111091,
+                  "name": "有机可趁",
+                  "order": 2
+                },
+                {
+                  "description": "敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>。击破敌方弱点后，我方全体速度提高<color=#f29e38ff><unbreak>15%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111086,
+                  "name": "望风瓦解",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30182:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101501,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "战斗开始时和转阶段时，首领幻影分裂为5只【金血忆灵】并为这些召唤物施加【<u>合而为一</u>】。当拥有【合而为一】的【金血忆灵】全部陷入【<u>假死</u>】状态时，它们重新合体成为首领幻影。",
+                  "id": 101502,
+                  "linkedEffects": [
+                    {
+                      "description": "受到致命伤害时陷入【假死】状态。当拥有【合而为一】的【金血忆灵】全部陷入【假死】状态时，它们重新合体为【迷惘之渊的裁定者】。",
+                      "id": "240640122",
+                      "name": "合而为一"
+                    },
+                    {
+                      "description": "无法被选中，无法行动。",
+                      "id": "240640123",
+                      "name": "假死"
+                    }
+                  ],
+                  "name": "化整为零",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420402-0",
+                "level": 70,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4064012",
+                        "hp": {
+                          "exactPerBar": "1060056.817200",
+                          "phaseCount": 2,
+                          "roundedPerBar": "1,060,057"
+                        },
+                        "identity": "[406401202,4064012,\"27900\",\"1\",\"94.98717\",\"0.4\",\"1060056.817200\",\"resolved\",\"1060056.817200\",897,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.4\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"360\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"120\"},\"barCount\":8,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[406201003,406201008,406202003,406301004],true,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 406401202,
+                        "monsterTemplateId": 4064012,
+                        "name": "迷惘之渊的裁定者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4064010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "158.4",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 8,
+                          "exactPerBar": "120",
+                          "roundedPerBar": "120"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3018:BuffList2",
+              "options": [
+                {
+                  "description": "我方全体造成的物理属性伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，敌方全体的物理属性抗性降低<color=#f29e38ff><unbreak>20%</unbreak></color>。",
+                  "id": 3111068,
+                  "name": "披坚执锐",
+                  "order": 1
+                },
+                {
+                  "description": "敌方全体受到的欢愉伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>。我方队伍中存在欢愉命途的角色时，我方全体的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111089,
+                  "name": "喜上眉梢",
+                  "order": 2
+                },
+                {
+                  "description": "我方全体造成的追加攻击和终结技伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，对弱点击破状态下的敌方目标额外提高<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111085,
+                  "name": "可乘之隙",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30182:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100101,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "杰帕德会加入战斗并为首领幻影提供保护。首领幻影会将自身弱点属性<color=#f29e38ff><u>转移</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                  "id": 100102,
+                  "linkedEffects": [
+                    {
+                      "description": "将弱点属性转移给目标，弱点属性会在目标被消灭后返回，并造成额外韧性值削减。",
+                      "id": "70000304",
+                      "name": "转移"
+                    }
+                  ],
+                  "name": "阵地转移",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420452-0",
+                "level": 70,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1004014",
+                        "hp": {
+                          "exactPerBar": "441690.3405000",
+                          "phaseCount": 2,
+                          "roundedPerBar": "441,690"
+                        },
+                        "identity": "[100401402,1004014,\"5812.5\",\"1\",\"94.98717\",\"0.8\",\"441690.3405000\",\"resolved\",\"441690.3405000\",905,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"130\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"143.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"300\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-90\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"210\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"70\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[100402602,100501402,100201503,100201603],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100401402,
+                        "monsterTemplateId": 1004014,
+                        "name": "无望冽风的幻灭者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "143.0",
+                          "rounded": "143"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "70",
+                          "roundedPerBar": "70"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1004026",
+                        "hp": {
+                          "exactPerBar": "212011.363440",
+                          "roundedPerBar": "212,011"
+                        },
+                        "identity": "[100402602,1004026,\"2790\",\"1\",\"94.98717\",\"0.8\",\"212011.363440\",\"resolved\",\"212011.363440\",905,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"125\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"137.5\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"600\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-240\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"360\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"120\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100402602,
+                        "monsterTemplateId": 1004026,
+                        "name": "杰帕德",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004020.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "137.5",
+                          "rounded": "138"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "120",
+                          "roundedPerBar": "120"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30182",
+        "label": "遗忘冽风·难度<unbreak>02</unbreak>",
+        "mode": "as",
+        "ordinal": 2,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方目标被<color=#f29e38ff>弱点击破</color>时，使我方全体目标解除控制状态、行动提前并使阿哈立即获得一个额外回合（本回合固定计入<color=#f29e38ff><unbreak>10</unbreak></color>笑点）。\n敌方全体目标受到的终结技伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，欢愉伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110017,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3018:BuffList1",
+              "options": [
+                {
+                  "description": "我方目标施放攻击造成欢愉伤害后，使受到欢愉伤害的目标陷入易伤状态，受到的伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。该效果每次攻击对每名敌方目标最多触发1次。",
+                  "id": 3111090,
+                  "name": "沦为笑谈",
+                  "order": 1
+                },
+                {
+                  "description": "我方目标对敌方目标施加负面状态后，使自身暴击伤害提高<color=#f29e38ff><unbreak>75%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111091,
+                  "name": "有机可趁",
+                  "order": 2
+                },
+                {
+                  "description": "敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>。击破敌方弱点后，我方全体速度提高<color=#f29e38ff><unbreak>15%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111086,
+                  "name": "望风瓦解",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30183:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101501,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "战斗开始时和转阶段时，首领幻影分裂为5只【金血忆灵】并为这些召唤物施加【<u>合而为一</u>】。当拥有【合而为一】的【金血忆灵】全部陷入【<u>假死</u>】状态时，它们重新合体成为首领幻影。",
+                  "id": 101502,
+                  "linkedEffects": [
+                    {
+                      "description": "受到致命伤害时陷入【假死】状态。当拥有【合而为一】的【金血忆灵】全部陷入【假死】状态时，它们重新合体为【迷惘之渊的裁定者】。",
+                      "id": "240640122",
+                      "name": "合而为一"
+                    },
+                    {
+                      "description": "无法被选中，无法行动。",
+                      "id": "240640123",
+                      "name": "假死"
+                    }
+                  ],
+                  "name": "化整为零",
+                  "order": 2
+                },
+                {
+                  "description": "首领幻影分裂后召唤的【金血忆灵】的生命上限提高，且第二阶段分裂后召唤的【金血忆灵】共享生命值。",
+                  "id": 101503,
+                  "linkedEffects": [],
+                  "name": "相生相成",
+                  "order": 3
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420403-0",
+                "level": 80,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4064012",
+                        "hp": {
+                          "exactPerBar": "2498352.01209000",
+                          "phaseCount": 2,
+                          "roundedPerBar": "2,498,352"
+                        },
+                        "identity": "[406401203,4064012,\"27900\",\"1.1\",\"148.01102\",\"0.55\",\"2498352.01209000\",\"resolved\",\"2498352.01209000\",943,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"172.8\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"360\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"120\"},\"barCount\":8,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[406201004,406201009,406202004,406301005],true,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 406401203,
+                        "monsterTemplateId": 4064012,
+                        "name": "迷惘之渊的裁定者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4064010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "172.8",
+                          "rounded": "173"
+                        },
+                        "toughness": {
+                          "barCount": 8,
+                          "exactPerBar": "120",
+                          "roundedPerBar": "120"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3018:BuffList2",
+              "options": [
+                {
+                  "description": "我方全体造成的物理属性伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，敌方全体的物理属性抗性降低<color=#f29e38ff><unbreak>20%</unbreak></color>。",
+                  "id": 3111068,
+                  "name": "披坚执锐",
+                  "order": 1
+                },
+                {
+                  "description": "敌方全体受到的欢愉伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>。我方队伍中存在欢愉命途的角色时，我方全体的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111089,
+                  "name": "喜上眉梢",
+                  "order": 2
+                },
+                {
+                  "description": "我方全体造成的追加攻击和终结技伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，对弱点击破状态下的敌方目标额外提高<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111085,
+                  "name": "可乘之隙",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30183:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100101,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "杰帕德会加入战斗并为首领幻影提供保护。首领幻影会将自身弱点属性<color=#f29e38ff><u>转移</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                  "id": 100102,
+                  "linkedEffects": [
+                    {
+                      "description": "将弱点属性转移给目标，弱点属性会在目标被消灭后返回，并造成额外韧性值削减。",
+                      "id": "70000304",
+                      "name": "转移"
+                    }
+                  ],
+                  "name": "阵地转移",
+                  "order": 2
+                },
+                {
+                  "description": "首领幻影的召唤物会标记1个我方单位，首领幻影施放单攻技能后会对被标记的我方单位<color=#f29e38ff><u>追加施放</u></color>。",
+                  "id": 100103,
+                  "linkedEffects": [
+                    {
+                      "description": "在施放单攻技能后，会重新选择目标并再次使用该技能。",
+                      "id": "70000302",
+                      "name": "追加施放"
+                    }
+                  ],
+                  "name": "逃无可逃",
+                  "order": 3
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420453-0",
+                "level": 80,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1004014",
+                        "hp": {
+                          "exactPerBar": "1204439.6752500",
+                          "phaseCount": 2,
+                          "roundedPerBar": "1,204,440"
+                        },
+                        "identity": "[100401403,1004014,\"5812.5\",\"1\",\"148.01102\",\"1.4\",\"1204439.6752500\",\"resolved\",\"1204439.6752500\",906,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"130\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"156.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"300\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-60\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"240\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"80\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[100402603,100501403,100201504,100201604],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100401403,
+                        "monsterTemplateId": 1004014,
+                        "name": "无望冽风的幻灭者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "156.0",
+                          "rounded": "156"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "80",
+                          "roundedPerBar": "80"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1004026",
+                        "hp": {
+                          "exactPerBar": "578131.044120",
+                          "roundedPerBar": "578,131"
+                        },
+                        "identity": "[100402603,1004026,\"2790\",\"1\",\"148.01102\",\"1.4\",\"578131.044120\",\"resolved\",\"578131.044120\",906,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"125\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"150.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"600\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-150\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"450\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"150\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100402603,
+                        "monsterTemplateId": 1004026,
+                        "name": "杰帕德",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004020.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "150.0",
+                          "rounded": "150"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "150",
+                          "roundedPerBar": "150"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30183",
+        "label": "遗忘冽风·难度<unbreak>03</unbreak>",
+        "mode": "as",
+        "ordinal": 3,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方目标被<color=#f29e38ff>弱点击破</color>时，使我方全体目标解除控制状态、行动提前并使阿哈立即获得一个额外回合（本回合固定计入<color=#f29e38ff><unbreak>10</unbreak></color>笑点）。\n敌方全体目标受到的终结技伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，欢愉伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110017,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3018:BuffList1",
+              "options": [
+                {
+                  "description": "我方目标施放攻击造成欢愉伤害后，使受到欢愉伤害的目标陷入易伤状态，受到的伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。该效果每次攻击对每名敌方目标最多触发1次。",
+                  "id": 3111090,
+                  "name": "沦为笑谈",
+                  "order": 1
+                },
+                {
+                  "description": "我方目标对敌方目标施加负面状态后，使自身暴击伤害提高<color=#f29e38ff><unbreak>75%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111091,
+                  "name": "有机可趁",
+                  "order": 2
+                },
+                {
+                  "description": "敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>。击破敌方弱点后，我方全体速度提高<color=#f29e38ff><unbreak>15%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111086,
+                  "name": "望风瓦解",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30184:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101501,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "战斗开始时和转阶段时，首领幻影分裂为5只【金血忆灵】并为这些召唤物施加【<u>合而为一</u>】。当拥有【合而为一】的【金血忆灵】全部陷入【<u>假死</u>】状态时，它们重新合体成为首领幻影。",
+                  "id": 101502,
+                  "linkedEffects": [
+                    {
+                      "description": "受到致命伤害时陷入【假死】状态。当拥有【合而为一】的【金血忆灵】全部陷入【假死】状态时，它们重新合体为【迷惘之渊的裁定者】。",
+                      "id": "240640122",
+                      "name": "合而为一"
+                    },
+                    {
+                      "description": "无法被选中，无法行动。",
+                      "id": "240640123",
+                      "name": "假死"
+                    }
+                  ],
+                  "name": "化整为零",
+                  "order": 2
+                },
+                {
+                  "description": "首领幻影分裂后召唤的【金血忆灵】的生命上限提高，且第二阶段分裂后召唤的【金血忆灵】共享生命值。",
+                  "id": 101503,
+                  "linkedEffects": [],
+                  "name": "相生相成",
+                  "order": 3
+                },
+                {
+                  "description": "除首领幻影外，每多存在1个不处于【<u>假死</u>】状态的<color=#f29e38ff>敌方单位</color>，敌方全体受到的伤害降低，造成的伤害提高。",
+                  "id": 101504,
+                  "linkedEffects": [
+                    {
+                      "description": "无法被选中，无法行动。",
+                      "id": "240640123",
+                      "name": "假死"
+                    }
+                  ],
+                  "name": "规模效应",
+                  "order": 4
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420404-0",
+                "level": 90,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4064012",
+                        "hp": {
+                          "exactPerBar": "7259250.249900",
+                          "phaseCount": 2,
+                          "roundedPerBar": "7,259,250"
+                        },
+                        "identity": "[406401204,4064012,\"27900\",\"1.1\",\"236.53471\",\"1\",\"7259250.249900\",\"resolved\",\"7259250.249900\",1,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"190.08\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"360\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"120\"},\"barCount\":8,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[406201005,406201010,406202005,406301006],true,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 406401204,
+                        "monsterTemplateId": 4064012,
+                        "name": "迷惘之渊的裁定者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4064010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "190.08",
+                          "rounded": "190"
+                        },
+                        "toughness": {
+                          "barCount": 8,
+                          "exactPerBar": "120",
+                          "roundedPerBar": "120"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3018:BuffList2",
+              "options": [
+                {
+                  "description": "我方全体造成的物理属性伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，敌方全体的物理属性抗性降低<color=#f29e38ff><unbreak>20%</unbreak></color>。",
+                  "id": 3111068,
+                  "name": "披坚执锐",
+                  "order": 1
+                },
+                {
+                  "description": "敌方全体受到的欢愉伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>。我方队伍中存在欢愉命途的角色时，我方全体的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111089,
+                  "name": "喜上眉梢",
+                  "order": 2
+                },
+                {
+                  "description": "我方全体造成的追加攻击和终结技伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，对弱点击破状态下的敌方目标额外提高<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111085,
+                  "name": "可乘之隙",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30184:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100101,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "杰帕德会加入战斗并为首领幻影提供保护。首领幻影会将自身弱点属性<color=#f29e38ff><u>转移</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                  "id": 100102,
+                  "linkedEffects": [
+                    {
+                      "description": "将弱点属性转移给目标，弱点属性会在目标被消灭后返回，并造成额外韧性值削减。",
+                      "id": "70000304",
+                      "name": "转移"
+                    }
+                  ],
+                  "name": "阵地转移",
+                  "order": 2
+                },
+                {
+                  "description": "首领幻影的召唤物会标记1个我方单位，首领幻影施放单攻技能后会对被标记的我方单位<color=#f29e38ff><u>追加施放</u></color>。",
+                  "id": 100103,
+                  "linkedEffects": [
+                    {
+                      "description": "在施放单攻技能后，会重新选择目标并再次使用该技能。",
+                      "id": "70000302",
+                      "name": "追加施放"
+                    }
+                  ],
+                  "name": "逃无可逃",
+                  "order": 3
+                },
+                {
+                  "description": "敌方全体受到的伤害降低。但每拥有1个<color=#f29e38ff>弱点属性</color>，受到的伤害提高。",
+                  "id": 100104,
+                  "linkedEffects": [],
+                  "name": "坚韧之志",
+                  "order": 4
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420454-0",
+                "level": 90,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1004014",
+                        "hp": {
+                          "exactPerBar": "6874290.009375",
+                          "phaseCount": 2,
+                          "roundedPerBar": "6,874,290"
+                        },
+                        "identity": "[100401404,1004014,\"5812.5\",\"1\",\"236.53471\",\"5\",\"6874290.009375\",\"resolved\",\"6874290.009375\",159,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"130\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"171.60\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"300\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"300\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"100\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[100402604,100501404,100201505,100201605],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100401404,
+                        "monsterTemplateId": 1004014,
+                        "name": "无望冽风的幻灭者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "171.60",
+                          "rounded": "172"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "100",
+                          "roundedPerBar": "100"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1004026",
+                        "hp": {
+                          "exactPerBar": "3299659.20450",
+                          "roundedPerBar": "3,299,659"
+                        },
+                        "identity": "[100402604,1004026,\"2790\",\"1\",\"236.53471\",\"5\",\"3299659.20450\",\"resolved\",\"3299659.20450\",159,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"125\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"165.00\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"600\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"600\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"200\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100402604,
+                        "monsterTemplateId": 1004026,
+                        "name": "杰帕德",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004020.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "165.00",
+                          "rounded": "165"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "200",
+                          "roundedPerBar": "200"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3018:BuffList3",
+              "options": [
+                {
+                  "description": "我方队伍中存在智识命途的角色时，我方全体全属性抗性穿透提高<color=#f29e38ff><unbreak>25%</unbreak></color>。",
+                  "id": 3111082,
+                  "name": "智圆行方",
+                  "order": 1
+                },
+                {
+                  "description": "我方目标对敌方造成持续伤害后，回复<color=#f29e38ff><unbreak>1</unbreak></color>点能量。我方全体造成的持续伤害无视敌方目标<color=#f29e38ff><unbreak>40%</unbreak></color>的全属性抗性。",
+                  "id": 3111058,
+                  "name": "附骨之疽",
+                  "order": 2
+                },
+                {
+                  "description": "战斗开始时，我方队伍中存在2/3/4名记忆命途的角色时，敌方目标受到的伤害提高<color=#f29e38ff><unbreak>5%</unbreak></color>/<color=#f29e38ff><unbreak>10%</unbreak></color>/<color=#f29e38ff><unbreak>20%</unbreak></color>，该效果对所有新上场的敌人也生效。",
+                  "id": 3111071,
+                  "name": "镌骨铭心",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30184:MonsterID3",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101101,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影失去第一层韧性或行动一定次数后，进入【<color=#f29e38ff><u>镣铐崩解</u></color>】状态，改变攻击方式。",
+                  "id": 101102,
+                  "linkedEffects": [
+                    {
+                      "description": "交替施放【垂死的哽咽】和【却是必要的苦难】。【垂死的哽咽】会召唤【残破容器】并进入蓄力状态，【却是必要的苦难】会施放强力攻击。【灾难之力】层数会提高强力攻击的段数，消灭【残破容器】则可以削减韧性和【灾难之力】层数。在第二阶段则改为使用【沉默的悲叹】和【莫因舍弃而哭泣】，且【灾难之力】层数提高。",
+                      "id": "240340131",
+                      "name": "镣铐崩解"
+                    }
+                  ],
+                  "name": "镣铐崩解",
+                  "order": 2
+                },
+                {
+                  "description": "消灭【完整容器】将不再削减首领幻影的韧性。",
+                  "id": 101103,
+                  "linkedEffects": [],
+                  "name": "黑雾弥漫",
+                  "order": 3
+                },
+                {
+                  "description": "所有【残破容器】和【完整容器】的生命上限提高。",
+                  "id": 101104,
+                  "linkedEffects": [],
+                  "name": "容器强化",
+                  "order": 4
+                }
+              ]
+            },
+            "slot": 3,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420464-0",
+                "level": 90,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4034013",
+                        "hp": {
+                          "exactPerBar": "6775300.2332400",
+                          "phaseCount": 2,
+                          "roundedPerBar": "6,775,300"
+                        },
+                        "identity": "[403401304,4034013,\"9300\",\"1.1\",\"236.53471\",\"2.8\",\"6775300.2332400\",\"resolved\",\"6775300.2332400\",98,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"132\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"174.24\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1200\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-300\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"900\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"300\"},\"barCount\":2,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[4032021,403202111,403202112,403202113],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 403401304,
+                        "monsterTemplateId": 4034013,
+                        "name": "末日歧途的盗火者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4034010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "174.24",
+                          "rounded": "174"
+                        },
+                        "toughness": {
+                          "barCount": 2,
+                          "exactPerBar": "300",
+                          "roundedPerBar": "300"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30184",
+        "label": "遗忘冽风·难度<unbreak>04</unbreak>",
+        "mode": "as",
+        "ordinal": 4,
+        "variant": "floor"
+      }
+    ],
+    "mode": "as",
+    "modeLabel": "末日幻影",
+    "period": {
+      "dateLabel": "2026/06/08 – 2026/07/20",
+      "encounterCount": 4,
+      "groupId": 3018,
+      "name": "遗忘冽风",
+      "status": "historical"
+    },
+    "periods": [
+      {
+        "dateLabel": "2026/08/31 – 2026/10/05",
+        "encounterCount": 4,
+        "groupId": 3020,
+        "name": "仙客天狼",
+        "status": "current"
+      },
+      {
+        "dateLabel": "2026/07/20 – 2026/08/31",
+        "encounterCount": 4,
+        "groupId": 3019,
+        "name": "兵锋骑士",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/06/08 – 2026/07/20",
+        "encounterCount": 4,
+        "groupId": 3018,
+        "name": "遗忘冽风",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/04/27 – 2026/06/08",
+        "encounterCount": 4,
+        "groupId": 3017,
+        "name": "偶像螟蝗",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/03/16 – 2026/04/27",
+        "encounterCount": 4,
+        "groupId": 3016,
+        "name": "兵锋天狼",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/02/02 – 2026/03/16",
+        "encounterCount": 4,
+        "groupId": 3015,
+        "name": "支配冥茫",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/12/22 – 2026/02/02",
+        "encounterCount": 4,
+        "groupId": 3014,
+        "name": "猢狲骑士",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/11/10 – 2025/12/22",
+        "encounterCount": 4,
+        "groupId": 3013,
+        "name": "螟蝗煽动",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/09/29 – 2025/11/10",
+        "encounterCount": 4,
+        "groupId": 3012,
+        "name": "冥茫冽风",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/08/18 – 2025/09/29",
+        "encounterCount": 4,
+        "groupId": 3011,
+        "name": "天狼战首",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/07/07 – 2025/08/18",
+        "encounterCount": 4,
+        "groupId": 3010,
+        "name": "金血恶兽",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/05/26 – 2025/07/07",
+        "encounterCount": 4,
+        "groupId": 3009,
+        "name": "冽风支配",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/04/14 – 2025/05/26",
+        "encounterCount": 4,
+        "groupId": 3008,
+        "name": "螟蝗战首",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/03/03 – 2025/04/14",
+        "encounterCount": 4,
+        "groupId": 3007,
+        "name": "猢狲博弈",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/01/20 – 2025/03/03",
+        "encounterCount": 4,
+        "groupId": 3006,
+        "name": "煽动螟蝗",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/12/09 – 2025/01/20",
+        "encounterCount": 4,
+        "groupId": 3005,
+        "name": "冽风猢狲",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/10/28 – 2024/12/09",
+        "encounterCount": 4,
+        "groupId": 3004,
+        "name": "支配指挥",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/09/16 – 2024/10/28",
+        "encounterCount": 4,
+        "groupId": 3003,
+        "name": "煽动博弈",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/08/05 – 2024/09/16",
+        "encounterCount": 4,
+        "groupId": 3002,
+        "name": "支配恶兽",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/06/17 – 2024/08/05",
+        "encounterCount": 4,
+        "groupId": 3001,
+        "name": "冽风骑士",
+        "status": "historical"
+      }
+    ]
+  },
+  "route": "/endgame/as/3018"
+}

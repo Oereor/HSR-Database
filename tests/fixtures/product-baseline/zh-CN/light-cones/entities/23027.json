@@ -1,0 +1,408 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>巡猎</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23027",
+    "name": "驶向第二次生命",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 26.4,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 21,
+            "perLevel": 3.15
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 58.08,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 46.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 100.32,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 79.8,
+            "perLevel": 3.15
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 142.56,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 113.4,
+            "perLevel": 3.15
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 184.8,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 147,
+            "perLevel": 3.15
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 227.04,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 180.6,
+            "perLevel": 3.15
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 269.28,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 214.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>巡猎</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23027",
+    "kind": "light-cone",
+    "name": "驶向第二次生命",
+    "passive": {
+      "id": "23027",
+      "name": "苦航",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的击破特攻提高60%，造成的击破伤害无视目标20%的防御力。当装备者在战斗中击破特攻大于等于150%时，速度提高12%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "，造成的击破伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者在战斗中击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "时，速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的击破特攻提高70%，造成的击破伤害无视目标23%的防御力。当装备者在战斗中击破特攻大于等于150%时，速度提高14%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "70%"
+              },
+              {
+                "type": "text",
+                "value": "，造成的击破伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "23%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者在战斗中击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "时，速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的击破特攻提高80%，造成的击破伤害无视目标26%的防御力。当装备者在战斗中击破特攻大于等于150%时，速度提高16%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "80%"
+              },
+              {
+                "type": "text",
+                "value": "，造成的击破伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "26%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者在战斗中击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "时，速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的击破特攻提高90%，造成的击破伤害无视目标29%的防御力。当装备者在战斗中击破特攻大于等于150%时，速度提高18%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "90%"
+              },
+              {
+                "type": "text",
+                "value": "，造成的击破伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "29%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者在战斗中击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "时，速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的击破特攻提高100%，造成的击破伤害无视目标32%的防御力。当装备者在战斗中击破特攻大于等于150%时，速度提高20%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "100%"
+              },
+              {
+                "type": "text",
+                "value": "，造成的击破伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者在战斗中击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "时，速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          2,
+          3
+        ]
+      }
+    },
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 5,
+    "story": "他仿佛落入深海，一切都离他而去，只余空洞的思维在跳跃与挣扎。\n\n恐惧、不安、孤独、黑暗、愤怒…那些感受没有随着肉身消散，反而以另一种方式保留在机械的躯壳之中，愈发沉重。\n\n他听到逝者的呼唤，闻到烧焦的气味，电机的嗡鸣在他的耳边盘旋，蓝色的血液流向他饥渴的心脏…一些残忍的记忆再次浮现，刻骨的仇恨化作黑暗中的微光，他循着光亮朝尽头走去，用尽力气浮出了水面。\n\n他睁开眼，一簇火花闪过，他听到来自医者的祝贺——\n<i>「欢迎再次来到这个世界。」 </i>\n他握紧双手，如今它们是钢铁的，冰冷的……\n他将不再为自己而活。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23027",
+    "storyFallbackRendered": false
+  }
+}

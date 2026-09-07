@@ -1,0 +1,261 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20017",
+    "name": "开疆",
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 3
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 12,
+            "perLevel": 1.8
+          },
+          "defence": {
+            "base": 12,
+            "perLevel": 1.8
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 26.4,
+            "perLevel": 1.8
+          },
+          "defence": {
+            "base": 26.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 45.6,
+            "perLevel": 1.8
+          },
+          "defence": {
+            "base": 45.6,
+            "perLevel": 1.8
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 64.8,
+            "perLevel": 1.8
+          },
+          "defence": {
+            "base": 64.8,
+            "perLevel": 1.8
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 84,
+            "perLevel": 1.8
+          },
+          "defence": {
+            "base": 84,
+            "perLevel": 1.8
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 103.2,
+            "perLevel": 1.8
+          },
+          "defence": {
+            "base": 103.2,
+            "perLevel": 1.8
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 122.4,
+            "perLevel": 1.8
+          },
+          "defence": {
+            "base": 122.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20017",
+    "kind": "light-cone",
+    "name": "开疆",
+    "passive": {
+      "id": "20017",
+      "name": "公司",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "当装备者击破敌方目标的弱点时，回复等同于自身生命上限12%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者击破敌方目标的弱点时，回复等同于自身生命上限"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "当装备者击破敌方目标的弱点时，回复等同于自身生命上限14%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者击破敌方目标的弱点时，回复等同于自身生命上限"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "当装备者击破敌方目标的弱点时，回复等同于自身生命上限16%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者击破敌方目标的弱点时，回复等同于自身生命上限"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "当装备者击破敌方目标的弱点时，回复等同于自身生命上限18%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者击破敌方目标的弱点时，回复等同于自身生命上限"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "当装备者击破敌方目标的弱点时，回复等同于自身生命上限20%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者击破敌方目标的弱点时，回复等同于自身生命上限"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0
+        ]
+      }
+    },
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 3,
+    "story": "自时光中凝取的稀薄力量。正是所有微不足道的刹那，编织成了壮绝的命运。\n\n<i>「无靠无依的时日已落场，公司将与诸位携手相助。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/20017",
+    "storyFallbackRendered": false
+  }
+}

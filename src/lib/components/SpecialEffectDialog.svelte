@@ -3,6 +3,7 @@
   import SkillVariantView from '$lib/components/SkillVariantView.svelte';
   import SpecialEffectRelation from '$lib/components/SpecialEffectRelation.svelte';
   import type { CatalogEntry, CharacterSpecialEffectEntry } from '$lib/domain/types';
+  import * as m from '$lib/paraglide/messages.js';
 
   export let open = false;
   export let entries: CharacterSpecialEffectEntry[] = [];
@@ -95,14 +96,14 @@
       <div>
         <p class="kicker">CHARACTER EFFECTS</p>
         <div class="special-effect-dialog__title-row">
-          <h2 id="special-effect-dialog-title">特殊效果</h2>
+          <h2 id="special-effect-dialog-title">{m.special_effect_title()}</h2>
           <span class="skill-effect-tag special-effect-dialog__level">Lv.{selectedLevel}</span>
         </div>
       </div>
       <button
         class="special-effect-dialog__close"
         type="button"
-        aria-label="关闭特殊效果"
+        aria-label={m.special_effect_close()}
         bind:this={closeButton}
         on:click={requestClose}>×</button
       >

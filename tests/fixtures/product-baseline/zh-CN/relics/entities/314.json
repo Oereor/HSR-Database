@@ -1,0 +1,95 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的攻击力提高12%。进入战斗时，若至少存在一名与装备者命途相同的队友，装备者的暴击率提高12%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "314",
+    "name": "出云显世与高天神国",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "2.1"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的攻击力提高12%。进入战斗时，若至少存在一名与装备者命途相同的队友，装备者的暴击率提高12%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的攻击力提高12%。进入战斗时，若至少存在一名与装备者命途相同的队友，装备者的暴击率提高12%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。进入战斗时，若至少存在一名与装备者命途相同的队友，装备者的暴击率提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "314",
+    "kind": "relic",
+    "name": "出云显世与高天神国",
+    "pieces": [
+      {
+        "description": "位面封装的是被一刀斩开过去未来的出云。出云曾遍历不堪言状的生存战争，也曾有过饫甘餍肥的辉煌岁月…如今荒土业已无处可寻，唯余下埋葬往昔的剑冢。",
+        "id": "33145",
+        "name": "出云的祸津众神",
+        "slot": "NECK"
+      },
+      {
+        "description": "出云人借由刀穗将利刃系于腰间。他们行走世间，以刀狩神，又以神骸锻刀…如此循环往复，出云走向繁荣、走向幻灭、走向空无。",
+        "id": "33146",
+        "name": "出云的终始一刀",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「模拟宇宙•第九世界」沉浸装置兑换",
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "2.1"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33145"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33146"
+      }
+    ],
+    "route": "/relics/314"
+  }
+}

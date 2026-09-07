@@ -1,0 +1,2943 @@
+{
+  "catalog": {
+    "baseName": "符玄",
+    "description": "仙舟「罗浮」太卜司之首。\n凭借第三眼与穷观阵为仙舟占算航路，预卜事务吉凶。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "id": "1208",
+    "name": "符玄",
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "符玄",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 150,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 100
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 63.36,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 82.5,
+            "perLevel": 4.125
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 200.64,
+            "perLevel": 10.032
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 88.704,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 115.5,
+            "perLevel": 4.125
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 280.896,
+            "perLevel": 10.032
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 114.048,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 148.5,
+            "perLevel": 4.125
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 361.152,
+            "perLevel": 10.032
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 139.392,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 181.5,
+            "perLevel": 4.125
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 441.408,
+            "perLevel": 10.032
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 164.736,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 214.5,
+            "perLevel": 4.125
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 521.664,
+            "perLevel": 10.032
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 190.08,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 247.5,
+            "perLevel": 4.125
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 601.92,
+            "perLevel": 10.032
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 215.424,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 280.5,
+            "perLevel": 4.125
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 682.176,
+            "perLevel": 10.032
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "仙舟「罗浮」太卜司之首。\n凭借第三眼与穷观阵为仙舟占算航路，预卜事务吉凶。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "equipmentRecommendation": {
+      "avatarId": "1208",
+      "cavernSetIds": [
+        "113",
+        "106",
+        "108"
+      ],
+      "lightConeIds": [
+        "23011",
+        "24002",
+        "21016"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "HPAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "HPAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase",
+            "HPAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "302",
+        "310",
+        "308"
+      ],
+      "subStatPropertyTypes": [
+        "HPAddedRatio",
+        "DefenceAddedRatio",
+        "StatusResistanceBase",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "符玄",
+    "id": "1208",
+    "kind": "character",
+    "name": "符玄",
+    "path": "Knight",
+    "pathName": "存护",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "【鉴知】使暴击伤害提高<unbreak>30%</unbreak>。",
+            "iconKey": "rank--120801",
+            "id": "120801",
+            "name": "司危",
+            "rank": 1
+          },
+          {
+            "description": "【穷观阵】开启时，若我方目标受到致命伤害，则本次行动中所有受到致命伤害的我方目标都不会陷入<u>无法战斗状态</u>，并立即回复等同于其自身生命上限<unbreak>70%</unbreak>的生命值。该效果单场战斗中可以触发1次。",
+            "extraEffects": [
+              {
+                "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                "id": "10000007",
+                "name": "无法战斗状态"
+              }
+            ],
+            "iconKey": "rank--120802",
+            "id": "120802",
+            "name": "柔兆",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--120803",
+            "id": "120803",
+            "name": "直符",
+            "rank": 3
+          },
+          {
+            "description": "当处于【穷观阵】的我方其他目标受到攻击后，符玄恢复<unbreak>5</unbreak>点能量。",
+            "iconKey": "rank--120804",
+            "id": "120804",
+            "name": "格泽",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--120805",
+            "id": "120805",
+            "name": "计神",
+            "rank": 5
+          },
+          {
+            "description": "【穷观阵】开启时，会累计我方全体本场战斗中的已损失生命值。符玄施放终结技造成的伤害提高，提高数值等同于本场战斗中累计已损失生命值的<unbreak>200%</unbreak>。\n本场战斗中累计已损失生命值最高不超过符玄生命上限的<unbreak>120%</unbreak>，施放终结技后会清空并进行重新累计。",
+            "iconKey": "rank--120806",
+            "id": "120806",
+            "name": "种陵",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 135
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1208001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1208001",
+                "variantIds": [
+                  "120801"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "120801",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于符玄25%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于符玄30%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于符玄35%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于符玄40%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于符玄45%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于符玄50%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于符玄55%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于符玄60%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于符玄65%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于符玄70%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "始击岁星",
+                "progressionId": "1208001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1208002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1208002",
+                "variantIds": [
+                  "120802"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Defence",
+                    "known": true,
+                    "label": "防御"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "在伤害结算之前将攻击方的一部分伤害分给其他单个或多个目标，受击方承担剩余部分。分摊给其他目标的伤害无法再次被分摊。",
+                      "id": "10000013",
+                      "name": "分摊"
+                    },
+                    {
+                      "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                      "id": "10000007",
+                      "name": "无法战斗状态"
+                    }
+                  ]
+                },
+                "id": "120802",
+                "levels": [
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的3.0%，暴击率提高6.0%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的3.3%，暴击率提高6.6%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的3.6%，暴击率提高7.2%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的3.9%，暴击率提高7.8%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的4.2%，暴击率提高8.4%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的4.5%，暴击率提高9.0%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的4.9%，暴击率提高9.8%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的5.3%，暴击率提高10.5%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的5.6%，暴击率提高11.3%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的6.0%，暴击率提高12.0%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的6.3%，暴击率提高12.6%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的6.6%，暴击率提高13.2%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的6.9%，暴击率提高13.8%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的7.2%，暴击率提高14.4%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的65%分摊给符玄，持续3回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的7.5%，暴击率提高15.0%。\n当符玄陷入无法战斗状态时，【穷观阵】也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启【穷观阵】，使符玄队友所承受的未受护盾抵挡之前的伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "分摊"
+                      },
+                      {
+                        "type": "text",
+                        "value": "给符玄，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n处于【穷观阵】的我方全体获得【鉴知】。【鉴知】状态下的我方目标生命上限提高，提高数值等同于符玄生命上限的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，【穷观阵】也会被解除。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "太微行棋，灵台示影",
+                "progressionId": "1208002",
+                "scalingParamIndexes": [
+                  3,
+                  4
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1208003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1208003",
+                "variantIds": [
+                  "120803"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "120803",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于符玄60%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于符玄64%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于符玄68%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于符玄72%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于符玄76%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于符玄80%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于符玄85%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "85%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于符玄90%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于符玄95%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "95%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于符玄100%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于符玄104%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "104%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于符玄108%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于符玄112%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于符玄116%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "116%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于符玄120%生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于符玄"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，并获得1次符玄天赋生命回复的触发次数。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "天律大衍，历劫归一",
+                "progressionId": "1208003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1208004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1208004",
+                "variantIds": [
+                  "120804"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  }
+                },
+                "id": "120804",
+                "levels": [
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低10.0%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值80%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低10.8%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值81%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低11.6%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值82%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "82%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低12.4%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值83%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低13.2%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值84%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低14.0%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值85%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "85%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低15.0%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值86%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "86%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低16.0%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值88%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低17.0%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值89%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "89%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低18.0%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值90%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低18.8%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值91%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "91%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低19.6%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值92%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低20.4%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值93%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "93%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低21.2%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值94%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低22.0%。\n当符玄当前生命值百分比小于等于50%时触发生命回复，使自身回复等同于已损失生命值95%的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当符玄处于可战斗状态时，为我方全体附加【避厄】。【避厄】状态下的我方目标受到的伤害降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当符玄当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时触发生命回复，使自身回复等同于已损失生命值"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "95%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，受到致命攻击时无法触发该效果。该效果初始拥有1次触发次数，最多可拥有2次触发次数。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "乾清坤夷，否极泰来",
+                "progressionId": "1208004",
+                "scalingParamIndexes": [
+                  0,
+                  2
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1208007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1208007",
+                "variantIds": [
+                  "120807"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Defence",
+                    "known": true,
+                    "label": "防御"
+                  }
+                },
+                "id": "120807",
+                "levels": [
+                  {
+                    "description": "使用秘技后，我方全体获得持续20秒的屏障。该屏障可抵挡敌人的所有攻击，不会进入战斗。屏障持续期间进入战斗时符玄自动开启【穷观阵】，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，我方全体获得持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的屏障。该屏障可抵挡敌人的所有攻击，不会进入战斗。屏障持续期间进入战斗时符玄自动开启【穷观阵】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "岁记否泰，固守四郭",
+                "progressionId": "1208007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "【穷观阵】开启时，符玄施放战技将额外恢复<unbreak>20</unbreak>点能量。",
+            "iconKey": "skill-tree--1208101",
+            "id": "1208101",
+            "name": "太乙式盘",
+            "prerequisiteIds": [
+              "1208201"
+            ],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "施放终结技时为我方其他目标回复等同于符玄<unbreak>5%</unbreak>生命上限+<unbreak>133</unbreak>的生命值。",
+            "iconKey": "skill-tree--1208102",
+            "id": "1208102",
+            "name": "遁甲星舆",
+            "prerequisiteIds": [
+              "1208201"
+            ],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "【穷观阵】开启时，若敌方目标对我方施加了<u>控制类负面状态</u>，则我方全体抵抗本次行动中敌方目标施加的所有<u>控制类负面状态</u>。该效果可以触发1次。再次开启【穷观阵】后将刷新效果可触发次数。",
+            "extraEffects": [
+              {
+                "description": "冻结，纠缠，禁锢，支配，怒噪，强烈震荡，异梦，缠禁，恐惧，行动锁定，幸福傀儡，怨火灼身。",
+                "id": "10000011",
+                "name": "控制类负面状态"
+              }
+            ],
+            "iconKey": "skill-tree--1208103",
+            "id": "1208103",
+            "name": "六壬兆堪",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1208201",
+            "name": "暴击率强化",
+            "prerequisiteIds": [],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1208202",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1208101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1208203",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1208202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1208204",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1208205",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1208102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1208206",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1208205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1208207",
+            "name": "暴击率强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1208208",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1208103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "生命值上限提高8.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1208209",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1208208"
+            ],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "暴击率提高5.3%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1208210",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1208208"
+            ],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1208001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120801",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1208002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120802",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1208003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120803",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1208004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120804",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1208007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120807",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1208",
+    "subtitleRendered": false
+  }
+}

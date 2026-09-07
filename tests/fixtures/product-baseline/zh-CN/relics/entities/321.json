@@ -1,0 +1,112 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：队伍中当前在场的我方目标数量不等于4时，每多/少1名我方目标，使装备者及其忆灵造成的伤害提高9%/12%，最多叠加4/3层。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "321",
+    "name": "妖精织梦的乐园",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "3.4"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：队伍中当前在场的我方目标数量不等于4时，每多/少1名我方目标，使装备者及其忆灵造成的伤害提高9%/12%，最多叠加4/3层。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "队伍中当前在场的我方目标数量不等于4时，每多/少1名我方目标，使装备者及其忆灵造成的伤害提高9%/12%，最多叠加4/3层。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "队伍中当前在场的我方目标数量不等于4时，每多/少1名我方目标，使装备者及其忆灵造成的伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "9%"
+          },
+          {
+            "type": "text",
+            "value": "/"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "，最多叠加"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "4"
+          },
+          {
+            "type": "text",
+            "value": "/"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "3"
+          },
+          {
+            "type": "text",
+            "value": "层。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "321",
+    "kind": "relic",
+    "name": "妖精织梦的乐园",
+    "pieces": [
+      {
+        "description": "位面球中封装着哀丽秘榭的「迷路迷境」，拨开金色的麦草，掉进一片深深、深深的树洞，咦？好多小妖精，「一二三四五六七？」，错啦！是「哆徕咪发嗦啦嘻！」",
+        "id": "33215",
+        "name": "迷路迷境的恬梦树屋",
+        "slot": "NECK"
+      },
+      {
+        "description": "陶土捏制的笛哨，代表着小妖精们和两个小孩子的约定。当小男孩和小女孩吹起笛哨的时候，「迷？」的一声，妖精们就会打开通往迷境的树洞，欢迎他们来做客！",
+        "id": "33216",
+        "name": "迷路迷境的祈愿笛哨",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "3.4"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33215"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33216"
+      }
+    ],
+    "route": "/relics/321"
+  }
+}

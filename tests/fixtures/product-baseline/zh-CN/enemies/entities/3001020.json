@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n本是剧场中的演出道具，失控后仍在演绎台上的闹剧，将混乱的舞步带往各处。",
+    "id": "3001020",
+    "name": "惊梦剧团的舞鸫假面",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3001020",
+    "defaultMonsterRef": "291d468a744a47481bb979efb355f5e184c5938a2d417e9411c83e1860c01ea6",
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n本是剧场中的演出道具，失控后仍在演绎台上的闹剧，将混乱的舞步带往各处。",
+    "id": "3001020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "291d468a744a47481bb979efb355f5e184c5938a2d417e9411c83e1860c01ea6",
+      "d11ad440a028c9fa3df16e0fe03ac51dd1ee7c2d9557a09a73437b049c87efff",
+      "56b190d9a10b30c3520c1ef8e2adc5a351a9c3a14e8d1808c7c7da8f7d1b239f",
+      "7c7c140a934c094848fb5fbf626661a5540b84b1d1e56cfe7d3d7b74daf9271c",
+      "66c23a456a315088ee1e7bb00755166e42504453e721a4b9665e996dc59409f1",
+      "76257a2a966e93b2a453829e5b88d937749db66c09486f5928be46fa6af99984",
+      "a97ca4018759d66f3a49f7fcd92d93469b8a73ff35be7da733bc3d8f7a4e1ff5",
+      "bb05decc51effb23a86abf627626e13a17297e4787089dd5cdc2ef691692698a"
+    ],
+    "name": "惊梦剧团的舞鸫假面",
+    "rank": "Minion",
+    "templateRef": "248695e63306421941154d40cc835d78c09180b9e3fcc27a2175ce70d7bf0e74",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3001020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3001020",
+    "selectableMonsterIds": [
+      "3001020",
+      "300102001",
+      "300102002",
+      "300102003",
+      "300102004",
+      "300102005",
+      "300102006",
+      "300102007"
+    ]
+  }
+}

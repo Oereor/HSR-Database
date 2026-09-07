@@ -1,0 +1,261 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>同谐</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21056",
+    "name": "追逐风的时候",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 18,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 39.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 68.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 126,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 154.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>同谐</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21056",
+    "kind": "light-cone",
+    "name": "追逐风的时候",
+    "passive": {
+      "id": "21056",
+      "name": "慌张",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "进入战斗后，使我方全体造成的击破伤害提高16%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，使我方全体造成的击破伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "进入战斗后，使我方全体造成的击破伤害提高18%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，使我方全体造成的击破伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "进入战斗后，使我方全体造成的击破伤害提高20%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，使我方全体造成的击破伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "进入战斗后，使我方全体造成的击破伤害提高22%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，使我方全体造成的击破伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "22%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "进入战斗后，使我方全体造成的击破伤害提高24%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，使我方全体造成的击破伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0
+        ]
+      }
+    },
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 4,
+    "story": "<i>「呵，这颗给小倒霉蛋，总能堵上她那欠债爸妈的嘴了吧，少打她几顿也好。\n「这颗给卖酸瓜糖的老奶奶救急，小病小痛都得治了，我可不想哪天吃不到那么好的糖……」</i>\n\n女孩猫着腰一颗颗地细数布袋里的珠宝，忽然打了个喷嚏。\n<i>「谁在想我？」</i>\n\n<i>「赛法利娅，你在这儿呐。」</i>\n丝线盘绕在她的身后，似乎正犹豫着从哪儿开始。\n\n<i>「以后，追逐风的时候……」</i>\n冰冷的金丝缠绕在她的手腕，令她动弹不得。\n\n<i>「也别忘了照顾好自己。」</i>\n\n她逃向远方，回头才发现，那斗篷绽线的一角，已被缝补如新。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21056",
+    "storyFallbackRendered": false
+  }
+}

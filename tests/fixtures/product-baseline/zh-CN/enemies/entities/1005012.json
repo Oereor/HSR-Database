@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "受「星核」漫溢的裂界能量同化之后，大守护者幻化为操控虚数能量的歌者，亦是祂所承诺的「新世界」的代言人。",
+    "id": "1005012",
+    "name": "可可利亚，虚妄之母",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1005012",
+    "defaultMonsterRef": "0274ea25f34826cee20eb4c89764432b3f2bf876ea9721992a029f2e8a1e9191",
+    "description": "受「星核」漫溢的裂界能量同化之后，大守护者幻化为操控虚数能量的歌者，亦是祂所承诺的「新世界」的代言人。",
+    "id": "1005012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "0274ea25f34826cee20eb4c89764432b3f2bf876ea9721992a029f2e8a1e9191"
+    ],
+    "name": "可可利亚，虚妄之母",
+    "rank": "BigBoss",
+    "templateRef": "cee4f94ed3d27d0a08f3f05a6b5534c20ac610e0e48a1dc95bdc78880f465dd8",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1005012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1005012",
+    "selectableMonsterIds": [
+      "1005012"
+    ]
+  }
+}

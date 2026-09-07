@@ -1,0 +1,4982 @@
+{
+  "catalog": {
+    "baseName": "阿格莱雅",
+    "description": "在那黎明照拂的圣城，织者抚弄金丝，连缀命运。\n背负「浪漫」火种的黄金裔，召集世间英雄，带领他们再度踏上漫长的征程\n——击落众神，归还神火，予以几近覆灭的翁法罗斯新生。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "id": "1402",
+    "name": "阿格莱雅",
+    "path": "Memory",
+    "pathName": "记忆",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "阿格莱雅",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 102
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 95.04,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 66,
+            "perLevel": 3.3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 168.96,
+            "perLevel": 8.448
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 133.056,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 92.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 236.544,
+            "perLevel": 8.448
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 171.072,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 3.3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 304.128,
+            "perLevel": 8.448
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 209.088,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 145.2,
+            "perLevel": 3.3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 371.712,
+            "perLevel": 8.448
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 247.104,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 171.6,
+            "perLevel": 3.3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 439.296,
+            "perLevel": 8.448
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 285.12,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 198,
+            "perLevel": 3.3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 506.88,
+            "perLevel": 8.448
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 323.136,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 224.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 574.464,
+            "perLevel": 8.448
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "在那黎明照拂的圣城，织者抚弄金丝，连缀命运。\n背负「浪漫」火种的黄金裔，召集世间英雄，带领他们再度踏上漫长的征程\n——击落众神，归还神火，予以几近覆灭的翁法罗斯新生。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "equipmentRecommendation": {
+      "avatarId": "1402",
+      "cavernSetIds": [
+        "123",
+        "102",
+        "109"
+      ],
+      "lightConeIds": [
+        "23036",
+        "21051",
+        "21052"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "ThunderAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase",
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "318",
+        "302",
+        "301"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "阿格莱雅",
+    "id": "1402",
+    "kind": "character",
+    "name": "阿格莱雅",
+    "path": "Memory",
+    "pathName": "记忆",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "处于【间隙织线】状态下的敌人受到的伤害提高<unbreak>15%</unbreak>，阿格莱雅或衣匠攻击该目标后额外恢复<unbreak>20</unbreak>点能量。",
+            "iconKey": "rank--140201",
+            "id": "140201",
+            "name": "飘曳金星的行列",
+            "rank": 1
+          },
+          {
+            "description": "当阿格莱雅或衣匠行动时，使阿格莱雅与衣匠造成的伤害无视目标<unbreak>14%</unbreak>的防御力，该效果最多叠加<unbreak>3</unbreak>层，持续至除自身与衣匠以外的任意单位主动施放技能时。",
+            "iconKey": "rank--140202",
+            "id": "140202",
+            "name": "行舟命运的眼睑",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级；忆灵天赋等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--140203",
+            "id": "140203",
+            "name": "华珠凝滞的礼物",
+            "rank": 3
+          },
+          {
+            "description": "忆灵天赋的速度提高效果层数上限提高<unbreak>1</unbreak>层。阿格莱雅施放攻击后也能使衣匠获得忆灵天赋的速度提高效果。",
+            "iconKey": "rank--140204",
+            "id": "140204",
+            "name": "大理石内的闪烁",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级；忆灵技等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--140205",
+            "id": "140205",
+            "name": "漆黑苦难的织者",
+            "rank": 5
+          },
+          {
+            "description": "当阿格莱雅处于【至高之姿】状态时，自身与衣匠的雷属性<u>抗性穿透</u>提高<unbreak>20%</unbreak>，当阿格莱雅或衣匠的速度高于<unbreak>160</unbreak>/<unbreak>240</unbreak>/<unbreak>320</unbreak>点时，其造成的<u>连携攻击</u>伤害提高<unbreak>10%</unbreak>/<unbreak>30%</unbreak>/<unbreak>60%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                "id": "30000005",
+                "name": "抗性穿透"
+              },
+              {
+                "description": "多个目标在一次行动中，分别对敌方目标施放攻击。",
+                "id": "10000019",
+                "name": "连携攻击"
+              }
+            ],
+            "iconKey": "rank--140206",
+            "id": "140206",
+            "name": "盈虚无常的金线",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 350
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1402001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1402001",
+                "variantIds": [
+                  "140201",
+                  "140208"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "140201",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于阿格莱雅50%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿格莱雅60%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿格莱雅70%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿格莱雅80%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿格莱雅90%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿格莱雅100%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿格莱雅110%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿格莱雅120%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿格莱雅130%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿格莱雅140%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "刺纹之蜜",
+                "progressionId": "1402001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              },
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 20,
+                  "extraEffects": [
+                    {
+                      "description": "多个目标在一次行动中，分别对敌方目标施放攻击。",
+                      "id": "10000019",
+                      "name": "连携攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "140208",
+                "levels": [
+                  {
+                    "description": "阿格莱雅与衣匠向目标发起连携攻击，对目标分别造成等同于阿格莱雅100.0%攻击力以及衣匠100.0%攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅45%攻击力以及衣匠45%攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阿格莱雅与衣匠向目标发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "阿格莱雅与衣匠向目标发起连携攻击，对目标分别造成等同于阿格莱雅120.0%攻击力以及衣匠120.0%攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅54%攻击力以及衣匠54%攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阿格莱雅与衣匠向目标发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "阿格莱雅与衣匠向目标发起连携攻击，对目标分别造成等同于阿格莱雅140.0%攻击力以及衣匠140.0%攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅63%攻击力以及衣匠63%攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阿格莱雅与衣匠向目标发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "阿格莱雅与衣匠向目标发起连携攻击，对目标分别造成等同于阿格莱雅160.0%攻击力以及衣匠160.0%攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅72%攻击力以及衣匠72%攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阿格莱雅与衣匠向目标发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "阿格莱雅与衣匠向目标发起连携攻击，对目标分别造成等同于阿格莱雅180.0%攻击力以及衣匠180.0%攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅81%攻击力以及衣匠81%攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阿格莱雅与衣匠向目标发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "阿格莱雅与衣匠向目标发起连携攻击，对目标分别造成等同于阿格莱雅200.0%攻击力以及衣匠200.0%攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅90%攻击力以及衣匠90%攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阿格莱雅与衣匠向目标发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "阿格莱雅与衣匠向目标发起连携攻击，对目标分别造成等同于阿格莱雅220.0%攻击力以及衣匠220.0%攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅99%攻击力以及衣匠99%攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阿格莱雅与衣匠向目标发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "99%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "99%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "阿格莱雅与衣匠向目标发起连携攻击，对目标分别造成等同于阿格莱雅240.0%攻击力以及衣匠240.0%攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅108%攻击力以及衣匠108%攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阿格莱雅与衣匠向目标发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "阿格莱雅与衣匠向目标发起连携攻击，对目标分别造成等同于阿格莱雅260.0%攻击力以及衣匠260.0%攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅117%攻击力以及衣匠117%攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阿格莱雅与衣匠向目标发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "260.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "260.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "117%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "117%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "阿格莱雅与衣匠向目标发起连携攻击，对目标分别造成等同于阿格莱雅280.0%攻击力以及衣匠280.0%攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅126%攻击力以及衣匠126%攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阿格莱雅与衣匠向目标发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "280.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "280.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对相邻目标分别造成等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及衣匠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【孤锋千吻】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "孤锋千吻",
+                "progressionId": "1402001",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1402002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1402002",
+                "variantIds": [
+                  "140202"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Summon",
+                    "known": true,
+                    "label": "召唤"
+                  },
+                  "energyGain": 20,
+                  "extraEffects": [
+                    {
+                      "description": "将忆灵召唤到场上。若忆灵已在场，解除忆灵陷入的所有控制类负面状态。",
+                      "id": "10000018",
+                      "name": "召唤忆灵"
+                    }
+                  ]
+                },
+                "id": "140202",
+                "levels": [
+                  {
+                    "description": "为衣匠回复等同于其25%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "为衣匠回复等同于其28%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "为衣匠回复等同于其30%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "为衣匠回复等同于其33%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "为衣匠回复等同于其35%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "为衣匠回复等同于其38%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "为衣匠回复等同于其41%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "为衣匠回复等同于其44%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "为衣匠回复等同于其47%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "为衣匠回复等同于其50%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "为衣匠回复等同于其53%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "为衣匠回复等同于其55%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "为衣匠回复等同于其57%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "为衣匠回复等同于其60%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "为衣匠回复等同于其63%生命上限的生命值。若衣匠不在场，则召唤忆灵衣匠，并使自身立即行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为衣匠回复等同于其"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。若衣匠不在场，则"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，并使自身立即行动。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "高举吧，升华的名讳",
+                "progressionId": "1402002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1402003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1402003",
+                "variantIds": [
+                  "140203"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "将忆灵召唤到场上。若忆灵已在场，解除忆灵陷入的所有控制类负面状态。",
+                      "id": "10000018",
+                      "name": "召唤忆灵"
+                    },
+                    {
+                      "description": "冻结，纠缠，禁锢，支配，怒噪，强烈震荡，异梦，缠禁，恐惧，行动锁定，幸福傀儡，怨火灼身。",
+                      "id": "10000011",
+                      "name": "控制类负面状态"
+                    }
+                  ]
+                },
+                "id": "140203",
+                "levels": [
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高10.0%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高10.5%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高11.0%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高11.5%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高12.0%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高12.5%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高13.1%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高13.8%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高14.4%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高15.0%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高15.5%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高16.0%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高16.5%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高17.0%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "召唤忆灵衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高17.5%，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫控制类负面状态。\n行动序列上出现倒计时，倒计时固定拥有100速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠，若衣匠已在场，则使其生命值回复至上限。阿格莱雅进入【至高之姿】状态并使自身立即行动。\n【至高之姿】状态下，阿格莱雅获得衣匠忆灵天赋的速度提高层数，每层使自身速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普通攻击强化为【孤锋千吻】并且无法施放战技，衣匠免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n行动序列上出现倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时存在期间再次施放终结技将重置倒计时，回合开始时使衣匠自毁。衣匠消失时阿格莱雅解除【至高之姿】状态。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "共舞吧，命定的衣匠",
+                "progressionId": "1402003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1402004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1402004",
+                "variantIds": [
+                  "140204"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "energyGain": 10,
+                  "extraEffects": [
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    }
+                  ]
+                },
+                "id": "140204",
+                "levels": [
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅44%生命上限+180的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力12%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅47%生命上限+248的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力14%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "248"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅50%生命上限+315的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力16%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "315"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅52%生命上限+383的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力17%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "383"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅55%生命上限+450的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力19%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "450"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅57%生命上限+504的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力21%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "504"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅59%生命上限+558的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力23%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "558"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅62%生命上限+612的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力26%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "612"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅64%生命上限+666的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力28%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "666"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅66%生命上限+720的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力30%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "720"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅68%生命上限+774的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力32%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "774"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅70%生命上限+828的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力34%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "828"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅73%生命上限+882的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力35%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "73%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "882"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅75%生命上限+936的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力37%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "936"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "37%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "忆灵衣匠初始拥有等同于阿格莱雅35%速度的速度以及等同于阿格莱雅77%生命上限+990的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力39%的雷属性附加伤害。【间隙织线】仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵衣匠初始拥有等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度的速度以及等同于阿格莱雅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "990"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。衣匠在场时，阿格莱雅施放攻击时使目标陷入【间隙织线】状态，攻击处于【间隙织线】状态下的敌人后，额外造成等同于阿格莱雅攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【间隙织线】仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "金玫之指",
+                "progressionId": "1402004",
+                "scalingParamIndexes": [
+                  0,
+                  4,
+                  5
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "memosprite-skill",
+            "displayLabel": "忆灵技",
+            "iconKey": "skill-tree--1402301",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1402301",
+                "variantIds": [
+                  "1140201"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Servant",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 10,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    },
+                    {
+                      "type": "blast",
+                      "value": 5
+                    }
+                  ]
+                },
+                "id": "1140201",
+                "levels": [
+                  {
+                    "description": "对敌方单体造成55%攻击力的雷属性伤害，对其相邻目标造成33%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其相邻目标造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方单体造成66%攻击力的雷属性伤害，对其相邻目标造成40%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其相邻目标造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方单体造成77%攻击力的雷属性伤害，对其相邻目标造成46%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其相邻目标造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方单体造成88%攻击力的雷属性伤害，对其相邻目标造成53%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其相邻目标造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方单体造成99%攻击力的雷属性伤害，对其相邻目标造成59%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "99%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其相邻目标造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方单体造成110%攻击力的雷属性伤害，对其相邻目标造成66%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其相邻目标造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方单体造成121%攻击力的雷属性伤害，对其相邻目标造成73%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "121%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其相邻目标造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "73%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方单体造成132%攻击力的雷属性伤害，对其相邻目标造成79%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其相邻目标造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "79%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方单体造成143%攻击力的雷属性伤害，对其相邻目标造成86%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "143%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其相邻目标造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "86%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方单体造成154%攻击力的雷属性伤害，对其相邻目标造成92%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其相邻目标造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "刺纹之陷",
+                "progressionId": "1402301",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "memosprite",
+                "type": "忆灵技"
+              }
+            ]
+          },
+          {
+            "category": "memosprite-talent",
+            "displayLabel": "忆灵天赋",
+            "iconKey": "skill-tree--1402302",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1402302",
+                "variantIds": [
+                  "1140203",
+                  "1140205",
+                  "1140206"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "1140203",
+                "levels": [
+                  {
+                    "description": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高44点，该效果最多叠加6层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高46点，该效果最多叠加6层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高48点，该效果最多叠加6层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高51点，该效果最多叠加6层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "51"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高53点，该效果最多叠加6层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高55点，该效果最多叠加6层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高57点，该效果最多叠加6层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高59点，该效果最多叠加6层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高62点，该效果最多叠加6层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高64点，该效果最多叠加6层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于【间隙织线】状态的敌人后，使自身的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。衣匠行动时自动施放【刺纹之陷】，优先攻击处于【间隙织线】状态下的敌人。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "泪水锻造的匠躯",
+                "progressionId": "1402302",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "memosprite",
+                "type": "忆灵天赋"
+              },
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "使目标在下次行动前的等待间隔缩短。",
+                      "id": "10000001",
+                      "name": "行动提前"
+                    }
+                  ]
+                },
+                "id": "1140205",
+                "levels": [
+                  {
+                    "description": "衣匠被召唤时，使自身行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠被召唤时，使自身"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "衣匠被召唤时，使自身行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠被召唤时，使自身"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "衣匠被召唤时，使自身行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠被召唤时，使自身"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "衣匠被召唤时，使自身行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠被召唤时，使自身"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "衣匠被召唤时，使自身行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠被召唤时，使自身"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "衣匠被召唤时，使自身行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠被召唤时，使自身"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "衣匠被召唤时，使自身行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠被召唤时，使自身"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "衣匠被召唤时，使自身行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠被召唤时，使自身"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "衣匠被召唤时，使自身行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠被召唤时，使自身"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "衣匠被召唤时，使自身行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠被召唤时，使自身"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "飞驰之夏",
+                "progressionId": "1402302",
+                "scalingParamIndexes": [],
+                "source": "memosprite",
+                "type": "忆灵天赋"
+              },
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "1140206",
+                "levels": [
+                  {
+                    "description": "衣匠消失时，使阿格莱雅恢复20点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠消失时，使阿格莱雅恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "衣匠消失时，使阿格莱雅恢复20点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠消失时，使阿格莱雅恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "衣匠消失时，使阿格莱雅恢复20点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠消失时，使阿格莱雅恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "衣匠消失时，使阿格莱雅恢复20点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠消失时，使阿格莱雅恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "衣匠消失时，使阿格莱雅恢复20点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠消失时，使阿格莱雅恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "衣匠消失时，使阿格莱雅恢复20点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠消失时，使阿格莱雅恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "衣匠消失时，使阿格莱雅恢复20点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠消失时，使阿格莱雅恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "衣匠消失时，使阿格莱雅恢复20点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠消失时，使阿格莱雅恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "衣匠消失时，使阿格莱雅恢复20点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠消失时，使阿格莱雅恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "衣匠消失时，使阿格莱雅恢复20点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "衣匠消失时，使阿格莱雅恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "枯草之盈",
+                "progressionId": "1402302",
+                "scalingParamIndexes": [],
+                "source": "memosprite",
+                "type": "忆灵天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1402007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1402007",
+                "variantIds": [
+                  "140207"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "将忆灵召唤到场上。若忆灵已在场，解除忆灵陷入的所有控制类负面状态。",
+                      "id": "10000018",
+                      "name": "召唤忆灵"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "140207",
+                "levels": [
+                  {
+                    "description": "召唤忆灵衣匠并一同向前发起攻击，进入战斗后，恢复30点能量，并对敌方全体目标造成等同于阿格莱雅100%攻击力的雷属性伤害，随后使敌方随机目标陷入【间隙织线】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "衣匠并一同向前发起攻击，进入战斗后，恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并对敌方全体目标造成等同于阿格莱雅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后使敌方随机目标陷入【间隙织线】状态。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "披星百裂",
+                "progressionId": "1402007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "处于【至高之姿】状态时，阿格莱雅与衣匠的攻击力提高，提高数值等同于阿格莱雅速度的<unbreak>720%</unbreak>+衣匠速度的<unbreak>360%</unbreak>。",
+            "iconKey": "skill-tree--1402101",
+            "id": "1402101",
+            "name": "短视之惩",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "衣匠消失时，忆灵天赋的速度提高层数最多保留<unbreak>1</unbreak>层，衣匠再次被召唤时获得对应层数的速度提高效果。",
+            "iconKey": "skill-tree--1402102",
+            "id": "1402102",
+            "name": "织运之竭",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "战斗开始时，若自身能量不足<unbreak>50%</unbreak>，恢复自身能量至<unbreak>50%</unbreak>。",
+            "iconKey": "skill-tree--1402103",
+            "id": "1402103",
+            "name": "飞驰之阳",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "雷属性伤害提高3.2%",
+            "iconKey": "property--ThunderAddedRatio",
+            "id": "1402201",
+            "name": "伤害强化•雷",
+            "prerequisiteIds": [],
+            "propertyType": "ThunderAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1402202",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1402201"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "雷属性伤害提高3.2%",
+            "iconKey": "property--ThunderAddedRatio",
+            "id": "1402203",
+            "name": "伤害强化•雷",
+            "prerequisiteIds": [
+              "1402201"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "ThunderAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1402204",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1402101"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "雷属性伤害提高4.8%",
+            "iconKey": "property--ThunderAddedRatio",
+            "id": "1402205",
+            "name": "伤害强化•雷",
+            "prerequisiteIds": [
+              "1402101"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "ThunderAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1402206",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1402102"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "雷属性伤害提高4.8%",
+            "iconKey": "property--ThunderAddedRatio",
+            "id": "1402207",
+            "name": "伤害强化•雷",
+            "prerequisiteIds": [
+              "1402102"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "ThunderAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1402208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1402103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击率提高5.3%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1402209",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1402208"
+            ],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "雷属性伤害提高6.4%",
+            "iconKey": "property--ThunderAddedRatio",
+            "id": "1402210",
+            "name": "伤害强化•雷",
+            "prerequisiteIds": [
+              "1402209"
+            ],
+            "propertyType": "ThunderAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1402001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140201",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140208",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1402002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140202",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1402003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140203",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1402004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140204",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "memosprite-skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1402301",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "1140201",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "memosprite-talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1402302",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "1140203",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "1140205",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "1140206",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1402007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140207",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1402",
+    "subtitleRendered": false
+  }
+}

@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type {
@@ -5,72 +6,71 @@ import type {
   DataManifest,
   HomepageRecentWarpData
 } from '../../src/lib/domain/types.js';
-import { assertDataRoot, generatedRoot, resolveDataRoot, sourceCommit } from './paths.js';
-import { assertHomepageRecentWarpData } from './homepage.js';
-import { syncData } from './sync.js';
-import { ensureSearchDocuments, searchInputsPath } from './search-documents.js';
 import { CHARACTER_NAMING_POLICY_VERSION } from '../../src/lib/search/name-metadata.js';
 import { SEARCH_NORMALIZATION_VERSION } from '../../src/lib/search/normalization.js';
+import {
+  readDataManifest,
+  refreshArtifactMetadata,
+  validateGeneratedArtifacts
+} from './generated-artifacts.js';
+import { assertHomepageRecentWarpData } from './homepage.js';
+import { assertDataRoot, generatedRoot, resolveDataRoot, sourceCommit } from './paths.js';
+import { ensureSearchDocuments, searchArtifactPaths } from './search-documents.js';
+import { getGeneratedLocales } from './locale-registry.js';
+import { syncData } from './sync.js';
 
-const manifestPath = path.join(generatedRoot, 'manifest.json');
+async function cacheValid(candidate: DataManifest | undefined): Promise<boolean> {
+  if (!candidate) return false;
+  try {
+    await validateGeneratedArtifacts(candidate);
+    for (const { locale } of getGeneratedLocales()) {
+      const productRoot = path.join(generatedRoot, 'views', locale);
+      const [homepage, characterCatalog, lightConeCatalog, searchInputs] = await Promise.all([
+        readFile(path.join(productRoot, 'homepage.json'), 'utf8').then(
+          (value) => JSON.parse(value) as HomepageRecentWarpData
+        ),
+        readFile(path.join(productRoot, 'catalogs', 'characters.json'), 'utf8').then(
+          (value) => JSON.parse(value) as CatalogEntry[]
+        ),
+        readFile(path.join(productRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
+          (value) => JSON.parse(value) as CatalogEntry[]
+        ),
+        readFile(searchArtifactPaths(locale).inputs, 'utf8').then((value) => JSON.parse(value))
+      ]);
+      assertHomepageRecentWarpData(homepage, characterCatalog, lightConeCatalog);
+      if (
+        searchInputs.official?.schemaVersion !== 1 ||
+        searchInputs.official?.sourceCommit !== candidate.sourceCommit ||
+        searchInputs.official?.normalizationVersion !== SEARCH_NORMALIZATION_VERSION ||
+        searchInputs.official?.namingPolicyVersion !== CHARACTER_NAMING_POLICY_VERSION
+      )
+        return false;
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 let manifest: DataManifest | undefined;
 try {
-  manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
+  manifest = await readDataManifest();
 } catch {
-  // A missing or interrupted generation is handled below.
+  // A missing, obsolete, or interrupted generation is handled below.
 }
-
-const endgameFilesPresent = await Promise.all(
-  ['moc', 'pf', 'as', 'aa'].map(async (mode) => {
-    try {
-      await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8');
-      return true;
-    } catch {
-      return false;
-    }
-  })
-);
-let homepageFilesValid = true;
-try {
-  const [homepage, characterCatalog, lightConeCatalog] = await Promise.all([
-    readFile(path.join(generatedRoot, 'homepage.json'), 'utf8').then(
-      (value) => JSON.parse(value) as HomepageRecentWarpData
-    ),
-    readFile(path.join(generatedRoot, 'catalogs', 'characters.json'), 'utf8').then(
-      (value) => JSON.parse(value) as CatalogEntry[]
-    ),
-    readFile(path.join(generatedRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
-      (value) => JSON.parse(value) as CatalogEntry[]
-    )
-  ]);
-  assertHomepageRecentWarpData(homepage, characterCatalog, lightConeCatalog);
-} catch {
-  homepageFilesValid = false;
-}
-let namingCacheValid = false;
-try {
-  const { official } = JSON.parse(await readFile(searchInputsPath, 'utf8'));
-  namingCacheValid =
-    official.schemaVersion === 1 &&
-    official.sourceCommit === manifest?.sourceCommit &&
-    official.normalizationVersion === SEARCH_NORMALIZATION_VERSION &&
-    official.namingPolicyVersion === CHARACTER_NAMING_POLICY_VERSION;
-} catch {
-  /* A missing cache requires domain regeneration. */
-}
+let valid = await cacheValid(manifest);
+let availableRoot: string | undefined;
 let availableCommit: string | undefined;
 try {
-  const root = assertDataRoot(resolveDataRoot());
-  availableCommit = sourceCommit(root);
+  availableRoot = assertDataRoot(resolveDataRoot());
+  availableCommit = sourceCommit(availableRoot);
 } catch (error) {
   if (process.env.HSR_DEPLOYMENT_BUILD === '1') throw error;
   if (
-    manifest?.schemaVersion === 35 &&
+    valid &&
+    manifest &&
     (!process.env.HSR_EXPECTED_DATA_COMMIT ||
-      manifest.sourceCommit === process.env.HSR_EXPECTED_DATA_COMMIT) &&
-    !endgameFilesPresent.includes(false) &&
-    homepageFilesValid &&
-    namingCacheValid
+      manifest.sourceCommit === process.env.HSR_EXPECTED_DATA_COMMIT)
   ) {
     console.warn(`上游暂不可用，继续使用已有生成数据：${(error as Error).message}`);
   } else {
@@ -78,20 +78,39 @@ try {
   }
 }
 
-// Only unavailable upstream access may fall back. Generation/metadata errors must fail.
-if (availableCommit) {
+if (availableRoot && availableCommit) {
+  const currentTextMapDigests = Object.fromEntries(
+    await Promise.all(
+      getGeneratedLocales().map(async ({ locale, textMapCode }) => {
+        const currentTextMap = await readFile(
+          path.join(availableRoot!, 'TextMap', `TextMap${textMapCode}.json`),
+          'utf8'
+        );
+        return [
+          locale,
+          createHash('sha256')
+            .update(JSON.stringify(JSON.parse(currentTextMap)))
+            .digest('hex')
+        ];
+      })
+    )
+  );
   if (
+    !valid ||
     !manifest ||
-    manifest.schemaVersion !== 35 ||
     manifest.sourceCommit !== availableCommit ||
-    endgameFilesPresent.includes(false) ||
-    !homepageFilesValid ||
-    !namingCacheValid
-  )
-    await syncData();
-  else console.log(`生成数据已是最新版本：${availableCommit.slice(0, 12)}`);
+    getGeneratedLocales().some(
+      ({ locale }) => manifest!.locales[locale].textMapDigest !== currentTextMapDigests[locale]
+    )
+  ) {
+    manifest = await syncData();
+    valid = true;
+  } else {
+    console.log(`生成数据已是最新版本：${availableCommit.slice(0, 12)}`);
+  }
 }
 
-// Validation errors here must never be swallowed by the upstream-offline fallback.
-const currentManifest = JSON.parse(await readFile(manifestPath, 'utf8')) as DataManifest;
-await ensureSearchDocuments(currentManifest.sourceCommit);
+if (!manifest || !valid) throw new Error('生成数据不可用');
+if (await ensureSearchDocuments(manifest.sourceCommit))
+  manifest = await refreshArtifactMetadata(manifest, 'static/generated/zh-CN/search.json');
+await validateGeneratedArtifacts(manifest);

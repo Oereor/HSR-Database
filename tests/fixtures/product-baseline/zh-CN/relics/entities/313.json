@@ -1,0 +1,104 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的暴击率提高4%。当敌方目标被消灭时，装备者暴击伤害提高4%，最多叠加10层。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "313",
+    "name": "无主荒星茨冈尼亚",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "2.1"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的暴击率提高4%。当敌方目标被消灭时，装备者暴击伤害提高4%，最多叠加10层。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的暴击率提高4%。当敌方目标被消灭时，装备者暴击伤害提高4%，最多叠加10层。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的暴击率提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "4%"
+          },
+          {
+            "type": "text",
+            "value": "。当敌方目标被消灭时，装备者暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "4%"
+          },
+          {
+            "type": "text",
+            "value": "，最多叠加"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "10"
+          },
+          {
+            "type": "text",
+            "value": "层。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "313",
+    "kind": "relic",
+    "name": "无主荒星茨冈尼亚",
+    "pieces": [
+      {
+        "description": "位面封装的是茨冈尼亚-Ⅳ最宜居的地带——死寂荒漠「母神卧榻」。三重眼的地母神沉默而朴素，以其厚重的身躯无言地包罗茨冈尼亚的一切生者和死者。",
+        "id": "33135",
+        "name": "茨冈尼亚的母神卧榻",
+        "slot": "NECK"
+      },
+      {
+        "description": "绿松陨石被埃维金人细细磋磨，又以金线翠缎穿之。他们说护身的纽结绝不应被黄沙埋没，而要璀璨得如同「卡卡瓦」之夜里自死亡中脱胎的神体。",
+        "id": "33136",
+        "name": "茨冈尼亚的轮回纽结",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「模拟宇宙•第九世界」沉浸装置兑换",
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "2.1"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33135"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33136"
+      }
+    ],
+    "route": "/relics/313"
+  }
+}

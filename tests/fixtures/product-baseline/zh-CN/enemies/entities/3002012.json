@@ -1,0 +1,70 @@
+{
+  "catalog": {
+    "description": "原本是搭载了通用教材的「圆幕先生」，受到模因病毒的影响，教材变成了蕉材。在蕉石般的严厉与蕉阳般的热情间转换，必不可少的猿工，值得蕉往的猴友。",
+    "id": "3002012",
+    "name": "蕉研组的助蕉",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3002012",
+    "defaultMonsterRef": "c373f261f063d1f3744c3580f2215fbef220067a23fdf2c04ecda1c25e12ff22",
+    "description": "原本是搭载了通用教材的「圆幕先生」，受到模因病毒的影响，教材变成了蕉材。在蕉石般的严厉与蕉阳般的热情间转换，必不可少的猿工，值得蕉往的猴友。",
+    "id": "3002012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "c373f261f063d1f3744c3580f2215fbef220067a23fdf2c04ecda1c25e12ff22",
+      "36e7f771ef34210bfbddc40fe7d01d990f327f6101e843e1561e206978bd8738",
+      "2e41e290544afb1df262ff2dbaba7ab7498716148cefc4ed12b986d94d99f9c0",
+      "effec1b25bfeac56f999cbd4b66a70bfb7ea750eb552ae72844263525534572f",
+      "bd6f8192b73029183823dccfd7d0048f92e8ae2f32249085471bf300f778e3ef",
+      "d225b6dc6ca8dd3711c2fb7cf61d2dd8dd35bf77d46968b143585b2c38121d88"
+    ],
+    "name": "蕉研组的助蕉",
+    "rank": "MinionLv2",
+    "templateRef": "7a2cbf8e1e4333aaee37edc7acb3ae7394506ac5835d9428c1bad9c10e73d12f",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3002012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3002012",
+    "selectableMonsterIds": [
+      "3002012",
+      "300201201",
+      "300201202",
+      "300201203",
+      "300201204",
+      "300201205"
+    ]
+  }
+}

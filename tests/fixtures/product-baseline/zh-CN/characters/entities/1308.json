@@ -1,0 +1,3344 @@
+{
+  "catalog": {
+    "baseName": "黄泉",
+    "description": "自称「巡海游侠」的旅人，本名不详。\n身佩一柄长刀，独行银河。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "id": "1308",
+    "name": "黄泉",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "黄泉",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 101
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 95.04,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 59.4,
+            "perLevel": 2.97
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 153.12,
+            "perLevel": 7.656
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 133.056,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 83.16,
+            "perLevel": 2.97
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 214.368,
+            "perLevel": 7.656
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 171.072,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 106.92,
+            "perLevel": 2.97
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 275.616,
+            "perLevel": 7.656
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 209.088,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 130.68,
+            "perLevel": 2.97
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 336.864,
+            "perLevel": 7.656
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 247.104,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 154.44,
+            "perLevel": 2.97
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 398.112,
+            "perLevel": 7.656
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 285.12,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 178.2,
+            "perLevel": 2.97
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 459.36,
+            "perLevel": 7.656
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 323.136,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 201.96,
+            "perLevel": 2.97
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 520.608,
+            "perLevel": 7.656
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "自称「巡海游侠」的旅人，本名不详。\n身佩一柄长刀，独行银河。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "equipmentRecommendation": {
+      "avatarId": "1308",
+      "cavernSetIds": [
+        "117",
+        "122",
+        "109"
+      ],
+      "lightConeIds": [
+        "23024",
+        "21001",
+        "21044"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "ThunderAddedRatio",
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "314",
+        "306",
+        "301"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "黄泉",
+    "id": "1308",
+    "kind": "character",
+    "name": "黄泉",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "对处于<u>负面效果</u>的敌方目标造成伤害时暴击率提高<unbreak>18%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              }
+            ],
+            "iconKey": "rank--130801",
+            "id": "130801",
+            "name": "高天寥落真言始",
+            "rank": 1
+          },
+          {
+            "description": "行迹【奈落】最高数值所需求「虚无」命途角色的数量减少1名，自身回合开始时获得1点【残梦】，同时为【集真赤】最多的敌方附上1层【集真赤】。",
+            "iconKey": "rank--130802",
+            "id": "130802",
+            "name": "霆鼓俱寂，瑟风亦止",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--130803",
+            "id": "130803",
+            "name": "寒肃惊永蛰",
+            "rank": 3
+          },
+          {
+            "description": "在敌方目标进入战斗时，使其陷入终结技伤害易伤状态，受到的终结技伤害提高<unbreak>8%</unbreak>。",
+            "iconKey": "rank--130804",
+            "id": "130804",
+            "name": "亘焰燎照镜中人",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--130805",
+            "id": "130805",
+            "name": "崇岩支离，千身飘零",
+            "rank": 5
+          },
+          {
+            "description": "黄泉造成的终结技伤害全属性<u>抗性穿透</u>提高<unbreak>20%</unbreak>，施放普攻、战技造成的伤害同时视为终结技伤害，并无视弱点属性削减敌方韧性。击破弱点时，触发雷属性的弱点击破效果。",
+            "extraEffects": [
+              {
+                "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                "id": "30000005",
+                "name": "抗性穿透"
+              }
+            ],
+            "iconKey": "rank--130806",
+            "id": "130806",
+            "name": "灾咎解桎梏",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--SpecialMaxSP",
+          "kind": "special",
+          "max": 0
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1308001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1308001",
+                "variantIds": [
+                  "130801"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "130801",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于黄泉50%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于黄泉60%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于黄泉70%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于黄泉80%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于黄泉90%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于黄泉100%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于黄泉110%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于黄泉120%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于黄泉130%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于黄泉140%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "三途枯榷",
+                "progressionId": "1308001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1308002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1308002",
+                "variantIds": [
+                  "130802"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "130802",
+                "levels": [
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉80%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉30%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉88%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉33%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉96%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉36%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉104%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉39%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "104%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉112%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉42%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉120%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉45%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉130%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉49%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉140%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉53%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉150%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉56%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉160%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉60%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉168%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉63%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉176%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉66%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "176%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉184%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉69%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "184%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉192%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉72%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "获得1点【残梦】，为指定敌方单体附上1层【集真赤】，对其造成等同于黄泉200%攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉75%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，为指定敌方单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】，对其造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "八雷飞渡",
+                "progressionId": "1308002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1308003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1308003",
+                "variantIds": [
+                  "130803"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "specialResource": "<unbreak>9</unbreak>点【残梦】",
+                  "toughnessDamage": 20
+                },
+                "id": "130803",
+                "levels": [
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉223%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉180%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力14.4%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉9.0%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至36.0%。\n【黄泉返渡】：对敌方全体造成等同于黄泉72%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "223%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉238%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉192%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力15.4%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉9.6%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至38.4%。\n【黄泉返渡】：对敌方全体造成等同于黄泉77%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "238%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉253%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉204%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力16.3%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉10.2%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至40.8%。\n【黄泉返渡】：对敌方全体造成等同于黄泉82%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "253%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "204%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "82%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉268%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉216%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力17.3%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉10.8%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至43.2%。\n【黄泉返渡】：对敌方全体造成等同于黄泉86%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "268%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "86%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉283%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉228%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力18.2%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉11.4%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至45.6%。\n【黄泉返渡】：对敌方全体造成等同于黄泉91%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "283%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "228%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "91%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉298%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉240%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力19.2%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉12.0%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至48.0%。\n【黄泉返渡】：对敌方全体造成等同于黄泉96%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "298%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉316%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉255%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力20.4%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉12.8%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至51.0%。\n【黄泉返渡】：对敌方全体造成等同于黄泉102%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "316%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "255%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "51.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "102%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉335%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉270%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力21.6%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉13.5%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至54.0%。\n【黄泉返渡】：对敌方全体造成等同于黄泉108%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "335%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "270%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉353%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉285%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力22.8%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉14.2%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至57.0%。\n【黄泉返渡】：对敌方全体造成等同于黄泉114%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "353%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "285%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "114%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉372%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉300%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力24.0%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉15.0%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至60.0%。\n【黄泉返渡】：对敌方全体造成等同于黄泉120%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "372%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉387%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉312%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力25.0%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉15.6%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至62.4%。\n【黄泉返渡】：对敌方全体造成等同于黄泉125%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "387%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "312%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉402%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉324%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力25.9%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉16.2%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至64.8%。\n【黄泉返渡】：对敌方全体造成等同于黄泉130%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "402%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "324%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉417%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉336%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力26.9%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉16.8%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至67.2%。\n【黄泉返渡】：对敌方全体造成等同于黄泉134%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "417%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "336%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "67.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "134%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉432%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉348%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力27.8%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉17.4%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至69.6%。\n【黄泉返渡】：对敌方全体造成等同于黄泉139%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "432%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "348%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "139%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉446%攻击力的雷属性伤害，对其他目标最多造成等同于黄泉360%攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力28.8%的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉18.0%攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至72.0%。\n【黄泉返渡】：对敌方全体造成等同于黄泉144%攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "依次发动3次【啼泽雨斩】和1次【黄泉返渡】，对指定敌方单体最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "446%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，对其他目标最多造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "360%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。\n【啼泽雨斩】：对指定敌方单体造成等同于黄泉攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，并消去目标最多3层【集真赤】。消去【集真赤】时，立即对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，每消去1层【集真赤】本次伤害倍率额外提高，最多提高至"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【黄泉返渡】：对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害并移除所有【集真赤】。\n终结技期间无法为敌方附上【集真赤】。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "残梦尽染，一刀缭断",
+                "progressionId": "1308003",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2,
+                  4,
+                  5,
+                  6
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1308004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1308004",
+                "variantIds": [
+                  "130804"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "130804",
+                "levels": [
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低10%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低11%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低12%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低13%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低14%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低15%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低16%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低18%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低19%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低20%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低21%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低22%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低23%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低24%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "【残梦】达到9点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低25%，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【残梦】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时可激活终结技。终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至终结技结束。\n任意单位施放技能期间使敌方目标陷入负面效果，黄泉获得1点【残梦】并为目标附上1层【集真赤】，若使多个目标陷入负面效果，则为其中【集真赤】最多的敌方目标附上1层【集真赤】。该效果每次施放技能最多触发1次。\n黄泉在场时，敌方目标离场或被任意单位消灭后，其持有的【集真赤】会转移至全场【集真赤】最多的敌方目标。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "红叶时雨，万倾一空",
+                "progressionId": "1308004",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1308007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1308007",
+                "variantIds": [
+                  "130807"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "130807",
+                "levels": [
+                  {
+                    "description": "立即攻击敌人，每个波次开始时获得【四相断我】，对敌方全体造成等同于黄泉200%攻击力的雷属性伤害，且无视弱点属性削减敌方全体的韧性，击破弱点时，触发雷属性的弱点击破效果。\n【四相断我】：施放终结技后黄泉获得1点【残梦】，并为敌方随机单体附上1层【集真赤】。\n若攻击普通敌人则立即将其消灭，不会进入战斗。未击中敌人时不消耗秘技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击敌人，每个波次开始时获得【四相断我】，对敌方全体造成等同于黄泉"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且无视弱点属性削减敌方全体的韧性，击破弱点时，触发雷属性的弱点击破效果。\n【四相断我】：施放终结技后黄泉获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【残梦】，并为敌方随机单体附上"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【集真赤】。\n若攻击普通敌人则立即将其消灭，不会进入战斗。未击中敌人时不消耗秘技点。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "四相断我",
+                "progressionId": "1308007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "战斗开始时，立即获得<unbreak>5</unbreak>点【残梦】，并为随机1名敌方附上<unbreak>5</unbreak>层【集真赤】。当【残梦】达到上限时，每溢出1点【残梦】获得1层【四相断我】，使【四相断我】最多可以叠加至<unbreak>3</unbreak>层。",
+            "iconKey": "skill-tree--1308101",
+            "id": "1308101",
+            "name": "赤鬼",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "我方队伍中存在1名/2名除黄泉之外的「虚无」命途角色时，使黄泉普攻、战技、终结技造成的伤害为原伤害的<unbreak>115%</unbreak>/<unbreak>160%</unbreak>。",
+            "iconKey": "skill-tree--1308102",
+            "id": "1308102",
+            "name": "奈落",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "终结技的【啼泽雨斩】击中持有【集真赤】的敌方目标时，使黄泉造成的伤害提高<unbreak>30%</unbreak>，该效果最多叠加<unbreak>3</unbreak>层，持续<unbreak>3</unbreak>回合，并在发动【黄泉返渡】时额外造成<unbreak>6</unbreak>次伤害，每次伤害对敌方随机单体造成等同于黄泉<unbreak>25%</unbreak>攻击力的雷属性伤害，该伤害视为终结技伤害。",
+            "iconKey": "skill-tree--1308103",
+            "id": "1308103",
+            "name": "雷心",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1308201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1308202",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1308101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1308203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1308202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "雷属性伤害提高3.2%",
+            "iconKey": "property--ThunderAddedRatio",
+            "id": "1308204",
+            "name": "伤害强化•雷",
+            "prerequisiteIds": [
+              "1308203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "ThunderAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1308205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1308102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1308206",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1308205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1308207",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1308206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "雷属性伤害提高4.8%",
+            "iconKey": "property--ThunderAddedRatio",
+            "id": "1308208",
+            "name": "伤害强化•雷",
+            "prerequisiteIds": [
+              "1308103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "ThunderAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击伤害提高10.7%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1308209",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1308103"
+            ],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1308210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1308201"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1308001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130801",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1308002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130802",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1308003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130803",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1308004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130804",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1308007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130807",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1308",
+    "subtitleRendered": false
+  }
+}

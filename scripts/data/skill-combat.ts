@@ -51,7 +51,10 @@ export function normalizeStanceDisplay(value: unknown): SkillStanceDisplay[] | u
   return display.length ? display : undefined;
 }
 
-export function normalizeSkillCombatMeta(input: SkillCombatInput): SkillCombatMeta {
+export function normalizeSkillCombatMeta(
+  input: SkillCombatInput,
+  labels: Record<KnownSkillEffect, string> = SKILL_EFFECT_LABELS
+): SkillCombatMeta {
   if (positive(input.bpNeed) && positive(input.bpAdd)) {
     throw new Error('技能同时具有正 BPNeed 和 BPAdd，不能推测净变化');
   }
@@ -67,7 +70,7 @@ export function normalizeSkillCombatMeta(input: SkillCombatInput): SkillCombatMe
       ? {
           effect: {
             code: effectCode,
-            label: knownEffect ? SKILL_EFFECT_LABELS[effectCode as KnownSkillEffect] : effectCode,
+            label: knownEffect ? labels[effectCode as KnownSkillEffect] : effectCode,
             known: knownEffect
           }
         }

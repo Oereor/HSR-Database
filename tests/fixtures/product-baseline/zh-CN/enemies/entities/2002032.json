@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "追随十王司判官执行任务的武卫。\n面戴象征冥世来使的黑白绘面，手持铡刀，其攻击一如十王司的使命沉重而不可违逆。",
+    "id": "2002032",
+    "name": "幽府武弁",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2002032",
+    "defaultMonsterRef": "da1fb49f6fdc84b9541c6ec7e72dc2443c7c8b40f99b2c08206b17e048086429",
+    "description": "追随十王司判官执行任务的武卫。\n面戴象征冥世来使的黑白绘面，手持铡刀，其攻击一如十王司的使命沉重而不可违逆。",
+    "id": "2002032",
+    "kind": "enemy",
+    "monsterRefs": [
+      "da1fb49f6fdc84b9541c6ec7e72dc2443c7c8b40f99b2c08206b17e048086429",
+      "03a2811e877237708f828d2f89babcfb986b2d22a8d36648f40f8c955c91a6ef",
+      "c4d9351efef3848cfde2132a6c8a16e19fb8fb7c84a70256e549e51f32c4d7b4"
+    ],
+    "name": "幽府武弁",
+    "rank": "MinionLv2",
+    "templateRef": "383b8e5baa678dff068424f1990d35fb35b3a0429f68d54e2bc1f6f90db40e9c",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2002032",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2002032",
+    "selectableMonsterIds": [
+      "2002032",
+      "200203201",
+      "200203202"
+    ]
+  }
+}

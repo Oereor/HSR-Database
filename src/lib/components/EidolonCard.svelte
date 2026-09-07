@@ -3,6 +3,7 @@
   import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import type { Eidolon } from '$lib/domain/types';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let eidolon: Eidolon;
 
@@ -14,9 +15,9 @@
       class="rank-number">{eidolon.rank}</span
     >{/if}
   <div>
-    {#if iconUrl}<small class="rank-label">星魂 {eidolon.rank}</small>{/if}
+    {#if iconUrl}<small class="rank-label">{m.eidolon_rank({ rank: eidolon.rank })}</small>{/if}
     <h3><GameText text={eidolon.name} /></h3>
-    <p><GameText text={eidolon.description || '上游未提供本地化描述。'} /></p>
+    <p><GameText text={eidolon.description || m.common_localized_description_unavailable()} /></p>
     <SkillExtraEffects effects={eidolon.extraEffects ?? []} />
   </div>
 </article>

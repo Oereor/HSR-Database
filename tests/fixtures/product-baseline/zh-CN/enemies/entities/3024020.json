@@ -1,0 +1,78 @@
+{
+  "catalog": {
+    "description": "「星核猎手」的一员，身着沉重装甲的神秘战士。他的铁甲能够释放炽焰，点燃战场，发动烈火般的攻势。",
+    "id": "3024020",
+    "name": "「星核猎手」萨姆",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3024020",
+    "defaultMonsterRef": "83e8137b8b13f877a63eafe7b1a2f7e64283edf2d3f03cb4e4cf39f0ec1d6ee7",
+    "description": "「星核猎手」的一员，身着沉重装甲的神秘战士。他的铁甲能够释放炽焰，点燃战场，发动烈火般的攻势。",
+    "id": "3024020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "83e8137b8b13f877a63eafe7b1a2f7e64283edf2d3f03cb4e4cf39f0ec1d6ee7",
+      "7d756197085e61f34d7d0a4a14c3b9f1603c2cac3e2d46388b9e1968d4b38abf",
+      "23add1e181a233d6f2c2c4192387a25fa995a612d82d903148802a7fd39efa93",
+      "17d3de6f2c6afd90f287fd3270b34fe7d0da6de6101b3d406b3a95024ce7e0b3",
+      "f33e68ecee4929b7c849a0b605bbeef3e57f3832774e8e262ac10b08da4312ae",
+      "2b211f41301077a878c25fea13112379ae9c3aff5cb17eeb809330fffaf3d351",
+      "45dae6a0a8d5cc6dad16f6a034c164153d3fd2b7a21f8525f5ee9412e4db57d6",
+      "402ebb4d914c1555ed52b7e849375176ec8c7c59668338aa28fc2621b4ed6536",
+      "6913d37779df46dcba4ee435ddfeea7090574ddd1d11f46b704064fc1cccc842",
+      "403a82a8e52dd3c24e160653ba6c0854bd1814a93897c90335cc873987957ca6"
+    ],
+    "name": "「星核猎手」萨姆",
+    "rank": "LittleBoss",
+    "templateRef": "3f6c2e87d94e6aa1a9a9450a391252af929d73b37ba1cfa63a5cffa3203cc0f2",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3024020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3024020",
+    "selectableMonsterIds": [
+      "3024020",
+      "302402001",
+      "302402002",
+      "302402003",
+      "302402004",
+      "302402005",
+      "302402006",
+      "302402007",
+      "302402008",
+      "302402009"
+    ]
+  }
+}

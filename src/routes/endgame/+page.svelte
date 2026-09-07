@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   import OverviewHero from '$lib/components/OverviewHero.svelte';
   import EndgameOverviewCard from '$lib/components/endgame/EndgameOverviewCard.svelte';
   import EndgameOverviewHeroArtwork from '$lib/components/endgame/EndgameOverviewHeroArtwork.svelte';
@@ -12,15 +13,15 @@
 </script>
 
 <svelte:head>
-  <title>{formatDocumentTitle('高难模式')}</title>
-  <meta name="description" content="浏览混沌回忆、虚构叙事、末日幻影与异相仲裁的历史赛期。" />
+  <title>{formatDocumentTitle(m.endgame_hero_title())}</title>
+  <meta name="description" content={m.endgame_hero_description()} />
 </svelte:head>
 
 <OverviewHero
-  eyebrow="DATABASE / ENDGAME"
-  title="高难模式"
-  description="浏览混沌回忆、虚构叙事、末日幻影与异相仲裁的历史赛期。"
-  countLabel="共 4 种模式"
+  eyebrow={m.endgame_eyebrow()}
+  title={m.endgame_hero_title()}
+  description={m.endgame_hero_description()}
+  countLabel={m.endgame_hero_count()}
 >
   <svelte:fragment slot="artwork"><EndgameOverviewHeroArtwork /></svelte:fragment>
 </OverviewHero>

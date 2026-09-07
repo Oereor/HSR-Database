@@ -1,0 +1,3852 @@
+{
+  "catalog": {
+    "baseName": "波提欧",
+    "description": "浪迹银河的改造人牛仔，极度乐观、放荡不羁。\n身为「巡海游侠」的一员，为惩奸除恶，可以无所不用其极——\n高调行事的背后，渴望以此引起复仇对象「星际和平公司」的注意。",
+    "element": "Physical",
+    "elementName": "物理",
+    "id": "1315",
+    "name": "波提欧",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "波提欧",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 107
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 84.48,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 59.4,
+            "perLevel": 2.97
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 163.68,
+            "perLevel": 8.184
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 118.272,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 83.16,
+            "perLevel": 2.97
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 229.152,
+            "perLevel": 8.184
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 152.064,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 106.92,
+            "perLevel": 2.97
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 294.624,
+            "perLevel": 8.184
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 185.856,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 130.68,
+            "perLevel": 2.97
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 360.096,
+            "perLevel": 8.184
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 219.648,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 154.44,
+            "perLevel": 2.97
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 425.568,
+            "perLevel": 8.184
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 253.44,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 178.2,
+            "perLevel": 2.97
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 491.04,
+            "perLevel": 8.184
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 287.232,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 201.96,
+            "perLevel": 2.97
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 556.512,
+            "perLevel": 8.184
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "浪迹银河的改造人牛仔，极度乐观、放荡不羁。\n身为「巡海游侠」的一员，为惩奸除恶，可以无所不用其极——\n高调行事的背后，渴望以此引起复仇对象「星际和平公司」的注意。",
+    "element": "Physical",
+    "elementName": "物理",
+    "equipmentRecommendation": {
+      "avatarId": "1315",
+      "cavernSetIds": [
+        "111",
+        "119",
+        "102"
+      ],
+      "lightConeIds": [
+        "23027",
+        "21024"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "AttackAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "PhysicalAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "BreakDamageAddedRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "307",
+        "316",
+        "301"
+      ],
+      "subStatPropertyTypes": [
+        "BreakDamageAddedRatioBase",
+        "SpeedDelta",
+        "AttackAddedRatio",
+        "CriticalChanceBase",
+        "CriticalDamageBase"
+      ]
+    },
+    "fullName": "波提欧",
+    "id": "1315",
+    "kind": "character",
+    "name": "波提欧",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "战斗开始时，获得1层【优势口袋】。波提欧造成伤害时无视敌方目标<unbreak>16%</unbreak>的防御力。",
+            "iconKey": "rank--131501",
+            "id": "131501",
+            "name": "扬尘孤星",
+            "rank": 1
+          },
+          {
+            "description": "处于【绝命对峙】并获得【优势口袋】时，恢复<unbreak>1</unbreak>个战技点，并且击破特攻提高<unbreak>30%</unbreak>，持续<unbreak>2</unbreak>回合。该效果单个回合内不可重复触发，在获得溢出的【优势口袋】时也会触发。",
+            "iconKey": "rank--131502",
+            "id": "131502",
+            "name": "里程碑贩子",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--131503",
+            "id": "131503",
+            "name": "大理石果园守卫",
+            "rank": 3
+          },
+          {
+            "description": "处于【绝命对峙】的敌方目标受到波提欧攻击时，受到的伤害额外提高<unbreak>12%</unbreak>。波提欧受到处于【绝命对峙】的敌方目标的攻击时，受到的伤害提高效果降低<unbreak>12%</unbreak>。",
+            "iconKey": "rank--131504",
+            "id": "131504",
+            "name": "冷肉名厨",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--131505",
+            "id": "131505",
+            "name": "树桩演说家",
+            "rank": 5
+          },
+          {
+            "description": "触发天赋造成<u>击破伤害</u>时，对目标额外造成等同于原伤害倍率<unbreak>40%</unbreak>的<u>击破伤害</u>，对相邻目标额外造成等同于原伤害倍率<unbreak>70%</unbreak>的<u>击破伤害</u>。",
+            "extraEffects": [
+              {
+                "description": "击破特攻、目标韧性上限、角色等级越高，造成的击破伤害越高。\n击破伤害无法暴击，不受伤害提高类效果所影响。",
+                "id": "10000014",
+                "name": "击破伤害"
+              }
+            ],
+            "iconKey": "rank--131506",
+            "id": "131506",
+            "name": "撬棍旅馆的浣熊",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 115
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1315001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1315001",
+                "variantIds": [
+                  "131501",
+                  "131508"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "131501",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧50%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧60%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧70%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧80%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧90%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧100%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧110%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧120%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧130%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧140%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "蹄铁裂颅",
+                "progressionId": "1315001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              },
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "131508",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧110%攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧132%攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧154%攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧176%攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "176%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧198%攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "198%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧220%攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧242%攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "242%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧264%攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "264%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧286%攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "286%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于波提欧308%攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "308%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n强化普攻无法恢复战技点，且仅能以处于【绝命对峙】的敌方目标为目标。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "击锤连弩",
+                "progressionId": "1315001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1315002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1315002",
+                "variantIds": [
+                  "131502"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  }
+                },
+                "id": "131502",
+                "levels": [
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高15%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高17%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高18%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高20%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高21%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高23%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高24%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高26%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高28%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高30%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高32%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高33%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高35%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高36%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续2回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高38%/15%。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及自身进入【绝命对峙】状态，波提欧普攻获得强化且无法施放战技，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，波提欧每回合开始时持续回合数减1。\n处于【绝命对峙】的敌方目标陷入嘲讽状态。该目标/波提欧受到对方攻击时，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该目标被消灭或弱点被击破后，波提欧均可获得1层【优势口袋】，随后解除【绝命对峙】。\n该战技无法恢复能量。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "炽砾舞者的探戈",
+                "progressionId": "1315002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1315003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1315003",
+                "variantIds": [
+                  "131503"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "使目标在下次行动前的等待间隔延长。",
+                      "id": "10000002",
+                      "name": "行动延后"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "131503",
+                "levels": [
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧240%攻击力的物理属性伤害，并使其行动延后30%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧256%攻击力的物理属性伤害，并使其行动延后31%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "256%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧272%攻击力的物理属性伤害，并使其行动延后32%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "272%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧288%攻击力的物理属性伤害，并使其行动延后33%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "288%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧304%攻击力的物理属性伤害，并使其行动延后34%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "304%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧320%攻击力的物理属性伤害，并使其行动延后35%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "320%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧340%攻击力的物理属性伤害，并使其行动延后36%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "340%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧360%攻击力的物理属性伤害，并使其行动延后38%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "360%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧380%攻击力的物理属性伤害，并使其行动延后39%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "380%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧400%攻击力的物理属性伤害，并使其行动延后40%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "400%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧416%攻击力的物理属性伤害，并使其行动延后41%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "416%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧432%攻击力的物理属性伤害，并使其行动延后42%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "432%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧448%攻击力的物理属性伤害，并使其行动延后43%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "448%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧464%攻击力的物理属性伤害，并使其行动延后44%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "464%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "为指定敌方单体添加物理弱点，持续2回合。\n对该目标造成等同于波提欧480%攻击力的物理属性伤害，并使其行动延后45%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定敌方单体添加物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对该目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "480%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "尘魔舞者的日落秀",
+                "progressionId": "1315003",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1315004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1315004",
+                "variantIds": [
+                  "131504"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "当敌方目标的韧性被削减至0时进入的特殊状态，进入该状态的目标行动会被延后。",
+                      "id": "10000006",
+                      "name": "弱点击破状态"
+                    },
+                    {
+                      "description": "击破特攻、目标韧性上限、角色等级越高，造成的击破伤害越高。\n击破伤害无法暴击，不受伤害提高类效果所影响。",
+                      "id": "10000014",
+                      "name": "击破伤害"
+                    }
+                  ]
+                },
+                "id": "131504",
+                "levels": [
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧35%/60%/85%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "85%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧39%/66%/94%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧42%/72%/102%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "102%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧46%/78%/111%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "111%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧49%/84%/119%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "119%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧53%/90%/127%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "127%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧57%/98%/138%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "138%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧61%/105%/149%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "149%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧66%/113%/159%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "159%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧70%/120%/170%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "170%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧74%/126%/179%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "74%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "179%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧77%/132%/187%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "187%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧81%/138%/196%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "138%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "196%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧84%/144%/204%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "204%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "每层【优势口袋】使强化普攻的削韧值提高50%，最多叠加3层。\n施放强化普攻期间，若目标处于弱点击破状态，基于【优势口袋】层数，对目标造成等同于波提欧88%/150%/213%物理属性击破伤害的击破伤害，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的16倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每层【优势口袋】使强化普攻的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n施放强化普攻期间，若目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，基于【优势口袋】层数，对目标造成等同于波提欧"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "/"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "213%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "物理属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害计入的韧性上限不超过普攻【蹄铁裂颅】基础削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "16"
+                      },
+                      {
+                        "type": "text",
+                        "value": "倍。\n战斗胜利后，波提欧能够将【优势口袋】保留至下一次战斗中。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "轮中五豆",
+                "progressionId": "1315004",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1315007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1315007",
+                "variantIds": [
+                  "131507"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "131507",
+                "levels": [
+                  {
+                    "description": "使用秘技后，下一次战斗首次施放战技时，为目标添加与终结技相同的物理弱点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，下一次战斗首次施放战技时，为目标添加与终结技相同的物理弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "三乘九的微笑",
+                "progressionId": "1315007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "使自身暴击率/暴击伤害提高，提高数值等同于击破特攻的<unbreak>10%</unbreak>/<unbreak>50%</unbreak>，最多使暴击率/暴击伤害提高<unbreak>30%</unbreak>/<unbreak>150%</unbreak>。",
+            "iconKey": "skill-tree--1315101",
+            "id": "1315101",
+            "name": "幽灵装填",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "波提欧处于【绝命对峙】时，受到未处于【绝命对峙】目标的伤害降低<unbreak>30%</unbreak>。",
+            "iconKey": "skill-tree--1315102",
+            "id": "1315102",
+            "name": "蛇之上行",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "处于【绝命对峙】并获得【优势口袋】时，恢复<unbreak>10</unbreak>点能量。该效果在获得溢出的【优势口袋】时也会触发。",
+            "iconKey": "skill-tree--1315103",
+            "id": "1315103",
+            "name": "抵近射击",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1315201",
+            "name": "击破强化",
+            "prerequisiteIds": [],
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1315202",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1315101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1315203",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1315202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1315204",
+            "name": "生命强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1315205",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1315102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1315206",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1315205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1315207",
+            "name": "击破强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1315208",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1315103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1315209",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1315208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "击破特攻提高10.7%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1315210",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1315208"
+            ],
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1315001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131501",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131508",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1315002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131502",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1315003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131503",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1315004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131504",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1315007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131507",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1315",
+    "subtitleRendered": false
+  }
+}

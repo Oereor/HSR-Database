@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为死龙·玻吕刻斯，冥河中沉眠的死龙，受炼成召引再度苏醒，化成槁骨腐肉的模样。\n它曾是「死亡」的泰坦，逆溯冥河向上，离开乌有之界于现世搁浅。它曾随冥河潮汐涌上大地，为翁法罗斯的万事万物烙上命定的终局。那些将死的，或已死的存在，皆会因它的归来感受到灵魂深处的颤栗。",
+    "id": "4014031",
+    "name": "冥魂渡者，死龙残躯，玻吕刻斯（完整）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4014031",
+    "defaultMonsterRef": "f8f7d7696719bc455861abd104156c83c60ed7b9b99e210f49963315e8975e90",
+    "description": "代码受到影响后的完整投影。参照本体为死龙·玻吕刻斯，冥河中沉眠的死龙，受炼成召引再度苏醒，化成槁骨腐肉的模样。\n它曾是「死亡」的泰坦，逆溯冥河向上，离开乌有之界于现世搁浅。它曾随冥河潮汐涌上大地，为翁法罗斯的万事万物烙上命定的终局。那些将死的，或已死的存在，皆会因它的归来感受到灵魂深处的颤栗。",
+    "id": "4014031",
+    "kind": "enemy",
+    "monsterRefs": [
+      "f8f7d7696719bc455861abd104156c83c60ed7b9b99e210f49963315e8975e90",
+      "a4211d407086c1b616f765a305ed0b0666266cd8ae486c53af577d22815068c5"
+    ],
+    "name": "冥魂渡者，死龙残躯，玻吕刻斯（完整）",
+    "rank": "LittleBoss",
+    "templateRef": "87cac39567198a8d09a9c3e0d3cb11219a871560dceebf3c8ad9fc37dd9a1276",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4014031",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4014031",
+    "selectableMonsterIds": [
+      "4014031",
+      "401403101"
+    ]
+  }
+}

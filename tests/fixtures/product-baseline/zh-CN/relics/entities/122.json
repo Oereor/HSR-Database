@@ -1,0 +1,139 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：暴击率提高8%。 4件：战技和终结技造成的伤害提高20%，施放终结技后，下一次施放战技时造成的伤害额外提高25%。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "122",
+    "name": "识海迷坠的学者",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "2.6"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：暴击率提高8%。 4件：战技和终结技造成的伤害提高20%，施放终结技后，下一次施放战技时造成的伤害额外提高25%。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "暴击率提高8%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "暴击率提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "8%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "战技和终结技造成的伤害提高20%，施放终结技后，下一次施放战技时造成的伤害额外提高25%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "战技和终结技造成的伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "20%"
+          },
+          {
+            "type": "text",
+            "value": "，施放终结技后，下一次施放战技时造成的伤害额外提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "25%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "122",
+    "kind": "relic",
+    "name": "识海迷坠的学者",
+    "pieces": [
+      {
+        "description": "一枚映照着巨厦的单片晶石眼镜，与手杖、表链、胸针一起衬托出主人的时髦与学识。",
+        "id": "31221",
+        "name": "学者的银边视镜",
+        "slot": "HEAD"
+      },
+      {
+        "description": "以合金制成、辅助手指活动的外骨骼，需要配合使用者手型订制，价值不菲。",
+        "id": "31222",
+        "name": "学者的辅助指节",
+        "slot": "HAND"
+      },
+      {
+        "description": "粗花呢外套和针织衫是学院中常见的搭配，耐用不易皱的面料对访问学者来说正合适。",
+        "id": "31223",
+        "name": "学者的粗纺外套",
+        "slot": "BODY"
+      },
+      {
+        "description": "松软舒适的女式短靴，搭配合适的小腿裤会有恰到好处的时尚感，已陪伴主人极地科考多年。",
+        "id": "31224",
+        "name": "学者的绒皮雪靴",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【幽囚狱】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "2.6"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31221"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31222"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31223"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31224"
+      }
+    ],
+    "route": "/relics/122"
+  }
+}

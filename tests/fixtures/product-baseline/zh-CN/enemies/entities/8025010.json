@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "阮•梅培育的「繁育」令使复制体，以残缺的姿态短暂现世。原型为继承虫皇之颚的巨蠹，能以口器凝聚裂解天体的死光，将破碎的群星作为诞育子嗣的温床，曾是寰宇蝗灾中的诸界噩梦之一。",
+    "id": "8025010",
+    "name": "碎星王虫•斯喀拉卡巴兹（拟造）",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8025010",
+    "defaultMonsterRef": "585ab0b2844a117389b726acc3c58820707aba857b48de7afdaef3589610cff7",
+    "description": "阮•梅培育的「繁育」令使复制体，以残缺的姿态短暂现世。原型为继承虫皇之颚的巨蠹，能以口器凝聚裂解天体的死光，将破碎的群星作为诞育子嗣的温床，曾是寰宇蝗灾中的诸界噩梦之一。",
+    "id": "8025010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "585ab0b2844a117389b726acc3c58820707aba857b48de7afdaef3589610cff7",
+      "00dbd135f122dbccda933aa97d41bb02b09273f02c39706ea5ea1e85443307e5",
+      "f4549ba25a533caf686d1ccdbe8851b9203fb18e91c3d503b7cf775343a4d83b",
+      "025d0172a8e99ec85ce41d688c968c4db3c850e361b78262078b74402d6b351f"
+    ],
+    "name": "碎星王虫•斯喀拉卡巴兹（拟造）",
+    "rank": "BigBoss",
+    "templateRef": "33b66270244f5a513c1c5eb24ddfe72df17398df64b0df1905ba6c04d7611f2c",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8025010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8025010",
+    "selectableMonsterIds": [
+      "8025010",
+      "802501001",
+      "802501002",
+      "802501003"
+    ]
+  }
+}

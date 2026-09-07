@@ -1,0 +1,3143 @@
+{
+  "catalog": {
+    "baseName": "素裳",
+    "description": "出生于仙舟「曜青」，前往「罗浮」云骑军接受历练的新兵。\n身佩母亲赠予的家传剑器，憧憬着自己即将书写的未来。",
+    "element": "Physical",
+    "elementName": "物理",
+    "id": "1206",
+    "name": "素裳",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "素裳",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 107
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 76.8,
+            "perLevel": 3.84
+          },
+          "defence": {
+            "base": 57,
+            "perLevel": 2.85
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 124.8,
+            "perLevel": 6.24
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 107.52,
+            "perLevel": 3.84
+          },
+          "defence": {
+            "base": 79.8,
+            "perLevel": 2.85
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 174.72,
+            "perLevel": 6.24
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 138.24,
+            "perLevel": 3.84
+          },
+          "defence": {
+            "base": 102.6,
+            "perLevel": 2.85
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 224.64,
+            "perLevel": 6.24
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 168.96,
+            "perLevel": 3.84
+          },
+          "defence": {
+            "base": 125.4,
+            "perLevel": 2.85
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 274.56,
+            "perLevel": 6.24
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 199.68,
+            "perLevel": 3.84
+          },
+          "defence": {
+            "base": 148.2,
+            "perLevel": 2.85
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 324.48,
+            "perLevel": 6.24
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 230.4,
+            "perLevel": 3.84
+          },
+          "defence": {
+            "base": 171,
+            "perLevel": 2.85
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 374.4,
+            "perLevel": 6.24
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 261.12,
+            "perLevel": 3.84
+          },
+          "defence": {
+            "base": 193.8,
+            "perLevel": 2.85
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 424.32,
+            "perLevel": 6.24
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "出生于仙舟「曜青」，前往「罗浮」云骑军接受历练的新兵。\n身佩母亲赠予的家传剑器，憧憬着自己即将书写的未来。",
+    "element": "Physical",
+    "elementName": "物理",
+    "equipmentRecommendation": {
+      "avatarId": "1206",
+      "cavernSetIds": [
+        "105",
+        "111",
+        "119"
+      ],
+      "lightConeIds": [
+        "21010",
+        "24001"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "PhysicalAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "BreakDamageAddedRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "311",
+        "307",
+        "301"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta",
+        "BreakDamageAddedRatioBase"
+      ]
+    },
+    "fullName": "素裳",
+    "id": "1206",
+    "kind": "character",
+    "name": "素裳",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "对陷入<u>弱点击破状态</u>的敌方目标施放战技后，恢复1个战技点。",
+            "extraEffects": [
+              {
+                "description": "当敌方目标的韧性被削减至0时进入的特殊状态，进入该状态的目标行动会被延后。",
+                "id": "10000006",
+                "name": "弱点击破状态"
+              }
+            ],
+            "iconKey": "rank--120601",
+            "id": "120601",
+            "name": "游刃有余",
+            "rank": 1
+          },
+          {
+            "description": "触发【剑势】后，素裳受到的伤害降低<unbreak>20%</unbreak>，持续1回合。",
+            "iconKey": "rank--120602",
+            "id": "120602",
+            "name": "其身百炼",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--120603",
+            "id": "120603",
+            "name": "传古剑流",
+            "rank": 3
+          },
+          {
+            "description": "素裳的击破特攻提高<unbreak>40%</unbreak>。",
+            "iconKey": "rank--120604",
+            "id": "120604",
+            "name": "其心百辟",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--120605",
+            "id": "120605",
+            "name": "太虚神意",
+            "rank": 5
+          },
+          {
+            "description": "天赋的加速效果可以叠加，最多叠加2层，且进入战斗后素裳立即获得1层天赋的加速效果。",
+            "iconKey": "rank--120606",
+            "id": "120606",
+            "name": "上善若水",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 120
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1206001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1206001",
+                "variantIds": [
+                  "120601"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "120601",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于素裳50%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳60%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳70%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳80%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳90%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳100%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳110%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳120%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳130%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳140%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "云骑剑经 • 素霓",
+                "progressionId": "1206001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1206002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1206002",
+                "variantIds": [
+                  "120602"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    },
+                    {
+                      "description": "当敌方目标的韧性被削减至0时进入的特殊状态，进入该状态的目标行动会被延后。",
+                      "id": "10000006",
+                      "name": "弱点击破状态"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "120602",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于素裳105%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳50%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳116%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳55%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "116%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳126%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳60%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳137%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳65%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "137%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳147%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳70%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "147%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳158%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳75%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "158%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳171%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳81%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "171%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳184%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳88%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "184%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳197%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳94%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "197%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳210%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳100%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳221%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳105%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "221%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳231%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳110%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "231%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳242%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳115%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "242%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "115%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳252%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳120%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳263%攻击力的物理属性伤害。同时最后一击后有33%概率发动【剑势】，对目标造成等同于素裳125%攻击力的物理属性附加伤害。\n若该目标处于弱点击破状态，则【剑势】必定发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "263%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。同时最后一击后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "概率发动【剑势】，对目标造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若该目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，则【剑势】必定发动。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "云骑剑经 • 山倾",
+                "progressionId": "1206002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1206003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1206003",
+                "variantIds": [
+                  "120603"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "120603",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于素裳192%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高18%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳205%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高19%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "205%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳218%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高20%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "218%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳230%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高22%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳243%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高23%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "243%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳256%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高24%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "256%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳272%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高26%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "272%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳288%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高27%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "288%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳304%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高28%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "304%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳320%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高30%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "320%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳333%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高31%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "333%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳346%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高32%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "346%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳358%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高34%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "358%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳371%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高35%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "371%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于素裳384%攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高36%，且施放战技时额外增加2次【剑势】的发动判定，持续2回合。\n通过额外判定发动的【剑势】伤害为原伤害的50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于素裳"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "384%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使素裳立即行动。同时使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且施放战技时额外增加2次【剑势】的发动判定，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n通过额外判定发动的【剑势】伤害为原伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "太虚形蕴 • 烛夜",
+                "progressionId": "1206003",
+                "scalingParamIndexes": [
+                  0,
+                  3
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1206004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1206004",
+                "variantIds": [
+                  "120604"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "120604",
+                "levels": [
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高15.00%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.00%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高15.50%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高16.00%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.00%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高16.50%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高17.00%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.00%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高17.50%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高18.13%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.13%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高18.75%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高19.38%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高20.00%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.00%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高20.50%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高21.00%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.00%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高21.50%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高22.00%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.00%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "当场上有敌方目标的弱点被击破，素裳的速度提高22.50%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当场上有敌方目标的弱点被击破，素裳的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "游刃若水",
+                "progressionId": "1206004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1206007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1206007",
+                "variantIds": [
+                  "120607"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "120607",
+                "levels": [
+                  {
+                    "description": "立即攻击敌人，进入战斗后对敌方全体造成等同于素裳80%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击敌人，进入战斗后对敌方全体造成等同于素裳"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "云骑剑经 • 叩阵",
+                "progressionId": "1206007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "若当前生命值百分比小于等于<unbreak>50%</unbreak>，则被敌方目标攻击的概率降低。",
+            "iconKey": "skill-tree--1206101",
+            "id": "1206101",
+            "name": "赤子",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "每发动1次【剑势】，【剑势】造成的伤害提高<unbreak>3%</unbreak>，该效果最多叠加<unbreak>10</unbreak>层。",
+            "iconKey": "skill-tree--1206102",
+            "id": "1206102",
+            "name": "逐寇",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放普攻或战技后，若场上有敌方目标处于<u>弱点击破状态</u>，则素裳的<u>行动提前</u><unbreak>15%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "当敌方目标的韧性被削减至0时进入的特殊状态，进入该状态的目标行动会被延后。",
+                "id": "10000006",
+                "name": "弱点击破状态"
+              },
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "skill-tree--1206103",
+            "id": "1206103",
+            "name": "破敌",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1206201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1206202",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1206101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1206203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1206202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1206204",
+            "name": "防御强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1206205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1206102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1206206",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1206205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1206207",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1206208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1206103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "生命值上限提高8.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1206209",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1206208"
+            ],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1206210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1206208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1206001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120601",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1206002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120602",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1206003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120603",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1206004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120604",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1206007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120607",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1206",
+    "subtitleRendered": false
+  }
+}

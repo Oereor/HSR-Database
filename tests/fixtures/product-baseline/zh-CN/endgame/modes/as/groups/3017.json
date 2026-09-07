@@ -1,0 +1,1145 @@
+{
+  "presentation": {
+    "defaultEncounterId": "30174",
+    "encounters": [
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方目标被<color=#f29e38ff>弱点击破</color>时，使我方全体目标解除控制状态并激活终结技。\n敌方全体目标受到的欢愉伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，弱点击破伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110016,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3017:BuffList1",
+              "options": [
+                {
+                  "description": "敌方全体受到的欢愉伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>。我方队伍中存在欢愉命途的角色时，我方全体的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111089,
+                  "name": "喜上眉梢",
+                  "order": 1
+                },
+                {
+                  "description": "敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>。击破敌方弱点后，我方全体速度提高<color=#f29e38ff><unbreak>15%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111086,
+                  "name": "望风瓦解",
+                  "order": 2
+                },
+                {
+                  "description": "队伍中的第1位角色施放终结技后，使自身的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>，暴击伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，持续<color=#f29e38ff><unbreak>1</unbreak></color>回合。",
+                  "id": 3111064,
+                  "name": "登锋陷阵",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30171:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101601,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影会在战斗中开启<u>连麦PK</u>，选择一名我方角色前往副战场战斗，其余角色留在主战场提供支援。<u>连麦PK</u>开启后，处于主战场的敌方目标受到的伤害降低，并免疫控制类负面状态，首领幻影进入【<u>韧性锁止</u>】状态。首领幻影的回合开始时，【我方人气值】和【对方人气值】均重置为初始状态。",
+                  "id": 101602,
+                  "linkedEffects": [
+                    {
+                      "description": "我方全体目标将分别在<color=#f29e38ff>主战场和副战场</color>进行作战。在阿哈时刻以外，不同战场的我方和敌方目标<color=#f29e38ff>无法攻击</color>到另一战场的目标。在阿哈时刻期间，欢愉技始终只能对<color=#f29e38ff>副战场</color>的敌方目标发动攻击。\n连麦PK倒计时结束、处于副战场的我方角色陷入无法战斗状态、处于副战场的所有敌方目标被消灭、副战场没有可以战斗的我方角色，以上任意条件触发时，连麦PK解除。",
+                      "id": "501401001",
+                      "name": "连麦PK"
+                    },
+                    {
+                      "description": "韧性值无法被削减至低于1点。",
+                      "id": "70000318",
+                      "name": "韧性锁止"
+                    }
+                  ],
+                  "name": "双重战场",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420431-0",
+                "level": 60,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/5014014",
+                        "hp": {
+                          "exactPerBar": "215747.2136160",
+                          "phaseCount": 2,
+                          "roundedPerBar": "215,747"
+                        },
+                        "identity": "[501401401,5014014,\"20460\",\"1\",\"52.724148\",\"0.2\",\"215747.2136160\",\"resolved\",\"215747.2136160\",896,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1320\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1320\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"440\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[501207101,501208101,501203107,501301003,501401103],true,true,false,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 501401401,
+                        "monsterTemplateId": 5014014,
+                        "name": "万众瞩目的超偶像",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5014010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "440",
+                          "roundedPerBar": "440"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3017:BuffList2",
+              "options": [
+                {
+                  "description": "我方目标对敌方造成持续伤害后，回复<color=#f29e38ff><unbreak>1</unbreak></color>点能量。我方全体造成的持续伤害无视敌方目标<color=#f29e38ff><unbreak>40%</unbreak></color>的全属性抗性。",
+                  "id": 3111058,
+                  "name": "附骨之疽",
+                  "order": 1
+                },
+                {
+                  "description": "我方队伍中存在智识命途的角色时，我方全体全属性抗性穿透提高<color=#f29e38ff><unbreak>25%</unbreak></color>。",
+                  "id": 3111082,
+                  "name": "智圆行方",
+                  "order": 2
+                },
+                {
+                  "description": "当前在场的我方忆灵数量大于等于3时，我方全体目标造成的伤害提高<color=#f29e38ff><unbreak>60%</unbreak></color>。",
+                  "id": 3111080,
+                  "name": "前尘影事",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30171:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 100901,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影每回合结束时获得一定数量的<color=#f29e38ff><u>虫卵</u></color>。首领幻影可以消耗虫卵强化虫群召唤物，使其获得1层【生长激素】。",
+                  "id": 100902,
+                  "linkedEffects": [
+                    {
+                      "description": "首领幻影每回合结束时获得一定数量的虫卵。首领幻影可以消耗虫卵强化虫群召唤物，使其获得1层【生长激素】。",
+                      "id": "70000315",
+                      "name": "虫卵"
+                    }
+                  ],
+                  "name": "虫卵分裂",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420441-0",
+                "level": 60,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/8025011",
+                        "hp": {
+                          "exactPerBar": "235360.5966720",
+                          "phaseCount": 2,
+                          "roundedPerBar": "235,361"
+                        },
+                        "identity": "[802501101,8025011,\"14880\",\"1\",\"52.724148\",\"0.3\",\"235360.5966720\",\"resolved\",\"235360.5966720\",73,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"600\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"600\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"200\"},\"barCount\":3,\"runtimeStatus\":\"static\"},\"[2,[802203101,802202101],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 802501101,
+                        "monsterTemplateId": 8025011,
+                        "name": "遮天蔽日的噬星蠹",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8025010.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 3,
+                          "exactPerBar": "200",
+                          "roundedPerBar": "200"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30171",
+        "label": "偶像螟蝗·难度<unbreak>01</unbreak>",
+        "mode": "as",
+        "ordinal": 1,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方目标被<color=#f29e38ff>弱点击破</color>时，使我方全体目标解除控制状态并激活终结技。\n敌方全体目标受到的欢愉伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，弱点击破伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110016,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3017:BuffList1",
+              "options": [
+                {
+                  "description": "敌方全体受到的欢愉伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>。我方队伍中存在欢愉命途的角色时，我方全体的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111089,
+                  "name": "喜上眉梢",
+                  "order": 1
+                },
+                {
+                  "description": "敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>。击破敌方弱点后，我方全体速度提高<color=#f29e38ff><unbreak>15%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111086,
+                  "name": "望风瓦解",
+                  "order": 2
+                },
+                {
+                  "description": "队伍中的第1位角色施放终结技后，使自身的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>，暴击伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，持续<color=#f29e38ff><unbreak>1</unbreak></color>回合。",
+                  "id": 3111064,
+                  "name": "登锋陷阵",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30172:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101601,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影会在战斗中开启<u>连麦PK</u>，选择一名我方角色前往副战场战斗，其余角色留在主战场提供支援。<u>连麦PK</u>开启后，处于主战场的敌方目标受到的伤害降低，并免疫控制类负面状态，首领幻影进入【<u>韧性锁止</u>】状态。首领幻影的回合开始时，【我方人气值】和【对方人气值】均重置为初始状态。",
+                  "id": 101602,
+                  "linkedEffects": [
+                    {
+                      "description": "我方全体目标将分别在<color=#f29e38ff>主战场和副战场</color>进行作战。在阿哈时刻以外，不同战场的我方和敌方目标<color=#f29e38ff>无法攻击</color>到另一战场的目标。在阿哈时刻期间，欢愉技始终只能对<color=#f29e38ff>副战场</color>的敌方目标发动攻击。\n连麦PK倒计时结束、处于副战场的我方角色陷入无法战斗状态、处于副战场的所有敌方目标被消灭、副战场没有可以战斗的我方角色，以上任意条件触发时，连麦PK解除。",
+                      "id": "501401001",
+                      "name": "连麦PK"
+                    },
+                    {
+                      "description": "韧性值无法被削减至低于1点。",
+                      "id": "70000318",
+                      "name": "韧性锁止"
+                    }
+                  ],
+                  "name": "双重战场",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420432-0",
+                "level": 70,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/5014014",
+                        "hp": {
+                          "exactPerBar": "777374.999280",
+                          "phaseCount": 2,
+                          "roundedPerBar": "777,375"
+                        },
+                        "identity": "[501401402,5014014,\"20460\",\"1\",\"94.98717\",\"0.4\",\"777374.999280\",\"resolved\",\"777374.999280\",897,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"132.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1320\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1320\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"440\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[501207102,501208102,501203108,501301003,501401104],true,true,false,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 501401402,
+                        "monsterTemplateId": 5014014,
+                        "name": "万众瞩目的超偶像",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5014010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "132.0",
+                          "rounded": "132"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "440",
+                          "roundedPerBar": "440"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3017:BuffList2",
+              "options": [
+                {
+                  "description": "我方目标对敌方造成持续伤害后，回复<color=#f29e38ff><unbreak>1</unbreak></color>点能量。我方全体造成的持续伤害无视敌方目标<color=#f29e38ff><unbreak>40%</unbreak></color>的全属性抗性。",
+                  "id": 3111058,
+                  "name": "附骨之疽",
+                  "order": 1
+                },
+                {
+                  "description": "我方队伍中存在智识命途的角色时，我方全体全属性抗性穿透提高<color=#f29e38ff><unbreak>25%</unbreak></color>。",
+                  "id": 3111082,
+                  "name": "智圆行方",
+                  "order": 2
+                },
+                {
+                  "description": "当前在场的我方忆灵数量大于等于3时，我方全体目标造成的伤害提高<color=#f29e38ff><unbreak>60%</unbreak></color>。",
+                  "id": 3111080,
+                  "name": "前尘影事",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30172:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 100901,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影每回合结束时获得一定数量的<color=#f29e38ff><u>虫卵</u></color>。首领幻影可以消耗虫卵强化虫群召唤物，使其获得1层【生长激素】。",
+                  "id": 100902,
+                  "linkedEffects": [
+                    {
+                      "description": "首领幻影每回合结束时获得一定数量的虫卵。首领幻影可以消耗虫卵强化虫群召唤物，使其获得1层【生长激素】。",
+                      "id": "70000315",
+                      "name": "虫卵"
+                    }
+                  ],
+                  "name": "虫卵分裂",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420442-0",
+                "level": 70,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/8025011",
+                        "hp": {
+                          "exactPerBar": "1130727.271680",
+                          "phaseCount": 2,
+                          "roundedPerBar": "1,130,727"
+                        },
+                        "identity": "[802501102,8025011,\"14880\",\"1\",\"94.98717\",\"0.8\",\"1130727.271680\",\"resolved\",\"1130727.271680\",78,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"132.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"600\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"600\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"200\"},\"barCount\":3,\"runtimeStatus\":\"static\"},\"[2,[802203102,802202102],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 802501102,
+                        "monsterTemplateId": 8025011,
+                        "name": "遮天蔽日的噬星蠹",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8025010.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "132.0",
+                          "rounded": "132"
+                        },
+                        "toughness": {
+                          "barCount": 3,
+                          "exactPerBar": "200",
+                          "roundedPerBar": "200"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30172",
+        "label": "偶像螟蝗·难度<unbreak>02</unbreak>",
+        "mode": "as",
+        "ordinal": 2,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方目标被<color=#f29e38ff>弱点击破</color>时，使我方全体目标解除控制状态并激活终结技。\n敌方全体目标受到的欢愉伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，弱点击破伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110016,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3017:BuffList1",
+              "options": [
+                {
+                  "description": "敌方全体受到的欢愉伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>。我方队伍中存在欢愉命途的角色时，我方全体的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111089,
+                  "name": "喜上眉梢",
+                  "order": 1
+                },
+                {
+                  "description": "敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>。击破敌方弱点后，我方全体速度提高<color=#f29e38ff><unbreak>15%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111086,
+                  "name": "望风瓦解",
+                  "order": 2
+                },
+                {
+                  "description": "队伍中的第1位角色施放终结技后，使自身的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>，暴击伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，持续<color=#f29e38ff><unbreak>1</unbreak></color>回合。",
+                  "id": 3111064,
+                  "name": "登锋陷阵",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30173:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101601,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影会在战斗中开启<u>连麦PK</u>，选择一名我方角色前往副战场战斗，其余角色留在主战场提供支援。<u>连麦PK</u>开启后，处于主战场的敌方目标受到的伤害降低，并免疫控制类负面状态，首领幻影进入【<u>韧性锁止</u>】状态。首领幻影的回合开始时，【我方人气值】和【对方人气值】均重置为初始状态。",
+                  "id": 101602,
+                  "linkedEffects": [
+                    {
+                      "description": "我方全体目标将分别在<color=#f29e38ff>主战场和副战场</color>进行作战。在阿哈时刻以外，不同战场的我方和敌方目标<color=#f29e38ff>无法攻击</color>到另一战场的目标。在阿哈时刻期间，欢愉技始终只能对<color=#f29e38ff>副战场</color>的敌方目标发动攻击。\n连麦PK倒计时结束、处于副战场的我方角色陷入无法战斗状态、处于副战场的所有敌方目标被消灭、副战场没有可以战斗的我方角色，以上任意条件触发时，连麦PK解除。",
+                      "id": "501401001",
+                      "name": "连麦PK"
+                    },
+                    {
+                      "description": "韧性值无法被削减至低于1点。",
+                      "id": "70000318",
+                      "name": "韧性锁止"
+                    }
+                  ],
+                  "name": "双重战场",
+                  "order": 2
+                },
+                {
+                  "description": "【我方人气值】和【对方人气值】的上限提高。",
+                  "id": 101603,
+                  "linkedEffects": [],
+                  "name": "人气爆发",
+                  "order": 3
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420433-0",
+                "level": 80,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/5014014",
+                        "hp": {
+                          "exactPerBar": "1968398.5549800",
+                          "phaseCount": 2,
+                          "roundedPerBar": "1,968,399"
+                        },
+                        "identity": "[501401403,5014014,\"20460\",\"1\",\"148.01102\",\"0.65\",\"1968398.5549800\",\"resolved\",\"1968398.5549800\",898,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"144.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1320\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1320\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"440\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[501207103,501208103,501203109,501301003,501401105],true,true,false,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 501401403,
+                        "monsterTemplateId": 5014014,
+                        "name": "万众瞩目的超偶像",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5014010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "144.0",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "440",
+                          "roundedPerBar": "440"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3017:BuffList2",
+              "options": [
+                {
+                  "description": "我方目标对敌方造成持续伤害后，回复<color=#f29e38ff><unbreak>1</unbreak></color>点能量。我方全体造成的持续伤害无视敌方目标<color=#f29e38ff><unbreak>40%</unbreak></color>的全属性抗性。",
+                  "id": 3111058,
+                  "name": "附骨之疽",
+                  "order": 1
+                },
+                {
+                  "description": "我方队伍中存在智识命途的角色时，我方全体全属性抗性穿透提高<color=#f29e38ff><unbreak>25%</unbreak></color>。",
+                  "id": 3111082,
+                  "name": "智圆行方",
+                  "order": 2
+                },
+                {
+                  "description": "当前在场的我方忆灵数量大于等于3时，我方全体目标造成的伤害提高<color=#f29e38ff><unbreak>60%</unbreak></color>。",
+                  "id": 3111080,
+                  "name": "前尘影事",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30173:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 100901,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影每回合结束时获得一定数量的<color=#f29e38ff><u>虫卵</u></color>。首领幻影可以消耗虫卵强化虫群召唤物，使其获得1层【生长激素】。",
+                  "id": 100902,
+                  "linkedEffects": [
+                    {
+                      "description": "首领幻影每回合结束时获得一定数量的虫卵。首领幻影可以消耗虫卵强化虫群召唤物，使其获得1层【生长激素】。",
+                      "id": "70000315",
+                      "name": "虫卵"
+                    }
+                  ],
+                  "name": "虫卵分裂",
+                  "order": 2
+                },
+                {
+                  "description": "首领幻影每召唤一定数量的虫群召唤物，其召唤的下一只召唤物将自带1层【<color=#f29e38ff><u>生长激素</u></color>】。",
+                  "id": 100903,
+                  "linkedEffects": [
+                    {
+                      "description": "每层【生长激素】提高一定的攻击力，最高可叠加3层。叠加到3层时还将为虫群召唤物解锁额外能力。",
+                      "id": "70000316",
+                      "name": "生长激素"
+                    }
+                  ],
+                  "name": "激素分泌",
+                  "order": 3
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420443-0",
+                "level": 80,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/8025011",
+                        "hp": {
+                          "exactPerBar": "3523846.364160",
+                          "phaseCount": 2,
+                          "roundedPerBar": "3,523,846"
+                        },
+                        "identity": "[802501103,8025011,\"14880\",\"1\",\"148.01102\",\"1.6\",\"3523846.364160\",\"resolved\",\"3523846.364160\",86,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"144.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"600\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"600\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"200\"},\"barCount\":3,\"runtimeStatus\":\"static\"},\"[2,[802203103,802202103],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 802501103,
+                        "monsterTemplateId": 8025011,
+                        "name": "遮天蔽日的噬星蠹",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8025010.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "144.0",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 3,
+                          "exactPerBar": "200",
+                          "roundedPerBar": "200"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30173",
+        "label": "偶像螟蝗·难度<unbreak>03</unbreak>",
+        "mode": "as",
+        "ordinal": 3,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方目标被<color=#f29e38ff>弱点击破</color>时，使我方全体目标解除控制状态并激活终结技。\n敌方全体目标受到的欢愉伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，弱点击破伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110016,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3017:BuffList1",
+              "options": [
+                {
+                  "description": "敌方全体受到的欢愉伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>。我方队伍中存在欢愉命途的角色时，我方全体的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111089,
+                  "name": "喜上眉梢",
+                  "order": 1
+                },
+                {
+                  "description": "敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>。击破敌方弱点后，我方全体速度提高<color=#f29e38ff><unbreak>15%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111086,
+                  "name": "望风瓦解",
+                  "order": 2
+                },
+                {
+                  "description": "队伍中的第1位角色施放终结技后，使自身的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>，暴击伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，持续<color=#f29e38ff><unbreak>1</unbreak></color>回合。",
+                  "id": 3111064,
+                  "name": "登锋陷阵",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30174:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101601,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影会在战斗中开启<u>连麦PK</u>，选择一名我方角色前往副战场战斗，其余角色留在主战场提供支援。<u>连麦PK</u>开启后，处于主战场的敌方目标受到的伤害降低，并免疫控制类负面状态，首领幻影进入【<u>韧性锁止</u>】状态。首领幻影的回合开始时，【我方人气值】和【对方人气值】均重置为初始状态。",
+                  "id": 101602,
+                  "linkedEffects": [
+                    {
+                      "description": "我方全体目标将分别在<color=#f29e38ff>主战场和副战场</color>进行作战。在阿哈时刻以外，不同战场的我方和敌方目标<color=#f29e38ff>无法攻击</color>到另一战场的目标。在阿哈时刻期间，欢愉技始终只能对<color=#f29e38ff>副战场</color>的敌方目标发动攻击。\n连麦PK倒计时结束、处于副战场的我方角色陷入无法战斗状态、处于副战场的所有敌方目标被消灭、副战场没有可以战斗的我方角色，以上任意条件触发时，连麦PK解除。",
+                      "id": "501401001",
+                      "name": "连麦PK"
+                    },
+                    {
+                      "description": "韧性值无法被削减至低于1点。",
+                      "id": "70000318",
+                      "name": "韧性锁止"
+                    }
+                  ],
+                  "name": "双重战场",
+                  "order": 2
+                },
+                {
+                  "description": "【我方人气值】和【对方人气值】的上限提高。",
+                  "id": 101603,
+                  "linkedEffects": [],
+                  "name": "人气爆发",
+                  "order": 3
+                },
+                {
+                  "description": "【我方人气值】和【对方人气值】每有一项未达到极限，敌方全体受到的伤害降低。",
+                  "id": 101604,
+                  "linkedEffects": [],
+                  "name": "人气傍身",
+                  "order": 4
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420434-0",
+                "level": 90,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/5014014",
+                        "hp": {
+                          "exactPerBar": "14518500.49980",
+                          "phaseCount": 2,
+                          "roundedPerBar": "14,518,500"
+                        },
+                        "identity": "[501401404,5014014,\"20460\",\"1\",\"236.53471\",\"3\",\"14518500.49980\",\"resolved\",\"14518500.49980\",100,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.40\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1320\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1320\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"440\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[501207104,501208104,501203110,501301003,501401106],true,true,false,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 501401404,
+                        "monsterTemplateId": 5014014,
+                        "name": "万众瞩目的超偶像",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5014010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "158.40",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "440",
+                          "roundedPerBar": "440"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3017:BuffList2",
+              "options": [
+                {
+                  "description": "我方目标对敌方造成持续伤害后，回复<color=#f29e38ff><unbreak>1</unbreak></color>点能量。我方全体造成的持续伤害无视敌方目标<color=#f29e38ff><unbreak>40%</unbreak></color>的全属性抗性。",
+                  "id": 3111058,
+                  "name": "附骨之疽",
+                  "order": 1
+                },
+                {
+                  "description": "我方队伍中存在智识命途的角色时，我方全体全属性抗性穿透提高<color=#f29e38ff><unbreak>25%</unbreak></color>。",
+                  "id": 3111082,
+                  "name": "智圆行方",
+                  "order": 2
+                },
+                {
+                  "description": "当前在场的我方忆灵数量大于等于3时，我方全体目标造成的伤害提高<color=#f29e38ff><unbreak>60%</unbreak></color>。",
+                  "id": 3111080,
+                  "name": "前尘影事",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30174:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 100901,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影每回合结束时获得一定数量的<color=#f29e38ff><u>虫卵</u></color>。首领幻影可以消耗虫卵强化虫群召唤物，使其获得1层【生长激素】。",
+                  "id": 100902,
+                  "linkedEffects": [
+                    {
+                      "description": "首领幻影每回合结束时获得一定数量的虫卵。首领幻影可以消耗虫卵强化虫群召唤物，使其获得1层【生长激素】。",
+                      "id": "70000315",
+                      "name": "虫卵"
+                    }
+                  ],
+                  "name": "虫卵分裂",
+                  "order": 2
+                },
+                {
+                  "description": "首领幻影每召唤一定数量的虫群召唤物，其召唤的下一只召唤物将自带1层【<color=#f29e38ff><u>生长激素</u></color>】。",
+                  "id": 100903,
+                  "linkedEffects": [
+                    {
+                      "description": "每层【生长激素】提高一定的攻击力，最高可叠加3层。叠加到3层时还将为虫群召唤物解锁额外能力。",
+                      "id": "70000316",
+                      "name": "生长激素"
+                    }
+                  ],
+                  "name": "激素分泌",
+                  "order": 3
+                },
+                {
+                  "description": "首领幻影每回合结束时和通过【筑巢育卵】获得的虫卵数量提高。",
+                  "id": 100904,
+                  "linkedEffects": [],
+                  "name": "虫卵爆发",
+                  "order": 4
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420444-0",
+                "level": 90,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/8025011",
+                        "hp": {
+                          "exactPerBar": "14078545.93920",
+                          "phaseCount": 2,
+                          "roundedPerBar": "14,078,546"
+                        },
+                        "identity": "[802501104,8025011,\"14880\",\"1\",\"236.53471\",\"4\",\"14078545.93920\",\"resolved\",\"14078545.93920\",154,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.40\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"600\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"120\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"720\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"240\"},\"barCount\":3,\"runtimeStatus\":\"static\"},\"[2,[802203104,802202104],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 802501104,
+                        "monsterTemplateId": 8025011,
+                        "name": "遮天蔽日的噬星蠹",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8025010.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "158.40",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 3,
+                          "exactPerBar": "240",
+                          "roundedPerBar": "240"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30174",
+        "label": "偶像螟蝗·难度<unbreak>04</unbreak>",
+        "mode": "as",
+        "ordinal": 4,
+        "variant": "floor"
+      }
+    ],
+    "mode": "as",
+    "modeLabel": "末日幻影",
+    "period": {
+      "dateLabel": "2026/04/27 – 2026/06/08",
+      "encounterCount": 4,
+      "groupId": 3017,
+      "name": "偶像螟蝗",
+      "status": "historical"
+    },
+    "periods": [
+      {
+        "dateLabel": "2026/08/31 – 2026/10/05",
+        "encounterCount": 4,
+        "groupId": 3020,
+        "name": "仙客天狼",
+        "status": "current"
+      },
+      {
+        "dateLabel": "2026/07/20 – 2026/08/31",
+        "encounterCount": 4,
+        "groupId": 3019,
+        "name": "兵锋骑士",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/06/08 – 2026/07/20",
+        "encounterCount": 4,
+        "groupId": 3018,
+        "name": "遗忘冽风",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/04/27 – 2026/06/08",
+        "encounterCount": 4,
+        "groupId": 3017,
+        "name": "偶像螟蝗",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/03/16 – 2026/04/27",
+        "encounterCount": 4,
+        "groupId": 3016,
+        "name": "兵锋天狼",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/02/02 – 2026/03/16",
+        "encounterCount": 4,
+        "groupId": 3015,
+        "name": "支配冥茫",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/12/22 – 2026/02/02",
+        "encounterCount": 4,
+        "groupId": 3014,
+        "name": "猢狲骑士",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/11/10 – 2025/12/22",
+        "encounterCount": 4,
+        "groupId": 3013,
+        "name": "螟蝗煽动",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/09/29 – 2025/11/10",
+        "encounterCount": 4,
+        "groupId": 3012,
+        "name": "冥茫冽风",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/08/18 – 2025/09/29",
+        "encounterCount": 4,
+        "groupId": 3011,
+        "name": "天狼战首",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/07/07 – 2025/08/18",
+        "encounterCount": 4,
+        "groupId": 3010,
+        "name": "金血恶兽",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/05/26 – 2025/07/07",
+        "encounterCount": 4,
+        "groupId": 3009,
+        "name": "冽风支配",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/04/14 – 2025/05/26",
+        "encounterCount": 4,
+        "groupId": 3008,
+        "name": "螟蝗战首",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/03/03 – 2025/04/14",
+        "encounterCount": 4,
+        "groupId": 3007,
+        "name": "猢狲博弈",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/01/20 – 2025/03/03",
+        "encounterCount": 4,
+        "groupId": 3006,
+        "name": "煽动螟蝗",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/12/09 – 2025/01/20",
+        "encounterCount": 4,
+        "groupId": 3005,
+        "name": "冽风猢狲",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/10/28 – 2024/12/09",
+        "encounterCount": 4,
+        "groupId": 3004,
+        "name": "支配指挥",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/09/16 – 2024/10/28",
+        "encounterCount": 4,
+        "groupId": 3003,
+        "name": "煽动博弈",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/08/05 – 2024/09/16",
+        "encounterCount": 4,
+        "groupId": 3002,
+        "name": "支配恶兽",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/06/17 – 2024/08/05",
+        "encounterCount": 4,
+        "groupId": 3001,
+        "name": "冽风骑士",
+        "status": "historical"
+      }
+    ]
+  },
+  "route": "/endgame/as/3017"
+}

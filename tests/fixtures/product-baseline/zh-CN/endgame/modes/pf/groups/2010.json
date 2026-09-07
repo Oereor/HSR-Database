@@ -1,0 +1,2931 @@
+{
+  "presentation": {
+    "cacophony": {
+      "key": "pf:2010:BuffList",
+      "options": [
+        {
+          "description": "我方全体击破特攻提高<color=#f29e38ff><unbreak>30%</unbreak></color>，击破敌方目标时会令敌方全体陷入风化状态，每回合开始时受到固定数值的风属性持续伤害。\n敌方全体免疫控制类负面状态。",
+          "id": 3031330,
+          "name": "噱头",
+          "order": 1
+        },
+        {
+          "description": "我方目标施放终结技攻击敌方目标后，若目标当前承受1/2/3种持续伤害状态，则会使其当前承受的每种持续伤害状态立即产生相当于原伤害<color=#f29e38ff><unbreak>60%</unbreak></color>/<color=#f29e38ff><unbreak>100%</unbreak></color>/<color=#f29e38ff><unbreak>150%</unbreak></color>的伤害。",
+          "id": 3031331,
+          "name": "醉话",
+          "order": 2
+        },
+        {
+          "description": "我方攻击敌方目标后，会使目标陷入风化状态，每回合开始时受到固定数值的风属性持续伤害。",
+          "id": 3031305,
+          "name": "谣诼",
+          "order": 3
+        }
+      ]
+    },
+    "defaultEncounterId": "20104",
+    "encounters": [
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30308011-0",
+                "level": 55,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1002030",
+                        "hp": {
+                          "exactPerBar": "10966",
+                          "roundedPerBar": "10,966"
+                        },
+                        "identity": "[1002030,1002030,\"195.3\",\"1\",\"37.432133\",\"1\",\"7310.4955749\",\"resolved\",\"10966\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1002030,
+                        "monsterTemplateId": 1002030,
+                        "name": "银鬃炮手",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1002030.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1002040",
+                        "hp": {
+                          "exactPerBar": "6788",
+                          "roundedPerBar": "6,788"
+                        },
+                        "identity": "[1002040,1002040,\"120.9\",\"1\",\"37.432133\",\"1\",\"4525.5448797\",\"resolved\",\"6788\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"83\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"83\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1002040,
+                        "monsterTemplateId": 1002040,
+                        "name": "银鬃近卫",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1002040.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "83",
+                          "rounded": "83"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1003010",
+                        "hp": {
+                          "exactPerBar": "28720",
+                          "roundedPerBar": "28,720"
+                        },
+                        "identity": "[100301019,1003010,\"930\",\"0.55\",\"37.432133\",\"1\",\"19146.53602950\",\"resolved\",\"28720\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"240\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-60\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[1002040,1002040],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100301019,
+                        "monsterTemplateId": 1003010,
+                        "name": "银鬃尉官",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1003010.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080111",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/8002010",
+                        "hp": {
+                          "exactPerBar": "13229",
+                          "roundedPerBar": "13,229"
+                        },
+                        "identity": "[8002010,8002010,\"176.7\",\"1\",\"37.432133\",\"1\",\"6614.2579011\",\"resolved\",\"13229\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8002010,
+                        "monsterTemplateId": 8002010,
+                        "name": "虚数织叶者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8002010.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1022010",
+                        "hp": {
+                          "exactPerBar": "10444",
+                          "roundedPerBar": "10,444"
+                        },
+                        "identity": "[1022010,1022010,\"139.5\",\"1\",\"37.432133\",\"1\",\"5221.7825535\",\"resolved\",\"10444\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1022010,
+                        "monsterTemplateId": 1022010,
+                        "name": "永冬灾影",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1022010.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/3002050",
+                        "hp": {
+                          "exactPerBar": "34812",
+                          "roundedPerBar": "34,812"
+                        },
+                        "identity": "[300205005,3002050,\"4650\",\"0.1\",\"37.432133\",\"1\",\"17405.9418450\",\"resolved\",\"34812\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"144\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-210\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"150\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"50\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 300205005,
+                        "monsterTemplateId": 3002050,
+                        "name": "王下一桶",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3002050.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "144",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "50",
+                          "roundedPerBar": "50"
+                        },
+                        "weaknesses": []
+                      }
+                    ],
+                    "key": "spawn-303080112",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1002030",
+                        "hp": {
+                          "exactPerBar": "21931",
+                          "roundedPerBar": "21,931"
+                        },
+                        "identity": "[1002030,1002030,\"195.3\",\"1\",\"37.432133\",\"1\",\"7310.4955749\",\"resolved\",\"21931\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1002030,
+                        "monsterTemplateId": 1002030,
+                        "name": "银鬃炮手",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1002030.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1002040",
+                        "hp": {
+                          "exactPerBar": "13577",
+                          "roundedPerBar": "13,577"
+                        },
+                        "identity": "[1002040,1002040,\"120.9\",\"1\",\"37.432133\",\"1\",\"4525.5448797\",\"resolved\",\"13577\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"83\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"83\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1002040,
+                        "monsterTemplateId": 1002040,
+                        "name": "银鬃近卫",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1002040.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "83",
+                          "rounded": "83"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1003010",
+                        "hp": {
+                          "exactPerBar": "57440",
+                          "roundedPerBar": "57,440"
+                        },
+                        "identity": "[100301019,1003010,\"930\",\"0.55\",\"37.432133\",\"1\",\"19146.53602950\",\"resolved\",\"57440\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"240\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-60\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[1002040,1002040],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100301019,
+                        "monsterTemplateId": 1003010,
+                        "name": "银鬃尉官",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1003010.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080113",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30308012-0",
+                "level": 55,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/3012020",
+                        "hp": {
+                          "exactPerBar": "7310",
+                          "roundedPerBar": "7,310"
+                        },
+                        "identity": "[3012020,3012020,\"130.2\",\"1\",\"37.432133\",\"1\",\"4873.6637166\",\"resolved\",\"7310\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 3012020,
+                        "monsterTemplateId": 3012020,
+                        "name": "忆域迷因「我心支离破碎」",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3012020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/8032020",
+                        "hp": {
+                          "exactPerBar": "11488",
+                          "roundedPerBar": "11,488"
+                        },
+                        "identity": "[8032020,8032020,\"204.6\",\"1\",\"37.432133\",\"1\",\"7658.6144118\",\"resolved\",\"11488\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8032020,
+                        "monsterTemplateId": 8032020,
+                        "name": "基层员工•安保",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8032020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1013010",
+                        "hp": {
+                          "exactPerBar": "28720",
+                          "roundedPerBar": "28,720"
+                        },
+                        "identity": "[101301023,1013010,\"1209\",\"0.423077\",\"37.432133\",\"1\",\"19146.539510688369\",\"resolved\",\"28720\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"420\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-240\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[1012021],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 101301023,
+                        "monsterTemplateId": 1013010,
+                        "name": "自动机兵•灰熊",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1013010.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080121",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/8012030",
+                        "hp": {
+                          "exactPerBar": "14621",
+                          "roundedPerBar": "14,621"
+                        },
+                        "identity": "[8012030,8012030,\"195.3\",\"1\",\"37.432133\",\"1\",\"7310.4955749\",\"resolved\",\"14621\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8012030,
+                        "monsterTemplateId": 8012030,
+                        "name": "虚卒•抹消者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8012030.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/8012010",
+                        "hp": {
+                          "exactPerBar": "10444",
+                          "roundedPerBar": "10,444"
+                        },
+                        "identity": "[8012010,8012010,\"139.5\",\"1\",\"37.432133\",\"1\",\"5221.7825535\",\"resolved\",\"10444\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8012010,
+                        "monsterTemplateId": 8012010,
+                        "name": "虚卒•掠夺者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8012010.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/3002050",
+                        "hp": {
+                          "exactPerBar": "34812",
+                          "roundedPerBar": "34,812"
+                        },
+                        "identity": "[300205005,3002050,\"4650\",\"0.1\",\"37.432133\",\"1\",\"17405.9418450\",\"resolved\",\"34812\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"144\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-210\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"150\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"50\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 300205005,
+                        "monsterTemplateId": 3002050,
+                        "name": "王下一桶",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3002050.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "144",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "50",
+                          "roundedPerBar": "50"
+                        },
+                        "weaknesses": []
+                      }
+                    ],
+                    "key": "spawn-303080122",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/3012020",
+                        "hp": {
+                          "exactPerBar": "14621",
+                          "roundedPerBar": "14,621"
+                        },
+                        "identity": "[3012020,3012020,\"130.2\",\"1\",\"37.432133\",\"1\",\"4873.6637166\",\"resolved\",\"14621\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 3012020,
+                        "monsterTemplateId": 3012020,
+                        "name": "忆域迷因「我心支离破碎」",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3012020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/8032020",
+                        "hp": {
+                          "exactPerBar": "22976",
+                          "roundedPerBar": "22,976"
+                        },
+                        "identity": "[8032020,8032020,\"204.6\",\"1\",\"37.432133\",\"1\",\"7658.6144118\",\"resolved\",\"22976\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8032020,
+                        "monsterTemplateId": 8032020,
+                        "name": "基层员工•安保",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8032020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1013010",
+                        "hp": {
+                          "exactPerBar": "57440",
+                          "roundedPerBar": "57,440"
+                        },
+                        "identity": "[101301023,1013010,\"1209\",\"0.423077\",\"37.432133\",\"1\",\"19146.539510688369\",\"resolved\",\"57440\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"420\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-240\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[1012021],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 101301023,
+                        "monsterTemplateId": 1013010,
+                        "name": "自动机兵•灰熊",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1013010.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080123",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "20101",
+        "label": "论黄数黑其一",
+        "mode": "pf",
+        "ordinal": 1,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30308021-0",
+                "level": 65,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/8032010",
+                        "hp": {
+                          "exactPerBar": "16485",
+                          "roundedPerBar": "16,485"
+                        },
+                        "identity": "[8032010,8032010,\"148.8\",\"1\",\"73.85566\",\"1\",\"10989.722208\",\"resolved\",\"16485\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"118\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"118\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8032010,
+                        "monsterTemplateId": 8032010,
+                        "name": "基层员工•外勤",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8032010.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "118",
+                          "rounded": "118"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/8032020",
+                        "hp": {
+                          "exactPerBar": "22666",
+                          "roundedPerBar": "22,666"
+                        },
+                        "identity": "[8032020,8032020,\"204.6\",\"1\",\"73.85566\",\"1\",\"15110.868036\",\"resolved\",\"22666\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8032020,
+                        "monsterTemplateId": 8032020,
+                        "name": "基层员工•安保",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8032020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/8033010",
+                        "hp": {
+                          "exactPerBar": "56666",
+                          "roundedPerBar": "56,666"
+                        },
+                        "identity": "[803301010,8033010,\"1488\",\"0.34375\",\"73.85566\",\"1\",\"37777.1700900000\",\"resolved\",\"56666\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-180\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[8032010,8032020],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 803301010,
+                        "monsterTemplateId": 8033010,
+                        "name": "资深员工•组长",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8033010.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080211",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1002020",
+                        "hp": {
+                          "exactPerBar": "22666",
+                          "roundedPerBar": "22,666"
+                        },
+                        "identity": "[1002020,1002020,\"139.5\",\"1\",\"73.85566\",\"1\",\"10302.864570\",\"resolved\",\"22666\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1002020,
+                        "monsterTemplateId": 1002020,
+                        "name": "流浪者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1002020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1002030",
+                        "hp": {
+                          "exactPerBar": "31733",
+                          "roundedPerBar": "31,733"
+                        },
+                        "identity": "[1002030,1002030,\"195.3\",\"1\",\"73.85566\",\"1\",\"14424.010398\",\"resolved\",\"31733\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1002030,
+                        "monsterTemplateId": 1002030,
+                        "name": "银鬃炮手",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1002030.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/3002050",
+                        "hp": {
+                          "exactPerBar": "75554",
+                          "roundedPerBar": "75,554"
+                        },
+                        "identity": "[300205005,3002050,\"4650\",\"0.1\",\"73.85566\",\"1\",\"34342.881900\",\"resolved\",\"75554\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"144\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-210\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"150\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"50\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 300205005,
+                        "monsterTemplateId": 3002050,
+                        "name": "王下一桶",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3002050.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "144",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "50",
+                          "roundedPerBar": "50"
+                        },
+                        "weaknesses": []
+                      }
+                    ],
+                    "key": "spawn-303080212",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/8032010",
+                        "hp": {
+                          "exactPerBar": "39563",
+                          "roundedPerBar": "39,563"
+                        },
+                        "identity": "[8032010,8032010,\"148.8\",\"1\",\"73.85566\",\"1\",\"10989.722208\",\"resolved\",\"39563\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"118\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"118\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8032010,
+                        "monsterTemplateId": 8032010,
+                        "name": "基层员工•外勤",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8032010.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "118",
+                          "rounded": "118"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/8032020",
+                        "hp": {
+                          "exactPerBar": "54399",
+                          "roundedPerBar": "54,399"
+                        },
+                        "identity": "[8032020,8032020,\"204.6\",\"1\",\"73.85566\",\"1\",\"15110.868036\",\"resolved\",\"54399\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8032020,
+                        "monsterTemplateId": 8032020,
+                        "name": "基层员工•安保",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8032020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/8033010",
+                        "hp": {
+                          "exactPerBar": "135998",
+                          "roundedPerBar": "135,998"
+                        },
+                        "identity": "[803301010,8033010,\"1488\",\"0.34375\",\"73.85566\",\"1\",\"37777.1700900000\",\"resolved\",\"135998\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-180\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[8032010,8032020],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 803301010,
+                        "monsterTemplateId": 8033010,
+                        "name": "资深员工•组长",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8033010.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080213",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30308022-0",
+                "level": 65,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1012030",
+                        "hp": {
+                          "exactPerBar": "14424",
+                          "roundedPerBar": "14,424"
+                        },
+                        "identity": "[1012030,1012030,\"130.2\",\"1\",\"73.85566\",\"1\",\"9616.006932\",\"resolved\",\"14424\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1012030,
+                        "monsterTemplateId": 1012030,
+                        "name": "自动机兵•甲虫",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1012030.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/2032020",
+                        "hp": {
+                          "exactPerBar": "20606",
+                          "roundedPerBar": "20,606"
+                        },
+                        "identity": "[2032020,2032020,\"186\",\"1\",\"73.85566\",\"1\",\"13737.15276\",\"resolved\",\"20606\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 2032020,
+                        "monsterTemplateId": 2032020,
+                        "name": "蚀月狼卒",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2032020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/2033010",
+                        "hp": {
+                          "exactPerBar": "61817",
+                          "roundedPerBar": "61,817"
+                        },
+                        "identity": "[203301004,2033010,\"1116\",\"0.5\",\"73.85566\",\"1\",\"41211.458280\",\"resolved\",\"61817\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-180\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 203301004,
+                        "monsterTemplateId": 2033010,
+                        "name": "咆哮灵柩",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2033010.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080221",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/3002030",
+                        "hp": {
+                          "exactPerBar": "33999",
+                          "roundedPerBar": "33,999"
+                        },
+                        "identity": "[3002030,3002030,\"209.25\",\"1\",\"73.85566\",\"1\",\"15454.2968550\",\"resolved\",\"33999\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 3002030,
+                        "monsterTemplateId": 3002030,
+                        "name": "惊梦剧团的气泡锂犬",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3002030.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/3002020",
+                        "hp": {
+                          "exactPerBar": "33999",
+                          "roundedPerBar": "33,999"
+                        },
+                        "identity": "[3002020,3002020,\"209.25\",\"1\",\"73.85566\",\"1\",\"15454.2968550\",\"resolved\",\"33999\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 3002020,
+                        "monsterTemplateId": 3002020,
+                        "name": "惊梦剧团的幸运贩售",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3002020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/3002050",
+                        "hp": {
+                          "exactPerBar": "75554",
+                          "roundedPerBar": "75,554"
+                        },
+                        "identity": "[300205005,3002050,\"4650\",\"0.1\",\"73.85566\",\"1\",\"34342.881900\",\"resolved\",\"75554\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"144\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-210\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"150\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"50\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 300205005,
+                        "monsterTemplateId": 3002050,
+                        "name": "王下一桶",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3002050.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "144",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "50",
+                          "roundedPerBar": "50"
+                        },
+                        "weaknesses": []
+                      }
+                    ],
+                    "key": "spawn-303080222",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1012030",
+                        "hp": {
+                          "exactPerBar": "34618",
+                          "roundedPerBar": "34,618"
+                        },
+                        "identity": "[1012030,1012030,\"130.2\",\"1\",\"73.85566\",\"1\",\"9616.006932\",\"resolved\",\"34618\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"100\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1012030,
+                        "monsterTemplateId": 1012030,
+                        "name": "自动机兵•甲虫",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1012030.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "100",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/2032020",
+                        "hp": {
+                          "exactPerBar": "49454",
+                          "roundedPerBar": "49,454"
+                        },
+                        "identity": "[2032020,2032020,\"186\",\"1\",\"73.85566\",\"1\",\"13737.15276\",\"resolved\",\"49454\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 2032020,
+                        "monsterTemplateId": 2032020,
+                        "name": "蚀月狼卒",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2032020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/2033010",
+                        "hp": {
+                          "exactPerBar": "148361",
+                          "roundedPerBar": "148,361"
+                        },
+                        "identity": "[203301004,2033010,\"1116\",\"0.5\",\"73.85566\",\"1\",\"41211.458280\",\"resolved\",\"148361\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-180\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 203301004,
+                        "monsterTemplateId": 2033010,
+                        "name": "咆哮灵柩",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2033010.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080223",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "20102",
+        "label": "论黄数黑其二",
+        "mode": "pf",
+        "ordinal": 2,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30308031-0",
+                "level": 75,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1002030",
+                        "hp": {
+                          "exactPerBar": "35593",
+                          "roundedPerBar": "35,593"
+                        },
+                        "identity": "[1002030,1002030,\"195.3\",\"1\",\"121.49909\",\"1\",\"23728.772277\",\"resolved\",\"35593\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"110.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1002030,
+                        "monsterTemplateId": 1002030,
+                        "name": "银鬃炮手",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1002030.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "110.0",
+                          "rounded": "110"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1002040",
+                        "hp": {
+                          "exactPerBar": "22034",
+                          "roundedPerBar": "22,034"
+                        },
+                        "identity": "[1002040,1002040,\"120.9\",\"1\",\"121.49909\",\"1\",\"14689.239981\",\"resolved\",\"22034\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"83\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"91.3\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1002040,
+                        "monsterTemplateId": 1002040,
+                        "name": "银鬃近卫",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1002040.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "91.3",
+                          "rounded": "91"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1003010",
+                        "hp": {
+                          "exactPerBar": "93220",
+                          "roundedPerBar": "93,220"
+                        },
+                        "identity": "[100301019,1003010,\"930\",\"0.55\",\"121.49909\",\"1\",\"62146.7845350\",\"resolved\",\"93220\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"132.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"240\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-60\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[1002040,1002040],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100301019,
+                        "monsterTemplateId": 1003010,
+                        "name": "银鬃尉官",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1003010.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "132.0",
+                          "rounded": "132"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080311",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/8002010",
+                        "hp": {
+                          "exactPerBar": "47232",
+                          "roundedPerBar": "47,232"
+                        },
+                        "identity": "[8002010,8002010,\"176.7\",\"1\",\"121.49909\",\"1\",\"21468.889203\",\"resolved\",\"47232\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"132.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8002010,
+                        "monsterTemplateId": 8002010,
+                        "name": "虚数织叶者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8002010.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "132.0",
+                          "rounded": "132"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1022010",
+                        "hp": {
+                          "exactPerBar": "37288",
+                          "roundedPerBar": "37,288"
+                        },
+                        "identity": "[1022010,1022010,\"139.5\",\"1\",\"121.49909\",\"1\",\"16949.123055\",\"resolved\",\"37288\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"110.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1022010,
+                        "monsterTemplateId": 1022010,
+                        "name": "永冬灾影",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1022010.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "110.0",
+                          "rounded": "110"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/3002050",
+                        "hp": {
+                          "exactPerBar": "124294",
+                          "roundedPerBar": "124,294"
+                        },
+                        "identity": "[300205005,3002050,\"4650\",\"0.1\",\"121.49909\",\"1\",\"56497.076850\",\"resolved\",\"124294\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.4\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-210\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"150\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"50\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 300205005,
+                        "monsterTemplateId": 3002050,
+                        "name": "王下一桶",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3002050.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "158.4",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "50",
+                          "roundedPerBar": "50"
+                        },
+                        "weaknesses": []
+                      }
+                    ],
+                    "key": "spawn-303080312",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1002030",
+                        "hp": {
+                          "exactPerBar": "85424",
+                          "roundedPerBar": "85,424"
+                        },
+                        "identity": "[1002030,1002030,\"195.3\",\"1\",\"121.49909\",\"1\",\"23728.772277\",\"resolved\",\"85424\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"110.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1002030,
+                        "monsterTemplateId": 1002030,
+                        "name": "银鬃炮手",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1002030.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "110.0",
+                          "rounded": "110"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1002040",
+                        "hp": {
+                          "exactPerBar": "52881",
+                          "roundedPerBar": "52,881"
+                        },
+                        "identity": "[1002040,1002040,\"120.9\",\"1\",\"121.49909\",\"1\",\"14689.239981\",\"resolved\",\"52881\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"83\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"91.3\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1002040,
+                        "monsterTemplateId": 1002040,
+                        "name": "银鬃近卫",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1002040.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "91.3",
+                          "rounded": "91"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1003010",
+                        "hp": {
+                          "exactPerBar": "223728",
+                          "roundedPerBar": "223,728"
+                        },
+                        "identity": "[100301019,1003010,\"930\",\"0.55\",\"121.49909\",\"1\",\"62146.7845350\",\"resolved\",\"223728\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"132.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"240\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-60\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[1002040,1002040],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100301019,
+                        "monsterTemplateId": 1003010,
+                        "name": "银鬃尉官",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1003010.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "132.0",
+                          "rounded": "132"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080313",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30308032-0",
+                "level": 75,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/3012020",
+                        "hp": {
+                          "exactPerBar": "23729",
+                          "roundedPerBar": "23,729"
+                        },
+                        "identity": "[3012020,3012020,\"130.2\",\"1\",\"121.49909\",\"1\",\"15819.181518\",\"resolved\",\"23729\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"110.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 3012020,
+                        "monsterTemplateId": 3012020,
+                        "name": "忆域迷因「我心支离破碎」",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3012020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "110.0",
+                          "rounded": "110"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/8032020",
+                        "hp": {
+                          "exactPerBar": "37288",
+                          "roundedPerBar": "37,288"
+                        },
+                        "identity": "[8032020,8032020,\"204.6\",\"1\",\"121.49909\",\"1\",\"24858.713814\",\"resolved\",\"37288\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"110.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8032020,
+                        "monsterTemplateId": 8032020,
+                        "name": "基层员工•安保",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8032020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "110.0",
+                          "rounded": "110"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1013010",
+                        "hp": {
+                          "exactPerBar": "93220",
+                          "roundedPerBar": "93,220"
+                        },
+                        "identity": "[101301023,1013010,\"1209\",\"0.423077\",\"121.49909\",\"1\",\"62146.79583441537\",\"resolved\",\"93220\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"132.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"420\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-240\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[1012021],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 101301023,
+                        "monsterTemplateId": 1013010,
+                        "name": "自动机兵•灰熊",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1013010.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "132.0",
+                          "rounded": "132"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080321",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/8012030",
+                        "hp": {
+                          "exactPerBar": "52203",
+                          "roundedPerBar": "52,203"
+                        },
+                        "identity": "[8012030,8012030,\"195.3\",\"1\",\"121.49909\",\"1\",\"23728.772277\",\"resolved\",\"52203\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"110.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8012030,
+                        "monsterTemplateId": 8012030,
+                        "name": "虚卒•抹消者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8012030.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "110.0",
+                          "rounded": "110"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/8012010",
+                        "hp": {
+                          "exactPerBar": "37288",
+                          "roundedPerBar": "37,288"
+                        },
+                        "identity": "[8012010,8012010,\"139.5\",\"1\",\"121.49909\",\"1\",\"16949.123055\",\"resolved\",\"37288\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"110.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8012010,
+                        "monsterTemplateId": 8012010,
+                        "name": "虚卒•掠夺者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8012010.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "110.0",
+                          "rounded": "110"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/3002050",
+                        "hp": {
+                          "exactPerBar": "124294",
+                          "roundedPerBar": "124,294"
+                        },
+                        "identity": "[300205005,3002050,\"4650\",\"0.1\",\"121.49909\",\"1\",\"56497.076850\",\"resolved\",\"124294\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.4\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-210\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"150\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"50\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 300205005,
+                        "monsterTemplateId": 3002050,
+                        "name": "王下一桶",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3002050.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "158.4",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "50",
+                          "roundedPerBar": "50"
+                        },
+                        "weaknesses": []
+                      }
+                    ],
+                    "key": "spawn-303080322",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/3012020",
+                        "hp": {
+                          "exactPerBar": "56949",
+                          "roundedPerBar": "56,949"
+                        },
+                        "identity": "[3012020,3012020,\"130.2\",\"1\",\"121.49909\",\"1\",\"15819.181518\",\"resolved\",\"56949\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"110.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 3012020,
+                        "monsterTemplateId": 3012020,
+                        "name": "忆域迷因「我心支离破碎」",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3012020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "110.0",
+                          "rounded": "110"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/8032020",
+                        "hp": {
+                          "exactPerBar": "89491",
+                          "roundedPerBar": "89,491"
+                        },
+                        "identity": "[8032020,8032020,\"204.6\",\"1\",\"121.49909\",\"1\",\"24858.713814\",\"resolved\",\"89491\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"110.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8032020,
+                        "monsterTemplateId": 8032020,
+                        "name": "基层员工•安保",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8032020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "110.0",
+                          "rounded": "110"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1013010",
+                        "hp": {
+                          "exactPerBar": "223728",
+                          "roundedPerBar": "223,728"
+                        },
+                        "identity": "[101301023,1013010,\"1209\",\"0.423077\",\"121.49909\",\"1\",\"62146.79583441537\",\"resolved\",\"223728\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"132.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"420\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-240\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[1012021],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 101301023,
+                        "monsterTemplateId": 1013010,
+                        "name": "自动机兵•灰熊",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1013010.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "132.0",
+                          "rounded": "132"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080323",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "20103",
+        "label": "论黄数黑其三",
+        "mode": "pf",
+        "ordinal": 3,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30308041-0",
+                "level": 85,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/2022050",
+                        "hp": {
+                          "exactPerBar": "70034",
+                          "roundedPerBar": "70,034"
+                        },
+                        "identity": "[202205004,2022050,\"186\",\"1\",\"188.2636\",\"1\",\"35017.0296\",\"resolved\",\"70034\",56,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"120.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[2022051],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 202205004,
+                        "monsterTemplateId": 2022050,
+                        "name": "丰饶灵兽•奎木",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2022050.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "120.0",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/2032010",
+                        "hp": {
+                          "exactPerBar": "70034",
+                          "roundedPerBar": "70,034"
+                        },
+                        "identity": "[2032010,2032010,\"186\",\"1\",\"188.2636\",\"1\",\"35017.0296\",\"resolved\",\"70034\",56,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"144.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 2032010,
+                        "monsterTemplateId": 2032010,
+                        "name": "玄爪狼卒",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2032010.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "144.0",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/3003050",
+                        "hp": {
+                          "exactPerBar": "210102",
+                          "roundedPerBar": "210,102"
+                        },
+                        "identity": "[300305006,3003050,\"1116\",\"0.5\",\"188.2636\",\"1\",\"105051.08880\",\"resolved\",\"210102\",56,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"144.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"300\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-120\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 300305006,
+                        "monsterTemplateId": 3003050,
+                        "name": "「醉于盛会的此刻」",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3003050.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "144.0",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080411",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/2002010",
+                        "hp": {
+                          "exactPerBar": "78438",
+                          "roundedPerBar": "78,438"
+                        },
+                        "identity": "[2002010,2002010,\"148.8\",\"1\",\"188.2636\",\"1\",\"28013.62368\",\"resolved\",\"78438\",56,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"144.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 2002010,
+                        "monsterTemplateId": 2002010,
+                        "name": "云骑巡防士卒",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2002010.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "144.0",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/8022020",
+                        "hp": {
+                          "exactPerBar": "154425",
+                          "roundedPerBar": "154,425"
+                        },
+                        "identity": "[8022020,8022020,\"292.95\",\"1\",\"188.2636\",\"1\",\"55151.821620\",\"resolved\",\"154425\",56,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"172.8\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"120\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"120\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"40\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 8022020,
+                        "monsterTemplateId": 8022020,
+                        "name": "次蛰虫",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8022020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "172.8",
+                          "rounded": "173"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "40",
+                          "roundedPerBar": "40"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/3002050",
+                        "hp": {
+                          "exactPerBar": "245119",
+                          "roundedPerBar": "245,119"
+                        },
+                        "identity": "[300205005,3002050,\"4650\",\"0.1\",\"188.2636\",\"1\",\"87542.57400\",\"resolved\",\"245119\",56,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"172.8\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-210\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"150\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"50\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 300205005,
+                        "monsterTemplateId": 3002050,
+                        "name": "王下一桶",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3002050.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "172.8",
+                          "rounded": "173"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "50",
+                          "roundedPerBar": "50"
+                        },
+                        "weaknesses": []
+                      }
+                    ],
+                    "key": "spawn-303080412",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/2011010",
+                        "hp": {
+                          "exactPerBar": "75637",
+                          "roundedPerBar": "75,637"
+                        },
+                        "identity": "[2011010,2011010,\"83.7\",\"1\",\"188.2636\",\"1\",\"15757.66332\",\"resolved\",\"75637\",56,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"83\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"99.6\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"30\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"30\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"10\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 2011010,
+                        "monsterTemplateId": 2011010,
+                        "name": "入魔机巧 • 率从狻猊",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2011010.webp",
+                        "rank": "Minion",
+                        "speed": {
+                          "exact": "99.6",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "10",
+                          "roundedPerBar": "10"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/3003050",
+                        "hp": {
+                          "exactPerBar": "504245",
+                          "roundedPerBar": "504,245"
+                        },
+                        "identity": "[300305006,3003050,\"1116\",\"0.5\",\"188.2636\",\"1\",\"105051.08880\",\"resolved\",\"504245\",56,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"144.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"300\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-120\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 300305006,
+                        "monsterTemplateId": 3003050,
+                        "name": "「醉于盛会的此刻」",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3003050.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "144.0",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1004030",
+                        "hp": {
+                          "exactPerBar": "1680817",
+                          "roundedPerBar": "1,680,817"
+                        },
+                        "identity": "[100403007,1004030,\"1116\",\"1.666667\",\"188.2636\",\"1\",\"350170.3660340592\",\"resolved\",\"1680817\",56,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"144.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"210\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"210\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"70\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[1002040,1002050],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100403007,
+                        "monsterTemplateId": 1004030,
+                        "name": "布洛妮娅",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004030.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "144.0",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "70",
+                          "roundedPerBar": "70"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080413",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30308042-0",
+                "level": 85,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/3002030",
+                        "hp": {
+                          "exactPerBar": "78788",
+                          "roundedPerBar": "78,788"
+                        },
+                        "identity": "[3002030,3002030,\"209.25\",\"1\",\"188.2636\",\"1\",\"39394.158300\",\"resolved\",\"78788\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"120.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 3002030,
+                        "monsterTemplateId": 3002030,
+                        "name": "惊梦剧团的气泡锂犬",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3002030.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "120.0",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/2032020",
+                        "hp": {
+                          "exactPerBar": "70034",
+                          "roundedPerBar": "70,034"
+                        },
+                        "identity": "[2032020,2032020,\"186\",\"1\",\"188.2636\",\"1\",\"35017.0296\",\"resolved\",\"70034\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"144.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 2032020,
+                        "monsterTemplateId": 2032020,
+                        "name": "蚀月狼卒",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2032020.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "144.0",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/8003040",
+                        "hp": {
+                          "exactPerBar": "192594",
+                          "roundedPerBar": "192,594"
+                        },
+                        "identity": "[800304010,8003040,\"930\",\"0.55\",\"188.2636\",\"1\",\"96296.831400\",\"resolved\",\"192594\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"172\",\"instanceRatio\":\"1\",\"instanceValue\":\"-28\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"172.8\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"300\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-120\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 800304010,
+                        "monsterTemplateId": 8003040,
+                        "name": "蚕食者之影",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8003040.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "172.8",
+                          "rounded": "173"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080421",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1012030",
+                        "hp": {
+                          "exactPerBar": "73536",
+                          "roundedPerBar": "73,536"
+                        },
+                        "identity": "[1012030,1012030,\"130.2\",\"1\",\"188.2636\",\"1\",\"24511.92072\",\"resolved\",\"73536\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"120.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1012030,
+                        "monsterTemplateId": 1012030,
+                        "name": "自动机兵•甲虫",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1012030.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "120.0",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1012010",
+                        "hp": {
+                          "exactPerBar": "73536",
+                          "roundedPerBar": "73,536"
+                        },
+                        "identity": "[1012010,1012010,\"130.2\",\"1\",\"188.2636\",\"1\",\"24511.92072\",\"resolved\",\"73536\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"120.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"60\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"60\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"20\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1012010,
+                        "monsterTemplateId": 1012010,
+                        "name": "自动机兵•战犬",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1012010.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "120.0",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "20",
+                          "roundedPerBar": "20"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/3002050",
+                        "hp": {
+                          "exactPerBar": "262628",
+                          "roundedPerBar": "262,628"
+                        },
+                        "identity": "[300205005,3002050,\"4650\",\"0.1\",\"188.2636\",\"1\",\"87542.57400\",\"resolved\",\"262628\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"172.8\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-210\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"150\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"50\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 300205005,
+                        "monsterTemplateId": 3002050,
+                        "name": "王下一桶",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3002050.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "172.8",
+                          "rounded": "173"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "50",
+                          "roundedPerBar": "50"
+                        },
+                        "weaknesses": []
+                      }
+                    ],
+                    "key": "spawn-303080422",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/2011020",
+                        "hp": {
+                          "exactPerBar": "78788",
+                          "roundedPerBar": "78,788"
+                        },
+                        "identity": "[2011020,2011020,\"83.7\",\"1\",\"188.2636\",\"1\",\"15757.66332\",\"resolved\",\"78788\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"83\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"99.6\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"30\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"30\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"10\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 2011020,
+                        "monsterTemplateId": 2011020,
+                        "name": "入魔机巧 • 浓云金蟾",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2011020.webp",
+                        "rank": "Minion",
+                        "speed": {
+                          "exact": "99.6",
+                          "rounded": "100"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "10",
+                          "roundedPerBar": "10"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/8003040",
+                        "hp": {
+                          "exactPerBar": "481484",
+                          "roundedPerBar": "481,484"
+                        },
+                        "identity": "[800304010,8003040,\"930\",\"0.55\",\"188.2636\",\"1\",\"96296.831400\",\"resolved\",\"481484\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"172\",\"instanceRatio\":\"1\",\"instanceValue\":\"-28\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"172.8\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"300\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-120\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 800304010,
+                        "monsterTemplateId": 8003040,
+                        "name": "蚕食者之影",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8003040.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "172.8",
+                          "rounded": "173"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/2004020",
+                        "hp": {
+                          "exactPerBar": "2188564",
+                          "roundedPerBar": "2,188,564"
+                        },
+                        "identity": "[200402005,2004020,\"1395\",\"1.666667\",\"188.2636\",\"1\",\"437712.9575425740\",\"resolved\",\"2188564\",57,\"elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"144.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"480\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"480\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"160\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[2002020,2002021],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 200402005,
+                        "monsterTemplateId": 2004020,
+                        "name": "云骑骁卫•彦卿",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2004020.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "144.0",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "160",
+                          "roundedPerBar": "160"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-303080423",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "20104",
+        "label": "论黄数黑其四",
+        "mode": "pf",
+        "ordinal": 4,
+        "variant": "floor"
+      }
+    ],
+    "fixedMechanics": [
+      {
+        "description": "敌方目标受到的持续伤害提高<color=#f29e38ff><unbreak>35%</unbreak></color>。受到持续伤害的敌方目标造成的伤害降低<color=#f29e38ff><unbreak>35%</unbreak></color>，被攻击后行动提前<color=#f29e38ff><unbreak>35%</unbreak></color>。",
+        "id": 3031002,
+        "name": "恶语钝刀"
+      }
+    ],
+    "mode": "pf",
+    "modeLabel": "虚构叙事",
+    "period": {
+      "dateLabel": "2024/11/11 – 2024/12/23",
+      "encounterCount": 4,
+      "groupId": 2010,
+      "name": "论黄数黑",
+      "status": "historical"
+    },
+    "periods": [
+      {
+        "dateLabel": "2026/09/14 – 2026/10/19",
+        "encounterCount": 4,
+        "groupId": 2026,
+        "name": "立界开篇",
+        "status": "upcoming"
+      },
+      {
+        "dateLabel": "2026/08/03 – 2026/09/14",
+        "encounterCount": 4,
+        "groupId": 2025,
+        "name": "构事生意",
+        "status": "current"
+      },
+      {
+        "dateLabel": "2026/06/22 – 2026/08/03",
+        "encounterCount": 4,
+        "groupId": 2024,
+        "name": "借虚成真",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/05/11 – 2026/06/22",
+        "encounterCount": 4,
+        "groupId": 2023,
+        "name": "造象立说",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/03/30 – 2026/05/11",
+        "encounterCount": 4,
+        "groupId": 2022,
+        "name": "虚境成章",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/02/16 – 2026/03/30",
+        "encounterCount": 4,
+        "groupId": 2021,
+        "name": "无字小说",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/01/05 – 2026/02/16",
+        "encounterCount": 4,
+        "groupId": 2020,
+        "name": "史诗集群",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/11/24 – 2026/01/05",
+        "encounterCount": 4,
+        "groupId": 2019,
+        "name": "程式句法",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/10/13 – 2025/11/24",
+        "encounterCount": 4,
+        "groupId": 2018,
+        "name": "五步抑扬",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/09/01 – 2025/10/13",
+        "encounterCount": 4,
+        "groupId": 2017,
+        "name": "主观叙事",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/07/21 – 2025/09/01",
+        "encounterCount": 4,
+        "groupId": 2016,
+        "name": "三幕架构",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/06/09 – 2025/07/21",
+        "encounterCount": 4,
+        "groupId": 2015,
+        "name": "叙事分析",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/04/28 – 2025/06/09",
+        "encounterCount": 4,
+        "groupId": 2014,
+        "name": "结构规律",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/03/17 – 2025/04/28",
+        "encounterCount": 4,
+        "groupId": 2013,
+        "name": "自证预言",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/02/03 – 2025/03/17",
+        "encounterCount": 4,
+        "groupId": 2012,
+        "name": "陈腔滥调",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/12/23 – 2025/02/03",
+        "encounterCount": 4,
+        "groupId": 2011,
+        "name": "深文巧诋",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/11/11 – 2024/12/23",
+        "encounterCount": 4,
+        "groupId": 2010,
+        "name": "论黄数黑",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/09/30 – 2024/11/11",
+        "encounterCount": 4,
+        "groupId": 2009,
+        "name": "巧言如流",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/08/19 – 2024/09/30",
+        "encounterCount": 4,
+        "groupId": 2008,
+        "name": "欺人虚言",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/07/08 – 2024/08/19",
+        "encounterCount": 4,
+        "groupId": 2007,
+        "name": "向壁虚造",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/05/27 – 2024/07/08",
+        "encounterCount": 4,
+        "groupId": 2006,
+        "name": "新词迷离",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/04/29 – 2024/06/10",
+        "encounterCount": 4,
+        "groupId": 2005,
+        "name": "作言造语",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/04/01 – 2024/05/13",
+        "encounterCount": 4,
+        "groupId": 2004,
+        "name": "撒诈捣虚",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/03/04 – 2024/04/15",
+        "encounterCount": 4,
+        "groupId": 2003,
+        "name": "舌灿莲花",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/02/05 – 2024/03/18",
+        "encounterCount": 4,
+        "groupId": 2002,
+        "name": "羁鸟奇谭",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/01/08 – 2024/02/19",
+        "encounterCount": 4,
+        "groupId": 2001,
+        "name": "游辞漫说",
+        "status": "historical"
+      }
+    ]
+  },
+  "route": "/endgame/pf/2010"
+}

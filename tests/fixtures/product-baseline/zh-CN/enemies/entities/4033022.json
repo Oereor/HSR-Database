@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "传说中的多洛斯强盗双子，武艺超群，配合无间。双拳总难敌四手，令无数英雄饮恨。",
+    "id": "4033022",
+    "name": "戮力双雄•歃血联战的黑斗士",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4033022",
+    "defaultMonsterRef": "62c8792d389d7f4634dcb1faca1a779a9bc723fec60ba5442193369a2bd06d8d",
+    "description": "传说中的多洛斯强盗双子，武艺超群，配合无间。双拳总难敌四手，令无数英雄饮恨。",
+    "id": "4033022",
+    "kind": "enemy",
+    "monsterRefs": [
+      "62c8792d389d7f4634dcb1faca1a779a9bc723fec60ba5442193369a2bd06d8d"
+    ],
+    "name": "戮力双雄•歃血联战的黑斗士",
+    "rank": "Elite",
+    "templateRef": "734fbe7f54e9959676cbc44b1f2f46d2b246dc2464ced793a795675ae007a9bd",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4033022",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4033022",
+    "selectableMonsterIds": [
+      "4033022"
+    ]
+  }
+}

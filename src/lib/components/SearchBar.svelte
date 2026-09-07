@@ -1,10 +1,12 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
+  import { localizedHref } from '$lib/i18n/routing';
   export let id: string;
   export let label: string;
   export let placeholder: string;
   export let value = '';
   export let variant: 'default' | 'sidebar' = 'default';
-  export let action = '/search';
+  export let action = localizedHref('/search');
   export let name = 'q';
   export let onSubmit: (() => void | Promise<void>) | undefined = undefined;
 
@@ -27,10 +29,10 @@
     <input {id} {name} bind:value {placeholder} />
     <button
       type="submit"
-      aria-label={variant === 'sidebar' ? '开始搜索' : undefined}
-      title={variant === 'sidebar' ? '搜索' : undefined}
+      aria-label={variant === 'sidebar' ? m.search_submit_aria() : undefined}
+      title={variant === 'sidebar' ? m.common_search() : undefined}
     >
-      {#if variant === 'sidebar'}<span aria-hidden="true">⌕</span>{:else}搜索{/if}
+      {#if variant === 'sidebar'}<span aria-hidden="true">⌕</span>{:else}{m.common_search()}{/if}
     </button>
   </div>
 </form>

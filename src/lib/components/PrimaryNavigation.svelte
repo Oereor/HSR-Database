@@ -1,14 +1,20 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   import { getNavigationIconUrl } from '$lib/data/visual-assets';
-  import { isNavigationItemActive, NAVIGATION_ITEMS } from '$lib/navigation';
+  import { isNavigationItemActive, localizedNavigationItems } from '$lib/navigation';
 
   export let pathname: string;
   export let compact = false;
   export let onSelect: (() => void) | undefined = undefined;
+  const navigationItems = localizedNavigationItems();
 </script>
 
-<nav class:primary-navigation--compact={compact} class="primary-navigation" aria-label="主导航">
-  {#each NAVIGATION_ITEMS as item}
+<nav
+  class:primary-navigation--compact={compact}
+  class="primary-navigation"
+  aria-label={m.navigation_primary_aria()}
+>
+  {#each navigationItems as item}
     {@const active = isNavigationItemActive(pathname, item)}
     {@const iconUrl = getNavigationIconUrl(item.iconKey)}
     <a

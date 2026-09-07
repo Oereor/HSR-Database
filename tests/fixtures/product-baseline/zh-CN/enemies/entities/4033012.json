@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志，此时获得强大力量的它，已经没有任何人可以阻挡。",
+    "id": "4033012",
+    "name": "蚀心影魔•浑流奔涌的腐坏者",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4033012",
+    "defaultMonsterRef": "9aaea92c2dd4e2d66753703a78505f1b4b47aa8422d95ccfb7c035b398c8fb83",
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志，此时获得强大力量的它，已经没有任何人可以阻挡。",
+    "id": "4033012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "9aaea92c2dd4e2d66753703a78505f1b4b47aa8422d95ccfb7c035b398c8fb83"
+    ],
+    "name": "蚀心影魔•浑流奔涌的腐坏者",
+    "rank": "Elite",
+    "templateRef": "f05eed15a509b5949d8347d3f25623b20df1bf1d59c89ba0183b86bb92d1c6ce",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4033012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4033012",
+    "selectableMonsterIds": [
+      "4033012"
+    ]
+  }
+}

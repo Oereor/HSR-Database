@@ -1,0 +1,94 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的暴击伤害提高16%，当存在装备者召唤的目标时，暴击伤害额外提高32%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "318",
+    "name": "奇想蕉乐园",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "2.5"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的暴击伤害提高16%，当存在装备者召唤的目标时，暴击伤害额外提高32%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的暴击伤害提高16%，当存在装备者召唤的目标时，暴击伤害额外提高32%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "16%"
+          },
+          {
+            "type": "text",
+            "value": "，当存在装备者召唤的目标时，暴击伤害额外提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "32%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "318",
+    "kind": "relic",
+    "name": "奇想蕉乐园",
+    "pieces": [
+      {
+        "description": "位面球封装的是某个科研团体下设实验室之一，因为模因污染，信息的真实与虚假已经彻底混合，难以分清，现已被认知重塑为「蕉乐园」。",
+        "id": "33185",
+        "name": "蕉乐园的蕉芯广场",
+        "slot": "NECK"
+      },
+      {
+        "description": "实验室中随处可见的光信号缆线，它被用于采集实验数据，以达成不可告人的秘密。对「香蕉们」而言，认知世界的方法就藏在其中。",
+        "id": "33186",
+        "name": "蕉乐园的模因线缆",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "2.5"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33185"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33186"
+      }
+    ],
+    "route": "/relics/318"
+  }
+}

@@ -30,8 +30,8 @@ Due to special network environment, all Internet-related operations must go thro
 - Use only real game data discovered in `../TurnBasedGameData/`.
 - Do not use StarRailRes index files as a replacement source for character, skill, trace, light-cone, enemy, stat, or relationship data unless explicitly requested.
 - Do not invent characters, items, skills, statistics, IDs, descriptions, translations, or relationships.
-- The website supports Simplified Chinese only and normally reads only `TextMap/TextMapCHS.json`.
-- Do not add locale state, language switching, an i18n framework, or fallback TextMaps.
+- Data generation supports `zh-CN` and `en` from their matching pinned TextMaps; public website routes and loaders remain Simplified-Chinese-only until an explicit product change.
+- Paraglide compiles manually maintained `zh-CN` and `en` Site Messages. Use explicit locale message calls. Do not add mutable locale state, language switching, localized routing, cross-locale TextMap fallback, or locale detection/redirects.
 - Keep TextMap hashes as decimal strings throughout the data pipeline; never pass them through JavaScript `number`.
 - Keep raw-data parsing separate from UI components.
 - Use the shared TextMap resolver instead of accessing TextMap records from business code.
@@ -66,6 +66,8 @@ Due to special network environment, all Internet-related operations must go thro
 - Preserve established product and data invariants when performing visual-only refactors; do not change working business logic merely to simplify presentation code.
 
 ## Required checks
+
+Current architecture source of truth: [docs/architecture/localization-and-data-generation.md](docs/architecture/localization-and-data-generation.md). Phase and audit reports are historical/non-normative.
 
 After changing data-processing code, run the data validation and synchronization checks.
 

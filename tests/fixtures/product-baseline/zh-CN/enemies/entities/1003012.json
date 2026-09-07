@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为贝洛伯格的戍卫部队「银鬃铁卫」分队的领导者。",
+    "id": "1003012",
+    "name": "银鬃尉官（完整）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1003012",
+    "defaultMonsterRef": "99ffbce983b58a40cbcc79292f452db45702e43c3be61d2b1addb7caf54d902b",
+    "description": "代码受到影响后的完整投影。参照本体为贝洛伯格的戍卫部队「银鬃铁卫」分队的领导者。",
+    "id": "1003012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "99ffbce983b58a40cbcc79292f452db45702e43c3be61d2b1addb7caf54d902b"
+    ],
+    "name": "银鬃尉官（完整）",
+    "rank": "Elite",
+    "templateRef": "6838b42b8310da66293869ab9a71a3b0059eaf49c7508338224b158f8d48893b",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1003012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1003012",
+    "selectableMonsterIds": [
+      "1003012"
+    ]
+  }
+}

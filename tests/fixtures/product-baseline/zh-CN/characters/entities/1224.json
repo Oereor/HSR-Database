@@ -1,0 +1,3945 @@
+{
+  "catalog": {
+    "baseName": "三月七",
+    "description": "换上仙舟服饰的三月七，执剑的武侠少女。\n向云璃与彦卿拜师学艺，为在仙舟留下更多美好的「回忆」而跃跃欲试。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "id": "1224",
+    "name": "三月七·巡猎",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "三月七",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 102
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 76.8,
+            "perLevel": 3.84
+          },
+          "defence": {
+            "base": 60,
+            "perLevel": 3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 144,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 107.52,
+            "perLevel": 3.84
+          },
+          "defence": {
+            "base": 84,
+            "perLevel": 3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 201.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 138.24,
+            "perLevel": 3.84
+          },
+          "defence": {
+            "base": 108,
+            "perLevel": 3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 168.96,
+            "perLevel": 3.84
+          },
+          "defence": {
+            "base": 132,
+            "perLevel": 3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 316.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 199.68,
+            "perLevel": 3.84
+          },
+          "defence": {
+            "base": 156,
+            "perLevel": 3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 374.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 230.4,
+            "perLevel": 3.84
+          },
+          "defence": {
+            "base": 180,
+            "perLevel": 3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 432,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 261.12,
+            "perLevel": 3.84
+          },
+          "defence": {
+            "base": 204,
+            "perLevel": 3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "换上仙舟服饰的三月七，执剑的武侠少女。\n向云璃与彦卿拜师学艺，为在仙舟留下更多美好的「回忆」而跃跃欲试。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "equipmentRecommendation": {
+      "avatarId": "1224",
+      "cavernSetIds": [
+        "102",
+        "112",
+        "117"
+      ],
+      "lightConeIds": [
+        "23012",
+        "24001",
+        "21010"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "ImaginaryAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "309",
+        "314",
+        "301"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "三月七·巡猎",
+    "id": "1224",
+    "kind": "character",
+    "name": "三月七·巡猎",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "场上存在【师父】时，三月七的速度提高<unbreak>10%</unbreak>。",
+            "iconKey": "rank--122401",
+            "id": "122401",
+            "name": "初花学剑动星芒",
+            "rank": 1
+          },
+          {
+            "description": "每当【师父】施放普攻或战技攻击敌方目标后，三月七立即发动<u>追加攻击</u>，对本次攻击的主目标造成等同于三月七<unbreak>60%</unbreak>攻击力的虚数属性伤害，并根据【师父】的命途触发对应效果，随后获得<unbreak>1</unbreak>点充能。若不存在可攻击的主目标，则攻击敌方随机单体。该效果每回合最多触发1次。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--122402",
+            "id": "122402",
+            "name": "白刃耀雪舞骇浪",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--122403",
+            "id": "122403",
+            "name": "头脑机灵本领强",
+            "rank": 3
+          },
+          {
+            "description": "回合开始时，恢复<unbreak>5</unbreak>点能量。",
+            "iconKey": "rank--122404",
+            "id": "122404",
+            "name": "龙飞凤舞不窝囊",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--122405",
+            "id": "122405",
+            "name": "多练武术少吃糖",
+            "rank": 5
+          },
+          {
+            "description": "施放终结技后，下一次强化普攻造成的暴击伤害提高<unbreak>50%</unbreak>。",
+            "iconKey": "rank--122406",
+            "id": "122406",
+            "name": "天下第一本姑娘",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 110
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1224001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1224001",
+                "variantIds": [
+                  "122401",
+                  "122408"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "122401",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于三月七50%攻击力的虚数属性伤害，随后获得1点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七60%攻击力的虚数属性伤害，随后获得1点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七70%攻击力的虚数属性伤害，随后获得1点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七80%攻击力的虚数属性伤害，随后获得1点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七90%攻击力的虚数属性伤害，随后获得1点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七100%攻击力的虚数属性伤害，随后获得1点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七110%攻击力的虚数属性伤害，随后获得1点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七120%攻击力的虚数属性伤害，随后获得1点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七130%攻击力的虚数属性伤害，随后获得1点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七140%攻击力的虚数属性伤害，随后获得1点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "荡涤妖邪琉璃剑",
+                "progressionId": "1224001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              },
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "不会被任何因素影响的固定概率。",
+                      "id": "30000002",
+                      "name": "固定概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 5
+                    }
+                  ]
+                },
+                "id": "122408",
+                "levels": [
+                  {
+                    "description": "初始造成3段伤害，每段对指定敌方单体造成等同于三月七40%攻击力的虚数属性伤害。每当造成最后1段伤害后，有60%的固定概率再造成1段伤害，最多额外造成3段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害，每段对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。每当造成最后1段伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "再造成1段伤害，最多额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "初始造成3段伤害，每段对指定敌方单体造成等同于三月七48%攻击力的虚数属性伤害。每当造成最后1段伤害后，有60%的固定概率再造成1段伤害，最多额外造成3段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害，每段对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。每当造成最后1段伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "再造成1段伤害，最多额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "初始造成3段伤害，每段对指定敌方单体造成等同于三月七56%攻击力的虚数属性伤害。每当造成最后1段伤害后，有60%的固定概率再造成1段伤害，最多额外造成3段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害，每段对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。每当造成最后1段伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "再造成1段伤害，最多额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "初始造成3段伤害，每段对指定敌方单体造成等同于三月七64%攻击力的虚数属性伤害。每当造成最后1段伤害后，有60%的固定概率再造成1段伤害，最多额外造成3段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害，每段对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。每当造成最后1段伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "再造成1段伤害，最多额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "初始造成3段伤害，每段对指定敌方单体造成等同于三月七72%攻击力的虚数属性伤害。每当造成最后1段伤害后，有60%的固定概率再造成1段伤害，最多额外造成3段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害，每段对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。每当造成最后1段伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "再造成1段伤害，最多额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "初始造成3段伤害，每段对指定敌方单体造成等同于三月七80%攻击力的虚数属性伤害。每当造成最后1段伤害后，有60%的固定概率再造成1段伤害，最多额外造成3段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害，每段对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。每当造成最后1段伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "再造成1段伤害，最多额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "初始造成3段伤害，每段对指定敌方单体造成等同于三月七88%攻击力的虚数属性伤害。每当造成最后1段伤害后，有60%的固定概率再造成1段伤害，最多额外造成3段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害，每段对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。每当造成最后1段伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "再造成1段伤害，最多额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "初始造成3段伤害，每段对指定敌方单体造成等同于三月七96%攻击力的虚数属性伤害。每当造成最后1段伤害后，有60%的固定概率再造成1段伤害，最多额外造成3段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害，每段对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。每当造成最后1段伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "再造成1段伤害，最多额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "初始造成3段伤害，每段对指定敌方单体造成等同于三月七104%攻击力的虚数属性伤害。每当造成最后1段伤害后，有60%的固定概率再造成1段伤害，最多额外造成3段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害，每段对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "104%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。每当造成最后1段伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "再造成1段伤害，最多额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "初始造成3段伤害，每段对指定敌方单体造成等同于三月七112%攻击力的虚数属性伤害。每当造成最后1段伤害后，有60%的固定概率再造成1段伤害，最多额外造成3段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害，每段对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。每当造成最后1段伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "再造成1段伤害，最多额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段伤害。施放强化普攻恢复的能量不随段数提高而提高。\n强化普攻无法恢复战技点。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "一扎眉攒，二扎心",
+                "progressionId": "1224001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1224002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1224002",
+                "variantIds": [
+                  "122402"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    }
+                  ]
+                },
+                "id": "122402",
+                "levels": [
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高6.0%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七10%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高6.4%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七11%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高6.8%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七12%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高7.2%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七13%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高7.6%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七14%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高8.0%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七15%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高8.5%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七16%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高9.0%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七18%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高9.5%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七19%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高10.0%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七20%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高10.4%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七21%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高10.8%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七22%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高11.2%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七23%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高11.6%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七24%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高12.0%。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七25%攻击力的基于【师父】属性的附加伤害。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的我方指定单体成为【师父】，【师父】的速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。仅战技最新的施放目标被视为三月七的【师父】。\n每当施放普攻或造成1段强化普攻的伤害时，若场上存在指定命途的【师父】，则触发对应效果：\n「智识」、「毁灭」、「巡猎」、「记忆」、「欢愉」：额外造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的基于【师父】属性的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n「同谐」、「虚无」、「存护」、「丰饶」：本次伤害的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "师父，请喝茶！",
+                "progressionId": "1224002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1224003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1224003",
+                "variantIds": [
+                  "122403"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "不会被任何因素影响的固定概率。",
+                      "id": "30000002",
+                      "name": "固定概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "122403",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于三月七144%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七154%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七163%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "163%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七173%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七182%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "182%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七192%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七204%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "204%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七216%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七228%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "228%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七240%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七250%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七259%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "259%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七269%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "269%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七278%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "278%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七288%攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加2段，额外造成伤害的固定概率提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "288%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n使下一次强化普攻的初始段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段，额外造成伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "盖世女侠三月七",
+                "progressionId": "1224003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1224004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1224004",
+                "variantIds": [
+                  "122404"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "energyGain": 5
+                },
+                "id": "122404",
+                "levels": [
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高40%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高44%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高48%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高52%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高56%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高60%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高65%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高70%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高75%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高80%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高84%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高88%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高92%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高96%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于7点时，三月七立即行动，造成的伤害提高100%，普攻得到强化且无法施放战技。施放强化普攻后，消耗7点充能。充能上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【师父】施放攻击或终结技后，三月七每次获得最多1点充能。\n充能大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，三月七立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻得到强化且无法施放战技。施放强化普攻后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。充能上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "师父，我悟了！",
+                "progressionId": "1224004",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1224007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1224007",
+                "variantIds": [
+                  "122407"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "122407",
+                "levels": [
+                  {
+                    "description": "若三月七在队伍中，每当队友施放1次秘技，下一次战斗开始时三月七获得1点充能，最多获得3点。\n使用秘技后，下一次战斗开始时三月七恢复30点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "若三月七在队伍中，每当队友施放1次秘技，下一次战斗开始时三月七获得1点充能，最多获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n使用秘技后，下一次战斗开始时三月七恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "一气化三餐",
+                "progressionId": "1224007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "战斗开始时，三月七的<u>行动提前</u><unbreak>25%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "skill-tree--1224101",
+            "id": "1224101",
+            "name": "惊鸿",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "三月七能够削减具有【师父】属性弱点的敌方目标的韧性。击破弱点时，触发虚数属性的弱点击破效果。",
+            "iconKey": "skill-tree--1224102",
+            "id": "1224102",
+            "name": "玲珑",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放强化普攻后，使【师父】的暴击伤害提高<unbreak>60%</unbreak>，击破特攻提高<unbreak>36%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "skill-tree--1224103",
+            "id": "1224103",
+            "name": "斡波",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1224201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1224202",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1224101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1224203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1224202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1224204",
+            "name": "防御强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1224205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1224102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1224206",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1224205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1224207",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1224208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1224103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击伤害提高10.7%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1224209",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1224208"
+            ],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1224210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1224208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1224001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122401",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122408",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1224002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122402",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1224003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122403",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1224004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122404",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1224007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122407",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1224",
+    "subtitleRendered": false
+  }
+}

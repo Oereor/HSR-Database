@@ -1,0 +1,82 @@
+{
+  "catalog": {
+    "description": "由「建木」化生，拱卫其根系的灵瑞之兽，履迹所之，和泽滋生，枝杪郁敷。\n自毁于太古时代的战争后，「建木」终于在星核的修补下再度生长。彼时仙人们所造的珍禽奇兽纷至沓来，宛如旧梦重临。",
+    "id": "2024010",
+    "name": "丰饶玄鹿",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2024010",
+    "defaultMonsterRef": "e2daea87d708815a7f3127fe4771dbb58aa8b13c7177e487415df019750fad76",
+    "description": "由「建木」化生，拱卫其根系的灵瑞之兽，履迹所之，和泽滋生，枝杪郁敷。\n自毁于太古时代的战争后，「建木」终于在星核的修补下再度生长。彼时仙人们所造的珍禽奇兽纷至沓来，宛如旧梦重临。",
+    "id": "2024010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e2daea87d708815a7f3127fe4771dbb58aa8b13c7177e487415df019750fad76",
+      "860fd149c452c3f94f19a73b71413c598eb0df13368c9ecb00b2439a2f5e0ee0",
+      "fbbc04a3d042a8d0f70d9d549653498a2e234068decb5a87d5f2b4f1d5e07b26",
+      "81604e0dcd1ececa4fe48b210510ddc77669b18052131956ff53ad417af0ac71",
+      "4e15a5a2c5a7fdaa36fe2537f9c6d1e0f10905d129a0ad233345e3461b4019b3",
+      "92bbcfbfbd3f26e38d496ab17a8ff58ae7573705e75b86b772fb441c6dadc5a2",
+      "5c4c61ed6fbfc5e528100fc444938282147541c3c1b69333dbf3f548ebf0bcc6",
+      "71872acdb3af2e3e32d3796c64dc19487a5a8cf63540f098e61c6dbab9567ebb",
+      "66678409e6e14a5aa15316bcb239a35d59c52e0929aee2f56bf08e674a1f6928",
+      "26310baf6c441112a165b949fc402c9e32cba547f5acf833783fb3d58af556be",
+      "3b738be8f5a5a686125b2a9f1bca28235d4ce3bfc53acc7fcc8f731123d4f573",
+      "3515d02da5ca58a9afac4c064983a4f62af446c9eeb83a028384efff7a49a72d"
+    ],
+    "name": "丰饶玄鹿",
+    "rank": "LittleBoss",
+    "templateRef": "c4233a6c7c2ad734684a577d4fddbcf035528f54c4fdef41e9a93cacd272cee8",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2024010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2024010",
+    "selectableMonsterIds": [
+      "2024010",
+      "202401001",
+      "202401002",
+      "202401004",
+      "202401005",
+      "202401006",
+      "202401007",
+      "202401008",
+      "202401009",
+      "202401010",
+      "202401011",
+      "202401012"
+    ]
+  }
+}

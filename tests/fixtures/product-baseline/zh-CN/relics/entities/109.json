@@ -1,0 +1,139 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：雷属性伤害提高10%。 4件：当装备者施放战技时，使装备者的攻击力提高20%，持续1回合。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "109",
+    "name": "激奏雷电的乐队",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.0"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：雷属性伤害提高10%。 4件：当装备者施放战技时，使装备者的攻击力提高20%，持续1回合。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "雷属性伤害提高10%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "雷属性伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "10%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "当装备者施放战技时，使装备者的攻击力提高20%，持续1回合。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "当装备者施放战技时，使装备者的攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "20%"
+          },
+          {
+            "type": "text",
+            "value": "，持续"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "1"
+          },
+          {
+            "type": "text",
+            "value": "回合。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "109",
+    "kind": "relic",
+    "name": "激奏雷电的乐队",
+    "pieces": [
+      {
+        "description": "主唱之一的詹尼斯所戴的经典款墨镜，镀铬镜片反射着蓝色的光芒。",
+        "id": "31091",
+        "name": "乐队的偏光墨镜",
+        "slot": "HEAD"
+      },
+      {
+        "description": "贝斯手席德的手绳，由巡演时的丝带手环编织而成，上面写着几句歌词。",
+        "id": "31092",
+        "name": "乐队的巡演手绳",
+        "slot": "HAND"
+      },
+      {
+        "description": "主唱之一的大卫在皮衣背面画上了白色的星星，它成为了乐队最后一张专辑的封面。",
+        "id": "31093",
+        "name": "乐队的钉刺皮衣",
+        "slot": "BODY"
+      },
+      {
+        "description": "鼓手博纳姆的短靴，折射着舞台灯光的漆面上粘着铆钉尖刺。",
+        "id": "31094",
+        "name": "乐队的铆钉短靴",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【流云渡】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31091"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31092"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31093"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31094"
+      }
+    ],
+    "route": "/relics/109"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "美梦剧团中演奏谐乐的琴师。本应于「谐乐大典」之中献奏，如今却被「秩序」所缚，上演着关于「未来」的剧目。来日是永恒的长歌，幸福的愿景汇于弦上，以琴声呼唤谱曲的君王。",
+    "id": "3003041",
+    "name": "「同音共律的来日」",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3003041",
+    "defaultMonsterRef": "b0030408c3add51a159555d7a99f2d1ae4c29eb6f75478afb6088fa49749a1ee",
+    "description": "美梦剧团中演奏谐乐的琴师。本应于「谐乐大典」之中献奏，如今却被「秩序」所缚，上演着关于「未来」的剧目。来日是永恒的长歌，幸福的愿景汇于弦上，以琴声呼唤谱曲的君王。",
+    "id": "3003041",
+    "kind": "enemy",
+    "monsterRefs": [
+      "b0030408c3add51a159555d7a99f2d1ae4c29eb6f75478afb6088fa49749a1ee",
+      "33db76e7ce9802abb7e5c8001525946ea8e2b2b7545ec9068dab2a9c1a9f09f7",
+      "5f66df305cfda2130dc78575a3b6f93676ad9e8fee3ab7d93b8b07236594bfcd",
+      "05b0e276214435831f445294e6a2c8c8177a0198f852895e9b4370c6d6d90d99",
+      "fc709b5fc8547378ff00226da4b9e3148bdf7c0973741237197b45e4e7d2b878"
+    ],
+    "name": "「同音共律的来日」",
+    "rank": "Elite",
+    "templateRef": "0e68c80e06b11b00ae94672284f5fbea6bb2f7c24e22a65bbadd27a1610d4427",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3003041",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3003041",
+    "selectableMonsterIds": [
+      "3003041",
+      "300304101",
+      "300304102",
+      "300304103",
+      "300304104"
+    ]
+  }
+}

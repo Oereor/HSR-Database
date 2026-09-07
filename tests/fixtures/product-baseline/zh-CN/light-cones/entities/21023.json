@@ -1,0 +1,357 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21023",
+    "name": "我们是地火",
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 21,
+            "perLevel": 3.15
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 33.6,
+            "perLevel": 5.04
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 46.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 73.92,
+            "perLevel": 5.04
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 79.8,
+            "perLevel": 3.15
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 127.68,
+            "perLevel": 5.04
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 113.4,
+            "perLevel": 3.15
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 181.44,
+            "perLevel": 5.04
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 147,
+            "perLevel": 3.15
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 235.2,
+            "perLevel": 5.04
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 180.6,
+            "perLevel": 3.15
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 288.96,
+            "perLevel": 5.04
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 214.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 342.72,
+            "perLevel": 5.04
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21023",
+    "kind": "light-cone",
+    "name": "我们是地火",
+    "passive": {
+      "id": "21023",
+      "name": "泪中人",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "战斗开始时，使我方全体受到的伤害降低8%，持续5回合。同时立即为我方全体回复等同于各自已损失生命值30%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "战斗开始时，使我方全体受到的伤害降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "5"
+              },
+              {
+                "type": "text",
+                "value": "回合。同时立即为我方全体回复等同于各自已损失生命值"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "战斗开始时，使我方全体受到的伤害降低10%，持续5回合。同时立即为我方全体回复等同于各自已损失生命值35%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "战斗开始时，使我方全体受到的伤害降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "5"
+              },
+              {
+                "type": "text",
+                "value": "回合。同时立即为我方全体回复等同于各自已损失生命值"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "35%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "战斗开始时，使我方全体受到的伤害降低12%，持续5回合。同时立即为我方全体回复等同于各自已损失生命值40%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "战斗开始时，使我方全体受到的伤害降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "5"
+              },
+              {
+                "type": "text",
+                "value": "回合。同时立即为我方全体回复等同于各自已损失生命值"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "战斗开始时，使我方全体受到的伤害降低14%，持续5回合。同时立即为我方全体回复等同于各自已损失生命值45%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "战斗开始时，使我方全体受到的伤害降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "5"
+              },
+              {
+                "type": "text",
+                "value": "回合。同时立即为我方全体回复等同于各自已损失生命值"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "45%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "战斗开始时，使我方全体受到的伤害降低16%，持续5回合。同时立即为我方全体回复等同于各自已损失生命值50%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "战斗开始时，使我方全体受到的伤害降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "5"
+              },
+              {
+                "type": "text",
+                "value": "回合。同时立即为我方全体回复等同于各自已损失生命值"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 4,
+    "story": "她习惯了人们失去家园，\n也习惯了人们失去生命，\n但一个人时，哭泣也无用。\n\n<i>「系上这条红丝巾，分担彼此痛苦。」\n「我们是一家人…我们是地火。」</i>\n\n当宽阔的手掌抚上她的脑袋，她终于忍不住掉下眼泪。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21023",
+    "storyFallbackRendered": false
+  }
+}

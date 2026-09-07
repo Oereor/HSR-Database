@@ -1,0 +1,588 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>欢愉</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23058",
+    "name": "邂逅于下一个花季",
+    "path": "Elation",
+    "pathName": "欢愉",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 28.8,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 21,
+            "perLevel": 3.15
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 63.36,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 46.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 109.44,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 79.8,
+            "perLevel": 3.15
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 155.52,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 113.4,
+            "perLevel": 3.15
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 201.6,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 147,
+            "perLevel": 3.15
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 247.68,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 180.6,
+            "perLevel": 3.15
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 293.76,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 214.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>欢愉</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23058",
+    "kind": "light-cone",
+    "name": "邂逅于下一个花季",
+    "passive": {
+      "id": "23058",
+      "name": "遐想",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的暴击伤害提高60%，能量恢复效率提高10.0%。装备者的能量上限大于120时，每超出10点能量上限额外使能量恢复效率提高0.3%，最多计入360点超出的能量上限。装备者施放欢愉技时，使敌方全体受到的伤害提高15.0%，持续2回合，同类效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "，能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10.0%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的能量上限大于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120"
+              },
+              {
+                "type": "text",
+                "value": "时，每超出"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "10"
+              },
+              {
+                "type": "text",
+                "value": "点能量上限额外使能量恢复效率提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "0.3%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "360"
+              },
+              {
+                "type": "text",
+                "value": "点超出的能量上限。装备者施放欢愉技时，使敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15.0%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，同类效果无法叠加。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的暴击伤害提高75%，能量恢复效率提高11.5%。装备者的能量上限大于120时，每超出10点能量上限额外使能量恢复效率提高0.3%，最多计入360点超出的能量上限。装备者施放欢愉技时，使敌方全体受到的伤害提高18.8%，持续2回合，同类效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "75%"
+              },
+              {
+                "type": "text",
+                "value": "，能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "11.5%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的能量上限大于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120"
+              },
+              {
+                "type": "text",
+                "value": "时，每超出"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "10"
+              },
+              {
+                "type": "text",
+                "value": "点能量上限额外使能量恢复效率提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "0.3%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "360"
+              },
+              {
+                "type": "text",
+                "value": "点超出的能量上限。装备者施放欢愉技时，使敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18.8%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，同类效果无法叠加。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的暴击伤害提高90%，能量恢复效率提高13.0%。装备者的能量上限大于120时，每超出10点能量上限额外使能量恢复效率提高0.3%，最多计入360点超出的能量上限。装备者施放欢愉技时，使敌方全体受到的伤害提高22.5%，持续2回合，同类效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "90%"
+              },
+              {
+                "type": "text",
+                "value": "，能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "13.0%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的能量上限大于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120"
+              },
+              {
+                "type": "text",
+                "value": "时，每超出"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "10"
+              },
+              {
+                "type": "text",
+                "value": "点能量上限额外使能量恢复效率提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "0.3%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "360"
+              },
+              {
+                "type": "text",
+                "value": "点超出的能量上限。装备者施放欢愉技时，使敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "22.5%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，同类效果无法叠加。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的暴击伤害提高105%，能量恢复效率提高14.5%。装备者的能量上限大于120时，每超出10点能量上限额外使能量恢复效率提高0.3%，最多计入360点超出的能量上限。装备者施放欢愉技时，使敌方全体受到的伤害提高26.3%，持续2回合，同类效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "105%"
+              },
+              {
+                "type": "text",
+                "value": "，能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14.5%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的能量上限大于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120"
+              },
+              {
+                "type": "text",
+                "value": "时，每超出"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "10"
+              },
+              {
+                "type": "text",
+                "value": "点能量上限额外使能量恢复效率提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "0.3%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "360"
+              },
+              {
+                "type": "text",
+                "value": "点超出的能量上限。装备者施放欢愉技时，使敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "26.3%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，同类效果无法叠加。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的暴击伤害提高120%，能量恢复效率提高16.0%。装备者的能量上限大于120时，每超出10点能量上限额外使能量恢复效率提高0.3%，最多计入360点超出的能量上限。装备者施放欢愉技时，使敌方全体受到的伤害提高30.0%，持续2回合，同类效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "，能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16.0%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的能量上限大于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120"
+              },
+              {
+                "type": "text",
+                "value": "时，每超出"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "10"
+              },
+              {
+                "type": "text",
+                "value": "点能量上限额外使能量恢复效率提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "0.3%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "360"
+              },
+              {
+                "type": "text",
+                "value": "点超出的能量上限。装备者施放欢愉技时，使敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30.0%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，同类效果无法叠加。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          3
+        ]
+      }
+    },
+    "path": "Elation",
+    "pathName": "欢愉",
+    "rarity": 5,
+    "story": "微风吹过洁白的窗纱，牵动少女的思绪。\n她望向窗外有说有笑的人群，写写画画的笔不自觉地停留某处。\n<i>「这是…第几次坐在这里了？」</i>\n\n恍然间，飘落的花瓣掠过她的鼻尖，仿若回应，仿若提醒。\n一场盛大的游戏、一期一会的际遇、花开花谢的日夜……\n她回忆着自己和这片土地的故事，从一片空白，到五彩缤纷，每一次沉睡，她都在期待着明天的到来。\n\n<i>「呀，漫画更新了，画完小可爱们就去看吧……」</i>\n少女收到提醒，晃了晃耳朵，停滞的笔尖再度跃动。\n\n<i>「许愿…下一个花季，我要追完所有的高分新作！」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23058",
+    "storyFallbackRendered": false
+  }
+}

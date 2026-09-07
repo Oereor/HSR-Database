@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "在遥远的造物世，艾格勒打造黎明机器后，它又在刻法勒协助下创造了代表各种泰坦的奇兽。据信，正阳狮鹫象征着睁开眼睛后为世界带来光明的艾格勒。",
+    "id": "4023010",
+    "name": "正阳狮鹫",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4023010",
+    "defaultMonsterRef": "32ec769edf001ce91a750f22932983843fd647b379d4d190af8744603a486946",
+    "description": "在遥远的造物世，艾格勒打造黎明机器后，它又在刻法勒协助下创造了代表各种泰坦的奇兽。据信，正阳狮鹫象征着睁开眼睛后为世界带来光明的艾格勒。",
+    "id": "4023010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "32ec769edf001ce91a750f22932983843fd647b379d4d190af8744603a486946",
+      "c5de82f19120b21e588b98584a85d8802f1430bb6c8ac9087255ec7936bc0b01",
+      "61573ca55b2143ba319af6f6537dcd501aa897c330a0f1fd4cd19931065474b3",
+      "7865a521c73dca5f20472efab92397541fcf3bac01f2652c77fbd9f3be2d2888",
+      "113628abcf46c6f2a6312d83769df766a0e573e50d53b6c99d443ba5cd45cad4"
+    ],
+    "name": "正阳狮鹫",
+    "rank": "Elite",
+    "templateRef": "425eae50bdf6da89823fe3e4c56c0bd04ebc708cf592dfd91ef9892a3680c85a",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4023010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4023010",
+    "selectableMonsterIds": [
+      "4023010",
+      "402301001",
+      "402301002",
+      "402301003",
+      "402301004"
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "美梦剧团中扮饰囚徒的艺者。本应于「谐乐大典」之中献演，如今却被「秩序」所缚，上演着关于「过去」的剧目。往昔是不朽的锁链，安宁的火苗在笼中点亮，以烛光招引司狱的权臣。",
+    "id": "3003031",
+    "name": "「身陷樊笼的往昔」",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3003031",
+    "defaultMonsterRef": "6737a3616aaf831a3d3d6448a9feec4c452e5a4aa5c232a910383b283a6586c9",
+    "description": "美梦剧团中扮饰囚徒的艺者。本应于「谐乐大典」之中献演，如今却被「秩序」所缚，上演着关于「过去」的剧目。往昔是不朽的锁链，安宁的火苗在笼中点亮，以烛光招引司狱的权臣。",
+    "id": "3003031",
+    "kind": "enemy",
+    "monsterRefs": [
+      "6737a3616aaf831a3d3d6448a9feec4c452e5a4aa5c232a910383b283a6586c9",
+      "c1f8e213b80d7b60ab4e4288700236f606aa136dd5a628c35b09d88c8e7dcf9c",
+      "a8c294fcb62ce4d34f7b8b04d32ca02caaf3eddb8ef9c9b46b6c6a709543923c",
+      "aa8e2dc160021d17ab484c8ef3e7c84d1ffc19b654e92730c9d3dd0fe8a89f80"
+    ],
+    "name": "「身陷樊笼的往昔」",
+    "rank": "Elite",
+    "templateRef": "978e7953b04935bff6e9fffa0c33e5ab54e0d0e8535a30f6e2da60cabebf008c",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3003031",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3003031",
+    "selectableMonsterIds": [
+      "3003031",
+      "300303101",
+      "300303102",
+      "300303103"
+    ]
+  }
+}

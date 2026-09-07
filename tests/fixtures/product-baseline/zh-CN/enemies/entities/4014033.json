@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "「死亡」遗留在生死交界地的残躯，为抗争命运再度苏醒。\n半神不忍目睹故友迈向比「死亡」更残酷的末路，因而伸出长臂挽留。即便仅余槁骨腐肉，其威能与决心仍不可小觑。",
+    "id": "4014033",
+    "name": "灰黯之手，遐蝶",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4014033",
+    "defaultMonsterRef": "fb40a127ee0c9ab89ae7caed10aebf41e6bf93961be08b15ba3172e108ea79c4",
+    "description": "「死亡」遗留在生死交界地的残躯，为抗争命运再度苏醒。\n半神不忍目睹故友迈向比「死亡」更残酷的末路，因而伸出长臂挽留。即便仅余槁骨腐肉，其威能与决心仍不可小觑。",
+    "id": "4014033",
+    "kind": "enemy",
+    "monsterRefs": [
+      "fb40a127ee0c9ab89ae7caed10aebf41e6bf93961be08b15ba3172e108ea79c4"
+    ],
+    "name": "灰黯之手，遐蝶",
+    "rank": "LittleBoss",
+    "templateRef": "9af65df646b842e6c944cc4a5350eefbeea79280abd429dd491af84c1d2ee16e",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4014033",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4014033",
+    "selectableMonsterIds": [
+      "4014033"
+    ]
+  }
+}

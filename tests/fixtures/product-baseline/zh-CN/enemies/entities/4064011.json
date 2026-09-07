@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为金血忆灵•裁定忘却之形，那众多金血忆灵的残躯中一丝尚存的疯狂，被长夜月抽取提炼，融合成了更为扭曲怪异的怪物。\n它将遵守造物主的指示，裁定何物应被记起，何物应被忘却，它会吞噬掉徒劳无功的冗余记忆，使它们在岁月中沉默。\n「新的生命若要萌芽，它的种子须是死的。」",
+    "id": "4064011",
+    "name": "金血忆灵•裁定忘却之形（完整）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4064011",
+    "defaultMonsterRef": "2b34115adb8c7f1a025dd6e91714438969a81e1888c5a122a47edd54122a4a7b",
+    "description": "代码受到影响后的完整投影。参照本体为金血忆灵•裁定忘却之形，那众多金血忆灵的残躯中一丝尚存的疯狂，被长夜月抽取提炼，融合成了更为扭曲怪异的怪物。\n它将遵守造物主的指示，裁定何物应被记起，何物应被忘却，它会吞噬掉徒劳无功的冗余记忆，使它们在岁月中沉默。\n「新的生命若要萌芽，它的种子须是死的。」",
+    "id": "4064011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "2b34115adb8c7f1a025dd6e91714438969a81e1888c5a122a47edd54122a4a7b",
+      "92c90e2fc3c5c53a928e91ef8d02d267b27790f1d526d4e2119f71fb4f80714d"
+    ],
+    "name": "金血忆灵•裁定忘却之形（完整）",
+    "rank": "LittleBoss",
+    "templateRef": "56480a7b937f59156a3d672acd0c2d4ecfea3ebaef7207410f78e8d7e806b1d8",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4064011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4064011",
+    "selectableMonsterIds": [
+      "4064011",
+      "406401101"
+    ]
+  }
+}

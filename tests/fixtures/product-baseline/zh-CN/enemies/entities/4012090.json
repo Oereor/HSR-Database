@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "融合神游离的单眼。不具有成像能力，主要功能是辅助主眼极化天气。",
+    "id": "4012090",
+    "name": "百眼之梢",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012090",
+    "defaultMonsterRef": "32259acc06115039b6f2436c95046cf0b743193a8060eb41d93066efcdf55bab",
+    "description": "融合神游离的单眼。不具有成像能力，主要功能是辅助主眼极化天气。",
+    "id": "4012090",
+    "kind": "enemy",
+    "monsterRefs": [
+      "32259acc06115039b6f2436c95046cf0b743193a8060eb41d93066efcdf55bab",
+      "480b646ce43d40b42d1e88930b6ad2d9b50b3f142731b5c5eab86c83c26d2f3f"
+    ],
+    "name": "百眼之梢",
+    "rank": "MinionLv2",
+    "templateRef": "2cdae5be8a643ac834c0ac572a3e4722ec2e2e92d112a51d07de86d8ea64babc",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012090",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012090",
+    "selectableMonsterIds": [
+      "4012090",
+      "401209001"
+    ]
+  }
+}

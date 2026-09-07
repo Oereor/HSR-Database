@@ -8,6 +8,7 @@ export const staticGeneratedRoot = path.join(siteRoot, 'static', 'generated');
 export const auditRoot = path.join(siteRoot, 'data', 'audit');
 
 const requiredFiles = [
+  'ExcelOutput/FateRinOwner.json',
   'ExcelOutput/AvatarConfig.json',
   'ExcelOutput/AvatarConfigLD.json',
   'ExcelOutput/ItemConfigAvatarLD.json',
@@ -39,7 +40,8 @@ const requiredFiles = [
   'ExcelOutput/RelicSetConfig.json',
   'ExcelOutput/ItemConfig.json',
   'ExcelOutput/MonsterTemplateConfig.json',
-  'TextMap/TextMapCHS.json'
+  'TextMap/TextMapCHS.json',
+  'TextMap/TextMapEN.json'
 ];
 
 export function resolveDataRoot(value = process.env.HSR_DATA_ROOT): string {

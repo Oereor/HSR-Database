@@ -1,5 +1,6 @@
 <script lang="ts">
   import { getRarityColor } from '$lib/domain/rarity';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let rarity: number;
   export let size: 'default' | 'hero' | 'compact' = 'default';
@@ -11,7 +12,7 @@
 
 <span
   class="rarity-stars"
-  aria-label={`${rarity}星`}
+  aria-label={m.rarity_aria({ rarity })}
   data-rarity-size={size}
   style:color={resolvedColor}>{stars}</span
 >

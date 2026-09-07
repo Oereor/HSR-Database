@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -18,6 +19,14 @@ import { getEnemyPortraitMap } from '../../src/lib/server/enemy-assets';
 const generatedRoot = path.join(process.cwd(), 'src', 'lib', 'generated');
 
 describe('Enemy Overview presentation', () => {
+  it('uses the localized view as the authoritative Enemy output', () => {
+    expect(existsSync(path.join(generatedRoot, 'catalogs', 'enemies.json'))).toBe(false);
+    expect(existsSync(path.join(generatedRoot, 'details', 'enemies'))).toBe(false);
+    expect(existsSync(path.join(generatedRoot, 'views', 'zh-CN', 'catalogs', 'enemies.json'))).toBe(
+      true
+    );
+  });
+
   it('将五种 raw Rank 稳定映射为三类中文语义', () => {
     expect(['Minion', 'MinionLv2'].map(getEnemyRankCategory)).toEqual(['normal', 'normal']);
     expect(getEnemyRankCategory('Elite')).toBe('elite');
@@ -28,12 +37,15 @@ describe('Enemy Overview presentation', () => {
 
   it('每个目录弱点都来自对应 Template 的 defaultMonster', async () => {
     const catalog = JSON.parse(
-      await readFile(path.join(generatedRoot, 'catalogs', 'enemies.json'), 'utf8')
+      await readFile(path.join(generatedRoot, 'views', 'zh-CN', 'catalogs', 'enemies.json'), 'utf8')
     ) as EnemyCatalogEntry[];
     expect(catalog).toHaveLength(628);
     for (const entry of catalog) {
       const detail = JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'enemies', `${entry.id}.json`), 'utf8')
+        await readFile(
+          path.join(generatedRoot, 'views', 'zh-CN', 'details', 'enemies', `${entry.id}.json`),
+          'utf8'
+        )
       ) as Enemy;
       expect(entry.weaknesses, entry.id).toEqual(detail.defaultMonster.weaknesses);
     }
@@ -156,7 +168,7 @@ describe('Enemy Overview presentation', () => {
 
   it('真实目录包含 3/2/1/0 个匹配弱点的验证样本', async () => {
     const catalog = JSON.parse(
-      await readFile(path.join(generatedRoot, 'catalogs', 'enemies.json'), 'utf8')
+      await readFile(path.join(generatedRoot, 'views', 'zh-CN', 'catalogs', 'enemies.json'), 'utf8')
     ) as EnemyCatalogEntry[];
     const selected = new Set(['Physical', 'Ice', 'Imaginary']);
     const expected = new Map([

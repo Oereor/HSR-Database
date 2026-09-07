@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "伴随黑潮而来、狩猎泰坦火种的无名剑士，面具下石像般的面容与救世主无异，几近崩毁，仿佛将死的薪柴。\n空洞的回响自火焰中来：一切皆为徒劳。",
+    "id": "4034018",
+    "name": "？？？",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4034018",
+    "defaultMonsterRef": "a84e80eb53da086420aa23fb05c825badd34f9d2401aa0262dacbb2751d0b1ce",
+    "description": "伴随黑潮而来、狩猎泰坦火种的无名剑士，面具下石像般的面容与救世主无异，几近崩毁，仿佛将死的薪柴。\n空洞的回响自火焰中来：一切皆为徒劳。",
+    "id": "4034018",
+    "kind": "enemy",
+    "monsterRefs": [
+      "a84e80eb53da086420aa23fb05c825badd34f9d2401aa0262dacbb2751d0b1ce"
+    ],
+    "name": "？？？",
+    "rank": "LittleBoss",
+    "templateRef": "6e2bf47d4aaab6d68aa6371d9d04b63444bbe7bf2c21a5a447f89f1238d1ac4a",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4034018",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4034018",
+    "selectableMonsterIds": [
+      "4034018"
+    ]
+  }
+}

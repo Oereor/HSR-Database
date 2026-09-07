@@ -1,0 +1,84 @@
+{
+  "catalog": {
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是烹饪食物的料理机器，失控后仍在喷吐炙烤食材的烈焰，企图将食客一同烧成焦炭。",
+    "id": "3003010",
+    "name": "惊梦剧团的十七分熟",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3003010",
+    "defaultMonsterRef": "2b33b8a0334bf00ec6e4403257e1fe48b6a969aa731fc4c0b69ba6f7cafc6078",
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是烹饪食物的料理机器，失控后仍在喷吐炙烤食材的烈焰，企图将食客一同烧成焦炭。",
+    "id": "3003010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "2b33b8a0334bf00ec6e4403257e1fe48b6a969aa731fc4c0b69ba6f7cafc6078",
+      "000076029e91876be0622d8cdeca78c0e6ac9c6d58c7f69575f2bf9065fd5576",
+      "f465d823621691a3c843426857648e9d229bc1670873829adaf9a0ded010210d",
+      "d5b5fcfa629b67ad7964c95816e5a43f33d8348b58ff2ff7c13d622dd1ff81a1",
+      "3454fec3d27a537d41d4ac356356b31c90e7f323884a56f2e4deb964b98a8daf",
+      "74486f962aecbc711b5e31be1f2518433a6b0efe4884058f94f86070d71e779d",
+      "7bba09db74b5f28e117f817e66f9ca080fe9bb839a0850f47bdfffd8c59a1a65",
+      "c983c3befaf6bdb8f64035efbf951453c64dd9ec60aee75fcf794ab942938c06",
+      "2553f1377873bee754339d90f1d197a14c5a61cf77f914e9ad9f2c30cb0e34f5",
+      "aebbacafea837813131f83b98a4a955134f2f59afe90108888122be20aa927c4",
+      "1201cc06dad8873912dd8d3eb31eb4cddfcfd3ba61478197c9d16d13ab604036",
+      "d255d6d582c5cf67c5a85295f4c88601c61b9d353b9d15b6859482e50b9cb679",
+      "c0faf4618fee89c7cc7bb2f4ea2b5d583826f427617fc15c97e8b927e6e289ca"
+    ],
+    "name": "惊梦剧团的十七分熟",
+    "rank": "Elite",
+    "templateRef": "53461bca0d48798458f45761069e6d44cc5e137340f40a8ef02cc8d62c4f5377",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3003010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3003010",
+    "selectableMonsterIds": [
+      "3003010",
+      "300301001",
+      "300301002",
+      "300301003",
+      "300301004",
+      "300301005",
+      "300301006",
+      "300301007",
+      "300301008",
+      "300301009",
+      "300301010",
+      "300301011",
+      "300301012"
+    ]
+  }
+}

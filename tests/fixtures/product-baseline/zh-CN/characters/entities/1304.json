@@ -1,0 +1,3855 @@
+{
+  "catalog": {
+    "baseName": "砂金",
+    "description": "星际和平公司「战略投资部」的高层成员。\n风险爱好者，常面带笑容，真心却难以揣测。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "id": "1304",
+    "name": "砂金",
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "砂金",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 150,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 106
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 60.72,
+            "perLevel": 3.036
+          },
+          "defence": {
+            "base": 89.1,
+            "perLevel": 4.455
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 163.68,
+            "perLevel": 8.184
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 85.008,
+            "perLevel": 3.036
+          },
+          "defence": {
+            "base": 124.74,
+            "perLevel": 4.455
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 229.152,
+            "perLevel": 8.184
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 109.296,
+            "perLevel": 3.036
+          },
+          "defence": {
+            "base": 160.38,
+            "perLevel": 4.455
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 294.624,
+            "perLevel": 8.184
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 133.584,
+            "perLevel": 3.036
+          },
+          "defence": {
+            "base": 196.02,
+            "perLevel": 4.455
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 360.096,
+            "perLevel": 8.184
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 157.872,
+            "perLevel": 3.036
+          },
+          "defence": {
+            "base": 231.66,
+            "perLevel": 4.455
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 425.568,
+            "perLevel": 8.184
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 182.16,
+            "perLevel": 3.036
+          },
+          "defence": {
+            "base": 267.3,
+            "perLevel": 4.455
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 491.04,
+            "perLevel": 8.184
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 206.448,
+            "perLevel": 3.036
+          },
+          "defence": {
+            "base": 302.94,
+            "perLevel": 4.455
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 556.512,
+            "perLevel": 8.184
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "星际和平公司「战略投资部」的高层成员。\n风险爱好者，常面带笑容，真心却难以揣测。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "equipmentRecommendation": {
+      "avatarId": "1304",
+      "cavernSetIds": [
+        "103",
+        "128",
+        "117"
+      ],
+      "lightConeIds": [
+        "23023",
+        "21016",
+        "23005"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "DefenceAddedRatio",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "DefenceAddedRatio",
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "DefenceAddedRatio",
+            "ImaginaryAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "DefenceAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "306",
+        "304",
+        "310"
+      ],
+      "subStatPropertyTypes": [
+        "DefenceAddedRatio",
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "砂金",
+    "id": "1304",
+    "kind": "character",
+    "name": "砂金",
+    "path": "Knight",
+    "pathName": "存护",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "持有【坚垣筹码】的我方目标暴击伤害提高<unbreak>20%</unbreak>。施放终结技后，为我方全体提供护盾【坚垣筹码】，护盾量等同于战技提供的护盾量的<unbreak>100%</unbreak>，持续<unbreak>3</unbreak>回合。",
+            "iconKey": "rank--130401",
+            "id": "130401",
+            "name": "囚徒博弈",
+            "rank": 1
+          },
+          {
+            "description": "施放普攻时使目标的全属性抗性降低<unbreak>12%</unbreak>，持续<unbreak>3</unbreak>回合。",
+            "iconKey": "rank--130402",
+            "id": "130402",
+            "name": "有限理性",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--130403",
+            "id": "130403",
+            "name": "最高倍率",
+            "rank": 3
+          },
+          {
+            "description": "触发天赋的<u>追加攻击</u>时，会先使砂金防御力提高<unbreak>40%</unbreak>，持续<unbreak>2</unbreak>回合，并使天赋的<u>追加攻击</u>额外增加<unbreak>3</unbreak>段攻击段数。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--130404",
+            "id": "130404",
+            "name": "意外绞刑",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--130405",
+            "id": "130405",
+            "name": "模糊厌恶",
+            "rank": 5
+          },
+          {
+            "description": "每有1个队友持有护盾，砂金造成的伤害提高<unbreak>50%</unbreak>，最高不超过<unbreak>150%</unbreak>。",
+            "iconKey": "rank--130406",
+            "id": "130406",
+            "name": "猎鹿游戏",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 110
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1304001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1304001",
+                "variantIds": [
+                  "130401"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "130401",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于砂金50%防御力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于砂金60%防御力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于砂金70%防御力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于砂金80%防御力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于砂金90%防御力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于砂金100%防御力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于砂金110%防御力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于砂金120%防御力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于砂金130%防御力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于砂金140%防御力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "直观投注",
+                "progressionId": "1304001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1304002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1304002",
+                "variantIds": [
+                  "130402"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Defence",
+                    "known": true,
+                    "label": "防御"
+                  },
+                  "energyGain": 30
+                },
+                "id": "130402",
+                "levels": [
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金16.0%防御力+80伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金17.0%防御力+128伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "128"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金18.0%防御力+164伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "164"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金19.0%防御力+200伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金20.0%防御力+224伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "224"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金20.8%防御力+248伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "248"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金21.6%防御力+266伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "266"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金22.4%防御力+284伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "284"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金23.2%防御力+302伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "302"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金24.0%防御力+320伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "320"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金24.8%防御力+338伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "338"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金25.6%防御力+356伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "356"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金26.4%防御力+374伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "374"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金27.2%防御力+392伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "392"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "为我方全体提供能够抵消等同于砂金28.0%防御力+410伤害的护盾【坚垣筹码】，持续3回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体提供能够抵消等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "410"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾【坚垣筹码】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。重复获得【坚垣筹码】时，护盾量可以叠加，最高不超过当前战技提供的护盾量的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "繁荣基石",
+                "progressionId": "1304002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1304003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1304003",
+                "variantIds": [
+                  "130403"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "130403",
+                "levels": [
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金162%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高9.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "162%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金173%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高9.6%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金184%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高10.2%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "184%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金194%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高10.8%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "194%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金205%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高11.4%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "205%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金216%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高12.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金230%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高12.8%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金243%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高13.5%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "243%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金257%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高14.2%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "257%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金270%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高15.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "270%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金281%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高15.6%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "281%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金292%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高16.2%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "292%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金302%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高16.8%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "302%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金313%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高17.4%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "313%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "随机获得1到7点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续3回合，并对指定敌方单体造成等同于砂金324%防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高18.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "随机获得1到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】，随后使指定敌方单体陷入【惊惶】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "324%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害。我方目标击中【惊惶】状态下的敌方目标时，造成的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "轮盘勋爵",
+                "progressionId": "1304003",
+                "scalingParamIndexes": [
+                  1,
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1304004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1304004",
+                "variantIds": [
+                  "130404"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Bounce",
+                    "known": true,
+                    "label": "弹射"
+                  },
+                  "energyGain": 1,
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    },
+                    {
+                      "description": "冻结，纠缠，禁锢，支配，怒噪，强烈震荡，异梦，缠禁，恐惧，行动锁定，幸福傀儡，怨火灼身。",
+                      "id": "10000011",
+                      "name": "控制类负面状态"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 3.3333333333333335
+                    }
+                  ]
+                },
+                "id": "130404",
+                "levels": [
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高25.0%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金13%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高27.5%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金14%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高30.0%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金15%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高32.5%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金16%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高35.0%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金18%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高37.5%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金19%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "37.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高40.6%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金20%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高43.8%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金22%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高46.9%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金23%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高50.0%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金25%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高52.5%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金26%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高55.0%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金28%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高57.5%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金29%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "29%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高60.0%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金30%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "持有【坚垣筹码】的我方单体效果抵抗提高62.5%，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗控制类负面状态，该效果在2回合后可再次触发，并在受到攻击后额外获得1点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动7段追加攻击，每段攻击对随机敌方单体造成等同于砂金31%防御力的虚数属性伤害，【盲注】上限10点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "持有【坚垣筹码】的我方单体效果抵抗提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并在受到攻击后，使砂金获得1点【盲注】，砂金持有【坚垣筹码】时能抵抗"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发，并在受到攻击后额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【盲注】。【盲注】达到7点后，砂金消耗7点充能发动"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "7"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于砂金"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力的虚数属性伤害，【盲注】上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "枪口以右",
+                "progressionId": "1304004",
+                "scalingParamIndexes": [
+                  2,
+                  3
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1304007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1304007",
+                "variantIds": [
+                  "130407"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Defence",
+                    "known": true,
+                    "label": "防御"
+                  }
+                },
+                "id": "130407",
+                "levels": [
+                  {
+                    "description": "使用秘技后获得以下1种效果：\n一定概率获得防御力提高24%；\n大概率获得防御力提高36%；\n小概率获得防御力提高60%。\n重复使用时保留数值最高的效果。\n下一次战斗开始时，使我方全体提高对应数值的防御力，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后获得以下1种效果：\n一定概率获得防御力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "；\n大概率获得防御力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "；\n小概率获得防御力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n重复使用时保留数值最高的效果。\n下一次战斗开始时，使我方全体提高对应数值的防御力，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "红黑之间",
+                "progressionId": "1304007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "若砂金的防御力高于<unbreak>1600</unbreak>点，每超过<unbreak>100</unbreak>点防御力可使自身暴击率提高<unbreak>2%</unbreak>，最多提高<unbreak>48%</unbreak>。",
+            "iconKey": "skill-tree--1304101",
+            "id": "1304101",
+            "name": "杠杆",
+            "prerequisiteIds": [
+              "1304201"
+            ],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "战斗开始时，为我方全体提供护盾【坚垣筹码】，护盾量等同于战技提供的护盾量的<unbreak>100%</unbreak>，持续<unbreak>3</unbreak>回合。",
+            "iconKey": "skill-tree--1304102",
+            "id": "1304102",
+            "name": "热手",
+            "prerequisiteIds": [
+              "1304201"
+            ],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "持有【坚垣筹码】的队友发动<u>追加攻击</u>后，为砂金积攒1点【盲注】，该效果最多触发<unbreak>3</unbreak>次，当砂金回合开始时，重置该效果触发次数。砂金在发动天赋的<u>追加攻击</u>后，为我方全体提供能够抵消等同于砂金<unbreak>7%</unbreak>防御力+<unbreak>96</unbreak>伤害的【坚垣筹码】，并为护盾值最低的我方目标额外提供能够抵消等同于砂金<unbreak>7%</unbreak>防御力+<unbreak>96</unbreak>伤害的【坚垣筹码】，持续3回合。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "skill-tree--1304103",
+            "id": "1304103",
+            "name": "宾果！",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1304201",
+            "name": "防御强化",
+            "prerequisiteIds": [],
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "虚数属性伤害提高3.2%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "1304202",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [
+              "1304101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1304203",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1304202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1304204",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1304205",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1304102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "虚数属性伤害提高4.8%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "1304206",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [
+              "1304205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1304207",
+            "name": "防御强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1304208",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1304103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "虚数属性伤害提高6.4%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "1304209",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [
+              "1304208"
+            ],
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "防御力提高10.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1304210",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1304208"
+            ],
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1304001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130401",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1304002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130402",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1304003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130403",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1304004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130404",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1304007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130407",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1304",
+    "subtitleRendered": false
+  }
+}

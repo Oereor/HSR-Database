@@ -1,0 +1,100 @@
+{
+  "catalog": {
+    "description": "盗火行者以灾难之力创造的分身，皆是寄宿着破坏意志的祸端。",
+    "id": "4032021",
+    "name": "残破容器",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4032021",
+    "defaultMonsterRef": "f244e5da63f1beba733ed91bfb206128b93384aecc1018054f2ac99d5ee9e0dd",
+    "description": "盗火行者以灾难之力创造的分身，皆是寄宿着破坏意志的祸端。",
+    "id": "4032021",
+    "kind": "enemy",
+    "monsterRefs": [
+      "f244e5da63f1beba733ed91bfb206128b93384aecc1018054f2ac99d5ee9e0dd",
+      "74db33ae8c1e43c2585175a733205d9c80ca47526452ee13801c00cd525e4c54",
+      "6e4229f414d140ce401e7ed42f8e5d123eaf112adc3b3f396a0ce1fad821353d",
+      "54c7a90cb5dfd88c63402eb6903b4426e8e90b119c6211126de43515da6198e0",
+      "511a266425b53f8a92c7c0e0e4da71bb8b973b4c4ff42fb686ebe2f014ae5290",
+      "d3b02ebd2679121acbd6a700dc92f89a60ba0e5dfdb96edfde3ef9b13d3f1911",
+      "62aad77b511e3250d9ab07c046170cd1fb603559fdbd5ee983ab6125eb2c213b",
+      "398e7e6a93261501c91ef4daacbb1d0113b74285ce0940cb7fed7a78f6a88750",
+      "719432da55ab6fdcfc761e257dad9a6e3b52063147aced18cde9abf327c81ea4",
+      "edca18539851c583c9320d94d6f874a9187ea9b28dbbb8631370f4131673692e",
+      "e012c7f6f5e12f3b9ece1c6c3a14c6668cf70b6c3c514bffe166b1639be8541e",
+      "ec652f9e0202297c52c1aa487b74a75ba02fbd4f4aabe2938e101d079776c0d6",
+      "bf7d766e33292d1ddf9e14b6a84ad03144de2f52943e5fe479a47114d16151e5",
+      "7c38ac4a2094693c256a43beeaa64cc84aea2f69e9fd6b540fc45d760ca7b66a",
+      "1f9fea494b9f26df9327669746e06b707027226a1a375e54ec5603c78f9adb4a",
+      "65ce25a0d5c05a2d9443461a7bdf9863d4b946bb8a138ef30fc5ae80a116c219",
+      "b9ff633e6a11b0832407037b261e7abffaca30a4e0bee99ab7bf12841f6d064e"
+    ],
+    "name": "残破容器",
+    "rank": "MinionLv2",
+    "templateRef": "3dae7168a0036e3d0d83f10cf9375ed954229f93c8503afb72d3011f5634382f",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4032021",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4032021",
+    "selectableMonsterIds": [
+      "4032021",
+      "403202111",
+      "403202112",
+      "403202113",
+      "403202114",
+      "403202121",
+      "403202122",
+      "403202123",
+      "403202131",
+      "403202132",
+      "403202133",
+      "403202141",
+      "403202142",
+      "403202143",
+      "403202151",
+      "403202152",
+      "403202153"
+    ]
+  }
+}

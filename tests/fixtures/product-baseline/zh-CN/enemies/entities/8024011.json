@@ -1,0 +1,74 @@
+{
+  "catalog": {
+    "description": "成熟体的真蛰虫；博识学会的杜卢伊爵士遨游星海，曾写下三十卷《诸界异虫札记》。书中详实记载了迄今为止被确认的十几种蠹虫种类，以及星系间数之不尽的亚种。",
+    "id": "8024011",
+    "name": "虫群•真蛰虫",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8024011",
+    "defaultMonsterRef": "79abc60a7406bf2ef4061f105c1fcdd3af613f3267b532081243010c5f951b82",
+    "description": "成熟体的真蛰虫；博识学会的杜卢伊爵士遨游星海，曾写下三十卷《诸界异虫札记》。书中详实记载了迄今为止被确认的十几种蠹虫种类，以及星系间数之不尽的亚种。",
+    "id": "8024011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "79abc60a7406bf2ef4061f105c1fcdd3af613f3267b532081243010c5f951b82",
+      "788a432d5a6db17b50de085302430633abf5c4aab248aef0a626224ddb722c87",
+      "f46059a6799d162e5e69e55647648dc7c5d78313f083814c24c2c4ab5b926a7d",
+      "f302bfcf7a327ef7a90dee06ba9924890707bdae660228f3b09bfd46c985238c",
+      "34f3ef249bd5b6d81e65287069516983f71f25925eb393a95b5aaf663fc0393a",
+      "1ebae091277cddae973cf731190bdae23a85f9c47b39de2add828c9c3d96735f",
+      "aba1ad3eb94b9e7353059a9a23734cee3e7465afe6fb4e858318eedcf191579f",
+      "f49a436613c261dc52afabe3bf52f91f6be0d8415df57208fa373ec2103e685c"
+    ],
+    "name": "虫群•真蛰虫",
+    "rank": "LittleBoss",
+    "templateRef": "d67c0509ecf1c65101fa60f418ad1a9dda31ed7e64bbb864d52d3271095cbf1a",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8024011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8024011",
+    "selectableMonsterIds": [
+      "8024011",
+      "802401101",
+      "802401102",
+      "802401103",
+      "802401104",
+      "802401105",
+      "802401106",
+      "802401107"
+    ]
+  }
+}

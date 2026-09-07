@@ -21,6 +21,7 @@ export interface InlineGameTextIcon {
 }
 
 export interface DescriptionToken {
+  semanticReference?: `character-special-effects:${string}`;
   type: 'text' | 'scaling-value' | 'icon';
   value: string;
   icon?: InlineGameTextIcon;
@@ -34,15 +35,6 @@ export interface LevelledDescription {
   level: number;
   description: string;
   descriptionTokens: DescriptionToken[];
-  params: number[];
-}
-
-export interface Skill {
-  id: string;
-  name: string;
-  type?: string;
-  scalingParamIndexes: number[];
-  levels: LevelledDescription[];
 }
 
 export type SkillCategory =
@@ -260,6 +252,8 @@ export interface ElementLabel {
 }
 
 export interface CatalogEntry {
+  /** Localized base identity supplied by the naming service for character catalogs. */
+  baseName?: string;
   id: string;
   name: string;
   description?: string;
@@ -303,7 +297,11 @@ export interface RelicCatalogEntry extends CatalogEntry {
 
 export interface RelicSet extends RelicCatalogEntry {
   kind: 'relic';
-  effects: Array<{ required: RelicEffectRequirement; description: string }>;
+  effects: Array<{
+    required: RelicEffectRequirement;
+    description: string;
+    descriptionTokens: DescriptionToken[];
+  }>;
   pieces: Array<{ id: string; slot: RelicSlot; name: string; description: string }>;
   sources: string[];
 }
@@ -418,6 +416,8 @@ export interface EnemySkill {
   name: string;
   description: string;
   kind: 'skill' | 'talent' | 'unknown';
+  kindLabel: string;
+  localizedTextStatus: 'available' | 'missing';
   tag: SemanticTag;
   damageType?: ElementLabel;
   phases: number[];
@@ -430,14 +430,62 @@ export interface HomepageRecentWarpData {
   weaponUps: Array<{ gachaId: number; equipmentId: string }>;
 }
 
+export interface GeneratedArtifactMetadata {
+  bytes: number;
+  sha256: string;
+  locale?: 'zh-CN' | 'en';
+  schemaVersion?: number;
+}
+
+export interface PublicSiteVersion {
+  gameVersion: string | null;
+  dataRevision: string;
+}
+
 export interface DataManifest {
-  schemaVersion: number;
+  schemaVersion: 43;
   sourceCommit: string;
   sourceVersion: string;
   gameVersionFull: string | null;
   gameVersion: string | null;
-  generatedAt: string;
-  language: 'CHS';
+  generatedLocales: Array<'zh-CN' | 'en'>;
+  publicLocale: 'zh-CN';
+  publicLocales: Array<'zh-CN' | 'en'>;
+  routePaths: string[];
+  locales: Record<
+    'zh-CN' | 'en',
+    {
+      textMapCode: 'CHS' | 'EN';
+      textMapDigest: string;
+      counts: Record<
+        'characters' | 'lightCones' | 'relics' | 'relicProperties' | 'enemies',
+        number
+      >;
+      endgame: import('./endgame.js').EndgameManifestSummary;
+      search: {
+        documents: number;
+        endgameTargets: number;
+        occurrenceReferences: number;
+        occurrenceShards: number;
+      };
+      localization: {
+        total: number;
+        statuses: Record<
+          'available' | 'absent' | 'missing' | 'empty' | 'invalid' | 'unsupported',
+          number
+        >;
+        requirements: Record<'required' | 'optional', number>;
+        visibility: Record<'emitted' | 'hidden', number>;
+        fallbackUse: Record<'used' | 'notUsed', number>;
+        routeReachability: Record<'reachable' | 'unreachable', number>;
+        unclassified: number;
+        invalidProgramStateErrors: number;
+      };
+      artifacts: { files: number; bytes: number };
+    }
+  >;
+  dataRevision: string;
+  artifacts: Record<string, GeneratedArtifactMetadata>;
   counts: Record<'characters' | 'lightCones' | 'relics' | 'relicProperties' | 'enemies', number>;
   routes: Record<'characters' | 'light-cones' | 'relics' | 'enemies', string[]>;
   endgame: import('./endgame.js').EndgameManifestSummary;

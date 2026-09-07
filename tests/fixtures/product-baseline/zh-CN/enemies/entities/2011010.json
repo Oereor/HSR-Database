@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "工造司匠人随手造就的机巧发明。原本是不具灵智，用以示警招众的警铃，如今却因为某些异变被赋予了短暂的「生命」。",
+    "id": "2011010",
+    "name": "入魔机巧 • 率从狻猊",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2011010",
+    "defaultMonsterRef": "86f60777e7c8444ca2f01ef1d086a0aec6fc8bfa6c8d01425ac3d491faf714ca",
+    "description": "工造司匠人随手造就的机巧发明。原本是不具灵智，用以示警招众的警铃，如今却因为某些异变被赋予了短暂的「生命」。",
+    "id": "2011010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "86f60777e7c8444ca2f01ef1d086a0aec6fc8bfa6c8d01425ac3d491faf714ca",
+      "9d61c90abf87262437d49e77467bb921254dd2c6c3843d65747a9cb62761ee67",
+      "c576458767da2c58b17dd3f1cdc0e2cfce409342dbf0aa62870cc9696d866b0a",
+      "1d79f880cf99bf858f6ffe0a49741ac4e833fee5ffb28b3aebefa1db6c7fa5d8",
+      "9de9b6c54d7093e51da78dfc83d70857b0f98494c474d7842548311573fdc9da",
+      "df1762081f45a3b5cadb89e65b3403ce9c642eaf627b0a641dfca3274effc2a5",
+      "4cc6ac0c4d63e948b9f05680c54473d58d00011e35f3c480f6b7359b79c6f582"
+    ],
+    "name": "入魔机巧 • 率从狻猊",
+    "rank": "Minion",
+    "templateRef": "4691f103200382bae51b8e3c7b8872b9e207f42f7ad801d28669c0701cc51ace",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2011010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2011010",
+    "selectableMonsterIds": [
+      "2011010",
+      "201101001",
+      "201101002",
+      "201101003",
+      "201101004",
+      "201101005",
+      "201101006"
+    ]
+  }
+}

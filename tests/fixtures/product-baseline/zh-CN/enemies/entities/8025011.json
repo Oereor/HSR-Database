@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "阮•梅培育的「繁育」令使复制体，以残缺的姿态短暂现世。原型为继承虫皇之颚的巨蠹，能以口器凝聚裂解天体的死光，将破碎的群星作为诞育子嗣的温床，曾是寰宇蝗灾中的诸界噩梦之一。",
+    "id": "8025011",
+    "name": "遮天蔽日的噬星蠹",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8025011",
+    "defaultMonsterRef": "7a9cd952b7f1e952ad34004b6068ccc5cbda3b1b45cf17575e330cace1b1641d",
+    "description": "阮•梅培育的「繁育」令使复制体，以残缺的姿态短暂现世。原型为继承虫皇之颚的巨蠹，能以口器凝聚裂解天体的死光，将破碎的群星作为诞育子嗣的温床，曾是寰宇蝗灾中的诸界噩梦之一。",
+    "id": "8025011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "7a9cd952b7f1e952ad34004b6068ccc5cbda3b1b45cf17575e330cace1b1641d",
+      "d4d5eaec3597088f081b7848053442f089d2eb41b59f382eaeafded883a99904",
+      "a997251bd1a6df5f896537d7f3083dd5c531ce3399af0a99a26ead53e65e689f",
+      "562aef9adc36a6d04e07e22242a18323b17654984c915e71a19faeb5d838ae90",
+      "aefd51b999522979a97c2f1a080f7723762a06853aa7233d6b1fa4c8637a1cc6"
+    ],
+    "name": "遮天蔽日的噬星蠹",
+    "rank": "BigBoss",
+    "templateRef": "c2766dd662cbd12ffb5d77e4b5e8c06ea173caf091a0bf04b189ddc72521ac0e",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8025011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8025011",
+    "selectableMonsterIds": [
+      "8025011",
+      "802501101",
+      "802501102",
+      "802501103",
+      "802501104"
+    ]
+  }
+}

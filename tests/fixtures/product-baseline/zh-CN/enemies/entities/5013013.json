@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "狂热的摇滚乐票友。为了追寻音乐梦想，不惜踏入魔道。但终归是个票友。\n最讨厌「贝斯手笑话」。\n有些三流媒体根据他的造型推测「贝斯才是他的本体」，但这纯属谣言，实际上贝斯是被胁迫的。",
+    "id": "5013013",
+    "name": "近战使魔",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5013013",
+    "defaultMonsterRef": "7b05ebefe06ebfffaf012d93e4afbd17db51c3da5b71e8c442d6b1a26c4ea072",
+    "description": "狂热的摇滚乐票友。为了追寻音乐梦想，不惜踏入魔道。但终归是个票友。\n最讨厌「贝斯手笑话」。\n有些三流媒体根据他的造型推测「贝斯才是他的本体」，但这纯属谣言，实际上贝斯是被胁迫的。",
+    "id": "5013013",
+    "kind": "enemy",
+    "monsterRefs": [
+      "7b05ebefe06ebfffaf012d93e4afbd17db51c3da5b71e8c442d6b1a26c4ea072"
+    ],
+    "name": "近战使魔",
+    "rank": "Elite",
+    "templateRef": "b8ee3ee5e01fd46a631fd5517476ca38da3b964f8bb905bec80ebce62828f232",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5013013",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5013013",
+    "selectableMonsterIds": [
+      "5013013"
+    ]
+  }
+}

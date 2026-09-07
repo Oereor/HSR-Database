@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "受史瓦罗所操控的机械装置。\n机械臂在场上存在一定回合后会对我方展开猛攻。",
+    "id": "1012040",
+    "name": "辅助机械臂单元",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1012040",
+    "defaultMonsterRef": "943b0500b0e0ff794751c445ea3801311bb6c23c0d740b14f8ad9f3c6786c504",
+    "description": "受史瓦罗所操控的机械装置。\n机械臂在场上存在一定回合后会对我方展开猛攻。",
+    "id": "1012040",
+    "kind": "enemy",
+    "monsterRefs": [
+      "943b0500b0e0ff794751c445ea3801311bb6c23c0d740b14f8ad9f3c6786c504"
+    ],
+    "name": "辅助机械臂单元",
+    "rank": "MinionLv2",
+    "templateRef": "f624a186897048ea6f7bae55594556a7934fbcee930da796fbe6cb170201055d",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1012040",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1012040",
+    "selectableMonsterIds": [
+      "1012040"
+    ]
+  }
+}

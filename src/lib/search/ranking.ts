@@ -3,7 +3,7 @@ import { compareSearchText } from './normalization.js';
 
 const AUTHORITY: Record<NameKind, number> = { canonical: 0, official: 1, player: 2 };
 const QUALITY: Record<MatchKind, number> = { exact: 0, prefix: 1, contains: 2 };
-const KINDS = ['character', 'light-cone', 'relic', 'enemy', 'endgame-name'];
+const KINDS = ['character', 'light-cone', 'relic', 'enemy', 'endgame'];
 export const searchRankClass = (evidence: MatchEvidence): number =>
   QUALITY[evidence.matchKind] * 3 + AUTHORITY[evidence.nameKind];
 export interface RankedSearchMatch {

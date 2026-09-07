@@ -1,0 +1,3599 @@
+{
+  "catalog": {
+    "baseName": "玲可",
+    "description": "贝洛伯格的雪原探险家，朗道家的小妹妹。\n性格淡定，行动力极强。常常孤身前往雪原探险。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "id": "1110",
+    "name": "玲可",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "玲可",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 100
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 67.2,
+            "perLevel": 3.36
+          },
+          "defence": {
+            "base": 75,
+            "perLevel": 3.75
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 144,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 94.08,
+            "perLevel": 3.36
+          },
+          "defence": {
+            "base": 105,
+            "perLevel": 3.75
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 201.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 120.96,
+            "perLevel": 3.36
+          },
+          "defence": {
+            "base": 135,
+            "perLevel": 3.75
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 147.84,
+            "perLevel": 3.36
+          },
+          "defence": {
+            "base": 165,
+            "perLevel": 3.75
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 316.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 174.72,
+            "perLevel": 3.36
+          },
+          "defence": {
+            "base": 195,
+            "perLevel": 3.75
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 374.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 201.6,
+            "perLevel": 3.36
+          },
+          "defence": {
+            "base": 225,
+            "perLevel": 3.75
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 432,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 228.48,
+            "perLevel": 3.36
+          },
+          "defence": {
+            "base": 255,
+            "perLevel": 3.75
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "贝洛伯格的雪原探险家，朗道家的小妹妹。\n性格淡定，行动力极强。常常孤身前往雪原探险。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "equipmentRecommendation": {
+      "avatarId": "1110",
+      "cavernSetIds": [
+        "101",
+        "114",
+        "106"
+      ],
+      "lightConeIds": [
+        "21028",
+        "21000"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "HealRatioBase",
+            "HPAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "302",
+        "310",
+        "317"
+      ],
+      "subStatPropertyTypes": [
+        "HPAddedRatio",
+        "SpeedDelta",
+        "StatusResistanceBase"
+      ]
+    },
+    "fullName": "玲可",
+    "id": "1110",
+    "kind": "character",
+    "name": "玲可",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "为当前生命值百分比小于等于<unbreak>50%</unbreak>的我方目标提供治疗时，玲可的治疗量提高<unbreak>20%</unbreak>，该效果对持续治疗效果也会生效。",
+            "iconKey": "rank--111001",
+            "id": "111001",
+            "name": "远行雪杖的清晨",
+            "rank": 1
+          },
+          {
+            "description": "持有【求生反应】的目标被施加<u>负面效果</u>时可抵抗<unbreak>1</unbreak>次<u>负面效果</u>。",
+            "extraEffects": [
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              }
+            ],
+            "iconKey": "rank--111002",
+            "id": "111002",
+            "name": "便携炉具的正午",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--111003",
+            "id": "111003",
+            "name": "雪崩信标的午后",
+            "rank": 3
+          },
+          {
+            "description": "获得【求生反应】时，使该目标攻击力提高，提高数值等同于玲可<unbreak>3.0%</unbreak>生命上限的攻击力，持续<unbreak>1</unbreak>回合。",
+            "iconKey": "rank--111004",
+            "id": "111004",
+            "name": "露营篝火的薄暮",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--111005",
+            "id": "111005",
+            "name": "极光红茶的新夜",
+            "rank": 5
+          },
+          {
+            "description": "【求生反应】的生命上限提高效果额外提高，提高数值等同于玲可<unbreak>6.0%</unbreak>的生命上限，并使其效果抵抗提高<unbreak>30%</unbreak>。",
+            "iconKey": "rank--111006",
+            "id": "111006",
+            "name": "测绘图纸的黎明",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 100
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1110001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1110001",
+                "variantIds": [
+                  "111001"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "111001",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于自身25%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于自身30%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于自身35%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于自身40%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于自身45%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于自身50%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于自身55%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于自身60%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于自身65%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于自身70%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "冰攀前齿技术",
+                "progressionId": "1110001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1110002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1110002",
+                "variantIds": [
+                  "111002"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  },
+                  "energyGain": 30
+                },
+                "id": "111002",
+                "levels": [
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可5.0%生命上限+50的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可8.0%生命上限+80的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可5.3%生命上限+80的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可8.5%生命上限+128的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "128"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可5.5%生命上限+103的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可9.0%生命上限+164的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "103"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "164"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可5.8%生命上限+125的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可9.5%生命上限+200的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可6.0%生命上限+140的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可10.0%生命上限+224的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "224"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可6.3%生命上限+155的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可10.4%生命上限+248的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "155"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "248"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可6.6%生命上限+166的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可10.8%生命上限+266的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "166"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "266"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可6.9%生命上限+178的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可11.2%生命上限+284的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "178"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "284"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可7.2%生命上限+189的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可11.6%生命上限+302的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "189"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "302"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可7.5%生命上限+200的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可12.0%生命上限+320的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "320"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可7.8%生命上限+211的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可12.4%生命上限+338的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "211"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "338"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可8.0%生命上限+223的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可12.8%生命上限+356的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "223"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "356"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可8.3%生命上限+234的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可13.2%生命上限+374的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "234"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "374"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可8.5%生命上限+245的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可13.6%生命上限+392的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "245"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "392"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "为指定我方单体附上【求生反应】，提高等同于玲可8.8%生命上限+256的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续2回合。\n使该目标回复等同于玲可14.0%生命上限+410的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体附上【求生反应】，提高等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "256"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限，若该目标为「毁灭」或「存护」命途，被敌方攻击的概率大幅提高，【求生反应】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n使该目标回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "410"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "盐渍野营罐头",
+                "progressionId": "1110002",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  3,
+                  4
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1110003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1110003",
+                "variantIds": [
+                  "111003"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                      "id": "10000010",
+                      "name": "负面效果"
+                    }
+                  ]
+                },
+                "id": "111003",
+                "levels": [
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可9.0%生命上限+90的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可9.6%生命上限+144的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可10.1%生命上限+185的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "185"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可10.7%生命上限+225的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "225"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可11.3%生命上限+252的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可11.7%生命上限+279的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "279"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可12.2%生命上限+299的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "299"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可12.6%生命上限+320的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "320"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可13.1%生命上限+340的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "340"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可13.5%生命上限+360的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "360"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可14.0%生命上限+380的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "380"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可14.4%生命上限+401的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "401"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可14.8%生命上限+421的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "421"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可15.3%生命上限+441的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "441"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "解除我方全体的1个负面效果，立即为我方全体回复等同于玲可15.8%生命上限+461的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，立即为我方全体回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "461"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "雪原急救方案",
+                "progressionId": "1110003",
+                "scalingParamIndexes": [
+                  1,
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1110004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1110004",
+                "variantIds": [
+                  "111004"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  }
+                },
+                "id": "111004",
+                "levels": [
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可2.4%生命上限+24的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可3.0%生命上限+30的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可2.5%生命上限+38的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可3.2%生命上限+48的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可2.7%生命上限+49的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可3.4%生命上限+62的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可2.9%生命上限+60的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可3.6%生命上限+75的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可3.0%生命上限+67的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可3.8%生命上限+84的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "67"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可3.1%生命上限+74的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可3.9%生命上限+93的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "74"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "93"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可3.2%生命上限+80的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可4.0%生命上限+100的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可3.4%生命上限+85的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可4.2%生命上限+107的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "85"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "107"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可3.5%生命上限+91的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可4.3%生命上限+113的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "91"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可3.6%生命上限+96的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可4.5%生命上限+120的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可3.7%生命上限+101的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可4.7%生命上限+127的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "101"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "127"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可3.8%生命上限+107的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可4.8%生命上限+134的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "107"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "134"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可4.0%生命上限+112的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可5.0%生命上限+140的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可4.1%生命上限+118的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可5.1%生命上限+147的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "118"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "147"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放战技或终结技时，使我方目标获得2回合的持续治疗效果，目标每回合开始时回复等同于玲可4.2%生命上限+123的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可5.3%生命上限+154的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技或终结技时，使我方目标获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合的持续治疗效果，目标每回合开始时回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "123"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。若该目标持有【求生反应】，则持续治疗效果额外回复等同于玲可"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "户外生存经验",
+                "progressionId": "1110004",
+                "scalingParamIndexes": [
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1110007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1110007",
+                "variantIds": [
+                  "111007"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  }
+                },
+                "id": "111007",
+                "levels": [
+                  {
+                    "description": "使用秘技后，下一次战斗开始时为我方全体附加玲可天赋的持续治疗效果，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，下一次战斗开始时为我方全体附加玲可天赋的持续治疗效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "巧克力能量棒",
+                "progressionId": "1110007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "当持有【求生反应】的目标受到攻击后，玲可立即恢复<unbreak>2</unbreak>点能量。",
+            "iconKey": "skill-tree--1110101",
+            "id": "1110101",
+            "name": "提前勘测",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "抵抗<u>控制类负面状态</u>的概率提高<unbreak>35%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "冻结，纠缠，禁锢，支配，怒噪，强烈震荡，异梦，缠禁，恐惧，行动锁定，幸福傀儡，怨火灼身。",
+                "id": "10000011",
+                "name": "控制类负面状态"
+              }
+            ],
+            "iconKey": "skill-tree--1110102",
+            "id": "1110102",
+            "name": "探险技术",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "天赋产生的持续回复效果延长<unbreak>1</unbreak>回合。",
+            "iconKey": "skill-tree--1110103",
+            "id": "1110103",
+            "name": "极境求生",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1110201",
+            "name": "生命强化",
+            "prerequisiteIds": [],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1110202",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1110101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1110203",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1110202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1110204",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1110203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1110205",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1110102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1110206",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1110205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1110207",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1110206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1110208",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1110103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "防御力提高10.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1110209",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1110103"
+            ],
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "生命值上限提高8.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1110210",
+            "name": "生命强化",
+            "prerequisiteIds": [],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1110001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111001",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1110002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111002",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1110003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111003",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1110004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111004",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1110007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111007",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1110",
+    "subtitleRendered": false
+  }
+}

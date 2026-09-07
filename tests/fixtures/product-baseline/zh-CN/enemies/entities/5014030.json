@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "古弁才天国的画师始祖，无量塔绘世的残像。\n一度曾以「贪饕」的力量，为反物质军团创造幻造妖物。最终在目睹星穹列车的坠毁后，萌生了去往天空的愿景，并与无名客一同转而忤逆自己的创造者。\n最终，为了保护这方世界，她将万物绘入画中，于孤独的悲伤中，她一遍又一遍描绘亡于归寂之手的怨灵，而这份怨念最终使她堕入疯狂。",
+    "id": "5014030",
+    "name": "始作画者，无量塔绘世",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5014030",
+    "defaultMonsterRef": "ec7c79a2454377e8532ea293215d0097adc86b9d7717f790c854cbee2347d54d",
+    "description": "古弁才天国的画师始祖，无量塔绘世的残像。\n一度曾以「贪饕」的力量，为反物质军团创造幻造妖物。最终在目睹星穹列车的坠毁后，萌生了去往天空的愿景，并与无名客一同转而忤逆自己的创造者。\n最终，为了保护这方世界，她将万物绘入画中，于孤独的悲伤中，她一遍又一遍描绘亡于归寂之手的怨灵，而这份怨念最终使她堕入疯狂。",
+    "id": "5014030",
+    "kind": "enemy",
+    "monsterRefs": [
+      "ec7c79a2454377e8532ea293215d0097adc86b9d7717f790c854cbee2347d54d",
+      "4e3245404093cb9d3310416afd6a927d7e3001c7e4c11f5aa93fa68662b8e75a",
+      "23a3ec46679525aaff2fd6b9e37dd8bb07ba8a61b73b02546b48f55f6f28e899",
+      "4f2f27de638d19a622e2af95b8b25cd358bcf695237cb19cb8b51bb1b560de3d"
+    ],
+    "name": "始作画者，无量塔绘世",
+    "rank": "LittleBoss",
+    "templateRef": "d6859e7b095f4ad18ca4431631bf275b863d4f409232c23e6bf68df4d486bfee",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5014030",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5014030",
+    "selectableMonsterIds": [
+      "5014030",
+      "501403001",
+      "501403002",
+      "501403003"
+    ]
+  }
+}

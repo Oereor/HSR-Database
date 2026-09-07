@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "性格张扬的战士，虽然是队伍里年纪最大的姐姐，但其实并不太聪明，自认为有责任监护队伍里的小屁孩，最终却总是扮演耍宝的搞笑角色。\n「虽然我确实说过会从蚊虫手中保护你们的但这个蚊虫是不是有点过于巨大了…不要靠近我啊啊啊啊啊啊！！！！」\n驱散永夜！光芒如炬！辉耀的祈愿，曙光战士！\n暗夜终尽，黎明降临！破晓战队，登场！",
+    "id": "5013061",
+    "name": "破晓战队•曙光",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5013061",
+    "defaultMonsterRef": "eba60877926350d0f4b31d7c137e8cba4ec162c3d04c249545f929186aca0a56",
+    "description": "性格张扬的战士，虽然是队伍里年纪最大的姐姐，但其实并不太聪明，自认为有责任监护队伍里的小屁孩，最终却总是扮演耍宝的搞笑角色。\n「虽然我确实说过会从蚊虫手中保护你们的但这个蚊虫是不是有点过于巨大了…不要靠近我啊啊啊啊啊啊！！！！」\n驱散永夜！光芒如炬！辉耀的祈愿，曙光战士！\n暗夜终尽，黎明降临！破晓战队，登场！",
+    "id": "5013061",
+    "kind": "enemy",
+    "monsterRefs": [
+      "eba60877926350d0f4b31d7c137e8cba4ec162c3d04c249545f929186aca0a56"
+    ],
+    "name": "破晓战队•曙光",
+    "rank": "Elite",
+    "templateRef": "c397be9c611649e43d1065b6e68371c48a5016073bc29c5fb83e5e156f22bf8f",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5013061",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5013061",
+    "selectableMonsterIds": [
+      "5013061"
+    ]
+  }
+}

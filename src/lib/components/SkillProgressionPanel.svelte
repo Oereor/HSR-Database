@@ -2,6 +2,7 @@
   import type { SkillProgression, SkillVariant } from '$lib/domain/types';
   import SkillVariantView from '$lib/components/SkillVariantView.svelte';
   import { gameTextToPlain } from '$lib/domain/game-text';
+  import * as m from '$lib/paraglide/messages.js';
 
   export let progression: SkillProgression;
   export let variants: SkillVariant[];
@@ -26,7 +27,9 @@
   {#if progression.availableLevels.length > 1}
     <div class="skill-level-control">
       <div>
-        <label for={`skill-progression-${progression.id}`}>{categoryLabel}等级</label>
+        <label for={`skill-progression-${progression.id}`}
+          >{m.skill_level({ category: categoryLabel })}</label
+        >
         <output for={`skill-progression-${progression.id}`}>Lv.{selectedLevel}</output>
       </div>
       <input
@@ -39,7 +42,7 @@
         aria-valuemin={progression.availableLevels[0]}
         aria-valuemax={progression.availableLevels.at(-1)}
         aria-valuenow={selectedLevel}
-        aria-valuetext={`等级 ${selectedLevel}`}
+        aria-valuetext={m.common_level({ level: selectedLevel })}
       />
       <div class="skill-level-range" aria-hidden="true">
         <span>Lv.{progression.availableLevels[0]}</span>

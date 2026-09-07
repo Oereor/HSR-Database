@@ -1,0 +1,157 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：击破特攻提高16%。 4件：当装备者的击破特攻大于等于150%时，对敌方目标造成的击破伤害无视其10%的防御力。当装备者的击破特攻大于等于250%时，对敌方目标造成的超击破伤害额外无视其15%的防御力。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "119",
+    "name": "荡除蠹灾的铁骑",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "2.3"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：击破特攻提高16%。 4件：当装备者的击破特攻大于等于150%时，对敌方目标造成的击破伤害无视其10%的防御力。当装备者的击破特攻大于等于250%时，对敌方目标造成的超击破伤害额外无视其15%的防御力。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "击破特攻提高16%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "击破特攻提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "16%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "当装备者的击破特攻大于等于150%时，对敌方目标造成的击破伤害无视其10%的防御力。当装备者的击破特攻大于等于250%时，对敌方目标造成的超击破伤害额外无视其15%的防御力。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "当装备者的击破特攻大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "150%"
+          },
+          {
+            "type": "text",
+            "value": "时，对敌方目标造成的击破伤害无视其"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "10%"
+          },
+          {
+            "type": "text",
+            "value": "的防御力。当装备者的击破特攻大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "250%"
+          },
+          {
+            "type": "text",
+            "value": "时，对敌方目标造成的超击破伤害额外无视其"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "15%"
+          },
+          {
+            "type": "text",
+            "value": "的防御力。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "119",
+    "kind": "relic",
+    "name": "荡除蠹灾的铁骑",
+    "pieces": [
+      {
+        "description": "深度强化感官信号的钢铁战盔，将格拉默铁骑的意识与装甲融为一体。",
+        "id": "31191",
+        "name": "铁骑的索敌战盔",
+        "slot": "HEAD"
+      },
+      {
+        "description": "粉碎虫裔的强劲铁腕，尖锐而轻盈，坚硬又稳固。",
+        "id": "31192",
+        "name": "铁骑的摧坚铁腕",
+        "slot": "HAND"
+      },
+      {
+        "description": "迸发烈焰的推进装甲，给予格拉默铁骑足以点燃战场的烈焰。",
+        "id": "31193",
+        "name": "铁骑的银影装甲",
+        "slot": "BODY"
+      },
+      {
+        "description": "兼具破坏力与速度的机骑护胫，格拉默铁骑会高高跃起，将力量集中于一处踢向敌人。",
+        "id": "31194",
+        "name": "铁骑的行空护胫",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【匹诺康尼大剧院】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "2.3"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31191"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31192"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31193"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31194"
+      }
+    ],
+    "route": "/relics/119"
+  }
+}

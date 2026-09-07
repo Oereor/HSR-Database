@@ -21,7 +21,7 @@ pnpm investigate:enemy-variants
 - `MonsterAtlasExtraPhase`、`MonsterAtlasExtraPhases`：图鉴额外阶段信息，只有少量覆盖，不能作为全量技能阶段来源。
 - `MonsterGuideConfig`、`MonsterGuidePhase`、`MonsterGuideSkill`：有限的攻略/图鉴关系，和 canonical 技能阶段覆盖范围不同，不能驱动详情页 Phase Tabs。
 - `static/generated-enemy-assets/index.json`：生成的 `MonsterID -> imageId/icon` 映射，用于检查视觉复用；资源不是权威身份模型。
-- `src/lib/generated/details/enemies/*.json`：当前网站 canonical enemy detail，保留名称、Rank、技能集合和阶段关系。
+- `src/lib/generated/views/zh-CN/details/enemies/*.json`：当前网站 canonical enemy detail，保留名称、Rank、技能集合和阶段关系。
 - `src/lib/generated/endgame/*.json`：Endgame 只引用具体 `MonsterID` / `MonsterTemplateID` 作为 encounter instance 证据，不作为 family identity。
 
 ## 3. Config Relationships

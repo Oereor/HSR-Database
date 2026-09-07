@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
+  import { localizedHref } from '$lib/i18n/routing';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
@@ -24,8 +26,8 @@
   import OverviewToolbar from './OverviewToolbar.svelte';
 
   export let entries: CatalogEntry[] = [];
-  export let title = '敌方单位';
-  export let description = '浏览、搜索并筛选敌方单位资料。';
+  export let title: string = m.enemies_title();
+  export let description: string = m.enemies_description();
   export let enemyPortraits: Record<string, string> = {};
 
   const heroEnemyIds = ['1005010', '2004010', '4034010'] as const;
@@ -129,35 +131,40 @@
 </svelte:head>
 
 <OverviewHero
-  eyebrow="DATABASE / ENEMIES"
+  eyebrow={m.enemies_eyebrow()}
   {title}
   {description}
-  countLabel={`共 ${enemies.length} 个敌方单位`}
+  countLabel={m.enemies_count({ count: enemies.length })}
   artwork={heroArtwork}
 />
 
-<section class="overview-controls" aria-label="敌方单位搜索与筛选">
+<section class="overview-controls" aria-label={m.enemies_controls_aria()}>
   <OverviewSearch
     id="enemy-search-input"
     bind:value={draftQuery}
-    placeholder="搜索敌方单位"
+    placeholder={m.enemies_search_placeholder()}
     onSubmit={submitQuery}
   />
 
   <div class="overview-filters">
     <FilterGroup
       id="enemy-type"
-      label="敌人类型"
+      label={m.filter_enemy_type()}
       options={ENEMY_RANK_CATEGORIES.map((option) => ({
         value: option.code,
-        label: option.filterLabel
+        label:
+          option.code === 'normal'
+            ? m.enemy_filter_normal()
+            : option.code === 'elite'
+              ? m.enemy_filter_elite()
+              : m.enemy_filter_boss()
       }))}
       selected={filterState.types}
       onToggle={(value) => toggleFilter('types', value)}
     />
     <FilterGroup
       id="enemy-weakness"
-      label="弱点属性"
+      label={m.filter_enemy_weakness()}
       iconKind="element"
       options={weaknessOptions}
       selected={filterState.weaknesses}
@@ -184,7 +191,7 @@
     {#each visible as entry (entry.id)}
       <EnemyOverviewCard
         {entry}
-        href={`/enemies/${entry.id}`}
+        href={localizedHref(`/enemies/${entry.id}`)}
         imageUrl={enemyPortraits[entry.id]}
       />
     {/each}
@@ -192,9 +199,11 @@
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
   <section class="empty-state">
-    <h2>没有匹配结果</h2>
-    <p>尝试减少筛选条件，或清空当前搜索。</p>
-    <button class="button" type="button" on:click={clearSearchAndFilters}>清空筛选</button>
+    <h2>{m.overview_empty_title()}</h2>
+    <p>{m.overview_empty_description()}</p>
+    <button class="button" type="button" on:click={clearSearchAndFilters}
+      >{m.overview_clear_filters()}</button
+    >
   </section>
 {/if}
 

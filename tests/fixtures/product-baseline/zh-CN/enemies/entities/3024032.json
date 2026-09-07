@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "仿若被「繁育」侵蚀的格拉默装甲，在那覆盖着异质的躯壳下，只藏着被星核扭曲的愿望——于梦境的深处，寰宇蝗灾以此样貌再度现世。",
+    "id": "3024032",
+    "name": "示死祸源：深魇蝗灾",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3024032",
+    "defaultMonsterRef": "57d5176929f0244e6bb07a309985fa68e22df43d67cb9e9528b26d30ab31064a",
+    "description": "仿若被「繁育」侵蚀的格拉默装甲，在那覆盖着异质的躯壳下，只藏着被星核扭曲的愿望——于梦境的深处，寰宇蝗灾以此样貌再度现世。",
+    "id": "3024032",
+    "kind": "enemy",
+    "monsterRefs": [
+      "57d5176929f0244e6bb07a309985fa68e22df43d67cb9e9528b26d30ab31064a"
+    ],
+    "name": "示死祸源：深魇蝗灾",
+    "rank": "LittleBoss",
+    "templateRef": "72618219972b4f19dcae21c23afddb7e801c374c044f202e282d9d979bad7c98",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3024032",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3024032",
+    "selectableMonsterIds": [
+      "3024032"
+    ]
+  }
+}

@@ -1,0 +1,2809 @@
+{
+  "catalog": {
+    "baseName": "布洛妮娅",
+    "description": "贝洛伯格「大守护者」的继承人。\n兼有公主的高傲和军人的坚贞。",
+    "element": "Wind",
+    "elementName": "风",
+    "id": "1101",
+    "name": "布洛妮娅",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "布洛妮娅",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 99
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 79.2,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 72.6,
+            "perLevel": 3.63
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 168.96,
+            "perLevel": 8.448
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 110.88,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 101.64,
+            "perLevel": 3.63
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 236.544,
+            "perLevel": 8.448
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 142.56,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 130.68,
+            "perLevel": 3.63
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 304.128,
+            "perLevel": 8.448
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 174.24,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 159.72,
+            "perLevel": 3.63
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 371.712,
+            "perLevel": 8.448
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 205.92,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 188.76,
+            "perLevel": 3.63
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 439.296,
+            "perLevel": 8.448
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 237.6,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 217.8,
+            "perLevel": 3.63
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 506.88,
+            "perLevel": 8.448
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 269.28,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 246.84,
+            "perLevel": 3.63
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 574.464,
+            "perLevel": 8.448
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "贝洛伯格「大守护者」的继承人。\n兼有公主的高傲和军人的坚贞。",
+    "element": "Wind",
+    "elementName": "风",
+    "equipmentRecommendation": {
+      "avatarId": "1101",
+      "cavernSetIds": [
+        "114",
+        "110",
+        "121"
+      ],
+      "lightConeIds": [
+        "23003",
+        "23034",
+        "21025"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "DefenceAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "317",
+        "310",
+        "302"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalDamageBase",
+        "SpeedDelta",
+        "StatusResistanceBase"
+      ]
+    },
+    "fullName": "布洛妮娅",
+    "id": "1101",
+    "kind": "character",
+    "name": "布洛妮娅",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "施放战技时，有<unbreak>50%</unbreak><u>固定概率</u>恢复1个战技点，该效果有1回合的触发冷却。",
+            "extraEffects": [
+              {
+                "description": "不会被任何因素影响的固定概率。",
+                "id": "30000002",
+                "name": "固定概率"
+              }
+            ],
+            "iconKey": "rank--110101",
+            "id": "110101",
+            "name": "养精蓄锐",
+            "rank": 1
+          },
+          {
+            "description": "施放战技时，被指定的我方目标在行动后速度提高<unbreak>30%</unbreak>，持续1回合。",
+            "iconKey": "rank--110102",
+            "id": "110102",
+            "name": "快速行军",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--110103",
+            "id": "110103",
+            "name": "鼓炮齐鸣",
+            "rank": 3
+          },
+          {
+            "description": "我方其他角色对弱点为风属性的敌方目标施放普攻后，布洛妮娅立即进行1次<u>追加攻击</u>，对该目标造成等同于普攻伤害<unbreak>80%</unbreak>的风属性伤害，该效果每回合可触发1次。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--110104",
+            "id": "110104",
+            "name": "攻其不备",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--110105",
+            "id": "110105",
+            "name": "所向克捷",
+            "rank": 5
+          },
+          {
+            "description": "战技对指定我方目标造成的伤害提高效果的持续时间增加<unbreak>1</unbreak>回合。",
+            "iconKey": "rank--110106",
+            "id": "110106",
+            "name": "气贯长虹",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 120
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1101001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1101001",
+                "variantIds": [
+                  "110101"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "110101",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于布洛妮娅50%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于布洛妮娅60%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于布洛妮娅70%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于布洛妮娅80%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于布洛妮娅90%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于布洛妮娅100%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于布洛妮娅110%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于布洛妮娅120%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于布洛妮娅130%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于布洛妮娅140%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "驭风的子弹",
+                "progressionId": "1101001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1101002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1101002",
+                "variantIds": [
+                  "110102"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                      "id": "10000010",
+                      "name": "负面效果"
+                    }
+                  ]
+                },
+                "id": "110102",
+                "levels": [
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高33%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高36%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高40%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高43%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高46%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高50%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高54%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高58%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "58%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高62%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高66%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高69%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高73%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "73%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高76%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高79%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "79%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "解除指定我方单体的1个负面效果，并使该目标立即行动，造成的伤害提高83%，持续1回合。\n当对自身施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定我方单体的1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使该目标立即行动，造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当对自身施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "作战再部署",
+                "progressionId": "1101002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1101003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1101003",
+                "variantIds": [
+                  "110103"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 5
+                },
+                "id": "110103",
+                "levels": [
+                  {
+                    "description": "使我方全体攻击力提高33%，同时提高等同于布洛妮娅12.0%暴击伤害+12.0%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使我方全体攻击力提高35%，同时提高等同于布洛妮娅12.4%暴击伤害+12.8%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使我方全体攻击力提高37%，同时提高等同于布洛妮娅12.8%暴击伤害+13.6%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "37%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使我方全体攻击力提高40%，同时提高等同于布洛妮娅13.2%暴击伤害+14.4%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使我方全体攻击力提高42%，同时提高等同于布洛妮娅13.6%暴击伤害+15.2%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使我方全体攻击力提高44%，同时提高等同于布洛妮娅14.0%暴击伤害+16.0%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使我方全体攻击力提高47%，同时提高等同于布洛妮娅14.5%暴击伤害+17.0%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使我方全体攻击力提高50%，同时提高等同于布洛妮娅15.0%暴击伤害+18.0%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使我方全体攻击力提高52%，同时提高等同于布洛妮娅15.5%暴击伤害+19.0%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使我方全体攻击力提高55%，同时提高等同于布洛妮娅16.0%暴击伤害+20.0%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使我方全体攻击力提高57%，同时提高等同于布洛妮娅16.4%暴击伤害+20.8%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使我方全体攻击力提高59%，同时提高等同于布洛妮娅16.8%暴击伤害+21.6%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使我方全体攻击力提高62%，同时提高等同于布洛妮娅17.2%暴击伤害+22.4%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使我方全体攻击力提高64%，同时提高等同于布洛妮娅17.6%暴击伤害+23.2%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使我方全体攻击力提高66%，同时提高等同于布洛妮娅18.0%暴击伤害+24.0%的暴击伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时提高等同于布洛妮娅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的暴击伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "贝洛伯格进行曲",
+                "progressionId": "1101003",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1101004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1101004",
+                "variantIds": [
+                  "110104"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "使目标在下次行动前的等待间隔缩短。",
+                      "id": "10000001",
+                      "name": "行动提前"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "110104",
+                "levels": [
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前17%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前18%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前21%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前23%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前24%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前26%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前28%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前30%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前32%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前33%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前35%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前36%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放普攻后，布洛妮娅的下一次行动提前38%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻后，布洛妮娅的下一次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "先人一步",
+                "progressionId": "1101004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1101007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1101007",
+                "variantIds": [
+                  "110107"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  }
+                },
+                "id": "110107",
+                "levels": [
+                  {
+                    "description": "使用秘技后，下一次战斗开始时使我方全体攻击力提高15%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，下一次战斗开始时使我方全体攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "在旗帜下",
+                "progressionId": "1101007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "普攻的暴击率提高至<unbreak>100%</unbreak>。",
+            "iconKey": "skill-tree--1101101",
+            "id": "1101101",
+            "name": "号令",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "战斗开始时，我方全体的防御力提高<unbreak>20%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "skill-tree--1101102",
+            "id": "1101102",
+            "name": "阵地",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "布洛妮娅在场时，我方全体造成的伤害提高<unbreak>10%</unbreak>。",
+            "iconKey": "skill-tree--1101103",
+            "id": "1101103",
+            "name": "军势",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "风属性伤害提高3.2%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1101201",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [],
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1101202",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1101101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "风属性伤害提高3.2%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1101203",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [
+              "1101202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1101204",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1101201"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "风属性伤害提高4.8%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1101205",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [
+              "1101102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1101206",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1101205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "风属性伤害提高4.8%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1101207",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [
+              "1101201"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1101208",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1101103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击伤害提高10.7%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1101209",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1101208"
+            ],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "风属性伤害提高6.4%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1101210",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [
+              "1101208"
+            ],
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1101001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110101",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1101002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110102",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1101003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110103",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1101004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110104",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1101007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110107",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1101",
+    "subtitleRendered": false
+  }
+}

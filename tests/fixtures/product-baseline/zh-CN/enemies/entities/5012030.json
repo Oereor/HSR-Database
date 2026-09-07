@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "常言道：「买书如山倒，读书如抽丝。」爱书之人总是不断购买新书，却鲜少翻开阅读。\n「未读如此之多」的罪恶感，和「我总有一天会去读」的自我欺骗，共同交织出了「攻击性阅读物」这一凶恶的幻造种。",
+    "id": "5012030",
+    "name": "攻击性阅读物",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5012030",
+    "defaultMonsterRef": "a44737743c15488f2ae35b67454d122301c8d782bf6bf4223b1684a340335740",
+    "description": "常言道：「买书如山倒，读书如抽丝。」爱书之人总是不断购买新书，却鲜少翻开阅读。\n「未读如此之多」的罪恶感，和「我总有一天会去读」的自我欺骗，共同交织出了「攻击性阅读物」这一凶恶的幻造种。",
+    "id": "5012030",
+    "kind": "enemy",
+    "monsterRefs": [
+      "a44737743c15488f2ae35b67454d122301c8d782bf6bf4223b1684a340335740",
+      "1adfbccb7ae7e547befae875511b5033a0229832cf7e2eac745cb287fca298d3",
+      "c9ab24f0f13bc13eee1350f93f1b2f2a6e1706008d82ec4b713b21732923be14",
+      "9e1d30a4a3fcfe21e23a8310ce32e418f2d49e3da325daf6429cb05ff0c090d9"
+    ],
+    "name": "攻击性阅读物",
+    "rank": "MinionLv2",
+    "templateRef": "3ced691400e6b8f93bd5b6f233f8c2e44da980d97626162153d2887bd93ed650",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5012030",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5012030",
+    "selectableMonsterIds": [
+      "5012030",
+      "501203002",
+      "501203003",
+      "501203004"
+    ]
+  }
+}

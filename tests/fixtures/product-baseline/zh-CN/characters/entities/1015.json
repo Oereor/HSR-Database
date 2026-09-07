@@ -1,0 +1,3772 @@
+{
+  "catalog": {
+    "baseName": "Archer",
+    "description": "绝望轮番上演于过去与未来之间，无数理想曾在红色衣衫之间燃尽。但，请别被这一抹灰烬欺骗——\n若是有人假借理想之名营造虚幻的美梦，他必将再度燃烧，与世间的伪善战斗到底。\n无论身在何处，他始终是正义的伙伴。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "id": "1015",
+    "name": "Archer",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "Archer",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 105
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 84.48,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 66,
+            "perLevel": 3.3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 158.4,
+            "perLevel": 7.92
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 118.272,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 92.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 221.76,
+            "perLevel": 7.92
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 152.064,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 3.3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 285.12,
+            "perLevel": 7.92
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 185.856,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 145.2,
+            "perLevel": 3.3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 348.48,
+            "perLevel": 7.92
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 219.648,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 171.6,
+            "perLevel": 3.3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 411.84,
+            "perLevel": 7.92
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 253.44,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 198,
+            "perLevel": 3.3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 475.2,
+            "perLevel": 7.92
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 287.232,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 224.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 538.56,
+            "perLevel": 7.92
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "绝望轮番上演于过去与未来之间，无数理想曾在红色衣衫之间燃尽。但，请别被这一抹灰烬欺骗——\n若是有人假借理想之名营造虚幻的美梦，他必将再度燃烧，与世间的伪善战斗到底。\n无论身在何处，他始终是正义的伙伴。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "equipmentRecommendation": {
+      "avatarId": "1015",
+      "cavernSetIds": [
+        "108",
+        "122",
+        "102"
+      ],
+      "lightConeIds": [
+        "23046",
+        "24001"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "QuantumAddedRatio",
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "309",
+        "301",
+        "306"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "Archer",
+    "id": "1015",
+    "kind": "character",
+    "name": "Archer",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "单个回合内施放<unbreak>3</unbreak>次战技后，为我方恢复<unbreak>2</unbreak>个战技点。",
+            "iconKey": "rank--101501",
+            "id": "101501",
+            "name": "未曾触及的理想",
+            "rank": 1
+          },
+          {
+            "description": "施放终结技时，使敌方目标的量子属性的抗性降低<unbreak>20%</unbreak>，并为其添加量子属性弱点，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "rank--101502",
+            "id": "101502",
+            "name": "未能实现的幸福",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--101503",
+            "id": "101503",
+            "name": "难为凡庸的意气",
+            "rank": 3
+          },
+          {
+            "description": "造成的终结技伤害提高<unbreak>150%</unbreak>。",
+            "iconKey": "rank--101504",
+            "id": "101504",
+            "name": "难称英雄的一生",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--101505",
+            "id": "101505",
+            "name": "无铭孤影的守望",
+            "rank": 5
+          },
+          {
+            "description": "回合开始时为我方恢复1个战技点。自身战技提供的伤害提高效果可以叠加的上限层数提高<unbreak>1</unbreak>层。造成的战技伤害无视<unbreak>20%</unbreak>的防御力。",
+            "iconKey": "rank--101506",
+            "id": "101506",
+            "name": "无尽徘徊的巡礼",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 220
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1015001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9
+                ],
+                "defaultLevel": 6,
+                "id": "1015001",
+                "variantIds": [
+                  "101501"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "101501",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于Archer50%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer60%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer70%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer80%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer90%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer100%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer110%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer120%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer130%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  }
+                ],
+                "name": "干将•莫邪",
+                "progressionId": "1015001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1015002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1015002",
+                "variantIds": [
+                  "101502"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -2,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "101502",
+                "levels": [
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer180%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高60%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer198%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高64%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "198%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer216%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高68%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer234%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高72%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "234%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer252%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高76%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer270%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高80%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "270%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer293%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高85%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "293%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "85%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer315%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高90%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "315%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer338%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高95%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "338%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "95%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer360%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高100%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "360%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer378%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高104%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "378%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "104%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer396%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高108%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "396%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer414%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高112%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "414%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer432%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高116%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "432%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "116%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "进入【回路连接】状态。对指定敌方单体造成等同于Archer450%攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使Archer战技造成的伤害提高120%，该效果可以叠加2层，持续至退出【回路连接】状态。主动施放5次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【回路连接】状态。对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "450%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。【回路连接】状态下施放战技后，本回合不会结束，并使"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "战技造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至退出【回路连接】状态。主动施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技后或战技点不足以再次施放战技则退出【回路连接】状态。每个波次中的所有敌方目标被消灭后会退出【回路连接】状态。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "伪•螺旋剑",
+                "progressionId": "1015002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1015003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1015003",
+                "variantIds": [
+                  "101503"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "101503",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于Archer600%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "600%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer640%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "640%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer680%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "680%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer720%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "720%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer760%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "760%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer800%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "800%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer850%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "850%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer900%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "900%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer950%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "950%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer1000%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1000%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer1040%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1040%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer1080%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1080%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer1120%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer1160%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于Archer1200%攻击力的量子属性伤害，并获得2点充能，最多可拥有4点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多可拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "无限剑制",
+                "progressionId": "1015003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1015004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1015004",
+                "variantIds": [
+                  "101504"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "101504",
+                "levels": [
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer100%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer110%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer120%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer130%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer140%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer150%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer163%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "163%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer175%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer188%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer200%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer210%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer220%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer230%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer240%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "当Archer的队友对敌方目标施放攻击后，Archer消耗1点充能，立即对主目标发动追加攻击，造成等同于Archer250%攻击力的量子属性伤害，并恢复1个战技点。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的队友对敌方目标施放攻击后，"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "type": "text",
+                        "value": "消耗1点充能，立即对主目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并恢复1个战技点。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "心眼（真）",
+                "progressionId": "1015004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1015007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1015007",
+                "variantIds": [
+                  "101507"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "101507",
+                "levels": [
+                  {
+                    "description": "立即攻击敌人，进入战斗后对敌方全体造成等同于Archer200%攻击力的量子属性伤害，并获得1点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击敌人，进入战斗后对敌方全体造成等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "Archer200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "千里眼",
+                "progressionId": "1015007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "<unbreak>Archer</unbreak>在场时，战技点上限额外增加<unbreak>2</unbreak>点。",
+            "iconKey": "skill-tree--1015101",
+            "id": "1015101",
+            "name": "投影魔术",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "<unbreak>Archer</unbreak>进入战斗时获得<unbreak>1</unbreak>点充能。",
+            "iconKey": "skill-tree--1015102",
+            "id": "1015102",
+            "name": "正义伙伴",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "我方获得战技点后，若战技点大于等于<unbreak>4</unbreak>点，<unbreak>Archer</unbreak>的暴击伤害提高<unbreak>120%</unbreak>，持续<unbreak>1</unbreak>回合。",
+            "iconKey": "skill-tree--1015103",
+            "id": "1015103",
+            "name": "守护者",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "量子属性伤害提高3.2%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1015201",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [],
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1015202",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1015101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "量子属性伤害提高3.2%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1015203",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [
+              "1015202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1015204",
+            "name": "暴击率强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "量子属性伤害提高4.8%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1015205",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [
+              "1015102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1015206",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1015205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "量子属性伤害提高4.8%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1015207",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1015208",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1015103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1015209",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1015208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "量子属性伤害提高6.4%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1015210",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [
+              "1015208"
+            ],
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9
+                ],
+                "defaultLevel": 6,
+                "id": "1015001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "101501",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1015002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "101502",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1015003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "101503",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1015004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "101504",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1015007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "101507",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1015",
+    "subtitleRendered": false
+  }
+}

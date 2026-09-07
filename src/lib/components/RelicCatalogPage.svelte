@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
+  import { localizedHref } from '$lib/i18n/routing';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
@@ -20,10 +22,11 @@
   import OverviewSearch from './OverviewSearch.svelte';
   import OverviewToolbar from './OverviewToolbar.svelte';
   import RelicOverviewCard from './RelicOverviewCard.svelte';
+  import { relicCategoryLabel } from '$lib/i18n/product';
 
   export let entries: CatalogEntry[] = [];
-  export let title = '遗器';
-  export let description = '浏览、搜索并筛选遗器套装资料。';
+  export let title: string = m.relics_title();
+  export let description: string = m.relics_description();
 
   let draftQuery = '';
   let synchronizedQuery: string | undefined;
@@ -61,14 +64,10 @@
     Number.isInteger(requestedPage) && requestedPage > 0 ? Math.min(requestedPage, pages) : 1;
   $: visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
-  const relicCategoryLabels: Record<RelicSetCategory, string> = {
-    cavern: '隧洞遗器',
-    planar: '位面饰品'
-  };
-  const relicCategoryOptions = Object.entries(relicCategoryLabels).map(([value, label]) => ({
-    value,
-    label
-  }));
+  const relicCategoryOptions: Array<{ value: RelicSetCategory; label: string }> = [
+    { value: 'cavern', label: relicCategoryLabel('cavern') },
+    { value: 'planar', label: relicCategoryLabel('planar') }
+  ];
 
   function relicEntry(entry: CatalogEntry): RelicCatalogEntry {
     const category = (entry as Partial<RelicCatalogEntry>).category;
@@ -135,25 +134,25 @@
 </svelte:head>
 
 <OverviewHero
-  eyebrow="DATABASE / RELICS"
+  eyebrow={m.relics_eyebrow()}
   {title}
   {description}
-  countLabel={`共 ${relics.length} 套遗器`}
+  countLabel={m.relics_count({ count: relics.length })}
   artwork={heroArtwork}
 />
 
-<section class="overview-controls" aria-label="遗器搜索与筛选">
+<section class="overview-controls" aria-label={m.relics_controls_aria()}>
   <OverviewSearch
     id="relic-search-input"
     bind:value={draftQuery}
-    placeholder="搜索遗器套装"
+    placeholder={m.relics_search_placeholder()}
     onSubmit={submitQuery}
   />
 
   <div class="overview-filters">
     <FilterGroup
       id="relic-category"
-      label="遗器类别"
+      label={m.filter_relic_category()}
       options={relicCategoryOptions}
       selected={selectedCategories}
       onToggle={selectCategory}
@@ -179,7 +178,7 @@
     {#each visible as relic (relic.id)}
       <RelicOverviewCard
         entry={relic}
-        href={`/relics/${relic.id}`}
+        href={localizedHref(`/relics/${relic.id}`)}
         imageUrl={getRelicSetIconUrl(relic.id)}
       />
     {/each}
@@ -187,9 +186,11 @@
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
   <section class="empty-state">
-    <h2>没有匹配结果</h2>
-    <p>尝试减少筛选条件，或清空当前搜索。</p>
-    <button class="button" type="button" on:click={clearSearchAndFilters}>清空筛选</button>
+    <h2>{m.overview_empty_title()}</h2>
+    <p>{m.overview_empty_description()}</p>
+    <button class="button" type="button" on:click={clearSearchAndFilters}
+      >{m.overview_clear_filters()}</button
+    >
   </section>
 {/if}
 

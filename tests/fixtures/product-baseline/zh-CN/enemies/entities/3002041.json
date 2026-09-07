@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "原本是搭载了筑梦学院教材的「发条暴徒」，受到模因病毒的影响，教材变成了蕉材。工地中蕉美的身姿有如铁壁，不时发出猴亮的铃声，蕉醒沉眠的猴生与猴友。",
+    "id": "3002041",
+    "name": "蕉研组的筑梦蕉师",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3002041",
+    "defaultMonsterRef": "2d3f84d93692144a98aae759ae465788a5e9bd4085749c915a5b30c5f0c1ec58",
+    "description": "原本是搭载了筑梦学院教材的「发条暴徒」，受到模因病毒的影响，教材变成了蕉材。工地中蕉美的身姿有如铁壁，不时发出猴亮的铃声，蕉醒沉眠的猴生与猴友。",
+    "id": "3002041",
+    "kind": "enemy",
+    "monsterRefs": [
+      "2d3f84d93692144a98aae759ae465788a5e9bd4085749c915a5b30c5f0c1ec58",
+      "cbd3e4b1b813f102ebf669b535968c4d4078560050a3447cc499a33761bd5faf",
+      "1928aef11874ded6c3c13d1173838a6233888a3286af01584e90a675dc49f2c0"
+    ],
+    "name": "蕉研组的筑梦蕉师",
+    "rank": "MinionLv2",
+    "templateRef": "1bb6cf33e11814dd8b1c43389c7098c7ca8bf32a8ba447163e021091e7558368",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3002041",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3002041",
+    "selectableMonsterIds": [
+      "3002041",
+      "300204101",
+      "300204102"
+    ]
+  }
+}

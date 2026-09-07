@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "被「源究森林」的树荫遮蔽理智的美梦剧团。它们携带着「奇想林」中结出的模因病毒，于梦中蕉横地宣扬睡蕉小猴的蕉旨与原始博士的蕉诲。",
+    "id": "3004020",
+    "name": "奇想林中的蕉研组",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3004020",
+    "defaultMonsterRef": "4982c3e3b9ae0790a4ccd351c97bc16f71e15e46c187750518510912954b0dfa",
+    "description": "被「源究森林」的树荫遮蔽理智的美梦剧团。它们携带着「奇想林」中结出的模因病毒，于梦中蕉横地宣扬睡蕉小猴的蕉旨与原始博士的蕉诲。",
+    "id": "3004020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "4982c3e3b9ae0790a4ccd351c97bc16f71e15e46c187750518510912954b0dfa",
+      "7b751468a0e497ac817fb2d765af403f4671bc04c9858e5ff48fba6ae8cd3e9d",
+      "8869c5c06560f8f7809f3f98e7444022a0556158dc0a34f72c6bd9144ed73044",
+      "88e02b4d22cb723c8ea212e2f6aa4d26bac7cf08fa1de743f786f5b929121c25",
+      "7721208981c4cb850a3f887c3b89a43e42199aa900a896ed984a5a238d642eb3"
+    ],
+    "name": "奇想林中的蕉研组",
+    "rank": "LittleBoss",
+    "templateRef": "296252c5ae774452949cdab2cc47b6fe80a6484fc8689528b8b893e1fa4d7708",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3004020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3004020",
+    "selectableMonsterIds": [
+      "3004020",
+      "300402001",
+      "300402002",
+      "300402003",
+      "300402004"
+    ]
+  }
+}

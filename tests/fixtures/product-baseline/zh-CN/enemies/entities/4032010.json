@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n锋利双刃能瞬间撕裂挡在前方的所有活物，迅疾身形如幽魂般难以捉摸，要将污染与侵蚀散布至世界所有角落。",
+    "id": "4032010",
+    "name": "黑潮蚀刃",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4032010",
+    "defaultMonsterRef": "e69d19a280669ee0626fd2a1088475816578af6f989a2018f5d4e157794686ac",
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n锋利双刃能瞬间撕裂挡在前方的所有活物，迅疾身形如幽魂般难以捉摸，要将污染与侵蚀散布至世界所有角落。",
+    "id": "4032010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e69d19a280669ee0626fd2a1088475816578af6f989a2018f5d4e157794686ac",
+      "02f8e4693211647ab0d8383bf94a5ab993348de541d81ff3e0d823b1277686e8",
+      "25e4d0d75eef94bda8869bd3eeb48da852846efb732f4959ad00f766b122a11c"
+    ],
+    "name": "黑潮蚀刃",
+    "rank": "MinionLv2",
+    "templateRef": "d56a925d00d326cc9e0fb3b333a775afe179087dd4e4f16d7caf7b284a6cea09",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4032010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4032010",
+    "selectableMonsterIds": [
+      "4032010",
+      "403201001",
+      "403201002"
+    ]
+  }
+}

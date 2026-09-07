@@ -1,0 +1,3419 @@
+{
+  "catalog": {
+    "baseName": "白露",
+    "description": "仙舟「罗浮」持明族的尊长，有「衔药龙女」之称的医士。\n以独门医理和唯有龙脉方可施行的「医疗手段」救死扶伤。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "id": "1211",
+    "name": "白露",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "白露",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 98
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 76.56,
+            "perLevel": 3.828
+          },
+          "defence": {
+            "base": 66,
+            "perLevel": 3.3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 179.52,
+            "perLevel": 8.976
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 107.184,
+            "perLevel": 3.828
+          },
+          "defence": {
+            "base": 92.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 251.328,
+            "perLevel": 8.976
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 137.808,
+            "perLevel": 3.828
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 3.3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 323.136,
+            "perLevel": 8.976
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 168.432,
+            "perLevel": 3.828
+          },
+          "defence": {
+            "base": 145.2,
+            "perLevel": 3.3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 394.944,
+            "perLevel": 8.976
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 199.056,
+            "perLevel": 3.828
+          },
+          "defence": {
+            "base": 171.6,
+            "perLevel": 3.3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 466.752,
+            "perLevel": 8.976
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 229.68,
+            "perLevel": 3.828
+          },
+          "defence": {
+            "base": 198,
+            "perLevel": 3.3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 538.56,
+            "perLevel": 8.976
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 260.304,
+            "perLevel": 3.828
+          },
+          "defence": {
+            "base": 224.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 610.368,
+            "perLevel": 8.976
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "仙舟「罗浮」持明族的尊长，有「衔药龙女」之称的医士。\n以独门医理和唯有龙脉方可施行的「医疗手段」救死扶伤。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "equipmentRecommendation": {
+      "avatarId": "1211",
+      "cavernSetIds": [
+        "101",
+        "114",
+        "106"
+      ],
+      "lightConeIds": [
+        "23013",
+        "21021",
+        "21000"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "HealRatioBase",
+            "HPAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "302",
+        "310",
+        "317"
+      ],
+      "subStatPropertyTypes": [
+        "HPAddedRatio",
+        "SpeedDelta",
+        "StatusResistanceBase"
+      ]
+    },
+    "fullName": "白露",
+    "id": "1211",
+    "kind": "character",
+    "name": "白露",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "【生息】结束时若我方目标当前生命值等于其生命上限，则额外恢复目标<unbreak>8</unbreak>点能量。",
+            "iconKey": "rank--121101",
+            "id": "121101",
+            "name": "百脉甘津宁神久",
+            "rank": 1
+          },
+          {
+            "description": "施放终结技后，白露的治疗量提高<unbreak>15%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "rank--121102",
+            "id": "121102",
+            "name": "壶中洞天云螭眠",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--121103",
+            "id": "121103",
+            "name": "掌间乾坤便通玄",
+            "rank": 3
+          },
+          {
+            "description": "战技提供的每1次治疗会额外使受治疗者造成的伤害提高<unbreak>10%</unbreak>，最多叠加<unbreak>3</unbreak>层，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "rank--121104",
+            "id": "121104",
+            "name": "肘后备急除外障",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--121105",
+            "id": "121105",
+            "name": "方定一倾浣俗尘",
+            "rank": 5
+          },
+          {
+            "description": "白露在单场战斗中累计可以对受到致命攻击的我方目标提供治疗的效果触发次数增加<unbreak>1</unbreak>次。",
+            "iconKey": "rank--121106",
+            "id": "121106",
+            "name": "龙漦吐哺胜金丹",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 100
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1211001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1211001",
+                "variantIds": [
+                  "121101"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "121101",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于白露50%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于白露60%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于白露70%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于白露80%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于白露90%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于白露100%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于白露110%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于白露120%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于白露130%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于白露140%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "望 、闻、问…蹴！",
+                "progressionId": "1211001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1211002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1211002",
+                "variantIds": [
+                  "121102"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  },
+                  "energyGain": 30
+                },
+                "id": "121102",
+                "levels": [
+                  {
+                    "description": "立即为指定我方单体回复等同于白露7.8%生命上限+78的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于白露8.3%生命上限+125的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于白露8.8%生命上限+160的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于白露9.3%生命上限+195的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "195"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于白露9.8%生命上限+218的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "218"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于白露10.1%生命上限+242的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "242"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于白露10.5%生命上限+259的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "259"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于白露10.9%生命上限+277的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "277"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于白露11.3%生命上限+294的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "294"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于白露11.7%生命上限+312的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "312"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于白露12.1%生命上限+330的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "330"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于白露12.5%生命上限+347的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "347"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于白露12.9%生命上限+365的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "365"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于白露13.3%生命上限+382的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "382"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于白露13.7%生命上限+400的生命值，然后白露随机为我方单体进行2次治疗，每提供1次治疗，下一次治疗回复的生命值会降低15%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "400"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，然后白露随机为我方单体进行"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次治疗，每提供1次治疗，下一次治疗回复的生命值会降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "云吟乍涌坠珠露",
+                "progressionId": "1211002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1211003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1211003",
+                "variantIds": [
+                  "121103"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  },
+                  "energyGain": 5
+                },
+                "id": "121103",
+                "levels": [
+                  {
+                    "description": "立即为我方全体回复等同于白露9.0%生命上限+90的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于白露9.6%生命上限+144的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于白露10.1%生命上限+185的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "185"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于白露10.7%生命上限+225的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "225"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于白露11.3%生命上限+252的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于白露11.7%生命上限+279的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "279"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于白露12.2%生命上限+299的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "299"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于白露12.6%生命上限+320的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "320"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于白露13.1%生命上限+340的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "340"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于白露13.5%生命上限+360的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "360"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于白露14.0%生命上限+380的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "380"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于白露14.4%生命上限+401的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "401"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于白露14.8%生命上限+421的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "421"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于白露15.3%生命上限+441的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "441"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于白露15.8%生命上限+461的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续2回合，该效果不可叠加。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "461"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n对于没有【生息】的我方目标，白露使其附上【生息】，对于已拥有【生息】的我方目标，白露使其已有的【生息】持续时间延长1回合。\n【生息】可持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，该效果不可叠加。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "匏蛟跃渊先雷音",
+                "progressionId": "1211003",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1211004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1211004",
+                "variantIds": [
+                  "121104"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                      "id": "10000007",
+                      "name": "无法战斗状态"
+                    }
+                  ]
+                },
+                "id": "121104",
+                "levels": [
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露3.6%生命上限+36的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露12.0%生命上限+120的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露3.8%生命上限+58的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露12.8%生命上限+192的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "58"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露4.0%生命上限+74的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露13.5%生命上限+246的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "74"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "246"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露4.3%生命上限+90的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露14.2%生命上限+300的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露4.5%生命上限+101的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露15.0%生命上限+336的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "101"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "336"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露4.7%生命上限+112的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露15.6%生命上限+372的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "372"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露4.9%生命上限+120的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露16.2%生命上限+399的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "399"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露5.0%生命上限+128的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露16.8%生命上限+426的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "128"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "426"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露5.2%生命上限+136的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露17.4%生命上限+453的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "136"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "453"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露5.4%生命上限+144的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露18.0%生命上限+480的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "480"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露5.6%生命上限+152的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露18.6%生命上限+507的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "152"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "507"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露5.8%生命上限+160的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露19.2%生命上限+534的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "534"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露5.9%生命上限+168的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露19.8%生命上限+561的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "561"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露6.1%生命上限+176的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露20.4%生命上限+588的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "176"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "588"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露6.3%生命上限+185的生命值，该效果可以触发2次。\n当白露的队友受到致命攻击时，不会陷入无法战斗状态，白露会立即为其提供治疗，回复等同于白露21.0%生命上限+615的生命值。该效果单场战斗中可以触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "拥有【生息】的我方目标，在受到攻击后会回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "185"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，该效果可以触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n当白露的队友受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，白露会立即为其提供治疗，回复等同于白露"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "615"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。该效果单场战斗中可以触发1次。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "奔走悬壶济世长",
+                "progressionId": "1211004",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1211007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1211007",
+                "variantIds": [
+                  "121107"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  }
+                },
+                "id": "121107",
+                "levels": [
+                  {
+                    "description": "使用秘技后，下一次战斗开始时为我方全体附上【生息】，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，下一次战斗开始时为我方全体附上【生息】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "徜徉灵泽病恙短",
+                "progressionId": "1211007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "白露对我方目标造成过量治疗时会提高目标<unbreak>10%</unbreak>的生命上限，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "skill-tree--1211101",
+            "id": "1211101",
+            "name": "岐黄精义",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "【生息】效果的触发次数增加<unbreak>1</unbreak>次。",
+            "iconKey": "skill-tree--1211102",
+            "id": "1211102",
+            "name": "持明龙脉",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "拥有【生息】的角色受到的伤害降低<unbreak>10%</unbreak>。",
+            "iconKey": "skill-tree--1211103",
+            "id": "1211103",
+            "name": "鳞渊福泽",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1211201",
+            "name": "生命强化",
+            "prerequisiteIds": [],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1211202",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1211101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1211203",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1211202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1211204",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1211203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1211205",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1211102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1211206",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1211205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1211207",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1211206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1211208",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1211103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "防御力提高10.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1211209",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1211103"
+            ],
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "生命值上限提高8.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1211210",
+            "name": "生命强化",
+            "prerequisiteIds": [],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1211001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121101",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1211002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121102",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1211003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121103",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1211004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121104",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1211007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121107",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1211",
+    "subtitleRendered": false
+  }
+}

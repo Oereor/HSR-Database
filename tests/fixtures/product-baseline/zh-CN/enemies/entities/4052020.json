@@ -1,0 +1,54 @@
+{
+  "catalog": {
+    "description": "大海的女儿们，被「毁灭」的罪孽蚀尽灵肉，只余空荡扭曲的形骸…这一世，她们追随「海洋」的利刃，并非湮灭于虚无，而是成为袭向黑日的巨浪。\n末日的风暴从天而降，宣告万物的灭亡——\n不幸早产的泡影啊，还未诞生就注定消亡，吞吐着数不尽的悲怆——\n污浊的羊水流淌，染黑天和地，把初生的希望也弄脏。",
+    "id": "4052020",
+    "name": "泡影稚子",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4052020",
+    "defaultMonsterRef": "7f77641d40b92750fdbd2a40e040ee596e17853f098ec911afa9056b11434e00",
+    "description": "大海的女儿们，被「毁灭」的罪孽蚀尽灵肉，只余空荡扭曲的形骸…这一世，她们追随「海洋」的利刃，并非湮灭于虚无，而是成为袭向黑日的巨浪。\n末日的风暴从天而降，宣告万物的灭亡——\n不幸早产的泡影啊，还未诞生就注定消亡，吞吐着数不尽的悲怆——\n污浊的羊水流淌，染黑天和地，把初生的希望也弄脏。",
+    "id": "4052020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "7f77641d40b92750fdbd2a40e040ee596e17853f098ec911afa9056b11434e00",
+      "81ce5e8f7bb62a0177b308b44d557ca8ffedb554b140c620ca8500064e9bd863"
+    ],
+    "name": "泡影稚子",
+    "rank": "MinionLv2",
+    "templateRef": "a701df4440e4fe3d0a18adbbc7fcadbe45b4f01e1b390a52c5f43971b79ad738",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4052020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4052020",
+    "selectableMonsterIds": [
+      "4052020",
+      "405202001"
+    ]
+  }
+}

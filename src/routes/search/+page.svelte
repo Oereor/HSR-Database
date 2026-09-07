@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   import { afterNavigate, goto } from '$app/navigation';
+  import { page } from '$app/stores';
   import CharacterOverviewCard from '$lib/components/CharacterOverviewCard.svelte';
   import EnemyOverviewCard from '$lib/components/EnemyOverviewCard.svelte';
   import GameText from '$lib/components/GameText.svelte';
@@ -16,10 +18,12 @@
     getLightConePreviewUrl,
     getRelicSetIconUrl
   } from '$lib/data/visual-assets';
-  import { ENDGAME_MODES, ENDGAME_MODE_META } from '$lib/domain/endgame-view';
+  import { ENDGAME_MODES } from '$lib/domain/endgame-view';
   import { createGlobalSearchService, endgameSearchSeasonsForMode } from '$lib/search/search';
   import { SEARCH_DISPLAY_BATCH, windowEndgameSeasons } from '$lib/search/presentation';
   import { formatDocumentTitle } from '$lib/site';
+  import { getEndgameModeCopy } from '$lib/i18n/endgame';
+  import { localizedHref } from '$lib/i18n/routing';
   import type { PageData } from './$types';
 
   export let data: PageData;
@@ -52,7 +56,7 @@
     const seasons = endgameSearchSeasonsForMode(results.endgame, mode);
     return {
       mode,
-      label: ENDGAME_MODE_META[mode].label,
+      label: getEndgameModeCopy(mode).label,
       total: seasons.reduce((sum, season) => sum + season.enemies.length, 0),
       seasons: windowEndgameSeasons(seasons, limits[mode])
     };
@@ -89,7 +93,7 @@
 
   async function submitSearch() {
     const nextQuery = draftQuery.trim();
-    await goto(`/search${nextQuery ? `?q=${encodeURIComponent(nextQuery)}` : ''}`, {
+    await goto(`${$page.url.pathname}${nextQuery ? `?q=${encodeURIComponent(nextQuery)}` : ''}`, {
       noScroll: true,
       keepFocus: true
     });
@@ -97,21 +101,21 @@
 </script>
 
 <svelte:head>
-  <title>{formatDocumentTitle('全局搜索')}</title>
-  <meta name="description" content="跨角色、光锥、遗器和敌方单位的简体中文搜索。" />
+  <title>{formatDocumentTitle(m.search_hero_title())}</title>
+  <meta name="description" content={m.search_meta_description()} />
 </svelte:head>
 
 <OverviewHero
-  eyebrow="GLOBAL SEARCH"
-  title="全局搜索"
-  description="键入关键词以搜索角色、光锥、遗器和敌方单位等内容。"
+  eyebrow={m.search_eyebrow()}
+  title={m.search_hero_title()}
+  description={m.search_hero_description()}
 />
 
 <div class="search-page-control">
   <SearchBar
     id="search-page-query"
-    label="搜索全部资料"
-    placeholder="搜索角色、光锥、遗器、敌方单位…"
+    label={m.search_input_label()}
+    placeholder={m.search_input_placeholder()}
     bind:value={draftQuery}
     onSubmit={submitSearch}
   />
@@ -121,12 +125,14 @@
   <div class="search-result-groups" aria-live="polite">
     {#if results.characters.length}
       <section class="search-result-section" aria-labelledby="search-results-characters">
-        <SectionHeading level={1} id="search-results-characters">角色</SectionHeading>
+        <SectionHeading level={1} id="search-results-characters"
+          >{m.search_results_characters()}</SectionHeading
+        >
         <OverviewGrid variant="character">
           {#each results.characters.slice(0, limits.characters) as result (result.id)}
             <CharacterOverviewCard
               entry={result}
-              href={`/characters/${result.id}`}
+              href={localizedHref(`/characters/${result.id}`)}
               imageUrl={getCharacterPreviewUrl(result.id)}
               density="compact"
             />
@@ -142,12 +148,14 @@
 
     {#if results.lightCones.length}
       <section class="search-result-section" aria-labelledby="search-results-light-cones">
-        <SectionHeading level={1} id="search-results-light-cones">光锥</SectionHeading>
+        <SectionHeading level={1} id="search-results-light-cones"
+          >{m.search_results_light_cones()}</SectionHeading
+        >
         <OverviewGrid>
           {#each results.lightCones.slice(0, limits.lightCones) as result (result.id)}
             <LightConeOverviewCard
               entry={result}
-              href={`/light-cones/${result.id}`}
+              href={localizedHref(`/light-cones/${result.id}`)}
               imageUrl={getLightConePreviewUrl(result.id)}
             />
           {/each}
@@ -162,12 +170,14 @@
 
     {#if results.relics.length}
       <section class="search-result-section" aria-labelledby="search-results-relics">
-        <SectionHeading level={1} id="search-results-relics">遗器</SectionHeading>
+        <SectionHeading level={1} id="search-results-relics"
+          >{m.search_results_relics()}</SectionHeading
+        >
         <OverviewGrid variant="compact">
           {#each results.relics.slice(0, limits.relics) as result (result.id)}
             <RelicOverviewCard
               entry={result}
-              href={`/relics/${result.id}`}
+              href={localizedHref(`/relics/${result.id}`)}
               imageUrl={getRelicSetIconUrl(result.id)}
             />
           {/each}
@@ -182,12 +192,14 @@
 
     {#if results.enemies.length}
       <section class="search-result-section" aria-labelledby="search-results-enemies">
-        <SectionHeading level={1} id="search-results-enemies">敌方单位</SectionHeading>
+        <SectionHeading level={1} id="search-results-enemies"
+          >{m.search_results_enemies()}</SectionHeading
+        >
         <OverviewGrid>
           {#each results.enemies.slice(0, limits.enemies) as result (result.id)}
             <EnemyOverviewCard
               entry={result}
-              href={`/enemies/${result.id}`}
+              href={localizedHref(`/enemies/${result.id}`)}
               imageUrl={data.enemyPortraits[result.id]}
             />
           {/each}
@@ -202,7 +214,9 @@
 
     {#if endgameModes.length}
       <section class="search-result-section" aria-labelledby="search-results-endgame">
-        <SectionHeading level={1} id="search-results-endgame">高难模式</SectionHeading>
+        <SectionHeading level={1} id="search-results-endgame"
+          >{m.search_results_endgame()}</SectionHeading
+        >
         <div class="search-endgame-modes">
           {#each endgameModes as mode (mode.mode)}
             <section
@@ -239,23 +253,23 @@
       </section>
     {/if}
     {#if searchUnavailable}
-      <p class="search-data-unavailable" role="status">部分搜索资料暂时无法载入，请刷新后重试。</p>
+      <p class="search-data-unavailable" role="status">{m.search_data_unavailable()}</p>
     {/if}
     {#if endgameUnavailable}
       <p class="search-data-unavailable" role="status">
-        部分高难模式资料暂时无法载入，请稍后重试。
+        {m.search_endgame_unavailable()}
       </p>
     {/if}
   </div>
 {:else if appliedQuery && !endgamePending}
   <section class="empty-state" aria-live="polite">
-    <h2>未找到与「{appliedQuery}」匹配的结果</h2>
-    <p>请尝试使用其他简体中文名称。</p>
+    <h2>{m.search_empty_title({ query: appliedQuery })}</h2>
+    <p>{m.search_empty_description()}</p>
   </section>
 {:else}
   <section class="search-start">
-    <h2>开始探索</h2>
-    <p>试试“三月七·存护”、“锋镝”或任意敌方单位名称。</p>
+    <h2>{m.search_start_title()}</h2>
+    <p>{m.search_start_description()}</p>
   </section>
 {/if}
 

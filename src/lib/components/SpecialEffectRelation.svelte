@@ -2,6 +2,7 @@
   import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
   import { resolveSpecialEffectLinkedAvatarPresentation } from '$lib/domain/special-effects-presentation';
   import type { CatalogEntry, CharacterSpecialEffectEntry } from '$lib/domain/types';
+  import * as m from '$lib/paraglide/messages.js';
 
   export let entry: CharacterSpecialEffectEntry;
   export let targets: CatalogEntry[] = [];
@@ -39,10 +40,13 @@
           decoding="async"
           on:error={hideBrokenImage}
         />{/if}
-      <span><small>献予</small><strong>{presentation.displayName}</strong></span>
+      <span
+        ><small>{m.special_effect_given_to()}</small><strong>{presentation.displayName}</strong
+        ></span
+      >
     </div>
   {:else}
-    <span class="special-effect-relation__label">关联角色</span>
+    <span class="special-effect-relation__label">{m.special_effect_related_character()}</span>
     <div class="special-effect-target-list">
       {#each entry.linkedAvatarIds as avatarId (avatarId)}
         {@const target = targetById.get(avatarId)}

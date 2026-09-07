@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "受海妖歌声影响的迷狂者，其理智崩溃于跃入洋面的一瞬，化身为塞壬的爪牙。",
+    "id": "4052011",
+    "name": "致幻人鱼",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4052011",
+    "defaultMonsterRef": "2ec8838b4ec57e72f719f5834b7568e54b48b350179f91ae1796e81af6a2a484",
+    "description": "受海妖歌声影响的迷狂者，其理智崩溃于跃入洋面的一瞬，化身为塞壬的爪牙。",
+    "id": "4052011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "2ec8838b4ec57e72f719f5834b7568e54b48b350179f91ae1796e81af6a2a484"
+    ],
+    "name": "致幻人鱼",
+    "rank": "MinionLv2",
+    "templateRef": "4219c9287488d29510595feaf7118f181354d890cac7f732e5a9c373bebf677e",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4052011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4052011",
+    "selectableMonsterIds": [
+      "4052011"
+    ]
+  }
+}

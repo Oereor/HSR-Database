@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为贝洛伯格的守护者，永屹之城贝洛伯格无可质疑的统治者。\n可可利亚（完整）秉持传承自历代守护者的神迹权能，在战斗中号令冰雪的力量冻结敌人。",
+    "id": "1004012",
+    "name": "可可利亚（完整）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1004012",
+    "defaultMonsterRef": "ae51615280582a5a63fd5ec8474715b69ef3ad9e26d64199f1ccf4c77e1a2362",
+    "description": "代码受到影响后的完整投影。参照本体为贝洛伯格的守护者，永屹之城贝洛伯格无可质疑的统治者。\n可可利亚（完整）秉持传承自历代守护者的神迹权能，在战斗中号令冰雪的力量冻结敌人。",
+    "id": "1004012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "ae51615280582a5a63fd5ec8474715b69ef3ad9e26d64199f1ccf4c77e1a2362",
+      "7a7848ba6a974ff45f0374e9eb634cf54a1d95d9345c39f2c2a5a078f08594e0"
+    ],
+    "name": "可可利亚（完整）",
+    "rank": "LittleBoss",
+    "templateRef": "8d6c7521d191f9a00c54fac343fe8799e89f994797282518e6e8132f6509cbe1",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1004012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1004012",
+    "selectableMonsterIds": [
+      "1004012",
+      "100401201"
+    ]
+  }
+}

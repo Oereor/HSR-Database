@@ -1,0 +1,3448 @@
+{
+  "catalog": {
+    "baseName": "米沙",
+    "description": "匹诺康尼酒店的门童侍应，乖巧懂事的小男孩。\n对无名客抱有极大憧憬，梦想有朝一日自己也能踏上旅途。",
+    "element": "Ice",
+    "elementName": "冰",
+    "id": "1312",
+    "name": "米沙",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "米沙",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 125,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 96
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 81.6,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 54,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 172.8,
+            "perLevel": 8.64
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 114.24,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 75.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 241.92,
+            "perLevel": 8.64
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 146.88,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 311.04,
+            "perLevel": 8.64
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 179.52,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 380.16,
+            "perLevel": 8.64
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 212.16,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 140.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 449.28,
+            "perLevel": 8.64
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 162,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 518.4,
+            "perLevel": 8.64
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 277.44,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 587.52,
+            "perLevel": 8.64
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "匹诺康尼酒店的门童侍应，乖巧懂事的小男孩。\n对无名客抱有极大憧憬，梦想有朝一日自己也能踏上旅途。",
+    "element": "Ice",
+    "elementName": "冰",
+    "equipmentRecommendation": {
+      "avatarId": "1312",
+      "cavernSetIds": [
+        "104",
+        "122",
+        "102"
+      ],
+      "lightConeIds": [
+        "24000",
+        "21005"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "IceAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "306",
+        "301",
+        "311"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "米沙",
+    "id": "1312",
+    "kind": "character",
+    "name": "米沙",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "施放终结技时，场上每有1个敌方目标，本次终结技的攻击段数额外增加<unbreak>1</unbreak>段，最多额外增加<unbreak>5</unbreak>段。",
+            "iconKey": "rank--131201",
+            "id": "131201",
+            "name": "飘忽的幻影",
+            "rank": 1
+          },
+          {
+            "description": "终结技每段攻击前，有<unbreak>24%</unbreak>的<u>基础概率</u>使目标防御力降低<unbreak>16%</unbreak>，持续<unbreak>3</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                "id": "30000001",
+                "name": "基础概率"
+              }
+            ],
+            "iconKey": "rank--131202",
+            "id": "131202",
+            "name": "青春的怅望",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--131203",
+            "id": "131203",
+            "name": "欢乐年光的影子",
+            "rank": 3
+          },
+          {
+            "description": "终结技每段攻击的伤害倍率提高<unbreak>6%</unbreak>。",
+            "iconKey": "rank--131204",
+            "id": "131204",
+            "name": "亲挚的音容",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--131205",
+            "id": "131205",
+            "name": "最初的爱与友谊",
+            "rank": 5
+          },
+          {
+            "description": "施放终结技时，使自身造成的伤害提高<unbreak>30%</unbreak>，持续至自身回合结束，且下一次施放战技后为我方恢复<unbreak>1</unbreak>个战技点。",
+            "iconKey": "rank--131206",
+            "id": "131206",
+            "name": "久已生疏的憧憬",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 100
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1312001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1312001",
+                "variantIds": [
+                  "131201"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "131201",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于米沙50%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于米沙60%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于米沙70%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于米沙80%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于米沙90%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于米沙100%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于米沙110%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于米沙120%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于米沙130%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于米沙140%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "请…请让一下！",
+                "progressionId": "1312001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1312002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1312002",
+                "variantIds": [
+                  "131202"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "131202",
+                "levels": [
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙100%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙40%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙110%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙44%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙120%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙48%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙130%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙52%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙140%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙56%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙150%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙60%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙163%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙65%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "163%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙175%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙70%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙188%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙75%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙200%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙80%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙210%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙84%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙220%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙88%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙230%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙92%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙240%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙96%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "增加1段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙250%攻击力的冰属性伤害，并对其相邻目标造成等同于米沙100%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并对其相邻目标造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "客…客房服务！",
+                "progressionId": "1312002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1312003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1312003",
+                "variantIds": [
+                  "131203"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Bounce",
+                    "known": true,
+                    "label": "弹射"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    },
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "131203",
+                "levels": [
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙36%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙36%攻击力的冰属性伤害。每段攻击前有12.0%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙18%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙38%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙38%攻击力的冰属性伤害。每段攻击前有12.8%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙19%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙41%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙41%攻击力的冰属性伤害。每段攻击前有13.6%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙20%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙43%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙43%攻击力的冰属性伤害。每段攻击前有14.4%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙22%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙46%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙46%攻击力的冰属性伤害。每段攻击前有15.2%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙23%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙48%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙48%攻击力的冰属性伤害。每段攻击前有16.0%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙24%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙51%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙51%攻击力的冰属性伤害。每段攻击前有17.0%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙26%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "51%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "51%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙54%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙54%攻击力的冰属性伤害。每段攻击前有18.0%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙27%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙57%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙57%攻击力的冰属性伤害。每段攻击前有19.0%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙28%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙60%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙60%攻击力的冰属性伤害。每段攻击前有20.0%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙30%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙62%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙62%攻击力的冰属性伤害。每段攻击前有20.8%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙31%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙65%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙65%攻击力的冰属性伤害。每段攻击前有21.6%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙32%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙67%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙67%攻击力的冰属性伤害。每段攻击前有22.4%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙34%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "67%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "67%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙70%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙70%攻击力的冰属性伤害。每段攻击前有23.2%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙35%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "初始拥有3段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙72%攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙72%攻击力的冰属性伤害。每段攻击前有24.0%的基础概率使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙36%攻击力的冰属性附加伤害。\n终结技最多累计10段攻击段数，施放终结技后攻击段数恢复至初始状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数。首先施放1段攻击对指定敌方单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，其余每段攻击对敌方随机单体造成等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。每段攻击前有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于米沙"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n终结技最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，施放终结技后攻击段数恢复至初始状态。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "要…要迟到了！",
+                "progressionId": "1312003",
+                "scalingParamIndexes": [
+                  1,
+                  2,
+                  3
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1312004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1312004",
+                "variantIds": [
+                  "131204"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "131204",
+                "levels": [
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复1.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复1.1点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复1.2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复1.3点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复1.4点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复1.5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复1.6点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复1.8点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复1.9点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复2.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复2.1点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复2.2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复2.3点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复2.4点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "我方全体每消耗1个战技点，增加1段米沙下一次终结技的攻击段数，同时米沙恢复2.5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方全体每消耗1个战技点，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数，同时米沙恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "擒纵机构",
+                "progressionId": "1312004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1312007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1312007",
+                "variantIds": [
+                  "131207"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  }
+                },
+                "id": "131207",
+                "levels": [
+                  {
+                    "description": "使用秘技后，制造1片持续15秒的特殊领域。处于特殊领域内的敌人陷入【梦境监牢】状态。【梦境监牢】状态下的敌人会停止所有行动。与处于【梦境监牢】状态下的敌人进入战斗后，增加2段米沙下一次终结技的攻击段数。我方制造的领域效果最多存在1个。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，制造1片持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的特殊领域。处于特殊领域内的敌人陷入【梦境监牢】状态。【梦境监牢】状态下的敌人会停止所有行动。与处于【梦境监牢】状态下的敌人进入战斗后，增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段米沙下一次终结技的攻击段数。我方制造的领域效果最多存在1个。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "停一停吧，你真美丽！",
+                "progressionId": "1312007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "终结技首段攻击前，使目标陷入冻结状态的<u>基础概率</u>提高<unbreak>80%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                "id": "30000001",
+                "name": "基础概率"
+              }
+            ],
+            "iconKey": "skill-tree--1312101",
+            "id": "1312101",
+            "name": "释放",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "施放终结技时，效果命中提高<unbreak>60%</unbreak>，持续至本次终结技行动结束。",
+            "iconKey": "skill-tree--1312102",
+            "id": "1312102",
+            "name": "锁接",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "对陷入冻结状态的敌方目标造成伤害时，暴击伤害提升<unbreak>30%</unbreak>。",
+            "iconKey": "skill-tree--1312103",
+            "id": "1312103",
+            "name": "传冲",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "冰属性伤害提高3.2%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1312201",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [],
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1312202",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1312101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "冰属性伤害提高3.2%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1312203",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1312202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1312204",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1312203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "冰属性伤害提高4.8%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1312205",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1312102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1312206",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1312205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "冰属性伤害提高4.8%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1312207",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1312206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1312208",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1312103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "防御力提高10.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1312209",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1312208"
+            ],
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "冰属性伤害提高6.4%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1312210",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1312208"
+            ],
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1312001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131201",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1312002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131202",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1312003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131203",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1312004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131204",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1312007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131207",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1312",
+    "subtitleRendered": false
+  }
+}

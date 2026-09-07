@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血，蕴藏掠夺而来的「理性」。被制造出来的意义并非是研究普遍的知识，而是钻研杀戮的兵法与弱肉强食的残酷理论，散布假名为哲学的疯病。",
+    "id": "4012022",
+    "name": "天谴哲人",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012022",
+    "defaultMonsterRef": "f60a8ca0b54900daf173f81a632a58bc5252d83ee3ee7b1b38535339f2c6e72e",
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血，蕴藏掠夺而来的「理性」。被制造出来的意义并非是研究普遍的知识，而是钻研杀戮的兵法与弱肉强食的残酷理论，散布假名为哲学的疯病。",
+    "id": "4012022",
+    "kind": "enemy",
+    "monsterRefs": [
+      "f60a8ca0b54900daf173f81a632a58bc5252d83ee3ee7b1b38535339f2c6e72e"
+    ],
+    "name": "天谴哲人",
+    "rank": "MinionLv2",
+    "templateRef": "d0d046b53f458d20705ec3d5a857c42a98f5186c6320d8b1cd811c7505a7d563",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012022",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012022",
+    "selectableMonsterIds": [
+      "4012022"
+    ]
+  }
+}

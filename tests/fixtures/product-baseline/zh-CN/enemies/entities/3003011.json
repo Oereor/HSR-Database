@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是烹饪食物的料理机器，失控后仍在喷吐炙烤食材的烈焰，企图将食客一同烧成焦炭。",
+    "id": "3003011",
+    "name": "惊梦剧团的十七分熟（投影）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3003011",
+    "defaultMonsterRef": "a0397ef6b14135f2b5ff8c3c6c9754bd76089bd626833815324f0de41e22e6d1",
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是烹饪食物的料理机器，失控后仍在喷吐炙烤食材的烈焰，企图将食客一同烧成焦炭。",
+    "id": "3003011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "a0397ef6b14135f2b5ff8c3c6c9754bd76089bd626833815324f0de41e22e6d1",
+      "35ecabe9d14a85b339f9fa3078bb2da529a5103c042fc1b21a63597543e20d36"
+    ],
+    "name": "惊梦剧团的十七分熟（投影）",
+    "rank": "Elite",
+    "templateRef": "475462e97d25a202f8586b5daf65607a19ea9c01fc7685216f0cadb6b946cd97",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3003011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3003011",
+    "selectableMonsterIds": [
+      "3003011",
+      "300301101"
+    ]
+  }
+}

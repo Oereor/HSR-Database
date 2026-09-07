@@ -1,0 +1,3403 @@
+{
+  "catalog": {
+    "baseName": "缇宝",
+    "description": "自那三相神谕垂怜的圣地，信使分作千身，启程远行。\n雅努萨波利斯的圣女，缇里西庇俄丝，窃夺「门径」火种的黄金裔，为众生奔走，令救世的讯息晓喻大地\n——找寻那流淌黄金神血的人子，冲破世间至暗，去往星月满天的明日。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "id": "1403",
+    "name": "缇宝",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "缇宝",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 96
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 71.28,
+            "perLevel": 3.564
+          },
+          "defence": {
+            "base": 99,
+            "perLevel": 4.95
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 142.56,
+            "perLevel": 7.128
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 99.792,
+            "perLevel": 3.564
+          },
+          "defence": {
+            "base": 138.6,
+            "perLevel": 4.95
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 199.584,
+            "perLevel": 7.128
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 128.304,
+            "perLevel": 3.564
+          },
+          "defence": {
+            "base": 178.2,
+            "perLevel": 4.95
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 256.608,
+            "perLevel": 7.128
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 156.816,
+            "perLevel": 3.564
+          },
+          "defence": {
+            "base": 217.8,
+            "perLevel": 4.95
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 313.632,
+            "perLevel": 7.128
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 185.328,
+            "perLevel": 3.564
+          },
+          "defence": {
+            "base": 257.4,
+            "perLevel": 4.95
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 370.656,
+            "perLevel": 7.128
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 213.84,
+            "perLevel": 3.564
+          },
+          "defence": {
+            "base": 297,
+            "perLevel": 4.95
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 427.68,
+            "perLevel": 7.128
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 242.352,
+            "perLevel": 3.564
+          },
+          "defence": {
+            "base": 336.6,
+            "perLevel": 4.95
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 484.704,
+            "perLevel": 7.128
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "自那三相神谕垂怜的圣地，信使分作千身，启程远行。\n雅努萨波利斯的圣女，缇里西庇俄丝，窃夺「门径」火种的黄金裔，为众生奔走，令救世的讯息晓喻大地\n——找寻那流淌黄金神血的人子，冲破世间至暗，去往星月满天的明日。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "equipmentRecommendation": {
+      "avatarId": "1403",
+      "cavernSetIds": [
+        "124",
+        "108",
+        "102"
+      ],
+      "lightConeIds": [
+        "23038",
+        "21018"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalDamageBase",
+            "CriticalChanceBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "QuantumAddedRatio",
+            "HPAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase",
+            "HPAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "319",
+        "302",
+        "317"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "HPAddedRatio"
+      ]
+    },
+    "fullName": "缇宝",
+    "id": "1403",
+    "kind": "character",
+    "name": "缇宝",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "结界持续期间，我方目标攻击敌人后，对结界造成<u>附加伤害</u>的目标额外造成等同于本次攻击总伤害值<unbreak>24%</unbreak>的<u>真实伤害</u>。",
+            "extraEffects": [
+              {
+                "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                "id": "10000005",
+                "name": "附加伤害"
+              },
+              {
+                "description": "不受任何效果所影响的无属性伤害，本次伤害不视为造成了1次攻击。",
+                "id": "10000017",
+                "name": "真实伤害"
+              }
+            ],
+            "iconKey": "rank--140301",
+            "id": "140301",
+            "name": "拾起砂糖的祭典",
+            "rank": 1
+          },
+          {
+            "description": "结界造成的<u>附加伤害</u>提高至原伤害的<unbreak>120%</unbreak>。结界造成<u>附加伤害</u>时，会额外造成<unbreak>1</unbreak>次附加伤害。",
+            "extraEffects": [
+              {
+                "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                "id": "10000005",
+                "name": "附加伤害"
+              }
+            ],
+            "iconKey": "rank--140302",
+            "id": "140302",
+            "name": "探访佳梦的向导",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--140303",
+            "id": "140303",
+            "name": "盛满晨曦的宝藏",
+            "rank": 3
+          },
+          {
+            "description": "【神启】持续期间，我方全体造成伤害时无视目标<unbreak>18%</unbreak>的防御力。",
+            "iconKey": "rank--140304",
+            "id": "140304",
+            "name": "心意相契的安宁",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--140305",
+            "id": "140305",
+            "name": "开启奇迹的时钟",
+            "rank": 5
+          },
+          {
+            "description": "缇宝施放终结技后，对敌方全体发动天赋的<u>追加攻击</u>。天赋的<u>追加攻击</u>造成的伤害提高<unbreak>729%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--140306",
+            "id": "140306",
+            "name": "星月满天的明日",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 120
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1403001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1403001",
+                "variantIds": [
+                  "140301"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    },
+                    {
+                      "type": "blast",
+                      "value": 5
+                    }
+                  ]
+                },
+                "id": "140301",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于缇宝15%生命上限的量子属性伤害，对相邻目标造成等同于缇宝8%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，对相邻目标造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于缇宝18%生命上限的量子属性伤害，对相邻目标造成等同于缇宝9%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，对相邻目标造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于缇宝21%生命上限的量子属性伤害，对相邻目标造成等同于缇宝11%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，对相邻目标造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于缇宝24%生命上限的量子属性伤害，对相邻目标造成等同于缇宝12%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，对相邻目标造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于缇宝27%生命上限的量子属性伤害，对相邻目标造成等同于缇宝14%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，对相邻目标造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于缇宝30%生命上限的量子属性伤害，对相邻目标造成等同于缇宝15%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，对相邻目标造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于缇宝33%生命上限的量子属性伤害，对相邻目标造成等同于缇宝17%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，对相邻目标造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于缇宝36%生命上限的量子属性伤害，对相邻目标造成等同于缇宝18%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，对相邻目标造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于缇宝39%生命上限的量子属性伤害，对相邻目标造成等同于缇宝20%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，对相邻目标造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于缇宝42%生命上限的量子属性伤害，对相邻目标造成等同于缇宝21%生命上限的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害，对相邻目标造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "一百层的小火箭",
+                "progressionId": "1403001",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1403002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1403002",
+                "variantIds": [
+                  "140302"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                      "id": "30000005",
+                      "name": "抗性穿透"
+                    }
+                  ]
+                },
+                "id": "140302",
+                "levels": [
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高12.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高13.2%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高14.4%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高15.6%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高16.8%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高18.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高19.5%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高21.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高22.5%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高24.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高25.2%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高26.4%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高27.6%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高28.8%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "获得【神启】，持续3回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性抗性穿透提高30.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时持续回合数减1。当缇宝拥有【神启】时，我方全体目标全属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "礼物都去哪儿了",
+                "progressionId": "1403002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1403003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1403003",
+                "variantIds": [
+                  "140303"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "140303",
+                "levels": [
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝15%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高15.0%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝6.0%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝17%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高16.5%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝6.6%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝18%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高18.0%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝7.2%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝20%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高19.5%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝7.8%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝21%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高21.0%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝8.4%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝23%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高22.5%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝9.0%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝24%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高24.4%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝9.8%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝26%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高26.3%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝10.5%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝28%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高28.1%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝11.3%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝30%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高30.0%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝12.0%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝32%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高31.5%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝12.6%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝33%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高33.0%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝13.2%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝35%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高34.5%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝13.8%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝36%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高36.0%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝14.4%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "开启结界，并对敌方全体造成等同于缇宝38%生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高37.5%。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝15.0%生命上限的量子属性附加伤害。\n结界持续2回合，自身每回合开始时结界持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，并对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。\n结界持续期间，敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "37.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。受到我方目标攻击后，每有1名目标受到攻击，会对被攻击目标中当前生命值最高的目标造成1次等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "猜猜这里住着谁",
+                "progressionId": "1403003",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1403004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1403004",
+                "variantIds": [
+                  "140304"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 5
+                    }
+                  ]
+                },
+                "id": "140304",
+                "levels": [
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝9.0%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝9.9%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝10.8%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝11.7%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝12.6%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝13.5%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝14.6%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝15.8%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝16.9%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝18.0%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝18.9%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝19.8%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝20.7%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝21.6%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "我方其他角色施放终结技后，缇宝发动追加攻击，对敌方全体造成等同于缇宝22.5%生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若追加攻击施放前目标被消灭则对新入场的敌方目标发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方其他角色施放终结技后，缇宝发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于缇宝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的量子属性伤害。该效果每个角色最多触发1次，缇宝施放终结技时重置我方其他角色可触发次数。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对新入场的敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "好忙好忙的缇宝",
+                "progressionId": "1403004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1403007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1403007",
+                "variantIds": [
+                  "140307"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "140307",
+                "levels": [
+                  {
+                    "description": "使用秘技后，进入战斗时获得【神启】，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，进入战斗时获得【神启】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "开心你就拍拍手",
+                "progressionId": "1403007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "施放天赋的<u>追加攻击</u>后，缇宝造成的伤害提高<unbreak>72%</unbreak>，该效果最多叠加<unbreak>3</unbreak>层，持续<unbreak>3</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "skill-tree--1403101",
+            "id": "1403101",
+            "name": "城墙外的羊羔儿…",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "结界持续期间，缇宝的生命上限提高，提高数值等同于我方全体角色生命上限之和的<unbreak>9%</unbreak>。",
+            "iconKey": "skill-tree--1403102",
+            "id": "1403102",
+            "name": "长翅膀的玻璃球！",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "战斗开始时，缇宝恢复<unbreak>30</unbreak>点能量。我方其他目标攻击后，每击中1个目标使缇宝恢复<unbreak>1.5</unbreak>点能量。",
+            "iconKey": "skill-tree--1403103",
+            "id": "1403103",
+            "name": "岔路旁的小石子？",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1403201",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1403202",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1403101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1403203",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1403202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1403204",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1403201"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1403205",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1403102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1403206",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1403205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1403207",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1403201"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1403208",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1403103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击率提高5.3%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1403209",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1403208"
+            ],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "暴击伤害提高10.7%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1403210",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1403208"
+            ],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1403001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140301",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1403002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140302",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1403003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140303",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1403004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140304",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1403007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140307",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1403",
+    "subtitleRendered": false
+  }
+}

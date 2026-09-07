@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的错误投影。参照本体为博识学会研发的战斗机器。以步离人的生物组织为部件，兼具长生种顽强的生命力与无数岁月进化所得的「杀戮算法」。",
+    "id": "2033011",
+    "name": "咆哮灵柩（错误）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2033011",
+    "defaultMonsterRef": "1c104b49ff38ad96b50521742b21cd63bdfb81a7c69441efd55868b7c7518522",
+    "description": "代码受到影响后的错误投影。参照本体为博识学会研发的战斗机器。以步离人的生物组织为部件，兼具长生种顽强的生命力与无数岁月进化所得的「杀戮算法」。",
+    "id": "2033011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "1c104b49ff38ad96b50521742b21cd63bdfb81a7c69441efd55868b7c7518522",
+      "fbb9370e7c406e46995c80e17cd8439955102073932d0f8a24401c4031e6ed9f"
+    ],
+    "name": "咆哮灵柩（错误）",
+    "rank": "Elite",
+    "templateRef": "8ab1a687fe163acdfad4eefb424a85348b2561de5e3aef56c01c959b42f3cc69",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2033011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2033011",
+    "selectableMonsterIds": [
+      "2033011",
+      "203301101"
+    ]
+  }
+}

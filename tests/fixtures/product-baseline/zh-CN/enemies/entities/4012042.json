@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血。天谴之矛下的歌者，唱诵着赞美战士与疯王的诗句，以神咒呼唤尼卡多利的赐福。",
+    "id": "4012042",
+    "name": "天谴歌队",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012042",
+    "defaultMonsterRef": "fba764bf282d7377c402c643316a26f6a129cd7b972e88f30867a25bfb5ea602",
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血。天谴之矛下的歌者，唱诵着赞美战士与疯王的诗句，以神咒呼唤尼卡多利的赐福。",
+    "id": "4012042",
+    "kind": "enemy",
+    "monsterRefs": [
+      "fba764bf282d7377c402c643316a26f6a129cd7b972e88f30867a25bfb5ea602"
+    ],
+    "name": "天谴歌队",
+    "rank": "MinionLv2",
+    "templateRef": "356318a13e70818a5acc33d134f6bdb5e2ae1a0af02edbbfa3e5c64d43682562",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012042",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012042",
+    "selectableMonsterIds": [
+      "4012042"
+    ]
+  }
+}

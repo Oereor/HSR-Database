@@ -1,0 +1,58 @@
+{
+  "catalog": {
+    "description": "「授勋」的雕塑：传言曾有一朵被女神亲吻过的玫瑰，它的美永不凋零。",
+    "id": "3021021",
+    "name": "「授勋」",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3021021",
+    "defaultMonsterRef": "fdc50e3e654bd9cc177337d9afb987c65b1ed341187a6df19ca22e894ddbad98",
+    "description": "「授勋」的雕塑：传言曾有一朵被女神亲吻过的玫瑰，它的美永不凋零。",
+    "id": "3021021",
+    "kind": "enemy",
+    "monsterRefs": [
+      "fdc50e3e654bd9cc177337d9afb987c65b1ed341187a6df19ca22e894ddbad98",
+      "d051c91c9d594c6f8c69907df655d8e2e54d8086398aff62779365a182d1ce5b",
+      "5c4e34eed53003dc65f6c7fbff297c6fbe51dd373a217088613ca1ba660b6384",
+      "f1a1a342dd967681eb027590ecb3c22d0e7e7f5c62e0721eb8ab77f25f3c3d41"
+    ],
+    "name": "「授勋」",
+    "rank": "Minion",
+    "templateRef": "fec0d323157fc5df10ae5939b5c53c881f257edf6f93efed36fd708b7d712e6f",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3021021",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3021021",
+    "selectableMonsterIds": [
+      "3021021",
+      "302102101",
+      "302102102",
+      "302102103"
+    ]
+  }
+}

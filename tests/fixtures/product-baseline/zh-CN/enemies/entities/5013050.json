@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "「破晓战队」的队长，是个能够无视一切阴霾的超级乐天派，超级大大咧咧的热血笨蛋。\n「成功率是1%什么的，只是纸面数据而已，剩下的用勇气、友情和毅力补足就好了！」\n烈火铸魂！燃尽晦暗！燎原的恒星，赤焰战士！\n暗夜终尽，黎明降临！破晓战队，登场！",
+    "id": "5013050",
+    "name": "破晓战队•赤焰",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5013050",
+    "defaultMonsterRef": "9fbdc9085fae5d78c87fd6d9b78c7583da37d27589bf3fef768ce0976384469a",
+    "description": "「破晓战队」的队长，是个能够无视一切阴霾的超级乐天派，超级大大咧咧的热血笨蛋。\n「成功率是1%什么的，只是纸面数据而已，剩下的用勇气、友情和毅力补足就好了！」\n烈火铸魂！燃尽晦暗！燎原的恒星，赤焰战士！\n暗夜终尽，黎明降临！破晓战队，登场！",
+    "id": "5013050",
+    "kind": "enemy",
+    "monsterRefs": [
+      "9fbdc9085fae5d78c87fd6d9b78c7583da37d27589bf3fef768ce0976384469a",
+      "1e3926272e5845d9f656029cae20c4f0e6a68ef71fda89ea07889d99a31ea989"
+    ],
+    "name": "破晓战队•赤焰",
+    "rank": "Elite",
+    "templateRef": "95dd06038f7990be117fddd9fdf4f70cf44e63ecce36c08913e353bd4d5ecf6a",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5013050",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5013050",
+    "selectableMonsterIds": [
+      "5013050",
+      "501305001"
+    ]
+  }
+}

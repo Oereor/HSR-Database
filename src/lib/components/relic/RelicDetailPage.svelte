@@ -1,9 +1,11 @@
 <script lang="ts">
   import GameText from '$lib/components/GameText.svelte';
+  import DescriptionText from '$lib/components/DescriptionText.svelte';
   import SectionHeading from '$lib/components/SectionHeading.svelte';
   import RelicIcon from '$lib/components/relic/RelicIcon.svelte';
   import { getRelicPieceIconUrl, getRelicSetIconUrl } from '$lib/data/visual-assets';
-  import { relicTypeNames } from '$lib/domain/constants';
+  import { relicSlotLabel } from '$lib/i18n/product';
+  import { m } from '$lib/paraglide/messages.js';
   import type { RelicSet } from '$lib/domain/types';
 
   export let detail: RelicSet;
@@ -14,7 +16,7 @@
   <div class="detail-profile-hero__identity">
     <RelicIcon
       source={getRelicSetIconUrl(detail.id)}
-      alt={`${detail.name}套装预览`}
+      alt={m.relic_set_preview_alt({ name: detail.name })}
       fallbackLabel={detail.name}
       presentation="hero"
     />
@@ -25,9 +27,9 @@
     <div class="hero-identity-copy">
       <p class="kicker">{singular} / ID {detail.id}</p>
       <h1><GameText text={detail.name} /></h1>
-      <div class="relic-identity-tags" aria-label="套装分类与版本">
+      <div class="relic-identity-tags" aria-label={m.relic_identity_aria()}>
         <span>{detail.typeName}</span>
-        {#if detail.version}<span>版本 {detail.version}</span>{/if}
+        {#if detail.version}<span>{m.relic_version({ version: detail.version })}</span>{/if}
       </div>
     </div>
   </div>
@@ -35,24 +37,30 @@
     class="detail-profile-hero__inspection relic-effects-panel"
     aria-labelledby="relic-effects"
   >
-    <SectionHeading level={1} id="relic-effects">套装效果</SectionHeading>
+    <SectionHeading level={1} id="relic-effects">{m.relic_effects()}</SectionHeading>
     {#if detail.effects.length}
       <div class="relic-effect-list" data-effect-count={detail.effects.length}>
         {#each detail.effects as effect (effect.required)}
           <article class="relic-effect" data-effect-requirement={effect.required}>
-            <strong><span>{effect.required}</span> 件套</strong>
-            <p><GameText text={effect.description || '上游未提供可解析的套装描述。'} /></p>
+            <strong>{m.relic_piece_requirement({ count: effect.required })}</strong>
+            <p>
+              {#if effect.descriptionTokens?.length}
+                <DescriptionText tokens={effect.descriptionTokens} />
+              {:else}
+                <GameText text={effect.description || m.relic_effect_description_unavailable()} />
+              {/if}
+            </p>
           </article>
         {/each}
       </div>
     {:else}
-      <p class="data-placeholder">上游未提供可解析的套装效果。</p>
+      <p class="data-placeholder">{m.relic_effects_unavailable()}</p>
     {/if}
   </aside>
 </header>
 
 <section class="detail-section relic-piece-section" data-relic-piece-count={detail.pieces.length}>
-  <SectionHeading level={1}>套装部件</SectionHeading>
+  <SectionHeading level={1}>{m.relic_pieces()}</SectionHeading>
   {#if detail.pieces.length}
     <div class="relic-piece-grid">
       {#each detail.pieces as piece (piece.id)}
@@ -68,18 +76,18 @@
           />
           <div class="relic-piece-card__content">
             <span class="relic-piece-card__slot">
-              {relicTypeNames[piece.slot] || '部件类型未提供'}
+              {relicSlotLabel(piece.slot) || m.relic_piece_type_unavailable()}
             </span>
             <h3><GameText text={piece.name} /></h3>
             <p class:muted={!piece.description}>
-              <GameText text={piece.description || '上游未提供该部件的文字说明。'} />
+              <GameText text={piece.description || m.relic_piece_description_unavailable()} />
             </p>
           </div>
         </article>
       {/each}
     </div>
   {:else}
-    <p class="data-placeholder">上游未提供套装部件记录。</p>
+    <p class="data-placeholder">{m.relic_pieces_unavailable()}</p>
   {/if}
 </section>
 

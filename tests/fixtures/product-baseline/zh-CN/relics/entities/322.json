@@ -1,0 +1,121 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的攻击力提高12%。当装备者的攻击力大于等于2400/3600时，使造成的持续伤害额外提高12%/24%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "322",
+    "name": "沉欢醉饮的海隅",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "3.4"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的攻击力提高12%。当装备者的攻击力大于等于2400/3600时，使造成的持续伤害额外提高12%/24%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的攻击力提高12%。当装备者的攻击力大于等于2400/3600时，使造成的持续伤害额外提高12%/24%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。当装备者的攻击力大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "2400"
+          },
+          {
+            "type": "text",
+            "value": "/"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "3600"
+          },
+          {
+            "type": "text",
+            "value": "时，使造成的持续伤害额外提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "/"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "24%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "322",
+    "kind": "relic",
+    "name": "沉欢醉饮的海隅",
+    "pieces": [
+      {
+        "description": "位面球中封装着沉浸在永世欢乐中的斯缇科西亚。长明的灯塔矗立海滨，演奏着不息的乐曲。循着欢歌的航船越过迷雾而来，旋即触礁沉没，空留残骸被浪涛吞吃。",
+        "id": "33225",
+        "name": "酣歌海垠的礁屿灯塔",
+        "slot": "NECK"
+      },
+      {
+        "description": "斯缇科西亚人深信海妖如传说中一样以血肉守护此处安乐，而她们终有一日将循着灯塔不竭的歌咏赴约而来，得到永不止息的宴会作为犒赏。",
+        "id": "33226",
+        "name": "酣歌海垠的歌咏步道",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "3.4"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33225"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33226"
+      }
+    ],
+    "route": "/relics/322"
+  }
+}

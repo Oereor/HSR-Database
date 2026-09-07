@@ -1,0 +1,88 @@
+{
+  "catalog": {
+    "description": "「星际和平公司」的资深员工，级别至少是项目组的小组长。驾驶的机甲属于公有资产，一旦损坏需要自费赔偿。工资尚可，足够在公司旗下的企业舰上租下一室一厅的单间。",
+    "id": "8033010",
+    "name": "资深员工•组长",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8033010",
+    "defaultMonsterRef": "c737368dadaee77bdb61a012636d3042ef8012eb43bd9514ce589b852a2e4b38",
+    "description": "「星际和平公司」的资深员工，级别至少是项目组的小组长。驾驶的机甲属于公有资产，一旦损坏需要自费赔偿。工资尚可，足够在公司旗下的企业舰上租下一室一厅的单间。",
+    "id": "8033010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "c737368dadaee77bdb61a012636d3042ef8012eb43bd9514ce589b852a2e4b38",
+      "6041f48fbd21681204a64bf13972b7d79e5e8e7707758605d260cf808434c715",
+      "fea53392af36dfbd0e56f0a36e445cb556bb2b4a5ad60c677bd242779c962e74",
+      "981454347e39cb86efe5e5269a7c333ce613fcd273016166bd4881a0382d0458",
+      "85b6a95ad8b5ce85ee78316a395db814aabbbc23e94d471562e40f3fcef2d232",
+      "2c8c5b95441040c88662c297008902d8012c5a58e6e7957fda9109cd840020e2",
+      "8611a9135c94cbf4e52e1669984e1e6aa2422053c5d1dc218ff24425f95ffe2e",
+      "0498a5f8d1cd252f941d246ef7134318293bd9b6dccdd71a96dd7821ea270637",
+      "457a833faac96f1f675dba8c6595085f995297a40b7626f66ed78ae22b33c6ed",
+      "94e26d9246fced14789b8a0705eb00859792570b7eb7e03be6d81df1511e8959",
+      "5c5c43f5821aafad26be905ff12a5f2442916fc24445d866505174a47586960b",
+      "60c4924f8c527320b9335332fd19993942a81f97b6acb753c6341de3236dc127",
+      "47e191cd3bdb8b8e102a4708019f65044c2d60373473f43823f97392bc58a076",
+      "dd8d79e87fa0c05431aa0219b00591807f07e380797aab66416ba9b3793afb4e",
+      "c607cc85a7e30d0c21e13b6399e2fd3fb2c588787a4828ca9b089f441e4f6a79"
+    ],
+    "name": "资深员工•组长",
+    "rank": "Elite",
+    "templateRef": "237125fcfbd80a7b241237a39293be970aff58c5a68f6c94026705ff9452bb00",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8033010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8033010",
+    "selectableMonsterIds": [
+      "8033010",
+      "803301001",
+      "803301003",
+      "803301004",
+      "803301005",
+      "803301006",
+      "803301007",
+      "803301008",
+      "803301009",
+      "803301010",
+      "803301011",
+      "803301012",
+      "803301013",
+      "803301014",
+      "803301015"
+    ]
+  }
+}

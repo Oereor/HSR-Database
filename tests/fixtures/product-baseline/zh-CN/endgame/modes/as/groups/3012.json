@@ -1,0 +1,1245 @@
+{
+  "presentation": {
+    "defaultEncounterId": "30124",
+    "encounters": [
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体解除控制状态、激活终结技并回复生命值。\n敌方全体受到的忆灵技伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>，战技伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>。",
+          "id": 3110012,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3012:BuffList1",
+              "options": [
+                {
+                  "description": "我方全体造成的物理属性伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，敌方全体的物理属性抗性降低<color=#f29e38ff><unbreak>20%</unbreak></color>。",
+                  "id": 3111068,
+                  "name": "披坚执锐",
+                  "order": 1
+                },
+                {
+                  "description": "我方全体施放普攻或战技攻击处于弱点击破状态下的敌人后，使其当前承受的所有持续伤害立即产生相当于原伤害<color=#f29e38ff><unbreak>20%</unbreak></color>的伤害。",
+                  "id": 3111069,
+                  "name": "蔓草难除",
+                  "order": 2
+                },
+                {
+                  "description": "敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>。击破敌方弱点后，我方全体速度提高<color=#f29e38ff><unbreak>20%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111070,
+                  "name": "臻冰彻骨",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30121:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100101,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "杰帕德会加入战斗并为首领幻影提供保护。首领幻影会将自身弱点属性<color=#f29e38ff><u>转移</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                  "id": 100102,
+                  "linkedEffects": [
+                    {
+                      "description": "将弱点属性转移给目标，弱点属性会在目标被消灭后返回，并造成额外韧性值削减。",
+                      "id": "70000304",
+                      "name": "转移"
+                    }
+                  ],
+                  "name": "阵地转移",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420331-0",
+                "level": 60,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1004014",
+                        "hp": {
+                          "exactPerBar": "122583.64410000",
+                          "phaseCount": 2,
+                          "roundedPerBar": "122,584"
+                        },
+                        "identity": "[100401401,1004014,\"5812.5\",\"1\",\"52.724148\",\"0.4\",\"122583.64410000\",\"resolved\",\"122583.64410000\",904,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"130\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"130\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"300\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-120\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"180\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"60\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[100402601,100501401,100201502,100201602],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100401401,
+                        "monsterTemplateId": 1004014,
+                        "name": "无望冽风的幻灭者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "130",
+                          "rounded": "130"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "60",
+                          "roundedPerBar": "60"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1004026",
+                        "hp": {
+                          "exactPerBar": "58840.1491680",
+                          "roundedPerBar": "58,840"
+                        },
+                        "identity": "[100402601,1004026,\"2790\",\"1\",\"52.724148\",\"0.4\",\"58840.1491680\",\"resolved\",\"58840.1491680\",904,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"125\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"125\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"600\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-300\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"300\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"100\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100402601,
+                        "monsterTemplateId": 1004026,
+                        "name": "杰帕德",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004020.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "125",
+                          "rounded": "125"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "100",
+                          "roundedPerBar": "100"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3012:BuffList2",
+              "options": [
+                {
+                  "description": "忆灵造成伤害时无视目标<color=#f29e38ff><unbreak>20%</unbreak></color>的防御力。",
+                  "id": 3111065,
+                  "name": "攻无不克",
+                  "order": 1
+                },
+                {
+                  "description": "我方全体造成的战技伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>，回合开始时，若当前生命值百分比等于或低于<color=#f29e38ff><unbreak>1%</unbreak></color>，则回复生命上限<color=#f29e38ff><unbreak>15%</unbreak></color>的生命值。",
+                  "id": 3111066,
+                  "name": "生机焕发",
+                  "order": 2
+                },
+                {
+                  "description": "角色施放终结技时，使自身的弱点击破效率提高<color=#f29e38ff><unbreak>100%</unbreak></color>，暴击伤害提高<color=#f29e38ff><unbreak>40%</unbreak></color>，持续<color=#f29e38ff><unbreak>3</unbreak></color>回合。",
+                  "id": 3111067,
+                  "name": "破竹之势",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30121:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101301,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "本场战斗中我方单位的生命值最多降至1点，同时会将受到的伤害超出当前生命值的部分转化为【负载生命值】。处于【负载生命值】状态的我方单位造成的伤害和弱点击破效率大幅降低。",
+                  "id": 101302,
+                  "linkedEffects": [],
+                  "name": "朽株枯木",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420321-0",
+                "level": 60,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4014036",
+                        "hp": {
+                          "exactPerBar": "490334.5764000",
+                          "phaseCount": 2,
+                          "roundedPerBar": "490,335"
+                        },
+                        "identity": "[401403601,4014036,\"46500\",\"1\",\"52.724148\",\"0.2\",\"490334.5764000\",\"resolved\",\"490334.5764000\",896,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"144\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"2400\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"2400\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"800\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[401207601,401207701],true,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 401403601,
+                        "monsterTemplateId": 4014036,
+                        "name": "枯茎朽骨的引路人",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4014030.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "144",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "800",
+                          "roundedPerBar": "800"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30121",
+        "label": "冥茫冽风·难度<unbreak>01</unbreak>",
+        "mode": "as",
+        "ordinal": 1,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体解除控制状态、激活终结技并回复生命值。\n敌方全体受到的忆灵技伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>，战技伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>。",
+          "id": 3110012,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3012:BuffList1",
+              "options": [
+                {
+                  "description": "我方全体造成的物理属性伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，敌方全体的物理属性抗性降低<color=#f29e38ff><unbreak>20%</unbreak></color>。",
+                  "id": 3111068,
+                  "name": "披坚执锐",
+                  "order": 1
+                },
+                {
+                  "description": "我方全体施放普攻或战技攻击处于弱点击破状态下的敌人后，使其当前承受的所有持续伤害立即产生相当于原伤害<color=#f29e38ff><unbreak>20%</unbreak></color>的伤害。",
+                  "id": 3111069,
+                  "name": "蔓草难除",
+                  "order": 2
+                },
+                {
+                  "description": "敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>。击破敌方弱点后，我方全体速度提高<color=#f29e38ff><unbreak>20%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111070,
+                  "name": "臻冰彻骨",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30122:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100101,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "杰帕德会加入战斗并为首领幻影提供保护。首领幻影会将自身弱点属性<color=#f29e38ff><u>转移</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                  "id": 100102,
+                  "linkedEffects": [
+                    {
+                      "description": "将弱点属性转移给目标，弱点属性会在目标被消灭后返回，并造成额外韧性值削减。",
+                      "id": "70000304",
+                      "name": "转移"
+                    }
+                  ],
+                  "name": "阵地转移",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420332-0",
+                "level": 70,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1004014",
+                        "hp": {
+                          "exactPerBar": "441690.3405000",
+                          "phaseCount": 2,
+                          "roundedPerBar": "441,690"
+                        },
+                        "identity": "[100401402,1004014,\"5812.5\",\"1\",\"94.98717\",\"0.8\",\"441690.3405000\",\"resolved\",\"441690.3405000\",905,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"130\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"143.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"300\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-90\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"210\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"70\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[100402602,100501402,100201503,100201603],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100401402,
+                        "monsterTemplateId": 1004014,
+                        "name": "无望冽风的幻灭者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "143.0",
+                          "rounded": "143"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "70",
+                          "roundedPerBar": "70"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1004026",
+                        "hp": {
+                          "exactPerBar": "212011.363440",
+                          "roundedPerBar": "212,011"
+                        },
+                        "identity": "[100402602,1004026,\"2790\",\"1\",\"94.98717\",\"0.8\",\"212011.363440\",\"resolved\",\"212011.363440\",905,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"125\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"137.5\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"600\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-240\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"360\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"120\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100402602,
+                        "monsterTemplateId": 1004026,
+                        "name": "杰帕德",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004020.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "137.5",
+                          "rounded": "138"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "120",
+                          "roundedPerBar": "120"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3012:BuffList2",
+              "options": [
+                {
+                  "description": "忆灵造成伤害时无视目标<color=#f29e38ff><unbreak>20%</unbreak></color>的防御力。",
+                  "id": 3111065,
+                  "name": "攻无不克",
+                  "order": 1
+                },
+                {
+                  "description": "我方全体造成的战技伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>，回合开始时，若当前生命值百分比等于或低于<color=#f29e38ff><unbreak>1%</unbreak></color>，则回复生命上限<color=#f29e38ff><unbreak>15%</unbreak></color>的生命值。",
+                  "id": 3111066,
+                  "name": "生机焕发",
+                  "order": 2
+                },
+                {
+                  "description": "角色施放终结技时，使自身的弱点击破效率提高<color=#f29e38ff><unbreak>100%</unbreak></color>，暴击伤害提高<color=#f29e38ff><unbreak>40%</unbreak></color>，持续<color=#f29e38ff><unbreak>3</unbreak></color>回合。",
+                  "id": 3111067,
+                  "name": "破竹之势",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30122:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101301,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "本场战斗中我方单位的生命值最多降至1点，同时会将受到的伤害超出当前生命值的部分转化为【负载生命值】。处于【负载生命值】状态的我方单位造成的伤害和弱点击破效率大幅降低。",
+                  "id": 101302,
+                  "linkedEffects": [],
+                  "name": "朽株枯木",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420322-0",
+                "level": 70,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4014036",
+                        "hp": {
+                          "exactPerBar": "1766761.362000",
+                          "phaseCount": 2,
+                          "roundedPerBar": "1,766,761"
+                        },
+                        "identity": "[401403602,4014036,\"46500\",\"1\",\"94.98717\",\"0.4\",\"1766761.362000\",\"resolved\",\"1766761.362000\",897,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.4\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"2400\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"2400\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"800\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[401207602,401207702],true,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 401403602,
+                        "monsterTemplateId": 4014036,
+                        "name": "枯茎朽骨的引路人",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4014030.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "158.4",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "800",
+                          "roundedPerBar": "800"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30122",
+        "label": "冥茫冽风·难度<unbreak>02</unbreak>",
+        "mode": "as",
+        "ordinal": 2,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体解除控制状态、激活终结技并回复生命值。\n敌方全体受到的忆灵技伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>，战技伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>。",
+          "id": 3110012,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3012:BuffList1",
+              "options": [
+                {
+                  "description": "我方全体造成的物理属性伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，敌方全体的物理属性抗性降低<color=#f29e38ff><unbreak>20%</unbreak></color>。",
+                  "id": 3111068,
+                  "name": "披坚执锐",
+                  "order": 1
+                },
+                {
+                  "description": "我方全体施放普攻或战技攻击处于弱点击破状态下的敌人后，使其当前承受的所有持续伤害立即产生相当于原伤害<color=#f29e38ff><unbreak>20%</unbreak></color>的伤害。",
+                  "id": 3111069,
+                  "name": "蔓草难除",
+                  "order": 2
+                },
+                {
+                  "description": "敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>。击破敌方弱点后，我方全体速度提高<color=#f29e38ff><unbreak>20%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111070,
+                  "name": "臻冰彻骨",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30123:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100101,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "杰帕德会加入战斗并为首领幻影提供保护。首领幻影会将自身弱点属性<color=#f29e38ff><u>转移</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                  "id": 100102,
+                  "linkedEffects": [
+                    {
+                      "description": "将弱点属性转移给目标，弱点属性会在目标被消灭后返回，并造成额外韧性值削减。",
+                      "id": "70000304",
+                      "name": "转移"
+                    }
+                  ],
+                  "name": "阵地转移",
+                  "order": 2
+                },
+                {
+                  "description": "首领幻影的召唤物会标记1个我方单位，首领幻影施放单攻技能后会对被标记的我方单位<color=#f29e38ff><u>追加施放</u></color>。",
+                  "id": 100103,
+                  "linkedEffects": [
+                    {
+                      "description": "在施放单攻技能后，会重新选择目标并再次使用该技能。",
+                      "id": "70000302",
+                      "name": "追加施放"
+                    }
+                  ],
+                  "name": "逃无可逃",
+                  "order": 3
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420333-0",
+                "level": 80,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1004014",
+                        "hp": {
+                          "exactPerBar": "1204439.6752500",
+                          "phaseCount": 2,
+                          "roundedPerBar": "1,204,440"
+                        },
+                        "identity": "[100401403,1004014,\"5812.5\",\"1\",\"148.01102\",\"1.4\",\"1204439.6752500\",\"resolved\",\"1204439.6752500\",906,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"130\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"156.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"300\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-60\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"240\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"80\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[100402603,100501403,100201504,100201604],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100401403,
+                        "monsterTemplateId": 1004014,
+                        "name": "无望冽风的幻灭者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "156.0",
+                          "rounded": "156"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "80",
+                          "roundedPerBar": "80"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1004026",
+                        "hp": {
+                          "exactPerBar": "578131.044120",
+                          "roundedPerBar": "578,131"
+                        },
+                        "identity": "[100402603,1004026,\"2790\",\"1\",\"148.01102\",\"1.4\",\"578131.044120\",\"resolved\",\"578131.044120\",906,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"125\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"150.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"600\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-150\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"450\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"150\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100402603,
+                        "monsterTemplateId": 1004026,
+                        "name": "杰帕德",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004020.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "150.0",
+                          "rounded": "150"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "150",
+                          "roundedPerBar": "150"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3012:BuffList2",
+              "options": [
+                {
+                  "description": "忆灵造成伤害时无视目标<color=#f29e38ff><unbreak>20%</unbreak></color>的防御力。",
+                  "id": 3111065,
+                  "name": "攻无不克",
+                  "order": 1
+                },
+                {
+                  "description": "我方全体造成的战技伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>，回合开始时，若当前生命值百分比等于或低于<color=#f29e38ff><unbreak>1%</unbreak></color>，则回复生命上限<color=#f29e38ff><unbreak>15%</unbreak></color>的生命值。",
+                  "id": 3111066,
+                  "name": "生机焕发",
+                  "order": 2
+                },
+                {
+                  "description": "角色施放终结技时，使自身的弱点击破效率提高<color=#f29e38ff><unbreak>100%</unbreak></color>，暴击伤害提高<color=#f29e38ff><unbreak>40%</unbreak></color>，持续<color=#f29e38ff><unbreak>3</unbreak></color>回合。",
+                  "id": 3111067,
+                  "name": "破竹之势",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30123:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101301,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "本场战斗中我方单位的生命值最多降至1点，同时会将受到的伤害超出当前生命值的部分转化为【负载生命值】。处于【负载生命值】状态的我方单位造成的伤害和弱点击破效率大幅降低。",
+                  "id": 101302,
+                  "linkedEffects": [],
+                  "name": "朽株枯木",
+                  "order": 2
+                },
+                {
+                  "description": "【哀悯长臂】的韧性上限提高。",
+                  "id": 101303,
+                  "linkedEffects": [],
+                  "name": "摧刚为柔",
+                  "order": 3
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420323-0",
+                "level": 80,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4014036",
+                        "hp": {
+                          "exactPerBar": "4473633.0795000",
+                          "phaseCount": 2,
+                          "roundedPerBar": "4,473,633"
+                        },
+                        "identity": "[401403603,4014036,\"46500\",\"1\",\"148.01102\",\"0.65\",\"4473633.0795000\",\"resolved\",\"4473633.0795000\",898,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"172.8\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"2400\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"2400\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"800\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[401207603,401207703],true,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 401403603,
+                        "monsterTemplateId": 4014036,
+                        "name": "枯茎朽骨的引路人",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4014030.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "172.8",
+                          "rounded": "173"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "800",
+                          "roundedPerBar": "800"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30123",
+        "label": "冥茫冽风·难度<unbreak>03</unbreak>",
+        "mode": "as",
+        "ordinal": 3,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体解除控制状态、激活终结技并回复生命值。\n敌方全体受到的忆灵技伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>，战技伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>。",
+          "id": 3110012,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3012:BuffList1",
+              "options": [
+                {
+                  "description": "我方全体造成的物理属性伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，敌方全体的物理属性抗性降低<color=#f29e38ff><unbreak>20%</unbreak></color>。",
+                  "id": 3111068,
+                  "name": "披坚执锐",
+                  "order": 1
+                },
+                {
+                  "description": "我方全体施放普攻或战技攻击处于弱点击破状态下的敌人后，使其当前承受的所有持续伤害立即产生相当于原伤害<color=#f29e38ff><unbreak>20%</unbreak></color>的伤害。",
+                  "id": 3111069,
+                  "name": "蔓草难除",
+                  "order": 2
+                },
+                {
+                  "description": "敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>。击破敌方弱点后，我方全体速度提高<color=#f29e38ff><unbreak>20%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111070,
+                  "name": "臻冰彻骨",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30124:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100101,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "杰帕德会加入战斗并为首领幻影提供保护。首领幻影会将自身弱点属性<color=#f29e38ff><u>转移</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                  "id": 100102,
+                  "linkedEffects": [
+                    {
+                      "description": "将弱点属性转移给目标，弱点属性会在目标被消灭后返回，并造成额外韧性值削减。",
+                      "id": "70000304",
+                      "name": "转移"
+                    }
+                  ],
+                  "name": "阵地转移",
+                  "order": 2
+                },
+                {
+                  "description": "首领幻影的召唤物会标记1个我方单位，首领幻影施放单攻技能后会对被标记的我方单位<color=#f29e38ff><u>追加施放</u></color>。",
+                  "id": 100103,
+                  "linkedEffects": [
+                    {
+                      "description": "在施放单攻技能后，会重新选择目标并再次使用该技能。",
+                      "id": "70000302",
+                      "name": "追加施放"
+                    }
+                  ],
+                  "name": "逃无可逃",
+                  "order": 3
+                },
+                {
+                  "description": "敌方全体受到的伤害降低。但每拥有1个<color=#f29e38ff>弱点属性</color>，受到的伤害提高。",
+                  "id": 100104,
+                  "linkedEffects": [],
+                  "name": "坚韧之志",
+                  "order": 4
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420334-0",
+                "level": 90,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1004014",
+                        "hp": {
+                          "exactPerBar": "3712116.6050625",
+                          "phaseCount": 2,
+                          "roundedPerBar": "3,712,117"
+                        },
+                        "identity": "[100401404,1004014,\"5812.5\",\"1\",\"236.53471\",\"2.7\",\"3712116.6050625\",\"resolved\",\"3712116.6050625\",907,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"130\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"171.60\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"300\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"300\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"100\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[100402604,100501404,100201505,100201605],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100401404,
+                        "monsterTemplateId": 1004014,
+                        "name": "无望冽风的幻灭者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "171.60",
+                          "rounded": "172"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "100",
+                          "roundedPerBar": "100"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/1004026",
+                        "hp": {
+                          "exactPerBar": "1781815.970430",
+                          "roundedPerBar": "1,781,816"
+                        },
+                        "identity": "[100402604,1004026,\"2790\",\"1\",\"236.53471\",\"2.7\",\"1781815.970430\",\"resolved\",\"1781815.970430\",907,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"125\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"165.00\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"600\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"600\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"200\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 100402604,
+                        "monsterTemplateId": 1004026,
+                        "name": "杰帕德",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1004020.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "165.00",
+                          "rounded": "165"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "200",
+                          "roundedPerBar": "200"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3012:BuffList2",
+              "options": [
+                {
+                  "description": "忆灵造成伤害时无视目标<color=#f29e38ff><unbreak>20%</unbreak></color>的防御力。",
+                  "id": 3111065,
+                  "name": "攻无不克",
+                  "order": 1
+                },
+                {
+                  "description": "我方全体造成的战技伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>，回合开始时，若当前生命值百分比等于或低于<color=#f29e38ff><unbreak>1%</unbreak></color>，则回复生命上限<color=#f29e38ff><unbreak>15%</unbreak></color>的生命值。",
+                  "id": 3111066,
+                  "name": "生机焕发",
+                  "order": 2
+                },
+                {
+                  "description": "角色施放终结技时，使自身的弱点击破效率提高<color=#f29e38ff><unbreak>100%</unbreak></color>，暴击伤害提高<color=#f29e38ff><unbreak>40%</unbreak></color>，持续<color=#f29e38ff><unbreak>3</unbreak></color>回合。",
+                  "id": 3111067,
+                  "name": "破竹之势",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30124:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101301,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "本场战斗中我方单位的生命值最多降至1点，同时会将受到的伤害超出当前生命值的部分转化为【负载生命值】。处于【负载生命值】状态的我方单位造成的伤害和弱点击破效率大幅降低。",
+                  "id": 101302,
+                  "linkedEffects": [],
+                  "name": "朽株枯木",
+                  "order": 2
+                },
+                {
+                  "description": "【哀悯长臂】的韧性上限提高。",
+                  "id": 101303,
+                  "linkedEffects": [],
+                  "name": "摧刚为柔",
+                  "order": 3
+                },
+                {
+                  "description": "敌方全体受到的伤害降低。但每拥有1个<color=#f29e38ff>弱点属性</color>，受到的伤害提高。",
+                  "id": 101304,
+                  "linkedEffects": [],
+                  "name": "坚韧之志",
+                  "order": 4
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420324-0",
+                "level": 90,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4014036",
+                        "hp": {
+                          "exactPerBar": "11548807.2157500",
+                          "phaseCount": 2,
+                          "roundedPerBar": "11,548,807"
+                        },
+                        "identity": "[401403604,4014036,\"46500\",\"1\",\"236.53471\",\"1.05\",\"11548807.2157500\",\"resolved\",\"11548807.2157500\",899,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"190.08\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"2400\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"2400\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"800\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[401207604,401207704],true,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 401403604,
+                        "monsterTemplateId": 4014036,
+                        "name": "枯茎朽骨的引路人",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4014030.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "190.08",
+                          "rounded": "190"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "800",
+                          "roundedPerBar": "800"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30124",
+        "label": "冥茫冽风·难度<unbreak>04</unbreak>",
+        "mode": "as",
+        "ordinal": 4,
+        "variant": "floor"
+      }
+    ],
+    "mode": "as",
+    "modeLabel": "末日幻影",
+    "period": {
+      "dateLabel": "2025/09/29 – 2025/11/10",
+      "encounterCount": 4,
+      "groupId": 3012,
+      "name": "冥茫冽风",
+      "status": "historical"
+    },
+    "periods": [
+      {
+        "dateLabel": "2026/08/31 – 2026/10/05",
+        "encounterCount": 4,
+        "groupId": 3020,
+        "name": "仙客天狼",
+        "status": "current"
+      },
+      {
+        "dateLabel": "2026/07/20 – 2026/08/31",
+        "encounterCount": 4,
+        "groupId": 3019,
+        "name": "兵锋骑士",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/06/08 – 2026/07/20",
+        "encounterCount": 4,
+        "groupId": 3018,
+        "name": "遗忘冽风",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/04/27 – 2026/06/08",
+        "encounterCount": 4,
+        "groupId": 3017,
+        "name": "偶像螟蝗",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/03/16 – 2026/04/27",
+        "encounterCount": 4,
+        "groupId": 3016,
+        "name": "兵锋天狼",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/02/02 – 2026/03/16",
+        "encounterCount": 4,
+        "groupId": 3015,
+        "name": "支配冥茫",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/12/22 – 2026/02/02",
+        "encounterCount": 4,
+        "groupId": 3014,
+        "name": "猢狲骑士",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/11/10 – 2025/12/22",
+        "encounterCount": 4,
+        "groupId": 3013,
+        "name": "螟蝗煽动",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/09/29 – 2025/11/10",
+        "encounterCount": 4,
+        "groupId": 3012,
+        "name": "冥茫冽风",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/08/18 – 2025/09/29",
+        "encounterCount": 4,
+        "groupId": 3011,
+        "name": "天狼战首",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/07/07 – 2025/08/18",
+        "encounterCount": 4,
+        "groupId": 3010,
+        "name": "金血恶兽",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/05/26 – 2025/07/07",
+        "encounterCount": 4,
+        "groupId": 3009,
+        "name": "冽风支配",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/04/14 – 2025/05/26",
+        "encounterCount": 4,
+        "groupId": 3008,
+        "name": "螟蝗战首",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/03/03 – 2025/04/14",
+        "encounterCount": 4,
+        "groupId": 3007,
+        "name": "猢狲博弈",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/01/20 – 2025/03/03",
+        "encounterCount": 4,
+        "groupId": 3006,
+        "name": "煽动螟蝗",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/12/09 – 2025/01/20",
+        "encounterCount": 4,
+        "groupId": 3005,
+        "name": "冽风猢狲",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/10/28 – 2024/12/09",
+        "encounterCount": 4,
+        "groupId": 3004,
+        "name": "支配指挥",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/09/16 – 2024/10/28",
+        "encounterCount": 4,
+        "groupId": 3003,
+        "name": "煽动博弈",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/08/05 – 2024/09/16",
+        "encounterCount": 4,
+        "groupId": 3002,
+        "name": "支配恶兽",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/06/17 – 2024/08/05",
+        "encounterCount": 4,
+        "groupId": 3001,
+        "name": "冽风骑士",
+        "status": "historical"
+      }
+    ]
+  },
+  "route": "/endgame/as/3012"
+}

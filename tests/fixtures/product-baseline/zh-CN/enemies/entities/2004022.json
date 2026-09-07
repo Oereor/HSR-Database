@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为将军景元的侍卫，不过总角之年的御剑天才。",
+    "id": "2004022",
+    "name": "云骑骁卫•彦卿（完整）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2004022",
+    "defaultMonsterRef": "f3d3e19b46b43b8282ccb7df931064922d2a17509ee88b6ce92e0e431874354e",
+    "description": "代码受到影响后的完整投影。参照本体为将军景元的侍卫，不过总角之年的御剑天才。",
+    "id": "2004022",
+    "kind": "enemy",
+    "monsterRefs": [
+      "f3d3e19b46b43b8282ccb7df931064922d2a17509ee88b6ce92e0e431874354e",
+      "63b57818e567b703c05af32b799d21d322dab25af1fbff628a43339921b611ad",
+      "549b7d706bd5495f08b3519c6ceadf02f045f48008d787f20d70b28cdf1aedb1"
+    ],
+    "name": "云骑骁卫•彦卿（完整）",
+    "rank": "LittleBoss",
+    "templateRef": "f1a17665577a3d03c416c7218054959fca66c3934da5943a0e9a86fc49701346",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2004022",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2004022",
+    "selectableMonsterIds": [
+      "2004022",
+      "200402201",
+      "200402202"
+    ]
+  }
+}

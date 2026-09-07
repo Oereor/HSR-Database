@@ -13,6 +13,7 @@ import {
   buildOccurrenceView,
   buildPeriodView,
   ENDGAME_MODE_META,
+  ENDGAME_MISSING_VALUE,
   endgameEnemyReferenceKey,
   formatExactDecimal,
   formatFullHp,
@@ -53,7 +54,7 @@ describe('Endgame 模式视觉 metadata', () => {
 
 async function dataset(mode: EndgameMode): Promise<EndgameModeDataset> {
   return JSON.parse(
-    await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8')
+    await readFile(path.join(generatedRoot, 'views', 'zh-CN', 'endgame', `${mode}.json`), 'utf8')
   ) as EndgameModeDataset;
 }
 
@@ -122,6 +123,7 @@ function mocGroup(
   return {
     mode: 'moc',
     groupId,
+    recommendationEligible: options.name !== undefined,
     ...(options.name === undefined ? {} : { name: options.name }),
     ...(options.begin && options.end
       ? { schedule: { begin: options.begin, end: options.end } }
@@ -363,14 +365,38 @@ describe('Endgame occurrence 投影', () => {
     expect(uniqueSpawnOccurrences([first, first, variant])).toEqual([first, variant]);
   });
 
-  it('未解析的 PF 最终 HP 使用资料未提供约定', () => {
+  it('未解析的 PF 最终 HP 使用统一缺失值约定', () => {
     const unresolved = occurrence({
       hp: {
         ...occurrence().hp,
         final: { status: 'unresolved', reason: 'unsupported-pf-wave-ability' }
       }
     });
-    expect(buildOccurrenceView(unresolved).hp).toEqual({ roundedPerBar: '资料未提供' });
+    expect(buildOccurrenceView(unresolved).hp).toEqual({ roundedPerBar: ENDGAME_MISSING_VALUE });
+  });
+
+  it('未解析的 Toughness 使用统一缺失值，合法零值保持为零', () => {
+    const unresolved = occurrence({
+      toughness: {
+        ...occurrence().toughness,
+        display: { status: 'unavailable', reason: 'missing-base' }
+      }
+    });
+    expect(buildOccurrenceView(unresolved).toughness).toEqual({
+      roundedPerBar: ENDGAME_MISSING_VALUE
+    });
+
+    const zero = occurrence({
+      toughness: {
+        ...occurrence().toughness,
+        display: { status: 'resolved', perBar: decimal('0') }
+      }
+    });
+    expect(buildOccurrenceView(zero).toughness).toEqual({
+      exactPerBar: '0',
+      roundedPerBar: '0',
+      barCount: 1
+    });
   });
 
   it('真实 PF 波次只保留唯一类型且不产生数量字段', async () => {
@@ -464,7 +490,10 @@ describe('Endgame occurrence 投影', () => {
     const pf = await dataset('pf');
     const group = pf.groups.find((candidate) => candidate.groupId === 2001)!;
     const detail = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'enemies', '8002050.json'), 'utf8')
+      await readFile(
+        path.join(generatedRoot, 'views', 'zh-CN', 'details', 'enemies', '8002050.json'),
+        'utf8'
+      )
     ) as EndgameEnemyDetailSource;
     const canonical = resolveEndgameEnemyReference(detail, 8002050);
     const concrete = resolveEndgameEnemyReference(detail, 800205005);
@@ -519,7 +548,14 @@ describe('Endgame occurrence 投影', () => {
       if (!detail) {
         detail = JSON.parse(
           await readFile(
-            path.join(generatedRoot, 'details', 'enemies', `${monsterTemplateId}.json`),
+            path.join(
+              generatedRoot,
+              'views',
+              'zh-CN',
+              'details',
+              'enemies',
+              `${monsterTemplateId}.json`
+            ),
             'utf8'
           )
         ) as EndgameEnemyDetailSource;

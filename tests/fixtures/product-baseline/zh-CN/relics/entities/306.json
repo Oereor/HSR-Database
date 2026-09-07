@@ -1,0 +1,104 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的暴击率提高8%。当装备者当前暴击率大于等于50%时，终结技和追加攻击造成的伤害提高15%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "306",
+    "name": "停转的萨尔索图",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.0"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的暴击率提高8%。当装备者当前暴击率大于等于50%时，终结技和追加攻击造成的伤害提高15%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的暴击率提高8%。当装备者当前暴击率大于等于50%时，终结技和追加攻击造成的伤害提高15%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的暴击率提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "8%"
+          },
+          {
+            "type": "text",
+            "value": "。当装备者当前暴击率大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "50%"
+          },
+          {
+            "type": "text",
+            "value": "时，终结技和追加攻击造成的伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "15%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "306",
+    "kind": "relic",
+    "name": "停转的萨尔索图",
+    "pieces": [
+      {
+        "description": "位面封装的是萨尔索图星上仅剩的移动城市之一：风滚草。这座城市从未停下，才勉强做到不被黑夜或者极昼吞没。",
+        "id": "33065",
+        "name": "萨尔索图的移动城市",
+        "slot": "NECK"
+      },
+      {
+        "description": "停止自转的萨尔索图星的日夜周期漫长无比，人们只有追逐着「晨昏交界线」不断迁徙，才能勉强维持住仅剩的生存空间。",
+        "id": "33066",
+        "name": "萨尔索图的晨昏界线",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「模拟宇宙•第六世界」沉浸装置兑换",
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33065"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33066"
+      }
+    ],
+    "route": "/relics/306"
+  }
+}

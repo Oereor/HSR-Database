@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "名为「归寂」的绝灭大君，设计着毁灭「欢愉」的游戏。\n他侵略无力抵抗的星球，用金血创造为毁灭而生的血脉，只为嘲弄生命以戏谑「欢愉」。\n然而这一切远未尽兴，为实现消除「欢愉」的宏图，他决心唤醒星神进而完成最彻底的毁灭——即便代价或许是自己。\n最终，随着列车再度抵达，时机已然成熟。他以窃取的身份入局，力求创造一出最壮丽、最彻底的游戏结局。",
+    "id": "8015050",
+    "name": "万色返空主，归寂•「坏」",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8015050",
+    "defaultMonsterRef": "02a573bace3d189f9eec7f01ff32f58bbd82fc8204ea0b6e022d39439e3c8295",
+    "description": "名为「归寂」的绝灭大君，设计着毁灭「欢愉」的游戏。\n他侵略无力抵抗的星球，用金血创造为毁灭而生的血脉，只为嘲弄生命以戏谑「欢愉」。\n然而这一切远未尽兴，为实现消除「欢愉」的宏图，他决心唤醒星神进而完成最彻底的毁灭——即便代价或许是自己。\n最终，随着列车再度抵达，时机已然成熟。他以窃取的身份入局，力求创造一出最壮丽、最彻底的游戏结局。",
+    "id": "8015050",
+    "kind": "enemy",
+    "monsterRefs": [
+      "02a573bace3d189f9eec7f01ff32f58bbd82fc8204ea0b6e022d39439e3c8295"
+    ],
+    "name": "万色返空主，归寂•「坏」",
+    "rank": "BigBoss",
+    "templateRef": "20575879483c545a648b8bd5965490b30bc26a92ca319d66d846436f36b510df",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8015050",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8015050",
+    "selectableMonsterIds": [
+      "8015050"
+    ]
+  }
+}

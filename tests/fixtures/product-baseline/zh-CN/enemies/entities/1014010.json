@@ -1,0 +1,96 @@
+{
+  "catalog": {
+    "description": "旧世界的古老遗物，地髓开拓团的时代遗留下的自动控制单元。与大部分无智、只接受指令的机器不同，史瓦罗具有复杂的思考能力。\n在战斗中，史瓦罗会召来机械臂抓取和控制敌人，对目标进行沉重的打击。",
+    "id": "1014010",
+    "name": "史瓦罗",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1014010",
+    "defaultMonsterRef": "fc3d08afc819b4dd647cad67a3be190994beb4dfe61eb3ba5a8ea6d80dfe16d8",
+    "description": "旧世界的古老遗物，地髓开拓团的时代遗留下的自动控制单元。与大部分无智、只接受指令的机器不同，史瓦罗具有复杂的思考能力。\n在战斗中，史瓦罗会召来机械臂抓取和控制敌人，对目标进行沉重的打击。",
+    "id": "1014010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "fc3d08afc819b4dd647cad67a3be190994beb4dfe61eb3ba5a8ea6d80dfe16d8",
+      "61ff09866d06fd2ecec1085f25df143b28f090d358802d48f29946073a94dad3",
+      "37a0effc32f1167e1b40354a78eea1824f0265bea005dec50c53318ed2d2b83b",
+      "0e16f4abe237950b101c00287ab3e673862613ac8c6513a5f4923a5dae6319a9",
+      "ba8a270cd2f432e04fd978adade56a664f90a121835b7ec4c1d76cb0fefc20c7",
+      "0243fff12ded3ed8b7dcf03fc8c16d539fbc03d5ac4d9bdf4da9110aa5c48347",
+      "ae02eadb3284f0e98db6baa0f032afe56bccad07898e8894023161ab54478920",
+      "2b6066f556f9f5933d0783ad9b9edec9063e7bc726d465e7d3dbeea124762d4d",
+      "c54844440912db76c7ebfed2ed14cf35d7f4f6954932ee673b14586f25875286",
+      "15936415f23d5cf8be738fda8fb6c2fe0272a638e13a22378319275575c5dd41",
+      "30169b1bbfb9142727bc00522c59e592563676ef0a09442566567840b6b8eab1",
+      "d3ad47706ae1ade439ff8bb68fefd0acf617621a282963aa7c752395e1be65aa",
+      "fe4dc7d0324f92af68c146b2a45ea9828918b57aedf3e608d54357de356f44ca",
+      "deb969d4a52f12d922ccda46c39ce1b049ee61e764b458014f66aa300362b3bc",
+      "bd5a69c23e33a1ce0df4bf38b77b575fa62a6305e2529c084ccb9c155664c618",
+      "7873baaa355da5049cf1bd89b863bf877ae408fbafda073b89c5f2ef7db14d76",
+      "c11ea7c932bf537c6ff3a8eac928d1457def7eb6eaaf981c439cfa65905e8f88",
+      "e5aa78ba94fb24e2be3a4da16be2977e0e7b40e44dc89e2a628ceb79d44ac611",
+      "656c3d4e2515b130586964c85e84d35df3b03811d7f8845ec853a24192b5ba44"
+    ],
+    "name": "史瓦罗",
+    "rank": "LittleBoss",
+    "templateRef": "566da324ecafe578ccd1d2d5d72bb6688960406cd0f6c2dd88d06136544e0e0e",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1014010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1014010",
+    "selectableMonsterIds": [
+      "1014010",
+      "101401001",
+      "101401002",
+      "101401003",
+      "101401004",
+      "101401005",
+      "101401006",
+      "101401007",
+      "101401008",
+      "101401009",
+      "101401010",
+      "101401011",
+      "101401012",
+      "101401013",
+      "101401014",
+      "101401015",
+      "101401016",
+      "101401017",
+      "101401018"
+    ]
+  }
+}

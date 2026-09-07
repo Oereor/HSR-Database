@@ -1,0 +1,58 @@
+{
+  "catalog": {
+    "description": "在繁衍中发生变异的蛰虫亚种，善用蕴含量子毒素的锹角侵蚀猎物的身躯。",
+    "id": "8022030",
+    "name": "蚀蛰虫",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8022030",
+    "defaultMonsterRef": "4ef9995bdf7c741ea04f80a1d3baf91ada0f9a669995deb60a928852240eb430",
+    "description": "在繁衍中发生变异的蛰虫亚种，善用蕴含量子毒素的锹角侵蚀猎物的身躯。",
+    "id": "8022030",
+    "kind": "enemy",
+    "monsterRefs": [
+      "4ef9995bdf7c741ea04f80a1d3baf91ada0f9a669995deb60a928852240eb430",
+      "32a0b8b6130a8cde038939bab5708998493f002fe9a719390cc78c38f2aabce3",
+      "329f7953a777c7b27af887eaca7f273d593b3e56fadc654f15c1faaa27c8cd96",
+      "5a8380890d1d898c62ade904e9b46b26671e24e380224371e57490a570ff27d9"
+    ],
+    "name": "蚀蛰虫",
+    "rank": "MinionLv2",
+    "templateRef": "e75bae2865e0bbf7418e6632e10e4fb7ed0f31239d14236979bc6989d6695a83",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8022030",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8022030",
+    "selectableMonsterIds": [
+      "8022030",
+      "802203001",
+      "802203002",
+      "802203003"
+    ]
+  }
+}

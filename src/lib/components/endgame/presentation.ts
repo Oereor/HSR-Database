@@ -57,12 +57,3 @@ export function buildEndgameWaveRows(
   }
   return rows;
 }
-
-export function formatChineseOrdinal(value: number): string {
-  if (!Number.isInteger(value) || value <= 0 || value >= 100) return String(value);
-  const digits = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
-  if (value < 10) return digits[value];
-  const tens = Math.floor(value / 10);
-  const ones = value % 10;
-  return `${tens === 1 ? '' : digits[tens]}十${digits[ones]}`;
-}

@@ -1,0 +1,94 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的能量恢复效率提高5%，如果装备者不是编队中的第一位角色，使编队中的第一位角色攻击力提高12%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "317",
+    "name": "沉陆海域露莎卡",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "2.5"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的能量恢复效率提高5%，如果装备者不是编队中的第一位角色，使编队中的第一位角色攻击力提高12%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的能量恢复效率提高5%，如果装备者不是编队中的第一位角色，使编队中的第一位角色攻击力提高12%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的能量恢复效率提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "5%"
+          },
+          {
+            "type": "text",
+            "value": "，如果装备者不是编队中的第一位角色，使编队中的第一位角色攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "317",
+    "kind": "relic",
+    "name": "沉陆海域露莎卡",
+    "pieces": [
+      {
+        "description": "位面封装的是海洋世界露莎卡一处被淹没的城市。海平线不断上升直到城市也被淹没，只有巨大的「船邦」载着船员们在海上前进，找寻下次远航的方向。",
+        "id": "33175",
+        "name": "露莎卡的水朽苍都",
+        "slot": "NECK"
+      },
+      {
+        "description": "无垠的水平线内，即使只存浅痕，也足以打破这份沉寂。航线承载着船员的历史，水灵于水道追寻着希望。",
+        "id": "33176",
+        "name": "露莎卡的双生航道",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "2.5"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33175"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33176"
+      }
+    ],
+    "route": "/relics/317"
+  }
+}

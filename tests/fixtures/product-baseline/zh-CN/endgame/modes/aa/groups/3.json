@@ -1,0 +1,676 @@
+{
+  "presentation": {
+    "defaultEncounterId": "304:normal",
+    "encounters": [
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30503011-0",
+                "level": 95,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4053020",
+                        "hp": {
+                          "exactPerBar": "4189893.6600",
+                          "roundedPerBar": "4,189,894"
+                        },
+                        "identity": "[4053020,4053020,\"1395\",\"1\",\"375.4385\",\"8\",\"4189893.6600\",\"resolved\",\"4189893.6600\",349,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"165\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"217.80\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"480\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"480\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"160\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[4052020],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 4053020,
+                        "monsterTemplateId": 4053020,
+                        "name": "飓风大母",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4053020.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "217.80",
+                          "rounded": "218"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "160",
+                          "roundedPerBar": "160"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/2023030",
+                        "hp": {
+                          "exactPerBar": "3072588.6840",
+                          "roundedPerBar": "3,072,589"
+                        },
+                        "identity": "[2023030,2023030,\"1023\",\"1\",\"375.4385\",\"8\",\"3072588.6840\",\"resolved\",\"3072588.6840\",349,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.40\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"420\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"420\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"140\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"static\\\"]\"]",
+                        "monsterId": 2023030,
+                        "monsterTemplateId": 2023030,
+                        "name": "承露天人",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2023030.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "158.40",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "140",
+                          "roundedPerBar": "140"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-305030111",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "301:preliminary",
+        "label": "骑士（一）",
+        "mode": "aa",
+        "ordinal": 1,
+        "traits": [
+          {
+            "description": "敌方目标每次受到攻击后，攻击者都会损失自身最大生命值<color=#f29e38ff><unbreak>2%</unbreak></color>的生命值，该效果不致命。",
+            "id": 3033003,
+            "name": "反相"
+          }
+        ],
+        "variant": "preliminary"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30503012-0",
+                "level": 95,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4023010",
+                        "hp": {
+                          "exactPerBar": "1815620.5860",
+                          "roundedPerBar": "1,815,621"
+                        },
+                        "identity": "[4023010,4023010,\"1209\",\"1\",\"375.4385\",\"4\",\"1815620.5860\",\"resolved\",\"1815620.5860\",350,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.40\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"480\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"480\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"160\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[4022010,4022010,4022010,4022010],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 4023010,
+                        "monsterTemplateId": 4023010,
+                        "name": "正阳狮鹫",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4023010.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "158.40",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "160",
+                          "roundedPerBar": "160"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/4023020",
+                        "hp": {
+                          "exactPerBar": "1536294.3420",
+                          "roundedPerBar": "1,536,294"
+                        },
+                        "identity": "[4023020,4023020,\"1023\",\"1\",\"375.4385\",\"4\",\"1536294.3420\",\"resolved\",\"1536294.3420\",350,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"132.00\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"480\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"480\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"160\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"static\\\"]\"]",
+                        "monsterId": 4023020,
+                        "monsterTemplateId": 4023020,
+                        "name": "月夜天马",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4023020.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "132.00",
+                          "rounded": "132"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "160",
+                          "roundedPerBar": "160"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-305030121",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/8024011",
+                        "hp": {
+                          "exactPerBar": "3072588.1253475120",
+                          "phaseCount": 2,
+                          "roundedPerBar": "3,072,588"
+                        },
+                        "identity": "[802401107,8024011,\"1674\",\"1.222222\",\"375.4385\",\"4\",\"3072588.1253475120\",\"resolved\",\"3072588.1253475120\",350,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"190.08\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"480\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"480\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"160\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[8022010,802202002,8022010],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 802401107,
+                        "monsterTemplateId": 8024011,
+                        "name": "虫群•真蛰虫",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8024010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "190.08",
+                          "rounded": "190"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "160",
+                          "roundedPerBar": "160"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-305030122",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "302:preliminary",
+        "label": "骑士（二）",
+        "mode": "aa",
+        "ordinal": 2,
+        "traits": [
+          {
+            "description": "敌方目标生命值每降低1%，我方对其造成的暴击伤害降低<color=#f29e38ff><unbreak>3%</unbreak></color>。",
+            "id": 3033002,
+            "name": "淬火"
+          }
+        ],
+        "variant": "preliminary"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30503013-0",
+                "level": 95,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/1013020",
+                        "hp": {
+                          "exactPerBar": "1152220.7565",
+                          "roundedPerBar": "1,152,221"
+                        },
+                        "identity": "[1013020,1013020,\"1023\",\"1\",\"375.4385\",\"3\",\"1152220.7565\",\"resolved\",\"1152220.7565\",351,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"190.08\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"300\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"300\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"100\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 1013020,
+                        "monsterTemplateId": 1013020,
+                        "name": "自动机兵•齿狼",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_1013020.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "190.08",
+                          "rounded": "190"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "100",
+                          "roundedPerBar": "100"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      },
+                      {
+                        "enemyHref": "/enemies/3003020",
+                        "hp": {
+                          "exactPerBar": "1885452.1470",
+                          "roundedPerBar": "1,885,452"
+                        },
+                        "identity": "[3003020,3003020,\"1674\",\"1\",\"375.4385\",\"3\",\"1885452.1470\",\"resolved\",\"1885452.1470\",351,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"190.08\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"300\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"300\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"100\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[3002030],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 3003020,
+                        "monsterTemplateId": 3003020,
+                        "name": "惊梦剧团的甜猿泰山",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3003020.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "190.08",
+                          "rounded": "190"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "100",
+                          "roundedPerBar": "100"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-305030131",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4064010",
+                        "hp": {
+                          "exactPerBar": "2828178.2205",
+                          "phaseCount": 2,
+                          "roundedPerBar": "2,828,178"
+                        },
+                        "identity": "[4064010,4064010,\"2511\",\"1\",\"375.4385\",\"3\",\"2828178.2205\",\"resolved\",\"2828178.2205\",351,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"150\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"198.00\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"360\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"120\"},\"barCount\":4,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[4062010],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 4064010,
+                        "monsterTemplateId": 4064010,
+                        "name": "金血忆灵•裁定忘却之形",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4064010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "198.00",
+                          "rounded": "198"
+                        },
+                        "toughness": {
+                          "barCount": 4,
+                          "exactPerBar": "120",
+                          "roundedPerBar": "120"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-305030132",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "303:preliminary",
+        "label": "骑士（三）",
+        "mode": "aa",
+        "ordinal": 3,
+        "traits": [
+          {
+            "description": "敌方目标受到<color=#f29e38ff><unbreak>6</unbreak></color>次攻击后立即行动，该计数在敌方目标回合开始时清空。",
+            "id": 3033023,
+            "name": "挑衅"
+          },
+          {
+            "description": "敌方目标施放攻击后，对攻击目标随机造成<color=#f29e38ff><unbreak>5%</unbreak></color>或者<color=#f29e38ff><unbreak>10%</unbreak></color>的行动延后。",
+            "id": 3033025,
+            "name": "滋扰"
+          }
+        ],
+        "variant": "preliminary"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30503021-0",
+                "level": 100,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/3025016",
+                        "hp": {
+                          "exactPerBar": "10818299.99520",
+                          "phaseCount": 3,
+                          "roundedPerBar": "10,818,300"
+                        },
+                        "identity": "[3025016,3025016,\"5580\",\"1\",\"484.69086\",\"4\",\"10818299.99520\",\"resolved\",\"10818299.99520\",354,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"190.08\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"210\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"210\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"70\"},\"barCount\":3,\"runtimeStatus\":\"runtime-unclear\"},\"[3,[3022010],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 3025016,
+                        "monsterTemplateId": 3025016,
+                        "name": "「齐响诗班」神主日",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3025010.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "190.08",
+                          "rounded": "190"
+                        },
+                        "toughness": {
+                          "barCount": 3,
+                          "exactPerBar": "70",
+                          "roundedPerBar": "70"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-305030211",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "304:normal",
+        "judgmentQuadrantKey": "aa:304:BuffList",
+        "label": "将杀王棋",
+        "mode": "aa",
+        "traits": [
+          {
+            "description": "敌方目标初始拥有<color=#f29e38ff><unbreak>3</unbreak></color>层【韧甲+】，每层使敌方目标受到的伤害降低<color=#f29e38ff><unbreak>15%</unbreak></color>；敌方目标每次韧性被削减为0时降低1层【韧甲+】。该效果的层数在敌方目标的每个阶段重置。",
+            "id": 3033028,
+            "name": "韧甲+"
+          },
+          {
+            "description": "进入战斗时，固定降低我方目标<color=#f29e38ff><unbreak>50%</unbreak></color>的能量，并使我方目标在自身回合外的能量恢复效率降低<color=#f29e38ff><unbreak>50%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+            "id": 3033038,
+            "name": "失能"
+          },
+          {
+            "description": "敌方目标每次受到攻击后，使自身受到的伤害降低<color=#f29e38ff><unbreak>2%</unbreak></color>，受到的暴击伤害降低<color=#f29e38ff><unbreak>4%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>10</unbreak></color>层，该效果在敌方目标回合开始或进入弱点击破状态时清空层数；若敌方目标处于弱点击破状态时，该效果不会叠加层数。",
+            "id": 3033035,
+            "name": "百炼"
+          }
+        ],
+        "variant": "boss-normal"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30503022-0",
+                "level": 120,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/3025016",
+                        "hp": {
+                          "exactPerBar": "50846008.92840",
+                          "phaseCount": 3,
+                          "roundedPerBar": "50,846,009"
+                        },
+                        "identity": "[3025016,3025016,\"5580\",\"1\",\"1938.7634\",\"4.7\",\"50846008.92840\",\"resolved\",\"50846008.92840\",352,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.5\",\"eliteRatio\":\"1\",\"configuredValue\":\"216.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"210\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"210\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"70\"},\"barCount\":3,\"runtimeStatus\":\"runtime-unclear\"},\"[3,[3022010],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 3025016,
+                        "monsterTemplateId": 3025016,
+                        "name": "「齐响诗班」神主日",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3025010.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "216.0",
+                          "rounded": "216"
+                        },
+                        "toughness": {
+                          "barCount": 3,
+                          "exactPerBar": "70",
+                          "roundedPerBar": "70"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "spawn-305030221",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "304:hard",
+        "judgmentQuadrantKey": "aa:304:BuffList",
+        "label": "将杀王棋•绝境",
+        "mode": "aa",
+        "traits": [
+          {
+            "description": "敌方目标初始拥有<color=#f29e38ff><unbreak>4</unbreak></color>层【韧甲++】，每层使敌方目标受到的伤害降低<color=#f29e38ff><unbreak>15%</unbreak></color>；敌方目标每次韧性被削减为0时降低1层【韧甲++】。该效果的层数在敌方目标的每个阶段重置。",
+            "id": 3033029,
+            "name": "韧甲++"
+          },
+          {
+            "description": "进入战斗时，固定降低我方目标<color=#f29e38ff><unbreak>100%</unbreak></color>的能量，并使我方目标在自身回合外的能量恢复效率降低<color=#f29e38ff><unbreak>100%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+            "id": 3033040,
+            "name": "失能++"
+          },
+          {
+            "description": "敌方目标每次受到攻击后，使自身受到的伤害降低<color=#f29e38ff><unbreak>3%</unbreak></color>，受到的暴击伤害降低<color=#f29e38ff><unbreak>6%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>10</unbreak></color>层，该效果在敌方目标回合开始或进入弱点击破状态时清空层数；若敌方目标处于弱点击破状态时，该效果不会叠加层数。",
+            "id": 3033036,
+            "name": "百炼+"
+          }
+        ],
+        "variant": "boss-hard"
+      }
+    ],
+    "judgmentQuadrant": {
+      "key": "aa:304:BuffList",
+      "options": [
+        {
+          "description": "我方全体目标击破特攻提高<color=#f29e38ff><unbreak>60%</unbreak></color>；每次将敌方目标韧性削减为0时，使该目标受到的击破伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>，该效果最多叠加<color=#f29e38ff><unbreak>4</unbreak></color>层。",
+          "id": 3033032,
+          "name": "不破不立",
+          "order": 1
+        },
+        {
+          "description": "我方全体目标攻击力提高<color=#f29e38ff><unbreak>40%</unbreak></color>；施放【遥远地平的长音】时，额外使我方全体目标攻击力提高<color=#f29e38ff><unbreak>20%</unbreak></color>，该效果可叠加。",
+          "id": 3033033,
+          "name": "意气激昂",
+          "order": 2
+        },
+        {
+          "description": "我方全体目标造成的伤害提高<color=#f29e38ff><unbreak>40%</unbreak></color>；我方目标施放攻击后，对被攻击的敌方目标添加自身属性对应的弱点，该效果在敌方目标从弱点击破状态恢复时移除。",
+          "id": 3033034,
+          "name": "乘间击瑕",
+          "order": 3
+        }
+      ]
+    },
+    "mode": "aa",
+    "modeLabel": "异相仲裁",
+    "period": {
+      "dateLabel": "-",
+      "encounterCount": 5,
+      "groupId": 3,
+      "name": "不协和音",
+      "status": "unknown"
+    },
+    "periods": [
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 9,
+        "name": "军团再临",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 8,
+        "name": "尘世卷中",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 7,
+        "name": "嗡鸣如笑",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 6,
+        "name": "幸福语法",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 5,
+        "name": "别惹帕姆",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 4,
+        "name": "网络风波",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 3,
+        "name": "不协和音",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 2,
+        "name": "烈阳幻域",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 1,
+        "name": "智械残局",
+        "status": "unknown"
+      }
+    ]
+  },
+  "route": "/endgame/aa/3"
+}

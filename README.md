@@ -161,3 +161,9 @@ date: 'yyyy-mm-dd'
 游戏名称、角色、图片及其他相关资产的权利归其各自权利人所有。第三方数据与视觉资源遵循其原始来源的许可条款。
 
 仓库根目录的 MIT License 仅适用于本项目自行编写的代码，不覆盖第三方数据、图片或游戏知识产权。
+
+## Site UI Messages
+
+游戏文本继续来自 TextMap；网站功能文案维护于 `messages/zh-CN.json`。Paraglide 输出为 generated，不手改。新增文案、编译与 Phase 1 边界见 [Site UI Messages](docs/site-ui-messages.md)。
+
+当前数据与本地化架构见 [Localization and Data Generation Architecture](docs/architecture/localization-and-data-generation.md)。`docs/investigations/` 与 `docs/audits/` 中带有 R0–R3/R4 标记的报告属于历史或审计材料，不是当前规范。

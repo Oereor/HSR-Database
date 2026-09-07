@@ -1,0 +1,52 @@
+{
+  "catalog": {
+    "description": "魔法少女急袭剧团的幻造武装，承载了少女美好愿望而具有了活动能力。\n靠歌声充能，会播放一些变身咒语。",
+    "id": "5012011",
+    "name": "全自动魔仙棒",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5012011",
+    "defaultMonsterRef": "864d471268c03b4a5666963162825909f34cb77bf1947ea6c616a78f5ff469ea",
+    "description": "魔法少女急袭剧团的幻造武装，承载了少女美好愿望而具有了活动能力。\n靠歌声充能，会播放一些变身咒语。",
+    "id": "5012011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "864d471268c03b4a5666963162825909f34cb77bf1947ea6c616a78f5ff469ea"
+    ],
+    "name": "全自动魔仙棒",
+    "rank": "MinionLv2",
+    "templateRef": "e9ffc8ebe234632ec331a93edbd1ae05f33577670f049e772b5c40b6b570918e",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5012011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5012011",
+    "selectableMonsterIds": [
+      "5012011"
+    ]
+  }
+}

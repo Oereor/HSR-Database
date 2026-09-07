@@ -1,0 +1,80 @@
+{
+  "catalog": {
+    "description": "「星核猎手」的一员，面带莫测笑容的杀手丽人，善用种类纷繁的武器和心控之术。正是她将星穹列车引至此处，以实现某个计划……",
+    "id": "2004010",
+    "name": "「星核猎手」卡芙卡",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2004010",
+    "defaultMonsterRef": "d5d0fa506e956758a19dffec2486fa5717c70beb078eaae5ffb900f0401b8639",
+    "description": "「星核猎手」的一员，面带莫测笑容的杀手丽人，善用种类纷繁的武器和心控之术。正是她将星穹列车引至此处，以实现某个计划……",
+    "id": "2004010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "d5d0fa506e956758a19dffec2486fa5717c70beb078eaae5ffb900f0401b8639",
+      "8121a6e0dee4817b871165e79fb356a7e709b649e327e59c06f7fa250ba05073",
+      "dec2ed69a9e9040eb6c6d4eb2e56528dc108e521bcfcfc8e51f7c6c5193bca44",
+      "f488cbea5f9d423b21bba3543812bcbe36b6ae1af6b11fa2e9195b58a431dd00",
+      "decf61f18dbef2615ec137ef0926550cfa049a418936557586ffac2668319b7d",
+      "c9fc68c4ef1f1567c94315fe1823d17056c73f4d00e0088fcb6a86f3a5d692a6",
+      "5a22a19e17a74ff8fbf9b85b59ba8da7f09f04c23b783c6097126b32fbfaf37c",
+      "d38e59e7a7147a32cc415c7bbf18c7f2b2559da62c80ea9a537f2f74af483787",
+      "c12ad18d99f235d4b9b29617031bf23cfab526ffe499076a466a741668b430f3",
+      "f273eb495943582690bfccdc8da96431ccc9df812dbc623054586a975c14b307",
+      "da25985df8413506fde9923dcb5c07531ad3facc3326d35002d375b73490d03e"
+    ],
+    "name": "「星核猎手」卡芙卡",
+    "rank": "LittleBoss",
+    "templateRef": "46aef5488a40437e58e366c34957912a9a750cec55a482fba188edb8d40a196f",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2004010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2004010",
+    "selectableMonsterIds": [
+      "2004010",
+      "200401001",
+      "200401002",
+      "200401003",
+      "200401004",
+      "200401005",
+      "200401006",
+      "200401007",
+      "200401008",
+      "200401009",
+      "200401010"
+    ]
+  }
+}

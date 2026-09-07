@@ -11,7 +11,14 @@
 </script>
 
 {#key entry.id}
-  <EntityOverviewCard {href} {imageUrl} density="compact" imageAlt="" fallbackLabel={entry.name}>
+  <EntityOverviewCard
+    {href}
+    {imageUrl}
+    density="compact"
+    imageAlt=""
+    fallbackLabel={entry.name}
+    metadataLayout="icons"
+  >
     <svelte:fragment slot="overlay">
       {#if entry.rarity}<RarityStars rarity={entry.rarity} />{/if}
     </svelte:fragment>
@@ -21,8 +28,9 @@
           kind="path"
           code={entry.path}
           label={entry.pathName}
-          size="large"
-          presentation="path-identity"
+          showLabel={false}
+          fallbackMark="?"
+          presentation="overview-icon"
         />{/if}
     </svelte:fragment>
   </EntityOverviewCard>

@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "二相乐园的泛用型机铠。「SD」一词的意思是「【S】orry, I 【d】on't know.」",
+    "id": "5012092",
+    "name": "喀尔刻的机铠",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5012092",
+    "defaultMonsterRef": "6edd13bb580e2e1987b589678e2c1b73a5bc7212d0d308c09d4737e9c96bbb51",
+    "description": "二相乐园的泛用型机铠。「SD」一词的意思是「【S】orry, I 【d】on't know.」",
+    "id": "5012092",
+    "kind": "enemy",
+    "monsterRefs": [
+      "6edd13bb580e2e1987b589678e2c1b73a5bc7212d0d308c09d4737e9c96bbb51",
+      "9ee7e1c53fb0392e55729e09d89a1894552845b20988f6270829c6943ea3e085"
+    ],
+    "name": "喀尔刻的机铠",
+    "rank": "MinionLv2",
+    "templateRef": "1603c78af7560dffe764650cec3b5c9032cc837af1457967eb6c8b0f68a166a9",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5012092",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5012092",
+    "selectableMonsterIds": [
+      "5012092",
+      "501209201"
+    ]
+  }
+}

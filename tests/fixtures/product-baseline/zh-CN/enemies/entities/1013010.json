@@ -1,0 +1,114 @@
+{
+  "catalog": {
+    "description": "以旧世界遗留的科技拼凑制造的自动机器单元，加装了厚重的铠甲，用于冲锋陷阵保护银鬃铁卫。\n战斗中，自动机兵「灰熊」会发出信号召来「蜘蛛」合作战斗，同时会积蓄动能发出强力一击。",
+    "id": "1013010",
+    "name": "自动机兵•灰熊",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1013010",
+    "defaultMonsterRef": "703405c4d60264ff8f51543f736cff9765c08a79138ad70ffdab3a8e4fe18084",
+    "description": "以旧世界遗留的科技拼凑制造的自动机器单元，加装了厚重的铠甲，用于冲锋陷阵保护银鬃铁卫。\n战斗中，自动机兵「灰熊」会发出信号召来「蜘蛛」合作战斗，同时会积蓄动能发出强力一击。",
+    "id": "1013010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "703405c4d60264ff8f51543f736cff9765c08a79138ad70ffdab3a8e4fe18084",
+      "f9bb05e34805a0e72eb6ed306a4427f9523a95b08a47ef2f4ab32a9e8d25a07f",
+      "6ca781b2fc06a728bb1bff04b5d122e42cc691f2c5144f756847bbca1d654ea7",
+      "6a89a9887628a4a020f68ef1d90d9a84f002982f8b3dd221b7c963b67c154f9a",
+      "9f93fb08c1dd596532123a19150aa9869ad5e7b1cc86deb61b139fe003a7bbc3",
+      "806d7f8a9c059d08d6db1a246e78dd20ac04272b1e94166526e92f2e59118f20",
+      "f66da009d70d99ab70a351509421049d71b3ec950f59b8d07b615965262b59dd",
+      "fb5444d202625fe56656aae44c77b79a26d3328421436831722dd0593cdac0a1",
+      "6304f054f4a20172d7dfc4d0dfc297359ef38d5925286381c2c1b3c0b9c57f9c",
+      "c09a354ffa177188e35a3765db12a13ba29e6abbd8d1e955d8e03498f5078516",
+      "c8ac53268f22d7d5609afc7e2cad2294e57f9065b19ea469ceb3aa1bb3c80d87",
+      "138d4e7523607f9c54e4283ff54391a61f4f426ce98bbc43e38c84e24efb2c8c",
+      "0ecd295bf4c05105a7c0fd9730d5901be0036687626926ca35ac072821e1d6b9",
+      "732a0232b19622d474080ff8bfe33ee5eb5485be4d8ef3edc48edb62f17805a2",
+      "ac8aa0c2ab096ea17d72196ca45b97a10fca5e6ef4b895893fb526c71a32a93c",
+      "f4675eb628634595567fb9e7ae79c330153a8613123cae65730ee913d73989d0",
+      "ff3c1ec5747bbbc812d978208640f4ed0c380374744800210eded45529dd510d",
+      "6757d210ba309e9d08e40eea8e5738b2b5f04853baca2ad5670da84f4506e692",
+      "0b07aff7a9efed266de0c95b9af9e2ac6beac4aed1cd0332bc40213cafdfba18",
+      "13198ca0f7f677f7e3ba7c41bce61e3e79460048fa170e12d8bd13d1d08a89bb",
+      "1855e021a5dc81d93edd6f3c5aa5c8f45503fab9204f4a1572e246acc2a4a8d9",
+      "e49627f14aec857db87d10220fb62a050a7eeab81215a7a0aba37bc9d746a5e6",
+      "68551a43235e66fa55724248782be2acefa2a8003e89ef3a04b27ed4522daa4e",
+      "ea60b8e41bd07b2ad65cb3ce0558a6e4a7528d331500be4aad2e718df2f61b38",
+      "47fdad382b1df17ece4cca3e7c083d5b747d11c6432b88cc1518f9c9d2eaae2a",
+      "4fb7e260482d5a7c4baac35758bc1de0976edcc68ec1d14738a146df7f20d748",
+      "e31a13b1520300766119726c81bdbd36ed3c99a483e1e5bfdb255e6e449d5077",
+      "1cbce67458d0a6e12cdbd6bc4ba07761834f321bdfa2c90780b81e18fe10458b"
+    ],
+    "name": "自动机兵•灰熊",
+    "rank": "Elite",
+    "templateRef": "e2973bce38be862f2f740d7bc0727d2b3ed9bb5aeb07c4ef0e0b3b6f4b3fec1a",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1013010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1013010",
+    "selectableMonsterIds": [
+      "1013010",
+      "101301001",
+      "101301002",
+      "101301003",
+      "101301004",
+      "101301005",
+      "101301006",
+      "101301007",
+      "101301008",
+      "101301009",
+      "101301010",
+      "101301011",
+      "101301012",
+      "101301013",
+      "101301014",
+      "101301015",
+      "101301016",
+      "101301017",
+      "101301018",
+      "101301019",
+      "101301020",
+      "101301021",
+      "101301022",
+      "101301023",
+      "101301024",
+      "101301025",
+      "101301026",
+      "101301027"
+    ]
+  }
+}

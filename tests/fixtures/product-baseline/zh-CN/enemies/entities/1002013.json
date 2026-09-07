@@ -1,0 +1,52 @@
+{
+  "catalog": {
+    "description": "可可利亚召唤出的巨大冰矛，环绕着能如刀刃般撕裂肉身的极寒气流。",
+    "id": "1002013",
+    "name": "无尽寒冬之槊",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1002013",
+    "defaultMonsterRef": "1a68536ae5253659c4c0ab71d8d73e6a3a9671462b75e7a1bd93880055539774",
+    "description": "可可利亚召唤出的巨大冰矛，环绕着能如刀刃般撕裂肉身的极寒气流。",
+    "id": "1002013",
+    "kind": "enemy",
+    "monsterRefs": [
+      "1a68536ae5253659c4c0ab71d8d73e6a3a9671462b75e7a1bd93880055539774"
+    ],
+    "name": "无尽寒冬之槊",
+    "rank": "MinionLv2",
+    "templateRef": "9a73d0dea034f4d32818f685e26bc164a7a5dd5c59917244bb74f7eb52774320",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1002013",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1002013",
+    "selectableMonsterIds": [
+      "1002013"
+    ]
+  }
+}

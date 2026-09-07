@@ -1,0 +1,3837 @@
+{
+  "catalog": {
+    "baseName": "阮•梅",
+    "description": "天才俱乐部会员，生命科学领域专家，与黑塔等人联手研发模拟宇宙。",
+    "element": "Ice",
+    "elementName": "冰",
+    "id": "1303",
+    "name": "阮•梅",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "阮•梅",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 104
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 89.76,
+            "perLevel": 4.488
+          },
+          "defence": {
+            "base": 66,
+            "perLevel": 3.3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 147.84,
+            "perLevel": 7.392
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 125.664,
+            "perLevel": 4.488
+          },
+          "defence": {
+            "base": 92.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 206.976,
+            "perLevel": 7.392
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 161.568,
+            "perLevel": 4.488
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 3.3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 266.112,
+            "perLevel": 7.392
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 197.472,
+            "perLevel": 4.488
+          },
+          "defence": {
+            "base": 145.2,
+            "perLevel": 3.3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 325.248,
+            "perLevel": 7.392
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 233.376,
+            "perLevel": 4.488
+          },
+          "defence": {
+            "base": 171.6,
+            "perLevel": 3.3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 384.384,
+            "perLevel": 7.392
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 269.28,
+            "perLevel": 4.488
+          },
+          "defence": {
+            "base": 198,
+            "perLevel": 3.3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 443.52,
+            "perLevel": 7.392
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 305.184,
+            "perLevel": 4.488
+          },
+          "defence": {
+            "base": 224.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 502.656,
+            "perLevel": 7.392
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "天才俱乐部会员，生命科学领域专家，与黑塔等人联手研发模拟宇宙。",
+    "element": "Ice",
+    "elementName": "冰",
+    "equipmentRecommendation": {
+      "avatarId": "1303",
+      "cavernSetIds": [
+        "118",
+        "111",
+        "114"
+      ],
+      "lightConeIds": [
+        "23019",
+        "21056",
+        "21018"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "DefenceAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "DefenceAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "BreakDamageAddedRatioBase",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "307",
+        "312",
+        "308"
+      ],
+      "subStatPropertyTypes": [
+        "BreakDamageAddedRatioBase",
+        "SpeedDelta",
+        "StatusResistanceBase"
+      ]
+    },
+    "fullName": "阮•梅",
+    "id": "1303",
+    "kind": "character",
+    "name": "阮•梅",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "终结技展开结界期间，我方全体造成伤害时无视目标<unbreak>20%</unbreak>的防御力。",
+            "iconKey": "rank--130301",
+            "id": "130301",
+            "name": "神经仿绣图",
+            "rank": 1
+          },
+          {
+            "description": "阮•梅在场时，我方全体对处于<u>弱点击破状态</u>的敌方目标造成伤害时，攻击力提高<unbreak>40%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "当敌方目标的韧性被削减至0时进入的特殊状态，进入该状态的目标行动会被延后。",
+                "id": "10000006",
+                "name": "弱点击破状态"
+              }
+            ],
+            "iconKey": "rank--130302",
+            "id": "130302",
+            "name": "芦前漫步",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--130303",
+            "id": "130303",
+            "name": "彩缎烟衫绿婆娑",
+            "rank": 3
+          },
+          {
+            "description": "当敌方目标的弱点被击破时，阮•梅自身击破特攻提高<unbreak>100%</unbreak>，持续<unbreak>3</unbreak>回合。",
+            "iconKey": "rank--130304",
+            "id": "130304",
+            "name": "寻神铜镜前",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--130305",
+            "id": "130305",
+            "name": "手弄慵鬟玲珑钗",
+            "rank": 5
+          },
+          {
+            "description": "终结技展开的结界持续时间延长<unbreak>1</unbreak>回合。天赋造成的<u>击破伤害</u>倍率额外提高<unbreak>200%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "击破特攻、目标韧性上限、角色等级越高，造成的击破伤害越高。\n击破伤害无法暴击，不受伤害提高类效果所影响。",
+                "id": "10000014",
+                "name": "击破伤害"
+              }
+            ],
+            "iconKey": "rank--130306",
+            "id": "130306",
+            "name": "半脱纱巾落团扇",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 130
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1303001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1303001",
+                "variantIds": [
+                  "130301"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "130301",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于阮•梅50%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阮•梅60%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阮•梅70%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阮•梅80%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阮•梅90%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阮•梅100%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阮•梅110%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阮•梅120%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阮•梅130%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阮•梅140%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "一针幽兰",
+                "progressionId": "1303001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1303002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1303002",
+                "variantIds": [
+                  "130302"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 30
+                },
+                "id": "130302",
+                "levels": [
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高16.0%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高17.6%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高19.2%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高20.8%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高22.4%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高24.0%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高26.0%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高28.0%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高30.0%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高32.0%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高33.6%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高35.2%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高36.8%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高38.4%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放战技后阮•梅获得【弦外音】，持续3回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高40.0%，弱点击破效率提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后阮•梅获得【弦外音】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，阮•梅每回合开始时持续回合数减1。当阮•梅拥有【弦外音】时，我方全体伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "慢捻抹复挑",
+                "progressionId": "1303002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1303003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1303003",
+                "variantIds": [
+                  "130303"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "当敌方目标的韧性被削减至0时进入的特殊状态，进入该状态的目标行动会被延后。",
+                      "id": "10000006",
+                      "name": "弱点击破状态"
+                    },
+                    {
+                      "description": "使目标在下次行动前的等待间隔延长。",
+                      "id": "10000002",
+                      "name": "行动延后"
+                    },
+                    {
+                      "description": "击破特攻、目标韧性上限、角色等级越高，造成的击破伤害越高。\n击破伤害无法暴击，不受伤害提高类效果所影响。",
+                      "id": "10000014",
+                      "name": "击破伤害"
+                    }
+                  ]
+                },
+                "id": "130303",
+                "levels": [
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高15.0%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅30%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高16.0%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅32%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高17.0%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅34%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高18.0%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅36%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高19.0%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅38%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高20.0%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅40%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高21.3%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅43%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高22.5%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅45%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高23.8%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅48%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高25.0%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅50%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高26.0%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅52%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高27.0%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅54%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高28.0%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅56%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高29.0%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅58%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "29.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "58%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "阮•梅展开结界，持续2回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高30.0%，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从弱点击破状态恢复时触发，延长目标的弱点击破状态并使其行动延后，延后数值等同于阮•梅20%的击破特攻+10%，并对其造成等同于阮•梅60%冰属性击破伤害的击破伤害。\n敌方目标从弱点击破状态恢复前不可被再次附加【残梅绽】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "阮•梅展开结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。\n处于结界中时我方全体全属性抗性穿透提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且攻击后会对敌方目标施加【残梅绽】。\n【残梅绽】会在敌方目标尝试从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复时触发，延长目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，延后数值等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的击破特攻+"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其造成等同于阮•梅"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标从"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "恢复前不可被再次附加【残梅绽】。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "摇花缎水，沾衣不摘",
+                "progressionId": "1303003",
+                "scalingParamIndexes": [
+                  0,
+                  4
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1303004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1303004",
+                "variantIds": [
+                  "130304"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "击破特攻、目标韧性上限、角色等级越高，造成的击破伤害越高。\n击破伤害无法暴击，不受伤害提高类效果所影响。",
+                      "id": "10000014",
+                      "name": "击破伤害"
+                    }
+                  ]
+                },
+                "id": "130304",
+                "levels": [
+                  {
+                    "description": "使除自身以外的队友速度提高8.0%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身60.0%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使除自身以外的队友速度提高8.2%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身66.0%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使除自身以外的队友速度提高8.4%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身72.0%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使除自身以外的队友速度提高8.6%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身78.0%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使除自身以外的队友速度提高8.8%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身84.0%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使除自身以外的队友速度提高9.0%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身90.0%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使除自身以外的队友速度提高9.3%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身97.5%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "97.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使除自身以外的队友速度提高9.5%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身105.0%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使除自身以外的队友速度提高9.8%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身112.5%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使除自身以外的队友速度提高10.0%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身120.0%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使除自身以外的队友速度提高10.2%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身126.0%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使除自身以外的队友速度提高10.4%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身132.0%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使除自身以外的队友速度提高10.6%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身138.0%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "138.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使除自身以外的队友速度提高10.8%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身144.0%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使除自身以外的队友速度提高11.0%。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身150.0%冰属性击破伤害的击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使除自身以外的队友速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。我方全体击破敌方目标弱点时，阮•梅对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "分型的螺旋",
+                "progressionId": "1303004",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1303007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1303007",
+                "variantIds": [
+                  "130307"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "130307",
+                "levels": [
+                  {
+                    "description": "使用秘技后，获得【拭琴抚罗袂】，使下一次战斗开始时自动触发1次战技，此次触发不消耗战技点。\n在模拟宇宙、差分宇宙中，当阮•梅拥有【拭琴抚罗袂】时，我方主动攻击敌人时总会视为利用弱点进入战斗，且本次攻击可以无视弱点属性削减敌方全体的韧性。击破弱点时，触发攻击者自身属性的弱点击破效果。每拥有1个祝福，本次攻击的削韧值额外提高100%，且击破敌方目标弱点后对其额外造成等同于阮•梅100%冰属性击破伤害的击破伤害，最多计入20个祝福。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，获得【拭琴抚罗袂】，使下一次战斗开始时自动触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次战技，此次触发不消耗战技点。\n在模拟宇宙、差分宇宙中，当阮•梅拥有【拭琴抚罗袂】时，我方主动攻击敌人时总会视为利用弱点进入战斗，且本次攻击可以无视弱点属性削减敌方全体的韧性。击破弱点时，触发攻击者自身属性的弱点击破效果。每拥有1个祝福，本次攻击的削韧值额外提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且击破敌方目标弱点后对其额外造成等同于阮•梅"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "冰属性击破伤害的击破伤害，最多计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个祝福。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "拭琴抚罗袂",
+                "progressionId": "1303007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "我方全体击破特攻提高<unbreak>20%</unbreak>。",
+            "iconKey": "skill-tree--1303101",
+            "id": "1303101",
+            "name": "物体呼吸中",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "阮•梅的回合开始时，自身恢复<unbreak>5</unbreak>点能量。",
+            "iconKey": "skill-tree--1303102",
+            "id": "1303102",
+            "name": "日消遐思长",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "战斗中阮•梅的击破特攻大于<unbreak>120%</unbreak>时，每超过<unbreak>10%</unbreak>，则战技使我方全体伤害提高的效果额外提高<unbreak>6%</unbreak>，最高不超过<unbreak>36%</unbreak>。",
+            "iconKey": "skill-tree--1303103",
+            "id": "1303103",
+            "name": "落烛照水燃",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1303201",
+            "name": "击破强化",
+            "prerequisiteIds": [],
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1303202",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1303101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1303203",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1303202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "速度提高2",
+            "iconKey": "property--SpeedDelta",
+            "id": "1303204",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1303201"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1303205",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1303102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1303206",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1303205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1303207",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1303201"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "速度提高3",
+            "iconKey": "property--SpeedDelta",
+            "id": "1303208",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1303103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "防御力提高10.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1303209",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1303208"
+            ],
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "击破特攻提高10.7%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1303210",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1303208"
+            ],
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1303001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130301",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1303002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130302",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1303003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130303",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1303004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130304",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1303007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130307",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1303",
+    "subtitleRendered": false
+  }
+}

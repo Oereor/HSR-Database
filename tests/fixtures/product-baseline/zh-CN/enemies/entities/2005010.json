@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "为了挽救危局，吞下「赤月」，坠入狂怒的天击将军。\n被往日陷阵厮杀的心魔所夺，飞霄成了不知疲倦的斗神化身。作为她的朋友和眼前的敌人，你们明白，唯一的「解药」…只有坚持鏖战。",
+    "id": "2005010",
+    "name": "失控的飞霄",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2005010",
+    "defaultMonsterRef": "ab352ae6c63f06fab7d96656d16e08a9160f2a4c5e79f4847405128d652f279c",
+    "description": "为了挽救危局，吞下「赤月」，坠入狂怒的天击将军。\n被往日陷阵厮杀的心魔所夺，飞霄成了不知疲倦的斗神化身。作为她的朋友和眼前的敌人，你们明白，唯一的「解药」…只有坚持鏖战。",
+    "id": "2005010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "ab352ae6c63f06fab7d96656d16e08a9160f2a4c5e79f4847405128d652f279c"
+    ],
+    "name": "失控的飞霄",
+    "rank": "BigBoss",
+    "templateRef": "9fe15e364885de1bde77f7ad9bcd1aca877900c868c0c94f77a0924b57b323b4",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2005010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2005010",
+    "selectableMonsterIds": [
+      "2005010"
+    ]
+  }
+}

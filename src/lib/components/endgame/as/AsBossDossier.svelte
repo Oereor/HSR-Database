@@ -2,6 +2,7 @@
   import type { ApocalypticShadowSlotGuideView, EndgameStageView } from '$lib/domain/endgame-view';
   import EndgameEnemyGrid from '../EndgameEnemyGrid.svelte';
   import AsBossTraits from './AsBossTraits.svelte';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let stages: EndgameStageView[];
   export let bossGuide: ApocalypticShadowSlotGuideView | undefined = undefined;
@@ -12,13 +13,13 @@
 
 <div class:as-boss-dossier--with-traits={hasTraits} class="as-boss-dossier" data-as-boss-dossier>
   <section class="as-boss-roster" data-as-boss-roster>
-    <h4>首领幻影</h4>
+    <h4>{m.endgame_boss_illusion()}</h4>
     <div class="as-boss-roster__groups">
       {#each stages as stage (stage.key)}
         {#each stage.waves as wave (wave.key)}
           <div class="as-boss-roster__group" data-as-boss-source-group>
             {#if sourceGroupCount > 1}
-              <p>阶段 {stage.index} · {wave.label}</p>
+              <p>{m.endgame_stage_wave({ stage: stage.index, wave: wave.label })}</p>
             {/if}
             <EndgameEnemyGrid enemies={wave.enemies} variant="standard" level={stage.level} />
           </div>

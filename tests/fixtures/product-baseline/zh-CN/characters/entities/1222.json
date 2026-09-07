@@ -1,0 +1,5020 @@
+{
+  "catalog": {
+    "baseName": "灵砂",
+    "description": "仙舟「罗浮」丹鼎司新任司鼎，伶俐秀慧的持明医士。\n嗅觉敏锐，常以此识别病症，并以香薰安定他人心神。\n善于处理混杂的人际关系，即使心底暴躁如雷，表面上依旧滴水不漏。",
+    "element": "Fire",
+    "elementName": "火",
+    "id": "1222",
+    "name": "灵砂",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "灵砂",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 98
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 92.4,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 59.4,
+            "perLevel": 2.97
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 184.8,
+            "perLevel": 9.24
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 129.36,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 83.16,
+            "perLevel": 2.97
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 258.72,
+            "perLevel": 9.24
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 166.32,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 106.92,
+            "perLevel": 2.97
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 332.64,
+            "perLevel": 9.24
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 203.28,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 130.68,
+            "perLevel": 2.97
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 406.56,
+            "perLevel": 9.24
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 240.24,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 154.44,
+            "perLevel": 2.97
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 480.48,
+            "perLevel": 9.24
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 277.2,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 178.2,
+            "perLevel": 2.97
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 554.4,
+            "perLevel": 9.24
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 314.16,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 201.96,
+            "perLevel": 2.97
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 628.32,
+            "perLevel": 9.24
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "仙舟「罗浮」丹鼎司新任司鼎，伶俐秀慧的持明医士。\n嗅觉敏锐，常以此识别病症，并以香薰安定他人心神。\n善于处理混杂的人际关系，即使心底暴躁如雷，表面上依旧滴水不漏。",
+    "element": "Fire",
+    "elementName": "火",
+    "equipmentRecommendation": {
+      "avatarId": "1222",
+      "cavernSetIds": [
+        "119",
+        "111",
+        "101"
+      ],
+      "lightConeIds": [
+        "23032",
+        "23008",
+        "21035"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "HealRatioBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase",
+            "BreakDamageAddedRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "316",
+        "307",
+        "302"
+      ],
+      "subStatPropertyTypes": [
+        "BreakDamageAddedRatioBase",
+        "SpeedDelta",
+        "AttackAddedRatio"
+      ]
+    },
+    "fullName": "灵砂",
+    "id": "1222",
+    "kind": "character",
+    "name": "灵砂",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "灵砂的弱点击破效率提高<unbreak>50%</unbreak>。当有敌方单位的弱点被击破时，使其防御力降低<unbreak>20%</unbreak>。",
+            "iconKey": "rank--122201",
+            "id": "122201",
+            "name": "馨气当盛，除邪避讳",
+            "rank": 1
+          },
+          {
+            "description": "施放终结技时，使我方全体击破特攻提高<unbreak>40%</unbreak>，持续<unbreak>3</unbreak>回合。",
+            "iconKey": "rank--122202",
+            "id": "122202",
+            "name": "欹枕垂云，烟奁红雪",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--122203",
+            "id": "122203",
+            "name": "含芽细炷，浪蕊浓焚",
+            "rank": 3
+          },
+          {
+            "description": "【浮元】行动时，为当前生命值最低的我方目标回复等同于灵砂<unbreak>40%</unbreak>攻击力的生命值。",
+            "iconKey": "rank--122204",
+            "id": "122204",
+            "name": "横垂宝幄，半拂琼筵",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--122205",
+            "id": "122205",
+            "name": "纵横圆转，内常不倾",
+            "rank": 5
+          },
+          {
+            "description": "【浮元】在场时，使敌方全体全属性抗性降低<unbreak>20%</unbreak>，【浮元】攻击时，额外造成<unbreak>4</unbreak>次伤害，每次伤害对随机敌方单体造成等同于灵砂<unbreak>50%</unbreak>攻击力的火属性伤害和<unbreak>5</unbreak>点削韧值，优先选择韧性值大于0且有火属性弱点的目标。",
+            "iconKey": "rank--122206",
+            "id": "122206",
+            "name": "晓兰深藏，宿香暗贮",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 110
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1222001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1222001",
+                "variantIds": [
+                  "122201"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "122201",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于灵砂50%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于灵砂60%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于灵砂70%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于灵砂80%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于灵砂90%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于灵砂100%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于灵砂110%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于灵砂120%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于灵砂130%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于灵砂140%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "肃香",
+                "progressionId": "1222001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1222002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1222002",
+                "variantIds": [
+                  "122202"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "使目标在下次行动前的等待间隔缩短。",
+                      "id": "10000001",
+                      "name": "行动提前"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "122202",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于灵砂40%攻击力的火属性伤害，同时为我方全体回复等同于灵砂10.0%攻击力+105的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于灵砂44%攻击力的火属性伤害，同时为我方全体回复等同于灵砂10.5%攻击力+168的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于灵砂48%攻击力的火属性伤害，同时为我方全体回复等同于灵砂11.0%攻击力+215的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "215"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于灵砂52%攻击力的火属性伤害，同时为我方全体回复等同于灵砂11.5%攻击力+263的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "263"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于灵砂56%攻击力的火属性伤害，同时为我方全体回复等同于灵砂12.0%攻击力+294的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "294"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于灵砂60%攻击力的火属性伤害，同时为我方全体回复等同于灵砂12.4%攻击力+326的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "326"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于灵砂65%攻击力的火属性伤害，同时为我方全体回复等同于灵砂12.8%攻击力+349的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "349"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于灵砂70%攻击力的火属性伤害，同时为我方全体回复等同于灵砂13.2%攻击力+373的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "373"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于灵砂75%攻击力的火属性伤害，同时为我方全体回复等同于灵砂13.6%攻击力+396的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "396"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于灵砂80%攻击力的火属性伤害，同时为我方全体回复等同于灵砂14.0%攻击力+420的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "420"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于灵砂84%攻击力的火属性伤害，同时为我方全体回复等同于灵砂14.4%攻击力+444的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "444"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于灵砂88%攻击力的火属性伤害，同时为我方全体回复等同于灵砂14.8%攻击力+467的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "467"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于灵砂92%攻击力的火属性伤害，同时为我方全体回复等同于灵砂15.2%攻击力+491的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "491"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于灵砂96%攻击力的火属性伤害，同时为我方全体回复等同于灵砂15.6%攻击力+515的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "515"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于灵砂100%攻击力的火属性伤害，同时为我方全体回复等同于灵砂16.0%攻击力+538的生命值，使【浮元】行动提前20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "538"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "识烟飞彩",
+                "progressionId": "1222002",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1222003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1222003",
+                "variantIds": [
+                  "122203"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "击破特攻、目标韧性上限、角色等级越高，造成的击破伤害越高。\n击破伤害无法暴击，不受伤害提高类效果所影响。",
+                      "id": "10000014",
+                      "name": "击破伤害"
+                    },
+                    {
+                      "description": "使目标在下次行动前的等待间隔缩短。",
+                      "id": "10000001",
+                      "name": "行动提前"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "122203",
+                "levels": [
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高15%，持续2回合。\n对敌方全体造成等同于灵砂90%攻击力的火属性伤害，同时为我方全体回复等同于灵砂8.0%攻击力+90的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高16%，持续2回合。\n对敌方全体造成等同于灵砂96%攻击力的火属性伤害，同时为我方全体回复等同于灵砂8.5%攻击力+144的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高17%，持续2回合。\n对敌方全体造成等同于灵砂102%攻击力的火属性伤害，同时为我方全体回复等同于灵砂9.0%攻击力+185的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "102%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "185"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高18%，持续2回合。\n对敌方全体造成等同于灵砂108%攻击力的火属性伤害，同时为我方全体回复等同于灵砂9.5%攻击力+225的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "225"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高19%，持续2回合。\n对敌方全体造成等同于灵砂114%攻击力的火属性伤害，同时为我方全体回复等同于灵砂10.0%攻击力+252的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "114%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高20%，持续2回合。\n对敌方全体造成等同于灵砂120%攻击力的火属性伤害，同时为我方全体回复等同于灵砂10.4%攻击力+279的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "279"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高21%，持续2回合。\n对敌方全体造成等同于灵砂127%攻击力的火属性伤害，同时为我方全体回复等同于灵砂10.8%攻击力+299的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "127%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "299"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高23%，持续2回合。\n对敌方全体造成等同于灵砂135%攻击力的火属性伤害，同时为我方全体回复等同于灵砂11.2%攻击力+320的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "135%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "320"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高24%，持续2回合。\n对敌方全体造成等同于灵砂143%攻击力的火属性伤害，同时为我方全体回复等同于灵砂11.6%攻击力+340的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "143%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "340"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高25%，持续2回合。\n对敌方全体造成等同于灵砂150%攻击力的火属性伤害，同时为我方全体回复等同于灵砂12.0%攻击力+360的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "360"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高26%，持续2回合。\n对敌方全体造成等同于灵砂156%攻击力的火属性伤害，同时为我方全体回复等同于灵砂12.4%攻击力+380的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "156%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "380"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高27%，持续2回合。\n对敌方全体造成等同于灵砂162%攻击力的火属性伤害，同时为我方全体回复等同于灵砂12.8%攻击力+401的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "162%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "401"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高28%，持续2回合。\n对敌方全体造成等同于灵砂168%攻击力的火属性伤害，同时为我方全体回复等同于灵砂13.2%攻击力+421的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "421"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高29%，持续2回合。\n对敌方全体造成等同于灵砂174%攻击力的火属性伤害，同时为我方全体回复等同于灵砂13.6%攻击力+441的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "29%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "174%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "441"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的击破伤害提高30%，持续2回合。\n对敌方全体造成等同于灵砂180%攻击力的火属性伤害，同时为我方全体回复等同于灵砂14.0%攻击力+461的生命值，使【浮元】行动提前100%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【醇醉】状态，【醇醉】状态下，使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时为我方全体回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "461"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，使【浮元】"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "幔亭缭霞",
+                "progressionId": "1222003",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1222004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1222004",
+                "variantIds": [
+                  "122204"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    },
+                    {
+                      "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                      "id": "10000010",
+                      "name": "负面效果"
+                    },
+                    {
+                      "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                      "id": "10000007",
+                      "name": "无法战斗状态"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "122204",
+                "levels": [
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂38%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂38%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂8.0%攻击力+90的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂41%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂41%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂8.5%攻击力+144的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂45%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂45%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂9.0%攻击力+185的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "185"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂49%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂49%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂9.5%攻击力+225的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "225"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂53%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂53%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂10.0%攻击力+252的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂56%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂56%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂10.4%攻击力+279的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "279"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂61%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂61%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂10.8%攻击力+299的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "299"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂66%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂66%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂11.2%攻击力+320的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "320"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂70%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂70%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂11.6%攻击力+340的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "340"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂75%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂75%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂12.0%攻击力+360的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "360"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂79%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂79%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂12.4%攻击力+380的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "79%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "79%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "380"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂83%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂83%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂12.8%攻击力+401的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "401"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂86%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂86%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂13.2%攻击力+421的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "86%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "86%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "421"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂90%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂90%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂13.6%攻击力+441的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "441"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放战技时召唤【浮元】，初始拥有90点速度以及3次行动次数。\n【浮元】行动时发动追加攻击，对敌方全体造成等同于灵砂94%攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂94%攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的1个负面效果，并回复等同于灵砂14.0%攻击力+461的生命值。\n【浮元】最多累计5次行动次数，当次数为0或灵砂陷入无法战斗状态时【浮元】消失。\n【浮元】在场时，施放战技会增加3次【浮元】的行动次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时召唤【浮元】，初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数。\n【浮元】行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。额外对随机敌方单体造成等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，本次伤害优先选择韧性值大于0且有火属性弱点的目标。解除我方全体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并回复等同于灵砂"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "461"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n【浮元】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次行动次数，当次数为0或灵砂陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【浮元】消失。\n【浮元】在场时，施放战技会增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次【浮元】的行动次数。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "烟斜雾横，氛氲化生",
+                "progressionId": "1222004",
+                "scalingParamIndexes": [
+                  1,
+                  2,
+                  3,
+                  7
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1222007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1222007",
+                "variantIds": [
+                  "122207"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  }
+                },
+                "id": "122207",
+                "levels": [
+                  {
+                    "description": "使用秘技后，下一次战斗开始时立即召唤【浮元】，并使敌方全体陷入【醇醉】状态，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，下一次战斗开始时立即召唤【浮元】，并使敌方全体陷入【醇醉】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "流翠散云",
+                "progressionId": "1222007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "使自身攻击力/治疗量提高，提高数值等同于击破特攻的<unbreak>25%</unbreak>/<unbreak>10%</unbreak>，最多使攻击力/治疗量提高<unbreak>50%</unbreak>/<unbreak>20%</unbreak>。",
+            "iconKey": "skill-tree--1222101",
+            "id": "1222101",
+            "name": "朱燎",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "施放普攻时额外恢复<unbreak>10</unbreak>点能量。",
+            "iconKey": "skill-tree--1222102",
+            "id": "1222102",
+            "name": "兰烟",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "【浮元】在场时，我方任意角色受到伤害或消耗生命值时，若队伍中有存在当前生命值百分比小于等于<unbreak>60%</unbreak>的角色，【浮元】会立即对敌人发动天赋的<u>追加攻击</u>，此次触发不消耗【浮元】行动次数，该效果在<unbreak>2</unbreak>回合后可再次触发。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "skill-tree--1222103",
+            "id": "1222103",
+            "name": "遗爇",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1222201",
+            "name": "击破强化",
+            "prerequisiteIds": [],
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1222202",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1222101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1222203",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1222202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1222204",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1222203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1222205",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1222102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1222206",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1222205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1222207",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1222206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1222208",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1222103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "生命值上限提高8.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1222209",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1222103"
+            ],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "击破特攻提高10.7%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1222210",
+            "name": "击破强化",
+            "prerequisiteIds": [],
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1222001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122201",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1222002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122202",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1222003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122203",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1222004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122204",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1222007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122207",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1222",
+    "subtitleRendered": false
+  }
+}

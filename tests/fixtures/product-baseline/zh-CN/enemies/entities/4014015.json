@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为「纷争」的泰坦，在疯狂中延续疯狂的战争，乃是翁法罗斯众邦挥之不去的恐惧。\n它也曾身负荣耀的威名，令众邦众神心怀敬意。而那敬畏它的城邦被踏碎，那赞颂它的诗篇被焚毁，只有恶名回荡在无光的末世，玷污全世之座背负的光辉。",
+    "id": "4014015",
+    "name": "蛮神，疯王，纷争的化身（完整）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4014015",
+    "defaultMonsterRef": "4cc4ea7efd2e1ee8d657ea88f1c03837ca935dfd47843992e0767b5edc57ae70",
+    "description": "代码受到影响后的完整投影。参照本体为「纷争」的泰坦，在疯狂中延续疯狂的战争，乃是翁法罗斯众邦挥之不去的恐惧。\n它也曾身负荣耀的威名，令众邦众神心怀敬意。而那敬畏它的城邦被踏碎，那赞颂它的诗篇被焚毁，只有恶名回荡在无光的末世，玷污全世之座背负的光辉。",
+    "id": "4014015",
+    "kind": "enemy",
+    "monsterRefs": [
+      "4cc4ea7efd2e1ee8d657ea88f1c03837ca935dfd47843992e0767b5edc57ae70",
+      "5717cc8342b138ff3f37501483094375795d20ee30cb8c233c9e7db14e28be44"
+    ],
+    "name": "蛮神，疯王，纷争的化身（完整）",
+    "rank": "LittleBoss",
+    "templateRef": "71136d38472fe1cad0e8fbcbc757f1322286eaef7776e3f7afa7ffb4e0aa0765",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4014015",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4014015",
+    "selectableMonsterIds": [
+      "4014015",
+      "401401501"
+    ]
+  }
+}

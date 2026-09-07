@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "美梦剧团中取悦宾客的酒侍。本应于「谐乐大典」之中献杯，如今却被「秩序」所缚，上演着关于「当下」的剧目。此刻是彻夜的欢宴，喜乐的渴望在杯中荡漾，以佳酿进献设宴的主人。",
+    "id": "3003051",
+    "name": "「醉于盛会的此刻」",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3003051",
+    "defaultMonsterRef": "ba5ee488f04dab58cf95e5c413f360ecdb6fe7de7f853d5031da1653ec8a5e16",
+    "description": "美梦剧团中取悦宾客的酒侍。本应于「谐乐大典」之中献杯，如今却被「秩序」所缚，上演着关于「当下」的剧目。此刻是彻夜的欢宴，喜乐的渴望在杯中荡漾，以佳酿进献设宴的主人。",
+    "id": "3003051",
+    "kind": "enemy",
+    "monsterRefs": [
+      "ba5ee488f04dab58cf95e5c413f360ecdb6fe7de7f853d5031da1653ec8a5e16",
+      "5bc55e515812af31160ee1613f513c4d4df8306752ec55847519472f0d736465",
+      "1d5b81f79b182432dd29e84d3cbbbc16f6fab504c91477946a6b2edfc1a3ef31",
+      "ee1e69868edde9c5ac0cc8535b6039257ac29375d014bbedab3cc6fb5c040dd1"
+    ],
+    "name": "「醉于盛会的此刻」",
+    "rank": "Elite",
+    "templateRef": "c4908846ad94d080af522417e82da810be7930fff00f9de482fcd7063c878a60",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3003051",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3003051",
+    "selectableMonsterIds": [
+      "3003051",
+      "300305101",
+      "300305102",
+      "300305103"
+    ]
+  }
+}

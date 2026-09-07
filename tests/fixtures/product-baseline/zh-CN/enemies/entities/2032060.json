@@ -1,0 +1,52 @@
+{
+  "catalog": {
+    "description": "心兽之尾，扫风雷，荡尘寰。",
+    "id": "2032060",
+    "name": "辟尘之尾",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2032060",
+    "defaultMonsterRef": "db5f298fad8d7addce5bf8eabd9247f21a064d15a6d628f7e96e910a35c34474",
+    "description": "心兽之尾，扫风雷，荡尘寰。",
+    "id": "2032060",
+    "kind": "enemy",
+    "monsterRefs": [
+      "db5f298fad8d7addce5bf8eabd9247f21a064d15a6d628f7e96e910a35c34474"
+    ],
+    "name": "辟尘之尾",
+    "rank": "MinionLv2",
+    "templateRef": "a88b512ae190ccf95ad0507bd76e5c697900d3e7a691becfb1af24eab21667b5",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2032060",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2032060",
+    "selectableMonsterIds": [
+      "2032060"
+    ]
+  }
+}

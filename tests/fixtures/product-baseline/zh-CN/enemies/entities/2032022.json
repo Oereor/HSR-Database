@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "来自蚀月猎群的步离人士兵，以贪婪吞噬敌人血肉而闻名。",
+    "id": "2032022",
+    "name": "蚀月狼卒",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2032022",
+    "defaultMonsterRef": "c841458454bc9a5bd2928eb2a70d5b989d4f38a26d8907a5bbe732d0777f958d",
+    "description": "来自蚀月猎群的步离人士兵，以贪婪吞噬敌人血肉而闻名。",
+    "id": "2032022",
+    "kind": "enemy",
+    "monsterRefs": [
+      "c841458454bc9a5bd2928eb2a70d5b989d4f38a26d8907a5bbe732d0777f958d"
+    ],
+    "name": "蚀月狼卒",
+    "rank": "MinionLv2",
+    "templateRef": "311bea0b70e7d6f426de73d2e49413bd17e751cc6b97f5d4ce6e04e1094d3ab3",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2032022",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2032022",
+    "selectableMonsterIds": [
+      "2032022"
+    ]
+  }
+}

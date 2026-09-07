@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "遭到黑潮侵蚀的正阳狮鹫。对杀戮的渴求成为了空洞躯壳中仅存的意志。\n虽然失去了艾格勒的赐福，但黑潮中取之不竭的能量令它成为了更加恐怖的存在。",
+    "id": "4033031",
+    "name": "黑日狮鹫",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4033031",
+    "defaultMonsterRef": "c0d25a30760539a081c66caee3a0717ddcf65d937b7add17c20bdea840861619",
+    "description": "遭到黑潮侵蚀的正阳狮鹫。对杀戮的渴求成为了空洞躯壳中仅存的意志。\n虽然失去了艾格勒的赐福，但黑潮中取之不竭的能量令它成为了更加恐怖的存在。",
+    "id": "4033031",
+    "kind": "enemy",
+    "monsterRefs": [
+      "c0d25a30760539a081c66caee3a0717ddcf65d937b7add17c20bdea840861619",
+      "bb50af11b41a5604fe310f67fcf349df92527ed0cb6db5656daabcd96565434d"
+    ],
+    "name": "黑日狮鹫",
+    "rank": "Elite",
+    "templateRef": "df4fef3ab167537c601816685f445c57e1998a09fb3d933d646f3bda494c6e5f",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4033031",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4033031",
+    "selectableMonsterIds": [
+      "4033031",
+      "403303101"
+    ]
+  }
+}

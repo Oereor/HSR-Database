@@ -5,7 +5,7 @@ import { error } from '@sveltejs/kit';
 export const prerender = true;
 export const entries = () => ['moc', 'pf', 'as', 'aa'].map((mode) => ({ mode }));
 
-export async function load({ params }) {
+export async function load({ params, locals }) {
   if (!isEndgameMode(params.mode)) error(404, '终局模式不存在');
-  return { mode: await getEndgameMode(params.mode) };
+  return { mode: await getEndgameMode(params.mode, locals.locale) };
 }

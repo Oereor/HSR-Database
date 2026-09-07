@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   import CharacterCatalogPage from '$lib/components/CharacterCatalogPage.svelte';
   import EnemyCatalogPage from '$lib/components/EnemyCatalogPage.svelte';
   import LightConeCatalogPage from '$lib/components/LightConeCatalogPage.svelte';
@@ -9,26 +10,26 @@
 {#if data.category === 'characters'}
   <CharacterCatalogPage
     entries={data.entries}
-    title={data.config.label}
-    description="浏览、搜索并筛选角色资料。"
+    title={m.characters_title()}
+    description={m.characters_description()}
   />
 {:else if data.category === 'light-cones'}
   <LightConeCatalogPage
     entries={data.entries}
-    title={data.config.label}
-    description="浏览、搜索并筛选光锥资料。"
+    title={m.light_cones_title()}
+    description={m.light_cones_description()}
   />
 {:else if data.category === 'enemies'}
   <EnemyCatalogPage
     entries={data.entries}
-    title="敌方单位"
-    description="浏览、搜索并筛选敌方单位资料。"
+    title={m.navigation_enemies()}
+    description={m.enemies_description()}
     enemyPortraits={data.enemyPortraits}
   />
 {:else}
   <RelicCatalogPage
     entries={data.entries}
-    title={data.config.label}
-    description="浏览、搜索并筛选遗器套装资料。"
+    title={m.relics_title()}
+    description={m.relics_description()}
   />
 {/if}

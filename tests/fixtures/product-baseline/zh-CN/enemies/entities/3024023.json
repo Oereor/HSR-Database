@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为「星核猎手」的一员，身着沉重装甲的神秘战士。他的铁甲能够释放炽焰，点燃战场，发动烈火般的攻势。",
+    "id": "3024023",
+    "name": "「星核猎手」萨姆（完整）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3024023",
+    "defaultMonsterRef": "280cd9f41123ad014ef139a33d396d38786b4de12ad50b1b9b2b0986b2436cb9",
+    "description": "代码受到影响后的完整投影。参照本体为「星核猎手」的一员，身着沉重装甲的神秘战士。他的铁甲能够释放炽焰，点燃战场，发动烈火般的攻势。",
+    "id": "3024023",
+    "kind": "enemy",
+    "monsterRefs": [
+      "280cd9f41123ad014ef139a33d396d38786b4de12ad50b1b9b2b0986b2436cb9",
+      "8c7b59599d382950dbed8b3abfb6d4593880764a57cc4197cb5a89e66064c16b"
+    ],
+    "name": "「星核猎手」萨姆（完整）",
+    "rank": "LittleBoss",
+    "templateRef": "6e1da77d16987395a4841cb01f97805a4ec39c24d2ea98a6a2f3577805842035",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3024023",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3024023",
+    "selectableMonsterIds": [
+      "3024023",
+      "302402301"
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "二相乐园的治安部队与偶像团体，魔法少女急袭剧团。\n在古弁才天国时代，女巫用除魔的舞蹈与歌曲，消灭隐藏在世上的黑暗。\n时移世易，这些女巫在如今的二相乐园，成为了集除灵、镇暴、反恐、艺能为一体化的职业——「魔法少女」。\n与可爱的表象不同，魔法少女常常要面对二相乐园最邪恶的事物，因而私下里的性格大多不太好。",
+    "id": "5012100",
+    "name": "魔法少女急袭剧团",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5012100",
+    "defaultMonsterRef": "f3e498418a0278f2ec0fb4ee0c0385c30b8dccd8e7a1f73f986daa135c67df99",
+    "description": "二相乐园的治安部队与偶像团体，魔法少女急袭剧团。\n在古弁才天国时代，女巫用除魔的舞蹈与歌曲，消灭隐藏在世上的黑暗。\n时移世易，这些女巫在如今的二相乐园，成为了集除灵、镇暴、反恐、艺能为一体化的职业——「魔法少女」。\n与可爱的表象不同，魔法少女常常要面对二相乐园最邪恶的事物，因而私下里的性格大多不太好。",
+    "id": "5012100",
+    "kind": "enemy",
+    "monsterRefs": [
+      "f3e498418a0278f2ec0fb4ee0c0385c30b8dccd8e7a1f73f986daa135c67df99",
+      "945528877e65f5306bde336b2bb20428fb86c566eb65d794189d159b47bb3812"
+    ],
+    "name": "魔法少女急袭剧团",
+    "rank": "MinionLv2",
+    "templateRef": "8ba0ad7ea529099db6ab19806330a5680b5952762b385b584c86d96f4429dee2",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5012100",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5012100",
+    "selectableMonsterIds": [
+      "5012100",
+      "501210001"
+    ]
+  }
+}

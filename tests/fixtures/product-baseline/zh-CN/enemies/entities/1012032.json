@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "无敌，怎么说，无敌。",
+    "id": "1012032",
+    "name": "琥珀皇",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1012032",
+    "defaultMonsterRef": "071e4fe5f8516e55e286d0d4f04800c12ce73d1bc87056fe3320f037deee8360",
+    "description": "无敌，怎么说，无敌。",
+    "id": "1012032",
+    "kind": "enemy",
+    "monsterRefs": [
+      "071e4fe5f8516e55e286d0d4f04800c12ce73d1bc87056fe3320f037deee8360"
+    ],
+    "name": "琥珀皇",
+    "rank": "MinionLv2",
+    "templateRef": "6ab0e8017989d2879f52b469a4a3c59ff44ed6f4395a35382ccf8512d086e03b",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1012032",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1012032",
+    "selectableMonsterIds": [
+      "1012032"
+    ]
+  }
+}

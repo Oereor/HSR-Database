@@ -1,0 +1,34 @@
+{
+  "catalog": {
+    "description": "「诡弈砂金」所化博弈之骰，于赌局中裁断博徒们的命运。",
+    "id": "8032030",
+    "name": "「所有或一无所有」",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": []
+  },
+  "detail": {
+    "defaultMonsterId": "8032030",
+    "defaultMonsterRef": "8ef6c4818bbeb644e83825a04108ba3a0c8b3c799b963c87479264324c0a8a43",
+    "description": "「诡弈砂金」所化博弈之骰，于赌局中裁断博徒们的命运。",
+    "id": "8032030",
+    "kind": "enemy",
+    "monsterRefs": [
+      "8ef6c4818bbeb644e83825a04108ba3a0c8b3c799b963c87479264324c0a8a43"
+    ],
+    "name": "「所有或一无所有」",
+    "rank": "MinionLv2",
+    "templateRef": "d10db68993dd5959a3ff4678baded22c8b8d3658a5d63533c07fb526bd54834f",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": []
+  },
+  "presentation": {
+    "defaultMonsterId": "8032030",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8032030",
+    "selectableMonsterIds": [
+      "8032030"
+    ]
+  }
+}

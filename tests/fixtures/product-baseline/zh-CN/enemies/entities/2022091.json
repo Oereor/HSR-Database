@@ -1,0 +1,56 @@
+{
+  "catalog": {
+    "description": "随玄鹿足迹而生的建木枝梢。",
+    "id": "2022091",
+    "name": "繁花之杪",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2022091",
+    "defaultMonsterRef": "dca3b676cdcdb943a2ed403883be0a75cdc24db507f8236f004da494fdad6a04",
+    "description": "随玄鹿足迹而生的建木枝梢。",
+    "id": "2022091",
+    "kind": "enemy",
+    "monsterRefs": [
+      "dca3b676cdcdb943a2ed403883be0a75cdc24db507f8236f004da494fdad6a04",
+      "1a1b476abf3100f7e54592df665bf3cdc0221f09e11aeed53f090265b629b963",
+      "2b441e3f6d45e16d656a1b233a1c7b2dd9b98cf4b3dd7359068986c227922f82"
+    ],
+    "name": "繁花之杪",
+    "rank": "MinionLv2",
+    "templateRef": "02cd22bda62f9d14bc5b38537aef2dff7cb434fa799cf0e53ece8400e502d16f",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2022091",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2022091",
+    "selectableMonsterIds": [
+      "2022091",
+      "202209101",
+      "202209102"
+    ]
+  }
+}

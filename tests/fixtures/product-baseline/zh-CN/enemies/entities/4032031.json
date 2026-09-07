@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n手持千斤重的巨斧，蓄力一击甚至可以击碎坚硬的磐石。任何挡在它面前的活物，皆避免不了被碾碎和侵蚀的结局。",
+    "id": "4032031",
+    "name": "黑潮蚀斧",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4032031",
+    "defaultMonsterRef": "9133b4bc2f184d44bd35e977edecebdf5cc59984c67c054444e102e5a8e5fba3",
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n手持千斤重的巨斧，蓄力一击甚至可以击碎坚硬的磐石。任何挡在它面前的活物，皆避免不了被碾碎和侵蚀的结局。",
+    "id": "4032031",
+    "kind": "enemy",
+    "monsterRefs": [
+      "9133b4bc2f184d44bd35e977edecebdf5cc59984c67c054444e102e5a8e5fba3",
+      "50fa524043fdeffe377bd79516690db6bc0e12079785967954ee93a28862092c"
+    ],
+    "name": "黑潮蚀斧",
+    "rank": "MinionLv2",
+    "templateRef": "d687ac8af4ef3dae162f12ae304ffca3f5c1275ad9e109c0859bb6c24d94abea",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4032031",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4032031",
+    "selectableMonsterIds": [
+      "4032031",
+      "403203101"
+    ]
+  }
+}

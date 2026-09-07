@@ -1,0 +1,363 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23033",
+    "name": "忍法帖•缭乱破魔",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 26.4,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 58.08,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 100.32,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 142.56,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 184.8,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 227.04,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 269.28,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23033",
+    "kind": "light-cone",
+    "name": "忍法帖•缭乱破魔",
+    "passive": {
+      "id": "23033",
+      "name": "除邪",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的击破特攻提高60%。进入战斗时立即恢复30.0点能量，且装备者施放终结技后获得【雷遁】，施放2次普攻后，装备者行动提前50%，并移除【雷遁】。装备者施放终结技后会重置【雷遁】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "。进入战斗时立即恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30.0"
+              },
+              {
+                "type": "text",
+                "value": "点能量，且装备者施放终结技后获得【雷遁】，施放2次普攻后，装备者行动提前"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "，并移除【雷遁】。装备者施放终结技后会重置【雷遁】。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的击破特攻提高70%。进入战斗时立即恢复32.5点能量，且装备者施放终结技后获得【雷遁】，施放2次普攻后，装备者行动提前55%，并移除【雷遁】。装备者施放终结技后会重置【雷遁】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "70%"
+              },
+              {
+                "type": "text",
+                "value": "。进入战斗时立即恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32.5"
+              },
+              {
+                "type": "text",
+                "value": "点能量，且装备者施放终结技后获得【雷遁】，施放2次普攻后，装备者行动提前"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "55%"
+              },
+              {
+                "type": "text",
+                "value": "，并移除【雷遁】。装备者施放终结技后会重置【雷遁】。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的击破特攻提高80%。进入战斗时立即恢复35.0点能量，且装备者施放终结技后获得【雷遁】，施放2次普攻后，装备者行动提前60%，并移除【雷遁】。装备者施放终结技后会重置【雷遁】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "80%"
+              },
+              {
+                "type": "text",
+                "value": "。进入战斗时立即恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "35.0"
+              },
+              {
+                "type": "text",
+                "value": "点能量，且装备者施放终结技后获得【雷遁】，施放2次普攻后，装备者行动提前"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "，并移除【雷遁】。装备者施放终结技后会重置【雷遁】。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的击破特攻提高90%。进入战斗时立即恢复37.5点能量，且装备者施放终结技后获得【雷遁】，施放2次普攻后，装备者行动提前65%，并移除【雷遁】。装备者施放终结技后会重置【雷遁】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "90%"
+              },
+              {
+                "type": "text",
+                "value": "。进入战斗时立即恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "37.5"
+              },
+              {
+                "type": "text",
+                "value": "点能量，且装备者施放终结技后获得【雷遁】，施放2次普攻后，装备者行动提前"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "65%"
+              },
+              {
+                "type": "text",
+                "value": "，并移除【雷遁】。装备者施放终结技后会重置【雷遁】。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的击破特攻提高100%。进入战斗时立即恢复40.0点能量，且装备者施放终结技后获得【雷遁】，施放2次普攻后，装备者行动提前70%，并移除【雷遁】。装备者施放终结技后会重置【雷遁】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "100%"
+              },
+              {
+                "type": "text",
+                "value": "。进入战斗时立即恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40.0"
+              },
+              {
+                "type": "text",
+                "value": "点能量，且装备者施放终结技后获得【雷遁】，施放2次普攻后，装备者行动提前"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "70%"
+              },
+              {
+                "type": "text",
+                "value": "，并移除【雷遁】。装备者施放终结技后会重置【雷遁】。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5,
+    "story": "「忍界」某地，灰惨的阴霾笼罩着城市。\n\n<i>「咿呀——！」</i>\n少女的身影在怪物之中穿行，其残影如同绚丽的色彩挥洒于没有月光的大地。\n\n烟尘之中，「邪忍」们痛苦呻吟，惊疑不定。\n<i>「你…是谁……」</i>\n<i>「在下忍号『乱破』，一心不乱，破邪显正是也。」</i>\n「邪忍」们面面相觑，意欲四处逃窜。\n<i>「阁下，准备好念诵辞世句了吗——」</i>\n手里剑如流光旋转，危险的气息席卷而来。\n<i>「奥义•缭乱灭破杀阵！」</i>\n\n身后的爆炸照亮了满目疮痍的夜晚。\n她深吸一口气，跃入如重金属般喧嚣的霓虹灯光之中。\n<i>「此等邪祟，实际丑恶。缭乱忍侠的壮绝•狩猎，仍需继续……」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23033",
+    "storyFallbackRendered": false
+  }
+}

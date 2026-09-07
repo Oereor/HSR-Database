@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "来自玄爪猎群的步离人士兵，擅长在无声息中猎杀目标。",
+    "id": "2032011",
+    "name": "玄爪狼卒",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2032011",
+    "defaultMonsterRef": "8ccea537a29ce99360562d34d1cae839d2f61b9f26023fa54bdbd0e912239a1d",
+    "description": "来自玄爪猎群的步离人士兵，擅长在无声息中猎杀目标。",
+    "id": "2032011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "8ccea537a29ce99360562d34d1cae839d2f61b9f26023fa54bdbd0e912239a1d"
+    ],
+    "name": "玄爪狼卒",
+    "rank": "MinionLv2",
+    "templateRef": "4b84b3bb3e253b9edcd2e7a9b7ab76ae0fb972835df6cc4fb802bd7e8ba2d7de",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2032011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2032011",
+    "selectableMonsterIds": [
+      "2032011"
+    ]
+  }
+}

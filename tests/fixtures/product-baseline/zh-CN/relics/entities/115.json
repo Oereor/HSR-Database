@@ -1,0 +1,148 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：追加攻击造成的伤害提高20%。 4件：装备者施放追加攻击时，根据追加攻击造成伤害的次数，每次造成伤害时使装备者的攻击力提高6%，最多叠加8次，持续3回合。该效果在装备者下一次施放追加攻击时移除。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "115",
+    "name": "毁烬焚骨的大公",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.5"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：追加攻击造成的伤害提高20%。 4件：装备者施放追加攻击时，根据追加攻击造成伤害的次数，每次造成伤害时使装备者的攻击力提高6%，最多叠加8次，持续3回合。该效果在装备者下一次施放追加攻击时移除。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "追加攻击造成的伤害提高20%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "追加攻击造成的伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "20%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "装备者施放追加攻击时，根据追加攻击造成伤害的次数，每次造成伤害时使装备者的攻击力提高6%，最多叠加8次，持续3回合。该效果在装备者下一次施放追加攻击时移除。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "装备者施放追加攻击时，根据追加攻击造成伤害的次数，每次造成伤害时使装备者的攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "6%"
+          },
+          {
+            "type": "text",
+            "value": "，最多叠加"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "8"
+          },
+          {
+            "type": "text",
+            "value": "次，持续"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "3"
+          },
+          {
+            "type": "text",
+            "value": "回合。该效果在装备者下一次施放追加攻击时移除。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "115",
+    "kind": "relic",
+    "name": "毁烬焚骨的大公",
+    "pieces": [
+      {
+        "description": "不停燃烧的火焰冠冕，熊熊野心是它的不尽燃料。",
+        "id": "31151",
+        "name": "大公的冥焰冠冕",
+        "slot": "HEAD"
+      },
+      {
+        "description": "以火焰为绒毛的洁白手套，将暴戾藏于缎面之下。",
+        "id": "31152",
+        "name": "大公的绒火指套",
+        "slot": "HAND"
+      },
+      {
+        "description": "一袭华美的袍，彰显长袍主人的端庄风雅。",
+        "id": "31153",
+        "name": "大公的蒙恩长袍",
+        "slot": "BODY"
+      },
+      {
+        "description": "经典而舒适的靴子，保养完好，造型挺括，修饰脚型。",
+        "id": "31154",
+        "name": "大公的绅雅礼靴",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【绥园】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.5"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31151"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31152"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31153"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31154"
+      }
+    ],
+    "route": "/relics/115"
+  }
+}

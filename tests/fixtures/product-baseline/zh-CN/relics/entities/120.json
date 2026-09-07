@@ -1,0 +1,148 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：攻击力提高12%。 4件：使装备者的暴击率提高6%，装备者施放追加攻击时，使终结技造成的伤害提高36%，持续1回合。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "120",
+    "name": "风举云飞的勇烈",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "2.3"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：攻击力提高12%。 4件：使装备者的暴击率提高6%，装备者施放追加攻击时，使终结技造成的伤害提高36%，持续1回合。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "攻击力提高12%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "使装备者的暴击率提高6%，装备者施放追加攻击时，使终结技造成的伤害提高36%，持续1回合。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的暴击率提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "6%"
+          },
+          {
+            "type": "text",
+            "value": "，装备者施放追加攻击时，使终结技造成的伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "36%"
+          },
+          {
+            "type": "text",
+            "value": "，持续"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "1"
+          },
+          {
+            "type": "text",
+            "value": "回合。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "120",
+    "kind": "relic",
+    "name": "风举云飞的勇烈",
+    "pieces": [
+      {
+        "description": "以凶鸟「大风」为原型的面甲，两对辅眼曾目睹过神迹示现。",
+        "id": "31201",
+        "name": "勇烈的玄枵面甲",
+        "slot": "HEAD"
+      },
+      {
+        "description": "嵌合肌体的仿生手甲。若想狩猎猛兽，就要有比猛兽更锐利的爪牙。",
+        "id": "31202",
+        "name": "勇烈的钩爪腕甲",
+        "slot": "HAND"
+      },
+      {
+        "description": "身如凛风，翱翔群狼仰首处，猎物与猎人终将易位而处。",
+        "id": "31203",
+        "name": "勇烈的飞翎瓷甲",
+        "slot": "BODY"
+      },
+      {
+        "description": "禽爪制式的战靴，着装之人迅疾如风地奔袭战场，轻易踏行于荆棘坎坷。",
+        "id": "31204",
+        "name": "勇烈的逐猎腿甲",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【匹诺康尼大剧院】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "2.3"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31201"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31202"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31203"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31204"
+      }
+    ],
+    "route": "/relics/120"
+  }
+}

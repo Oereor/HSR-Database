@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "时间刺客于光阴间穿梭，无情地收割着世人宝贵的行动值。",
+    "id": "4032028",
+    "name": "时间刺客",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4032028",
+    "defaultMonsterRef": "93e98c9a555efce5308ee2b542e28ff98912009a334ae1fa2f9ea4be648d88c9",
+    "description": "时间刺客于光阴间穿梭，无情地收割着世人宝贵的行动值。",
+    "id": "4032028",
+    "kind": "enemy",
+    "monsterRefs": [
+      "93e98c9a555efce5308ee2b542e28ff98912009a334ae1fa2f9ea4be648d88c9"
+    ],
+    "name": "时间刺客",
+    "rank": "MinionLv2",
+    "templateRef": "36066d6ec646cdc576fe93dff4807552a7632c1ca43008e4f3ecd01bcaa49742",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4032028",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4032028",
+    "selectableMonsterIds": [
+      "4032028"
+    ]
+  }
+}

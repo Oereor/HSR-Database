@@ -1,5 +1,5 @@
 import type { CatalogEntry } from '$lib/domain/types';
-import { getCatalog, getHomepageRecentWarps, getManifest } from '$lib/server/generated';
+import { getCatalog, getHomepageRecentWarps } from '$lib/server/generated';
 
 function resolveEntries(
   records: Array<{ id: string; gachaId: number }>,
@@ -15,15 +15,14 @@ function resolveEntries(
   });
 }
 
-export async function load() {
-  const [manifest, homepage, characters, lightCones] = await Promise.all([
-    getManifest(),
-    getHomepageRecentWarps(),
-    getCatalog('characters'),
-    getCatalog('light-cones')
+export async function load({ locals }) {
+  const locale = locals.locale;
+  const [homepage, characters, lightCones] = await Promise.all([
+    getHomepageRecentWarps(locale),
+    getCatalog(locale, 'characters'),
+    getCatalog(locale, 'light-cones')
   ]);
   return {
-    manifest,
     recentCharacters: resolveEntries(
       homepage.avatarUps.map((record) => ({ id: record.avatarId, gachaId: record.gachaId })),
       characters,

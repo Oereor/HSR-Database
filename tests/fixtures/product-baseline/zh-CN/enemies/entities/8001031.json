@@ -1,0 +1,34 @@
+{
+  "catalog": {
+    "description": "群攻羁绊召唤的法球，可以被攻击。",
+    "id": "8001031",
+    "name": "借力球",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": []
+  },
+  "detail": {
+    "defaultMonsterId": "8001031",
+    "defaultMonsterRef": "b6f7a6ffe4dc800d6751647cf212c9cabd5d334b3236a4f0a021202e92a29f20",
+    "description": "群攻羁绊召唤的法球，可以被攻击。",
+    "id": "8001031",
+    "kind": "enemy",
+    "monsterRefs": [
+      "b6f7a6ffe4dc800d6751647cf212c9cabd5d334b3236a4f0a021202e92a29f20"
+    ],
+    "name": "借力球",
+    "rank": "Minion",
+    "templateRef": "e9612ae0e26dd690ecc30c16fa23bbfe7e6a4bc01919fd93bd5117255a846336",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": []
+  },
+  "presentation": {
+    "defaultMonsterId": "8001031",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8001031",
+    "selectableMonsterIds": [
+      "8001031"
+    ]
+  }
+}

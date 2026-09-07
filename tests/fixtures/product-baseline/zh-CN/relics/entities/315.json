@@ -1,0 +1,112 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：我方角色施放追加攻击时，装备者获得一层【功勋】，最多叠加5层，每层【功勋】使装备者追加攻击造成的伤害提高5%，叠满5层时，额外使装备者的暴击伤害提高25%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "315",
+    "name": "奔狼的都蓝王朝",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "2.3"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：我方角色施放追加攻击时，装备者获得一层【功勋】，最多叠加5层，每层【功勋】使装备者追加攻击造成的伤害提高5%，叠满5层时，额外使装备者的暴击伤害提高25%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "我方角色施放追加攻击时，装备者获得一层【功勋】，最多叠加5层，每层【功勋】使装备者追加攻击造成的伤害提高5%，叠满5层时，额外使装备者的暴击伤害提高25%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "我方角色施放追加攻击时，装备者获得一层【功勋】，最多叠加"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "5"
+          },
+          {
+            "type": "text",
+            "value": "层，每层【功勋】使装备者追加攻击造成的伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "5%"
+          },
+          {
+            "type": "text",
+            "value": "，叠满"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "5"
+          },
+          {
+            "type": "text",
+            "value": "层时，额外使装备者的暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "25%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "315",
+    "kind": "relic",
+    "name": "奔狼的都蓝王朝",
+    "pieces": [
+      {
+        "description": "位面封装的是青丘步离的穹窿金帐。与步离人留在银河中的蛮野名声不同，他们拥有非凡的生物技术。狼子们汇聚在伟大的巢父都蓝之侧，将天上众星视为牧畜，逐驰其间。",
+        "id": "33155",
+        "name": "都蓝的穹窿金帐",
+        "slot": "NECK"
+      },
+      {
+        "description": "是缰绳、是锁镣，亦是皮鞭。高过战兽腿的步离青年被教会的第一个道理就是：永远要把缰绳握紧在手里，否则自己将成为被奴役的牲畜，甚至饲料。",
+        "id": "33156",
+        "name": "都蓝的器兽缰辔",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "2.3"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33155"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33156"
+      }
+    ],
+    "route": "/relics/315"
+  }
+}

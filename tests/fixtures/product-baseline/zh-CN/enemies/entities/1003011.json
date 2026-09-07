@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的错误投影。参照本体为贝洛伯格的戍卫部队「银鬃铁卫」分队的领导者。\n战斗中，只要敌方还有队友存在，银鬃尉官会一直架起巨盾。攻击架盾状态下的银鬃尉官，会立即遭到强力的反击。",
+    "id": "1003011",
+    "name": "银鬃尉官（错误）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1003011",
+    "defaultMonsterRef": "f2bdb5a0e5dee67ff105ba42cfadd1ef21aed5261aae79aabc01e3ce1b8f285c",
+    "description": "代码受到影响后的错误投影。参照本体为贝洛伯格的戍卫部队「银鬃铁卫」分队的领导者。\n战斗中，只要敌方还有队友存在，银鬃尉官会一直架起巨盾。攻击架盾状态下的银鬃尉官，会立即遭到强力的反击。",
+    "id": "1003011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "f2bdb5a0e5dee67ff105ba42cfadd1ef21aed5261aae79aabc01e3ce1b8f285c",
+      "46cd16a6119dae0f4ecfbc0bbd9c8ea85a66e48adfffe651cb7430a5a4e6b5ee",
+      "0c81697824d8b8c56187eb2749026a452e354a88257de632d8686e72a4fd6113"
+    ],
+    "name": "银鬃尉官（错误）",
+    "rank": "Elite",
+    "templateRef": "44c8898ea34dd43b4183f7b7c9b1d6b2449a4afa43a30780ef442be0c1d8e337",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1003011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1003011",
+    "selectableMonsterIds": [
+      "1003011",
+      "100301101",
+      "100301102"
+    ]
+  }
+}

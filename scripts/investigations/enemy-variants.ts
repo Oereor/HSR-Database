@@ -1,6 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createTextResolver, loadTextMap } from '../data/localization.js';
+import { textSource } from '../data/domain/shared.js';
+import { getProductionLocale } from '../data/locale-registry.js';
 import { assertDataRoot, generatedRoot, siteRoot, sourceCommit } from '../data/paths.js';
 import { readTable } from '../data/raw.js';
 import type { Enemy } from '../../src/lib/domain/types.js';
@@ -43,7 +45,11 @@ const [
   readTable<Raw>(root, 'MonsterGuidePhase'),
   readTable<Raw>(root, 'MonsterGuideSkill')
 ]);
-const text = await createTextResolver(await loadTextMap(root));
+const locale = getProductionLocale();
+const text = await createTextResolver(
+  { locale: locale.locale, textMapCode: locale.textMapCode },
+  await loadTextMap(root, locale.textMapCode)
+);
 const assets = JSON.parse(
   await readFile(path.join(siteRoot, 'static', 'generated-enemy-assets', 'index.json'), 'utf8')
 ) as { monsters?: Record<string, { imageId?: string }> };
@@ -52,19 +58,28 @@ const generatedEnemies = new Map(
     templates.map(async (template) => {
       const id = String(template.MonsterTemplateID);
       const enemy = JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'enemies', `${id}.json`), 'utf8')
+        await readFile(
+          path.join(generatedRoot, 'views', 'zh-CN', 'details', 'enemies', `${id}.json`),
+          'utf8'
+        )
       ) as Enemy;
       return [id, enemy] as const;
     })
   )
 );
 
-const nameOf = (template: Raw): string =>
-  text.resolveRef(template.MonsterName, {
-    entity: 'enemy-variant-investigation',
-    id: String(template.MonsterTemplateID),
-    field: 'MonsterName'
+const nameOf = (template: Raw): string => {
+  const source = textSource(template.MonsterName);
+  if (!source) return '';
+  const result = text.resolve(source, {
+    provenance: {
+      entity: 'enemy-variant-investigation',
+      id: String(template.MonsterTemplateID),
+      field: 'MonsterName'
+    }
   });
+  return result.status === 'available' ? result.value : '';
+};
 const templateIdOf = (template: Raw): string => String(template.MonsterTemplateID);
 const groupIdOf = (template: Raw): string =>
   template.TemplateGroupID === undefined || template.TemplateGroupID === null
@@ -183,7 +198,9 @@ const collectMonsterIds = (value: unknown): void => {
 };
 for (const mode of ['moc', 'pf', 'as', 'aa'])
   collectMonsterIds(
-    JSON.parse(await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8'))
+    JSON.parse(
+      await readFile(path.join(generatedRoot, 'views', 'zh-CN', 'endgame', `${mode}.json`), 'utf8')
+    )
   );
 
 const output = {

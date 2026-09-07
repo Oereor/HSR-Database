@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "「星核猎手」的一员，身着沉重装甲的神秘战士。他的铁甲能够释放炽焰，点燃战场，发动烈火般的攻势。",
+    "id": "3024021",
+    "name": "「星核猎手」萨姆",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3024021",
+    "defaultMonsterRef": "0d558dbc42a3162181959dbdb2f54121354cce15e72430ca4eb074773619514a",
+    "description": "「星核猎手」的一员，身着沉重装甲的神秘战士。他的铁甲能够释放炽焰，点燃战场，发动烈火般的攻势。",
+    "id": "3024021",
+    "kind": "enemy",
+    "monsterRefs": [
+      "0d558dbc42a3162181959dbdb2f54121354cce15e72430ca4eb074773619514a"
+    ],
+    "name": "「星核猎手」萨姆",
+    "rank": "LittleBoss",
+    "templateRef": "0ac1ccabbc3f4443543d61e20d9531c5bb3c0a341e798aa8575c4662813cf223",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3024021",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3024021",
+    "selectableMonsterIds": [
+      "3024021"
+    ]
+  }
+}

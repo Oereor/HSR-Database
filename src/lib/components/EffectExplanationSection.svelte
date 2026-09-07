@@ -1,6 +1,7 @@
 <script lang="ts">
   import GameText from '$lib/components/GameText.svelte';
   import type { ExtraEffect } from '$lib/domain/types';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let effects: ExtraEffect[] = [];
   export let context: 'skill' | 'stage-effect' = 'skill';
@@ -13,7 +14,7 @@
     data-skill-extra-effects={context === 'skill' ? true : undefined}
     data-stage-effect-explanations={context === 'stage-effect' ? true : undefined}
   >
-    <summary>效果说明</summary>
+    <summary>{m.effect_explanation()}</summary>
     <div class="enemy-extra-effects__body">
       {#each effects as effect, index (`${effect.id}:${index}`)}
         <section data-extra-effect={effect.id}>

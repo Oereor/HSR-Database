@@ -1,0 +1,104 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的暴击伤害提高16%。当装备者的暴击伤害大于等于120%时，进入战斗后装备者的暴击率提高60%，持续到施放首次攻击后结束。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "305",
+    "name": "星体差分机",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.0"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的暴击伤害提高16%。当装备者的暴击伤害大于等于120%时，进入战斗后装备者的暴击率提高60%，持续到施放首次攻击后结束。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的暴击伤害提高16%。当装备者的暴击伤害大于等于120%时，进入战斗后装备者的暴击率提高60%，持续到施放首次攻击后结束。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "16%"
+          },
+          {
+            "type": "text",
+            "value": "。当装备者的暴击伤害大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "120%"
+          },
+          {
+            "type": "text",
+            "value": "时，进入战斗后装备者的暴击率提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "60%"
+          },
+          {
+            "type": "text",
+            "value": "，持续到施放首次攻击后结束。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "305",
+    "kind": "relic",
+    "name": "星体差分机",
+    "pieces": [
+      {
+        "description": "位面封装的是螺丝星的核心——行星被囚于由无数杠杆、活塞与齿轮构成的囚笼中，螺丝星的住民美其名曰「钢铁太阳」。",
+        "id": "33055",
+        "name": "螺丝星的机械烈阳",
+        "slot": "NECK"
+      },
+      {
+        "description": "行星环承载着螺丝星的一切——有多少人曾意识到密布的矩形孔隙阵列书写了行星系统的真相？",
+        "id": "33056",
+        "name": "螺丝星的环星孔带",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「模拟宇宙•第五世界」沉浸装置兑换",
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33055"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33056"
+      }
+    ],
+    "route": "/relics/305"
+  }
+}

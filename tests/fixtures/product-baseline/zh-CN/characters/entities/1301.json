@@ -1,0 +1,2869 @@
+{
+  "catalog": {
+    "baseName": "加拉赫",
+    "description": "匹诺康尼猎犬家系的治安官，对来访宾客以礼相待，但保有戒心。似乎有着诸多往事，却从不主动提及。",
+    "element": "Fire",
+    "elementName": "火",
+    "id": "1301",
+    "name": "加拉赫",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "加拉赫",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 98
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 72,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 60,
+            "perLevel": 3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 177.6,
+            "perLevel": 8.88
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 100.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 84,
+            "perLevel": 3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 248.64,
+            "perLevel": 8.88
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 108,
+            "perLevel": 3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 319.68,
+            "perLevel": 8.88
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 158.4,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 132,
+            "perLevel": 3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 390.72,
+            "perLevel": 8.88
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 187.2,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 156,
+            "perLevel": 3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 461.76,
+            "perLevel": 8.88
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 216,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 180,
+            "perLevel": 3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 532.8,
+            "perLevel": 8.88
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 204,
+            "perLevel": 3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 603.84,
+            "perLevel": 8.88
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "匹诺康尼猎犬家系的治安官，对来访宾客以礼相待，但保有戒心。似乎有着诸多往事，却从不主动提及。",
+    "element": "Fire",
+    "elementName": "火",
+    "equipmentRecommendation": {
+      "avatarId": "1301",
+      "cavernSetIds": [
+        "119",
+        "111",
+        "101"
+      ],
+      "lightConeIds": [
+        "21035",
+        "21021"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "HealRatioBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "DefenceAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "BreakDamageAddedRatioBase",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "316",
+        "307",
+        "302"
+      ],
+      "subStatPropertyTypes": [
+        "SpeedDelta",
+        "BreakDamageAddedRatioBase",
+        "StatusResistanceBase"
+      ]
+    },
+    "fullName": "加拉赫",
+    "id": "1301",
+    "kind": "character",
+    "name": "加拉赫",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "加拉赫进入战斗后会恢复<unbreak>20</unbreak>点能量，效果抵抗提高<unbreak>50%</unbreak>。",
+            "iconKey": "rank--130101",
+            "id": "130101",
+            "name": "盐与犬",
+            "rank": 1
+          },
+          {
+            "description": "施放战技时，解除指定我方单体的<unbreak>1</unbreak>个<u>负面效果</u>，同时使其效果抵抗提高<unbreak>30%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              }
+            ],
+            "iconKey": "rank--130102",
+            "id": "130102",
+            "name": "狮子之尾",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--130103",
+            "id": "130103",
+            "name": "逝者的新生",
+            "rank": 3
+          },
+          {
+            "description": "加拉赫终结技造成的【酩酊】状态持续时间延长<unbreak>1</unbreak>回合。",
+            "iconKey": "rank--130104",
+            "id": "130104",
+            "name": "临终的轻语",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--130105",
+            "id": "130105",
+            "name": "午后之死",
+            "rank": 5
+          },
+          {
+            "description": "加拉赫的击破特攻提高<unbreak>20%</unbreak>，弱点击破效率提高<unbreak>20%</unbreak>。",
+            "iconKey": "rank--130106",
+            "id": "130106",
+            "name": "血与沙",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 110
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1301001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1301001",
+                "variantIds": [
+                  "130101",
+                  "130108"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "130101",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫50%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫60%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫70%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫80%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫90%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫100%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫110%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫120%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫130%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫140%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "开瓶费",
+                "progressionId": "1301001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              },
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "130108",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫125%攻击力的火属性伤害。并使目标攻击力降低10.0%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。并使目标攻击力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫150%攻击力的火属性伤害。并使目标攻击力降低11.0%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。并使目标攻击力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫175%攻击力的火属性伤害。并使目标攻击力降低12.0%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。并使目标攻击力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫200%攻击力的火属性伤害。并使目标攻击力降低13.0%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。并使目标攻击力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫225%攻击力的火属性伤害。并使目标攻击力降低14.0%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "225%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。并使目标攻击力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫250%攻击力的火属性伤害。并使目标攻击力降低15.0%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。并使目标攻击力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫275%攻击力的火属性伤害。并使目标攻击力降低16.0%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "275%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。并使目标攻击力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫300%攻击力的火属性伤害。并使目标攻击力降低17.0%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。并使目标攻击力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫325%攻击力的火属性伤害。并使目标攻击力降低18.0%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "325%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。并使目标攻击力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于加拉赫350%攻击力的火属性伤害。并使目标攻击力降低19.0%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "350%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。并使目标攻击力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "酒花奔涌",
+                "progressionId": "1301001",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1301002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1301002",
+                "variantIds": [
+                  "130102"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  },
+                  "energyGain": 30
+                },
+                "id": "130102",
+                "levels": [
+                  {
+                    "description": "立即为指定我方单体回复200点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "立即为指定我方单体回复340点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "340"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "立即为指定我方单体回复480点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "480"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "立即为指定我方单体回复676点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "676"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "立即为指定我方单体回复830点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "830"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "立即为指定我方单体回复984点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "984"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "立即为指定我方单体回复1138点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1138"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "立即为指定我方单体回复1292点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1292"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "立即为指定我方单体回复1446点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1446"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "立即为指定我方单体回复1600点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1600"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "立即为指定我方单体回复1684点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1684"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "立即为指定我方单体回复1768点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1768"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "立即为指定我方单体回复1852点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1852"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "立即为指定我方单体回复1936点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1936"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "立即为指定我方单体回复2020点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2020"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "罐装特调",
+                "progressionId": "1301002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1301003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1301003",
+                "variantIds": [
+                  "130103"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "130103",
+                "levels": [
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫75%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫83%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫90%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫98%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫105%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫113%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫122%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "122%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫131%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "131%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫141%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "141%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫150%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫158%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "158%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫165%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "165%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫173%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫180%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使敌方全体陷入【酩酊】状态，持续2回合，同时对敌方全体造成等同于加拉赫188%攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并将下一次普攻强化为【酒花奔涌】。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "香槟仪礼",
+                "progressionId": "1301003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1301004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1301004",
+                "variantIds": [
+                  "130104"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "击破特攻、目标韧性上限、角色等级越高，造成的击破伤害越高。\n击破伤害无法暴击，不受伤害提高类效果所影响。",
+                      "id": "10000014",
+                      "name": "击破伤害"
+                    }
+                  ]
+                },
+                "id": "130104",
+                "levels": [
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高6.0%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者80点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高6.6%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者136点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "136"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高7.2%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者192点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高7.8%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者270点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "270"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高8.4%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者332点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "332"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高9.0%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者394点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "394"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高9.8%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者455点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "455"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高10.5%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者517点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "517"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高11.3%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者578点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "578"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高12.0%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者640点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "640"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高12.6%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者674点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "674"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高13.2%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者707点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "707"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高13.8%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者741点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "741"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高14.4%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者774点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "774"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "【酩酊】使目标受到的击破伤害提高15.0%。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者808点生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "【酩酊】使目标受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。陷入【酩酊】状态的目标每次受到我方角色攻击后，会回复攻击者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "808"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点生命值。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "鏖战正酣",
+                "progressionId": "1301004",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1301007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1301007",
+                "variantIds": [
+                  "130107"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "130107",
+                "levels": [
+                  {
+                    "description": "立即攻击敌人，进入战斗后使敌方全体陷入【酩酊】状态，持续2回合，并对敌方全体造成等同于加拉赫50%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击敌人，进入战斗后使敌方全体陷入【酩酊】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对敌方全体造成等同于加拉赫"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "亲启佳酿",
+                "progressionId": "1301007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "使自身提供的治疗量提高，提高数值等同于击破特攻的<unbreak>50%</unbreak>，最多使提供的治疗量提高<unbreak>75%</unbreak>。",
+            "iconKey": "skill-tree--1301101",
+            "id": "1301101",
+            "name": "崭新配方",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "施放终结技后，立刻使自己<u>行动提前</u><unbreak>100%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "skill-tree--1301102",
+            "id": "1301102",
+            "name": "天然酵母",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "加拉赫施放【酒花奔涌】攻击陷入【酩酊】状态的目标时，使此次天赋提供的生命回复效果对我方队友也会生效。",
+            "iconKey": "skill-tree--1301103",
+            "id": "1301103",
+            "name": "敬请干杯",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1301201",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [],
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1301202",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1301101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1301203",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1301202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1301204",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1301203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1301205",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1301102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1301206",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1301205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1301207",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1301206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1301208",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1301103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "效果抵抗提高8.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1301209",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1301103"
+            ],
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "生命值上限提高8.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1301210",
+            "name": "生命强化",
+            "prerequisiteIds": [],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1301001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130101",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130108",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1301002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130102",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1301003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130103",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1301004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130104",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1301007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130107",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1301",
+    "subtitleRendered": false
+  }
+}

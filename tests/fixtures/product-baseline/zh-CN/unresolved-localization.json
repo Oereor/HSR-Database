@@ -1,0 +1,26 @@
+{
+  "actionableFallbackCount": 1,
+  "actionableFallbackSamples": [
+    {
+      "disposition": {
+        "fallbackUsed": true,
+        "productRouteReachability": "reachable",
+        "requirement": "required",
+        "visibility": "emitted"
+      },
+      "identifier": "14320274156050016169",
+      "kind": "unresolved-hash",
+      "source": {
+        "entity": "enemy-skill",
+        "field": "SkillName",
+        "id": "801201003"
+      }
+    }
+  ],
+  "classificationComplete": true,
+  "invalidProgramErrors": {
+    "categoryD": 0,
+    "invalidDescriptionParameters": 0,
+    "invalidReferences": 0
+  }
+}

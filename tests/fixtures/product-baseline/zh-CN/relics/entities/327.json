@@ -1,0 +1,94 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的暴击率提高8%。进入战斗时，若装备者与另一名队友均为开拓同行角色，使装备者的暴击伤害提高32%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "327",
+    "name": "坠星启航地",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "4.4"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的暴击率提高8%。进入战斗时，若装备者与另一名队友均为开拓同行角色，使装备者的暴击伤害提高32%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的暴击率提高8%。进入战斗时，若装备者与另一名队友均为开拓同行角色，使装备者的暴击伤害提高32%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的暴击率提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "8%"
+          },
+          {
+            "type": "text",
+            "value": "。进入战斗时，若装备者与另一名队友均为开拓同行角色，使装备者的暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "32%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "327",
+    "kind": "relic",
+    "name": "坠星启航地",
+    "pieces": [
+      {
+        "description": "位面球中封装着曾坠落在此的星穹列车。沉默的星空，冷寂的引擎，一段战火交织的开拓之旅。",
+        "id": "33275",
+        "name": "启航地的搁浅列车",
+        "slot": "NECK"
+      },
+      {
+        "description": "少女仰望星空，绘出梦想中的银河星轨，希冀有朝一日自己也能去往无垠的未来。",
+        "id": "33276",
+        "name": "启航地的梦想银轨",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "4.4"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33275"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33276"
+      }
+    ],
+    "route": "/relics/327"
+  }
+}

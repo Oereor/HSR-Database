@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "银鬃铁卫的戍卫长。\n杰帕德会指挥麾下士兵集中攻击，并且能为士兵提供免疫一次攻击的屏障。",
+    "id": "1004028",
+    "name": "杰帕德",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1004028",
+    "defaultMonsterRef": "1ecca7b3a8abcb91ecee117637d3332ce6a5104aafef7f5acaffdc0a85db6ce5",
+    "description": "银鬃铁卫的戍卫长。\n杰帕德会指挥麾下士兵集中攻击，并且能为士兵提供免疫一次攻击的屏障。",
+    "id": "1004028",
+    "kind": "enemy",
+    "monsterRefs": [
+      "1ecca7b3a8abcb91ecee117637d3332ce6a5104aafef7f5acaffdc0a85db6ce5"
+    ],
+    "name": "杰帕德",
+    "rank": "LittleBoss",
+    "templateRef": "492c0c12b8f553e07c113f9f405b14fac930b31c5d4edb65ad926300ab948d2c",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1004028",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1004028",
+    "selectableMonsterIds": [
+      "1004028"
+    ]
+  }
+}

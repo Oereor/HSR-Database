@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的错误投影。参照本体为以古老机巧术铸造的镇守金人。\n无数岁月前，金人随着仙舟出航求取仙方，监管和辅助人类进行战争——但历尽叛乱后，金人最终为仙舟人所降服。\n而今所有的金人都被符箓严格宰制，用以把守机要重地。",
+    "id": "2013011",
+    "name": "金人司阍（错误）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2013011",
+    "defaultMonsterRef": "e863c09ba48fe418721d24d7fc83b41be0086bdf6e139be2fdb318bcd78199c7",
+    "description": "代码受到影响后的错误投影。参照本体为以古老机巧术铸造的镇守金人。\n无数岁月前，金人随着仙舟出航求取仙方，监管和辅助人类进行战争——但历尽叛乱后，金人最终为仙舟人所降服。\n而今所有的金人都被符箓严格宰制，用以把守机要重地。",
+    "id": "2013011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e863c09ba48fe418721d24d7fc83b41be0086bdf6e139be2fdb318bcd78199c7",
+      "82a6d0896a705b2119908055594b3306f28371b5178b67c2f38be42076ea3677",
+      "a71334e7bba06d48e15e2d2cf1d5b59479561478ebe5dcdeb0d95cf9091efd43",
+      "e4ac0bd45282e6db1a0cecffb14d2f309543d1fff65018a0624250b5f9693b37"
+    ],
+    "name": "金人司阍（错误）",
+    "rank": "Elite",
+    "templateRef": "bebafde2f541ba2a331ca3a1b5be542e31a0e28da48794de0bc03820348dc44e",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2013011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2013011",
+    "selectableMonsterIds": [
+      "2013011",
+      "201301101",
+      "201301102",
+      "201301103"
+    ]
+  }
+}

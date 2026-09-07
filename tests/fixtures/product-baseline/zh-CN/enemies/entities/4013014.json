@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "曾经是由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血，能承载泰坦灵魂的强大造物，如今却堕落成只知道杀戮的机器。",
+    "id": "4013014",
+    "name": "巨剑守护•陷坚挫锐的先锋将",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4013014",
+    "defaultMonsterRef": "ad6bc0d1cd1957928c2c78df33de843d350e159283c438dbb5097f10973c5665",
+    "description": "曾经是由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血，能承载泰坦灵魂的强大造物，如今却堕落成只知道杀戮的机器。",
+    "id": "4013014",
+    "kind": "enemy",
+    "monsterRefs": [
+      "ad6bc0d1cd1957928c2c78df33de843d350e159283c438dbb5097f10973c5665",
+      "a4538fe6dbae3a2ea7ef56531ef3c6497ae7ab9763233a830a4247e073f0e229"
+    ],
+    "name": "巨剑守护•陷坚挫锐的先锋将",
+    "rank": "Elite",
+    "templateRef": "63e763fbe12ad61b940ebc424b10a30fd7097d635f08fbbd697c395e26dbf0c5",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4013014",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4013014",
+    "selectableMonsterIds": [
+      "4013014",
+      "401301401"
+    ]
+  }
+}

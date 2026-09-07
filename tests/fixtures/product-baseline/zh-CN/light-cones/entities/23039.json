@@ -1,0 +1,510 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>毁灭</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23039",
+    "name": "血火啊，燃烧前路",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 18,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 62.4,
+            "perLevel": 9.36
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 39.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 137.28,
+            "perLevel": 9.36
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 68.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 237.12,
+            "perLevel": 9.36
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 336.96,
+            "perLevel": 9.36
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 126,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 436.8,
+            "perLevel": 9.36
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 154.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 536.64,
+            "perLevel": 9.36
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 636.48,
+            "perLevel": 9.36
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>毁灭</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23039",
+    "kind": "light-cone",
+    "name": "血火啊，燃烧前路",
+    "passive": {
+      "id": "23039",
+      "name": "远望",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的生命上限提高18%，受到的治疗量提高20%，施放战技或终结技时消耗等同于自身6.0%生命上限的生命值，并使本次攻击造成的伤害提高30%，若该效果消耗的生命值高于500点，可使伤害额外提高30%。\n若当前生命值不足，该效果最多使装备者的当前生命值降低至1点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "，受到的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "，施放战技或终结技时消耗等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "6.0%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的生命值，并使本次攻击造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "，若该效果消耗的生命值高于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "500"
+              },
+              {
+                "type": "text",
+                "value": "点，可使伤害额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "。\n若当前生命值不足，该效果最多使装备者的当前生命值降低至1点。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的生命上限提高21%，受到的治疗量提高25%，施放战技或终结技时消耗等同于自身6.5%生命上限的生命值，并使本次攻击造成的伤害提高35%，若该效果消耗的生命值高于500点，可使伤害额外提高35%。\n若当前生命值不足，该效果最多使装备者的当前生命值降低至1点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "，受到的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "，施放战技或终结技时消耗等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "6.5%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的生命值，并使本次攻击造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "35%"
+              },
+              {
+                "type": "text",
+                "value": "，若该效果消耗的生命值高于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "500"
+              },
+              {
+                "type": "text",
+                "value": "点，可使伤害额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "35%"
+              },
+              {
+                "type": "text",
+                "value": "。\n若当前生命值不足，该效果最多使装备者的当前生命值降低至1点。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的生命上限提高24%，受到的治疗量提高30%，施放战技或终结技时消耗等同于自身7.0%生命上限的生命值，并使本次攻击造成的伤害提高40%，若该效果消耗的生命值高于500点，可使伤害额外提高40%。\n若当前生命值不足，该效果最多使装备者的当前生命值降低至1点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，受到的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "，施放战技或终结技时消耗等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "7.0%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的生命值，并使本次攻击造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "，若该效果消耗的生命值高于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "500"
+              },
+              {
+                "type": "text",
+                "value": "点，可使伤害额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "。\n若当前生命值不足，该效果最多使装备者的当前生命值降低至1点。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的生命上限提高27%，受到的治疗量提高35%，施放战技或终结技时消耗等同于自身7.5%生命上限的生命值，并使本次攻击造成的伤害提高45%，若该效果消耗的生命值高于500点，可使伤害额外提高45%。\n若当前生命值不足，该效果最多使装备者的当前生命值降低至1点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "27%"
+              },
+              {
+                "type": "text",
+                "value": "，受到的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "35%"
+              },
+              {
+                "type": "text",
+                "value": "，施放战技或终结技时消耗等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "7.5%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的生命值，并使本次攻击造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "45%"
+              },
+              {
+                "type": "text",
+                "value": "，若该效果消耗的生命值高于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "500"
+              },
+              {
+                "type": "text",
+                "value": "点，可使伤害额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "45%"
+              },
+              {
+                "type": "text",
+                "value": "。\n若当前生命值不足，该效果最多使装备者的当前生命值降低至1点。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的生命上限提高30%，受到的治疗量提高40%，施放战技或终结技时消耗等同于自身8.0%生命上限的生命值，并使本次攻击造成的伤害提高50%，若该效果消耗的生命值高于500点，可使伤害额外提高50%。\n若当前生命值不足，该效果最多使装备者的当前生命值降低至1点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "，受到的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "，施放战技或终结技时消耗等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8.0%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的生命值，并使本次攻击造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "，若该效果消耗的生命值高于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "500"
+              },
+              {
+                "type": "text",
+                "value": "点，可使伤害额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "。\n若当前生命值不足，该效果最多使装备者的当前生命值降低至1点。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          2,
+          4,
+          5
+        ]
+      }
+    },
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 5,
+    "story": "冰冷的露水凝结在锋刃，滑落血色的痕迹。\n铁锈味的荒野，鏖战燃起的火焰仍在灰烬上跳跃。\n\n<i>「迈德漠斯，刚才真是神一样的战斗啊！」</i>\n赤裸上身的战士擦拭武器，兴奋地喊道。\n\n<i>「万敌，以后我也要像你一样百战百胜！」</i>\n孩子崇敬地看着他，手中捏着一把断剑。\n\n<i>「王储，我们回到悬锋指日可待啊。」</i>\n沧桑的老人笑着，举起酒杯向他致意。\n\n他点点头，兀自走到了营地边。\n重生的疼痛仍在皮肤上滚动，明日，他将带领悬锋孤军再次出发，迁往异乡。\n流离将停于何处，他不知道，他唯一能确定的是——他将背负王的职责，直至血火燃尽。\n\n夜色渐深，他独自痛饮血酿，过路的吟游诗人拉动琴弦，不着调的歌声在空中晃荡——\n<i>「家乡是梦想之地呐，不是可以抵达的地方。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23039",
+    "storyFallbackRendered": false
+  }
+}

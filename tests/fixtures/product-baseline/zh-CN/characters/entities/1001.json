@@ -1,0 +1,3414 @@
+{
+  "catalog": {
+    "baseName": "三月七",
+    "description": "一度沉睡于恒冰，对过去一无所知的少女。\n为了寻找身世的真相，选择与星穹列车同行。\n目前为自己准备了约六十七种「身世故事」。",
+    "element": "Ice",
+    "elementName": "冰",
+    "id": "1001",
+    "name": "三月七·存护",
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "三月七",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 150,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 101
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 69.6,
+            "perLevel": 3.48
+          },
+          "defence": {
+            "base": 78,
+            "perLevel": 3.9
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 144,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 97.44,
+            "perLevel": 3.48
+          },
+          "defence": {
+            "base": 109.2,
+            "perLevel": 3.9
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 201.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 125.28,
+            "perLevel": 3.48
+          },
+          "defence": {
+            "base": 140.4,
+            "perLevel": 3.9
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 153.12,
+            "perLevel": 3.48
+          },
+          "defence": {
+            "base": 171.6,
+            "perLevel": 3.9
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 316.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 180.96,
+            "perLevel": 3.48
+          },
+          "defence": {
+            "base": 202.8,
+            "perLevel": 3.9
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 374.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 208.8,
+            "perLevel": 3.48
+          },
+          "defence": {
+            "base": 234,
+            "perLevel": 3.9
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 432,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 236.64,
+            "perLevel": 3.48
+          },
+          "defence": {
+            "base": 265.2,
+            "perLevel": 3.9
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "一度沉睡于恒冰，对过去一无所知的少女。\n为了寻找身世的真相，选择与星穹列车同行。\n目前为自己准备了约六十七种「身世故事」。",
+    "element": "Ice",
+    "elementName": "冰",
+    "equipmentRecommendation": {
+      "avatarId": "1001",
+      "cavernSetIds": [
+        "103",
+        "128",
+        "106"
+      ],
+      "lightConeIds": [
+        "21002",
+        "23005",
+        "24002"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "DefenceAddedRatio",
+            "StatusProbabilityBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "DefenceAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "DefenceAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "DefenceAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "304",
+        "310",
+        "317"
+      ],
+      "subStatPropertyTypes": [
+        "DefenceAddedRatio",
+        "SpeedDelta",
+        "StatusProbabilityBase",
+        "StatusResistanceBase"
+      ]
+    },
+    "fullName": "三月七·存护",
+    "id": "1001",
+    "kind": "character",
+    "name": "三月七·存护",
+    "path": "Knight",
+    "pathName": "存护",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "终结技每冻结1个目标，为三月七恢复<unbreak>6</unbreak>点能量。",
+            "iconKey": "rank--100101",
+            "id": "100101",
+            "name": "记忆中的你",
+            "rank": 1
+          },
+          {
+            "description": "进入战斗时，为当前生命值百分比最低的我方目标提供等同于三月七<unbreak>24%</unbreak>防御力+<unbreak>320</unbreak>的护盾，持续<unbreak>3</unbreak>回合。",
+            "iconKey": "rank--100102",
+            "id": "100102",
+            "name": "记忆中的它",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--100103",
+            "id": "100103",
+            "name": "记忆中的一切",
+            "rank": 3
+          },
+          {
+            "description": "天赋的<u>反击</u>效果每回合可触发的次数增加1次。使<u>反击</u>造成的伤害值提高，提高数值等同于三月七防御力的<unbreak>30%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "当目标受到攻击后自动触发的效果，对攻击者施放1次额外的攻击。\n反击也属于追加攻击。",
+                "id": "10000003",
+                "name": "反击"
+              }
+            ],
+            "iconKey": "rank--100104",
+            "id": "100104",
+            "name": "不愿再失去",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--100105",
+            "id": "100105",
+            "name": "不想再忘却",
+            "rank": 5
+          },
+          {
+            "description": "在战技提供的护盾保护下的我方目标，每回合开始时回复等同于各自<unbreak>4%</unbreak>生命上限+<unbreak>106</unbreak>的生命值。",
+            "iconKey": "rank--100106",
+            "id": "100106",
+            "name": "就这样，一直…",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 120
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1001001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1001001",
+                "variantIds": [
+                  "100101"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "100101",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于三月七50%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七60%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七70%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七80%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七90%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七100%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七110%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七120%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七130%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于三月七140%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "极寒的弓矢",
+                "progressionId": "1001001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1001002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1001002",
+                "variantIds": [
+                  "100102"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Defence",
+                    "known": true,
+                    "label": "防御"
+                  },
+                  "energyGain": 30
+                },
+                "id": "100102",
+                "levels": [
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七38%防御力+190伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "190"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七40%防御力+304伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "304"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七43%防御力+390伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "390"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七45%防御力+475伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "475"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七48%防御力+532伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "532"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七49%防御力+589伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "589"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七51%防御力+632伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "51%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "632"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七53%防御力+675伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "675"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七55%防御力+717伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "717"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七57%防御力+760伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "760"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七59%防御力+803伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "803"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七61%防御力+846伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "846"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七63%防御力+888伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "888"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七65%防御力+931伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "931"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "为指定我方单体提供能够抵消等同于三月七67%防御力+974伤害的护盾，持续3回合。\n若该目标当前生命值百分比大于等于30%，被敌方攻击的概率大幅提高。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供能够抵消等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "67%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "防御力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "974"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害的护盾，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n若该目标当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，被敌方攻击的概率大幅提高。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "可爱即是正义",
+                "progressionId": "1001002",
+                "scalingParamIndexes": [
+                  0,
+                  3
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1001003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1001003",
+                "variantIds": [
+                  "100103"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    },
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "100103",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于三月七90%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七30%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于三月七96%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七33%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于三月七102%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七36%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "102%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于三月七108%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七39%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于三月七114%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七42%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "114%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于三月七120%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七45%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于三月七127%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七49%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "127%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于三月七135%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七53%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "135%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于三月七143%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七56%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "143%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于三月七150%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七60%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于三月七156%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七63%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "156%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于三月七162%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七66%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "162%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于三月七168%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七69%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于三月七174%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七72%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "174%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于三月七180%攻击力的冰属性伤害。受到攻击的敌方目标有50%基础概率陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七75%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。受到攻击的敌方目标有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "冰刻箭雨之时",
+                "progressionId": "1001003",
+                "scalingParamIndexes": [
+                  0,
+                  3
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1001004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1001004",
+                "variantIds": [
+                  "100104"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 10,
+                  "extraEffects": [
+                    {
+                      "description": "当目标受到攻击后自动触发的效果，对攻击者施放1次额外的攻击。\n反击也属于追加攻击。",
+                      "id": "10000003",
+                      "name": "反击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "100104",
+                "levels": [
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七50%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七55%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七60%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七65%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七70%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七75%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七81%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七88%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七94%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七100%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七105%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七110%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七115%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "115%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七120%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起反击，对其造成等同于三月七125%攻击力的冰属性伤害，该效果每回合可触发2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当持有护盾的我方目标受到敌方目标攻击后，三月七立即向攻击者发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于三月七"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，该效果每回合可触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "少女的特权",
+                "progressionId": "1001004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1001007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1001007",
+                "variantIds": [
+                  "100107"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    },
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "100107",
+                "levels": [
+                  {
+                    "description": "立即攻击敌人，进入战斗后有100%的基础概率使随机敌方单体陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七50%攻击力的冰属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击敌人，进入战斗后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使随机敌方单体陷入冻结状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n冻结状态下，敌方目标不能行动同时每回合开始时受到等同于三月七"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "冻人的瞬间",
+                "progressionId": "1001007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "施放战技时，解除指定我方单体的1个<u>负面效果</u>。",
+            "extraEffects": [
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              }
+            ],
+            "iconKey": "skill-tree--1001101",
+            "id": "1001101",
+            "name": "纯洁",
+            "prerequisiteIds": [
+              "1001201"
+            ],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "战技提供的护盾持续时间增加<unbreak>1</unbreak>回合。",
+            "iconKey": "skill-tree--1001102",
+            "id": "1001102",
+            "name": "加护",
+            "prerequisiteIds": [
+              "1001201"
+            ],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放终结技时，冻结敌方目标的<u>基础概率</u>提高<unbreak>15%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                "id": "30000001",
+                "name": "基础概率"
+              }
+            ],
+            "iconKey": "skill-tree--1001103",
+            "id": "1001103",
+            "name": "冰咒",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "冰属性伤害提高3.2%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1001201",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [],
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1001202",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1001101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "冰属性伤害提高3.2%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1001203",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1001202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1001204",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "冰属性伤害提高4.8%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1001205",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1001102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1001206",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1001205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1001207",
+            "name": "防御强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "冰属性伤害提高4.8%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1001208",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1001103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "冰属性伤害提高6.4%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1001209",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1001208"
+            ],
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "防御力提高10.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1001210",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1001208"
+            ],
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1001001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100101",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1001002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100102",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1001003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100103",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1001004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100104",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1001007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100107",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1001",
+    "subtitleRendered": false
+  }
+}

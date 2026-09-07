@@ -7,3 +7,11 @@ pnpm-lock.yaml
 src/lib/content/changelog/*.svx
 # Preserve manually maintained alias formatting; metadata validation checks its contents.
 data/search/character-player-aliases.json
+
+/src/lib/paraglide/
+
+data/audit
+tests/fixtures/product-baseline
+project.inlang/cache
+project.inlang/.meta.json
+project.inlang/README.md

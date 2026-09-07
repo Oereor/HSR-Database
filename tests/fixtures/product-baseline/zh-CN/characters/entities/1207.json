@@ -1,0 +1,2721 @@
+{
+  "catalog": {
+    "baseName": "驭空",
+    "description": "仙舟「罗浮」天舶司的首领，久历战阵的飞行士与射手。\n而今却陷于繁冗公务，难以抽身。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "id": "1207",
+    "name": "驭空",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "驭空",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 107
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 81.6,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 51,
+            "perLevel": 2.55
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 124.8,
+            "perLevel": 6.24
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 114.24,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 71.4,
+            "perLevel": 2.55
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 174.72,
+            "perLevel": 6.24
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 146.88,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 91.8,
+            "perLevel": 2.55
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 224.64,
+            "perLevel": 6.24
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 179.52,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 112.2,
+            "perLevel": 2.55
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 274.56,
+            "perLevel": 6.24
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 212.16,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 132.6,
+            "perLevel": 2.55
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 324.48,
+            "perLevel": 6.24
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 153,
+            "perLevel": 2.55
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 374.4,
+            "perLevel": 6.24
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 277.44,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 173.4,
+            "perLevel": 2.55
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 424.32,
+            "perLevel": 6.24
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "仙舟「罗浮」天舶司的首领，久历战阵的飞行士与射手。\n而今却陷于繁冗公务，难以抽身。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "equipmentRecommendation": {
+      "avatarId": "1207",
+      "cavernSetIds": [
+        "102",
+        "112",
+        "111"
+      ],
+      "lightConeIds": [
+        "21025",
+        "21032"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "ImaginaryAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase",
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "302",
+        "312",
+        "308"
+      ],
+      "subStatPropertyTypes": [
+        "SpeedDelta",
+        "AttackAddedRatio",
+        "CriticalChanceBase",
+        "CriticalDamageBase"
+      ]
+    },
+    "fullName": "驭空",
+    "id": "1207",
+    "kind": "character",
+    "name": "驭空",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "进入战斗时，我方全体速度提高<unbreak>10%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "rank--120701",
+            "id": "120701",
+            "name": "天舶飞将，枕弧待战",
+            "rank": 1
+          },
+          {
+            "description": "当我方任意单体当前能量值等于其能量上限时，驭空额外恢复<unbreak>5</unbreak>点能量。该效果我方每个单体仅可触发1次，当驭空施放终结技后，重置该效果触发次数。",
+            "iconKey": "rank--120702",
+            "id": "120702",
+            "name": "青霄驰骋，驱驭苍穹",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--120703",
+            "id": "120703",
+            "name": "危弓未辍，执射不宁",
+            "rank": 3
+          },
+          {
+            "description": "持有【鸣弦号令】时，驭空造成的伤害提高<unbreak>30%</unbreak>。",
+            "iconKey": "rank--120704",
+            "id": "120704",
+            "name": "百里闻风，九曲响镝",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--120705",
+            "id": "120705",
+            "name": "井仪贯侯，疾羽参连",
+            "rank": 5
+          },
+          {
+            "description": "驭空施放终结技时，立即先获得<unbreak>1</unbreak>层【鸣弦号令】。",
+            "iconKey": "rank--120706",
+            "id": "120706",
+            "name": "弦栝如雷，铣珧激荡",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 130
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1207001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1207001",
+                "variantIds": [
+                  "120701"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "120701",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于驭空50%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于驭空60%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于驭空70%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于驭空80%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于驭空90%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于驭空100%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于驭空110%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于驭空120%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于驭空130%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于驭空140%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "流镝",
+                "progressionId": "1207001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1207002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1207002",
+                "variantIds": [
+                  "120702"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 30
+                },
+                "id": "120702",
+                "levels": [
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高40%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高44%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高48%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高52%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高56%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高60%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高65%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高70%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高75%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高80%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高84%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高88%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高92%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高96%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "获得2层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高100%，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】，最多持有不超过2层。当驭空持有【鸣弦号令】时，我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且每次我方目标回合结束时，移除驭空1层【鸣弦号令】。\n驭空施放战技获得【鸣弦号令】的回合，不会移除【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "天阙鸣弦",
+                "progressionId": "1207002",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1207003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1207003",
+                "variantIds": [
+                  "120703"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "120703",
+                "levels": [
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高21.0%，暴击伤害提高39%。同时对指定敌方单体造成等同于驭空228%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "228%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高21.7%，暴击伤害提高42%。同时对指定敌方单体造成等同于驭空243%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "243%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高22.4%，暴击伤害提高44%。同时对指定敌方单体造成等同于驭空258%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "258%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高23.1%，暴击伤害提高47%。同时对指定敌方单体造成等同于驭空274%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "274%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高23.8%，暴击伤害提高49%。同时对指定敌方单体造成等同于驭空289%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "289%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高24.5%，暴击伤害提高52%。同时对指定敌方单体造成等同于驭空304%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "304%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高25.4%，暴击伤害提高55%。同时对指定敌方单体造成等同于驭空323%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "323%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高26.3%，暴击伤害提高59%。同时对指定敌方单体造成等同于驭空342%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "342%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高27.1%，暴击伤害提高62%。同时对指定敌方单体造成等同于驭空361%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "361%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高28.0%，暴击伤害提高65%。同时对指定敌方单体造成等同于驭空380%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "380%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高28.7%，暴击伤害提高68%。同时对指定敌方单体造成等同于驭空395%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "395%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高29.4%，暴击伤害提高70%。同时对指定敌方单体造成等同于驭空410%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "29.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "410%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高30.1%，暴击伤害提高73%。同时对指定敌方单体造成等同于驭空426%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "73%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "426%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高30.8%，暴击伤害提高75%。同时对指定敌方单体造成等同于驭空441%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "441%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高31.5%，暴击伤害提高78%。同时对指定敌方单体造成等同于驭空456%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技时，若驭空持有【鸣弦号令】，则额外使我方全体暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。同时对指定敌方单体造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "456%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "贯云饮羽",
+                "progressionId": "1207003",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1207004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1207004",
+                "variantIds": [
+                  "120704"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "120704",
+                "levels": [
+                  {
+                    "description": "施放普攻可额外造成等同于驭空40%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放普攻可额外造成等同于驭空44%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放普攻可额外造成等同于驭空48%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放普攻可额外造成等同于驭空52%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放普攻可额外造成等同于驭空56%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放普攻可额外造成等同于驭空60%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放普攻可额外造成等同于驭空65%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放普攻可额外造成等同于驭空70%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放普攻可额外造成等同于驭空75%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放普攻可额外造成等同于驭空80%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放普攻可额外造成等同于驭空84%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放普攻可额外造成等同于驭空88%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放普攻可额外造成等同于驭空92%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放普攻可额外造成等同于驭空96%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放普攻可额外造成等同于驭空100%攻击力的虚数属性伤害，并使本次攻击的削韧值提高100%，该效果在1回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻可额外造成等同于驭空"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使本次攻击的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "箭彻七札",
+                "progressionId": "1207004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1207007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1207007",
+                "variantIds": [
+                  "120707"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "120707",
+                "levels": [
+                  {
+                    "description": "使用秘技后进入持续20秒的冲刺状态。冲刺状态下自身移动速度提高35%，且主动攻击敌人进入战斗时，驭空获得2层【鸣弦号令】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后进入持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的冲刺状态。冲刺状态下自身移动速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且主动攻击敌人进入战斗时，驭空获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【鸣弦号令】。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "云鸢逐风",
+                "progressionId": "1207007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "驭空被施加<u>负面效果</u>时可抵抗1次<u>负面效果</u>，该效果在<unbreak>2</unbreak>回合后可再次触发。",
+            "extraEffects": [
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              }
+            ],
+            "iconKey": "skill-tree--1207101",
+            "id": "1207101",
+            "name": "襄尺",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "驭空在场时，我方全体造成的虚数属性伤害提高<unbreak>12%</unbreak>。",
+            "iconKey": "skill-tree--1207102",
+            "id": "1207102",
+            "name": "迟彝",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "持有【鸣弦号令】时，每当我方目标行动后，驭空将额外恢复<unbreak>2</unbreak>点能量。",
+            "iconKey": "skill-tree--1207103",
+            "id": "1207103",
+            "name": "气壮",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "虚数属性伤害提高3.2%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "1207201",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [],
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1207202",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1207101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "虚数属性伤害提高3.2%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "1207203",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [
+              "1207202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1207204",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1207201"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "虚数属性伤害提高4.8%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "1207205",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [
+              "1207102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1207206",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1207205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "虚数属性伤害提高4.8%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "1207207",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [
+              "1207201"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1207208",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1207103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "生命值上限提高8.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1207209",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1207208"
+            ],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "虚数属性伤害提高6.4%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "1207210",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [
+              "1207208"
+            ],
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1207001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120701",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1207002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120702",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1207003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120703",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1207004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120704",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1207007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120707",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1207",
+    "subtitleRendered": false
+  }
+}

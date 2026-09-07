@@ -1,0 +1,5372 @@
+{
+  "catalog": {
+    "baseName": "万敌",
+    "description": "那沉入迷雾的悬锋，纷乱与战争之城！它的王室流着弑亲的血脉，它的神明以灾厄为名。\n不死的迈德漠斯，离群的狮子，逐猎「纷争」火种的黄金裔。忍受万死，浴血还乡，孤身背负疯狂的宿命\n——弑王成王，弑神登神。征战的铁蹄踏遍荒野，终归要沾上故乡的血。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "id": "1404",
+    "name": "万敌",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "万敌",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 125,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 95
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 58.08,
+            "perLevel": 2.904
+          },
+          "defence": {
+            "base": 26.4,
+            "perLevel": 1.32
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 211.2,
+            "perLevel": 10.56
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 81.312,
+            "perLevel": 2.904
+          },
+          "defence": {
+            "base": 36.96,
+            "perLevel": 1.32
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 295.68,
+            "perLevel": 10.56
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 104.544,
+            "perLevel": 2.904
+          },
+          "defence": {
+            "base": 47.52,
+            "perLevel": 1.32
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 380.16,
+            "perLevel": 10.56
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 127.776,
+            "perLevel": 2.904
+          },
+          "defence": {
+            "base": 58.08,
+            "perLevel": 1.32
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 464.64,
+            "perLevel": 10.56
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.008,
+            "perLevel": 2.904
+          },
+          "defence": {
+            "base": 68.64,
+            "perLevel": 1.32
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 549.12,
+            "perLevel": 10.56
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 174.24,
+            "perLevel": 2.904
+          },
+          "defence": {
+            "base": 79.2,
+            "perLevel": 1.32
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 633.6,
+            "perLevel": 10.56
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 197.472,
+            "perLevel": 2.904
+          },
+          "defence": {
+            "base": 89.76,
+            "perLevel": 1.32
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 718.08,
+            "perLevel": 10.56
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "那沉入迷雾的悬锋，纷乱与战争之城！它的王室流着弑亲的血脉，它的神明以灾厄为名。\n不死的迈德漠斯，离群的狮子，逐猎「纷争」火种的黄金裔。忍受万死，浴血还乡，孤身背负疯狂的宿命\n——弑王成王，弑神登神。征战的铁蹄踏遍荒野，终归要沾上故乡的血。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "equipmentRecommendation": {
+      "avatarId": "1404",
+      "cavernSetIds": [
+        "122",
+        "113",
+        "112"
+      ],
+      "lightConeIds": [
+        "23039",
+        "23009",
+        "22003"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "HPAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "ImaginaryAddedRatio",
+            "HPAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "319",
+        "309",
+        "302"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "HPAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "万敌",
+    "id": "1404",
+    "kind": "character",
+    "name": "万敌",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "【弑神登神】对主目标造成的伤害倍率提高<unbreak>30%</unbreak>，且变成对敌方全体造成等同于主目标伤害倍率的虚数属性伤害。",
+            "iconKey": "rank--140401",
+            "id": "140401",
+            "name": "寒风雕琢不屈的脊梁",
+            "rank": 1
+          },
+          {
+            "description": "【血仇】状态期间，万敌造成的伤害无视敌方目标<unbreak>15%</unbreak>的防御力，且接受治疗后会将<unbreak>40%</unbreak>的治疗数值转化为充能，累计转化的充能不超过<unbreak>40</unbreak>点。任意单位行动后重置可累计的充能。",
+            "iconKey": "rank--140402",
+            "id": "140402",
+            "name": "纷争见证尸骸的喉鸣",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--140403",
+            "id": "140403",
+            "name": "荣耀辉映不渝的筵宴",
+            "rank": 3
+          },
+          {
+            "description": "【血仇】状态期间暴击伤害提高<unbreak>30%</unbreak>，且受到来自敌方目标的攻击后回复等同于自身<unbreak>10%</unbreak>生命上限的生命值。",
+            "iconKey": "rank--140404",
+            "id": "140404",
+            "name": "号角惊觉缄默的狂狮",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--140405",
+            "id": "140405",
+            "name": "兵戈雕刻躯身的烈焰",
+            "rank": 5
+          },
+          {
+            "description": "进入战斗时立刻进入【血仇】状态且【弑神登神】所需的充能值降低至<unbreak>100</unbreak>点。",
+            "iconKey": "rank--140406",
+            "id": "140406",
+            "name": "往日攀陟沉积的血山",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 160
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1404001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1404001",
+                "variantIds": [
+                  "140401"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "140401",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于万敌25%生命上限的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于万敌30%生命上限的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于万敌35%生命上限的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于万敌40%生命上限的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于万敌45%生命上限的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于万敌50%生命上限的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于万敌55%生命上限的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于万敌60%生命上限的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于万敌65%生命上限的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于万敌70%生命上限的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "踏破征途的誓言",
+                "progressionId": "1404001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1404002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1404002",
+                "variantIds": [
+                  "140402",
+                  "140409",
+                  "140411"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 30,
+                  "specialResource": "<unbreak>50%</unbreak>当前生命值",
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "140402",
+                "levels": [
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌45%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌25%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌50%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌28%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌54%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌30%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌59%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌33%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌63%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌35%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌68%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌38%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌73%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌41%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "73%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌79%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌44%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "79%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌84%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌47%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌90%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌50%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌95%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌53%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "95%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌99%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌55%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "99%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌103%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌57%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "103%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌108%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌60%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值50%的生命值，对指定敌方单体造成等同于万敌113%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌63%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "万死无悔",
+                "progressionId": "1404002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              },
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 30,
+                  "specialResource": "<unbreak>35%</unbreak>当前生命值",
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "140409",
+                "levels": [
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌55%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌33%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌61%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌36%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌66%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌40%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌72%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌43%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌77%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌46%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌83%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌50%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌89%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌54%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "89%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌96%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌58%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "58%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌103%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌62%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "103%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌110%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌66%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌116%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌69%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "116%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌121%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌73%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "121%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "73%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌126%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌76%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌132%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌79%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "79%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "消耗等同于万敌当前生命值35%的生命值，对敌方单体造成等同于万敌138%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌83%生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于万敌当前生命值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "138%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n若当前生命值不足，施放战技时万敌的当前生命值降低至1点。\n该技能会自动施放。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "弑王成王",
+                "progressionId": "1404002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              },
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 10,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    },
+                    {
+                      "type": "blast",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "140411",
+                "levels": [
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌140%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌84%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌154%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌92%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌168%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌101%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "101%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌182%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌109%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "182%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "109%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌196%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌118%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "196%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "118%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌210%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌126%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌228%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌137%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "228%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "137%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌245%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌147%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "245%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "147%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌263%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌158%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "263%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "158%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌280%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌168%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "280%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌294%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌176%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "294%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "176%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌308%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌185%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "308%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "185%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌322%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌193%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "322%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "193%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌336%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌202%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "336%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "202%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "消耗150点充能，对敌方单体造成等同于万敌350%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌210%生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，对敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "350%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害。\n该技能会自动施放。此技能期间无法积攒充能。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "弑神登神",
+                "progressionId": "1404002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1404003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1404003",
+                "variantIds": [
+                  "140403"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "140403",
+                "levels": [
+                  {
+                    "description": "回复等同于万敌15.0%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌96%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌60%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "回复等同于万敌15.5%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌102%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌64%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "102%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "回复等同于万敌16.0%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌109%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌68%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "109%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "回复等同于万敌16.5%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌115%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌72%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "115%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "回复等同于万敌17.0%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌122%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌76%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "122%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "回复等同于万敌17.5%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌128%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌80%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "128%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "回复等同于万敌18.1%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌136%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌85%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "136%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "85%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "回复等同于万敌18.8%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌144%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌90%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "回复等同于万敌19.4%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌152%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌95%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "152%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "95%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "回复等同于万敌20.0%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌160%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌100%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "回复等同于万敌20.5%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌166%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌104%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "166%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "104%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "回复等同于万敌21.0%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌173%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌108%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "回复等同于万敌21.5%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌179%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌112%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "179%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "回复等同于万敌22.0%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌186%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌116%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "186%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "116%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "回复等同于万敌22.5%生命上限的生命值并积攒20点天赋充能。对指定敌方单体造成等同于万敌192%生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌120%生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续2回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值并积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。对指定敌方单体造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，同时对其相邻目标造成等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标与相邻目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。下一次【弑神登神】优先攻击指定敌方单体，该效果仅对最新目标生效。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "诛天焚骨的王座",
+                "progressionId": "1404003",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1404004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1404004",
+                "variantIds": [
+                  "140404"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "获得1个不消耗回合数的额外回合，在此回合中无法插入施放终结技。",
+                      "id": "10000000",
+                      "name": "额外回合"
+                    },
+                    {
+                      "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                      "id": "10000007",
+                      "name": "无法战斗状态"
+                    }
+                  ]
+                },
+                "id": "140404",
+                "levels": [
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌15%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌16%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌17%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌18%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌19%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌20%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌21%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌23%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌24%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌25%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌26%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌27%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌28%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌29%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "29%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "每损失1%生命值积攒1点充能，最多积攒200点。充能达到100时消耗100点充能进入【血仇】状态并回复等同于万敌30%生命上限的生命值，同时行动提前100%。【血仇】状态下生命上限提高，数值等同于当前生命上限的50%，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到150点时，万敌立即获得1个额外回合并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入无法战斗状态，但会清空充能退出【血仇】状态并回复等同于自身50%生命上限的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每损失1%生命值积攒1点充能，最多积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能进入【血仇】状态并回复等同于万敌"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值，同时行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【血仇】状态下生命上限提高，数值等同于当前生命上限的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力保持为0。自身回合开始时自动施放【弑王成王】。\n【血仇】状态期间充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点时，万敌立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并自动施放【弑神登神】。\n【血仇】状态期间，万敌受到致命攻击时不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会清空充能退出【血仇】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "以血还血",
+                "progressionId": "1404004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1404007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1404007",
+                "variantIds": [
+                  "140407"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  }
+                },
+                "id": "140407",
+                "levels": [
+                  {
+                    "description": "使用秘技后牵引一定区域内的敌人并使其陷入10秒的晕眩状态，晕眩状态下敌人不会主动攻击我方目标。\n若主动攻击陷入晕眩状态的敌人，进入战斗时，对敌方全体造成等同于万敌80%生命上限的虚数属性伤害，并使目标陷入嘲讽状态，持续1回合。自身积攒50点天赋充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后牵引一定区域内的敌人并使其陷入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的晕眩状态，晕眩状态下敌人不会主动攻击我方目标。\n若主动攻击陷入晕眩状态的敌人，进入战斗时，对敌方全体造成等同于万敌"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的虚数属性伤害，并使目标陷入嘲讽状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。自身积攒"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点天赋充能。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "折戟臣服的监牢",
+                "progressionId": "1404007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "【血仇】状态下万敌受到致命攻击时不会退出【血仇】状态。该效果单场战斗中可以触发<unbreak>3</unbreak>次。",
+            "iconKey": "skill-tree--1404101",
+            "id": "1404101",
+            "name": "水与泥土",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "【血仇】状态下万敌免疫<u>控制类负面状态</u>。",
+            "extraEffects": [
+              {
+                "description": "冻结，纠缠，禁锢，支配，怒噪，强烈震荡，异梦，缠禁，恐惧，行动锁定，幸福傀儡，怨火灼身。",
+                "id": "10000011",
+                "name": "控制类负面状态"
+              }
+            ],
+            "iconKey": "skill-tree--1404102",
+            "id": "1404102",
+            "name": "三十僭主",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "战斗开始时，若万敌的生命上限高于<unbreak>4000</unbreak>点，每超过<unbreak>100</unbreak>点生命值可使自身暴击率提高<unbreak>1.2%</unbreak>，万敌受到来自敌方目标伤害造成的充能比例提高<unbreak>2.5%</unbreak>，受到治疗时的回复量提高<unbreak>0.75%</unbreak>，超出部分最多计入<unbreak>4000</unbreak>点生命值。",
+            "iconKey": "skill-tree--1404103",
+            "id": "1404103",
+            "name": "血祥罩衫",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1404201",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1404202",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1404101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1404203",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1404202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "速度提高2",
+            "iconKey": "property--SpeedDelta",
+            "id": "1404204",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1404203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1404205",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1404102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1404206",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1404205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1404207",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1404206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "速度提高3",
+            "iconKey": "property--SpeedDelta",
+            "id": "1404208",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1404103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "生命值上限提高8.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1404209",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1404208"
+            ],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "暴击伤害提高10.7%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1404210",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1404208"
+            ],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1404001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140401",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1404002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140402",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140409",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140411",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1404003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140403",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1404004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140404",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1404007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140407",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1404",
+    "subtitleRendered": false
+  }
+}

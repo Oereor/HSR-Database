@@ -1,0 +1,148 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：攻击力提高12%。 4件：装备者的忆灵在场时，装备者的速度提高6%，装备者的忆灵攻击时，装备者和忆灵的暴击伤害提高30%，持续2回合。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "123",
+    "name": "凯歌祝捷的英豪",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "3.0"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：攻击力提高12%。 4件：装备者的忆灵在场时，装备者的速度提高6%，装备者的忆灵攻击时，装备者和忆灵的暴击伤害提高30%，持续2回合。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "攻击力提高12%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "装备者的忆灵在场时，装备者的速度提高6%，装备者的忆灵攻击时，装备者和忆灵的暴击伤害提高30%，持续2回合。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "装备者的忆灵在场时，装备者的速度提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "6%"
+          },
+          {
+            "type": "text",
+            "value": "，装备者的忆灵攻击时，装备者和忆灵的暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "30%"
+          },
+          {
+            "type": "text",
+            "value": "，持续"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "2"
+          },
+          {
+            "type": "text",
+            "value": "回合。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "123",
+    "kind": "relic",
+    "name": "凯歌祝捷的英豪",
+    "pieces": [
+      {
+        "description": "竞技场冠军所得的桂冠。每一片金色的桂叶都闪烁着勇气与荣耀。",
+        "id": "31231",
+        "name": "英豪的冠军桂冠",
+        "slot": "HEAD"
+      },
+      {
+        "description": "一对精致的督战勇士护腕。紧贴着勇士的手腕，稳稳地支撑着胜利号角。",
+        "id": "31232",
+        "name": "英豪的鉴金腕铠",
+        "slot": "HAND"
+      },
+      {
+        "description": "宛如天神的铠甲，完美贴合着雄健的身躯。",
+        "id": "31233",
+        "name": "英豪的骁战金甲",
+        "slot": "BODY"
+      },
+      {
+        "description": "紧密贴合战士腿部的护胫，曲线优雅而坚固，蕴藏着决不退缩的信念。",
+        "id": "31234",
+        "name": "英豪的赴火护胫",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【「浴血战端」悬锋城】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "3.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31231"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31232"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31233"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31234"
+      }
+    ],
+    "route": "/relics/123"
+  }
+}

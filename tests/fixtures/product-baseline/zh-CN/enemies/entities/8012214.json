@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "无根自开、凭空生就的幻花。乘间抵隙的煽动者托体「建木」，炼成肉身，却不曾放下毁灭的权柄。",
+    "id": "8012214",
+    "name": "破灭玄莲",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8012214",
+    "defaultMonsterRef": "4e69e9f693c468e1ca226e7f0a736c8cf927e58fad02fe1f4602f787d3affef3",
+    "description": "无根自开、凭空生就的幻花。乘间抵隙的煽动者托体「建木」，炼成肉身，却不曾放下毁灭的权柄。",
+    "id": "8012214",
+    "kind": "enemy",
+    "monsterRefs": [
+      "4e69e9f693c468e1ca226e7f0a736c8cf927e58fad02fe1f4602f787d3affef3"
+    ],
+    "name": "破灭玄莲",
+    "rank": "MinionLv2",
+    "templateRef": "737eaa8eac0cd183a7f3ebaa5e9db96bd376d2785ba5e2c255911a603166d41e",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8012214",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8012214",
+    "selectableMonsterIds": [
+      "8012214"
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-import type { EndgameSearchNameEntry, GlobalSearchIndex } from '../domain/search-index.js';
+import type { EndgameSearchTargetEntry, GlobalSearchIndex } from '../domain/search-index.js';
 import type { CatalogEntry, EnemyCatalogEntry, RelicCatalogEntry } from '../domain/types.js';
 import {
   normalizeSearchDocument,
@@ -29,7 +29,7 @@ export interface GlobalSearchResults extends GlobalSearchCatalogs {
 }
 export interface GlobalSearchSnapshot {
   results: GlobalSearchResults;
-  endgameMatches: EndgameSearchNameEntry[];
+  endgameMatches: EndgameSearchTargetEntry[];
   evidence: MatchEvidence[];
   unavailable: boolean;
 }
@@ -53,7 +53,7 @@ export function createGlobalSearchService(
     relic: new Map(catalogs.relics.map((entry) => [entry.id, entry])),
     enemy: new Map(catalogs.enemies.map((entry) => [entry.id, entry]))
   };
-  const endgame = new Map(index.endgameEnemies.map((entry) => [entry.entryId, entry]));
+  const endgame = new Map(index.endgameTargets.map((entry) => [entry.id, entry]));
   const documents = new Map<string, ReturnType<typeof normalizeSearchDocument>>();
   let engine: ReturnType<typeof createFlexSearchAdapter> | undefined;
   try {
@@ -99,8 +99,8 @@ export function createGlobalSearchService(
     } of matches.sort(compareSearchMatches)) {
       const target = document.target;
       let found = false;
-      if (target.kind === 'endgame-name') {
-        const entry = endgame.get(target.entryId);
+      if (target.kind === 'endgame') {
+        const entry = endgame.get(target.id);
         if (entry) {
           snapshot.endgameMatches.push(entry);
           found = true;
@@ -141,5 +141,5 @@ export function createGlobalSearchService(
     }
     return snapshot;
   }
-  return { search, expandEndgame: createEndgameSearchExpander(fetchShard) };
+  return { search, expandEndgame: createEndgameSearchExpander(fetchShard, index.locale) };
 }

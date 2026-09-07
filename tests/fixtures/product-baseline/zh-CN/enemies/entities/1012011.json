@@ -1,0 +1,54 @@
+{
+  "catalog": {
+    "description": "以旧世界遗留的科技拼凑制造的自动机器单元，形如某种载具，然而人们似乎早就忘却了它载具的用途。\n战斗中自动机兵「战犬」能提供支援，回复战友的生命。",
+    "id": "1012011",
+    "name": "自动机兵•战犬",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1012011",
+    "defaultMonsterRef": "5a68436658c8124663c27528c310e817282b0cb3b7fdfb6022fad82d5e33fc59",
+    "description": "以旧世界遗留的科技拼凑制造的自动机器单元，形如某种载具，然而人们似乎早就忘却了它载具的用途。\n战斗中自动机兵「战犬」能提供支援，回复战友的生命。",
+    "id": "1012011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "5a68436658c8124663c27528c310e817282b0cb3b7fdfb6022fad82d5e33fc59",
+      "e6563ab43dc01038f766473169f1c990095e63886d7e8e440c63ad52b95924eb"
+    ],
+    "name": "自动机兵•战犬",
+    "rank": "MinionLv2",
+    "templateRef": "8ba0734b08731bad95c9961e0405d47abe4143c989a9879458b314060eed8cb0",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1012011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1012011",
+    "selectableMonsterIds": [
+      "1012011",
+      "101201101"
+    ]
+  }
+}

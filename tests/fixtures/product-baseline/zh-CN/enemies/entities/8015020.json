@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "反物质军团的绝灭大君「幻胧」自建木中生成的躯壳。\n兼具「毁灭」与「丰饶」之力，生灭循环的肉体。也是建木复生后结出的第一颗「果实」。",
+    "id": "8015020",
+    "name": "不死神实•幻胧",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8015020",
+    "defaultMonsterRef": "2762fa49c4a22e4f57177eb7f989469506759bd411b1138ac340194368ccdf52",
+    "description": "反物质军团的绝灭大君「幻胧」自建木中生成的躯壳。\n兼具「毁灭」与「丰饶」之力，生灭循环的肉体。也是建木复生后结出的第一颗「果实」。",
+    "id": "8015020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "2762fa49c4a22e4f57177eb7f989469506759bd411b1138ac340194368ccdf52"
+    ],
+    "name": "不死神实•幻胧",
+    "rank": "BigBoss",
+    "templateRef": "6e0fd4fc87780ec0576d75d2b122654dbf1b36dca46424a2edb1d3674c6bd256",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8015020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8015020",
+    "selectableMonsterIds": [
+      "8015020"
+    ]
+  }
+}

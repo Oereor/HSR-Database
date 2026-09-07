@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
+  import { localizedHref } from '$lib/i18n/routing';
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
@@ -22,8 +24,8 @@
   import { formatDocumentTitle } from '$lib/site';
 
   export let entries: CatalogEntry[] = [];
-  export let title = '角色';
-  export let description = '浏览、搜索并筛选角色资料。';
+  export let title: string = m.characters_title();
+  export let description: string = m.characters_description();
 
   let draftQuery = '';
   let synchronizedQuery: string | undefined;
@@ -130,25 +132,25 @@
 </svelte:head>
 
 <OverviewHero
-  eyebrow="DATABASE / CHARACTERS"
+  eyebrow={m.characters_eyebrow()}
   {title}
   {description}
-  countLabel={`共 ${entries.length} 位角色`}
+  countLabel={m.characters_count({ count: entries.length })}
   artwork={heroArtwork}
 />
 
-<section class="overview-controls" aria-label="角色搜索与筛选">
+<section class="overview-controls" aria-label={m.characters_controls_aria()}>
   <OverviewSearch
     id="character-search-input"
     bind:value={draftQuery}
-    placeholder="搜索角色"
+    placeholder={m.characters_search_placeholder()}
     onSubmit={submitQuery}
   />
 
   <div class="overview-filters">
     <FilterGroup
       id="character-path"
-      label="命途"
+      label={m.filter_path()}
       iconKind="path"
       options={options('path', 'pathName')}
       selected={filterState.paths}
@@ -156,7 +158,7 @@
     />
     <FilterGroup
       id="character-element"
-      label="属性"
+      label={m.filter_element()}
       iconKind="element"
       options={options('element', 'elementName')}
       selected={filterState.elements}
@@ -164,7 +166,7 @@
     />
     <FilterGroup
       id="character-rarity"
-      label="稀有度"
+      label={m.filter_rarity()}
       options={options('rarity').map((option) => ({ ...option, label: `${option.label}★` }))}
       selected={filterState.rarities}
       onToggle={(value) => toggleFilter('rarities', value)}
@@ -190,7 +192,7 @@
     {#each visible as entry (entry.id)}
       <CharacterOverviewCard
         {entry}
-        href={`/characters/${entry.id}`}
+        href={localizedHref(`/characters/${entry.id}`)}
         imageUrl={getCharacterPreviewUrl(entry.id)}
         density="compact"
       />
@@ -199,9 +201,11 @@
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
   <section class="empty-state">
-    <h2>没有匹配结果</h2>
-    <p>尝试减少筛选条件，或清空当前搜索。</p>
-    <button class="button" type="button" on:click={clearSearchAndFilters}>清空筛选</button>
+    <h2>{m.overview_empty_title()}</h2>
+    <p>{m.overview_empty_description()}</p>
+    <button class="button" type="button" on:click={clearSearchAndFilters}
+      >{m.overview_clear_filters()}</button
+    >
   </section>
 {/if}
 

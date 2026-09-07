@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "二相乐园当红主播「火花」开启直播，在粉丝注目见证下，塑造自己全新形象的活动——「火花大会」，于今夜降临！",
+    "id": "5014010",
+    "name": "火花大会@Official",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5014010",
+    "defaultMonsterRef": "aee8df8cdaeb446ca578e6d60b36af05354a29235c77153cc19fa45e4c0084d0",
+    "description": "二相乐园当红主播「火花」开启直播，在粉丝注目见证下，塑造自己全新形象的活动——「火花大会」，于今夜降临！",
+    "id": "5014010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "aee8df8cdaeb446ca578e6d60b36af05354a29235c77153cc19fa45e4c0084d0",
+      "9d961578deb7b0ccd297f1868fea4a0a8677918f9a2e9902d485936c25a73816",
+      "5316664fbbd62098d63052fcf8493f3eedcf7fe1a353190d88a52d000465adfa"
+    ],
+    "name": "火花大会@Official",
+    "rank": "LittleBoss",
+    "templateRef": "e5ce2f45508d38f37d292ec2dc8437116f776848a1be324aa1b271f21c49197e",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5014010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5014010",
+    "selectableMonsterIds": [
+      "5014010",
+      "501401001",
+      "501401003"
+    ]
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23000",
+    "name": "银河铁道之夜",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 26.4,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 18,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 52.8,
+            "perLevel": 7.92
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 58.08,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 39.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 116.16,
+            "perLevel": 7.92
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 100.32,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 68.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 200.64,
+            "perLevel": 7.92
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 142.56,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 285.12,
+            "perLevel": 7.92
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 184.8,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 126,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 369.6,
+            "perLevel": 7.92
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 227.04,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 154.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 454.08,
+            "perLevel": 7.92
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 269.28,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 538.56,
+            "perLevel": 7.92
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23000",
+    "kind": "light-cone",
+    "name": "银河铁道之夜",
+    "passive": {
+      "id": "23000",
+      "name": "流星群",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "场上每有1个敌方目标，使装备者的攻击力提高9.0%，该效果最多叠加5层。当有敌方目标的弱点被击破时，装备者造成的伤害提高30%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "场上每有1个敌方目标，使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "9.0%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加5层。当有敌方目标的弱点被击破时，装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "，持续1回合。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "场上每有1个敌方目标，使装备者的攻击力提高10.5%，该效果最多叠加5层。当有敌方目标的弱点被击破时，装备者造成的伤害提高35%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "场上每有1个敌方目标，使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10.5%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加5层。当有敌方目标的弱点被击破时，装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "35%"
+              },
+              {
+                "type": "text",
+                "value": "，持续1回合。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "场上每有1个敌方目标，使装备者的攻击力提高12.0%，该效果最多叠加5层。当有敌方目标的弱点被击破时，装备者造成的伤害提高40%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "场上每有1个敌方目标，使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12.0%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加5层。当有敌方目标的弱点被击破时，装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "，持续1回合。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "场上每有1个敌方目标，使装备者的攻击力提高13.5%，该效果最多叠加5层。当有敌方目标的弱点被击破时，装备者造成的伤害提高45%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "场上每有1个敌方目标，使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "13.5%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加5层。当有敌方目标的弱点被击破时，装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "45%"
+              },
+              {
+                "type": "text",
+                "value": "，持续1回合。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "场上每有1个敌方目标，使装备者的攻击力提高15.0%，该效果最多叠加5层。当有敌方目标的弱点被击破时，装备者造成的伤害提高50%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "场上每有1个敌方目标，使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15.0%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加5层。当有敌方目标的弱点被击破时，装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "，持续1回合。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5,
+    "story": "若是担心脚下，只需再度抬头凝望，\n当繁星温柔地注视，心已乘风而上。\n每一个念想，每一声低语，\n都化作生命中的承载，再不会失去。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23000",
+    "storyFallbackRendered": false
+  }
+}

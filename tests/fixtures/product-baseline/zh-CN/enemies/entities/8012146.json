@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "被殃难浸润的大地只剩下苦痛的回音，这就是末日应有的进行曲。\n灾虐的右手善于使用虚数属性的力量，造成大范围的攻击。",
+    "id": "8012146",
+    "name": "灾虐的右手",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8012146",
+    "defaultMonsterRef": "4cf7ece1f4376c5cf30561afe0287b37e946b5708b868f85067ad31d9cb76da6",
+    "description": "被殃难浸润的大地只剩下苦痛的回音，这就是末日应有的进行曲。\n灾虐的右手善于使用虚数属性的力量，造成大范围的攻击。",
+    "id": "8012146",
+    "kind": "enemy",
+    "monsterRefs": [
+      "4cf7ece1f4376c5cf30561afe0287b37e946b5708b868f85067ad31d9cb76da6",
+      "ca59563ea9e3b942de71a8b7af4782e50572894b9636b6a7de0d511638b1ba9d",
+      "8644add9b8bf51576a5734bf3124497b9b1b6c0bc798f7fa20c3f99ca15b63e2",
+      "a9851b2552e1db136aad0ea720967f50806e0d6489557d407d7b2b77deea0675",
+      "cb19e9b6b76f0e5637e5d575008677af32683bb0825c41b3a2c3a68a006a8502"
+    ],
+    "name": "灾虐的右手",
+    "rank": "MinionLv2",
+    "templateRef": "56b5036ad303669eb77ed6575b93a46a44c9f8b31b4cf4e92947c1695d82469e",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8012146",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8012146",
+    "selectableMonsterIds": [
+      "8012146",
+      "801214601",
+      "801214602",
+      "801214603",
+      "801214604"
+    ]
+  }
+}

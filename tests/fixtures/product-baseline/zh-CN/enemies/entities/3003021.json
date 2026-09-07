@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是「苏乐达」汽水的运输工，失控后仍在分享背负的美味，向路过的宾客抛掷它的礼物。",
+    "id": "3003021",
+    "name": "惊梦剧团的甜猿泰山（投影）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3003021",
+    "defaultMonsterRef": "ff3d084649ba2ea37ecbfcde85a38132f00e06429bd1dc6d52b2fdc9f6601104",
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是「苏乐达」汽水的运输工，失控后仍在分享背负的美味，向路过的宾客抛掷它的礼物。",
+    "id": "3003021",
+    "kind": "enemy",
+    "monsterRefs": [
+      "ff3d084649ba2ea37ecbfcde85a38132f00e06429bd1dc6d52b2fdc9f6601104"
+    ],
+    "name": "惊梦剧团的甜猿泰山（投影）",
+    "rank": "Elite",
+    "templateRef": "7972369ca2f2c42163fe6cb4a033a74b47489a2d0ab36b2694dcfc4203551e05",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3003021",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3003021",
+    "selectableMonsterIds": [
+      "3003021"
+    ]
+  }
+}

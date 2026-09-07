@@ -1,0 +1,4316 @@
+{
+  "catalog": {
+    "baseName": "大丽花",
+    "description": "美梦燃烧了永火官邸，也带走关于「她」的点滴。\n「毁灭」、「记忆」…背叛的花朵盛放在所经之地——\n重返无人知晓的梦境，将她再度点燃的会是何方？",
+    "element": "Fire",
+    "elementName": "火",
+    "id": "1321",
+    "name": "大丽花",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "大丽花",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 96
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 92.4,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 82.5,
+            "perLevel": 4.125
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 147.84,
+            "perLevel": 7.392
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 129.36,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 115.5,
+            "perLevel": 4.125
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 206.976,
+            "perLevel": 7.392
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 166.32,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 148.5,
+            "perLevel": 4.125
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 266.112,
+            "perLevel": 7.392
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 203.28,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 181.5,
+            "perLevel": 4.125
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 325.248,
+            "perLevel": 7.392
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 240.24,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 214.5,
+            "perLevel": 4.125
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 384.384,
+            "perLevel": 7.392
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 277.2,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 247.5,
+            "perLevel": 4.125
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 443.52,
+            "perLevel": 7.392
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 314.16,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 280.5,
+            "perLevel": 4.125
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 502.656,
+            "perLevel": 7.392
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "美梦燃烧了永火官邸，也带走关于「她」的点滴。\n「毁灭」、「记忆」…背叛的花朵盛放在所经之地——\n重返无人知晓的梦境，将她再度点燃的会是何方？",
+    "element": "Fire",
+    "elementName": "火",
+    "equipmentRecommendation": {
+      "avatarId": "1321",
+      "cavernSetIds": [
+        "119",
+        "111",
+        "118"
+      ],
+      "lightConeIds": [
+        "23050",
+        "23035",
+        "21015"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "DefenceAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "DefenceAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "BreakDamageAddedRatioBase",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "316",
+        "308",
+        "307"
+      ],
+      "subStatPropertyTypes": [
+        "BreakDamageAddedRatioBase",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "大丽花",
+    "id": "1321",
+    "kind": "character",
+    "name": "大丽花",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "天赋为【共舞者】提供的<u>超击破伤害</u>倍率对我方全体角色生效，其中【共舞者】的倍率额外提高<unbreak>40%</unbreak>。【共舞者】施放攻击后，对受到攻击的敌方目标额外造成等同于其韧性上限<unbreak>25%</unbreak>的固定削韧（至少<unbreak>10</unbreak>点，至多<unbreak>300</unbreak>点）。该效果每个敌方目标只能触发1次，敌方目标受到致命攻击后重置该目标的可触发次数。",
+            "extraEffects": [
+              {
+                "description": "击破特攻、本次攻击削韧值、角色等级越高，造成的超击破伤害越高。\n超击破伤害无法暴击，不受伤害提高类效果所影响。\n超击破伤害也属于击破伤害。",
+                "id": "10000015",
+                "name": "超击破伤害"
+              }
+            ],
+            "iconKey": "rank--132101",
+            "id": "132101",
+            "name": "当一朵花含苞待放",
+            "rank": 1
+          },
+          {
+            "description": "大丽花在场时，敌方全体全属性抗性降低<unbreak>20%</unbreak>。敌方目标入场时，立即陷入【败谢】状态，持续<unbreak>3</unbreak>回合。",
+            "iconKey": "rank--132102",
+            "id": "132102",
+            "name": "新生，鲜灵，爱怜",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--132103",
+            "id": "132103",
+            "name": "可惜花瓣薄如蝉翼",
+            "rank": 3
+          },
+          {
+            "description": "天赋的<u>追加攻击</u>的伤害次数增加<unbreak>5</unbreak>次，施放时使敌方全体目标受到的伤害提高<unbreak>12%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--132104",
+            "id": "132104",
+            "name": "可惜花蕊为虫剥蚀",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--132105",
+            "id": "132105",
+            "name": "凋落，腐烂，憎恨",
+            "rank": 5
+          },
+          {
+            "description": "【共舞者】的击破特攻提高<unbreak>150%</unbreak>。施放天赋的<u>追加攻击</u>时，使所有【共舞者】下一次<u>行动提前</u><unbreak>20%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              },
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "rank--132106",
+            "id": "132106",
+            "name": "然而它总是，致命美丽",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 130
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1321001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1321001",
+                "variantIds": [
+                  "132101"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "132101",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于大丽花50%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大丽花60%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大丽花70%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大丽花80%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大丽花90%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大丽花100%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大丽花110%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大丽花120%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大丽花130%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于大丽花140%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "拨弄…记忆绽开裂隙",
+                "progressionId": "1321001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1321002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1321002",
+                "variantIds": [
+                  "132102"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "当敌方目标的韧性被削减至0时进入的特殊状态，进入该状态的目标行动会被延后。",
+                      "id": "10000006",
+                      "name": "弱点击破状态"
+                    },
+                    {
+                      "description": "击破特攻、本次攻击削韧值、角色等级越高，造成的超击破伤害越高。\n超击破伤害无法暴击，不受伤害提高类效果所影响。\n超击破伤害也属于击破伤害。",
+                      "id": "10000015",
+                      "name": "超击破伤害"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "132102",
+                "levels": [
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花80%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花88%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花96%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花104%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "104%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花112%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花120%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花130%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花140%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花150%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花160%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花168%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花176%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "176%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花184%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "184%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花192%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "开启结界，持续3回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花200%攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高50%，敌方目标未处于弱点击破状态时承受的削韧值也能够转化为超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "开启结界，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，大丽花回合开始时持续回合数减1。随后对指定敌方单体及其相邻目标造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n结界持续期间，我方全体的弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，敌方目标未处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时承受的削韧值也能够转化为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "舔舐…背叛伸出火舌",
+                "progressionId": "1321002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1321003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1321003",
+                "variantIds": [
+                  "132103"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "132103",
+                "levels": [
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花180%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低8.0%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花192%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低9.0%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花204%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低10.0%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "204%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花216%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低11.0%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花228%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低12.0%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "228%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花240%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低13.0%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花255%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低14.2%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "255%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花270%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低15.5%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "270%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花285%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低16.8%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "285%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花300%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低18.0%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花312%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低19.0%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "312%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花324%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低20.0%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "324%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花336%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低21.0%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "336%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花348%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低22.0%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "348%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使敌方全体陷入【败谢】状态，持续4回合。随后造成等同于大丽花360%攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低23.0%，并且会被添加所有【共舞者】属性的弱点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【败谢】状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "360%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，由敌方全体均分。\n【败谢】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且会被添加所有【共舞者】属性的弱点。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "沉溺…飞灰邀入墓床",
+                "progressionId": "1321003",
+                "scalingParamIndexes": [
+                  0,
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1321004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1321004",
+                "variantIds": [
+                  "132104"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Bounce",
+                    "known": true,
+                    "label": "弹射"
+                  },
+                  "energyGain": 2,
+                  "extraEffects": [
+                    {
+                      "description": "当敌方目标的韧性被削减至0时进入的特殊状态，进入该状态的目标行动会被延后。",
+                      "id": "10000006",
+                      "name": "弱点击破状态"
+                    },
+                    {
+                      "description": "击破特攻、本次攻击削韧值、角色等级越高，造成的超击破伤害越高。\n超击破伤害无法暴击，不受伤害提高类效果所影响。\n超击破伤害也属于击破伤害。",
+                      "id": "10000015",
+                      "name": "超击破伤害"
+                    },
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 3
+                    }
+                  ]
+                },
+                "id": "132104",
+                "levels": [
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次30%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花15%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次100%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次33%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花17%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次110%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次36%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花18%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次120%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次39%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花20%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次130%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次42%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花21%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次140%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次45%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花23%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次150%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次49%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花24%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次163%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "163%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次53%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花26%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次175%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次56%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花28%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次188%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次60%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花30%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次200%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次63%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花32%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次210%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次66%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花33%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次220%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次69%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花35%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次230%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次72%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花36%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次240%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "进入战斗时，大丽花恢复35点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于弱点击破状态的敌方目标后，会将本次攻击的削韧值转化为1次75%的超击破伤害。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动追加攻击，造成5次伤害，每次对敌方随机单体造成等同于大丽花38%攻击力的火属性伤害。每次对处于弱点击破状态的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次250%的超击破伤害。\n该效果每回合最多触发1次，若追加攻击施放前目标被消灭则对敌方随机单体发动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入战斗时，大丽花恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "35"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使自身和另一位开战的队友共同成为【共舞者】。每当场上不存在另一位【共舞者】时，使自身和击破特攻最高的队友共同成为【共舞者】。【共舞者】攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n敌方目标受到另一位【共舞者】攻击后，大丽花发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于大丽花"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。每次对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n该效果每回合最多触发1次，若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "谁在害怕康士坦丝？",
+                "progressionId": "1321004",
+                "scalingParamIndexes": [
+                  0,
+                  2,
+                  4
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1321007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1321007",
+                "variantIds": [
+                  "132107"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "当敌方目标的韧性被削减至0时进入的特殊状态，进入该状态的目标行动会被延后。",
+                      "id": "10000006",
+                      "name": "弱点击破状态"
+                    },
+                    {
+                      "description": "击破特攻、本次攻击削韧值、角色等级越高，造成的超击破伤害越高。\n超击破伤害无法暴击，不受伤害提高类效果所影响。\n超击破伤害也属于击破伤害。",
+                      "id": "10000015",
+                      "name": "超击破伤害"
+                    }
+                  ]
+                },
+                "id": "132107",
+                "levels": [
+                  {
+                    "description": "使用秘技后，制造1片持续20秒的特殊领域。处于特殊领域内的敌人不会主动攻击我方目标。与处于特殊领域内的敌人进入战斗后，大丽花立即开启战技的结界，并且对处于弱点击破状态的敌方目标，会将开战削韧值转化为1次60%的超击破伤害。\n我方制造的领域效果最多存在1个。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，制造1片持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的特殊领域。处于特殊领域内的敌人不会主动攻击我方目标。与处于特殊领域内的敌人进入战斗后，大丽花立即开启战技的结界，并且对处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标，会将开战削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n我方制造的领域效果最多存在1个。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "心，是最好的坟茔",
+                "progressionId": "1321007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "进入战斗时，使其他角色的击破特攻提高，提高数值等同于<unbreak>24%</unbreak>大丽花的击破特攻+<unbreak>50%</unbreak>，持续<unbreak>1</unbreak>回合。当大丽花受到队友提供的治疗效果或护盾时，再次触发该效果，持续<unbreak>3</unbreak>回合，单个回合内不可重复触发。",
+            "iconKey": "skill-tree--1321101",
+            "id": "1321101",
+            "name": "又一场葬礼",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "施放天赋的<u>追加攻击</u>时，为我方恢复1个战技点，该效果每施放<unbreak>2</unbreak>次天赋的<u>追加攻击</u>可触发1次。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "skill-tree--1321102",
+            "id": "1321102",
+            "name": "致哀，故人",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "我方目标为敌方目标添加弱点时，速度提高<unbreak>30%</unbreak>，持续<unbreak>2</unbreak>回合。若我方火属性角色施放攻击期间添加过弱点，则攻击后对每个添加弱点的目标额外造成<unbreak>20</unbreak>点火属性固定削韧，并恢复<unbreak>10%</unbreak>能量上限的能量，最多通过此效果恢复至能量上限的<unbreak>50%</unbreak>。",
+            "iconKey": "skill-tree--1321103",
+            "id": "1321103",
+            "name": "弃旧，恋新",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1321201",
+            "name": "击破强化",
+            "prerequisiteIds": [],
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1321202",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1321101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1321203",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1321202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "速度提高2",
+            "iconKey": "property--SpeedDelta",
+            "id": "1321204",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1321203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1321205",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1321102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1321206",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1321205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1321207",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1321206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "速度提高3",
+            "iconKey": "property--SpeedDelta",
+            "id": "1321208",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1321103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "效果抵抗提高8.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1321209",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1321103"
+            ],
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "击破特攻提高10.7%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1321210",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1321201"
+            ],
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1321001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "132101",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1321002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "132102",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1321003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "132103",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1321004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "132104",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1321007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "132107",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1321",
+    "subtitleRendered": false
+  }
+}

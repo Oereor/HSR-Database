@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "在遥远的造物世，艾格勒打造黎明机器后，它又在刻法勒协助下创造了代表各种泰坦的奇兽。据信，流星铁鹰代表着光照万物的艾格勒偶尔掉落尘世的羽毛。",
+    "id": "4022010",
+    "name": "流星铁鹰",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4022010",
+    "defaultMonsterRef": "b63a2dfd25bbb4dd7d90581a2ae3bfcfc33b723e132fd692d7d10fa6c9f0c23b",
+    "description": "在遥远的造物世，艾格勒打造黎明机器后，它又在刻法勒协助下创造了代表各种泰坦的奇兽。据信，流星铁鹰代表着光照万物的艾格勒偶尔掉落尘世的羽毛。",
+    "id": "4022010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "b63a2dfd25bbb4dd7d90581a2ae3bfcfc33b723e132fd692d7d10fa6c9f0c23b",
+      "959bfe2d848c9dd3d597c28cdd473ca7fa3775de48623aa7c4ba610d7649953b",
+      "62e467050262d3d8efa98b0c239a4a06014e77706e12909bfe189f9f05b29dfa"
+    ],
+    "name": "流星铁鹰",
+    "rank": "MinionLv2",
+    "templateRef": "0c3c44245bb2913d23789838161ca508738cd9f4324cf6ebea113d77a328b3dc",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4022010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4022010",
+    "selectableMonsterIds": [
+      "4022010",
+      "402201001",
+      "402201002"
+    ]
+  }
+}

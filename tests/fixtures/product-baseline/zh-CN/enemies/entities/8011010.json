@@ -1,0 +1,74 @@
+{
+  "catalog": {
+    "description": "「反物质军团」为防止反粒子逸散发生湮灭，制造了两种用于运输的小型离子阱，统称「重子」与「反重子」。\n「重子」具备基本的智能，能在战场上回应「虚卒」的意志与召唤，为其开辟道路。",
+    "id": "8011010",
+    "name": "重子",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8011010",
+    "defaultMonsterRef": "03e70fa1c71935434d3e11be050d9b19820f8be309e734103ffd744b9236cf33",
+    "description": "「反物质军团」为防止反粒子逸散发生湮灭，制造了两种用于运输的小型离子阱，统称「重子」与「反重子」。\n「重子」具备基本的智能，能在战场上回应「虚卒」的意志与召唤，为其开辟道路。",
+    "id": "8011010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "03e70fa1c71935434d3e11be050d9b19820f8be309e734103ffd744b9236cf33",
+      "ab4fe02726348d96c1090d308fb8007183cebc1c26cf22191537e6d3735b70ce",
+      "c398102afc50c881974912048962fa3a0fa274d35971dc8c13c1086d5dfd685b",
+      "530741e2ad5f83a7dbb1eb73c158acc5ec41035360c4f1469d9438c8c6e57bc8",
+      "85e721e9302d5a3ffbc000f412292c3508726e4eae2bb5b274e6296eeb48761a",
+      "5f9fc2b302e0567b56ca0b27914db92071f6c5ee8a317670a29b86f2565f02ef",
+      "b54443912e447b978fe3a70b8fc6404405055895af836c80b74ef38e485a3b52",
+      "e36a2b99e911341de52baf87fd8cd8a9e2d42ddb27b053b645df0924b558268d",
+      "0054b214ca7a889a85474e4b9929cd5e6d9c1b9edbaaeb4e0355cacb94df0533",
+      "f5eaa05fe3fa02e1741b89a0ee0c33c99a66a50dabcbf427fa0803e54a6c6a1c",
+      "138ecd062db056800ffa1cde68ba03e43aef1d3120eb45fbb12d73ecaf06728c",
+      "84720f7e2f3dfe3f2556f03a89bc7c8c710635300c83ed64d404b6cec5f481e4"
+    ],
+    "name": "重子",
+    "rank": "Minion",
+    "templateRef": "fb57f32e67fb27e5f26d7dc781cccd5d68b1d198d2f3a80b917b65832c45d096",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8011010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8011010",
+    "selectableMonsterIds": [
+      "8011010",
+      "801101001",
+      "801101002",
+      "801101003",
+      "801101004",
+      "801101005",
+      "801101006",
+      "801101007",
+      "801101008",
+      "801101009",
+      "801101011",
+      "801101012"
+    ]
+  }
+}

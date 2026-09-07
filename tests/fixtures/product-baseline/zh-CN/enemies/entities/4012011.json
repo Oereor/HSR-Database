@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血。刚猛的身躯是军阵的盾牌，以坚石之身阻隔敌军，以粗大臂膀搬运战场的口粮，也常被悬锋的士兵当作练武的对象。",
+    "id": "4012011",
+    "name": "天谴斗士",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012011",
+    "defaultMonsterRef": "54104eddc0c47c6cb5ba6239c533e6e9ee7e9d3f9a108d215a20524b516132a9",
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血。刚猛的身躯是军阵的盾牌，以坚石之身阻隔敌军，以粗大臂膀搬运战场的口粮，也常被悬锋的士兵当作练武的对象。",
+    "id": "4012011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "54104eddc0c47c6cb5ba6239c533e6e9ee7e9d3f9a108d215a20524b516132a9"
+    ],
+    "name": "天谴斗士",
+    "rank": "MinionLv2",
+    "templateRef": "3a38a8cf10eba9bbbf37dc2fcffe023c027f59b31d00d02275bf16fa68f0231e",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012011",
+    "selectableMonsterIds": [
+      "4012011"
+    ]
+  }
+}

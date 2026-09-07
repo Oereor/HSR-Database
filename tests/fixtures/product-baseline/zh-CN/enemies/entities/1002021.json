@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "困居于下层区的人们为了生存，往往会不惜铤而走险深入裂界寻找任何可用的物资，其中被他们掘出的古代机器成了他们最好的帮手。",
+    "id": "1002021",
+    "name": "流浪者",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1002021",
+    "defaultMonsterRef": "4c780cedf0745b170e23a34a503096b367090625961909de575ea3740acdb333",
+    "description": "困居于下层区的人们为了生存，往往会不惜铤而走险深入裂界寻找任何可用的物资，其中被他们掘出的古代机器成了他们最好的帮手。",
+    "id": "1002021",
+    "kind": "enemy",
+    "monsterRefs": [
+      "4c780cedf0745b170e23a34a503096b367090625961909de575ea3740acdb333",
+      "9ecb21dfaad8249f107dc03bd7d7b5c8793aff5affa9635f2201e7a54c6e0688"
+    ],
+    "name": "流浪者",
+    "rank": "MinionLv2",
+    "templateRef": "82ea8748dd518c4dd19b0a6b149aa37392878083e27756ec0b22392b3ec4f10c",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1002021",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1002021",
+    "selectableMonsterIds": [
+      "1002021",
+      "100202101"
+    ]
+  }
+}

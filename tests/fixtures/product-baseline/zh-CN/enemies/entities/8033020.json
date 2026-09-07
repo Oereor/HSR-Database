@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "千星城的超级英雄，武装着博识学会最先进的科技成果，不遗余力地惩奸除恶，维护城市的和平。五年来，他数次拯救千星城的人民于大小灾难中。\n有人指出，这些壮举绝不可能靠一人完成，而所谓「灯塔」也不过是由娱乐工业复合体包装打造出的虚假偶像。但人们已经全心期盼着有人能在他们陷入危机时扛起一切——只是他们并不知晓，「灯塔」的铠甲之下藏着某些更为幽暗的秘密……",
+    "id": "8033020",
+    "name": "「灯塔」",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8033020",
+    "defaultMonsterRef": "8515c052ca28f225d7cd8514618f92310175710ff86b9af64db0c77572c23c09",
+    "description": "千星城的超级英雄，武装着博识学会最先进的科技成果，不遗余力地惩奸除恶，维护城市的和平。五年来，他数次拯救千星城的人民于大小灾难中。\n有人指出，这些壮举绝不可能靠一人完成，而所谓「灯塔」也不过是由娱乐工业复合体包装打造出的虚假偶像。但人们已经全心期盼着有人能在他们陷入危机时扛起一切——只是他们并不知晓，「灯塔」的铠甲之下藏着某些更为幽暗的秘密……",
+    "id": "8033020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "8515c052ca28f225d7cd8514618f92310175710ff86b9af64db0c77572c23c09",
+      "7fed394689d9ad36c1b279df2e786ebd1a1351e973ab47fe3f85c2127a13bc18"
+    ],
+    "name": "「灯塔」",
+    "rank": "Elite",
+    "templateRef": "1cfff56140ea9efa96d60332c9502561c6021b5289f44658b86241d7b29045e9",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8033020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8033020",
+    "selectableMonsterIds": [
+      "8033020",
+      "803302001"
+    ]
+  }
+}

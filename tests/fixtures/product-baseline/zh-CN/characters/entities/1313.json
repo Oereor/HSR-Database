@@ -1,0 +1,2841 @@
+{
+  "catalog": {
+    "baseName": "星期日",
+    "description": "「秩序」的美梦已然消散，但仍有人不会放下初愿。\n——折翼坠地的旅人，他的脚步将迈向何方？",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "id": "1313",
+    "name": "星期日",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "星期日",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 96
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 87.12,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 72.6,
+            "perLevel": 3.63
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 168.96,
+            "perLevel": 8.448
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 121.968,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 101.64,
+            "perLevel": 3.63
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 236.544,
+            "perLevel": 8.448
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 156.816,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 130.68,
+            "perLevel": 3.63
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 304.128,
+            "perLevel": 8.448
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 191.664,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 159.72,
+            "perLevel": 3.63
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 371.712,
+            "perLevel": 8.448
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 226.512,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 188.76,
+            "perLevel": 3.63
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 439.296,
+            "perLevel": 8.448
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 261.36,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 217.8,
+            "perLevel": 3.63
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 506.88,
+            "perLevel": 8.448
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 296.208,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 246.84,
+            "perLevel": 3.63
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 574.464,
+            "perLevel": 8.448
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "「秩序」的美梦已然消散，但仍有人不会放下初愿。\n——折翼坠地的旅人，他的脚步将迈向何方？",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "equipmentRecommendation": {
+      "avatarId": "1313",
+      "cavernSetIds": [
+        "121",
+        "114",
+        "110"
+      ],
+      "lightConeIds": [
+        "23034",
+        "23003",
+        "21025"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "DefenceAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "317",
+        "310",
+        "308"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalDamageBase",
+        "SpeedDelta",
+        "StatusResistanceBase"
+      ]
+    },
+    "fullName": "星期日",
+    "id": "1313",
+    "kind": "character",
+    "name": "星期日",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "星期日施放战技时，使目标角色造成伤害时无视目标<unbreak>16%</unbreak>的防御力，召唤物造成伤害时无视目标<unbreak>40%</unbreak>的防御力，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "rank--131301",
+            "id": "131301",
+            "name": "千纪沉寂之末",
+            "rank": 1
+          },
+          {
+            "description": "首次施放终结技后恢复<unbreak>2</unbreak>个战技点。【蒙福者】造成的伤害提高<unbreak>30%</unbreak>。",
+            "iconKey": "rank--131302",
+            "id": "131302",
+            "name": "笃信补完微缺",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--131303",
+            "id": "131303",
+            "name": "荆棘的静修所",
+            "rank": 3
+          },
+          {
+            "description": "回合开始时，恢复<unbreak>8</unbreak>点能量。",
+            "iconKey": "rank--131304",
+            "id": "131304",
+            "name": "雕塑的卷首语",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--131305",
+            "id": "131305",
+            "name": "纸筏漂流银湾",
+            "rank": 5
+          },
+          {
+            "description": "天赋的暴击率提高效果可以叠加，最多叠加<unbreak>3</unbreak>层，并使天赋的持续时间增加<unbreak>1</unbreak>回合。星期日施放终结技时，也可以为目标添加天赋的暴击率提高效果。天赋的暴击率提高效果生效时，当目标的暴击率超过<unbreak>100%</unbreak>，每溢出1%暴击率提高<unbreak>2%</unbreak>暴击伤害。",
+            "iconKey": "rank--131306",
+            "id": "131306",
+            "name": "群星喧哗之始",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 130
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1313001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1313001",
+                "variantIds": [
+                  "131301"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "131301",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于星期日50%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于星期日60%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于星期日70%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于星期日80%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于星期日90%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于星期日100%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于星期日110%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于星期日120%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于星期日130%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于星期日140%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "闪烁的劝诫",
+                "progressionId": "1313001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1313002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1313002",
+                "variantIds": [
+                  "131302"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 30
+                },
+                "id": "131302",
+                "levels": [
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高15%，若目标拥有召唤物，则造成的伤害提高效果额外提高25%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高17%，若目标拥有召唤物，则造成的伤害提高效果额外提高28%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高18%，若目标拥有召唤物，则造成的伤害提高效果额外提高30%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高20%，若目标拥有召唤物，则造成的伤害提高效果额外提高33%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高21%，若目标拥有召唤物，则造成的伤害提高效果额外提高35%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高23%，若目标拥有召唤物，则造成的伤害提高效果额外提高38%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高24%，若目标拥有召唤物，则造成的伤害提高效果额外提高41%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高26%，若目标拥有召唤物，则造成的伤害提高效果额外提高44%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高28%，若目标拥有召唤物，则造成的伤害提高效果额外提高47%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高30%，若目标拥有召唤物，则造成的伤害提高效果额外提高50%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高32%，若目标拥有召唤物，则造成的伤害提高效果额外提高53%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高33%，若目标拥有召唤物，则造成的伤害提高效果额外提高55%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高35%，若目标拥有召唤物，则造成的伤害提高效果额外提高57%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高36%，若目标拥有召唤物，则造成的伤害提高效果额外提高60%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高38%，若目标拥有召唤物，则造成的伤害提高效果额外提高63%，持续2回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体角色及其召唤物立即行动，并使其造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，若目标拥有召唤物，则造成的伤害提高效果额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n对【蒙福者】施放战技后恢复1个战技点。\n当星期日对「同谐」命途的角色施放该技能时，无法触发立即行动效果。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "纸与仪典的恩赐",
+                "progressionId": "1313002",
+                "scalingParamIndexes": [
+                  1,
+                  3
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1313003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1313003",
+                "variantIds": [
+                  "131303"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 5
+                },
+                "id": "131303",
+                "levels": [
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日12.0%暴击伤害+8.0%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日13.8%暴击伤害+8.4%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日15.6%暴击伤害+8.8%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日17.4%暴击伤害+9.2%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日19.2%暴击伤害+9.6%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日21.0%暴击伤害+10.0%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日23.3%暴击伤害+10.5%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日25.5%暴击伤害+11.0%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日27.8%暴击伤害+11.5%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日30.0%暴击伤害+12.0%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日31.8%暴击伤害+12.4%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日33.6%暴击伤害+12.8%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日35.4%暴击伤害+13.2%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日37.2%暴击伤害+13.6%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "37.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "为指定我方单体角色恢复等同于20.0%能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日39.0%暴击伤害+14.0%。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续3回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体角色恢复等同于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "能量上限的能量，并使目标及其召唤物成为【蒙福者】，【蒙福者】的暴击伤害提高，提高数值等同于星期日"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n星期日自身每回合开始时【蒙福者】状态持续回合减1，共持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。且仅对除星期日自身外终结技最新的施放目标生效。当星期日陷入无法战斗状态时，【蒙福者】效果也会被解除。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "轻与伤痕的赞颂",
+                "progressionId": "1313003",
+                "scalingParamIndexes": [
+                  1,
+                  3
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1313004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1313004",
+                "variantIds": [
+                  "131304"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  }
+                },
+                "id": "131304",
+                "levels": [
+                  {
+                    "description": "施放战技时，使目标的暴击率提高10.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放战技时，使目标的暴击率提高11.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放战技时，使目标的暴击率提高12.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放战技时，使目标的暴击率提高13.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放战技时，使目标的暴击率提高14.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放战技时，使目标的暴击率提高15.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放战技时，使目标的暴击率提高16.3%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放战技时，使目标的暴击率提高17.5%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放战技时，使目标的暴击率提高18.8%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放战技时，使目标的暴击率提高20.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放战技时，使目标的暴击率提高21.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放战技时，使目标的暴击率提高22.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放战技时，使目标的暴击率提高23.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放战技时，使目标的暴击率提高24.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放战技时，使目标的暴击率提高25.0%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，使目标的暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "倾诉之肉身",
+                "progressionId": "1313004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1313007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1313007",
+                "variantIds": [
+                  "131307"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  }
+                },
+                "id": "131307",
+                "levels": [
+                  {
+                    "description": "使用秘技后，下一次战斗星期日首次对我方目标施放技能时，使目标造成的伤害提高50%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，下一次战斗星期日首次对我方目标施放技能时，使目标造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "荣光之秘",
+                "progressionId": "1313007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "施放终结技时，若为目标恢复的能量不足<unbreak>40</unbreak>点，恢复的能量提高至<unbreak>40</unbreak>点。",
+            "iconKey": "skill-tree--1313101",
+            "id": "1313101",
+            "name": "主日渴慕",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "战斗开始时，星期日恢复<unbreak>25</unbreak>点能量。",
+            "iconKey": "skill-tree--1313102",
+            "id": "1313102",
+            "name": "崇高拂尘",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放战技时，解除目标的<unbreak>1</unbreak>个<u>负面效果</u>。",
+            "extraEffects": [
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              }
+            ],
+            "iconKey": "skill-tree--1313103",
+            "id": "1313103",
+            "name": "掌中安港",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1313201",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1313202",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1313101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1313203",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1313202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1313204",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1313201"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1313205",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1313102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1313206",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1313205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1313207",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1313201"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1313208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1313103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "效果抵抗提高8.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1313209",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1313208"
+            ],
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "暴击伤害提高10.7%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1313210",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1313208"
+            ],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1313001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131301",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1313002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131302",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1313003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131303",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1313004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131304",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1313007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131307",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1313",
+    "subtitleRendered": false
+  }
+}

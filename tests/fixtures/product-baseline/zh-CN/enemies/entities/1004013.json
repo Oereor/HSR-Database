@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "贝洛伯格的守护者，永屹之城贝洛伯格无可质疑的统治者。\n可可利亚秉持传承自历代守护者的神迹权能，在战斗中号令冰雪的力量冻结敌人。出现于此的是基于你的记忆模拟出的幻影。",
+    "id": "1004013",
+    "name": "可可利亚（幻象）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1004013",
+    "defaultMonsterRef": "092371d7d5543af45ea06b138d670b9f6dbc7e992fc816d06ce07999d2e79c3b",
+    "description": "贝洛伯格的守护者，永屹之城贝洛伯格无可质疑的统治者。\n可可利亚秉持传承自历代守护者的神迹权能，在战斗中号令冰雪的力量冻结敌人。出现于此的是基于你的记忆模拟出的幻影。",
+    "id": "1004013",
+    "kind": "enemy",
+    "monsterRefs": [
+      "092371d7d5543af45ea06b138d670b9f6dbc7e992fc816d06ce07999d2e79c3b"
+    ],
+    "name": "可可利亚（幻象）",
+    "rank": "LittleBoss",
+    "templateRef": "9d874ee8d2d917f04b51d2e7dbad4a40bc115b214210d31460677d26f2ebb1bc",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1004013",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1004013",
+    "selectableMonsterIds": [
+      "1004013"
+    ]
+  }
+}

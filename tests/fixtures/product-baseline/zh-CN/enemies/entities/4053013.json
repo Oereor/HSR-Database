@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "传说中的海妖掠夺者，能以歌声勾引意志动荡的船员。迷狂者将纵身跃入洋面，成为深海的肴馔。",
+    "id": "4053013",
+    "name": "哀歌塞壬•无情无餍的深海妖",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4053013",
+    "defaultMonsterRef": "e74e92cebaf912f5e923641061f21eed6196232a0dda36446634c78dd57631f9",
+    "description": "传说中的海妖掠夺者，能以歌声勾引意志动荡的船员。迷狂者将纵身跃入洋面，成为深海的肴馔。",
+    "id": "4053013",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e74e92cebaf912f5e923641061f21eed6196232a0dda36446634c78dd57631f9"
+    ],
+    "name": "哀歌塞壬•无情无餍的深海妖",
+    "rank": "Elite",
+    "templateRef": "e9319977820c8fe43158ffee450c1ac997f76356d47434ec7452ddfd250fcab3",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4053013",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4053013",
+    "selectableMonsterIds": [
+      "4053013"
+    ]
+  }
+}

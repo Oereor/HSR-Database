@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   import type { PageData } from './$types';
   import CharacterOverviewCard from '$lib/components/CharacterOverviewCard.svelte';
   import LightConeOverviewCard from '$lib/components/LightConeOverviewCard.svelte';
@@ -9,12 +10,14 @@
     getLightConePreviewUrl,
     getNavigationIconUrl
   } from '$lib/data/visual-assets';
-  import { NAVIGATION_ITEMS } from '$lib/navigation';
-  import { SITE_NAME } from '$lib/site';
+  import { localizedNavigationItems } from '$lib/navigation';
+  import { localizedHref } from '$lib/i18n/routing';
+  import { siteName } from '$lib/site';
 
   export let data: PageData;
 
-  const directoryItems = NAVIGATION_ITEMS.filter((item) => item.id !== 'overview');
+  const directoryItems = localizedNavigationItems().filter((item) => item.id !== 'overview');
+  const name = siteName();
   const marchPreview = getCharacterPreviewUrl('1001');
   const thisIsMePreview = getLightConePreviewUrl('21030');
   const danHengPreview = getCharacterPreviewUrl('1002');
@@ -22,23 +25,17 @@
 </script>
 
 <svelte:head>
-  <title>{SITE_NAME}</title>
-  <meta
-    name="description"
-    content="基于真实游戏配置构建的崩坏：星穹铁道角色、光锥、遗器、敌方单位与高难模式资料库。"
-  />
-  <meta property="og:title" content={SITE_NAME} />
-  <meta
-    property="og:description"
-    content="可搜索的崩坏：星穹铁道角色、光锥、遗器、敌方单位与高难模式非官方资料库。"
-  />
+  <title>{name}</title>
+  <meta name="description" content={m.home_meta_description()} />
+  <meta property="og:title" content={name} />
+  <meta property="og:description" content={m.home_og_description()} />
 </svelte:head>
 
 <div class="homepage">
   <section class="home-hero" aria-labelledby="home-title">
     <div class="home-hero__identity">
-      <h1 id="home-title">{SITE_NAME}</h1>
-      <p>HONKAI: STAR RAIL DATA ARCHIVE</p>
+      <h1 id="home-title">{name}</h1>
+      <p>{m.home_tagline()}</p>
     </div>
 
     <div class="home-hero__collage" aria-hidden="true">
@@ -69,12 +66,16 @@
     </div>
   </section>
 
-  <section class="home-directory" aria-label="数据库入口">
+  <section class="home-directory" aria-label={m.home_directory_aria()}>
     <div class="home-search">
-      <SearchBar id="home-search" label="搜索资料库" placeholder="输入名称，搜索资料库" />
+      <SearchBar
+        id="home-search"
+        label={m.home_search_label()}
+        placeholder={m.home_search_placeholder()}
+      />
     </div>
 
-    <nav class="home-directory__list" aria-label="数据库分类">
+    <nav class="home-directory__list" aria-label={m.home_categories_aria()}>
       {#each directoryItems as item}
         {@const iconUrl = getNavigationIconUrl(item.iconKey)}
         <a class="home-directory-row" href={item.href}>
@@ -91,12 +92,14 @@
   </section>
 
   <section class="home-recent" aria-labelledby="recent-avatar-ups">
-    <SectionHeading level={1} id="recent-avatar-ups">最近限定角色跃迁</SectionHeading>
+    <SectionHeading level={1} id="recent-avatar-ups"
+      >{m.home_recent_character_warp()}</SectionHeading
+    >
     <div class="home-recent-grid" data-homepage-recent="avatar">
       {#each data.recentCharacters as entry}
         <CharacterOverviewCard
           {entry}
-          href={`/characters/${entry.id}`}
+          href={localizedHref(`/characters/${entry.id}`)}
           imageUrl={getCharacterPreviewUrl(entry.id)}
           density="compact"
         />
@@ -105,12 +108,14 @@
   </section>
 
   <section class="home-recent" aria-labelledby="recent-weapon-ups">
-    <SectionHeading level={1} id="recent-weapon-ups">最近限定光锥跃迁</SectionHeading>
+    <SectionHeading level={1} id="recent-weapon-ups"
+      >{m.home_recent_light_cone_warp()}</SectionHeading
+    >
     <div class="home-recent-grid" data-homepage-recent="weapon">
       {#each data.recentLightCones as entry}
         <LightConeOverviewCard
           {entry}
-          href={`/light-cones/${entry.id}`}
+          href={localizedHref(`/light-cones/${entry.id}`)}
           imageUrl={getLightConePreviewUrl(entry.id)}
         />
       {/each}

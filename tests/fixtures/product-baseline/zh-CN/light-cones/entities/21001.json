@@ -1,0 +1,306 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21001",
+    "name": "晚安与睡颜",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 15,
+            "perLevel": 2.25
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 33,
+            "perLevel": 2.25
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 57,
+            "perLevel": 2.25
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 81,
+            "perLevel": 2.25
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 105,
+            "perLevel": 2.25
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 129,
+            "perLevel": 2.25
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 153,
+            "perLevel": 2.25
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21001",
+    "kind": "light-cone",
+    "name": "晚安与睡颜",
+    "passive": {
+      "id": "21001",
+      "name": "劳碌者",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "敌方目标每承受1个负面效果，装备者对其造成的伤害提高12%，最多叠加3层。该效果对持续伤害也会生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "敌方目标每承受1个负面效果，装备者对其造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层。该效果对持续伤害也会生效。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "敌方目标每承受1个负面效果，装备者对其造成的伤害提高15%，最多叠加3层。该效果对持续伤害也会生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "敌方目标每承受1个负面效果，装备者对其造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层。该效果对持续伤害也会生效。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "敌方目标每承受1个负面效果，装备者对其造成的伤害提高18%，最多叠加3层。该效果对持续伤害也会生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "敌方目标每承受1个负面效果，装备者对其造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层。该效果对持续伤害也会生效。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "敌方目标每承受1个负面效果，装备者对其造成的伤害提高21%，最多叠加3层。该效果对持续伤害也会生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "敌方目标每承受1个负面效果，装备者对其造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层。该效果对持续伤害也会生效。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "敌方目标每承受1个负面效果，装备者对其造成的伤害提高24%，最多叠加3层。该效果对持续伤害也会生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "敌方目标每承受1个负面效果，装备者对其造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层。该效果对持续伤害也会生效。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0
+        ]
+      }
+    },
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 4,
+    "story": "静谧的灯光勾勒出尘埃的轨迹，\n平稳的呼吸里有少女香甜的梦呓。\n一个人影出现在她身后，悄无声息。\n<i>「啧啧啧，果然还是摘掉眼镜比较可爱嘛。」</i>\n吉他手端详着她的睡颜喃喃自语：\n<i>「晚安，爱操心的天才少女。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21001",
+    "storyFallbackRendered": false
+  }
+}

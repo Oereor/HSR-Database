@@ -1,0 +1,139 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：物理属性伤害提高10%。 4件：当装备者施放攻击或受到攻击后，其在本场战斗中攻击力提高5%，最多叠加5层。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "105",
+    "name": "街头出身的拳王",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.0"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：物理属性伤害提高10%。 4件：当装备者施放攻击或受到攻击后，其在本场战斗中攻击力提高5%，最多叠加5层。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "物理属性伤害提高10%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "物理属性伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "10%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "当装备者施放攻击或受到攻击后，其在本场战斗中攻击力提高5%，最多叠加5层。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "当装备者施放攻击或受到攻击后，其在本场战斗中攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "5%"
+          },
+          {
+            "type": "text",
+            "value": "，最多叠加"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "5"
+          },
+          {
+            "type": "text",
+            "value": "层。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "105",
+    "kind": "relic",
+    "name": "街头出身的拳王",
+    "pieces": [
+      {
+        "description": "防护效果极佳的拳击护头，与物件主人的脸型完美贴合。",
+        "id": "31051",
+        "name": "拳王的冠军护头",
+        "slot": "HEAD"
+      },
+      {
+        "description": "保养得极好的拳击手套，细微的破损并不影响实际的使用。",
+        "id": "31052",
+        "name": "拳王的重炮拳套",
+        "slot": "HAND"
+      },
+      {
+        "description": "拳击手的专业护胸，外罩和内衬垫相互组合，既保障了安全又不影响技术发挥。",
+        "id": "31053",
+        "name": "拳王的贴身护胸",
+        "slot": "BODY"
+      },
+      {
+        "description": "巧妙地将皮革和网结合，采用了厚鞋垫、薄鞋底的设计，保证了脚步灵活。",
+        "id": "31054",
+        "name": "拳王的弧步战靴",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【铁卫禁区】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31051"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31052"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31053"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31054"
+      }
+    ],
+    "route": "/relics/105"
+  }
+}

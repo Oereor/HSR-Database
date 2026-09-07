@@ -1,0 +1,70 @@
+{
+  "catalog": {
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n已经失去人形的身躯被污浊之物包裹，通体散发着令人作呕的腐蚀气息。凡是蚀魔途经之处，一切生命气息皆遭其掠夺。",
+    "id": "4033010",
+    "name": "黑潮蚀魔",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4033010",
+    "defaultMonsterRef": "90d224ad1eded0bf82b0fff53f562b22c7b8071ebd86feea26a12ad6ae4acb60",
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n已经失去人形的身躯被污浊之物包裹，通体散发着令人作呕的腐蚀气息。凡是蚀魔途经之处，一切生命气息皆遭其掠夺。",
+    "id": "4033010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "90d224ad1eded0bf82b0fff53f562b22c7b8071ebd86feea26a12ad6ae4acb60",
+      "5356b16f2c02817ae7ae5ee3afb4fdb7c2299f7f66794e8e38d623a05310c9d4",
+      "f14944548ef074b2a0a28855f1215be3138bd22702a697ba21af1fecb954757c",
+      "c122b78a44ea8f7f398e057e908d458bb7b094cac01fe887ecbf029c966d6d5c",
+      "05a16d866f2043f2f992dd448e6c830d7cdf66634fb93cbf809115708a76d017",
+      "3e9f5a55a691f11688a68b60a88195d6d6473c0602dd3c1971c031226197ee22"
+    ],
+    "name": "黑潮蚀魔",
+    "rank": "Elite",
+    "templateRef": "40ff9b6d757ac9a84fc87c0112465b6cc6b044ebd0032550aba58fed9e45cbea",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4033010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4033010",
+    "selectableMonsterIds": [
+      "4033010",
+      "403301001",
+      "403301002",
+      "403301003",
+      "403301004",
+      "403301005"
+    ]
+  }
+}

@@ -2,16 +2,18 @@
   import GameText from '$lib/components/GameText.svelte';
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
   import { getElementColor } from '$lib/domain/elements';
-  import type { EnemyOccurrenceView } from '$lib/domain/endgame-view';
+  import { ENDGAME_MISSING_VALUE, type EnemyOccurrenceView } from '$lib/domain/endgame-view';
   import HpDisplay from './HpDisplay.svelte';
   import type { EndgameEnemyCardVariant } from './presentation';
+  import { m } from '$lib/paraglide/messages.js';
+  import { localizedHref } from '$lib/i18n/routing';
 
   export let occurrence: EnemyOccurrenceView;
   export let variant: EndgameEnemyCardVariant = 'standard';
   export let level: number | undefined = undefined;
 
   let portraitFailed = false;
-  $: elementProps = occurrence.enemyHref ? { href: occurrence.enemyHref } : {};
+  $: elementProps = occurrence.enemyHref ? { href: localizedHref(occurrence.enemyHref) } : {};
 </script>
 
 <svelte:element
@@ -40,13 +42,15 @@
         on:error={() => (portraitFailed = true)}
       />
     {:else}
-      <span class="endgame-enemy__fallback">敌</span>
+      <span class="endgame-enemy__fallback">{m.endgame_enemy_fallback()}</span>
     {/if}
     {#if level !== undefined || occurrence.count}
       <span class="endgame-enemy__artwork-tags">
         {#if level !== undefined}<span class="endgame-enemy__level">Lv.{level}</span>{/if}
         {#if occurrence.count}
-          <span class="endgame-enemy__count" aria-label={`数量 ${occurrence.count}`}
+          <span
+            class="endgame-enemy__count"
+            aria-label={m.endgame_enemy_count_aria({ count: occurrence.count })}
             >×{occurrence.count}</span
           >
         {/if}
@@ -63,15 +67,15 @@
 
     <dl class="endgame-enemy__stats">
       <div>
-        <dt>生命值</dt>
+        <dt>{m.common_hp()}</dt>
         <dd><HpDisplay hp={occurrence.hp} /></dd>
       </div>
       <div class="endgame-enemy__stat--short">
-        <dt>速度</dt>
+        <dt>{m.common_speed()}</dt>
         <dd><strong data-endgame-speed>{occurrence.speed.rounded}</strong></dd>
       </div>
       <div class="endgame-enemy__stat--short">
-        <dt>韧性值</dt>
+        <dt>{m.endgame_enemy_toughness()}</dt>
         <dd>
           <strong data-endgame-toughness>
             {occurrence.toughness
@@ -84,10 +88,10 @@
         </dd>
       </div>
       <div class="endgame-enemy__weakness-row">
-        <dt>弱点属性</dt>
+        <dt>{m.endgame_enemy_weaknesses()}</dt>
         <dd>
           {#if occurrence.weaknesses.length}
-            <div class="endgame-weaknesses" aria-label="弱点属性">
+            <div class="endgame-weaknesses" aria-label={m.endgame_enemy_weaknesses()}>
               {#each occurrence.weaknesses as weakness}
                 <SemanticIconLabel
                   kind="element"
@@ -99,7 +103,7 @@
               {/each}
             </div>
           {:else}
-            <span class="endgame-enemy__missing">资料暂无</span>
+            <span class="endgame-enemy__missing">{ENDGAME_MISSING_VALUE}</span>
           {/if}
         </dd>
       </div>

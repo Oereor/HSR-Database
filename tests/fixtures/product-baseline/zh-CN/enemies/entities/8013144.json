@@ -1,0 +1,52 @@
+{
+  "catalog": {
+    "description": "力量本源的至极化身，它背后蕴含的能量形式并不为人知晓。\n反物质引擎会为其他敌人提供能量并强化其技能。",
+    "id": "8013144",
+    "name": "反物质引擎",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8013144",
+    "defaultMonsterRef": "c5054648b6d13cee538858f34d2390739e2af0aa93d1af00c05d3d5a6a65735b",
+    "description": "力量本源的至极化身，它背后蕴含的能量形式并不为人知晓。\n反物质引擎会为其他敌人提供能量并强化其技能。",
+    "id": "8013144",
+    "kind": "enemy",
+    "monsterRefs": [
+      "c5054648b6d13cee538858f34d2390739e2af0aa93d1af00c05d3d5a6a65735b"
+    ],
+    "name": "反物质引擎",
+    "rank": "Elite",
+    "templateRef": "75c7c8bb1bc3f3c83ff5c6b295cca7566d490c4f06a8c4e69d49f88de0cad908",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8013144",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8013144",
+    "selectableMonsterIds": [
+      "8013144"
+    ]
+  }
+}

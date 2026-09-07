@@ -1,0 +1,139 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：暴击率提高8%。 4件：装备者施放普攻或战技后，若装备者的忆灵在场，使装备者及其忆灵生命上限提高24%，我方全体造成的伤害提高15%，持续至装备者下次施放普攻或战技后。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "127",
+    "name": "再创天地的救世主",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "3.6"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：暴击率提高8%。 4件：装备者施放普攻或战技后，若装备者的忆灵在场，使装备者及其忆灵生命上限提高24%，我方全体造成的伤害提高15%，持续至装备者下次施放普攻或战技后。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "暴击率提高8%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "暴击率提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "8%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "装备者施放普攻或战技后，若装备者的忆灵在场，使装备者及其忆灵生命上限提高24%，我方全体造成的伤害提高15%，持续至装备者下次施放普攻或战技后。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "装备者施放普攻或战技后，若装备者的忆灵在场，使装备者及其忆灵生命上限提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "24%"
+          },
+          {
+            "type": "text",
+            "value": "，我方全体造成的伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "15%"
+          },
+          {
+            "type": "text",
+            "value": "，持续至装备者下次施放普攻或战技后。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "127",
+    "kind": "relic",
+    "name": "再创天地的救世主",
+    "pieces": [
+      {
+        "description": "传说中救世主遮风避雨时会使用的风帽，实际穿着可能与吟游诗人的描述不同。",
+        "id": "31271",
+        "name": "救世主的登程风帽",
+        "slot": "HEAD"
+      },
+      {
+        "description": "传说中救世主披荆斩棘时会穿戴的护手，实际穿着可能与吟游诗人的描述不同。",
+        "id": "31272",
+        "name": "救世主的执剑护手",
+        "slot": "HAND"
+      },
+      {
+        "description": "传说中救世主兵刃相接时会披戴的战袍，实际穿着可能与吟游诗人的描述不同。",
+        "id": "31273",
+        "name": "救世主的传承战袍",
+        "slot": "BODY"
+      },
+      {
+        "description": "传说中救世主跋山涉水时会穿戴的长靴，实际穿着可能与吟游诗人的描述不同。",
+        "id": "31274",
+        "name": "救世主的拓荒长靴",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【{TextID#FloorName_20462001}】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "3.6"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31271"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31272"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31273"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31274"
+      }
+    ],
+    "route": "/relics/127"
+  }
+}

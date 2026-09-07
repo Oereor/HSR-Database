@@ -1,0 +1,74 @@
+{
+  "catalog": {
+    "description": "流光忆庭的模因生命遭遇「毁灭」金血糅合而成的扭曲怪物。初具雉形。\n它既喧嚣吵闹又总是抱团行动，可见即便人性已经蒸发，遵循着「毁灭」的本能便是如此模样。",
+    "id": "4062010",
+    "name": "金血忆灵•雉形",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4062010",
+    "defaultMonsterRef": "5313c3185284ebac6257c0088dda5dfbcb61c85df2593685d20ac3c1aab28eb4",
+    "description": "流光忆庭的模因生命遭遇「毁灭」金血糅合而成的扭曲怪物。初具雉形。\n它既喧嚣吵闹又总是抱团行动，可见即便人性已经蒸发，遵循着「毁灭」的本能便是如此模样。",
+    "id": "4062010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "5313c3185284ebac6257c0088dda5dfbcb61c85df2593685d20ac3c1aab28eb4",
+      "a307fc19ce7839f93add910f7242b0b5372e264793cbf65095339cd7f8e75fc4",
+      "caa513415b93beab63717e115a003f896f493b2c4a35bee22e9ce3b0c44928b3",
+      "fb896bc2a8620879297c057f617a8d876c45ed483bd4c2abe035a82717735d71",
+      "76b9837f8315085441180b7b306bd33440860d8af1daa0624e87102ea4884f60",
+      "ccd2062f200093ae224d78bfaed5b2c9b36d725c338db13039a0c6f426c74017",
+      "696136af385dd7c443c36fcf05e2cd82a2225d464575289920a89bb9d7fbf01c",
+      "0937390ebfeef2cb86ea0e43b5e4724ec3a0d03c7c4b221e297bfdc287b93323",
+      "e6732e8117793a908d0bddc637e8bac0b1c519a4585907a41b0bed39bc2ad1a5",
+      "c215e2467920fa5970e537520eff53b935d8f821e627ef73dc0f62199be98528",
+      "a5ea28649acb81ab9a3a98cf7d6eedd7b1f80e41a21c861228a99b5e9a65e345",
+      "826b8fab740ab94698464a6b289145c5df29ace469434879ba5104b47586ecd4"
+    ],
+    "name": "金血忆灵•雉形",
+    "rank": "MinionLv2",
+    "templateRef": "d5801628eeae3112fd1d3572d3f7af9c77c8b78ce9acbb29ffb7eeee501aa4bd",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4062010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4062010",
+    "selectableMonsterIds": [
+      "4062010",
+      "406201001",
+      "406201002",
+      "406201003",
+      "406201004",
+      "406201005",
+      "406201006",
+      "406201007",
+      "406201008",
+      "406201009",
+      "406201010",
+      "406201011"
+    ]
+  }
+}

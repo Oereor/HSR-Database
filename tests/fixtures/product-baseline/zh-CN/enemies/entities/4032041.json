@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n原本可用来经世济民的学识反转为文明的恶敌，擅长潜伏与博弈的它们如同贪婪的秃鹫，渴望为黑潮不断奉上新的牺牲。",
+    "id": "4032041",
+    "name": "黑潮参议",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4032041",
+    "defaultMonsterRef": "d273269e29e1670cae8413254ba08c407a643da9a85255114017412dcc5bfed6",
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n原本可用来经世济民的学识反转为文明的恶敌，擅长潜伏与博弈的它们如同贪婪的秃鹫，渴望为黑潮不断奉上新的牺牲。",
+    "id": "4032041",
+    "kind": "enemy",
+    "monsterRefs": [
+      "d273269e29e1670cae8413254ba08c407a643da9a85255114017412dcc5bfed6"
+    ],
+    "name": "黑潮参议",
+    "rank": "MinionLv2",
+    "templateRef": "c5706b027164e447e167d5a5ac063792a154176675a4849a1b4902b756a63ba9",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4032041",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4032041",
+    "selectableMonsterIds": [
+      "4032041"
+    ]
+  }
+}

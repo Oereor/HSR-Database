@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血，能承载泰坦灵魂的强大造物。以巨剑抵挡黑潮的侵袭，亦会用巨剑带来战争的侵袭。\n天谴先锋会献祭弱小的眷属，以此暴行换得泰坦的天罚。",
+    "id": "4013018",
+    "name": "天谴先锋",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4013018",
+    "defaultMonsterRef": "29702f544591fd528551b441fb03063d870d416b50af4edceae5afee3b80a8e3",
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血，能承载泰坦灵魂的强大造物。以巨剑抵挡黑潮的侵袭，亦会用巨剑带来战争的侵袭。\n天谴先锋会献祭弱小的眷属，以此暴行换得泰坦的天罚。",
+    "id": "4013018",
+    "kind": "enemy",
+    "monsterRefs": [
+      "29702f544591fd528551b441fb03063d870d416b50af4edceae5afee3b80a8e3"
+    ],
+    "name": "天谴先锋",
+    "rank": "Elite",
+    "templateRef": "01324ae7adda4520f66d56c5e547be72d8fe37a15583d8d430fc5b5cc3d604d0",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4013018",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4013018",
+    "selectableMonsterIds": [
+      "4013018"
+    ]
+  }
+}

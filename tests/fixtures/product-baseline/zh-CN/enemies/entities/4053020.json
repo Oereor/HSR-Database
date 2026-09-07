@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "大海的女儿们，被「毁灭」的罪孽蚀尽灵肉，只余空荡扭曲的形骸…这一世，她们追随「海洋」的利刃，并非湮灭于虚无，而是成为袭向黑日的巨浪。\n末日的雨从天而降，宣告万物的灭亡——\n孕育大浪的飓风啊，你尝尽子嗣的绝望，最终孕满疯狂——\n亿万死胎的海葬，泪也应汹涌如洪水，将恨拍在岸上。",
+    "id": "4053020",
+    "name": "飓风大母",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4053020",
+    "defaultMonsterRef": "a240638d39ac6b4d9c1789236f6b00721806e9b5ab0f386b8c805840fdfb071e",
+    "description": "大海的女儿们，被「毁灭」的罪孽蚀尽灵肉，只余空荡扭曲的形骸…这一世，她们追随「海洋」的利刃，并非湮灭于虚无，而是成为袭向黑日的巨浪。\n末日的雨从天而降，宣告万物的灭亡——\n孕育大浪的飓风啊，你尝尽子嗣的绝望，最终孕满疯狂——\n亿万死胎的海葬，泪也应汹涌如洪水，将恨拍在岸上。",
+    "id": "4053020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "a240638d39ac6b4d9c1789236f6b00721806e9b5ab0f386b8c805840fdfb071e",
+      "d232c1e76a2fdaaa7a33b000371f6c9cfd875db8b8159483ef17e1b4e3224f0a"
+    ],
+    "name": "飓风大母",
+    "rank": "Elite",
+    "templateRef": "2d6db56305c69b260230d84a4bdce20de345e5cb75e4b63afa4eb7b09d95d66c",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4053020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4053020",
+    "selectableMonsterIds": [
+      "4053020",
+      "405302001"
+    ]
+  }
+}

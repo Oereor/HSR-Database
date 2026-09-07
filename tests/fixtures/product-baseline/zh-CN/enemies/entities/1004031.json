@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为贝洛伯格守护者的继任者，银鬃铁卫的统帅。\n布洛妮娅（完整）会使用多种战术攻击敌人，并大幅提升友军的作战能力。",
+    "id": "1004031",
+    "name": "布洛妮娅（完整）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1004031",
+    "defaultMonsterRef": "c1bf1470f5433261308a52b608e1352374fa75eecaec6f7d8243a57ee0d483a4",
+    "description": "代码受到影响后的完整投影。参照本体为贝洛伯格守护者的继任者，银鬃铁卫的统帅。\n布洛妮娅（完整）会使用多种战术攻击敌人，并大幅提升友军的作战能力。",
+    "id": "1004031",
+    "kind": "enemy",
+    "monsterRefs": [
+      "c1bf1470f5433261308a52b608e1352374fa75eecaec6f7d8243a57ee0d483a4",
+      "7d4124104de5b1a3a52b6db0a5b79ddc2a7651b3fa37c13a87b49a34f7268898",
+      "2fd171e755cb5c836e838b07b88d270b6d8495b8be54b974d3766aa450a8a493",
+      "daea4f25ce7ad61bb34467b9e47a819464f72ae67c07acd2b28dd941dcb9c1cc"
+    ],
+    "name": "布洛妮娅（完整）",
+    "rank": "LittleBoss",
+    "templateRef": "920fe49979d545b73dd19e71d912d84ade7b7c5af85605da0df340464957378e",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1004031",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1004031",
+    "selectableMonsterIds": [
+      "1004031",
+      "100403101",
+      "100403102",
+      "100403103"
+    ]
+  }
+}

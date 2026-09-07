@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "「孤注一掷的掷骰者」所化博弈之骰，于赌局中裁断博徒们的命运。",
+    "id": "8032034",
+    "name": "「所有或一无所有•双倍好运」",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8032034",
+    "defaultMonsterRef": "27e487f79cbb564a24a85aa3425c725e82d79488333b79c4ceed50b35269eb07",
+    "description": "「孤注一掷的掷骰者」所化博弈之骰，于赌局中裁断博徒们的命运。",
+    "id": "8032034",
+    "kind": "enemy",
+    "monsterRefs": [
+      "27e487f79cbb564a24a85aa3425c725e82d79488333b79c4ceed50b35269eb07",
+      "8a378775a778081686bad0505ddc9b97f7db58115fddc277ce7b696658ab0a8e",
+      "e8c098c33f8407ab10c4bafa7c1267b0619bc754d8f2333ffef82838a4df9db4",
+      "b6be1055eca2bd652b5237f6d5f602176a931eb4b5146cf21fd8789fccd3dcd0",
+      "33e990acd396b63531c9f6e5078b731998bc220217d61c26e3cb6ae1c173f48c"
+    ],
+    "name": "「所有或一无所有•双倍好运」",
+    "rank": "MinionLv2",
+    "templateRef": "45b12246e50c60579630514bc2df402d6573e1c8645bda3650be7774b038029e",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8032034",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8032034",
+    "selectableMonsterIds": [
+      "8032034",
+      "803203401",
+      "803203402",
+      "803203403",
+      "803203404"
+    ]
+  }
+}

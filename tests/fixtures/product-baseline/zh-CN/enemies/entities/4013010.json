@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血，能承载泰坦灵魂的强大造物。以巨剑抵挡黑潮的侵袭，亦会用巨剑带来战争的侵袭。\n天谴先锋会献祭弱小的眷属，以此暴行换得泰坦的天罚。",
+    "id": "4013010",
+    "name": "天谴先锋",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4013010",
+    "defaultMonsterRef": "6bb7cc9d077f4adece7f445c1b1d82f0898b908c00e03c9b82c42131474975c2",
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血，能承载泰坦灵魂的强大造物。以巨剑抵挡黑潮的侵袭，亦会用巨剑带来战争的侵袭。\n天谴先锋会献祭弱小的眷属，以此暴行换得泰坦的天罚。",
+    "id": "4013010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "6bb7cc9d077f4adece7f445c1b1d82f0898b908c00e03c9b82c42131474975c2",
+      "7a79b505c9b3f02c0662706073d9e4b946248cc4e52a5f77d893d17b4c380f47",
+      "e967296a4d8c45d63d888aa7b3baa6f15307dff70b7315e1a1ea523f4ef1c0a6",
+      "4d3d069908860271cf2b7e498292ca049dbe9e587a4e2038c34212ca7085fc55",
+      "5de79173cc4554d001a17a21ee511133b7d2532917062a658f085617171d230a",
+      "66dfe618eecd96f5a25b1b08845ac9dbcd9f04e599e24cc72dbd56d02c7c316a",
+      "727857b34fd31931f07a81e0b9ede785beb4b0c78949248c2b15496f176e1ed6",
+      "af3c4a93c84a65484b7298b02df7c1ca2d4260e48d6c16581970f026ecf9fb37",
+      "012636ab1d3970b5d6e2c26ead7b6872d5c5edf32c21a091a31dd88e999bc615"
+    ],
+    "name": "天谴先锋",
+    "rank": "Elite",
+    "templateRef": "0028f35309b6ec5a09d09cf5e082af29a052f111c8656b23ca438fa5bd3dd5a9",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4013010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4013010",
+    "selectableMonsterIds": [
+      "4013010",
+      "401301001",
+      "401301002",
+      "401301003",
+      "401301004",
+      "401301005",
+      "401301006",
+      "401301007",
+      "401301008"
+    ]
+  }
+}

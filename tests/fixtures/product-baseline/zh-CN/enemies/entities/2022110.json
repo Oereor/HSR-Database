@@ -1,0 +1,82 @@
+{
+  "catalog": {
+    "description": "堕入魔阴身的十王司武卫。\n只要还是血肉凡胎，仙舟人终不能斩断宿命。",
+    "id": "2022110",
+    "name": "魔阴武弁",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2022110",
+    "defaultMonsterRef": "7d52b28f411f13f2f0b8af98d3d1d5b569d3151d4be8fffba8b912fc0897fce7",
+    "description": "堕入魔阴身的十王司武卫。\n只要还是血肉凡胎，仙舟人终不能斩断宿命。",
+    "id": "2022110",
+    "kind": "enemy",
+    "monsterRefs": [
+      "7d52b28f411f13f2f0b8af98d3d1d5b569d3151d4be8fffba8b912fc0897fce7",
+      "8c23728d9f15030816a9980efb225c068b33c3e485cbcc8c2523160d98fe5041",
+      "8e231258dd77f6d08279e2e2eadeb08699cb2cfe2aa17f1a133184e77c3c073d",
+      "9a6db13f1e8c09c9c4e390b0aef7e3573ce3a3547767bb2322f9fc9db827b924",
+      "8f9b93a211f9ded4d717813afdf0b94e38caa9b560112cf2110ffd127b112e6d",
+      "5c51563b7c78506cf6b7543e253b80d5855d9668715defad6c464d6e2fb5482c",
+      "9266828a757f8e061d359d51bb09cad20fbf9cce946a29d38dd5b964aa09322a",
+      "ad631f63b632426c421cb73029d31234a3d2dbf9fae1cf39efaa3591ecd1959b",
+      "db60cf3d1b1a7c9c9f8bc6f18acb12ad4ae15de67f4da48aff939d890f50f1af",
+      "69991a33a83b2a24718b46c5ea35615ef9f1b17bfe9e07004ce8749f5c408323",
+      "218aa15660a00680336622e03d50f86a596d0c08fed98df648a7dae6df213bb1",
+      "7692bdc1abb7549635624f5d5eea01f01676a8487b96dad80e214a9766098473"
+    ],
+    "name": "魔阴武弁",
+    "rank": "MinionLv2",
+    "templateRef": "785bd7dc2fe0fc5aeaa642b821ffc34ae47c6dd5a51093b97921627463de0a36",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2022110",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2022110",
+    "selectableMonsterIds": [
+      "2022110",
+      "202211001",
+      "202211002",
+      "202211003",
+      "202211004",
+      "202211005",
+      "202211006",
+      "202211007",
+      "202211008",
+      "202211009",
+      "202211010",
+      "202211011"
+    ]
+  }
+}

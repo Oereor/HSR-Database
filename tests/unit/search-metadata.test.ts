@@ -15,6 +15,7 @@ import {
   type PlayerAliasMetadata
 } from '../../src/lib/search/name-metadata';
 import { createTextResolver } from '../../scripts/data/localization';
+import { getProductionLocale } from '../../scripts/data/locale-registry';
 import { createGlobalSearchService } from '../../src/lib/search/search';
 import { serializePlayerAliases, syncPlayerAliasSkeleton } from '../../scripts/data/player-aliases';
 import { normalizeSearchDocument } from '../../src/lib/search/documents';
@@ -24,7 +25,7 @@ const snapshot = JSON.parse(
   readFileSync('data/search/character-official-names.generated.json', 'utf8')
 ) as CharacterNameSnapshot;
 const inputs = JSON.parse(
-  readFileSync('src/lib/generated/search-inputs.json', 'utf8')
+  readFileSync('src/lib/generated/views/zh-CN/search-inputs.json', 'utf8')
 ) as SearchBuildInputs;
 const manual = (characters: unknown) => ({ schemaVersion: 1, characters });
 const completeManual = (
@@ -38,8 +39,19 @@ const completeManual = (
     ...overrides
   }
 });
+const buildZhSearch = (source: SearchBuildInputs, aliases: unknown) =>
+  buildSearchDocuments(source, 'zh-CN', { kind: 'maintained', value: aliases });
 
 describe('Character search metadata', () => {
+  it('keeps only identity and name in generated search catalogs without changing the bundle', () => {
+    for (const catalog of Object.values(inputs.catalogs))
+      for (const entry of catalog) expect(Object.keys(entry).sort()).toEqual(['id', 'name']);
+    const aliases = JSON.parse(readFileSync('data/search/character-player-aliases.json', 'utf8'));
+    expect(buildZhSearch(inputs, aliases)).toEqual(
+      JSON.parse(readFileSync('static/generated/zh-CN/search.json', 'utf8'))
+    );
+  });
+
   it('derives the tracked snapshot deterministically from the same pinned data', async () => {
     const root = path.resolve(process.env.HSR_DATA_ROOT ?? '../TurnBasedGameData');
     const derived = await deriveCharacterNames(root, snapshot.sourceCommit);
@@ -75,7 +87,11 @@ describe('Character search metadata', () => {
   });
 
   it('does not infer aliases from another string or merge conflicting AvatarIDs', async () => {
-    const text = await createTextResolver({ '1': '甲角色', '2': '巡猎', '3': '乙角色' });
+    const locale = getProductionLocale();
+    const text = await createTextResolver(
+      { locale: locale.locale, textMapCode: locale.textMapCode },
+      { '1': '甲角色', '2': '巡猎', '3': '乙角色' }
+    );
     const a = {
       AvatarID: 10,
       AvatarName: { Hash: '1' },
@@ -97,7 +113,7 @@ describe('Character search metadata', () => {
     ).toThrow('冲突');
     expect(() =>
       buildCharacterNames([{ ...a, AvatarName: { Hash: '999' } }], [], [], [], text, 'fixture')
-    ).toThrow('canonical');
+    ).toThrow('localization');
   });
 
   it.each([
@@ -120,7 +136,7 @@ describe('Character search metadata', () => {
       '1001': { playerAliases: ['测试专用别名'] },
       '1224': { playerAliases: ['测试专用别名'] }
     });
-    const bundle = buildSearchDocuments(inputs, value);
+    const bundle = buildZhSearch(inputs, value);
     const service = createGlobalSearchService(bundle, {
       characters: inputs.catalogs.character.map((row) => ({ ...row, rarity: 4 })),
       lightCones: [],
@@ -194,10 +210,10 @@ describe('Character search metadata', () => {
     const value = JSON.parse(raw) as PlayerAliasMetadata;
     expect(Object.keys(value.characters).sort()).toEqual(Object.keys(snapshot.characters).sort());
     const validated = validatePlayerAliases(value, snapshot);
-    const generated = buildSearchDocuments(inputs, value);
-    const baseline = JSON.parse(readFileSync('static/generated/search.json', 'utf8'));
+    const generated = buildZhSearch(inputs, value);
+    const baseline = JSON.parse(readFileSync('static/generated/zh-CN/search.json', 'utf8'));
     expect(generated.documents).toEqual(baseline.documents);
-    expect(generated.endgameEnemies).toEqual(baseline.endgameEnemies);
+    expect(generated.endgameTargets).toEqual(baseline.endgameTargets);
     const service = createGlobalSearchService(generated, {
       characters: inputs.catalogs.character.map((row) => ({ ...row, rarity: 4 })),
       lightCones: [],
@@ -216,7 +232,7 @@ describe('Character search metadata', () => {
   });
 
   it('empty synthetic skeleton adds no labels or empty tokens', () => {
-    const generated = buildSearchDocuments(inputs, completeManual());
+    const generated = buildZhSearch(inputs, completeManual());
     const normalized = generated.documents.map(normalizeSearchDocument);
     expect(
       normalized
@@ -280,13 +296,13 @@ describe('Character search metadata', () => {
   it('requires complete production coverage but preserves partial per-entry validation', () => {
     const partial = manual({ '1001': { playerAliases: [] } });
     expect(() => validatePlayerAliases(partial, snapshot)).not.toThrow();
-    expect(() => buildSearchDocuments(inputs, partial)).toThrow('pnpm data:player-aliases:sync');
+    expect(() => buildZhSearch(inputs, partial)).toThrow('pnpm data:player-aliases:sync');
     const next = structuredClone(inputs);
     next.official.characters['999999'] = {
       ...snapshot.characters['1001'],
       canonicalName: '测试新角色'
     };
-    expect(() => buildSearchDocuments(next, completeManual())).toThrow('999999');
+    expect(() => buildZhSearch(next, completeManual())).toThrow('999999');
   });
 
   it('explicit sync adds new IDs, preserves raw alias order and is byte-idempotent', async () => {

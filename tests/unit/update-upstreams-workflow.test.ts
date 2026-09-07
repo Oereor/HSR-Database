@@ -131,10 +131,13 @@ describe('update upstreams workflow', () => {
               relic: [],
               enemy: []
             },
-            endgameEnemies: []
+            endgameTargets: []
           };
           const beforeValidation = await readFile(files.aliases, 'utf8');
-          const result = buildSearchDocuments(inputs, JSON.parse(beforeValidation));
+          const result = buildSearchDocuments(inputs, 'zh-CN', {
+            kind: 'maintained',
+            value: JSON.parse(beforeValidation)
+          });
           expect(result.documents.map((doc) => doc.target)).toHaveLength(3);
           expect(await readFile(files.aliases, 'utf8')).toBe(beforeValidation);
           validated = true;

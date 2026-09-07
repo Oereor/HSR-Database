@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "迷失在群星中的跨维度生物，性温，味甘，不可食用。一生中大部分时间花在进食和逃跑上。偶遇它的旅行者视之为吉兆。",
+    "id": "8002109",
+    "name": "序列扑满（巨大）",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8002109",
+    "defaultMonsterRef": "ba5d7bbe156855703de1f0a9f4fd7dc12859fa0ca5b7248c752a39a26445dd53",
+    "description": "迷失在群星中的跨维度生物，性温，味甘，不可食用。一生中大部分时间花在进食和逃跑上。偶遇它的旅行者视之为吉兆。",
+    "id": "8002109",
+    "kind": "enemy",
+    "monsterRefs": [
+      "ba5d7bbe156855703de1f0a9f4fd7dc12859fa0ca5b7248c752a39a26445dd53",
+      "6be1d7f29f35364df4efceb8ad0ddbc272579c8d4c59113a741571f9b1910013",
+      "3d7027dd5ffee2af5c6f512d7f12b7ee77a586658f5e6ef95dd300c372ed2390"
+    ],
+    "name": "序列扑满（巨大）",
+    "rank": "MinionLv2",
+    "templateRef": "bb9651a56956494b0892c1cd0ec2db61a084c74a2c27d3ae0fa7943392034931",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8002109",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8002109",
+    "selectableMonsterIds": [
+      "8002109",
+      "800210901",
+      "800210902"
+    ]
+  }
+}

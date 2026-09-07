@@ -1,0 +1,1243 @@
+{
+  "presentation": {
+    "defaultEncounterId": "30194",
+    "encounters": [
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体解除控制状态、恢复战技点并激活终结技。\n敌方全体受到的战技伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，终结技伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110006,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3019:BuffList1",
+              "options": [
+                {
+                  "description": "我方全体目标造成的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>，当场上有敌方目标进入弱点击破状态后额外提高<color=#f29e38ff><unbreak>5%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>4</unbreak></color>次。",
+                  "id": 3111077,
+                  "name": "攻心扼吭",
+                  "order": 1
+                },
+                {
+                  "description": "编队中的第1位角色造成的伤害无视敌方目标<color=#f29e38ff><unbreak>15%</unbreak></color>的防御力。",
+                  "id": 3111078,
+                  "name": "摧锋陷阵",
+                  "order": 2
+                },
+                {
+                  "description": "我方目标对敌方造成持续伤害后，回复<color=#f29e38ff><unbreak>1</unbreak></color>点能量。我方全体造成的持续伤害无视敌方目标<color=#f29e38ff><unbreak>40%</unbreak></color>的全属性抗性。",
+                  "id": 3111058,
+                  "name": "附骨之疽",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30191:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100201,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影会在战斗中切换自身<color=#f29e38ff><u>战斗姿态</u></color>，召唤不同雕塑进行战斗；我方消灭处于【灵魂释放】状态的雕塑时，会使本次战斗中我方全体造成的伤害提高。",
+                  "id": 100202,
+                  "linkedEffects": [
+                    {
+                      "description": "芒寒色正的银骑士会随着战斗改变自身的状态：\n【骑士之怒】：召唤【枪尖】的雕塑，自身受到的所有伤害降低，有4个雕塑在场时自身进入韧性保护状态。\n【黄金奉还】：召唤【盾】的雕塑，自身造成的所有伤害提高。\n【瑰丽之勋】：召唤【授勋】的雕塑，有雕塑存在时，自身不可被选中。",
+                      "id": "70000303",
+                      "name": "战斗姿态"
+                    }
+                  ],
+                  "name": "攻守易型",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420471-0",
+                "level": 60,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/3024013",
+                        "hp": {
+                          "exactPerBar": "122583.64410000",
+                          "phaseCount": 2,
+                          "roundedPerBar": "122,584"
+                        },
+                        "identity": "[302401301,3024013,\"5812.5\",\"1\",\"52.724148\",\"0.4\",\"122583.64410000\",\"resolved\",\"122583.64410000\",904,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"105\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"105\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"810\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-390\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"420\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"140\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[3021022,3021032,3021042],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 302401301,
+                        "monsterTemplateId": 3024013,
+                        "name": "芒寒色正的银骑士",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3024010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "105",
+                          "rounded": "105"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "140",
+                          "roundedPerBar": "140"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3019:BuffList2",
+              "options": [
+                {
+                  "description": "我方全体造成的欢愉伤害无视敌方目标<color=#f29e38ff><unbreak>15%</unbreak></color>的全属性抗性。破坏敌方目标的【战甲】或【百炼战甲】时，获得<color=#f29e38ff><unbreak>3</unbreak></color>笑点。",
+                  "id": 3111083,
+                  "name": "以柔克刚",
+                  "order": 1
+                },
+                {
+                  "description": "忆灵造成伤害时无视目标<color=#f29e38ff><unbreak>20%</unbreak></color>的防御力。",
+                  "id": 3111065,
+                  "name": "攻无不克",
+                  "order": 2
+                },
+                {
+                  "description": "我方目标每次消耗战技点后，使自身暴击伤害提高<color=#f29e38ff><unbreak>6%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>10</unbreak></color>层。",
+                  "id": 3111079,
+                  "name": "聚气化神",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30191:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101401,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影和其召唤物拥有<color=#f29e38ff><u>【战甲】</u></color>，使自身受到的伤害降低。在第二阶段<color=#f29e38ff><u>【战甲】</u></color>会强化为<color=#f29e38ff><u>【百炼战甲】</u></color>，层数上限大幅提高，首领幻影还会额外获得韧性保护。",
+                  "id": 101402,
+                  "linkedEffects": [
+                    {
+                      "description": "受到的伤害降低。受到攻击后根据攻击者的【荣耀】层数减少自身【战甲】，减少到0层时，【战甲】被破坏，对自身造成大量虚数属性伤害，削减自身韧性，并使自身行动延后，使我方恢复战技点。【战甲】被破坏后，自身受到攻击时额外再受到少量虚数属性伤害。【战甲】在自身回合结束时恢复到最大层数。",
+                      "id": "240140133",
+                      "name": "战甲"
+                    },
+                    {
+                      "description": "受到的伤害降低。受到攻击后根据攻击者的【荣耀】层数减少自身【百炼战甲】，减少到0层时，【百炼战甲】被破坏，对自身造成大量虚数属性伤害，削减自身大量韧性，并使自身行动延后，使我方恢复战技点，并使攻击者获得一定层数的【荣耀】。【百炼战甲】被破坏后，自身受到攻击时额外再受到少量虚数属性伤害。【百炼战甲】在自身回合结束时如果层数为0，则恢复到最大层数。",
+                      "id": "240140134",
+                      "name": "百炼战甲"
+                    }
+                  ],
+                  "name": "铁甲森森",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420481-0",
+                "level": 60,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4014013",
+                        "hp": {
+                          "exactPerBar": "343234.2034800",
+                          "phaseCount": 2,
+                          "roundedPerBar": "343,234"
+                        },
+                        "identity": "[401401301,4014013,\"32550\",\"1\",\"52.724148\",\"0.2\",\"343234.2034800\",\"resolved\",\"343234.2034800\",896,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1440\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1440\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"480\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[401402101],true,true,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 401401301,
+                        "monsterTemplateId": 4014013,
+                        "name": "兵戈扰攘的常胜军",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4014010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "480",
+                          "roundedPerBar": "480"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30191",
+        "label": "兵锋骑士·难度<unbreak>01</unbreak>",
+        "mode": "as",
+        "ordinal": 1,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体解除控制状态、恢复战技点并激活终结技。\n敌方全体受到的战技伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，终结技伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110006,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3019:BuffList1",
+              "options": [
+                {
+                  "description": "我方全体目标造成的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>，当场上有敌方目标进入弱点击破状态后额外提高<color=#f29e38ff><unbreak>5%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>4</unbreak></color>次。",
+                  "id": 3111077,
+                  "name": "攻心扼吭",
+                  "order": 1
+                },
+                {
+                  "description": "编队中的第1位角色造成的伤害无视敌方目标<color=#f29e38ff><unbreak>15%</unbreak></color>的防御力。",
+                  "id": 3111078,
+                  "name": "摧锋陷阵",
+                  "order": 2
+                },
+                {
+                  "description": "我方目标对敌方造成持续伤害后，回复<color=#f29e38ff><unbreak>1</unbreak></color>点能量。我方全体造成的持续伤害无视敌方目标<color=#f29e38ff><unbreak>40%</unbreak></color>的全属性抗性。",
+                  "id": 3111058,
+                  "name": "附骨之疽",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30192:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100201,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影会在战斗中切换自身<color=#f29e38ff><u>战斗姿态</u></color>，召唤不同雕塑进行战斗；我方消灭处于【灵魂释放】状态的雕塑时，会使本次战斗中我方全体造成的伤害提高。",
+                  "id": 100202,
+                  "linkedEffects": [
+                    {
+                      "description": "芒寒色正的银骑士会随着战斗改变自身的状态：\n【骑士之怒】：召唤【枪尖】的雕塑，自身受到的所有伤害降低，有4个雕塑在场时自身进入韧性保护状态。\n【黄金奉还】：召唤【盾】的雕塑，自身造成的所有伤害提高。\n【瑰丽之勋】：召唤【授勋】的雕塑，有雕塑存在时，自身不可被选中。",
+                      "id": "70000303",
+                      "name": "战斗姿态"
+                    }
+                  ],
+                  "name": "攻守易型",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420472-0",
+                "level": 70,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/3024013",
+                        "hp": {
+                          "exactPerBar": "441690.3405000",
+                          "phaseCount": 2,
+                          "roundedPerBar": "441,690"
+                        },
+                        "identity": "[302401302,3024013,\"5812.5\",\"1\",\"94.98717\",\"0.8\",\"441690.3405000\",\"resolved\",\"441690.3405000\",905,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"105\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"115.5\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"810\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-270\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"540\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"180\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[3021022,3021032,3021042],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 302401302,
+                        "monsterTemplateId": 3024013,
+                        "name": "芒寒色正的银骑士",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3024010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "115.5",
+                          "rounded": "116"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "180",
+                          "roundedPerBar": "180"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3019:BuffList2",
+              "options": [
+                {
+                  "description": "我方全体造成的欢愉伤害无视敌方目标<color=#f29e38ff><unbreak>15%</unbreak></color>的全属性抗性。破坏敌方目标的【战甲】或【百炼战甲】时，获得<color=#f29e38ff><unbreak>3</unbreak></color>笑点。",
+                  "id": 3111083,
+                  "name": "以柔克刚",
+                  "order": 1
+                },
+                {
+                  "description": "忆灵造成伤害时无视目标<color=#f29e38ff><unbreak>20%</unbreak></color>的防御力。",
+                  "id": 3111065,
+                  "name": "攻无不克",
+                  "order": 2
+                },
+                {
+                  "description": "我方目标每次消耗战技点后，使自身暴击伤害提高<color=#f29e38ff><unbreak>6%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>10</unbreak></color>层。",
+                  "id": 3111079,
+                  "name": "聚气化神",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30192:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101401,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影和其召唤物拥有<color=#f29e38ff><u>【战甲】</u></color>，使自身受到的伤害降低。在第二阶段<color=#f29e38ff><u>【战甲】</u></color>会强化为<color=#f29e38ff><u>【百炼战甲】</u></color>，层数上限大幅提高，首领幻影还会额外获得韧性保护。",
+                  "id": 101402,
+                  "linkedEffects": [
+                    {
+                      "description": "受到的伤害降低。受到攻击后根据攻击者的【荣耀】层数减少自身【战甲】，减少到0层时，【战甲】被破坏，对自身造成大量虚数属性伤害，削减自身韧性，并使自身行动延后，使我方恢复战技点。【战甲】被破坏后，自身受到攻击时额外再受到少量虚数属性伤害。【战甲】在自身回合结束时恢复到最大层数。",
+                      "id": "240140133",
+                      "name": "战甲"
+                    },
+                    {
+                      "description": "受到的伤害降低。受到攻击后根据攻击者的【荣耀】层数减少自身【百炼战甲】，减少到0层时，【百炼战甲】被破坏，对自身造成大量虚数属性伤害，削减自身大量韧性，并使自身行动延后，使我方恢复战技点，并使攻击者获得一定层数的【荣耀】。【百炼战甲】被破坏后，自身受到攻击时额外再受到少量虚数属性伤害。【百炼战甲】在自身回合结束时如果层数为0，则恢复到最大层数。",
+                      "id": "240140134",
+                      "name": "百炼战甲"
+                    }
+                  ],
+                  "name": "铁甲森森",
+                  "order": 2
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420482-0",
+                "level": 70,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4014013",
+                        "hp": {
+                          "exactPerBar": "1236732.953400",
+                          "phaseCount": 2,
+                          "roundedPerBar": "1,236,733"
+                        },
+                        "identity": "[401401302,4014013,\"32550\",\"1\",\"94.98717\",\"0.4\",\"1236732.953400\",\"resolved\",\"1236732.953400\",897,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"132.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1440\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1440\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"480\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[401402102],true,true,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 401401302,
+                        "monsterTemplateId": 4014013,
+                        "name": "兵戈扰攘的常胜军",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4014010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "132.0",
+                          "rounded": "132"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "480",
+                          "roundedPerBar": "480"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30192",
+        "label": "兵锋骑士·难度<unbreak>02</unbreak>",
+        "mode": "as",
+        "ordinal": 2,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体解除控制状态、恢复战技点并激活终结技。\n敌方全体受到的战技伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，终结技伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110006,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3019:BuffList1",
+              "options": [
+                {
+                  "description": "我方全体目标造成的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>，当场上有敌方目标进入弱点击破状态后额外提高<color=#f29e38ff><unbreak>5%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>4</unbreak></color>次。",
+                  "id": 3111077,
+                  "name": "攻心扼吭",
+                  "order": 1
+                },
+                {
+                  "description": "编队中的第1位角色造成的伤害无视敌方目标<color=#f29e38ff><unbreak>15%</unbreak></color>的防御力。",
+                  "id": 3111078,
+                  "name": "摧锋陷阵",
+                  "order": 2
+                },
+                {
+                  "description": "我方目标对敌方造成持续伤害后，回复<color=#f29e38ff><unbreak>1</unbreak></color>点能量。我方全体造成的持续伤害无视敌方目标<color=#f29e38ff><unbreak>40%</unbreak></color>的全属性抗性。",
+                  "id": 3111058,
+                  "name": "附骨之疽",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30193:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100201,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影会在战斗中切换自身<color=#f29e38ff><u>战斗姿态</u></color>，召唤不同雕塑进行战斗；我方消灭处于【灵魂释放】状态的雕塑时，会使本次战斗中我方全体造成的伤害提高。",
+                  "id": 100202,
+                  "linkedEffects": [
+                    {
+                      "description": "芒寒色正的银骑士会随着战斗改变自身的状态：\n【骑士之怒】：召唤【枪尖】的雕塑，自身受到的所有伤害降低，有4个雕塑在场时自身进入韧性保护状态。\n【黄金奉还】：召唤【盾】的雕塑，自身造成的所有伤害提高。\n【瑰丽之勋】：召唤【授勋】的雕塑，有雕塑存在时，自身不可被选中。",
+                      "id": "70000303",
+                      "name": "战斗姿态"
+                    }
+                  ],
+                  "name": "攻守易型",
+                  "order": 2
+                },
+                {
+                  "description": "首领幻影第二阶段施加【灵魂释放】时，会选择<color=#f29e38ff>所有</color>雕塑作为目标。",
+                  "id": 100203,
+                  "linkedEffects": [],
+                  "name": "绝境逆转",
+                  "order": 3
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420473-0",
+                "level": 80,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/3024013",
+                        "hp": {
+                          "exactPerBar": "1204439.6752500",
+                          "phaseCount": 2,
+                          "roundedPerBar": "1,204,440"
+                        },
+                        "identity": "[302401303,3024013,\"5812.5\",\"1\",\"148.01102\",\"1.4\",\"1204439.6752500\",\"resolved\",\"1204439.6752500\",906,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"105\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"126.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"810\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-150\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"660\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"220\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[3021022,3021032,3021042],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 302401303,
+                        "monsterTemplateId": 3024013,
+                        "name": "芒寒色正的银骑士",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3024010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "126.0",
+                          "rounded": "126"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "220",
+                          "roundedPerBar": "220"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3019:BuffList2",
+              "options": [
+                {
+                  "description": "我方全体造成的欢愉伤害无视敌方目标<color=#f29e38ff><unbreak>15%</unbreak></color>的全属性抗性。破坏敌方目标的【战甲】或【百炼战甲】时，获得<color=#f29e38ff><unbreak>3</unbreak></color>笑点。",
+                  "id": 3111083,
+                  "name": "以柔克刚",
+                  "order": 1
+                },
+                {
+                  "description": "忆灵造成伤害时无视目标<color=#f29e38ff><unbreak>20%</unbreak></color>的防御力。",
+                  "id": 3111065,
+                  "name": "攻无不克",
+                  "order": 2
+                },
+                {
+                  "description": "我方目标每次消耗战技点后，使自身暴击伤害提高<color=#f29e38ff><unbreak>6%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>10</unbreak></color>层。",
+                  "id": 3111079,
+                  "name": "聚气化神",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30193:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101401,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影和其召唤物拥有<color=#f29e38ff><u>【战甲】</u></color>，使自身受到的伤害降低。在第二阶段<color=#f29e38ff><u>【战甲】</u></color>会强化为<color=#f29e38ff><u>【百炼战甲】</u></color>，层数上限大幅提高，首领幻影还会额外获得韧性保护。",
+                  "id": 101402,
+                  "linkedEffects": [
+                    {
+                      "description": "受到的伤害降低。受到攻击后根据攻击者的【荣耀】层数减少自身【战甲】，减少到0层时，【战甲】被破坏，对自身造成大量虚数属性伤害，削减自身韧性，并使自身行动延后，使我方恢复战技点。【战甲】被破坏后，自身受到攻击时额外再受到少量虚数属性伤害。【战甲】在自身回合结束时恢复到最大层数。",
+                      "id": "240140133",
+                      "name": "战甲"
+                    },
+                    {
+                      "description": "受到的伤害降低。受到攻击后根据攻击者的【荣耀】层数减少自身【百炼战甲】，减少到0层时，【百炼战甲】被破坏，对自身造成大量虚数属性伤害，削减自身大量韧性，并使自身行动延后，使我方恢复战技点，并使攻击者获得一定层数的【荣耀】。【百炼战甲】被破坏后，自身受到攻击时额外再受到少量虚数属性伤害。【百炼战甲】在自身回合结束时如果层数为0，则恢复到最大层数。",
+                      "id": "240140134",
+                      "name": "百炼战甲"
+                    }
+                  ],
+                  "name": "铁甲森森",
+                  "order": 2
+                },
+                {
+                  "description": "第二阶段时，首领幻影的【百炼战甲】层数上限提高。",
+                  "id": 101403,
+                  "linkedEffects": [],
+                  "name": "铄金点玉",
+                  "order": 3
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420483-0",
+                "level": 80,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4014013",
+                        "hp": {
+                          "exactPerBar": "2649767.2855500",
+                          "phaseCount": 2,
+                          "roundedPerBar": "2,649,767"
+                        },
+                        "identity": "[401401303,4014013,\"32550\",\"1\",\"148.01102\",\"0.55\",\"2649767.2855500\",\"resolved\",\"2649767.2855500\",943,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"144.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1440\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1440\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"480\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[401402103],true,true,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 401401303,
+                        "monsterTemplateId": 4014013,
+                        "name": "兵戈扰攘的常胜军",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4014010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "144.0",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "480",
+                          "roundedPerBar": "480"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30193",
+        "label": "兵锋骑士·难度<unbreak>03</unbreak>",
+        "mode": "as",
+        "ordinal": 3,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体解除控制状态、恢复战技点并激活终结技。\n敌方全体受到的战技伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，终结技伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110006,
+          "name": "末法余烬"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3019:BuffList1",
+              "options": [
+                {
+                  "description": "我方全体目标造成的击破伤害提高<color=#f29e38ff><unbreak>10%</unbreak></color>，当场上有敌方目标进入弱点击破状态后额外提高<color=#f29e38ff><unbreak>5%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>4</unbreak></color>次。",
+                  "id": 3111077,
+                  "name": "攻心扼吭",
+                  "order": 1
+                },
+                {
+                  "description": "编队中的第1位角色造成的伤害无视敌方目标<color=#f29e38ff><unbreak>15%</unbreak></color>的防御力。",
+                  "id": 3111078,
+                  "name": "摧锋陷阵",
+                  "order": 2
+                },
+                {
+                  "description": "我方目标对敌方造成持续伤害后，回复<color=#f29e38ff><unbreak>1</unbreak></color>点能量。我方全体造成的持续伤害无视敌方目标<color=#f29e38ff><unbreak>40%</unbreak></color>的全属性抗性。",
+                  "id": 3111058,
+                  "name": "附骨之疽",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30194:MonsterID1",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100201,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影会在战斗中切换自身<color=#f29e38ff><u>战斗姿态</u></color>，召唤不同雕塑进行战斗；我方消灭处于【灵魂释放】状态的雕塑时，会使本次战斗中我方全体造成的伤害提高。",
+                  "id": 100202,
+                  "linkedEffects": [
+                    {
+                      "description": "芒寒色正的银骑士会随着战斗改变自身的状态：\n【骑士之怒】：召唤【枪尖】的雕塑，自身受到的所有伤害降低，有4个雕塑在场时自身进入韧性保护状态。\n【黄金奉还】：召唤【盾】的雕塑，自身造成的所有伤害提高。\n【瑰丽之勋】：召唤【授勋】的雕塑，有雕塑存在时，自身不可被选中。",
+                      "id": "70000303",
+                      "name": "战斗姿态"
+                    }
+                  ],
+                  "name": "攻守易型",
+                  "order": 2
+                },
+                {
+                  "description": "首领幻影第二阶段施加【灵魂释放】时，会选择<color=#f29e38ff>所有</color>雕塑作为目标。",
+                  "id": 100203,
+                  "linkedEffects": [],
+                  "name": "绝境逆转",
+                  "order": 3
+                },
+                {
+                  "description": "除首领幻影外，每多存在1个<color=#f29e38ff>敌方单位</color>，敌方全体受到的伤害降低，造成的伤害提高。",
+                  "id": 100204,
+                  "linkedEffects": [],
+                  "name": "众星拱卫",
+                  "order": 4
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420474-0",
+                "level": 90,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/3024013",
+                        "hp": {
+                          "exactPerBar": "9349034.4127500",
+                          "phaseCount": 2,
+                          "roundedPerBar": "9,349,034"
+                        },
+                        "identity": "[302401304,3024013,\"5812.5\",\"1\",\"236.53471\",\"6.8\",\"9349034.4127500\",\"resolved\",\"9349034.4127500\",165,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"105\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"138.60\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"810\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"90\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"900\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"300\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[3021022,3021032,3021042],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 302401304,
+                        "monsterTemplateId": 3024013,
+                        "name": "芒寒色正的银骑士",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3024010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "138.60",
+                          "rounded": "139"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "300",
+                          "roundedPerBar": "300"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3019:BuffList2",
+              "options": [
+                {
+                  "description": "我方全体造成的欢愉伤害无视敌方目标<color=#f29e38ff><unbreak>15%</unbreak></color>的全属性抗性。破坏敌方目标的【战甲】或【百炼战甲】时，获得<color=#f29e38ff><unbreak>3</unbreak></color>笑点。",
+                  "id": 3111083,
+                  "name": "以柔克刚",
+                  "order": 1
+                },
+                {
+                  "description": "忆灵造成伤害时无视目标<color=#f29e38ff><unbreak>20%</unbreak></color>的防御力。",
+                  "id": 3111065,
+                  "name": "攻无不克",
+                  "order": 2
+                },
+                {
+                  "description": "我方目标每次消耗战技点后，使自身暴击伤害提高<color=#f29e38ff><unbreak>6%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>10</unbreak></color>层。",
+                  "id": 3111079,
+                  "name": "聚气化神",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30194:MonsterID2",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101401,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "首领幻影和其召唤物拥有<color=#f29e38ff><u>【战甲】</u></color>，使自身受到的伤害降低。在第二阶段<color=#f29e38ff><u>【战甲】</u></color>会强化为<color=#f29e38ff><u>【百炼战甲】</u></color>，层数上限大幅提高，首领幻影还会额外获得韧性保护。",
+                  "id": 101402,
+                  "linkedEffects": [
+                    {
+                      "description": "受到的伤害降低。受到攻击后根据攻击者的【荣耀】层数减少自身【战甲】，减少到0层时，【战甲】被破坏，对自身造成大量虚数属性伤害，削减自身韧性，并使自身行动延后，使我方恢复战技点。【战甲】被破坏后，自身受到攻击时额外再受到少量虚数属性伤害。【战甲】在自身回合结束时恢复到最大层数。",
+                      "id": "240140133",
+                      "name": "战甲"
+                    },
+                    {
+                      "description": "受到的伤害降低。受到攻击后根据攻击者的【荣耀】层数减少自身【百炼战甲】，减少到0层时，【百炼战甲】被破坏，对自身造成大量虚数属性伤害，削减自身大量韧性，并使自身行动延后，使我方恢复战技点，并使攻击者获得一定层数的【荣耀】。【百炼战甲】被破坏后，自身受到攻击时额外再受到少量虚数属性伤害。【百炼战甲】在自身回合结束时如果层数为0，则恢复到最大层数。",
+                      "id": "240140134",
+                      "name": "百炼战甲"
+                    }
+                  ],
+                  "name": "铁甲森森",
+                  "order": 2
+                },
+                {
+                  "description": "第二阶段时，首领幻影的【百炼战甲】层数上限提高。",
+                  "id": 101403,
+                  "linkedEffects": [],
+                  "name": "铄金点玉",
+                  "order": 3
+                },
+                {
+                  "description": "除首领幻影外，每多存在1个<color=#f29e38ff>敌方单位</color>，敌方全体受到的伤害降低，造成的伤害提高。",
+                  "id": 101404,
+                  "linkedEffects": [],
+                  "name": "列阵护主",
+                  "order": 4
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420484-0",
+                "level": 90,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/4014013",
+                        "hp": {
+                          "exactPerBar": "14628489.139950",
+                          "phaseCount": 2,
+                          "roundedPerBar": "14,628,489"
+                        },
+                        "identity": "[401401304,4014013,\"32550\",\"1\",\"236.53471\",\"1.9\",\"14628489.139950\",\"resolved\",\"14628489.139950\",89,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.40\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1440\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1440\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"480\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[401402104],true,true,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 401401304,
+                        "monsterTemplateId": 4014013,
+                        "name": "兵戈扰攘的常胜军",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4014010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "158.40",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "480",
+                          "roundedPerBar": "480"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3019:BuffList3",
+              "options": [
+                {
+                  "description": "我方队伍中存在智识命途的角色时，我方全体全属性抗性穿透提高<color=#f29e38ff><unbreak>25%</unbreak></color>。",
+                  "id": 3111082,
+                  "name": "智圆行方",
+                  "order": 1
+                },
+                {
+                  "description": "我方目标对持有大于等于<color=#f29e38ff><unbreak>1</unbreak></color>个持续伤害状态的敌方目标施放攻击后，使自身速度提高<color=#f29e38ff><unbreak>25%</unbreak></color>，持续<color=#f29e38ff><unbreak>3</unbreak></color>个回合。",
+                  "id": 3111081,
+                  "name": "疾如旋踵",
+                  "order": 2
+                },
+                {
+                  "description": "我方全体造成的追加攻击和终结技伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，对弱点击破状态下的敌方目标额外提高<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111085,
+                  "name": "可乘之隙",
+                  "order": 3
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30194:MonsterID3",
+              "traits": [
+                {
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 100801,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
+                },
+                {
+                  "description": "所有敌方单位受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>，并在处于【课堂频道】状态时拥有<color=#f29e38ff><u>切换计数</u></color>。当首领幻影被<color=#f29e38ff>弱点击破</color>后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 100802,
+                  "linkedEffects": [
+                    {
+                      "description": "处于【课堂频道】状态的单位受到攻击后增加1点切换计数，切换计数达到上限时，转变为【课间频道】状态，同时削减首领幻影的韧性，并立即获得一次该单位的【课间频道】奖励。",
+                      "id": "70000314",
+                      "name": "切换计数"
+                    }
+                  ],
+                  "name": "共同阵线",
+                  "order": 2
+                },
+                {
+                  "description": "每回合开始时，敌方处于【课堂频道】状态的单位的<color=#f29e38ff><u>切换计数</u></color>会扣减一定数值。",
+                  "id": 100803,
+                  "linkedEffects": [
+                    {
+                      "description": "处于【课堂频道】状态的单位受到攻击后增加1点切换计数，切换计数达到上限时，转变为【课间频道】状态，同时削减首领幻影的韧性，并立即获得一次该单位的【课间频道】奖励。",
+                      "id": "70000314",
+                      "name": "切换计数"
+                    }
+                  ],
+                  "name": "计数流失",
+                  "order": 3
+                },
+                {
+                  "description": "【期末晚会】的速度提高。",
+                  "id": 100804,
+                  "linkedEffects": [],
+                  "name": "速度强化",
+                  "order": 4
+                }
+              ]
+            },
+            "slot": 3,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420494-0",
+                "level": 90,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "enemyHref": "/enemies/3004021",
+                        "hp": {
+                          "exactPerBar": "30026898.760950",
+                          "phaseCount": 2,
+                          "roundedPerBar": "30,026,899"
+                        },
+                        "identity": "[300402104,3004021,\"19530\",\"1\",\"236.53471\",\"6.5\",\"30026898.760950\",\"resolved\",\"30026898.760950\",164,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"50\",\"instanceRatio\":\"1\",\"instanceValue\":\"10\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"79.20\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"390\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"180\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"570\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"190\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[3002022,3002012,3003015,3002042],true,false,false,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 300402104,
+                        "monsterTemplateId": 3004021,
+                        "name": "心蕉如火的猴把戏",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_3004020.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "79.20",
+                          "rounded": "79"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "190",
+                          "roundedPerBar": "190"
+                        },
+                        "weaknesses": []
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30194",
+        "label": "兵锋骑士·难度<unbreak>04</unbreak>",
+        "mode": "as",
+        "ordinal": 4,
+        "variant": "floor"
+      }
+    ],
+    "mode": "as",
+    "modeLabel": "末日幻影",
+    "period": {
+      "dateLabel": "2026/07/20 – 2026/08/31",
+      "encounterCount": 4,
+      "groupId": 3019,
+      "name": "兵锋骑士",
+      "status": "historical"
+    },
+    "periods": [
+      {
+        "dateLabel": "2026/08/31 – 2026/10/05",
+        "encounterCount": 4,
+        "groupId": 3020,
+        "name": "仙客天狼",
+        "status": "current"
+      },
+      {
+        "dateLabel": "2026/07/20 – 2026/08/31",
+        "encounterCount": 4,
+        "groupId": 3019,
+        "name": "兵锋骑士",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/06/08 – 2026/07/20",
+        "encounterCount": 4,
+        "groupId": 3018,
+        "name": "遗忘冽风",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/04/27 – 2026/06/08",
+        "encounterCount": 4,
+        "groupId": 3017,
+        "name": "偶像螟蝗",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/03/16 – 2026/04/27",
+        "encounterCount": 4,
+        "groupId": 3016,
+        "name": "兵锋天狼",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/02/02 – 2026/03/16",
+        "encounterCount": 4,
+        "groupId": 3015,
+        "name": "支配冥茫",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/12/22 – 2026/02/02",
+        "encounterCount": 4,
+        "groupId": 3014,
+        "name": "猢狲骑士",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/11/10 – 2025/12/22",
+        "encounterCount": 4,
+        "groupId": 3013,
+        "name": "螟蝗煽动",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/09/29 – 2025/11/10",
+        "encounterCount": 4,
+        "groupId": 3012,
+        "name": "冥茫冽风",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/08/18 – 2025/09/29",
+        "encounterCount": 4,
+        "groupId": 3011,
+        "name": "天狼战首",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/07/07 – 2025/08/18",
+        "encounterCount": 4,
+        "groupId": 3010,
+        "name": "金血恶兽",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/05/26 – 2025/07/07",
+        "encounterCount": 4,
+        "groupId": 3009,
+        "name": "冽风支配",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/04/14 – 2025/05/26",
+        "encounterCount": 4,
+        "groupId": 3008,
+        "name": "螟蝗战首",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/03/03 – 2025/04/14",
+        "encounterCount": 4,
+        "groupId": 3007,
+        "name": "猢狲博弈",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/01/20 – 2025/03/03",
+        "encounterCount": 4,
+        "groupId": 3006,
+        "name": "煽动螟蝗",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/12/09 – 2025/01/20",
+        "encounterCount": 4,
+        "groupId": 3005,
+        "name": "冽风猢狲",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/10/28 – 2024/12/09",
+        "encounterCount": 4,
+        "groupId": 3004,
+        "name": "支配指挥",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/09/16 – 2024/10/28",
+        "encounterCount": 4,
+        "groupId": 3003,
+        "name": "煽动博弈",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/08/05 – 2024/09/16",
+        "encounterCount": 4,
+        "groupId": 3002,
+        "name": "支配恶兽",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/06/17 – 2024/08/05",
+        "encounterCount": 4,
+        "groupId": 3001,
+        "name": "冽风骑士",
+        "status": "historical"
+      }
+    ]
+  },
+  "route": "/endgame/as/3019"
+}

@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "真蛰虫幼体；「真蛰虫」幼体依据生长程度可被划分为「幼蛰虫」与「次蛰虫」。",
+    "id": "8022010",
+    "name": "幼蛰虫",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8022010",
+    "defaultMonsterRef": "f29f4cdfd4c046c2720db455066632b0e6a64525d5b951464ff38234a9030716",
+    "description": "真蛰虫幼体；「真蛰虫」幼体依据生长程度可被划分为「幼蛰虫」与「次蛰虫」。",
+    "id": "8022010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "f29f4cdfd4c046c2720db455066632b0e6a64525d5b951464ff38234a9030716",
+      "4818deea0fb951a731c30c7e39c4972af06b6b145869b9b017c6691d96aca412",
+      "5e4333b3c7a8347383124389ad260d87335ce21a092a8fe8f0c98dcb0b0ab9c6",
+      "863578da740d5261a861a7aa220ffb0a9c02d87fbfd5f1f12d67a31b2baa78bc",
+      "811a99111649150436a7e214302a9f700eaa93793f8bcd7e78fadbbb17e4b64f"
+    ],
+    "name": "幼蛰虫",
+    "rank": "MinionLv2",
+    "templateRef": "49fa0c75fca4b29fd3eee8899f9be2cd1fa63e88da624ec59ad3ecb977a41696",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8022010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8022010",
+    "selectableMonsterIds": [
+      "8022010",
+      "802201001",
+      "802201002",
+      "802201003",
+      "802201005"
+    ]
+  }
+}

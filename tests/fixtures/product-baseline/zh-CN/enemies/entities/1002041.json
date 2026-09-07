@@ -1,0 +1,54 @@
+{
+  "catalog": {
+    "description": "贝洛伯格的戍卫部队「银鬃铁卫」中的近卫战士，负责冲锋陷阵。\n战斗中，银鬃近卫的攻击会降低我方的防御力。",
+    "id": "1002041",
+    "name": "银鬃近卫",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1002041",
+    "defaultMonsterRef": "5d7dbca88bb7b0d153bb09169a8f67853a7297ad89aaea8be55a14f306c51fb3",
+    "description": "贝洛伯格的戍卫部队「银鬃铁卫」中的近卫战士，负责冲锋陷阵。\n战斗中，银鬃近卫的攻击会降低我方的防御力。",
+    "id": "1002041",
+    "kind": "enemy",
+    "monsterRefs": [
+      "5d7dbca88bb7b0d153bb09169a8f67853a7297ad89aaea8be55a14f306c51fb3",
+      "255baa77578d877658248a36ed8b2ab084117c70873801f77db5ef923ee7d2c8"
+    ],
+    "name": "银鬃近卫",
+    "rank": "MinionLv2",
+    "templateRef": "54c984174c8f0f4dcefcd8d92a46d0e6ec337ff5e3d458de42bf546f0fe2356f",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1002041",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1002041",
+    "selectableMonsterIds": [
+      "1002041",
+      "100204101"
+    ]
+  }
+}

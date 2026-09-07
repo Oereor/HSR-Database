@@ -1,0 +1,78 @@
+{
+  "catalog": {
+    "description": "追随十王司判官执行任务的武卫。\n面戴象征冥世来使的黑白绘面，手持铡刀，其攻击一如十王司的使命沉重而不可违逆。",
+    "id": "2002030",
+    "name": "幽府武弁",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2002030",
+    "defaultMonsterRef": "0726b4520e583f5f42050aa7f98dd8ce597a12a42b725162fc2a174c8ca27e51",
+    "description": "追随十王司判官执行任务的武卫。\n面戴象征冥世来使的黑白绘面，手持铡刀，其攻击一如十王司的使命沉重而不可违逆。",
+    "id": "2002030",
+    "kind": "enemy",
+    "monsterRefs": [
+      "0726b4520e583f5f42050aa7f98dd8ce597a12a42b725162fc2a174c8ca27e51",
+      "974a4b63841b8361a6ff9e1c9f5d582c8cf8b1236210733cf2af73b7a7e4609f",
+      "9fdb8b02525882d29931b475fa05b84d6a6723e227e290993e8d408a03910cbf",
+      "dff82e768fc2b283cf3e9ef8511d3ce0982b5fc39a5723747e7f62246c663e33",
+      "eebb9c2eea06bc3c478d585e4ba20c67d12c68a9c11e8e7346a106705e6aec09",
+      "6b61ef4f7bf74279484ed31ab7d33e5a524302c5468a66927a53298b1bb0fd80",
+      "2d7b16ad3892e7af76eafd7cfbbf0df2074617924cd5bfa5e63d33b48574105f",
+      "c474f21f338420fb7fca59c7fa71eff4e2db8be48619c51ab1d4063f3bd06744",
+      "0254b3826d53bf56cac65f12721ef29f92f50c0274c78525378ffa03f9dbb1c4",
+      "7071798dd94e38d6c219da0bfe5517081625c3a41926f7e4951c45454a263990"
+    ],
+    "name": "幽府武弁",
+    "rank": "MinionLv2",
+    "templateRef": "92f5f3addcdc88310c92e0795daa8ac388f334986791d88de5344bf7252a9aa4",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2002030",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2002030",
+    "selectableMonsterIds": [
+      "2002030",
+      "200203001",
+      "200203002",
+      "200203003",
+      "200203004",
+      "200203005",
+      "200203006",
+      "200203007",
+      "200203008",
+      "200203009"
+    ]
+  }
+}

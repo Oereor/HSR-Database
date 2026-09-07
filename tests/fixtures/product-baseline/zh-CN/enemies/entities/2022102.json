@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "随玄鹿足迹而生的建木枝梢。",
+    "id": "2022102",
+    "name": "嘉实之杪",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2022102",
+    "defaultMonsterRef": "469b53fc437cfe102466e5c5b107eccf6f4b9d7fcec38f3c085e124bd29f487a",
+    "description": "随玄鹿足迹而生的建木枝梢。",
+    "id": "2022102",
+    "kind": "enemy",
+    "monsterRefs": [
+      "469b53fc437cfe102466e5c5b107eccf6f4b9d7fcec38f3c085e124bd29f487a",
+      "88949331a1ad1fd0bc4963393f072201d836506f1e30f10ce295ac8844fe2db1",
+      "a626c8e321b8709ae9895d239371d208e23e6cba4ba3dba0b02e0182c8ed84a8",
+      "7e6d1611e661ca481d2c3eeb8c9c02e9d71ec9346c9ca7af333eaa39d0efc4d1",
+      "e07fda78e7cb26182d2a8385e04e52b9cf69d083cac532d417a1e2a0e3379247"
+    ],
+    "name": "嘉实之杪",
+    "rank": "MinionLv2",
+    "templateRef": "e2bb3bfb4044e6169e83d7544551f98aaa0d2c3489be8878a69564cc4f733f83",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2022102",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2022102",
+    "selectableMonsterIds": [
+      "2022102",
+      "202210201",
+      "202210202",
+      "202210203",
+      "202210204"
+    ]
+  }
+}

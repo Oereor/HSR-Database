@@ -158,6 +158,20 @@ export interface EndgameEnemyGridItem {
   level?: number;
 }
 
+export interface EndgameViewPresentation {
+  unknownEnemy: string;
+  unavailable: string;
+  groupName: (groupId: number) => string;
+}
+
+export const ENDGAME_MISSING_VALUE = '-';
+
+export const ZH_CN_ENDGAME_VIEW_PRESENTATION: EndgameViewPresentation = {
+  unknownEnemy: '未知敌方单位',
+  unavailable: ENDGAME_MISSING_VALUE,
+  groupName: (groupId) => `数据组 ${groupId}`
+};
+
 export interface PresentedEndgameOccurrence {
   occurrence: EnemyOccurrence;
   count?: number;
@@ -398,14 +412,15 @@ export function mergeFixedOccurrences(
 export function buildOccurrenceView(
   occurrence: EnemyOccurrence,
   reference?: EndgameEnemyReference,
-  count?: number
+  count?: number,
+  presentation: EndgameViewPresentation = ZH_CN_ENDGAME_VIEW_PRESENTATION
 ): EnemyOccurrenceView {
   const mechanics = occurrence.mechanics;
   return {
     identity: occurrenceIdentity(occurrence),
     monsterId: occurrence.monsterId,
     monsterTemplateId: occurrence.monsterTemplateId,
-    name: occurrence.name || reference?.name || '未知敌方单位',
+    name: occurrence.name || reference?.name || presentation.unknownEnemy,
     ...(reference?.exists ? { enemyHref: `/enemies/${occurrence.monsterTemplateId}` } : {}),
     ...(reference?.rank ? { rank: reference.rank } : {}),
     weaknesses: reference?.weaknesses ?? [],
@@ -418,14 +433,14 @@ export function buildOccurrenceView(
             roundedPerBar: formatFullHp(occurrence.hp.final.maxHpPerBar),
             ...(mechanics.phaseCount ? { phaseCount: mechanics.phaseCount } : {})
           }
-        : { roundedPerBar: '资料未提供' },
+        : { roundedPerBar: presentation.unavailable },
     speed:
       occurrence.speed.status === 'resolved'
         ? {
             exact: occurrence.speed.configuredValue,
             rounded: formatRoundedDecimal(occurrence.speed.configuredValue)
           }
-        : { rounded: '资料未提供' },
+        : { rounded: presentation.unavailable },
     toughness:
       occurrence.toughness.display.status === 'resolved'
         ? {
@@ -433,7 +448,7 @@ export function buildOccurrenceView(
             roundedPerBar: formatExactDecimal(occurrence.toughness.display.perBar),
             ...(occurrence.toughness.barCount ? { barCount: occurrence.toughness.barCount } : {})
           }
-        : { roundedPerBar: '资料未提供' }
+        : { roundedPerBar: presentation.unavailable }
   };
 }
 
@@ -472,11 +487,15 @@ function datePart(value: string): string {
   return date.replaceAll('-', '/');
 }
 
-export function buildPeriodView(group: EndgameGroup, now = Date.now()): EndgamePeriodView {
+export function buildPeriodView(
+  group: EndgameGroup,
+  now = Date.now(),
+  presentation: EndgameViewPresentation = ZH_CN_ENDGAME_VIEW_PRESENTATION
+): EndgamePeriodView {
   if (!group.schedule) {
     return {
       groupId: group.groupId,
-      name: group.name || `数据组 ${group.groupId}`,
+      name: group.name || presentation.groupName(group.groupId),
       dateLabel: '-',
       status: 'unknown',
       encounterCount: group.encounters.length
@@ -488,7 +507,7 @@ export function buildPeriodView(group: EndgameGroup, now = Date.now()): EndgameP
     begin <= now && now < end ? 'current' : now < begin ? 'upcoming' : 'historical';
   return {
     groupId: group.groupId,
-    name: group.name || `数据组 ${group.groupId}`,
+    name: group.name || presentation.groupName(group.groupId),
     dateLabel: `${datePart(group.schedule.begin)} – ${datePart(group.schedule.end)}`,
     status,
     encounterCount: group.encounters.length
@@ -497,7 +516,7 @@ export function buildPeriodView(group: EndgameGroup, now = Date.now()): EndgameP
 
 export function recommendedGroupId(groups: EndgameGroup[], now = Date.now()): number | undefined {
   if (!groups.length) return undefined;
-  const named = groups.filter((group) => group.name?.trim());
+  const named = groups.filter((group) => group.recommendationEligible);
   const candidates = named.length ? named : groups;
   const newest = [...candidates].sort((a, b) => b.groupId - a.groupId)[0];
   if (!newest.schedule) return newest.groupId;
@@ -687,15 +706,19 @@ export function buildGroupView(
         battles: encounter.battles.map((battle) => {
           const battleView = buildBattleSlotView(battle, enemyReferences);
           const guide = encounter.bossGuides.find((candidate) => candidate.slot === battle.slot);
-          const traits = (guide?.traits ?? [])
-            .filter((trait) => trait.name.trim() && trait.description.trim())
-            .map((trait) => ({
-              id: trait.tagId,
-              order: trait.order,
-              name: trait.name,
-              description: trait.description,
-              linkedEffects: trait.linkedEffects
-            }));
+          const traits = (guide?.traits ?? []).flatMap((trait) =>
+            trait.name?.trim() && trait.description?.trim()
+              ? [
+                  {
+                    id: trait.tagId,
+                    order: trait.order,
+                    name: trait.name,
+                    description: trait.description,
+                    linkedEffects: trait.linkedEffects ?? []
+                  }
+                ]
+              : []
+          );
           return {
             ...battleView,
             ...(axiomSets.has(battle.slot) ? { axiomSet: axiomSets.get(battle.slot) } : {}),

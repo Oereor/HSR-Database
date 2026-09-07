@@ -1,19 +1,22 @@
 <script lang="ts">
   import GameText from '$lib/components/GameText.svelte';
   import type { EndgamePeriodView } from '$lib/domain/endgame-view';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let period: EndgamePeriodView;
 </script>
 
 <section class="endgame-season-hero" aria-labelledby="endgame-season-title">
-  <p class="endgame-season-hero__eyebrow">赛期 ID · {period.groupId}</p>
+  <p class="endgame-season-hero__eyebrow">{m.endgame_season_id({ id: period.groupId })}</p>
   <h1 id="endgame-season-title"><GameText text={period.name} /></h1>
   <p class="endgame-season-hero__meta">
     <span>{period.dateLabel}</span>
     {#if period.status === 'current'}
-      <span class="endgame-inline-status">当前</span>
+      <span class="endgame-inline-status">{m.endgame_period_current()}</span>
     {:else if period.status === 'upcoming'}
-      <span class="endgame-inline-status endgame-inline-status--upcoming">即将开放</span>
+      <span class="endgame-inline-status endgame-inline-status--upcoming"
+        >{m.endgame_period_upcoming()}</span
+      >
     {/if}
   </p>
 </section>

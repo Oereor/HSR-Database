@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "将军景元的侍卫，不过总角之年的御剑天才。出现于此的是你的记忆模拟出的幻影。",
+    "id": "2004023",
+    "name": "云骑骁卫•彦卿（幻象）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2004023",
+    "defaultMonsterRef": "ff536c8fcef79fc22cf976dd0bca1e942dc6a8ffe4b9e028e7b2dc65aaacfbcf",
+    "description": "将军景元的侍卫，不过总角之年的御剑天才。出现于此的是你的记忆模拟出的幻影。",
+    "id": "2004023",
+    "kind": "enemy",
+    "monsterRefs": [
+      "ff536c8fcef79fc22cf976dd0bca1e942dc6a8ffe4b9e028e7b2dc65aaacfbcf"
+    ],
+    "name": "云骑骁卫•彦卿（幻象）",
+    "rank": "LittleBoss",
+    "templateRef": "ee6957c74cc96b859307f7bb2642df90c4966250f3080bf6d5cedb6ed0b63b31",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2004023",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2004023",
+    "selectableMonsterIds": [
+      "2004023"
+    ]
+  }
+}

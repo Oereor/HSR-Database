@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "「枪」的雕塑；萦绕着纯美灵魂，枪与盾相依，枪是击破黯淡的勇气。",
+    "id": "3021032",
+    "name": "「枪尖」",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3021032",
+    "defaultMonsterRef": "e7884f7c345774fb57cd1bb9a1edbb99091532633134edf365113c9b5126920e",
+    "description": "「枪」的雕塑；萦绕着纯美灵魂，枪与盾相依，枪是击破黯淡的勇气。",
+    "id": "3021032",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e7884f7c345774fb57cd1bb9a1edbb99091532633134edf365113c9b5126920e"
+    ],
+    "name": "「枪尖」",
+    "rank": "Minion",
+    "templateRef": "b88bda4551c8295b306c559c3c8f92547a08e640a683dbefd7fbd15039258968",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3021032",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3021032",
+    "selectableMonsterIds": [
+      "3021032"
+    ]
+  }
+}

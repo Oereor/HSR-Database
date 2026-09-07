@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "银鬃铁卫的戍卫长。\n杰帕德会指挥麾下士兵集中攻击，并且能为士兵提供免疫一次攻击的屏障。出现于此的是基于你的记忆模拟出的幻影。",
+    "id": "1004025",
+    "name": "杰帕德（幻象）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1004025",
+    "defaultMonsterRef": "d83e9465fa57832cf1e82351abe4e7880cfbaa9a243938f63db0f60f8f996a40",
+    "description": "银鬃铁卫的戍卫长。\n杰帕德会指挥麾下士兵集中攻击，并且能为士兵提供免疫一次攻击的屏障。出现于此的是基于你的记忆模拟出的幻影。",
+    "id": "1004025",
+    "kind": "enemy",
+    "monsterRefs": [
+      "d83e9465fa57832cf1e82351abe4e7880cfbaa9a243938f63db0f60f8f996a40"
+    ],
+    "name": "杰帕德（幻象）",
+    "rank": "LittleBoss",
+    "templateRef": "00c42d7c62e7b819a81608604e6c4ae6bfbef4baa978518e0aec3e7862f234dc",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1004025",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1004025",
+    "selectableMonsterIds": [
+      "1004025"
+    ]
+  }
+}

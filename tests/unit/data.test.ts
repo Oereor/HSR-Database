@@ -19,7 +19,14 @@ import {
   resolveSpecialEffectLinkedAvatarPresentation,
   segmentSpecialEffectTriggers
 } from '../../src/lib/domain/special-effects-presentation';
-import { createTextResolver, loadTextMap } from '../../scripts/data/localization';
+import {
+  createTextResolver,
+  loadTextMap,
+  runtimeTextSourceFromRef,
+  type BuildTextProvenance,
+  type TextResolver
+} from '../../scripts/data/localization';
+import { getProductionLocale } from '../../scripts/data/locale-registry';
 import { normalizeLevelledDescriptions } from '../../scripts/data/levelled';
 import {
   assertDataRoot,
@@ -28,6 +35,15 @@ import {
   resolveDataRoot
 } from '../../scripts/data/paths';
 import type { MissingTextAudit } from '../../scripts/data/missing-text';
+
+const localizedRoot = path.join(generatedRoot, 'views', 'zh-CN');
+const characterRoot = localizedRoot;
+const resolved = (resolver: TextResolver, ref: unknown, source: BuildTextProvenance): string => {
+  const runtime = runtimeTextSourceFromRef(ref, source);
+  if (!runtime) return '';
+  const result = resolver.resolve(runtime);
+  return result.status === 'available' ? result.value : '';
+};
 import { hashOf, mergeConfigSources, readTable } from '../../scripts/data/raw';
 import {
   characterLdSourceNames,
@@ -97,7 +113,7 @@ describe('真实数据管线', () => {
       source: 'avatar',
       progressionId: 'synthetic-progression',
       scalingParamIndexes: [],
-      levels: [{ level: 1, params: [], description: '', descriptionTokens: [] }],
+      levels: [{ level: 1, description: '', descriptionTokens: [] }],
       combatMetaLevels: [{ level: 1, combatMeta: {} }],
       category: 'skill'
     };
@@ -319,19 +335,23 @@ describe('真实数据管线', () => {
   });
 
   it('以 XXHash64 解析遗器符号文本键', async () => {
-    const resolver = await createTextResolver({
-      '12720770977431568614': '治疗量提高#1[i]%。',
-      '4745092278950904325': '在战斗开始时，立即为我方恢复1个战技点。'
-    });
+    const locale = getProductionLocale();
+    const resolver = await createTextResolver(
+      { locale: locale.locale, textMapCode: locale.textMapCode },
+      {
+        '12720770977431568614': '治疗量提高#1[i]%。',
+        '4745092278950904325': '在战斗开始时，立即为我方恢复1个战技点。'
+      }
+    );
     expect(
-      resolver.resolveSymbolic('RelicDesc_1012', {
+      resolved(resolver, 'RelicDesc_1012', {
         entity: 'relic-set',
         id: '101',
         field: 'SkillDesc'
       })
     ).toContain('治疗量');
     expect(
-      resolver.resolveSymbolic('RelicDesc_1014', {
+      resolved(resolver, 'RelicDesc_1014', {
         entity: 'relic-set',
         id: '101',
         field: 'SkillDesc'
@@ -341,23 +361,31 @@ describe('真实数据管线', () => {
 
   it('区分直接 Hash 与符号文本键', async () => {
     const textMap = await loadTextMap(assertDataRoot());
-    const resolver = await createTextResolver(textMap);
+    const locale = getProductionLocale();
+    const resolver = await createTextResolver(
+      { locale: locale.locale, textMapCode: locale.textMapCode },
+      textMap
+    );
     expect(
-      resolver.resolveHash(parseTextHash('6186714091647966180')!, {
-        entity: 'character',
-        id: '1001',
-        field: 'AvatarName'
-      })
+      resolved(
+        resolver,
+        { Hash: '6186714091647966180' },
+        {
+          entity: 'character',
+          id: '1001',
+          field: 'AvatarName'
+        }
+      )
     ).toBe('三月七');
     expect(
-      resolver.resolveSymbolic('SkillPointName_1001101', {
+      resolved(resolver, 'SkillPointName_1001101', {
         entity: 'character-trace',
         id: '1001101',
         field: 'PointName'
       })
     ).toBe('纯洁');
     expect(
-      resolver.resolveSymbolic('AvatarRankName_100101', {
+      resolved(resolver, 'AvatarRankName_100101', {
         entity: 'character-eidolon',
         id: '100101',
         field: 'Name'
@@ -368,16 +396,20 @@ describe('真实数据管线', () => {
   it('通过统一 resolver 解析真实技能名与描述', async () => {
     const skills = await readTable<any>(assertDataRoot(), 'AvatarSkillConfig');
     const level = skills.find((row) => row.SkillID === 100101 && row.Level === 1);
-    const resolver = await createTextResolver(await loadTextMap(assertDataRoot()));
+    const locale = getProductionLocale();
+    const resolver = await createTextResolver(
+      { locale: locale.locale, textMapCode: locale.textMapCode },
+      await loadTextMap(assertDataRoot(), locale.textMapCode)
+    );
     expect(
-      resolver.resolveRef(level.SkillName, {
+      resolved(resolver, level.SkillName, {
         entity: 'character-skill',
         id: '100101',
         field: 'SkillName'
       })
     ).toBe('极寒的弓矢');
     expect(
-      resolver.resolveRef(level.SkillDesc, {
+      resolved(resolver, level.SkillDesc, {
         entity: 'character-skill',
         id: '100101:1',
         field: 'SkillDesc'
@@ -387,16 +419,25 @@ describe('真实数据管线', () => {
 
   it('区分空源字段、未解析 Hash 与异常 Hash 表示', async () => {
     const source = { entity: 'test', id: '1', field: 'Text' };
-    const resolver = await createTextResolver({});
-    expect(resolver.resolveRef(undefined, source)).toBe('');
+    const locale = getProductionLocale();
+    const resolver = await createTextResolver(
+      { locale: locale.locale, textMapCode: locale.textMapCode },
+      {}
+    );
+    expect(resolved(resolver, undefined, source)).toBe('');
     expect(resolver.getDiagnostics()['unresolved-hash'].count).toBe(0);
 
-    expect(resolver.resolveHash(parseTextHash('9999999999999999999')!, source)).toBe('');
+    expect(
+      resolver.resolve({
+        kind: 'direct',
+        ref: { kind: 'hash', hash: parseTextHash('9999999999999999999')! },
+        provenance: source
+      })
+    ).toMatchObject({ status: 'missing' });
     expect(resolver.getDiagnostics()['unresolved-hash']).toMatchObject({ count: 1 });
 
     const unsafeNumericHash = Number.MAX_SAFE_INTEGER + 1;
-    expect(resolver.resolveRef({ Hash: unsafeNumericHash }, source)).toBe('');
-    expect(resolver.getDiagnostics()['invalid-reference']).toMatchObject({ count: 1 });
+    expect(resolved(resolver, { Hash: unsafeNumericHash }, source)).toBe('');
     expect(hashOf({ Hash: unsafeNumericHash })).toBeUndefined();
     expect(parseTextHash(unsafeNumericHash)).toBeUndefined();
     expect(parseTextHash('not-a-decimal-hash')).toBeUndefined();
@@ -505,6 +546,7 @@ describe('真实数据管线', () => {
       }
     ]);
     expect(normalized.scalingParamIndexes).toEqual([0]);
+    expect(normalized.levels.every((level) => !('params' in level))).toBe(true);
     expect(normalized.levels[0].descriptionTokens).toEqual([
       { type: 'text', value: '战斗开始时，使装备者的暴击率提高' },
       { type: 'scaling-value', value: '12%' },
@@ -639,16 +681,20 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
     ) as DataManifest;
     const character = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'characters', '1001.json'), 'utf8')
+      await readFile(path.join(characterRoot, 'details', 'characters', '1001.json'), 'utf8')
     ) as Character;
     const lightCone = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
+      await readFile(path.join(localizedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(97);
-    expect(manifest.schemaVersion).toBe(35);
+    expect(manifest.schemaVersion).toBe(43);
+    expect(manifest.publicLocales).toEqual(['zh-CN', 'en']);
+    expect(manifest.publicLocale).toBe('zh-CN');
+    expect(manifest.generatedLocales).toEqual(['zh-CN', 'en']);
+    expect(manifest.locales['zh-CN'].textMapCode).toBe('CHS');
+    expect(manifest.locales.en.textMapCode).toBe('EN');
     expect(manifest.gameVersionFull).toBe('4.5.0');
     expect(manifest.gameVersion).toBe('4.5');
-    expect(manifest.language).toBe('CHS');
     expect(character.name).toBe('三月七·存护');
     expect(character.baseStats.iconKeys).toEqual({
       hp: 'property--MaxHP',
@@ -723,7 +769,7 @@ describe('真实数据管线', () => {
   it('记忆开拓者保留第四项额外能力的结构化类型', async () => {
     for (const id of ['8007', '8008']) {
       const character = JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
       const abilities = baseProfile(character).traces.filter((trace) => trace.type === 'ability');
       expect(abilities).toHaveLength(4);
@@ -740,7 +786,7 @@ describe('真实数据管线', () => {
   it('为合并技能卡选择 owner-aware canonical icon 且不向 variant 重复下发', async () => {
     const readCharacter = async (id: string) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
     const [castorice, evernight, cyrene, departingHimeko, maleTrailblazer, femaleTrailblazer] =
       await Promise.all(['1407', '1413', '1415', '1510', '8007', '8008'].map(readCharacter));
@@ -767,7 +813,10 @@ describe('真实数据管线', () => {
 
   it('将四名 LD 角色完整纳入同一 Character domain 与搜索索引', async () => {
     const search = JSON.parse(
-      await readFile(path.join(process.cwd(), 'static', 'generated', 'search.json'), 'utf8')
+      await readFile(
+        path.join(process.cwd(), 'static', 'generated', 'zh-CN', 'search.json'),
+        'utf8'
+      )
     ) as { documents: Array<{ target: { id: string; kind: string }; canonicalName: string }> };
     for (const [id, name, pathName, elementName] of [
       ['1014', 'Saber', '毁灭', '风'],
@@ -776,7 +825,7 @@ describe('真实数据管线', () => {
       ['1509', '吉尔伽美什', '毁灭', '雷']
     ] as const) {
       const character = JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
       expect(character).toMatchObject({ id, name, rarity: 5, pathName, elementName });
       expect(character.baseStats).toMatchObject({ minLevel: 1, maxLevel: 80, defaultLevel: 80 });
@@ -811,7 +860,7 @@ describe('真实数据管线', () => {
       ]
     ] as const) {
       const character = JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
       const talentCards = baseProfile(character).skillCards.filter(
         (card) => card.category === 'talent'
@@ -835,34 +884,22 @@ describe('真实数据管线', () => {
     };
     const missing = audit.missingTextAudit;
     expect(missing.D.count).toBe(0);
-    // Search V2 no longer probes 97 missing AvatarFullName hashes as search aliases.
-    expect(missing.A.count).toBe(1614);
+    expect(missing.A.samples).toHaveLength(missing.A.count);
     expect(missing.A.groups.some((group) => group.field === 'searchAlias')).toBe(false);
-    expect(missing.A.groups).toContainEqual({
-      reason: 'missing-source-field',
-      entity: 'character-trace',
-      field: 'PointDesc',
-      count: 1070
-    });
     expect(
       missing.A.groups.some(
         (group) => group.entity === 'avatar-skill' || group.entity === 'memosprite-skill'
       )
     ).toBe(false);
     expect(missing.A.groups.some((group) => group.entity === 'item')).toBe(false);
-    expect(missing.B.groups).toContainEqual({
-      reason: 'unsupported-icon-markup',
-      entity: 'avatar-skill',
-      field: 'SkillDesc',
-      count: 15
-    });
+    expect(missing.B.count).toBe(0);
     expect(missing.C.count).toBe(0);
   });
 
   it('光锥叠影保留真实等级并只高亮变化参数', async () => {
     const readLightCone = async (id: string) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'light-cones', `${id}.json`), 'utf8')
+        await readFile(path.join(localizedRoot, 'details', 'light-cones', `${id}.json`), 'utf8')
       ) as LightCone;
     const arrows = await readLightCone('20000');
     const amber = await readLightCone('20003');
@@ -911,7 +948,7 @@ describe('真实数据管线', () => {
 
   it('生成的展示模型完全不携带图片路径', async () => {
     const character = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'characters', '1001.json'), 'utf8')
+      await readFile(path.join(characterRoot, 'details', 'characters', '1001.json'), 'utf8')
     );
     expect(character).not.toHaveProperty('imagePath');
     expect(baseProfile(character).skillCards[0].variants[0]).not.toHaveProperty('iconPath');
@@ -920,7 +957,7 @@ describe('真实数据管线', () => {
   it('保留代表性角色的真实技能等级边界并按 HideInUI 隐藏内部技能', async () => {
     const readCharacter = async (id: string) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
     const robin = await readCharacter('1309');
     const blade = await readCharacter('1507');
@@ -940,7 +977,7 @@ describe('真实数据管线', () => {
   it('按真实多命途关系生成统一角色显示名', async () => {
     const readCharacter = async (id: string) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
     expect((await readCharacter('1001')).name).toBe('三月七·存护');
     expect((await readCharacter('1224')).name).toBe('三月七·巡猎');
@@ -951,7 +988,7 @@ describe('真实数据管线', () => {
   it('按语义类别合并技能变体并保留真实默认等级', async () => {
     const readCharacter = async (id: string) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
     const imbibitorLunae = await readCharacter('1213');
     const theHerta = await readCharacter('1401');
@@ -975,7 +1012,7 @@ describe('真实数据管线', () => {
   it('为每个真实 Skill Variant 生成独立战斗元数据', async () => {
     const readCharacter = async (id: string) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
     const march = await readCharacter('1001');
     const imbibitorLunae = await readCharacter('1213');
@@ -1054,7 +1091,7 @@ describe('真实数据管线', () => {
   it('角色 ExtraEffect 按技能变体归属，并对完整/简略列表保序去重', async () => {
     const readCharacter = async (id: string) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
     const huntMarch = await readCharacter('1224');
     const sushang = await readCharacter('1206');
@@ -1070,7 +1107,7 @@ describe('真实数据管线', () => {
 
   it('行迹与星魂 ExtraEffect 绑定对应实体并保留多效果顺序', async () => {
     const character = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'characters', '1005.json'), 'utf8')
+      await readFile(path.join(characterRoot, 'details', 'characters', '1005.json'), 'utf8')
     ) as Character;
     expect(
       baseProfile(character)
@@ -1089,7 +1126,7 @@ describe('真实数据管线', () => {
 
   it('通过 PointType 4 关系生成忆灵技并清除错误行迹重复', async () => {
     const aglaea = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'characters', '1402.json'), 'utf8')
+      await readFile(path.join(characterRoot, 'details', 'characters', '1402.json'), 'utf8')
     ) as Character;
     expect(
       baseProfile(aglaea).skillCards.find((card) => card.category === 'memosprite-skill')?.variants
@@ -1105,7 +1142,7 @@ describe('真实数据管线', () => {
   it('按来源配置过滤隐藏技能而不破坏公开技能卡', async () => {
     const readCharacter = async (id: string) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
     const castorice = await readCharacter('1407');
     const acheron = await readCharacter('1308');
@@ -1203,7 +1240,7 @@ describe('真实数据管线', () => {
   it('通过完整技能索引解析隐藏 Special Effect，同时保持标准技能列表隔离', async () => {
     const readCharacter = async (id: string) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
     const [gilgamesh, cyrene, departingHimeko] = await Promise.all(
       ['1509', '1415', '1510'].map(readCharacter)
@@ -1307,7 +1344,7 @@ describe('真实数据管线', () => {
         ownerCharacterId: '1510',
         entryKind: 'avatar-skill-link',
         sourceAvatarId: '8001',
-        sourceTarget: { id: '8001', name: '开拓者·毁灭' }
+        sourceTarget: { id: '8001', name: '开拓者·毁灭', baseName: '开拓者' }
       })
     ).toEqual({ sourceAvatarId: '8001', displayAvatarId: '8002', displayName: '开拓者' });
     expect(
@@ -1315,7 +1352,7 @@ describe('真实数据管线', () => {
         ownerCharacterId: '1510',
         entryKind: 'avatar-skill-link',
         sourceAvatarId: '1001',
-        sourceTarget: { id: '1001', name: '三月七·存护' }
+        sourceTarget: { id: '1001', name: '三月七·存护', baseName: '三月七' }
       })
     ).toEqual({ sourceAvatarId: '1001', displayAvatarId: '1001', displayName: '三月七' });
     expect(
@@ -1323,7 +1360,7 @@ describe('真实数据管线', () => {
         ownerCharacterId: '1000',
         entryKind: 'avatar-skill-link',
         sourceAvatarId: '8001',
-        sourceTarget: { id: '8001', name: '开拓者·毁灭' }
+        sourceTarget: { id: '8001', name: '开拓者·毁灭', baseName: '开拓者' }
       })
     ).toEqual({
       sourceAvatarId: '8001',
@@ -1334,10 +1371,10 @@ describe('真实数据管线', () => {
 
   it('使用真实晋阶数据计算 1–80 级基础属性与突破边界', async () => {
     const march = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'characters', '1001.json'), 'utf8')
+      await readFile(path.join(characterRoot, 'details', 'characters', '1001.json'), 'utf8')
     ) as Character;
     const arrows = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
+      await readFile(path.join(localizedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(getBaseStatsAtLevel(march.baseStats, 1).hp).toBe(144);
     expect(getBaseStatsAtLevel(march.baseStats, 19).hp).toBe(273.6);
@@ -1363,7 +1400,7 @@ describe('真实数据管线', () => {
     expect(specialIds).toEqual(['1220', '1308', '1407', '1408', '1415', '1506']);
     for (const id of specialIds) {
       const detail = JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
       expect(baseProfile(detail).energy).toEqual({
         kind: 'special',
@@ -1381,10 +1418,10 @@ describe('真实数据管线', () => {
       ).toBe(true);
     }
     const march = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'characters', '1001.json'), 'utf8')
+      await readFile(path.join(characterRoot, 'details', 'characters', '1001.json'), 'utf8')
     ) as Character;
     const silverWolf = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'characters', '1006.json'), 'utf8')
+      await readFile(path.join(characterRoot, 'details', 'characters', '1006.json'), 'utf8')
     ) as Character;
     expect(baseProfile(march).energy).toEqual({
       kind: 'standard',
@@ -1425,7 +1462,7 @@ describe('真实数据管线', () => {
 
     for (const id of expectedIds) {
       const character = JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
       const enhanced = character.profiles.enhanced;
       expect(enhanced, `${character.name} 应具有加强 Profile`).toBeDefined();
@@ -1440,7 +1477,7 @@ describe('真实数据管线', () => {
     }
 
     const jingliu = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'characters', '1212.json'), 'utf8')
+      await readFile(path.join(characterRoot, 'details', 'characters', '1212.json'), 'utf8')
     ) as Character;
     const enhanced = jingliu.profiles.enhanced!;
     expect(
@@ -1465,7 +1502,7 @@ describe('真实数据管线', () => {
   it('按具体 AvatarID 生成完整装备推荐并解析最小遗器领域模型', async () => {
     const readCharacter = async (id: string) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
     const [march, huntMarch, trailblazerMale, trailblazerFemale, gallagher, sparkle, rin] =
       await Promise.all(
@@ -1499,16 +1536,16 @@ describe('真实数据管线', () => {
     expect(JSON.stringify(rin.equipmentRecommendation)).not.toMatch(/PropertyList|ScoreRankList/);
 
     const relics = JSON.parse(
-      await readFile(path.join(generatedRoot, 'catalogs', 'relics.json'), 'utf8')
+      await readFile(path.join(localizedRoot, 'catalogs', 'relics.json'), 'utf8')
     ) as RelicCatalogEntry[];
     const properties = JSON.parse(
-      await readFile(path.join(generatedRoot, 'catalogs', 'relic-properties.json'), 'utf8')
+      await readFile(path.join(localizedRoot, 'catalogs', 'relic-properties.json'), 'utf8')
     ) as RelicProperty[];
     const cavern = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'relics', '101.json'), 'utf8')
+      await readFile(path.join(localizedRoot, 'details', 'relics', '101.json'), 'utf8')
     ) as RelicSet;
     const planar = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'relics', '301.json'), 'utf8')
+      await readFile(path.join(localizedRoot, 'details', 'relics', '301.json'), 'utf8')
     ) as RelicSet;
     expect(relics.filter((set) => set.category === 'cavern')).toHaveLength(32);
     expect(relics.filter((set) => set.category === 'planar')).toHaveLength(28);

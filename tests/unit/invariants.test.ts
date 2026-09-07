@@ -28,12 +28,13 @@ describe('重构 invariants', () => {
     acceptHash('6186714091647966180');
   });
 
-  it('运行时代码只声明唯一简中 TextMap 路径', async () => {
+  it('生成器只声明受支持的 CHS/EN TextMap，浏览器不读取 TextMap', async () => {
     const files = await sourceFiles(path.join(root, 'scripts'));
     const sources = await Promise.all(files.map((file) => readFile(file, 'utf8')));
     const combined = sources.join('\n');
     expect(combined).toContain("path.join(root, 'TextMap', 'TextMapCHS.json')");
-    expect(combined).not.toMatch(/TextMapMain|TextMap(?:EN|JP|KR|CHT)|i18n|locale state/i);
+    expect(combined).toContain('TextMapEN.json');
+    expect(combined).not.toMatch(/TextMapMain|TextMap(?:JP|KR|CHT)|locale state/i);
   });
 
   it('属性色与技能橙色各自只有一个运行时定义位置', async () => {
@@ -57,7 +58,7 @@ describe('重构 invariants', () => {
     const files = await sourceFiles(path.join(root, 'src'));
     const sources = await Promise.all(files.map((file) => readFile(file, 'utf8')));
     expect(sources.join('\n')).not.toMatch(
-      /AvatarSkillConfig|EquipmentSkillConfig|TextMapCHS\.json/
+      /AvatarSkillConfig|EquipmentSkillConfig|TextMap(?:CHS|EN)\.json/
     );
   });
 
@@ -105,12 +106,12 @@ describe('重构 invariants', () => {
     expect(sources.join('\n')).not.toContain('{@html');
   });
 
-  it('搜索页只声明简体中文能力', async () => {
+  it('搜索页使用共享本地化消息能力', async () => {
     const source = await readFile(
       path.join(root, 'src', 'routes', 'search', '+page.svelte'),
       'utf8'
     );
-    expect(source).toContain('简体中文搜索');
+    expect(source).toContain('search_hero_title');
     expect(source).not.toMatch(/多语言|其他语言|language switch/i);
   });
 

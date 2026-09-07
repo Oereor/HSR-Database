@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "无根自开、凭空生就的幻花。幻胧托体「建木」，炼成肉身，却不曾放下毁灭的权柄。",
+    "id": "8012213",
+    "name": "破灭玄莲",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8012213",
+    "defaultMonsterRef": "e609f1f4b5908bedb1373ba9f86f48b649efcfea9e0b93836ae8f264f4db06c2",
+    "description": "无根自开、凭空生就的幻花。幻胧托体「建木」，炼成肉身，却不曾放下毁灭的权柄。",
+    "id": "8012213",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e609f1f4b5908bedb1373ba9f86f48b649efcfea9e0b93836ae8f264f4db06c2"
+    ],
+    "name": "破灭玄莲",
+    "rank": "MinionLv2",
+    "templateRef": "c7eb2856fa84d279a8894518f14004f259665459aa22ec2f66025491a1516e9a",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8012213",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8012213",
+    "selectableMonsterIds": [
+      "8012213"
+    ]
+  }
+}

@@ -5,6 +5,7 @@
   import SkillEffectTag from '$lib/components/SkillEffectTag.svelte';
   import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
   import type { SkillVariant } from '$lib/domain/types';
+  import * as m from '$lib/paraglide/messages.js';
 
   export let variant: SkillVariant;
   export let selectedLevel: number;
@@ -38,6 +39,6 @@
         {specialEffectIconUrl}
         onOpenSpecialEffects={openSpecialEffectsFromDescription}
       />
-    </p>{:else}<p class="data-placeholder">上游原始数据未提供该技能描述。</p>{/if}
+    </p>{:else}<p class="data-placeholder">{m.skill_description_unavailable()}</p>{/if}
   <SkillExtraEffects effects={variant.combatMeta.extraEffects ?? []} />
 </section>

@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "以古老机巧术铸造的镇守金人。\n无数岁月前，金人随着仙舟出航求取仙方，监管和辅助人类进行战争——但历尽叛乱后，金人最终为仙舟人所降服。\n而今所有的金人都被符箓严格宰制，用以把守机要重地。",
+    "id": "2013013",
+    "name": "金人司阍",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2013013",
+    "defaultMonsterRef": "a15867381b7f63d6fb886c906b238a07efe0752d932c747e86ee50e9085ec654",
+    "description": "以古老机巧术铸造的镇守金人。\n无数岁月前，金人随着仙舟出航求取仙方，监管和辅助人类进行战争——但历尽叛乱后，金人最终为仙舟人所降服。\n而今所有的金人都被符箓严格宰制，用以把守机要重地。",
+    "id": "2013013",
+    "kind": "enemy",
+    "monsterRefs": [
+      "a15867381b7f63d6fb886c906b238a07efe0752d932c747e86ee50e9085ec654"
+    ],
+    "name": "金人司阍",
+    "rank": "Elite",
+    "templateRef": "5107ed613dce0a4ce5bd8253a87620245bc86f3bb90fa4c1e49ece26dc99840f",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2013013",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2013013",
+    "selectableMonsterIds": [
+      "2013013"
+    ]
+  }
+}

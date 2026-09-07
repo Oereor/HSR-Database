@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "渴求复兴古老的丰饶之秘，并引领仙舟人再度踏上解脱登仙大道的修炼者。\n如今，他们的愿望得遂。受赐于古老神迹的力量，以其为甲胄、为武器，并触及了长生不死的秘密。",
+    "id": "2023012",
+    "name": "仙人童子",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2023012",
+    "defaultMonsterRef": "0782146ca7ffebcddfcdf99bd1b41055c8d7f584d6b23d1c5d927de648096499",
+    "description": "渴求复兴古老的丰饶之秘，并引领仙舟人再度踏上解脱登仙大道的修炼者。\n如今，他们的愿望得遂。受赐于古老神迹的力量，以其为甲胄、为武器，并触及了长生不死的秘密。",
+    "id": "2023012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "0782146ca7ffebcddfcdf99bd1b41055c8d7f584d6b23d1c5d927de648096499",
+      "93095f6ee7c68aa7e005c8809b06bb09ed5e4945e4fe7814a468b3b05c65a1a4",
+      "5a8dfb13efc2ab8f68ba8c321d5ae25681895a7a430beb5d465e51d882de77a7",
+      "3dc966768e91bfa4ddbabb63d8f9ce16cfcbd6eca49b749bb0f1fb48675fff80",
+      "60ea07b839b560980ec01cb4403a42afc2a0ceac8e56efef026fbfe1c3bd3fdb"
+    ],
+    "name": "仙人童子",
+    "rank": "Elite",
+    "templateRef": "725d3dd334e8d878938d3f58f8bb65e874bcbc249aaa603e916a047d9565c1bb",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2023012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2023012",
+    "selectableMonsterIds": [
+      "2023012",
+      "202301201",
+      "202301202",
+      "202301203",
+      "202301204"
+    ]
+  }
+}

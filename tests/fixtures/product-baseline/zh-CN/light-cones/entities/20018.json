@@ -1,0 +1,261 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20018",
+    "name": "匿影",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 3
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 14.4,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 12,
+            "perLevel": 1.8
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 38.4,
+            "perLevel": 5.76
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 31.68,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 26.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 84.48,
+            "perLevel": 5.76
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 54.72,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 45.6,
+            "perLevel": 1.8
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 145.92,
+            "perLevel": 5.76
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 77.76,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 64.8,
+            "perLevel": 1.8
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 207.36,
+            "perLevel": 5.76
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 100.8,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 84,
+            "perLevel": 1.8
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 268.8,
+            "perLevel": 5.76
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 123.84,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 103.2,
+            "perLevel": 1.8
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 330.24,
+            "perLevel": 5.76
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 146.88,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 122.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 391.68,
+            "perLevel": 5.76
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20018",
+    "kind": "light-cone",
+    "name": "匿影",
+    "passive": {
+      "id": "20018",
+      "name": "机关",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "施放战技后，使装备者的下一次普攻对敌方目标造成等同于自身60%攻击力的附加伤害。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "施放战技后，使装备者的下一次普攻对敌方目标造成等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "攻击力的附加伤害。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "施放战技后，使装备者的下一次普攻对敌方目标造成等同于自身75%攻击力的附加伤害。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "施放战技后，使装备者的下一次普攻对敌方目标造成等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "75%"
+              },
+              {
+                "type": "text",
+                "value": "攻击力的附加伤害。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "施放战技后，使装备者的下一次普攻对敌方目标造成等同于自身90%攻击力的附加伤害。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "施放战技后，使装备者的下一次普攻对敌方目标造成等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "90%"
+              },
+              {
+                "type": "text",
+                "value": "攻击力的附加伤害。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "施放战技后，使装备者的下一次普攻对敌方目标造成等同于自身105%攻击力的附加伤害。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "施放战技后，使装备者的下一次普攻对敌方目标造成等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "105%"
+              },
+              {
+                "type": "text",
+                "value": "攻击力的附加伤害。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "施放战技后，使装备者的下一次普攻对敌方目标造成等同于自身120%攻击力的附加伤害。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "施放战技后，使装备者的下一次普攻对敌方目标造成等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "攻击力的附加伤害。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0
+        ]
+      }
+    },
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 3,
+    "story": "自时光中凝取的稀薄力量。正是所有微不足道的刹那，编织成了壮绝的命运。\n\n<i>「虚无也许会找到我们，但它很可能不会。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/20018",
+    "storyFallbackRendered": false
+  }
+}

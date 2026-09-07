@@ -1,0 +1,3069 @@
+{
+  "catalog": {
+    "baseName": "佩拉",
+    "description": "银鬃铁卫的情报官。\n性格认真，深受铁卫成员们敬畏。",
+    "element": "Ice",
+    "elementName": "冰",
+    "id": "1106",
+    "name": "佩拉",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "佩拉",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 105
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 74.4,
+            "perLevel": 3.72
+          },
+          "defence": {
+            "base": 63,
+            "perLevel": 3.15
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 134.4,
+            "perLevel": 6.72
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 104.16,
+            "perLevel": 3.72
+          },
+          "defence": {
+            "base": 88.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 188.16,
+            "perLevel": 6.72
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 133.92,
+            "perLevel": 3.72
+          },
+          "defence": {
+            "base": 113.4,
+            "perLevel": 3.15
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 241.92,
+            "perLevel": 6.72
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 163.68,
+            "perLevel": 3.72
+          },
+          "defence": {
+            "base": 138.6,
+            "perLevel": 3.15
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 295.68,
+            "perLevel": 6.72
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 193.44,
+            "perLevel": 3.72
+          },
+          "defence": {
+            "base": 163.8,
+            "perLevel": 3.15
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 349.44,
+            "perLevel": 6.72
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 223.2,
+            "perLevel": 3.72
+          },
+          "defence": {
+            "base": 189,
+            "perLevel": 3.15
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 403.2,
+            "perLevel": 6.72
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 252.96,
+            "perLevel": 3.72
+          },
+          "defence": {
+            "base": 214.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 456.96,
+            "perLevel": 6.72
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "银鬃铁卫的情报官。\n性格认真，深受铁卫成员们敬畏。",
+    "element": "Ice",
+    "elementName": "冰",
+    "equipmentRecommendation": {
+      "avatarId": "1106",
+      "cavernSetIds": [
+        "104",
+        "106",
+        "110"
+      ],
+      "lightConeIds": [
+        "21015",
+        "22000",
+        "21001"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "StatusProbabilityBase",
+            "CriticalChanceBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "IceAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "312",
+        "310",
+        "308"
+      ],
+      "subStatPropertyTypes": [
+        "SpeedDelta",
+        "StatusProbabilityBase",
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio"
+      ]
+    },
+    "fullName": "佩拉",
+    "id": "1106",
+    "kind": "character",
+    "name": "佩拉",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "敌方目标被消灭时，佩拉恢复<unbreak>5</unbreak>点能量。",
+            "iconKey": "rank--110601",
+            "id": "110601",
+            "name": "胜利反馈",
+            "rank": 1
+          },
+          {
+            "description": "施放战技解除<u>增益效果</u>时，速度提高<unbreak>10%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "对战斗有增益效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000009",
+                "name": "增益效果"
+              }
+            ],
+            "iconKey": "rank--110602",
+            "id": "110602",
+            "name": "疾进不止",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--110603",
+            "id": "110603",
+            "name": "压制升级",
+            "rank": 3
+          },
+          {
+            "description": "施放战技时，有<unbreak>100%</unbreak>的<u>基础概率</u>使敌方目标冰属性抗性降低<unbreak>12%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                "id": "30000001",
+                "name": "基础概率"
+              }
+            ],
+            "iconKey": "rank--110604",
+            "id": "110604",
+            "name": "完全剖析",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--110605",
+            "id": "110605",
+            "name": "零度妨害",
+            "rank": 5
+          },
+          {
+            "description": "施放攻击后，若敌方目标处于<u>负面效果</u>，则对其造成等同于佩拉<unbreak>40%</unbreak>攻击力的冰属性<u>附加伤害</u>。",
+            "extraEffects": [
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              },
+              {
+                "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                "id": "10000005",
+                "name": "附加伤害"
+              }
+            ],
+            "iconKey": "rank--110606",
+            "id": "110606",
+            "name": "疲弱追击",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 110
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1106001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1106001",
+                "variantIds": [
+                  "110601"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "110601",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于佩拉50%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于佩拉60%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于佩拉70%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于佩拉80%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于佩拉90%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于佩拉100%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于佩拉110%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于佩拉120%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于佩拉130%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于佩拉140%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "冰点射击",
+                "progressionId": "1106001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1106002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1106002",
+                "variantIds": [
+                  "110602"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "对战斗有增益效果的所有持续状态，若无特殊说明则可以被解除。",
+                      "id": "10000009",
+                      "name": "增益效果"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "110602",
+                "levels": [
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉105%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉116%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "116%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉126%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉137%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "137%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉147%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "147%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉158%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "158%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉171%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "171%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉184%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "184%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉197%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "197%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉210%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉221%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "221%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉231%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "231%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉242%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "242%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉252%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "解除指定敌方单体的1个增益效果，同时造成等同于佩拉263%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除指定敌方单体的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，同时造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "263%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "低温妨害",
+                "progressionId": "1106002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1106003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1106003",
+                "variantIds": [
+                  "110603"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "110603",
+                "levels": [
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉60%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低30%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉64%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低31%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉68%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低32%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉72%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低33%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉76%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低34%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉80%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低35%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉85%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低36%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "85%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉90%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低38%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉95%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低39%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "95%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉100%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低40%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉104%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低41%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "104%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉108%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低42%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉112%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低43%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉116%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低44%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "116%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉120%攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低45%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入【通解】状态，同时对敌方全体造成等同于佩拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n【通解】状态下，敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "领域压制",
+                "progressionId": "1106003",
+                "scalingParamIndexes": [
+                  1,
+                  3
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1106004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1106004",
+                "variantIds": [
+                  "110604"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                      "id": "10000010",
+                      "name": "负面效果"
+                    }
+                  ]
+                },
+                "id": "110604",
+                "levels": [
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复5.0点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复5.5点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复6.0点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复6.5点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复7.0点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复7.5点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复8.1点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复8.8点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复9.4点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复10.0点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复10.5点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复11.0点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复11.5点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复12.0点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放攻击后若敌方目标处于负面效果状态，则佩拉额外恢复12.5点能量。该效果每次攻击只能触发1次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后若敌方目标处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "负面效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态，则佩拉额外恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。该效果每次攻击只能触发1次。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "数据采集",
+                "progressionId": "1106004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1106007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1106007",
+                "variantIds": [
+                  "110607"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "110607",
+                "levels": [
+                  {
+                    "description": "立即攻击敌人，进入战斗后对敌方随机单体造成等同于佩拉80%攻击力的冰属性伤害，同时有100%的基础概率使敌方每个单体目标防御力降低20%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击敌人，进入战斗后对敌方随机单体造成等同于佩拉"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标防御力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "先发制人",
+                "progressionId": "1106007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "对处于<u>负面效果</u>的敌方目标造成的伤害提高<unbreak>20%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              }
+            ],
+            "iconKey": "skill-tree--1106101",
+            "id": "1106101",
+            "name": "痛击",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "佩拉在场时，我方全体的效果命中提高<unbreak>10%</unbreak>。",
+            "iconKey": "skill-tree--1106102",
+            "id": "1106102",
+            "name": "秘策",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放战技解除<u>增益效果</u>时，下一次攻击造成的伤害提高<unbreak>20%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "对战斗有增益效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000009",
+                "name": "增益效果"
+              }
+            ],
+            "iconKey": "skill-tree--1106103",
+            "id": "1106103",
+            "name": "追歼",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "冰属性伤害提高3.2%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1106201",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [],
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1106202",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1106101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "冰属性伤害提高3.2%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1106203",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1106202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "效果命中提高4.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1106204",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1106203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "冰属性伤害提高4.8%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1106205",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1106102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1106206",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1106205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "冰属性伤害提高4.8%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1106207",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1106206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "效果命中提高6.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1106208",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1106103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1106209",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1106103"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "冰属性伤害提高6.4%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1106210",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1106201"
+            ],
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1106001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110601",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1106002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110602",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1106003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110603",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1106004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110604",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1106007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110607",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1106",
+    "subtitleRendered": false
+  }
+}

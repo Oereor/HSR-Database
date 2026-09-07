@@ -1,0 +1,82 @@
+{
+  "catalog": {
+    "description": "以古老机巧术铸造的镇守金人。\n无数岁月前，金人随着仙舟出航求取仙方，监管和辅助人类进行战争——但历尽叛乱后，金人最终为仙舟人所降服。\n而今所有的金人都被符箓严格宰制，用以把守机要重地。",
+    "id": "2013010",
+    "name": "金人司阍",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2013010",
+    "defaultMonsterRef": "c09a4e39e8c246fa9c850365ba99873b736f05877e3dd44dc8ac9f5fe5ac4040",
+    "description": "以古老机巧术铸造的镇守金人。\n无数岁月前，金人随着仙舟出航求取仙方，监管和辅助人类进行战争——但历尽叛乱后，金人最终为仙舟人所降服。\n而今所有的金人都被符箓严格宰制，用以把守机要重地。",
+    "id": "2013010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "c09a4e39e8c246fa9c850365ba99873b736f05877e3dd44dc8ac9f5fe5ac4040",
+      "968669dba82050dd91f7abb58d74a215eed8687905fb896d25aeaa3e4ab656f5",
+      "e7b38220fdc9b252abeb299486a227444240097971f11e4f7e119465ae9acead",
+      "6876c99711e413c4e3a4d4ed7dc137bc60baf8ec28e940d5ab10a261c515b904",
+      "34fe6bff16677261b1c76a6955bd88936cd13370cf1f27caa6c5964eaf653407",
+      "fc14a35b6fd4220d6f6e192856f290c586af6161ba1d91171f8e3fc528ee2a48",
+      "7d6ca1aac3069b9f2ec8bfef8e3baea487c435029c11acc4a05f93fcccf0679c",
+      "7e58513b64006f02337a27117a2f7ce02590109dfcb8dffd041b49c5a1802588",
+      "8ed36c19f7055ced80452069fc750c5157a3f472e96663840401493a2c7eb45a",
+      "9a5253d8ddd930f1aa5102165ad8b85e5ce481607ba4c1be9ff145fe5ec34648",
+      "c6dfa2fa6ed9cc4ee13844b2cba6a143b80ac2765dcac5fec585babda88c03f7",
+      "cedf30a5e600eb85f3bc798864e88aedc7f2fb8b0283a9e75d67685c3a83b5fc"
+    ],
+    "name": "金人司阍",
+    "rank": "Elite",
+    "templateRef": "1cd4ae80274f1e8a56dfb256284aa6946f1632462acb5313e2a82daab9fb4e53",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2013010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2013010",
+    "selectableMonsterIds": [
+      "2013010",
+      "201301001",
+      "201301002",
+      "201301003",
+      "201301004",
+      "201301005",
+      "201301006",
+      "201301007",
+      "201301008",
+      "201301009",
+      "201301010",
+      "201301011"
+    ]
+  }
+}

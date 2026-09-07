@@ -1,0 +1,4163 @@
+{
+  "catalog": {
+    "baseName": "椒丘",
+    "description": "仙舟「曜青」的狐人医士、策士，常以笑脸迎人，实际颇有心计。\n出身于丹鼎司名家，曾一度心死避世，不再行医，后为医治「天击将军」飞霄再度出山。\n精于医食同源的丹方研究，尤其是能带给人痛感的辣味食物，发明了名为「九宫格」的鼎镬药式。",
+    "element": "Fire",
+    "elementName": "火",
+    "id": "1218",
+    "name": "椒丘",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "椒丘",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 98
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 81.84,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 69.3,
+            "perLevel": 3.465
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 184.8,
+            "perLevel": 9.24
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 114.576,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 97.02,
+            "perLevel": 3.465
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 258.72,
+            "perLevel": 9.24
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 147.312,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 124.74,
+            "perLevel": 3.465
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 332.64,
+            "perLevel": 9.24
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 180.048,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 152.46,
+            "perLevel": 3.465
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 406.56,
+            "perLevel": 9.24
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 212.784,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 180.18,
+            "perLevel": 3.465
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 480.48,
+            "perLevel": 9.24
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 245.52,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 207.9,
+            "perLevel": 3.465
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 554.4,
+            "perLevel": 9.24
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 278.256,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 235.62,
+            "perLevel": 3.465
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 628.32,
+            "perLevel": 9.24
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "仙舟「曜青」的狐人医士、策士，常以笑脸迎人，实际颇有心计。\n出身于丹鼎司名家，曾一度心死避世，不再行医，后为医治「天击将军」飞霄再度出山。\n精于医食同源的丹方研究，尤其是能带给人痛感的辣味食物，发明了名为「九宫格」的鼎镬药式。",
+    "element": "Fire",
+    "elementName": "火",
+    "equipmentRecommendation": {
+      "avatarId": "1218",
+      "cavernSetIds": [
+        "116",
+        "110",
+        "106"
+      ],
+      "lightConeIds": [
+        "23029",
+        "24003",
+        "22000"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "StatusProbabilityBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "FireAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "303",
+        "302",
+        "308"
+      ],
+      "subStatPropertyTypes": [
+        "StatusProbabilityBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "椒丘",
+    "id": "1218",
+    "kind": "character",
+    "name": "椒丘",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "我方目标对处于【烬煨】状态的敌方目标造成的伤害提高<unbreak>40%</unbreak>。每当触发天赋效果使敌方目标陷入【烬煨】状态时，使本次叠加的【烬煨】层数额外提高<unbreak>1</unbreak>层。",
+            "iconKey": "rank--121801",
+            "id": "121801",
+            "name": "五味五走，生熟有定",
+            "rank": 1
+          },
+          {
+            "description": "敌方目标处于【烬煨】状态时，【烬煨】对其造成的火属性持续伤害倍率提高<unbreak>300%</unbreak>。",
+            "iconKey": "rank--121802",
+            "id": "121802",
+            "name": "爽口作疾，厚味措毒",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--121803",
+            "id": "121803",
+            "name": "和合之妙，敌不及拒",
+            "rank": 3
+          },
+          {
+            "description": "结界存在时，敌方目标的攻击力降低<unbreak>15%</unbreak>。",
+            "iconKey": "rank--121804",
+            "id": "121804",
+            "name": "藏腑和平，血气资荣",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--121805",
+            "id": "121805",
+            "name": "明争天地，暗斗变击",
+            "rank": 5
+          },
+          {
+            "description": "敌方目标被消灭时，其持有的【烬煨】会叠加给场上存活的【烬煨】层数最低的敌人。【烬煨】的层数上限提升至<unbreak>9</unbreak>，每层【烬煨】会使目标的全属性抗性降低<unbreak>3%</unbreak>。",
+            "iconKey": "rank--121806",
+            "id": "121806",
+            "name": "九沸九变，火为之纪",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 100
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1218001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1218001",
+                "variantIds": [
+                  "121801"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "121801",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘50%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘60%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘70%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘80%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘90%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘100%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘110%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘120%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘130%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘140%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "仁火攻心",
+                "progressionId": "1218001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1218002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1218002",
+                "variantIds": [
+                  "121802"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "121802",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘75%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘45%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘83%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘50%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘90%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘54%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘98%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘59%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘105%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘63%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘113%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘68%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘122%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘73%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "122%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "73%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘131%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘79%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "131%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "79%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘141%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘84%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "141%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘150%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘90%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘158%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘95%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "158%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "95%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘165%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘99%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "165%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "99%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘173%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘103%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "103%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘180%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘108%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于椒丘188%攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘113%攻击力的火属性伤害，有100%的基础概率对主目标施加1层【烬煨】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时对其相邻目标造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对主目标施加1层【烬煨】。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "燔燎急袭",
+                "progressionId": "1218002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1218003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1218003",
+                "variantIds": [
+                  "121803"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    },
+                    {
+                      "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                      "id": "10000007",
+                      "name": "无法战斗状态"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "121803",
+                "levels": [
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘60%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高9.0%，且行动时有50%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘64%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高9.6%，且行动时有51%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "51%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘68%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高10.2%，且行动时有52%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘72%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高10.8%，且行动时有53%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘76%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高11.4%，且行动时有54%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘80%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高12.0%，且行动时有55%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘85%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高12.8%，且行动时有56%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "85%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘90%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高13.5%，且行动时有57%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘95%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高14.2%，且行动时有59%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "95%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘100%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高15.0%，且行动时有60%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘104%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高15.6%，且行动时有61%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "104%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘108%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高16.2%，且行动时有62%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘112%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高16.8%，且行动时有63%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘116%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高17.4%，且行动时有64%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "116%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘120%攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高18.0%，且行动时有65%的基础概率被施加1层【烬煨】，结界存在期间该效果最多触发6次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当椒丘陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "将敌方目标具有的【烬煨】层数统一设置为场上【烬煨】层数的最高值，随后开启结界并对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n处于结界中时，敌方目标受到的终结技伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且行动时有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "被施加1层【烬煨】，结界存在期间该效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，且每个敌方目标每回合只能触发1次。椒丘每次施放终结技时重置触发次数。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当椒丘陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "鼎阵妙法，奇正相生",
+                "progressionId": "1218003",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1218004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1218004",
+                "variantIds": [
+                  "121804"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ]
+                },
+                "id": "121804",
+                "levels": [
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高7.5%，此后每叠加1层提高2.5%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘90%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高8.3%，此后每叠加1层提高2.8%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘99%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "99%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高9.0%，此后每叠加1层提高3.0%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘108%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高9.8%，此后每叠加1层提高3.3%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘117%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "117%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高10.5%，此后每叠加1层提高3.5%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘126%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高11.3%，此后每叠加1层提高3.8%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘135%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "135%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高12.2%，此后每叠加1层提高4.1%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘146%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "146%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高13.1%，此后每叠加1层提高4.4%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘158%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "158%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高14.1%，此后每叠加1层提高4.7%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘169%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "169%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高15.0%，此后每叠加1层提高5.0%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘180%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高15.8%，此后每叠加1层提高5.3%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘189%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "189%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高16.5%，此后每叠加1层提高5.5%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘198%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "198%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高17.3%，此后每叠加1层提高5.8%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘207%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "207%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高18.0%，此后每叠加1层提高6.0%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘216%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "椒丘使用普攻、战技、终结技击中敌人时，有100%的基础概率对其施加1层【烬煨】，1层时使敌人受到的伤害提高18.8%，此后每叠加1层提高6.3%。\n【烬煨】最多叠加5层，持续2回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘225%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "椒丘使用普攻、战技、终结技击中敌人时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对其施加1层【烬煨】，1层时使敌人受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此后每叠加1层提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【烬煨】最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n当敌方目标处于【烬煨】状态时，也会被视为同时陷入了灼烧状态，每回合开始时受到等同于椒丘"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "225%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "四示八权，纤滋精味",
+                "progressionId": "1218004",
+                "scalingParamIndexes": [
+                  1,
+                  2,
+                  5
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1218007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1218007",
+                "variantIds": [
+                  "121807"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ]
+                },
+                "id": "121807",
+                "levels": [
+                  {
+                    "description": "使用秘技后，制造1片持续15秒的特殊领域。与处于特殊领域内的敌人进入战斗后，对敌方全体造成等同于椒丘100%攻击力的火属性伤害，并有100%的基础概率施加1层【烬煨】。我方制造的领域效果最多存在1个。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，制造1片持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的特殊领域。与处于特殊领域内的敌人进入战斗后，对敌方全体造成等同于椒丘"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施加1层【烬煨】。我方制造的领域效果最多存在1个。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "旺火却乱",
+                "progressionId": "1218007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "战斗开始时，立即恢复<unbreak>15</unbreak>点能量。",
+            "iconKey": "skill-tree--1218101",
+            "id": "1218101",
+            "name": "爟火",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "椒丘效果命中大于<unbreak>80%</unbreak>时，每超过<unbreak>15%</unbreak>，则额外提高<unbreak>60%</unbreak>攻击力，最高不超过<unbreak>240%</unbreak>。",
+            "iconKey": "skill-tree--1218102",
+            "id": "1218102",
+            "name": "举炊",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "结界存在时，敌方目标进入战斗时，会被施加【烬煨】，层数与结界展开期间【烬煨】层数最高者相同，最低为<unbreak>1</unbreak>层。",
+            "iconKey": "skill-tree--1218103",
+            "id": "1218103",
+            "name": "炙香",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "效果命中提高4.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1218201",
+            "name": "效果命中强化",
+            "prerequisiteIds": [],
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "火属性伤害提高3.2%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1218202",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1218101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "效果命中提高4.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1218203",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1218202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "速度提高2",
+            "iconKey": "property--SpeedDelta",
+            "id": "1218204",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1218203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "效果命中提高6.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1218205",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1218102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "火属性伤害提高4.8%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1218206",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1218205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "效果命中提高6.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1218207",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1218206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "速度提高3",
+            "iconKey": "property--SpeedDelta",
+            "id": "1218208",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1218103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "火属性伤害提高6.4%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1218209",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1218103"
+            ],
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "效果命中提高8.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1218210",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1218201"
+            ],
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1218001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121801",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1218002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121802",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1218003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121803",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1218004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121804",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1218007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121807",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1218",
+    "subtitleRendered": false
+  }
+}

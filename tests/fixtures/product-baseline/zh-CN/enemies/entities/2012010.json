@@ -1,0 +1,86 @@
+{
+  "catalog": {
+    "description": "工造司匠人随手造就的机巧发明。原本是不具灵智，用以烛照黑暗的灯具，如今却因为某些异变被赋予了短暂的「生命」。",
+    "id": "2012010",
+    "name": "入魔机巧 • 灯昼龙鱼",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2012010",
+    "defaultMonsterRef": "c0cd223ec8e69b635cae25de7b5356a86b1911120c39f18df1283e7a93aa0275",
+    "description": "工造司匠人随手造就的机巧发明。原本是不具灵智，用以烛照黑暗的灯具，如今却因为某些异变被赋予了短暂的「生命」。",
+    "id": "2012010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "c0cd223ec8e69b635cae25de7b5356a86b1911120c39f18df1283e7a93aa0275",
+      "1d8aa54bb7c41a68d88d96b6b1e971ee3b258d0f8a23567383b0a1dd0dca8595",
+      "8442629ed064b06593927ca6b30e5fcb2037e5ab13f14c193729593a8361aa80",
+      "bfdfa15927eec49cda1b23f0d30025cb5fadc5f58b27888acfaa9fbfcc6b24b9",
+      "4cb2d4ca07b78aeecb8fe12de9a4ba05a595b55cb7eb89bac8314aa3b6aaf620",
+      "c5960ba3b9c14b9466142f07753f8acdd4586699a236fbd553423b159da0384b",
+      "30900af27f7452854a193be4f72d2db8bcdaea29be66c48495004d0c0b4d253b",
+      "79de4759548d6c5bb7fd0b069d897c72693e7d3098e26033135e7ab720d965f6",
+      "38b8c3b98b7e7ba188965a736abba3700243264b87d12a8e34bd883e82bb56f0",
+      "74aa0602124b250602b7f744049740a74743a21ade69d21de14a4d106340dfc4",
+      "fc8ece5154f67072460b2398455e0b6d4c65e01f6b373423b8ccfec1f126545c",
+      "242e2fa853f56e17600ef653b7880edd5a9279320660d805709af599dafd35b7",
+      "4363f80e19882d6ff23586d1447d78a77d7da3b20518b7c9b6dae96b9f8331ad",
+      "d2da722378c8958cb94721000d0a8832feadf2b47527e60a200b0dc4a0847105"
+    ],
+    "name": "入魔机巧 • 灯昼龙鱼",
+    "rank": "MinionLv2",
+    "templateRef": "c55dc432a69c68c2a520361a7ba83096d64f04b264b3cd799f5213503a5d9ffb",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2012010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2012010",
+    "selectableMonsterIds": [
+      "2012010",
+      "201201001",
+      "201201002",
+      "201201003",
+      "201201004",
+      "201201005",
+      "201201006",
+      "201201007",
+      "201201008",
+      "201201009",
+      "201201010",
+      "201201011",
+      "201201013",
+      "201201014"
+    ]
+  }
+}
