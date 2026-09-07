@@ -101,6 +101,6 @@ test('四类详情页消费同一标题视觉层级并保持语义 heading hiera
 
   await page.goto('/endgame/moc/1034?encounter=5312');
   await expect(page.getByRole('heading', { name: '扫除风暴其十二', level: 2 })).toBeVisible();
-  await expect(page.getByRole('heading', { name: '节点一', level: 3 })).toBeVisible();
-  await expect(page.getByRole('heading', { name: '波次一', level: 4 }).first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: '节点 1', level: 3 })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '波次 1', level: 4 }).first()).toBeVisible();
 });

@@ -8,7 +8,6 @@ import AnomalyArbitrationDetailContent from '../../src/lib/components/endgame/mo
 import {
   buildEndgameWaveGroups,
   buildEndgameWaveRows,
-  formatChineseOrdinal,
   type EndgameWaveGroupPresentation
 } from '../../src/lib/components/endgame/presentation';
 import type {
@@ -92,20 +91,6 @@ const judgmentQuadrant: AnomalyArbitrationJudgmentQuadrantView = {
 };
 
 describe('Endgame presentation', () => {
-  it('formats positive ordinals as Chinese numerals with a safe fallback', () => {
-    expect([1, 2, 3, 10, 11, 20, 99].map(formatChineseOrdinal)).toEqual([
-      '一',
-      '二',
-      '三',
-      '十',
-      '十一',
-      '二十',
-      '九十九'
-    ]);
-    expect(formatChineseOrdinal(0)).toBe('0');
-    expect(formatChineseOrdinal(100)).toBe('100');
-  });
-
   it('flattens legacy stages into ordered wave groups while preserving each stage level', () => {
     const battle: EndgameBattleSlotView = {
       slot: 1,

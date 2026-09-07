@@ -3,6 +3,7 @@
   import { ENDGAME_MODE_META } from '$lib/domain/endgame-view';
   import EndgameModeIcon from './EndgameModeIcon.svelte';
   import { m } from '$lib/paraglide/messages.js';
+  import { localizedHref } from '$lib/i18n/routing';
 
   export let mode: EndgameModeView;
   export let featured = false;
@@ -10,7 +11,9 @@
   $: metadata = ENDGAME_MODE_META[mode.mode];
   $: period = mode.periods.find((candidate) => candidate.groupId === mode.recommendedGroupId);
   $: dateLabel = period?.dateLabel ?? '-';
-  $: href = period ? `/endgame/${mode.mode}/${period.groupId}` : `/endgame/${mode.mode}`;
+  $: href = localizedHref(
+    period ? `/endgame/${mode.mode}/${period.groupId}` : `/endgame/${mode.mode}`
+  );
 </script>
 
 <a

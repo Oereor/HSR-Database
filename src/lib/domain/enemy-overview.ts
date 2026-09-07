@@ -1,9 +1,10 @@
 import type { CatalogEntry, EnemyCatalogEntry } from './types.js';
+import { m } from '$lib/paraglide/messages.js';
 
 export const ENEMY_RANK_CATEGORIES = [
-  { code: 'normal', label: '普通敌人', filterLabel: '普通' },
-  { code: 'elite', label: '精英敌人', filterLabel: '精英' },
-  { code: 'boss', label: '首领敌人', filterLabel: '首领' }
+  { code: 'normal' },
+  { code: 'elite' },
+  { code: 'boss' }
 ] as const;
 
 export type EnemyRankCategory = (typeof ENEMY_RANK_CATEGORIES)[number]['code'];
@@ -22,7 +23,16 @@ export function getEnemyRankCategory(rank: string | undefined): EnemyRankCategor
 
 export function getEnemyRankLabel(rank: string | undefined): string {
   const category = getEnemyRankCategory(rank);
-  return ENEMY_RANK_CATEGORIES.find((option) => option.code === category)?.label ?? '敌方单位';
+  switch (category) {
+    case 'normal':
+      return m.enemy_rank_normal();
+    case 'elite':
+      return m.enemy_rank_elite();
+    case 'boss':
+      return m.enemy_rank_boss();
+    default:
+      return m.enemy_rank_unknown();
+  }
 }
 
 export function normalizeEnemyRankFilter(value: string): string {

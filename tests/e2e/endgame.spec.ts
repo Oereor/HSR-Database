@@ -438,13 +438,9 @@ test('AS 节点使用 BossDossier、共享敌方卡、首领特性与中性终�
   await expect(page.getByRole('heading', { name: '首领特性', level: 4 })).toHaveCount(3);
   await expect(page.getByRole('heading', { name: '首领幻影', level: 4 })).toHaveCount(3);
   await expect(page.getByRole('heading', { name: '关卡效果', exact: true })).toHaveCount(0);
-  for (const [slot, ordinal] of [
-    ['1', '一'],
-    ['2', '二'],
-    ['3', '三']
-  ] as const) {
+  for (const slot of ['1', '2', '3']) {
     const battle = page.locator(`[data-as-battle-slot="${slot}"]`);
-    await expect(battle.getByRole('heading', { name: `节点${ordinal}`, level: 3 })).toBeVisible();
+    await expect(battle.getByRole('heading', { name: `节点 ${slot}`, level: 3 })).toBeVisible();
     await expect(battle).not.toContainText(`战斗 ${slot}`);
     await expect(battle.locator('[data-endgame-enemy-card]')).toHaveCount(1);
     await expect(battle.locator('[data-endgame-enemy-card]')).toHaveAttribute(
@@ -631,7 +627,7 @@ test('AA normal/hard 共用新详情组合，并在棋局特性与波次之间�
     'Lv.100'
   ]);
   await expect(page.getByText('战斗 1', { exact: true })).toHaveCount(0);
-  await expect(page.getByText('节点一', { exact: true })).toHaveCount(0);
+  await expect(page.getByText('节点 1', { exact: true })).toHaveCount(0);
   await expect(page.getByRole('heading', { name: '将杀王棋', exact: true })).toHaveCount(0);
 
   await selectLocalNode(page, '将杀王棋•绝境');
@@ -671,7 +667,7 @@ test('AA 骑士正文从 debuff 棋局特性进入共享波次，且不保留冗
   expect(await gridColumnCount(singleTraits.locator('[data-mechanic-section-segments]'))).toBe(1);
   await expect(main.getByRole('heading', { name: '骑士（一）', exact: true })).toHaveCount(0);
   await expect(main.getByText('战斗 1', { exact: true })).toHaveCount(0);
-  await expect(main.getByText('节点一', { exact: true })).toHaveCount(0);
+  await expect(main.getByText('节点 1', { exact: true })).toHaveCount(0);
   await expect(main.locator('h2, h3, h4').first()).toHaveText('棋局特性');
 
   await page.goto('/endgame/aa/8?encounter=802%3Apreliminary');
@@ -716,7 +712,7 @@ test('AA 骑士正文从 debuff 棋局特性进入共享波次，且不保留冗
   const waveLayout = page.locator('[data-aa-waves] [data-wave-layout="paired"]');
   const waveGroups = waveLayout.locator('[data-endgame-wave-group]');
   await expect(waveGroups).toHaveCount(2);
-  await expect(waveGroups.locator('h4')).toHaveText(['波次一', '波次二']);
+  await expect(waveGroups.locator('h4')).toHaveText(['波次 1', '波次 2']);
   await expect(waveGroups.nth(0).locator('[data-endgame-enemy-card]')).toHaveCount(2);
   await expect(waveGroups.nth(1).locator('[data-endgame-enemy-card]')).toHaveCount(2);
   await expect(waveGroups.locator('.endgame-enemy__level')).toHaveText([
@@ -803,7 +799,7 @@ test('AA 单波单敌人自然使用共享 WaveLayout，不产生王棋专属布
   const card = group.locator('[data-endgame-enemy-card]');
 
   await expect(group).toHaveCount(1);
-  await expect(group.getByRole('heading', { name: '波次一', level: 4 })).toBeVisible();
+  await expect(group.getByRole('heading', { name: '波次 1', level: 4 })).toBeVisible();
   await expect(card).toHaveCount(1);
   await expect(card.locator('.endgame-enemy__level')).toHaveText('Lv.100');
   const layoutBox = await layout.boundingBox();
@@ -813,7 +809,7 @@ test('AA 单波单敌人自然使用共享 WaveLayout，不产生王棋专属布
   expect(Math.abs(layoutBox!.x - groupBox!.x)).toBeLessThanOrEqual(1);
   expect(groupBox!.width).toBeLessThanOrEqual(260);
   await expect(page.getByText('战斗 1', { exact: true })).toHaveCount(0);
-  await expect(page.getByText('节点一', { exact: true })).toHaveCount(0);
+  await expect(page.getByText('节点 1', { exact: true })).toHaveCount(0);
 
   for (const width of [1200, 900, 390]) {
     await page.setViewportSize({ width, height: 844 });
@@ -830,8 +826,8 @@ test('PF 只显示波内唯一敌人类型', async ({ page }) => {
   await expect(page.getByText(/重复生成、生成次数与先后顺序已省略/)).toHaveCount(0);
   const firstBattle = page.locator('[data-battle-slot="1"]');
   await expect(page.getByRole('heading', { name: '构事生意其四', level: 2 })).toBeVisible();
-  await expect(firstBattle.getByRole('heading', { name: '节点一', level: 3 })).toBeVisible();
-  await expect(firstBattle.locator('[data-wave] h4')).toHaveText(['波次一', '波次二', '波次三']);
+  await expect(firstBattle.getByRole('heading', { name: '节点 1', level: 3 })).toBeVisible();
+  await expect(firstBattle.locator('[data-wave] h4')).toHaveText(['波次 1', '波次 2', '波次 3']);
   await expect(page.locator('.pf-encounter-heading')).not.toContainText('场战斗');
   await expect(firstBattle).not.toContainText('战斗 1');
   await expect(firstBattle.locator('[data-wave="spawn-303230411"] .endgame-enemy')).toHaveCount(4);

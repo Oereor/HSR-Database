@@ -6,13 +6,14 @@
   import HpDisplay from './HpDisplay.svelte';
   import type { EndgameEnemyCardVariant } from './presentation';
   import { m } from '$lib/paraglide/messages.js';
+  import { localizedHref } from '$lib/i18n/routing';
 
   export let occurrence: EnemyOccurrenceView;
   export let variant: EndgameEnemyCardVariant = 'standard';
   export let level: number | undefined = undefined;
 
   let portraitFailed = false;
-  $: elementProps = occurrence.enemyHref ? { href: occurrence.enemyHref } : {};
+  $: elementProps = occurrence.enemyHref ? { href: localizedHref(occurrence.enemyHref) } : {};
 </script>
 
 <svelte:element

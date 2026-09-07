@@ -60,6 +60,7 @@
           aria-current={locale === 'zh-CN' ? 'true' : undefined}
           aria-label={m.settings_switch_to({ language: '中文' })}
           href={chineseHref}
+          data-sveltekit-reload
           on:click={locale === 'zh-CN' ? keepCurrentLocale : undefined}>中文</a
         >
         <a
@@ -67,6 +68,7 @@
           aria-current={locale === 'en' ? 'true' : undefined}
           aria-label={m.settings_switch_to({ language: 'EN' })}
           href={englishHref}
+          data-sveltekit-reload
           on:click={locale === 'en' ? keepCurrentLocale : undefined}>EN</a
         >
       </div>
