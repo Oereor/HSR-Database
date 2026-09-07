@@ -2,7 +2,7 @@
   import GameText from '$lib/components/GameText.svelte';
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
   import { getElementColor } from '$lib/domain/elements';
-  import type { EnemyOccurrenceView } from '$lib/domain/endgame-view';
+  import { ENDGAME_MISSING_VALUE, type EnemyOccurrenceView } from '$lib/domain/endgame-view';
   import HpDisplay from './HpDisplay.svelte';
   import type { EndgameEnemyCardVariant } from './presentation';
   import { m } from '$lib/paraglide/messages.js';
@@ -103,7 +103,7 @@
               {/each}
             </div>
           {:else}
-            <span class="endgame-enemy__missing">{m.common_data_unavailable()}</span>
+            <span class="endgame-enemy__missing">{ENDGAME_MISSING_VALUE}</span>
           {/if}
         </dd>
       </div>

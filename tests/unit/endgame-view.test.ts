@@ -13,6 +13,7 @@ import {
   buildOccurrenceView,
   buildPeriodView,
   ENDGAME_MODE_META,
+  ENDGAME_MISSING_VALUE,
   endgameEnemyReferenceKey,
   formatExactDecimal,
   formatFullHp,
@@ -364,14 +365,38 @@ describe('Endgame occurrence 投影', () => {
     expect(uniqueSpawnOccurrences([first, first, variant])).toEqual([first, variant]);
   });
 
-  it('未解析的 PF 最终 HP 使用资料未提供约定', () => {
+  it('未解析的 PF 最终 HP 使用统一缺失值约定', () => {
     const unresolved = occurrence({
       hp: {
         ...occurrence().hp,
         final: { status: 'unresolved', reason: 'unsupported-pf-wave-ability' }
       }
     });
-    expect(buildOccurrenceView(unresolved).hp).toEqual({ roundedPerBar: '资料未提供' });
+    expect(buildOccurrenceView(unresolved).hp).toEqual({ roundedPerBar: ENDGAME_MISSING_VALUE });
+  });
+
+  it('未解析的 Toughness 使用统一缺失值，合法零值保持为零', () => {
+    const unresolved = occurrence({
+      toughness: {
+        ...occurrence().toughness,
+        display: { status: 'unavailable', reason: 'missing-base' }
+      }
+    });
+    expect(buildOccurrenceView(unresolved).toughness).toEqual({
+      roundedPerBar: ENDGAME_MISSING_VALUE
+    });
+
+    const zero = occurrence({
+      toughness: {
+        ...occurrence().toughness,
+        display: { status: 'resolved', perBar: decimal('0') }
+      }
+    });
+    expect(buildOccurrenceView(zero).toughness).toEqual({
+      exactPerBar: '0',
+      roundedPerBar: '0',
+      barCount: 1
+    });
   });
 
   it('真实 PF 波次只保留唯一类型且不产生数量字段', async () => {

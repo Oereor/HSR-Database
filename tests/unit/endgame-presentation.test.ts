@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { render } from 'svelte/server';
 import AsBossDossier from '../../src/lib/components/endgame/as/AsBossDossier.svelte';
+import EndgameEnemyCard from '../../src/lib/components/endgame/EndgameEnemyCard.svelte';
 import EndgameOverviewCard from '../../src/lib/components/endgame/EndgameOverviewCard.svelte';
 import BuffOptionGroup from '../../src/lib/components/endgame/mechanics/BuffOptionGroup.svelte';
 import MechanicSectionCard from '../../src/lib/components/endgame/mechanics/MechanicSectionCard.svelte';
@@ -198,6 +199,28 @@ describe('MechanicSectionCard', () => {
 });
 
 describe('Endgame shared detail primitives', () => {
+  it('uses the locale-neutral placeholder for missing card metadata', () => {
+    const { body } = render(EndgameEnemyCard, {
+      props: { occurrence: enemy('missing', '缺失数据敌人', 10) }
+    });
+
+    expect(body).toContain('data-endgame-toughness');
+    expect(body).toMatch(/data-endgame-toughness="">60(?:<!--.*?-->)?<\/strong>/);
+    expect(body).toContain('class="endgame-enemy__missing">-</span>');
+    expect(body).not.toContain('资料未提供');
+    expect(body).not.toContain('Data unavailable');
+  });
+
+  it('keeps the existing weakness icon UI when weakness data exists', () => {
+    const withWeaknesses = enemy('weakness', '有弱点敌人', 11);
+    withWeaknesses.weaknesses = [{ element: 'Fire', name: '火' }];
+    const { body } = render(EndgameEnemyCard, { props: { occurrence: withWeaknesses } });
+
+    expect(body).toContain('class="endgame-weaknesses"');
+    expect(body).toContain('data-icon-kind="element"');
+    expect(body).not.toContain('class="endgame-enemy__missing">-</span>');
+  });
+
   it('keeps the mode overview href when no recommended period exists', () => {
     const { body } = render(EndgameOverviewCard, {
       props: {

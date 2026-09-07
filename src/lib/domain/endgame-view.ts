@@ -164,9 +164,11 @@ export interface EndgameViewPresentation {
   groupName: (groupId: number) => string;
 }
 
+export const ENDGAME_MISSING_VALUE = '-';
+
 export const ZH_CN_ENDGAME_VIEW_PRESENTATION: EndgameViewPresentation = {
   unknownEnemy: '未知敌方单位',
-  unavailable: '资料未提供',
+  unavailable: ENDGAME_MISSING_VALUE,
   groupName: (groupId) => `数据组 ${groupId}`
 };
 

@@ -1,5 +1,8 @@
 import type { SkillCategory, KnownSkillEffect } from '../../../src/lib/domain/types.js';
-import type { EndgameViewPresentation } from '../../../src/lib/domain/endgame-view.js';
+import {
+  ENDGAME_MISSING_VALUE,
+  type EndgameViewPresentation
+} from '../../../src/lib/domain/endgame-view.js';
 import type { Locale } from '../locale-registry.js';
 
 export interface LocaleProjectionPolicy {
@@ -76,7 +79,7 @@ export const LOCALE_PROJECTION_POLICIES: Record<Locale, LocaleProjectionPolicy> 
     normalizeCharacterBaseName: (name) => name.replace(/·.*$/, ''),
     endgameView: {
       unknownEnemy: '未知敌方单位',
-      unavailable: '资料未提供',
+      unavailable: ENDGAME_MISSING_VALUE,
       groupName: (groupId) => `数据组 ${groupId}`
     }
   },
@@ -121,7 +124,7 @@ export const LOCALE_PROJECTION_POLICIES: Record<Locale, LocaleProjectionPolicy> 
     normalizeCharacterBaseName: (name) => name,
     endgameView: {
       unknownEnemy: 'Unknown enemy',
-      unavailable: 'Not available',
+      unavailable: ENDGAME_MISSING_VALUE,
       groupName: (groupId) => `Data group ${groupId}`
     }
   }
