@@ -174,7 +174,7 @@ test('光锥目录复用角色 Overview presentation 并按 ID 加载 preview', 
     await expect(card).toHaveClass(/entity-overview-card/);
     await expect(card.locator('.entity-overview-card__title')).toHaveText(name);
     await expect(card.locator('.rarity-stars')).toHaveText(rarity);
-    await expect(card.locator('[data-icon-kind="path"]')).toContainText(pathName);
+    await expect(card.getByRole('img', { name: pathName, exact: true })).toBeVisible();
     await expect(card.locator('[data-icon-kind="element"]')).toHaveCount(0);
     await expect(card.locator('.entity-overview-card__metadata > *')).toHaveCount(1);
     await expect(card.locator('.entity-overview-card__artwork img')).toHaveAttribute(
@@ -485,16 +485,12 @@ test('角色目录与详情接入属性、命途图标和优化立绘', async ({
     'src',
     /generated-assets\/elements\/.+\.png/
   );
-  await expect(firstCard.locator('[data-icon-kind="path"] > span')).not.toBeEmpty();
-  await expect(firstCard.locator('[data-icon-kind="element"] > span')).not.toBeEmpty();
-  await expect(firstCard.locator('[data-icon-kind="path"]')).toHaveAttribute(
-    'data-label-size',
-    'large'
-  );
-  await expect(firstCard.locator('[data-icon-kind="element"]')).toHaveAttribute(
-    'data-label-size',
-    'large'
-  );
+  for (const kind of ['path', 'element']) {
+    const icon = firstCard.locator(`[data-icon-kind="${kind}"]`);
+    await expect(icon).toHaveAttribute('role', 'img');
+    await expect(icon).toHaveAccessibleName(/\S/);
+    await expect(icon).toHaveText('');
+  }
   await expect(firstCard.locator('.rarity-stars')).toHaveCSS('color', 'rgb(255, 215, 0)');
 
   await page.goto('/characters?rarity=4');
@@ -526,8 +522,8 @@ test('四名 LD 角色进入 Character Overview、Search、Detail 与本地资�
     const card = page.locator(`a[href="/characters/${id}"]`);
     await expect(card).toBeVisible();
     await expect(card.locator('.rarity-stars')).toHaveText('★★★★★');
-    await expect(card.locator('.entity-overview-card__metadata')).toContainText(pathName);
-    await expect(card.locator('.entity-overview-card__metadata')).toContainText(elementName);
+    await expect(card.getByRole('img', { name: pathName, exact: true })).toBeVisible();
+    await expect(card.getByRole('img', { name: elementName, exact: true })).toBeVisible();
     await expect(card.locator('.entity-overview-card__artwork img')).toHaveAttribute(
       'src',
       `/generated-assets/characters/preview/${id}.png`
@@ -557,17 +553,17 @@ test('Path、Character Element、Enemy Weakness 使用独立且稳定的 present
     .first();
   await expect(characterMetadata.locator('[data-icon-kind="path"]')).toHaveAttribute(
     'data-icon-presentation',
-    'path-identity'
+    'overview-icon'
   );
   await expect(characterMetadata.locator('[data-icon-kind="element"]')).toHaveAttribute(
     'data-icon-presentation',
-    'character-element-identity'
+    'overview-icon'
   );
 
   await page.goto('/light-cones?q=锋镝');
   await expect(
     page.locator('a[href="/light-cones/20000"] [data-icon-kind="path"]')
-  ).toHaveAttribute('data-icon-presentation', 'path-identity');
+  ).toHaveAttribute('data-icon-presentation', 'overview-icon');
 
   await page.goto('/enemies?sort=id');
   const weakness = page
@@ -1288,14 +1284,14 @@ test('技能类别标题与正文之间只保留一条 divider，秘技隐藏固
   }
 });
 
-test('Mobile 角色 Overview 的双字命途与属性标签保持同一行', async ({ page }) => {
+test('Mobile 角色 Overview 的命途与属性图标保持同一行', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/characters?q=素裳');
   const card = page.locator('a[href="/characters/1206"]');
   const metadata = card.locator('.entity-overview-card__metadata');
   await expect(card).toBeVisible();
-  await expect(metadata).toContainText('巡猎');
-  await expect(metadata).toContainText('物理');
+  await expect(metadata.getByRole('img', { name: '巡猎', exact: true })).toBeVisible();
+  await expect(metadata.getByRole('img', { name: '物理', exact: true })).toBeVisible();
   const rows = await metadata
     .locator(':scope > *')
     .evaluateAll((items) => items.map((item) => Math.round(item.getBoundingClientRect().top)));

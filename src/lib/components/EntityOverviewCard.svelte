@@ -9,6 +9,7 @@
   export let size: 'large' | 'compact' = 'large';
   export let density: 'default' | 'compact' = 'default';
   export let mediaPresentation: 'artwork' | 'icon' = 'artwork';
+  export let metadataLayout: 'default' | 'icons' = 'default';
 
   let failedSource: string | undefined;
   $: visibleSource = imageUrl && imageUrl !== failedSource ? imageUrl : undefined;
@@ -51,7 +52,9 @@
     class:entity-overview-card__content--title-only={!$$slots.metadata}
   >
     <h3 class="entity-overview-card__title"><slot name="title" /></h3>
-    {#if $$slots.metadata}<span class="entity-overview-card__metadata"
+    {#if $$slots.metadata}<span
+        class="entity-overview-card__metadata"
+        class:entity-overview-card__metadata--icons={metadataLayout === 'icons'}
         ><slot name="metadata" /></span
       >{/if}
   </span>
@@ -219,6 +222,12 @@
     align-items: center;
     justify-content: center;
     gap: 0.45rem;
+  }
+
+  .entity-overview-card .entity-overview-card__metadata--icons {
+    min-height: calc(var(--space-8) + var(--space-2));
+    flex-wrap: nowrap;
+    gap: var(--space-2);
   }
 
   .entity-overview-card__fallback {

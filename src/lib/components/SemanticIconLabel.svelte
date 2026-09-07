@@ -6,7 +6,8 @@
   export let label: string;
   export let color: string | undefined = undefined;
   export let size: 'default' | 'large' | 'hero' = 'default';
-  export let presentation: 'plain' | 'path-identity' | 'character-element-identity' = 'plain';
+  export let presentation:
+    'plain' | 'path-identity' | 'character-element-identity' | 'overview-icon' = 'plain';
   export let showLabel = true;
   export let fallbackMark: string | undefined = undefined;
 
@@ -126,5 +127,23 @@
 
   .semantic-icon-label[data-icon-presentation='path-identity'][data-label-size='default'] {
     color: var(--text-secondary);
+  }
+
+  .semantic-icon-label[data-icon-presentation='overview-icon'] {
+    --semantic-icon-image-size: var(--space-8);
+
+    width: calc(var(--space-8) + var(--space-2));
+    height: calc(var(--space-8) + var(--space-2));
+    flex: 0 0 auto;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-control);
+    background: rgb(255 255 255 / 3%);
+    color: var(--text-secondary);
+  }
+
+  .semantic-icon-label[data-icon-presentation='overview-icon'] img {
+    width: var(--semantic-icon-image-size);
+    height: var(--semantic-icon-image-size);
   }
 </style>
