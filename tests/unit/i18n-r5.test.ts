@@ -115,11 +115,16 @@ describe('R5 English data projection', () => {
     ) as GlobalSearchIndex;
     expect(search.locale).toBe('en');
     expect(search.documents.every(({ playerAliases }) => playerAliases.length === 0)).toBe(true);
-    const shardFiles = await readdir(path.join(staticGeneratedRoot, 'en', 'endgame-occurrences'));
+    const shardFiles = await readdir(
+      path.join(generatedRoot, 'views', 'en', 'endgame-occurrences')
+    );
     expect(shardFiles).toHaveLength(search.endgameTargets.length);
     const target = search.endgameTargets[0];
     const shard = JSON.parse(
-      await readFile(path.join(staticGeneratedRoot, 'en', 'endgame-occurrences', target.id), 'utf8')
+      await readFile(
+        path.join(generatedRoot, 'views', 'en', 'endgame-occurrences', target.id),
+        'utf8'
+      )
     );
     expect(shard).toMatchObject({
       schemaVersion: 2,

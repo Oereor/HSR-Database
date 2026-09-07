@@ -971,11 +971,10 @@ export async function syncData(): Promise<DataManifest> {
     if (projectedLocale === 'en')
       for (const [targetId, shard] of Object.entries(projection.occurrenceShards))
         await writeArtifact(
-          nextStaticGeneratedRoot,
-          `${projectedLocale}/endgame-occurrences/${targetId}`,
+          nextGeneratedRoot,
+          `views/${projectedLocale}/endgame-occurrences/${targetId}`,
           shard,
-          { locale: projectedLocale },
-          `static/generated/${projectedLocale}/endgame-occurrences/${targetId}`
+          { locale: projectedLocale }
         );
   };
   for (const projection of projections) await writeViewArtifacts(projection);
