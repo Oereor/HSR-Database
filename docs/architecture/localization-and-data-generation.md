@@ -8,7 +8,7 @@ zh-CN is the base locale and uses unprefixed URLs. en is publicly routed under /
 
 ## Data flow
 
-Pinned upstream data and TextMaps are parsed into domain models, projected independently for each locale, and emitted below src/lib/generated/views/{locale}. Static Search and Endgame artifacts are emitted below static/generated/{locale}. Runtime loaders accept locale explicitly and never fall back across locales.
+Pinned upstream data and TextMaps are parsed into domain models, projected independently for each locale, and emitted below src/lib/generated/views/{locale}. Static Search indexes are emitted below static/generated/{locale}. Serialized Endgame occurrence views remain private below src/lib/generated/views/{locale}/endgame-occurrences; the shared /generated/{locale}/endgame-occurrences/{targetId} endpoint resolves portrait assets and prerenders the public shards. Static source shards must not shadow that endpoint. Runtime loaders accept locale explicitly and never fall back across locales.
 
 ## Artifact contract
 

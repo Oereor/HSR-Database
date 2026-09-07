@@ -69,7 +69,7 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
         throw new Error(`Generated data manifest is missing ${requiredPath}`);
   }
   const englishShardCount = Object.keys(value.artifacts).filter((logicalPath) =>
-    logicalPath.startsWith('static/generated/en/endgame-occurrences/')
+    logicalPath.startsWith('views/en/endgame-occurrences/')
   ).length;
   const englishSearch = (value.locales.en as Record<string, unknown>).search as Record<
     string,

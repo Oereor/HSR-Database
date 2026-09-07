@@ -139,12 +139,11 @@ GitHub Actions 会定期检查两个 upstream 是否有更新。发现新版本�
 
 ### 如何添加更新日志
 
-更新日志 Markdown 放在 `src/lib/content/changelog/`，新建 `.svx` 文件即可自动发现：
+更新日志 Markdown 放在 `src/lib/content/changelog/`，新建 `.svx` 文件，按照以下格式：
 
 ```markdown
 ---
 title: 更新标题
-date: 'yyyy-mm-dd'
 ---
 
 这里写更新内容。
@@ -152,7 +151,7 @@ date: 'yyyy-mm-dd'
 可以使用 **Markdown**、`inline code`、列表和链接。
 ```
 
-不需要手动维护 index、manifest 或 JSON，也不需要额外生成命令；`pnpm dev`、`pnpm build` 和 `pnpm deploy:build` 都会自动编译新增日志。
+然后在 `entries.json` 中补充对应条目即可。`pnpm dev`、`pnpm build` 和 `pnpm deploy:build` 都会自动编译新增日志。
 
 ## License 与免责声明
 
@@ -161,9 +160,3 @@ date: 'yyyy-mm-dd'
 游戏名称、角色、图片及其他相关资产的权利归其各自权利人所有。第三方数据与视觉资源遵循其原始来源的许可条款。
 
 仓库根目录的 MIT License 仅适用于本项目自行编写的代码，不覆盖第三方数据、图片或游戏知识产权。
-
-## Site UI Messages
-
-游戏文本继续来自 TextMap；网站功能文案维护于 `messages/zh-CN.json`。Paraglide 输出为 generated，不手改。新增文案、编译与 Phase 1 边界见 [Site UI Messages](docs/site-ui-messages.md)。
-
-当前数据与本地化架构见 [Localization and Data Generation Architecture](docs/architecture/localization-and-data-generation.md)。`docs/investigations/` 与 `docs/audits/` 中带有 R0–R3/R4 标记的报告属于历史或审计材料，不是当前规范。

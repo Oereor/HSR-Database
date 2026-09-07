@@ -27,7 +27,7 @@ import {
   type EndgameOccurrenceShard,
   type SearchLocale
 } from '$lib/domain/search-index';
-import { getSearchIndex } from '$lib/server/generated';
+import { getManifest, getSearchIndex } from '$lib/server/generated';
 import { getEndgameModeCopy } from '$lib/i18n/endgame';
 
 const generatedRoot = path.resolve('src', 'lib', 'generated', 'views');
@@ -189,8 +189,17 @@ function resolveEndgameGridItem(
   return { key: endgameOccurrenceLocatorKey(locator), occurrence, level: stage.level };
 }
 
-export async function getEndgameOccurrenceTargetIds(): Promise<Array<{ targetId: string }>> {
-  return (await getSearchIndex('zh-CN')).endgameTargets.map(({ id }) => ({ targetId: id }));
+export async function getEndgameOccurrenceTargetIds(): Promise<
+  Array<{ locale: SearchLocale; targetId: string }>
+> {
+  const { publicLocales } = await getManifest();
+  return (
+    await Promise.all(
+      publicLocales.map(async (locale) =>
+        (await getSearchIndex(locale)).endgameTargets.map(({ id }) => ({ locale, targetId: id }))
+      )
+    )
+  ).flat();
 }
 
 export async function getEndgameOccurrenceShard(
@@ -201,6 +210,36 @@ export async function getEndgameOccurrenceShard(
     (candidate) => candidate.id === targetId
   );
   if (!entry) return undefined;
+  // Projected shards already own their localized text and period presentation.
+  // Enrich them at the same asset boundary used by detail cards, without rebuilding
+  // those fields with the server view's default presentation policy.
+  const projected = await readFile(
+    path.join(generatedRoot, locale, 'endgame-occurrences', entry.id),
+    'utf8'
+  )
+    .then((text) => JSON.parse(text) as EndgameOccurrenceShard)
+    .catch((error: unknown) => {
+      if (isFileNotFound(error)) return undefined;
+      throw error;
+    });
+  if (projected) {
+    if (
+      projected.schemaVersion !== 2 ||
+      projected.locale !== locale ||
+      projected.target.kind !== 'endgame' ||
+      projected.target.id !== entry.id
+    )
+      throw new Error(`Endgame shard identity mismatch: ${locale}:${entry.id}`);
+    await Promise.all(
+      Object.values(projected.occurrences).map(async ({ occurrence }) => {
+        const portraitUrl = await getEnemyPortraitUrl(occurrence.monsterTemplateId);
+        if (portraitUrl) occurrence.portraitUrl = portraitUrl;
+        else delete occurrence.portraitUrl;
+      })
+    );
+    return projected;
+  }
+  // Locales without serialized occurrence artifacts retain the resolved view path.
   const groupKeys = [
     ...new Set(entry.occurrences.map(({ locator }) => `${locator.mode}:${locator.groupId}`))
   ];

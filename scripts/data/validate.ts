@@ -1898,14 +1898,17 @@ if (
 
 const expectedShardIds = enSearch.endgameTargets.map(({ id }) => id).sort();
 const manifestShardIds = Object.keys(manifest.artifacts)
-  .filter((logicalPath) => logicalPath.startsWith('static/generated/en/endgame-occurrences/'))
+  .filter((logicalPath) => logicalPath.startsWith('views/en/endgame-occurrences/'))
   .map((logicalPath) => logicalPath.split('/').at(-1)!)
   .sort();
 if (JSON.stringify(expectedShardIds) !== JSON.stringify(manifestShardIds))
   throw new Error('English Endgame occurrence shard target inventory is incomplete');
 for (const target of enSearch.endgameTargets) {
   const shard = JSON.parse(
-    await readFile(path.join(staticGeneratedRoot, 'en', 'endgame-occurrences', target.id), 'utf8')
+    await readFile(
+      path.join(generatedRoot, 'views', 'en', 'endgame-occurrences', target.id),
+      'utf8'
+    )
   ) as {
     schemaVersion: number;
     locale: string;
