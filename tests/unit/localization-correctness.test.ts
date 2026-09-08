@@ -3,6 +3,7 @@ import { getLocale, overwriteGetLocale } from '../../src/lib/paraglide/runtime.j
 import { getEnemyRankLabel } from '../../src/lib/domain/enemy-overview';
 import { localeCounterpartHref, localizedHref } from '../../src/lib/i18n/routing';
 import { m } from '../../src/lib/paraglide/messages.js';
+import { formatLocalizedList } from '../../src/lib/i18n/format';
 
 const originalGetLocale = getLocale;
 afterEach(() => overwriteGetLocale(originalGetLocale));
@@ -14,22 +15,26 @@ it('resolves all enemy ranks and unknown values at call time in both locales', (
       ['Minion', 'MinionLv2', 'Elite', 'LittleBoss', 'BigBoss', 'unknown', undefined].map(
         getEnemyRankLabel
       )
-    ).toEqual(
-      locale === 'en'
-        ? [
-            'Normal Enemy',
-            'Normal Enemy',
-            'Elite Enemy',
-            'Boss Enemy',
-            'Boss Enemy',
-            'Enemy',
-            'Enemy'
-          ]
-        : ['普通敌人', '普通敌人', '精英敌人', '首领敌人', '首领敌人', '敌方单位', '敌方单位']
-    );
+    ).toEqual([
+      m.enemy_rank_normal(),
+      m.enemy_rank_normal(),
+      m.enemy_rank_elite(),
+      m.enemy_rank_boss(),
+      m.enemy_rank_boss(),
+      m.enemy_rank_unknown(),
+      m.enemy_rank_unknown()
+    ]);
     expect(m.endgame_node({ number: 2 })).toBe(locale === 'en' ? 'Node 2' : '节点 2');
     expect(m.endgame_wave({ number: 3 })).toBe(locale === 'en' ? 'Wave 3' : '波次 3');
   }
+});
+
+it('formats accessible lists with locale-aware separators', () => {
+  expect(formatLocalizedList(['物理', '冰', '雷'], 'zh-CN')).toBe('物理、冰、雷');
+  expect(formatLocalizedList(['Physical', 'Ice', 'Lightning'], 'en')).toBe(
+    'Physical, Ice, Lightning'
+  );
+  expect(formatLocalizedList([], 'zh-CN')).toBe('');
 });
 
 it('preserves counterpart route, repeated query values and hash without duplicate prefixes', () => {

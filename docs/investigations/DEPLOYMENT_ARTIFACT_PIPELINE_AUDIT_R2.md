@@ -23,29 +23,29 @@
 
 ### 2.1 Artifact baseline
 
-| Metric | Measured current |
-|---|---:|
-| Total deployment | 394,300,449 B |
-| Total files | 7,122 |
-| HTML | 161,602,595 B |
-| All JSON | 73,726,710 B |
-| Route `__data.json` | 69,645,498 B |
-| `build/generated` | 26,483,160 B |
-| Generated general assets | 118,922,656 B |
-| Generated enemy assets | 16,186,948 B |
-| All generated assets | 135,109,604 B |
-| `_app` | 691,687 B / 67 files |
+| Metric                   |     Measured current |
+| ------------------------ | -------------------: |
+| Total deployment         |        394,300,449 B |
+| Total files              |                7,122 |
+| HTML                     |        161,602,595 B |
+| All JSON                 |         73,726,710 B |
+| Route `__data.json`      |         69,645,498 B |
+| `build/generated`        |         26,483,160 B |
+| Generated general assets |        118,922,656 B |
+| Generated enemy assets   |         16,186,948 B |
+| All generated assets     |        135,109,604 B |
+| `_app`                   | 691,687 B / 67 files |
 
 单位均为十进制 bytes；报告中的 MB 也按 1,000,000 B 近似展示。`_app` 与历史 R1 相差约 0.4 KB，属于 bundle/hash envelope 的轻微变化，不影响结论。
 
-| Family | HTML | `__data.json` | Total |
-|---|---:|---:|---:|
-| Enemy | 84,035,503 B | 30,278,016 B | 114,313,519 B |
-| Character | 29,723,918 B | 13,656,614 B | 43,380,532 B |
-| Endgame | 32,499,246 B | 18,321,211 B | 50,820,457 B |
-| Search | 4,277,870 B | 5,054,616 B | 9,332,486 B |
-| Light Cones | 8,355,467 B | 1,994,844 B | 10,350,311 B |
-| Relics | 2,623,258 B | 331,988 B | 2,955,246 B |
+| Family      |         HTML | `__data.json` |         Total |
+| ----------- | -----------: | ------------: | ------------: |
+| Enemy       | 84,035,503 B |  30,278,016 B | 114,313,519 B |
+| Character   | 29,723,918 B |  13,656,614 B |  43,380,532 B |
+| Endgame     | 32,499,246 B |  18,321,211 B |  50,820,457 B |
+| Search      |  4,277,870 B |   5,054,616 B |   9,332,486 B |
+| Light Cones |  8,355,467 B |   1,994,844 B |  10,350,311 B |
+| Relics      |  2,623,258 B |     331,988 B |   2,955,246 B |
 
 Search 的本次测量比 R1 的 9,332,484 B 多 2 B；视为生成 envelope 微差，不改变约 4 MB 重复判断。
 
@@ -67,21 +67,21 @@ Enemy family 的 114,313,519 B 包含 2,516 route files；其中 detail route（
 
 每个 localized detail route（HTML + `__data.json`）分布：
 
-| Statistic | Bytes |
-|---|---:|
-| Average | 89,924 |
-| Median | 69,460 |
-| p90 | 156,323 |
-| Max | 524,536 |
+| Statistic |   Bytes |
+| --------- | ------: |
+| Average   |  89,924 |
+| Median    |  69,460 |
+| p90       | 156,323 |
+| Max       | 524,536 |
 
 代表性 zh-CN route 与双语言四文件总量：
 
-| Sample | ID | zh HTML | zh data | zh+en HTML/data |
-|---|---:|---:|---:|---:|
-| Small / p10 | 5012011 | 34,529 B | 10,463 B | 90,045 B |
-| Median | 4014022 | 51,570 B | 17,343 B | 138,911 B |
-| p90 | 4012020 | 106,164 B | 49,624 B | 312,110 B |
-| Extreme | 1003010 | 335,875 B | 186,387 B | 1,046,797 B |
+| Sample      |      ID |   zh HTML |   zh data | zh+en HTML/data |
+| ----------- | ------: | --------: | --------: | --------------: |
+| Small / p10 | 5012011 |  34,529 B |  10,463 B |        90,045 B |
+| Median      | 4014022 |  51,570 B |  17,343 B |       138,911 B |
+| p90         | 4012020 | 106,164 B |  49,624 B |       312,110 B |
+| Extreme     | 1003010 | 335,875 B | 186,387 B |     1,046,797 B |
 
 对 1,256 个 localized Enemy view 做临时 devalue 差分：
 
@@ -113,27 +113,27 @@ Enemy family 的 114,313,519 B 包含 2,516 route files；其中 detail route（
 Character family 为 43,380,532 B；194 个 localized detail routes 合计 43,054,678 B：HTML 29,468,838 B、`__data.json` 13,585,840 B。
 
 | Statistic | HTML + data per localized detail route |
-|---|---:|
-| Average | 221,931 B |
-| Median | 201,244 B |
-| p90 | 318,704 B |
-| Max | 650,704 B |
+| --------- | -------------------------------------: |
+| Average   |                              221,931 B |
+| Median    |                              201,244 B |
+| p90       |                              318,704 B |
+| Max       |                              650,704 B |
 
 Character generated JSON/devalue subtree audit（194 localized objects）：
 
-| Subtree | Measured serialized bytes |
-|---|---:|
-| Entire generated JSON | 16,745,527 B |
-| Entire route-view devalue | 12,804,625 B |
-| Profiles JSON | 16,305,436 B |
-| Skill cards | 14,620,841 B |
-| Traces | 808,096 B |
-| Eidolons | 406,990 B |
-| Special effects | 441,369 B |
-| Base stats | 252,706 B |
-| Equipment recommendation raw subtree | 94,264 B |
-| Identity | 83,033 B |
-| Energy | 12,244 B |
+| Subtree                              | Measured serialized bytes |
+| ------------------------------------ | ------------------------: |
+| Entire generated JSON                |              16,745,527 B |
+| Entire route-view devalue            |              12,804,625 B |
+| Profiles JSON                        |              16,305,436 B |
+| Skill cards                          |              14,620,841 B |
+| Traces                               |                 808,096 B |
+| Eidolons                             |                 406,990 B |
+| Special effects                      |                 441,369 B |
+| Base stats                           |                 252,706 B |
+| Equipment recommendation raw subtree |                  94,264 B |
+| Identity                             |                  83,033 B |
+| Energy                               |                  12,244 B |
 
 不同序列化格式会共享字符串/引用，因此各 subtree 不能直接相加到 route total。
 
@@ -187,15 +187,15 @@ Candidate 6（compact DTO）由实际字段读取与 byte-diff 支撑，且不�
 
 ### 4.3 Estimated Savings
 
-| Candidate | Measured current bytes / proxy | Estimated after | Net saving | Risk | Complexity |
-|---|---:|---:|---:|---|---|
-| 1. Enemy locale-neutral shared stat shard | stats devalue 21,414,914 B；deployment contribution upper-bound 42,829,828 B | one shared copy约 10,709,102 B + retained SSR/fallback | **≤32,120,726 B** | High | Med–High |
-| 2. Enemy non-default Monster shard | page delta 15,224,763 B | shard 30,405,768 B | **43,758 B** | Medium | High |
-| 3. Enemy coefficient reconstruction | 264,900 rows parity only with full piecewise inputs | no compact equivalent demonstrated | Not eligible | High | High |
-| 4. Character profile normalization | 2,983,734 B | 3,001,982 B | **−18,248 B** | Medium | Medium |
-| 5. Character interaction-only shard | page delta 9,423,197 B | shard 13,471,974 B | **5,374,420 B** | Med–High | High |
-| 6. Character compact DTO | page devalue delta 4,482,941 B | no new shard | **8,965,882 B** | Low–Med | Medium |
-| 7. Search direct static-index read | route 9,332,486 B + existing static 3,983,263 B | reuse existing static indexes | **约 4.0 MB** | Low–Med | Medium |
+| Candidate                                 |                                               Measured current bytes / proxy |                                        Estimated after |        Net saving | Risk     | Complexity |
+| ----------------------------------------- | ---------------------------------------------------------------------------: | -----------------------------------------------------: | ----------------: | -------- | ---------- |
+| 1. Enemy locale-neutral shared stat shard | stats devalue 21,414,914 B；deployment contribution upper-bound 42,829,828 B | one shared copy约 10,709,102 B + retained SSR/fallback | **≤32,120,726 B** | High     | Med–High   |
+| 2. Enemy non-default Monster shard        |                                                      page delta 15,224,763 B |                                     shard 30,405,768 B |      **43,758 B** | Medium   | High       |
+| 3. Enemy coefficient reconstruction       |                          264,900 rows parity only with full piecewise inputs |                     no compact equivalent demonstrated |      Not eligible | High     | High       |
+| 4. Character profile normalization        |                                                                  2,983,734 B |                                            3,001,982 B |     **−18,248 B** | Medium   | Medium     |
+| 5. Character interaction-only shard       |                                                       page delta 9,423,197 B |                                     shard 13,471,974 B |   **5,374,420 B** | Med–High | High       |
+| 6. Character compact DTO                  |                                               page devalue delta 4,482,941 B |                                           no new shard |   **8,965,882 B** | Low–Med  | Medium     |
+| 7. Search direct static-index read        |                              route 9,332,486 B + existing static 3,983,263 B |                          reuse existing static indexes |     **约 4.0 MB** | Low–Med  | Medium     |
 
 这里 Candidate 1 是上界，不应加入承诺值；Candidate 6/7 的 estimate 也需在真实 build diff 中验收。
 
@@ -245,37 +245,37 @@ Vercel
 
 ## 6. Stage Timing Profile
 
-| Phase | Cold (s) | Warm (s) | Cold share | Network | CPU | FS-heavy | Cacheable? |
-|---|---:|---:|---:|---|---|---|---|
-| Lock validation | 0.001 | 0.002 | <0.1% | No | Low | Low | No need |
-| TurnBasedGameData preparation | 49.769 | 0.142 | 13.0% | Cold yes | Low | Medium | Yes, pinned commit |
-| Script type checking | 6.471 | 6.531 | 1.7% | No | High | Medium | CI/task-cache candidate |
-| Official search names check | 1.238 | 1.176 | 0.3% | No | Medium | Medium | Yes |
-| Data ensure/generation | 50.183 | 9.946 | 13.2% | No | High | High | Yes, manifest exists |
-| Enemy asset ensure/generation | 59.887 | 1.236 | 15.7% | Yes | Medium | High | Partly; freshness policy needed |
-| StarRailRes preparation | 80.256 | 0.194 | 21.0% | Cold yes | Low | Medium | Yes, pinned commit |
-| General asset ensure/generation | 58.222 | 1.111 | 15.3% | No after checkout | High | High | Yes |
-| General asset verification | 5.744 | 5.782 | 1.5% | No | Medium | High | Reuse same-process scan |
-| SvelteKit/Vite build | 48.348 | 51.955 | 12.7% | No | High | High | Limited/large output |
-| Final build verification | 21.452 | 53.111 | 5.6% | No | Medium | Very high | Algorithmic improvement |
-| **Total** | **381.571** | **131.187** | **100%** |  |  |  |  |
+| Phase                           |    Cold (s) |    Warm (s) | Cold share | Network           | CPU    | FS-heavy  | Cacheable?                      |
+| ------------------------------- | ----------: | ----------: | ---------: | ----------------- | ------ | --------- | ------------------------------- |
+| Lock validation                 |       0.001 |       0.002 |      <0.1% | No                | Low    | Low       | No need                         |
+| TurnBasedGameData preparation   |      49.769 |       0.142 |      13.0% | Cold yes          | Low    | Medium    | Yes, pinned commit              |
+| Script type checking            |       6.471 |       6.531 |       1.7% | No                | High   | Medium    | CI/task-cache candidate         |
+| Official search names check     |       1.238 |       1.176 |       0.3% | No                | Medium | Medium    | Yes                             |
+| Data ensure/generation          |      50.183 |       9.946 |      13.2% | No                | High   | High      | Yes, manifest exists            |
+| Enemy asset ensure/generation   |      59.887 |       1.236 |      15.7% | Yes               | Medium | High      | Partly; freshness policy needed |
+| StarRailRes preparation         |      80.256 |       0.194 |      21.0% | Cold yes          | Low    | Medium    | Yes, pinned commit              |
+| General asset ensure/generation |      58.222 |       1.111 |      15.3% | No after checkout | High   | High      | Yes                             |
+| General asset verification      |       5.744 |       5.782 |       1.5% | No                | Medium | High      | Reuse same-process scan         |
+| SvelteKit/Vite build            |      48.348 |      51.955 |      12.7% | No                | High   | High      | Limited/large output            |
+| Final build verification        |      21.452 |      53.111 |       5.6% | No                | Medium | Very high | Algorithmic improvement         |
+| **Total**                       | **381.571** | **131.187** |   **100%** |                   |        |           |                                 |
 
 final verify 单独再跑一次为 35.857 s，说明 21.452–53.111 s 存在显著 filesystem/cache/host 波动，不能用单次 warm 值断言回归。一次非特权 warm 尝试因环境网络/ACL 失败，已排除，不纳入成功样本。
 
 ## 7. Ensure / Verify Semantics
 
-| Stage | Role | Inputs / outputs | Side effects / failure | Walk / parse / hash / network |
-|---|---|---|---|---|
-| lock validation | Validator | lock schema/commits | invalid lock fails | small parse |
-| prepare upstreams | Fetcher + validator | locked commit → `.upstream/*` | clone/fetch/checkout | tree operations + network on cold |
-| `check:scripts` | Compiler + validator | message sources, scripts TS | Paraglide generation/check; type errors fail | parse/compile; no network |
-| `data:search-names:check` | Validator | official names and generated inputs | drift fails | JSON/text parse |
-| `data:ensure` | Validator + generator + cache manager | locked data, TextMaps, schema/script versions → generated manifest/data | may regenerate; invalid artifact fails | repeated walks, JSON parse, hashing |
-| enemy asset ensure | Validator + network version resolver + generator | enemy catalog, Nanoka manifest/version → images/manifest | fetches latest manifest even on valid local cache; missing/stale generates | stat/parse/hash + network |
-| general asset ensure | Validator + generator | route requirements + StarRailRes → optimized images/manifest | generate missing/stale | many JSON parses/stats/image CPU |
-| general asset verify | Deep validator | same requirements + manifest + output images | missing, fingerprint or invalid image fails | repeated requirements/existence + Sharp metadata |
-| SvelteKit/Vite | Generator + prerender validator | app + generated inputs | emits `build/`; route/build errors fail | CPU/FS intensive |
-| final deploy verify | Artifact validator | `build/` HTML/JSON/assets | missing/exact-case reference fails | full text walk/read + repeated directory scans |
+| Stage                     | Role                                             | Inputs / outputs                                                        | Side effects / failure                                                     | Walk / parse / hash / network                    |
+| ------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------ |
+| lock validation           | Validator                                        | lock schema/commits                                                     | invalid lock fails                                                         | small parse                                      |
+| prepare upstreams         | Fetcher + validator                              | locked commit → `.upstream/*`                                           | clone/fetch/checkout                                                       | tree operations + network on cold                |
+| `check:scripts`           | Compiler + validator                             | message sources, scripts TS                                             | Paraglide generation/check; type errors fail                               | parse/compile; no network                        |
+| `data:search-names:check` | Validator                                        | official names and generated inputs                                     | drift fails                                                                | JSON/text parse                                  |
+| `data:ensure`             | Validator + generator + cache manager            | locked data, TextMaps, schema/script versions → generated manifest/data | may regenerate; invalid artifact fails                                     | repeated walks, JSON parse, hashing              |
+| enemy asset ensure        | Validator + network version resolver + generator | enemy catalog, Nanoka manifest/version → images/manifest                | fetches latest manifest even on valid local cache; missing/stale generates | stat/parse/hash + network                        |
+| general asset ensure      | Validator + generator                            | route requirements + StarRailRes → optimized images/manifest            | generate missing/stale                                                     | many JSON parses/stats/image CPU                 |
+| general asset verify      | Deep validator                                   | same requirements + manifest + output images                            | missing, fingerprint or invalid image fails                                | repeated requirements/existence + Sharp metadata |
+| SvelteKit/Vite            | Generator + prerender validator                  | app + generated inputs                                                  | emits `build/`; route/build errors fail                                    | CPU/FS intensive                                 |
+| final deploy verify       | Artifact validator                               | `build/` HTML/JSON/assets                                               | missing/exact-case reference fails                                         | full text walk/read + repeated directory scans   |
 
 `ensure` 不是纯检查：它同时决定 cache validity、生成/下载缺失内容并在结束后验证。`verify` 保护的是更深的内容/引用合同；语义不能全部删除，但可以共享刚计算的 manifest、requirements 和 path index。
 
@@ -309,13 +309,13 @@ enemy ensure 在 manifest/cache 已有效时仍请求 Nanoka latest manifest。�
 
 ## 9. Incrementality and Cacheability
 
-| Stage | Complete fingerprint | Deterministic output | Unchanged skip? | Existing marker | Safe direction |
-|---|---|---|---|---|---|
-| Data generation | lock commit + TextMap digest + schema/script/search versions | Yes | Yes | generated manifest | single validation/result reuse；content-addressed artifact cache |
-| General assets | StarRailRes commit + requirement fingerprint + image/schema versions | Yes | Yes | asset manifest | ensure/verify share requirement/path/metadata results |
-| Enemy assets | catalog fingerprint + upstream asset version + schema | Yes for pinned version | Conditional | enemy manifest | first choose pinned/TTL freshness contract |
-| Vite/prerender | source + generated manifests + toolchain | Mostly | Technically yes | framework intermediates | cache smaller intermediates; avoid assuming whole build portability |
-| Final verify | exact `build/` tree | Yes | only if build identity trusted | none | single-pass path index; still verify produced artifact |
+| Stage           | Complete fingerprint                                                 | Deterministic output   | Unchanged skip?                | Existing marker         | Safe direction                                                      |
+| --------------- | -------------------------------------------------------------------- | ---------------------- | ------------------------------ | ----------------------- | ------------------------------------------------------------------- |
+| Data generation | lock commit + TextMap digest + schema/script/search versions         | Yes                    | Yes                            | generated manifest      | single validation/result reuse；content-addressed artifact cache    |
+| General assets  | StarRailRes commit + requirement fingerprint + image/schema versions | Yes                    | Yes                            | asset manifest          | ensure/verify share requirement/path/metadata results               |
+| Enemy assets    | catalog fingerprint + upstream asset version + schema                | Yes for pinned version | Conditional                    | enemy manifest          | first choose pinned/TTL freshness contract                          |
+| Vite/prerender  | source + generated manifests + toolchain                             | Mostly                 | Technically yes                | framework intermediates | cache smaller intermediates; avoid assuming whole build portability |
+| Final verify    | exact `build/` tree                                                  | Yes                    | only if build identity trusted | none                    | single-pass path index; still verify produced artifact              |
 
 当前 generated cache 总量也不小：`src/lib/generated` 379,302,051 B，general assets 118,922,656 B，enemy assets 16,186,948 B。缓存可以省 CPU/I/O，却会增加 restore/save bytes；需按 cache hit rate 与传输耗时验收，而不是只看本地 warm。
 
@@ -331,32 +331,32 @@ Build Output API 可通过 `.vercel/output/config.json` 的 `cache` 显式列出
 
 ## 11. Validation and Test Inventory
 
-| Command / nested path | Protects | Measured/observed cost | Current signal | Deploy critical? | CI critical? |
-|---|---|---:|---|---|---|
-| `messages:check` | i18n compile/completeness | nested in checks/build plugin | pass | build needs compiled messages; duplicate invocation可消除 | Yes |
-| `check` → messages → kit sync → svelte-check → `check:scripts` | app/script type correctness | about 24 s wall observed | pass; 1 existing unused-CSS warning | No, with required PR CI | Yes |
-| `lint` → Prettier → ESLint | formatting/static quality | stopped at Prettier | fails on pre-existing docs/README formatting; ESLint未执行 | No | Yes after debt is baselined/fixed |
-| `test` → Vitest | unit/domain/product contracts | 22.16 s; 423 tests | 421 pass, 2 stale expectations fail | No | Yes |
-| `data:validate` | raw-to-generated semantic parity | 47.3 s | pass; known missing TextHash warnings | No | Yes on relevant PR/main |
-| `product:baseline:check` → full `data:sync` + asset ensures + compare | approved product surface/data baseline | about 62.7 s | one stale homepage tagline | No | Main/release; targeted PR when relevant |
-| `test:e2e` → `pnpm build` → Playwright desktop/mobile | navigation, SSR/hydration, a11y/product flows | test phase 4.3 min; full command also rebuilds | 274 pass, 16 fail, 1 flaky, 3 skip | smoke only | selected PR; full main/release |
-| `assets:verify` | source generated asset completeness/content | cold 5.744 s, warm 5.782 s | pass | Yes, but reuse ensure scan | Yes as producer contract |
-| `deploy:verify` | emitted artifact/reference closure | 21.452–53.111 s | pass | Yes | clean build CI too |
-| `deploy:build` | pinned inputs → deployable artifact | cold 381.571 s | pass | Yes, trimmed to artifact prerequisites | Main/release clean build |
+| Command / nested path                                                 | Protects                                      |                         Measured/observed cost | Current signal                                             | Deploy critical?                                          | CI critical?                            |
+| --------------------------------------------------------------------- | --------------------------------------------- | ---------------------------------------------: | ---------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------- |
+| `messages:check`                                                      | i18n compile/completeness                     |                  nested in checks/build plugin | pass                                                       | build needs compiled messages; duplicate invocation可消除 | Yes                                     |
+| `check` → messages → kit sync → svelte-check → `check:scripts`        | app/script type correctness                   |                       about 24 s wall observed | pass; 1 existing unused-CSS warning                        | No, with required PR CI                                   | Yes                                     |
+| `lint` → Prettier → ESLint                                            | formatting/static quality                     |                            stopped at Prettier | fails on pre-existing docs/README formatting; ESLint未执行 | No                                                        | Yes after debt is baselined/fixed       |
+| `test` → Vitest                                                       | unit/domain/product contracts                 |                             22.16 s; 423 tests | 421 pass, 2 stale expectations fail                        | No                                                        | Yes                                     |
+| `data:validate`                                                       | raw-to-generated semantic parity              |                                         47.3 s | pass; known missing TextHash warnings                      | No                                                        | Yes on relevant PR/main                 |
+| `product:baseline:check` → full `data:sync` + asset ensures + compare | approved product surface/data baseline        |                                   about 62.7 s | one stale homepage tagline                                 | No                                                        | Main/release; targeted PR when relevant |
+| `test:e2e` → `pnpm build` → Playwright desktop/mobile                 | navigation, SSR/hydration, a11y/product flows | test phase 4.3 min; full command also rebuilds | 274 pass, 16 fail, 1 flaky, 3 skip                         | smoke only                                                | selected PR; full main/release          |
+| `assets:verify`                                                       | source generated asset completeness/content   |                     cold 5.744 s, warm 5.782 s | pass                                                       | Yes, but reuse ensure scan                                | Yes as producer contract                |
+| `deploy:verify`                                                       | emitted artifact/reference closure            |                                21.452–53.111 s | pass                                                       | Yes                                                       | clean build CI too                      |
+| `deploy:build`                                                        | pinned inputs → deployable artifact           |                                 cold 381.571 s | pass                                                       | Yes, trimmed to artifact prerequisites                    | Main/release clean build                |
 
 `data:validate` 通过时记录到 544 个 CHS TextHash missing warnings、每 locale 1,144 search records 与 190 English Endgame shards；这些是可见诊断，不是本轮失败。
 
 ## 12. Baseline Drift
 
-| Baseline/assertion | Current expected product behavior | Old expectation | Classification | Proposed update |
-|---|---|---|---|---|
-| Homepage tagline | zh 当前为“——愿此行，终抵群星” | `HONKAI: STAR RAIL DATA ARCHIVE` | Intentional product change / stale | 审核新文案后同步 unit/product/E2E baseline |
-| Enemy rank (en) | `Normal`, `Elite`, `Boss` | `Normal Enemy`, `Elite Enemy`, `Boss Enemy` | Intentional copy change / stale | 集中更新 message contract，避免多处手写 exact copy |
-| Footer zh | “本站为玩家制作的非官方数据网站” | “本站为非官方玩家制作的数据网站” | Intentional copy change / stale | 产品确认后更新单一 baseline source |
-| Changelog date | semantic `<time datetime="2026-09-03">2026年9月3日</time>` | raw visible `2026-09-03` | Obsolete implementation detail | 改断言为 `time[datetime]` + localized display contract |
-| Navigator secondary brand | 当前品牌布局没有 `HSR Data Archive` exact text | 必须出现该字符串 | Obsolete selector/copy detail | 保留导航/可访问名称测试，删除旧品牌字符串依赖 |
-| Hero baseline selector | 当前 DOM 不再有 `.entity-overview-card [data-label-size="large"]` | 依赖旧 selector | Obsolete implementation detail | 以稳定 semantic/test id 选择核心 hero metric |
-| Weakness separator zh | 中文 aria 应使用 `、` 的 locale-aware 读法 | 当前组件无条件 `.join(', ')` | Likely real regression | 保留测试，修产品或由产品明确批准逗号行为后再改 baseline |
+| Baseline/assertion        | Current expected product behavior                                 | Old expectation                             | Classification                     | Proposed update                                         |
+| ------------------------- | ----------------------------------------------------------------- | ------------------------------------------- | ---------------------------------- | ------------------------------------------------------- |
+| Homepage tagline          | zh 当前为“——愿此行，终抵群星”                                     | `HONKAI: STAR RAIL DATA ARCHIVE`            | Intentional product change / stale | 审核新文案后同步 unit/product/E2E baseline              |
+| Enemy rank (en)           | `Normal`, `Elite`, `Boss`                                         | `Normal Enemy`, `Elite Enemy`, `Boss Enemy` | Intentional copy change / stale    | 集中更新 message contract，避免多处手写 exact copy      |
+| Footer zh                 | “本站为玩家制作的非官方数据网站”                                  | “本站为非官方玩家制作的数据网站”            | Intentional copy change / stale    | 产品确认后更新单一 baseline source                      |
+| Changelog date            | semantic `<time datetime="2026-09-03">2026年9月3日</time>`        | raw visible `2026-09-03`                    | Obsolete implementation detail     | 改断言为 `time[datetime]` + localized display contract  |
+| Navigator secondary brand | 当前品牌布局没有 `HSR Data Archive` exact text                    | 必须出现该字符串                            | Obsolete selector/copy detail      | 保留导航/可访问名称测试，删除旧品牌字符串依赖           |
+| Hero baseline selector    | 当前 DOM 不再有 `.entity-overview-card [data-label-size="large"]` | 依赖旧 selector                             | Obsolete implementation detail     | 以稳定 semantic/test id 选择核心 hero metric            |
+| Weakness separator zh     | 中文 aria 应使用 `、` 的 locale-aware 读法                        | 当前组件无条件 `.join(', ')`                | Likely real regression             | 保留测试，修产品或由产品明确批准逗号行为后再改 baseline |
 
 “likely real regression” 是基于当前 `EnemyWeaknessGroup.svelte` 对所有 locale 无条件使用 ASCII comma 的证据；最终产品标点合同仍需 owner 确认。
 
@@ -405,22 +405,22 @@ Preview 不必重复所有 repository correctness tests，但坏 commit 必须�
 
 ### 15.1 Artifact Size
 
-| Scenario | Contents | Estimated result from 394.300 MB |
-|---|---|---:|
-| Conservative | Character compact DTO only | **约 385.3 MB** |
-| Recommended | compact DTO + Search direct existing static index | **约 381.3 MB** |
-| Aggressive | recommended + Character interaction shard + Enemy shared stats upper-bound | **约 344–350 MB** |
+| Scenario     | Contents                                                                   | Estimated result from 394.300 MB |
+| ------------ | -------------------------------------------------------------------------- | -------------------------------: |
+| Conservative | Character compact DTO only                                                 |                  **约 385.3 MB** |
+| Recommended  | compact DTO + Search direct existing static index                          |                  **约 381.3 MB** |
+| Aggressive   | recommended + Character interaction shard + Enemy shared stats upper-bound |                **约 344–350 MB** |
 
 Aggressive range保留了 Enemy 默认 SSR/fallback/envelope 未在原型中精确扣除的不确定性；不应承诺 343.8 MB 的数学上界。
 
 ### 15.2 Build Duration
 
-| Scenario | Changes | Local cold | Local warm | Vercel total |
-|---|---|---:|---:|---:|
-| Current | Measured/Observed baseline | **381.6 s measured** | **131.2 s measured** | **约 6 min observed** |
-| Conservative | single-pass final path index；share asset requirements/existence；消除 data ensure 内二次 full validation | **330–355 s estimated** | **85–105 s estimated** | **5.3–5.9 min estimated** |
-| Recommended | conservative + parallel upstream preparation；data ready 后并行 enemy/general assets；required CI 到位后移出 type/search check；same-process manifest reuse | **235–275 s estimated** | **65–85 s estimated** | **4.0–4.8 min estimated** |
-| Aggressive | smaller content-addressed outputs/task cache with verified hit rate | **55–75 s cache-hit local estimated** | same range | **2.5–3.5 min cache-hit estimated** |
+| Scenario     | Changes                                                                                                                                                     |                            Local cold |             Local warm |                        Vercel total |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------: | ---------------------: | ----------------------------------: |
+| Current      | Measured/Observed baseline                                                                                                                                  |                  **381.6 s measured** |   **131.2 s measured** |               **约 6 min observed** |
+| Conservative | single-pass final path index；share asset requirements/existence；消除 data ensure 内二次 full validation                                                   |               **330–355 s estimated** | **85–105 s estimated** |           **5.3–5.9 min estimated** |
+| Recommended  | conservative + parallel upstream preparation；data ready 后并行 enemy/general assets；required CI 到位后移出 type/search check；same-process manifest reuse |               **235–275 s estimated** |  **65–85 s estimated** |           **4.0–4.8 min estimated** |
+| Aggressive   | smaller content-addressed outputs/task cache with verified hit rate                                                                                         | **55–75 s cache-hit local estimated** |             same range | **2.5–3.5 min cache-hit estimated** |
 
 Aggressive 并不建议立即实施：Vercel cache restore/upload、1 GB limit 与 branch-specific keys 可能吞掉收益。所有估算需用至少 3 次 cold/warm 本地样本和 Vercel phase telemetry 验收。
 

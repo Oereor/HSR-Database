@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "ci:prepare": "tsx scripts/ci/prepare.ts",
     "assets:sync:enemies": "pnpm data:ensure && tsx scripts/assets/enemies/sync.ts",
     "assets:ensure:enemies": "tsx scripts/assets/enemies/ensure.ts",
     "assets:sync": "tsx scripts/assets/sync.ts",
@@ -32,7 +33,8 @@
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test --project=desktop-chromium --project=mobile-chromium",
+    "test:e2e:smoke": "playwright test --project=ci-smoke",
     "data:search-names:update": "tsx scripts/data/search-names.ts update",
     "data:search-names:check": "tsx scripts/data/search-names.ts check",
     "data:player-aliases:sync": "tsx scripts/data/player-aliases.ts",

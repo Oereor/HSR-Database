@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - main
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  correctness:
+    name: Correctness
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      HSR_DATA_ROOT: .upstream/TurnBasedGameData
+      HSR_ASSET_ROOT: .upstream/StarRailRes
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.9.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check types and messages
+        run: pnpm check
+
+      - name: Check formatting and lint
+        run: pnpm lint
+
+      - name: Prepare pinned data and assets
+        run: pnpm ci:prepare
+
+      - name: Run unit and contract tests
+        run: pnpm test
+
+      - name: Validate search-name metadata
+        run: pnpm data:search-names:check
+
+      - name: Validate generated data
+        run: pnpm data:validate
+
+      - name: Build once for browser smoke tests
+        run: pnpm build
+
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run E2E smoke tests
+        env:
+          PLAYWRIGHT_REUSE_BUILD: '1'
+        run: pnpm test:e2e:smoke
