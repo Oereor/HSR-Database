@@ -42,14 +42,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Prepare pinned data and assets
+        run: pnpm ci:prepare
+
       - name: Check types and messages
         run: pnpm check
 
       - name: Check formatting and lint
         run: pnpm lint
-
-      - name: Prepare pinned data and assets
-        run: pnpm ci:prepare
 
       - name: Run unit and contract tests
         run: pnpm test

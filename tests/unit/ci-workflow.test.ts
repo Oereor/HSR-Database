@@ -30,6 +30,9 @@ describe('pull request correctness workflow', () => {
       'pnpm test:e2e:smoke'
     ])
       expect(workflow).toContain(`run: ${command}`);
+    expect(workflow.indexOf('run: pnpm ci:prepare')).toBeLessThan(
+      workflow.indexOf('run: pnpm check')
+    );
     expect(workflow).toContain("PLAYWRIGHT_REUSE_BUILD: '1'");
   });
 });
