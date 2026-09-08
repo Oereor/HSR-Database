@@ -4,6 +4,7 @@ const today = new Date();
 const localDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(
   today.getDate()
 ).padStart(2, '0')}`;
+const reuseBuild = process.env.PLAYWRIGHT_REUSE_BUILD === '1';
 
 export default defineConfig({
   testDir: './tests/e2e',
@@ -24,13 +25,26 @@ export default defineConfig({
     }
   },
   webServer: {
-    command: 'pnpm build && pnpm preview --host 127.0.0.1 --port 4173',
+    command: `${reuseBuild ? '' : 'pnpm build && '}pnpm preview --host 127.0.0.1 --port 4173`,
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: true,
     timeout: 180_000
   },
   projects: [
-    { name: 'desktop-chromium', use: { ...devices['Desktop Chrome'] } },
-    { name: 'mobile-chromium', use: { ...devices['Pixel 5'] } }
+    {
+      name: 'desktop-chromium',
+      testIgnore: '**/ci-smoke.spec.ts',
+      use: { ...devices['Desktop Chrome'] }
+    },
+    {
+      name: 'mobile-chromium',
+      testIgnore: '**/ci-smoke.spec.ts',
+      use: { ...devices['Pixel 5'] }
+    },
+    {
+      name: 'ci-smoke',
+      testMatch: '**/ci-smoke.spec.ts',
+      use: { ...devices['Desktop Chrome'] }
+    }
   ]
 });

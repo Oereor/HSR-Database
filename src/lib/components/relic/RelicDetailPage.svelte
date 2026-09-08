@@ -147,14 +147,6 @@
     font-weight: 650;
   }
 
-  .relic-effect strong span {
-    color: var(--gold);
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    font-weight: 700;
-    line-height: 1;
-  }
-
   .relic-effect p {
     max-width: 40rem;
     margin: var(--space-4) 0 0;

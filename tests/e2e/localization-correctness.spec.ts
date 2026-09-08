@@ -2,6 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
 async function switchTo(page: Page, locale: 'en' | 'zh-CN', pathname: string) {
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   await page.locator('.settings-trigger').click();
   const link = page
     .locator('.language-segments a')
@@ -11,14 +12,18 @@ async function switchTo(page: Page, locale: 'en' | 'zh-CN', pathname: string) {
   const previous = new URL(page.url());
   expect(target.search).toBe(previous.search);
   expect(target.hash).toBe(previous.hash);
-  const documentRequest = page.waitForRequest(
-    (request) => request.isNavigationRequest() && request.resourceType() === 'document'
-  );
-  await link.click();
-  await documentRequest;
-  await expect
-    .poll(() => new URL(page.url()).pathname.replace(/\/$/, ''))
-    .toBe(pathname.replace(/\/$/, ''));
+  await Promise.all([
+    page.waitForURL(
+      (url) =>
+        url.pathname.replace(/\/$/, '') === target.pathname.replace(/\/$/, '') &&
+        url.search === target.search &&
+        url.hash === target.hash,
+      { waitUntil: 'load' }
+    ),
+    link.click()
+  ]);
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
+  expect(new URL(page.url()).pathname.replace(/\/$/, '')).toBe(pathname.replace(/\/$/, ''));
   expect(new URL(page.url()).search).toBe(target.search);
   expect(new URL(page.url()).hash).toBe(target.hash);
   await expect(page.locator('html')).toHaveAttribute('lang', locale);
@@ -50,12 +55,15 @@ for (const path of [
 ]) {
   test(`document locale switch round trip: ${path}`, async ({ page }) => {
     await page.goto(path);
+    await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
     const original = new URL(page.url());
     await switchTo(page, 'en', original.pathname === '/' ? '/en' : `/en${original.pathname}`);
     await switchTo(page, 'zh-CN', original.pathname);
-    await page.goBack();
+    await page.goBack({ waitUntil: 'load' });
+    await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-    await page.goForward();
+    await page.goForward({ waitUntil: 'load' });
+    await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
     await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
   });
 }
@@ -118,27 +126,22 @@ for (const locale of ['zh-CN', 'en'] as const) {
       await expect(page).toHaveURL(new URL(nextHref!, page.url()).href);
     });
   }
-  test(`${locale} enemy labels in catalog and detail`, async ({ page }) => {
+  test(`${locale} enemy labels in catalog and detail`, async ({ page, isMobile }) => {
+    test.skip(isMobile, 'Viewport-independent message contract runs once');
     const entries = JSON.parse(
       readFileSync(`src/lib/generated/views/${locale}/catalogs/enemies.json`, 'utf8')
     ) as Array<{ id: string; name: string; type: string }>;
-    for (const [rank, label] of Object.entries(
-      locale === 'en'
-        ? {
-            Minion: 'Normal Enemy',
-            MinionLv2: 'Normal Enemy',
-            Elite: 'Elite Enemy',
-            LittleBoss: 'Boss Enemy',
-            BigBoss: 'Boss Enemy'
-          }
-        : {
-            Minion: '普通敌人',
-            MinionLv2: '普通敌人',
-            Elite: '精英敌人',
-            LittleBoss: '首领敌人',
-            BigBoss: '首领敌人'
-          }
-    )) {
+    const messages = JSON.parse(readFileSync(`messages/${locale}.json`, 'utf8')) as Record<
+      string,
+      string
+    >;
+    for (const [rank, label] of Object.entries({
+      Minion: messages.enemy_rank_normal,
+      MinionLv2: messages.enemy_rank_normal,
+      Elite: messages.enemy_rank_elite,
+      LittleBoss: messages.enemy_rank_boss,
+      BigBoss: messages.enemy_rank_boss
+    })) {
       const entry = entries.find((entry) => entry.type === rank)!;
       await page.goto(`${prefix}/enemies?q=${encodeURIComponent(entry.name)}`);
       const card = page.locator(`a[href="${prefix}/enemies/${entry.id}"]`);

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { getElementIconUrl, getPathIconUrl } from '$lib/data/visual-assets';
+  import { onMount } from 'svelte';
 
   export let kind: 'element' | 'path';
   export let code: string | undefined;
@@ -12,8 +13,17 @@
   export let fallbackMark: string | undefined = undefined;
 
   let failedSource: string | undefined;
+  let imageElement: HTMLImageElement | undefined;
   $: source = kind === 'element' ? getElementIconUrl(code) : getPathIconUrl(code);
   $: visibleSource = source && source !== failedSource ? source : undefined;
+
+  function markSourceMissing() {
+    if (visibleSource) failedSource = visibleSource;
+  }
+
+  onMount(() => {
+    if (imageElement?.complete && imageElement.naturalWidth === 0) markSourceMissing();
+  });
 </script>
 
 <span
@@ -27,6 +37,7 @@
   aria-label={showLabel ? undefined : label}
 >
   {#if visibleSource}<img
+      bind:this={imageElement}
       src={visibleSource}
       alt=""
       aria-hidden="true"
@@ -34,7 +45,7 @@
       height="64"
       loading="lazy"
       decoding="async"
-      on:error={() => (failedSource = visibleSource)}
+      on:error={markSourceMissing}
     />{:else if fallbackMark}<span class="semantic-icon-label__fallback" aria-hidden="true"
       >{fallbackMark}</span
     >{/if}

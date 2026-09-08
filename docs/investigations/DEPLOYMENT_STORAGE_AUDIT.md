@@ -56,37 +56,37 @@ SSR / prerender（adapter-static）
 
 ### 3.1 总量与扩展名（Measured）
 
-| Extension | Files | Bytes | Share |
-|---|---:|---:|---:|
-| `.html` | 2,153 | 308,188,907 | 44.18% |
-| `.json` | 2,156 | 230,454,043 | 33.04% |
-| `.png` | 1,887 | 74,568,728 | 10.69% |
-| `.webp` | 476 | 60,442,578 | 8.66% |
-| no extension | 380 | 22,499,897 | 3.23% |
-| `.xml` | 1 | 732,657 | 0.11% |
-| `.js` | 48 | 567,927 | 0.08% |
-| `.css` | 18 | 123,316 | 0.02% |
-| other | 3 | 35,624 | <0.01% |
-| **Total** | **7,122** | **697,613,677** | **100%** |
+| Extension    |     Files |           Bytes |    Share |
+| ------------ | --------: | --------------: | -------: |
+| `.html`      |     2,153 |     308,188,907 |   44.18% |
+| `.json`      |     2,156 |     230,454,043 |   33.04% |
+| `.png`       |     1,887 |      74,568,728 |   10.69% |
+| `.webp`      |       476 |      60,442,578 |    8.66% |
+| no extension |       380 |      22,499,897 |    3.23% |
+| `.xml`       |         1 |         732,657 |    0.11% |
+| `.js`        |        48 |         567,927 |    0.08% |
+| `.css`       |        18 |         123,316 |    0.02% |
+| other        |         3 |          35,624 |   <0.01% |
+| **Total**    | **7,122** | **697,613,677** | **100%** |
 
 单独识别出的 route `__data.json` 为 **226,372,831 bytes**；`.json` 扩展名总量还包含 manifests/index 等。HTML + route data 为 **534,561,738 bytes / 76.63%**。
 
 ### 3.2 主要目录（Measured）
 
-| Directory / family | Files | Bytes |
-|---|---:|---:|
-| `en/`（全部英文 route） | 2,151 | 268,320,698 |
-| `enemies/`（中文） | 1,257 | 208,099,704 |
-| `generated-assets/` | 2,153 | 118,922,656 |
-| `generated/` | 382 | 26,483,160 |
-| `endgame/`（中文） | 231 | 25,279,753 |
-| `characters/`（中文） | 195 | 21,021,131 |
-| `generated-enemy-assets/` | 212 | 16,186,948 |
-| `light-cones/`（中文） | 339 | 4,982,469 |
-| root files | 12 | 3,694,689 |
-| `search.html`（中文） | 1 | 2,509,919 |
-| `relics/`（中文） | 121 | 1,386,098 |
-| `_app/` | 67 | 691,270 |
+| Directory / family        | Files |       Bytes |
+| ------------------------- | ----: | ----------: |
+| `en/`（全部英文 route）   | 2,151 | 268,320,698 |
+| `enemies/`（中文）        | 1,257 | 208,099,704 |
+| `generated-assets/`       | 2,153 | 118,922,656 |
+| `generated/`              |   382 |  26,483,160 |
+| `endgame/`（中文）        |   231 |  25,279,753 |
+| `characters/`（中文）     |   195 |  21,021,131 |
+| `generated-enemy-assets/` |   212 |  16,186,948 |
+| `light-cones/`（中文）    |   339 |   4,982,469 |
+| root files                |    12 |   3,694,689 |
+| `search.html`（中文）     |     1 |   2,509,919 |
+| `relics/`（中文）         |   121 |   1,386,098 |
+| `_app/`                   |    67 |     691,270 |
 
 主要二级目录：`generated-assets/light-cones` 55,661,292 bytes，`generated-assets/characters` 49,033,299 bytes，`generated-assets/character-details` 7,770,037 bytes，`generated-assets/relics` 6,288,990 bytes，`generated-enemy-assets/icons` 16,088,650 bytes；`generated/en` 13,289,053 bytes，`generated/zh-CN` 13,194,107 bytes。
 
@@ -96,16 +96,16 @@ JS + CSS 合计只有 **691,243 bytes**；它不是存储问题。
 
 下表的 route 数为 localized route 数；detail 数量是 97 characters、169 light cones、60 relics、628 enemies，另含各自的 zh/en 目录页。Median/P90/Max 的 combined 是按同一路由 HTML + data 配对计算。
 
-| Family | Localized routes | HTML files / bytes | Data files / bytes | Combined bytes | Avg / route | Median | P90 | Max |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| enemies | 1,258 | 1,258 / 230,620,920 | 1,258 / 187,005,349 | **417,626,269** | 331,976 | 177,307 | 776,400 | 5,167,443 |
-| endgame | 232 | 232 / 32,499,478 | 232 / 18,321,211 | **50,820,689** | 219,055 | 255,233 | 310,932 | 325,749 |
-| characters | 196 | 196 / 29,724,114 | 196 / 13,656,614 | **43,380,728** | 221,330 | 200,877 | 318,704 | 650,704 |
-| light-cones | 340 | 340 / 8,355,807 | 340 / 1,994,844 | **10,350,651** | 30,443 | 28,980 | 35,428 | 136,305 |
-| search | 2 | 2 / 4,277,870 | 2 / 5,054,616 | **9,332,486** | 4,666,243 | 4,615,241 | 4,717,245 | 4,717,245 |
-| relics | 122 | 122 / 2,623,380 | 122 / 331,988 | **2,955,368** | 24,224 | 23,300 | 25,643 | 92,945 |
-| homepage | 2 | 2 / 85,228* | 2 / 8,209 | **93,437*** | 46,719 | 45,816 | 47,621 | 47,621 |
-| miscellaneous | 1 | 1 / 2,110 | 0 | 2,110 | 2,110 | 2,110 | 2,110 | 2,110 |
+| Family        | Localized routes |  HTML files / bytes |  Data files / bytes |  Combined bytes | Avg / route |    Median |       P90 |       Max |
+| ------------- | ---------------: | ------------------: | ------------------: | --------------: | ----------: | --------: | --------: | --------: |
+| enemies       |            1,258 | 1,258 / 230,620,920 | 1,258 / 187,005,349 | **417,626,269** |     331,976 |   177,307 |   776,400 | 5,167,443 |
+| endgame       |              232 |    232 / 32,499,478 |    232 / 18,321,211 |  **50,820,689** |     219,055 |   255,233 |   310,932 |   325,749 |
+| characters    |              196 |    196 / 29,724,114 |    196 / 13,656,614 |  **43,380,728** |     221,330 |   200,877 |   318,704 |   650,704 |
+| light-cones   |              340 |     340 / 8,355,807 |     340 / 1,994,844 |  **10,350,651** |      30,443 |    28,980 |    35,428 |   136,305 |
+| search        |                2 |       2 / 4,277,870 |       2 / 5,054,616 |   **9,332,486** |   4,666,243 | 4,615,241 | 4,717,245 | 4,717,245 |
+| relics        |              122 |     122 / 2,623,380 |       122 / 331,988 |   **2,955,368** |      24,224 |    23,300 |    25,643 |    92,945 |
+| homepage      |                2 |         2 / 85,228* |           2 / 8,209 |     **93,437*** |      46,719 |    45,816 |    47,621 |    47,621 |
+| miscellaneous |                1 |           1 / 2,110 |                   0 |           2,110 |       2,110 |     2,110 |     2,110 |     2,110 |
 
 \* `index.html` 与 `en.html`；原始分类脚本把 `en.html` 归入 miscellaneous，表中为人工纠正后的 homepage 口径。
 
@@ -115,18 +115,18 @@ Enemy detail（不含目录页）的精确值：中文 HTML 114,649,373 bytes、
 
 ### 5.1 Enemy Data Flow
 
-| Layer | Path / symbol | Input → output / responsibility |
-|---|---|---|
-| raw tables | `.upstream/TurnBasedGameData/ExcelOutput/{MonsterTemplateConfig,MonsterConfig,MonsterSkillConfig,HardLevelGroup,EliteGroup,DamageType}.json` | 原始模板、具体 Monster、技能、等级倍率、elite 倍率、元素数据 |
-| raw localization | `.upstream/TurnBasedGameData/TextMap/TextMap{CHS,EN}.json`; `scripts/data/localization.ts#loadTextMap` | build-time hash lookup；不进入 domain/browser |
-| parser/domain | `scripts/data/domain/enemy.ts#buildEnemyDomain`, `buildMonster`, `buildSkill`; `EnemyDomain`, `EnemyMonsterDomain`, `EnemySkillDomain` | 按 `MonsterTemplateID` 收集所有 `MonsterConfig`；解析 modifiers、weakness/resistance、skill refs、summons |
-| stat expansion | `scripts/data/enemy-detail.ts#resolveCanonicalEnemyStats`; `EnemyStatProgression` | 将 template/config/hard-level/elite 数据物化成 level 1–100 的七项属性行 |
-| locale projection | `scripts/data/projection/enemy.ts#projectEnemies`, `projectEnemy`, `projectSkill` | 对每 locale 解析最终 name/description/labels/ExtraEffect，并写完整 `Enemy` JSON |
-| generated view | `src/lib/generated/views/{locale}/details/enemies/{id}.json` | server/build-time `Enemy`；仍包含 `defaultMonster` 与 `weaknesses` 兼容复制 |
-| server view | `src/lib/server/enemies.ts#getEnemyDetail`; `src/lib/domain/enemy-view.ts#buildEnemyDetailView` | 删除 `defaultMonster`/per-Monster full skills duplication，构造 `EnemyDetailView`；补 portrait URL |
-| route loader | `src/routes/[category=category]/[id]/+page.server.ts#load` | 返回 `{category, config, detail, specialEffectTargets, equipmentRecommendation}`；Enemy 后两项为空/undefined |
-| UI | `DetailPage.svelte` → `enemy/EnemyDetailPage.svelte` → `EnemyStatsPanel.svelte`, `EnemySkillCard.svelte` | hero、Monster selector、level slider、stats、resistance、summons、phase refs、skill definitions |
-| prerender | SvelteKit adapter-static | `build/{locale?}/enemies/{id}.html` + `build/{locale?}/enemies/{id}/__data.json` |
+| Layer             | Path / symbol                                                                                                                                | Input → output / responsibility                                                                              |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| raw tables        | `.upstream/TurnBasedGameData/ExcelOutput/{MonsterTemplateConfig,MonsterConfig,MonsterSkillConfig,HardLevelGroup,EliteGroup,DamageType}.json` | 原始模板、具体 Monster、技能、等级倍率、elite 倍率、元素数据                                                 |
+| raw localization  | `.upstream/TurnBasedGameData/TextMap/TextMap{CHS,EN}.json`; `scripts/data/localization.ts#loadTextMap`                                       | build-time hash lookup；不进入 domain/browser                                                                |
+| parser/domain     | `scripts/data/domain/enemy.ts#buildEnemyDomain`, `buildMonster`, `buildSkill`; `EnemyDomain`, `EnemyMonsterDomain`, `EnemySkillDomain`       | 按 `MonsterTemplateID` 收集所有 `MonsterConfig`；解析 modifiers、weakness/resistance、skill refs、summons    |
+| stat expansion    | `scripts/data/enemy-detail.ts#resolveCanonicalEnemyStats`; `EnemyStatProgression`                                                            | 将 template/config/hard-level/elite 数据物化成 level 1–100 的七项属性行                                      |
+| locale projection | `scripts/data/projection/enemy.ts#projectEnemies`, `projectEnemy`, `projectSkill`                                                            | 对每 locale 解析最终 name/description/labels/ExtraEffect，并写完整 `Enemy` JSON                              |
+| generated view    | `src/lib/generated/views/{locale}/details/enemies/{id}.json`                                                                                 | server/build-time `Enemy`；仍包含 `defaultMonster` 与 `weaknesses` 兼容复制                                  |
+| server view       | `src/lib/server/enemies.ts#getEnemyDetail`; `src/lib/domain/enemy-view.ts#buildEnemyDetailView`                                              | 删除 `defaultMonster`/per-Monster full skills duplication，构造 `EnemyDetailView`；补 portrait URL           |
+| route loader      | `src/routes/[category=category]/[id]/+page.server.ts#load`                                                                                   | 返回 `{category, config, detail, specialEffectTargets, equipmentRecommendation}`；Enemy 后两项为空/undefined |
+| UI                | `DetailPage.svelte` → `enemy/EnemyDetailPage.svelte` → `EnemyStatsPanel.svelte`, `EnemySkillCard.svelte`                                     | hero、Monster selector、level slider、stats、resistance、summons、phase refs、skill definitions              |
+| prerender         | SvelteKit adapter-static                                                                                                                     | `build/{locale?}/enemies/{id}.html` + `build/{locale?}/enemies/{id}/__data.json`                             |
 
 Raw 字段与最终字段的关键映射：`MonsterTemplateConfig` 提供 identity/rank/baseStats；`MonsterConfig` 提供 `HardLevelGroup`、`EliteGroup`、五类 modifiers、weakness/resistance、summon/skill IDs；`HardLevelGroup` 与 `EliteGroup` 经 `resolveCanonicalEnemyStats` 派生完整 `stats.levels`；`MonsterSkillConfig` 和 `ExtraEffectConfig` 经 TextMap 投影为最终本地化 skill 文本。raw rows、TextMap、审计 diagnostics、引用索引都只存在于 build-time，没有直接序列化给页面。
 
@@ -134,10 +134,10 @@ Raw 字段与最终字段的关键映射：`MonsterTemplateConfig` 提供 identi
 
 所有会影响 Enemy 的 load 已检查：
 
-| Load | Returned top-level data | Measured serialized size |
-|---|---|---:|
-| `src/routes/+layout.server.ts` | `locale`, `siteVersion`, `siteUrl` | 123–126 bytes/page |
-| detail `+page.server.ts` | `category`, `config`, `detail`, `specialEffectTargets`, `equipmentRecommendation` | `8002050`: 2,520,352 bytes；其中 `detail` 2,519,921 |
+| Load                           | Returned top-level data                                                           |                            Measured serialized size |
+| ------------------------------ | --------------------------------------------------------------------------------- | --------------------------------------------------: |
+| `src/routes/+layout.server.ts` | `locale`, `siteVersion`, `siteUrl`                                                |                                  123–126 bytes/page |
+| detail `+page.server.ts`       | `category`, `config`, `detail`, `specialEffectTargets`, `equipmentRecommendation` | `8002050`: 2,520,352 bytes；其中 `detail` 2,519,921 |
 
 没有相关 `+layout.ts` 或 `+page.ts`。`specialEffectTargets=[]` 和 `equipmentRecommendation=undefined` 对 Enemy 分别只占 4/2 bytes。不存在大 shared payload。
 
@@ -147,29 +147,29 @@ Raw 字段与最终字段的关键映射：`MonsterTemplateConfig` 提供 identi
 
 ### 5.3 UI Usage
 
-| Data subtree | Representative size (`8002050`, zh JSON) | Used by UI? | Where | Reducible? |
-|---|---:|---|---|---|
-| identity/description/portrait | 280 bytes | Yes（`kind`、top-level `rank/type/typeName` 不直接用） | `DetailPage`, `EnemyDetailPage` | 少量 |
-| `template` | 179 | Yes | hero + template stats | No |
-| Monster IDs/group metadata | 1,974 | `monsterId` Yes；`monsterTemplateId`, `hardLevelGroup`, `eliteGroup` No | selector/heading | Yes，收益小 |
-| `monsters[].modifiers` | 9,926 | No | — | Yes，收益小 |
-| `monsters[].stats` | **2,795,379** | Yes | level slider + `EnemyStatsPanel` | **表示法高度可压缩；可延迟非默认变体** |
-| weaknesses/resistances/special | 23,752 | Yes | attribute panels | 小幅 |
-| summons | 152 | Yes（本样本为空） | `CompactEntityCard` | 已是轻量 reference |
-| `skillPhases` | 18,696 | Yes | phase tabs/anchors | 可将重复 name/damageType 改为 ID reference，收益小 |
-| `skillDefinitions` | 789 | 大部分 Yes | `EnemySkillCard` | internal kind/label/status/phases 未使用，收益小 |
-| full raw config / TextMap / search index | 0 | No，且未序列化 | — | 无泄漏 |
+| Data subtree                             | Representative size (`8002050`, zh JSON) | Used by UI?                                                             | Where                            | Reducible?                                         |
+| ---------------------------------------- | ---------------------------------------: | ----------------------------------------------------------------------- | -------------------------------- | -------------------------------------------------- |
+| identity/description/portrait            |                                280 bytes | Yes（`kind`、top-level `rank/type/typeName` 不直接用）                  | `DetailPage`, `EnemyDetailPage`  | 少量                                               |
+| `template`                               |                                      179 | Yes                                                                     | hero + template stats            | No                                                 |
+| Monster IDs/group metadata               |                                    1,974 | `monsterId` Yes；`monsterTemplateId`, `hardLevelGroup`, `eliteGroup` No | selector/heading                 | Yes，收益小                                        |
+| `monsters[].modifiers`                   |                                    9,926 | No                                                                      | —                                | Yes，收益小                                        |
+| `monsters[].stats`                       |                            **2,795,379** | Yes                                                                     | level slider + `EnemyStatsPanel` | **表示法高度可压缩；可延迟非默认变体**             |
+| weaknesses/resistances/special           |                                   23,752 | Yes                                                                     | attribute panels                 | 小幅                                               |
+| summons                                  |                                      152 | Yes（本样本为空）                                                       | `CompactEntityCard`              | 已是轻量 reference                                 |
+| `skillPhases`                            |                                   18,696 | Yes                                                                     | phase tabs/anchors               | 可将重复 name/damageType 改为 ID reference，收益小 |
+| `skillDefinitions`                       |                                      789 | 大部分 Yes                                                              | `EnemySkillCard`                 | internal kind/label/status/phases 未使用，收益小   |
+| full raw config / TextMap / search index |                                        0 | No，且未序列化                                                          | —                                | 无泄漏                                             |
 
 UI 未使用但仍序列化的字段确实存在，包括 top-level `kind/rank/type/typeName`、Monster `monsterTemplateId/hardLevelGroup/eliteGroup/modifiers`、skill `kind/kindLabel/localizedTextStatus/phases`。不过全量候选剥离实测只令双语言 devalue 从 185,802,840 降至 184,064,566 bytes；即每份序列化减少 1.738 MB，计入 HTML + data 后约 **3.48 MB/deployment**。因此“删 unused fields”应做，但不能独自解决问题。
 
 ### 5.4 Representative Samples
 
-| Sample | ID | Monsters / level rows | Unique skills / phases / effects | zh data | zh HTML | 4-file locale combined | Major zh subtree |
-|---|---:|---:|---:|---:|---:|---:|---|
-| Small (约 P10) | 5012052 | 1 / 100 | 1 / 1 / 0 | 38,404 | 56,865 | 190,704 | stats 37,197 B |
-| Median | 8032040 | 2 / 200 | 3 / 2 / 0 | 73,601 | 97,565 | 342,557 | stats 72,629 B |
-| Large (P90) | 1002016 | 11 / 1,100 | 2 / 11 / 0 | 369,106 | 407,072 | 1,552,598 | stats 404,519 B |
-| Extreme | 8002050 | 76 / 7,600 | 3 / 76 / 0 | 2,520,598 | 2,644,384 | 10,332,425 | stats 2,795,379 B |
+| Sample         |      ID | Monsters / level rows | Unique skills / phases / effects |   zh data |   zh HTML | 4-file locale combined | Major zh subtree  |
+| -------------- | ------: | --------------------: | -------------------------------: | --------: | --------: | ---------------------: | ----------------- |
+| Small (约 P10) | 5012052 |               1 / 100 |                        1 / 1 / 0 |    38,404 |    56,865 |                190,704 | stats 37,197 B    |
+| Median         | 8032040 |               2 / 200 |                        3 / 2 / 0 |    73,601 |    97,565 |                342,557 | stats 72,629 B    |
+| Large (P90)    | 1002016 |            11 / 1,100 |                       2 / 11 / 0 |   369,106 |   407,072 |              1,552,598 | stats 404,519 B   |
+| Extreme        | 8002050 |            76 / 7,600 |                       3 / 76 / 0 | 2,520,598 | 2,644,384 |             10,332,425 | stats 2,795,379 B |
 
 全量相关系数：Monster count → devalue bytes **0.99968**；level rows → bytes **0.99968**；raw stats subtree → bytes **0.99968**；phase count → bytes 0.96150（因为本模型通常每 Monster 至少一个 phase）；unique skill count → bytes -0.13142。增长几乎是随 Monster/100-level progression **线性**，不是 skill/phase 内容超线性增长。
 
@@ -177,11 +177,11 @@ UI 未使用但仍序列化的字段确实存在，包括 top-level `kind/rank/t
 
 Raw 实测：1 个 `MonsterTemplateConfig`，76 个 `MonsterConfig`，全部使用 `HardLevelGroup=1`、`EliteGroup=1`；总 skill references 228，但仅 3 个唯一 skill ID；无 summon。生成态中文文件 `src/lib/generated/views/zh-CN/details/enemies/8002050.json` 为 **2,947,626 bytes**：
 
-| Generated subtree | Bytes |
-|---|---:|
-| `monsters` | 2,909,312 |
-| duplicated `defaultMonster` compatibility field | 37,638 |
-| template + identity + description + compatibility weaknesses | <600 |
+| Generated subtree                                            |     Bytes |
+| ------------------------------------------------------------ | --------: |
+| `monsters`                                                   | 2,909,312 |
+| duplicated `defaultMonster` compatibility field              |    37,638 |
+| template + identity + description + compatibility weaknesses |      <600 |
 
 `buildEnemyDetailView` 去掉 `defaultMonster` 和 per-Monster skill definitions 后，中文 view 为 2,863,906 JSON bytes；其 76 个 Monster 共含：
 
@@ -197,13 +197,13 @@ Raw 实测：1 个 `MonsterTemplateConfig`，76 个 `MonsterConfig`，全部使�
 
 实际文件：
 
-| File | Bytes |
-|---|---:|
-| `enemies/8002050.html` | 2,644,384 |
-| `enemies/8002050/__data.json` | 2,520,598 |
-| `en/enemies/8002050.html` | 2,646,859 |
-| `en/enemies/8002050/__data.json` | 2,520,584 |
-| **Total** | **10,332,425** |
+| File                             |          Bytes |
+| -------------------------------- | -------------: |
+| `enemies/8002050.html`           |      2,644,384 |
+| `enemies/8002050/__data.json`    |      2,520,598 |
+| `en/enemies/8002050.html`        |      2,646,859 |
+| `en/enemies/8002050/__data.json` |      2,520,584 |
+| **Total**                        | **10,332,425** |
 
 ## 6. HTML vs __data.json Analysis
 
@@ -226,7 +226,9 @@ TextMap 路径是 `loadTextMap` → `TextResolver` → `scripts/data/projection/
 `src/routes/+layout.server.ts` 只返回：
 
 ```ts
-{ locale, siteVersion, siteUrl }
+{
+  (locale, siteVersion, siteUrl);
+}
 ```
 
 在最大四类 route 的实际 `__data.json` 中，layout devalue 均只有 123–126 bytes。`+layout.svelte` 使用 site version、locale、URL，并没有接收 catalogs、all-enemy map、aliases、TextMap 或 FlexSearch index。
@@ -251,14 +253,14 @@ Endgame family 为 50,820,689 bytes。最大 data `en/endgame/moc/1018/__data.js
 
 Search family 为 9,332,486 bytes。最大英文 Search page node 2,544,480 bytes：
 
-| Field | devalue bytes |
-|---|---:|
-| `searchIndex` | 2,221,173 |
-| `enemies` catalog | 223,471 |
-| characters catalog | 38,310 |
-| relics catalog | 21,585 |
-| light cones catalog | 20,203 |
-| enemy portraits | 19,284 |
+| Field               | devalue bytes |
+| ------------------- | ------------: |
+| `searchIndex`       |     2,221,173 |
+| `enemies` catalog   |       223,471 |
+| characters catalog  |        38,310 |
+| relics catalog      |        21,585 |
+| light cones catalog |        20,203 |
+| enemy portraits     |        19,284 |
 
 Search index 同时作为 `build/generated/{locale}/search.json` 存在（约 1.992 MB/locale），又由 `search/+page.server.ts` 读取并嵌入 Search HTML/data。它没有泄漏到其他 route，但 Search route 内确有约 **4.44 MB**（两 locale、HTML + data）的可避免嵌入；未来可让 Search 客户端直接读取已有静态资源。其优先级低于 Enemy。
 
@@ -272,33 +274,33 @@ Search index 同时作为 `build/generated/{locale}/search.json` 存在（约 1.
 
 ## 11. Root Causes
 
-| Class | Finding | Evidence / impact |
-|---|---|---|
-| **P0 Direct payload bloat** | 完整 1–100 `EnemyStatProgression` 为每个 Monster 按 verbose object 展开 | 264,900 rows；stats ≈94.9% of Enemy view；size correlation 0.9997 |
-| **P0 Direct payload bloat** | 一个 template 的全部 Monster variants 同页返回 | `8002050`: 76 variants / 7,600 rows |
-| **P0 Direct payload bloat** | 相同 stat progression 按值重复 | `8002050`: 76 copies, only 14 unique |
-| P0 minor | UI 未使用 internal/group/modifier/skill metadata | 仅约 3.48 MB/deployment saving |
-| **P1 Shared/global duplication** | 未发现 layout/global leakage | layout 123–126 B；TextMap/Search absent from Enemy |
-| P1 route-local | Search 已有 static index，又嵌入 Search route | 约 4.44 MB 可减少，不跨所有 route |
-| **P2 Static multiplication** | 628 details × 2 locales × HTML/data | Enemy detail 416.26 MB；同一 load data 两种产物 |
-| P2 localization | locale-neutral stats 在 zh/en 重复 | 每 locale raw stats 97.21 MB |
-| P3 assets | static images | 135.11 MB；duplicates only 0.418 MB；非主因 |
+| Class                            | Finding                                                                 | Evidence / impact                                                 |
+| -------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| **P0 Direct payload bloat**      | 完整 1–100 `EnemyStatProgression` 为每个 Monster 按 verbose object 展开 | 264,900 rows；stats ≈94.9% of Enemy view；size correlation 0.9997 |
+| **P0 Direct payload bloat**      | 一个 template 的全部 Monster variants 同页返回                          | `8002050`: 76 variants / 7,600 rows                               |
+| **P0 Direct payload bloat**      | 相同 stat progression 按值重复                                          | `8002050`: 76 copies, only 14 unique                              |
+| P0 minor                         | UI 未使用 internal/group/modifier/skill metadata                        | 仅约 3.48 MB/deployment saving                                    |
+| **P1 Shared/global duplication** | 未发现 layout/global leakage                                            | layout 123–126 B；TextMap/Search absent from Enemy                |
+| P1 route-local                   | Search 已有 static index，又嵌入 Search route                           | 约 4.44 MB 可减少，不跨所有 route                                 |
+| **P2 Static multiplication**     | 628 details × 2 locales × HTML/data                                     | Enemy detail 416.26 MB；同一 load data 两种产物                   |
+| P2 localization                  | locale-neutral stats 在 zh/en 重复                                      | 每 locale raw stats 97.21 MB                                      |
+| P3 assets                        | static images                                                           | 135.11 MB；duplicates only 0.418 MB；非主因                       |
 
 问题不是 full raw config、完整 related Enemy、TextMap dictionary、Search index 或 ExtraEffect graph 被泄漏；也不是 phase duplication导致 `8002050`。真正的“完整 nested object”是同模板下所有 concrete Monster detail，尤其每个 Monster 的完整等级 progression。
 
 ## 12. Optimization Candidates
 
-| Priority | Change | Expected saving / deployment | Risk | Complexity | Notes |
-|---|---|---:|---|---|---|
-| P0 | Enemy presentation DTO：只保留 UI 字段 | ~3.5 MB measured-estimate | Low | Low | 正确边界，但单独收益很小 |
-| **P0** | stat rows 改定长 tuple/columnar DTO | **~295 MB estimated** | Medium | Medium | devalue candidate 185.80 → 38.27 MB；HTML/data 同降 |
-| P0 | progression reference table，按值共享 | ~96 MB if used alone；在 compact 后额外约 10 MB | Medium | Medium | `8002050` 76→14 unique；需 `statsRef` mapper |
-| P0 | `skillPhases` 只存 skill IDs，UI lookup definition | <数 MB，待实现时量化 | Low | Low | 当前已较轻，不是主线 |
-| P1 | Search 页面直接 fetch 已有 static search JSON | ~4.4 MB | Low–Medium | Low | 不影响其他 route |
-| P1 | Character loader 不再把 raw recommendation IDs 留在 `detail` | ~0.2 MB | Low | Low | 可随 DTO 整理，不单独排期 |
-| P1 | Endgame route-local enemy reference table | 未量化，预计低至中个位 MB | Medium | Medium | 当前已是轻量 card DTO，先测后做 |
-| P2 | 非默认 Monster stats 拆到 prerender static endpoint 并 lazy fetch | compact 后额外约 20–35 MB | Medium–High | Medium–High | 可减少 HTML/data 双份，仅交互时请求；需无 JS/失败 fallback 决策 |
-| P3 | asset hash dedup | ≤0.42 MB | Medium | Medium | 不值得优先改变稳定路径 |
+| Priority | Change                                                            |                    Expected saving / deployment | Risk        | Complexity  | Notes                                                           |
+| -------- | ----------------------------------------------------------------- | ----------------------------------------------: | ----------- | ----------- | --------------------------------------------------------------- |
+| P0       | Enemy presentation DTO：只保留 UI 字段                            |                       ~3.5 MB measured-estimate | Low         | Low         | 正确边界，但单独收益很小                                        |
+| **P0**   | stat rows 改定长 tuple/columnar DTO                               |                           **~295 MB estimated** | Medium      | Medium      | devalue candidate 185.80 → 38.27 MB；HTML/data 同降             |
+| P0       | progression reference table，按值共享                             | ~96 MB if used alone；在 compact 后额外约 10 MB | Medium      | Medium      | `8002050` 76→14 unique；需 `statsRef` mapper                    |
+| P0       | `skillPhases` 只存 skill IDs，UI lookup definition                |                            <数 MB，待实现时量化 | Low         | Low         | 当前已较轻，不是主线                                            |
+| P1       | Search 页面直接 fetch 已有 static search JSON                     |                                         ~4.4 MB | Low–Medium  | Low         | 不影响其他 route                                                |
+| P1       | Character loader 不再把 raw recommendation IDs 留在 `detail`      |                                         ~0.2 MB | Low         | Low         | 可随 DTO 整理，不单独排期                                       |
+| P1       | Endgame route-local enemy reference table                         |                       未量化，预计低至中个位 MB | Medium      | Medium      | 当前已是轻量 card DTO，先测后做                                 |
+| P2       | 非默认 Monster stats 拆到 prerender static endpoint 并 lazy fetch |                       compact 后额外约 20–35 MB | Medium–High | Medium–High | 可减少 HTML/data 双份，仅交互时请求；需无 JS/失败 fallback 决策 |
+| P3       | asset hash dedup                                                  |                                        ≤0.42 MB | Medium      | Medium      | 不值得优先改变稳定路径                                          |
 
 ### Option A — Presentation DTO / View Model
 
@@ -328,11 +330,11 @@ Summons 与 Endgame 已采用轻量 reference，做法正确。Enemy `skillPhase
 
 以下均从 **697.614 MB measured baseline** 出发：
 
-| Scenario | Scope | Calculation | Estimated deployment |
-|---|---|---|---:|
-| Conservative | 删除 Enemy UI 未使用字段 + character recommendation 小重复 | Enemy devalue delta 1.738 MB × HTML/data 2 + ~0.2 MB | **约 694 MB** |
-| **Recommended** | compact stat tuple；可同时按值共享 progression | (185.80 − 38.27) × 2 = 295.1 MB；共享后上限约 305.4 MB | **约 390–410 MB** |
-| Aggressive | Recommended + optional non-default stats static shard + Search 直接读取已有 index + 经测量的 Endgame ref dedup | compact shard 从 page 的两份变一份，另减 Search ~4.4 MB；预留实现 envelope/fallback | **约 350–380 MB** |
+| Scenario        | Scope                                                                                                          | Calculation                                                                         | Estimated deployment |
+| --------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | -------------------: |
+| Conservative    | 删除 Enemy UI 未使用字段 + character recommendation 小重复                                                     | Enemy devalue delta 1.738 MB × HTML/data 2 + ~0.2 MB                                |        **约 694 MB** |
+| **Recommended** | compact stat tuple；可同时按值共享 progression                                                                 | (185.80 − 38.27) × 2 = 295.1 MB；共享后上限约 305.4 MB                              |    **约 390–410 MB** |
+| Aggressive      | Recommended + optional non-default stats static shard + Search 直接读取已有 index + 经测量的 Endgame ref dedup | compact shard 从 page 的两份变一份，另减 Search ~4.4 MB；预留实现 envelope/fallback |    **约 350–380 MB** |
 
 Recommended 的核心候选是实物对象经过当前 devalue 5.9.0 序列化的测量，不是按压缩率拍脑袋；最终 HTML SSR 固定 markup、字段映射和 SvelteKit envelope 会产生少量偏差，所以报告给区间而非单点。即使只做到 400 MB，9 previews/day 的理论新增 retained output 也会从约 **6.28 GB/day** 降到约 **3.6 GB/day**；仍需配合 Vercel deployment retention/清理策略，但 retention 不是代码 payload 根因。
 
@@ -363,17 +365,17 @@ pnpm test:e2e              # UI/navigation 变更后
 
 量化验收必须用同一脚本、同一 locked upstream 对比：
 
-| Metric | Before |
-|---|---:|
-| Total deployment output | 697,613,677 B / 7,122 files |
-| Enemy HTML total（含目录） | 230,620,920 B |
-| Enemy `__data.json` total（含目录） | 187,005,349 B |
-| Enemy detail 4-file median / P90 | 354,409 / 1,552,598 B |
-| Enemy `8002050` zh HTML/data | 2,644,384 / 2,520,598 B |
-| Enemy `8002050` 4-file total | 10,332,425 B |
-| Characters total | 43,380,728 B |
-| Endgame total | 50,820,689 B |
-| Search total | 9,332,486 B |
+| Metric                              |                      Before |
+| ----------------------------------- | --------------------------: |
+| Total deployment output             | 697,613,677 B / 7,122 files |
+| Enemy HTML total（含目录）          |               230,620,920 B |
+| Enemy `__data.json` total（含目录） |               187,005,349 B |
+| Enemy detail 4-file median / P90    |       354,409 / 1,552,598 B |
+| Enemy `8002050` zh HTML/data        |     2,644,384 / 2,520,598 B |
+| Enemy `8002050` 4-file total        |                10,332,425 B |
+| Characters total                    |                43,380,728 B |
+| Endgame total                       |                50,820,689 B |
+| Search total                        |                 9,332,486 B |
 
 功能验收：Enemy identity/template stats、1–100 slider、Monster selector、多 phase tabs、skills、ExtraEffect、summons/related links、weakness/resistance；zh-CN、English、locale switching；direct navigation、client-side navigation、404 与 prerender；Endgame enemy cards/HP；Search V2 query/filter/result navigation。特别 fixture：`5012052`、`8032040`、`1002016`、`8002050`，再加至少一个多 phase + ExtraEffect + summon 的样本（由数据查询选取，不硬编码臆造 ID）。
 
@@ -389,132 +391,132 @@ pnpm test:e2e              # UI/navigation 变更后
 
 ## Appendix A — Largest Files (Top 50, Measured)
 
-| # | Path | Bytes |
-|---:|---|---:|
-| 1 | `en/enemies/8002050.html` | 2,646,859 |
-| 2 | `enemies/8002050.html` | 2,644,384 |
-| 3 | `en/search/__data.json` | 2,544,697 |
-| 4 | `enemies/8002050/__data.json` | 2,520,598 |
-| 5 | `en/enemies/8002050/__data.json` | 2,520,584 |
-| 6 | `search/__data.json` | 2,509,919 |
-| 7 | `en/search.html` | 2,172,548 |
-| 8 | `search.html` | 2,105,322 |
-| 9 | `generated/en/search.json` | 1,991,753 |
-| 10 | `generated/zh-CN/search.json` | 1,991,510 |
-| 11 | `en/enemies/1003010.html` | 1,406,000 |
-| 12 | `enemies/1003010.html` | 1,403,727 |
-| 13 | `en/enemies/1003010/__data.json` | 1,345,936 |
-| 14 | `enemies/1003010/__data.json` | 1,345,924 |
-| 15 | `en/enemies/1013020.html` | 1,300,818 |
-| 16 | `enemies/1013020.html` | 1,299,119 |
-| 17 | `enemies/1013020/__data.json` | 1,239,079 |
-| 18 | `en/enemies/1013020/__data.json` | 1,239,021 |
-| 19 | `en/enemies/8012010.html` | 1,168,835 |
-| 20 | `enemies/8012010.html` | 1,167,688 |
-| 21 | `enemies/8012010/__data.json` | 1,119,382 |
-| 22 | `en/enemies/8012010/__data.json` | 1,119,355 |
-| 23 | `en/enemies/1022020.html` | 1,072,272 |
-| 24 | `enemies/1022020.html` | 1,071,335 |
-| 25 | `en/enemies/1002040.html` | 1,059,871 |
-| 26 | `enemies/1002040.html` | 1,058,967 |
-| 27 | `en/enemies/1013010.html` | 1,032,019 |
-| 28 | `enemies/1013010.html` | 1,030,661 |
-| 29 | `enemies/1002040/__data.json` | 1,022,521 |
-| 30 | `en/enemies/1002040/__data.json` | 1,022,477 |
-| 31 | `en/enemies/1022020/__data.json` | 1,020,382 |
-| 32 | `enemies/1022020/__data.json` | 1,020,375 |
-| 33 | `en/enemies/8013010.html` | 990,698 |
-| 34 | `enemies/8013010.html` | 990,058 |
-| 35 | `enemies/1013010/__data.json` | 963,467 |
-| 36 | `en/enemies/1013010/__data.json` | 963,365 |
-| 37 | `en/enemies/1002050.html` | 960,202 |
-| 38 | `enemies/1002050.html` | 959,520 |
-| 39 | `enemies/8013010/__data.json` | 934,250 |
-| 40 | `en/enemies/8013010/__data.json` | 934,211 |
-| 41 | `enemies/1002050/__data.json` | 921,142 |
-| 42 | `en/enemies/1002050/__data.json` | 921,066 |
-| 43 | `en/enemies/1002030.html` | 904,421 |
-| 44 | `en/enemies/8003020.html` | 904,396 |
-| 45 | `enemies/1002030.html` | 903,414 |
-| 46 | `enemies/8003020.html` | 903,000 |
-| 47 | `en/enemies/1012010.html` | 891,847 |
-| 48 | `enemies/1012010.html` | 890,835 |
-| 49 | `enemies/1012010/__data.json` | 859,379 |
-| 50 | `en/enemies/1012010/__data.json` | 859,313 |
+|   # | Path                             |     Bytes |
+| --: | -------------------------------- | --------: |
+|   1 | `en/enemies/8002050.html`        | 2,646,859 |
+|   2 | `enemies/8002050.html`           | 2,644,384 |
+|   3 | `en/search/__data.json`          | 2,544,697 |
+|   4 | `enemies/8002050/__data.json`    | 2,520,598 |
+|   5 | `en/enemies/8002050/__data.json` | 2,520,584 |
+|   6 | `search/__data.json`             | 2,509,919 |
+|   7 | `en/search.html`                 | 2,172,548 |
+|   8 | `search.html`                    | 2,105,322 |
+|   9 | `generated/en/search.json`       | 1,991,753 |
+|  10 | `generated/zh-CN/search.json`    | 1,991,510 |
+|  11 | `en/enemies/1003010.html`        | 1,406,000 |
+|  12 | `enemies/1003010.html`           | 1,403,727 |
+|  13 | `en/enemies/1003010/__data.json` | 1,345,936 |
+|  14 | `enemies/1003010/__data.json`    | 1,345,924 |
+|  15 | `en/enemies/1013020.html`        | 1,300,818 |
+|  16 | `enemies/1013020.html`           | 1,299,119 |
+|  17 | `enemies/1013020/__data.json`    | 1,239,079 |
+|  18 | `en/enemies/1013020/__data.json` | 1,239,021 |
+|  19 | `en/enemies/8012010.html`        | 1,168,835 |
+|  20 | `enemies/8012010.html`           | 1,167,688 |
+|  21 | `enemies/8012010/__data.json`    | 1,119,382 |
+|  22 | `en/enemies/8012010/__data.json` | 1,119,355 |
+|  23 | `en/enemies/1022020.html`        | 1,072,272 |
+|  24 | `enemies/1022020.html`           | 1,071,335 |
+|  25 | `en/enemies/1002040.html`        | 1,059,871 |
+|  26 | `enemies/1002040.html`           | 1,058,967 |
+|  27 | `en/enemies/1013010.html`        | 1,032,019 |
+|  28 | `enemies/1013010.html`           | 1,030,661 |
+|  29 | `enemies/1002040/__data.json`    | 1,022,521 |
+|  30 | `en/enemies/1002040/__data.json` | 1,022,477 |
+|  31 | `en/enemies/1022020/__data.json` | 1,020,382 |
+|  32 | `enemies/1022020/__data.json`    | 1,020,375 |
+|  33 | `en/enemies/8013010.html`        |   990,698 |
+|  34 | `enemies/8013010.html`           |   990,058 |
+|  35 | `enemies/1013010/__data.json`    |   963,467 |
+|  36 | `en/enemies/1013010/__data.json` |   963,365 |
+|  37 | `en/enemies/1002050.html`        |   960,202 |
+|  38 | `enemies/1002050.html`           |   959,520 |
+|  39 | `enemies/8013010/__data.json`    |   934,250 |
+|  40 | `en/enemies/8013010/__data.json` |   934,211 |
+|  41 | `enemies/1002050/__data.json`    |   921,142 |
+|  42 | `en/enemies/1002050/__data.json` |   921,066 |
+|  43 | `en/enemies/1002030.html`        |   904,421 |
+|  44 | `en/enemies/8003020.html`        |   904,396 |
+|  45 | `enemies/1002030.html`           |   903,414 |
+|  46 | `enemies/8003020.html`           |   903,000 |
+|  47 | `en/enemies/1012010.html`        |   891,847 |
+|  48 | `enemies/1012010.html`           |   890,835 |
+|  49 | `enemies/1012010/__data.json`    |   859,379 |
+|  50 | `en/enemies/1012010/__data.json` |   859,313 |
 
 ## Appendix B — Largest Enemy Routes (Top 20, Measured)
 
 ### By HTML (zh + en)
 
-| Rank | ID | HTML bytes |
-|---:|---:|---:|
-| 1 | 8002050 | 5,291,243 |
-| 2 | 1003010 | 2,809,727 |
-| 3 | 1013020 | 2,599,937 |
-| 4 | 8012010 | 2,336,523 |
-| 5 | 1022020 | 2,143,607 |
-| 6 | 1002040 | 2,118,838 |
-| 7 | 1013010 | 2,062,680 |
-| 8 | 8013010 | 1,980,756 |
-| 9 | 1002050 | 1,919,722 |
-| 10 | 1002030 | 1,807,835 |
-| 11 | 8003020 | 1,807,396 |
-| 12 | 1012010 | 1,782,682 |
-| 13 | 1023010 | 1,619,067 |
-| 14 | 8003030 | 1,562,376 |
-| 15 | 8001020 | 1,551,265 |
-| 16 | 1012030 | 1,524,456 |
-| 17 | 2022010 | 1,517,157 |
-| 18 | 1002020 | 1,509,886 |
-| 19 | 2023030 | 1,479,344 |
-| 20 | 8001010 | 1,477,392 |
+| Rank |      ID | HTML bytes |
+| ---: | ------: | ---------: |
+|    1 | 8002050 |  5,291,243 |
+|    2 | 1003010 |  2,809,727 |
+|    3 | 1013020 |  2,599,937 |
+|    4 | 8012010 |  2,336,523 |
+|    5 | 1022020 |  2,143,607 |
+|    6 | 1002040 |  2,118,838 |
+|    7 | 1013010 |  2,062,680 |
+|    8 | 8013010 |  1,980,756 |
+|    9 | 1002050 |  1,919,722 |
+|   10 | 1002030 |  1,807,835 |
+|   11 | 8003020 |  1,807,396 |
+|   12 | 1012010 |  1,782,682 |
+|   13 | 1023010 |  1,619,067 |
+|   14 | 8003030 |  1,562,376 |
+|   15 | 8001020 |  1,551,265 |
+|   16 | 1012030 |  1,524,456 |
+|   17 | 2022010 |  1,517,157 |
+|   18 | 1002020 |  1,509,886 |
+|   19 | 2023030 |  1,479,344 |
+|   20 | 8001010 |  1,477,392 |
 
 ### By `__data.json` (zh + en)
 
-| Rank | ID | Data bytes |
-|---:|---:|---:|
-| 1 | 8002050 | 5,041,182 |
-| 2 | 1003010 | 2,691,860 |
-| 3 | 1013020 | 2,478,100 |
-| 4 | 8012010 | 2,238,737 |
-| 5 | 1002040 | 2,044,998 |
-| 6 | 1022020 | 2,040,757 |
-| 7 | 1013010 | 1,926,832 |
-| 8 | 8013010 | 1,868,461 |
-| 9 | 1002050 | 1,842,208 |
-| 10 | 1012010 | 1,718,692 |
-| 11 | 1002030 | 1,705,320 |
-| 12 | 8003020 | 1,702,074 |
-| 13 | 1023010 | 1,516,086 |
-| 14 | 8001020 | 1,485,518 |
-| 15 | 8003030 | 1,463,653 |
-| 16 | 1012030 | 1,431,332 |
-| 17 | 1002020 | 1,417,451 |
-| 18 | 2022010 | 1,413,277 |
-| 19 | 8001010 | 1,402,700 |
-| 20 | 8003010 | 1,386,314 |
+| Rank |      ID | Data bytes |
+| ---: | ------: | ---------: |
+|    1 | 8002050 |  5,041,182 |
+|    2 | 1003010 |  2,691,860 |
+|    3 | 1013020 |  2,478,100 |
+|    4 | 8012010 |  2,238,737 |
+|    5 | 1002040 |  2,044,998 |
+|    6 | 1022020 |  2,040,757 |
+|    7 | 1013010 |  1,926,832 |
+|    8 | 8013010 |  1,868,461 |
+|    9 | 1002050 |  1,842,208 |
+|   10 | 1012010 |  1,718,692 |
+|   11 | 1002030 |  1,705,320 |
+|   12 | 8003020 |  1,702,074 |
+|   13 | 1023010 |  1,516,086 |
+|   14 | 8001020 |  1,485,518 |
+|   15 | 8003030 |  1,463,653 |
+|   16 | 1012030 |  1,431,332 |
+|   17 | 1002020 |  1,417,451 |
+|   18 | 2022010 |  1,413,277 |
+|   19 | 8001010 |  1,402,700 |
+|   20 | 8003010 |  1,386,314 |
 
 ### By combined locale output (HTML + data)
 
-| Rank | ID | Combined bytes |
-|---:|---:|---:|
-| 1 | 8002050 | 10,332,425 |
-| 2 | 1003010 | 5,501,587 |
-| 3 | 1013020 | 5,078,037 |
-| 4 | 8012010 | 4,575,260 |
-| 5 | 1022020 | 4,184,364 |
-| 6 | 1002040 | 4,163,836 |
-| 7 | 1013010 | 3,989,512 |
-| 8 | 8013010 | 3,849,217 |
-| 9 | 1002050 | 3,761,930 |
-| 10 | 1002030 | 3,513,155 |
-| 11 | 8003020 | 3,509,470 |
-| 12 | 1012010 | 3,501,374 |
-| 13 | 1023010 | 3,135,153 |
-| 14 | 8001020 | 3,036,783 |
-| 15 | 8003030 | 3,026,029 |
-| 16 | 1012030 | 2,955,788 |
-| 17 | 2022010 | 2,930,434 |
-| 18 | 1002020 | 2,927,337 |
-| 19 | 8001010 | 2,880,092 |
-| 20 | 2023030 | 2,860,664 |
+| Rank |      ID | Combined bytes |
+| ---: | ------: | -------------: |
+|    1 | 8002050 |     10,332,425 |
+|    2 | 1003010 |      5,501,587 |
+|    3 | 1013020 |      5,078,037 |
+|    4 | 8012010 |      4,575,260 |
+|    5 | 1022020 |      4,184,364 |
+|    6 | 1002040 |      4,163,836 |
+|    7 | 1013010 |      3,989,512 |
+|    8 | 8013010 |      3,849,217 |
+|    9 | 1002050 |      3,761,930 |
+|   10 | 1002030 |      3,513,155 |
+|   11 | 8003020 |      3,509,470 |
+|   12 | 1012010 |      3,501,374 |
+|   13 | 1023010 |      3,135,153 |
+|   14 | 8001020 |      3,036,783 |
+|   15 | 8003030 |      3,026,029 |
+|   16 | 1012030 |      2,955,788 |
+|   17 | 2022010 |      2,930,434 |
+|   18 | 1002020 |      2,927,337 |
+|   19 | 8001010 |      2,880,092 |
+|   20 | 2023030 |      2,860,664 |

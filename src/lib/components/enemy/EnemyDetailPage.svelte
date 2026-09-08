@@ -20,6 +20,8 @@
   } from '$lib/domain/enemy-view';
   import * as m from '$lib/paraglide/messages.js';
   import { localizedHref } from '$lib/i18n/routing';
+  import { formatLocalizedList } from '$lib/i18n/format';
+  import { getLocale } from '$lib/paraglide/runtime.js';
 
   export let detail: EnemyDetailPageData;
 
@@ -93,7 +95,10 @@
   const monsterWeaknessLabel = (monster: EnemyMonsterPageData): string =>
     monster.weaknesses.length
       ? m.weaknesses_aria({
-          weaknesses: monster.weaknesses.map((weakness) => weakness.name).join(', ')
+          weaknesses: formatLocalizedList(
+            monster.weaknesses.map((weakness) => weakness.name),
+            getLocale()
+          )
         })
       : m.enemy_no_weaknesses_short();
 

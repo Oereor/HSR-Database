@@ -11,12 +11,15 @@
   import { siteName } from '$lib/site';
   import ChangelogModal from '$lib/components/ChangelogModal.svelte';
   import SettingsPopover from '$lib/components/SettingsPopover.svelte';
+  import { onMount } from 'svelte';
 
   injectAnalytics();
 
   export let data;
   const faviconUrl = getBrandIconUrl('train-party');
   let changelogModal: ChangelogModal;
+  let appReady = false;
+  onMount(() => (appReady = true));
   // eslint-disable-next-line svelte/no-immutable-reactive-statements
   $: name = siteName();
   $: canonicalPath = $page.url.pathname;
@@ -34,7 +37,7 @@
   {#if faviconUrl}<link rel="icon" type="image/png" href={faviconUrl} />{/if}
 </svelte:head>
 
-<div class="site-shell">
+<div class="site-shell" data-app-ready={appReady}>
   <Navigator siteVersion={data.siteVersion} onOpenChangelog={() => changelogModal?.open()} />
   <ChangelogModal locale={data.locale} bind:this={changelogModal} />
   <SettingsPopover locale={data.locale} />
