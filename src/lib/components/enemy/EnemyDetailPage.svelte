@@ -13,13 +13,17 @@
   import { getElementColor } from '$lib/domain/elements';
   import { formatRatioPercentage } from '$lib/domain/endgame-view';
   import { getEnemyRankLabel } from '$lib/domain/enemy-overview';
-  import type { EnemyDetailView, EnemyMonsterDetailView } from '$lib/domain/enemy-view';
+  import {
+    getEnemyMonsterStatProgression,
+    type EnemyDetailPageData,
+    type EnemyMonsterPageData
+  } from '$lib/domain/enemy-view';
   import * as m from '$lib/paraglide/messages.js';
   import { localizedHref } from '$lib/i18n/routing';
 
-  export let detail: EnemyDetailView;
+  export let detail: EnemyDetailPageData;
 
-  function defaultMonsterOf(value: EnemyDetailView): EnemyMonsterDetailView {
+  function defaultMonsterOf(value: EnemyDetailPageData): EnemyMonsterPageData {
     const monster = value.monsters.find(
       (candidate) => candidate.monsterId === value.defaultMonsterId
     );
@@ -29,12 +33,14 @@
   }
 
   const initialMonster = defaultMonsterOf(detail);
+  const initialProgression = getEnemyMonsterStatProgression(detail, initialMonster);
   let selectedMonsterId = detail.defaultMonsterId;
-  let level = initialMonster.stats.defaultLevel;
+  let level = initialProgression.defaultLevel;
   let activePhaseIndex = initialMonster.skillPhases[0]?.index;
 
   $: selectedMonster =
     detail.monsters.find((monster) => monster.monsterId === selectedMonsterId) ?? initialMonster;
+  $: selectedProgression = getEnemyMonsterStatProgression(detail, selectedMonster);
   $: if (!selectedMonster.skillPhases.some((phase) => phase.index === activePhaseIndex))
     activePhaseIndex = selectedMonster.skillPhases[0]?.index;
 
@@ -84,7 +90,7 @@
     );
   }
 
-  const monsterWeaknessLabel = (monster: EnemyMonsterDetailView): string =>
+  const monsterWeaknessLabel = (monster: EnemyMonsterPageData): string =>
     monster.weaknesses.length
       ? m.weaknesses_aria({
           weaknesses: monster.weaknesses.map((weakness) => weakness.name).join(', ')
@@ -146,14 +152,14 @@
     <input
       id={`enemy-level-${detail.id}`}
       type="range"
-      min={initialMonster.stats.minLevel}
-      max={initialMonster.stats.maxLevel}
+      min={initialProgression.minLevel}
+      max={initialProgression.maxLevel}
       step="1"
       bind:value={level}
       aria-valuetext={m.common_level({ level })}
     />
     <div class="skill-level-range" aria-hidden="true">
-      <span>Lv.{initialMonster.stats.minLevel}</span><span>Lv.{initialMonster.stats.maxLevel}</span>
+      <span>Lv.{initialProgression.minLevel}</span><span>Lv.{initialProgression.maxLevel}</span>
     </div>
   </div>
 
@@ -204,7 +210,7 @@
   >
     <section class="enemy-battle-column enemy-battle-column--stats">
       <h3>{m.enemy_base_stats()}</h3>
-      <EnemyStatsPanel progression={selectedMonster.stats} {level} />
+      <EnemyStatsPanel progression={selectedProgression} {level} />
     </section>
     <section class="enemy-battle-column enemy-battle-column--attributes">
       <h3>{m.enemy_weaknesses_and_resistances()}</h3>

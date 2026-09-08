@@ -1,5 +1,15 @@
 import { expect, test } from '@playwright/test';
 
+test('Enemy Detail 中英文直达均恢复 compact stats', async ({ page }) => {
+  for (const detailPath of ['/enemies/8034010', '/en/enemies/8034010'] as const) {
+    await page.goto(detailPath);
+    await expect(page).toHaveURL(new RegExp(`${detailPath}$`));
+    await expect(page.getByRole('slider')).toHaveValue('95');
+    await expect(page.locator('[data-enemy-stat]')).toHaveCount(7);
+    await expect(page.locator('[data-enemy-stat="hp"]')).toContainText('657,149');
+  }
+});
+
 test('Enemy Detail Hero 复用统一分栏并仅展示 Template 基础数据', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/enemies/1004014');

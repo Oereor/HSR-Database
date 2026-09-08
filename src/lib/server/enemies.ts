@@ -1,14 +1,17 @@
 import type { Enemy } from '$lib/domain/types';
-import type { EnemyDetailView } from '$lib/domain/enemy-view';
-import { buildEnemyDetailView } from '$lib/domain/enemy-view';
+import type { EnemyDetailPageData } from '$lib/domain/enemy-view';
+import { buildEnemyDetailPageData } from '$lib/domain/enemy-view';
 import { getEnemyPortraitUrl } from '$lib/server/enemy-assets';
 import { getDetail } from '$lib/server/generated';
 import type { SearchLocale } from '$lib/domain/search-index';
 
-export async function getEnemyDetail(locale: SearchLocale, id: string): Promise<EnemyDetailView> {
+export async function getEnemyDetail(
+  locale: SearchLocale,
+  id: string
+): Promise<EnemyDetailPageData> {
   const detail = (await getDetail(locale, 'enemies', id)) as unknown as Enemy;
   if (detail.kind !== 'enemy') throw new Error(`Enemy ${id} 数据类型不匹配`);
-  const view = buildEnemyDetailView(detail);
+  const view = buildEnemyDetailPageData(detail);
   const summonTemplateIds = [
     ...new Set(
       view.monsters.flatMap((monster) => monster.summons.map((summon) => summon.monsterTemplateId))

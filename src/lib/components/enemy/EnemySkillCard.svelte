@@ -4,10 +4,9 @@
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
   import SkillEffectTag from '$lib/components/SkillEffectTag.svelte';
   import { getElementColor } from '$lib/domain/elements';
-  import { enemySkillAnchorId } from '$lib/domain/enemy-view';
-  import type { EnemySkill } from '$lib/domain/types';
+  import { enemySkillAnchorId, type EnemySkillDefinitionView } from '$lib/domain/enemy-view';
 
-  export let skill: EnemySkill;
+  export let skill: EnemySkillDefinitionView;
 </script>
 
 <article id={enemySkillAnchorId(skill.id)} class="enemy-skill-card" data-enemy-skill={skill.id}>
