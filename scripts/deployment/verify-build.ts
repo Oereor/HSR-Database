@@ -1,41 +1,30 @@
-import { access, readdir, readFile } from 'node:fs/promises';
+import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { siteRoot } from './prepare.js';
 
 const GENERATED_NAMESPACES = ['/generated-assets/', '/generated-enemy-assets/'] as const;
 const TEXT_EXTENSIONS = new Set(['.html', '.js', '.css', '.json']);
 
-async function walk(directory: string): Promise<string[]> {
-  const entries = await readdir(directory, { withFileTypes: true });
-  const files: string[] = [];
-  for (const entry of entries) {
-    const file = path.join(directory, entry.name);
-    if (entry.isDirectory()) files.push(...(await walk(file)));
-    else if (entry.isFile() && TEXT_EXTENSIONS.has(path.extname(entry.name).toLowerCase()))
-      files.push(file);
-  }
-  return files;
+interface BuildPathIndex {
+  paths: Set<string>;
+  textFiles: string[];
 }
 
-async function existsWithExactCase(root: string, relative: string): Promise<boolean> {
-  let current = root;
-  for (const segment of relative.split('/')) {
-    if (!segment || segment === '.' || segment === '..') return false;
-    let names: string[];
-    try {
-      names = await readdir(current);
-    } catch {
-      return false;
-    }
-    if (!names.includes(segment)) return false;
-    current = path.join(current, segment);
+async function walk(
+  directory: string,
+  root = directory,
+  index: BuildPathIndex = { paths: new Set(), textFiles: [] }
+): Promise<BuildPathIndex> {
+  const entries = await readdir(directory, { withFileTypes: true });
+  for (const entry of entries) {
+    const file = path.join(directory, entry.name);
+    const relative = path.relative(root, file).replaceAll('\\', '/');
+    index.paths.add(relative);
+    if (entry.isDirectory()) await walk(file, root, index);
+    else if (entry.isFile() && TEXT_EXTENSIONS.has(path.extname(entry.name).toLowerCase()))
+      index.textFiles.push(file);
   }
-  try {
-    await access(current);
-    return true;
-  } catch {
-    return false;
-  }
+  return index;
 }
 
 function referencedAssetUrls(text: string): string[] {
@@ -50,9 +39,9 @@ function referencedAssetUrls(text: string): string[] {
 export async function verifyBuildAssetClosure(
   buildRoot = path.join(siteRoot, 'build')
 ): Promise<void> {
-  const files = await walk(buildRoot);
+  const index = await walk(buildRoot);
   const missing: string[] = [];
-  for (const file of files) {
+  for (const file of index.textFiles) {
     const text = await readFile(file, 'utf8');
     for (const rawUrl of referencedAssetUrls(text)) {
       if (rawUrl.includes('${') || rawUrl.includes('{')) continue;
@@ -76,7 +65,7 @@ export async function verifyBuildAssetClosure(
         missing.push(`${path.relative(buildRoot, file)} -> ${rawUrl} (路径越界)`);
         continue;
       }
-      if (!(await existsWithExactCase(buildRoot, relative)))
+      if (!index.paths.has(relative))
         missing.push(`${path.relative(buildRoot, file)} -> ${rawUrl}`);
     }
   }
@@ -84,7 +73,9 @@ export async function verifyBuildAssetClosure(
     throw new Error(
       `最终 build 存在 ${missing.length} 个无效视觉资源引用：\n${missing.join('\n')}`
     );
-  console.log(`最终 build 视觉资源引用闭包验证通过：扫描 ${files.length} 个文本文件。`);
+  console.log(
+    `最终 build 视觉资源引用闭包验证通过：扫描 ${index.textFiles.length} 个文本文件，索引 ${index.paths.size} 条路径。`
+  );
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.meta.filename))

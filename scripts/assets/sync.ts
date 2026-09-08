@@ -22,6 +22,7 @@ import {
   warnAssetFallback,
   writeAssetManifest
 } from './shared.js';
+import type { AssetRequirements } from './shared.js';
 
 const mb = (bytes: number): string => `${(bytes / 1024 / 1024).toFixed(2)} MiB`;
 
@@ -71,20 +72,25 @@ async function publishGeneratedAssets(
   }
 }
 
-export async function syncAssets(): Promise<VisualAssetManifest> {
-  const requirements = await readAssetRequirements();
+export interface SyncAssetsOptions {
+  requirements?: AssetRequirements;
+  env?: NodeJS.ProcessEnv;
+}
+
+export async function syncAssets(options: SyncAssetsOptions = {}): Promise<VisualAssetManifest> {
+  const env = options.env ?? process.env;
+  const requirements = options.requirements ?? (await readAssetRequirements());
   const cached = await readAssetManifest();
   let root: string;
   let sourceCommit: string;
   try {
-    root = assertAssetRoot(resolveAssetRoot());
+    root = assertAssetRoot(resolveAssetRoot(env.HSR_ASSET_ROOT));
     sourceCommit = assetSourceCommit(root);
   } catch (error) {
-    if (process.env.HSR_DEPLOYMENT_BUILD === '1') throw error;
+    if (env.HSR_DEPLOYMENT_BUILD === '1') throw error;
     const validCache =
       !!cached &&
-      (!process.env.HSR_EXPECTED_ASSET_COMMIT ||
-        cached.sourceCommit === process.env.HSR_EXPECTED_ASSET_COMMIT) &&
+      (!env.HSR_EXPECTED_ASSET_COMMIT || cached.sourceCommit === env.HSR_EXPECTED_ASSET_COMMIT) &&
       cached.requirementsFingerprint === assetRequirementsFingerprint(requirements) &&
       manifestCoversRequirements(cached, requirements) &&
       (await manifestFilesExist(cached));

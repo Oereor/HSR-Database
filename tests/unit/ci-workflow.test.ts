@@ -5,10 +5,11 @@ import { describe, expect, it } from 'vitest';
 const workflowFile = path.resolve('.github/workflows/ci.yml');
 
 describe('pull request correctness workflow', () => {
-  it('exposes one stable required check for develop and main pull requests', async () => {
+  it('exposes one stable required check for main pull requests only', async () => {
     const workflow = (await readFile(workflowFile, 'utf8')).replaceAll('\r\n', '\n');
     expect(workflow).toContain('name: CI');
-    expect(workflow).toMatch(/pull_request:\n\s+branches:\n\s+- develop\n\s+- main/);
+    expect(workflow).toMatch(/pull_request:\n\s+branches:\n\s+- main/);
+    expect(workflow).not.toMatch(/pull_request:\n[\s\S]*?branches:\n(?:\s+- .*\n)*\s+- develop/);
     expect(workflow).toContain('correctness:');
     expect(workflow).toContain('name: Correctness');
     expect(workflow).toContain('cancel-in-progress: true');

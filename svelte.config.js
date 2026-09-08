@@ -10,6 +10,7 @@ const localizedRoute = (route, locale) =>
 const publicEntries = manifest.publicLocales.flatMap((locale) =>
   manifest.routePaths.map((route) => localizedRoute(route, locale))
 );
+const deploymentVersion = process.env.HSR_BUILD_VERSION?.trim();
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -17,7 +18,8 @@ const config = {
   preprocess: [mdsvex({ extensions: ['.svx'] })],
   kit: {
     adapter: adapter({ fallback: '404.html' }),
-    prerender: { entries: ['*', ...publicEntries] }
+    prerender: { entries: ['*', ...publicEntries] },
+    ...(deploymentVersion ? { version: { name: deploymentVersion } } : {})
   }
 };
 
