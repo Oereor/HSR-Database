@@ -20,6 +20,7 @@ describe('pull request correctness workflow', () => {
     expect(workflow.match(/permissions:\n([\s\S]*?)\njobs:/)?.[1].trim()).toBe('contents: read');
     expect(workflow).toContain('pnpm install --frozen-lockfile');
     for (const command of [
+      'pnpm messages:check',
       'pnpm check',
       'pnpm lint',
       'pnpm ci:prepare',
@@ -30,6 +31,9 @@ describe('pull request correctness workflow', () => {
       'pnpm test:e2e:smoke'
     ])
       expect(workflow).toContain(`run: ${command}`);
+    expect(workflow.indexOf('run: pnpm messages:check')).toBeLessThan(
+      workflow.indexOf('run: pnpm ci:prepare')
+    );
     expect(workflow.indexOf('run: pnpm ci:prepare')).toBeLessThan(
       workflow.indexOf('run: pnpm check')
     );

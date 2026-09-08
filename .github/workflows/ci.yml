@@ -42,6 +42,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Generate and validate messages
+        run: pnpm messages:check
+
       - name: Prepare pinned data and assets
         run: pnpm ci:prepare
 
