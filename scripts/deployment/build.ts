@@ -1,7 +1,6 @@
 import { execFileSync, spawn } from 'node:child_process';
 import path from 'node:path';
-import { ensureAssets, type AssetValidationContext } from '../assets/ensure.js';
-import { verifyAssets } from '../assets/verify.js';
+import type { AssetValidationContext } from '../assets/ensure.js';
 import {
   loadDeploymentLock,
   prepareStarRailRes,
@@ -101,8 +100,20 @@ export async function runDeploymentBuild(
   const prepareTurnBased = dependencies.prepareTurnBased ?? prepareTurnBasedGameData;
   const prepareStarRail = dependencies.prepareStarRail ?? prepareStarRailRes;
   const commandRunner = dependencies.commandRunner ?? runPnpm;
-  const ensureGeneralAssets = dependencies.ensureGeneralAssets ?? ((env) => ensureAssets({ env }));
-  const verifyGeneralAssets = dependencies.verifyGeneralAssets ?? verifyAssets;
+  // General asset modules import navigation.ts, which imports generated Paraglide messages.
+  // Keep these imports lazy so a clean deployment can compile messages before loading consumers.
+  const ensureGeneralAssets =
+    dependencies.ensureGeneralAssets ??
+    (async (env) => {
+      const { ensureAssets } = await import('../assets/ensure.js');
+      return ensureAssets({ env });
+    });
+  const verifyGeneralAssets =
+    dependencies.verifyGeneralAssets ??
+    (async (context, env) => {
+      const { verifyAssets } = await import('../assets/verify.js');
+      return verifyAssets(context, env);
+    });
 
   console.log(`[deploy] mode=${mode}`);
   console.log(`[deploy] VERCEL_ENV=${environmentLabel(baseEnv.VERCEL_ENV)}`);

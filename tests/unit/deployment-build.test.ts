@@ -108,6 +108,46 @@ describe('deployment build orchestration', () => {
     expect(environments.every((env) => env.HSR_DEPLOYMENT_BUILD === '1')).toBe(true);
   });
 
+  it.each([
+    ['preview', 'check:scripts'],
+    ['production', 'messages:compile']
+  ] as const)(
+    'waits for generated messages before loading Paraglide consumers in %s',
+    async (vercelEnv, messageCommand) => {
+      const events: string[] = [];
+      let signalMessageStarted!: () => void;
+      let releaseMessages!: () => void;
+      const messageStarted = new Promise<void>((resolve) => {
+        signalMessageStarted = resolve;
+      });
+      const messagesReady = new Promise<void>((resolve) => {
+        releaseMessages = resolve;
+      });
+      const deps = dependencies(events, { VERCEL_ENV: vercelEnv });
+      deps.commandRunner = async (args) => {
+        const command = args.join(' ');
+        events.push(command);
+        if (command === messageCommand) {
+          events.push('messages-started');
+          signalMessageStarted();
+          await messagesReady;
+          events.push('messages-ready');
+        }
+      };
+
+      const build = runDeploymentBuild(deps);
+      await messageStarted;
+      await new Promise((resolve) => setTimeout(resolve, 0));
+      expect(events).not.toContain('assets-ensure');
+      expect(events).not.toContain('assets-verify');
+
+      releaseMessages();
+      await build;
+      expect(events.indexOf('messages-ready')).toBeLessThan(events.indexOf('assets-ensure'));
+      expect(events.indexOf('messages-ready')).toBeLessThan(events.indexOf('assets-verify'));
+    }
+  );
+
   it('uses generated-message preparation and skips repository checks in production', async () => {
     const events: string[] = [];
     await runDeploymentBuild(dependencies(events, { VERCEL_ENV: 'production' }));
