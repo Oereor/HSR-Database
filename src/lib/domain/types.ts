@@ -328,6 +328,7 @@ export interface EnemyTemplateBaseStats {
   speed?: import('./endgame.js').DecimalString;
   stance?: import('./endgame.js').DecimalString;
   effectResistance?: import('./endgame.js').DecimalString;
+  initialDelayRatio?: import('./endgame.js').DecimalString;
 }
 
 /** Data owned by MonsterTemplateConfig, independent of a concrete battle record. */

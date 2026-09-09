@@ -745,6 +745,12 @@ for (const enemy of enemyDetails) {
   );
   if (enemy.template.baseStats.criticalDamage !== expectedCriticalDamage)
     throw new Error(`敌人 ${enemy.id} Template 暴击伤害未从 raw config 正确透传`);
+  const expectedInitialDelayRatio =
+    template.InitialDelayRatio === undefined
+      ? undefined
+      : decimalOf(template.InitialDelayRatio, `MonsterTemplate.${enemy.id}.InitialDelayRatio`);
+  if (enemy.template.baseStats.initialDelayRatio !== expectedInitialDelayRatio)
+    throw new Error(`敌人 ${enemy.id} Template 首回合行动值未从 raw config 正确透传`);
   if (enemy.defaultMonsterId !== enemy.id)
     throw new Error(`敌人 ${enemy.id} 默认 MonsterID 必须是 canonical ID`);
   if (enemy.defaultMonster.monsterId !== enemy.defaultMonsterId)

@@ -23,9 +23,9 @@ test('Enemy Detail Hero 复用统一分栏并仅展示 Template 基础数据', a
   await expect(hero.getByRole('slider')).toHaveCount(0);
   await expect(page.getByRole('slider', { name: '敌人等级' })).toHaveCount(1);
   const stats = hero.locator('[data-enemy-template-stat]');
-  await expect(stats).toHaveCount(7);
+  await expect(stats).toHaveCount(8);
   await expect(hero.locator('dl.inspection-stat-list')).toHaveCount(1);
-  await expect(hero.locator('.inspection-stat-row')).toHaveCount(7);
+  await expect(hero.locator('.inspection-stat-row')).toHaveCount(8);
   expect(await stats.evaluateAll((rows) => rows.map((row) => row.textContent?.trim()))).toEqual([
     '基础生命值 5,813',
     '基础攻击力 18',
@@ -33,7 +33,8 @@ test('Enemy Detail Hero 复用统一分栏并仅展示 Template 基础数据', a
     '基础速度 130',
     '基础韧性值 100',
     '基础暴击伤害 20%',
-    '基础效果抵抗 30%'
+    '基础效果抵抗 30%',
+    '首回合行动值 20%'
   ]);
   await expect(hero.locator('[data-enemy-portrait]')).toHaveAttribute(
     'data-artwork-fit',
@@ -66,7 +67,24 @@ test('Enemy Detail Hero 对缺失 Template 字段保留固定行', async ({ page
   await expect(page.locator('[data-enemy-template-stat="effect-resistance"]')).toContainText(
     '资料未提供'
   );
-  await expect(page.locator('[data-enemy-template-stat]')).toHaveCount(7);
+  await expect(page.locator('[data-enemy-template-stat]')).toHaveCount(8);
+
+  await page.goto('/enemies/3002040');
+  await expect(page.locator('[data-enemy-template-stat="initial-action-value"]')).toContainText(
+    '资料未提供'
+  );
+});
+
+test('Enemy Detail 将首回合行动值比例格式化为百分比', async ({ page }) => {
+  await page.goto('/enemies/1002011');
+  await expect(page.locator('[data-enemy-template-stat="initial-action-value"]')).toContainText(
+    '100%'
+  );
+
+  await page.goto('/enemies/4014022');
+  await expect(page.locator('[data-enemy-template-stat="initial-action-value"]')).toContainText(
+    '50%'
+  );
 });
 
 test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时共享等级不重置', async ({

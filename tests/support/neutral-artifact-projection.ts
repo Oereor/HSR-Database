@@ -23,7 +23,7 @@ const equipmentFields = `pieces effects effectRequirements required allowedMainS
 equipmentRecommendation sourceLabelSources slotCode pathCode categoryCode typeCode`;
 const enemyFields = `template monsters defaultMonsterId defaultMonster modifiers stats weaknesses resistances
 specialResistances summons skills skillPhases phaseList tag damageType localizedTextStatus included visible
-hardLevelGroup eliteGroup baseStats criticalDamage`;
+hardLevelGroup eliteGroup baseStats criticalDamage initialDelayRatio`;
 const endgameFields = `groups encounters battles stages schedule waveModel waves enemies orderedEnemies monsterGroups
 spawnSequence maxMonsterCount maxTeammateCount ability params clearPreviousAbility stageAbilities
 previewMonsterIds mechanics memoryTurbulence groupBaseMechanic battleWillMechanics cacophony axiomSets

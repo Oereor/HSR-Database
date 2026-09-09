@@ -176,6 +176,7 @@ describe('共享比例格式', () => {
   it.each([
     ['0.2', '20%'],
     ['0.25', '25%'],
+    ['0.5', '50%'],
     ['1', '100%']
   ])('将 ratio %s 格式化为 %s', (source, expected) => {
     expect(formatRatioPercentage(source)).toBe(expected);
