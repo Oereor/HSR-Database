@@ -390,7 +390,6 @@ interface EndgameGroupBase<TMode extends EndgameMode, TEncounter extends Endgame
   groupId: number;
   nameSource?: NeutralTextSource;
   name?: string;
-  recommendationEligible: boolean;
   schedule?: { begin: string; end: string };
   encounters: TEncounter[];
 }
@@ -418,7 +417,7 @@ export type EndgameGroup =
   MocGroup | PureFictionGroup | ApocalypticShadowGroup | AnomalyArbitrationGroup;
 
 interface EndgameModeDatasetBase<TMode extends EndgameMode, TGroup extends EndgameGroup> {
-  schemaVersion: 23;
+  schemaVersion: 24;
   mode: TMode;
   groups: TGroup[];
 }

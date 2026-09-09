@@ -39,6 +39,15 @@ test('Endgame 首页、模式和赛期可以直接访问', async ({ page }) => {
   );
   await expect(page.getByRole('heading', { name: '扫除风暴', exact: true })).toBeVisible();
   await expect(page.locator('[data-battle-slot]')).toHaveCount(3);
+
+  await page.goto('/endgame/moc/1035');
+  await expect(page.getByRole('heading', { name: '混沌回忆 ID 1035', exact: true })).toBeVisible();
+  await expect(
+    page.locator('.endgame-season-hero').getByText('2026/09/28 – 2026/11/02', { exact: true })
+  ).toBeVisible();
+
+  await page.goto('/en/endgame/moc/1035');
+  await expect(page.getByRole('heading', { name: 'MoC ID 1035', exact: true })).toBeVisible();
 });
 
 test('Endgame overview 四张模式卡片直达各自展示的推荐赛期', async ({ page }) => {
@@ -68,7 +77,9 @@ test('Endgame overview 四张模式卡片直达各自展示的推荐赛期', asy
     await expect(card).toContainText(scenario.season);
     await expect(card).toHaveAttribute('href', scenario.href);
   }
-  await expect(page.locator('[data-endgame-overview-card="moc"]')).toContainText('-');
+  await expect(page.locator('[data-endgame-overview-card="moc"]')).toContainText(
+    '2026/08/17 – 2026/09/28'
+  );
   await expect(page.locator('[data-endgame-overview-card="pf"]')).toContainText(
     '2026/08/03 – 2026/09/14'
   );
@@ -87,12 +98,17 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
   await expect(page.getByText('56 个赛期', { exact: true })).toHaveCount(0);
   await expect(page.getByRole('heading', { name: '时间未知', level: 2 })).toBeVisible();
   await expect(page.getByRole('heading', { name: '历史赛期', level: 2 })).toBeVisible();
-  await expect(page.getByRole('heading', { name: '当前赛期', level: 2 })).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: '当前赛期', level: 2 })).toBeVisible();
   await expect(page.getByRole('heading', { name: '即将开放', level: 2 })).toBeVisible();
-  await expect(page.locator('[data-endgame-season-card="upcoming"]')).toHaveCount(2);
+  const mocCurrent = page.locator('[data-endgame-season-card="current"]');
+  await expect(mocCurrent).toHaveCount(1);
+  await expect(mocCurrent).toContainText('扫除风暴');
+  const mocUpcoming = page.locator('[data-endgame-season-card="upcoming"]');
+  await expect(mocUpcoming).toHaveCount(3);
+  await expect(mocUpcoming.locator('h3')).toHaveText(['混沌回忆 ID 1035', '霜痕旧梦', '永冬试炼']);
   const mocUnknown = page.locator('[data-endgame-season-card="unknown"]');
-  await expect(mocUnknown).toHaveCount(4);
-  await expect(mocUnknown.locator('.endgame-season-card__date')).toHaveText(['-', '-', '-', '-']);
+  await expect(mocUnknown).toHaveCount(2);
+  await expect(mocUnknown.locator('.endgame-season-card__date')).toHaveText(['-', '-']);
   await expect(page.locator('[data-endgame-season-card="historical"]')).toHaveCount(50);
   const sweep = page.getByRole('link', { name: '扫除风暴，查看赛期详情', exact: true });
   await expect(sweep).toHaveAttribute('href', '/endgame/moc/1034');

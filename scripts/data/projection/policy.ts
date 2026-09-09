@@ -3,6 +3,7 @@ import {
   ENDGAME_MISSING_VALUE,
   type EndgameViewPresentation
 } from '../../../src/lib/domain/endgame-view.js';
+import { getEndgamePeriodFallbackName } from '../../../src/lib/i18n/endgame.js';
 import type { Locale } from '../locale-registry.js';
 
 export interface LocaleProjectionPolicy {
@@ -80,7 +81,7 @@ export const LOCALE_PROJECTION_POLICIES: Record<Locale, LocaleProjectionPolicy> 
     endgameView: {
       unknownEnemy: '未知敌方单位',
       unavailable: ENDGAME_MISSING_VALUE,
-      groupName: (groupId) => `数据组 ${groupId}`
+      groupName: (mode, groupId) => getEndgamePeriodFallbackName(mode, groupId, 'zh-CN')
     }
   },
   en: {
@@ -125,7 +126,7 @@ export const LOCALE_PROJECTION_POLICIES: Record<Locale, LocaleProjectionPolicy> 
     endgameView: {
       unknownEnemy: 'Unknown enemy',
       unavailable: ENDGAME_MISSING_VALUE,
-      groupName: (groupId) => `Data group ${groupId}`
+      groupName: (mode, groupId) => getEndgamePeriodFallbackName(mode, groupId, 'en')
     }
   }
 };

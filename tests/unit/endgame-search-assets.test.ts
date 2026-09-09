@@ -51,6 +51,12 @@ describe('Endgame Search portrait delivery', () => {
     ]);
     expect(zh).toBeDefined();
     expect(en).toBeDefined();
+    expect(
+      zh!.periods.find(({ mode, period }) => mode === 'moc' && period.groupId === 1035)?.period.name
+    ).toBe('混沌回忆 ID 1035');
+    expect(
+      en!.periods.find(({ mode, period }) => mode === 'moc' && period.groupId === 1035)?.period.name
+    ).toBe('MoC ID 1035');
     for (const [key, item] of Object.entries(en!.occurrences)) {
       expect(item.occurrence.portraitUrl).toBeTruthy();
       expect(item.occurrence.portraitUrl).toBe(zh!.occurrences[key].occurrence.portraitUrl);

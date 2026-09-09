@@ -10,7 +10,7 @@ monsterTemplateId skillId traceId eidolonId groupId encounterId stageId eventId 
 monsterGroupId entryId targetId occurrenceId configId gachaId equipmentId propertyType element path rarity rank slot battleSlot level minLevel
 maxLevel defaultLevel fromLevel toLevel promotionLimit anchorOrder sourcePointType pointType attackType effectCode
 bpNeed bpAdd spBase stanceDamageDisplay showStanceList order availableLevels scalingParamIndexes params
-extraEffectIds skillIds phases arrayIndex ordinal recommendationEligible begin end infiniteWaveId card encounter battle stage wave`;
+extraEffectIds skillIds phases arrayIndex ordinal begin end infiniteWaveId card encounter battle stage wave`;
 const statFields = `base perLevel fixed stages hp attack defence speed toughness effectHit effectResistance
 criticalChance criticalDamage aggro max ratio value status reason resolvedInternal baseInternal instanceRatio
 instanceValue instanceValueInternal levelRatio hardLevelRatio eliteRatio configuredValue internalStance display

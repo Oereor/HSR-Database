@@ -221,7 +221,7 @@ const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
 
 for (const mode of endgameModes) {
   const dataset = endgame[mode];
-  if (dataset.schemaVersion !== 23 || dataset.mode !== mode)
+  if (dataset.schemaVersion !== 24 || dataset.mode !== mode)
     throw new Error(`Endgame ${mode} schema 或模式标记错误`);
   if (new Set(dataset.groups.map((group) => group.groupId)).size !== dataset.groups.length)
     throw new Error(`Endgame ${mode} 存在重复 GroupID`);
@@ -490,7 +490,7 @@ if (
   throw new Error('AA 8/804 normal/hard traits 或裁决象限 relation 异常');
 
 const legacyEndgameDigests: Record<EndgameMode, string> = {
-  moc: 'f0c1b03e4844fcdeaf242fec867403d97f822a6a8a97a2b2cf484709c2010833',
+  moc: '687426d6ce47b9c9d317cbc7e8a1241e8a7639ac00231a9c4a80e021224d191d',
   pf: 'cb34270ddf74c8e06304b47b0725458ca5c1a20eee5f9b14390b5170c7e070d9',
   as: '015183494e922c2b6d9a3a0f720870457f3210aaaa12628dabd46aea931439f2',
   aa: 'f75ed2b81b95884881683ec394d6c054c39d52ecc990a84773cc3a0c5e9af155'
@@ -511,7 +511,6 @@ for (const mode of endgameModes) {
   const projection = structuredClone(endgame[mode].groups);
   for (const group of projection) {
     const groupRecord = group as unknown as Record<string, unknown>;
-    delete groupRecord.recommendationEligible;
     for (const field of modifierGroupFields[mode]) delete groupRecord[field];
     for (const encounter of group.encounters) {
       const encounterRecord = encounter as unknown as Record<string, unknown>;
