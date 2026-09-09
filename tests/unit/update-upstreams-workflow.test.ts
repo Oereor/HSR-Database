@@ -28,9 +28,17 @@ describe('update upstreams workflow', () => {
 
   it('targets develop through one fixed automation branch', async () => {
     const workflow = await readFile(workflowFile, 'utf8');
+    const rebuildFromDevelop = workflow.indexOf(
+      'git checkout -B "$AUTOMATION_BRANCH" origin/develop'
+    );
+    const updateUpstreams = workflow.indexOf('run: pnpm upstreams:update');
     expect(workflow).toContain('ref: develop');
     expect(workflow).toContain('AUTOMATION_BRANCH: automation/update-upstreams');
-    expect(workflow).toContain('git checkout -B "$AUTOMATION_BRANCH" origin/develop');
+    expect(rebuildFromDevelop).toBeGreaterThan(0);
+    expect(updateUpstreams).toBeGreaterThan(rebuildFromDevelop);
+    expect(workflow).not.toContain(
+      'git checkout -B "$AUTOMATION_BRANCH" "origin/$AUTOMATION_BRANCH"'
+    );
     expect(workflow).toContain('--force-with-lease=');
     expect(workflow).toContain('gh pr list --base develop --head "$AUTOMATION_BRANCH"');
     expect(workflow).toContain('gh pr create --base develop --head "$AUTOMATION_BRANCH"');
