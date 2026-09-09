@@ -19,6 +19,23 @@ import { ensureSearchDocuments, searchArtifactPaths } from './search-documents.j
 import { getGeneratedLocales } from './locale-registry.js';
 import { syncData } from './sync.js';
 
+export interface DataEnsureSource {
+  root: string;
+  commit: string;
+}
+
+export interface DataEnsureDependencies {
+  env?: NodeJS.ProcessEnv;
+  readManifest?: () => Promise<DataManifest>;
+  validateCache?: (candidate: DataManifest) => Promise<boolean>;
+  resolveSource?: () => Promise<DataEnsureSource>;
+  cacheMatchesSource?: (manifest: DataManifest, source: DataEnsureSource) => Promise<boolean>;
+  sync?: () => Promise<DataManifest>;
+  ensureSearch?: (sourceCommit: string) => Promise<boolean>;
+  refreshMetadata?: (manifest: DataManifest, logicalPath: string) => Promise<DataManifest>;
+  validateArtifacts?: (manifest: DataManifest) => Promise<void>;
+}
+
 async function cacheValid(candidate: DataManifest | undefined): Promise<boolean> {
   if (!candidate) return false;
   try {
@@ -52,38 +69,20 @@ async function cacheValid(candidate: DataManifest | undefined): Promise<boolean>
   }
 }
 
-let manifest: DataManifest | undefined;
-try {
-  manifest = await readDataManifest();
-} catch {
-  // A missing, obsolete, or interrupted generation is handled below.
-}
-let valid = await cacheValid(manifest);
-let availableRoot: string | undefined;
-let availableCommit: string | undefined;
-try {
-  availableRoot = assertDataRoot(resolveDataRoot());
-  availableCommit = sourceCommit(availableRoot);
-} catch (error) {
-  if (process.env.HSR_DEPLOYMENT_BUILD === '1') throw error;
-  if (
-    valid &&
-    manifest &&
-    (!process.env.HSR_EXPECTED_DATA_COMMIT ||
-      manifest.sourceCommit === process.env.HSR_EXPECTED_DATA_COMMIT)
-  ) {
-    console.warn(`上游暂不可用，继续使用已有生成数据：${(error as Error).message}`);
-  } else {
-    throw error;
-  }
+async function resolveAvailableSource(): Promise<DataEnsureSource> {
+  const root = assertDataRoot(resolveDataRoot());
+  return { root, commit: sourceCommit(root) };
 }
 
-if (availableRoot && availableCommit) {
+async function cacheMatchesAvailableSource(
+  manifest: DataManifest,
+  source: DataEnsureSource
+): Promise<boolean> {
   const currentTextMapDigests = Object.fromEntries(
     await Promise.all(
       getGeneratedLocales().map(async ({ locale, textMapCode }) => {
         const currentTextMap = await readFile(
-          path.join(availableRoot!, 'TextMap', `TextMap${textMapCode}.json`),
+          path.join(source.root, 'TextMap', `TextMap${textMapCode}.json`),
           'utf8'
         );
         return [
@@ -95,22 +94,66 @@ if (availableRoot && availableCommit) {
       })
     )
   );
-  if (
-    !valid ||
-    !manifest ||
-    manifest.sourceCommit !== availableCommit ||
-    getGeneratedLocales().some(
-      ({ locale }) => manifest!.locales[locale].textMapDigest !== currentTextMapDigests[locale]
+  return (
+    manifest.sourceCommit === source.commit &&
+    !getGeneratedLocales().some(
+      ({ locale }) => manifest.locales[locale].textMapDigest !== currentTextMapDigests[locale]
     )
-  ) {
-    manifest = await syncData();
-    valid = true;
-  } else {
-    console.log(`生成数据已是最新版本：${availableCommit.slice(0, 12)}`);
-  }
+  );
 }
 
-if (!manifest || !valid) throw new Error('生成数据不可用');
-if (await ensureSearchDocuments(manifest.sourceCommit))
-  manifest = await refreshArtifactMetadata(manifest, 'static/generated/zh-CN/search.json');
-await validateGeneratedArtifacts(manifest);
+export async function ensureData(dependencies: DataEnsureDependencies = {}): Promise<DataManifest> {
+  const env = dependencies.env ?? process.env;
+  const readManifest = dependencies.readManifest ?? readDataManifest;
+  const validateCache = dependencies.validateCache ?? cacheValid;
+  const resolveSource = dependencies.resolveSource ?? resolveAvailableSource;
+  const cacheMatchesSource = dependencies.cacheMatchesSource ?? cacheMatchesAvailableSource;
+  const sync = dependencies.sync ?? syncData;
+  const ensureSearch = dependencies.ensureSearch ?? ensureSearchDocuments;
+  const refreshMetadata = dependencies.refreshMetadata ?? refreshArtifactMetadata;
+  const validateArtifacts = dependencies.validateArtifacts ?? validateGeneratedArtifacts;
+
+  let manifest: DataManifest | undefined;
+  try {
+    manifest = await readManifest();
+  } catch {
+    // A missing, obsolete, or interrupted generation is handled below.
+  }
+  let validated = manifest ? await validateCache(manifest) : false;
+  let availableSource: DataEnsureSource | undefined;
+  try {
+    availableSource = await resolveSource();
+  } catch (error) {
+    if (env.HSR_DEPLOYMENT_BUILD === '1') throw error;
+    if (
+      validated &&
+      manifest &&
+      (!env.HSR_EXPECTED_DATA_COMMIT || manifest.sourceCommit === env.HSR_EXPECTED_DATA_COMMIT)
+    ) {
+      console.warn(`上游暂不可用，继续使用已有生成数据：${(error as Error).message}`);
+    } else {
+      throw error;
+    }
+  }
+
+  if (availableSource) {
+    if (!manifest || !validated || !(await cacheMatchesSource(manifest, availableSource))) {
+      manifest = await sync();
+      validated = false;
+    } else {
+      console.log(`生成数据已是最新版本：${availableSource.commit.slice(0, 12)}`);
+    }
+  }
+
+  if (!manifest) throw new Error('生成数据不可用');
+  if (await ensureSearch(manifest.sourceCommit)) {
+    manifest = await refreshMetadata(manifest, 'static/generated/zh-CN/search.json');
+    validated = false;
+  }
+  if (!validated) await validateArtifacts(manifest);
+  return manifest;
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.meta.filename)) {
+  await ensureData();
+}

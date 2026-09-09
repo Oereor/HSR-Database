@@ -1,17 +1,21 @@
 <script lang="ts">
-  import type { EnemyStatProgression, EnemyStatValue } from '$lib/domain/types';
+  import {
+    getEnemyStatsAtLevel,
+    type EnemyStatCompactValue,
+    type EnemyStatProgressionCompact
+  } from '$lib/domain/enemy-view';
   import { formatRatioPercentage, formatRoundedDecimal } from '$lib/domain/endgame-view';
   import * as m from '$lib/paraglide/messages.js';
 
-  export let progression: EnemyStatProgression;
+  export let progression: EnemyStatProgressionCompact;
   export let level: number;
 
-  $: row = progression.levels.find((candidate) => candidate.level === Number(level));
+  $: row = getEnemyStatsAtLevel(progression, level);
 
-  const integer = (value: EnemyStatValue): string =>
-    value.status === 'resolved' ? formatRoundedDecimal(value.value) : m.common_data_unavailable();
-  const percent = (value: EnemyStatValue): string =>
-    value.status === 'resolved' ? formatRatioPercentage(value.value) : m.common_data_unavailable();
+  const integer = (value: EnemyStatCompactValue): string =>
+    value === null ? m.common_data_unavailable() : formatRoundedDecimal(value);
+  const percent = (value: EnemyStatCompactValue): string =>
+    value === null ? m.common_data_unavailable() : formatRatioPercentage(value);
 
   $: stats = row
     ? [

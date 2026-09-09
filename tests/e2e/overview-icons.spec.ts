@@ -82,12 +82,27 @@ for (const locale of ['zh-CN', 'en']) {
   }
 
   test(`${locale} overview missing icons preserve localized semantics`, async ({ page }) => {
-    await page.route('**/generated-assets/paths/**', (route) => route.abort());
-    await page.route('**/generated-assets/elements/**', (route) => route.abort());
+    let interceptedPaths = 0;
+    let interceptedElements = 0;
+    await page.route('**/generated-assets/paths/**', (route) => {
+      interceptedPaths += 1;
+      return route.abort();
+    });
+    await page.route('**/generated-assets/elements/**', (route) => {
+      interceptedElements += 1;
+      return route.abort();
+    });
     await page.goto(
       `${prefix}/characters?q=${encodeURIComponent(characters.find((entry) => entry.id === '1304')!.name)}`
     );
     const card = page.locator(`a[href="${prefix}/characters/1304"]`);
+    await card.scrollIntoViewIfNeeded();
+    await card.locator('img').evaluateAll(async (images: HTMLImageElement[]) => {
+      for (const image of images) image.loading = 'eager';
+      await Promise.allSettled(images.map((image) => image.decode()));
+    });
+    await expect.poll(() => interceptedPaths).toBeGreaterThan(0);
+    await expect.poll(() => interceptedElements).toBeGreaterThan(0);
     const entry = characters.find((item) => item.id === '1304')!;
     for (const label of [entry.pathName!, entry.elementName!]) {
       const icon = card.getByRole('img', { name: label, exact: true });
@@ -100,6 +115,7 @@ for (const locale of ['zh-CN', 'en']) {
     const pathIcon = page
       .locator(`a[href="${prefix}/light-cones/20000"]`)
       .getByRole('img', { name: lightCone.pathName!, exact: true });
+    await pathIcon.scrollIntoViewIfNeeded();
     await expect(pathIcon).toHaveAttribute('data-icon-missing', 'true');
     await expect(pathIcon).toHaveText('?');
     await expect(pathIcon.locator('img')).toHaveCount(0);

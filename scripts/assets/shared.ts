@@ -149,6 +149,8 @@ export interface AssetOutputPaths {
   endgameModeIcons: string;
 }
 
+export type AssetFileIndex = ReadonlyMap<string, ReadonlySet<string>>;
+
 export interface AssetFallbackEntry {
   label: string;
   missing: string[];
@@ -1042,16 +1044,27 @@ const expectedFiles = (
   [output.endgameModeIcons, manifest.endgame.modeIcons.available.map((iconKey) => `${iconKey}.png`)]
 ];
 
-export async function manifestFilesExist(
+export async function buildAssetFileIndex(
   manifest: VisualAssetManifest,
   outputRoot = generatedAssetRoot
+): Promise<AssetFileIndex> {
+  const index = new Map<string, ReadonlySet<string>>();
+  for (const [directory] of expectedFiles(manifest, assetOutputPaths(outputRoot)))
+    index.set(directory, new Set(await readdir(directory)));
+  return index;
+}
+
+export async function manifestFilesExist(
+  manifest: VisualAssetManifest,
+  outputRoot = generatedAssetRoot,
+  fileIndex?: AssetFileIndex
 ): Promise<boolean> {
   try {
     for (const [directory, requiredFiles] of expectedFiles(
       manifest,
       assetOutputPaths(outputRoot)
     )) {
-      const files = new Set(await readdir(directory));
+      const files = fileIndex?.get(directory) ?? new Set(await readdir(directory));
       if (!requiredFiles.every((file) => files.has(file))) return false;
     }
     return true;
@@ -1062,10 +1075,11 @@ export async function manifestFilesExist(
 
 export async function validateGeneratedAssetFiles(
   manifest: VisualAssetManifest,
-  outputRoot = generatedAssetRoot
+  outputRoot = generatedAssetRoot,
+  fileIndex?: AssetFileIndex
 ): Promise<void> {
   const output = assetOutputPaths(outputRoot);
-  if (!(await manifestFilesExist(manifest, outputRoot)))
+  if (!(await manifestFilesExist(manifest, outputRoot, fileIndex)))
     throw new Error('视觉资源 manifest 与生成文件不一致。');
   for (const id of manifest.characters.previews.available) {
     const metadata = await sharp(path.join(output.previews, `${id}.png`)).metadata();

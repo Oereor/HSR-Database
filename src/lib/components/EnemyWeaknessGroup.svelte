@@ -3,12 +3,17 @@
   import { getElementColor } from '$lib/domain/elements';
   import SemanticIconLabel from './SemanticIconLabel.svelte';
   import { m } from '$lib/paraglide/messages.js';
+  import { getLocale } from '$lib/paraglide/runtime.js';
+  import { formatLocalizedList } from '$lib/i18n/format';
 
   export let weaknesses: ElementLabel[];
   export let size: 'default' | 'overview' = 'default';
 
   $: accessibilityLabel = m.weaknesses_aria({
-    weaknesses: weaknesses.map((weakness) => weakness.name).join(', ')
+    weaknesses: formatLocalizedList(
+      weaknesses.map((weakness) => weakness.name),
+      getLocale()
+    )
   });
 </script>
 

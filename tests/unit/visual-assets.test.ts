@@ -2,7 +2,7 @@ import { mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promis
 import os from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   resolveCharacterPreviewAsset,
   resolveCharacterPortraitAsset,
@@ -101,6 +101,7 @@ const manifest = (options?: {
 });
 
 afterEach(async () => {
+  vi.unstubAllEnvs();
   await Promise.all(
     temporaryDirectories
       .splice(0)
@@ -111,8 +112,18 @@ afterEach(async () => {
 });
 
 describe('视觉资源管线', () => {
-  it('从网站目录解析默认与显式 HSR_ASSET_ROOT', () => {
+  it('HSR_ASSET_ROOT 未设置时解析默认同级资源目录', () => {
+    vi.stubEnv('HSR_ASSET_ROOT', undefined);
     expect(resolveAssetRoot()).toBe(path.resolve(process.cwd(), '../StarRailRes'));
+  });
+
+  it('HSR_ASSET_ROOT 已设置时解析环境变量路径', () => {
+    vi.stubEnv('HSR_ASSET_ROOT', '.upstream/StarRailRes');
+    expect(resolveAssetRoot()).toBe(path.resolve(process.cwd(), '.upstream/StarRailRes'));
+  });
+
+  it('显式参数优先于 HSR_ASSET_ROOT', () => {
+    vi.stubEnv('HSR_ASSET_ROOT', '.upstream/StarRailRes');
     expect(resolveAssetRoot('../StarRailRes')).toBe(path.resolve(process.cwd(), '../StarRailRes'));
   });
 

@@ -1,6 +1,12 @@
 import { expect, test } from '@playwright/test';
+import { readFileSync } from 'node:fs';
 
-test('首页作为数据库入口展示品牌、分类与最近限定跃迁', async ({ page }) => {
+const zhMessages = JSON.parse(readFileSync('messages/zh-CN.json', 'utf8')) as Record<
+  string,
+  string
+>;
+
+test('首页作为数据库入口展示品牌、分类与最近限定跃迁', async ({ page, isMobile }) => {
   await page.goto('/');
   await expect(page).toHaveTitle('《崩坏：星穹铁道》档案库');
   await expect(
@@ -10,7 +16,8 @@ test('首页作为数据库入口展示品牌、分类与最近限定跃迁', as
     'href',
     /\/generated-assets\/branding\/train-party\.png$/
   );
-  await expect(page.getByText('HONKAI: STAR RAIL DATA ARCHIVE', { exact: true })).toBeVisible();
+  if (!isMobile)
+    await expect(page.getByText(zhMessages.home_tagline, { exact: true })).toBeVisible();
   await expect(page.locator('.home-hero__collage img')).toHaveCount(4);
   expect(
     await page
@@ -90,15 +97,14 @@ test('首页作为数据库入口展示品牌、分类与最近限定跃迁', as
   await expect(page.getByRole('heading', { name: '这条星轨暂不存在' })).toBeVisible();
 });
 
-test('Footer 仅保留正式服说明、数据仓库与本地许可证', async ({ page }) => {
+test('Footer 仅保留正式服说明、数据仓库与本地许可证', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'Viewport-independent message contract runs once');
   await page.goto('/');
   const footer = page.locator('main > footer');
   await expect(footer.locator('p')).toHaveCount(2);
-  await expect(footer.locator('p').first()).toHaveText(
-    '本站为非官方玩家制作的数据网站，与米哈游或 HoYoverse 无官方关联。游戏名称、角色及相关资产的权利归其权利人所有。'
-  );
+  await expect(footer.locator('p').first()).toHaveText(zhMessages.footer_disclaimer);
   await expect(footer.locator('p').nth(1)).toHaveText(
-    '数据来源：TurnBasedGameData；角色与光锥视觉资源来源：StarRailRes（AGPL-3.0 许可证）。数据仅涵盖正式服内容，并可能存在延迟或错误。'
+    `${zhMessages.footer_data_source}TurnBasedGameData${zhMessages.footer_asset_source}StarRailRes (${zhMessages.footer_license})${zhMessages.footer_scope_note}`
   );
   await expect(footer.getByRole('link', { name: 'TurnBasedGameData' })).toHaveAttribute(
     'href',
@@ -630,7 +636,8 @@ test('敌人目录使用本地立绘、三类 Rank 和 default Monster 弱点', 
   await expect(typeGroup.getByRole('button')).toHaveText(['全部', '普通', '精英', '首领']);
 });
 
-test('Enemy Overview 弱点使用可访问的 icon-only 单行 Group', async ({ page }) => {
+test('Enemy Overview 弱点使用可访问的 icon-only 单行 Group', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'This test owns its responsive viewport matrix');
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto('/enemies');
 
@@ -1420,28 +1427,6 @@ test('忆灵技和忆灵天赋进入统一技能管线且不重复为行迹', as
 });
 
 test('角色 Detail Hero 展示完整 identity、放大标签与不截断传记', async ({ page }) => {
-  const baselineMetrics: Array<{ fontSize: number; iconSize: number }> = [];
-  for (const [url, selector] of [
-    ['/enemies/1002011', '.enemy-weakness-list [data-label-size="default"]'],
-    ['/characters', '.entity-overview-card [data-label-size="large"]']
-  ] as const) {
-    await page.goto(url);
-    baselineMetrics.push(
-      await page
-        .locator(selector)
-        .first()
-        .evaluate((label) => {
-          const icon = label.querySelector('img')!;
-          return {
-            fontSize: Number.parseFloat(getComputedStyle(label).fontSize),
-            iconSize: Number.parseFloat(getComputedStyle(icon).width)
-          };
-        })
-    );
-  }
-  const baselineFontSize = Math.max(...baselineMetrics.map((metric) => metric.fontSize));
-  const baselineIconSize = Math.max(...baselineMetrics.map((metric) => metric.iconSize));
-
   for (const id of ['1402', '1506', '1317', '1310']) {
     await page.goto(`/characters/${id}`);
     const hero = page.locator('.detail-profile-hero--character');
@@ -1487,8 +1472,7 @@ test('角色 Detail Hero 展示完整 identity、放大标签与不截断传记'
           iconSize: Number.parseFloat(getComputedStyle(icon).width)
         };
       });
-    expect(heroTagMetrics.fontSize).toBeGreaterThan(baselineFontSize);
-    expect(heroTagMetrics.iconSize).toBeGreaterThan(baselineIconSize);
+    expect(heroTagMetrics).toEqual({ fontSize: 16, iconSize: 24 });
     await expect(hero.locator('.hero-description')).toHaveCSS('border-top-width', '1px');
     await expect(hero.locator('.hero-description')).toHaveCSS('text-overflow', 'clip');
     expect(

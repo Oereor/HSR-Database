@@ -3,7 +3,12 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type { Enemy } from '../../src/lib/domain/types';
 import { formatRoundedDecimal } from '../../src/lib/domain/endgame-view';
-import { buildEnemyDetailView, enemySkillAnchorId } from '../../src/lib/domain/enemy-view';
+import {
+  buildEnemyDetailPageData,
+  enemySkillAnchorId,
+  getEnemyMonsterStatProgression,
+  getEnemyStatsAtLevel
+} from '../../src/lib/domain/enemy-view';
 import {
   buildEnemySkillPhases,
   normalizeEnemyPhases,
@@ -305,7 +310,7 @@ describe('Enemy Detail 真实数据回归', () => {
 describe('Enemy Detail presentation', () => {
   it('以 default Monster 初始化轻量阶段引用，并保留结构化属性与召唤路由', async () => {
     const detail = await enemy('8034010');
-    const view = buildEnemyDetailView(detail);
+    const view = buildEnemyDetailPageData(detail);
     const monster = view.monsters.find(
       (candidate) => candidate.monsterId === view.defaultMonsterId
     )!;
@@ -351,7 +356,7 @@ describe('Enemy Detail presentation', () => {
       skills: [shared, variantOnly],
       skillPhases: [{ index: 2, skillIds: [shared.id, variantOnly.id] }]
     };
-    const view = buildEnemyDetailView({
+    const view = buildEnemyDetailPageData({
       ...detail,
       monsters: [variant, canonical],
       defaultMonster: canonical
@@ -374,13 +379,102 @@ describe('Enemy Detail presentation', () => {
   });
 
   it('保留有/无负面抵抗的 selected Monster 条件数据', async () => {
-    const withResistance = buildEnemyDetailView(await enemy('8034010')).monsters.find(
+    const withResistance = buildEnemyDetailPageData(await enemy('8034010')).monsters.find(
       (monster) => monster.monsterId === '8034010'
     )!;
-    const withoutResistance = buildEnemyDetailView(await enemy('3002011')).monsters.find(
+    const withoutResistance = buildEnemyDetailPageData(await enemy('3002011')).monsters.find(
       (monster) => monster.monsterId === '3002011'
     )!;
     expect(withResistance.specialResistances.length).toBeGreaterThan(0);
     expect(withoutResistance.specialResistances).toEqual([]);
+  });
+
+  it('全量 Enemy compact progression 与 rich domain 保持逐级逐项 parity', async () => {
+    const files = (await readdir(path.join(generatedRoot, 'views', 'zh-CN', 'details', 'enemies')))
+      .filter((file) => file.endsWith('.json'))
+      .sort();
+    const statNames = [
+      'hp',
+      'attack',
+      'defence',
+      'speed',
+      'toughness',
+      'effectHit',
+      'effectResistance'
+    ] as const;
+
+    expect(files).toHaveLength(628);
+    for (const file of files) {
+      const rich = await enemy(file.slice(0, -'.json'.length));
+      const pageData = buildEnemyDetailPageData(rich);
+      expect(pageData.monsters).toHaveLength(rich.monsters.length);
+      for (const [index, richMonster] of rich.monsters.entries()) {
+        const pageMonster = pageData.monsters[index];
+        expect(pageMonster.monsterId).toBe(richMonster.monsterId);
+        expect(Number.isInteger(pageMonster.statsRef)).toBe(true);
+        expect(pageMonster.statsRef).toBeGreaterThanOrEqual(0);
+        expect(pageMonster.statsRef).toBeLessThan(pageData.statProgressions.length);
+        const progression = getEnemyMonsterStatProgression(pageData, pageMonster);
+        expect(progression).toMatchObject({
+          minLevel: richMonster.stats.minLevel,
+          maxLevel: richMonster.stats.maxLevel,
+          defaultLevel: richMonster.stats.defaultLevel
+        });
+        for (const name of statNames)
+          expect(progression[name]).toEqual(
+            richMonster.stats.levels.map((row) =>
+              row[name].status === 'resolved' ? row[name].value : null
+            )
+          );
+      }
+    }
+  }, 60_000);
+
+  it('按值稳定共享 route-local progression 并拒绝无效引用', async () => {
+    const rich = await enemy('8002050');
+    const pageData = buildEnemyDetailPageData(rich);
+    expect(pageData.monsters).toHaveLength(76);
+    expect(pageData.statProgressions).toHaveLength(14);
+    expect(new Set(pageData.monsters.map((monster) => monster.statsRef)).size).toBe(14);
+    expect(buildEnemyDetailPageData(rich)).toEqual(pageData);
+
+    const sharedRefs = new Map<number, number>();
+    for (const monster of pageData.monsters)
+      sharedRefs.set(monster.statsRef, (sharedRefs.get(monster.statsRef) ?? 0) + 1);
+    expect([...sharedRefs.values()].some((count) => count > 1)).toBe(true);
+    expect(() =>
+      getEnemyMonsterStatProgression(pageData, {
+        ...pageData.monsters[0],
+        statsRef: pageData.statProgressions.length
+      })
+    ).toThrow('无效属性进度');
+  });
+
+  it('代表样本保留缺失值、多阶段、ExtraEffect 与召唤语义', async () => {
+    for (const id of ['5012052', '8032040', '1002016', '8002050']) {
+      const pageData = buildEnemyDetailPageData(await enemy(id));
+      expect(pageData.statProgressions.length).toBeGreaterThan(0);
+    }
+
+    const missingPageData = buildEnemyDetailPageData(await enemy('3004010'));
+    const missingMonster = missingPageData.monsters.find(
+      (monster) => monster.monsterId === missingPageData.defaultMonsterId
+    )!;
+    const missingRow = getEnemyStatsAtLevel(
+      getEnemyMonsterStatProgression(missingPageData, missingMonster),
+      1
+    );
+    expect(missingRow?.speed).toBeNull();
+    expect(missingRow?.toughness).toBeNull();
+
+    const complexPageData = buildEnemyDetailPageData(await enemy('1005014'));
+    expect(complexPageData.monsters.some((monster) => monster.skillPhases.length > 1)).toBe(true);
+    expect(complexPageData.monsters.some((monster) => monster.summons.length > 0)).toBe(true);
+    expect(complexPageData.skillDefinitions.some((skill) => skill.extraEffects.length > 0)).toBe(
+      true
+    );
+    expect(complexPageData.skillDefinitions[0]).not.toHaveProperty('kind');
+    expect(complexPageData.skillDefinitions[0]).not.toHaveProperty('localizedTextStatus');
+    expect(complexPageData.skillDefinitions[0]).not.toHaveProperty('phases');
   });
 });
