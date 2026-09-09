@@ -10,7 +10,6 @@ import type {
 import {
   buildGroupView,
   buildModeView,
-  buildPeriodView,
   endgameEnemyReferenceKey,
   ENDGAME_MODES,
   resolveEndgameEnemyReference,
@@ -28,7 +27,7 @@ import {
   type SearchLocale
 } from '$lib/domain/search-index';
 import { getManifest, getSearchIndex } from '$lib/server/generated';
-import { getEndgameModeCopy } from '$lib/i18n/endgame';
+import { getEndgameModeCopy, getEndgamePeriodPresentation } from '$lib/i18n/endgame';
 
 const generatedRoot = path.resolve('src', 'lib', 'generated', 'views');
 const datasetCache = new Map<string, Promise<EndgameModeDataset>>();
@@ -48,7 +47,7 @@ export function getEndgameDataset<TMode extends EndgameMode>(
   if (cached) return cached as Promise<EndgameDatasetByMode[TMode]>;
   const pending = readJson<EndgameModeDataset>(locale, 'endgame', `${mode}.json`).then(
     (dataset) => {
-      if (dataset.schemaVersion !== 23 || dataset.mode !== mode)
+      if (dataset.schemaVersion !== 24 || dataset.mode !== mode)
         throw new Error(`${mode} Endgame 数据 schema 或模式不匹配`);
       return dataset;
     }
@@ -88,11 +87,12 @@ async function getEnemyReference(
 }
 
 export async function getEndgameLanding(locale: SearchLocale): Promise<EndgameModeView[]> {
+  const presentation = getEndgamePeriodPresentation(locale);
   return Promise.all(
     ENDGAME_MODES.map(async (mode) =>
       Object.assign(
-        buildModeView(mode, (await getEndgameDataset(mode, locale)).groups),
-        getEndgameModeCopy(mode)
+        buildModeView(mode, (await getEndgameDataset(mode, locale)).groups, presentation),
+        getEndgameModeCopy(mode, locale)
       )
     )
   );
@@ -103,8 +103,12 @@ export async function getEndgameMode(
   locale: SearchLocale
 ): Promise<EndgameModeView> {
   return Object.assign(
-    buildModeView(mode, (await getEndgameDataset(mode, locale)).groups),
-    getEndgameModeCopy(mode)
+    buildModeView(
+      mode,
+      (await getEndgameDataset(mode, locale)).groups,
+      getEndgamePeriodPresentation(locale)
+    ),
+    getEndgameModeCopy(mode, locale)
   );
 }
 
@@ -137,9 +141,12 @@ async function buildResolvedGroupView(
       references.set(key, await getEnemyReference(monsterId, templateId, locale))
     )
   );
-  return Object.assign(buildGroupView(group, periods, references), {
-    modeLabel: getEndgameModeCopy(group.mode).label
-  });
+  return Object.assign(
+    buildGroupView(group, periods, references, getEndgamePeriodPresentation(locale)),
+    {
+      modeLabel: getEndgameModeCopy(group.mode, locale).label
+    }
+  );
 }
 
 export async function getEndgameGroup(
@@ -153,9 +160,8 @@ export async function getEndgameGroup(
   const pending = getEndgameDataset(mode, locale).then(async (dataset) => {
     const group = dataset.groups.find((candidate) => candidate.groupId === groupId);
     if (!group) return undefined;
-    const periods = [...dataset.groups]
-      .sort((a, b) => b.groupId - a.groupId)
-      .map((candidate) => buildPeriodView(candidate));
+    const presentation = getEndgamePeriodPresentation(locale);
+    const periods = buildModeView(mode, dataset.groups, presentation).periods;
     return buildResolvedGroupView(group, periods, locale);
   });
   groupViewCache.set(key, pending);

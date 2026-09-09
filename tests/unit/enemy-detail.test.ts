@@ -138,7 +138,7 @@ describe('Enemy Detail parser/resolver', () => {
 });
 
 describe('Enemy Detail 真实数据回归', () => {
-  it('从 MonsterTemplateConfig 无损透传 CriticalDamageBase', async () => {
+  it('从 MonsterTemplateConfig 无损透传 Template 比例字段', async () => {
     const templates = JSON.parse(
       await readFile(
         path.join(assertDataRoot(), 'ExcelOutput', 'MonsterTemplateConfig.json'),
@@ -147,11 +147,18 @@ describe('Enemy Detail 真实数据回归', () => {
     ) as Array<{
       MonsterTemplateID: number;
       CriticalDamageBase: { Value: number | string };
+      InitialDelayRatio?: { Value: number | string };
     }>;
     const raw = templates.find((template) => template.MonsterTemplateID === 1004014)!;
     const detail = await enemy(String(raw.MonsterTemplateID));
 
     expect(detail.template.baseStats.criticalDamage).toBe(String(raw.CriticalDamageBase.Value));
+    expect(detail.template.baseStats.initialDelayRatio).toBe(String(raw.InitialDelayRatio!.Value));
+
+    const missing = templates.find((template) => template.MonsterTemplateID === 3002040)!;
+    expect((await enemy(String(missing.MonsterTemplateID))).template.baseStats).not.toHaveProperty(
+      'initialDelayRatio'
+    );
   });
 
   it('显式表达 Template → Monster 关系，并保留 concrete ownership', async () => {

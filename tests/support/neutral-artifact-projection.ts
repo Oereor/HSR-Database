@@ -8,7 +8,7 @@ monsterTemplateId skillId traceId eidolonId groupId encounterId stageId eventId 
 monsterGroupId entryId targetId occurrenceId configId gachaId equipmentId propertyType element path rarity rank slot battleSlot level minLevel
 maxLevel defaultLevel fromLevel toLevel promotionLimit anchorOrder sourcePointType pointType attackType effectCode
 bpNeed bpAdd spBase stanceDamageDisplay showStanceList order availableLevels scalingParamIndexes params
-extraEffectIds skillIds phases arrayIndex ordinal recommendationEligible begin end infiniteWaveId card encounter battle stage wave`;
+extraEffectIds skillIds phases arrayIndex ordinal begin end infiniteWaveId card encounter battle stage wave`;
 const statFields = `base perLevel fixed stages hp attack defence speed toughness effectHit effectResistance
 criticalChance criticalDamage aggro max ratio value status reason resolvedInternal baseInternal instanceRatio
 instanceValue instanceValueInternal levelRatio hardLevelRatio eliteRatio configuredValue internalStance display
@@ -23,7 +23,7 @@ const equipmentFields = `pieces effects effectRequirements required allowedMainS
 equipmentRecommendation sourceLabelSources slotCode pathCode categoryCode typeCode`;
 const enemyFields = `template monsters defaultMonsterId defaultMonster modifiers stats weaknesses resistances
 specialResistances summons skills skillPhases phaseList tag damageType localizedTextStatus included visible
-hardLevelGroup eliteGroup baseStats criticalDamage`;
+hardLevelGroup eliteGroup baseStats criticalDamage initialDelayRatio`;
 const endgameFields = `groups encounters battles stages schedule waveModel waves enemies orderedEnemies monsterGroups
 spawnSequence maxMonsterCount maxTeammateCount ability params clearPreviousAbility stageAbilities
 previewMonsterIds mechanics memoryTurbulence groupBaseMechanic battleWillMechanics cacophony axiomSets

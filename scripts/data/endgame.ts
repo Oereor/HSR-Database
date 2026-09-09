@@ -105,10 +105,31 @@ interface TierceRow {
   HFIAAGAKFMD?: Id[];
 }
 
-interface ScheduleRow {
+export interface ScheduleRow {
   ID: Id;
   BeginTime: string;
   EndTime: string;
+}
+
+export interface GlobalScheduleRow {
+  ID: Id;
+  BeginTime?: string;
+  GlobalBeginTime?: string;
+  EndTime?: string;
+  GlobalEndTime?: string;
+}
+
+export type EndgameScheduleSource =
+  | {
+      kind: 'challenge-maze' | 'challenge-story' | 'challenge-boss';
+      schedules: ReadonlyMap<string, ScheduleRow>;
+    }
+  | { kind: 'global'; schedules: ReadonlyMap<string, GlobalScheduleRow> };
+
+export interface ResolvedEndgameSchedule {
+  begin: string;
+  end: string;
+  source: EndgameScheduleSource['kind'];
 }
 
 interface PlaneEventRow {
@@ -285,7 +306,7 @@ export interface EndgameDomain {
   audit: EndgameAudit;
 }
 
-const SCHEMA_VERSION = 23 as const;
+const SCHEMA_VERSION = 24 as const;
 const MODES: EndgameMode[] = ['moc', 'pf', 'as', 'aa'];
 const MAX_SAMPLES = 20;
 const PF_ROUNDING_METADATA = {
@@ -317,17 +338,62 @@ export function buildUniqueIndex<T>(
 export function resolveEndgameSchedule(
   mode: 'moc' | 'pf' | 'as',
   group: Pick<ChallengeGroupRow, 'GroupID' | 'ScheduleDataID'>,
-  schedules: ReadonlyMap<string, ScheduleRow>,
-  issues: Pick<Diagnostics, 'warn'>
-): ScheduleRow | undefined {
-  const schedule = group.ScheduleDataID ? schedules.get(String(group.ScheduleDataID)) : undefined;
-  if (group.ScheduleDataID && !schedule)
+  sources: readonly EndgameScheduleSource[],
+  issues: Pick<Diagnostics, 'fail' | 'warn'>
+): ResolvedEndgameSchedule | undefined {
+  if (!group.ScheduleDataID) return undefined;
+  const scheduleId = String(group.ScheduleDataID);
+  const matches = sources.flatMap((source) => {
+    const schedule = source.schedules.get(scheduleId);
+    return schedule ? [{ source, schedule }] : [];
+  });
+  if (!matches.length) {
     issues.warn('missing-schedule', 'Group.ScheduleDataID 无法解析', {
       mode,
       groupId: group.GroupID,
       scheduleId: group.ScheduleDataID
     });
-  return schedule;
+    return undefined;
+  }
+  if (matches.length > 1)
+    issues.fail('ambiguous-schedule', 'Group.ScheduleDataID 在多个 schedule source 中命中', {
+      mode,
+      groupId: group.GroupID,
+      scheduleId: group.ScheduleDataID,
+      sources: matches.map(({ source }) => source.kind).join(',')
+    });
+  const [{ source, schedule }] = matches;
+  if (source.kind !== 'global')
+    return {
+      begin: (schedule as ScheduleRow).BeginTime,
+      end: (schedule as ScheduleRow).EndTime,
+      source: source.kind
+    };
+  const global = schedule as GlobalScheduleRow;
+  const boundary = (boundaryKind: 'begin' | 'end', values: Array<string | undefined>): string => {
+    const explicit = [...new Set(values.map((value) => value?.trim()).filter(Boolean) as string[])];
+    if (!explicit.length)
+      issues.fail('missing-schedule-boundary', 'ScheduleDataGlobal 缺少显式时间边界', {
+        mode,
+        groupId: group.GroupID,
+        scheduleId: group.ScheduleDataID,
+        boundary: boundaryKind
+      });
+    if (explicit.length > 1)
+      issues.fail('conflicting-schedule-boundary', 'ScheduleDataGlobal 时间边界存在冲突', {
+        mode,
+        groupId: group.GroupID,
+        scheduleId: group.ScheduleDataID,
+        boundary: boundaryKind,
+        values: explicit.join(',')
+      });
+    return explicit[0];
+  };
+  return {
+    begin: boundary('begin', [global.BeginTime, global.GlobalBeginTime]),
+    end: boundary('end', [global.EndTime, global.GlobalEndTime]),
+    source: source.kind
+  };
 }
 
 function groupBy<T>(rows: readonly T[], keyOf: (row: T) => string | number): Map<string, T[]> {
@@ -366,6 +432,7 @@ class Diagnostics {
 
 interface Tables {
   schedules: Record<'moc' | 'pf' | 'as', ScheduleRow[]>;
+  globalSchedules: GlobalScheduleRow[];
   groups: Record<'moc' | 'pf' | 'as', ChallengeGroupRow[]>;
   configs: Record<'moc' | 'pf' | 'as', ChallengeConfigRow[]>;
   tierces: Record<'moc' | 'pf' | 'as', TierceRow[]>;
@@ -395,6 +462,7 @@ interface Tables {
 async function loadTables(root: string): Promise<Tables> {
   const names = [
     'ScheduleDataChallengeMaze',
+    'ScheduleDataGlobal',
     'ChallengeGroupConfig',
     'ChallengeMazeConfig',
     'ChallengeMazeTierce',
@@ -439,6 +507,7 @@ async function loadTables(root: string): Promise<Tables> {
       pf: table.ScheduleDataChallengeStory,
       as: table.ScheduleDataChallengeBoss
     },
+    globalSchedules: table.ScheduleDataGlobal,
     groups: {
       moc: table.ChallengeGroupConfig,
       pf: table.ChallengeStoryGroupConfig,
@@ -1470,7 +1539,16 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
 
   {
     const mode = 'moc' as const;
-    const schedules = buildUniqueIndex(tables.schedules.moc, (row) => row.ID, 'moc schedule');
+    const scheduleSources: EndgameScheduleSource[] = [
+      {
+        kind: 'challenge-maze',
+        schedules: buildUniqueIndex(tables.schedules.moc, (row) => row.ID, 'moc schedule')
+      },
+      {
+        kind: 'global',
+        schedules: buildUniqueIndex(tables.globalSchedules, (row) => row.ID, 'global schedule')
+      }
+    ];
     const configsByGroup = sortedConfigsByGroup(mode);
     const tierces = buildUniqueIndex(tables.tierces.moc, (row) => row.PHFMCACHFIJ, 'moc tierce');
     const groups: MocGroup[] = [];
@@ -1535,13 +1613,12 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
           memoryTurbulence
         });
       }
-      const schedule = resolveEndgameSchedule(mode, group, schedules, diagnostics);
+      const schedule = resolveEndgameSchedule(mode, group, scheduleSources, diagnostics);
       groups.push({
         mode,
         groupId: group.GroupID,
-        recommendationEligible: Boolean(group.GroupName?.Hash),
         nameSource: neutralTextSource(group.GroupName),
-        ...(schedule ? { schedule: { begin: schedule.BeginTime, end: schedule.EndTime } } : {}),
+        ...(schedule ? { schedule: { begin: schedule.begin, end: schedule.end } } : {}),
         encounters
       });
     }
@@ -1550,7 +1627,12 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
 
   {
     const mode = 'pf' as const;
-    const schedules = buildUniqueIndex(tables.schedules.pf, (row) => row.ID, 'pf schedule');
+    const scheduleSources: EndgameScheduleSource[] = [
+      {
+        kind: 'challenge-story',
+        schedules: buildUniqueIndex(tables.schedules.pf, (row) => row.ID, 'pf schedule')
+      }
+    ];
     const configsByGroup = sortedConfigsByGroup(mode);
     const tierces = buildUniqueIndex(tables.tierces.pf, (row) => row.PHFMCACHFIJ, 'pf tierce');
     const groups: PureFictionGroup[] = [];
@@ -1672,13 +1754,12 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
           ...(baseMechanic ? { baseMechanic } : {})
         });
       }
-      const schedule = resolveEndgameSchedule(mode, group, schedules, diagnostics);
+      const schedule = resolveEndgameSchedule(mode, group, scheduleSources, diagnostics);
       groups.push({
         mode,
         groupId: group.GroupID,
-        recommendationEligible: Boolean(group.GroupName?.Hash),
         nameSource: neutralTextSource(group.GroupName),
-        ...(schedule ? { schedule: { begin: schedule.BeginTime, end: schedule.EndTime } } : {}),
+        ...(schedule ? { schedule: { begin: schedule.begin, end: schedule.end } } : {}),
         encounters,
         ...(groupBaseMechanic ? { groupBaseMechanic } : {}),
         battleWillMechanics,
@@ -1690,7 +1771,12 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
 
   {
     const mode = 'as' as const;
-    const schedules = buildUniqueIndex(tables.schedules.as, (row) => row.ID, 'as schedule');
+    const scheduleSources: EndgameScheduleSource[] = [
+      {
+        kind: 'challenge-boss',
+        schedules: buildUniqueIndex(tables.schedules.as, (row) => row.ID, 'as schedule')
+      }
+    ];
     const configsByGroup = sortedConfigsByGroup(mode);
     const tierces = buildUniqueIndex(tables.tierces.as, (row) => row.PHFMCACHFIJ, 'as tierce');
     const groups: ApocalypticShadowGroup[] = [];
@@ -1882,13 +1968,12 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
           bossGuides
         });
       }
-      const schedule = resolveEndgameSchedule(mode, group, schedules, diagnostics);
+      const schedule = resolveEndgameSchedule(mode, group, scheduleSources, diagnostics);
       groups.push({
         mode,
         groupId: group.GroupID,
-        recommendationEligible: Boolean(group.GroupName?.Hash),
         nameSource: neutralTextSource(group.GroupName),
-        ...(schedule ? { schedule: { begin: schedule.BeginTime, end: schedule.EndTime } } : {}),
+        ...(schedule ? { schedule: { begin: schedule.begin, end: schedule.end } } : {}),
         encounters,
         axiomSets
       });
@@ -2094,7 +2179,6 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
     aaGroups.push({
       mode: 'aa',
       groupId: group.ID,
-      recommendationEligible: Boolean(group.Title?.Hash),
       nameSource: neutralTextSource(group.Title),
       encounters,
       judgmentQuadrant

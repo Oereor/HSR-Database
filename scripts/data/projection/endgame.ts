@@ -394,7 +394,6 @@ function projectGroup<T extends EndgameGroup>(
   const {
     mode,
     groupId,
-    recommendationEligible,
     name,
     nameSource: _nameSource,
     schedule,
@@ -406,7 +405,6 @@ function projectGroup<T extends EndgameGroup>(
   return {
     mode,
     groupId,
-    recommendationEligible,
     ...(name === undefined ? {} : { name }),
     ...(schedule ? { schedule } : {}),
     encounters: orderedEncounters,

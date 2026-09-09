@@ -434,15 +434,23 @@ describe('PF HP resolver', () => {
 });
 
 describe('Endgame schedule 容错', () => {
+  const diagnostics = (
+    warnings: Array<{ code: string; context: Record<string, unknown> }> = []
+  ) => ({
+    warn: (code: string, _message: string, context: Record<string, unknown>) =>
+      warnings.push({ code, context }),
+    fail: (code: string, message: string): never => {
+      throw new Error(`[Endgame:${code}] ${message}`);
+    }
+  });
+
   it.each(['moc', 'pf', 'as'] as const)('%s 缺少 schedule 时记录 warning 并继续', (mode) => {
     const warnings: Array<{ code: string; context: Record<string, unknown> }> = [];
     const schedule = resolveEndgameSchedule(
       mode,
       { GroupID: 1034, ScheduleDataID: 291015 },
-      new Map(),
-      {
-        warn: (code, _message, context) => warnings.push({ code, context })
-      }
+      [],
+      diagnostics(warnings)
     );
 
     expect(schedule).toBeUndefined();
@@ -454,25 +462,95 @@ describe('Endgame schedule 容错', () => {
     ]);
   });
 
-  it('返回已经存在的 schedule 且不记录 warning', () => {
-    const warnings: string[] = [];
+  it('按 exact ID 解析普通 MoC schedule', () => {
     const expected = {
       ID: 201034,
       BeginTime: '2026-08-17 04:00:00',
-      EndTime: '2026-09-28 04:00:00'
+      EndTime: '2026-09-28 06:00:00'
     };
 
     expect(
       resolveEndgameSchedule(
         'moc',
         { GroupID: 1034, ScheduleDataID: 201034 },
-        new Map([['201034', expected]]),
-        {
-          warn: (code) => warnings.push(code)
-        }
+        [{ kind: 'challenge-maze', schedules: new Map([['201034', expected]]) }],
+        diagnostics()
       )
-    ).toBe(expected);
-    expect(warnings).toEqual([]);
+    ).toEqual({
+      begin: expected.BeginTime,
+      end: expected.EndTime,
+      source: 'challenge-maze'
+    });
+  });
+
+  it.each([
+    [
+      1034,
+      291015,
+      { ID: 291015, BeginTime: '2026-08-17 04:00:00', GlobalEndTime: '2026-09-28 06:00:00' },
+      '2026-08-17 04:00:00',
+      '2026-09-28 06:00:00'
+    ],
+    [
+      1035,
+      291016,
+      { ID: 291016, GlobalBeginTime: '2026-09-28 06:00:00', EndTime: '2026-11-02 04:00:00' },
+      '2026-09-28 06:00:00',
+      '2026-11-02 04:00:00'
+    ]
+  ] as const)('MoC %s 从 Global schedule %s 归一化', (groupId, scheduleId, row, begin, end) => {
+    expect(
+      resolveEndgameSchedule(
+        'moc',
+        { GroupID: groupId, ScheduleDataID: scheduleId },
+        [{ kind: 'global', schedules: new Map([[String(scheduleId), row]]) }],
+        diagnostics()
+      )
+    ).toEqual({ begin, end, source: 'global' });
+  });
+
+  it('拒绝多个 source 的同 ID 歧义', () => {
+    const row = {
+      ID: 1,
+      BeginTime: '2026-01-01 04:00:00',
+      EndTime: '2026-02-01 04:00:00'
+    };
+    expect(() =>
+      resolveEndgameSchedule(
+        'moc',
+        { GroupID: 1, ScheduleDataID: 1 },
+        [
+          { kind: 'challenge-maze', schedules: new Map([['1', row]]) },
+          { kind: 'global', schedules: new Map([['1', row]]) }
+        ],
+        diagnostics()
+      )
+    ).toThrow(/ambiguous-schedule/);
+  });
+
+  it.each([
+    [
+      { ID: 1, BeginTime: '', GlobalBeginTime: '', EndTime: '2026-02-01 04:00:00' },
+      'missing-schedule-boundary'
+    ],
+    [
+      {
+        ID: 1,
+        BeginTime: '2026-01-01 04:00:00',
+        GlobalBeginTime: '2026-01-02 04:00:00',
+        EndTime: '2026-02-01 04:00:00'
+      },
+      'conflicting-schedule-boundary'
+    ]
+  ] as const)('拒绝无值或冲突的 Global boundary', (row, code) => {
+    expect(() =>
+      resolveEndgameSchedule(
+        'moc',
+        { GroupID: 1, ScheduleDataID: 1 },
+        [{ kind: 'global', schedules: new Map([['1', row]]) }],
+        diagnostics()
+      )
+    ).toThrow(new RegExp(code));
   });
 });
 
@@ -519,9 +597,9 @@ describe('Endgame 真实数据管线', () => {
     }
   });
 
-  it('四个模式保留 schema 23 且 fixed/spawn 模型分离', async () => {
+  it('四个模式保留 schema 24 且 fixed/spawn 模型分离', async () => {
     const all = await Promise.all(modes.map(dataset));
-    expect(all.every((item) => item.schemaVersion === 23)).toBe(true);
+    expect(all.every((item) => item.schemaVersion === 24)).toBe(true);
     expect((await fixture('moc', 1034, 5312, 30124121, 3024020)).stage.waveModel.kind).toBe(
       'fixed'
     );
@@ -675,7 +753,7 @@ describe('Endgame 真实数据管线', () => {
 
   it('新增字段之外的完整 Endgame hierarchy 与敌方数据摘要保持不变', async () => {
     const expected = {
-      moc: 'f0c1b03e4844fcdeaf242fec867403d97f822a6a8a97a2b2cf484709c2010833',
+      moc: '687426d6ce47b9c9d317cbc7e8a1241e8a7639ac00231a9c4a80e021224d191d',
       pf: 'cb34270ddf74c8e06304b47b0725458ca5c1a20eee5f9b14390b5170c7e070d9',
       as: '015183494e922c2b6d9a3a0f720870457f3210aaaa12628dabd46aea931439f2',
       aa: 'f75ed2b81b95884881683ec394d6c054c39d52ecc990a84773cc3a0c5e9af155'
@@ -696,7 +774,6 @@ describe('Endgame 真实数据管线', () => {
       const data = await dataset(mode);
       for (const group of data.groups) {
         const groupRecord = group as unknown as Record<string, unknown>;
-        delete groupRecord.recommendationEligible;
         for (const field of groupFields[mode]) delete groupRecord[field];
         for (const encounter of group.encounters) {
           const encounterRecord = encounter as unknown as Record<string, unknown>;

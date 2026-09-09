@@ -18,7 +18,8 @@ function sourceTables(skill: Record<string, unknown>) {
         CriticalDamageBase: wrapped('1.5'),
         SpeedBase: wrapped('100'),
         StanceBase: wrapped('60'),
-        StatusResistanceBase: wrapped('0.2')
+        StatusResistanceBase: wrapped('0.2'),
+        InitialDelayRatio: wrapped('0.5')
       },
       {
         MonsterTemplateID: 200,
@@ -125,6 +126,11 @@ describe('EnemyDomain', () => {
     });
     const enemy = result.enemies.find((item) => item.id === '100')!;
     const domainSkill = enemy.monsters[0].skills[0];
+
+    expect(enemy.template.baseStats.initialDelayRatio).toBe('0.5');
+    expect(result.enemies.find((item) => item.id === '200')!.template.baseStats).not.toHaveProperty(
+      'initialDelayRatio'
+    );
 
     expect(domainSkill).toMatchObject({
       id: '1',

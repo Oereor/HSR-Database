@@ -308,6 +308,14 @@ export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
                 `MonsterTemplate.${id}.StatusResistanceBase`
               )
             }
+          : {}),
+        ...(template.InitialDelayRatio !== undefined
+          ? {
+              initialDelayRatio: decimalOf(
+                template.InitialDelayRatio,
+                `MonsterTemplate.${id}.InitialDelayRatio`
+              )
+            }
           : {})
       }
     };

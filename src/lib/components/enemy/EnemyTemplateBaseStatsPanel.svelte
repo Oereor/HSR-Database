@@ -25,7 +25,12 @@
     ['speed', m.common_base_speed(), numeric(baseStats.speed)],
     ['toughness', m.enemy_base_toughness(), toughness(baseStats.stance)],
     ['critical-damage', m.enemy_base_critical_damage(), percentage(baseStats.criticalDamage)],
-    ['effect-resistance', m.enemy_base_effect_resistance(), percentage(baseStats.effectResistance)]
+    ['effect-resistance', m.enemy_base_effect_resistance(), percentage(baseStats.effectResistance)],
+    [
+      'initial-action-value',
+      m.enemy_initial_action_value(),
+      percentage(baseStats.initialDelayRatio)
+    ]
   ] as const;
 </script>
 

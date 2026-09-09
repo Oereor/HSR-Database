@@ -158,10 +158,13 @@ export interface EndgameEnemyGridItem {
   level?: number;
 }
 
-export interface EndgameViewPresentation {
+export interface EndgamePeriodPresentation {
+  groupName: (mode: EndgameMode, groupId: number) => string;
+}
+
+export interface EndgameViewPresentation extends EndgamePeriodPresentation {
   unknownEnemy: string;
   unavailable: string;
-  groupName: (groupId: number) => string;
 }
 
 export const ENDGAME_MISSING_VALUE = '-';
@@ -169,7 +172,7 @@ export const ENDGAME_MISSING_VALUE = '-';
 export const ZH_CN_ENDGAME_VIEW_PRESENTATION: EndgameViewPresentation = {
   unknownEnemy: '未知敌方单位',
   unavailable: ENDGAME_MISSING_VALUE,
-  groupName: (groupId) => `数据组 ${groupId}`
+  groupName: (mode, groupId) => `${ENDGAME_MODE_META[mode].label} ID ${groupId}`
 };
 
 export interface PresentedEndgameOccurrence {
@@ -490,12 +493,12 @@ function datePart(value: string): string {
 export function buildPeriodView(
   group: EndgameGroup,
   now = Date.now(),
-  presentation: EndgameViewPresentation = ZH_CN_ENDGAME_VIEW_PRESENTATION
+  presentation: EndgamePeriodPresentation = ZH_CN_ENDGAME_VIEW_PRESENTATION
 ): EndgamePeriodView {
   if (!group.schedule) {
     return {
       groupId: group.groupId,
-      name: group.name || presentation.groupName(group.groupId),
+      name: group.name || presentation.groupName(group.mode, group.groupId),
       dateLabel: '-',
       status: 'unknown',
       encounterCount: group.encounters.length
@@ -507,7 +510,7 @@ export function buildPeriodView(
     begin <= now && now < end ? 'current' : now < begin ? 'upcoming' : 'historical';
   return {
     groupId: group.groupId,
-    name: group.name || presentation.groupName(group.groupId),
+    name: group.name || presentation.groupName(group.mode, group.groupId),
     dateLabel: `${datePart(group.schedule.begin)} – ${datePart(group.schedule.end)}`,
     status,
     encounterCount: group.encounters.length
@@ -516,11 +519,7 @@ export function buildPeriodView(
 
 export function recommendedGroupId(groups: EndgameGroup[], now = Date.now()): number | undefined {
   if (!groups.length) return undefined;
-  const named = groups.filter((group) => group.recommendationEligible);
-  const candidates = named.length ? named : groups;
-  const newest = [...candidates].sort((a, b) => b.groupId - a.groupId)[0];
-  if (!newest.schedule) return newest.groupId;
-  const scheduled = candidates.filter((group) => group.schedule);
+  const scheduled = groups.filter((group) => group.schedule);
   const current = scheduled
     .filter((group) => {
       const begin = parseSchedule(group.schedule!.begin);
@@ -533,20 +532,40 @@ export function recommendedGroupId(groups: EndgameGroup[], now = Date.now()): nu
     .filter((group) => parseSchedule(group.schedule!.begin) <= now)
     .sort((a, b) => parseSchedule(b.schedule!.begin) - parseSchedule(a.schedule!.begin));
   if (started[0]) return started[0].groupId;
-  return [...scheduled].sort(
+  const upcoming = [...scheduled].sort(
     (a, b) => parseSchedule(a.schedule!.begin) - parseSchedule(b.schedule!.begin)
-  )[0]?.groupId;
+  )[0];
+  if (upcoming) return upcoming.groupId;
+  return [...groups].sort((a, b) => b.groupId - a.groupId)[0]?.groupId;
 }
 
-export function buildModeView(mode: EndgameMode, groups: EndgameGroup[]): EndgameModeView {
+export function buildModeView(
+  mode: EndgameMode,
+  groups: EndgameGroup[],
+  presentation: EndgamePeriodPresentation = ZH_CN_ENDGAME_VIEW_PRESENTATION,
+  now = Date.now()
+): EndgameModeView {
+  const periods = groups
+    .map((group) => ({ group, period: buildPeriodView(group, now, presentation) }))
+    .sort((left, right) => {
+      if (
+        left.period.status === right.period.status &&
+        left.group.schedule &&
+        right.group.schedule
+      ) {
+        const byBegin =
+          parseSchedule(left.group.schedule.begin) - parseSchedule(right.group.schedule.begin);
+        if (byBegin) return left.period.status === 'upcoming' ? byBegin : -byBegin;
+      }
+      return right.group.groupId - left.group.groupId;
+    })
+    .map(({ period }) => period);
   return {
     mode,
     label: ENDGAME_MODE_META[mode].label,
     description: ENDGAME_MODE_META[mode].description,
-    periods: [...groups]
-      .sort((a, b) => b.groupId - a.groupId)
-      .map((group) => buildPeriodView(group)),
-    recommendedGroupId: recommendedGroupId(groups)
+    periods,
+    recommendedGroupId: recommendedGroupId(groups, now)
   };
 }
 
@@ -620,12 +639,13 @@ function buildEncounterViewBase<TMode extends EndgameMode>(
 function buildGroupViewBase<TMode extends EndgameMode>(
   mode: TMode,
   group: EndgameGroup,
-  periods: EndgamePeriodView[]
+  periods: EndgamePeriodView[],
+  presentation: EndgamePeriodPresentation
 ) {
   return {
     mode,
     modeLabel: ENDGAME_MODE_META[mode].label,
-    period: buildPeriodView(group),
+    period: buildPeriodView(group, Date.now(), presentation),
     periods,
     defaultEncounterId: defaultEncounterId(mode, group.encounters)
   };
@@ -634,7 +654,8 @@ function buildGroupViewBase<TMode extends EndgameMode>(
 export function buildGroupView(
   group: EndgameGroup,
   periods: EndgamePeriodView[],
-  enemyReferences: ReadonlyMap<string, EndgameEnemyReference>
+  enemyReferences: ReadonlyMap<string, EndgameEnemyReference>,
+  presentation: EndgamePeriodPresentation = ZH_CN_ENDGAME_VIEW_PRESENTATION
 ): EndgameGroupView {
   if (group.mode === 'moc') {
     const encounterMechanics = group.encounters.map((encounter) =>
@@ -642,7 +663,7 @@ export function buildGroupView(
     );
     const memoryTurbulence = allMechanicsMatch(encounterMechanics);
     return {
-      ...buildGroupViewBase(group.mode, group, periods),
+      ...buildGroupViewBase(group.mode, group, periods, presentation),
       ...(memoryTurbulence ? { memoryTurbulence } : {}),
       encounters: group.encounters.map((encounter, index) => ({
         ...buildEncounterViewBase(group.mode, encounter, enemyReferences),
@@ -670,7 +691,7 @@ export function buildGroupView(
       return mechanic ? [{ ...mechanic, order: option.order }] : [];
     });
     return {
-      ...buildGroupViewBase(group.mode, group, periods),
+      ...buildGroupViewBase(group.mode, group, periods, presentation),
       fixedMechanics,
       ...(group.cacophony && cacophonyOptions.length
         ? { cacophony: { key: group.cacophony.key, options: cacophonyOptions } }
@@ -697,7 +718,7 @@ export function buildGroupView(
       if (options.length) axiomSets.set(set.slot, { key: set.key, options });
     }
     return {
-      ...buildGroupViewBase(group.mode, group, periods),
+      ...buildGroupViewBase(group.mode, group, periods, presentation),
       encounters: group.encounters.map((encounter) => ({
         ...buildEncounterViewBase(group.mode, encounter, enemyReferences),
         ...(buildMechanicView(encounter.aftertaste?.buff)
@@ -734,7 +755,7 @@ export function buildGroupView(
     return mechanic ? [{ ...mechanic, order: option.order }] : [];
   });
   return {
-    ...buildGroupViewBase(group.mode, group, periods),
+    ...buildGroupViewBase(group.mode, group, periods, presentation),
     ...(group.judgmentQuadrant && quadrantOptions.length
       ? {
           judgmentQuadrant: {

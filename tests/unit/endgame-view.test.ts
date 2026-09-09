@@ -10,6 +10,7 @@ import type {
 } from '../../src/lib/domain/endgame';
 import {
   buildGroupView,
+  buildModeView,
   buildOccurrenceView,
   buildPeriodView,
   ENDGAME_MODE_META,
@@ -30,6 +31,10 @@ import {
   uniqueSpawnOccurrences
 } from '../../src/lib/domain/endgame-view';
 import { ELEMENT_COLORS, getElementColor } from '../../src/lib/domain/elements';
+import {
+  getEndgamePeriodFallbackName,
+  getEndgamePeriodPresentation
+} from '../../src/lib/i18n/endgame';
 
 const generatedRoot = path.resolve('src', 'lib', 'generated');
 const decimal = (value: string) => value as DecimalString;
@@ -123,7 +128,6 @@ function mocGroup(
   return {
     mode: 'moc',
     groupId,
-    recommendationEligible: options.name !== undefined,
     ...(options.name === undefined ? {} : { name: options.name }),
     ...(options.begin && options.end
       ? { schedule: { begin: options.begin, end: options.end } }
@@ -176,6 +180,7 @@ describe('共享比例格式', () => {
   it.each([
     ['0.2', '20%'],
     ['0.25', '25%'],
+    ['0.5', '50%'],
     ['1', '100%']
   ])('将 ratio %s 格式化为 %s', (source, expected) => {
     expect(formatRatioPercentage(source)).toBe(expected);
@@ -189,42 +194,17 @@ describe('Endgame 赛期回退与推荐', () => {
     end: '2026-08-01 04:00:00'
   });
 
-  it('保留未命名无时间组的展示回退，但推荐最新具名组', () => {
-    const namedWithoutSchedule = mocGroup(1034, { name: '扫除风暴' });
-    const unnamedWithoutSchedule = mocGroup(1035);
-
-    expect(buildPeriodView(unnamedWithoutSchedule)).toMatchObject({
-      name: '数据组 1035',
-      dateLabel: '-',
-      status: 'unknown'
-    });
-    expect(recommendedGroupId([historical, namedWithoutSchedule, unnamedWithoutSchedule])).toBe(
-      1034
-    );
-  });
-
-  it('全部无时间时仍选择 ID 最大的具名组', () => {
-    expect(
-      recommendedGroupId([
-        mocGroup(1033, { name: '旧组' }),
-        mocGroup(1034, { name: '新组' }),
-        mocGroup(1035)
-      ])
-    ).toBe(1034);
-  });
-
-  it('只有未命名组时回退到 ID 最大的组', () => {
+  it('完全没有 schedule 时才回退到最大 GroupID，与名称无关', () => {
     expect(recommendedGroupId([mocGroup(1034), mocGroup(1035)])).toBe(1035);
   });
 
-  it('最新具名组有时间时维持当前赛期优先', () => {
+  it('依据 period time 优先推荐 current，而不依据名称', () => {
     const current = mocGroup(1034, {
       name: '当前一期',
       begin: '2026-08-01 04:00:00',
       end: '2026-09-01 04:00:00'
     });
     const upcoming = mocGroup(1035, {
-      name: '未来一期',
       begin: '2026-09-01 04:00:00',
       end: '2026-10-01 04:00:00'
     });
@@ -234,19 +214,47 @@ describe('Endgame 赛期回退与推荐', () => {
     ).toBe(1034);
   });
 
-  it('真实 4.5 MoC 保留 1034/1035 并默认推荐具名的 1034', async () => {
+  it.each([
+    ['zh-CN', 'moc', 1035, '混沌回忆 ID 1035'],
+    ['zh-CN', 'pf', 123, '虚构叙事 ID 123'],
+    ['zh-CN', 'as', 123, '末日幻影 ID 123'],
+    ['zh-CN', 'aa', 123, '异相仲裁 ID 123'],
+    ['en', 'moc', 1035, 'MoC ID 1035'],
+    ['en', 'pf', 123, 'PF ID 123'],
+    ['en', 'as', 123, 'AS ID 123'],
+    ['en', 'aa', 123, 'AA ID 123']
+  ] as const)('%s %s 使用统一缺名回退', (locale, mode, groupId, expected) => {
+    expect(getEndgamePeriodFallbackName(mode, groupId, locale)).toBe(expected);
+  });
+
+  it('正式名称始终优先于 presentation fallback', () => {
+    const named = mocGroup(1034, { name: '扫除风暴' });
+    expect(buildPeriodView(named, Date.now(), getEndgamePeriodPresentation('zh-CN')).name).toBe(
+      '扫除风暴'
+    );
+  });
+
+  it('真实 4.5 MoC 通过普通 pipeline 解析、分类和推荐 1034/1035', async () => {
     const moc = await dataset('moc');
     const group1034 = moc.groups.find((group) => group.groupId === 1034)!;
     const group1035 = moc.groups.find((group) => group.groupId === 1035)!;
+    const now = Date.parse('2026-09-09T00:00:00+08:00');
 
-    expect(group1034).toMatchObject({ name: '扫除风暴' });
-    expect(group1034.schedule).toBeUndefined();
+    expect(group1034).toMatchObject({
+      name: '扫除风暴',
+      schedule: { begin: '2026-08-17 04:00:00', end: '2026-09-28 06:00:00' }
+    });
     expect(group1034.encounters).toHaveLength(12);
     expect(group1035.name).toBeUndefined();
-    expect(group1035.schedule).toBeUndefined();
+    expect(group1035.schedule).toEqual({
+      begin: '2026-09-28 06:00:00',
+      end: '2026-11-02 04:00:00'
+    });
     expect(group1035.encounters).toHaveLength(12);
-    expect(buildPeriodView(group1035).name).toBe('数据组 1035');
-    expect(recommendedGroupId(moc.groups)).toBe(1034);
+    expect(buildPeriodView(group1034, now).status).toBe('current');
+    expect(buildPeriodView(group1035, now).status).toBe('upcoming');
+    expect(buildPeriodView(group1035, now).name).toBe('混沌回忆 ID 1035');
+    expect(recommendedGroupId(moc.groups, now)).toBe(1034);
   });
 });
 
@@ -287,16 +295,22 @@ describe('Endgame archive 赛期分组', () => {
     expect(groups.historical.map(({ groupId }) => groupId)).toEqual([1]);
   });
 
-  it('真实 MoC 与 AA 无排期记录只进入 unknown', async () => {
-    const now = Date.parse('2026-08-31T08:00:00.000Z');
+  it('真实 MoC 在固定日期按配置分组，AA 无排期记录只进入 unknown', async () => {
+    const now = Date.parse('2026-09-09T00:00:00+08:00');
     const moc = await dataset('moc');
     const aa = await dataset('aa');
     const mocGroups = groupEndgamePeriods(moc.groups.map((group) => buildPeriodView(group, now)));
     const aaGroups = groupEndgamePeriods(aa.groups.map((group) => buildPeriodView(group, now)));
 
-    expect(mocGroups.unknown.map(({ groupId }) => groupId)).toEqual([100, 900, 1034, 1035]);
-    expect(mocGroups.upcoming.map(({ groupId }) => groupId)).toEqual([108, 109]);
+    expect(mocGroups.current.map(({ groupId }) => groupId)).toEqual([1034]);
+    expect(mocGroups.upcoming.map(({ groupId }) => groupId)).toEqual([108, 109, 1035]);
+    expect(mocGroups.unknown.map(({ groupId }) => groupId)).toEqual([100, 900]);
     expect(mocGroups.historical).toHaveLength(50);
+    expect(
+      groupEndgamePeriods(buildModeView('moc', moc.groups, undefined, now).periods).upcoming.map(
+        ({ groupId }) => groupId
+      )
+    ).toEqual([1035, 108, 109]);
     expect(aaGroups.unknown).toHaveLength(9);
     expect(aaGroups.current).toHaveLength(0);
     expect(aaGroups.upcoming).toHaveLength(0);
