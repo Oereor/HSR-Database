@@ -1,4 +1,5 @@
 import { validateSiteMessageFiles } from './scripts/messages.js';
+import { validateChangelogFiles } from './scripts/changelog.js';
 import messageOptions from './paraglide.config.js';
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import tailwindcss from '@tailwindcss/vite';
@@ -7,6 +8,16 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [
+    {
+      name: 'changelog-content-contract',
+      async buildStart() {
+        await validateChangelogFiles();
+      },
+      async handleHotUpdate(context) {
+        if (context.file.replaceAll('\\', '/').includes('/src/lib/content/changelog/'))
+          await validateChangelogFiles();
+      }
+    },
     {
       name: 'site-message-contract',
       async buildStart() {
