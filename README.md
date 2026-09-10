@@ -139,11 +139,20 @@ GitHub Actions 会定期检查两个 upstream 是否有更新。发现新版本�
 
 ### 如何添加更新日志
 
-更新日志 Markdown 放在 `src/lib/content/changelog/`，新建 `.svx` 文件，按照以下格式：
+更新日志 Markdown 分别放在 `src/lib/content/changelog/zh-CN/` 和
+`src/lib/content/changelog/en/`。每条日志需要新建两个同名 `.svx` 文件，文件名格式为
+`YYYY-MM-DD-lowercase-kebab-slug.svx`，例如：
+
+```text
+zh-CN/2026-09-10-example-update.svx
+en/2026-09-10-example-update.svx
+```
+
+文件名（不含扩展名）是两种语言共享的条目 ID，日期也从文件名前缀读取。文件内容格式为：
 
 ```markdown
 ---
-title: 更新标题
+title: '更新标题'
 ---
 
 这里写更新内容。
@@ -151,7 +160,9 @@ title: 更新标题
 可以使用 **Markdown**、`inline code`、列表和链接。
 ```
 
-然后在 `entries.json` 中补充对应条目即可。`pnpm dev`、`pnpm build` 和 `pnpm deploy:build` 都会自动编译新增日志。
+`title` 是本地化字段；当标题包含冒号等 YAML 特殊字符时必须加引号。无需维护额外索引，
+`pnpm dev`、`pnpm build` 和 `pnpm deploy:build` 会自动发现、配对并验证日志。如果正在运行的
+开发服务器没有发现刚创建的文件，重启 `pnpm dev` 即可。
 
 ## License 与免责声明
 

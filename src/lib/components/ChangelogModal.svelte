@@ -17,7 +17,7 @@
   export let locale: Locale;
 
   let changelogEntries: ChangelogEntry[] = [];
-  let entriesPromise: Promise<ChangelogEntry[]> | undefined;
+  let loadedLocale: Locale | undefined;
 
   let dialog: HTMLDialogElement;
   let closeButton: HTMLButtonElement;
@@ -48,12 +48,15 @@
   }
 
   async function ensureEntries() {
-    entriesPromise ??= loadChangelogEntries(locale);
-    changelogEntries = await entriesPromise;
+    const requestedLocale = locale;
+    const entries = await loadChangelogEntries(requestedLocale);
+    if (locale !== requestedLocale) return ensureEntries();
+    loadedLocale = requestedLocale;
+    changelogEntries = entries;
   }
 
   export async function open() {
-    await ensureEntries();
+    if (loadedLocale !== locale) await ensureEntries();
     if (dialog?.open) return;
     lockScroll();
     dialog.showModal();

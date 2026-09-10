@@ -4,7 +4,7 @@ build
 src/lib/generated
 static/generated
 pnpm-lock.yaml
-src/lib/content/changelog/*.svx
+src/lib/content/changelog/**/*.svx
 # Preserve manually maintained alias formatting; metadata validation checks its contents.
 data/search/character-player-aliases.json
 
