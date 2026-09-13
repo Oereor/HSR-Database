@@ -1,0 +1,569 @@
+{
+  "catalog": {
+    "description": "那众多金血忆灵的残躯中一丝尚存的疯狂，被长夜月抽取提炼，融合成了更为扭曲怪异的怪物。\n它将遵守造物主的指示，裁定何物应被记起，何物应被忘却，它会吞噬掉徒劳无功的冗余记忆，使它们在岁月中沉默。\n「新的生命若要萌芽，它的种子须是死的。」",
+    "id": "4064012",
+    "name": "迷惘之渊的裁定者",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonster": {
+      "modifiers": {
+        "attack": {
+          "ratio": "1"
+        },
+        "defence": {
+          "ratio": "1"
+        },
+        "hp": {
+          "ratio": "1"
+        },
+        "speed": {
+          "ratio": "1"
+        },
+        "stance": {
+          "ratio": "1"
+        }
+      },
+      "monsterId": "4064012",
+      "monsterTemplateId": "4064012",
+      "resistances": [
+        {
+          "element": "Ice",
+          "name": "冰",
+          "value": 0.2
+        },
+        {
+          "element": "Wind",
+          "name": "风",
+          "value": 0.2
+        },
+        {
+          "element": "Quantum",
+          "name": "量子",
+          "value": 0.2
+        }
+      ],
+      "skillPhases": [
+        {
+          "index": 1,
+          "skillIds": [
+            "406401201",
+            "406401202",
+            "406401203",
+            "406401204",
+            "406401205",
+            "406401208",
+            "406401209",
+            "406401211",
+            "406401210"
+          ]
+        },
+        {
+          "index": 2,
+          "skillIds": [
+            "406401201",
+            "406401202",
+            "406401203",
+            "406401204",
+            "406401205",
+            "406401206",
+            "406401207",
+            "406401208",
+            "406401209",
+            "406401211",
+            "406401210"
+          ]
+        }
+      ],
+      "skills": [
+        {
+          "damageType": {
+            "element": "Imaginary",
+            "name": "虚数"
+          },
+          "description": "对指定我方单体造成虚数属性伤害，若目标持有护盾则触发【<u>壁垒反震</u>】。",
+          "extraEffects": [
+            {
+              "description": "削减自身韧性，该削韧效果不会使韧性值被削减至低于1点。",
+              "id": "240640121",
+              "name": "壁垒反震"
+            }
+          ],
+          "id": "406401201",
+          "kind": "skill",
+          "kindLabel": "技能",
+          "localizedTextStatus": "available",
+          "name": "罪血嚼齿",
+          "phases": [
+            1,
+            2
+          ],
+          "tag": {
+            "code": "SingleAttack",
+            "known": true,
+            "label": "单攻"
+          }
+        },
+        {
+          "description": "召唤【金血忆灵•雉形】，每个召唤物被消灭时，触发【<u>壁垒反震</u>】。",
+          "extraEffects": [
+            {
+              "description": "削减自身韧性，该削韧效果不会使韧性值被削减至低于1点。",
+              "id": "240640121",
+              "name": "壁垒反震"
+            }
+          ],
+          "id": "406401202",
+          "kind": "skill",
+          "kindLabel": "技能",
+          "localizedTextStatus": "available",
+          "name": "执刑就位",
+          "phases": [
+            1,
+            2
+          ],
+          "tag": {
+            "code": "Summon",
+            "known": true,
+            "label": "召唤"
+          }
+        },
+        {
+          "description": "锁定指定我方角色，使自身的速度提高，并在数个回合内对该目标施放【罪血嚼齿】和【罪血锯刑】。施放该技能后再行动1次。",
+          "extraEffects": [],
+          "id": "406401203",
+          "kind": "skill",
+          "kindLabel": "技能",
+          "localizedTextStatus": "available",
+          "name": "罪血眈视",
+          "phases": [
+            1,
+            2
+          ],
+          "tag": {
+            "code": "LockOn",
+            "known": true,
+            "label": "锁定"
+          }
+        },
+        {
+          "damageType": {
+            "element": "Imaginary",
+            "name": "虚数"
+          },
+          "description": "对指定我方单体目标造成大量虚数属性伤害，使目标降低生命值的一部分转化为【<u>侵蚀</u>】，若目标持有护盾则触发【<u>壁垒反震</u>】。",
+          "extraEffects": [
+            {
+              "description": "攻击后回复侵蚀部分的生命值，击中的目标数量越多，回复的生命值越高。受到伤害时，降低生命值的一部分转化为侵蚀。消耗生命值时，降低的生命值会全部转化为侵蚀。通过回复生命值的方式解除侵蚀时，使自身获得【焕新】效果。【焕新】：下次攻击造成的伤害提高。",
+              "id": "240320101",
+              "name": "侵蚀"
+            },
+            {
+              "description": "削减自身韧性，该削韧效果不会使韧性值被削减至低于1点。",
+              "id": "240640121",
+              "name": "壁垒反震"
+            }
+          ],
+          "id": "406401204",
+          "kind": "skill",
+          "kindLabel": "技能",
+          "localizedTextStatus": "available",
+          "name": "罪血锯刑",
+          "phases": [
+            1,
+            2
+          ],
+          "tag": {
+            "code": "SingleAttack",
+            "known": true,
+            "label": "单攻"
+          }
+        },
+        {
+          "damageType": {
+            "element": "Imaginary",
+            "name": "虚数"
+          },
+          "description": "对我方全体目标造成大量虚数属性伤害，使目标降低生命值的一部分转化为【<u>侵蚀</u>】。",
+          "extraEffects": [
+            {
+              "description": "攻击后回复侵蚀部分的生命值，击中的目标数量越多，回复的生命值越高。受到伤害时，降低生命值的一部分转化为侵蚀。消耗生命值时，降低的生命值会全部转化为侵蚀。通过回复生命值的方式解除侵蚀时，使自身获得【焕新】效果。【焕新】：下次攻击造成的伤害提高。",
+              "id": "240320101",
+              "name": "侵蚀"
+            }
+          ],
+          "id": "406401205",
+          "kind": "skill",
+          "kindLabel": "技能",
+          "localizedTextStatus": "available",
+          "name": "罪血钳刑",
+          "phases": [
+            1,
+            2
+          ],
+          "tag": {
+            "code": "AoEAttack",
+            "known": true,
+            "label": "群攻"
+          }
+        },
+        {
+          "description": "进入蓄力状态，下次行动时施放【罪血枭首】，选择1名我方角色承受【罪血枭首】的最高伤害和【<u>罪血腐蚀</u>】。",
+          "extraEffects": [
+            {
+              "description": "回合开始时受到固定数值虚数属性伤害。",
+              "id": "240620202",
+              "name": "罪血腐蚀"
+            }
+          ],
+          "id": "406401206",
+          "kind": "skill",
+          "kindLabel": "技能",
+          "localizedTextStatus": "available",
+          "name": "指名祸首",
+          "phases": [
+            2
+          ],
+          "tag": {
+            "code": "Charge",
+            "known": true,
+            "label": "蓄力"
+          }
+        },
+        {
+          "damageType": {
+            "element": "Imaginary",
+            "name": "虚数"
+          },
+          "description": "对被【指名祸首】选中的角色以外的我方角色造成虚数属性伤害，对被【指名祸首】选中的我方角色造成大量虚数属性伤害，并根据该角色受到的未被护盾抵消的伤害的数值，对其施加【<u>罪血腐蚀</u>】。",
+          "extraEffects": [
+            {
+              "description": "回合开始时受到固定数值虚数属性伤害。",
+              "id": "240620202",
+              "name": "罪血腐蚀"
+            }
+          ],
+          "id": "406401207",
+          "kind": "skill",
+          "kindLabel": "技能",
+          "localizedTextStatus": "available",
+          "name": "罪血枭首",
+          "phases": [
+            2
+          ],
+          "tag": {
+            "code": "AoEAttack",
+            "known": true,
+            "label": "群攻"
+          }
+        },
+        {
+          "description": "战斗开始时和转阶段时，自身进入【强化防御】状态，大幅提高自身防御力。被弱点击破后，解除【强化防御】状态。",
+          "extraEffects": [],
+          "id": "406401208",
+          "kind": "skill",
+          "kindLabel": "技能",
+          "localizedTextStatus": "available",
+          "name": "皮糙肉厚",
+          "phases": [
+            1,
+            2
+          ],
+          "tag": {
+            "code": "Talent",
+            "known": true,
+            "label": "天赋"
+          }
+        },
+        {
+          "description": "触发【<u>壁垒反震</u>】时，自身获得1层防御力降低。",
+          "extraEffects": [
+            {
+              "description": "削减自身韧性，该削韧效果不会使韧性值被削减至低于1点。",
+              "id": "240640121",
+              "name": "壁垒反震"
+            }
+          ],
+          "id": "406401209",
+          "kind": "skill",
+          "kindLabel": "技能",
+          "localizedTextStatus": "available",
+          "name": "壁垒反震",
+          "phases": [
+            1,
+            2
+          ],
+          "tag": {
+            "code": "Talent",
+            "known": true,
+            "label": "天赋"
+          }
+        },
+        {
+          "description": "战斗开始时和转阶段时，自身分裂为【金血忆灵•雉形】、【金血忆灵•犬形】和【金血忆灵•翼蛇形】，且这些【金血忆灵】获得【<u>合而为一</u>】，自身获得【血脉衰弱】。\n拥有【<u>合而为一</u>】的【金血忆灵】每次行动后，自身减少1点【血脉衰弱】。\n当拥有【<u>合而为一</u>】的【金血忆灵】全部陷入【<u>假死</u>】状态时，它们重新合体成为【迷惘之渊的裁定者】，基于此时剩余的【血脉衰弱】的数量，削减【迷惘之渊的裁定者】的韧性。",
+          "extraEffects": [
+            {
+              "description": "受到致命伤害时陷入【假死】状态。当拥有【合而为一】的【金血忆灵】全部陷入【假死】状态时，它们重新合体为【迷惘之渊的裁定者】。",
+              "id": "240640122",
+              "name": "合而为一"
+            },
+            {
+              "description": "无法被选中，无法行动。",
+              "id": "240640123",
+              "name": "假死"
+            }
+          ],
+          "id": "406401211",
+          "kind": "skill",
+          "kindLabel": "技能",
+          "localizedTextStatus": "available",
+          "name": "化整为零",
+          "phases": [
+            1,
+            2
+          ],
+          "tag": {
+            "code": "Talent",
+            "known": true,
+            "label": "天赋"
+          }
+        },
+        {
+          "description": "自身及自身的召唤物获得【劣化残躯】。若我方对拥有【劣化残躯】的敌方单位施放攻击时施加了负面状态，则少量削减该敌方单位的韧性，并使其受到真实伤害。",
+          "extraEffects": [],
+          "id": "406401210",
+          "kind": "skill",
+          "kindLabel": "技能",
+          "localizedTextStatus": "available",
+          "name": "劣化残躯",
+          "phases": [
+            1,
+            2
+          ],
+          "tag": {
+            "code": "Talent",
+            "known": true,
+            "label": "天赋"
+          }
+        }
+      ],
+      "specialResistances": [
+        {
+          "code": "STAT_CTRL",
+          "label": "控制抵抗",
+          "value": "0.75"
+        }
+      ],
+      "stats": {
+        "defaultLevel": 95,
+        "maxLevel": 100,
+        "minLevel": 1,
+        "selectedLevel": {
+          "attack": {
+            "status": "resolved",
+            "value": "718.017030"
+          },
+          "defence": {
+            "status": "resolved",
+            "value": "1149.99990"
+          },
+          "effectHit": {
+            "status": "resolved",
+            "value": "0.36"
+          },
+          "effectResistance": {
+            "status": "resolved",
+            "value": "0.4"
+          },
+          "hp": {
+            "status": "resolved",
+            "value": "8214365.98800"
+          },
+          "level": 95,
+          "speed": {
+            "status": "resolved",
+            "value": "190.08"
+          },
+          "toughness": {
+            "status": "resolved",
+            "value": "120"
+          }
+        }
+      },
+      "summons": [
+        {
+          "href": "/enemies/4062010",
+          "monsterId": "406201002",
+          "monsterTemplateId": "4062010",
+          "name": "金血忆灵•雉形",
+          "rank": "MinionLv2",
+          "weaknesses": [
+            {
+              "element": "Physical",
+              "name": "物理"
+            },
+            {
+              "element": "Fire",
+              "name": "火"
+            }
+          ]
+        },
+        {
+          "href": "/enemies/4062020",
+          "monsterId": "406202002",
+          "monsterTemplateId": "4062020",
+          "name": "金血忆灵•犬形",
+          "rank": "MinionLv2",
+          "weaknesses": [
+            {
+              "element": "Ice",
+              "name": "冰"
+            },
+            {
+              "element": "Imaginary",
+              "name": "虚数"
+            }
+          ]
+        },
+        {
+          "href": "/enemies/4063010",
+          "monsterId": "406301003",
+          "monsterTemplateId": "4063010",
+          "name": "金血忆灵•翼蛇形",
+          "rank": "Elite",
+          "weaknesses": [
+            {
+              "element": "Physical",
+              "name": "物理"
+            },
+            {
+              "element": "Fire",
+              "name": "火"
+            },
+            {
+              "element": "Ice",
+              "name": "冰"
+            }
+          ]
+        }
+      ],
+      "weaknesses": [
+        {
+          "element": "Physical",
+          "name": "物理"
+        },
+        {
+          "element": "Fire",
+          "name": "火"
+        },
+        {
+          "element": "Lightning",
+          "name": "雷"
+        },
+        {
+          "element": "Imaginary",
+          "name": "虚数"
+        }
+      ]
+    },
+    "defaultMonsterId": "4064012",
+    "description": "那众多金血忆灵的残躯中一丝尚存的疯狂，被长夜月抽取提炼，融合成了更为扭曲怪异的怪物。\n它将遵守造物主的指示，裁定何物应被记起，何物应被忘却，它会吞噬掉徒劳无功的冗余记忆，使它们在岁月中沉默。\n「新的生命若要萌芽，它的种子须是死的。」",
+    "id": "4064012",
+    "kind": "enemy",
+    "name": "迷惘之渊的裁定者",
+    "rank": "LittleBoss",
+    "selectors": [
+      {
+        "eliteGroup": "1",
+        "hardLevelGroup": "1",
+        "monsterId": "4064012"
+      },
+      {
+        "eliteGroup": "1",
+        "hardLevelGroup": "1",
+        "monsterId": "406401201"
+      },
+      {
+        "eliteGroup": "1",
+        "hardLevelGroup": "1",
+        "monsterId": "406401202"
+      },
+      {
+        "eliteGroup": "1",
+        "hardLevelGroup": "1",
+        "monsterId": "406401203"
+      },
+      {
+        "eliteGroup": "1",
+        "hardLevelGroup": "1",
+        "monsterId": "406401204"
+      }
+    ],
+    "template": {
+      "baseStats": {
+        "attack": "18",
+        "criticalDamage": "0.2",
+        "defence": "210",
+        "effectResistance": "0.3",
+        "hp": "27900",
+        "initialDelayRatio": "1",
+        "speed": "144",
+        "stance": "360"
+      },
+      "monsterTemplateId": "4064012",
+      "name": "迷惘之渊的裁定者",
+      "rank": "LittleBoss"
+    },
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4064012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4064012",
+    "selectableMonsterIds": [
+      "4064012",
+      "406401201",
+      "406401202",
+      "406401203",
+      "406401204"
+    ]
+  }
+}

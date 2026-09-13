@@ -93,6 +93,13 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 | `pnpm deploy:build`     | 使用固定 upstream 版本执行完整部署构建 |
 | `pnpm upstreams:update` | 检查并更新 upstream lock               |
 
+### 命令准备职责
+
+`pnpm product:baseline:check`、`pnpm product:baseline:update` 和
+`pnpm product:baseline:search:update` 是 self-preparing 命令。它们会依次准备站点消息、产品数据、敌人资源和通用视觉资源，再捕获当前产品输出。fixture 更新仍然只能通过带有明确 `--reason` 的 update 命令执行。
+
+`pnpm test` 和 `pnpm data:validate` 使用 prepared-workspace 模型，不会自行准备全部 generated inputs。clean pinned workspace 应先运行 `pnpm ci:prepare`；普通 `pnpm build`、CI 和部署命令继续保持各自现有的准备职责。
+
 ## 项目结构
 
 ```text

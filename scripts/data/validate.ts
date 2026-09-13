@@ -20,17 +20,14 @@ import type {
   DataManifest,
   Enemy,
   HomepageRecentWarpData,
-  LightCone,
-  RelicCatalogEntry,
-  RelicProperty,
-  RelicSet,
-  RelicSlot
+  LightCone
 } from '../../src/lib/domain/types.js';
 import {
   collectEndgameSearchOccurrences,
   collectEndgameSearchTargets,
   endgameOccurrenceLocatorKey,
   GLOBAL_SEARCH_SCHEMA_VERSION,
+  type EndgameOccurrenceShard,
   type GlobalSearchIndex
 } from '../../src/lib/domain/search-index.js';
 import type {
@@ -40,7 +37,6 @@ import type {
   EnemyOccurrence
 } from '../../src/lib/domain/endgame.js';
 import { isElementType } from '../../src/lib/domain/elements.js';
-import { getBaseStatsAtLevel } from '../../src/lib/domain/stats.js';
 import { gameTextToPlain } from '../../src/lib/domain/game-text.js';
 import { SKILL_EFFECT_LABELS } from './skill-combat.js';
 import { isPlayerFacingSkillConfig } from './skills.js';
@@ -63,8 +59,7 @@ import {
   decimalOf,
   decimalEquals,
   internalStanceToToughness,
-  multiplyDecimals,
-  parseDecimal
+  multiplyDecimals
 } from './decimal.js';
 import type { EndgameAudit } from './endgame.js';
 import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-fiction-hp.js';
@@ -78,6 +73,16 @@ import {
   buildHomepageRecentWarpData,
   type HomepageGachaRow
 } from './homepage.js';
+import { buildEndgameOccurrenceShards } from './endgame-occurrence-shards.js';
+import { getLocaleProjectionPolicy } from './projection/policy.js';
+import {
+  assertValidationReport,
+  mergeValidationReports,
+  validateLocalizationHealth,
+  validateProductProjection,
+  validateRelationAudits,
+  type ProductProjectionForValidation
+} from './robustness-invariants.js';
 
 const manifest: DataManifest = await readDataManifest();
 await validateGeneratedArtifacts(manifest);
@@ -140,7 +145,7 @@ const audit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'ut
   textDiagnostics: TextDiagnosticSummary;
   descriptionDiagnostics: DescriptionDiagnosticSummary;
   missingTextAudit: MissingTextAudit;
-  skillCombatAudit: { unknownEffects: string[] };
+  skillCombatAudit: { unknownEffects: string[]; unsupportedHiddenDiscriminants?: string[] };
   avatarSpecialSkillTreeAudit: AvatarSpecialSkillTreeAudit;
   specialEffectAudit: SpecialEffectAudit;
   enemyAudit: {
@@ -153,24 +158,14 @@ const audit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'ut
     missingAttributes: Record<string, string[]>;
   };
   endgameAudit: EndgameAudit;
+  localeAudits: Record<
+    Locale,
+    {
+      localizationHealth: import('./localization.js').LocalizationHealthSummary;
+      enemyAudit: import('./robustness-invariants.js').EnemyRelationAudit;
+    }
+  >;
 };
-for (const [sourceName, expectedRows] of [
-  ['AvatarConfigLD', 4],
-  ['ItemConfigAvatarLD', 4],
-  ['AvatarSkillConfigLD', 293],
-  ['AvatarSkillLink', 2],
-  ['AvatarSpecialSkillTree', 2],
-  ['AvatarSkillTreeConfigLD', 200],
-  ['AvatarRankConfigLD', 24],
-  ['AvatarPromotionConfigLD', 28],
-  ['AvatarGlobalBuffConfig', 2],
-  ['AvatarServantSkillLink', 14],
-  ['ChallengeBossMazeExtra', 80],
-  ['MonsterGuideConfig', 84],
-  ['MonsterGuideTag', 68]
-] as const)
-  if (audit.upstreamTables?.[sourceName] !== expectedRows)
-    throw new Error(`${sourceName} 上游来源计数异常：${audit.upstreamTables?.[sourceName]}`);
 const textDiagnostics = audit.textDiagnostics;
 if (!textDiagnostics) throw new Error('生成审计缺少 TextMap 诊断摘要');
 if (textDiagnostics['invalid-reference'].count) {
@@ -199,6 +194,14 @@ if (!audit.avatarSpecialSkillTreeAudit) throw new Error('生成审计缺少 Avat
 if (!audit.specialEffectAudit) throw new Error('生成审计缺少 Character Special Effect 诊断');
 if (!audit.endgameAudit) throw new Error('生成审计缺少 Endgame 诊断摘要');
 if (!audit.enemyAudit) throw new Error('生成审计缺少 Enemy 诊断摘要');
+if (audit.skillCombatAudit.unknownEffects.length)
+  console.warn(
+    `Character schema 警告：${audit.skillCombatAudit.unknownEffects.length} 个已分类 SkillEffect fallback；首个样本：${audit.skillCombatAudit.unknownEffects[0]}`
+  );
+if (audit.skillCombatAudit.unsupportedHiddenDiscriminants?.length)
+  console.warn(
+    `Character schema 警告：${audit.skillCombatAudit.unsupportedHiddenDiscriminants.length} 个 hidden/unreachable skill discriminant；首个样本：${audit.skillCombatAudit.unsupportedHiddenDiscriminants[0]}`
+  );
 if (audit.endgameAudit.coreErrors.count)
   throw new Error(`Endgame 存在 ${audit.endgameAudit.coreErrors.count} 个核心关联错误`);
 
@@ -366,230 +369,6 @@ for (const mode of endgameModes) {
   }
 }
 
-const expectedMazeBuffAudit = {
-  distinctReferenced: 329,
-  resolved: 329,
-  displayReady: 322,
-  missingLocalization: 7,
-  missingIconPath: 0,
-  missingDescriptionParams: 0,
-  unusedParams: 78
-};
-if (JSON.stringify(audit.endgameAudit.mazeBuffs) !== JSON.stringify(expectedMazeBuffAudit))
-  throw new Error('Endgame MazeBuff 解析审计与当前权威配置不一致');
-
-const expectedAsBossGuideAudit = {
-  slotRelations: 163,
-  applicableTraitRelations: 452,
-  displayReadyTraits: 446,
-  omittedTraitRelations: 6,
-  guideStageMonsterMismatches: 12,
-  missingMazeExtras: 0,
-  missingSlotBindings: 0,
-  missingGuides: 0,
-  missingTags: 0,
-  missingLocalization: 0,
-  arrayLengthMismatches: 0,
-  difficultyMismatches: 0,
-  duplicateTags: 0,
-  linkedEffectRelations: 181,
-  displayReadyLinkedEffects: 181,
-  omittedLinkedEffects: 0,
-  distinctMalformedTags: 1,
-  distinctUnusedParamTags: 22
-};
-if (JSON.stringify(audit.endgameAudit.asBossGuides) !== JSON.stringify(expectedAsBossGuideAudit))
-  throw new Error('AS 首领特性解析审计与当前权威配置不一致');
-
-const mocTurbulence = endgame.moc.groups
-  .find((group) => group.groupId === 1034)
-  ?.encounters.find((encounter) => encounter.configId === 5312)?.memoryTurbulence;
-const mocTurbulenceText = gameTextToPlain(mocTurbulence?.buff.description);
-if (
-  mocTurbulence?.buff.id !== 3030147 ||
-  mocTurbulence.buff.name !== '记忆紊流' ||
-  !mocTurbulenceText.includes('80%') ||
-  !mocTurbulenceText.includes('1回合') ||
-  mocTurbulence.groupReference?.mazeBuffId !== 3030147
-)
-  throw new Error('MoC 1034/5312 记忆紊流 relation 或展示文本异常');
-
-const pfModifierGroup = endgame.pf.groups.find((group) => group.groupId === 2025);
-const pfEncounterBase = pfModifierGroup?.encounters.find(
-  (encounter) => encounter.configId === 20254
-)?.baseMechanic;
-if (
-  pfModifierGroup?.groupBaseMechanic?.mazeBuffId !== 3031230 ||
-  pfModifierGroup.groupBaseMechanic.display !== undefined ||
-  pfEncounterBase?.mazeBuffId !== 3031230 ||
-  pfEncounterBase.display !== undefined ||
-  pfModifierGroup.battleWillMechanics.map(({ buff }) => buff.id).join(',') !==
-    '3031232,3031233,3031234' ||
-  pfModifierGroup.cacophony?.options.map(({ buff }) => buff.id).join(',') !==
-    '3031363,3031364,3031365'
-)
-  throw new Error('PF 2025 base、战意机制或荒腔走板 relation 异常');
-if (
-  pfModifierGroup.battleWillMechanics.some(({ buff }) =>
-    pfModifierGroup.cacophony?.options.some((option) => option.buff.id === buff.id)
-  )
-)
-  throw new Error('PF fixed mechanics 与 selectable options 被错误混合');
-
-const asModifierGroup = endgame.as.groups.find((group) => group.groupId === 3020);
-const asAftertaste = asModifierGroup?.encounters.find(
-  (encounter) => encounter.configId === 30204
-)?.aftertaste;
-const asBossGuides = asModifierGroup?.encounters.find(
-  (encounter) => encounter.configId === 30204
-)?.bossGuides;
-if (
-  asAftertaste?.buff.id !== 3110018 ||
-  asAftertaste.buff.name !== '末法余烬' ||
-  asAftertaste.stageBindings.length !== 3 ||
-  asAftertaste.stageBindings.some((binding) => binding.mazeBuffId !== 3110018) ||
-  JSON.stringify(
-    asModifierGroup?.axiomSets.map((set) => [set.slot, set.options.map(({ buff }) => buff.id)])
-  ) !==
-    JSON.stringify([
-      [1, [3111092, 3111065, 3111089]],
-      [2, [3111093, 3111080, 3111058]],
-      [3, [3111089, 3111079, 3111068]]
-    ])
-)
-  throw new Error('AS 3020/30204 末法余烬、stage binding 或终焉公理 relation 异常');
-const asSlotOneGuide = asBossGuides?.find((guide) => guide.slot === 1);
-const asSlotThreeGuide = asBossGuides?.find((guide) => guide.slot === 3);
-if (
-  asBossGuides?.length !== 3 ||
-  asSlotOneGuide?.guideMonsterId !== 202401604 ||
-  asSlotOneGuide.traits.map((trait) => trait.tagId).join(',') !== '101701,101702,101703,101704' ||
-  asSlotOneGuide.traits.map((trait) => trait.name).join(',') !==
-    '坚防守备,丰亨豫大,如鹿添翼,仙光夺目' ||
-  !gameTextToPlain(asSlotOneGuide.traits[0]?.description).includes('50%') ||
-  !gameTextToPlain(asSlotOneGuide.traits[0]?.description).includes('100%') ||
-  (asSlotOneGuide.traits[0]?.linkedEffects ?? []).length !== 0 ||
-  (asSlotOneGuide.traits[3]?.linkedEffects ?? []).map((effect) => effect.id).join(',') !==
-    '220240163' ||
-  (asSlotThreeGuide?.traits[1]?.linkedEffects ?? []).map((effect) => effect.id).join(',') !==
-    '501401001,70000318'
-)
-  throw new Error('AS 3020/30204 关卡效果 relation、参数插值或 EffectID 解析异常');
-
-const aaModifierGroup = endgame.aa.groups.find((group) => group.groupId === 8);
-const aaNormal = aaModifierGroup?.encounters.find((encounter) => encounter.id === '804:normal');
-const aaHard = aaModifierGroup?.encounters.find((encounter) => encounter.id === '804:hard');
-if (
-  aaNormal?.traits.map(({ buff }) => buff.id).join(',') !== '3033069,3033051' ||
-  aaHard?.traits.map(({ buff }) => buff.id).join(',') !== '3033070,3033052' ||
-  aaNormal.judgmentQuadrantKey !== 'aa:804:BuffList' ||
-  aaHard.judgmentQuadrantKey !== aaNormal.judgmentQuadrantKey ||
-  aaModifierGroup?.judgmentQuadrant?.options.map(({ buff }) => buff.id).join(',') !==
-    '3033066,3033068,3033067'
-)
-  throw new Error('AA 8/804 normal/hard traits 或裁决象限 relation 异常');
-
-const legacyEndgameDigests: Record<EndgameMode, string> = {
-  moc: '687426d6ce47b9c9d317cbc7e8a1241e8a7639ac00231a9c4a80e021224d191d',
-  pf: 'cb34270ddf74c8e06304b47b0725458ca5c1a20eee5f9b14390b5170c7e070d9',
-  as: '015183494e922c2b6d9a3a0f720870457f3210aaaa12628dabd46aea931439f2',
-  aa: 'f75ed2b81b95884881683ec394d6c054c39d52ecc990a84773cc3a0c5e9af155'
-};
-const modifierGroupFields: Record<EndgameMode, string[]> = {
-  moc: [],
-  pf: ['groupBaseMechanic', 'battleWillMechanics', 'cacophony'],
-  as: ['axiomSets'],
-  aa: ['judgmentQuadrant']
-};
-const modifierEncounterFields: Record<EndgameMode, string[]> = {
-  moc: ['memoryTurbulence'],
-  pf: ['baseMechanic'],
-  as: ['aftertaste', 'bossGuides'],
-  aa: ['traits', 'judgmentQuadrantKey']
-};
-for (const mode of endgameModes) {
-  const projection = structuredClone(endgame[mode].groups);
-  for (const group of projection) {
-    const groupRecord = group as unknown as Record<string, unknown>;
-    for (const field of modifierGroupFields[mode]) delete groupRecord[field];
-    for (const encounter of group.encounters) {
-      const encounterRecord = encounter as unknown as Record<string, unknown>;
-      for (const field of modifierEncounterFields[mode]) delete encounterRecord[field];
-    }
-  }
-  const digest = createHash('sha256').update(JSON.stringify(projection)).digest('hex');
-  if (digest !== legacyEndgameDigests[mode])
-    throw new Error(`Endgame ${mode} 既有 hierarchy/敌方数据 projection 发生变化`);
-}
-
-function fixtureOccurrence(
-  mode: EndgameMode,
-  groupId: number,
-  configId: number,
-  stageId: number,
-  monsterId: number
-): { stage: EndgameStage; occurrence: EnemyOccurrence } {
-  const group = endgame[mode].groups.find((item) => item.groupId === groupId);
-  const stage = group?.encounters
-    .filter((item) => item.configId === configId)
-    .flatMap((item) => item.battles)
-    .flatMap((battle) => battle.stages)
-    .find((item) => item.stageId === stageId);
-  const occurrence = stage?.waveModel
-    ? occurrencesOf(stage).find((item) => item.monsterId === monsterId)
-    : undefined;
-  if (!stage || !occurrence)
-    throw new Error(
-      `缺少 Endgame 回归样本：${mode}/${groupId}/${configId}/${stageId}/${monsterId}`
-    );
-  return { stage, occurrence };
-}
-
-const hpFixtures = [
-  ['moc', 1034, 5312, 30124121, 3024020, '11347628.66250'],
-  ['pf', 2025, 20254, 30323041, 100402014, '1444452.47100'],
-  ['as', 3019, 30194, 420484, 401401304, '14628489.139950'],
-  ['aa', 8, 804, 30508022, 501403002, '63467351.45020015200']
-] as const;
-for (const [mode, groupId, configId, stageId, monsterId, expectedHp] of hpFixtures) {
-  const fixture = fixtureOccurrence(mode, groupId, configId, stageId, monsterId);
-  if (!decimalEquals(fixture.occurrence.hp.baseEncounterMaxHpPerBar, parseDecimal(expectedHp)))
-    throw new Error(`Endgame ${mode} base HP 回归失败：MonsterID ${monsterId}`);
-}
-
-const pfFinalHpFixtures = [
-  [30323041, 5012010, '218856'],
-  [30323041, 5012020, '196971'],
-  [30323041, 501211002, '525255'],
-  [30323041, 100402014, '57778097'],
-  [30323042, 5014023, '52000287'],
-  [30323043, 202401406, '72222634']
-] as const;
-for (const [stageId, monsterId, expectedHp] of pfFinalHpFixtures) {
-  const final = fixtureOccurrence('pf', 2025, 20254, stageId, monsterId).occurrence.hp.final;
-  if (final.status !== 'resolved' || !decimalEquals(final.maxHpPerBar, parseDecimal(expectedHp)))
-    throw new Error(`PF final HP 回归失败：Stage ${stageId} MonsterID ${monsterId}`);
-}
-
-const stanceFixtures = [
-  [302401304, 420474, '900', '300'],
-  [401401304, 420484, '1440', '480'],
-  [300402104, 420494, '570', '190']
-] as const;
-for (const [monsterId, stageId, expectedInternal, expectedDisplay] of stanceFixtures) {
-  const occurrence = fixtureOccurrence('as', 3019, 30194, stageId, monsterId).occurrence;
-  if (
-    occurrence.toughness.internalStance.status !== 'resolved' ||
-    !decimalEquals(
-      occurrence.toughness.internalStance.resolvedInternal,
-      parseDecimal(expectedInternal)
-    ) ||
-    occurrence.toughness.display.status !== 'resolved' ||
-    !decimalEquals(occurrence.toughness.display.perBar, parseDecimal(expectedDisplay))
-  )
-    throw new Error(`Endgame AS 韧性单位回归失败：MonsterID ${monsterId}`);
-}
-
 const stanceAudit = audit.endgameAudit.stanceConversion;
 const totalEndgameOccurrences = endgameModes.reduce(
   (total, mode) =>
@@ -615,24 +394,6 @@ if (stanceAudit.nonDivisibleByThree)
 if (stanceAudit.nonPositiveDisplay)
   console.warn(`Endgame 警告：${stanceAudit.nonPositiveDisplay} 个玩家韧性值不是正数`);
 
-const aaFixture = fixtureOccurrence('aa', 7, 704, 30507021, 802501003);
-if (!aaFixture.stage.previewMonsterIds.includes(5012010))
-  throw new Error('AA 回归失败：未保留 StageConfig preview MonsterID 5012010');
-if (occurrencesOf(aaFixture.stage).some((item) => item.monsterId === 5012010))
-  throw new Error('AA 回归失败：preview MonsterID 被错误用作实际生成敌人');
-
-for (const [mode, groupId, configId] of [
-  ['moc', 1034, 5312],
-  ['pf', 2025, 20254],
-  ['as', 3020, 30204]
-] as const) {
-  const encounter = endgame[mode].groups
-    .find((group) => group.groupId === groupId)
-    ?.encounters.find((item) => item.configId === configId);
-  if (encounter?.battles.length !== 3)
-    throw new Error(`Endgame ${mode} Tierce 回归失败：${groupId}/${configId}`);
-}
-
 const expected: Record<string, number> = {
   characters: manifest.counts.characters,
   'light-cones': manifest.counts.lightCones,
@@ -651,56 +412,6 @@ for (const [category, count] of Object.entries(expected)) {
   for (const item of catalog)
     await access(path.join(categoryRoot, 'details', category, `${item.id}.json`));
 }
-
-const relicProperties = JSON.parse(
-  await readFile(path.join(productRoot, 'catalogs', 'relic-properties.json'), 'utf8')
-) as RelicProperty[];
-if (relicProperties.length !== manifest.counts.relicProperties || relicProperties.length !== 21)
-  throw new Error(`遗器属性数量异常：${relicProperties.length}`);
-if (
-  new Set(relicProperties.map((property) => property.propertyType)).size !== relicProperties.length
-)
-  throw new Error('遗器属性存在重复 PropertyType');
-const relicPropertiesByType = new Map(
-  relicProperties.map((property) => [property.propertyType, property])
-);
-const relicCatalog = JSON.parse(
-  await readFile(path.join(productRoot, 'catalogs', 'relics.json'), 'utf8')
-) as RelicCatalogEntry[];
-if (relicCatalog.filter((set) => set.category === 'cavern').length !== 32)
-  throw new Error('隧洞遗器套装数量异常');
-if (relicCatalog.filter((set) => set.category === 'planar').length !== 28)
-  throw new Error('位面饰品套装数量异常');
-const relicCatalogById = new Map(relicCatalog.map((set) => [set.id, set]));
-const relicDetails = await Promise.all(
-  manifest.routes.relics.map(
-    async (id) =>
-      JSON.parse(
-        await readFile(path.join(productRoot, 'details', 'relics', `${id}.json`), 'utf8')
-      ) as RelicSet
-  )
-);
-const cavernSlots = new Set<RelicSlot>(['HEAD', 'HAND', 'BODY', 'FOOT']);
-const planarSlots = new Set<RelicSlot>(['NECK', 'OBJECT']);
-const relicPieceIds = new Set<string>();
-for (const set of relicDetails) {
-  const expectedSlots = set.category === 'cavern' ? cavernSlots : planarSlots;
-  if (
-    set.pieces.length !== expectedSlots.size ||
-    set.pieces.some((piece) => !expectedSlots.has(piece.slot))
-  )
-    throw new Error(`遗器套装 ${set.id} 的部件槽位与分类不一致`);
-  for (const piece of set.pieces) {
-    if (!/^\d+$/.test(piece.id)) throw new Error(`遗器套装 ${set.id} 包含非法部件 ID`);
-    if (relicPieceIds.has(piece.id)) throw new Error(`遗器部件 ID 重复：${piece.id}`);
-    relicPieceIds.add(piece.id);
-  }
-  if (set.effects.some((effect) => effect.required !== 2 && effect.required !== 4))
-    throw new Error(`遗器套装 ${set.id} 包含未知套装效果需求`);
-  if (set.effectRequirements.join(',') !== set.effects.map((effect) => effect.required).join(','))
-    throw new Error(`遗器套装 ${set.id} 的目录效果需求与详情不一致`);
-}
-if (relicPieceIds.size !== 184) throw new Error(`遗器部件数量异常：${relicPieceIds.size}`);
 
 const enemyDetails = await Promise.all(
   manifest.routes.enemies.map(
@@ -780,13 +491,6 @@ for (const enemy of enemyDetails) {
     );
     if (JSON.stringify(monster.stats) !== JSON.stringify(expectedMonsterStats))
       throw new Error(`Monster ${monster.monsterId} 等级属性未通过共享 resolver 重算`);
-    if (
-      monster.stats.minLevel !== 1 ||
-      monster.stats.maxLevel !== 100 ||
-      monster.stats.defaultLevel !== 95 ||
-      monster.stats.levels.length !== 100
-    )
-      throw new Error(`Monster ${monster.monsterId} Lv.1–100 属性范围异常`);
     if (
       monster.resistances.some(
         (resistance) => !isElementType(resistance.element) || !resistance.value
@@ -916,13 +620,10 @@ if (
   throw new Error('Enemy canonical join 审计摘要异常');
 if (audit.enemyAudit.weaknessResistanceConflicts.length !== weaknessResistanceConflictCount)
   throw new Error('Enemy 弱点/抗性冲突审计摘要异常');
-for (const [label, unresolved] of [
-  ['DebuffResist', audit.enemyAudit.unknownDebuffResist],
-  ['summon', audit.enemyAudit.unresolvedSummons],
-  ['skill', audit.enemyAudit.unresolvedSkills],
-  ['ExtraEffect', audit.enemyAudit.unresolvedExtraEffects]
-] as const)
-  if (unresolved.length) console.warn(`Enemy 警告：${unresolved.length} 个 unresolved ${label}`);
+if (audit.enemyAudit.unknownDebuffResist.length)
+  console.warn(
+    `Enemy 警告：${audit.enemyAudit.unknownDebuffResist.length} 个已分类 DebuffResist fallback`
+  );
 const search = JSON.parse(
   await readFile(path.join(staticGeneratedRoot, 'zh-CN', 'search.json'), 'utf8')
 ) as GlobalSearchIndex;
@@ -963,12 +664,6 @@ if (new Set(indexedLocatorKeys).size !== indexedLocatorKeys.length)
   throw new Error('Endgame 搜索 locator 不唯一');
 
 let emptySkillDescriptions = 0;
-let skillVariantCount = 0;
-let statTraceCount = 0;
-let abilityTraceCount = 0;
-const observedTypeFiveIds = new Set<string>();
-let traceDependencyCount = 0;
-const traceDependencyDirections = new Map<string, number>();
 const characters = await Promise.all(
   manifest.routes.characters.map(
     async (id) =>
@@ -1020,39 +715,22 @@ const explicitlyShownSkillsByAvatar = new Map(
     ]
   )
 );
-const collectHiddenSkillIds = (
-  label: string,
-  rows: Record<string, any>[],
-  expectedHiddenRows: number,
-  expectedHiddenIds: number
-): Set<string> => {
+const collectHiddenSkillIds = (label: string, rows: Record<string, any>[]): Set<string> => {
   const groupedRows = new Map<string, Record<string, any>[]>();
   for (const row of rows) {
     const id = String(row.SkillID);
     groupedRows.set(id, [...(groupedRows.get(id) ?? []), row]);
   }
-  const hiddenRows = rows.filter((row) => row.HideInUI === true);
   const hiddenIds = new Set<string>();
   for (const [id, skillRows] of groupedRows)
     if (!isPlayerFacingSkillConfig(skillRows, `${label}.${id}`)) hiddenIds.add(id);
-  if (hiddenRows.length !== expectedHiddenRows || hiddenIds.size !== expectedHiddenIds)
-    throw new Error(
-      `${label} HideInUI 审计异常：${hiddenRows.length} rows/${hiddenIds.size} SkillID`
-    );
   return hiddenIds;
 };
-const hiddenAvatarSkillIds = collectHiddenSkillIds(
-  'AvatarSkillConfig',
-  [...rawAvatarSkills, ...rawAvatarSkillsLd],
-  357,
-  29
-);
-const hiddenServantSkillIds = collectHiddenSkillIds(
-  'AvatarServantSkillConfig',
-  rawServantSkills,
-  170,
-  17
-);
+const hiddenAvatarSkillIds = collectHiddenSkillIds('AvatarSkillConfig', [
+  ...rawAvatarSkills,
+  ...rawAvatarSkillsLd
+]);
+const hiddenServantSkillIds = collectHiddenSkillIds('AvatarServantSkillConfig', rawServantSkills);
 const validateCharacterProfile = (
   character: Character,
   mode: 'base' | 'enhanced',
@@ -1079,7 +757,6 @@ const validateCharacterProfile = (
         throw new Error(`角色 ${character.id} 的 ${card.category} progression 引用了未知变体`);
     }
     for (const variant of card.variants) {
-      skillVariantCount += 1;
       if (
         variant.source === 'avatar' &&
         hiddenAvatarSkillIds.has(variant.id) &&
@@ -1198,15 +875,13 @@ const validateCharacterProfile = (
     if (![1, 3, 5].includes(trace.sourcePointType) || trace.type !== expectedType)
       throw new Error(`角色 ${character.id} ${mode} profile 的行迹 ${trace.id} 类型映射异常`);
     if (trace.type === 'stat') {
-      statTraceCount += 1;
       if (!trace.description)
         throw new Error(
           `角色 ${character.id} ${mode} profile 的属性行迹 ${trace.id} 缺少结构化描述`
         );
-    } else abilityTraceCount += 1;
+    }
     if (trace.sourcePointType === 3 && ![2, 4, 6].includes(trace.promotionLimit ?? -1))
       throw new Error(`角色 ${character.id} ${mode} profile 的额外能力 ${trace.id} 晋阶限制异常`);
-    if (trace.sourcePointType === 5) observedTypeFiveIds.add(trace.id);
     if (!Number.isInteger(trace.anchorOrder) || trace.anchorOrder <= 0)
       throw new Error(`角色 ${character.id} ${mode} profile 的行迹 ${trace.id} 锚点顺序异常`);
     for (const effect of trace.extraEffects ?? []) {
@@ -1224,11 +899,6 @@ const validateCharacterProfile = (
         throw new Error(
           `角色 ${character.id} ${mode} profile 的行迹 ${trace.id} 引用了未知前置节点 ${prerequisiteId}`
         );
-      traceDependencyCount += 1;
-      const prerequisite = tracesById.get(prerequisiteId)!;
-      // Audit direction follows the source row's PrePoint reference: node -> prerequisite.
-      const direction = `${trace.type}->${prerequisite.type}`;
-      traceDependencyDirections.set(direction, (traceDependencyDirections.get(direction) ?? 0) + 1);
     }
   }
   for (const eidolon of profile.eidolons) {
@@ -1270,12 +940,6 @@ const profileIds = (profile: CharacterProfile): Set<string> =>
     ...profile.eidolons.map((eidolon) => eidolon.id)
   ]);
 
-const lightConeCatalog = JSON.parse(
-  await readFile(path.join(productRoot, 'catalogs', 'light-cones.json'), 'utf8')
-) as CatalogEntry[];
-const lightConeIds = new Set(lightConeCatalog.map((entry) => entry.id));
-const recommendationMainSlots = ['BODY', 'FOOT', 'NECK', 'OBJECT'] as const;
-
 for (const character of characters) {
   if (character.element && !isElementType(character.element))
     throw new Error(`角色 ${character.id} 使用未知属性：${character.element}`);
@@ -1287,126 +951,7 @@ for (const character of characters) {
     if (overlap.length)
       throw new Error(`角色 ${character.id} 的两套 profile 存在重复 ID：${overlap.join(',')}`);
   }
-  if (character.baseStats.minLevel !== 1 || character.baseStats.maxLevel !== 80)
-    throw new Error(`角色 ${character.id} 的等级范围不是 1–80`);
-  if (character.baseStats.defaultLevel !== 80)
-    throw new Error(`角色 ${character.id} 的默认等级不是 80`);
-  const level80 = getBaseStatsAtLevel(character.baseStats, 80);
-  if (![level80.hp, level80.attack, level80.defence].every(Number.isFinite))
-    throw new Error(`角色 ${character.id} 的 Lv.80 属性无效`);
-  const recommendation = character.equipmentRecommendation;
-  if (!recommendation || recommendation.avatarId !== character.id)
-    throw new Error(`角色 ${character.id} 的装备推荐 ownership 异常`);
-  if (![2, 3].includes(recommendation.lightConeIds.length))
-    throw new Error(`角色 ${character.id} 的推荐光锥数量异常`);
-  if (![2, 3].includes(recommendation.cavernSetIds.length))
-    throw new Error(`角色 ${character.id} 的隧洞遗器推荐数量异常`);
-  if (recommendation.planarSetIds.length !== 3)
-    throw new Error(`角色 ${character.id} 的位面饰品推荐数量异常`);
-  if (recommendation.mainStatOptions.length !== recommendationMainSlots.length)
-    throw new Error(`角色 ${character.id} 的推荐主属性槽位数量异常`);
-  recommendation.lightConeIds.forEach((id) => {
-    if (!lightConeIds.has(id)) throw new Error(`角色 ${character.id} 引用了未知光锥 ${id}`);
-  });
-  recommendation.cavernSetIds.forEach((id) => {
-    if (relicCatalogById.get(id)?.category !== 'cavern')
-      throw new Error(`角色 ${character.id} 引用了非法隧洞遗器 ${id}`);
-  });
-  recommendation.planarSetIds.forEach((id) => {
-    if (relicCatalogById.get(id)?.category !== 'planar')
-      throw new Error(`角色 ${character.id} 引用了非法位面饰品 ${id}`);
-  });
-  recommendation.mainStatOptions.forEach((option, index) => {
-    if (
-      option.slot !== recommendationMainSlots[index] ||
-      ![1, 2].includes(option.propertyTypes.length)
-    )
-      throw new Error(`角色 ${character.id} 的 ${option.slot} 推荐主属性结构异常`);
-    option.propertyTypes.forEach((propertyType) => {
-      if (!relicPropertiesByType.get(propertyType)?.allowedMainSlots.includes(option.slot))
-        throw new Error(`角色 ${character.id} 的 ${propertyType} 不能用于 ${option.slot}`);
-    });
-  });
-  if (
-    recommendation.subStatPropertyTypes.length < 2 ||
-    recommendation.subStatPropertyTypes.length > 5
-  )
-    throw new Error(`角色 ${character.id} 的推荐副属性数量异常`);
-  recommendation.subStatPropertyTypes.forEach((propertyType) => {
-    if (!relicPropertiesByType.get(propertyType)?.canBeSubStat)
-      throw new Error(`角色 ${character.id} 引用了非法副属性 ${propertyType}`);
-  });
-  const recommendationJson = JSON.stringify(recommendation);
-  if (recommendationJson.includes('PropertyList') || recommendationJson.includes('ScoreRankList'))
-    throw new Error(`角色 ${character.id} 暴露了未确认的推荐字段`);
 }
-
-if (skillVariantCount !== 635)
-  throw new Error(`Character Skill Variant 总数异常：${skillVariantCount}`);
-if (statTraceCount !== 1070 || abilityTraceCount !== 323)
-  throw new Error(`行迹类型数量异常：属性 ${statTraceCount}，额外能力 ${abilityTraceCount}`);
-if (
-  traceDependencyCount !== 910 ||
-  traceDependencyDirections.get('stat->stat') !== 513 ||
-  traceDependencyDirections.get('stat->ability') !== 383 ||
-  traceDependencyDirections.get('ability->stat') !== 14 ||
-  traceDependencyDirections.size !== 3
-)
-  throw new Error(
-    `行迹依赖分布异常：总计 ${traceDependencyCount}，${JSON.stringify(Object.fromEntries(traceDependencyDirections))}`
-  );
-if (JSON.stringify([...observedTypeFiveIds].sort()) !== JSON.stringify(['8007501', '8008501']))
-  throw new Error(`PointType 5 行迹集合异常：${[...observedTypeFiveIds].sort().join(',')}`);
-
-const expectedSpecialEnergyIds = ['1220', '1308', '1407', '1408', '1415', '1506'];
-const actualSpecialEnergyIds = characters
-  .filter((character) => character.profiles.base.energy.kind === 'special')
-  .map((character) => character.id)
-  .sort();
-if (actualSpecialEnergyIds.join(',') !== expectedSpecialEnergyIds.join(','))
-  throw new Error(`特殊能量角色集合异常：${actualSpecialEnergyIds.join(',')}`);
-if (
-  characters.find((character) => character.id === '1006')?.profiles.base.energy.kind !==
-    'standard' ||
-  characters.find((character) => character.id === '1006')?.profiles.base.energy.max !== 110
-)
-  throw new Error('旧版银狼的普通能量配置异常');
-
-const expectedEnhancedIds = [
-  '1004',
-  '1005',
-  '1006',
-  '1102',
-  '1205',
-  '1212',
-  '1217',
-  '1306',
-  '1307',
-  '1310'
-];
-const actualEnhancedIds = characters
-  .filter((character) => character.profiles.enhanced)
-  .map((character) => character.id)
-  .sort();
-if (actualEnhancedIds.join(',') !== expectedEnhancedIds.join(','))
-  throw new Error(`加强角色集合异常：${actualEnhancedIds.join(',')}`);
-
-const actualSkillEffects = [
-  ...new Set(
-    characters.flatMap((character) =>
-      Object.values(character.profiles)
-        .filter((profile): profile is CharacterProfile => !!profile)
-        .flatMap((profile) =>
-          profile.skillCards.flatMap((card) =>
-            card.variants.map((variant) => variant.combatMeta.effect?.code).filter(Boolean)
-          )
-        )
-    )
-  )
-].sort();
-const expectedSkillEffects = Object.keys(SKILL_EFFECT_LABELS).sort();
-if (actualSkillEffects.join(',') !== expectedSkillEffects.join(','))
-  throw new Error(`SkillEffect 集合异常：${actualSkillEffects.join(',')}`);
 
 const lightCones = await Promise.all(
   manifest.routes['light-cones'].map(
@@ -1427,11 +972,6 @@ for (const lightCone of lightCones) {
     if (level.description !== level.descriptionTokens.map((token) => token.value).join(''))
       throw new Error(`光锥 ${lightCone.id} 叠影 Lv.${level.level} 的语义文本不一致`);
   }
-  if (lightCone.baseStats.minLevel !== 1 || lightCone.baseStats.maxLevel !== 80)
-    throw new Error(`光锥 ${lightCone.id} 的等级范围不是 1–80`);
-  const level80 = getBaseStatsAtLevel(lightCone.baseStats, 80);
-  if (![level80.hp, level80.attack, level80.defence].every(Number.isFinite))
-    throw new Error(`光锥 ${lightCone.id} 的 Lv.80 属性无效`);
 }
 
 const enemies = await Promise.all(
@@ -1458,381 +998,6 @@ for (const enemy of enemies) {
       if (!isElementType(resistance.element))
         throw new Error(`Monster ${monster.monsterId} 使用未知抗性属性：${resistance.element}`);
 }
-
-const march = characters.find((character) => character.id === '1001');
-const baseProfile = (character: Character | undefined): CharacterProfile | undefined =>
-  character?.profiles.base;
-if (march?.name !== '三月七·存护') throw new Error('多命途名称验证失败：三月七·存护');
-if (!baseProfile(march)?.traces.some((trace) => trace.name === '纯洁'))
-  throw new Error('符号文本键验证失败：未恢复三月七行迹“纯洁”');
-if (
-  baseProfile(march)?.traces.find((trace) => trace.id === '1001201')?.description !==
-  '冰属性伤害提高3.2%'
-)
-  throw new Error('属性行迹验证失败：三月七冰属性伤害节点未恢复');
-if (
-  baseProfile(march)?.traces.find((trace) => trace.id === '1001202')?.description !==
-  '防御力提高5.0%'
-)
-  throw new Error('属性行迹验证失败：三月七防御节点未恢复');
-if (baseProfile(march)?.eidolons[0]?.name !== '记忆中的你')
-  throw new Error('符号文本键验证失败：未恢复三月七第一星魂');
-const trailblazer = characters.find((character) => character.id === '8005');
-if (trailblazer?.name !== '开拓者·同谐') throw new Error('多命途名称验证失败：开拓者·同谐');
-for (const [id, name, pathName, elementName] of [
-  ['1014', 'Saber', '毁灭', '风'],
-  ['1015', 'Archer', '巡猎', '量子'],
-  ['1508', '远坂凛', '智识', '量子'],
-  ['1509', '吉尔伽美什', '毁灭', '雷']
-] as const) {
-  const character = characters.find((item) => item.id === id);
-  if (
-    character?.name !== name ||
-    character.rarity !== 5 ||
-    character.pathName !== pathName ||
-    character.elementName !== elementName ||
-    baseProfile(character)?.traces.length !== 13 ||
-    baseProfile(character)?.eidolons.length !== 6 ||
-    !baseProfile(character)?.skillCards.length
-  )
-    throw new Error(`LD 角色 ${id} 的 Character domain 不完整`);
-  if (
-    !search.documents.some(
-      (entry) =>
-        entry.target.kind === 'character' && entry.target.id === id && entry.canonicalName === name
-    )
-  )
-    throw new Error(`LD 角色 ${id} 未进入搜索索引`);
-}
-const skillIdsFor = (character: Character | undefined, category: string): string[] =>
-  baseProfile(character)
-    ?.skillCards.find((card) => card.category === category)
-    ?.variants.map((variant) => variant.id) ?? [];
-const variantFor = (character: Character | undefined, skillId: string) =>
-  baseProfile(character)
-    ?.skillCards.flatMap((card) => card.variants)
-    .find((variant) => variant.id === skillId);
-const gilgamesh = characters.find((character) => character.id === '1509');
-if (
-  skillIdsFor(gilgamesh, 'basic').join(',') !== '150901' ||
-  skillIdsFor(gilgamesh, 'skill').join(',') !== '150902'
-)
-  throw new Error('HideInUI 验证失败：吉尔伽美什玩家侧普攻或战技异常');
-if (!hiddenAvatarSkillIds.has('150909') || baseProfile(gilgamesh)?.specialEffects.length)
-  throw new Error('Special Effect 验证失败：吉尔伽美什 150909 的完整索引或显式关系异常');
-const archer = characters.find((character) => character.id === '1015');
-if (skillIdsFor(archer, 'skill').includes('101509'))
-  throw new Error('HideInUI 验证失败：Archer 内部结束技能仍在展示');
-const imbibitorLunae = characters.find((character) => character.id === '1213');
-if (
-  baseProfile(imbibitorLunae)?.skillCards.find((card) => card.category === 'basic')?.variants
-    .length !== 4
-)
-  throw new Error('技能卡验证失败：丹恒·饮月普攻变体未正确合并');
-if (skillIdsFor(imbibitorLunae, 'skill').join(',') !== '121302')
-  throw new Error('HideInUI 验证失败：丹恒·饮月取消技能仍在展示');
-const departingHimeko = characters.find((character) => character.id === '1510');
-if (skillIdsFor(departingHimeko, 'assist').join(',') !== '151022')
-  throw new Error('HideInUI 验证失败：姬子·启行内部助战技能仍在展示');
-const himekoSpecialEffects = baseProfile(departingHimeko)?.specialEffects ?? [];
-if (
-  himekoSpecialEffects.length !== 2 ||
-  himekoSpecialEffects.some((entry) => entry.kind !== 'avatar-skill-link') ||
-  himekoSpecialEffects.map((entry) => entry.skill.id).join(',') !== '151025,151026'
-)
-  throw new Error('Special Effect 验证失败：姬子·启行未解析到两个 Avatar Skill link');
-const himekoJudgement = himekoSpecialEffects[0];
-const himekoAnnihilation = himekoSpecialEffects[1];
-if (
-  himekoJudgement?.kind !== 'avatar-skill-link' ||
-  himekoJudgement.linkedAvatarIds.join(',') !== '8001,1002,1213,1414,1313' ||
-  himekoJudgement.simplifiedLinkedAvatarIds.join(',') !== '8001,1002,1313' ||
-  himekoAnnihilation?.kind !== 'avatar-skill-link' ||
-  himekoAnnihilation.linkedAvatarIds.join(',') !== '1001,1413,1004,1003' ||
-  himekoAnnihilation.simplifiedLinkedAvatarIds.join(',') !== '1001,1004,1003'
-)
-  throw new Error('Special Effect 验证失败：姬子·启行 target avatar metadata 异常');
-for (const [avatarId, basicSkillId, shownSkillId, hiddenSkillId, progressionId] of [
-  ['8007', '800701', '800708', '800709', '8007001'],
-  ['8008', '800801', '800808', '800809', '8008001']
-] as const) {
-  const remembranceTrailblazer = characters.find((character) => character.id === avatarId);
-  const basicCard = baseProfile(remembranceTrailblazer)?.skillCards.find(
-    (card) => card.category === 'basic'
-  );
-  if (
-    basicCard?.variants.map((variant) => variant.id).join(',') !== `${basicSkillId},${shownSkillId}`
-  )
-    throw new Error(
-      `AvatarSpecialSkillTree 验证失败：记忆开拓者 ${avatarId} 的普通/强化普攻集合异常`
-    );
-  if (
-    basicCard.progressions.length !== 1 ||
-    basicCard.progressions[0]?.id !== progressionId ||
-    basicCard.progressions[0]?.variantIds.join(',') !== `${basicSkillId},${shownSkillId}`
-  )
-    throw new Error(
-      `AvatarSpecialSkillTree 验证失败：记忆开拓者 ${avatarId} 的普攻 progression 异常`
-    );
-  const shownSkill = variantFor(remembranceTrailblazer, shownSkillId);
-  if (
-    !shownSkill ||
-    gameTextToPlain(shownSkill.name) !== '明天，一同写下！' ||
-    shownSkill.attackType !== 'Normal' ||
-    shownSkill.levels.length !== 10 ||
-    shownSkill.combatMeta.effect?.code !== 'AoEAttack' ||
-    shownSkill.combatMeta.extraEffects?.map((effect) => effect.id).join(',') !== '10000011,10000019'
-  )
-    throw new Error(
-      `AvatarSpecialSkillTree 验证失败：记忆开拓者 ${avatarId} 的强化普攻展示数据不完整`
-    );
-  if (variantFor(remembranceTrailblazer, hiddenSkillId))
-    throw new Error(
-      `AvatarSpecialSkillTree 验证失败：未被 ShowSkill 引用的 ${hiddenSkillId} 被错误展示`
-    );
-}
-const acheron = characters.find((character) => character.id === '1308');
-for (const hiddenSkillId of ['130814', '130815', '130816', '130817'])
-  if (variantFor(acheron, hiddenSkillId))
-    throw new Error(`HideInUI 验证失败：黄泉内部终结技阶段 ${hiddenSkillId} 被错误展示`);
-const cyrene = characters.find((character) => character.id === '1415');
-if (skillIdsFor(cyrene, 'memosprite-skill').join(',') !== '1141501,1141502')
-  throw new Error('HideInUI 验证失败：昔涟忆灵技能集合异常');
-const cyreneSpecialEffects = baseProfile(cyrene)?.specialEffects ?? [];
-if (
-  cyreneSpecialEffects.length !== 14 ||
-  cyreneSpecialEffects.some((entry) => entry.kind !== 'servant-skill-link') ||
-  cyreneSpecialEffects.map((entry) => entry.skill.id).join(',') !==
-    '1141526,1141521,1141518,1141514,1141516,1141517,1141520,1141515,1141523,1141524,1141519,1141522,1141525,1141513'
-)
-  throw new Error('Special Effect 验证失败：昔涟 14 条 relation 的数量或顺序异常');
-for (const [index, entry] of cyreneSpecialEffects.entries()) {
-  if (
-    entry.kind !== 'servant-skill-link' ||
-    entry.order !== index + 1 ||
-    !entry.tarotFigurePath.includes('UI/Avatar/Special/Special_1415/CardFigure/') ||
-    !entry.tarotIconPath.includes('UI/Avatar/Special/Special_1415/Card/')
-  )
-    throw new Error(`Special Effect 验证失败：昔涟第 ${index + 1} 条 Tarot metadata 异常`);
-}
-const theHerta = characters.find((character) => character.id === '1401');
-if (
-  baseProfile(theHerta)?.skillCards.find((card) => card.category === 'skill')?.variants.length !== 2
-)
-  throw new Error('技能卡验证失败：大黑塔战技变体未正确合并');
-const aglaea = characters.find((character) => character.id === '1402');
-if (!baseProfile(aglaea)?.skillCards.some((card) => card.category === 'memosprite-skill'))
-  throw new Error('忆灵关系验证失败：阿格莱雅缺少忆灵技');
-if (!baseProfile(aglaea)?.skillCards.some((card) => card.category === 'memosprite-talent'))
-  throw new Error('忆灵关系验证失败：阿格莱雅缺少忆灵天赋');
-const castorice = characters.find((character) => character.id === '1407');
-const castoriceSkillIds =
-  baseProfile(castorice)?.skillCards.flatMap((card) =>
-    card.variants.map((variant) => variant.id)
-  ) ?? [];
-if (!castoriceSkillIds.includes('1140702'))
-  throw new Error('内部技能过滤失败：遐蝶公开忆灵技被错误删除');
-if (
-  castoriceSkillIds.includes('1140710') ||
-  castoriceSkillIds.includes('1140711') ||
-  castoriceSkillIds.includes('1140712')
-)
-  throw new Error('内部技能过滤失败：遐蝶内部伤害阶段仍在展示模型中');
-const castoriceMemospriteTalent = baseProfile(castorice)?.skillCards.find(
-  (card) => card.category === 'memosprite-talent'
-);
-if (!castoriceMemospriteTalent?.variants.some((variant) => variant.id === '1140706'))
-  throw new Error('忆灵分类验证失败：遐蝶“灼掠幽墟的晦翼”未保留在忆灵天赋');
-const castoriceTalent = baseProfile(castorice)?.skillCards.find(
-  (card) => card.category === 'talent'
-);
-const castoriceGlobalBuff = castoriceTalent?.variants.find(
-  (variant) => variant.id === '140704:global-buff:1'
-);
-if (
-  castoriceTalent?.variants.map((variant) => variant.id).join(',') !==
-    '140704,140704:global-buff:1' ||
-  castoriceGlobalBuff?.source !== 'avatar-global-buff' ||
-  castoriceGlobalBuff.name !== '月茧之庇' ||
-  castoriceGlobalBuff.progressionId !== null ||
-  !gameTextToPlain(castoriceGlobalBuff.levels[0]?.description).includes('月茧') ||
-  castoriceGlobalBuff.combatMeta.extraEffects?.[0]?.id !== '10000007'
-)
-  throw new Error('AvatarGlobalBuff 验证失败：遐蝶 Talent Variant 异常');
-const silverWolf999 = characters.find((character) => character.id === '1506');
-const silverWolfTalent = baseProfile(silverWolf999)?.skillCards.find(
-  (card) => card.category === 'talent'
-);
-const silverWolfGlobalBuff = silverWolfTalent?.variants.find(
-  (variant) => variant.id === '150604:global-buff:1'
-);
-if (
-  silverWolfTalent?.variants.map((variant) => variant.id).join(',') !==
-    '150604,150604:global-buff:1' ||
-  silverWolfGlobalBuff?.source !== 'avatar-global-buff' ||
-  gameTextToPlain(silverWolfGlobalBuff.name) !== '999安全卫士' ||
-  silverWolfGlobalBuff.progressionId !== null ||
-  !gameTextToPlain(silverWolfGlobalBuff.levels[0]?.description).includes('防火墙') ||
-  silverWolfGlobalBuff.combatMeta.extraEffects?.[0]?.id !== '10000011'
-)
-  throw new Error('AvatarGlobalBuff 验证失败：银狼LV.999 Talent Variant 异常');
-const globalBuffVariants = characters.flatMap((character) =>
-  Object.values(character.profiles).flatMap((profile) =>
-    profile
-      ? profile.skillCards.flatMap((card) =>
-          card.variants.filter((variant) => variant.source === 'avatar-global-buff')
-        )
-      : []
-  )
-);
-if (globalBuffVariants.length !== 2)
-  throw new Error(`AvatarGlobalBuff Variant 数量异常：${globalBuffVariants.length}`);
-if (
-  baseProfile(castorice)?.traces.find((trace) => trace.id === '1407202')?.description !==
-  '量子属性伤害提高3.2%'
-)
-  throw new Error('属性行迹验证失败：遐蝶量子属性伤害节点未恢复');
-if (
-  baseProfile(castorice)?.traces.find((trace) => trace.id === '1407204')?.description !==
-  '暴击伤害提高5.3%'
-)
-  throw new Error('属性行迹验证失败：遐蝶暴击伤害节点未恢复');
-
-const jingliu = characters.find((character) => character.id === '1212');
-const jingliuBase = jingliu?.profiles.base;
-const jingliuEnhanced = jingliu?.profiles.enhanced;
-const skillVariant = (profile: CharacterProfile | undefined, id: string) =>
-  profile?.skillCards.flatMap((card) => card.variants).find((variant) => variant.id === id);
-const skillDescription = (profile: CharacterProfile | undefined, id: string, level: number) =>
-  skillVariant(profile, id)?.levels.find((entry) => entry.level === level)?.description;
-if (!skillDescription(jingliuBase, '121202', 10)?.includes('200%攻击力'))
-  throw new Error('加强 profile 验证失败：镜流加强前战技数据异常');
-if (!skillDescription(jingliuEnhanced, '1121202', 10)?.includes('150%生命上限'))
-  throw new Error('加强 profile 验证失败：镜流加强后战技数据异常');
-if (
-  gameTextToPlain(
-    jingliuBase?.traces.find((trace) => trace.name === '死境')?.description ?? ''
-  ).includes('终结技伤害提高20%')
-)
-  throw new Error('加强 profile 验证失败：镜流加强前混入加强行迹');
-if (
-  !gameTextToPlain(
-    jingliuEnhanced?.traces.find((trace) => trace.name === '死境')?.description ?? ''
-  ).includes('终结技伤害提高20%')
-)
-  throw new Error('加强 profile 验证失败：镜流加强后行迹数据异常');
-if (!gameTextToPlain(jingliuBase?.eidolons[0]?.description ?? '').includes('暴击伤害提高24%'))
-  throw new Error('加强 profile 验证失败：镜流加强前星魂数据异常');
-if (!gameTextToPlain(jingliuEnhanced?.eidolons[0]?.description ?? '').includes('暴击伤害提高36%'))
-  throw new Error('加强 profile 验证失败：镜流加强后星魂数据异常');
-
-const marchBasicMeta = skillVariant(baseProfile(march), '100101')?.combatMeta;
-if (
-  marchBasicMeta?.effect?.label !== '单攻' ||
-  marchBasicMeta.battlePointDelta !== 1 ||
-  marchBasicMeta.energyGain !== 20 ||
-  JSON.stringify(marchBasicMeta.stanceDisplay) !==
-    JSON.stringify([{ type: 'single', value: 10 }]) ||
-  marchBasicMeta.toughnessDamage !== undefined
-)
-  throw new Error('技能战斗元数据验证失败：三月七普攻');
-const marchSkillMeta = skillVariant(baseProfile(march), '100102')?.combatMeta;
-if (
-  marchSkillMeta?.effect?.label !== '防御' ||
-  marchSkillMeta.battlePointDelta !== -1 ||
-  marchSkillMeta.energyGain !== 30 ||
-  marchSkillMeta.toughnessDamage !== undefined
-)
-  throw new Error('技能战斗元数据验证失败：三月七战技');
-
-const imbibitorExpected = new Map([
-  ['121301', [1, 20, [{ type: 'single', value: 10 }]]],
-  ['121308', [-1, 30, [{ type: 'single', value: 20 }]]],
-  [
-    '121310',
-    [
-      -2,
-      35,
-      [
-        { type: 'single', value: 30 },
-        { type: 'blast', value: 10 }
-      ]
-    ]
-  ],
-  [
-    '121312',
-    [
-      -3,
-      40,
-      [
-        { type: 'single', value: 40 },
-        { type: 'blast', value: 20 }
-      ]
-    ]
-  ]
-]);
-for (const [id, [battlePointDelta, energyGain, stanceDisplay]] of imbibitorExpected) {
-  const meta = skillVariant(baseProfile(imbibitorLunae), id)?.combatMeta;
-  if (
-    meta?.battlePointDelta !== battlePointDelta ||
-    meta.energyGain !== energyGain ||
-    JSON.stringify(meta.stanceDisplay) !== JSON.stringify(stanceDisplay) ||
-    meta.toughnessDamage !== undefined
-  )
-    throw new Error(`技能战斗元数据验证失败：丹恒·饮月 ${id}`);
-}
-
-const firefly = characters.find((character) => character.id === '1310');
-for (const [profile, id] of [
-  [firefly?.profiles.base, '131002'],
-  [firefly?.profiles.enhanced, '1131002']
-] as const) {
-  const meta = skillVariant(profile, id)?.combatMeta;
-  if (
-    gameTextToPlain(meta?.specialResource).trim() !== '40%生命值' ||
-    meta?.battlePointDelta !== -1
-  )
-    throw new Error(`双资源技能验证失败：${id}`);
-}
-
-const castoriceSkillMeta = skillVariant(baseProfile(castorice), '140702')?.combatMeta;
-if (
-  !castoriceSkillMeta ||
-  gameTextToPlain(castoriceSkillMeta?.specialResource).trim() !== '30%我方全体当前生命值' ||
-  castoriceSkillMeta?.battlePointDelta !== undefined ||
-  castoriceSkillMeta.energyGain !== undefined ||
-  JSON.stringify(castoriceSkillMeta.stanceDisplay) !==
-    JSON.stringify([
-      { type: 'single', value: 20 },
-      { type: 'blast', value: 10 }
-    ])
-)
-  throw new Error('技能战斗元数据验证失败：遐蝶战技');
-const castoriceMemospriteMeta = skillVariant(baseProfile(castorice), '1140702')?.combatMeta;
-if (
-  castoriceMemospriteMeta?.effect?.label !== '群攻' ||
-  gameTextToPlain(castoriceMemospriteMeta.specialResource).trim() !== '25%生命值' ||
-  JSON.stringify(castoriceMemospriteMeta.stanceDisplay) !==
-    JSON.stringify([{ type: 'aoe', value: 10 }])
-)
-  throw new Error('技能战斗元数据验证失败：遐蝶忆灵技');
-
-const theHertaEnhancedSkillMeta = skillVariant(baseProfile(theHerta), '140109')?.combatMeta;
-if (
-  JSON.stringify(theHertaEnhancedSkillMeta?.stanceDisplay) !==
-    JSON.stringify([
-      { type: 'single', value: 20 },
-      { type: 'blast', value: 10 }
-    ]) ||
-  theHertaEnhancedSkillMeta?.toughnessDamage !== undefined
-)
-  throw new Error('技能战斗元数据验证失败：大黑塔强化战技');
-
-const huntMarch = characters.find((character) => character.id === '1224');
-if (skillVariant(baseProfile(huntMarch), '122401')?.combatMeta.extraEffects !== undefined)
-  throw new Error('技能 ExtraEffect 归属失败：三月七·巡猎普通普攻');
-if (skillVariant(baseProfile(huntMarch), '122408')?.combatMeta.extraEffects?.[0]?.id !== '30000002')
-  throw new Error('技能 ExtraEffect 归属失败：三月七·巡猎强化普攻');
 
 async function readLocaleProjection(locale: Locale) {
   const root = path.join(generatedRoot, 'views', locale);
@@ -1867,6 +1032,26 @@ async function readLocaleProjection(locale: Locale) {
       )
     ]
   );
+  const occurrenceShards =
+    locale === 'en'
+      ? Object.fromEntries(
+          await Promise.all(
+            localeSearch.endgameTargets.map(async ({ id }) => [
+              id,
+              JSON.parse(
+                await readFile(path.join(root, 'endgame-occurrences', id), 'utf8')
+              ) as EndgameOccurrenceShard
+            ])
+          )
+        )
+      : buildEndgameOccurrenceShards({
+          locale,
+          datasets: datasets as EndgameDatasetByMode,
+          enemies: (details as { enemies: Enemy[] }).enemies,
+          targets: localeSearch.endgameTargets,
+          presentation: getLocaleProjectionPolicy(locale).endgameView,
+          now: Date.now()
+        });
   return {
     catalogs,
     details,
@@ -1874,9 +1059,7 @@ async function readLocaleProjection(locale: Locale) {
     endgame: { datasets },
     globalSearchIndex: localeSearch,
     homepage: localeHomepage,
-    occurrenceShards: Object.fromEntries(
-      localeSearch.endgameTargets.map(({ id, occurrences }) => [id, { id, occurrences }])
-    )
+    occurrenceShards
   };
 }
 
@@ -1888,6 +1071,43 @@ const [zhProjection, enProjection, enSearchInputs] = await Promise.all([
   )
 ]);
 assertCrossLocaleStructuralParity(zhProjection, enProjection);
+
+for (const projection of [
+  { locale: 'zh-CN' as const, value: zhProjection },
+  { locale: 'en' as const, value: enProjection }
+]) {
+  const localeAudit = audit.localeAudits?.[projection.locale];
+  if (!localeAudit)
+    throw new Error(`[localization/audit] missing locale audit for ${projection.locale}`);
+  assertValidationReport(
+    mergeValidationReports(
+      validateLocalizationHealth(
+        projection.locale,
+        projection.locale === 'zh-CN' ? 'CHS' : 'EN',
+        localeAudit.localizationHealth
+      ),
+      validateRelationAudits({
+        ...(projection.locale === 'zh-CN'
+          ? {
+              specialEffects: audit.specialEffectAudit.diagnostics,
+              avatarSpecialSkills: audit.avatarSpecialSkillTreeAudit.diagnostics
+            }
+          : {}),
+        enemies: localeAudit.enemyAudit
+      }),
+      validateProductProjection(manifest, {
+        locale: projection.locale,
+        catalogs: projection.value.catalogs,
+        details: projection.value.details,
+        relicProperties: projection.value.relicProperties,
+        endgame: projection.value.endgame.datasets,
+        search: projection.value.globalSearchIndex,
+        occurrenceShards: projection.value.occurrenceShards
+      } as ProductProjectionForValidation)
+    ),
+    `[${projection.locale}] generated product invariants`
+  );
+}
 
 const enSearch = enProjection.globalSearchIndex;
 const expectedEnSearch = buildSearchDocuments(enSearchInputs, 'en', { kind: 'none' });

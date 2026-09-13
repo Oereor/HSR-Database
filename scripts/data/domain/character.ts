@@ -11,11 +11,7 @@ import { rarityFromCode } from '../../../src/lib/domain/constants.js';
 import { parseTextHash } from '../../../src/lib/domain/types.js';
 import { configuredCharacterDetailIconKey } from '../character-detail-icons.js';
 import { characterStatFields, normalizeStatProgression } from '../stats.js';
-import {
-  classifyAvatarSkill,
-  classifyMemospriteSkill,
-  isPlayerFacingSkillConfig
-} from '../skills.js';
+import { classifyAvatarSkill, classifyProductSkill, isPlayerFacingSkillConfig } from '../skills.js';
 import { normalizeSpecialEffectLinks } from '../special-effects.js';
 import {
   byId,
@@ -45,13 +41,18 @@ function buildSkillVariant(
   order: number,
   source: NeutralSkillVariant['source'],
   progressionId: string | undefined,
-  visibility: 'visible' | 'hidden'
+  visibility: 'visible' | 'hidden',
+  onUnsupportedHidden: (diagnostic: string) => void
 ): NeutralSkillVariant | undefined {
   const ordered = [...skillRows].sort((a, b) => Number(a.Level ?? 1) - Number(b.Level ?? 1));
   const first = ordered[0];
   if (!first) return undefined;
-  const category =
-    source === 'memosprite' ? classifyMemospriteSkill(first) : classifyAvatarSkill(first);
+  const category = classifyProductSkill(first, {
+    source: source === 'memosprite' ? 'AvatarServantSkillConfig' : 'AvatarSkillConfig',
+    skillId,
+    productReachable: visibility === 'visible',
+    onUnsupportedHidden
+  });
   if (!category) return undefined;
   const combatLevels: NeutralSkillCombatLevel[] = ordered.map((row) => ({
     level: Number(row.Level ?? 1),
@@ -104,7 +105,8 @@ function buildProfile(
   avatarSkills: Map<string, Raw[]>,
   servantSkills: Map<string, Raw[]>,
   specialLinks: ReturnType<typeof normalizeSpecialEffectLinks>,
-  properties: Map<string, Raw>
+  properties: Map<string, Raw>,
+  onUnsupportedHidden: (diagnostic: string) => void
 ): NeutralCharacterProfile {
   const progressionBySkill = new Map<string, string>();
   for (const row of traceRows)
@@ -113,6 +115,10 @@ function buildProfile(
   const skills: NeutralSkillVariant[] = [];
   for (const [order, skillId] of ids(avatar.SkillList).entries()) {
     const skillRows = avatarSkills.get(skillId) ?? [];
+    if (!skillRows.length)
+      throw new Error(
+        `[character/fk] AvatarConfig record=${avatar.AvatarID} field=SkillList references missing AvatarSkillConfig=${skillId}`
+      );
     const visible = isPlayerFacingSkillConfig(skillRows, `AvatarSkillConfig.${skillId}`)
       ? 'visible'
       : 'hidden';
@@ -122,7 +128,8 @@ function buildProfile(
       order,
       'avatar',
       progressionBySkill.get(skillId),
-      visible
+      visible,
+      onUnsupportedHidden
     );
     if (variant) skills.push(variant);
     for (const [index, buff] of rows(tables, 'AvatarGlobalBuffConfig')
@@ -172,13 +179,18 @@ function buildProfile(
       continue;
     }
     const skillRows = avatarSkills.get(skillId) ?? [];
+    if (!skillRows.length)
+      throw new Error(
+        `[character/fk] AvatarSpecialSkillTree record=${avatar.AvatarID} field=ShowSkill references missing AvatarSkillConfig=${skillId}`
+      );
     const variant = buildSkillVariant(
       skillId,
       skillRows,
       skills.length,
       'avatar',
       progressionBySkill.get(skillId),
-      'visible'
+      'visible',
+      onUnsupportedHidden
     );
     if (variant) skills.push(variant);
   }
@@ -193,6 +205,10 @@ function buildProfile(
   for (const servant of servantConfigs) {
     for (const [index, skillId] of ids(servant.SkillIDList).entries()) {
       const skillRows = servantSkills.get(skillId) ?? [];
+      if (!skillRows.length)
+        throw new Error(
+          `[character/fk] AvatarServantConfig record=${servant.ServantID ?? avatar.AvatarID} field=SkillIDList references missing AvatarServantSkillConfig=${skillId}`
+        );
       const visible = isPlayerFacingSkillConfig(skillRows, `AvatarServantSkillConfig.${skillId}`)
         ? 'visible'
         : 'hidden';
@@ -202,7 +218,8 @@ function buildProfile(
         servantOrder + index,
         'memosprite',
         progressionBySkill.get(skillId),
-        visible
+        visible,
+        onUnsupportedHidden
       );
       if (variant) skills.push(variant);
     }
@@ -250,7 +267,10 @@ function buildProfile(
   const ranks = byId(rows(tables, 'AvatarRankConfig'), 'RankID');
   const eidolons = ids(avatar.RankIDList).flatMap((rankId) => {
     const rank = ranks.get(rankId);
-    if (!rank) return [];
+    if (!rank)
+      throw new Error(
+        `[character/fk] AvatarConfig record=${avatar.AvatarID} field=RankIDList references missing AvatarRankConfig=${rankId}`
+      );
     return [
       {
         id: rankId,
@@ -341,10 +361,12 @@ function buildProfile(
 export interface CharacterDomainBuild {
   characters: CharacterDomain[];
   extraEffects: NeutralExtraEffect[];
+  unsupportedHiddenSkillDiscriminants: string[];
 }
 
 export function buildCharacterDomain(source: CharacterSource): CharacterDomainBuild {
   const tables = source.tables;
+  const unsupportedHiddenSkillDiscriminants = new Set<string>();
   const avatars = [
     ...rows(tables, 'AvatarConfig'),
     ...rows(tables, 'AvatarConfigLD').filter(
@@ -407,7 +429,8 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomainBu
       avatarSkills,
       servantSkills,
       specialLinks,
-      properties
+      properties,
+      (diagnostic) => unsupportedHiddenSkillDiscriminants.add(diagnostic)
     );
     const enhancedProfile = enhancedConfig
       ? buildProfile(
@@ -418,7 +441,8 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomainBu
           avatarSkills,
           servantSkills,
           specialLinks,
-          properties
+          properties,
+          (diagnostic) => unsupportedHiddenSkillDiscriminants.add(diagnostic)
         )
       : undefined;
     const promotionRows = rows(tables, 'AvatarPromotionConfig').filter(
@@ -495,5 +519,9 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomainBu
       elementNameSource: textSource(elements.get(String(avatar.DamageType))?.DamageTypeName)
     } satisfies CharacterDomain;
   });
-  return { characters, extraEffects };
+  return {
+    characters,
+    extraEffects,
+    unsupportedHiddenSkillDiscriminants: [...unsupportedHiddenSkillDiscriminants].sort()
+  };
 }

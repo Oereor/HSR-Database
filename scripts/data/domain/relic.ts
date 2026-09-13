@@ -13,6 +13,15 @@ export function parseRelicPieceId(value: unknown): string {
   return match[1];
 }
 
+export function parseRelicEffectRequirement(value: unknown, setId: string): 2 | 4 {
+  const required = Number(value);
+  if (required === 2 || required === 4) return required;
+  throw new Error(
+    `[relic/schema] table=RelicSetSkillConfig record=${setId} field=RequireNum ` +
+      `value=${JSON.stringify(value)} supported=2,4`
+  );
+}
+
 export function buildRelicDomain(source: RelicSource): RelicSetDomain[] {
   const baseTypes = new Map(
     rows(source.tables, 'RelicBaseType').map((row) => [String(row.Type), row])
@@ -42,7 +51,7 @@ export function buildRelicDomain(source: RelicSource): RelicSetDomain[] {
       descriptionSource: textSource(piece.ItemBGDesc)
     }));
     const effects = (skillsBySet.get(id) ?? []).map((skill) => ({
-      required: Number(skill.RequireNum) === 4 ? (4 as const) : (2 as const),
+      required: parseRelicEffectRequirement(skill.RequireNum, id),
       descriptionSource: parameterized(skill.SkillDesc, skill.AbilityParamList),
       params: params(skill.AbilityParamList),
       propertyCodes: Array.isArray(skill.PropertyList) ? skill.PropertyList.map(String) : []

@@ -1,11 +1,10 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { EndgameGroup, EndgameModeDataset } from '../../src/lib/domain/endgame.js';
+import type { EndgameMode, EndgameModeDataset } from '../../src/lib/domain/endgame.js';
 import {
   buildGroupView,
   buildPeriodView,
   endgameEnemyReferenceKey,
-  ENDGAME_MODES,
   recommendedGroupId,
   resolveEndgameEnemyReference,
   type EndgameEnemyDetailSource,
@@ -19,7 +18,6 @@ import type {
   EnemyCatalogEntry,
   HomepageRecentWarpData,
   RelicCatalogEntry,
-  RelicProperty,
   RelicSet
 } from '../../src/lib/domain/types.js';
 import type { VisualAssetManifest } from '../../src/lib/domain/visual-assets.js';
@@ -32,21 +30,71 @@ import { m } from '../../src/lib/paraglide/messages.js';
 import { NAVIGATION_ITEMS } from '../../src/lib/navigation.js';
 import { SITE_NAME } from '../../src/lib/site.js';
 import { readAssetManifest } from '../assets/shared.js';
-import { auditRoot, generatedRoot, staticGeneratedRoot } from '../data/paths.js';
-import type { TextDiagnosticKind, TextDiagnosticSummary } from '../data/localization.js';
-import { canonicalize, ContentRegistry, withoutObjectKeys } from './canonical.js';
-import {
-  PRODUCT_BASELINE_FIXTURE_FORMAT_VERSION,
-  type ProductBaselineCapture,
-  type StableEntityArea
-} from './model.js';
+import { generatedRoot, staticGeneratedRoot } from '../data/paths.js';
+import { canonicalize } from './canonical.js';
+import { PRODUCT_BASELINE_CASES, PRODUCT_BASELINE_REFERENCE_TIME } from './cases.js';
+import { PRODUCT_BASELINE_FIXTURE_FORMAT_VERSION, type ProductBaselineCapture } from './model.js';
 
 const localeRoot = path.join(generatedRoot, 'views', 'zh-CN');
-const CHARACTER_INTERNAL_FIELDS = new Set(['order']);
-const RECOMMENDATION_REFERENCE_TIME = Date.parse('2026-09-05T00:00:00Z');
+const referenceTime = Date.parse(PRODUCT_BASELINE_REFERENCE_TIME);
 
 async function json<T>(file: string): Promise<T> {
   return JSON.parse(await readFile(file, 'utf8')) as T;
+}
+
+export async function captureDeclaredEntities<TCatalog extends { id: string }, TDetail>(
+  domain: string,
+  catalog: readonly TCatalog[],
+  cases: readonly { id: string }[],
+  loadDetail: (id: string) => Promise<TDetail>,
+  semantic: (detail: TDetail, catalog: TCatalog) => unknown
+): Promise<Record<string, unknown>> {
+  const byId = new Map(catalog.map((entry) => [entry.id, entry]));
+  return Object.fromEntries(
+    await Promise.all(
+      cases.map(async ({ id }) => {
+        const entry = byId.get(id);
+        if (!entry) throw new Error(`Declared product baseline case is missing: ${domain}/${id}`);
+        return [id, semantic(await loadDetail(id), entry)];
+      })
+    )
+  );
+}
+
+function sampledVariant(variant: Record<string, any>, defaultLevel?: number) {
+  const levels = variant.levels ?? [];
+  const selected = new Set(
+    [levels[0]?.level, defaultLevel, levels.at(-1)?.level].filter(
+      (level): level is number => level !== undefined
+    )
+  );
+  return {
+    ...variant,
+    levels: levels.filter(({ level }: { level: number }) => selected.has(level))
+  };
+}
+
+function compactCharacterProfile(profile: Record<string, any>) {
+  const defaults = new Map<string, number>(
+    profile.skillCards.flatMap((card: Record<string, any>) =>
+      card.progressions.map((progression: Record<string, any>) => [
+        progression.id,
+        progression.defaultLevel
+      ])
+    )
+  );
+  return {
+    energy: profile.energy,
+    skillCards: profile.skillCards.map((card: Record<string, any>) => ({
+      ...card,
+      variants: card.variants.map((variant: Record<string, any>) =>
+        sampledVariant(variant, defaults.get(variant.progressionId))
+      )
+    })),
+    specialEffects: profile.specialEffects,
+    traces: profile.traces,
+    eidolons: profile.eidolons
+  };
 }
 
 function profilePresentation(profile: Record<string, any>) {
@@ -80,10 +128,24 @@ function profilePresentation(profile: Record<string, any>) {
 }
 
 function characterSemantic(detail: Character, catalog: CatalogEntry) {
-  const normalized = withoutObjectKeys(detail, CHARACTER_INTERNAL_FIELDS) as Record<string, any>;
+  const record = detail as unknown as Record<string, any>;
+  const identity = { ...record };
+  const profiles = identity.profiles;
+  delete identity.baseStats;
+  delete identity.equipmentRecommendation;
+  delete identity.order;
+  delete identity.profiles;
   return canonicalize({
     catalog,
-    detail: normalized,
+    detail: {
+      ...identity,
+      profiles: Object.fromEntries(
+        Object.entries(profiles).map(([name, profile]) => [
+          name,
+          compactCharacterProfile(profile as Record<string, any>)
+        ])
+      )
+    },
     presentation: {
       route: `/characters/${detail.id}`,
       subtitleRendered: !!detail.fullName && detail.fullName !== detail.name,
@@ -92,7 +154,7 @@ function characterSemantic(detail: Character, catalog: CatalogEntry) {
       profiles: Object.fromEntries(
         Object.entries(detail.profiles).map(([name, profile]) => [
           name,
-          profilePresentation(profile as Record<string, any>)
+          profilePresentation(profile as unknown as Record<string, any>)
         ])
       )
     }
@@ -130,146 +192,54 @@ function relicSemantic(detail: RelicSet, catalog: RelicCatalogEntry) {
   });
 }
 
-async function captureStableArea<TCatalog extends { id: string }, TDetail>(
-  catalogFile: string,
-  detailDirectory: string,
-  semantic: (detail: TDetail, catalog: TCatalog) => unknown
-): Promise<StableEntityArea> {
-  const catalog = await json<TCatalog[]>(catalogFile);
-  const entities = Object.fromEntries(
-    await Promise.all(
-      catalog.map(async (entry) => [
-        entry.id,
-        semantic(await json<TDetail>(path.join(detailDirectory, `${entry.id}.json`)), entry)
-      ])
-    )
-  );
-  return { order: catalog.map(({ id }) => id), entities };
-}
-
-function normalizeEnemyMonster(
-  monster: Record<string, any>,
-  registries: {
-    monsters: ContentRegistry;
-    skills: ContentRegistry;
-    summons: ContentRegistry;
-    statSeries: ContentRegistry;
-  }
-): string {
-  const stats = monster.stats ?? {};
-  const statNames = [
-    'hp',
-    'attack',
-    'defence',
-    'speed',
-    'toughness',
-    'effectHit',
-    'effectResistance'
-  ] as const;
-  const statSeries = {
-    columns: ['level', ...statNames],
-    valueColumns: ['status', 'value', 'reason'],
-    rows: (stats.levels ?? []).map((level: Record<string, any>) => [
-      level.level,
-      ...statNames.map((name) => {
-        const value = level[name] ?? {};
-        const unknownKeys = Object.keys(value).filter(
-          (key) => !['status', 'value', 'reason'].includes(key)
-        );
-        if (unknownKeys.length)
-          throw new Error(
-            `Enemy stat ${name} contains unsupported fields: ${unknownKeys.join(', ')}`
-          );
-        return [value.status ?? null, value.value ?? null, value.reason ?? null];
-      })
-    ])
-  };
-  const record = {
-    ...monster,
-    stats: {
-      ...stats,
-      levels: undefined,
-      statSeriesRef: registries.statSeries.add(statSeries)
-    },
-    skills: undefined,
-    skillRefs: (monster.skills ?? []).map((skill: unknown) => registries.skills.add(skill)),
-    summons: undefined,
-    summonRefs: (monster.summons ?? []).map((summon: unknown) => registries.summons.add(summon))
-  };
-  return registries.monsters.add(record);
-}
-
-async function captureEnemies(catalog: EnemyCatalogEntry[]) {
-  const templates = new ContentRegistry();
-  const monsters = new ContentRegistry();
-  const skills = new ContentRegistry();
-  const summons = new ContentRegistry();
-  const statSeries = new ContentRegistry();
-  const details = new Map<string, Enemy>();
-  const entities: Record<string, unknown> = {};
-  for (const entry of catalog) {
-    const detail = await json<Enemy>(
-      path.join(localeRoot, 'details', 'enemies', `${entry.id}.json`)
-    );
-    details.set(entry.id, detail);
-    const normalizedMonsterRefs = detail.monsters.map((monster) =>
-      normalizeEnemyMonster(monster as unknown as Record<string, any>, {
-        monsters,
-        skills,
-        summons,
-        statSeries
-      })
-    );
-    const defaultIndex = detail.monsters.findIndex(
-      (monster) => monster.monsterId === detail.defaultMonsterId
-    );
-    entities[entry.id] = canonicalize({
-      catalog: entry,
-      detail: {
-        ...detail,
-        template: undefined,
-        templateRef: templates.add(detail.template),
-        monsters: undefined,
-        monsterRefs: normalizedMonsterRefs,
-        defaultMonster: undefined,
-        defaultMonsterRef:
-          defaultIndex >= 0
-            ? normalizedMonsterRefs[defaultIndex]
-            : normalizeEnemyMonster(detail.defaultMonster as unknown as Record<string, any>, {
-                monsters,
-                skills,
-                summons,
-                statSeries
-              })
-      },
-      presentation: {
-        route: `/enemies/${detail.id}`,
-        defaultMonsterId: detail.defaultMonsterId,
-        selectableMonsterIds: detail.monsters.map((monster) => monster.monsterId),
-        descriptionFallbackRendered: !detail.description
+function enemySemantic(detail: Enemy, catalog: EnemyCatalogEntry) {
+  const selected = detail.defaultMonster as unknown as Record<string, any>;
+  const defaultLevel = selected.stats.defaultLevel;
+  return canonicalize({
+    catalog,
+    detail: {
+      id: detail.id,
+      name: detail.name,
+      description: detail.description,
+      type: detail.type,
+      typeName: detail.typeName,
+      kind: detail.kind,
+      rank: detail.rank,
+      weaknesses: detail.weaknesses,
+      template: detail.template,
+      defaultMonsterId: detail.defaultMonsterId,
+      selectors: detail.monsters.map(({ monsterId, hardLevelGroup, eliteGroup }) => ({
+        monsterId,
+        hardLevelGroup,
+        eliteGroup
+      })),
+      defaultMonster: {
+        monsterId: selected.monsterId,
+        monsterTemplateId: selected.monsterTemplateId,
+        modifiers: selected.modifiers,
+        stats: {
+          minLevel: selected.stats.minLevel,
+          maxLevel: selected.stats.maxLevel,
+          defaultLevel,
+          selectedLevel: selected.stats.levels.find(
+            ({ level }: { level: number }) => level === defaultLevel
+          )
+        },
+        weaknesses: selected.weaknesses,
+        resistances: selected.resistances,
+        specialResistances: selected.specialResistances,
+        summons: selected.summons,
+        skills: selected.skills,
+        skillPhases: selected.skillPhases
       }
-    });
-  }
-  return {
-    area: {
-      order: catalog.map(({ id }) => id),
-      entities
     },
-    details
-  };
-}
-
-function scheduleBoundaryCases(groups: EndgameGroup[]) {
-  const timestamps = new Set<number>([RECOMMENDATION_REFERENCE_TIME]);
-  for (const group of groups) {
-    if (!group.schedule) continue;
-    const begin = Date.parse(`${group.schedule.begin.replace(' ', 'T')}+08:00`);
-    const end = Date.parse(`${group.schedule.end.replace(' ', 'T')}+08:00`);
-    for (const timestamp of [begin - 1, begin, end - 1, end]) timestamps.add(timestamp);
-  }
-  return [...timestamps]
-    .sort((left, right) => left - right)
-    .map((timestamp) => ({ timestamp, groupId: recommendedGroupId(groups, timestamp) ?? null }));
+    presentation: {
+      route: `/enemies/${detail.id}`,
+      defaultMonsterId: detail.defaultMonsterId,
+      selectableMonsterIds: detail.monsters.map((monster) => monster.monsterId),
+      descriptionFallbackRendered: !detail.description
+    }
+  });
 }
 
 async function captureEndgame(enemyDetails: ReadonlyMap<string, Enemy>) {
@@ -288,37 +258,51 @@ async function captureEndgame(enemyDetails: ReadonlyMap<string, Enemy>) {
       );
     }
   }
+
+  const datasets = new Map<EndgameMode, EndgameModeDataset>();
   const modes: ProductBaselineCapture['endgame']['modes'] = {};
-  for (const mode of ENDGAME_MODES) {
-    const dataset = await json<EndgameModeDataset>(
-      path.join(localeRoot, 'endgame', `${mode}.json`)
-    );
+  for (const selected of PRODUCT_BASELINE_CASES.endgame) {
+    const mode = selected.mode as EndgameMode;
+    let dataset = datasets.get(mode);
+    if (!dataset) {
+      dataset = await json<EndgameModeDataset>(path.join(localeRoot, 'endgame', `${mode}.json`));
+      datasets.set(mode, dataset);
+    }
+    const group = dataset.groups.find(({ groupId }) => groupId === selected.groupId);
+    if (!group)
+      throw new Error(
+        `Declared product baseline case is missing: endgame/${mode}/${selected.groupId}`
+      );
     const periods = [...dataset.groups]
       .sort((left, right) => right.groupId - left.groupId)
-      .map((group) => buildPeriodView(group, RECOMMENDATION_REFERENCE_TIME));
-    const groups = Object.fromEntries(
-      dataset.groups.map((group) => {
-        const presentation = buildGroupView(group, periods, references);
-        presentation.period = buildPeriodView(group, RECOMMENDATION_REFERENCE_TIME);
-        presentation.periods = periods;
-        return [
-          String(group.groupId),
-          canonicalize({
-            presentation: canonicalize(presentation),
-            route: `/endgame/${mode}/${group.groupId}`
-          })
-        ];
-      })
-    );
-    modes[mode] = {
-      order: dataset.groups.map((group) => String(group.groupId)),
-      groups,
-      recommendations: scheduleBoundaryCases(dataset.groups)
-    };
+      .map((candidate) => buildPeriodView(candidate, referenceTime));
+    const presentation = buildGroupView(group, periods, references);
+    presentation.period = buildPeriodView(group, referenceTime);
+    const compactPresentation = { ...presentation } as Record<string, unknown>;
+    delete compactPresentation.periods;
+    modes[mode] ??= {};
+    modes[mode][String(group.groupId)] = canonicalize({
+      presentation: compactPresentation,
+      route: `/endgame/${mode}/${group.groupId}`
+    });
   }
-  return {
-    modes
-  };
+
+  const boundaries = PRODUCT_BASELINE_CASES.endgameBoundaries.map((selected) => {
+    const mode = selected.mode as EndgameMode;
+    const dataset = datasets.get(mode);
+    if (!dataset)
+      throw new Error(`Endgame dataset was not loaded for boundary case: ${selected.id}`);
+    const group = dataset.groups.find(({ groupId }) => groupId === selected.groupId);
+    if (!group) throw new Error(`Declared product baseline boundary is missing: ${selected.id}`);
+    const timestamp = Date.parse(selected.timestamp);
+    return canonicalize({
+      id: selected.id,
+      timestamp: selected.timestamp,
+      period: buildPeriodView(group, timestamp),
+      recommendedGroupId: recommendedGroupId(dataset.groups, timestamp) ?? null
+    });
+  });
+  return { modes, boundaries };
 }
 
 function compactSearchResult(
@@ -340,17 +324,13 @@ async function captureSearch(catalogs: GlobalSearchCatalogs) {
     path.join(staticGeneratedRoot, 'zh-CN', 'search.json')
   );
   const search = createGlobalSearchService(index, catalogs);
-  const representativeQueries = [
-    '卡芙卡',
-    '锋镝',
-    '银鬃尉官',
-    '迷惘之渊的裁定者',
-    '不存在的搜索词'
-  ];
   return canonicalize({
     locale: index.locale,
     queries: Object.fromEntries(
-      representativeQueries.map((query) => [query, compactSearchResult(search.search(query))])
+      PRODUCT_BASELINE_CASES.searchQueries.map((query) => [
+        query,
+        compactSearchResult(search.search(query))
+      ])
     )
   });
 }
@@ -400,42 +380,6 @@ async function captureHomepage(
   });
 }
 
-async function captureUnresolvedLocalization() {
-  const audit = await json<{
-    textDiagnostics: TextDiagnosticSummary;
-    missingTextAudit: Record<string, { count: number; samples: unknown[] }>;
-    descriptionDiagnostics: Record<string, { count: number }>;
-  }>(path.join(auditRoot, 'latest.json'));
-  const entries = (
-    Object.entries(audit.textDiagnostics) as Array<
-      [TextDiagnosticKind, TextDiagnosticSummary[TextDiagnosticKind]]
-    >
-  ).flatMap(([kind, summary]) => summary.entries.map((entry) => ({ kind, ...entry })));
-  const unclassified = entries.filter((entry) => !entry.disposition);
-  const actionableFallbacks = entries
-    .filter(
-      (entry) =>
-        entry.disposition?.requirement === 'required' &&
-        entry.disposition.productRouteReachability === 'reachable'
-    )
-    .map(({ kind, identifier, source, disposition }) => ({
-      kind,
-      identifier,
-      source,
-      disposition
-    }));
-  return canonicalize({
-    classificationComplete: unclassified.length === 0,
-    actionableFallbackCount: actionableFallbacks.length,
-    actionableFallbackSamples: actionableFallbacks.slice(0, 25),
-    invalidProgramErrors: {
-      invalidReferences: audit.textDiagnostics['invalid-reference'].count,
-      invalidDescriptionParameters: audit.descriptionDiagnostics['invalid-param']?.count ?? 0,
-      categoryD: audit.missingTextAudit.D?.count ?? 0
-    }
-  });
-}
-
 export async function captureProductBaseline(): Promise<ProductBaselineCapture> {
   const assets = await readAssetManifest();
   if (!assets?.sourceCommit) throw new Error('Visual asset manifest is missing its source commit');
@@ -451,22 +395,13 @@ export async function captureProductBaseline(): Promise<ProductBaselineCapture> 
   const enemyCatalog = await json<EnemyCatalogEntry[]>(
     path.join(localeRoot, 'catalogs', 'enemies.json')
   );
-  const characters = await captureStableArea<CatalogEntry, Character>(
-    path.join(localeRoot, 'catalogs', 'characters.json'),
-    path.join(localeRoot, 'details', 'characters'),
-    characterSemantic
+  const detail = <T>(directory: string, id: string) =>
+    json<T>(path.join(localeRoot, 'details', directory, `${id}.json`));
+  const enemyDetails = new Map(
+    await Promise.all(
+      enemyCatalog.map(async ({ id }) => [id, await detail<Enemy>('enemies', id)] as const)
+    )
   );
-  const lightCones = await captureStableArea<CatalogEntry, Record<string, any>>(
-    path.join(localeRoot, 'catalogs', 'light-cones.json'),
-    path.join(localeRoot, 'details', 'light-cones'),
-    lightConeSemantic
-  );
-  const relics = await captureStableArea<RelicCatalogEntry, RelicSet>(
-    path.join(localeRoot, 'catalogs', 'relics.json'),
-    path.join(localeRoot, 'details', 'relics'),
-    relicSemantic
-  );
-  const capturedEnemies = await captureEnemies(enemyCatalog);
   const catalogs: GlobalSearchCatalogs = {
     characters: characterCatalog,
     lightCones: lightConeCatalog,
@@ -475,18 +410,36 @@ export async function captureProductBaseline(): Promise<ProductBaselineCapture> 
   };
   return {
     metadata: { fixtureFormatVersion: PRODUCT_BASELINE_FIXTURE_FORMAT_VERSION, locale: 'zh-CN' },
-    characters,
-    lightCones,
-    relics: {
-      ...relics,
-      properties: await json<RelicProperty[]>(
-        path.join(localeRoot, 'catalogs', 'relic-properties.json')
-      )
-    },
-    enemies: capturedEnemies.area,
-    endgame: await captureEndgame(capturedEnemies.details),
+    characters: await captureDeclaredEntities(
+      'characters',
+      characterCatalog,
+      PRODUCT_BASELINE_CASES.characters,
+      (id) => detail<Character>('characters', id),
+      characterSemantic
+    ),
+    lightCones: await captureDeclaredEntities(
+      'light-cones',
+      lightConeCatalog,
+      PRODUCT_BASELINE_CASES.lightCones,
+      (id) => detail<Record<string, any>>('light-cones', id),
+      lightConeSemantic
+    ),
+    relics: await captureDeclaredEntities(
+      'relics',
+      relicCatalog,
+      PRODUCT_BASELINE_CASES.relics,
+      (id) => detail<RelicSet>('relics', id),
+      relicSemantic
+    ),
+    enemies: await captureDeclaredEntities(
+      'enemies',
+      enemyCatalog,
+      PRODUCT_BASELINE_CASES.enemies,
+      async (id) => enemyDetails.get(id)!,
+      enemySemantic
+    ),
+    endgame: await captureEndgame(enemyDetails),
     homepage: await captureHomepage(characterCatalog, lightConeCatalog, assets),
-    search: await captureSearch(catalogs),
-    unresolvedLocalization: await captureUnresolvedLocalization()
+    search: await captureSearch(catalogs)
   };
 }
