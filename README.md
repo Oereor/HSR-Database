@@ -142,7 +142,7 @@ develop
 └── 活跃开发分支 / 代码同步（push 不会自动引发 Vercel preview 部署）
 ```
 
-需要预览 `develop` 或其他分支时，在 GitHub 的 **Actions → Vercel Preview Deployment → Run workflow** 中选择对应分支并手动运行。Preview 使用与 Production 相同的 `pnpm deploy:build` 数据准备和构建语义；合并或 push 到 `main` 后，仍由 Vercel Git Integration 自动部署 Production。
+需要预览 `develop` 或其他分支时，在 GitHub 的 **Actions → Vercel Preview Deployment → Run workflow** 中选择对应分支并手动运行。GitHub Actions 会将所选 commit 的源码部署到 Vercel Preview，由 Vercel 使用 Preview 环境变量执行项目现有的 `pnpm deploy:build`；合并或 push 到 `main` 后，仍由 Vercel Git Integration 自动部署 Production。
 
 首次启用手动 Preview 时，workflow 文件必须先合入仓库默认分支 `main`，之后 GitHub 才会在 Actions 页面提供 Run workflow。仓库还需在 **Settings → Secrets and variables → Actions** 中配置：
 
