@@ -56,6 +56,9 @@ jobs:
       - name: Run unit and contract tests
         run: pnpm test
 
+      - name: Verify compact product baseline
+        run: pnpm product:baseline:check
+
       - name: Validate search-name metadata
         run: pnpm data:search-names:check
 

@@ -18,7 +18,7 @@ describe('manual Vercel Preview workflow', () => {
   });
 
   it('uses only the runtime needed for the pinned CLI and least-privilege permissions', async () => {
-    const workflow = await readFile(workflowFile, 'utf8');
+    const workflow = (await readFile(workflowFile, 'utf8')).replaceAll('\r\n', '\n');
 
     expect(workflow.match(/permissions:\n([\s\S]*?)\njobs:/)?.[1].trim()).toBe('contents: read');
     expect(workflow).toContain('uses: actions/checkout@v7');

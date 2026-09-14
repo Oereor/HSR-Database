@@ -108,14 +108,9 @@ describe('Search V2', () => {
     expect(normalizeSearch(' —_/- ')).toBe('');
   });
 
-  it('preserves domain counts and directly returns original catalog models', () => {
+  it('directly returns original catalog models for the supported search domains', () => {
     expect(index.schemaVersion).toBe(3);
     expect(index.locale).toBe('zh-CN');
-    expect(index.documents).toHaveLength(1144);
-    expect(index.endgameTargets).toHaveLength(190);
-    expect(index.endgameTargets.reduce((sum, entry) => sum + entry.occurrences.length, 0)).toBe(
-      8167
-    );
     const service = createGlobalSearchService(index, catalogs);
     const kafka = service.search('卡芙卡').results.characters[0];
     expect(kafka).toBe(catalogs.characters.find(({ id }) => id === kafka.id));

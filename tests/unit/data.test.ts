@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 import {
   parseTextHash,
   type Character,
+  type CharacterSpecialEffectEntry,
   type CharacterProfile,
   type DataManifest,
   type LightCone,
@@ -47,7 +48,8 @@ const resolved = (resolver: TextResolver, ref: unknown, source: BuildTextProvena
 import { hashOf, mergeConfigSources, readTable } from '../../scripts/data/raw';
 import {
   characterLdSourceNames,
-  characterLdSourceSpecs
+  characterLdSourceSpecs,
+  loadCharacterDomainTables
 } from '../../scripts/data/character-sources';
 import {
   SKILL_EFFECT_LABELS,
@@ -71,6 +73,8 @@ import {
 } from '../../scripts/data/avatar-special-skills';
 import { formatDescription, formatGameMarkup, formatGameText } from '../../scripts/data/text';
 import { configuredCharacterDetailIconKey } from '../../scripts/data/character-detail-icons';
+import { annotateSpecialEffectTokens } from '../../scripts/data/special-effect-triggers';
+import { buildCharacterDomain } from '../../scripts/data/domain/character';
 
 const baseProfile = (character: Character): CharacterProfile => character.profiles.base;
 const variantOf = (
@@ -81,6 +85,57 @@ const variantOf = (
   profile.skillCards.flatMap((card) => card.variants).find((variant) => variant.id === id);
 
 describe('真实数据管线', () => {
+  it('keeps special-effect triggers attached to explicit relations when visible wording changes', () => {
+    const relations = [{ kind: 'servant-skill-link' }] as CharacterSpecialEffectEntry[];
+    const tokens = [
+      {
+        type: 'icon' as const,
+        value: '',
+        icon: { spriteName: 'AvatarCyrene', id: 0, width: 1, height: 1 },
+        underline: true,
+        color: '#f9b0f0'
+      },
+      { type: 'text' as const, value: 'Arbitrary visible words', underline: true, color: '#F9B0F0' }
+    ];
+    const annotated = annotateSpecialEffectTokens(tokens, '1415', relations);
+    expect(annotated.map(({ semanticReference }) => semanticReference)).toEqual([
+      'character-special-effects:1415',
+      'character-special-effects:1415'
+    ]);
+    expect(() => annotateSpecialEffectTokens(tokens, '1415', [])).toThrow(
+      'Unreviewed special effect icon relation'
+    );
+    expect(() =>
+      annotateSpecialEffectTokens(
+        [{ ...tokens[0], underline: false }, tokens[1]],
+        '1415',
+        relations
+      )
+    ).toThrow('styling changed');
+  });
+
+  it('keeps the Character domain lean and resolves every shared ExtraEffect reference', async () => {
+    const source = await loadCharacterDomainTables(resolveDataRoot());
+    const build = buildCharacterDomain({ tables: source });
+    expect(build.extraEffects.length).toBeGreaterThan(0);
+    for (const character of build.characters) {
+      expect(character).not.toHaveProperty('energy');
+      expect(character).not.toHaveProperty('skills');
+      expect(character).not.toHaveProperty('skillProgressions');
+      expect(character).not.toHaveProperty('extraEffects');
+      expect(character.profiles.base).toHaveProperty('skills');
+    }
+    const registry = new Set(build.extraEffects.map(({ id }) => id));
+    for (const character of build.characters)
+      for (const profile of [character.profiles.base, character.profiles.enhanced].filter(Boolean))
+        for (const id of [
+          ...profile!.skills.flatMap((skill) => skill.extraEffectIds),
+          ...profile!.traces.flatMap((trace) => trace.extraEffectIds ?? []),
+          ...profile!.eidolons.flatMap((eidolon) => eidolon.extraEffectIds)
+        ])
+          expect(registry.has(id)).toBe(true);
+  });
+
   it('只有 config 明确提供 icon path 时才生成角色详情 icon key', () => {
     expect(
       configuredCharacterDetailIconKey(
@@ -686,13 +741,7 @@ describe('真实数据管线', () => {
     const lightCone = JSON.parse(
       await readFile(path.join(localizedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
-    expect(manifest.counts.characters).toBe(97);
     expect(manifest.schemaVersion).toBe(43);
-    expect(manifest.publicLocales).toEqual(['zh-CN', 'en']);
-    expect(manifest.publicLocale).toBe('zh-CN');
-    expect(manifest.generatedLocales).toEqual(['zh-CN', 'en']);
-    expect(manifest.locales['zh-CN'].textMapCode).toBe('CHS');
-    expect(manifest.locales.en.textMapCode).toBe('EN');
     expect(manifest.gameVersionFull).toBe('4.5.0');
     expect(manifest.gameVersion).toBe('4.5');
     expect(character.name).toBe('三月七·存护');

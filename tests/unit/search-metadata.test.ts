@@ -56,7 +56,6 @@ describe('Character search metadata', () => {
     const root = path.resolve(process.env.HSR_DATA_ROOT ?? '../TurnBasedGameData');
     const derived = await deriveCharacterNames(root, snapshot.sourceCommit);
     expect(serializeCharacterNames(derived.snapshot)).toBe(serializeCharacterNames(snapshot));
-    expect(Object.keys(snapshot.characters)).toHaveLength(97);
     expect(snapshot.characters['1001'].canonicalName).toBe('三月七·存护');
     expect(snapshot.characters['1224'].canonicalName).toBe('三月七·巡猎');
     expect(snapshot.characters['1213'].canonicalName).toBe('丹恒•饮月');
