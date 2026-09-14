@@ -293,12 +293,3 @@ export async function getEndgameGroupEntries(
     dataset.groups.map((group) => ({ mode: dataset.mode, groupId: String(group.groupId) }))
   );
 }
-
-export async function getEndgameRoutePaths(locale: SearchLocale): Promise<string[]> {
-  const entries = await getEndgameGroupEntries(locale);
-  return [
-    '/endgame',
-    ...ENDGAME_MODES.map((mode) => `/endgame/${mode}`),
-    ...entries.map(({ mode, groupId }) => `/endgame/${mode}/${groupId}`)
-  ];
-}

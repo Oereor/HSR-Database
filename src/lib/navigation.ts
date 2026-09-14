@@ -104,8 +104,6 @@ export const NAVIGATION_ITEMS = [
   }
 ] as const;
 
-export type NavigationItem = ReturnType<typeof getNavigationItems>[number];
-
 export function isNavigationItemActive(pathname: string, item: { href: string }): boolean {
   const canonical = canonicalHref(pathname);
   return item.href === '/' ? canonical === '/' : canonical.startsWith(item.href);
