@@ -7,7 +7,7 @@ import type {
   SkillExtraEffect
 } from '../../../src/lib/domain/types.js';
 import type { TextResolver } from '../localization.js';
-import type { TextDiagnosticDisposition, TextSource } from '../localization.js';
+import type { BuildTextProvenance, TextDiagnosticDisposition } from '../localization.js';
 import type { LevelledDescriptionDiagnostic } from '../levelled.js';
 import type { DescriptionDiagnostic } from '../text.js';
 import { gameTextToPlain, normalizeGameText } from '../../../src/lib/domain/game-text.js';
@@ -32,14 +32,14 @@ export interface EnemyProjectionContext {
   onUnresolvedExtraEffect?: (enemyId: string, skillId: string, extraEffectId: string) => void;
 }
 
-function source(entity: string, id: string, field: string): TextSource {
+function source(entity: string, id: string, field: string): BuildTextProvenance {
   return { entity, id, field };
 }
 
 function projectText(
   resolver: TextResolver,
   value: NeutralTextSource | undefined,
-  field: TextSource,
+  field: BuildTextProvenance,
   fallback: string,
   disposition: TextDiagnosticDisposition
 ): string {
@@ -60,7 +60,7 @@ function projectText(
 function projectGameText(
   resolver: TextResolver,
   value: NeutralTextSource | undefined,
-  field: TextSource,
+  field: BuildTextProvenance,
   fallback: string,
   disposition: TextDiagnosticDisposition,
   onDiagnostics?: (diagnostics: DescriptionDiagnostic[]) => void

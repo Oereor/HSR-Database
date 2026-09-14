@@ -12,7 +12,7 @@ import type {
   GameTextProjection,
   TextDiagnosticDisposition,
   TextResolver,
-  TextSource
+  BuildTextProvenance
 } from '../localization.js';
 
 export interface EndgameProjectionContext {
@@ -40,7 +40,7 @@ interface EndgameProjectionAuditState {
   omittedLinkedEffects: number;
 }
 
-function provenance(entity: string, id: string | number, field: string): TextSource {
+function provenance(entity: string, id: string | number, field: string): BuildTextProvenance {
   return { entity, id: String(id), field };
 }
 
@@ -56,7 +56,7 @@ function disposition(required: boolean, emitted = true): TextDiagnosticDispositi
 function projectText(
   resolver: TextResolver,
   source: NeutralTextSource | undefined,
-  field: TextSource,
+  field: BuildTextProvenance,
   required: boolean,
   diagnosticDisposition: TextDiagnosticDisposition = disposition(required)
 ): string | undefined {
@@ -80,7 +80,7 @@ function projectText(
 function projectGameText(
   resolver: TextResolver,
   source: NeutralTextSource | undefined,
-  field: TextSource,
+  field: BuildTextProvenance,
   required: boolean,
   diagnosticDisposition: TextDiagnosticDisposition = disposition(required),
   inspect?: (projection: GameTextProjection) => void

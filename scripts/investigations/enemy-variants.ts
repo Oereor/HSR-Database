@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createTextResolver, loadTextMap } from '../data/localization.js';
 import { textSource } from '../data/domain/shared.js';
-import { getProductionLocale } from '../data/locale-registry.js';
+import { getPublicLocale } from '../data/locale-registry.js';
 import { assertDataRoot, generatedRoot, siteRoot, sourceCommit } from '../data/paths.js';
 import { readTable } from '../data/raw.js';
 import type { Enemy } from '../../src/lib/domain/types.js';
@@ -45,7 +45,7 @@ const [
   readTable<Raw>(root, 'MonsterGuidePhase'),
   readTable<Raw>(root, 'MonsterGuideSkill')
 ]);
-const locale = getProductionLocale();
+const locale = getPublicLocale();
 const text = await createTextResolver(
   { locale: locale.locale, textMapCode: locale.textMapCode },
   await loadTextMap(root, locale.textMapCode)

@@ -19,7 +19,7 @@ import {
   runtimeTextSourceFromRef,
   localizationHealthTotals,
   type TextDiagnosticDisposition,
-  type TextSource
+  type BuildTextProvenance
 } from './localization.js';
 import { addDescriptionDiagnostics, createDescriptionDiagnosticSummary } from './levelled.js';
 import { createMissingTextAuditCollector } from './missing-text.js';
@@ -63,7 +63,7 @@ import { projectEnemies } from './projection/enemy.js';
 import { validateSiteMessageFiles } from '../messages.js';
 import {
   getGeneratedLocales,
-  getProductionLocale,
+  getPublicLocale,
   getPublicLocales,
   type LocaleConfig
 } from './locale-registry.js';
@@ -193,7 +193,7 @@ function unique<T>(items: T[]): T[] {
 
 export async function syncData(): Promise<DataManifest> {
   const root = assertDataRoot();
-  const locale = getProductionLocale();
+  const locale = getPublicLocale();
   const generatedLocales = getGeneratedLocales();
   const commit = sourceCommit(root);
   const sourceVersion = execFileSync(
@@ -241,7 +241,7 @@ export async function syncData(): Promise<DataManifest> {
   const baseRuntime = localeRuntimes.find(({ config }) => config.locale === locale.locale)!;
   const { text, missingText } = baseRuntime;
   const unknownSkillEffects = new Set<string>();
-  const source = (entity: string, id: string | number, field: string): TextSource => ({
+  const source = (entity: string, id: string | number, field: string): BuildTextProvenance => ({
     entity,
     id: String(id),
     field
@@ -369,7 +369,7 @@ export async function syncData(): Promise<DataManifest> {
   const auditResolvedText = (
     runtime: (typeof localeRuntimes)[number],
     value: string,
-    textSource: TextSource
+    textSource: BuildTextProvenance
   ): void => {
     if (/<icon\b/i.test(value))
       runtime.missingText.record('B', 'unsupported-icon-markup', textSource, '<icon>');
@@ -377,7 +377,7 @@ export async function syncData(): Promise<DataManifest> {
   const tr = (
     runtime: (typeof localeRuntimes)[number],
     value: unknown,
-    textSource: TextSource,
+    textSource: BuildTextProvenance,
     fallback = '',
     disposition: TextDiagnosticDisposition = {
       requirement: fallback ? 'required' : 'optional',

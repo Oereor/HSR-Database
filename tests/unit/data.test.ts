@@ -27,7 +27,7 @@ import {
   type BuildTextProvenance,
   type TextResolver
 } from '../../scripts/data/localization';
-import { getProductionLocale } from '../../scripts/data/locale-registry';
+import { getPublicLocale } from '../../scripts/data/locale-registry';
 import { normalizeLevelledDescriptions } from '../../scripts/data/levelled';
 import {
   assertDataRoot,
@@ -390,7 +390,7 @@ describe('真实数据管线', () => {
   });
 
   it('以 XXHash64 解析遗器符号文本键', async () => {
-    const locale = getProductionLocale();
+    const locale = getPublicLocale();
     const resolver = await createTextResolver(
       { locale: locale.locale, textMapCode: locale.textMapCode },
       {
@@ -416,7 +416,7 @@ describe('真实数据管线', () => {
 
   it('区分直接 Hash 与符号文本键', async () => {
     const textMap = await loadTextMap(assertDataRoot());
-    const locale = getProductionLocale();
+    const locale = getPublicLocale();
     const resolver = await createTextResolver(
       { locale: locale.locale, textMapCode: locale.textMapCode },
       textMap
@@ -451,7 +451,7 @@ describe('真实数据管线', () => {
   it('通过统一 resolver 解析真实技能名与描述', async () => {
     const skills = await readTable<any>(assertDataRoot(), 'AvatarSkillConfig');
     const level = skills.find((row) => row.SkillID === 100101 && row.Level === 1);
-    const locale = getProductionLocale();
+    const locale = getPublicLocale();
     const resolver = await createTextResolver(
       { locale: locale.locale, textMapCode: locale.textMapCode },
       await loadTextMap(assertDataRoot(), locale.textMapCode)
@@ -474,7 +474,7 @@ describe('真实数据管线', () => {
 
   it('区分空源字段、未解析 Hash 与异常 Hash 表示', async () => {
     const source = { entity: 'test', id: '1', field: 'Text' };
-    const locale = getProductionLocale();
+    const locale = getPublicLocale();
     const resolver = await createTextResolver(
       { locale: locale.locale, textMapCode: locale.textMapCode },
       {}

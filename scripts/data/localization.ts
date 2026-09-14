@@ -18,9 +18,6 @@ export interface BuildTextProvenance {
 export type RuntimeTextRef =
   { kind: 'hash'; hash: TextHash } | { kind: 'symbolic'; key: string; hash?: TextHash };
 
-/** Legacy build provenance name retained for existing audit helpers. */
-export type TextSource = BuildTextProvenance;
-
 export type RuntimeTextSource =
   | { kind: 'direct'; ref: RuntimeTextRef; provenance?: BuildTextProvenance }
   | {

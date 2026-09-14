@@ -15,7 +15,7 @@ import {
   type PlayerAliasMetadata
 } from '../../src/lib/search/name-metadata';
 import { createTextResolver } from '../../scripts/data/localization';
-import { getProductionLocale } from '../../scripts/data/locale-registry';
+import { getPublicLocale } from '../../scripts/data/locale-registry';
 import { createGlobalSearchService } from '../../src/lib/search/search';
 import { serializePlayerAliases, syncPlayerAliasSkeleton } from '../../scripts/data/player-aliases';
 import { normalizeSearchDocument } from '../../src/lib/search/documents';
@@ -86,7 +86,7 @@ describe('Character search metadata', () => {
   });
 
   it('does not infer aliases from another string or merge conflicting AvatarIDs', async () => {
-    const locale = getProductionLocale();
+    const locale = getPublicLocale();
     const text = await createTextResolver(
       { locale: locale.locale, textMapCode: locale.textMapCode },
       { '1': '甲角色', '2': '巡猎', '3': '乙角色' }

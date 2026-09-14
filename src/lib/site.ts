@@ -1,8 +1,7 @@
 import { m } from './paraglide/messages.js';
+import type { Locale } from './paraglide/runtime.js';
 
-export const siteName = (): string => m.site_name();
-/** Base-locale compatibility value for build-time baselines. Public UI uses siteName(). */
-export const SITE_NAME = m.site_name({}, { locale: 'zh-CN' });
+export const siteName = (locale?: Locale): string => m.site_name({}, { locale });
 
 export function formatDocumentTitle(...segments: Array<string | undefined>): string {
   return [

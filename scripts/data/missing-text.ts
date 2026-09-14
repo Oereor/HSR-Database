@@ -1,8 +1,8 @@
-import type { TextSource } from './localization.js';
+import type { BuildTextProvenance } from './localization.js';
 
 export type MissingTextCategory = 'A' | 'B' | 'C' | 'D';
 
-export interface MissingTextSample extends TextSource {
+export interface MissingTextSample extends BuildTextProvenance {
   reason: string;
   identifier: string;
 }
@@ -26,7 +26,7 @@ export interface MissingTextAuditCollector {
   record(
     category: MissingTextCategory,
     reason: string,
-    source: TextSource,
+    source: BuildTextProvenance,
     identifier?: string
   ): void;
   getSummary(): MissingTextAudit;
