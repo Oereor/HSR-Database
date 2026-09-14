@@ -139,10 +139,20 @@ main
 └── Production → hsrarchive.cc
 
 develop
-└── Development / Vercel Preview
+└── 活跃开发分支 / 代码同步（push 不会自动引发 Vercel preview 部署）
 ```
 
-GitHub Actions 会定期检查两个 upstream 是否有更新。发现新版本后，自动更新 `upstream.lock.json`、执行完整构建验证，并创建目标为 `develop` 的 Pull Request，交由人工审核与 Vercel Preview 验证。
+需要预览 `develop` 或其他分支时，在 GitHub 的 **Actions → Vercel Preview Deployment → Run workflow** 中选择对应分支并手动运行。Preview 使用与 Production 相同的 `pnpm deploy:build` 数据准备和构建语义；合并或 push 到 `main` 后，仍由 Vercel Git Integration 自动部署 Production。
+
+首次启用手动 Preview 时，workflow 文件必须先合入仓库默认分支 `main`，之后 GitHub 才会在 Actions 页面提供 Run workflow。仓库还需在 **Settings → Secrets and variables → Actions** 中配置：
+
+- `VERCEL_TOKEN`：来自 Vercel Account Settings 的 Tokens；
+- `VERCEL_ORG_ID`：现有 Vercel team/account 的 ID；
+- `VERCEL_PROJECT_ID`：现有 Vercel Project 的 ID。
+
+后两个 ID 可从 Vercel Project Settings 获取，也可在本地仅链接现有项目后查看 `.vercel/project.json`。不要提交 token、`.vercel/`、`.env.local` 或其他本机状态。
+
+GitHub Actions 会定期检查两个 upstream 是否有更新。发现新版本后，自动更新 `upstream.lock.json`、执行完整构建验证，并创建目标为 `develop` 的 Pull Request，交由人工审核；需要页面验收时再手动部署 Preview。
 
 ### 如何添加更新日志
 
