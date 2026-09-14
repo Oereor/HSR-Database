@@ -17,37 +17,47 @@ describe('manual Vercel Preview workflow', () => {
     expect(workflow).not.toMatch(/\n\s+(push|pull_request|schedule):/);
   });
 
-  it('uses the established runtime and least-privilege permissions', async () => {
+  it('uses only the runtime needed for the pinned CLI and least-privilege permissions', async () => {
     const workflow = await readFile(workflowFile, 'utf8');
 
     expect(workflow.match(/permissions:\n([\s\S]*?)\njobs:/)?.[1].trim()).toBe('contents: read');
     expect(workflow).toContain('uses: actions/checkout@v7');
     expect(workflow).toContain('uses: actions/setup-node@v7');
-    expect(workflow).toContain('uses: pnpm/action-setup@v4');
     expect(workflow).toContain('node-version: 22');
-    expect(workflow).toContain('version: 11.9.0');
     expect(workflow).toContain('npm install --global vercel@59.16.0');
+    expect(workflow).not.toContain('pnpm/action-setup');
+    expect(workflow).not.toContain('cache: pnpm');
   });
 
-  it('builds once through Vercel and can only deploy a Preview', async () => {
+  it('uploads source once and can only deploy a Vercel-hosted Preview build', async () => {
     const workflow = await readFile(workflowFile, 'utf8');
-    const pull = workflow.indexOf('vercel pull --yes --environment=preview');
-    const build = workflow.indexOf('vercel build --token=');
-    const deploy = workflow.indexOf('vercel deploy --prebuilt --token=');
+    const sourceDeploys = workflow.match(
+      /vercel deploy --yes --target=preview --token="\$VERCEL_TOKEN"/g
+    );
 
-    expect(pull).toBeGreaterThan(0);
-    expect(build).toBeGreaterThan(pull);
-    expect(deploy).toBeGreaterThan(build);
+    expect(sourceDeploys).toHaveLength(1);
+    expect(workflow).not.toContain('vercel pull');
+    expect(workflow).not.toContain('vercel build');
+    expect(workflow).not.toContain('--prebuilt');
+    expect(workflow).not.toContain('vercel link');
     expect(workflow).not.toContain('pnpm install');
     expect(workflow).not.toContain('pnpm deploy:build');
     expect(workflow).not.toMatch(/--prod(?:\s|$)/m);
+    expect(workflow).not.toContain('--target=production');
+    expect(workflow).not.toContain('--no-wait');
   });
 
   it('uses repository secrets and exposes the resulting Preview URL', async () => {
     const workflow = await readFile(workflowFile, 'utf8');
+    const secretNames = [...workflow.matchAll(/secrets\.([A-Z][A-Z0-9_]*)/g)].map(
+      (match) => match[1]
+    );
 
-    for (const secret of ['VERCEL_TOKEN', 'VERCEL_ORG_ID', 'VERCEL_PROJECT_ID'])
-      expect(workflow).toContain(`secrets.${secret}`);
+    expect([...new Set(secretNames)].sort()).toEqual([
+      'VERCEL_ORG_ID',
+      'VERCEL_PROJECT_ID',
+      'VERCEL_TOKEN'
+    ]);
     expect(workflow).toContain('id: deploy');
     expect(workflow).toContain('url=$deployment_url');
     expect(workflow).toContain('$GITHUB_STEP_SUMMARY');
