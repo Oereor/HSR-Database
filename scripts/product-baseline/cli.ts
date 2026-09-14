@@ -2,31 +2,47 @@ import { execFileSync } from 'node:child_process';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { auditRoot, siteRoot } from '../data/paths.js';
-import { captureProductBaseline } from './capture.js';
+import { PRODUCT_BASELINE_CASES } from './cases.js';
 import { compareProductBaseline } from './compare.js';
 import {
   readProductBaselineFixtures,
   writeProductBaselineFixtures,
   writeSearchProductBaselineFixture
 } from './fixtures.js';
-import type { ProductBaselineDifference } from './model.js';
+import type { ProductBaselineCapture, ProductBaselineDifference } from './model.js';
 
 const diagnosticRoot = path.join(auditRoot, 'product-baseline');
 
-function runFreshGeneration(): void {
+export const PRODUCT_BASELINE_PREPARATION_STAGES = [
+  'messages:check',
+  'data:sync',
+  'assets:ensure:enemies',
+  'assets:ensure'
+] as const;
+
+export type ProductBaselinePreparationStage = (typeof PRODUCT_BASELINE_PREPARATION_STAGES)[number];
+export type ProductBaselineCommandRunner = (stage: ProductBaselinePreparationStage) => void;
+
+const runPnpmScript: ProductBaselineCommandRunner = (script) => {
   const pnpmScript = process.env.npm_execpath;
   const command = pnpmScript ? process.execPath : 'pnpm';
-  const args = (script: string) => (pnpmScript ? [pnpmScript, script] : [script]);
-  execFileSync(command, args('data:sync'), {
+  const args = pnpmScript ? [pnpmScript, script] : [script];
+  execFileSync(command, args, {
     cwd: siteRoot,
     stdio: 'inherit',
     windowsHide: true
   });
-  execFileSync(command, args('assets:ensure'), {
-    cwd: siteRoot,
-    stdio: 'inherit',
-    windowsHide: true
-  });
+};
+
+export function runFreshProductBaselinePreparation(
+  runner: ProductBaselineCommandRunner = runPnpmScript
+): void {
+  for (const stage of PRODUCT_BASELINE_PREPARATION_STAGES) runner(stage);
+}
+
+export interface FreshProductBaselineDependencies {
+  commandRunner?: ProductBaselineCommandRunner;
+  capture?: () => Promise<ProductBaselineCapture>;
 }
 
 function argument(name: string): string | undefined {
@@ -43,29 +59,42 @@ async function writeDiagnostics(differences: ProductBaselineDifference[]): Promi
   );
 }
 
-function assertR0Capture(capture: Awaited<ReturnType<typeof captureProductBaseline>>): void {
-  if (capture.characters.order.length !== 97)
-    throw new Error(`Expected 97 Characters, received ${capture.characters.order.length}`);
-  const localization = capture.unresolvedLocalization as {
-    classificationComplete?: boolean;
-    invalidProgramErrors?: Record<string, number>;
-  };
-  if (!localization.classificationComplete)
-    throw new Error('Unresolved localization baseline contains unclassified references');
-  const programErrors = Object.entries(localization.invalidProgramErrors ?? {}).filter(
-    ([, count]) => count !== 0
+export function requireProductBaselineApprovalReason(reason: string | undefined): string {
+  const normalized = reason?.trim();
+  if (!normalized)
+    throw new Error('Use --reason "<maintainer-approved reason>" to update fixtures');
+  return normalized;
+}
+
+export function assertSearchOnlyDifferences(
+  differences: readonly ProductBaselineDifference[]
+): void {
+  const forbidden = differences.filter(({ domain }) => domain !== 'search');
+  if (!forbidden.length) return;
+  throw new Error(
+    `Search-only baseline update requires zero non-Search product differences; received ${forbidden.length}`
   );
-  if (programErrors.length)
-    throw new Error(`Localization program errors remain: ${JSON.stringify(programErrors)}`);
+}
+
+export async function captureFreshProductBaseline(
+  dependencies: FreshProductBaselineDependencies = {}
+): Promise<ProductBaselineCapture> {
+  runFreshProductBaselinePreparation(dependencies.commandRunner);
+  const capture =
+    dependencies.capture ??
+    (async () => {
+      const { captureProductBaseline } = await import('./capture.js');
+      return captureProductBaseline();
+    });
+  const result = await capture();
+  return result;
 }
 
 async function check(): Promise<void> {
-  runFreshGeneration();
   const [expected, actual] = await Promise.all([
     readProductBaselineFixtures(),
-    captureProductBaseline()
+    captureFreshProductBaseline()
   ]);
-  assertR0Capture(actual);
   const differences = compareProductBaseline(expected, actual);
   await writeDiagnostics(differences);
   if (differences.length) {
@@ -79,32 +108,26 @@ async function check(): Promise<void> {
     );
   }
   console.log(
-    `zh-CN product baseline verified: ${actual.characters.order.length} Characters and seven product areas; 0 semantic differences.`
+    `zh-CN compact product baseline verified: ${Object.keys(actual.characters).length} Character cases and ${PRODUCT_BASELINE_CASES.endgame.length} Endgame cases; 0 semantic differences.`
   );
 }
 
 async function update(): Promise<void> {
-  const reason = argument('--reason')?.trim();
-  if (!reason) throw new Error('Use --reason "<maintainer-approved reason>" to update fixtures');
-  runFreshGeneration();
-  const capture = await captureProductBaseline();
-  assertR0Capture(capture);
+  const reason = requireProductBaselineApprovalReason(argument('--reason'));
+  const capture = await captureFreshProductBaseline();
   await writeProductBaselineFixtures(capture, reason);
   await writeDiagnostics([]);
   console.log(
-    `zh-CN product baseline updated: ${capture.characters.order.length} Characters; reason: ${reason}`
+    `zh-CN compact product baseline updated: ${Object.keys(capture.characters).length} Character cases; reason: ${reason}`
   );
 }
 
 async function updateSearch(): Promise<void> {
-  const reason = argument('--reason')?.trim();
-  if (!reason) throw new Error('Use --reason "<maintainer-approved reason>" to update Search');
-  runFreshGeneration();
+  const reason = requireProductBaselineApprovalReason(argument('--reason'));
   const [expected, actual] = await Promise.all([
     readProductBaselineFixtures(),
-    captureProductBaseline()
+    captureFreshProductBaseline()
   ]);
-  assertR0Capture(actual);
   const differences = compareProductBaseline(expected, actual);
   await writeDiagnostics(differences);
   const forbidden = differences.filter(({ domain }) => domain !== 'search');
@@ -116,7 +139,7 @@ async function updateSearch(): Promise<void> {
       console.error(
         `${difference.domain}/${difference.entityId} ${difference.path}: ${JSON.stringify(difference.expected)} -> ${JSON.stringify(difference.actual)}`
       );
-    throw new Error('Search-only baseline update requires zero non-Search product differences');
+    assertSearchOnlyDifferences(differences);
   }
   await writeSearchProductBaselineFixture(actual, reason);
   await writeDiagnostics([]);
@@ -125,8 +148,13 @@ async function updateSearch(): Promise<void> {
   );
 }
 
-const command = process.argv[2];
-if (command === 'check') await check();
-else if (command === 'update') await update();
-else if (command === 'update-search') await updateSearch();
-else throw new Error(`Unknown product baseline command: ${command ?? '<missing>'}`);
+export async function runProductBaselineCli(command = process.argv[2]): Promise<void> {
+  if (command === 'check') await check();
+  else if (command === 'update') await update();
+  else if (command === 'update-search') await updateSearch();
+  else throw new Error(`Unknown product baseline command: ${command ?? '<missing>'}`);
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.meta.filename)) {
+  await runProductBaselineCli();
+}

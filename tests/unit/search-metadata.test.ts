@@ -160,6 +160,8 @@ describe('Character search metadata', () => {
       expect(await readFile(file, 'utf8')).toBe('{}\n');
       await writeFile(file, serializeCharacterNames(snapshot));
       await expect(checkOfficialSnapshot(snapshot, file)).resolves.toBeUndefined();
+      await writeFile(file, serializeCharacterNames(snapshot).replaceAll('\n', '\r\n'));
+      await expect(checkOfficialSnapshot(snapshot, file)).resolves.toBeUndefined();
     } finally {
       await rm(dir, { recursive: true, force: true });
     }

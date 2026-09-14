@@ -99,8 +99,9 @@ describe('deployment build orchestration', () => {
       expect(events.indexOf(first)).toBeLessThan(events.indexOf(second));
     before('prepare-turn-based', 'data:ensure');
     before('data:search-names:check', 'data:ensure');
-    before('data:ensure', 'assets:ensure:enemies');
-    before('data:ensure', 'assets-ensure');
+    before('data:ensure', 'data:validate');
+    before('data:validate', 'assets:ensure:enemies');
+    before('data:validate', 'assets-ensure');
     before('prepare-star-rail', 'assets-ensure');
     before('assets-verify', 'exec svelte-kit sync');
     before('assets:ensure:enemies', 'exec svelte-kit sync');
@@ -155,8 +156,31 @@ describe('deployment build orchestration', () => {
     expect(events).not.toContain('check:scripts');
     expect(events).not.toContain('data:search-names:check');
     expect(events).toContain('data:ensure');
+    expect(events).toContain('data:validate');
     expect(events).toContain('deploy:verify');
   });
+
+  it.each(['preview', 'production'] as const)(
+    'stops %s before assets and build when generated data validation fails',
+    async (vercelEnv) => {
+      const events: string[] = [];
+      const deps = dependencies(events, { VERCEL_ENV: vercelEnv });
+      deps.commandRunner = async (args) => {
+        const command = args.join(' ');
+        events.push(command);
+        if (command === 'data:validate') throw new Error('[endgame/fk] broken occurrence');
+      };
+
+      await expect(runDeploymentBuild(deps)).rejects.toThrow('[endgame/fk] broken occurrence');
+      expect(events).toContain('data:ensure');
+      expect(events).toContain('data:validate');
+      expect(events).not.toContain('assets:ensure:enemies');
+      expect(events).not.toContain('assets-ensure');
+      expect(events).not.toContain('exec svelte-kit sync');
+      expect(events).not.toContain('exec vite build');
+      expect(events).not.toContain('deploy:verify');
+    }
+  );
 
   it('reports failures from both parallel asset branches', async () => {
     const events: string[] = [];

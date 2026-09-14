@@ -93,6 +93,13 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 | `pnpm deploy:build`     | 使用固定 upstream 版本执行完整部署构建 |
 | `pnpm upstreams:update` | 检查并更新 upstream lock               |
 
+### 命令准备职责
+
+`pnpm product:baseline:check`、`pnpm product:baseline:update` 和
+`pnpm product:baseline:search:update` 是 self-preparing 命令。它们会依次准备站点消息、产品数据、敌人资源和通用视觉资源，再捕获当前产品输出。fixture 更新仍然只能通过带有明确 `--reason` 的 update 命令执行。
+
+`pnpm test` 和 `pnpm data:validate` 使用 prepared-workspace 模型，不会自行准备全部 generated inputs。clean pinned workspace 应先运行 `pnpm ci:prepare`；普通 `pnpm build`、CI 和部署命令继续保持各自现有的准备职责。
+
 ## 项目结构
 
 ```text
@@ -132,10 +139,20 @@ main
 └── Production → hsrarchive.cc
 
 develop
-└── Development / Vercel Preview
+└── 活跃开发分支 / 代码同步（push 不会自动引发 Vercel preview 部署）
 ```
 
-GitHub Actions 会定期检查两个 upstream 是否有更新。发现新版本后，自动更新 `upstream.lock.json`、执行完整构建验证，并创建目标为 `develop` 的 Pull Request，交由人工审核与 Vercel Preview 验证。
+需要预览 `develop` 或其他分支时，在 GitHub 的 **Actions → Vercel Preview Deployment → Run workflow** 中选择对应分支并手动运行。Preview 使用与 Production 相同的 `pnpm deploy:build` 数据准备和构建语义；合并或 push 到 `main` 后，仍由 Vercel Git Integration 自动部署 Production。
+
+首次启用手动 Preview 时，workflow 文件必须先合入仓库默认分支 `main`，之后 GitHub 才会在 Actions 页面提供 Run workflow。仓库还需在 **Settings → Secrets and variables → Actions** 中配置：
+
+- `VERCEL_TOKEN`：来自 Vercel Account Settings 的 Tokens；
+- `VERCEL_ORG_ID`：现有 Vercel team/account 的 ID；
+- `VERCEL_PROJECT_ID`：现有 Vercel Project 的 ID。
+
+后两个 ID 可从 Vercel Project Settings 获取，也可在本地仅链接现有项目后查看 `.vercel/project.json`。不要提交 token、`.vercel/`、`.env.local` 或其他本机状态。
+
+GitHub Actions 会定期检查两个 upstream 是否有更新。发现新版本后，自动更新 `upstream.lock.json`、执行完整构建验证，并创建目标为 `develop` 的 Pull Request，交由人工审核；需要页面验收时再手动部署 Preview。
 
 ### 如何添加更新日志
 

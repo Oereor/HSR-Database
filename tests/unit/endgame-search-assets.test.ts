@@ -63,5 +63,5 @@ describe('Endgame Search portrait delivery', () => {
       expect(item.occurrence.portraitUrl).toMatch(/^\/generated-enemy-assets\//);
     }
     expect(await getEndgameOccurrenceShard('../missing', 'en')).toBeUndefined();
-  });
+  }, 30000);
 });

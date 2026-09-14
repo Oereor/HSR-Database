@@ -71,6 +71,14 @@ import { getLocaleProjectionPolicy } from './projection/policy.js';
 import { buildEndgameOccurrenceShards } from './endgame-occurrence-shards.js';
 import { assertCrossLocaleStructuralParity } from './structural-parity.js';
 import { assertEnglishCjkReport, auditEnglishCjk } from './english-cjk.js';
+import { buildGeneratedRouteInventory } from './routes.js';
+import {
+  assertValidationReport,
+  mergeValidationReports,
+  validateLocalizationHealth,
+  validateProductProjection,
+  validateRelationAudits
+} from './robustness-invariants.js';
 
 type Raw = Record<string, any>;
 
@@ -876,15 +884,6 @@ export async function syncData(): Promise<DataManifest> {
         assertCrossLocaleStructuralParity(baseProjection, projection)
       ])
   );
-  for (const projection of projections) {
-    const health = projection.runtime.text.getLocalizationHealth();
-    if (health.unclassified || health.invalidProgramStateErrors)
-      throw new Error(
-        `[${projection.config.locale}] localization health is invalid: ` +
-          `${health.unclassified} unclassified, ${health.invalidProgramStateErrors} invalid program-state errors`
-      );
-  }
-
   const nextGeneratedRoot = `${generatedRoot}.next`;
   const nextStaticGeneratedRoot = `${staticGeneratedRoot}.next`;
   await resetDirectory(nextGeneratedRoot);
@@ -1034,21 +1033,7 @@ export async function syncData(): Promise<DataManifest> {
     relics: baseProjection.details.relics.map((item) => item.id),
     enemies: baseProjection.details.enemies.map((item) => item.id)
   };
-  const routePaths = [
-    '/',
-    '/search',
-    ...Object.entries(routes).flatMap(([category, ids]) => [
-      `/${category}`,
-      ...ids.map((id) => `/${category}/${id}`)
-    ]),
-    '/endgame',
-    ...Object.values(baseProjection.endgame.datasets).flatMap((dataset) => [
-      `/endgame/${dataset.mode}`,
-      ...dataset.groups.map(
-        (group: { groupId: number }) => `/endgame/${dataset.mode}/${group.groupId}`
-      )
-    ])
-  ];
+  const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
   const manifest: DataManifest = {
     schemaVersion: 43,
     sourceCommit: commit,
@@ -1065,6 +1050,29 @@ export async function syncData(): Promise<DataManifest> {
     routes,
     endgame: baseProjection.endgame.audit.summary
   };
+  for (const projection of projections) {
+    const health = projection.runtime.text.getLocalizationHealth();
+    assertValidationReport(
+      mergeValidationReports(
+        validateLocalizationHealth(projection.config.locale, projection.config.textMapCode, health),
+        validateRelationAudits({
+          specialEffects: specialEffectLinks.audit.diagnostics,
+          avatarSpecialSkills: avatarSpecialSkillTreeAudit.diagnostics,
+          enemies: projection.enemyAudit
+        }),
+        validateProductProjection(manifest, {
+          locale: projection.config.locale,
+          catalogs: projection.catalogs,
+          details: projection.details,
+          relicProperties: projection.relicProperties,
+          endgame: projection.endgame.datasets,
+          search: projection.globalSearchIndex,
+          occurrenceShards: projection.occurrenceShards
+        })
+      ),
+      `[${projection.config.locale}] generated product invariants`
+    );
+  }
   await verifyGeneratedArtifacts(artifacts, nextGeneratedRoot, nextStaticGeneratedRoot);
   const englishProjection = projections.find(({ config }) => config.locale === 'en')!;
   const englishCjk = await auditEnglishCjk({
@@ -1086,7 +1094,8 @@ export async function syncData(): Promise<DataManifest> {
     textDiagnostics: baseRuntime.text.getDiagnostics(),
     descriptionDiagnostics: baseRuntime.descriptionDiagnostics,
     skillCombatAudit: {
-      unknownEffects: [...unknownSkillEffects].sort()
+      unknownEffects: [...unknownSkillEffects].sort(),
+      unsupportedHiddenDiscriminants: characterBuild.unsupportedHiddenSkillDiscriminants
     },
     avatarSpecialSkillTreeAudit,
     specialEffectAudit: specialEffectLinks.audit,

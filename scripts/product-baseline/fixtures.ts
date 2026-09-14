@@ -1,8 +1,9 @@
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { siteRoot } from '../data/paths.js';
 import { canonicalJson } from './canonical.js';
-import type { ProductBaselineCapture, StableEntityArea } from './model.js';
+import { PRODUCT_BASELINE_CASES } from './cases.js';
+import type { ProductBaselineCapture } from './model.js';
 
 export const productBaselineFixtureRoot = path.join(
   siteRoot,
@@ -12,41 +13,67 @@ export const productBaselineFixtureRoot = path.join(
   'zh-CN'
 );
 
-async function readJson<T>(...segments: string[]): Promise<T> {
-  return JSON.parse(
-    await readFile(path.join(productBaselineFixtureRoot, ...segments), 'utf8')
-  ) as T;
+export function expectedProductBaselineFixturePaths(): string[] {
+  return [
+    'metadata.json',
+    ...PRODUCT_BASELINE_CASES.characters.map(({ id }) => `characters/${id}.json`),
+    ...PRODUCT_BASELINE_CASES.lightCones.map(({ id }) => `light-cones/${id}.json`),
+    ...PRODUCT_BASELINE_CASES.relics.map(({ id }) => `relics/${id}.json`),
+    ...PRODUCT_BASELINE_CASES.enemies.map(({ id }) => `enemies/${id}.json`),
+    ...PRODUCT_BASELINE_CASES.endgame.map(({ mode, groupId }) => `endgame/${mode}/${groupId}.json`),
+    'endgame/boundaries.json',
+    'homepage.json',
+    'search.json'
+  ].sort((left, right) => left.localeCompare(right, 'en'));
 }
 
-async function writeJson(value: unknown, ...segments: string[]): Promise<void> {
-  const file = path.join(productBaselineFixtureRoot, ...segments);
+async function listJsonFiles(root: string, relative = ''): Promise<string[]> {
+  const entries = await readdir(path.join(root, relative), { withFileTypes: true }).catch(
+    (error: unknown) => {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') return [];
+      throw error;
+    }
+  );
+  const files = await Promise.all(
+    entries.map(async (entry) => {
+      const child = relative ? path.join(relative, entry.name) : entry.name;
+      if (entry.isDirectory()) return listJsonFiles(root, child);
+      return entry.isFile() && entry.name.endsWith('.json')
+        ? [child.split(path.sep).join('/')]
+        : [];
+    })
+  );
+  return files.flat().sort((left, right) => left.localeCompare(right, 'en'));
+}
+
+export async function assertProductBaselineFixtureTree(
+  root = productBaselineFixtureRoot
+): Promise<void> {
+  const expected = expectedProductBaselineFixturePaths();
+  const actual = await listJsonFiles(root);
+  const missing = expected.filter((file) => !actual.includes(file));
+  const unexpected = actual.filter((file) => !expected.includes(file));
+  if (missing.length || unexpected.length)
+    throw new Error(
+      `Product baseline fixture tree mismatch: missing=[${missing.join(', ')}] unexpected=[${unexpected.join(', ')}]`
+    );
+}
+
+async function readJson<T>(root: string, relative: string): Promise<T> {
+  return JSON.parse(await readFile(path.join(root, relative), 'utf8')) as T;
+}
+
+async function writeJson(root: string, relative: string, value: unknown): Promise<void> {
+  const file = path.join(root, relative);
   await mkdir(path.dirname(file), { recursive: true });
   await writeFile(file, `${canonicalJson(value, true)}\n`, 'utf8');
 }
 
-async function writeCompactJson(value: unknown, ...segments: string[]): Promise<void> {
-  const file = path.join(productBaselineFixtureRoot, ...segments);
-  await mkdir(path.dirname(file), { recursive: true });
-  await writeFile(file, `${canonicalJson(value)}\n`, 'utf8');
-}
-
-async function writeStableArea(name: string, area: StableEntityArea): Promise<void> {
-  await writeJson(area.order, name, 'catalog-order.json');
-  await Promise.all(
-    area.order.map((id) => writeJson(area.entities[id], name, 'entities', `${id}.json`))
-  );
-}
-
-async function readStableArea(name: string): Promise<StableEntityArea> {
-  const order = await readJson<string[]>(name, 'catalog-order.json');
-  return {
-    order,
-    entities: Object.fromEntries(
-      await Promise.all(
-        order.map(async (id) => [id, await readJson(name, 'entities', `${id}.json`)])
-      )
-    )
-  };
+function assertWritableFixtureRoot(root: string): void {
+  if (path.resolve(root) !== path.resolve(productBaselineFixtureRoot))
+    throw new Error(
+      'Refusing to replace a product baseline outside the authoritative fixture root'
+    );
 }
 
 export async function writeProductBaselineFixtures(
@@ -54,28 +81,35 @@ export async function writeProductBaselineFixtures(
   approvalReason: string
 ): Promise<void> {
   if (!approvalReason.trim()) throw new Error('Product baseline approval reason must not be empty');
-  if (!productBaselineFixtureRoot.startsWith(path.join(siteRoot, 'tests', 'fixtures') + path.sep))
-    throw new Error('Refusing to replace a product baseline outside tests/fixtures');
+  assertWritableFixtureRoot(productBaselineFixtureRoot);
   await rm(productBaselineFixtureRoot, { recursive: true, force: true });
   await mkdir(productBaselineFixtureRoot, { recursive: true });
-  await writeJson({ ...capture.metadata, approvalReason: approvalReason.trim() }, 'metadata.json');
-  await writeStableArea('characters', capture.characters);
-  await writeStableArea('light-cones', capture.lightCones);
-  await writeStableArea('relics', capture.relics);
-  await writeJson(capture.relics.properties, 'relics', 'properties.json');
-  await writeStableArea('enemies', capture.enemies);
-  for (const [mode, value] of Object.entries(capture.endgame.modes)) {
-    await writeJson(value.order, 'endgame', 'modes', mode, 'group-order.json');
-    await writeJson(value.recommendations, 'endgame', 'modes', mode, 'recommendations.json');
-    await Promise.all(
-      value.order.map((id) =>
-        writeJson(value.groups[id], 'endgame', 'modes', mode, 'groups', `${id}.json`)
-      )
+  await writeJson(productBaselineFixtureRoot, 'metadata.json', {
+    ...capture.metadata,
+    approvalReason: approvalReason.trim()
+  });
+  for (const { id } of PRODUCT_BASELINE_CASES.characters)
+    await writeJson(productBaselineFixtureRoot, `characters/${id}.json`, capture.characters[id]);
+  for (const { id } of PRODUCT_BASELINE_CASES.lightCones)
+    await writeJson(productBaselineFixtureRoot, `light-cones/${id}.json`, capture.lightCones[id]);
+  for (const { id } of PRODUCT_BASELINE_CASES.relics)
+    await writeJson(productBaselineFixtureRoot, `relics/${id}.json`, capture.relics[id]);
+  for (const { id } of PRODUCT_BASELINE_CASES.enemies)
+    await writeJson(productBaselineFixtureRoot, `enemies/${id}.json`, capture.enemies[id]);
+  for (const { mode, groupId } of PRODUCT_BASELINE_CASES.endgame)
+    await writeJson(
+      productBaselineFixtureRoot,
+      `endgame/${mode}/${groupId}.json`,
+      capture.endgame.modes[mode]?.[String(groupId)]
     );
-  }
-  await writeJson(capture.homepage, 'homepage.json');
-  await writeCompactJson(capture.search, 'search.json');
-  await writeJson(capture.unresolvedLocalization, 'unresolved-localization.json');
+  await writeJson(
+    productBaselineFixtureRoot,
+    'endgame/boundaries.json',
+    capture.endgame.boundaries
+  );
+  await writeJson(productBaselineFixtureRoot, 'homepage.json', capture.homepage);
+  await writeJson(productBaselineFixtureRoot, 'search.json', capture.search);
+  await assertProductBaselineFixtureTree();
 }
 
 export async function writeSearchProductBaselineFixture(
@@ -83,53 +117,44 @@ export async function writeSearchProductBaselineFixture(
   approvalReason: string
 ): Promise<void> {
   if (!approvalReason.trim()) throw new Error('Product baseline approval reason must not be empty');
-  if (!productBaselineFixtureRoot.startsWith(path.join(siteRoot, 'tests', 'fixtures') + path.sep))
-    throw new Error('Refusing to update a product baseline outside tests/fixtures');
-  await writeJson({ ...capture.metadata, approvalReason: approvalReason.trim() }, 'metadata.json');
-  await writeCompactJson(capture.search, 'search.json');
+  assertWritableFixtureRoot(productBaselineFixtureRoot);
+  await writeJson(productBaselineFixtureRoot, 'metadata.json', {
+    ...capture.metadata,
+    approvalReason: approvalReason.trim()
+  });
+  await writeJson(productBaselineFixtureRoot, 'search.json', capture.search);
+  await assertProductBaselineFixtureTree();
 }
 
-export async function readProductBaselineFixtures(): Promise<ProductBaselineCapture> {
-  const metadata = await readJson<ProductBaselineCapture['metadata']>('metadata.json');
-  const characters = await readStableArea('characters');
-  const lightCones = await readStableArea('light-cones');
-  const relicArea = await readStableArea('relics');
-  const enemyArea = await readStableArea('enemies');
-  const modes = Object.fromEntries(
-    await Promise.all(
-      ['moc', 'pf', 'as', 'aa'].map(async (mode) => {
-        const order = await readJson<string[]>('endgame', 'modes', mode, 'group-order.json');
-        return [
-          mode,
-          {
-            order,
-            recommendations: await readJson('endgame', 'modes', mode, 'recommendations.json'),
-            groups: Object.fromEntries(
-              await Promise.all(
-                order.map(async (id) => [
-                  id,
-                  await readJson('endgame', 'modes', mode, 'groups', `${id}.json`)
-                ])
-              )
-            )
-          }
-        ];
-      })
-    )
-  );
+export async function readProductBaselineFixtures(
+  root = productBaselineFixtureRoot
+): Promise<ProductBaselineCapture> {
+  await assertProductBaselineFixtureTree(root);
+  const readArea = async (
+    domain: 'characters' | 'light-cones' | 'relics' | 'enemies',
+    cases: readonly { id: string }[]
+  ) =>
+    Object.fromEntries(
+      await Promise.all(
+        cases.map(async ({ id }) => [id, await readJson(root, `${domain}/${id}.json`)])
+      )
+    );
+  const modes: ProductBaselineCapture['endgame']['modes'] = {};
+  for (const { mode, groupId } of PRODUCT_BASELINE_CASES.endgame) {
+    modes[mode] ??= {};
+    modes[mode][String(groupId)] = await readJson(root, `endgame/${mode}/${groupId}.json`);
+  }
   return {
-    metadata,
-    characters,
-    lightCones,
-    relics: { ...relicArea, properties: await readJson('relics', 'properties.json') },
-    enemies: {
-      ...enemyArea
-    },
+    metadata: await readJson(root, 'metadata.json'),
+    characters: await readArea('characters', PRODUCT_BASELINE_CASES.characters),
+    lightCones: await readArea('light-cones', PRODUCT_BASELINE_CASES.lightCones),
+    relics: await readArea('relics', PRODUCT_BASELINE_CASES.relics),
+    enemies: await readArea('enemies', PRODUCT_BASELINE_CASES.enemies),
     endgame: {
-      modes
+      modes,
+      boundaries: await readJson(root, 'endgame/boundaries.json')
     },
-    homepage: await readJson('homepage.json'),
-    search: await readJson('search.json'),
-    unresolvedLocalization: await readJson('unresolved-localization.json')
+    homepage: await readJson(root, 'homepage.json'),
+    search: await readJson(root, 'search.json')
   };
 }

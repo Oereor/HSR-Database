@@ -18,7 +18,7 @@ export async function checkOfficialSnapshot(
   file = officialSnapshotPath
 ): Promise<void> {
   const current = await readFile(file, 'utf8').catch(() => '');
-  if (current !== serializeCharacterNames(snapshot))
+  if (current.replaceAll('\r\n', '\n') !== serializeCharacterNames(snapshot))
     throw new Error(
       '官方角色名称快照已过期或缺失。请运行 pnpm data:search-names:update，并审阅名称 diff。'
     );

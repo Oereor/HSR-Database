@@ -1,18 +1,14 @@
 import type { ProductBaselineCapture, ProductBaselineDifference } from './model.js';
 
-function sameScalar(left: unknown, right: unknown): boolean {
-  return Object.is(left, right);
-}
-
 function compareValue(
   expected: unknown,
   actual: unknown,
   domain: string,
   entityId: string,
-  path: string,
+  valuePath: string,
   differences: ProductBaselineDifference[]
 ): void {
-  if (sameScalar(expected, actual)) return;
+  if (Object.is(expected, actual)) return;
   if (Array.isArray(expected) && Array.isArray(actual)) {
     const length = Math.max(expected.length, actual.length);
     for (let index = 0; index < length; index += 1)
@@ -21,7 +17,7 @@ function compareValue(
         actual[index],
         domain,
         entityId,
-        `${path}[${index}]`,
+        `${valuePath}[${index}]`,
         differences
       );
     return;
@@ -43,12 +39,26 @@ function compareValue(
         (actual as Record<string, unknown>)[key],
         domain,
         entityId,
-        path ? `${path}.${key}` : key,
+        valuePath ? `${valuePath}.${key}` : key,
         differences
       );
     return;
   }
-  differences.push({ domain, entityId, path: path || '$', expected, actual });
+  differences.push({ domain, entityId, path: valuePath || '$', expected, actual });
+}
+
+function compareArea(
+  domain: string,
+  expected: Record<string, unknown>,
+  actual: Record<string, unknown>,
+  differences: ProductBaselineDifference[],
+  entityPrefix = ''
+): void {
+  const ids = [...new Set([...Object.keys(expected), ...Object.keys(actual)])].sort((a, b) =>
+    a.localeCompare(b, 'en')
+  );
+  for (const id of ids)
+    compareValue(expected[id], actual[id], domain, `${entityPrefix}${id}`, '', differences);
 }
 
 export function compareProductBaseline(
@@ -56,15 +66,6 @@ export function compareProductBaseline(
   actual: ProductBaselineCapture
 ): ProductBaselineDifference[] {
   const differences: ProductBaselineDifference[] = [];
-  const compareStableArea = (
-    domain: string,
-    expectedArea: ProductBaselineCapture['characters'],
-    actualArea: ProductBaselineCapture['characters']
-  ) => {
-    compareValue(expectedArea.order, actualArea.order, domain, 'catalog-order', '', differences);
-    for (const id of [...new Set([...expectedArea.order, ...actualArea.order])])
-      compareValue(expectedArea.entities[id], actualArea.entities[id], domain, id, '', differences);
-  };
   compareValue(
     { ...expected.metadata, approvalReason: undefined },
     { ...actual.metadata, approvalReason: undefined },
@@ -73,54 +74,30 @@ export function compareProductBaseline(
     '',
     differences
   );
-  compareStableArea('characters', expected.characters, actual.characters);
-  compareStableArea('light-cones', expected.lightCones, actual.lightCones);
-  compareStableArea('relics', expected.relics, actual.relics);
+  compareArea('characters', expected.characters, actual.characters, differences);
+  compareArea('light-cones', expected.lightCones, actual.lightCones, differences);
+  compareArea('relics', expected.relics, actual.relics, differences);
+  compareArea('enemies', expected.enemies, actual.enemies, differences);
+  const modes = [
+    ...new Set([...Object.keys(expected.endgame.modes), ...Object.keys(actual.endgame.modes)])
+  ];
+  for (const mode of modes)
+    compareArea(
+      'endgame',
+      expected.endgame.modes[mode] ?? {},
+      actual.endgame.modes[mode] ?? {},
+      differences,
+      `${mode}:`
+    );
   compareValue(
-    expected.relics.properties,
-    actual.relics.properties,
-    'relics',
-    'properties',
+    expected.endgame.boundaries,
+    actual.endgame.boundaries,
+    'endgame',
+    'schedule-boundaries',
     '',
     differences
   );
-  compareStableArea('enemies', expected.enemies, actual.enemies);
-  for (const mode of [
-    ...new Set([...Object.keys(expected.endgame.modes), ...Object.keys(actual.endgame.modes)])
-  ]) {
-    const expectedMode = expected.endgame.modes[mode];
-    const actualMode = actual.endgame.modes[mode];
-    compareValue(
-      expectedMode?.order,
-      actualMode?.order,
-      'endgame',
-      `${mode}:group-order`,
-      '',
-      differences
-    );
-    compareValue(
-      expectedMode?.recommendations,
-      actualMode?.recommendations,
-      'endgame',
-      `${mode}:recommendations`,
-      '',
-      differences
-    );
-    for (const id of [...new Set([...(expectedMode?.order ?? []), ...(actualMode?.order ?? [])])])
-      compareValue(
-        expectedMode?.groups[id],
-        actualMode?.groups[id],
-        'endgame',
-        `${mode}:${id}`,
-        '',
-        differences
-      );
-  }
-  for (const [domain, expectedArea, actualArea] of [
-    ['homepage', expected.homepage, actual.homepage],
-    ['search', expected.search, actual.search],
-    ['unresolved-localization', expected.unresolvedLocalization, actual.unresolvedLocalization]
-  ] as const)
-    compareValue(expectedArea, actualArea, domain, domain, '', differences);
+  compareValue(expected.homepage, actual.homepage, 'homepage', 'homepage', '', differences);
+  compareValue(expected.search, actual.search, 'search', 'search', '', differences);
   return differences;
 }

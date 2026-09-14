@@ -89,7 +89,10 @@ function projectExtraEffects(
 ) {
   return ids.flatMap((id) => {
     const source = context.extraEffectsById.get(id);
-    if (!source) return [];
+    if (!source)
+      throw new Error(
+        `[character/fk] Character=${domain.id} field=ExtraEffectIDList references missing ExtraEffectConfig=${id}`
+      );
     const name = source.nameSource
       ? optionalText(context.resolver, source.nameSource, {
           domain: 'character',

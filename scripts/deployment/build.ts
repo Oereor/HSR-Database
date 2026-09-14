@@ -35,6 +35,7 @@ const TIMING_ORDER = [
   'prepare-starrailres',
   'search-names-check',
   'data-ensure',
+  'data-validate',
   'enemy-assets-ensure',
   'assets-ensure',
   'assets-verify',
@@ -194,6 +195,7 @@ export async function runDeploymentBuild(
       if (mode === 'preview-full')
         await timed('search-names-check', () => commandRunner(['data:search-names:check'], env));
       await timed('data-ensure', () => commandRunner(['data:ensure'], env));
+      await timed('data-validate', () => commandRunner(['data:validate'], env));
     } catch (error) {
       dataError = namedError('data preparation', error);
     }

@@ -78,6 +78,34 @@ export function classifyMemospriteSkill(
   return undefined;
 }
 
+export interface ProductSkillClassificationContext {
+  source: 'AvatarSkillConfig' | 'AvatarServantSkillConfig';
+  skillId: string;
+  productReachable: boolean;
+  onUnsupportedHidden?: (message: string) => void;
+}
+
+/** Fail closed only when an unsupported skill row can reach the product. */
+export function classifyProductSkill(
+  row: StructuredSkillFields,
+  context: ProductSkillClassificationContext
+): SkillCategory | undefined {
+  const category =
+    context.source === 'AvatarServantSkillConfig'
+      ? classifyMemospriteSkill(row)
+      : classifyAvatarSkill(row);
+  if (category) return category;
+  // MazeNormal is an explicit upstream non-card action, not an unknown discriminant.
+  if (context.source === 'AvatarSkillConfig' && row.AttackType === 'MazeNormal') return undefined;
+  const message =
+    `[character/schema] table=${context.source} record=${context.skillId} ` +
+    `field=AttackType value=${JSON.stringify(row.AttackType ?? null)} ` +
+    `SkillTriggerKey=${JSON.stringify(row.SkillTriggerKey ?? null)}`;
+  if (context.productReachable) throw new Error(`${message} is not supported for a visible skill`);
+  context.onUnsupportedHidden?.(message);
+  return undefined;
+}
+
 export interface SkillVariantInput extends Omit<SkillVariant, 'combatMeta'> {
   category: SkillCategory;
   combatMetaLevels: Array<{ level: number; combatMeta: SkillCombatMeta }>;
