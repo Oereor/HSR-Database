@@ -1,9 +1,9 @@
 <script lang="ts">
-  import DescriptionText from '$lib/components/DescriptionText.svelte';
-  import GameText from '$lib/components/GameText.svelte';
-  import SkillCombatMeta from '$lib/components/SkillCombatMeta.svelte';
-  import SkillEffectTag from '$lib/components/SkillEffectTag.svelte';
-  import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
+  import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
+  import SkillCombatMeta from '$lib/components/character/SkillCombatMeta.svelte';
+  import SkillEffectTag from '$lib/components/shared/SkillEffectTag.svelte';
+  import SkillExtraEffects from '$lib/components/shared/SkillExtraEffects.svelte';
   import type { SkillVariant } from '$lib/domain/types';
   import * as m from '$lib/paraglide/messages.js';
 

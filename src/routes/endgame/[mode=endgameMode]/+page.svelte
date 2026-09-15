@@ -1,5 +1,5 @@
 <script lang="ts">
-  import SectionHeading from '$lib/components/SectionHeading.svelte';
+  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import EndgameModeNav from '$lib/components/endgame/EndgameModeNav.svelte';
   import EndgameSeasonCard from '$lib/components/endgame/EndgameSeasonCard.svelte';
   import { groupEndgamePeriods } from '$lib/domain/endgame-view';

@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { RelicCatalogEntry } from '$lib/domain/types';
-  import EntityOverviewCard from './EntityOverviewCard.svelte';
-  import GameText from './GameText.svelte';
+  import EntityOverviewCard from '../shared/EntityOverviewCard.svelte';
+  import GameText from '../shared/GameText.svelte';
   import { relicCategoryLabel } from '$lib/i18n/product';
 
   export let entry: RelicCatalogEntry;

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
-  import OverviewHero from '$lib/components/OverviewHero.svelte';
+  import OverviewHero from '$lib/components/shared/OverviewHero.svelte';
   import EndgameOverviewCard from '$lib/components/endgame/EndgameOverviewCard.svelte';
   import EndgameOverviewHeroArtwork from '$lib/components/endgame/EndgameOverviewHeroArtwork.svelte';
   import type { EndgameModeView } from '$lib/domain/endgame-view';

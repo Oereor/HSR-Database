@@ -1,5 +1,5 @@
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import type { Trace } from '$lib/domain/types';
   import * as m from '$lib/paraglide/messages.js';

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { parseGameText } from '$lib/domain/game-text';
-  import InlineGameTextToken from '$lib/components/InlineGameTextToken.svelte';
+  import InlineGameTextToken from '$lib/components/shared/InlineGameTextToken.svelte';
 
   export let text = '';
 

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { tick } from 'svelte';
-  import GameText from '$lib/components/GameText.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
   import type { EndgameLocalNavigationModel } from '$lib/domain/endgame-navigation';
   import { m } from '$lib/paraglide/messages.js';
 

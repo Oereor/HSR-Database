@@ -1,6 +1,6 @@
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
-  import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
+  import SemanticIconLabel from '$lib/components/shared/SemanticIconLabel.svelte';
   import { getElementColor } from '$lib/domain/elements';
   import { ENDGAME_MISSING_VALUE, type EnemyOccurrenceView } from '$lib/domain/endgame-view';
   import HpDisplay from './HpDisplay.svelte';

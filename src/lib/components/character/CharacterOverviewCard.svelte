@@ -1,20 +1,22 @@
 <script lang="ts">
   import type { CatalogEntry } from '$lib/domain/types';
-  import EntityOverviewCard from './EntityOverviewCard.svelte';
-  import GameText from './GameText.svelte';
-  import RarityStars from './RarityStars.svelte';
-  import SemanticIconLabel from './SemanticIconLabel.svelte';
+  import { getElementColor } from '$lib/domain/elements';
+  import EntityOverviewCard from '../shared/EntityOverviewCard.svelte';
+  import GameText from '../shared/GameText.svelte';
+  import RarityStars from '../shared/RarityStars.svelte';
+  import SemanticIconLabel from '../shared/SemanticIconLabel.svelte';
 
   export let entry: CatalogEntry;
   export let href: string;
   export let imageUrl: string | undefined;
+  export let density: 'default' | 'compact' = 'default';
 </script>
 
 {#key entry.id}
   <EntityOverviewCard
     {href}
     {imageUrl}
-    density="compact"
+    {density}
     imageAlt=""
     fallbackLabel={entry.name}
     metadataLayout="icons"
@@ -28,6 +30,15 @@
           kind="path"
           code={entry.path}
           label={entry.pathName}
+          showLabel={false}
+          fallbackMark="?"
+          presentation="overview-icon"
+        />{/if}
+      {#if entry.elementName}<SemanticIconLabel
+          kind="element"
+          code={entry.element}
+          label={entry.elementName}
+          color={getElementColor(entry.element)}
           showLabel={false}
           fallbackMark="?"
           presentation="overview-icon"

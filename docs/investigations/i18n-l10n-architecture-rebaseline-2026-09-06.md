@@ -144,7 +144,7 @@ messages/zh-CN.json
 
 **FACT — HIGH CONFIDENCE.** Production loaders in `src/lib/server/generated.ts` read only `src/lib/generated/views/zh-CN` for catalog/detail/homepage content. `src/lib/server/endgame.ts` reads the same locale tree's Endgame datasets and constructs route views and occurrence search shards during prerender. The root manifest is also loaded.
 
-**FACT — HIGH CONFIDENCE.** Localization resolution does not happen in UI components. Components receive localized strings or `DescriptionToken[]`. `src/lib/components/GameText.svelte` renders the safe token model from `src/lib/domain/game-text.ts`; there is no raw-HTML localization path.
+**FACT — HIGH CONFIDENCE.** Localization resolution does not happen in UI components. Components receive localized strings or `DescriptionToken[]`. `src/lib/components/shared/GameText.svelte` renders the safe token model from `src/lib/domain/game-text.ts`; there is no raw-HTML localization path.
 
 **FACT — HIGH CONFIDENCE.** A production build completed successfully. Its client JavaScript comprised 41 files/about 508 KB, and text searches found no full TextMap names, neutral/source artifact names, or representative upstream table names. Neutral artifacts were not copied into the built site.
 
@@ -245,7 +245,7 @@ There are two legitimate text sources:
 
 **FACT — HIGH CONFIDENCE.** `project.inlang/settings.json` declares only `zh-CN`. `scripts/messages.ts` losslessly parses and validates the message file, including duplicate keys, snake_case keys, nonempty values, and placeholder contracts. Current callers import generated Paraglide messages and generally pass `{ locale: 'zh-CN' }` explicitly. One hundred messages compile successfully.
 
-**FACT — HIGH CONFIDENCE.** The separation is conceptually correct but technically incomplete. `docs/investigations/technical-debt-ui-text-inventory.csv` and direct searches identify reachable Chinese literals in shared/layout/detail/Endgame presentation, domain label maps, error/fallback paths, and page components. Examples include the footer in `src/routes/+layout.svelte`, detail labels/fallbacks in `src/lib/components/DetailPage.svelte`, Endgame mode metadata in `src/lib/domain/endgame-view.ts`, and projection defaults.
+**FACT — HIGH CONFIDENCE.** The separation is conceptually correct but technically incomplete. `docs/investigations/technical-debt-ui-text-inventory.csv` and direct searches identify reachable Chinese literals in shared/layout/detail/Endgame presentation, domain label maps, error/fallback paths, and page components. Examples include the footer in `src/routes/+layout.svelte`, detail labels/fallbacks in `src/lib/components/shared/DetailPage.svelte`, Endgame mode metadata in `src/lib/domain/endgame-view.ts`, and projection defaults.
 
 **FACT — HIGH CONFIDENCE.** Components do not resolve upstream TextHashes. They render already-localized game fields plus Paraglide/site labels. That interface is good. `GameText.svelte` renders a structured safe representation and does not use `{@html}`.
 

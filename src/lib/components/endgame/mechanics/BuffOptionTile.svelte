@@ -1,5 +1,5 @@
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
   import type { EndgameOrderedMechanicView } from '$lib/domain/endgame-view';
 
   export let option: EndgameOrderedMechanicView;

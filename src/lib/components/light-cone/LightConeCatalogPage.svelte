@@ -1,31 +1,31 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
   import { localizedHref } from '$lib/i18n/routing';
-  import { page } from '$app/stores';
   import { goto } from '$app/navigation';
+  import { page } from '$app/stores';
   import { onMount } from 'svelte';
-  import CharacterOverviewCard from './CharacterOverviewCard.svelte';
-  import FilterGroup from './FilterGroup.svelte';
-  import OverviewGrid from './OverviewGrid.svelte';
-  import OverviewHero from './OverviewHero.svelte';
-  import OverviewPagination from './OverviewPagination.svelte';
-  import OverviewSearch from './OverviewSearch.svelte';
-  import OverviewToolbar from './OverviewToolbar.svelte';
-  import type { CatalogEntry } from '$lib/domain/types';
+  import { getLightConePreviewUrl } from '$lib/data/visual-assets';
   import { gameTextToPlain } from '$lib/domain/game-text';
   import {
-    hasCharacterFilters,
-    matchesCharacterFilters,
-    readCharacterFilterState,
-    writeCharacterFilterState,
-    type CharacterFilterState
-  } from '$lib/domain/character-filters';
-  import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
+    hasLightConeFilters,
+    matchesLightConeFilters,
+    readLightConeFilterState,
+    writeLightConeFilterState,
+    type LightConeFilterState
+  } from '$lib/domain/light-cone-filters';
+  import type { CatalogEntry } from '$lib/domain/types';
   import { formatDocumentTitle } from '$lib/site';
+  import FilterGroup from '../shared/FilterGroup.svelte';
+  import LightConeOverviewCard from './LightConeOverviewCard.svelte';
+  import OverviewGrid from '../shared/OverviewGrid.svelte';
+  import OverviewHero from '../shared/OverviewHero.svelte';
+  import OverviewPagination from '../shared/OverviewPagination.svelte';
+  import OverviewSearch from '../shared/OverviewSearch.svelte';
+  import OverviewToolbar from '../shared/OverviewToolbar.svelte';
 
   export let entries: CatalogEntry[] = [];
-  export let title: string = m.characters_title();
-  export let description: string = m.characters_description();
+  export let title: string = m.light_cones_title();
+  export let description: string = m.light_cones_description();
 
   let draftQuery = '';
   let synchronizedQuery: string | undefined;
@@ -35,12 +35,12 @@
   $: params = clientReady ? new URLSearchParams($page.url.searchParams) : new URLSearchParams();
   $: appliedQuery = params.get('q') ?? '';
   $: synchronizeDraft(appliedQuery);
-  $: filterState = readCharacterFilterState(params);
+  $: filterState = readLightConeFilterState(params);
   $: sort = params.get('sort') ?? 'rarity';
   $: requestedPage = Number(params.get('page') ?? 1);
   $: heroArtwork = entries
     .slice(0, 3)
-    .map((entry) => ({ id: entry.id, url: getCharacterPreviewUrl(entry.id) }))
+    .map((entry) => ({ id: entry.id, url: getLightConePreviewUrl(entry.id) }))
     .filter((entry): entry is { id: string; url: string } => Boolean(entry.url));
   $: filtered = entries
     .filter((entry) => {
@@ -50,7 +50,7 @@
           gameTextToPlain(`${entry.name} ${entry.description ?? ''}`)
             .toLocaleLowerCase()
             .includes(query)) &&
-        matchesCharacterFilters(entry, filterState)
+        matchesLightConeFilters(entry, filterState)
       );
     })
     .sort((a, b) => {
@@ -64,7 +64,7 @@
     Number.isInteger(requestedPage) && requestedPage > 0 ? Math.min(requestedPage, pages) : 1;
   $: visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
-  const options = (key: 'path' | 'element' | 'rarity', labelKey?: 'pathName' | 'elementName') =>
+  const options = (key: 'path' | 'rarity', labelKey?: 'pathName') =>
     [
       ...new Map(
         entries
@@ -98,27 +98,20 @@
     await navigate(next);
   }
 
-  async function toggleFilter(category: keyof CharacterFilterState, value: string | undefined) {
-    const nextState: CharacterFilterState = {
+  async function toggleFilter(category: keyof LightConeFilterState, value: string | undefined) {
+    const nextState: LightConeFilterState = {
       paths: new Set(filterState.paths),
-      elements: new Set(filterState.elements),
       rarities: new Set(filterState.rarities)
     };
     const selected = nextState[category];
     if (value === undefined) selected.clear();
     else if (selected.has(value)) selected.delete(value);
     else selected.add(value);
-    await navigate(writeCharacterFilterState(params, nextState));
+    await navigate(writeLightConeFilterState(params, nextState));
   }
 
   async function clearFilters() {
-    await navigate(
-      writeCharacterFilterState(params, {
-        paths: new Set(),
-        elements: new Set(),
-        rarities: new Set()
-      })
-    );
+    await navigate(writeLightConeFilterState(params, { paths: new Set(), rarities: new Set() }));
   }
 
   async function clearSearchAndFilters() {
@@ -132,24 +125,24 @@
 </svelte:head>
 
 <OverviewHero
-  eyebrow={m.characters_eyebrow()}
+  eyebrow={m.light_cones_eyebrow()}
   {title}
   {description}
-  countLabel={m.characters_count({ count: entries.length })}
+  countLabel={m.light_cones_count({ count: entries.length })}
   artwork={heroArtwork}
 />
 
-<section class="overview-controls" aria-label={m.characters_controls_aria()}>
+<section class="overview-controls" aria-label={m.light_cones_controls_aria()}>
   <OverviewSearch
-    id="character-search-input"
+    id="light-cone-search-input"
     bind:value={draftQuery}
-    placeholder={m.characters_search_placeholder()}
+    placeholder={m.light_cones_search_placeholder()}
     onSubmit={submitQuery}
   />
 
   <div class="overview-filters">
     <FilterGroup
-      id="character-path"
+      id="light-cone-path"
       label={m.filter_path()}
       iconKind="path"
       options={options('path', 'pathName')}
@@ -157,15 +150,7 @@
       onToggle={(value) => toggleFilter('paths', value)}
     />
     <FilterGroup
-      id="character-element"
-      label={m.filter_element()}
-      iconKind="element"
-      options={options('element', 'elementName')}
-      selected={filterState.elements}
-      onToggle={(value) => toggleFilter('elements', value)}
-    />
-    <FilterGroup
-      id="character-rarity"
+      id="light-cone-rarity"
       label={m.filter_rarity()}
       options={options('rarity').map((option) => ({ ...option, label: `${option.label}★` }))}
       selected={filterState.rarities}
@@ -175,7 +160,7 @@
 
   <OverviewToolbar
     resultCount={filtered.length}
-    hasFilters={hasCharacterFilters(filterState)}
+    hasFilters={hasLightConeFilters(filterState)}
     {sort}
     onClearFilters={clearFilters}
     onSortChange={(value) => {
@@ -188,13 +173,12 @@
 </section>
 
 {#if visible.length}
-  <OverviewGrid variant="character">
+  <OverviewGrid>
     {#each visible as entry (entry.id)}
-      <CharacterOverviewCard
+      <LightConeOverviewCard
         {entry}
-        href={localizedHref(`/characters/${entry.id}`)}
-        imageUrl={getCharacterPreviewUrl(entry.id)}
-        density="compact"
+        href={localizedHref(`/light-cones/${entry.id}`)}
+        imageUrl={getLightConePreviewUrl(entry.id)}
       />
     {/each}
   </OverviewGrid>

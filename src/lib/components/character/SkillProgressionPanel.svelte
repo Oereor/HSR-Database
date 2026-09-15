@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { SkillProgression, SkillVariant } from '$lib/domain/types';
-  import SkillVariantView from '$lib/components/SkillVariantView.svelte';
+  import SkillVariantView from '$lib/components/character/SkillVariantView.svelte';
   import { gameTextToPlain } from '$lib/domain/game-text';
   import * as m from '$lib/paraglide/messages.js';
 

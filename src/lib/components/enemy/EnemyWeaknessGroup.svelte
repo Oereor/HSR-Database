@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { ElementLabel } from '$lib/domain/types';
   import { getElementColor } from '$lib/domain/elements';
-  import SemanticIconLabel from './SemanticIconLabel.svelte';
+  import SemanticIconLabel from '../shared/SemanticIconLabel.svelte';
   import { m } from '$lib/paraglide/messages.js';
   import { getLocale } from '$lib/paraglide/runtime.js';
   import { formatLocalizedList } from '$lib/i18n/format';

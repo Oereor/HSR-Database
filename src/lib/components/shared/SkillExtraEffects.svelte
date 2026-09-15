@@ -1,5 +1,5 @@
 <script lang="ts">
-  import EffectExplanationSection from '$lib/components/EffectExplanationSection.svelte';
+  import EffectExplanationSection from '$lib/components/shared/EffectExplanationSection.svelte';
   import type { SkillExtraEffect } from '$lib/domain/types';
 
   export let effects: SkillExtraEffect[] = [];

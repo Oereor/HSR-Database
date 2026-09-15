@@ -1,5 +1,5 @@
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
   import type { SkillCombatMeta } from '$lib/domain/types';
   import { getLocale } from '$lib/paraglide/runtime.js';
   import * as m from '$lib/paraglide/messages.js';

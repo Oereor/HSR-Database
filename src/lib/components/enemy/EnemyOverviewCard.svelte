@@ -2,8 +2,8 @@
   import type { EnemyCatalogEntry } from '$lib/domain/types';
   import { getEnemyRankLabel } from '$lib/domain/enemy-overview';
   import EnemyWeaknessGroup from './EnemyWeaknessGroup.svelte';
-  import EntityOverviewCard from './EntityOverviewCard.svelte';
-  import GameText from './GameText.svelte';
+  import EntityOverviewCard from '../shared/EntityOverviewCard.svelte';
+  import GameText from '../shared/GameText.svelte';
 
   export let entry: EnemyCatalogEntry;
   export let href: string;

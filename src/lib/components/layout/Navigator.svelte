@@ -8,7 +8,7 @@
   import { localizedHref } from '$lib/i18n/routing';
   import { siteName } from '$lib/site';
   import PrimaryNavigation from './PrimaryNavigation.svelte';
-  import SearchBar from './SearchBar.svelte';
+  import SearchBar from '../search/SearchBar.svelte';
 
   export let siteVersion: PublicSiteVersion;
   export let onOpenChangelog: () => void = () => undefined;

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import SectionHeading from '$lib/components/SectionHeading.svelte';
+  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import { m } from '$lib/paraglide/messages.js';
 
   export let slot: number;

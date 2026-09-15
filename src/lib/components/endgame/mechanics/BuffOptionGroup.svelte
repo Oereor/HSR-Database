@@ -1,5 +1,5 @@
 <script lang="ts">
-  import SectionHeading from '$lib/components/SectionHeading.svelte';
+  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import type { EndgameOrderedMechanicView } from '$lib/domain/endgame-view';
   import BuffOptionTile from './BuffOptionTile.svelte';
 

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation';
-  import GameText from '$lib/components/GameText.svelte';
-  import SectionHeading from '$lib/components/SectionHeading.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
+  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import EndgameLocalNav from '$lib/components/endgame/EndgameLocalNav.svelte';
   import EndgameModeNav from '$lib/components/endgame/EndgameModeNav.svelte';
   import EndgameSeasonHero from '$lib/components/endgame/EndgameSeasonHero.svelte';

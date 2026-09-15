@@ -3,14 +3,14 @@
   import '../styles/presentation/detail-hero.css';
   import '../styles/presentation/detail-inspection.css';
   import { page } from '$app/stores';
-  import Navigator from '$lib/components/Navigator.svelte';
+  import Navigator from '$lib/components/layout/Navigator.svelte';
   import { injectAnalytics } from '@vercel/analytics/sveltekit';
   import { getBrandIconUrl } from '$lib/data/visual-assets';
   import { localeCounterpartHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   import { siteName } from '$lib/site';
-  import ChangelogModal from '$lib/components/ChangelogModal.svelte';
-  import SettingsPopover from '$lib/components/SettingsPopover.svelte';
+  import ChangelogModal from '$lib/components/layout/ChangelogModal.svelte';
+  import SettingsPopover from '$lib/components/layout/SettingsPopover.svelte';
   import { onMount } from 'svelte';
 
   injectAnalytics();

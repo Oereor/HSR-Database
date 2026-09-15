@@ -1,6 +1,6 @@
 <script lang="ts">
-  import EffectExplanationSection from '$lib/components/EffectExplanationSection.svelte';
-  import SectionHeading from '$lib/components/SectionHeading.svelte';
+  import EffectExplanationSection from '$lib/components/shared/EffectExplanationSection.svelte';
+  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import type { ApocalypticShadowSlotGuideView } from '$lib/domain/endgame-view';
   import MechanicEntry from '../mechanics/MechanicEntry.svelte';
   import { m } from '$lib/paraglide/messages.js';

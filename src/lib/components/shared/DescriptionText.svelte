@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { DescriptionToken } from '$lib/domain/types';
-  import InlineGameTextToken from '$lib/components/InlineGameTextToken.svelte';
+  import InlineGameTextToken from '$lib/components/shared/InlineGameTextToken.svelte';
   import { segmentSpecialEffectTriggers } from '$lib/domain/special-effects-presentation';
   import { m } from '$lib/paraglide/messages.js';
 

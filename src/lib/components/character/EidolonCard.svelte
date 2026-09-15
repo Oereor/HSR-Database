@@ -1,6 +1,6 @@
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
-  import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
+  import SkillExtraEffects from '$lib/components/shared/SkillExtraEffects.svelte';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import type { Eidolon } from '$lib/domain/types';
   import { m } from '$lib/paraglide/messages.js';

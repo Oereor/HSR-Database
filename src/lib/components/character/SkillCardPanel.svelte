@@ -1,6 +1,6 @@
 <script lang="ts">
-  import SkillProgressionPanel from '$lib/components/SkillProgressionPanel.svelte';
-  import SkillVariantView from '$lib/components/SkillVariantView.svelte';
+  import SkillProgressionPanel from '$lib/components/character/SkillProgressionPanel.svelte';
+  import SkillVariantView from '$lib/components/character/SkillVariantView.svelte';
   import type { SkillCard, SkillVariant } from '$lib/domain/types';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
 

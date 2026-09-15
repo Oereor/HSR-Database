@@ -4,12 +4,12 @@
   import { relicCategoryLabel, relicSlotLabel } from '$lib/i18n/product';
   import { m } from '$lib/paraglide/messages.js';
   import { getLightConePreviewUrl, getRelicSetIconUrl } from '$lib/data/visual-assets';
-  import CompactEntityCard from './CompactEntityCard.svelte';
-  import GameText from './GameText.svelte';
-  import RarityStars from './RarityStars.svelte';
-  import RelicPropertyToken from './RelicPropertyToken.svelte';
-  import SectionHeading from './SectionHeading.svelte';
-  import SemanticIconLabel from './SemanticIconLabel.svelte';
+  import CompactEntityCard from '../shared/CompactEntityCard.svelte';
+  import GameText from '../shared/GameText.svelte';
+  import RarityStars from '../shared/RarityStars.svelte';
+  import RelicPropertyToken from '../relic/RelicPropertyToken.svelte';
+  import SectionHeading from '../shared/SectionHeading.svelte';
+  import SemanticIconLabel from '../shared/SemanticIconLabel.svelte';
 
   export let recommendation: EquipmentRecommendationView;
 </script>

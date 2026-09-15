@@ -10,7 +10,7 @@
 </script>
 
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
 
   export let title: string;
   export let content: MechanicSectionContent;

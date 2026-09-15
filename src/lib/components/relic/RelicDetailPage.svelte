@@ -1,7 +1,7 @@
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
-  import DescriptionText from '$lib/components/DescriptionText.svelte';
-  import SectionHeading from '$lib/components/SectionHeading.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
+  import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
+  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import RelicIcon from '$lib/components/relic/RelicIcon.svelte';
   import { getRelicPieceIconUrl, getRelicSetIconUrl } from '$lib/data/visual-assets';
   import { relicSlotLabel } from '$lib/i18n/product';

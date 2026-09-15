@@ -15,12 +15,12 @@
   } from '$lib/domain/relic-filters';
   import type { CatalogEntry, RelicCatalogEntry, RelicSetCategory } from '$lib/domain/types';
   import { formatDocumentTitle } from '$lib/site';
-  import FilterGroup from './FilterGroup.svelte';
-  import OverviewGrid from './OverviewGrid.svelte';
-  import OverviewHero from './OverviewHero.svelte';
-  import OverviewPagination from './OverviewPagination.svelte';
-  import OverviewSearch from './OverviewSearch.svelte';
-  import OverviewToolbar from './OverviewToolbar.svelte';
+  import FilterGroup from '../shared/FilterGroup.svelte';
+  import OverviewGrid from '../shared/OverviewGrid.svelte';
+  import OverviewHero from '../shared/OverviewHero.svelte';
+  import OverviewPagination from '../shared/OverviewPagination.svelte';
+  import OverviewSearch from '../shared/OverviewSearch.svelte';
+  import OverviewToolbar from '../shared/OverviewToolbar.svelte';
   import RelicOverviewCard from './RelicOverviewCard.svelte';
   import { relicCategoryLabel } from '$lib/i18n/product';
 

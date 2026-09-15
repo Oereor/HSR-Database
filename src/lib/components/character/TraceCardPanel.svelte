@@ -1,8 +1,8 @@
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
-  import SectionHeading from '$lib/components/SectionHeading.svelte';
-  import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
-  import TraceAbilityHeading from '$lib/components/TraceAbilityHeading.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
+  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
+  import SkillExtraEffects from '$lib/components/shared/SkillExtraEffects.svelte';
+  import TraceAbilityHeading from '$lib/components/character/TraceAbilityHeading.svelte';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import { groupTracesForDisplay } from '$lib/domain/trace-groups';
   import type { Trace } from '$lib/domain/types';

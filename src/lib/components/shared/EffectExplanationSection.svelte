@@ -1,5 +1,5 @@
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
   import type { ExtraEffect } from '$lib/domain/types';
   import { m } from '$lib/paraglide/messages.js';
 

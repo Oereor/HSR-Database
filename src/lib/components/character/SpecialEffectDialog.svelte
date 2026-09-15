@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onDestroy, tick } from 'svelte';
-  import SkillVariantView from '$lib/components/SkillVariantView.svelte';
-  import SpecialEffectRelation from '$lib/components/SpecialEffectRelation.svelte';
+  import SkillVariantView from '$lib/components/character/SkillVariantView.svelte';
+  import SpecialEffectRelation from '$lib/components/character/SpecialEffectRelation.svelte';
   import type { CatalogEntry, CharacterSpecialEffectEntry } from '$lib/domain/types';
   import * as m from '$lib/paraglide/messages.js';
 

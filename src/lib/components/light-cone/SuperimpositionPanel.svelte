@@ -1,6 +1,6 @@
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
-  import DescriptionText from '$lib/components/DescriptionText.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
+  import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
   import type { LightConePassiveSkill } from '$lib/domain/types';
   import * as m from '$lib/paraglide/messages.js';
 
