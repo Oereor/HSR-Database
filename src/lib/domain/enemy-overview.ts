@@ -1,25 +1,11 @@
 import type { CatalogEntry, EnemyCatalogEntry } from './types.js';
 import { m } from '$lib/paraglide/messages.js';
-
-export const ENEMY_RANK_CATEGORIES = [
-  { code: 'normal' },
-  { code: 'elite' },
-  { code: 'boss' }
-] as const;
-
-export type EnemyRankCategory = (typeof ENEMY_RANK_CATEGORIES)[number]['code'];
-
-const rankCategories: Readonly<Record<string, EnemyRankCategory>> = {
-  Minion: 'normal',
-  MinionLv2: 'normal',
-  Elite: 'elite',
-  LittleBoss: 'boss',
-  BigBoss: 'boss'
-};
-
-export function getEnemyRankCategory(rank: string | undefined): EnemyRankCategory | undefined {
-  return rank ? rankCategories[rank] : undefined;
-}
+export {
+  ENEMY_RANK_CATEGORIES,
+  getEnemyRankCategory,
+  type EnemyRankCategory
+} from './enemy-rank.js';
+import { getEnemyRankCategory } from './enemy-rank.js';
 
 export function getEnemyRankLabel(rank: string | undefined): string {
   const category = getEnemyRankCategory(rank);

@@ -42,7 +42,10 @@
     "messages:check": "tsx scripts/messages.ts",
     "product:baseline:check": "tsx scripts/product-baseline/cli.ts check",
     "product:baseline:search:update": "tsx scripts/product-baseline/cli.ts update-search",
-    "product:baseline:update": "tsx scripts/product-baseline/cli.ts update"
+    "product:baseline:update": "tsx scripts/product-baseline/cli.ts update",
+    "agent:run": "node --env-file-if-exists=.env.local --import tsx scripts/agent/run.ts",
+    "agent:eval": "node --env-file-if-exists=.env.local --import tsx scripts/agent/eval.ts",
+    "test:agent": "vitest run tests/unit/agent"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -81,6 +84,7 @@
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
-    "flexsearch": "0.8.212"
+    "flexsearch": "0.8.212",
+    "zod": "^4.6.5"
   }
 }
