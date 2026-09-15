@@ -348,11 +348,27 @@ export type AggregateMetricValue =
       { value: DecimalAverage } | { value: null }
     ));
 
-export const modelAnswerSchema = z
+export const agentThinkingModeSchema = z.enum(['off', 'low']);
+export type AgentThinkingMode = z.infer<typeof agentThinkingModeSchema>;
+export const FINAL_ANSWER_CHAR_LIMIT = 800;
+export const FINAL_EVIDENCE_LIMIT = 8;
+export const FINAL_LIMITATION_LIMIT = 5;
+export const FINAL_LIMITATION_CHAR_LIMIT = 160;
+export const unicodeLength = (value: string): number => Array.from(value).length;
+
+// Shape validation precedes deterministic array enforcement in the runtime.
+export const modelAnswerCandidateSchema = z
   .object({
     answer: z.string(),
     evidenceIds: z.array(z.string()),
     limitations: z.array(z.string())
   })
   .strict();
+export const modelAnswerSchema = modelAnswerCandidateSchema.extend({
+  answer: z.string().refine((value) => unicodeLength(value) <= FINAL_ANSWER_CHAR_LIMIT),
+  evidenceIds: z.array(z.string()).max(FINAL_EVIDENCE_LIMIT),
+  limitations: z
+    .array(z.string().refine((value) => unicodeLength(value) <= FINAL_LIMITATION_CHAR_LIMIT))
+    .max(FINAL_LIMITATION_LIMIT)
+});
 export type ModelAnswer = z.infer<typeof modelAnswerSchema>;

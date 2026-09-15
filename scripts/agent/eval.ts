@@ -1,13 +1,25 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
+import { pathToFileURL } from 'node:url';
 import { evalCaseSchema, isExplicitAbstention, type EvalCase } from '../../src/lib/agent/eval.js';
-import { runDataAgent, type RunAgentResult } from '../../src/lib/server/agent/runtime.js';
+import {
+  DATA_AGENT_SYSTEM_PROMPT,
+  runDataAgent,
+  type RunAgentResult
+} from '../../src/lib/server/agent/runtime.js';
+import { type AgentThinkingMode } from '../../src/lib/agent/contracts.js';
+import { AGENT_TOOL_DEFINITIONS } from '../../src/lib/server/agent/tools.js';
+import { getAgentDataVersion } from '../../src/lib/server/agent/data-version.js';
+import { redactSecrets } from './inspector.js';
 import { createDeepSeekClientFromEnv } from '../../src/lib/server/agent/providers/deepseek.js';
 
 type Split = 'dev' | 'held-out' | 'all';
 
-function parseArguments(args: string[]) {
+export function parseArguments(args: string[]) {
   const valueAfter = (flag: string) => {
+    const inline = args.find((argument) => argument.startsWith(`${flag}=`));
+    if (inline) return inline.slice(flag.length + 1);
     const index = args.indexOf(flag);
     return index < 0 ? undefined : args[index + 1];
   };
@@ -21,7 +33,19 @@ function parseArguments(args: string[]) {
     ?.split(',')
     .map((value) => value.trim())
     .filter(Boolean);
-  return { model: args.includes('--model'), split, repeat, tag: valueAfter('--tag'), caseIds };
+  const thinking = valueAfter('--thinking') ?? 'off';
+  if (!['off', 'low', 'both'].includes(thinking))
+    throw new Error('--thinking 必须是 off、low 或 both');
+  const modes: AgentThinkingMode[] =
+    thinking === 'both' ? ['off', 'low'] : [thinking as AgentThinkingMode];
+  return {
+    model: args.includes('--model'),
+    split,
+    repeat,
+    tag: valueAfter('--tag'),
+    caseIds,
+    modes
+  };
 }
 
 async function loadFile(file: string): Promise<EvalCase[]> {
@@ -61,7 +85,7 @@ function isSubset(expected: unknown, actual: unknown): boolean {
   );
 }
 
-function score(testCase: EvalCase, result: RunAgentResult) {
+export function score(testCase: EvalCase, result: RunAgentResult) {
   const tools = result.trace.map(({ tool }) => tool);
   const warnings = new Set(result.trace.flatMap(({ summary }) => summary.warnings ?? []));
   const expectedTools = testCase.gold.expectedTools.every((tool) => tools.includes(tool));
@@ -81,7 +105,28 @@ function score(testCase: EvalCase, result: RunAgentResult) {
     result.truncationDisclosure.modelProvided ||
     result.truncationDisclosure.runtimeEnforced;
   const withinGoldPlusOne = result.toolCalls <= testCase.gold.expectedTools.length + 1;
+  const firstExpected = testCase.gold.expectedTools[0];
+  const first = result.trace.find((entry) => entry.errorCode !== 'TOOL_CALL_LIMIT_EXCEEDED');
+  const schemaInvalid = result.trace.filter((entry) =>
+    ['INVALID_JSON', 'INVALID_ARGUMENTS'].includes(entry.errorCode ?? '')
+  );
+  const recovered = schemaInvalid.filter((entry) => {
+    const nextTurn = result.modelTrace.find((item) => item.turn > entry.turn);
+    const next = nextTurn && result.trace.find((item) => item.turn === nextTurn.turn);
+    return next?.tool === entry.tool && next.ok;
+  }).length;
   return {
+    firstToolEligible: !!firstExpected,
+    firstToolName: !!firstExpected && first?.tool === firstExpected,
+    firstToolKeyArguments:
+      !!firstExpected &&
+      first?.tool === firstExpected &&
+      isSubset(testCase.gold.keyArguments[firstExpected], first.validatedArgs),
+    invalidToolCallCount: result.trace.filter((entry) =>
+      ['UNKNOWN_TOOL', 'INVALID_JSON', 'INVALID_ARGUMENTS'].includes(entry.errorCode ?? '')
+    ).length,
+    schemaInvalidCallCount: schemaInvalid.length,
+    recoveryCount: recovered,
     expectedTools,
     forbiddenTools,
     keyArguments,
@@ -123,6 +168,8 @@ function score(testCase: EvalCase, result: RunAgentResult) {
 }
 
 type CompletedRecord = {
+  thinkingMode: AgentThinkingMode;
+  order: number;
   caseId: string;
   repetition: number;
   latencyMs: number;
@@ -131,6 +178,8 @@ type CompletedRecord = {
 };
 
 type FailedRecord = {
+  thinkingMode: AgentThinkingMode;
+  order: number;
   caseId: string;
   repetition: number;
   latencyMs: number;
@@ -178,43 +227,126 @@ async function main() {
   );
   if (!args.model) return;
 
-  const client = createDeepSeekClientFromEnv();
+  const clients = new Map(
+    args.modes.map((mode) => [mode, createDeepSeekClientFromEnv(process.env, undefined, mode)])
+  );
+  const secrets = [process.env.DEEPSEEK_API_KEY ?? ''];
   const runId = new Date().toISOString().replaceAll(':', '-').replaceAll('.', '-');
   const auditRoot = path.join(process.cwd(), 'data', 'audit', 'agent', runId);
   await mkdir(auditRoot, { recursive: true });
+  const hash = (value: string) => createHash('sha256').update(value).digest('hex');
+  const experiment = {
+    modes: args.modes,
+    order: `repetition → corpus case → ${args.modes.join(' then ')}`,
+    model: process.env.DEEPSEEK_MODEL ?? 'deepseek-flash',
+    dataVersion: await getAgentDataVersion(),
+    promptHash: hash(DATA_AGENT_SYSTEM_PROMPT),
+    toolsHash: hash(JSON.stringify(AGENT_TOOL_DEFINITIONS)),
+    corpusHashes: {
+      dev: hash(await readFile('evals/agent/dev.jsonl', 'utf8')),
+      heldOut: hash(await readFile('evals/agent/held-out.jsonl', 'utf8'))
+    },
+    selectedCaseIds: selected.map((item) => item.id),
+    maxOutputTokens: 2048
+  };
+  await writeFile(
+    path.join(auditRoot, 'experiment.json'),
+    JSON.stringify(redactSecrets(experiment, secrets), null, 2)
+  );
   const records: Array<CompletedRecord | FailedRecord> = [];
   for (let repetition = 1; repetition <= args.repeat; repetition += 1) {
     for (const testCase of selected) {
-      const started = performance.now();
-      try {
-        const result = await runDataAgent(testCase.question, { client });
-        const record = {
-          caseId: testCase.id,
-          repetition,
-          latencyMs: Math.round(performance.now() - started),
-          result,
-          score: score(testCase, result)
-        };
-        records.push(record);
-        await writeFile(
-          path.join(auditRoot, `${testCase.id}-${repetition}.json`),
-          JSON.stringify(record, null, 2)
-        );
-      } catch (error) {
-        const record = {
-          caseId: testCase.id,
-          repetition,
-          latencyMs: Math.round(performance.now() - started),
-          error: error instanceof Error ? error.message : 'UNKNOWN_ERROR'
-        };
-        records.push(record);
-        await writeFile(
-          path.join(auditRoot, `${testCase.id}-${repetition}.json`),
-          JSON.stringify(record, null, 2)
+      for (const thinkingMode of args.modes) {
+        const started = performance.now();
+        try {
+          const result = await runDataAgent(testCase.question, {
+            client: clients.get(thinkingMode)!
+          });
+          const record = {
+            thinkingMode,
+            order: records.length + 1,
+            caseId: testCase.id,
+            repetition,
+            latencyMs: Math.round(performance.now() - started),
+            result,
+            score: score(testCase, result)
+          };
+          records.push(record);
+          await writeFile(
+            path.join(auditRoot, `${testCase.id}-${thinkingMode}-${repetition}.json`),
+            JSON.stringify(redactSecrets(record, secrets), null, 2)
+          );
+        } catch (error) {
+          const record = {
+            thinkingMode,
+            order: records.length + 1,
+            caseId: testCase.id,
+            repetition,
+            latencyMs: Math.round(performance.now() - started),
+            error: error instanceof Error ? error.message : 'UNKNOWN_ERROR'
+          };
+          records.push(record);
+          await writeFile(
+            path.join(auditRoot, `${testCase.id}-${thinkingMode}-${repetition}.json`),
+            JSON.stringify(redactSecrets(record, secrets), null, 2)
+          );
+        }
+        console.log(
+          `[${records.length}/${selected.length * args.repeat * args.modes.length}] ${testCase.id} ${thinkingMode}`
         );
       }
     }
   }
+  const byMode = Object.fromEntries(
+    args.modes.map((mode) => [
+      mode,
+      summarize(
+        records.filter((item) => item.thinkingMode === mode),
+        runId,
+        selected.length,
+        args.repeat
+      )
+    ])
+  );
+  const off = byMode.off;
+  const low = byMode.low;
+  const delta =
+    off && low
+      ? {
+          keyArgumentRate: low.metrics.keyArgumentSubset.rate - off.metrics.keyArgumentSubset.rate,
+          firstToolNameRate:
+            low.metrics.firstToolNameAccuracy.rate - off.metrics.firstToolNameAccuracy.rate,
+          firstToolKeyArgumentRate:
+            low.metrics.firstToolKeyArgumentAccuracy.rate -
+            off.metrics.firstToolKeyArgumentAccuracy.rate,
+          strictContractRate: low.metrics.strictContract.rate - off.metrics.strictContract.rate,
+          forbiddenToolAvoidanceRate:
+            low.metrics.forbiddenToolAvoided.rate - off.metrics.forbiddenToolAvoided.rate,
+          averageTokens:
+            low.usage.averageTotalTokensPerAttempt - off.usage.averageTotalTokensPerAttempt,
+          averageLatencyMs: low.latencyMs.average - off.latencyMs.average
+        }
+      : undefined;
+  const summary = {
+    runId,
+    experiment,
+    attempts: records.length,
+    byMode,
+    ...(delta ? { delta } : {})
+  };
+  await writeFile(
+    path.join(auditRoot, 'summary.json'),
+    JSON.stringify(redactSecrets(summary, secrets), null, 2)
+  );
+  console.log(JSON.stringify(redactSecrets(summary, secrets), null, 2));
+}
+
+function summarize(
+  records: Array<CompletedRecord | FailedRecord>,
+  runId: string,
+  cases: number,
+  repeat: number
+) {
   const completed = records.filter((record): record is CompletedRecord => 'score' in record);
   const passed = completed.filter((record) => record.score.passed).length;
   const count = (key: keyof CompletedRecord['score']) =>
@@ -224,6 +356,7 @@ async function main() {
   const truncationRequired = completed.filter(({ score: item }) => item.truncationRequired);
   const unsupported = completed.filter(({ score: item }) => item.unsupported);
   const supported = completed.filter(({ score: item }) => item.supported);
+  const firstEligible = completed.filter(({ score: item }) => item.firstToolEligible);
   const toolResultBytes = completed.flatMap(({ result }) =>
     result.trace.map(({ summary }) => summary.toolResultBytes)
   );
@@ -240,13 +373,30 @@ async function main() {
   );
   const summary = {
     runId,
-    cases: selected.length,
-    repeat: args.repeat,
+    cases,
+    repeat,
     attempts: records.length,
     completed: completed.length,
     passed,
     passRate: completed.length ? passed / completed.length : 0,
     metrics: {
+      firstToolNameAccuracy: ratio(
+        firstEligible.filter(({ score: item }) => item.firstToolName).length,
+        firstEligible.length
+      ),
+      firstToolKeyArgumentAccuracy: ratio(
+        firstEligible.filter(({ score: item }) => item.firstToolKeyArguments).length,
+        firstEligible.length
+      ),
+      invalidToolCallCount: completed.reduce(
+        (total, { score: item }) => total + item.invalidToolCallCount,
+        0
+      ),
+      recoveryAfterInvalidCall: ratio(
+        completed.reduce((total, { score: item }) => total + item.recoveryCount, 0),
+        completed.reduce((total, { score: item }) => total + item.schemaInvalidCallCount, 0)
+      ),
+      finalizationRetries: completed.filter(({ result }) => result.finalization.retryUsed).length,
       strictContract: ratio(passed, completed.length),
       expectedToolPresent: ratio(count('expectedTools'), completed.length),
       forbiddenToolAvoided: ratio(count('forbiddenTools'), completed.length),
@@ -332,14 +482,21 @@ async function main() {
     },
     usage: {
       ...usage,
+      reasoningTokens: completed.some(({ result }) => result.usage.reasoningTokens !== undefined)
+        ? completed.reduce((total, { result }) => total + (result.usage.reasoningTokens ?? 0), 0)
+        : 'not separately reported',
       averageTotalTokensPerAttempt: completed.length ? usage.totalTokens / completed.length : 0
     }
   };
-  await writeFile(path.join(auditRoot, 'summary.json'), JSON.stringify(summary, null, 2));
-  console.log(JSON.stringify(summary, null, 2));
+  return summary;
 }
 
-main().catch((error: unknown) => {
-  console.error(error instanceof Error ? error.message : 'Agent eval failed');
-  process.exitCode = 1;
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href)
+  main().catch((error: unknown) => {
+    console.error(
+      redactSecrets(error instanceof Error ? error.message : 'Agent eval failed', [
+        process.env.DEEPSEEK_API_KEY ?? ''
+      ])
+    );
+    process.exitCode = 1;
+  });

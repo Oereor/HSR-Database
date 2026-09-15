@@ -133,11 +133,14 @@ describe('bounded Agent runtime', () => {
 
   it('保留非结构化最终文本并标记解析失败', async () => {
     const result = await runDataAgent('文本', {
-      client: new FakeClient([{ content: '普通文本', toolCalls: [] }])
+      client: new FakeClient([
+        { content: '普通文本', toolCalls: [] },
+        { content: '仍然不是 JSON', toolCalls: [] }
+      ])
     });
     expect(result).toMatchObject({
       structuredAnswer: false,
-      answer: { answer: '普通文本', evidenceIds: [] }
+      answer: { answer: '模型未返回满足结构化最终答案契约的回答。', evidenceIds: [] }
     });
   });
 
@@ -156,10 +159,40 @@ describe('bounded Agent runtime', () => {
         {
           content: '结果如下：{"answer":"完成","evidenceIds":[],"limitations":[]}',
           toolCalls: []
+        },
+        {
+          content: '仍然是 prose：{"answer":"完成","evidenceIds":[],"limitations":[]}',
+          toolCalls: []
         }
       ])
     });
     expect(prose.structuredAnswer).toBe(false);
+  });
+
+  it('终答数组去重并 cap，answer 超限只做一次 finalization retry', async () => {
+    const client = new FakeClient([
+      {
+        content: JSON.stringify({ answer: 'x'.repeat(801), evidenceIds: [], limitations: [] }),
+        toolCalls: []
+      },
+      {
+        content: JSON.stringify({
+          answer: '完成',
+          evidenceIds: [],
+          limitations: ['限制', '限制', 'a', 'b', 'c', 'd', 'e']
+        }),
+        toolCalls: []
+      }
+    ]);
+    const result = await runDataAgent('bounded', { client });
+    expect(result.answer.limitations).toEqual(['限制', 'a', 'b', 'c', 'd']);
+    expect(result.finalization).toMatchObject({
+      retryUsed: true,
+      retryReason: 'answer-too-long',
+      limitationsDeduplicated: 1,
+      limitationsCapped: 1
+    });
+    expect(client.calls[1].tools).toEqual([]);
   });
 
   it('空 content 只做一次无 tools finalization retry', async () => {
@@ -305,6 +338,86 @@ describe('DeepSeek provider mock', () => {
       response_format: { type: 'json_object' },
       temperature: 0
     });
+  });
+
+  it('thinking-low 映射 effort、完整 replay reasoning 并映射 reasoning usage', async () => {
+    let capturedRequest: RequestInit | undefined;
+    const fetchMock = vi.fn(async (_input: string | URL | Request, request?: RequestInit) => {
+      capturedRequest = request;
+      return new Response(
+        JSON.stringify({
+          model: 'deepseek-flash',
+          system_fingerprint: 'fp-test',
+          choices: [
+            {
+              finish_reason: 'tool_calls',
+              message: {
+                role: 'assistant',
+                content: '',
+                reasoning_content: 'next reasoning',
+                tool_calls: []
+              }
+            }
+          ],
+          usage: {
+            prompt_tokens: 10,
+            completion_tokens: 7,
+            total_tokens: 17,
+            completion_tokens_details: { reasoning_tokens: 5 }
+          }
+        }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      );
+    });
+    const client = new DeepSeekModelClient({
+      apiKey: 'test',
+      thinkingMode: 'low',
+      fetchImpl: fetchMock as typeof fetch
+    });
+    const turn = await client.complete({
+      messages: [
+        {
+          role: 'assistant',
+          content: '',
+          reasoningContent: 'prior reasoning',
+          toolCalls: [toolCall('x', 'search_entities', { query: '鸭鸭', locale: 'zh-CN' })]
+        }
+      ],
+      tools: AGENT_TOOL_DEFINITIONS
+    });
+    const body = JSON.parse(String(capturedRequest?.body));
+    expect(body).toMatchObject({ thinking: { type: 'enabled' }, reasoning_effort: 'low' });
+    expect(body).not.toHaveProperty('temperature');
+    expect(body.messages[0].reasoning_content).toBe('prior reasoning');
+    expect(turn).toMatchObject({
+      reasoningContent: 'next reasoning',
+      usage: { reasoningTokens: 5 },
+      metadata: { systemFingerprint: 'fp-test' }
+    });
+  });
+
+  it('thinking-low 缺失 reasoning content/replay 时显式失败', async () => {
+    const fetchMock = vi.fn(
+      async () =>
+        new Response(
+          JSON.stringify({ choices: [{ message: { role: 'assistant', content: '{}' } }] }),
+          { status: 200, headers: { 'Content-Type': 'application/json' } }
+        )
+    );
+    const client = new DeepSeekModelClient({
+      apiKey: 'test',
+      thinkingMode: 'low',
+      fetchImpl: fetchMock as typeof fetch
+    });
+    await expect(client.complete({ messages: [], tools: [] })).rejects.toThrow(
+      'DEEPSEEK_MISSING_REASONING_CONTENT'
+    );
+    await expect(
+      client.complete({
+        messages: [{ role: 'assistant', content: null }],
+        tools: AGENT_TOOL_DEFINITIONS
+      })
+    ).rejects.toThrow('DEEPSEEK_MISSING_REASONING_REPLAY');
   });
 
   it('finalization-only request 不携带 tools 并强制 tool_choice none', async () => {

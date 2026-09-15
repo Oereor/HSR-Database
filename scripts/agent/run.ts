@@ -22,6 +22,8 @@ async function main() {
           turns: result.turns,
           toolCalls: result.toolCalls,
           usage: result.usage,
+          modelTrace: result.modelTrace,
+          finalization: result.finalization,
           invalidEvidenceIds: result.invalidEvidenceIds,
           structuredAnswer: result.structuredAnswer,
           hitTurnLimit: result.hitTurnLimit,

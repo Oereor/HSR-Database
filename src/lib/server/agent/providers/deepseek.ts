@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import type { ModelMessage, ModelTurn, ToolCallingModelClient } from '../runtime.js';
+import { agentThinkingModeSchema, type AgentThinkingMode } from '../../../agent/contracts.js';
 
 export const DEFAULT_DEEPSEEK_BASE_URL = 'https://api.deepseek.com';
 export const DEFAULT_DEEPSEEK_MODEL = 'deepseek-flash';
@@ -19,10 +20,12 @@ const responseSchema = z
       .array(
         z
           .object({
+            finish_reason: z.string().optional(),
             message: z
               .object({
                 content: z.string().nullable(),
                 role: z.literal('assistant'),
+                reasoning_content: z.string().nullable().optional(),
                 tool_calls: z.array(toolCallSchema).optional()
               })
               .passthrough()
@@ -30,13 +33,19 @@ const responseSchema = z
           .passthrough()
       )
       .min(1),
+    model: z.string().optional(),
+    system_fingerprint: z.string().optional(),
     usage: z
       .object({
         prompt_tokens: z.number().int().nonnegative(),
         completion_tokens: z.number().int().nonnegative(),
         total_tokens: z.number().int().nonnegative(),
         prompt_cache_hit_tokens: z.number().int().nonnegative().optional(),
-        prompt_cache_miss_tokens: z.number().int().nonnegative().optional()
+        prompt_cache_miss_tokens: z.number().int().nonnegative().optional(),
+        completion_tokens_details: z
+          .object({ reasoning_tokens: z.number().int().nonnegative().optional() })
+          .passthrough()
+          .optional()
       })
       .passthrough()
       .optional()
@@ -49,13 +58,17 @@ export interface DeepSeekClientOptions {
   model?: string;
   fetchImpl?: typeof fetch;
   timeoutMs?: number;
+  thinkingMode?: AgentThinkingMode;
 }
 
-function providerMessage(message: ModelMessage) {
+function providerMessage(message: ModelMessage, replayReasoning: boolean) {
   if (message.role === 'assistant')
     return {
       role: message.role,
       content: message.content,
+      ...(replayReasoning && message.reasoningContent !== undefined
+        ? { reasoning_content: message.reasoningContent }
+        : {}),
       ...(message.toolCalls ? { tool_calls: message.toolCalls } : {})
     };
   if (message.role === 'tool')
@@ -69,6 +82,7 @@ export class DeepSeekModelClient implements ToolCallingModelClient {
   readonly #model: string;
   readonly #fetch: typeof fetch;
   readonly #timeoutMs: number;
+  readonly #thinkingMode: AgentThinkingMode;
 
   constructor(options: DeepSeekClientOptions) {
     if (!options.apiKey.trim()) throw new Error('DEEPSEEK_API_KEY is missing');
@@ -80,9 +94,18 @@ export class DeepSeekModelClient implements ToolCallingModelClient {
     this.#model = options.model?.trim() || DEFAULT_DEEPSEEK_MODEL;
     this.#fetch = options.fetchImpl ?? fetch;
     this.#timeoutMs = options.timeoutMs ?? DEEPSEEK_REQUEST_TIMEOUT_MS;
+    this.#thinkingMode = agentThinkingModeSchema.parse(options.thinkingMode ?? 'off');
   }
 
   async complete(input: Parameters<ToolCallingModelClient['complete']>[0]): Promise<ModelTurn> {
+    if (
+      this.#thinkingMode === 'low' &&
+      input.tools.length &&
+      input.messages.some(
+        (message) => message.role === 'assistant' && message.reasoningContent === undefined
+      )
+    )
+      throw new Error('DEEPSEEK_MISSING_REASONING_REPLAY');
     const timeoutSignal = AbortSignal.timeout(this.#timeoutMs);
     const signal = input.signal ? AbortSignal.any([input.signal, timeoutSignal]) : timeoutSignal;
     const response = await this.#fetch(`${this.#baseUrl}/chat/completions`, {
@@ -94,13 +117,16 @@ export class DeepSeekModelClient implements ToolCallingModelClient {
       signal,
       body: JSON.stringify({
         model: this.#model,
-        messages: input.messages.map(providerMessage),
+        messages: input.messages.map((message) =>
+          providerMessage(message, this.#thinkingMode === 'low' && input.tools.length > 0)
+        ),
         ...(input.tools.length
           ? { tools: input.tools, tool_choice: 'auto' }
           : { tool_choice: 'none' }),
-        thinking: { type: 'disabled' },
+        ...(this.#thinkingMode === 'off'
+          ? { thinking: { type: 'disabled' }, temperature: 0 }
+          : { thinking: { type: 'enabled' }, reasoning_effort: 'low' }),
         response_format: { type: 'json_object' },
-        temperature: 0,
         max_tokens: 2048
       })
     });
@@ -114,9 +140,23 @@ export class DeepSeekModelClient implements ToolCallingModelClient {
       throw new Error(`DEEPSEEK_INVALID_RESPONSE:${diagnostics}`);
     }
     const message = parsed.data.choices[0].message;
+    if (this.#thinkingMode === 'low' && typeof message.reasoning_content !== 'string')
+      throw new Error('DEEPSEEK_MISSING_REASONING_CONTENT');
     const usage = parsed.data.usage;
     return {
       content: message.content,
+      ...(typeof message.reasoning_content === 'string'
+        ? { reasoningContent: message.reasoning_content }
+        : {}),
+      metadata: {
+        model: parsed.data.model ?? this.#model,
+        ...(parsed.data.system_fingerprint
+          ? { systemFingerprint: parsed.data.system_fingerprint }
+          : {}),
+        ...(parsed.data.choices[0].finish_reason
+          ? { finishReason: parsed.data.choices[0].finish_reason }
+          : {})
+      },
       toolCalls: (message.tool_calls ?? []).map((call) => ({
         id: call.id,
         type: call.type,
@@ -128,6 +168,9 @@ export class DeepSeekModelClient implements ToolCallingModelClient {
               inputTokens: usage.prompt_tokens,
               outputTokens: usage.completion_tokens,
               totalTokens: usage.total_tokens,
+              ...(usage.completion_tokens_details?.reasoning_tokens !== undefined
+                ? { reasoningTokens: usage.completion_tokens_details.reasoning_tokens }
+                : {}),
               ...(usage.prompt_cache_hit_tokens !== undefined
                 ? { cacheHitTokens: usage.prompt_cache_hit_tokens }
                 : {}),
@@ -143,12 +186,14 @@ export class DeepSeekModelClient implements ToolCallingModelClient {
 
 export function createDeepSeekClientFromEnv(
   environment: NodeJS.ProcessEnv = process.env,
-  fetchImpl?: typeof fetch
+  fetchImpl?: typeof fetch,
+  thinkingMode: AgentThinkingMode = 'off'
 ): DeepSeekModelClient {
   return new DeepSeekModelClient({
     apiKey: environment.DEEPSEEK_API_KEY ?? '',
     baseUrl: environment.DEEPSEEK_BASE_URL ?? DEFAULT_DEEPSEEK_BASE_URL,
     model: environment.DEEPSEEK_MODEL ?? DEFAULT_DEEPSEEK_MODEL,
+    thinkingMode,
     ...(fetchImpl ? { fetchImpl } : {})
   });
 }
