@@ -12,7 +12,11 @@ describe('Agent strict contracts', () => {
     expect(
       searchEntitiesInputSchema.safeParse({ query: '可可利亚', locale: 'en-US' }).success
     ).toBe(false);
-    expect(queryEndgameInputSchema.safeParse({ locale: 'zh-CN', limit: 501 }).success).toBe(false);
+    expect(
+      queryEndgameInputSchema.safeParse({ locale: 'zh-CN', include: ['location'], limit: 101 })
+        .success
+    ).toBe(false);
+    expect(queryEndgameInputSchema.safeParse({ locale: 'zh-CN' }).success).toBe(false);
     expect(queryEndgameInputSchema.safeParse({ locale: 'zh-CN', surprise: true }).success).toBe(
       false
     );
@@ -33,6 +37,13 @@ describe('Agent strict contracts', () => {
     });
     expect(duplicate.success).toBe(false);
     expect(unknownSort.success).toBe(false);
+    expect(
+      aggregateEndgameInputSchema.safeParse({
+        locale: 'zh-CN',
+        groupBy: [],
+        metrics: [{ op: 'rowCount', as: 'rows' }]
+      }).success
+    ).toBe(true);
   });
 
   it('从同一 Zod schema 暴露 strict provider JSON Schema', () => {
@@ -57,6 +68,24 @@ describe('Agent strict contracts', () => {
       ok: false,
       result: { error: { code: 'INVALID_JSON' } }
     });
+  });
+
+  it('非法 enum 返回脱敏字段路径和允许值提示', async () => {
+    const result = await executeAgentTool(
+      'query_endgame',
+      JSON.stringify({ locale: 'zh-CN', filter: { modes: ['AS'] }, include: ['location'] })
+    );
+    expect(result).toMatchObject({
+      ok: false,
+      result: {
+        error: {
+          code: 'INVALID_ARGUMENTS',
+          path: 'filter.modes.0',
+          hint: expect.stringContaining('moc')
+        }
+      }
+    });
+    expect(JSON.stringify(result)).not.toMatch(/\/Users\/|stack|DEEPSEEK/i);
   });
 });
 

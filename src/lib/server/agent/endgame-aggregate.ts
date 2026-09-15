@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import {
   AGENT_PAYLOAD_LIMIT_BYTES,
   type AggregateEndgameInput,
@@ -28,8 +29,13 @@ interface AggregateGroup {
   dimensions: Record<string, unknown>;
   sourceRows: number;
   metrics: Record<string, AggregateMetricValue>;
-  evidenceIds: string[];
-  evidenceIdsTruncated: boolean;
+}
+
+interface ModelAggregateMetric {
+  value: string | number | null;
+  approximate?: boolean;
+  includedRows: number;
+  skippedUnresolvedRows: number;
 }
 
 function dimensionValue(row: NormalizedEndgameRow, dimension: EndgameGroupDimension): unknown {
@@ -187,18 +193,75 @@ function groupRows(
     else buckets.set(key, { dimensions, rows: [row] });
   }
   if (!rows.length && !input.groupBy.length) buckets.set('{}', { dimensions: {}, rows: [] });
-  return [...buckets.values()].map(({ dimensions, rows: group }) => {
-    const evidenceIds = group.map(({ evidenceId }) => evidenceId).sort();
-    return {
-      dimensions,
-      sourceRows: group.length,
-      metrics: Object.fromEntries(
-        input.metrics.map((metric) => [metric.as, metricValue(group, metric)])
-      ),
-      evidenceIds: evidenceIds.slice(0, 8),
-      evidenceIdsTruncated: evidenceIds.length > 8
-    };
+  return [...buckets.values()].map(({ dimensions, rows: group }) => ({
+    dimensions,
+    sourceRows: group.length,
+    metrics: Object.fromEntries(
+      input.metrics.map((metric) => [metric.as, metricValue(group, metric)])
+    )
+  }));
+}
+
+function canonicalize(value: unknown): unknown {
+  if (Array.isArray(value))
+    return value
+      .map(canonicalize)
+      .sort((left, right) => JSON.stringify(left).localeCompare(JSON.stringify(right)));
+  if (!value || typeof value !== 'object') return value;
+  return Object.fromEntries(
+    Object.entries(value as Record<string, unknown>)
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([key, item]) => [key, canonicalize(item)])
+  );
+}
+
+export function aggregateEvidenceId(input: {
+  dataRevision: string;
+  filter: AggregateEndgameInput['filter'];
+  groupBy: AggregateEndgameInput['groupBy'];
+  metrics: AggregateEndgameInput['metrics'];
+  dimensions: Record<string, unknown>;
+}): string {
+  const canonical = canonicalize({
+    dataRevision: input.dataRevision,
+    filter: input.filter,
+    groupBy: input.groupBy,
+    metrics: [...input.metrics].sort((left, right) => left.as.localeCompare(right.as)),
+    dimensions: input.dimensions
   });
+  return `ag1/${createHash('sha256').update(JSON.stringify(canonical)).digest('hex')}`;
+}
+
+function modelMetric(value: AggregateMetricValue): ModelAggregateMetric {
+  if (value.op !== 'avg')
+    return {
+      value: value.value,
+      includedRows: value.includedRows,
+      skippedUnresolvedRows: value.skippedUnresolvedRows
+    };
+  return {
+    value: value.value?.exactDecimal ?? value.value?.decimalApprox ?? null,
+    ...(value.value ? { approximate: value.value.approximate } : {}),
+    includedRows: value.includedRows,
+    skippedUnresolvedRows: value.skippedUnresolvedRows
+  };
+}
+
+function modelGroup(group: AggregateGroup, input: AggregateEndgameInput, dataRevision: string) {
+  return {
+    evidenceId: aggregateEvidenceId({
+      dataRevision,
+      filter: input.filter,
+      groupBy: input.groupBy,
+      metrics: input.metrics,
+      dimensions: group.dimensions
+    }),
+    dimensions: group.dimensions,
+    sourceRows: group.sourceRows,
+    metrics: Object.fromEntries(
+      Object.entries(group.metrics).map(([alias, value]) => [alias, modelMetric(value)])
+    )
+  };
 }
 
 function compareText(left: unknown, right: unknown): number {
@@ -257,7 +320,9 @@ export async function aggregateEndgame(
     getAgentDataVersion()
   ]);
   const allGroups = sortGroups(groupRows(rows, input), input);
-  const groups = allGroups.slice(0, input.limit);
+  const groups = allGroups
+    .slice(0, input.limit)
+    .map((group) => modelGroup(group, input, dataVersion.dataRevision));
   const warnings: AgentWarning[] = aggregateWarnings(rows, input.metrics);
   if (allGroups.length > input.limit)
     warnings.push(warning('RESULT_TRUNCATED_GROUP_LIMIT', allGroups.length - input.limit));

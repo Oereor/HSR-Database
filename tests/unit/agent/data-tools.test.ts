@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import type { EndgameFilter } from '../../../src/lib/agent/contracts';
+import {
+  AGENT_PAYLOAD_LIMIT_BYTES,
+  QUERY_DEFAULT_ROW_LIMIT,
+  QUERY_ROW_LIMIT,
+  type EndgameFilter
+} from '../../../src/lib/agent/contracts';
 import type {
   EndgameDatasetByMode,
   EndgameGroup,
@@ -9,7 +14,10 @@ import {
   defaultAgentDataSource,
   type AgentDataSource
 } from '../../../src/lib/server/agent/data-source';
-import { aggregateEndgame } from '../../../src/lib/server/agent/endgame-aggregate';
+import {
+  aggregateEndgame,
+  aggregateEvidenceId
+} from '../../../src/lib/server/agent/endgame-aggregate';
 import { loadEndgameRows, selectSeasonGroups } from '../../../src/lib/server/agent/endgame-rows';
 import { queryEndgame } from '../../../src/lib/server/agent/endgame-query';
 import { searchEntities } from '../../../src/lib/server/agent/entity-resolution';
@@ -95,11 +103,19 @@ describe('Agent entity resolution and real generated rows', () => {
       limit: 10
     });
     expect(alias.matches[0]).toMatchObject({
+      evidenceId: 'ent1/character/1101',
       type: 'character',
       id: '1101',
       canonicalName: '布洛妮娅',
       rank: 1
     });
+    const canonical = await searchEntities({
+      query: '布洛妮娅',
+      locale: 'zh-CN',
+      types: ['character'],
+      limit: 10
+    });
+    expect(canonical.matches[0].evidenceId).toBe(alias.matches[0].evidenceId);
     const prefix = await searchEntities({
       query: '银鬃尉',
       locale: 'zh-CN',
@@ -173,7 +189,7 @@ describe('Agent entity resolution and real generated rows', () => {
         sort: [{ field: 'speed', direction: 'desc' }],
         limit: 2
       },
-      { payloadLimitBytes: 2500 }
+      { payloadLimitBytes: 1000 }
     );
     expect(result.dataVersion).toMatchObject({ locale: 'zh-CN' });
     expect(result.truncated).toBe(true);
@@ -203,11 +219,11 @@ describe('Agent entity resolution and real generated rows', () => {
     });
     expect(result.groups).toHaveLength(2);
     expect(result.groups[0].metrics).toMatchObject({
-      rows: { op: 'rowCount' },
-      monsters: { op: 'countDistinct' },
-      minSpeed: { op: 'min' },
-      maxHp: { op: 'max' },
-      avgToughness: { op: 'avg' }
+      rows: { value: expect.any(Number) },
+      monsters: { value: expect.any(Number) },
+      minSpeed: { value: expect.any(String) },
+      maxHp: { value: expect.any(String) },
+      avgToughness: { value: expect.any(String), approximate: expect.any(Boolean) }
     });
     expect(result.warnings.map(({ code }) => code)).toEqual(
       expect.arrayContaining([
@@ -217,7 +233,8 @@ describe('Agent entity resolution and real generated rows', () => {
         'RESULT_TRUNCATED_GROUP_LIMIT'
       ])
     );
-    expect(result.groups[0].evidenceIds.length).toBeLessThanOrEqual(8);
+    expect(result.groups[0].evidenceId).toMatch(/^ag1\/[a-f0-9]{64}$/);
+    expect(result.groups[0]).not.toHaveProperty('evidenceIds');
   });
 
   it('暴露 speed/toughness unavailable 与 runtime-unclear HP 语义', async () => {
@@ -285,5 +302,61 @@ describe('Agent entity resolution and real generated rows', () => {
     expect(result.truncated).toBe(true);
     expect(result.warnings.map(({ code }) => code)).toContain('RESULT_TRUNCATED_PAYLOAD_LIMIT');
     expect(Buffer.byteLength(JSON.stringify(result), 'utf8')).toBeLessThanOrEqual(3000);
+  });
+
+  it('query 使用 25/100/64 KiB limits，并让 compact projection 至少缩小 40%', async () => {
+    expect(QUERY_DEFAULT_ROW_LIMIT).toBe(25);
+    expect(QUERY_ROW_LIMIT).toBe(100);
+    expect(AGENT_PAYLOAD_LIMIT_BYTES).toBe(64 * 1024);
+    const filter: EndgameFilter = {
+      seasons: { kind: 'ids', seasons: [{ mode: 'moc', groupId: 1033 }] }
+    };
+    const raw = (await loadEndgameRows(filter)).slice(0, 25);
+    const compact = await queryEndgame({
+      locale: 'zh-CN',
+      filter,
+      include: ['location', 'enemy-identity'],
+      sort: [],
+      limit: 25
+    });
+    const legacyRows = raw.map((row) => ({
+      evidenceId: row.evidenceId,
+      grain: row.grain,
+      mode: row.mode,
+      season: row.season,
+      encounter: row.encounter,
+      battleSlot: row.battleSlot,
+      stage: row.stage,
+      wave: row.wave,
+      enemy: {
+        monsterId: row.enemy.monsterId,
+        templateId: row.enemy.templateId,
+        name: row.enemy.name,
+        detailStatus: row.enemy.detailStatus,
+        detailReason: row.enemy.detailReason,
+        rank: row.enemy.rank,
+        rankCategory: row.enemy.rankCategory
+      }
+    }));
+    expect(Buffer.byteLength(JSON.stringify(compact.rows), 'utf8')).toBeLessThanOrEqual(
+      Buffer.byteLength(JSON.stringify(legacyRows), 'utf8') * 0.6
+    );
+    expect(compact.rows[0]).not.toHaveProperty('grain');
+    expect(compact.rows[0]).not.toHaveProperty('encounter.configId');
+  });
+
+  it('aggregate evidence 对等价 filter 顺序稳定，且不受 sort/limit 影响', () => {
+    const base: Parameters<typeof aggregateEvidenceId>[0] = {
+      dataRevision: 'revision',
+      filter: { modes: ['moc', 'as'], enemyRankCategories: ['boss'] },
+      groupBy: ['enemyTemplate'],
+      metrics: [{ op: 'max' as const, field: 'hpPerBar' as const, as: 'maxHp' }],
+      dimensions: { enemyTemplate: { templateId: 1, name: '测试' } }
+    };
+    const reordered: Parameters<typeof aggregateEvidenceId>[0] = {
+      ...base,
+      filter: { enemyRankCategories: ['boss'], modes: ['as', 'moc'] }
+    };
+    expect(aggregateEvidenceId(base)).toBe(aggregateEvidenceId(reordered));
   });
 });

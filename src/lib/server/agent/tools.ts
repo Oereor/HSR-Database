@@ -30,19 +30,19 @@ const entries: Record<AgentToolName, ToolEntry> = {
   search_entities: {
     schema: searchEntitiesInputSchema,
     description:
-      '在 HSR-Database Search V2 中解析角色、光锥、遗器或敌人的中文名称与别名，返回稳定实体 ID、匹配依据和歧义候选。',
+      '仅用于把用户明确提到的角色、光锥、遗器或敌人名称/alias 解析成数据库 stable entity identity；问题没有具体实体名时不要调用，也不要用于枚举 Endgame 赛期敌人。每个 match 的 evidenceId 才是合法引用；实体 id 只是数据值。',
     execute: searchEntities as ToolEntry['execute']
   },
   query_endgame: {
     schema: queryEndgameInputSchema,
     description:
-      '检索、筛选、投影和排序 HSR Endgame configured-occurrence rows。适合读取具体赛期、位置、敌人身份、弱点、实例属性与机制事实；不代表 PF 运行时实际刷新。',
+      '直接检索、筛选、排序和 drill-down HSR Endgame configured-occurrence rows。include 必须只列回答所需 projection。跨多行 count/distinct/min/max/avg/ranking 应优先 aggregate_endgame，不要先拉大量 rows 自行计算。每行 evidenceId 才是合法引用；MonsterID、templateId、groupId/seasonId 都不是 evidence ID。PF rows 不代表实际刷新。',
     execute: queryEndgame as ToolEntry['execute']
   },
   aggregate_endgame: {
     schema: aggregateEndgameInputSchema,
     description:
-      '对符合条件的 Endgame configured-occurrence rows 执行受限的确定性分组和聚合，用于 row count、distinct count、min、max、avg 等跨行计算。',
+      '直接对 Endgame configured-occurrence rows 做确定性的 rowCount、countDistinct、min、max、avg 和有限 groupBy；aggregation question 通常只调用本工具，只有需要具体 row drill-down 才调用 query_endgame。每个 group 的 evidenceId 引用该聚合结果；其他 entity/Monster/template/group/season ID 都不是 evidence ID。',
     execute: aggregateEndgame as ToolEntry['execute']
   }
 };
@@ -67,28 +67,51 @@ export interface ToolExecutionResult {
   result: unknown;
 }
 
-function safeError(code: string) {
-  return { error: { code, retryable: false } };
+function safeError(code: string, hint: string, path?: string) {
+  return { error: { code, retryable: false, hint, ...(path ? { path } : {}) } };
 }
 
 export async function executeAgentTool(
   name: string,
   rawArguments: string
 ): Promise<ToolExecutionResult> {
-  if (!(name in entries)) return { ok: false, result: safeError('UNKNOWN_TOOL') };
+  if (!(name in entries))
+    return {
+      ok: false,
+      result: safeError(
+        'UNKNOWN_TOOL',
+        'Allowed tools: search_entities, query_endgame, aggregate_endgame.'
+      )
+    };
   let parsed: unknown;
   try {
     parsed = JSON.parse(rawArguments);
   } catch {
-    return { ok: false, result: safeError('INVALID_JSON') };
+    return {
+      ok: false,
+      result: safeError('INVALID_JSON', 'Tool arguments must be one valid JSON object.')
+    };
   }
   const entry = entries[name as AgentToolName];
   const validated = entry.schema.safeParse(parsed);
-  if (!validated.success)
+  if (!validated.success) {
+    const issue = validated.error.issues[0];
+    const path = issue?.path.map(String).join('.') || undefined;
+    const allowedValues =
+      issue && 'values' in issue && Array.isArray(issue.values)
+        ? issue.values.filter((value) => ['string', 'number', 'boolean'].includes(typeof value))
+        : [];
     return {
       ok: false,
-      result: safeError('INVALID_ARGUMENTS')
+      result: safeError(
+        'INVALID_ARGUMENTS',
+        allowedValues.length
+          ? `Use one of the allowed values: ${allowedValues.join(', ')}.`
+          : 'Correct the required field, type, range, or strict object shape shown by the tool schema.',
+        path
+      )
     };
+  }
   try {
     return {
       ok: true,
@@ -99,7 +122,10 @@ export async function executeAgentTool(
     return {
       ok: false,
       validatedArgs: validated.data,
-      result: safeError('TOOL_EXECUTION_FAILED')
+      result: safeError(
+        'TOOL_EXECUTION_FAILED',
+        'The validated read-only operation failed; retry once with a smaller valid request if useful.'
+      )
     };
   }
 }

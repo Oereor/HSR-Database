@@ -23,6 +23,9 @@ async function main() {
           toolCalls: result.toolCalls,
           usage: result.usage,
           invalidEvidenceIds: result.invalidEvidenceIds,
+          structuredAnswer: result.structuredAnswer,
+          hitTurnLimit: result.hitTurnLimit,
+          truncationDisclosure: result.truncationDisclosure,
           trace: result.trace
         },
         null,

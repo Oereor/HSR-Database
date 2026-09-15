@@ -17,7 +17,11 @@ function parseArguments(args: string[]) {
   const repeat = Number(valueAfter('--repeat') ?? '1');
   if (!Number.isInteger(repeat) || repeat < 1 || repeat > 10)
     throw new Error('--repeat 必须是 1 到 10 的整数');
-  return { model: args.includes('--model'), split, repeat, tag: valueAfter('--tag') };
+  const caseIds = valueAfter('--cases')
+    ?.split(',')
+    .map((value) => value.trim())
+    .filter(Boolean);
+  return { model: args.includes('--model'), split, repeat, tag: valueAfter('--tag'), caseIds };
 }
 
 async function loadFile(file: string): Promise<EvalCase[]> {
@@ -72,6 +76,11 @@ function score(testCase: EvalCase, result: RunAgentResult) {
     (!testCase.gold.evidenceRequired || result.answer.evidenceIds.length > 0);
   const abstained =
     testCase.gold.answerability !== 'unsupported' || isExplicitAbstention(result.answer.answer);
+  const truncationPreserved =
+    !result.truncationDisclosure.required ||
+    result.truncationDisclosure.modelProvided ||
+    result.truncationDisclosure.runtimeEnforced;
+  const withinGoldPlusOne = result.toolCalls <= testCase.gold.expectedTools.length + 1;
   return {
     expectedTools,
     forbiddenTools,
@@ -80,6 +89,26 @@ function score(testCase: EvalCase, result: RunAgentResult) {
     warnings: warningMatch,
     evidence,
     abstained,
+    structuredFinal: result.structuredAnswer,
+    hitTurnLimit: result.hitTurnLimit,
+    truncationRequired: result.truncationDisclosure.required,
+    truncationPreserved,
+    truncationModelProvided: result.truncationDisclosure.modelProvided,
+    truncationRuntimeEnforced: result.truncationDisclosure.runtimeEnforced,
+    evidenceRequired: testCase.gold.evidenceRequired,
+    warningRequired: testCase.gold.warnings.length > 0,
+    unsupported: testCase.gold.answerability === 'unsupported',
+    supported: testCase.gold.answerability === 'supported',
+    goldToolCalls: testCase.gold.expectedTools.length,
+    withinGoldPlusOne,
+    forbiddenCallCount: result.trace.filter(({ tool }) =>
+      testCase.gold.forbiddenTools.includes(tool as never)
+    ).length,
+    unnecessaryToolCalls:
+      testCase.gold.answerability === 'unsupported'
+        ? result.toolCalls
+        : result.trace.filter(({ tool }) => testCase.gold.forbiddenTools.includes(tool as never))
+            .length,
     passed:
       expectedTools &&
       forbiddenTools &&
@@ -87,8 +116,39 @@ function score(testCase: EvalCase, result: RunAgentResult) {
       facts &&
       warningMatch &&
       evidence &&
-      abstained
+      abstained &&
+      result.structuredAnswer &&
+      truncationPreserved
   };
+}
+
+type CompletedRecord = {
+  caseId: string;
+  repetition: number;
+  latencyMs: number;
+  result: RunAgentResult;
+  score: ReturnType<typeof score>;
+};
+
+type FailedRecord = {
+  caseId: string;
+  repetition: number;
+  latencyMs: number;
+  error: string;
+};
+
+function average(values: readonly number[]): number {
+  return values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : 0;
+}
+
+function percentile(values: readonly number[], quantile: number): number {
+  if (!values.length) return 0;
+  const sorted = [...values].sort((left, right) => left - right);
+  return sorted[Math.min(sorted.length - 1, Math.ceil(sorted.length * quantile) - 1)];
+}
+
+function ratio(passed: number, total: number) {
+  return { passed, total, rate: total ? passed / total : 0 };
 }
 
 async function main() {
@@ -100,9 +160,17 @@ async function main() {
       : args.split === 'held-out'
         ? corpus.heldOut
         : [...corpus.dev, ...corpus.heldOut];
-  const tagged = args.tag
-    ? selectedSplit.filter(({ tags }) => tags.includes(args.tag!))
+  const selectedCases = args.caseIds
+    ? selectedSplit.filter(({ id }) => args.caseIds!.includes(id))
     : selectedSplit;
+  if (args.caseIds && selectedCases.length !== new Set(args.caseIds).size) {
+    const found = new Set(selectedCases.map(({ id }) => id));
+    const missing = [...new Set(args.caseIds)].filter((id) => !found.has(id));
+    throw new Error(`--cases 包含当前 split 中不存在的 case: ${missing.join(', ')}`);
+  }
+  const tagged = args.tag
+    ? selectedCases.filter(({ tags }) => tags.includes(args.tag!))
+    : selectedCases;
   const selected = args.tag === 'stability' ? tagged.slice(0, 10) : tagged;
   if (!selected.length) throw new Error('筛选后没有 eval case');
   console.log(
@@ -114,7 +182,7 @@ async function main() {
   const runId = new Date().toISOString().replaceAll(':', '-').replaceAll('.', '-');
   const auditRoot = path.join(process.cwd(), 'data', 'audit', 'agent', runId);
   await mkdir(auditRoot, { recursive: true });
-  const records = [];
+  const records: Array<CompletedRecord | FailedRecord> = [];
   for (let repetition = 1; repetition <= args.repeat; repetition += 1) {
     for (const testCase of selected) {
       const started = performance.now();
@@ -147,8 +215,29 @@ async function main() {
       }
     }
   }
-  const completed = records.filter((record) => 'score' in record);
+  const completed = records.filter((record): record is CompletedRecord => 'score' in record);
   const passed = completed.filter((record) => record.score.passed).length;
+  const count = (key: keyof CompletedRecord['score']) =>
+    completed.filter((record) => record.score[key] === true).length;
+  const requiredEvidence = completed.filter(({ score: item }) => item.evidenceRequired);
+  const requiredWarnings = completed.filter(({ score: item }) => item.warningRequired);
+  const truncationRequired = completed.filter(({ score: item }) => item.truncationRequired);
+  const unsupported = completed.filter(({ score: item }) => item.unsupported);
+  const supported = completed.filter(({ score: item }) => item.supported);
+  const toolResultBytes = completed.flatMap(({ result }) =>
+    result.trace.map(({ summary }) => summary.toolResultBytes)
+  );
+  const latencies = completed.map(({ latencyMs }) => latencyMs);
+  const usage = completed.reduce(
+    (total, { result }) => ({
+      inputTokens: total.inputTokens + result.usage.inputTokens,
+      outputTokens: total.outputTokens + result.usage.outputTokens,
+      totalTokens: total.totalTokens + result.usage.totalTokens,
+      cacheHitTokens: total.cacheHitTokens + (result.usage.cacheHitTokens ?? 0),
+      cacheMissTokens: total.cacheMissTokens + (result.usage.cacheMissTokens ?? 0)
+    }),
+    { inputTokens: 0, outputTokens: 0, totalTokens: 0, cacheHitTokens: 0, cacheMissTokens: 0 }
+  );
   const summary = {
     runId,
     cases: selected.length,
@@ -156,7 +245,95 @@ async function main() {
     attempts: records.length,
     completed: completed.length,
     passed,
-    passRate: completed.length ? passed / completed.length : 0
+    passRate: completed.length ? passed / completed.length : 0,
+    metrics: {
+      strictContract: ratio(passed, completed.length),
+      expectedToolPresent: ratio(count('expectedTools'), completed.length),
+      forbiddenToolAvoided: ratio(count('forbiddenTools'), completed.length),
+      keyArgumentSubset: ratio(count('keyArguments'), completed.length),
+      goldFacts: ratio(count('facts'), completed.length),
+      supportedGoldFacts: ratio(
+        supported.filter(({ score: item }) => item.facts).length,
+        supported.length
+      ),
+      requiredWarnings: ratio(
+        requiredWarnings.filter(({ score: item }) => item.warnings).length,
+        requiredWarnings.length
+      ),
+      requiredEvidence: ratio(
+        requiredEvidence.filter(({ score: item }) => item.evidence).length,
+        requiredEvidence.length
+      ),
+      invalidEvidenceIds: completed.reduce(
+        (total, { result }) => total + result.invalidEvidenceIds.length,
+        0
+      ),
+      structuredFinal: ratio(count('structuredFinal'), completed.length),
+      turnLimitHit: ratio(count('hitTurnLimit'), completed.length),
+      averageToolCalls: average(completed.map(({ result }) => result.toolCalls)),
+      averageTurns: average(completed.map(({ result }) => result.turns)),
+      goldAverageToolCalls: average(completed.map(({ score: item }) => item.goldToolCalls)),
+      withinGoldPlusOne: ratio(count('withinGoldPlusOne'), completed.length),
+      forbiddenCallCount: completed.reduce(
+        (total, { score: item }) => total + item.forbiddenCallCount,
+        0
+      ),
+      unnecessaryToolCalls: completed.reduce(
+        (total, { score: item }) => total + item.unnecessaryToolCalls,
+        0
+      ),
+      truncationPreservation: ratio(
+        truncationRequired.filter(({ score: item }) => item.truncationPreserved).length,
+        truncationRequired.length
+      ),
+      truncationModelProvided: ratio(
+        truncationRequired.filter(({ score: item }) => item.truncationModelProvided).length,
+        truncationRequired.length
+      ),
+      truncationRuntimeEnforced: ratio(
+        truncationRequired.filter(({ score: item }) => item.truncationRuntimeEnforced).length,
+        truncationRequired.length
+      ),
+      unsupportedAbstention: ratio(
+        unsupported.filter(({ score: item }) => item.abstained).length,
+        unsupported.length
+      )
+    },
+    latencyMs: {
+      average: average(latencies),
+      p50: percentile(latencies, 0.5),
+      p95: percentile(latencies, 0.95)
+    },
+    toolResults: {
+      calls: toolResultBytes.length,
+      totalBytes: toolResultBytes.reduce((sum, value) => sum + value, 0),
+      averageBytes: average(toolResultBytes),
+      p50Bytes: percentile(toolResultBytes, 0.5),
+      p95Bytes: percentile(toolResultBytes, 0.95),
+      perAttempt: {
+        averageBytes: average(
+          completed.map(({ result }) =>
+            result.trace.reduce((sum, entry) => sum + entry.summary.toolResultBytes, 0)
+          )
+        ),
+        p50Bytes: percentile(
+          completed.map(({ result }) =>
+            result.trace.reduce((sum, entry) => sum + entry.summary.toolResultBytes, 0)
+          ),
+          0.5
+        ),
+        p95Bytes: percentile(
+          completed.map(({ result }) =>
+            result.trace.reduce((sum, entry) => sum + entry.summary.toolResultBytes, 0)
+          ),
+          0.95
+        )
+      }
+    },
+    usage: {
+      ...usage,
+      averageTotalTokensPerAttempt: completed.length ? usage.totalTokens / completed.length : 0
+    }
   };
   await writeFile(path.join(auditRoot, 'summary.json'), JSON.stringify(summary, null, 2));
   console.log(JSON.stringify(summary, null, 2));

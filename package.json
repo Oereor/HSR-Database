@@ -45,6 +45,7 @@
     "product:baseline:update": "tsx scripts/product-baseline/cli.ts update",
     "agent:run": "node --env-file-if-exists=.env.local --import tsx scripts/agent/run.ts",
     "agent:eval": "node --env-file-if-exists=.env.local --import tsx scripts/agent/eval.ts",
+    "agent:profile": "node --import tsx scripts/agent/profile.ts",
     "test:agent": "vitest run tests/unit/agent"
   },
   "devDependencies": {

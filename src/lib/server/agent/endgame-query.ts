@@ -74,40 +74,80 @@ function sortRows(rows: NormalizedEndgameRow[], input: QueryEndgameInput): Norma
 
 function projectRow(row: NormalizedEndgameRow, include: readonly EndgameProjection[]) {
   const projected: Record<string, unknown> = {
-    evidenceId: row.evidenceId,
-    grain: row.grain
+    evidenceId: row.evidenceId
   };
   if (include.includes('location')) {
     projected.mode = row.mode;
-    projected.season = row.season;
-    projected.encounter = row.encounter;
+    projected.groupId = row.season.groupId;
+    projected.encounter = {
+      id: row.encounter.id,
+      name: row.encounter.name,
+      ordinal: row.encounter.ordinal,
+      variant: row.encounter.variant
+    };
     projected.battleSlot = row.battleSlot;
-    projected.stage = row.stage;
-    projected.wave = row.wave;
+    projected.stage = { stageId: row.stage.stageId, level: row.stage.level };
+    projected.wave = { kind: row.wave.kind, numberOrId: row.wave.numberOrId };
   }
   if (include.includes('enemy-identity')) {
     projected.enemy = {
       monsterId: row.enemy.monsterId,
       templateId: row.enemy.templateId,
       name: row.enemy.name,
-      detailStatus: row.enemy.detailStatus,
-      detailReason: row.enemy.detailReason,
       rank: row.enemy.rank,
-      rankCategory: row.enemy.rankCategory
+      rankCategory: row.enemy.rankCategory,
+      ...(row.enemy.detailStatus === 'unresolved'
+        ? { detailStatus: row.enemy.detailStatus, detailReason: row.enemy.detailReason }
+        : {})
     };
   }
   if (include.includes('enemy-defenses')) {
     projected.enemyDefenses = {
-      detailStatus: row.enemy.detailStatus,
-      detailReason: row.enemy.detailReason,
       weaknesses: row.enemy.weaknesses,
       resistances: row.enemy.resistances,
-      specialResistances: row.enemy.specialResistances
+      specialResistances: row.enemy.specialResistances,
+      ...(row.enemy.detailStatus === 'unresolved'
+        ? { detailStatus: row.enemy.detailStatus, detailReason: row.enemy.detailReason }
+        : {})
     };
   }
-  if (include.includes('instance-stats')) projected.instanceStats = row.stats;
+  if (include.includes('instance-stats'))
+    projected.instanceStats = {
+      hpPerBar: row.stats.hpPerBar,
+      ...(row.stats.hpPerBar === null ? { hpReason: row.stats.hpReason } : {}),
+      speed: row.stats.speed,
+      ...(row.stats.speed === null ? { speedReason: row.stats.speedReason } : {}),
+      toughnessPerBar: row.stats.toughnessPerBar,
+      ...(row.stats.toughnessPerBar === null ? { toughnessReason: row.stats.toughnessReason } : {}),
+      toughnessBarCount: row.stats.toughnessBarCount,
+      toughnessRuntimeStatus: row.stats.toughnessRuntimeStatus,
+      phaseCount: row.stats.phaseCount,
+      effectiveTotalHp: row.stats.effectiveTotalHp,
+      effectiveTotalHpStatus: row.stats.effectiveTotalHpStatus
+    };
   if (include.includes('mechanics')) projected.mechanics = row.mechanics;
   return projected;
+}
+
+function seasonCatalog(
+  rows: readonly NormalizedEndgameRow[],
+  include: readonly EndgameProjection[]
+) {
+  if (!include.includes('location')) return undefined;
+  const seasons = new Map<string, unknown>();
+  for (const row of rows) {
+    const key = `${row.mode}:${row.season.groupId}`;
+    if (!seasons.has(key))
+      seasons.set(key, {
+        mode: row.mode,
+        groupId: row.season.groupId,
+        name: row.season.name,
+        begin: row.season.begin,
+        end: row.season.end,
+        status: row.season.status
+      });
+  }
+  return [...seasons.values()];
 }
 
 function byteLength(value: unknown): number {
@@ -127,6 +167,10 @@ export async function queryEndgame(input: QueryEndgameInput, options: QueryEndga
   let output = {
     dataVersion,
     rowGrain: 'configured-occurrence' as const,
+    seasonRecencyBasis: 'group-id' as const,
+    ...(seasonCatalog(sorted.slice(0, projectedRows.length), input.include)
+      ? { seasons: seasonCatalog(sorted.slice(0, projectedRows.length), input.include) }
+      : {}),
     matchedRows: sorted.length,
     returnedRows: projectedRows.length,
     truncated: sorted.length > projectedRows.length,
@@ -143,6 +187,9 @@ export async function queryEndgame(input: QueryEndgameInput, options: QueryEndga
       ...output,
       returnedRows: projectedRows.length,
       truncated: true,
+      ...(seasonCatalog(sorted.slice(0, projectedRows.length), input.include)
+        ? { seasons: seasonCatalog(sorted.slice(0, projectedRows.length), input.include) }
+        : {}),
       rows: projectedRows
     };
   }

@@ -3,6 +3,7 @@ import { AGENT_TOOL_DEFINITIONS } from '../../../src/lib/server/agent/tools';
 import {
   MAX_MODEL_TURNS,
   MAX_TOTAL_TOOL_CALLS,
+  DATA_AGENT_SYSTEM_PROMPT,
   runDataAgent,
   type ModelTurn,
   type ToolCallingModelClient
@@ -30,7 +31,33 @@ const toolCall = (id: string, name: string, args: unknown) => ({
 });
 
 describe('bounded Agent runtime', () => {
-  it('支持并行工具、累加 usage，并拒绝不属于本轮结果的 evidence', async () => {
+  it('system protocol 固定 mode、latest/current、battle slot 与 proxy 边界', () => {
+    expect(DATA_AGENT_SYSTEM_PROMPT).toContain('moc/pf/as/aa');
+    expect(DATA_AGENT_SYSTEM_PROMPT).toContain('latest 与 current 不同');
+    expect(DATA_AGENT_SYSTEM_PROMPT).toContain('battleSlot 1/2');
+    expect(DATA_AGENT_SYSTEM_PROMPT).toContain('enemyRankCategories:["boss"]');
+    expect(DATA_AGENT_SYSTEM_PROMPT).toContain('分组时用 enemyTemplate');
+    expect(DATA_AGENT_SYSTEM_PROMPT).toContain('difficulty');
+    expect(DATA_AGENT_SYSTEM_PROMPT).toContain('不要调用工具寻找 proxy');
+  });
+
+  it('fake model 可对未定义概念直接 abstain 而不触发 proxy tool calls', async () => {
+    const client = new FakeClient([
+      {
+        content: JSON.stringify({
+          answer: '数据库没有客观难度定义，无法判断哪一期最难。',
+          evidenceIds: [],
+          limitations: ['未定义 objective difficulty。']
+        }),
+        toolCalls: []
+      }
+    ]);
+    const result = await runDataAgent('最近几期混沌回忆哪一期最难？', { client });
+    expect(result.toolCalls).toBe(0);
+    expect(result.answer.answer).toContain('无法判断');
+  });
+
+  it('支持并行工具、累加 usage，并只接受显式 evidence 字段', async () => {
     const client = new FakeClient([
       {
         content: null,
@@ -47,7 +74,7 @@ describe('bounded Agent runtime', () => {
       {
         content: JSON.stringify({
           answer: '完成',
-          evidenceIds: ['eg1/not-returned'],
+          evidenceIds: ['ent1/character/1101', '1101', 'eg1/not-returned'],
           limitations: []
         }),
         toolCalls: [],
@@ -59,10 +86,10 @@ describe('bounded Agent runtime', () => {
       turns: 2,
       toolCalls: 2,
       structuredAnswer: true,
-      invalidEvidenceIds: ['eg1/not-returned']
+      invalidEvidenceIds: ['1101', 'eg1/not-returned']
     });
     expect(result.usage.totalTokens).toBe(39);
-    expect(result.answer.evidenceIds).toEqual([]);
+    expect(result.answer.evidenceIds).toEqual(['ent1/character/1101']);
     expect(result.trace).toHaveLength(2);
     expect(client.calls[1].messages.filter(({ role }) => role === 'tool')).toHaveLength(2);
   });
@@ -112,6 +139,115 @@ describe('bounded Agent runtime', () => {
       structuredAnswer: false,
       answer: { answer: '普通文本', evidenceIds: [] }
     });
+  });
+
+  it('接受 raw JSON 和单层 json fence，但不从 prose 中提取 JSON', async () => {
+    const fenced = await runDataAgent('fenced', {
+      client: new FakeClient([
+        {
+          content: '```json\n{"answer":"完成","evidenceIds":[],"limitations":[]}\n```',
+          toolCalls: []
+        }
+      ])
+    });
+    expect(fenced.structuredAnswer).toBe(true);
+    const prose = await runDataAgent('prose', {
+      client: new FakeClient([
+        {
+          content: '结果如下：{"answer":"完成","evidenceIds":[],"limitations":[]}',
+          toolCalls: []
+        }
+      ])
+    });
+    expect(prose.structuredAnswer).toBe(false);
+  });
+
+  it('空 content 只做一次无 tools finalization retry', async () => {
+    const client = new FakeClient([
+      { content: '', toolCalls: [] },
+      {
+        content: '{"answer":"完成","evidenceIds":[],"limitations":[]}',
+        toolCalls: []
+      }
+    ]);
+    const result = await runDataAgent('empty retry', { client });
+    expect(result).toMatchObject({ turns: 2, structuredAnswer: true });
+    expect(client.calls).toHaveLength(2);
+    expect(client.calls[0].tools).toHaveLength(3);
+    expect(client.calls[1].tools).toEqual([]);
+  });
+
+  it('截断结果被引用而模型遗漏限制时由 runtime 显式保留', async () => {
+    class TruncationClient implements ToolCallingModelClient {
+      calls = 0;
+      async complete(input: Parameters<ToolCallingModelClient['complete']>[0]) {
+        this.calls += 1;
+        if (this.calls === 1)
+          return {
+            content: null,
+            toolCalls: [
+              toolCall('q', 'query_endgame', {
+                locale: 'zh-CN',
+                filter: {
+                  seasons: { kind: 'ids', seasons: [{ mode: 'as', groupId: 3020 }] }
+                },
+                include: ['enemy-identity'],
+                limit: 1
+              })
+            ]
+          };
+        const toolMessage = input.messages.findLast((message) => message.role === 'tool');
+        if (!toolMessage || toolMessage.role !== 'tool') throw new Error('tool result missing');
+        const evidenceId = JSON.parse(toolMessage.content).rows[0].evidenceId as string;
+        return {
+          content: JSON.stringify({ answer: '完成', evidenceIds: [evidenceId], limitations: [] }),
+          toolCalls: []
+        };
+      }
+    }
+    const result = await runDataAgent('truncation', { client: new TruncationClient() });
+    expect(result.truncationDisclosure).toEqual({
+      required: true,
+      modelProvided: false,
+      runtimeEnforced: true
+    });
+    expect(result.answer.limitations).toContain('用于结论的工具结果已截断，答案可能不完整。');
+    expect(result.trace[0]).toMatchObject({ runtimeEnforcedLimitation: true });
+    expect(result.trace[0].summary.toolResultBytes).toBeGreaterThan(0);
+  });
+
+  it('runtime ledger 接受 aggregate-result evidence', async () => {
+    class AggregateLedgerClient implements ToolCallingModelClient {
+      calls = 0;
+      async complete(input: Parameters<ToolCallingModelClient['complete']>[0]) {
+        this.calls += 1;
+        if (this.calls === 1)
+          return {
+            content: null,
+            toolCalls: [
+              toolCall('a', 'aggregate_endgame', {
+                locale: 'zh-CN',
+                filter: {
+                  seasons: { kind: 'ids', seasons: [{ mode: 'as', groupId: 3020 }] }
+                },
+                groupBy: [],
+                metrics: [{ op: 'rowCount', as: 'rows' }],
+                limit: 1
+              })
+            ]
+          };
+        const toolMessage = input.messages.findLast((message) => message.role === 'tool');
+        if (!toolMessage || toolMessage.role !== 'tool') throw new Error('tool result missing');
+        const evidenceId = JSON.parse(toolMessage.content).groups[0].evidenceId as string;
+        return {
+          content: JSON.stringify({ answer: '完成', evidenceIds: [evidenceId], limitations: [] }),
+          toolCalls: []
+        };
+      }
+    }
+    const result = await runDataAgent('aggregate ledger', { client: new AggregateLedgerClient() });
+    expect(result.invalidEvidenceIds).toEqual([]);
+    expect(result.answer.evidenceIds[0]).toMatch(/^ag1\/[a-f0-9]{64}$/);
   });
 });
 
@@ -166,8 +302,31 @@ describe('DeepSeek provider mock', () => {
       model: 'deepseek-flash',
       tool_choice: 'auto',
       thinking: { type: 'disabled' },
+      response_format: { type: 'json_object' },
       temperature: 0
     });
+  });
+
+  it('finalization-only request 不携带 tools 并强制 tool_choice none', async () => {
+    let capturedRequest: RequestInit | undefined;
+    const fetchMock = vi.fn(async (_input: string | URL | Request, request?: RequestInit) => {
+      capturedRequest = request;
+      return new Response(
+        JSON.stringify({
+          choices: [{ message: { role: 'assistant', content: '{"answer":"ok"}' } }]
+        }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } }
+      );
+    });
+    const client = new DeepSeekModelClient({
+      apiKey: 'test',
+      fetchImpl: fetchMock as typeof fetch
+    });
+    await client.complete({ messages: [{ role: 'user', content: 'finalize' }], tools: [] });
+    const body = JSON.parse(String(capturedRequest?.body));
+    expect(body).not.toHaveProperty('tools');
+    expect(body.tool_choice).toBe('none');
+    expect(body.response_format).toEqual({ type: 'json_object' });
   });
 
   it('HTTP 错误与缺 key 不泄露 secret', async () => {

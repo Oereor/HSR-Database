@@ -18,6 +18,10 @@ let serviceCache:
     }>
   | undefined;
 
+export function entityEvidenceId(type: EntityMatch['type'], id: string): string {
+  return `ent1/${type}/${encodeURIComponent(id)}`;
+}
+
 async function getService() {
   serviceCache ??= getSearchIndex('zh-CN').then((index) => {
     const documents = new Map(
@@ -52,6 +56,10 @@ export async function searchEntities(input: SearchEntitiesInput) {
     .map(({ normalized, evidence }, index) => ({
       type: normalized.document.target.kind as EntityMatch['type'],
       id: normalized.document.target.id,
+      evidenceId: entityEvidenceId(
+        normalized.document.target.kind as EntityMatch['type'],
+        normalized.document.target.id
+      ),
       canonicalName: normalized.document.canonicalName,
       matchedLabel: evidence.matchedLabel,
       nameKind: evidence.nameKind,

@@ -7,21 +7,28 @@ import type { EntityKind } from '../domain/types.js';
 import type { MatchKind, NameKind } from '../search/documents.js';
 
 export const AGENT_LOCALE = 'zh-CN' as const;
-export const AGENT_PAYLOAD_LIMIT_BYTES = 256 * 1024;
+export const AGENT_PAYLOAD_LIMIT_BYTES = 64 * 1024;
 export const SEARCH_ENTITY_LIMIT = 25;
-export const QUERY_ROW_LIMIT = 500;
+export const QUERY_DEFAULT_ROW_LIMIT = 25;
+export const QUERY_ROW_LIMIT = 100;
 export const AGGREGATE_GROUP_LIMIT = 100;
 export const LATEST_SEASON_LIMIT = 20;
 
 const uniqueArray = <T>(values: readonly T[]): boolean => new Set(values).size === values.length;
 const uniqueMessage = '数组不能包含重复值';
 
-export const entityTypeSchema = z.enum(['character', 'light-cone', 'relic', 'enemy']);
-export const endgameModeSchema = z.enum(['moc', 'pf', 'as', 'aa']);
+export const entityTypeSchema = z
+  .enum(['character', 'light-cone', 'relic', 'enemy'])
+  .describe('实体类型；只用于解析用户明确提到的名称或别名。');
+export const endgameModeSchema = z
+  .enum(['moc', 'pf', 'as', 'aa'])
+  .describe('moc=混沌回忆，pf=虚构叙事，as=末日幻影，aa=异相仲裁。');
 export const seasonStatusSchema = z.enum(['current', 'upcoming', 'historical', 'unknown']);
 export const encounterVariantSchema = z.enum(['floor', 'preliminary', 'boss-normal', 'boss-hard']);
 export const enemyRankSchema = z.enum(['Minion', 'MinionLv2', 'Elite', 'LittleBoss', 'BigBoss']);
-export const enemyRankCategorySchema = z.enum(['normal', 'elite', 'boss']);
+export const enemyRankCategorySchema = z
+  .enum(['normal', 'elite', 'boss'])
+  .describe('用户说首领或 Boss 时使用 boss。');
 export const elementSchema = z.enum([
   'Physical',
   'Fire',
@@ -39,37 +46,48 @@ const seasonKeySchema = z
   .object({ mode: endgameModeSchema, groupId: z.number().int().positive() })
   .strict();
 
-export const seasonSelectionSchema = z.discriminatedUnion('kind', [
-  z
-    .object({
-      kind: z.literal('ids'),
-      seasons: z
-        .array(seasonKeySchema)
-        .min(1)
-        .max(100)
-        .refine((values) => uniqueArray(values.map(({ mode, groupId }) => `${mode}:${groupId}`)), {
-          message: uniqueMessage
-        })
-    })
-    .strict(),
-  z
-    .object({
-      kind: z.literal('latest-per-mode'),
-      count: z.number().int().min(1).max(LATEST_SEASON_LIMIT),
-      includeUpcoming: z.boolean().default(false)
-    })
-    .strict()
-]);
+export const seasonSelectionSchema = z
+  .discriminatedUnion('kind', [
+    z
+      .object({
+        kind: z.literal('ids'),
+        seasons: z
+          .array(seasonKeySchema)
+          .min(1)
+          .max(100)
+          .refine(
+            (values) => uniqueArray(values.map(({ mode, groupId }) => `${mode}:${groupId}`)),
+            {
+              message: uniqueMessage
+            }
+          )
+      })
+      .strict(),
+    z
+      .object({
+        kind: z.literal('latest-per-mode'),
+        count: z.number().int().min(1).max(LATEST_SEASON_LIMIT),
+        includeUpcoming: z.boolean().default(false)
+      })
+      .strict()
+  ])
+  .describe(
+    'latest-per-mode 表示按每个 mode 的 groupId recency 选择；它不表示 current，includeUpcoming 默认 false。'
+  );
 
 export const endgameFilterSchema = z
   .object({
     modes: uniqueEnumArray(endgameModeSchema, 4).optional(),
     seasons: seasonSelectionSchema.optional(),
-    statuses: uniqueEnumArray(seasonStatusSchema, 4).optional(),
+    statuses: uniqueEnumArray(seasonStatusSchema, 4)
+      .optional()
+      .describe('current 只由 schedule/open-state 证明，不能用 latest groupId 替代。'),
     encounterIds: uniqueEnumArray(z.string().trim().min(1).max(100), 100).optional(),
     encounterOrdinals: uniqueEnumArray(z.number().int().positive(), 100).optional(),
     encounterVariants: uniqueEnumArray(encounterVariantSchema, 4).optional(),
-    battleSlots: uniqueEnumArray(z.number().int().positive(), 10).optional(),
+    battleSlots: uniqueEnumArray(z.number().int().positive(), 10)
+      .optional()
+      .describe('节点1/上半=battle slot 1；节点2/下半=battle slot 2。'),
     stageIds: uniqueEnumArray(z.number().int().positive(), 100).optional(),
     levels: uniqueEnumArray(z.number().int().positive(), 100).optional(),
     waveNumbersOrIds: uniqueEnumArray(z.number().int().nonnegative(), 100).optional(),
@@ -83,9 +101,11 @@ export const endgameFilterSchema = z
 
 export const searchEntitiesInputSchema = z
   .object({
-    query: z.string().trim().min(1).max(200),
+    query: z.string().trim().min(1).max(200).describe('用户明确提到的实体名称或别名。'),
     locale: z.literal(AGENT_LOCALE),
-    types: uniqueEnumArray(entityTypeSchema, 4).optional(),
+    types: uniqueEnumArray(entityTypeSchema, 4)
+      .optional()
+      .describe('只搜索这些实体类型；已知类型时应显式提供。'),
     limit: z.number().int().min(1).max(SEARCH_ENTITY_LIMIT).default(10)
   })
   .strict();
@@ -120,22 +140,19 @@ export const queryEndgameInputSchema = z
   .object({
     locale: z.literal(AGENT_LOCALE),
     filter: endgameFilterSchema.default({}),
-    include: uniqueEnumArray(endgameProjectionSchema, 5).default(['location', 'enemy-identity']),
+    include: uniqueEnumArray(endgameProjectionSchema, 5).describe(
+      '必填。只请求回答所需的 projection；不会隐式返回 location、identity、defenses、stats 或 mechanics。'
+    ),
     sort: z.array(querySortSchema).max(5).default([]),
-    limit: z.number().int().min(1).max(QUERY_ROW_LIMIT).default(100)
+    limit: z.number().int().min(1).max(QUERY_ROW_LIMIT).default(QUERY_DEFAULT_ROW_LIMIT)
   })
   .strict();
 
-export const endgameGroupDimensionSchema = z.enum([
-  'mode',
-  'season',
-  'encounter',
-  'battleSlot',
-  'stage',
-  'wave',
-  'enemyTemplate',
-  'monster'
-]);
+export const endgameGroupDimensionSchema = z
+  .enum(['mode', 'season', 'encounter', 'battleSlot', 'stage', 'wave', 'enemyTemplate', 'monster'])
+  .describe(
+    'enemyTemplate 按稳定敌人模板身份合并具体 Monster 变体，适合回答“谁/哪些敌人/Boss”；monster 只在明确需要具体 MonsterID 变体时使用。'
+  );
 export const numericFieldSchema = z.enum(['hpPerBar', 'speed', 'toughnessPerBar', 'level']);
 export const distinctFieldSchema = z.enum([
   'seasonKey',
@@ -173,7 +190,11 @@ export const aggregateEndgameInputSchema = z
   .object({
     locale: z.literal(AGENT_LOCALE),
     filter: endgameFilterSchema.default({}),
-    groupBy: uniqueEnumArray(endgameGroupDimensionSchema, 3).default([]),
+    groupBy: z
+      .array(endgameGroupDimensionSchema)
+      .max(3)
+      .refine(uniqueArray, uniqueMessage)
+      .default([]),
     metrics: z
       .array(endgameMetricSchema)
       .min(1)
@@ -300,6 +321,7 @@ export interface NormalizedEndgameRow {
 }
 
 export interface EntityMatch {
+  evidenceId: string;
   type: EntityKind;
   id: string;
   canonicalName: string;

@@ -95,9 +95,11 @@ export class DeepSeekModelClient implements ToolCallingModelClient {
       body: JSON.stringify({
         model: this.#model,
         messages: input.messages.map(providerMessage),
-        tools: input.tools,
-        tool_choice: 'auto',
+        ...(input.tools.length
+          ? { tools: input.tools, tool_choice: 'auto' }
+          : { tool_choice: 'none' }),
         thinking: { type: 'disabled' },
+        response_format: { type: 'json_object' },
         temperature: 0,
         max_tokens: 2048
       })
