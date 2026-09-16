@@ -39,6 +39,11 @@ describe('bounded Agent runtime', () => {
     expect(DATA_AGENT_SYSTEM_PROMPT).toContain('分组时用 enemyTemplate');
     expect(DATA_AGENT_SYSTEM_PROMPT).toContain('difficulty');
     expect(DATA_AGENT_SYSTEM_PROMPT).toContain('不要调用工具寻找 proxy');
+    expect(DATA_AGENT_SYSTEM_PROMPT).toContain('逻辑、数学和完整性前提');
+    expect(DATA_AGENT_SYSTEM_PROMPT).toContain('不得为了制造可回答结果而静默改变');
+    expect(DATA_AGENT_SYSTEM_PROMPT).toContain('普通用户回答必须使用游戏/站点/domain 术语');
+    expect(DATA_AGENT_SYSTEM_PROMPT).toContain('enemyTemplateId 只交给 enemyTemplateIds');
+    expect(DATA_AGENT_SYSTEM_PROMPT).toContain('global top/bottom');
   });
 
   it('fake model 可对未定义概念直接 abstain 而不触发 proxy tool calls', async () => {

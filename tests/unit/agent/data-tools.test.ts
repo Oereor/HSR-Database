@@ -1,10 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import {
   AGENT_PAYLOAD_LIMIT_BYTES,
+  ARG_EXTREMA_TIE_LIMIT,
   QUERY_DEFAULT_ROW_LIMIT,
   QUERY_ROW_LIMIT,
-  type EndgameFilter
+  type AggregateEndgameInput,
+  type EndgameFilter,
+  type NormalizedEndgameRow
 } from '../../../src/lib/agent/contracts';
+import { parseDecimal } from '../../../src/lib/domain/decimal';
 import type {
   EndgameDatasetByMode,
   EndgameGroup,
@@ -16,7 +20,8 @@ import {
 } from '../../../src/lib/server/agent/data-source';
 import {
   aggregateEndgame,
-  aggregateEvidenceId
+  aggregateEvidenceId,
+  aggregateRows
 } from '../../../src/lib/server/agent/endgame-aggregate';
 import { loadEndgameRows, selectSeasonGroups } from '../../../src/lib/server/agent/endgame-rows';
 import { queryEndgame } from '../../../src/lib/server/agent/endgame-query';
@@ -123,6 +128,8 @@ describe('Agent entity resolution and real generated rows', () => {
       limit: 10
     });
     expect(prefix.matches[0]).toMatchObject({ type: 'enemy', matchKind: 'prefix', rank: 1 });
+    expect(prefix.matches[0]).toHaveProperty('enemyTemplateId');
+    expect(prefix.matches[0]).not.toHaveProperty('id');
     const ambiguous = await searchEntities({
       query: '可可利亚',
       locale: 'zh-CN',
@@ -130,10 +137,11 @@ describe('Agent entity resolution and real generated rows', () => {
       limit: 10
     });
     expect(ambiguous.ambiguity).toMatchObject({ ambiguous: true });
-    expect(ambiguous.ambiguity.candidates.slice(0, 2).map(({ id }) => id)).toEqual([
-      '1004010',
-      '1004016'
-    ]);
+    expect(
+      ambiguous.ambiguity.candidates
+        .slice(0, 2)
+        .map((candidate) => ('enemyTemplateId' in candidate ? candidate.enemyTemplateId : null))
+    ).toEqual([1004010, 1004016]);
   });
 
   it('保留 fixed/PF spawn grain、1-based position、exact Monster join 和 evidence 编码', async () => {
@@ -359,4 +367,430 @@ describe('Agent entity resolution and real generated rows', () => {
     };
     expect(aggregateEvidenceId(base)).toBe(aggregateEvidenceId(reordered));
   });
+
+  it('weakness explode 对所有 metrics 保持 assignment 语义与顶层 sourceRows', async () => {
+    const filter: EndgameFilter = {
+      modes: ['as'],
+      seasons: { kind: 'latest-per-mode', count: 2, includeUpcoming: false }
+    };
+    const rows = await loadEndgameRows(filter);
+    const result = await aggregateEndgame({
+      locale: 'zh-CN',
+      filter,
+      groupBy: ['weakness'],
+      metrics: [
+        { op: 'rowCount', as: 'rows' },
+        { op: 'countDistinct', field: 'enemyTemplateId', as: 'templates' },
+        { op: 'min', field: 'speed', as: 'minSpeed' },
+        { op: 'max', field: 'hpPerBar', as: 'maxHp' },
+        { op: 'avg', field: 'toughnessPerBar', as: 'avgToughness' }
+      ],
+      sort: [{ by: 'dimension', dimension: 'weakness', direction: 'asc' }],
+      limit: 100
+    });
+    const assignments = rows.reduce(
+      (sum, row) =>
+        sum +
+        (row.enemy.detailStatus === 'resolved'
+          ? new Set(row.enemy.weaknesses.map(({ element }) => element)).size
+          : 0),
+      0
+    );
+    expect(result).toMatchObject({
+      sourceRows: rows.length,
+      grouping: { explodedDimensions: ['weakness'], semantics: 'explode-v1' }
+    });
+    expect(result.groups.reduce((sum, item) => sum + item.sourceRows, 0)).toBe(assignments);
+    for (const item of result.groups) {
+      expect(item.dimensions.weakness).toMatchObject({
+        element: expect.any(String),
+        name: expect.any(String)
+      });
+      expect(item.metrics.rows.value).toBe(item.sourceRows);
+      expect(item.metrics.templates.value).toBeGreaterThan(0);
+      expect(item.metrics.minSpeed.value).not.toBeNull();
+      expect(item.metrics.maxHp.value).not.toBeNull();
+      expect(item.metrics.avgToughness.value).not.toBeNull();
+    }
+  });
+
+  it.each([
+    ['season', 'as'],
+    ['mode', 'as'],
+    ['battleSlot', 'as']
+  ] as const)('%s + weakness 保持 scalar dimension 语义', async (dimension, mode) => {
+    const result = await aggregateEndgame({
+      locale: 'zh-CN',
+      filter: {
+        modes: [mode],
+        seasons: { kind: 'latest-per-mode', count: 1, includeUpcoming: false }
+      },
+      groupBy: [dimension, 'weakness'],
+      metrics: [{ op: 'countDistinct', field: 'monsterId', as: 'monsters' }],
+      sort: [],
+      limit: 100
+    });
+    expect(result.groups.length).toBeGreaterThan(0);
+    expect(result.groups.every(({ dimensions }) => dimension in dimensions)).toBe(true);
+    expect(result.groups.every(({ dimensions }) => 'weakness' in dimensions)).toBe(true);
+  });
+
+  it('weakness groups 继续遵守 group/payload hard limits', async () => {
+    const result = await aggregateEndgame(
+      {
+        locale: 'zh-CN',
+        filter: {
+          modes: ['as'],
+          seasons: { kind: 'latest-per-mode', count: 2, includeUpcoming: false }
+        },
+        groupBy: ['enemyTemplate', 'weakness'],
+        metrics: [{ op: 'rowCount', as: 'rows' }],
+        sort: [],
+        limit: 1
+      },
+      { payloadLimitBytes: 1200 }
+    );
+    expect(result.returnedGroups).toBeLessThanOrEqual(1);
+    expect(result.truncated).toBe(true);
+    expect(result.warnings.map(({ code }) => code)).toContain('RESULT_TRUNCATED_GROUP_LIMIT');
+    expect(Buffer.byteLength(JSON.stringify(result), 'utf8')).toBeLessThanOrEqual(1200);
+  });
+
+  it('weakness defensive dedupe 且 resolved empty/unresolved 不产生伪分组', () => {
+    const base = normalizedRow();
+    const groups = aggregateRows(
+      [
+        {
+          ...base,
+          enemy: {
+            ...base.enemy,
+            weaknesses: [
+              { element: 'Fire', name: '火' },
+              { element: 'Fire', name: '火' }
+            ]
+          }
+        },
+        {
+          ...base,
+          evidenceId: 'eg1/empty',
+          enemy: { ...base.enemy, monsterId: 2, weaknesses: [] }
+        },
+        {
+          ...base,
+          evidenceId: 'eg1/unresolved',
+          enemy: {
+            ...base.enemy,
+            monsterId: 3,
+            detailStatus: 'unresolved',
+            detailReason: 'missing-monster',
+            weaknesses: [{ element: 'Ice', name: '冰' }]
+          }
+        }
+      ],
+      aggregateInput({
+        groupBy: ['weakness'],
+        metrics: [{ op: 'rowCount', as: 'rows' }]
+      })
+    );
+    expect(groups).toHaveLength(1);
+    expect(groups[0]).toMatchObject({
+      dimensions: { weakness: { element: 'Fire' } },
+      sourceRows: 1,
+      metrics: { rows: { value: 1 } }
+    });
+  });
+
+  it('arg extrema 与 scalar extrema 等值并保留三类 associated projection', () => {
+    const rows = [
+      normalizedRow({ evidenceId: 'eg1/a', templateId: 10, monsterId: 101, hp: '30', speed: '90' }),
+      normalizedRow({
+        evidenceId: 'eg1/b',
+        templateId: 20,
+        monsterId: 201,
+        hp: '10',
+        speed: '120'
+      }),
+      normalizedRow({ evidenceId: 'eg1/c', templateId: 30, monsterId: 301, hp: '20', speed: '100' })
+    ];
+    const groups = aggregateRows(
+      rows,
+      aggregateInput({
+        metrics: [
+          { op: 'min', field: 'hpPerBar', as: 'minHp' },
+          {
+            op: 'argMin',
+            field: 'hpPerBar',
+            select: ['enemyTemplate', 'monster', 'location'],
+            as: 'lowest'
+          },
+          { op: 'max', field: 'speed', as: 'maxSpeed' },
+          {
+            op: 'argMax',
+            field: 'speed',
+            select: ['monster'],
+            as: 'fastest'
+          }
+        ]
+      })
+    );
+    const metrics = groups[0].metrics;
+    expect(metrics.lowest.value).toBe(metrics.minHp.value);
+    expect(metrics.fastest.value).toBe(metrics.maxSpeed.value);
+    expect(metrics.lowest).toMatchObject({
+      value: '10',
+      associated: [
+        {
+          enemyTemplate: { enemyTemplateId: 20 },
+          monster: { monsterId: 201, enemyTemplateId: 20 },
+          location: { mode: 'moc', season: { groupId: 1 }, wave: { configuredPosition: 1 } }
+        }
+      ],
+      tiedRowCount: 1,
+      tieCount: 1,
+      returnedTies: 1,
+      tiesTruncated: false,
+      includedRows: 3,
+      skippedUnresolvedRows: 0
+    });
+  });
+
+  it.each(['hpPerBar', 'speed', 'toughnessPerBar', 'level'] as const)(
+    '%s 的 scalar/arg min-max 严格等值',
+    (field) => {
+      const low = normalizedRow({
+        evidenceId: `eg1/${field}-low`,
+        hp: field === 'hpPerBar' ? '10' : '20',
+        speed: field === 'speed' ? '10' : '20'
+      });
+      const high = normalizedRow({
+        evidenceId: `eg1/${field}-high`,
+        templateId: 20,
+        monsterId: 201,
+        hp: field === 'hpPerBar' ? '30' : '20',
+        speed: field === 'speed' ? '30' : '20'
+      });
+      if (field === 'toughnessPerBar') {
+        low.stats.toughnessPerBar = parseDecimal('10');
+        high.stats.toughnessPerBar = parseDecimal('30');
+      }
+      if (field === 'level') {
+        low.stage.level = 60;
+        high.stage.level = 90;
+      }
+      const metrics = aggregateRows(
+        [low, high],
+        aggregateInput({
+          metrics: [
+            { op: 'min', field, as: 'minimum' },
+            { op: 'argMin', field, select: ['monster'], as: 'argMinimum' },
+            { op: 'max', field, as: 'maximum' },
+            { op: 'argMax', field, select: ['monster'], as: 'argMaximum' }
+          ]
+        })
+      )[0].metrics;
+      expect(metrics.argMinimum.value).toBe(metrics.minimum.value);
+      expect(metrics.argMaximum.value).toBe(metrics.maximum.value);
+    }
+  );
+
+  it.each(['mode', 'season', 'battleSlot', 'encounter'] as const)(
+    'arg extrema 在 %s partition 下只改变 grouping',
+    (dimension) => {
+      const left = normalizedRow({ evidenceId: `eg1/${dimension}-left`, hp: '10' });
+      const right = normalizedRow({
+        evidenceId: `eg1/${dimension}-right`,
+        templateId: 20,
+        monsterId: 201,
+        hp: '20'
+      });
+      if (dimension === 'mode') right.mode = 'as';
+      if (dimension === 'season') right.season = { ...right.season, groupId: 2 };
+      if (dimension === 'battleSlot') right.battleSlot = 2;
+      if (dimension === 'encounter')
+        right.encounter = { ...right.encounter, id: 'encounter-2', ordinal: 2 };
+      const groups = aggregateRows(
+        [left, right],
+        aggregateInput({
+          groupBy: [dimension],
+          metrics: [{ op: 'argMax', field: 'hpPerBar', select: ['enemyTemplate'], as: 'highest' }]
+        })
+      );
+      expect(groups).toHaveLength(2);
+      expect(groups.every(({ metrics }) => metrics.highest.value !== null)).toBe(true);
+    }
+  );
+
+  it('arg extrema 区分 tied rows 与 distinct associated ties，并按 hard cap 稳定截断', () => {
+    const rows = Array.from({ length: ARG_EXTREMA_TIE_LIMIT + 3 }, (_, index) =>
+      normalizedRow({
+        evidenceId: `eg1/tie-${index}`,
+        templateId: index === 1 ? 100 : 100 + index,
+        monsterId: 1000 + index,
+        hp: '10'
+      })
+    );
+    const metric = aggregateRows(
+      rows,
+      aggregateInput({
+        metrics: [
+          {
+            op: 'argMin',
+            field: 'hpPerBar',
+            select: ['enemyTemplate'],
+            as: 'lowest'
+          }
+        ]
+      })
+    )[0].metrics.lowest;
+    expect(metric).toMatchObject({
+      value: '10',
+      tiedRowCount: ARG_EXTREMA_TIE_LIMIT + 3,
+      tieCount: ARG_EXTREMA_TIE_LIMIT + 2,
+      returnedTies: ARG_EXTREMA_TIE_LIMIT,
+      tiesTruncated: true,
+      includedRows: ARG_EXTREMA_TIE_LIMIT + 3
+    });
+    if (metric.op !== 'argMin') throw new Error('expected argMin');
+    expect(metric.associated.map(({ enemyTemplate }) => enemyTemplate?.enemyTemplateId)).toEqual([
+      100, 102, 103, 104, 105
+    ]);
+  });
+
+  it('arg extrema 对 all-unresolved 返回可机器识别的 empty result', () => {
+    const unresolved = normalizedRow({ hp: null });
+    const metric = aggregateRows(
+      [unresolved],
+      aggregateInput({
+        metrics: [{ op: 'argMax', field: 'hpPerBar', select: ['location'], as: 'highest' }]
+      })
+    )[0].metrics.highest;
+    expect(metric).toMatchObject({
+      value: null,
+      associated: [],
+      tiedRowCount: 0,
+      tieCount: 0,
+      returnedTies: 0,
+      tiesTruncated: false,
+      includedRows: 0,
+      skippedUnresolvedRows: 1
+    });
+  });
+
+  it('new aggregate evidence 覆盖 explode/select 语义，且 select 顺序等价', () => {
+    const base = {
+      dataRevision: 'revision',
+      filter: {},
+      groupBy: ['season'] as AggregateEndgameInput['groupBy'],
+      metrics: [
+        {
+          op: 'argMax' as const,
+          field: 'hpPerBar' as const,
+          select: ['monster', 'location'] as Array<'monster' | 'location'>,
+          as: 'highest'
+        }
+      ],
+      dimensions: { season: { mode: 'moc', groupId: 1 } }
+    };
+    expect(aggregateEvidenceId(base)).toBe(
+      aggregateEvidenceId({
+        ...base,
+        metrics: [{ ...base.metrics[0], select: ['location', 'monster'] }]
+      })
+    );
+    expect(aggregateEvidenceId(base)).not.toBe(
+      aggregateEvidenceId({
+        ...base,
+        groupBy: ['weakness'],
+        dimensions: { weakness: { element: 'Fire', name: '火' } }
+      })
+    );
+  });
 });
+
+function aggregateInput(overrides: Partial<AggregateEndgameInput> = {}): AggregateEndgameInput {
+  return {
+    locale: 'zh-CN',
+    filter: {},
+    groupBy: [],
+    metrics: [{ op: 'rowCount', as: 'rows' }],
+    sort: [],
+    limit: 100,
+    ...overrides
+  };
+}
+
+function normalizedRow(
+  input: {
+    evidenceId?: string;
+    templateId?: number;
+    monsterId?: number;
+    hp?: string | null;
+    speed?: string | null;
+  } = {}
+): NormalizedEndgameRow {
+  const hp =
+    input.hp === undefined ? parseDecimal('10') : input.hp === null ? null : parseDecimal(input.hp);
+  const speed =
+    input.speed === undefined
+      ? parseDecimal('100')
+      : input.speed === null
+        ? null
+        : parseDecimal(input.speed);
+  return {
+    evidenceId: input.evidenceId ?? 'eg1/base',
+    grain: 'configured-occurrence',
+    mode: 'moc',
+    season: {
+      groupId: 1,
+      name: '测试赛期',
+      begin: null,
+      end: null,
+      status: 'historical',
+      recencyBasis: 'group-id'
+    },
+    encounter: {
+      id: 'encounter-1',
+      configId: 1,
+      name: '测试关卡',
+      ordinal: 1,
+      variant: 'floor'
+    },
+    battleSlot: 1,
+    stage: { stageId: 1, ordinal: 1, level: 80 },
+    wave: {
+      kind: 'fixed',
+      numberOrId: 1,
+      monsterGroupId: null,
+      configuredPosition: 1
+    },
+    enemy: {
+      monsterId: input.monsterId ?? 101,
+      templateId: input.templateId ?? 10,
+      name: `敌人 ${input.templateId ?? 10}`,
+      detailStatus: 'resolved',
+      detailReason: null,
+      rank: 'BigBoss',
+      rankCategory: 'boss',
+      weaknesses: [{ element: 'Fire', name: '火' }],
+      resistances: [],
+      specialResistances: []
+    },
+    stats: {
+      hpPerBar: hp,
+      hpStatus: hp === null ? 'unresolved' : 'resolved',
+      hpReason: hp === null ? 'test-unresolved' : null,
+      speed,
+      speedStatus: speed === null ? 'unavailable' : 'resolved',
+      speedReason: speed === null ? 'test-unavailable' : null,
+      toughnessPerBar: parseDecimal('60'),
+      toughnessStatus: 'resolved',
+      toughnessReason: null,
+      toughnessBarCount: 1,
+      toughnessRuntimeStatus: 'static',
+      phaseCount: 1,
+      effectiveTotalHp: hp,
+      effectiveTotalHpStatus: 'static'
+    },
+    mechanics: {} as NormalizedEndgameRow['mechanics']
+  };
+}

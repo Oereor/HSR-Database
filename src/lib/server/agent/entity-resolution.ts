@@ -1,4 +1,9 @@
-import type { EntityMatch, SearchEntitiesInput } from '../../agent/contracts.js';
+import type {
+  EntityIdentityCandidate,
+  EntityMatch,
+  SearchEntitiesInput
+} from '../../agent/contracts.js';
+import type { EntityKind } from '../../domain/types.js';
 import { getSearchIndex } from '../generated.js';
 import { normalizeSearchDocument, type NormalizedSearchDocument } from '../../search/documents.js';
 import { createFlexSearchAdapter } from '../../search/flexsearch-adapter.js';
@@ -18,8 +23,19 @@ let serviceCache:
     }>
   | undefined;
 
-export function entityEvidenceId(type: EntityMatch['type'], id: string): string {
+export function entityEvidenceId(type: EntityKind, id: string): string {
   return `ent1/${type}/${encodeURIComponent(id)}`;
+}
+
+function enemyTemplateId(id: string): number {
+  const value = Number(id);
+  if (!Number.isSafeInteger(value) || value <= 0)
+    throw new Error('Enemy search identity must be a positive safe integer');
+  return value;
+}
+
+function identityFor(type: EntityKind, id: string): EntityIdentityCandidate {
+  return type === 'enemy' ? { type, enemyTemplateId: enemyTemplateId(id) } : { type, id };
 }
 
 async function getService() {
@@ -53,29 +69,31 @@ export async function searchEntities(input: SearchEntitiesInput) {
   ranked.sort(compareSearchMatches);
   const matches: EntityMatch[] = ranked
     .slice(0, input.limit)
-    .map(({ normalized, evidence }, index) => ({
-      type: normalized.document.target.kind as EntityMatch['type'],
-      id: normalized.document.target.id,
-      evidenceId: entityEvidenceId(
-        normalized.document.target.kind as EntityMatch['type'],
-        normalized.document.target.id
-      ),
-      canonicalName: normalized.document.canonicalName,
-      matchedLabel: evidence.matchedLabel,
-      nameKind: evidence.nameKind,
-      matchKind: evidence.matchKind,
-      rank: index + 1
-    }));
+    .map(({ normalized, evidence }, index) => {
+      const type = normalized.document.target.kind as EntityKind;
+      const id = normalized.document.target.id;
+      return {
+        ...identityFor(type, id),
+        evidenceId: entityEvidenceId(type, id),
+        canonicalName: normalized.document.canonicalName,
+        matchedLabel: evidence.matchedLabel,
+        nameKind: evidence.nameKind,
+        matchKind: evidence.matchKind,
+        rank: index + 1
+      } as EntityMatch;
+    });
   const topRankClass = ranked[0] ? searchRankClass(ranked[0].evidence) : undefined;
   const ambiguousCandidates =
     topRankClass === undefined
       ? []
       : ranked
           .filter(({ evidence }) => searchRankClass(evidence) === topRankClass)
-          .map(({ normalized }) => ({
-            type: normalized.document.target.kind as EntityMatch['type'],
-            id: normalized.document.target.id
-          }));
+          .map(({ normalized }) =>
+            identityFor(
+              normalized.document.target.kind as EntityKind,
+              normalized.document.target.id
+            )
+          );
   return {
     dataVersion,
     normalizedQuery: query,

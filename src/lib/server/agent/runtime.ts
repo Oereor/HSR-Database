@@ -88,7 +88,15 @@ export interface AgentTraceEntry {
     warnings?: string[];
     evidenceCount?: number;
   };
-  details?: { warnings: unknown[]; evidenceIds: string[] };
+  details?: {
+    warnings: unknown[];
+    evidenceIds: string[];
+    aggregatePreview?: {
+      grouping?: unknown;
+      groups: unknown[];
+      previewTruncated: boolean;
+    };
+  };
   runtimeEnforcedLimitation?: boolean;
 }
 
@@ -112,17 +120,20 @@ export interface RunAgentResult {
 
 export const DATA_AGENT_SYSTEM_PROMPT = `你是 HSR-Database 的数据分析 Agent。
 所有 HSR-specific factual 或 analytical claims 必须由本轮数据库 tools 返回的数据支持，不得使用模型训练数据中的游戏知识作为事实证据。
-search_entities 只解析用户明确提到的实体名称，不枚举赛期敌人；query_endgame 用于具体 occurrence rows 或 drill-down；跨行 count/distinct/min/max/avg/ranking 直接使用 aggregate_endgame，通常不要先 query。
+search_entities 只解析用户明确提到的实体名称，不枚举赛期敌人；enemyTemplateId 只交给 enemyTemplateIds，不得当作 MonsterID。query_endgame 用于具体 occurrence rows、global top/bottom 或 drill-down；跨行 count/distinct/min/max/avg 以及分组内 associated extrema 使用 aggregate_endgame。weakness filter 用于缩小 rows，weakness group 只用于按弱点类别比较或汇总。
 混沌回忆/虚构叙事/末日幻影/异相仲裁分别映射为 moc/pf/as/aa；节点 1/上半与节点 2/下半分别映射为 battleSlot 1/2。
 用户说首领/Boss 时使用 enemyRankCategories:["boss"]；按“谁/哪些敌人/Boss”分组时用 enemyTemplate，只有明确要求具体 MonsterID 变体时才用 monster。
 latest 与 current 不同：四个模式的 latest 只按 groupId recency；current 只能由 schedule/open-state 证明。
 只有 tool result 中 evidenceId 或 evidenceIds 字段的值可以引用；entity ID、MonsterID、template ID、groupId/season ID、tool call ID 都不是 evidence ID。
 数据库未明确定义 difficulty、best、strongest、most suitable、recommended、value 或 design intent，且用户没有明确指定 proxy 时，核心请求不可回答：不要调用工具寻找 proxy，不要主动计算或排名，并明确说明无法回答。可以只说明“若用户指定以 HP 为代理，可另做分析”，但不得直接给出代理结果或把它表述为原概念。
 数据库不足、结果 unresolved、runtime-unclear 或 truncated 时明确写入 limitations，不要猜测或连续查询无关 proxy。
+只有当已返回证据满足该结论的逻辑、数学和完整性前提时，才能作出分析性声称。一个可比 observation 只能报告数值，不能声称变化或趋势；候选集被截断时不能声称完整全局排名；所有 metric 都 unresolved 时不能声称极值。
+不得为了制造可回答结果而静默改变用户的时间范围、mode、identity grain、metric 定义、filters 或 current/latest 语义。原 scope 证据不足时先说明不足，可把扩大 scope 或替代 metric 作为后续建议，不得冒充原请求的答案。
+内部 representation 可以指导规划，但普通用户回答必须使用游戏/站点/domain 术语。除非用户明确询问数据口径、实现或 ID，不要在 answer/limitations prose 中主动暴露 groupId、configured-occurrence、enemyTemplate、battleSlot、stageId、evidenceId、ag1/eg1/ent1、runtime-unclear、DecimalString、dataRevision 或 sourceCommit；evidenceIds 机器字段仍正常保留 provenance。
 最终只输出一个 JSON 对象，不要 Markdown：{"answer":"中文回答","evidenceIds":["工具返回的 evidenceId"],"limitations":["限制"]}。
 最终 answer 最多 ${FINAL_ANSWER_CHAR_LIMIT} 个字符；evidenceIds 去重后最多 ${FINAL_EVIDENCE_LIMIT} 个，只引用足够支撑核心结论的证据，聚合结论优先引用 ag1 aggregate evidence，不列出所有底层 occurrence；limitations 去重后最多 ${FINAL_LIMITATION_LIMIT} 项，每项最多 ${FINAL_LIMITATION_CHAR_LIMIT} 个字符。`;
 
-const FINALIZATION_RETRY_PROMPT = `上一次最终答案未满足 JSON 或长度契约。不要调用工具；保留核心事实并缩短，只输出一个完整 JSON 对象，字段必须是 answer、evidenceIds、limitations。answer 最多 ${FINAL_ANSWER_CHAR_LIMIT} 字符；evidenceIds 最多 ${FINAL_EVIDENCE_LIMIT} 个，优先聚合证据；limitations 最多 ${FINAL_LIMITATION_LIMIT} 项，每项最多 ${FINAL_LIMITATION_CHAR_LIMIT} 字符。`;
+const FINALIZATION_RETRY_PROMPT = `上一次最终答案未满足 JSON 或长度契约。不要调用工具；保留核心事实、证据前提、原请求 scope 和限制并缩短。普通回答使用游戏/站点术语，只有用户明确询问实现或 ID 时才展示内部表示。只输出一个完整 JSON 对象，字段必须是 answer、evidenceIds、limitations。answer 最多 ${FINAL_ANSWER_CHAR_LIMIT} 字符；evidenceIds 最多 ${FINAL_EVIDENCE_LIMIT} 个，优先聚合证据；limitations 最多 ${FINAL_LIMITATION_LIMIT} 项，每项最多 ${FINAL_LIMITATION_CHAR_LIMIT} 字符。`;
 
 function emptyUsage(): ModelUsage {
   return { inputTokens: 0, outputTokens: 0, totalTokens: 0, cacheHitTokens: 0, cacheMissTokens: 0 };
@@ -184,6 +195,28 @@ function traceSummary(result: unknown, toolResultBytes: number): AgentTraceEntry
     ...(typeof record.returnedGroups === 'number' ? { groups: record.returnedGroups } : {}),
     ...(typeof record.truncated === 'boolean' ? { truncated: record.truncated } : {}),
     ...(warnings?.length ? { warnings } : {})
+  };
+}
+
+function traceDetails(
+  result: unknown,
+  evidenceIds: string[]
+): NonNullable<AgentTraceEntry['details']> {
+  const record = result && typeof result === 'object' ? (result as Record<string, unknown>) : {};
+  const warnings = Array.isArray(record.warnings) ? record.warnings : [];
+  const groups = Array.isArray(record.groups) ? record.groups : undefined;
+  return {
+    warnings,
+    evidenceIds,
+    ...(groups
+      ? {
+          aggregatePreview: {
+            ...('grouping' in record ? { grouping: record.grouping } : {}),
+            groups: groups.slice(0, 10),
+            previewTruncated: groups.length > 10
+          }
+        }
+      : {})
   };
 }
 
@@ -432,7 +465,7 @@ export async function runDataAgent(
         ...(record.error?.code ? { errorCode: record.error.code } : {}),
         ...(options.traceDetails
           ? {
-              details: { warnings: record.warnings ?? [], evidenceIds: [...resultEvidence.keys()] }
+              details: traceDetails(executed.result, [...resultEvidence.keys()])
             }
           : {}),
         latencyMs: executed.latencyMs,

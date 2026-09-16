@@ -23,11 +23,18 @@ const operationCoverageSchema = z.enum([
   'min',
   'max',
   'avg',
+  'groupBy',
+  'argMin',
+  'argMax',
+  'identity-handoff',
+  'scope-check',
+  'presentation',
   'set-comparison',
   'multi-step',
   'abstain'
 ]);
 const grainCoverageSchema = z.enum([
+  'mode',
   'season',
   'encounter',
   'battleSlot',
@@ -35,6 +42,8 @@ const grainCoverageSchema = z.enum([
   'wave',
   'enemyTemplate',
   'monster',
+  'weakness',
+  'location',
   'configured-occurrence'
 ]);
 const timeScopeSchema = z.enum([
@@ -70,6 +79,7 @@ export const evalCaseSchema = z
           .default({}),
         facts: z.array(z.string()).default([]),
         warnings: z.array(z.string()).default([]),
+        forbiddenAnswerTerms: z.array(z.string().min(1)).default([]),
         answerability: answerabilitySchema,
         evidenceRequired: z.boolean()
       })

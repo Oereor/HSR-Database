@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { evalCaseSchema, isExplicitAbstention, type EvalCase } from '../../../src/lib/agent/eval';
-import { parseArguments, score } from '../../../scripts/agent/eval';
+import { loadGeneralizationCorpus, parseArguments, score } from '../../../scripts/agent/eval';
 import type { RunAgentResult } from '../../../src/lib/server/agent/runtime';
 
 async function cases(file: string): Promise<EvalCase[]> {
@@ -15,6 +15,10 @@ async function cases(file: string): Promise<EvalCase[]> {
 describe('Agent eval corpus', () => {
   it('A/B 参数和首工具/recovery telemetry 使用冻结 gold', async () => {
     expect(parseArguments(['--thinking=both']).modes).toEqual(['off', 'low']);
+    expect(parseArguments(['--suite=generalization-v1', '--thinking=low'])).toMatchObject({
+      suite: 'generalization-v1',
+      modes: ['low']
+    });
     const testCase = (await cases('dev.jsonl'))[0];
     const result: RunAgentResult = {
       answer: { answer: testCase.gold.facts.join(' '), evidenceIds: ['eg1/test'], limitations: [] },
@@ -75,11 +79,59 @@ describe('Agent eval corpus', () => {
     expect(isExplicitAbstention('按 HP 口径看，这一期最难。')).toBe(false);
   });
 
+  it('ordinary presentation 的 literal forbidden terms 进入独立评分', async () => {
+    const testCase = (await loadGeneralizationCorpus()).find(
+      ({ id }) => id === 'gen-presentation-ordinary'
+    );
+    if (!testCase) throw new Error('presentation case missing');
+    const result = {
+      answer: { answer: 'groupId 3020 的结果', evidenceIds: ['eg1/test'], limitations: [] },
+      invalidEvidenceIds: [],
+      turns: 1,
+      toolCalls: 1,
+      usage: { inputTokens: 1, outputTokens: 1, totalTokens: 2 },
+      trace: [
+        {
+          turn: 1,
+          toolCallId: 'q',
+          tool: 'query_endgame',
+          ok: true,
+          validatedArgs: testCase.gold.keyArguments.query_endgame,
+          latencyMs: 0,
+          summary: { toolResultBytes: 1, evidenceCount: 1 }
+        }
+      ],
+      modelTrace: [],
+      finalization: {
+        retryUsed: false,
+        contractViolations: [],
+        evidenceDeduplicated: 0,
+        evidenceCapped: 0,
+        limitationsDeduplicated: 0,
+        limitationsCapped: 0
+      },
+      structuredAnswer: true,
+      hitTurnLimit: false,
+      truncationDisclosure: { required: false, modelProvided: false, runtimeEnforced: false }
+    } satisfies RunAgentResult;
+    expect(score(testCase, result)).toMatchObject({ presentation: false, passed: false });
+  });
+
   it('冻结 24 dev + 12 held-out 且 ID 唯一', async () => {
     const [dev, heldOut] = await Promise.all([cases('dev.jsonl'), cases('held-out.jsonl')]);
     expect(dev).toHaveLength(24);
     expect(heldOut).toHaveLength(12);
     expect(new Set([...dev, ...heldOut].map(({ id }) => id)).size).toBe(36);
+  });
+
+  it('generalization-v1 保持独立 16 cases 且不收录原 dogfooding wording', async () => {
+    const generalization = await loadGeneralizationCorpus();
+    expect(generalization).toHaveLength(16);
+    const questions = generalization.map(({ question }) => question).join('\n');
+    expect(questions).not.toContain('最多和次多的是哪两个');
+    expect(questions).not.toContain('分别分析最近6期混沌回忆');
+    expect(questions).not.toContain('颁赐者，千军首，天谴之矛');
+    expect(new Set(generalization.map(({ id }) => id)).size).toBe(16);
   });
 
   it('覆盖四模式、六类指标、主要操作、grain 与三种 answerability', async () => {

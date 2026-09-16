@@ -21,6 +21,7 @@ const messages: Record<AgentWarningCode, string> = {
     '部分行包含多阶段、共享/回复/锁定/操纵 HP 或外部机制，effective total HP 无法可靠确定。',
   RESULT_TRUNCATED_ROW_LIMIT: '结果因行数上限被截断。',
   RESULT_TRUNCATED_GROUP_LIMIT: '结果因分组数量上限被截断。',
+  RESULT_TRUNCATED_ASSOCIATED_TIES: '并列极值的关联身份或位置因上限被截断。',
   RESULT_TRUNCATED_PAYLOAD_LIMIT: '结果因序列化 payload 上限被截断。'
 };
 

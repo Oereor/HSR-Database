@@ -44,6 +44,40 @@ describe('Agent strict contracts', () => {
         metrics: [{ op: 'rowCount', as: 'rows' }]
       }).success
     ).toBe(true);
+    expect(
+      aggregateEndgameInputSchema.safeParse({
+        locale: 'zh-CN',
+        groupBy: ['season', 'weakness'],
+        metrics: [
+          {
+            op: 'argMax',
+            field: 'hpPerBar',
+            select: ['enemyTemplate', 'location'],
+            as: 'highest'
+          }
+        ]
+      }).success
+    ).toBe(true);
+    expect(
+      aggregateEndgameInputSchema.safeParse({
+        locale: 'zh-CN',
+        groupBy: ['weakness', 'weakness'],
+        metrics: [{ op: 'rowCount', as: 'rows' }]
+      }).success
+    ).toBe(false);
+    expect(
+      aggregateEndgameInputSchema.safeParse({
+        locale: 'zh-CN',
+        metrics: [
+          {
+            op: 'argMin',
+            field: 'speed',
+            select: ['enemyTemplate', 'enemyTemplate'],
+            as: 'slowest'
+          }
+        ]
+      }).success
+    ).toBe(false);
   });
 
   it('从同一 Zod schema 暴露 strict provider JSON Schema', () => {

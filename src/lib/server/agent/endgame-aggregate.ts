@@ -1,9 +1,12 @@
 import { createHash } from 'node:crypto';
 import {
   AGENT_PAYLOAD_LIMIT_BYTES,
+  ARG_EXTREMA_TIE_LIMIT,
   type AggregateEndgameInput,
   type AggregateMetricValue,
   type AgentWarning,
+  type AssociatedExtremum,
+  type AssociatedSelect,
   type DistinctField,
   type EndgameGroupDimension,
   type EndgameMetric,
@@ -25,7 +28,7 @@ export interface AggregateEndgameOptions extends LoadRowsOptions {
   payloadLimitBytes?: number;
 }
 
-interface AggregateGroup {
+export interface AggregateGroup {
   dimensions: Record<string, unknown>;
   sourceRows: number;
   metrics: Record<string, AggregateMetricValue>;
@@ -34,11 +37,19 @@ interface AggregateGroup {
 interface ModelAggregateMetric {
   value: string | number | null;
   approximate?: boolean;
+  associated?: AssociatedExtremum[];
+  tiedRowCount?: number;
+  tieCount?: number;
+  returnedTies?: number;
+  tiesTruncated?: boolean;
   includedRows: number;
   skippedUnresolvedRows: number;
 }
 
-function dimensionValue(row: NormalizedEndgameRow, dimension: EndgameGroupDimension): unknown {
+function scalarDimensionValue(
+  row: NormalizedEndgameRow,
+  dimension: Exclude<EndgameGroupDimension, 'weakness'>
+): unknown {
   switch (dimension) {
     case 'mode':
       return row.mode;
@@ -95,10 +106,28 @@ function dimensionValue(row: NormalizedEndgameRow, dimension: EndgameGroupDimens
   }
 }
 
-function dimensionsFor(row: NormalizedEndgameRow, dimensions: readonly EndgameGroupDimension[]) {
-  return Object.fromEntries(
-    dimensions.map((dimension) => [dimension, dimensionValue(row, dimension)])
+function dimensionValues(row: NormalizedEndgameRow, dimension: EndgameGroupDimension): unknown[] {
+  if (dimension !== 'weakness') return [scalarDimensionValue(row, dimension)];
+  if (row.enemy.detailStatus === 'unresolved') return [];
+  const values = new Map(
+    row.enemy.weaknesses.map(({ element, name }) => [element, { element, name }])
   );
+  return [...values.values()].sort((left, right) => left.element.localeCompare(right.element));
+}
+
+function dimensionAssignments(
+  row: NormalizedEndgameRow,
+  dimensions: readonly EndgameGroupDimension[]
+): Array<Record<string, unknown>> {
+  let assignments: Array<Record<string, unknown>> = [{}];
+  for (const dimension of dimensions) {
+    const values = dimensionValues(row, dimension);
+    if (!values.length) return [];
+    assignments = assignments.flatMap((assignment) =>
+      values.map((value) => ({ ...assignment, [dimension]: value }))
+    );
+  }
+  return assignments;
 }
 
 function numericValue(row: NormalizedEndgameRow, field: NumericField): DecimalString | null {
@@ -131,6 +160,68 @@ function distinctValue(row: NormalizedEndgameRow, field: DistinctField): string 
   }
 }
 
+const associatedSelectOrder = [
+  'enemyTemplate',
+  'monster',
+  'location'
+] as const satisfies readonly AssociatedSelect[];
+
+function associatedValue(
+  row: NormalizedEndgameRow,
+  selected: readonly AssociatedSelect[]
+): AssociatedExtremum {
+  const selection = new Set(selected);
+  const result: AssociatedExtremum = {};
+  for (const field of associatedSelectOrder) {
+    if (!selection.has(field)) continue;
+    if (field === 'enemyTemplate')
+      result.enemyTemplate = {
+        enemyTemplateId: row.enemy.templateId,
+        name: row.enemy.name,
+        rank: row.enemy.rank,
+        rankCategory: row.enemy.rankCategory
+      };
+    if (field === 'monster')
+      result.monster = {
+        monsterId: row.enemy.monsterId,
+        enemyTemplateId: row.enemy.templateId,
+        name: row.enemy.name
+      };
+    if (field === 'location')
+      result.location = {
+        mode: row.mode,
+        season: {
+          groupId: row.season.groupId,
+          name: row.season.name,
+          status: row.season.status
+        },
+        encounter: {
+          id: row.encounter.id,
+          name: row.encounter.name,
+          ordinal: row.encounter.ordinal,
+          variant: row.encounter.variant
+        },
+        battleSlot: row.battleSlot,
+        stage: {
+          stageId: row.stage.stageId,
+          ordinal: row.stage.ordinal,
+          level: row.stage.level
+        },
+        wave: {
+          kind: row.wave.kind,
+          numberOrId: row.wave.numberOrId,
+          monsterGroupId: row.wave.monsterGroupId,
+          configuredPosition: row.wave.configuredPosition
+        }
+      };
+  }
+  return result;
+}
+
+function canonicalText(value: unknown): string {
+  return JSON.stringify(canonicalize(value));
+}
+
 function metricValue(
   rows: readonly NormalizedEndgameRow[],
   metric: EndgameMetric
@@ -154,13 +245,26 @@ function metricValue(
     return value === null ? [] : [value];
   });
   const skippedUnresolvedRows = rows.length - values.length;
-  if (!values.length)
+  if (!values.length) {
+    if (metric.op === 'argMin' || metric.op === 'argMax')
+      return {
+        op: metric.op,
+        value: null,
+        associated: [],
+        tiedRowCount: 0,
+        tieCount: 0,
+        returnedTies: 0,
+        tiesTruncated: false,
+        includedRows: 0,
+        skippedUnresolvedRows
+      };
     return {
       op: metric.op,
       value: null,
       includedRows: 0,
       skippedUnresolvedRows
     } as AggregateMetricValue;
+  }
   if (metric.op === 'avg')
     return {
       op: metric.op,
@@ -168,16 +272,53 @@ function metricValue(
       includedRows: values.length,
       skippedUnresolvedRows
     };
+  const direction = metric.op === 'min' || metric.op === 'argMin' ? 'min' : 'max';
   let value = values[0];
   for (const candidate of values.slice(1)) {
     const comparison = compareDecimals(candidate, value);
-    if ((metric.op === 'min' && comparison < 0) || (metric.op === 'max' && comparison > 0))
+    if ((direction === 'min' && comparison < 0) || (direction === 'max' && comparison > 0))
       value = candidate;
+  }
+  if (metric.op === 'argMin' || metric.op === 'argMax') {
+    const tiedRows = rows.filter((row) => {
+      const candidate = numericValue(row, metric.field);
+      return candidate !== null && compareDecimals(candidate, value) === 0;
+    });
+    const distinct = new Map<
+      string,
+      { associated: AssociatedExtremum; stableLocationKey: string }
+    >();
+    for (const row of tiedRows) {
+      const associated = associatedValue(row, metric.select);
+      const key = canonicalText(associated);
+      const current = distinct.get(key);
+      if (!current || row.evidenceId < current.stableLocationKey)
+        distinct.set(key, { associated, stableLocationKey: row.evidenceId });
+    }
+    const ties = [...distinct.entries()]
+      .sort(
+        ([leftKey, left], [rightKey, right]) =>
+          leftKey.localeCompare(rightKey) ||
+          left.stableLocationKey.localeCompare(right.stableLocationKey)
+      )
+      .map(([, item]) => item.associated);
+    const associated = ties.slice(0, ARG_EXTREMA_TIE_LIMIT);
+    return {
+      op: metric.op,
+      value,
+      associated,
+      tiedRowCount: tiedRows.length,
+      tieCount: ties.length,
+      returnedTies: associated.length,
+      tiesTruncated: ties.length > associated.length,
+      includedRows: values.length,
+      skippedUnresolvedRows
+    };
   }
   return { op: metric.op, value, includedRows: values.length, skippedUnresolvedRows };
 }
 
-function groupRows(
+export function aggregateRows(
   rows: readonly NormalizedEndgameRow[],
   input: AggregateEndgameInput
 ): AggregateGroup[] {
@@ -186,11 +327,12 @@ function groupRows(
     { dimensions: Record<string, unknown>; rows: NormalizedEndgameRow[] }
   >();
   for (const row of rows) {
-    const dimensions = dimensionsFor(row, input.groupBy);
-    const key = JSON.stringify(dimensions);
-    const bucket = buckets.get(key);
-    if (bucket) bucket.rows.push(row);
-    else buckets.set(key, { dimensions, rows: [row] });
+    for (const dimensions of dimensionAssignments(row, input.groupBy)) {
+      const key = JSON.stringify(dimensions);
+      const bucket = buckets.get(key);
+      if (bucket) bucket.rows.push(row);
+      else buckets.set(key, { dimensions, rows: [row] });
+    }
   }
   if (!rows.length && !input.groupBy.length) buckets.set('{}', { dimensions: {}, rows: [] });
   return [...buckets.values()].map(({ dimensions, rows: group }) => ({
@@ -222,17 +364,35 @@ export function aggregateEvidenceId(input: {
   metrics: AggregateEndgameInput['metrics'];
   dimensions: Record<string, unknown>;
 }): string {
+  const semantics = {
+    ...(input.groupBy.includes('weakness') ? { multiValuedGrouping: 'explode-v1' } : {}),
+    ...(input.metrics.some(({ op }) => op === 'argMin' || op === 'argMax')
+      ? { associatedExtrema: `all-distinct-associated-v1-cap-${ARG_EXTREMA_TIE_LIMIT}` }
+      : {})
+  };
   const canonical = canonicalize({
     dataRevision: input.dataRevision,
     filter: input.filter,
     groupBy: input.groupBy,
     metrics: [...input.metrics].sort((left, right) => left.as.localeCompare(right.as)),
-    dimensions: input.dimensions
+    dimensions: input.dimensions,
+    ...(Object.keys(semantics).length ? { semantics } : {})
   });
   return `ag1/${createHash('sha256').update(JSON.stringify(canonical)).digest('hex')}`;
 }
 
 function modelMetric(value: AggregateMetricValue): ModelAggregateMetric {
+  if (value.op === 'argMin' || value.op === 'argMax')
+    return {
+      value: value.value,
+      associated: value.associated,
+      tiedRowCount: value.tiedRowCount,
+      tieCount: value.tieCount,
+      returnedTies: value.returnedTies,
+      tiesTruncated: value.tiesTruncated,
+      includedRows: value.includedRows,
+      skippedUnresolvedRows: value.skippedUnresolvedRows
+    };
   if (value.op !== 'avg')
     return {
       value: value.value,
@@ -319,20 +479,41 @@ export async function aggregateEndgame(
     loadEndgameRows(input.filter, options),
     getAgentDataVersion()
   ]);
-  const allGroups = sortGroups(groupRows(rows, input), input);
+  const allGroups = sortGroups(aggregateRows(rows, input), input);
   const groups = allGroups
     .slice(0, input.limit)
     .map((group) => modelGroup(group, input, dataVersion.dataRevision));
   const warnings: AgentWarning[] = aggregateWarnings(rows, input.metrics);
+  const omittedAssociatedTies = groups.reduce(
+    (total, group) =>
+      total +
+      Object.values(group.metrics).reduce(
+        (subtotal, metric) =>
+          subtotal +
+          (metric.tiesTruncated ? (metric.tieCount ?? 0) - (metric.returnedTies ?? 0) : 0),
+        0
+      ),
+    0
+  );
+  if (omittedAssociatedTies)
+    warnings.push(warning('RESULT_TRUNCATED_ASSOCIATED_TIES', omittedAssociatedTies));
   if (allGroups.length > input.limit)
     warnings.push(warning('RESULT_TRUNCATED_GROUP_LIMIT', allGroups.length - input.limit));
   let output = {
     dataVersion,
     rowGrain: 'configured-occurrence' as const,
     sourceRows: rows.length,
+    ...(input.groupBy.includes('weakness')
+      ? {
+          grouping: {
+            explodedDimensions: ['weakness'] as const,
+            semantics: 'explode-v1' as const
+          }
+        }
+      : {}),
     matchedGroups: allGroups.length,
     returnedGroups: groups.length,
-    truncated: allGroups.length > groups.length,
+    truncated: allGroups.length > groups.length || omittedAssociatedTies > 0,
     warnings,
     groups
   };

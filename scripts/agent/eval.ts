@@ -15,6 +15,7 @@ import { redactSecrets } from './inspector.js';
 import { createDeepSeekClientFromEnv } from '../../src/lib/server/agent/providers/deepseek.js';
 
 type Split = 'dev' | 'held-out' | 'all';
+type Suite = 'frozen' | 'generalization-v1';
 
 export function parseArguments(args: string[]) {
   const valueAfter = (flag: string) => {
@@ -38,8 +39,14 @@ export function parseArguments(args: string[]) {
     throw new Error('--thinking 必须是 off、low 或 both');
   const modes: AgentThinkingMode[] =
     thinking === 'both' ? ['off', 'low'] : [thinking as AgentThinkingMode];
+  const suite = (valueAfter('--suite') ?? 'frozen') as Suite;
+  if (!['frozen', 'generalization-v1'].includes(suite))
+    throw new Error('--suite 必须是 frozen 或 generalization-v1');
+  if (suite === 'generalization-v1' && args.some((argument) => argument.startsWith('--split')))
+    throw new Error('generalization-v1 是独立 suite，不接受 --split');
   return {
     model: args.includes('--model'),
+    suite,
     split,
     repeat,
     tag: valueAfter('--tag'),
@@ -73,6 +80,15 @@ export async function loadEvalCorpus(root = process.cwd()) {
   return { dev, heldOut };
 }
 
+export async function loadGeneralizationCorpus(root = process.cwd()) {
+  const file = path.join(root, 'evals', 'agent', 'generalization-v1.jsonl');
+  const cases = await loadFile(file);
+  if (cases.length !== 16) throw new Error(`generalization-v1 corpus 数量错误：${cases.length}`);
+  if (new Set(cases.map(({ id }) => id)).size !== cases.length)
+    throw new Error('generalization-v1 case id 必须唯一');
+  return cases;
+}
+
 function isSubset(expected: unknown, actual: unknown): boolean {
   if (expected === null || typeof expected !== 'object') return Object.is(expected, actual);
   if (Array.isArray(expected))
@@ -94,6 +110,10 @@ export function score(testCase: EvalCase, result: RunAgentResult) {
     result.trace.some((entry) => entry.tool === tool && isSubset(expected, entry.validatedArgs))
   );
   const facts = testCase.gold.facts.every((fact) => result.answer.answer.includes(fact));
+  const presentation = testCase.gold.forbiddenAnswerTerms.every(
+    (term) =>
+      !result.answer.answer.includes(term) && !result.answer.limitations.join(' ').includes(term)
+  );
   const warningMatch = testCase.gold.warnings.every((warning) => warnings.has(warning));
   const evidence =
     result.invalidEvidenceIds.length === 0 &&
@@ -131,6 +151,7 @@ export function score(testCase: EvalCase, result: RunAgentResult) {
     forbiddenTools,
     keyArguments,
     facts,
+    presentation,
     warnings: warningMatch,
     evidence,
     abstained,
@@ -159,6 +180,7 @@ export function score(testCase: EvalCase, result: RunAgentResult) {
       forbiddenTools &&
       keyArguments &&
       facts &&
+      presentation &&
       warningMatch &&
       evidence &&
       abstained &&
@@ -202,13 +224,16 @@ function ratio(passed: number, total: number) {
 
 async function main() {
   const args = parseArguments(process.argv.slice(2));
-  const corpus = await loadEvalCorpus();
-  const selectedSplit =
-    args.split === 'dev'
-      ? corpus.dev
+  const frozen = args.suite === 'frozen' ? await loadEvalCorpus() : undefined;
+  const generalization =
+    args.suite === 'generalization-v1' ? await loadGeneralizationCorpus() : undefined;
+  const selectedSplit = generalization
+    ? generalization
+    : args.split === 'dev'
+      ? frozen!.dev
       : args.split === 'held-out'
-        ? corpus.heldOut
-        : [...corpus.dev, ...corpus.heldOut];
+        ? frozen!.heldOut
+        : [...frozen!.dev, ...frozen!.heldOut];
   const selectedCases = args.caseIds
     ? selectedSplit.filter(({ id }) => args.caseIds!.includes(id))
     : selectedSplit;
@@ -223,7 +248,9 @@ async function main() {
   const selected = args.tag === 'stability' ? tagged.slice(0, 10) : tagged;
   if (!selected.length) throw new Error('筛选后没有 eval case');
   console.log(
-    `Validated ${corpus.dev.length} dev + ${corpus.heldOut.length} held-out cases; selected ${selected.length}.`
+    generalization
+      ? `Validated ${generalization.length} generalization-v1 cases; selected ${selected.length}.`
+      : `Validated ${frozen!.dev.length} dev + ${frozen!.heldOut.length} held-out cases; selected ${selected.length}.`
   );
   if (!args.model) return;
 
@@ -236,16 +263,22 @@ async function main() {
   await mkdir(auditRoot, { recursive: true });
   const hash = (value: string) => createHash('sha256').update(value).digest('hex');
   const experiment = {
+    suite: args.suite,
     modes: args.modes,
     order: `repetition → corpus case → ${args.modes.join(' then ')}`,
     model: process.env.DEEPSEEK_MODEL ?? 'deepseek-flash',
     dataVersion: await getAgentDataVersion(),
     promptHash: hash(DATA_AGENT_SYSTEM_PROMPT),
     toolsHash: hash(JSON.stringify(AGENT_TOOL_DEFINITIONS)),
-    corpusHashes: {
-      dev: hash(await readFile('evals/agent/dev.jsonl', 'utf8')),
-      heldOut: hash(await readFile('evals/agent/held-out.jsonl', 'utf8'))
-    },
+    corpusHashes:
+      args.suite === 'frozen'
+        ? {
+            dev: hash(await readFile('evals/agent/dev.jsonl', 'utf8')),
+            heldOut: hash(await readFile('evals/agent/held-out.jsonl', 'utf8'))
+          }
+        : {
+            generalizationV1: hash(await readFile('evals/agent/generalization-v1.jsonl', 'utf8'))
+          },
     selectedCaseIds: selected.map((item) => item.id),
     maxOutputTokens: 2048
   };
@@ -402,6 +435,7 @@ function summarize(
       forbiddenToolAvoided: ratio(count('forbiddenTools'), completed.length),
       keyArgumentSubset: ratio(count('keyArguments'), completed.length),
       goldFacts: ratio(count('facts'), completed.length),
+      presentationBoundary: ratio(count('presentation'), completed.length),
       supportedGoldFacts: ratio(
         supported.filter(({ score: item }) => item.facts).length,
         supported.length

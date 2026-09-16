@@ -12,6 +12,7 @@ export const SEARCH_ENTITY_LIMIT = 25;
 export const QUERY_DEFAULT_ROW_LIMIT = 25;
 export const QUERY_ROW_LIMIT = 100;
 export const AGGREGATE_GROUP_LIMIT = 100;
+export const ARG_EXTREMA_TIE_LIMIT = 5;
 export const LATEST_SEASON_LIMIT = 20;
 
 const uniqueArray = <T>(values: readonly T[]): boolean => new Set(values).size === values.length;
@@ -149,9 +150,19 @@ export const queryEndgameInputSchema = z
   .strict();
 
 export const endgameGroupDimensionSchema = z
-  .enum(['mode', 'season', 'encounter', 'battleSlot', 'stage', 'wave', 'enemyTemplate', 'monster'])
+  .enum([
+    'mode',
+    'season',
+    'encounter',
+    'battleSlot',
+    'stage',
+    'wave',
+    'enemyTemplate',
+    'monster',
+    'weakness'
+  ])
   .describe(
-    'enemyTemplate 按稳定敌人模板身份合并具体 Monster 变体，适合回答“谁/哪些敌人/Boss”；monster 只在明确需要具体 MonsterID 变体时使用。'
+    'enemyTemplate 按稳定敌人模板身份合并具体 Monster 变体；monster 只在明确需要具体 MonsterID 变体时使用；weakness 是 multi-valued explode 维度，每行对每个不同弱点各贡献一次。'
   );
 export const numericFieldSchema = z.enum(['hpPerBar', 'speed', 'toughnessPerBar', 'level']);
 export const distinctFieldSchema = z.enum([
@@ -163,6 +174,8 @@ export const distinctFieldSchema = z.enum([
   'monsterId'
 ]);
 const metricAliasSchema = z.string().regex(/^[A-Za-z][A-Za-z0-9_]{0,31}$/);
+export const associatedSelectSchema = z.enum(['enemyTemplate', 'monster', 'location']);
+const associatedSelectArraySchema = uniqueEnumArray(associatedSelectSchema, 3);
 export const endgameMetricSchema = z.discriminatedUnion('op', [
   z.object({ op: z.literal('rowCount'), as: metricAliasSchema }).strict(),
   z
@@ -170,7 +183,23 @@ export const endgameMetricSchema = z.discriminatedUnion('op', [
     .strict(),
   z.object({ op: z.literal('min'), field: numericFieldSchema, as: metricAliasSchema }).strict(),
   z.object({ op: z.literal('max'), field: numericFieldSchema, as: metricAliasSchema }).strict(),
-  z.object({ op: z.literal('avg'), field: numericFieldSchema, as: metricAliasSchema }).strict()
+  z.object({ op: z.literal('avg'), field: numericFieldSchema, as: metricAliasSchema }).strict(),
+  z
+    .object({
+      op: z.literal('argMin'),
+      field: numericFieldSchema,
+      select: associatedSelectArraySchema,
+      as: metricAliasSchema
+    })
+    .strict(),
+  z
+    .object({
+      op: z.literal('argMax'),
+      field: numericFieldSchema,
+      select: associatedSelectArraySchema,
+      as: metricAliasSchema
+    })
+    .strict()
 ]);
 
 const aggregateSortSchema = z.discriminatedUnion('by', [
@@ -208,6 +237,13 @@ export const aggregateEndgameInputSchema = z
   .strict()
   .superRefine((input, context) => {
     const dimensions = new Set(input.groupBy);
+    const explodedDimensions = input.groupBy.filter((dimension) => dimension === 'weakness');
+    if (explodedDimensions.length > 1)
+      context.addIssue({
+        code: 'custom',
+        path: ['groupBy'],
+        message: '一次最多只允许一个 multi-valued group dimension'
+      });
     const aliases = new Set(input.metrics.map(({ as }) => as));
     input.sort.forEach((sort, index) => {
       if (sort.by === 'dimension' && !dimensions.has(sort.dimension))
@@ -235,6 +271,7 @@ export type EndgameGroupDimension = z.infer<typeof endgameGroupDimensionSchema>;
 export type NumericField = z.infer<typeof numericFieldSchema>;
 export type DistinctField = z.infer<typeof distinctFieldSchema>;
 export type EndgameMetric = z.infer<typeof endgameMetricSchema>;
+export type AssociatedSelect = z.infer<typeof associatedSelectSchema>;
 
 export interface DataVersion {
   gameVersion: string | null;
@@ -254,6 +291,7 @@ export type AgentWarningCode =
   | 'RUNTIME_UNCLEAR_EFFECTIVE_TOTAL_HP'
   | 'RESULT_TRUNCATED_ROW_LIMIT'
   | 'RESULT_TRUNCATED_GROUP_LIMIT'
+  | 'RESULT_TRUNCATED_ASSOCIATED_TIES'
   | 'RESULT_TRUNCATED_PAYLOAD_LIMIT';
 
 export interface AgentWarning {
@@ -320,15 +358,62 @@ export interface NormalizedEndgameRow {
   mechanics: EnemyMechanics;
 }
 
-export interface EntityMatch {
+interface EntityMatchBase {
   evidenceId: string;
-  type: EntityKind;
-  id: string;
   canonicalName: string;
   matchedLabel: string;
   nameKind: NameKind;
   matchKind: MatchKind;
   rank: number;
+}
+
+export type EntityMatch =
+  | (EntityMatchBase & { type: 'enemy'; enemyTemplateId: number })
+  | (EntityMatchBase & { type: Exclude<EntityKind, 'enemy'>; id: string });
+
+export type EntityIdentityCandidate =
+  { type: 'enemy'; enemyTemplateId: number } | { type: Exclude<EntityKind, 'enemy'>; id: string };
+
+export interface AssociatedEnemyTemplate {
+  enemyTemplateId: number;
+  name: string | null;
+  rank: EnemyRank | null;
+  rankCategory: EnemyRankCategory | null;
+}
+
+export interface AssociatedMonster {
+  monsterId: number;
+  enemyTemplateId: number;
+  name: string | null;
+}
+
+export interface AssociatedLocation {
+  mode: EndgameMode;
+  season: {
+    groupId: number;
+    name: string | null;
+    status: NormalizedEndgameRow['season']['status'];
+  };
+  encounter: {
+    id: string;
+    name: string | null;
+    ordinal: number | null;
+    variant: NormalizedEndgameRow['encounter']['variant'];
+  };
+  battleSlot: number;
+  stage: { stageId: number; ordinal: number; level: number };
+  wave: {
+    kind: NormalizedEndgameRow['wave']['kind'];
+    numberOrId: number;
+    monsterGroupId: number | null;
+    configuredPosition: number;
+  };
+}
+
+export interface AssociatedExtremum {
+  enemyTemplate?: AssociatedEnemyTemplate;
+  monster?: AssociatedMonster;
+  location?: AssociatedLocation;
 }
 
 export type AggregateMetricValue =
@@ -341,6 +426,17 @@ export type AggregateMetricValue =
   | {
       op: 'min' | 'max';
       value: DecimalString | null;
+      includedRows: number;
+      skippedUnresolvedRows: number;
+    }
+  | {
+      op: 'argMin' | 'argMax';
+      value: DecimalString | null;
+      associated: AssociatedExtremum[];
+      tiedRowCount: number;
+      tieCount: number;
+      returnedTies: number;
+      tiesTruncated: boolean;
       includedRows: number;
       skippedUnresolvedRows: number;
     }
