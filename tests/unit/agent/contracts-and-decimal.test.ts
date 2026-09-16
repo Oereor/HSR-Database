@@ -2,7 +2,12 @@ import { describe, expect, it } from 'vitest';
 import { fingerprintTools } from 'ai';
 import { z } from 'zod';
 import {
+  FINAL_ANSWER_CHAR_LIMIT,
+  FINAL_EVIDENCE_LIMIT,
+  FINAL_LIMITATION_CHAR_LIMIT,
+  FINAL_LIMITATION_LIMIT,
   aggregateEndgameInputSchema,
+  modelAnswerSchema,
   queryEndgameInputSchema,
   searchEntitiesInputSchema
 } from '../../../src/lib/agent/contracts';
@@ -98,6 +103,23 @@ describe('Agent strict contracts', () => {
     expect(tools.search_entities.inputSchema).toBe(searchEntitiesInputSchema);
     expect(tools.query_endgame.inputSchema).toBe(queryEndgameInputSchema);
     expect(tools.aggregate_endgame.inputSchema).toBe(aggregateEndgameInputSchema);
+  });
+
+  it('把最终回答长度与数组限制暴露到 JSON Schema', () => {
+    expect(z.toJSONSchema(modelAnswerSchema)).toMatchObject({
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        answer: { type: 'string', maxLength: FINAL_ANSWER_CHAR_LIMIT },
+        evidenceIds: { type: 'array', maxItems: FINAL_EVIDENCE_LIMIT },
+        limitations: {
+          type: 'array',
+          maxItems: FINAL_LIMITATION_LIMIT,
+          items: { type: 'string', maxLength: FINAL_LIMITATION_CHAR_LIMIT }
+        }
+      },
+      required: ['answer', 'evidenceIds', 'limitations']
+    });
   });
 });
 

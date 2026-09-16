@@ -455,16 +455,28 @@ export const unicodeLength = (value: string): number => Array.from(value).length
 // Shape validation precedes deterministic array enforcement in the runtime.
 export const modelAnswerCandidateSchema = z
   .object({
-    answer: z.string(),
-    evidenceIds: z.array(z.string()),
-    limitations: z.array(z.string())
+    answer: z.string().describe('面向用户的中文结论。'),
+    evidenceIds: z.array(z.string()).describe('支持结论且由本轮工具结果返回的 evidence ID。'),
+    limitations: z.array(z.string()).describe('会影响结论解释或完整性的重要限制。')
   })
   .strict();
 export const modelAnswerSchema = modelAnswerCandidateSchema.extend({
-  answer: z.string().refine((value) => unicodeLength(value) <= FINAL_ANSWER_CHAR_LIMIT),
-  evidenceIds: z.array(z.string()).max(FINAL_EVIDENCE_LIMIT),
+  answer: z
+    .string()
+    .max(FINAL_ANSWER_CHAR_LIMIT)
+    .describe(`面向用户的中文结论，最多 ${FINAL_ANSWER_CHAR_LIMIT} 个 Unicode 字符。`),
+  evidenceIds: z
+    .array(z.string())
+    .max(FINAL_EVIDENCE_LIMIT)
+    .describe(`支持结论且由本轮工具结果返回的 evidence ID，最多 ${FINAL_EVIDENCE_LIMIT} 项。`),
   limitations: z
-    .array(z.string().refine((value) => unicodeLength(value) <= FINAL_LIMITATION_CHAR_LIMIT))
+    .array(
+      z
+        .string()
+        .max(FINAL_LIMITATION_CHAR_LIMIT)
+        .describe(`单条重要限制，最多 ${FINAL_LIMITATION_CHAR_LIMIT} 个 Unicode 字符。`)
+    )
     .max(FINAL_LIMITATION_LIMIT)
+    .describe(`会影响结论解释或完整性的重要限制，最多 ${FINAL_LIMITATION_LIMIT} 项。`)
 });
 export type ModelAnswer = z.infer<typeof modelAnswerSchema>;

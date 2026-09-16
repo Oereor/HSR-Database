@@ -11,7 +11,9 @@ import {
   type TimeoutConfiguration
 } from 'ai';
 import {
+  FINAL_ANSWER_CHAR_LIMIT,
   FINAL_EVIDENCE_LIMIT,
+  FINAL_LIMITATION_CHAR_LIMIT,
   FINAL_LIMITATION_LIMIT,
   modelAnswerSchema,
   unicodeLength,
@@ -110,14 +112,49 @@ export type AgentErrorCode =
   | 'structured-output'
   | 'unexpected';
 
+export type StructuredOutputFailureKind =
+  | 'empty-content'
+  | 'markdown-wrapped-json'
+  | 'invalid-json'
+  | 'schema-validation'
+  | 'truncated-json'
+  | 'no-output'
+  | 'unknown';
+
+export interface AgentSchemaIssueDiagnostic {
+  path: string;
+  code?: string;
+  message: string;
+}
+
+export interface AgentErrorDiagnostics {
+  errorClass: string;
+  kind?: StructuredOutputFailureKind;
+  finishReason?: string;
+  stepNumber?: number;
+  textEmpty?: boolean;
+  textLength?: number;
+  schemaIssues?: AgentSchemaIssueDiagnostic[];
+  usage?: ModelUsage;
+  warningCategories?: string[];
+  generatedText?: string;
+}
+
+interface DataAgentErrorOptions extends ErrorOptions {
+  diagnostics?: AgentErrorDiagnostics;
+}
+
 export class DataAgentError extends Error {
+  readonly diagnostics?: AgentErrorDiagnostics;
+
   constructor(
     readonly code: AgentErrorCode,
     readonly safeMessage: string,
-    options?: ErrorOptions
+    options?: DataAgentErrorOptions
   ) {
     super(safeMessage, options);
     this.name = 'DataAgentError';
+    this.diagnostics = options?.diagnostics;
   }
 }
 
@@ -131,7 +168,9 @@ export const DATA_AGENT_INSTRUCTIONS = `你是 HSR-Database 的数据分析 Agen
 
 证据与限制：只有工具结果的 evidenceId/evidenceIds 才能引用。数据库没有定义 difficulty、best、strongest、recommended、value 或 design intent，且用户未给 proxy 时，应说明不可回答，不要自行用 HP 等代理。结果 unresolved、runtime-unclear、truncated 或只有一个可比 observation 时，要明确相应限制；截断候选集不能声称完整全局排名。
 
-用户回答使用游戏/站点术语。除非用户明确询问实现、数据口径或 ID，不主动展示 configured-occurrence、enemyTemplate、battleSlot、evidenceId、ag1/eg1/ent1、DecimalString、dataRevision 等内部表示。`;
+用户回答使用游戏/站点术语。除非用户明确询问实现、数据口径或 ID，不主动展示 configured-occurrence、enemyTemplate、battleSlot、evidenceId、ag1/eg1/ent1、DecimalString、dataRevision 等内部表示。
+
+最终回答必须是纯 JSON 对象，不要使用 Markdown 代码围栏。格式示例：{"answer":"结论","evidenceIds":["工具返回的 evidenceId"],"limitations":["重要限制"]}。三个字段始终存在；answer 最多 ${FINAL_ANSWER_CHAR_LIMIT} 个字符，evidenceIds 最多 ${FINAL_EVIDENCE_LIMIT} 项，limitations 最多 ${FINAL_LIMITATION_LIMIT} 项且每项最多 ${FINAL_LIMITATION_CHAR_LIMIT} 个字符。`;
 
 const DEFAULT_TIMEOUT: TimeoutConfiguration<AgentTools> = {
   totalMs: AGENT_TOTAL_TIMEOUT_MS,
@@ -322,7 +361,113 @@ function errorCode(error: unknown): string {
   return 'TOOL_ERROR';
 }
 
-function mapAgentError(error: unknown): DataAgentError {
+function namedError(error: unknown): { name: string; cause?: unknown } | undefined {
+  if (!error || typeof error !== 'object') return undefined;
+  const record = error as { name?: unknown; cause?: unknown };
+  return {
+    name: typeof record.name === 'string' ? record.name : error.constructor.name,
+    cause: record.cause
+  };
+}
+
+function schemaIssueDiagnostics(error: unknown): AgentSchemaIssueDiagnostic[] | undefined {
+  const validationError = namedError(error);
+  if (validationError?.name !== 'AI_TypeValidationError') return undefined;
+  const cause = validationError.cause;
+  if (!cause || typeof cause !== 'object') return undefined;
+  const issues = (cause as { issues?: unknown }).issues;
+  if (!Array.isArray(issues)) return undefined;
+  const diagnostics = issues.slice(0, 10).flatMap((issue) => {
+    if (!issue || typeof issue !== 'object') return [];
+    const record = issue as { path?: unknown; code?: unknown; message?: unknown };
+    const path = Array.isArray(record.path)
+      ? record.path.map((segment) => String(segment)).join('.')
+      : '';
+    return [
+      {
+        path,
+        ...(typeof record.code === 'string' ? { code: record.code } : {}),
+        message:
+          typeof record.message === 'string'
+            ? record.message.slice(0, 240)
+            : 'Schema validation failed.'
+      }
+    ];
+  });
+  return diagnostics.length ? diagnostics : undefined;
+}
+
+function warningCategories(warnings: readonly unknown[]): string[] | undefined {
+  const categories = warnings.flatMap((warning) => {
+    if (!warning || typeof warning !== 'object') return [];
+    const record = warning as { type?: unknown; feature?: unknown; setting?: unknown };
+    if (typeof record.type !== 'string') return [];
+    const subject =
+      typeof record.feature === 'string'
+        ? record.feature
+        : typeof record.setting === 'string'
+          ? record.setting
+          : undefined;
+    return [subject ? `${record.type}:${subject}` : record.type];
+  });
+  return categories.length ? [...new Set(categories)] : undefined;
+}
+
+function structuredOutputDiagnostics(
+  error: unknown,
+  context: {
+    includeGeneratedText?: boolean;
+    stepNumber?: number;
+    warnings?: readonly unknown[];
+  } = {}
+): AgentErrorDiagnostics {
+  const named = namedError(error);
+  const warnings = warningCategories(context.warnings ?? []);
+  const diagnostics: AgentErrorDiagnostics = {
+    errorClass: named?.name ?? typeof error,
+    ...(context.stepNumber !== undefined ? { stepNumber: context.stepNumber } : {}),
+    ...(warnings ? { warningCategories: warnings } : {})
+  };
+
+  if (NoOutputGeneratedError.isInstance(error)) return { ...diagnostics, kind: 'no-output' };
+  if (!NoObjectGeneratedError.isInstance(error)) return diagnostics;
+
+  const text = error.text;
+  const trimmed = text?.trim();
+  const causeName = namedError(error.cause)?.name;
+  const schemaIssues = schemaIssueDiagnostics(error.cause);
+  const kind: StructuredOutputFailureKind =
+    trimmed === ''
+      ? 'empty-content'
+      : error.finishReason === 'length'
+        ? 'truncated-json'
+        : trimmed?.startsWith('```')
+          ? 'markdown-wrapped-json'
+          : causeName === 'AI_JSONParseError'
+            ? 'invalid-json'
+            : causeName === 'AI_TypeValidationError'
+              ? 'schema-validation'
+              : 'unknown';
+
+  return {
+    ...diagnostics,
+    kind,
+    ...(error.finishReason ? { finishReason: error.finishReason } : {}),
+    ...(text !== undefined ? { textEmpty: trimmed === '', textLength: unicodeLength(text) } : {}),
+    ...(error.usage ? { usage: usage(error.usage) } : {}),
+    ...(schemaIssues ? { schemaIssues } : {}),
+    ...(context.includeGeneratedText && text !== undefined ? { generatedText: text } : {})
+  };
+}
+
+function mapAgentError(
+  error: unknown,
+  context: {
+    includeGeneratedText?: boolean;
+    stepNumber?: number;
+    warnings?: readonly unknown[];
+  } = {}
+): DataAgentError {
   if (error instanceof DataAgentError) return error;
   if (error instanceof AgentConfigurationError)
     return new DataAgentError('configuration', error.message, { cause: error });
@@ -332,7 +477,8 @@ function mapAgentError(error: unknown): DataAgentError {
     });
   if (NoObjectGeneratedError.isInstance(error) || NoOutputGeneratedError.isInstance(error))
     return new DataAgentError('structured-output', '模型未返回满足约定结构的最终答案。', {
-      cause: error
+      cause: error,
+      diagnostics: structuredOutputDiagnostics(error, context)
     });
   if (
     (error instanceof DOMException && ['AbortError', 'TimeoutError'].includes(error.name)) ||
@@ -352,6 +498,7 @@ export interface RunDataAgentOptions {
   traceDetails?: boolean;
   timeout?: TimeoutConfiguration<AgentTools>;
   toolExecutors?: Partial<AgentToolExecutors>;
+  includeGeneratedTextInErrors?: boolean;
 }
 
 export async function runDataAgent(
@@ -360,6 +507,8 @@ export async function runDataAgent(
 ): Promise<RunAgentResult> {
   if (!question.trim()) throw new DataAgentError('unexpected', '问题不能为空');
 
+  let completedStepCount: number | undefined;
+  const observedWarnings: unknown[] = [];
   try {
     const runtime: AgentToolRuntime = { executedToolCalls: 0 };
     const tools = createAgentTools(runtime, options.toolExecutors);
@@ -379,7 +528,11 @@ export async function runDataAgent(
       maxOutputTokens: 2048,
       reasoning: options.thinkingMode === 'low' ? 'low' : 'none',
       timeout: options.timeout ?? DEFAULT_TIMEOUT,
-      include: { requestBody: false, requestMessages: false, responseBody: false }
+      include: { requestBody: false, requestMessages: false, responseBody: false },
+      onStepFinish(step) {
+        completedStepCount = step.stepNumber + 1;
+        observedWarnings.push(...(step.warnings ?? []));
+      }
     });
 
     const result = await agent.generate({
@@ -438,13 +591,24 @@ export async function runDataAgent(
 
     const hitTurnLimit =
       result.steps.length >= MAX_MODEL_STEPS && result.finishReason === 'tool-calls';
-    const answer: ModelAnswer = hitTurnLimit
-      ? {
-          answer: '模型在允许的最大步骤内没有生成最终回答。',
-          evidenceIds: [],
-          limitations: [`已达到 ${MAX_MODEL_STEPS} 个 model steps 上限。`]
-        }
-      : result.output;
+    let answer: ModelAnswer;
+    if (hitTurnLimit) {
+      answer = {
+        answer: '模型在允许的最大步骤内没有生成最终回答。',
+        evidenceIds: [],
+        limitations: [`已达到 ${MAX_MODEL_STEPS} 个 model steps 上限。`]
+      };
+    } else {
+      try {
+        answer = result.output;
+      } catch (error) {
+        throw mapAgentError(error, {
+          includeGeneratedText: options.includeGeneratedTextInErrors,
+          stepNumber: result.steps.length,
+          warnings: result.steps.flatMap((step) => step.warnings)
+        });
+      }
+    }
 
     return finalizeAnswer({
       answer,
@@ -458,6 +622,10 @@ export async function runDataAgent(
       structuredAnswer: !hitTurnLimit
     });
   } catch (error) {
-    throw mapAgentError(error);
+    throw mapAgentError(error, {
+      includeGeneratedText: options.includeGeneratedTextInErrors,
+      stepNumber: completedStepCount,
+      warnings: observedWarnings
+    });
   }
 }

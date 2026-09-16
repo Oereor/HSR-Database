@@ -13,6 +13,7 @@ import {
 import { MAX_TOTAL_TOOL_CALLS } from '../../../src/lib/server/agent/tools';
 
 type GenerateResult = Awaited<ReturnType<MockLanguageModelV4['doGenerate']>>;
+type GenerateOptions = Parameters<MockLanguageModelV4['doGenerate']>[0];
 
 const usage = {
   inputTokens: { total: 10, noCache: 6, cacheRead: 4, cacheWrite: 0 },
@@ -51,6 +52,30 @@ function toolCall(toolCallId: string, toolName: string, input: unknown): Generat
   );
 }
 
+function jsonToolResult(options: GenerateOptions, toolName: string, toolCallId?: string): unknown {
+  for (const message of options.prompt) {
+    if (message.role !== 'tool') continue;
+    for (const part of message.content) {
+      if (
+        part.type !== 'tool-result' ||
+        part.toolName !== toolName ||
+        (toolCallId !== undefined && part.toolCallId !== toolCallId)
+      )
+        continue;
+      if (part.output.type !== 'json')
+        throw new Error(`${toolName} did not produce a JSON tool result`);
+      return part.output.value;
+    }
+  }
+  throw new Error(`Missing tool result for ${toolName}`);
+}
+
+function record(value: unknown): Record<string, unknown> {
+  if (!value || typeof value !== 'object' || Array.isArray(value))
+    throw new Error('Expected an object');
+  return value as Record<string, unknown>;
+}
+
 describe('AI SDK ToolLoopAgent runtime', () => {
   it('instructions 保留 HSR 领域语义、proxy 边界和意图解析', () => {
     expect(DATA_AGENT_INSTRUCTIONS).toContain('moc/pf/as/aa');
@@ -60,6 +85,8 @@ describe('AI SDK ToolLoopAgent runtime', () => {
     expect(DATA_AGENT_INSTRUCTIONS).toContain('difficulty');
     expect(DATA_AGENT_INSTRUCTIONS).toContain('intended scope');
     expect(DATA_AGENT_INSTRUCTIONS).toContain('请求澄清');
+    expect(DATA_AGENT_INSTRUCTIONS).toContain('纯 JSON 对象');
+    expect(DATA_AGENT_INSTRUCTIONS).toContain('"evidenceIds"');
   });
 
   it('支持无工具的结构化终答，并通过 SDK 传递 reasoning 配置', async () => {
@@ -90,7 +117,10 @@ describe('AI SDK ToolLoopAgent runtime', () => {
             types: ['character']
           });
         if (call === 2) {
-          expect(JSON.stringify(options.prompt)).toContain('ent1/character/1101');
+          const searchResult = record(jsonToolResult(options, 'search_entities', 'search'));
+          expect(searchResult.matches).toEqual(
+            expect.arrayContaining([expect.objectContaining({ evidenceId: 'ent1/character/1101' })])
+          );
           return toolCall('query', 'query_endgame', {
             locale: 'zh-CN',
             filter: { seasons: { kind: 'ids', seasons: [{ mode: 'as', groupId: 3020 }] } },
@@ -98,7 +128,7 @@ describe('AI SDK ToolLoopAgent runtime', () => {
             limit: 1
           });
         }
-        expect(JSON.stringify(options.prompt)).toContain('tool-result');
+        expect(jsonToolResult(options, 'query_endgame', 'query')).toBeDefined();
         return answer({
           answer: '完成',
           evidenceIds: ['ent1/character/1101', 'not-an-evidence-id']
@@ -186,8 +216,13 @@ describe('AI SDK ToolLoopAgent runtime', () => {
             include: ['enemy-identity'],
             limit: 1
           });
-        const evidenceId = JSON.stringify(options.prompt).match(/eg1\/[a-f0-9]{64}/)?.[0];
-        if (!evidenceId) throw new Error('mock did not receive query evidence');
+        const queryResult = record(jsonToolResult(options, 'query_endgame', 'query'));
+        const rows = queryResult.rows;
+        if (!Array.isArray(rows) || !rows.length)
+          throw new Error('query result did not contain rows');
+        const evidenceId = record(rows[0]).evidenceId;
+        if (typeof evidenceId !== 'string' || !evidenceId.startsWith('eg1/'))
+          throw new Error('query result did not contain eg1 evidence');
         return answer({ answer: '完成', evidenceIds: [evidenceId] });
       }
     });
@@ -199,6 +234,37 @@ describe('AI SDK ToolLoopAgent runtime', () => {
       runtimeEnforced: true
     });
     expect(response.answer.limitations).toContain('用于结论的工具结果已截断，答案可能不完整。');
+  });
+
+  it('为三个工具步骤保留第四个结构化输出 step', async () => {
+    const model = new MockLanguageModelV4({
+      doGenerate: [
+        toolCall('call-1', 'search_entities', {
+          query: '鸭鸭',
+          locale: 'zh-CN',
+          types: ['character']
+        }),
+        toolCall('call-2', 'search_entities', {
+          query: '鸭鸭',
+          locale: 'zh-CN',
+          types: ['character']
+        }),
+        toolCall('call-3', 'search_entities', {
+          query: '鸭鸭',
+          locale: 'zh-CN',
+          types: ['character']
+        }),
+        answer({ answer: '已完成三步工具查询。', evidenceIds: ['ent1/character/1101'] })
+      ]
+    });
+    const response = await runDataAgent('三步后生成终答', { model });
+    expect(response).toMatchObject({
+      turns: MAX_MODEL_STEPS,
+      toolCalls: MAX_MODEL_STEPS - 1,
+      structuredAnswer: true,
+      hitTurnLimit: false
+    });
+    expect(response.answer.evidenceIds).toEqual(['ent1/character/1101']);
   });
 
   it('在四个 SDK steps 后安全停止，不把未完成 tool call 当成终答', async () => {
@@ -239,13 +305,79 @@ describe('AI SDK ToolLoopAgent runtime', () => {
     );
   });
 
-  it('将非法结构化终答映射为安全错误', async () => {
+  it('将非法 JSON 终答映射为安全且不泄露原文的诊断', async () => {
     const model = new MockLanguageModelV4({
       doGenerate: result([{ type: 'text', text: 'not json' }])
     });
     await expect(runDataAgent('非法终答', { model })).rejects.toMatchObject({
       code: 'structured-output',
-      safeMessage: '模型未返回满足约定结构的最终答案。'
+      safeMessage: '模型未返回满足约定结构的最终答案。',
+      diagnostics: {
+        errorClass: 'AI_NoObjectGeneratedError',
+        kind: 'invalid-json',
+        finishReason: 'stop',
+        stepNumber: 1,
+        textEmpty: false,
+        textLength: 8
+      }
+    });
+    const error = await runDataAgent('非法终答', { model }).catch((caught: unknown) => caught);
+    expect(error).toBeInstanceOf(DataAgentError);
+    expect((error as DataAgentError).diagnostics).not.toHaveProperty('generatedText');
+  });
+
+  it.each([
+    {
+      name: '空内容',
+      generated: '',
+      finishReason: 'stop' as const,
+      kind: 'empty-content'
+    },
+    {
+      name: 'Markdown JSON fence',
+      generated: '```json\n{"answer":"完成","evidenceIds":[],"limitations":[]}\n```',
+      finishReason: 'stop' as const,
+      kind: 'markdown-wrapped-json'
+    },
+    {
+      name: '截断 JSON',
+      generated: '{"answer":"未完成',
+      finishReason: 'length' as const,
+      kind: 'truncated-json'
+    }
+  ])('区分 $name 结构化输出失败', async ({ generated, finishReason, kind }) => {
+    const model = new MockLanguageModelV4({
+      doGenerate: result([{ type: 'text', text: generated }], finishReason)
+    });
+    await expect(runDataAgent('分类失败', { model })).rejects.toMatchObject({
+      code: 'structured-output',
+      diagnostics: { kind, finishReason, stepNumber: 1 }
+    });
+  });
+
+  it('摘要化 schema issues，并只在显式 debug 时保留生成文本', async () => {
+    const generated = JSON.stringify({ answer: 1, evidenceIds: [], limitations: [] });
+    const generatedResult = result([{ type: 'text', text: generated }]);
+    generatedResult.warnings = [
+      {
+        type: 'compatibility',
+        feature: 'responseFormat JSON schema',
+        details: 'JSON response schema is injected into the system message.'
+      }
+    ];
+    const model = new MockLanguageModelV4({
+      doGenerate: generatedResult
+    });
+    await expect(
+      runDataAgent('schema mismatch', { model, includeGeneratedTextInErrors: true })
+    ).rejects.toMatchObject({
+      code: 'structured-output',
+      diagnostics: {
+        kind: 'schema-validation',
+        generatedText: generated,
+        warningCategories: ['compatibility:responseFormat JSON schema'],
+        schemaIssues: [expect.objectContaining({ path: 'answer', code: 'invalid_type' })]
+      }
     });
   });
 

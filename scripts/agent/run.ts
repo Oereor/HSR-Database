@@ -12,7 +12,7 @@ function parseArguments(args: string[]) {
 
 async function main() {
   const { debug, question } = parseArguments(process.argv.slice(2));
-  const result = await runDataAgent(question);
+  const result = await runDataAgent(question, { includeGeneratedTextInErrors: debug });
   console.log(JSON.stringify(result.answer, null, 2));
   if (debug)
     console.error(
@@ -38,5 +38,7 @@ async function main() {
 main().catch((error: unknown) => {
   const message = error instanceof DataAgentError ? error.safeMessage : 'Agent 运行失败。';
   console.error(`Agent error: ${message}`);
+  if (process.argv.includes('--debug') && error instanceof DataAgentError && error.diagnostics)
+    console.error(JSON.stringify({ diagnostics: error.diagnostics }, null, 2));
   process.exitCode = 1;
 });
