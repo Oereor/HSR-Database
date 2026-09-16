@@ -1,15 +1,25 @@
 import { fingerprintTools } from 'ai';
 import { z } from 'zod';
-import { DATA_AGENT_INSTRUCTIONS } from '../../src/lib/server/agent/runtime.js';
+import {
+  AGENT_STEP_TIMEOUT_MS,
+  AGENT_TOOL_TIMEOUT_MS,
+  AGENT_TOTAL_TIMEOUT_MS,
+  DATA_AGENT_INSTRUCTIONS,
+  MAX_MODEL_STEPS
+} from '../../src/lib/server/agent/runtime.js';
 import {
   aggregateEndgameInputSchema,
   queryEndgameInputSchema,
-  searchEntitiesInputSchema
+  searchEntitiesInputSchema,
+  selectEndgameExtremaInputSchema
 } from '../../src/lib/agent/contracts.js';
-import { aggregateEndgame } from '../../src/lib/server/agent/endgame-aggregate.js';
+import {
+  aggregateEndgame,
+  selectEndgameExtrema
+} from '../../src/lib/server/agent/endgame-aggregate.js';
 import { queryEndgame } from '../../src/lib/server/agent/endgame-query.js';
 import { searchEntities } from '../../src/lib/server/agent/entity-resolution.js';
-import { createAgentTools } from '../../src/lib/server/agent/tools.js';
+import { createAgentTools, MAX_TOTAL_TOOL_CALLS } from '../../src/lib/server/agent/tools.js';
 
 function bytes(value: unknown): number {
   return Buffer.byteLength(typeof value === 'string' ? value : JSON.stringify(value), 'utf8');
@@ -39,6 +49,10 @@ async function main() {
     aggregate_endgame: {
       description: agentTools.aggregate_endgame.description,
       inputSchema: z.toJSONSchema(aggregateEndgameInputSchema)
+    },
+    select_endgame_extrema: {
+      description: agentTools.select_endgame_extrema.description,
+      inputSchema: z.toJSONSchema(selectEndgameExtremaInputSchema)
     }
   };
   const toolFingerprints = await fingerprintTools(agentTools);
@@ -71,28 +85,64 @@ async function main() {
       sort: [{ by: 'metric', metric: 'seasonCount', direction: 'desc' }]
     })
   );
-  const toolResultBytes = [bytes(search), bytes(query), bytes(aggregate)];
+  const extrema = await selectEndgameExtrema(
+    selectEndgameExtremaInputSchema.parse({
+      locale: 'zh-CN',
+      filter: { modes: ['pf'], statuses: ['current'], encounterOrdinals: [4] },
+      groupBy: [],
+      extrema: [{ op: 'argMax', field: 'hpPerBar', select: ['enemyTemplate'], as: 'highestHp' }]
+    })
+  );
+  const toolResultBytes = [bytes(search), bytes(query), bytes(aggregate), bytes(extrema)];
   const simulatedMessages = [
     { role: 'system', content: DATA_AGENT_INSTRUCTIONS },
     { role: 'user', content: '代表性离线 profile' },
     { role: 'tool', tool_call_id: 'search', content: JSON.stringify(search) },
     { role: 'tool', tool_call_id: 'query', content: JSON.stringify(query) },
-    { role: 'tool', tool_call_id: 'aggregate', content: JSON.stringify(aggregate) }
+    { role: 'tool', tool_call_id: 'aggregate', content: JSON.stringify(aggregate) },
+    { role: 'tool', tool_call_id: 'extrema', content: JSON.stringify(extrema) }
   ];
+  const toolDefinitions = Object.fromEntries(
+    Object.entries(toolManifest).map(([name, definition]) => [
+      name,
+      {
+        definitionBytes: bytes(definition),
+        descriptionBytes: bytes(definition.description),
+        jsonSchemaBytes: bytes(definition.inputSchema)
+      }
+    ])
+  );
+  const largestTool = Object.entries(toolDefinitions).sort(
+    ([, left], [, right]) => right.definitionBytes - left.definitionBytes
+  )[0];
   console.log(
     JSON.stringify(
       {
         realModelCalls: 0,
-        systemPromptBytes: bytes(DATA_AGENT_INSTRUCTIONS),
-        toolDefinitionsBytes: bytes(toolManifest),
+        limits: {
+          maxModelSteps: MAX_MODEL_STEPS,
+          maxTotalToolCalls: MAX_TOTAL_TOOL_CALLS,
+          totalTimeoutMs: AGENT_TOTAL_TIMEOUT_MS,
+          stepTimeoutMs: AGENT_STEP_TIMEOUT_MS,
+          toolTimeoutMs: AGENT_TOOL_TIMEOUT_MS
+        },
+        systemInstructionsBytes: bytes(DATA_AGENT_INSTRUCTIONS),
+        toolDefinitionMetrics: {
+          count: Object.keys(toolManifest).length,
+          totalBytes: bytes(toolManifest),
+          largest: { name: largestTool[0], bytes: largestTool[1].definitionBytes },
+          byTool: toolDefinitions,
+          metricBranches: { aggregate_endgame: 5, select_endgame_extrema: 2 }
+        },
         toolFingerprints,
         toolResults: [
           resultSummary('search-entity-ambiguity', search),
           resultSummary('query-moc-default-window', query),
-          resultSummary('aggregate-moc-boss-frequency', aggregate)
+          resultSummary('aggregate-moc-boss-frequency', aggregate),
+          resultSummary('extrema-current-pf-floor-four', extrema)
         ],
         totalToolResultBytes: toolResultBytes.reduce((sum, value) => sum + value, 0),
-        simulatedMessageHistoryBytesByTurn: simulatedMessages.map((_, index) =>
+        simulatedMessageHistoryBytesByStep: simulatedMessages.map((_, index) =>
           bytes({
             tools: toolManifest,
             messages: simulatedMessages.slice(0, index + 1)

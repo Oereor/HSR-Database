@@ -18,13 +18,13 @@ const inspection: Inspection = {
   result: {
     answer: { answer: '完成', evidenceIds: [], limitations: [] },
     invalidEvidenceIds: [],
-    turns: 1,
+    modelSteps: 1,
     toolCalls: 0,
     usage: { inputTokens: 1, outputTokens: 2, totalTokens: 3 },
     trace: [],
     modelTrace: [
       {
-        turn: 1,
+        step: 1,
         latencyMs: 10,
         reasoningPresent: true,
         reasoningChars: 20,
@@ -38,7 +38,7 @@ const inspection: Inspection = {
       limitationsCapped: 0
     },
     structuredAnswer: true,
-    hitTurnLimit: false,
+    hitStepLimit: false,
     truncationDisclosure: { required: false, modelProvided: false, runtimeEnforced: false }
   }
 };
@@ -52,6 +52,7 @@ describe('Agent Inspector', () => {
   });
   it('默认/verbose trace 都不含 reasoning 正文或 secret', () => {
     const output = formatInspection(inspection, true, ['secret-value']);
+    expect(output).toContain('Model step 1');
     expect(output).toContain('Reasoning present: true; chars: 20');
     expect(output).not.toContain('secret-value');
     expect(redactSecrets('Authorization: Bearer secret-value', ['secret-value'])).not.toContain(
@@ -66,7 +67,7 @@ describe('Agent Inspector', () => {
         toolCalls: 1,
         trace: [
           {
-            turn: 1,
+            step: 1,
             toolCallId: 'aggregate',
             tool: 'aggregate_endgame',
             ok: true,

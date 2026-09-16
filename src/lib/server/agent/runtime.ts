@@ -28,7 +28,7 @@ import {
   type AgentToolRuntime
 } from './tools.js';
 
-export const MAX_MODEL_STEPS = 4;
+export const MAX_MODEL_STEPS = 8;
 export const AGENT_TOTAL_TIMEOUT_MS = 180_000;
 export const AGENT_STEP_TIMEOUT_MS = 60_000;
 export const AGENT_TOOL_TIMEOUT_MS = 30_000;
@@ -43,7 +43,7 @@ export interface ModelUsage {
 }
 
 export interface AgentModelTraceEntry {
-  turn: number;
+  step: number;
   latencyMs: number;
   reasoningPresent: boolean;
   reasoningChars: number;
@@ -59,7 +59,7 @@ export interface AnswerNormalizationTelemetry {
 }
 
 export interface AgentTraceEntry {
-  turn: number;
+  step: number;
   toolCallId: string;
   tool: string;
   validatedArgs?: unknown;
@@ -89,14 +89,14 @@ export interface AgentTraceEntry {
 export interface RunAgentResult {
   answer: ModelAnswer;
   invalidEvidenceIds: string[];
-  turns: number;
+  modelSteps: number;
   toolCalls: number;
   usage: ModelUsage;
   trace: AgentTraceEntry[];
   modelTrace: AgentModelTraceEntry[];
   answerNormalization: AnswerNormalizationTelemetry;
   structuredAnswer: boolean;
-  hitTurnLimit: boolean;
+  hitStepLimit: boolean;
   truncationDisclosure: {
     required: boolean;
     modelProvided: boolean;
@@ -160,9 +160,11 @@ export class DataAgentError extends Error {
 
 export const DATA_AGENT_INSTRUCTIONS = `你是 HSR-Database 的数据分析 Agent。所有 HSR 事实与分析结论必须由本轮数据库工具结果支持，不得把模型训练知识当作数据库事实。
 
-工具职责：search_entities 只解析用户明确提到的实体名称；enemyTemplateId 只能用于 query_endgame/aggregate_endgame 的 enemyTemplateIds。query_endgame 用于具体 occurrence rows、全局 top/bottom 与 drill-down。跨行 count/distinct/min/max/avg 和分组内 associated extrema 使用 aggregate_endgame。weakness filter 用于筛选，weakness group 仅用于按弱点类别汇总。
+工具职责：search_entities 只解析用户明确提到的实体名称；其 enemyTemplateId 只能用于 Endgame tools 的 enemyTemplateIds。query_endgame 用于具体 occurrence rows、全局具体 top/bottom row 与 drill-down。aggregate_endgame 用于 count/distinct/min/max/avg 标量或分组汇总。select_endgame_extrema 用于返回产生最小/最大值的身份或位置并保留并列；查全局获胜身份时省略 groupBy，不要把同一身份维度同时放入 groupBy 和 select。statuses:["current"] 可由分析工具直接解析，不需先调用 query_endgame 探路。weakness filter 用于筛选，weakness group 仅用于按弱点类别汇总。
 
-领域口径：混沌回忆/虚构叙事/末日幻影/异相仲裁映射为 moc/pf/as/aa；节点 1/上半与节点 2/下半映射为 battleSlot 1/2；首领/Boss 使用 enemyRankCategories:["boss"]。latest 按 groupId recency，不能替代由 schedule/open-state 证明的 current。按敌人身份分组默认使用 enemyTemplate，只有明确要求 MonsterID 变体时才用 monster。
+领域口径：混沌回忆/虚构叙事/末日幻影/异相仲裁映射为 moc/pf/as/aa；混沌回忆第 N 层、虚构叙事难度 N/其 N 使用 encounterOrdinals:[N]，levels 是敌人配置等级而不是难度；节点 1/上半与节点 2/下半映射为 battleSlot 1/2；首领/Boss 使用 enemyRankCategories:["boss"]。latest 按 groupId recency，不能替代由 schedule/open-state 证明的 current。按敌人身份分组默认使用 enemyTemplate，只有明确要求 MonsterID 变体时才用 monster。
+
+实体解析：search_entities 使用完整名称无结果时，若用户原文含明显称号或标点，可在预算内仅用核心专名重试一次；不得据此扩大到多个不同实体。若返回多个同名模板，必须依据 Endgame occurrence 结果选择并明示范围，不得静默合并。
 
 意图与范围：先解决用户的 intended scope，再执行 Scope Fidelity。若一个解释明显占优，直接执行；若有低风险歧义，可以明确说明采用的合理假设；若多个自然解释会实质改变数据集、结论、可回答性或重要限制且没有强默认，先请求澄清。不要因措辞细微差异而强制澄清，也不得选定口径后静默换成另一口径。
 
@@ -298,10 +300,10 @@ function finalizeAnswer(input: {
   answer: ModelAnswer;
   evidenceLedger: Map<string, boolean>;
   trace: AgentTraceEntry[];
-  turns: number;
+  modelSteps: number;
   toolCalls: number;
   usage: ModelUsage;
-  hitTurnLimit: boolean;
+  hitStepLimit: boolean;
   modelTrace: AgentModelTraceEntry[];
   structuredAnswer: boolean;
 }): RunAgentResult {
@@ -332,7 +334,7 @@ function finalizeAnswer(input: {
   return {
     answer: { ...input.answer, evidenceIds: acceptedEvidenceIds, limitations },
     invalidEvidenceIds,
-    turns: input.turns,
+    modelSteps: input.modelSteps,
     toolCalls: input.toolCalls,
     usage: input.usage,
     trace: input.trace,
@@ -346,7 +348,7 @@ function finalizeAnswer(input: {
       limitationsCapped: Math.max(0, uniqueLimitations.length - FINAL_LIMITATION_LIMIT)
     },
     structuredAnswer: input.structuredAnswer,
-    hitTurnLimit: input.hitTurnLimit,
+    hitStepLimit: input.hitStepLimit,
     truncationDisclosure: { required: truncationRequired, modelProvided, runtimeEnforced }
   };
 }
@@ -542,7 +544,7 @@ export async function runDataAgent(
     const evidenceLedger = new Map<string, boolean>();
     const trace: AgentTraceEntry[] = [];
     const modelTrace: AgentModelTraceEntry[] = result.steps.map((step) => ({
-      turn: step.stepNumber + 1,
+      step: step.stepNumber + 1,
       latencyMs: Math.round(step.performance.responseTimeMs),
       reasoningPresent: step.reasoningText !== undefined,
       reasoningChars: unicodeLength(step.reasoningText ?? ''),
@@ -570,7 +572,7 @@ export async function runDataAgent(
         if (value !== undefined) collectEvidence(value, callEvidence);
         const resultCode = resultErrorCode(value);
         trace.push({
-          turn: step.stepNumber + 1,
+          step: step.stepNumber + 1,
           toolCallId: call.toolCallId,
           tool: call.toolName,
           validatedArgs: call.input,
@@ -589,10 +591,10 @@ export async function runDataAgent(
       }
     }
 
-    const hitTurnLimit =
+    const hitStepLimit =
       result.steps.length >= MAX_MODEL_STEPS && result.finishReason === 'tool-calls';
     let answer: ModelAnswer;
-    if (hitTurnLimit) {
+    if (hitStepLimit) {
       answer = {
         answer: '模型在允许的最大步骤内没有生成最终回答。',
         evidenceIds: [],
@@ -614,12 +616,12 @@ export async function runDataAgent(
       answer,
       evidenceLedger,
       trace,
-      turns: result.steps.length,
+      modelSteps: result.steps.length,
       toolCalls: runtime.executedToolCalls,
       usage: usage(result.usage),
-      hitTurnLimit,
+      hitStepLimit,
       modelTrace,
-      structuredAnswer: !hitTurnLimit
+      structuredAnswer: !hitStepLimit
     });
   } catch (error) {
     throw mapAgentError(error, {

@@ -9,7 +9,8 @@ import {
   aggregateEndgameInputSchema,
   modelAnswerSchema,
   queryEndgameInputSchema,
-  searchEntitiesInputSchema
+  searchEntitiesInputSchema,
+  selectEndgameExtremaInputSchema
 } from '../../../src/lib/agent/contracts';
 import { averageDecimals, parseDecimal } from '../../../src/lib/domain/decimal';
 import { createAgentTools } from '../../../src/lib/server/agent/tools';
@@ -64,6 +65,20 @@ describe('Agent strict contracts', () => {
           }
         ]
       }).success
+    ).toBe(false);
+    expect(
+      selectEndgameExtremaInputSchema.safeParse({
+        locale: 'zh-CN',
+        groupBy: ['season', 'weakness'],
+        extrema: [
+          {
+            op: 'argMax',
+            field: 'hpPerBar',
+            select: ['enemyTemplate', 'location'],
+            as: 'highest'
+          }
+        ]
+      }).success
     ).toBe(true);
     expect(
       aggregateEndgameInputSchema.safeParse({
@@ -73,9 +88,9 @@ describe('Agent strict contracts', () => {
       }).success
     ).toBe(false);
     expect(
-      aggregateEndgameInputSchema.safeParse({
+      selectEndgameExtremaInputSchema.safeParse({
         locale: 'zh-CN',
-        metrics: [
+        extrema: [
           {
             op: 'argMin',
             field: 'speed',
@@ -85,15 +100,34 @@ describe('Agent strict contracts', () => {
         ]
       }).success
     ).toBe(false);
+    expect(
+      selectEndgameExtremaInputSchema.safeParse({
+        locale: 'zh-CN',
+        extrema: [{ op: 'avg', field: 'hpPerBar', as: 'average' }]
+      }).success
+    ).toBe(false);
+    expect(
+      selectEndgameExtremaInputSchema.safeParse({
+        locale: 'zh-CN',
+        extrema: [{ op: 'argMax', field: 'hpPerBar', select: ['enemyTemplate'], as: 'highest' }],
+        sort: [{ by: 'extremum', extremum: 'other', direction: 'desc' }]
+      }).success
+    ).toBe(false);
   });
 
   it('从同一 Zod schema 暴露 AI SDK tools 和稳定 fingerprint', async () => {
     const tools = createAgentTools({ executedToolCalls: 0 });
-    expect(Object.keys(tools)).toEqual(['search_entities', 'query_endgame', 'aggregate_endgame']);
+    expect(Object.keys(tools)).toEqual([
+      'search_entities',
+      'query_endgame',
+      'aggregate_endgame',
+      'select_endgame_extrema'
+    ]);
     for (const schema of [
       searchEntitiesInputSchema,
       queryEndgameInputSchema,
-      aggregateEndgameInputSchema
+      aggregateEndgameInputSchema,
+      selectEndgameExtremaInputSchema
     ])
       expect(z.toJSONSchema(schema)).toMatchObject({
         type: 'object',
@@ -103,6 +137,7 @@ describe('Agent strict contracts', () => {
     expect(tools.search_entities.inputSchema).toBe(searchEntitiesInputSchema);
     expect(tools.query_endgame.inputSchema).toBe(queryEndgameInputSchema);
     expect(tools.aggregate_endgame.inputSchema).toBe(aggregateEndgameInputSchema);
+    expect(tools.select_endgame_extrema.inputSchema).toBe(selectEndgameExtremaInputSchema);
   });
 
   it('把最终回答长度与数组限制暴露到 JSON Schema', () => {

@@ -85,6 +85,8 @@ describe('AI SDK ToolLoopAgent runtime', () => {
     expect(DATA_AGENT_INSTRUCTIONS).toContain('difficulty');
     expect(DATA_AGENT_INSTRUCTIONS).toContain('intended scope');
     expect(DATA_AGENT_INSTRUCTIONS).toContain('请求澄清');
+    expect(DATA_AGENT_INSTRUCTIONS).toContain('select_endgame_extrema');
+    expect(DATA_AGENT_INSTRUCTIONS).toContain('具体 top/bottom row');
     expect(DATA_AGENT_INSTRUCTIONS).toContain('纯 JSON 对象');
     expect(DATA_AGENT_INSTRUCTIONS).toContain('"evidenceIds"');
   });
@@ -100,7 +102,7 @@ describe('AI SDK ToolLoopAgent runtime', () => {
       model,
       thinkingMode: 'low'
     });
-    expect(response).toMatchObject({ turns: 1, toolCalls: 0, structuredAnswer: true });
+    expect(response).toMatchObject({ modelSteps: 1, toolCalls: 0, structuredAnswer: true });
     expect(response.answer.answer).toContain('无法判断');
     expect(model.doGenerateCalls[0].reasoning).toBe('low');
   });
@@ -136,11 +138,63 @@ describe('AI SDK ToolLoopAgent runtime', () => {
       }
     });
     const response = await runDataAgent('先解析名称再查询', { model });
-    expect(response).toMatchObject({ turns: 3, toolCalls: 2, structuredAnswer: true });
+    expect(response).toMatchObject({ modelSteps: 3, toolCalls: 2, structuredAnswer: true });
     expect(response.answer.evidenceIds).toEqual(['ent1/character/1101']);
     expect(response.invalidEvidenceIds).toEqual(['not-an-evidence-id']);
     expect(response.trace.map(({ tool }) => tool)).toEqual(['search_entities', 'query_endgame']);
     expect(response.usage).toMatchObject({ inputTokens: 30, outputTokens: 15, totalTokens: 45 });
+  });
+
+  it('combined scalar + associated 请求使用两个职责明确的分析工具', async () => {
+    let call = 0;
+    const model = new MockLanguageModelV4({
+      doGenerate: async (options) => {
+        call += 1;
+        if (call === 1)
+          return toolCall('scalar', 'aggregate_endgame', {
+            locale: 'zh-CN',
+            filter: { modes: ['pf'], statuses: ['current'], encounterOrdinals: [4] },
+            groupBy: [],
+            metrics: [{ op: 'avg', field: 'hpPerBar', as: 'averageHp' }]
+          });
+        if (call === 2) {
+          expect(jsonToolResult(options, 'aggregate_endgame', 'scalar')).toBeDefined();
+          return toolCall('extrema', 'select_endgame_extrema', {
+            locale: 'zh-CN',
+            filter: { modes: ['pf'], statuses: ['current'], encounterOrdinals: [4] },
+            groupBy: [],
+            extrema: [
+              {
+                op: 'argMax',
+                field: 'hpPerBar',
+                select: ['enemyTemplate'],
+                as: 'highestHp'
+              }
+            ]
+          });
+        }
+        const scalar = record(jsonToolResult(options, 'aggregate_endgame', 'scalar'));
+        const extrema = record(jsonToolResult(options, 'select_endgame_extrema', 'extrema'));
+        const scalarGroups = scalar.groups;
+        const extremaGroups = extrema.groups;
+        if (!Array.isArray(scalarGroups) || !Array.isArray(extremaGroups))
+          throw new Error('analysis results did not contain groups');
+        return answer({
+          answer: '完成平均值与最高敌人分析。',
+          evidenceIds: [
+            String(record(scalarGroups[0]).evidenceId),
+            String(record(extremaGroups[0]).evidenceId)
+          ]
+        });
+      }
+    });
+    const response = await runDataAgent('平均 HP 与最高敌人', { model });
+    expect(response.trace.map(({ tool }) => tool)).toEqual([
+      'aggregate_endgame',
+      'select_endgame_extrema'
+    ]);
+    expect(response).toMatchObject({ modelSteps: 3, toolCalls: 2, structuredAnswer: true });
+    expect(response.answer.evidenceIds).toHaveLength(2);
   });
 
   it('由 SDK 校验非法工具输入，并将错误传回模型以便恢复', async () => {
@@ -236,38 +290,30 @@ describe('AI SDK ToolLoopAgent runtime', () => {
     expect(response.answer.limitations).toContain('用于结论的工具结果已截断，答案可能不完整。');
   });
 
-  it('为三个工具步骤保留第四个结构化输出 step', async () => {
+  it('允许前七个工具步骤，并让第八个 model step 生成结构化终答', async () => {
     const model = new MockLanguageModelV4({
       doGenerate: [
-        toolCall('call-1', 'search_entities', {
-          query: '鸭鸭',
-          locale: 'zh-CN',
-          types: ['character']
-        }),
-        toolCall('call-2', 'search_entities', {
-          query: '鸭鸭',
-          locale: 'zh-CN',
-          types: ['character']
-        }),
-        toolCall('call-3', 'search_entities', {
-          query: '鸭鸭',
-          locale: 'zh-CN',
-          types: ['character']
-        }),
-        answer({ answer: '已完成三步工具查询。', evidenceIds: ['ent1/character/1101'] })
+        ...Array.from({ length: MAX_MODEL_STEPS - 1 }, (_, index) =>
+          toolCall(`call-${index + 1}`, 'search_entities', {
+            query: '鸭鸭',
+            locale: 'zh-CN',
+            types: ['character']
+          })
+        ),
+        answer({ answer: '已完成七步工具查询。', evidenceIds: ['ent1/character/1101'] })
       ]
     });
-    const response = await runDataAgent('三步后生成终答', { model });
+    const response = await runDataAgent('七步后生成终答', { model });
     expect(response).toMatchObject({
-      turns: MAX_MODEL_STEPS,
+      modelSteps: MAX_MODEL_STEPS,
       toolCalls: MAX_MODEL_STEPS - 1,
       structuredAnswer: true,
-      hitTurnLimit: false
+      hitStepLimit: false
     });
     expect(response.answer.evidenceIds).toEqual(['ent1/character/1101']);
   });
 
-  it('在四个 SDK steps 后安全停止，不把未完成 tool call 当成终答', async () => {
+  it('在八个 SDK steps 后安全停止，不把未完成 tool call 当成终答', async () => {
     const model = new MockLanguageModelV4({
       doGenerate: Array.from({ length: MAX_MODEL_STEPS }, (_, index) =>
         toolCall(`call-${index}`, 'search_entities', {
@@ -279,12 +325,15 @@ describe('AI SDK ToolLoopAgent runtime', () => {
     });
     const response = await runDataAgent('持续调用工具', { model });
     expect(response).toMatchObject({
-      turns: MAX_MODEL_STEPS,
+      modelSteps: MAX_MODEL_STEPS,
       toolCalls: MAX_MODEL_STEPS,
       structuredAnswer: false,
-      hitTurnLimit: true
+      hitStepLimit: true
     });
     expect(response.answer.answer).toContain('没有生成最终回答');
+    expect(response.answer.evidenceIds).toEqual([]);
+    expect(response.trace).toHaveLength(MAX_MODEL_STEPS);
+    expect(response.trace.every(({ summary }) => summary.evidenceCount === 1)).toBe(true);
   });
 
   it('单次运行最多执行八个工具', async () => {

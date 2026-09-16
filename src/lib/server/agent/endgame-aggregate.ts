@@ -11,7 +11,8 @@ import {
   type EndgameGroupDimension,
   type EndgameMetric,
   type NormalizedEndgameRow,
-  type NumericField
+  type NumericField,
+  type SelectEndgameExtremaInput
 } from '../../agent/contracts.js';
 import {
   averageDecimals,
@@ -26,6 +27,15 @@ import { aggregateWarnings, warning } from './warnings.js';
 
 export interface AggregateEndgameOptions extends LoadRowsOptions {
   payloadLimitBytes?: number;
+}
+
+type EndgameAnalysisSort =
+  | { by: 'dimension'; dimension: EndgameGroupDimension; direction: 'asc' | 'desc' }
+  | { by: 'metric'; metric: string; direction: 'asc' | 'desc' };
+
+export interface EndgameAnalysisInput extends Omit<AggregateEndgameInput, 'metrics' | 'sort'> {
+  metrics: EndgameMetric[];
+  sort: EndgameAnalysisSort[];
 }
 
 export interface AggregateGroup {
@@ -320,7 +330,7 @@ function metricValue(
 
 export function aggregateRows(
   rows: readonly NormalizedEndgameRow[],
-  input: AggregateEndgameInput
+  input: EndgameAnalysisInput
 ): AggregateGroup[] {
   const buckets = new Map<
     string,
@@ -359,9 +369,9 @@ function canonicalize(value: unknown): unknown {
 
 export function aggregateEvidenceId(input: {
   dataRevision: string;
-  filter: AggregateEndgameInput['filter'];
-  groupBy: AggregateEndgameInput['groupBy'];
-  metrics: AggregateEndgameInput['metrics'];
+  filter: EndgameAnalysisInput['filter'];
+  groupBy: EndgameAnalysisInput['groupBy'];
+  metrics: EndgameAnalysisInput['metrics'];
   dimensions: Record<string, unknown>;
 }): string {
   const semantics = {
@@ -407,7 +417,7 @@ function modelMetric(value: AggregateMetricValue): ModelAggregateMetric {
   };
 }
 
-function modelGroup(group: AggregateGroup, input: AggregateEndgameInput, dataRevision: string) {
+function modelGroup(group: AggregateGroup, input: EndgameAnalysisInput, dataRevision: string) {
   return {
     evidenceId: aggregateEvidenceId({
       dataRevision,
@@ -453,7 +463,7 @@ function compareMetrics(left: AggregateMetricValue, right: AggregateMetricValue)
   return 0;
 }
 
-function sortGroups(groups: AggregateGroup[], input: AggregateEndgameInput): AggregateGroup[] {
+function sortGroups(groups: AggregateGroup[], input: EndgameAnalysisInput): AggregateGroup[] {
   if (!input.sort.length) return groups;
   return [...groups].sort((left, right) => {
     for (const sort of input.sort) {
@@ -471,8 +481,8 @@ function byteLength(value: unknown): number {
   return Buffer.byteLength(JSON.stringify(value), 'utf8');
 }
 
-export async function aggregateEndgame(
-  input: AggregateEndgameInput,
+export async function executeEndgameAnalysis(
+  input: EndgameAnalysisInput,
   options: AggregateEndgameOptions = {}
 ) {
   const [rows, dataVersion] = await Promise.all([
@@ -526,4 +536,37 @@ export async function aggregateEndgame(
     output = { ...output, returnedGroups: groups.length, truncated: true, groups };
   }
   return output;
+}
+
+export async function aggregateEndgame(
+  input: AggregateEndgameInput,
+  options: AggregateEndgameOptions = {}
+) {
+  return executeEndgameAnalysis(input, options);
+}
+
+function extremaAnalysisInput(input: SelectEndgameExtremaInput): EndgameAnalysisInput {
+  return {
+    locale: input.locale,
+    filter: input.filter,
+    groupBy: input.groupBy,
+    metrics: input.extrema,
+    sort: input.sort.map((sort) =>
+      sort.by === 'extremum'
+        ? { by: 'metric' as const, metric: sort.extremum, direction: sort.direction }
+        : sort
+    ),
+    limit: input.limit
+  };
+}
+
+export async function selectEndgameExtrema(
+  input: SelectEndgameExtremaInput,
+  options: AggregateEndgameOptions = {}
+) {
+  const output = await executeEndgameAnalysis(extremaAnalysisInput(input), options);
+  return {
+    ...output,
+    groups: output.groups.map(({ metrics, ...group }) => ({ ...group, extrema: metrics }))
+  };
 }

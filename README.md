@@ -105,7 +105,7 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 
 ### 本地 Data Agent
 
-Data Agent 是本地 CLI/评测工具，不是静态网站路由。它使用 Vercel AI SDK 7 `ToolLoopAgent` 和官方 DeepSeek provider，模型只能调用 `search_entities`、`query_endgame` 和 `aggregate_endgame` 三个只读工具；事实、Decimal 计算、警告和证据均由确定性执行器产生。
+Data Agent 是本地 CLI/评测工具，不是静态网站路由。它使用 Vercel AI SDK 7 `ToolLoopAgent` 和官方 DeepSeek provider，最多执行 8 个 model steps 与 8 次工具调用。模型只能调用四个只读工具：`search_entities` 解析实体，`query_endgame` 检索具体配置行，`aggregate_endgame` 计算标量/分组汇总，`select_endgame_extrema` 选择产生极值的身份或位置；事实、Decimal 计算、警告和证据均由共享的确定性执行器产生。
 
 在未提交的 `.env.local` 中配置：
 

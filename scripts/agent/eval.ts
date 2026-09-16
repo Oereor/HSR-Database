@@ -3,7 +3,13 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { fingerprintTools } from 'ai';
-import { evalCaseSchema, isExplicitAbstention, type EvalCase } from '../../src/lib/agent/eval.js';
+import {
+  evalCaseSchema,
+  isExplicitAbstention,
+  operationForTool,
+  type EvalCase,
+  type EvalOperation
+} from '../../src/lib/agent/eval.js';
 import {
   DATA_AGENT_INSTRUCTIONS,
   runDataAgent,
@@ -16,7 +22,7 @@ import { getAgentDataVersion } from '../../src/lib/server/agent/data-version.js'
 import { redactSecrets } from './inspector.js';
 
 type Split = 'dev' | 'held-out' | 'all';
-type Suite = 'frozen' | 'generalization-v1';
+type Suite = 'frozen' | 'generalization-v1' | 'step-budget-aggregation-v1';
 
 export function parseArguments(args: string[]) {
   const valueAfter = (flag: string) => {
@@ -41,10 +47,10 @@ export function parseArguments(args: string[]) {
   const modes: AgentThinkingMode[] =
     thinking === 'both' ? ['off', 'low'] : [thinking as AgentThinkingMode];
   const suite = (valueAfter('--suite') ?? 'frozen') as Suite;
-  if (!['frozen', 'generalization-v1'].includes(suite))
-    throw new Error('--suite 必须是 frozen 或 generalization-v1');
-  if (suite === 'generalization-v1' && args.some((argument) => argument.startsWith('--split')))
-    throw new Error('generalization-v1 是独立 suite，不接受 --split');
+  if (!['frozen', 'generalization-v1', 'step-budget-aggregation-v1'].includes(suite))
+    throw new Error('--suite 必须是 frozen、generalization-v1 或 step-budget-aggregation-v1');
+  if (suite !== 'frozen' && args.some((argument) => argument.startsWith('--split')))
+    throw new Error(`${suite} 是独立 suite，不接受 --split`);
   return {
     model: args.includes('--model'),
     suite,
@@ -90,6 +96,16 @@ export async function loadGeneralizationCorpus(root = process.cwd()) {
   return cases;
 }
 
+export async function loadStepBudgetAggregationCorpus(root = process.cwd()) {
+  const file = path.join(root, 'evals', 'agent', 'step-budget-aggregation-v1.jsonl');
+  const cases = await loadFile(file);
+  if (cases.length !== 11)
+    throw new Error(`step-budget-aggregation-v1 corpus 数量错误：${cases.length}`);
+  if (new Set(cases.map(({ id }) => id)).size !== cases.length)
+    throw new Error('step-budget-aggregation-v1 case id 必须唯一');
+  return cases;
+}
+
 function isSubset(expected: unknown, actual: unknown): boolean {
   if (expected === null || typeof expected !== 'object') return Object.is(expected, actual);
   if (Array.isArray(expected))
@@ -102,6 +118,13 @@ function isSubset(expected: unknown, actual: unknown): boolean {
   );
 }
 
+export function includesFact(answer: string, fact: string): boolean {
+  if (answer.includes(fact)) return true;
+  if (!/^[\d\s,._-]+$/.test(fact)) return false;
+  const compact = (value: string) => value.replace(/[\s,._-]/g, '');
+  return compact(answer).includes(compact(fact));
+}
+
 export function isIntentResolved(answer: string): boolean {
   return (
     /(?:请问|请确认|需要确认|你指的是).*(?:还是|是指|口径|范围)/s.test(answer) ||
@@ -112,14 +135,26 @@ export function isIntentResolved(answer: string): boolean {
 export function score(testCase: EvalCase, result: RunAgentResult) {
   const ambiguityCase = testCase.tags.includes('ambiguity');
   const ambiguityHandled = !ambiguityCase || isIntentResolved(result.answer.answer);
-  const tools = result.trace.map(({ tool }) => tool);
+  const observedOperations: EvalOperation[] = result.trace.flatMap(({ tool }) => {
+    const operation = operationForTool(tool);
+    return operation ? [operation] : [];
+  });
+  if (isIntentResolved(result.answer.answer)) observedOperations.push('ambiguity-resolution');
   const warnings = new Set(result.trace.flatMap(({ summary }) => summary.warnings ?? []));
-  const expectedTools = testCase.gold.expectedTools.every((tool) => tools.includes(tool));
-  const forbiddenTools = testCase.gold.forbiddenTools.every((tool) => !tools.includes(tool));
-  const keyArguments = Object.entries(testCase.gold.keyArguments).every(([tool, expected]) =>
-    result.trace.some((entry) => entry.tool === tool && isSubset(expected, entry.validatedArgs))
+  const expectedOperations = testCase.gold.expectedOperations.every((operation) =>
+    observedOperations.includes(operation)
   );
-  const facts = testCase.gold.facts.every((fact) => result.answer.answer.includes(fact));
+  const forbiddenOperations = testCase.gold.forbiddenOperations.every(
+    (operation) => !observedOperations.includes(operation)
+  );
+  const operationArguments = Object.entries(testCase.gold.operationArguments).every(
+    ([operation, expected]) =>
+      result.trace.some(
+        (entry) =>
+          operationForTool(entry.tool) === operation && isSubset(expected, entry.validatedArgs)
+      )
+  );
+  const facts = testCase.gold.facts.every((fact) => includesFact(result.answer.answer, fact));
   const presentation = testCase.gold.forbiddenAnswerTerms.every(
     (term) =>
       !result.answer.answer.includes(term) && !result.answer.limitations.join(' ').includes(term)
@@ -134,41 +169,49 @@ export function score(testCase: EvalCase, result: RunAgentResult) {
     !result.truncationDisclosure.required ||
     result.truncationDisclosure.modelProvided ||
     result.truncationDisclosure.runtimeEnforced;
-  const withinGoldPlusOne = result.toolCalls <= testCase.gold.expectedTools.length + 1;
-  const firstExpected = testCase.gold.expectedTools[0];
+  const expectedToolOperations = testCase.gold.expectedOperations.filter(
+    (operation) => operation !== 'ambiguity-resolution'
+  );
+  const withinGoldPlusOne = result.toolCalls <= expectedToolOperations.length + 1;
+  const firstExpected = expectedToolOperations[0];
   const first = result.trace.find((entry) => entry.errorCode !== 'TOOL_CALL_LIMIT_EXCEEDED');
   const schemaInvalid = result.trace.filter((entry) =>
     ['INVALID_JSON', 'INVALID_ARGUMENTS'].includes(entry.errorCode ?? '')
   );
   const recovered = schemaInvalid.filter((entry) => {
-    const nextTurn = result.modelTrace.find((item) => item.turn > entry.turn);
-    const next = nextTurn && result.trace.find((item) => item.turn === nextTurn.turn);
+    const nextStep = result.modelTrace.find((item) => item.step > entry.step);
+    const next = nextStep && result.trace.find((item) => item.step === nextStep.step);
     return next?.tool === entry.tool && next.ok;
   }).length;
   return {
     ambiguityCase,
     ambiguityHandled,
-    firstToolEligible: !!firstExpected && !ambiguityCase,
-    firstToolName: !!firstExpected && first?.tool === firstExpected,
-    firstToolKeyArguments:
+    firstOperationEligible: !!firstExpected && !ambiguityCase,
+    firstOperation: !!firstExpected && operationForTool(first?.tool ?? '') === firstExpected,
+    firstOperationArguments:
       !!firstExpected &&
-      first?.tool === firstExpected &&
-      isSubset(testCase.gold.keyArguments[firstExpected], first.validatedArgs),
+      operationForTool(first?.tool ?? '') === firstExpected &&
+      isSubset(
+        testCase.gold.operationArguments[
+          firstExpected as keyof typeof testCase.gold.operationArguments
+        ] ?? {},
+        first?.validatedArgs
+      ),
     invalidToolCallCount: result.trace.filter((entry) =>
       ['UNKNOWN_TOOL', 'INVALID_JSON', 'INVALID_ARGUMENTS'].includes(entry.errorCode ?? '')
     ).length,
     schemaInvalidCallCount: schemaInvalid.length,
     recoveryCount: recovered,
-    expectedTools,
-    forbiddenTools,
-    keyArguments,
+    expectedOperations,
+    forbiddenOperations,
+    operationArguments,
     facts,
     presentation,
     warnings: warningMatch,
     evidence,
     abstained,
     structuredFinal: result.structuredAnswer,
-    hitTurnLimit: result.hitTurnLimit,
+    hitStepLimit: result.hitStepLimit,
     truncationRequired: result.truncationDisclosure.required,
     truncationPreserved,
     truncationModelProvided: result.truncationDisclosure.modelProvided,
@@ -177,25 +220,28 @@ export function score(testCase: EvalCase, result: RunAgentResult) {
     warningRequired: testCase.gold.warnings.length > 0,
     unsupported: testCase.gold.answerability === 'unsupported',
     supported: testCase.gold.answerability === 'supported',
-    goldToolCalls: testCase.gold.expectedTools.length,
+    goldToolCalls: expectedToolOperations.length,
     withinGoldPlusOne,
-    forbiddenCallCount: result.trace.filter(({ tool }) =>
-      testCase.gold.forbiddenTools.includes(tool as never)
-    ).length,
+    forbiddenCallCount: result.trace.filter(({ tool }) => {
+      const operation = operationForTool(tool);
+      return operation ? testCase.gold.forbiddenOperations.includes(operation) : false;
+    }).length,
     unnecessaryToolCalls:
       testCase.gold.answerability === 'unsupported'
         ? result.toolCalls
-        : result.trace.filter(({ tool }) => testCase.gold.forbiddenTools.includes(tool as never))
-            .length,
+        : result.trace.filter(({ tool }) => {
+            const operation = operationForTool(tool);
+            return operation ? testCase.gold.forbiddenOperations.includes(operation) : false;
+          }).length,
     passed: ambiguityCase
       ? ambiguityHandled &&
-        forbiddenTools &&
+        forbiddenOperations &&
         presentation &&
         result.structuredAnswer &&
         truncationPreserved
-      : expectedTools &&
-        forbiddenTools &&
-        keyArguments &&
+      : expectedOperations &&
+        forbiddenOperations &&
+        operationArguments &&
         facts &&
         presentation &&
         warningMatch &&
@@ -244,8 +290,13 @@ async function main() {
   const frozen = args.suite === 'frozen' ? await loadEvalCorpus() : undefined;
   const generalization =
     args.suite === 'generalization-v1' ? await loadGeneralizationCorpus() : undefined;
-  const selectedSplit = generalization
-    ? generalization
+  const stepBudgetAggregation =
+    args.suite === 'step-budget-aggregation-v1'
+      ? await loadStepBudgetAggregationCorpus()
+      : undefined;
+  const standalone = generalization ?? stepBudgetAggregation;
+  const selectedSplit = standalone
+    ? standalone
     : args.split === 'dev'
       ? frozen!.dev
       : args.split === 'held-out'
@@ -265,8 +316,8 @@ async function main() {
   const selected = args.tag === 'stability' ? tagged.slice(0, 10) : tagged;
   if (!selected.length) throw new Error('筛选后没有 eval case');
   console.log(
-    generalization
-      ? `Validated ${generalization.length} generalization-v1 cases; selected ${selected.length}.`
+    standalone
+      ? `Validated ${standalone.length} ${args.suite} cases; selected ${selected.length}.`
       : `Validated ${frozen!.dev.length} dev + ${frozen!.heldOut.length} held-out cases; selected ${selected.length}.`
   );
   if (!args.model) return;
@@ -293,9 +344,15 @@ async function main() {
             dev: hash(await readFile('evals/agent/dev.jsonl', 'utf8')),
             heldOut: hash(await readFile('evals/agent/held-out.jsonl', 'utf8'))
           }
-        : {
-            generalizationV1: hash(await readFile('evals/agent/generalization-v1.jsonl', 'utf8'))
-          },
+        : args.suite === 'generalization-v1'
+          ? {
+              generalizationV1: hash(await readFile('evals/agent/generalization-v1.jsonl', 'utf8'))
+            }
+          : {
+              stepBudgetAggregationV1: hash(
+                await readFile('evals/agent/step-budget-aggregation-v1.jsonl', 'utf8')
+              )
+            },
     selectedCaseIds: selected.map((item) => item.id),
     maxOutputTokens: 2048
   };
@@ -364,15 +421,16 @@ async function main() {
   const delta =
     off && low
       ? {
-          keyArgumentRate: low.metrics.keyArgumentSubset.rate - off.metrics.keyArgumentSubset.rate,
-          firstToolNameRate:
-            low.metrics.firstToolNameAccuracy.rate - off.metrics.firstToolNameAccuracy.rate,
-          firstToolKeyArgumentRate:
-            low.metrics.firstToolKeyArgumentAccuracy.rate -
-            off.metrics.firstToolKeyArgumentAccuracy.rate,
+          operationArgumentRate:
+            low.metrics.operationArgumentSubset.rate - off.metrics.operationArgumentSubset.rate,
+          firstOperationRate:
+            low.metrics.firstOperationAccuracy.rate - off.metrics.firstOperationAccuracy.rate,
+          firstOperationArgumentRate:
+            low.metrics.firstOperationArgumentAccuracy.rate -
+            off.metrics.firstOperationArgumentAccuracy.rate,
           strictContractRate: low.metrics.strictContract.rate - off.metrics.strictContract.rate,
-          forbiddenToolAvoidanceRate:
-            low.metrics.forbiddenToolAvoided.rate - off.metrics.forbiddenToolAvoided.rate,
+          forbiddenOperationAvoidanceRate:
+            low.metrics.forbiddenOperationAvoided.rate - off.metrics.forbiddenOperationAvoided.rate,
           averageTokens:
             low.usage.averageTotalTokensPerAttempt - off.usage.averageTotalTokensPerAttempt,
           averageLatencyMs: low.latencyMs.average - off.latencyMs.average
@@ -407,7 +465,7 @@ function summarize(
   const truncationRequired = completed.filter(({ score: item }) => item.truncationRequired);
   const unsupported = completed.filter(({ score: item }) => item.unsupported);
   const supported = completed.filter(({ score: item }) => item.supported);
-  const firstEligible = completed.filter(({ score: item }) => item.firstToolEligible);
+  const firstEligible = completed.filter(({ score: item }) => item.firstOperationEligible);
   const ambiguityCases = completed.filter(({ score: item }) => item.ambiguityCase);
   const toolResultBytes = completed.flatMap(({ result }) =>
     result.trace.map(({ summary }) => summary.toolResultBytes)
@@ -432,12 +490,12 @@ function summarize(
     passed,
     passRate: completed.length ? passed / completed.length : 0,
     metrics: {
-      firstToolNameAccuracy: ratio(
-        firstEligible.filter(({ score: item }) => item.firstToolName).length,
+      firstOperationAccuracy: ratio(
+        firstEligible.filter(({ score: item }) => item.firstOperation).length,
         firstEligible.length
       ),
-      firstToolKeyArgumentAccuracy: ratio(
-        firstEligible.filter(({ score: item }) => item.firstToolKeyArguments).length,
+      firstOperationArgumentAccuracy: ratio(
+        firstEligible.filter(({ score: item }) => item.firstOperationArguments).length,
         firstEligible.length
       ),
       ambiguityHandling: ratio(
@@ -453,9 +511,9 @@ function summarize(
         completed.reduce((total, { score: item }) => total + item.schemaInvalidCallCount, 0)
       ),
       strictContract: ratio(passed, completed.length),
-      expectedToolPresent: ratio(count('expectedTools'), completed.length),
-      forbiddenToolAvoided: ratio(count('forbiddenTools'), completed.length),
-      keyArgumentSubset: ratio(count('keyArguments'), completed.length),
+      expectedOperationPresent: ratio(count('expectedOperations'), completed.length),
+      forbiddenOperationAvoided: ratio(count('forbiddenOperations'), completed.length),
+      operationArgumentSubset: ratio(count('operationArguments'), completed.length),
       goldFacts: ratio(count('facts'), completed.length),
       presentationBoundary: ratio(count('presentation'), completed.length),
       supportedGoldFacts: ratio(
@@ -475,9 +533,9 @@ function summarize(
         0
       ),
       structuredFinal: ratio(count('structuredFinal'), completed.length),
-      turnLimitHit: ratio(count('hitTurnLimit'), completed.length),
+      stepLimitHit: ratio(count('hitStepLimit'), completed.length),
       averageToolCalls: average(completed.map(({ result }) => result.toolCalls)),
-      averageTurns: average(completed.map(({ result }) => result.turns)),
+      averageModelSteps: average(completed.map(({ result }) => result.modelSteps)),
       goldAverageToolCalls: average(completed.map(({ score: item }) => item.goldToolCalls)),
       withinGoldPlusOne: ratio(count('withinGoldPlusOne'), completed.length),
       forbiddenCallCount: completed.reduce(

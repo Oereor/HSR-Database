@@ -3,8 +3,10 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { evalCaseSchema, isExplicitAbstention, type EvalCase } from '../../../src/lib/agent/eval';
 import {
+  includesFact,
   isIntentResolved,
   loadGeneralizationCorpus,
+  loadStepBudgetAggregationCorpus,
   parseArguments,
   score
 } from '../../../scripts/agent/eval';
@@ -18,22 +20,31 @@ async function cases(file: string): Promise<EvalCase[]> {
 }
 
 describe('Agent eval corpus', () => {
+  it('numeric fact 匹配忽略展示用千分位与分隔符', () => {
+    expect(includesFact('每管血量 11,347,628.66', '1134')).toBe(true);
+    expect(includesFact('赛期名称为扫除风暴', '1134')).toBe(false);
+  });
+
   it('A/B 参数和首工具/recovery telemetry 使用冻结 gold', async () => {
     expect(parseArguments(['--thinking=both']).modes).toEqual(['off', 'low']);
     expect(parseArguments(['--suite=generalization-v1', '--thinking=low'])).toMatchObject({
       suite: 'generalization-v1',
       modes: ['low']
     });
+    expect(parseArguments(['--suite=step-budget-aggregation-v1'])).toMatchObject({
+      suite: 'step-budget-aggregation-v1',
+      modes: ['off']
+    });
     const testCase = (await cases('dev.jsonl'))[0];
     const result: RunAgentResult = {
       answer: { answer: testCase.gold.facts.join(' '), evidenceIds: ['eg1/test'], limitations: [] },
       invalidEvidenceIds: [],
-      turns: 3,
+      modelSteps: 3,
       toolCalls: 2,
       usage: { inputTokens: 1, outputTokens: 1, totalTokens: 2 },
       trace: [
         {
-          turn: 1,
+          step: 1,
           toolCallId: 'bad',
           tool: 'query_endgame',
           ok: false,
@@ -42,17 +53,17 @@ describe('Agent eval corpus', () => {
           summary: { toolResultBytes: 1, evidenceCount: 0 }
         },
         {
-          turn: 2,
+          step: 2,
           toolCallId: 'good',
           tool: 'query_endgame',
           ok: true,
-          validatedArgs: testCase.gold.keyArguments.query_endgame,
+          validatedArgs: testCase.gold.operationArguments['concrete-query'],
           latencyMs: 0,
           summary: { toolResultBytes: 1, evidenceCount: 1 }
         }
       ],
-      modelTrace: [1, 2, 3].map((turn) => ({
-        turn,
+      modelTrace: [1, 2, 3].map((step) => ({
+        step,
         latencyMs: 0,
         reasoningPresent: false,
         reasoningChars: 0
@@ -64,19 +75,19 @@ describe('Agent eval corpus', () => {
         limitationsCapped: 0
       },
       structuredAnswer: true,
-      hitTurnLimit: false,
+      hitStepLimit: false,
       truncationDisclosure: { required: false, modelProvided: false, runtimeEnforced: false }
     };
     const scored = score(testCase, result);
     expect(scored).toMatchObject({
-      firstToolName: true,
-      firstToolKeyArguments: false,
+      firstOperation: true,
+      firstOperationArguments: false,
       invalidToolCallCount: 1,
       schemaInvalidCallCount: 1,
       recoveryCount: 1
     });
   });
-  it('只把明确拒答或达到 turn 上限计为 unsupported abstention', () => {
+  it('只把明确拒答或达到 step 上限计为 unsupported abstention', () => {
     expect(isExplicitAbstention('数据库不含该指标，无法直接给出结论。')).toBe(true);
     expect(isExplicitAbstention('模型在允许的最大轮次内没有生成最终回答。')).toBe(true);
     expect(isExplicitAbstention('按 HP 口径看，这一期最难。')).toBe(false);
@@ -96,9 +107,9 @@ describe('Agent eval corpus', () => {
         answerability: 'partial'
       },
       gold: {
-        expectedTools: ['search_entities', 'query_endgame'],
-        forbiddenTools: [],
-        keyArguments: {},
+        expectedOperations: ['entity-resolution', 'concrete-query', 'ambiguity-resolution'],
+        forbiddenOperations: [],
+        operationArguments: {},
         facts: [],
         warnings: [],
         forbiddenAnswerTerms: [],
@@ -113,7 +124,7 @@ describe('Agent eval corpus', () => {
         limitations: []
       },
       invalidEvidenceIds: [],
-      turns: 1,
+      modelSteps: 1,
       toolCalls: 0,
       usage: { inputTokens: 1, outputTokens: 1, totalTokens: 2 },
       trace: [],
@@ -125,13 +136,13 @@ describe('Agent eval corpus', () => {
         limitationsCapped: 0
       },
       structuredAnswer: true,
-      hitTurnLimit: false,
+      hitStepLimit: false,
       truncationDisclosure: { required: false, modelProvided: false, runtimeEnforced: false }
     } satisfies RunAgentResult;
     expect(isIntentResolved(result.answer.answer)).toBe(true);
     expect(score(testCase, result)).toMatchObject({
       ambiguityHandled: true,
-      firstToolEligible: false,
+      firstOperationEligible: false,
       passed: true
     });
   });
@@ -144,16 +155,16 @@ describe('Agent eval corpus', () => {
     const result = {
       answer: { answer: 'groupId 3020 的结果', evidenceIds: ['eg1/test'], limitations: [] },
       invalidEvidenceIds: [],
-      turns: 1,
+      modelSteps: 1,
       toolCalls: 1,
       usage: { inputTokens: 1, outputTokens: 1, totalTokens: 2 },
       trace: [
         {
-          turn: 1,
+          step: 1,
           toolCallId: 'q',
           tool: 'query_endgame',
           ok: true,
-          validatedArgs: testCase.gold.keyArguments.query_endgame,
+          validatedArgs: testCase.gold.operationArguments['concrete-query'],
           latencyMs: 0,
           summary: { toolResultBytes: 1, evidenceCount: 1 }
         }
@@ -166,7 +177,7 @@ describe('Agent eval corpus', () => {
         limitationsCapped: 0
       },
       structuredAnswer: true,
-      hitTurnLimit: false,
+      hitStepLimit: false,
       truncationDisclosure: { required: false, modelProvided: false, runtimeEnforced: false }
     } satisfies RunAgentResult;
     expect(score(testCase, result)).toMatchObject({ presentation: false, passed: false });
@@ -187,6 +198,27 @@ describe('Agent eval corpus', () => {
     expect(questions).not.toContain('分别分析最近6期混沌回忆');
     expect(questions).not.toContain('颁赐者，千军首，天谴之矛');
     expect(new Set(generalization.map(({ id }) => id)).size).toBe(16);
+  });
+
+  it('step-budget-aggregation-v1 固定 6 个 DOG + 5 个职责分解 cases', async () => {
+    const regression = await loadStepBudgetAggregationCorpus();
+    expect(regression).toHaveLength(11);
+    expect(regression.filter(({ id }) => id.startsWith('dog-'))).toHaveLength(6);
+    expect(regression.filter(({ id }) => id.startsWith('decomp-'))).toHaveLength(5);
+    expect(
+      regression.find(({ id }) => id === 'dog-006-pf-associated-extrema')?.gold.expectedOperations
+    ).toEqual(['associated-extrema']);
+  });
+
+  it('argMin/argMax gold 使用 architecture-neutral associated-extrema operation', async () => {
+    const generalization = await loadGeneralizationCorpus();
+    const associated = generalization.filter(({ coverage }) =>
+      coverage.operations.some((operation) => operation === 'argMin' || operation === 'argMax')
+    );
+    expect(associated).toHaveLength(4);
+    expect(
+      associated.every(({ gold }) => gold.expectedOperations.includes('associated-extrema'))
+    ).toBe(true);
   });
 
   it('覆盖四模式、六类指标、主要操作、grain 与三种 answerability', async () => {

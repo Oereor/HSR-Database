@@ -4,9 +4,9 @@ import {
   ARG_EXTREMA_TIE_LIMIT,
   QUERY_DEFAULT_ROW_LIMIT,
   QUERY_ROW_LIMIT,
-  type AggregateEndgameInput,
   type EndgameFilter,
-  type NormalizedEndgameRow
+  type NormalizedEndgameRow,
+  type SelectEndgameExtremaInput
 } from '../../../src/lib/agent/contracts';
 import { parseDecimal } from '../../../src/lib/domain/decimal';
 import type {
@@ -21,7 +21,10 @@ import {
 import {
   aggregateEndgame,
   aggregateEvidenceId,
-  aggregateRows
+  aggregateRows,
+  executeEndgameAnalysis,
+  selectEndgameExtrema,
+  type EndgameAnalysisInput
 } from '../../../src/lib/server/agent/endgame-aggregate';
 import { loadEndgameRows, selectSeasonGroups } from '../../../src/lib/server/agent/endgame-rows';
 import { queryEndgame } from '../../../src/lib/server/agent/endgame-query';
@@ -680,7 +683,7 @@ describe('Agent entity resolution and real generated rows', () => {
     const base = {
       dataRevision: 'revision',
       filter: {},
-      groupBy: ['season'] as AggregateEndgameInput['groupBy'],
+      groupBy: ['season'] as EndgameAnalysisInput['groupBy'],
       metrics: [
         {
           op: 'argMax' as const,
@@ -705,9 +708,44 @@ describe('Agent entity resolution and real generated rows', () => {
       })
     );
   });
+
+  it('extrema wrapper 复用确定性引擎、ag1 和 warning，并暴露 extrema result', async () => {
+    const modelInput: SelectEndgameExtremaInput = {
+      locale: 'zh-CN',
+      filter: { modes: ['pf'], statuses: ['current'], encounterOrdinals: [4] },
+      groupBy: [],
+      extrema: [
+        {
+          op: 'argMax',
+          field: 'hpPerBar',
+          select: ['enemyTemplate'],
+          as: 'highestHp'
+        }
+      ],
+      sort: [],
+      limit: 20
+    };
+    const [wrapped, internal] = await Promise.all([
+      selectEndgameExtrema(modelInput),
+      executeEndgameAnalysis({
+        ...modelInput,
+        metrics: [...modelInput.extrema],
+        sort: [],
+        limit: 20
+      })
+    ]);
+    expect(wrapped.warnings).toEqual(internal.warnings);
+    expect(wrapped.groups[0].evidenceId).toBe(internal.groups[0].evidenceId);
+    expect(wrapped.groups[0].extrema).toEqual(internal.groups[0].metrics);
+    expect(wrapped.groups[0]).not.toHaveProperty('metrics');
+    expect(wrapped.groups[0].evidenceId).toMatch(/^ag1\//);
+    expect(wrapped.warnings).toContainEqual(
+      expect.objectContaining({ code: 'PF_CONFIGURED_OCCURRENCE_GRAIN' })
+    );
+  });
 });
 
-function aggregateInput(overrides: Partial<AggregateEndgameInput> = {}): AggregateEndgameInput {
+function aggregateInput(overrides: Partial<EndgameAnalysisInput> = {}): EndgameAnalysisInput {
   return {
     locale: 'zh-CN',
     filter: {},

@@ -28,7 +28,7 @@ Changelog metadata uses stable IDs and ISO machine dates in src/lib/content/chan
 
 ## Local data Agent boundary
 
-The developer-only HSR Data Agent uses Vercel AI SDK 7 `ToolLoopAgent` with the official DeepSeek provider. AI SDK owns model steps, validated tool calling, provider protocol handling, reasoning transport, retries, timeouts, stopping, and structured output. HSR-owned code provides instructions plus the deterministic `search_entities`, `query_endgame`, and `aggregate_endgame` executors, including Decimal, warnings, truncation, and evidence semantics.
+The developer-only HSR Data Agent uses Vercel AI SDK 7 `ToolLoopAgent` with the official DeepSeek provider. AI SDK owns up to eight model steps, validated tool calling, provider protocol handling, reasoning transport, retries, timeouts, stopping, and structured output; a separate HSR-owned cap permits at most eight executed tools. HSR-owned code provides `search_entities` for entity resolution, `query_endgame` for concrete configured rows, `aggregate_endgame` for scalar/group summaries, and `select_endgame_extrema` for associated identity/location extrema. Both analytical tools share the same deterministic filtering, grouping, Decimal, warning, truncation, tie, and `ag1` evidence engine.
 
 The Agent is limited to local CLI, Inspector, profiling, and evaluation. It does not add a SvelteKit endpoint, browser bundle, production service, or deployment dependency; the public site remains fully static. Provider creation and `DEEPSEEK_API_KEY` access stay under `src/lib/server`. Historical Phase 1.x reports describe the replaced handwritten loop and remain non-normative records.
 

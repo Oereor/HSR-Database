@@ -89,14 +89,14 @@ export function formatInspection(
     `Question: ${inspection.question}`,
     `Thinking: ${inspection.thinkingMode}`
   ];
-  for (const turn of result.modelTrace) {
+  for (const step of result.modelTrace) {
     lines.push(
       '',
-      `Turn ${turn.turn} (model ${turn.latencyMs} ms)`,
-      `  Reasoning present: ${turn.reasoningPresent}; chars: ${turn.reasoningChars}`
+      `Model step ${step.step} (model ${step.latencyMs} ms)`,
+      `  Reasoning present: ${step.reasoningPresent}; chars: ${step.reasoningChars}`
     );
-    if (verbose && turn.metadata) lines.push(`  Provider: ${JSON.stringify(turn.metadata)}`);
-    for (const entry of result.trace.filter((item) => item.turn === turn.turn)) {
+    if (verbose && step.metadata) lines.push(`  Provider: ${JSON.stringify(step.metadata)}`);
+    for (const entry of result.trace.filter((item) => item.step === step.step)) {
       lines.push(
         `  Tool: ${entry.tool} (${entry.ok ? 'ok' : (entry.errorCode ?? 'failed')})`,
         `  Validated arguments: ${JSON.stringify(entry.validatedArgs ?? null)}`,
@@ -114,7 +114,7 @@ export function formatInspection(
     'Metrics',
     JSON.stringify(
       {
-        modelTurns: result.turns,
+        modelSteps: result.modelSteps,
         toolCalls: result.toolCalls,
         usage: result.usage,
         reasoningTokens: result.usage.reasoningTokens ?? 'not separately reported',
@@ -125,7 +125,7 @@ export function formatInspection(
         totalLatencyMs: inspection.latencyMs,
         structuredFinal: result.structuredAnswer,
         invalidEvidenceCount: result.invalidEvidenceIds.length,
-        hitTurnLimit: result.hitTurnLimit,
+        hitStepLimit: result.hitStepLimit,
         answerNormalization: result.answerNormalization,
         truncationDisclosure: result.truncationDisclosure
       },

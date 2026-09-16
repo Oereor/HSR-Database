@@ -1,5 +1,25 @@
 import { z } from 'zod';
-import { AgentToolNameSchema } from './tool-names.js';
+
+export const toolOperationSchema = z.enum([
+  'entity-resolution',
+  'concrete-query',
+  'scalar-summary',
+  'associated-extrema'
+]);
+export const evalOperationSchema = z.union([
+  toolOperationSchema,
+  z.literal('ambiguity-resolution')
+]);
+export type ToolOperation = z.infer<typeof toolOperationSchema>;
+export type EvalOperation = z.infer<typeof evalOperationSchema>;
+
+export function operationForTool(tool: string): ToolOperation | undefined {
+  if (tool === 'search_entities') return 'entity-resolution';
+  if (tool === 'query_endgame') return 'concrete-query';
+  if (tool === 'aggregate_endgame') return 'scalar-summary';
+  if (tool === 'select_endgame_extrema') return 'associated-extrema';
+  return undefined;
+}
 
 const answerabilitySchema = z.enum(['supported', 'partial', 'unsupported']);
 const modeCoverageSchema = z.enum(['moc', 'pf', 'as', 'aa', 'cross-mode']);
@@ -72,10 +92,10 @@ export const evalCaseSchema = z
       .strict(),
     gold: z
       .object({
-        expectedTools: z.array(AgentToolNameSchema).max(3),
-        forbiddenTools: z.array(AgentToolNameSchema).default([]),
-        keyArguments: z
-          .partialRecord(AgentToolNameSchema, z.record(z.string(), z.unknown()))
+        expectedOperations: z.array(evalOperationSchema).max(5),
+        forbiddenOperations: z.array(evalOperationSchema).default([]),
+        operationArguments: z
+          .partialRecord(toolOperationSchema, z.record(z.string(), z.unknown()))
           .default({}),
         facts: z.array(z.string()).default([]),
         warnings: z.array(z.string()).default([]),
@@ -93,20 +113,20 @@ export const evalCaseSchema = z
         path: ['gold', 'answerability'],
         message: 'answerability 必须一致'
       });
-    const expected = new Set(value.gold.expectedTools);
-    for (const name of value.gold.forbiddenTools)
+    const expected = new Set(value.gold.expectedOperations);
+    for (const name of value.gold.forbiddenOperations)
       if (expected.has(name))
         context.addIssue({
           code: 'custom',
-          path: ['gold', 'forbiddenTools'],
-          message: '工具不能同时为 expected 和 forbidden'
+          path: ['gold', 'forbiddenOperations'],
+          message: 'operation 不能同时为 expected 和 forbidden'
         });
-    for (const name of Object.keys(value.gold.keyArguments))
-      if (!expected.has(name as z.infer<typeof AgentToolNameSchema>))
+    for (const name of Object.keys(value.gold.operationArguments))
+      if (!expected.has(name as ToolOperation))
         context.addIssue({
           code: 'custom',
-          path: ['gold', 'keyArguments', name],
-          message: 'keyArguments 只能引用 expected tool'
+          path: ['gold', 'operationArguments', name],
+          message: 'operationArguments 只能引用 expected operation'
         });
   });
 

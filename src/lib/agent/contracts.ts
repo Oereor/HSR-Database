@@ -84,13 +84,19 @@ export const endgameFilterSchema = z
       .optional()
       .describe('current 只由 schedule/open-state 证明，不能用 latest groupId 替代。'),
     encounterIds: uniqueEnumArray(z.string().trim().min(1).max(100), 100).optional(),
-    encounterOrdinals: uniqueEnumArray(z.number().int().positive(), 100).optional(),
+    encounterOrdinals: uniqueEnumArray(z.number().int().positive(), 100)
+      .optional()
+      .describe(
+        '关卡/层数序号；混沌回忆第 N 层、虚构叙事难度 N/其 N 使用此字段，不要误用 levels。'
+      ),
     encounterVariants: uniqueEnumArray(encounterVariantSchema, 4).optional(),
     battleSlots: uniqueEnumArray(z.number().int().positive(), 10)
       .optional()
       .describe('节点1/上半=battle slot 1；节点2/下半=battle slot 2。'),
     stageIds: uniqueEnumArray(z.number().int().positive(), 100).optional(),
-    levels: uniqueEnumArray(z.number().int().positive(), 100).optional(),
+    levels: uniqueEnumArray(z.number().int().positive(), 100)
+      .optional()
+      .describe('敌人配置等级（如 85/95），不是层数或“难度 N”。'),
     waveNumbersOrIds: uniqueEnumArray(z.number().int().nonnegative(), 100).optional(),
     enemyTemplateIds: uniqueEnumArray(z.number().int().positive(), 100).optional(),
     monsterIds: uniqueEnumArray(z.number().int().positive(), 100).optional(),
@@ -176,14 +182,16 @@ export const distinctFieldSchema = z.enum([
 const metricAliasSchema = z.string().regex(/^[A-Za-z][A-Za-z0-9_]{0,31}$/);
 export const associatedSelectSchema = z.enum(['enemyTemplate', 'monster', 'location']);
 const associatedSelectArraySchema = uniqueEnumArray(associatedSelectSchema, 3);
-export const endgameMetricSchema = z.discriminatedUnion('op', [
+export const scalarEndgameMetricSchema = z.discriminatedUnion('op', [
   z.object({ op: z.literal('rowCount'), as: metricAliasSchema }).strict(),
   z
     .object({ op: z.literal('countDistinct'), field: distinctFieldSchema, as: metricAliasSchema })
     .strict(),
   z.object({ op: z.literal('min'), field: numericFieldSchema, as: metricAliasSchema }).strict(),
   z.object({ op: z.literal('max'), field: numericFieldSchema, as: metricAliasSchema }).strict(),
-  z.object({ op: z.literal('avg'), field: numericFieldSchema, as: metricAliasSchema }).strict(),
+  z.object({ op: z.literal('avg'), field: numericFieldSchema, as: metricAliasSchema }).strict()
+]);
+export const associatedExtremaSchema = z.discriminatedUnion('op', [
   z
     .object({
       op: z.literal('argMin'),
@@ -201,6 +209,7 @@ export const endgameMetricSchema = z.discriminatedUnion('op', [
     })
     .strict()
 ]);
+export const endgameMetricSchema = z.union([scalarEndgameMetricSchema, associatedExtremaSchema]);
 
 const aggregateSortSchema = z.discriminatedUnion('by', [
   z
@@ -215,6 +224,51 @@ const aggregateSortSchema = z.discriminatedUnion('by', [
     .strict()
 ]);
 
+const extremaSortSchema = z.discriminatedUnion('by', [
+  z
+    .object({
+      by: z.literal('dimension'),
+      dimension: endgameGroupDimensionSchema,
+      direction: directionSchema
+    })
+    .strict(),
+  z
+    .object({ by: z.literal('extremum'), extremum: metricAliasSchema, direction: directionSchema })
+    .strict()
+]);
+
+function validateAnalysisShape(
+  groupBy: readonly EndgameGroupDimension[],
+  aliases: ReadonlySet<string>,
+  sorts: readonly (z.infer<typeof aggregateSortSchema> | z.infer<typeof extremaSortSchema>)[],
+  context: z.RefinementCtx
+) {
+  const dimensions = new Set(groupBy);
+  const explodedDimensions = groupBy.filter((dimension) => dimension === 'weakness');
+  if (explodedDimensions.length > 1)
+    context.addIssue({
+      code: 'custom',
+      path: ['groupBy'],
+      message: '一次最多只允许一个 multi-valued group dimension'
+    });
+  sorts.forEach((sort, index) => {
+    if (sort.by === 'dimension' && !dimensions.has(sort.dimension))
+      context.addIssue({
+        code: 'custom',
+        path: ['sort', index, 'dimension'],
+        message: '只能按已声明的 groupBy dimension 排序'
+      });
+    const alias =
+      sort.by === 'metric' ? sort.metric : sort.by === 'extremum' ? sort.extremum : null;
+    if (alias !== null && !aliases.has(alias))
+      context.addIssue({
+        code: 'custom',
+        path: ['sort', index, sort.by === 'metric' ? 'metric' : 'extremum'],
+        message: '只能按已声明的 metric/extremum alias 排序'
+      });
+  });
+}
+
 export const aggregateEndgameInputSchema = z
   .object({
     locale: z.literal(AGENT_LOCALE),
@@ -225,7 +279,7 @@ export const aggregateEndgameInputSchema = z
       .refine(uniqueArray, uniqueMessage)
       .default([]),
     metrics: z
-      .array(endgameMetricSchema)
+      .array(scalarEndgameMetricSchema)
       .min(1)
       .max(5)
       .refine((values) => uniqueArray(values.map(({ as }) => as)), {
@@ -236,40 +290,47 @@ export const aggregateEndgameInputSchema = z
   })
   .strict()
   .superRefine((input, context) => {
-    const dimensions = new Set(input.groupBy);
-    const explodedDimensions = input.groupBy.filter((dimension) => dimension === 'weakness');
-    if (explodedDimensions.length > 1)
-      context.addIssue({
-        code: 'custom',
-        path: ['groupBy'],
-        message: '一次最多只允许一个 multi-valued group dimension'
-      });
     const aliases = new Set(input.metrics.map(({ as }) => as));
-    input.sort.forEach((sort, index) => {
-      if (sort.by === 'dimension' && !dimensions.has(sort.dimension))
-        context.addIssue({
-          code: 'custom',
-          path: ['sort', index, 'dimension'],
-          message: '只能按已声明的 groupBy dimension 排序'
-        });
-      if (sort.by === 'metric' && !aliases.has(sort.metric))
-        context.addIssue({
-          code: 'custom',
-          path: ['sort', index, 'metric'],
-          message: '只能按已声明的 metric alias 排序'
-        });
-    });
+    validateAnalysisShape(input.groupBy, aliases, input.sort, context);
+  });
+
+export const selectEndgameExtremaInputSchema = z
+  .object({
+    locale: z.literal(AGENT_LOCALE),
+    filter: endgameFilterSchema.default({}),
+    groupBy: z
+      .array(endgameGroupDimensionSchema)
+      .max(3)
+      .refine(uniqueArray, uniqueMessage)
+      .default([]),
+    extrema: z
+      .array(associatedExtremaSchema)
+      .min(1)
+      .max(5)
+      .refine((values) => uniqueArray(values.map(({ as }) => as)), {
+        message: 'extremum alias 必须唯一'
+      }),
+    sort: z.array(extremaSortSchema).max(5).default([]),
+    limit: z.number().int().min(1).max(AGGREGATE_GROUP_LIMIT).default(20)
+  })
+  .strict()
+  .superRefine((input, context) => {
+    const aliases = new Set(input.extrema.map(({ as }) => as));
+    validateAnalysisShape(input.groupBy, aliases, input.sort, context);
   });
 
 export type SearchEntitiesInput = z.infer<typeof searchEntitiesInputSchema>;
 export type QueryEndgameInput = z.infer<typeof queryEndgameInputSchema>;
 export type AggregateEndgameInput = z.infer<typeof aggregateEndgameInputSchema>;
+export type SelectEndgameExtremaInput = z.infer<typeof selectEndgameExtremaInputSchema>;
 export type EndgameFilter = z.infer<typeof endgameFilterSchema>;
 export type EndgameProjection = z.infer<typeof endgameProjectionSchema>;
 export type EndgameSortField = z.infer<typeof endgameSortFieldSchema>;
 export type EndgameGroupDimension = z.infer<typeof endgameGroupDimensionSchema>;
 export type NumericField = z.infer<typeof numericFieldSchema>;
 export type DistinctField = z.infer<typeof distinctFieldSchema>;
+export type ScalarEndgameMetric = z.infer<typeof scalarEndgameMetricSchema>;
+export type AssociatedExtremaMetric = z.infer<typeof associatedExtremaSchema>;
 export type EndgameMetric = z.infer<typeof endgameMetricSchema>;
 export type AssociatedSelect = z.infer<typeof associatedSelectSchema>;
 

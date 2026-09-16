@@ -18,14 +18,14 @@ async function main() {
     console.error(
       JSON.stringify(
         {
-          turns: result.turns,
+          modelSteps: result.modelSteps,
           toolCalls: result.toolCalls,
           usage: result.usage,
           modelTrace: result.modelTrace,
           answerNormalization: result.answerNormalization,
           invalidEvidenceIds: result.invalidEvidenceIds,
           structuredAnswer: result.structuredAnswer,
-          hitTurnLimit: result.hitTurnLimit,
+          hitStepLimit: result.hitStepLimit,
           truncationDisclosure: result.truncationDisclosure,
           trace: result.trace
         },
