@@ -92,6 +92,9 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 | `pnpm build`            | 生成静态生产构建                       |
 | `pnpm deploy:build`     | 使用固定 upstream 版本执行完整部署构建 |
 | `pnpm upstreams:update` | 检查并更新 upstream lock               |
+| `pnpm agent:run -- "问题"` | 运行本地 HSR Data Agent                |
+| `pnpm agent:inspect`    | 交互式查看 Agent 步骤、工具和 usage       |
+| `pnpm test:agent`       | 运行 Agent 确定性与 mock-model 测试       |
 
 ### 命令准备职责
 
@@ -99,6 +102,30 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 `pnpm product:baseline:search:update` 是 self-preparing 命令。它们会依次准备站点消息、产品数据、敌人资源和通用视觉资源，再捕获当前产品输出。fixture 更新仍然只能通过带有明确 `--reason` 的 update 命令执行。
 
 `pnpm test` 和 `pnpm data:validate` 使用 prepared-workspace 模型，不会自行准备全部 generated inputs。clean pinned workspace 应先运行 `pnpm ci:prepare`；普通 `pnpm build`、CI 和部署命令继续保持各自现有的准备职责。
+
+### 本地 Data Agent
+
+Data Agent 是本地 CLI/评测工具，不是静态网站路由。它使用 Vercel AI SDK 7 `ToolLoopAgent` 和官方 DeepSeek provider，模型只能调用 `search_entities`、`query_endgame` 和 `aggregate_endgame` 三个只读工具；事实、Decimal 计算、警告和证据均由确定性执行器产生。
+
+在未提交的 `.env.local` 中配置：
+
+```dotenv
+DEEPSEEK_API_KEY=...
+# 可选，默认 deepseek-flash
+DEEPSEEK_MODEL=deepseek-flash
+```
+
+常用方式：
+
+```bash
+pnpm agent:run -- "最近一期混沌回忆下半的敌人有哪些？"
+pnpm agent:inspect --thinking=low --verbose -- "问题"
+pnpm agent:eval --suite=frozen
+# 显式加 --model 才会调用 DeepSeek
+pnpm agent:eval --model --thinking=off --cases=dev-search-character-alias
+```
+
+Inspector 不记录 reasoning 正文、密钥或原始请求体。
 
 ## 项目结构
 

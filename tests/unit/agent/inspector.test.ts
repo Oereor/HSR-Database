@@ -31,9 +31,7 @@ const inspection: Inspection = {
         metadata: { finishReason: 'stop' }
       }
     ],
-    finalization: {
-      retryUsed: false,
-      contractViolations: [],
+    answerNormalization: {
       evidenceDeduplicated: 0,
       evidenceCapped: 0,
       limitationsDeduplicated: 0,

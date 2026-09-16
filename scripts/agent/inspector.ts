@@ -1,12 +1,9 @@
 import { createHash } from 'node:crypto';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import type { LanguageModel } from 'ai';
 import { agentThinkingModeSchema, type AgentThinkingMode } from '../../src/lib/agent/contracts.js';
-import {
-  runDataAgent,
-  type RunAgentResult,
-  type ToolCallingModelClient
-} from '../../src/lib/server/agent/runtime.js';
+import { runDataAgent, type RunAgentResult } from '../../src/lib/server/agent/runtime.js';
 
 export function parseInspectorArguments(args: string[]) {
   let thinkingMode: AgentThinkingMode = 'off';
@@ -67,11 +64,11 @@ export interface Inspection {
 export async function inspectQuestion(
   question: string,
   thinkingMode: AgentThinkingMode,
-  client: ToolCallingModelClient
+  model?: LanguageModel
 ): Promise<Inspection> {
   const started = performance.now();
   // Each invocation creates a new runtime conversation; interactive sessions have no memory.
-  const result = await runDataAgent(question, { client, traceDetails: true });
+  const result = await runDataAgent(question, { model, thinkingMode, traceDetails: true });
   return {
     kind: 'MANUAL / NON-EVAL',
     question,
@@ -129,7 +126,7 @@ export function formatInspection(
         structuredFinal: result.structuredAnswer,
         invalidEvidenceCount: result.invalidEvidenceIds.length,
         hitTurnLimit: result.hitTurnLimit,
-        finalization: result.finalization,
+        answerNormalization: result.answerNormalization,
         truncationDisclosure: result.truncationDisclosure
       },
       null,

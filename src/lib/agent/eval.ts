@@ -114,7 +114,7 @@ export type EvalCase = z.infer<typeof evalCaseSchema>;
 
 export function isExplicitAbstention(answer: string): boolean {
   return (
-    /模型在允许的最大轮次内没有生成最终回答/.test(answer) ||
+    /模型在允许的最大(?:轮次|步骤|\s*model steps?)内没有生成最终回答/.test(answer) ||
     /(?:无法|不能|不足以|不支持)(?:直接)?(?:回答|给出|确定|判断|计算|推断|说明|支持)/.test(answer)
   );
 }

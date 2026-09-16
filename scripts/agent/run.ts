@@ -1,5 +1,4 @@
-import { runDataAgent } from '../../src/lib/server/agent/runtime.js';
-import { createDeepSeekClientFromEnv } from '../../src/lib/server/agent/providers/deepseek.js';
+import { DataAgentError, runDataAgent } from '../../src/lib/server/agent/runtime.js';
 
 function parseArguments(args: string[]) {
   const debug = args.includes('--debug');
@@ -13,7 +12,7 @@ function parseArguments(args: string[]) {
 
 async function main() {
   const { debug, question } = parseArguments(process.argv.slice(2));
-  const result = await runDataAgent(question, { client: createDeepSeekClientFromEnv() });
+  const result = await runDataAgent(question);
   console.log(JSON.stringify(result.answer, null, 2));
   if (debug)
     console.error(
@@ -23,7 +22,7 @@ async function main() {
           toolCalls: result.toolCalls,
           usage: result.usage,
           modelTrace: result.modelTrace,
-          finalization: result.finalization,
+          answerNormalization: result.answerNormalization,
           invalidEvidenceIds: result.invalidEvidenceIds,
           structuredAnswer: result.structuredAnswer,
           hitTurnLimit: result.hitTurnLimit,
@@ -37,7 +36,7 @@ async function main() {
 }
 
 main().catch((error: unknown) => {
-  const message = error instanceof Error ? error.message : 'Agent failed';
-  console.error(message === 'DEEPSEEK_API_KEY is missing' ? message : `Agent error: ${message}`);
+  const message = error instanceof DataAgentError ? error.safeMessage : 'Agent 运行失败。';
+  console.error(`Agent error: ${message}`);
   process.exitCode = 1;
 });

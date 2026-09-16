@@ -1,32 +1,35 @@
 import {
-  modelAnswerCandidateSchema,
-  FINAL_ANSWER_CHAR_LIMIT,
+  APICallError,
+  InvalidToolInputError,
+  NoObjectGeneratedError,
+  NoOutputGeneratedError,
+  Output,
+  RetryError,
+  ToolLoopAgent,
+  stepCountIs,
+  type LanguageModel,
+  type TimeoutConfiguration
+} from 'ai';
+import {
   FINAL_EVIDENCE_LIMIT,
   FINAL_LIMITATION_LIMIT,
-  FINAL_LIMITATION_CHAR_LIMIT,
+  modelAnswerSchema,
   unicodeLength,
+  type AgentThinkingMode,
   type ModelAnswer
 } from '../../agent/contracts.js';
-import { AGENT_TOOL_DEFINITIONS, executeAgentTool, type AgentToolDefinition } from './tools.js';
+import { createDeepSeekModelFromEnv, AgentConfigurationError } from './model.js';
+import {
+  createAgentTools,
+  type AgentToolExecutors,
+  type AgentTools,
+  type AgentToolRuntime
+} from './tools.js';
 
-export const MAX_MODEL_TURNS = 4;
-export const MAX_TOTAL_TOOL_CALLS = 8;
-
-export interface ModelToolCall {
-  id: string;
-  type: 'function';
-  function: { name: string; arguments: string };
-}
-
-export type ModelMessage =
-  | { role: 'system' | 'user'; content: string }
-  | {
-      role: 'assistant';
-      content: string | null;
-      reasoningContent?: string;
-      toolCalls?: ModelToolCall[];
-    }
-  | { role: 'tool'; content: string; toolCallId: string };
+export const MAX_MODEL_STEPS = 4;
+export const AGENT_TOTAL_TIMEOUT_MS = 180_000;
+export const AGENT_STEP_TIMEOUT_MS = 60_000;
+export const AGENT_TOOL_TIMEOUT_MS = 30_000;
 
 export interface ModelUsage {
   inputTokens: number;
@@ -37,39 +40,20 @@ export interface ModelUsage {
   reasoningTokens?: number;
 }
 
-export interface ModelTurn {
-  content: string | null;
-  toolCalls: ModelToolCall[];
-  usage?: ModelUsage;
-  reasoningContent?: string;
-  metadata?: { model?: string; systemFingerprint?: string; finishReason?: string };
-}
-
 export interface AgentModelTraceEntry {
   turn: number;
   latencyMs: number;
   reasoningPresent: boolean;
   reasoningChars: number;
   usage?: ModelUsage;
-  metadata?: ModelTurn['metadata'];
+  metadata?: { model?: string; systemFingerprint?: string; finishReason?: string };
 }
 
-export interface FinalizationTelemetry {
-  retryUsed: boolean;
-  retryReason?: string;
-  contractViolations: string[];
+export interface AnswerNormalizationTelemetry {
   evidenceDeduplicated: number;
   evidenceCapped: number;
   limitationsDeduplicated: number;
   limitationsCapped: number;
-}
-
-export interface ToolCallingModelClient {
-  complete(input: {
-    messages: ModelMessage[];
-    tools: AgentToolDefinition[];
-    signal?: AbortSignal;
-  }): Promise<ModelTurn>;
 }
 
 export interface AgentTraceEntry {
@@ -108,7 +92,7 @@ export interface RunAgentResult {
   usage: ModelUsage;
   trace: AgentTraceEntry[];
   modelTrace: AgentModelTraceEntry[];
-  finalization: FinalizationTelemetry;
+  answerNormalization: AnswerNormalizationTelemetry;
   structuredAnswer: boolean;
   hitTurnLimit: boolean;
   truncationDisclosure: {
@@ -118,37 +102,42 @@ export interface RunAgentResult {
   };
 }
 
-export const DATA_AGENT_SYSTEM_PROMPT = `你是 HSR-Database 的数据分析 Agent。
-所有 HSR-specific factual 或 analytical claims 必须由本轮数据库 tools 返回的数据支持，不得使用模型训练数据中的游戏知识作为事实证据。
-search_entities 只解析用户明确提到的实体名称，不枚举赛期敌人；enemyTemplateId 只交给 enemyTemplateIds，不得当作 MonsterID。query_endgame 用于具体 occurrence rows、global top/bottom 或 drill-down；跨行 count/distinct/min/max/avg 以及分组内 associated extrema 使用 aggregate_endgame。weakness filter 用于缩小 rows，weakness group 只用于按弱点类别比较或汇总。
-混沌回忆/虚构叙事/末日幻影/异相仲裁分别映射为 moc/pf/as/aa；节点 1/上半与节点 2/下半分别映射为 battleSlot 1/2。
-用户说首领/Boss 时使用 enemyRankCategories:["boss"]；按“谁/哪些敌人/Boss”分组时用 enemyTemplate，只有明确要求具体 MonsterID 变体时才用 monster。
-latest 与 current 不同：四个模式的 latest 只按 groupId recency；current 只能由 schedule/open-state 证明。
-只有 tool result 中 evidenceId 或 evidenceIds 字段的值可以引用；entity ID、MonsterID、template ID、groupId/season ID、tool call ID 都不是 evidence ID。
-数据库未明确定义 difficulty、best、strongest、most suitable、recommended、value 或 design intent，且用户没有明确指定 proxy 时，核心请求不可回答：不要调用工具寻找 proxy，不要主动计算或排名，并明确说明无法回答。可以只说明“若用户指定以 HP 为代理，可另做分析”，但不得直接给出代理结果或把它表述为原概念。
-数据库不足、结果 unresolved、runtime-unclear 或 truncated 时明确写入 limitations，不要猜测或连续查询无关 proxy。
-只有当已返回证据满足该结论的逻辑、数学和完整性前提时，才能作出分析性声称。一个可比 observation 只能报告数值，不能声称变化或趋势；候选集被截断时不能声称完整全局排名；所有 metric 都 unresolved 时不能声称极值。
-不得为了制造可回答结果而静默改变用户的时间范围、mode、identity grain、metric 定义、filters 或 current/latest 语义。原 scope 证据不足时先说明不足，可把扩大 scope 或替代 metric 作为后续建议，不得冒充原请求的答案。
-内部 representation 可以指导规划，但普通用户回答必须使用游戏/站点/domain 术语。除非用户明确询问数据口径、实现或 ID，不要在 answer/limitations prose 中主动暴露 groupId、configured-occurrence、enemyTemplate、battleSlot、stageId、evidenceId、ag1/eg1/ent1、runtime-unclear、DecimalString、dataRevision 或 sourceCommit；evidenceIds 机器字段仍正常保留 provenance。
-最终只输出一个 JSON 对象，不要 Markdown：{"answer":"中文回答","evidenceIds":["工具返回的 evidenceId"],"limitations":["限制"]}。
-最终 answer 最多 ${FINAL_ANSWER_CHAR_LIMIT} 个字符；evidenceIds 去重后最多 ${FINAL_EVIDENCE_LIMIT} 个，只引用足够支撑核心结论的证据，聚合结论优先引用 ag1 aggregate evidence，不列出所有底层 occurrence；limitations 去重后最多 ${FINAL_LIMITATION_LIMIT} 项，每项最多 ${FINAL_LIMITATION_CHAR_LIMIT} 个字符。`;
+export type AgentErrorCode =
+  | 'configuration'
+  | 'provider'
+  | 'timeout'
+  | 'invalid-tool-input'
+  | 'structured-output'
+  | 'unexpected';
 
-const FINALIZATION_RETRY_PROMPT = `上一次最终答案未满足 JSON 或长度契约。不要调用工具；保留核心事实、证据前提、原请求 scope 和限制并缩短。普通回答使用游戏/站点术语，只有用户明确询问实现或 ID 时才展示内部表示。只输出一个完整 JSON 对象，字段必须是 answer、evidenceIds、limitations。answer 最多 ${FINAL_ANSWER_CHAR_LIMIT} 字符；evidenceIds 最多 ${FINAL_EVIDENCE_LIMIT} 个，优先聚合证据；limitations 最多 ${FINAL_LIMITATION_LIMIT} 项，每项最多 ${FINAL_LIMITATION_CHAR_LIMIT} 字符。`;
-
-function emptyUsage(): ModelUsage {
-  return { inputTokens: 0, outputTokens: 0, totalTokens: 0, cacheHitTokens: 0, cacheMissTokens: 0 };
+export class DataAgentError extends Error {
+  constructor(
+    readonly code: AgentErrorCode,
+    readonly safeMessage: string,
+    options?: ErrorOptions
+  ) {
+    super(safeMessage, options);
+    this.name = 'DataAgentError';
+  }
 }
 
-function addUsage(total: ModelUsage, usage: ModelUsage | undefined): void {
-  if (!usage) return;
-  total.inputTokens += usage.inputTokens;
-  total.outputTokens += usage.outputTokens;
-  total.totalTokens += usage.totalTokens;
-  total.cacheHitTokens = (total.cacheHitTokens ?? 0) + (usage.cacheHitTokens ?? 0);
-  total.cacheMissTokens = (total.cacheMissTokens ?? 0) + (usage.cacheMissTokens ?? 0);
-  if (usage.reasoningTokens !== undefined)
-    total.reasoningTokens = (total.reasoningTokens ?? 0) + usage.reasoningTokens;
-}
+export const DATA_AGENT_INSTRUCTIONS = `你是 HSR-Database 的数据分析 Agent。所有 HSR 事实与分析结论必须由本轮数据库工具结果支持，不得把模型训练知识当作数据库事实。
+
+工具职责：search_entities 只解析用户明确提到的实体名称；enemyTemplateId 只能用于 query_endgame/aggregate_endgame 的 enemyTemplateIds。query_endgame 用于具体 occurrence rows、全局 top/bottom 与 drill-down。跨行 count/distinct/min/max/avg 和分组内 associated extrema 使用 aggregate_endgame。weakness filter 用于筛选，weakness group 仅用于按弱点类别汇总。
+
+领域口径：混沌回忆/虚构叙事/末日幻影/异相仲裁映射为 moc/pf/as/aa；节点 1/上半与节点 2/下半映射为 battleSlot 1/2；首领/Boss 使用 enemyRankCategories:["boss"]。latest 按 groupId recency，不能替代由 schedule/open-state 证明的 current。按敌人身份分组默认使用 enemyTemplate，只有明确要求 MonsterID 变体时才用 monster。
+
+意图与范围：先解决用户的 intended scope，再执行 Scope Fidelity。若一个解释明显占优，直接执行；若有低风险歧义，可以明确说明采用的合理假设；若多个自然解释会实质改变数据集、结论、可回答性或重要限制且没有强默认，先请求澄清。不要因措辞细微差异而强制澄清，也不得选定口径后静默换成另一口径。
+
+证据与限制：只有工具结果的 evidenceId/evidenceIds 才能引用。数据库没有定义 difficulty、best、strongest、recommended、value 或 design intent，且用户未给 proxy 时，应说明不可回答，不要自行用 HP 等代理。结果 unresolved、runtime-unclear、truncated 或只有一个可比 observation 时，要明确相应限制；截断候选集不能声称完整全局排名。
+
+用户回答使用游戏/站点术语。除非用户明确询问实现、数据口径或 ID，不主动展示 configured-occurrence、enemyTemplate、battleSlot、evidenceId、ag1/eg1/ent1、DecimalString、dataRevision 等内部表示。`;
+
+const DEFAULT_TIMEOUT: TimeoutConfiguration<AgentTools> = {
+  totalMs: AGENT_TOTAL_TIMEOUT_MS,
+  stepMs: AGENT_STEP_TIMEOUT_MS,
+  toolMs: AGENT_TOOL_TIMEOUT_MS
+};
 
 function collectEvidence(
   value: unknown,
@@ -176,7 +165,18 @@ function collectEvidence(
   }
 }
 
-function traceSummary(result: unknown, toolResultBytes: number): AgentTraceEntry['summary'] {
+function resultErrorCode(result: unknown): string | undefined {
+  if (!result || typeof result !== 'object') return undefined;
+  const error = (result as { error?: unknown }).error;
+  if (!error || typeof error !== 'object') return undefined;
+  return typeof (error as { code?: unknown }).code === 'string'
+    ? (error as { code: string }).code
+    : undefined;
+}
+
+function traceSummary(result: unknown): AgentTraceEntry['summary'] {
+  const serialized = JSON.stringify(result ?? null);
+  const toolResultBytes = Buffer.byteLength(serialized, 'utf8');
   if (!result || typeof result !== 'object') return { toolResultBytes };
   const record = result as Record<string, unknown>;
   const evidence = new Map<string, boolean>();
@@ -220,41 +220,35 @@ function traceDetails(
   };
 }
 
-function parseAnswer(content: string | null): {
-  answer: ModelAnswer;
-  structured: boolean;
-  violation?: string;
-} {
-  const trimmed = content?.trim() ?? '';
-  const fenced = /^```json[\t ]*\r?\n([\s\S]*?)\r?\n```$/i.exec(trimmed);
-  const candidate = fenced?.[1] ?? trimmed;
-  if (candidate) {
-    try {
-      const parsed = modelAnswerCandidateSchema.safeParse(JSON.parse(candidate));
-      if (parsed.success) {
-        if (unicodeLength(parsed.data.answer) > FINAL_ANSWER_CHAR_LIMIT)
-          return { answer: parsed.data, structured: false, violation: 'answer-too-long' };
-        if (
-          parsed.data.limitations.some(
-            (value) => unicodeLength(value) > FINAL_LIMITATION_CHAR_LIMIT
-          )
-        )
-          return { answer: parsed.data, structured: false, violation: 'limitation-too-long' };
-        return { answer: parsed.data, structured: true };
-      }
-    } catch {
-      // Fall through to the explicit baseline fallback.
-    }
-  }
+function usage(value: {
+  inputTokens?: number;
+  outputTokens?: number;
+  totalTokens?: number;
+  inputTokenDetails?: { cacheReadTokens?: number; noCacheTokens?: number };
+  outputTokenDetails?: { reasoningTokens?: number };
+}): ModelUsage {
   return {
-    answer: {
-      answer: '模型未返回满足结构化最终答案契约的回答。',
-      evidenceIds: [],
-      limitations: ['模型未返回约定的结构化 JSON 最终答案。']
-    },
-    structured: false,
-    violation: trimmed ? 'invalid-json' : 'empty'
+    inputTokens: value.inputTokens ?? 0,
+    outputTokens: value.outputTokens ?? 0,
+    totalTokens: value.totalTokens ?? 0,
+    ...(value.inputTokenDetails?.cacheReadTokens !== undefined
+      ? { cacheHitTokens: value.inputTokenDetails.cacheReadTokens }
+      : {}),
+    ...(value.inputTokenDetails?.noCacheTokens !== undefined
+      ? { cacheMissTokens: value.inputTokenDetails.noCacheTokens }
+      : {}),
+    ...(value.outputTokenDetails?.reasoningTokens !== undefined
+      ? { reasoningTokens: value.outputTokenDetails.reasoningTokens }
+      : {})
   };
+}
+
+function providerFingerprint(providerMetadata: unknown): string | undefined {
+  if (!providerMetadata || typeof providerMetadata !== 'object') return undefined;
+  const deepseek = (providerMetadata as Record<string, unknown>).deepseek;
+  if (!deepseek || typeof deepseek !== 'object') return undefined;
+  const fingerprint = (deepseek as Record<string, unknown>).systemFingerprint;
+  return typeof fingerprint === 'string' ? fingerprint : undefined;
 }
 
 function hasTruncationDisclosure(limitations: readonly string[]): boolean {
@@ -262,7 +256,7 @@ function hasTruncationDisclosure(limitations: readonly string[]): boolean {
 }
 
 function finalizeAnswer(input: {
-  parsed: { answer: ModelAnswer; structured: boolean };
+  answer: ModelAnswer;
   evidenceLedger: Map<string, boolean>;
   trace: AgentTraceEntry[];
   turns: number;
@@ -270,29 +264,16 @@ function finalizeAnswer(input: {
   usage: ModelUsage;
   hitTurnLimit: boolean;
   modelTrace: AgentModelTraceEntry[];
-  finalization: FinalizationTelemetry;
+  structuredAnswer: boolean;
 }): RunAgentResult {
-  if (!input.parsed.structured) input.parsed = parseAnswer(null);
   const invalidEvidenceIds = [
-    ...new Set(input.parsed.answer.evidenceIds.filter((id) => !input.evidenceLedger.has(id)))
+    ...new Set(input.answer.evidenceIds.filter((id) => !input.evidenceLedger.has(id)))
   ];
-  const acceptedEvidenceIds = [
-    ...new Set(input.parsed.answer.evidenceIds.filter((id) => input.evidenceLedger.has(id)))
+  const uniqueEvidence = [
+    ...new Set(input.answer.evidenceIds.filter((id) => input.evidenceLedger.has(id)))
   ];
-  input.finalization.evidenceDeduplicated =
-    input.parsed.answer.evidenceIds.length - new Set(input.parsed.answer.evidenceIds).size;
-  input.finalization.evidenceCapped = Math.max(
-    0,
-    acceptedEvidenceIds.length - FINAL_EVIDENCE_LIMIT
-  );
-  acceptedEvidenceIds.splice(FINAL_EVIDENCE_LIMIT);
-  const uniqueLimitations = [...new Set(input.parsed.answer.limitations)];
-  input.finalization.limitationsDeduplicated =
-    input.parsed.answer.limitations.length - uniqueLimitations.length;
-  input.finalization.limitationsCapped = Math.max(
-    0,
-    uniqueLimitations.length - FINAL_LIMITATION_LIMIT
-  );
+  const acceptedEvidenceIds = uniqueEvidence.slice(0, FINAL_EVIDENCE_LIMIT);
+  const uniqueLimitations = [...new Set(input.answer.limitations)];
   const limitations = uniqueLimitations.slice(0, FINAL_LIMITATION_LIMIT);
   const anyTruncatedResult = input.trace.some(({ summary }) => summary.truncated === true);
   const citedTruncatedResult = acceptedEvidenceIds.some(
@@ -302,199 +283,181 @@ function finalizeAnswer(input: {
     citedTruncatedResult || (!acceptedEvidenceIds.length && anyTruncatedResult);
   const modelProvided = hasTruncationDisclosure(limitations);
   const runtimeEnforced = truncationRequired && !modelProvided;
-  if (runtimeEnforced)
+  if (runtimeEnforced) {
     for (const entry of input.trace)
       if (entry.summary.truncated) entry.runtimeEnforcedLimitation = true;
-  if (runtimeEnforced) {
-    if (limitations.length === FINAL_LIMITATION_LIMIT) {
-      limitations.pop();
-      input.finalization.limitationsCapped += 1;
-    }
+    if (limitations.length === FINAL_LIMITATION_LIMIT) limitations.pop();
     limitations.push('用于结论的工具结果已截断，答案可能不完整。');
   }
+
   return {
-    answer: {
-      ...input.parsed.answer,
-      evidenceIds: acceptedEvidenceIds,
-      limitations
-    },
+    answer: { ...input.answer, evidenceIds: acceptedEvidenceIds, limitations },
     invalidEvidenceIds,
     turns: input.turns,
     toolCalls: input.toolCalls,
     usage: input.usage,
     trace: input.trace,
     modelTrace: input.modelTrace,
-    finalization: input.finalization,
-    structuredAnswer: input.parsed.structured,
+    answerNormalization: {
+      evidenceDeduplicated:
+        input.answer.evidenceIds.length - new Set(input.answer.evidenceIds).size,
+      evidenceCapped: Math.max(0, uniqueEvidence.length - FINAL_EVIDENCE_LIMIT),
+      limitationsDeduplicated:
+        input.answer.limitations.length - new Set(input.answer.limitations).size,
+      limitationsCapped: Math.max(0, uniqueLimitations.length - FINAL_LIMITATION_LIMIT)
+    },
+    structuredAnswer: input.structuredAnswer,
     hitTurnLimit: input.hitTurnLimit,
-    truncationDisclosure: {
-      required: truncationRequired,
-      modelProvided,
-      runtimeEnforced
-    }
+    truncationDisclosure: { required: truncationRequired, modelProvided, runtimeEnforced }
   };
+}
+
+function errorCode(error: unknown): string {
+  if (InvalidToolInputError.isInstance(error)) return 'INVALID_ARGUMENTS';
+  if (typeof error === 'string' && /InvalidToolInputError/.test(error)) return 'INVALID_ARGUMENTS';
+  if (error && typeof error === 'object' && 'name' in error)
+    return /InvalidToolInputError/.test(String((error as { name: unknown }).name))
+      ? 'INVALID_ARGUMENTS'
+      : String((error as { name: unknown }).name);
+  return 'TOOL_ERROR';
+}
+
+function mapAgentError(error: unknown): DataAgentError {
+  if (error instanceof DataAgentError) return error;
+  if (error instanceof AgentConfigurationError)
+    return new DataAgentError('configuration', error.message, { cause: error });
+  if (InvalidToolInputError.isInstance(error))
+    return new DataAgentError('invalid-tool-input', '模型生成了无效的工具参数。', {
+      cause: error
+    });
+  if (NoObjectGeneratedError.isInstance(error) || NoOutputGeneratedError.isInstance(error))
+    return new DataAgentError('structured-output', '模型未返回满足约定结构的最终答案。', {
+      cause: error
+    });
+  if (
+    (error instanceof DOMException && ['AbortError', 'TimeoutError'].includes(error.name)) ||
+    (RetryError.isInstance(error) && error.reason === 'abort')
+  )
+    return new DataAgentError('timeout', 'Agent 请求超时或已取消。', { cause: error });
+  if (APICallError.isInstance(error) || RetryError.isInstance(error))
+    return new DataAgentError('provider', '模型服务暂时不可用。', { cause: error });
+  return new DataAgentError('unexpected', 'Agent 运行失败。', { cause: error });
+}
+
+export interface RunDataAgentOptions {
+  model?: LanguageModel;
+  environment?: NodeJS.ProcessEnv;
+  thinkingMode?: AgentThinkingMode;
+  signal?: AbortSignal;
+  traceDetails?: boolean;
+  timeout?: TimeoutConfiguration<AgentTools>;
+  toolExecutors?: Partial<AgentToolExecutors>;
 }
 
 export async function runDataAgent(
   question: string,
-  options: { client: ToolCallingModelClient; signal?: AbortSignal; traceDetails?: boolean }
+  options: RunDataAgentOptions = {}
 ): Promise<RunAgentResult> {
-  if (!question.trim()) throw new Error('问题不能为空');
-  const messages: ModelMessage[] = [
-    { role: 'system', content: DATA_AGENT_SYSTEM_PROMPT },
-    { role: 'user', content: question.trim() }
-  ];
-  const evidenceLedger = new Map<string, boolean>();
-  const trace: AgentTraceEntry[] = [];
-  const modelTrace: AgentModelTraceEntry[] = [];
-  const finalization: FinalizationTelemetry = {
-    retryUsed: false,
-    contractViolations: [],
-    evidenceDeduplicated: 0,
-    evidenceCapped: 0,
-    limitationsDeduplicated: 0,
-    limitationsCapped: 0
-  };
-  const usage = emptyUsage();
-  let totalToolCalls = 0;
-  let finalizationOnly = false;
-  let finalizationRetryUsed = false;
+  if (!question.trim()) throw new DataAgentError('unexpected', '问题不能为空');
 
-  for (let turn = 1; turn <= MAX_MODEL_TURNS; turn += 1) {
-    const modelStarted = performance.now();
-    const modelTurn = await options.client.complete({
-      messages,
-      tools: finalizationOnly ? [] : AGENT_TOOL_DEFINITIONS,
-      signal: options.signal
+  try {
+    const runtime: AgentToolRuntime = { executedToolCalls: 0 };
+    const tools = createAgentTools(runtime, options.toolExecutors);
+    const model = options.model ?? createDeepSeekModelFromEnv(options.environment);
+    const agent = new ToolLoopAgent({
+      id: 'hsr-data-agent',
+      model,
+      instructions: DATA_AGENT_INSTRUCTIONS,
+      tools,
+      output: Output.object({
+        name: 'hsr_data_answer',
+        description: 'HSR 数据回答、支持该回答的证据 ID 与重要限制。',
+        schema: modelAnswerSchema
+      }),
+      stopWhen: stepCountIs(MAX_MODEL_STEPS),
+      maxRetries: 1,
+      maxOutputTokens: 2048,
+      reasoning: options.thinkingMode === 'low' ? 'low' : 'none',
+      timeout: options.timeout ?? DEFAULT_TIMEOUT,
+      include: { requestBody: false, requestMessages: false, responseBody: false }
     });
-    addUsage(usage, modelTurn.usage);
-    modelTrace.push({
-      turn,
-      latencyMs: Math.round(performance.now() - modelStarted),
-      reasoningPresent: modelTurn.reasoningContent !== undefined,
-      reasoningChars: unicodeLength(modelTurn.reasoningContent ?? ''),
-      ...(modelTurn.usage ? { usage: modelTurn.usage } : {}),
-      ...(modelTurn.metadata ? { metadata: modelTurn.metadata } : {})
+
+    const result = await agent.generate({
+      prompt: question.trim(),
+      ...(options.signal ? { abortSignal: options.signal } : {})
     });
-    messages.push({
-      role: 'assistant',
-      content: modelTurn.content,
-      ...(modelTurn.reasoningContent !== undefined
-        ? { reasoningContent: modelTurn.reasoningContent }
-        : {}),
-      ...(modelTurn.toolCalls.length ? { toolCalls: modelTurn.toolCalls } : {})
-    });
-    if (finalizationOnly && modelTurn.toolCalls.length) {
-      return finalizeAnswer({
-        parsed: parseAnswer(null),
-        evidenceLedger,
-        trace,
-        turns: turn,
-        toolCalls: totalToolCalls,
-        usage,
-        hitTurnLimit: false,
-        modelTrace,
-        finalization
-      });
-    }
-    if (!modelTurn.toolCalls.length) {
-      const parsed = parseAnswer(modelTurn.content);
-      if (parsed.violation) finalization.contractViolations.push(parsed.violation);
-      if (!parsed.structured && !finalizationRetryUsed && turn < MAX_MODEL_TURNS) {
-        finalizationRetryUsed = true;
-        finalizationOnly = true;
-        finalization.retryUsed = true;
-        finalization.retryReason =
-          modelTurn.metadata?.finishReason === 'length' ? 'output-truncated' : parsed.violation;
-        messages.push({ role: 'user', content: FINALIZATION_RETRY_PROMPT });
-        continue;
+    const evidenceLedger = new Map<string, boolean>();
+    const trace: AgentTraceEntry[] = [];
+    const modelTrace: AgentModelTraceEntry[] = result.steps.map((step) => ({
+      turn: step.stepNumber + 1,
+      latencyMs: Math.round(step.performance.responseTimeMs),
+      reasoningPresent: step.reasoningText !== undefined,
+      reasoningChars: unicodeLength(step.reasoningText ?? ''),
+      usage: usage(step.usage),
+      metadata: {
+        model: step.model.modelId,
+        finishReason: step.finishReason,
+        ...(providerFingerprint(step.providerMetadata)
+          ? { systemFingerprint: providerFingerprint(step.providerMetadata) }
+          : {})
       }
-      return finalizeAnswer({
-        parsed,
-        evidenceLedger,
-        trace,
-        turns: turn,
-        toolCalls: totalToolCalls,
-        usage,
-        hitTurnLimit: false,
-        modelTrace,
-        finalization
-      });
+    }));
+
+    for (const step of result.steps) {
+      const outputs = new Map(
+        step.content
+          .filter((part) => part.type === 'tool-result' || part.type === 'tool-error')
+          .map((part) => [part.toolCallId, part] as const)
+      );
+      for (const call of step.toolCalls) {
+        const output = outputs.get(call.toolCallId);
+        const value = output?.type === 'tool-result' ? output.output : undefined;
+        if (value !== undefined) collectEvidence(value, evidenceLedger);
+        const callEvidence = new Map<string, boolean>();
+        if (value !== undefined) collectEvidence(value, callEvidence);
+        const resultCode = resultErrorCode(value);
+        trace.push({
+          turn: step.stepNumber + 1,
+          toolCallId: call.toolCallId,
+          tool: call.toolName,
+          validatedArgs: call.input,
+          ok: output?.type === 'tool-result' && resultCode === undefined,
+          ...(resultCode
+            ? { errorCode: resultCode }
+            : output?.type === 'tool-error'
+              ? { errorCode: errorCode(output.error) }
+              : {}),
+          latencyMs: Math.round(step.performance.toolExecutionMs[call.toolCallId] ?? 0),
+          summary: traceSummary(value ?? (output?.type === 'tool-error' ? { error: true } : null)),
+          ...(options.traceDetails && value !== undefined
+            ? { details: traceDetails(value, [...callEvidence.keys()]) }
+            : {})
+        });
+      }
     }
 
-    const remainingToolCalls = Math.max(0, MAX_TOTAL_TOOL_CALLS - totalToolCalls);
-    const results = await Promise.all(
-      modelTurn.toolCalls.map(async (toolCall, index) => {
-        if (index >= remainingToolCalls) {
-          const result = {
-            error: {
-              code: 'TOOL_CALL_LIMIT_EXCEEDED',
-              retryable: false,
-              hint: 'Do not call more tools; answer from the results already returned.'
-            }
-          };
-          return { toolCall, result, ok: false, latencyMs: 0 };
+    const hitTurnLimit =
+      result.steps.length >= MAX_MODEL_STEPS && result.finishReason === 'tool-calls';
+    const answer: ModelAnswer = hitTurnLimit
+      ? {
+          answer: '模型在允许的最大步骤内没有生成最终回答。',
+          evidenceIds: [],
+          limitations: [`已达到 ${MAX_MODEL_STEPS} 个 model steps 上限。`]
         }
-        totalToolCalls += 1;
-        const started = performance.now();
-        const executed = await executeAgentTool(
-          toolCall.function.name,
-          toolCall.function.arguments
-        );
-        return {
-          toolCall,
-          result: executed.result,
-          validatedArgs: executed.validatedArgs,
-          ok: executed.ok,
-          latencyMs: Math.round(performance.now() - started)
-        };
-      })
-    );
-    for (const executed of results) {
-      const serializedResult = JSON.stringify(executed.result);
-      collectEvidence(executed.result, evidenceLedger);
-      const record = executed.result as { error?: { code?: string }; warnings?: unknown[] };
-      const resultEvidence = new Map<string, boolean>();
-      collectEvidence(executed.result, resultEvidence);
-      trace.push({
-        turn,
-        toolCallId: executed.toolCall.id,
-        tool: executed.toolCall.function.name,
-        ...(executed.validatedArgs !== undefined ? { validatedArgs: executed.validatedArgs } : {}),
-        ok: executed.ok,
-        ...(record.error?.code ? { errorCode: record.error.code } : {}),
-        ...(options.traceDetails
-          ? {
-              details: traceDetails(executed.result, [...resultEvidence.keys()])
-            }
-          : {}),
-        latencyMs: executed.latencyMs,
-        summary: traceSummary(executed.result, Buffer.byteLength(serializedResult, 'utf8'))
-      });
-      messages.push({
-        role: 'tool',
-        toolCallId: executed.toolCall.id,
-        content: serializedResult
-      });
-    }
-  }
+      : result.output;
 
-  return finalizeAnswer({
-    parsed: {
-      answer: {
-        answer: '模型在允许的最大轮次内没有生成最终回答。',
-        evidenceIds: [],
-        limitations: [`已达到 ${MAX_MODEL_TURNS} 个 model turns 上限。`]
-      },
-      structured: true
-    },
-    evidenceLedger,
-    trace,
-    turns: MAX_MODEL_TURNS,
-    toolCalls: totalToolCalls,
-    usage,
-    hitTurnLimit: true,
-    modelTrace,
-    finalization
-  });
+    return finalizeAnswer({
+      answer,
+      evidenceLedger,
+      trace,
+      turns: result.steps.length,
+      toolCalls: runtime.executedToolCalls,
+      usage: usage(result.usage),
+      hitTurnLimit,
+      modelTrace,
+      structuredAnswer: !hitTurnLimit
+    });
+  } catch (error) {
+    throw mapAgentError(error);
+  }
 }

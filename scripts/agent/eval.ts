@@ -2,17 +2,18 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
+import { fingerprintTools } from 'ai';
 import { evalCaseSchema, isExplicitAbstention, type EvalCase } from '../../src/lib/agent/eval.js';
 import {
-  DATA_AGENT_SYSTEM_PROMPT,
+  DATA_AGENT_INSTRUCTIONS,
   runDataAgent,
   type RunAgentResult
 } from '../../src/lib/server/agent/runtime.js';
 import { type AgentThinkingMode } from '../../src/lib/agent/contracts.js';
-import { AGENT_TOOL_DEFINITIONS } from '../../src/lib/server/agent/tools.js';
+import { createDeepSeekModelFromEnv } from '../../src/lib/server/agent/model.js';
+import { createAgentTools } from '../../src/lib/server/agent/tools.js';
 import { getAgentDataVersion } from '../../src/lib/server/agent/data-version.js';
 import { redactSecrets } from './inspector.js';
-import { createDeepSeekClientFromEnv } from '../../src/lib/server/agent/providers/deepseek.js';
 
 type Split = 'dev' | 'held-out' | 'all';
 type Suite = 'frozen' | 'generalization-v1';
@@ -101,7 +102,16 @@ function isSubset(expected: unknown, actual: unknown): boolean {
   );
 }
 
+export function isIntentResolved(answer: string): boolean {
+  return (
+    /(?:请问|请确认|需要确认|你指的是).*(?:还是|是指|口径|范围)/s.test(answer) ||
+    /(?:我将|本回答|下文|暂按|按).{0,40}(?:理解为|口径|假设|解释)/s.test(answer)
+  );
+}
+
 export function score(testCase: EvalCase, result: RunAgentResult) {
+  const ambiguityCase = testCase.tags.includes('ambiguity');
+  const ambiguityHandled = !ambiguityCase || isIntentResolved(result.answer.answer);
   const tools = result.trace.map(({ tool }) => tool);
   const warnings = new Set(result.trace.flatMap(({ summary }) => summary.warnings ?? []));
   const expectedTools = testCase.gold.expectedTools.every((tool) => tools.includes(tool));
@@ -136,7 +146,9 @@ export function score(testCase: EvalCase, result: RunAgentResult) {
     return next?.tool === entry.tool && next.ok;
   }).length;
   return {
-    firstToolEligible: !!firstExpected,
+    ambiguityCase,
+    ambiguityHandled,
+    firstToolEligible: !!firstExpected && !ambiguityCase,
     firstToolName: !!firstExpected && first?.tool === firstExpected,
     firstToolKeyArguments:
       !!firstExpected &&
@@ -175,17 +187,22 @@ export function score(testCase: EvalCase, result: RunAgentResult) {
         ? result.toolCalls
         : result.trace.filter(({ tool }) => testCase.gold.forbiddenTools.includes(tool as never))
             .length,
-    passed:
-      expectedTools &&
-      forbiddenTools &&
-      keyArguments &&
-      facts &&
-      presentation &&
-      warningMatch &&
-      evidence &&
-      abstained &&
-      result.structuredAnswer &&
-      truncationPreserved
+    passed: ambiguityCase
+      ? ambiguityHandled &&
+        forbiddenTools &&
+        presentation &&
+        result.structuredAnswer &&
+        truncationPreserved
+      : expectedTools &&
+        forbiddenTools &&
+        keyArguments &&
+        facts &&
+        presentation &&
+        warningMatch &&
+        evidence &&
+        abstained &&
+        result.structuredAnswer &&
+        truncationPreserved
   };
 }
 
@@ -254,9 +271,7 @@ async function main() {
   );
   if (!args.model) return;
 
-  const clients = new Map(
-    args.modes.map((mode) => [mode, createDeepSeekClientFromEnv(process.env, undefined, mode)])
-  );
+  const models = new Map(args.modes.map((mode) => [mode, createDeepSeekModelFromEnv(process.env)]));
   const secrets = [process.env.DEEPSEEK_API_KEY ?? ''];
   const runId = new Date().toISOString().replaceAll(':', '-').replaceAll('.', '-');
   const auditRoot = path.join(process.cwd(), 'data', 'audit', 'agent', runId);
@@ -268,8 +283,10 @@ async function main() {
     order: `repetition → corpus case → ${args.modes.join(' then ')}`,
     model: process.env.DEEPSEEK_MODEL ?? 'deepseek-flash',
     dataVersion: await getAgentDataVersion(),
-    promptHash: hash(DATA_AGENT_SYSTEM_PROMPT),
-    toolsHash: hash(JSON.stringify(AGENT_TOOL_DEFINITIONS)),
+    promptHash: hash(DATA_AGENT_INSTRUCTIONS),
+    toolsHash: hash(
+      JSON.stringify(await fingerprintTools(createAgentTools({ executedToolCalls: 0 })))
+    ),
     corpusHashes:
       args.suite === 'frozen'
         ? {
@@ -293,7 +310,8 @@ async function main() {
         const started = performance.now();
         try {
           const result = await runDataAgent(testCase.question, {
-            client: clients.get(thinkingMode)!
+            model: models.get(thinkingMode)!,
+            thinkingMode
           });
           const record = {
             thinkingMode,
@@ -390,6 +408,7 @@ function summarize(
   const unsupported = completed.filter(({ score: item }) => item.unsupported);
   const supported = completed.filter(({ score: item }) => item.supported);
   const firstEligible = completed.filter(({ score: item }) => item.firstToolEligible);
+  const ambiguityCases = completed.filter(({ score: item }) => item.ambiguityCase);
   const toolResultBytes = completed.flatMap(({ result }) =>
     result.trace.map(({ summary }) => summary.toolResultBytes)
   );
@@ -421,6 +440,10 @@ function summarize(
         firstEligible.filter(({ score: item }) => item.firstToolKeyArguments).length,
         firstEligible.length
       ),
+      ambiguityHandling: ratio(
+        ambiguityCases.filter(({ score: item }) => item.ambiguityHandled).length,
+        ambiguityCases.length
+      ),
       invalidToolCallCount: completed.reduce(
         (total, { score: item }) => total + item.invalidToolCallCount,
         0
@@ -429,7 +452,6 @@ function summarize(
         completed.reduce((total, { score: item }) => total + item.recoveryCount, 0),
         completed.reduce((total, { score: item }) => total + item.schemaInvalidCallCount, 0)
       ),
-      finalizationRetries: completed.filter(({ result }) => result.finalization.retryUsed).length,
       strictContract: ratio(passed, completed.length),
       expectedToolPresent: ratio(count('expectedTools'), completed.length),
       forbiddenToolAvoided: ratio(count('forbiddenTools'), completed.length),

@@ -26,6 +26,12 @@ Use src/lib/i18n/routing.ts for canonicalization, localized internal hrefs, and 
 
 Changelog metadata uses stable IDs and ISO machine dates in src/lib/content/changelog/entries.ts. Maintainers add or edit matching .svx files under both src/lib/content/changelog/zh-CN and src/lib/content/changelog/en. Validation rejects missing, duplicate, or orphan entries.
 
+## Local data Agent boundary
+
+The developer-only HSR Data Agent uses Vercel AI SDK 7 `ToolLoopAgent` with the official DeepSeek provider. AI SDK owns model steps, validated tool calling, provider protocol handling, reasoning transport, retries, timeouts, stopping, and structured output. HSR-owned code provides instructions plus the deterministic `search_entities`, `query_endgame`, and `aggregate_endgame` executors, including Decimal, warnings, truncation, and evidence semantics.
+
+The Agent is limited to local CLI, Inspector, profiling, and evaluation. It does not add a SvelteKit endpoint, browser bundle, production service, or deployment dependency; the public site remains fully static. Provider creation and `DEEPSEEK_API_KEY` access stay under `src/lib/server`. Historical Phase 1.x reports describe the replaced handwritten loop and remain non-normative records.
+
 ## Required checks
 
 Before delivery run pnpm data:sync, pnpm assets:ensure, pnpm messages:check, pnpm data:validate, pnpm product:baseline:check, pnpm check, pnpm lint, pnpm test, pnpm build, and relevant E2E/deployment audits. Build-time limitations or known upstream missing-text diagnostics must be recorded in the R6 audit.

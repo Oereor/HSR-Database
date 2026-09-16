@@ -1,6 +1,5 @@
 import { createInterface } from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
-import { createDeepSeekClientFromEnv } from '../../src/lib/server/agent/providers/deepseek.js';
 import {
   formatInspection,
   inspectQuestion,
@@ -11,10 +10,9 @@ import {
 
 async function main() {
   const args = parseInspectorArguments(process.argv.slice(2));
-  const client = createDeepSeekClientFromEnv(process.env, undefined, args.thinkingMode);
   const secrets = [process.env.DEEPSEEK_API_KEY ?? ''];
   const run = async (question: string) => {
-    const inspection = await inspectQuestion(question, args.thinkingMode, client);
+    const inspection = await inspectQuestion(question, args.thinkingMode);
     console.log(formatInspection(inspection, args.verbose, secrets));
     if (args.save)
       console.log(`Saved: ${await saveInspection(inspection, process.cwd(), secrets)}`);

@@ -1,4 +1,6 @@
-import { DATA_AGENT_SYSTEM_PROMPT } from '../../src/lib/server/agent/runtime.js';
+import { fingerprintTools } from 'ai';
+import { z } from 'zod';
+import { DATA_AGENT_INSTRUCTIONS } from '../../src/lib/server/agent/runtime.js';
 import {
   aggregateEndgameInputSchema,
   queryEndgameInputSchema,
@@ -7,7 +9,7 @@ import {
 import { aggregateEndgame } from '../../src/lib/server/agent/endgame-aggregate.js';
 import { queryEndgame } from '../../src/lib/server/agent/endgame-query.js';
 import { searchEntities } from '../../src/lib/server/agent/entity-resolution.js';
-import { AGENT_TOOL_DEFINITIONS } from '../../src/lib/server/agent/tools.js';
+import { createAgentTools } from '../../src/lib/server/agent/tools.js';
 
 function bytes(value: unknown): number {
   return Buffer.byteLength(typeof value === 'string' ? value : JSON.stringify(value), 'utf8');
@@ -24,6 +26,22 @@ function resultSummary(name: string, result: Record<string, unknown>) {
 }
 
 async function main() {
+  const agentTools = createAgentTools({ executedToolCalls: 0 });
+  const toolManifest = {
+    search_entities: {
+      description: agentTools.search_entities.description,
+      inputSchema: z.toJSONSchema(searchEntitiesInputSchema)
+    },
+    query_endgame: {
+      description: agentTools.query_endgame.description,
+      inputSchema: z.toJSONSchema(queryEndgameInputSchema)
+    },
+    aggregate_endgame: {
+      description: agentTools.aggregate_endgame.description,
+      inputSchema: z.toJSONSchema(aggregateEndgameInputSchema)
+    }
+  };
+  const toolFingerprints = await fingerprintTools(agentTools);
   const search = await searchEntities(
     searchEntitiesInputSchema.parse({
       query: '可可利亚',
@@ -55,7 +73,7 @@ async function main() {
   );
   const toolResultBytes = [bytes(search), bytes(query), bytes(aggregate)];
   const simulatedMessages = [
-    { role: 'system', content: DATA_AGENT_SYSTEM_PROMPT },
+    { role: 'system', content: DATA_AGENT_INSTRUCTIONS },
     { role: 'user', content: '代表性离线 profile' },
     { role: 'tool', tool_call_id: 'search', content: JSON.stringify(search) },
     { role: 'tool', tool_call_id: 'query', content: JSON.stringify(query) },
@@ -65,8 +83,9 @@ async function main() {
     JSON.stringify(
       {
         realModelCalls: 0,
-        systemPromptBytes: bytes(DATA_AGENT_SYSTEM_PROMPT),
-        toolDefinitionsBytes: bytes(AGENT_TOOL_DEFINITIONS),
+        systemPromptBytes: bytes(DATA_AGENT_INSTRUCTIONS),
+        toolDefinitionsBytes: bytes(toolManifest),
+        toolFingerprints,
         toolResults: [
           resultSummary('search-entity-ambiguity', search),
           resultSummary('query-moc-default-window', query),
@@ -75,7 +94,7 @@ async function main() {
         totalToolResultBytes: toolResultBytes.reduce((sum, value) => sum + value, 0),
         simulatedMessageHistoryBytesByTurn: simulatedMessages.map((_, index) =>
           bytes({
-            tools: AGENT_TOOL_DEFINITIONS,
+            tools: toolManifest,
             messages: simulatedMessages.slice(0, index + 1)
           })
         )

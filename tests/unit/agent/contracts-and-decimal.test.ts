@@ -1,11 +1,13 @@
 import { describe, expect, it } from 'vitest';
+import { fingerprintTools } from 'ai';
+import { z } from 'zod';
 import {
   aggregateEndgameInputSchema,
   queryEndgameInputSchema,
   searchEntitiesInputSchema
 } from '../../../src/lib/agent/contracts';
 import { averageDecimals, parseDecimal } from '../../../src/lib/domain/decimal';
-import { AGENT_TOOL_DEFINITIONS, executeAgentTool } from '../../../src/lib/server/agent/tools';
+import { createAgentTools } from '../../../src/lib/server/agent/tools';
 
 describe('Agent strict contracts', () => {
   it('拒绝额外字段、越界 limit 和非 zh-CN locale', () => {
@@ -80,46 +82,22 @@ describe('Agent strict contracts', () => {
     ).toBe(false);
   });
 
-  it('从同一 Zod schema 暴露 strict provider JSON Schema', () => {
-    expect(AGENT_TOOL_DEFINITIONS.map(({ function: entry }) => entry.name)).toEqual([
-      'search_entities',
-      'query_endgame',
-      'aggregate_endgame'
-    ]);
-    for (const definition of AGENT_TOOL_DEFINITIONS)
-      expect(definition.function.parameters).toMatchObject({
+  it('从同一 Zod schema 暴露 AI SDK tools 和稳定 fingerprint', async () => {
+    const tools = createAgentTools({ executedToolCalls: 0 });
+    expect(Object.keys(tools)).toEqual(['search_entities', 'query_endgame', 'aggregate_endgame']);
+    for (const schema of [
+      searchEntitiesInputSchema,
+      queryEndgameInputSchema,
+      aggregateEndgameInputSchema
+    ])
+      expect(z.toJSONSchema(schema)).toMatchObject({
         type: 'object',
         additionalProperties: false
       });
-  });
-
-  it('对未知工具和非法 JSON 只返回稳定错误码', async () => {
-    await expect(executeAgentTool('read_file', '{}')).resolves.toMatchObject({
-      ok: false,
-      result: { error: { code: 'UNKNOWN_TOOL' } }
-    });
-    await expect(executeAgentTool('query_endgame', '{')).resolves.toMatchObject({
-      ok: false,
-      result: { error: { code: 'INVALID_JSON' } }
-    });
-  });
-
-  it('非法 enum 返回脱敏字段路径和允许值提示', async () => {
-    const result = await executeAgentTool(
-      'query_endgame',
-      JSON.stringify({ locale: 'zh-CN', filter: { modes: ['AS'] }, include: ['location'] })
-    );
-    expect(result).toMatchObject({
-      ok: false,
-      result: {
-        error: {
-          code: 'INVALID_ARGUMENTS',
-          path: 'filter.modes.0',
-          hint: expect.stringContaining('moc')
-        }
-      }
-    });
-    expect(JSON.stringify(result)).not.toMatch(/\/Users\/|stack|DEEPSEEK/i);
+    expect(Object.keys(await fingerprintTools(tools))).toEqual(Object.keys(tools));
+    expect(tools.search_entities.inputSchema).toBe(searchEntitiesInputSchema);
+    expect(tools.query_endgame.inputSchema).toBe(queryEndgameInputSchema);
+    expect(tools.aggregate_endgame.inputSchema).toBe(aggregateEndgameInputSchema);
   });
 });
 

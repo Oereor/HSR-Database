@@ -7,3 +7,10 @@ confirmModulesPurge: false
 
 allowBuilds:
   esbuild: true
+
+minimumReleaseAgeExclude:
+  - '@ai-sdk/deepseek@3.0.45'
+  - '@ai-sdk/gateway@4.0.82'
+  - '@ai-sdk/provider-utils@5.0.41'
+  - '@ai-sdk/provider@4.0.15'
+  - ai@7.0.102

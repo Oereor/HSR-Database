@@ -2,7 +2,12 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { evalCaseSchema, isExplicitAbstention, type EvalCase } from '../../../src/lib/agent/eval';
-import { loadGeneralizationCorpus, parseArguments, score } from '../../../scripts/agent/eval';
+import {
+  isIntentResolved,
+  loadGeneralizationCorpus,
+  parseArguments,
+  score
+} from '../../../scripts/agent/eval';
 import type { RunAgentResult } from '../../../src/lib/server/agent/runtime';
 
 async function cases(file: string): Promise<EvalCase[]> {
@@ -52,9 +57,7 @@ describe('Agent eval corpus', () => {
         reasoningPresent: false,
         reasoningChars: 0
       })),
-      finalization: {
-        retryUsed: false,
-        contractViolations: [],
+      answerNormalization: {
         evidenceDeduplicated: 0,
         evidenceCapped: 0,
         limitationsDeduplicated: 0,
@@ -77,6 +80,60 @@ describe('Agent eval corpus', () => {
     expect(isExplicitAbstention('数据库不含该指标，无法直接给出结论。')).toBe(true);
     expect(isExplicitAbstention('模型在允许的最大轮次内没有生成最终回答。')).toBe(true);
     expect(isExplicitAbstention('按 HP 口径看，这一期最难。')).toBe(false);
+  });
+
+  it('Case C 的澄清或明示假设不被计为首工具失败', () => {
+    const testCase = evalCaseSchema.parse({
+      id: 'manual-case-c',
+      tags: ['ambiguity'],
+      question: '分析「颁赐者，千军首，天谴之矛」在最近 6 期混沌回忆中的血量变化。',
+      coverage: {
+        modes: ['moc'],
+        metrics: ['hp'],
+        operations: ['scope-check'],
+        grains: ['season', 'enemyTemplate'],
+        timeScope: 'multi-season',
+        answerability: 'partial'
+      },
+      gold: {
+        expectedTools: ['search_entities', 'query_endgame'],
+        forbiddenTools: [],
+        keyArguments: {},
+        facts: [],
+        warnings: [],
+        forbiddenAnswerTerms: [],
+        answerability: 'partial',
+        evidenceRequired: false
+      }
+    });
+    const result = {
+      answer: {
+        answer: '请确认：你指的是全局最近 6 期，还是该敌人最近 6 次出现？',
+        evidenceIds: [],
+        limitations: []
+      },
+      invalidEvidenceIds: [],
+      turns: 1,
+      toolCalls: 0,
+      usage: { inputTokens: 1, outputTokens: 1, totalTokens: 2 },
+      trace: [],
+      modelTrace: [],
+      answerNormalization: {
+        evidenceDeduplicated: 0,
+        evidenceCapped: 0,
+        limitationsDeduplicated: 0,
+        limitationsCapped: 0
+      },
+      structuredAnswer: true,
+      hitTurnLimit: false,
+      truncationDisclosure: { required: false, modelProvided: false, runtimeEnforced: false }
+    } satisfies RunAgentResult;
+    expect(isIntentResolved(result.answer.answer)).toBe(true);
+    expect(score(testCase, result)).toMatchObject({
+      ambiguityHandled: true,
+      firstToolEligible: false,
+      passed: true
+    });
   });
 
   it('ordinary presentation 的 literal forbidden terms 进入独立评分', async () => {
@@ -102,9 +159,7 @@ describe('Agent eval corpus', () => {
         }
       ],
       modelTrace: [],
-      finalization: {
-        retryUsed: false,
-        contractViolations: [],
+      answerNormalization: {
         evidenceDeduplicated: 0,
         evidenceCapped: 0,
         limitationsDeduplicated: 0,
