@@ -1,5 +1,4 @@
 import type {
-  ElementLabel,
   EnemyLevelStats,
   EnemySkillPhase,
   EnemySpecialResistance,
@@ -216,14 +215,4 @@ export function resolveCanonicalEnemyStats(
     defaultLevel: levels.some((row) => row.level === 95) ? 95 : (levels.at(-1)?.level ?? 95),
     levels
   };
-}
-
-export function normalizedElementLabel(
-  rawElement: unknown,
-  normalize: (element: string | undefined) => string | undefined,
-  label: (element: string) => string
-): ElementLabel | undefined {
-  const source = String(rawElement ?? '');
-  const element = normalize(source);
-  return element ? { element, name: label(source) } : undefined;
 }

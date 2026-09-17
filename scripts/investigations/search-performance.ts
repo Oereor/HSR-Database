@@ -4,24 +4,67 @@ import { gzipSync } from 'node:zlib';
 import { chromium, devices } from '@playwright/test';
 import { build } from 'vite';
 import { siteRoot } from '../data/paths.js';
-import type { GlobalSearchIndex } from '../../src/lib/domain/search-index.js';
+import { artifactPath, readDataManifest } from '../data/generated-artifacts.js';
+import {
+  GLOBAL_SEARCH_SCHEMA_VERSION,
+  type GlobalSearchIndex,
+  type SearchLocale
+} from '../../src/lib/domain/search-index.js';
 import type { GlobalSearchCatalogs } from '../../src/lib/search/search.js';
 
 // Run against a production preview, with no other browser tests competing for CPU.
 const origin = process.env.SEARCH_BENCHMARK_URL ?? 'http://127.0.0.1:4173';
+const benchmarkLocale: SearchLocale = 'zh-CN';
 const queries = ['三月七', '丹恒', '丹恒饮月', '银鬃尉官', '的', '者'];
-const bundleBytes = await readFile(path.join(siteRoot, 'static/generated/zh-CN/search.json'));
-const index = JSON.parse(bundleBytes.toString()) as GlobalSearchIndex;
-const catalogs = Object.fromEntries(
-  await Promise.all(
-    ['characters', 'light-cones', 'relics', 'enemies'].map(async (file) => [
-      file === 'light-cones' ? 'lightCones' : file,
-      JSON.parse(
-        await readFile(path.join(siteRoot, `src/lib/generated/catalogs/${file}.json`), 'utf8')
+const catalogFiles = ['characters', 'light-cones', 'relics', 'enemies'] as const;
+const logicalPaths = [
+  `static/generated/${benchmarkLocale}/search.json`,
+  ...catalogFiles.map((file) => `views/${benchmarkLocale}/catalogs/${file}.json`)
+];
+
+async function loadBenchmarkInputs(): Promise<{
+  bundleBytes: Buffer;
+  index: GlobalSearchIndex;
+  catalogs: GlobalSearchCatalogs;
+}> {
+  const expectedPaths = logicalPaths.map((logicalPath) => artifactPath(logicalPath));
+  try {
+    const manifest = await readDataManifest();
+    if (!manifest.publicLocales.includes(benchmarkLocale))
+      throw new Error(`Locale is not publicly generated: ${benchmarkLocale}`);
+    for (const logicalPath of logicalPaths)
+      if (!(logicalPath in manifest.artifacts))
+        throw new Error(`Generated data manifest is missing ${logicalPath}`);
+
+    const bundleBytes = await readFile(expectedPaths[0]);
+    const index = JSON.parse(bundleBytes.toString()) as GlobalSearchIndex;
+    if (index.locale !== benchmarkLocale || index.schemaVersion !== GLOBAL_SEARCH_SCHEMA_VERSION)
+      throw new Error(
+        `Search bundle identity mismatch: locale=${index.locale}, schemaVersion=${index.schemaVersion}`
+      );
+    const catalogs = Object.fromEntries(
+      await Promise.all(
+        catalogFiles.map(async (file, index) => [
+          file === 'light-cones' ? 'lightCones' : file,
+          JSON.parse(await readFile(expectedPaths[index + 1], 'utf8'))
+        ])
       )
-    ])
-  )
-) as unknown as GlobalSearchCatalogs;
+    ) as unknown as GlobalSearchCatalogs;
+    return { bundleBytes, index, catalogs };
+  } catch (cause) {
+    throw new Error(
+      [
+        `Search performance input unavailable or incompatible for locale=${benchmarkLocale}.`,
+        'Run `pnpm data:ensure` before benchmarking.',
+        'Expected:',
+        ...expectedPaths.map((file) => `  ${file}`)
+      ].join('\n'),
+      { cause }
+    );
+  }
+}
+
+const { bundleBytes, index, catalogs } = await loadBenchmarkInputs();
 console.log('Preparing browser measurement module');
 const output = await build({
   configFile: false,

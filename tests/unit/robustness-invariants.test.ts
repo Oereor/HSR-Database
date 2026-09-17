@@ -11,8 +11,9 @@ import {
   type ProductProjectionForValidation
 } from '../../scripts/data/robustness-invariants';
 import { classifyProductSkill } from '../../scripts/data/skills';
-import { parseRelicEffectRequirement } from '../../scripts/data/domain/relic';
+import { parseRelicEffectRequirement, parseRelicPieceId } from '../../scripts/data/domain/relic';
 import type { LocalizationHealthSummary } from '../../scripts/data/localization';
+import { assertCrossLocaleStructuralParity } from '../../scripts/data/structural-parity';
 
 const occurrence = (): EnemyOccurrence =>
   ({
@@ -368,6 +369,54 @@ const health = (
   }) as LocalizationHealthSummary;
 
 describe('focused robustness invariants', () => {
+  it('ignores localized wording while rejecting cross-locale identity and numeric drift', () => {
+    const projection = () => ({
+      catalogs: { characters: [], 'light-cones': [], relics: [], enemies: [] },
+      details: {
+        characters: [
+          {
+            id: '1',
+            name: '中文',
+            baseStats: {
+              stages: [{ fromLevel: 1, toLevel: 20, hp: { base: 100, perLevel: 3.5 } }]
+            },
+            profiles: { base: { traces: [{ id: '2', prerequisiteIds: ['1'], type: 'stat' }] } }
+          }
+        ],
+        'light-cones': [],
+        relics: [],
+        enemies: []
+      },
+      relicProperties: [],
+      endgame: { datasets: { moc: {}, pf: {}, as: {}, aa: {} } },
+      globalSearchIndex: { documents: [], endgameTargets: [] },
+      homepage: {},
+      occurrenceShards: {}
+    });
+    const base = projection();
+    const localized = structuredClone(base);
+    localized.details.characters[0].name = 'Arbitrary visible words';
+    expect(assertCrossLocaleStructuralParity(base, localized).differences).toBe(0);
+
+    const numericDrift = structuredClone(localized);
+    numericDrift.details.characters[0].baseStats.stages[0].hp.perLevel = 3.6;
+    expect(() => assertCrossLocaleStructuralParity(base, numericDrift)).toThrow(
+      'Cross-locale structural mismatch'
+    );
+
+    const identityDrift = structuredClone(localized);
+    identityDrift.details.characters[0].profiles.base.traces[0].prerequisiteIds = ['999'];
+    expect(() => assertCrossLocaleStructuralParity(base, identityDrift)).toThrow(
+      'Cross-locale structural mismatch'
+    );
+  });
+
+  it('parses source-backed Relic piece identity strictly', () => {
+    expect(parseRelicPieceId('RelicName_31011')).toBe('31011');
+    expect(() => parseRelicPieceId('31011')).toThrow();
+    expect(() => parseRelicPieceId('RelicName_31011_extra')).toThrow();
+  });
+
   it('accepts a valid graph, reordered identities and legitimate additional groups', () => {
     const { manifest, projection } = fixture();
     expect(validateProductProjection(manifest, projection).errors).toEqual([]);

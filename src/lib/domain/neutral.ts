@@ -78,13 +78,6 @@ export interface NeutralSkillCombatLevel {
   showStanceList?: readonly DecimalString[];
 }
 
-export interface NeutralSkillProgression {
-  id: string;
-  variantIds: string[];
-  availableLevels: number[];
-  defaultLevel: number;
-}
-
 export interface NeutralTrace {
   id: string;
   type: 'stat' | 'ability';

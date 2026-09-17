@@ -17,7 +17,7 @@ import {
   type BuildTextProvenance,
   type TextResolver
 } from './localization.js';
-import { getProductionLocale } from './locale-registry.js';
+import { getPublicLocale } from './locale-registry.js';
 import { getLocaleProjectionPolicy } from './projection/policy.js';
 import { hashOf, mergeConfigSources, readTable } from './raw.js';
 
@@ -169,7 +169,7 @@ export function buildCharacterNames(
 }
 
 export async function deriveCharacterNames(root: string, commit: string, resolver?: TextResolver) {
-  const locale = getProductionLocale();
+  const locale = getPublicLocale();
   const [avatars, ldAvatars, paths, multiplePaths, text, namingOwners] = await Promise.all([
     readTable<AvatarNameRow>(root, 'AvatarConfig'),
     readTable<AvatarNameRow>(root, 'AvatarConfigLD'),

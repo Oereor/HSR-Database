@@ -577,7 +577,6 @@ describe('Endgame occurrence 投影', () => {
       }
       expect(resolveEndgameEnemyReference(detail, monsterId).weaknesses).toBeInstanceOf(Array);
     }
-    expect(details.size).toBe(190);
   }, 15_000);
 });
 

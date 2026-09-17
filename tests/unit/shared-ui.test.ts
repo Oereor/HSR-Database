@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { render } from 'svelte/server';
-import SearchBar from '../../src/lib/components/SearchBar.svelte';
-import SectionNav from '../../src/lib/components/SectionNav.svelte';
+import SearchBar from '../../src/lib/components/search/SearchBar.svelte';
+import SectionNav from '../../src/lib/components/shared/SectionNav.svelte';
 import SectionHeadingFixture from '../fixtures/SectionHeadingFixture.svelte';
-import BaseStatsPanel from '../../src/lib/components/BaseStatsPanel.svelte';
-import SkillCardPanel from '../../src/lib/components/SkillCardPanel.svelte';
-import TraceAbilityHeading from '../../src/lib/components/TraceAbilityHeading.svelte';
-import EidolonCard from '../../src/lib/components/EidolonCard.svelte';
+import BaseStatsPanel from '../../src/lib/components/shared/BaseStatsPanel.svelte';
+import SkillCardPanel from '../../src/lib/components/character/SkillCardPanel.svelte';
+import TraceAbilityHeading from '../../src/lib/components/character/TraceAbilityHeading.svelte';
+import EidolonCard from '../../src/lib/components/character/EidolonCard.svelte';
 import type { BaseStatProgression, Eidolon, SkillCard, Trace } from '../../src/lib/domain/types';
 
 describe('SectionHeading', () => {

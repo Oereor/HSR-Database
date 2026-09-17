@@ -2,16 +2,16 @@
   import { m } from '$lib/paraglide/messages.js';
   import { afterNavigate, goto } from '$app/navigation';
   import { page } from '$app/stores';
-  import CharacterOverviewCard from '$lib/components/CharacterOverviewCard.svelte';
-  import EnemyOverviewCard from '$lib/components/EnemyOverviewCard.svelte';
-  import GameText from '$lib/components/GameText.svelte';
-  import LightConeOverviewCard from '$lib/components/LightConeOverviewCard.svelte';
-  import OverviewGrid from '$lib/components/OverviewGrid.svelte';
-  import OverviewHero from '$lib/components/OverviewHero.svelte';
-  import RelicOverviewCard from '$lib/components/RelicOverviewCard.svelte';
-  import SearchBar from '$lib/components/SearchBar.svelte';
-  import SearchResultWindow from '$lib/components/SearchResultWindow.svelte';
-  import SectionHeading from '$lib/components/SectionHeading.svelte';
+  import CharacterOverviewCard from '$lib/components/character/CharacterOverviewCard.svelte';
+  import EnemyOverviewCard from '$lib/components/enemy/EnemyOverviewCard.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
+  import LightConeOverviewCard from '$lib/components/light-cone/LightConeOverviewCard.svelte';
+  import OverviewGrid from '$lib/components/shared/OverviewGrid.svelte';
+  import OverviewHero from '$lib/components/shared/OverviewHero.svelte';
+  import RelicOverviewCard from '$lib/components/relic/RelicOverviewCard.svelte';
+  import SearchBar from '$lib/components/search/SearchBar.svelte';
+  import SearchResultWindow from '$lib/components/search/SearchResultWindow.svelte';
+  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import EndgameEnemyGrid from '$lib/components/endgame/EndgameEnemyGrid.svelte';
   import {
     getCharacterPreviewUrl,

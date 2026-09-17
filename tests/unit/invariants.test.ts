@@ -73,7 +73,7 @@ describe('重构 invariants', () => {
 
   it('共享 Overview card 不包含 Character 或 Enemy 领域语义', async () => {
     const source = await readFile(
-      path.join(root, 'src', 'lib', 'components', 'EntityOverviewCard.svelte'),
+      path.join(root, 'src', 'lib', 'components', 'shared', 'EntityOverviewCard.svelte'),
       'utf8'
     );
     expect(source).not.toMatch(
@@ -90,7 +90,7 @@ describe('重构 invariants', () => {
 
   it('Compact Entity Card 仅提供展示 slots 与语义化链接', async () => {
     const source = await readFile(
-      path.join(root, 'src', 'lib', 'components', 'CompactEntityCard.svelte'),
+      path.join(root, 'src', 'lib', 'components', 'shared', 'CompactEntityCard.svelte'),
       'utf8'
     );
     expect(source).not.toMatch(/LightCone|RelicSet|Enemy|weakness|rarity|rank/i);

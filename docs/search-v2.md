@@ -93,7 +93,7 @@ Endgame 搜索只索引 173 个名称桶，关联 8,167 个 locators。命中才
 
 基线 pinned data 为 `8cdb905dc2f8e6fffa9be4eb07af3e34435d6091`：97 角色、169 光锥、60 遗器、628 普通敌人，加 173 个 Endgame 名称桶，共 1,127 documents。
 
-测量脚本：`pnpm exec tsx scripts/investigations/search-performance.ts`。先运行生产构建和 `pnpm preview --host 127.0.0.1 --port 4173`，测量期间不要并行运行其他浏览器测试。脚本使用 Desktop Chrome 与 Pixel 5 Chromium 仿真各三轮，关闭每日更新弹窗；100 组查询采样取中位数，每组重复 10 次以改善计时精度。索引构建包含 normalization、Document 构建及 service 映射，不包含下载。提交至结果完成的页面阶段通过 Long Tasks API 记录最长任务与 `sum(max(duration-50,0))` 阻塞时间。移动测量是相同主机上的视口/输入仿真，不代表低端真机 CPU。
+测量脚本：`pnpm exec tsx scripts/investigations/search-performance.ts`。先运行 `pnpm data:ensure`、生产构建和 `pnpm preview --host 127.0.0.1 --port 4173`，测量期间不要并行运行其他浏览器测试。脚本明确测量 `zh-CN`，从当前 `views/zh-CN/catalogs` 与 `static/generated/zh-CN/search.json` 读取输入，并在启动浏览器前检查 manifest、locale 和 Search schema。脚本使用 Desktop Chrome 与 Pixel 5 Chromium 仿真各三轮，关闭每日更新弹窗；100 组查询采样取中位数，每组重复 10 次以改善计时精度。索引构建包含 normalization、Document 构建及 service 映射，不包含下载。提交至结果完成的页面阶段通过 Long Tasks API 记录最长任务与 `sum(max(duration-50,0))` 阻塞时间。移动测量是相同主机上的视口/输入仿真，不代表低端真机 CPU。
 
 未加窗口时，“者”召回 71 个普通目标与 1,804 个 Endgame 实例；三轮最长任务中位数为桌面 2,340 ms、移动 2,351 ms，超过 200 ms 门槛。因此启用计划允许的最小展示改动：普通类别及每个 Endgame 模式首批 100 张，每次增加 100 张，显示已展示数和完整总数。Endgame 沿已有赛期顺序截取，后续赛期可通过加载更多访问。service、候选集合和 shard 目标都保持完整。
 

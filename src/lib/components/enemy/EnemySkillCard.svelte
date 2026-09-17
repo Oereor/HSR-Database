@@ -1,8 +1,8 @@
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
-  import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
-  import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
-  import SkillEffectTag from '$lib/components/SkillEffectTag.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
+  import SkillExtraEffects from '$lib/components/shared/SkillExtraEffects.svelte';
+  import SemanticIconLabel from '$lib/components/shared/SemanticIconLabel.svelte';
+  import SkillEffectTag from '$lib/components/shared/SkillEffectTag.svelte';
   import { getElementColor } from '$lib/domain/elements';
   import { enemySkillAnchorId, type EnemySkillDefinitionView } from '$lib/domain/enemy-view';
 

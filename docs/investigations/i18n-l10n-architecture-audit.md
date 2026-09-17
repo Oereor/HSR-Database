@@ -244,13 +244,13 @@ TextMap 中另有 `6354779731002018877` / `6633248308757777580` 也映射“开�
 
 | 文件（相对仓库）                                                          | 片段数 | 原分类／迁移入口                                                            |
 | ------------------------------------------------------------------------- | -----: | --------------------------------------------------------------------------- |
-| `src/lib/components/BaseStatsPanel.svelte`                                |      9 | aria labels / headings / display labels / empty states                      |
-| `src/lib/components/ChangelogModal.svelte`                                |      5 | changelog UI / aria labels                                                  |
-| `src/lib/components/CharacterCatalogPage.svelte`                          |     12 | filters / aria labels / metadata/title/description                          |
-| `src/lib/components/DescriptionText.svelte`                               |      1 | aria labels                                                                 |
-| `src/lib/components/DetailPage.svelte`                                    |     26 | headings / display labels / buttons / aria labels / empty states / headings |
-| `src/lib/components/EffectExplanationSection.svelte`                      |      1 | headings / display labels                                                   |
-| `src/lib/components/EidolonCard.svelte`                                   |      2 | headings / empty states                                                     |
+| `src/lib/components/shared/BaseStatsPanel.svelte`                                |      9 | aria labels / headings / display labels / empty states                      |
+| `src/lib/components/layout/ChangelogModal.svelte`                                |      5 | changelog UI / aria labels                                                  |
+| `src/lib/components/character/CharacterCatalogPage.svelte`                          |     12 | filters / aria labels / metadata/title/description                          |
+| `src/lib/components/shared/DescriptionText.svelte`                               |      1 | aria labels                                                                 |
+| `src/lib/components/shared/DetailPage.svelte`                                    |     26 | headings / display labels / buttons / aria labels / empty states / headings |
+| `src/lib/components/shared/EffectExplanationSection.svelte`                      |      1 | headings / display labels                                                   |
+| `src/lib/components/character/EidolonCard.svelte`                                   |      2 | headings / empty states                                                     |
 | `src/lib/components/endgame/as/ApocalypticShadowNodeSection.svelte`       |      1 | tooltips                                                                    |
 | `src/lib/components/endgame/as/AsBossDossier.svelte`                      |      2 | Endgame labels                                                              |
 | `src/lib/components/endgame/as/AsBossTraits.svelte`                       |      1 | Endgame labels                                                              |
@@ -269,33 +269,33 @@ TextMap 中另有 `6354779731002018877` / `6633248308757777580` 也映射“开�
 | `src/lib/components/enemy/EnemyDetailPage.svelte`                         |     26 | headings / empty states / aria labels / headings / display labels / buttons |
 | `src/lib/components/enemy/EnemyStatsPanel.svelte`                         |     10 | aria labels / empty states / headings / display labels                      |
 | `src/lib/components/enemy/EnemyTemplateBaseStatsPanel.svelte`             |     10 | aria labels / empty states / headings / display labels                      |
-| `src/lib/components/EnemyCatalogPage.svelte`                              |     11 | filters / aria labels / metadata/title/description                          |
-| `src/lib/components/EnemyWeaknessGroup.svelte`                            |      3 | tooltips / headings / display labels                                        |
-| `src/lib/components/EquipmentRecommendationSection.svelte`                |     10 | headings / aria labels / headings / display labels                          |
-| `src/lib/components/FilterGroup.svelte`                                   |      1 | filters                                                                     |
-| `src/lib/components/LightConeCatalogPage.svelte`                          |     11 | filters / aria labels / metadata/title/description                          |
-| `src/lib/components/Navigator.svelte`                                     |     16 | aria labels / tooltips / navigation                                         |
-| `src/lib/components/OverviewHero.svelte`                                  |      2 | metadata/title/description                                                  |
-| `src/lib/components/OverviewPagination.svelte`                            |      5 | aria labels / headings / display labels                                     |
-| `src/lib/components/OverviewSearch.svelte`                                |      2 | Search UI                                                                   |
-| `src/lib/components/OverviewToolbar.svelte`                               |      7 | headings / display labels / buttons / aria labels                           |
-| `src/lib/components/PrimaryNavigation.svelte`                             |      1 | aria labels                                                                 |
-| `src/lib/components/RarityStars.svelte`                                   |      1 | aria labels                                                                 |
+| `src/lib/components/enemy/EnemyCatalogPage.svelte`                              |     11 | filters / aria labels / metadata/title/description                          |
+| `src/lib/components/enemy/EnemyWeaknessGroup.svelte`                            |      3 | tooltips / headings / display labels                                        |
+| `src/lib/components/character/EquipmentRecommendationSection.svelte`                |     10 | headings / aria labels / headings / display labels                          |
+| `src/lib/components/shared/FilterGroup.svelte`                                   |      1 | filters                                                                     |
+| `src/lib/components/light-cone/LightConeCatalogPage.svelte`                          |     11 | filters / aria labels / metadata/title/description                          |
+| `src/lib/components/layout/Navigator.svelte`                                     |     16 | aria labels / tooltips / navigation                                         |
+| `src/lib/components/shared/OverviewHero.svelte`                                  |      2 | metadata/title/description                                                  |
+| `src/lib/components/shared/OverviewPagination.svelte`                            |      5 | aria labels / headings / display labels                                     |
+| `src/lib/components/shared/OverviewSearch.svelte`                                |      2 | Search UI                                                                   |
+| `src/lib/components/shared/OverviewToolbar.svelte`                               |      7 | headings / display labels / buttons / aria labels                           |
+| `src/lib/components/layout/PrimaryNavigation.svelte`                             |      1 | aria labels                                                                 |
+| `src/lib/components/shared/RarityStars.svelte`                                   |      1 | aria labels                                                                 |
 | `src/lib/components/relic/RelicDetailPage.svelte`                         |     11 | headings / display labels / aria labels / headings / empty states           |
 | `src/lib/components/relic/RelicIcon.svelte`                               |      1 | headings / display labels                                                   |
-| `src/lib/components/RelicCatalogPage.svelte`                              |     12 | filters / aria labels / metadata/title/description                          |
-| `src/lib/components/RelicOverviewCard.svelte`                             |      2 | headings / display labels                                                   |
-| `src/lib/components/SearchBar.svelte`                                     |      3 | aria labels                                                                 |
-| `src/lib/components/SearchResultWindow.svelte`                            |      3 | Search UI                                                                   |
-| `src/lib/components/SectionNav.svelte`                                    |      1 | navigation                                                                  |
-| `src/lib/components/SkillCombatMeta.svelte`                               |      9 | aria labels / headings / display labels                                     |
-| `src/lib/components/SkillProgressionPanel.svelte`                         |      2 | headings / display labels / aria labels                                     |
-| `src/lib/components/SkillVariantView.svelte`                              |      1 | empty states                                                                |
-| `src/lib/components/SpecialEffectDialog.svelte`                           |      2 | headings / aria labels                                                      |
-| `src/lib/components/SpecialEffectRelation.svelte`                         |      2 | headings / display labels                                                   |
-| `src/lib/components/SuperimpositionPanel.svelte`                          |      5 | headings / display labels / aria labels / empty states                      |
-| `src/lib/components/TraceAbilityHeading.svelte`                           |      6 | headings                                                                    |
-| `src/lib/components/TraceCardPanel.svelte`                                |      8 | empty states / headings / display labels / headings                         |
+| `src/lib/components/relic/RelicCatalogPage.svelte`                              |     12 | filters / aria labels / metadata/title/description                          |
+| `src/lib/components/relic/RelicOverviewCard.svelte`                             |      2 | headings / display labels                                                   |
+| `src/lib/components/search/SearchBar.svelte`                                     |      3 | aria labels                                                                 |
+| `src/lib/components/search/SearchResultWindow.svelte`                            |      3 | Search UI                                                                   |
+| `src/lib/components/shared/SectionNav.svelte`                                    |      1 | navigation                                                                  |
+| `src/lib/components/character/SkillCombatMeta.svelte`                               |      9 | aria labels / headings / display labels                                     |
+| `src/lib/components/character/SkillProgressionPanel.svelte`                         |      2 | headings / display labels / aria labels                                     |
+| `src/lib/components/character/SkillVariantView.svelte`                              |      1 | empty states                                                                |
+| `src/lib/components/character/SpecialEffectDialog.svelte`                           |      2 | headings / aria labels                                                      |
+| `src/lib/components/character/SpecialEffectRelation.svelte`                         |      2 | headings / display labels                                                   |
+| `src/lib/components/light-cone/SuperimpositionPanel.svelte`                          |      5 | headings / display labels / aria labels / empty states                      |
+| `src/lib/components/character/TraceAbilityHeading.svelte`                           |      6 | headings                                                                    |
+| `src/lib/components/character/TraceCardPanel.svelte`                                |      8 | empty states / headings / display labels / headings                         |
 | `src/lib/domain/constants.ts`                                             |     14 | headings / display labels                                                   |
 | `src/lib/domain/endgame-navigation.ts`                                    |     16 | navigation                                                                  |
 | `src/lib/domain/endgame-view.ts`                                          |     26 | Endgame labels                                                              |

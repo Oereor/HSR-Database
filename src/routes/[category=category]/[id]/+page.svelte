@@ -1,5 +1,5 @@
 <script lang="ts">
-  import DetailPage from '$lib/components/DetailPage.svelte';
+  import DetailPage from '$lib/components/shared/DetailPage.svelte';
   import { categorySingular } from '$lib/i18n/product';
   export let data;
 </script>

@@ -1,29 +1,42 @@
-import { stat, readdir } from 'node:fs/promises';
+import { readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
 
-async function measure(root: string): Promise<{ files: number; bytes: number }> {
+export type PathMeasurement = {
+  kind: 'directory' | 'file' | 'missing';
+  files: number;
+  bytes: number;
+};
+
+function isNotFound(error: unknown): boolean {
+  return (
+    error instanceof Error && 'code' in error && (error as NodeJS.ErrnoException).code === 'ENOENT'
+  );
+}
+
+export async function measurePath(root: string): Promise<PathMeasurement> {
+  const rootStat = await stat(root).catch((error: unknown) => {
+    if (isNotFound(error)) return undefined;
+    throw error;
+  });
+  if (!rootStat) return { kind: 'missing', files: 0, bytes: 0 };
+  if (rootStat.isFile()) return { kind: 'file', files: 1, bytes: rootStat.size };
+  if (!rootStat.isDirectory()) throw new Error(`Unsupported generated path type: ${root}`);
+
   let files = 0;
   let bytes = 0;
   async function visit(directory: string): Promise<void> {
-    for (const entry of await readdir(directory, { withFileTypes: true }).catch(() => [])) {
+    for (const entry of await readdir(directory, { withFileTypes: true })) {
       const file = path.join(directory, entry.name);
       if (entry.isDirectory()) await visit(file);
       else if (entry.isFile()) {
         files += 1;
         bytes += (await stat(file)).size;
-      }
+      } else throw new Error(`Unsupported generated path type: ${file}`);
     }
   }
   await visit(root);
-  return { files, bytes };
-}
-
-async function bytes(file: string): Promise<number> {
-  return stat(file).then(
-    (value) => value.size,
-    () => 0
-  );
+  return { kind: 'directory', files, bytes };
 }
 
 const localeRoot = path.join(generatedRoot, 'views', 'zh-CN');
@@ -38,26 +51,25 @@ const removedCompatibilityPaths = [
   path.join(staticGeneratedRoot, 'meta.json')
 ];
 
-console.log(
-  JSON.stringify(
-    {
-      generated: await measure(generatedRoot),
-      staticGenerated: await measure(staticGeneratedRoot),
-      removedCompatibilityPaths: await Promise.all(
-        removedCompatibilityPaths.map(async (file) => ({
-          path: path.relative(process.cwd(), file).replaceAll('\\', '/'),
-          ...(await measure(file))
-        }))
-      ),
-      payloads: {
-        manifest: await bytes(path.join(generatedRoot, 'manifest.json')),
-        homepage: await bytes(path.join(localeRoot, 'homepage.json')),
-        characterCatalog: await bytes(path.join(localeRoot, 'catalogs', 'characters.json')),
-        character1001: await bytes(path.join(localeRoot, 'details', 'characters', '1001.json')),
-        search: await bytes(path.join(staticGeneratedRoot, 'zh-CN', 'search.json'))
-      }
-    },
-    null,
-    2
-  )
-);
+export async function measureGenerated() {
+  return {
+    generated: await measurePath(generatedRoot),
+    staticGenerated: await measurePath(staticGeneratedRoot),
+    removedCompatibilityPaths: await Promise.all(
+      removedCompatibilityPaths.map(async (file) => ({
+        path: path.relative(process.cwd(), file).replaceAll('\\', '/'),
+        ...(await measurePath(file))
+      }))
+    ),
+    payloads: {
+      manifest: await measurePath(path.join(generatedRoot, 'manifest.json')),
+      homepage: await measurePath(path.join(localeRoot, 'homepage.json')),
+      characterCatalog: await measurePath(path.join(localeRoot, 'catalogs', 'characters.json')),
+      character1001: await measurePath(path.join(localeRoot, 'details', 'characters', '1001.json')),
+      search: await measurePath(path.join(staticGeneratedRoot, 'zh-CN', 'search.json'))
+    }
+  };
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.meta.filename))
+  console.log(JSON.stringify(await measureGenerated(), null, 2));

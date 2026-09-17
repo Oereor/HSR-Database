@@ -1,6 +1,6 @@
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
-  import SectionHeading from '$lib/components/SectionHeading.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
+  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import type { PureFictionEncounterView, PureFictionGroupView } from '$lib/domain/endgame-view';
   import EndgameNodeSection from '../EndgameNodeSection.svelte';
   import PureFictionMechanicsSection from './PureFictionMechanicsSection.svelte';

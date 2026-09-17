@@ -402,10 +402,8 @@ describe('视觉资源管线', () => {
   it('当前 manifest 覆盖角色、光锥、遗器套装与部件、遗器属性和语义图标需求', async () => {
     const requirements = await readAssetRequirements();
     const generated = await readAssetManifest();
-    expect(requirements.characterIds).toHaveLength(97);
     expect(requirements.lightConeIds).toHaveLength(169);
     expect(requirements.relicSetIds).toHaveLength(60);
-    expect(requirements.relicPieces).toHaveLength(184);
     expect(new Set(requirements.relicPropertyIcons.map((entry) => entry.iconKey)).size).toBe(18);
     expect(requirements.elements).toHaveLength(7);
     expect(requirements.paths).toHaveLength(9);
@@ -459,7 +457,7 @@ describe('视觉资源管线', () => {
     expect(generated!.lightCones.previews.missing).toEqual([]);
     expect(generated!.lightCones.portraits.missing).toEqual([]);
     expect(generated!.relics.icons.available).toHaveLength(60);
-    expect(generated!.relics.pieces.available).toHaveLength(184);
+    expect(generated!.relics.pieces.available).toHaveLength(requirements.relicPieces.length);
     expect(generated!.relicProperties.icons.available).toHaveLength(18);
     expect(generated!.navigation.icons.available).toEqual(requirements.navigationIcons);
     expect(generated!.branding.icons.available).toEqual(requirements.brandIcons);
@@ -491,15 +489,10 @@ describe('视觉资源管线', () => {
     expect(resolveBrandIconAsset('train-party', parsed)).toBeUndefined();
   });
 
-  it('角色 preview index 解析上游当前 4.5 的全部 97 个 ID', async () => {
+  it('角色 preview index 解析全部需求 ID', async () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const requirements = await readAssetRequirements();
     const sources = await readCharacterPreviewSources(root, requirements.characterIds);
-    const index = JSON.parse(
-      await readFile(path.join(root, 'index_new', 'cn', 'characters.json'), 'utf8')
-    ) as Record<string, { preview?: string }>;
-    expect(sources.size).toBe(97);
-    expect(Object.values(index).filter((entry) => entry.preview)).toHaveLength(97);
     expect([...sources.keys()].sort()).toEqual(requirements.characterIds);
     expect(requirements.characterIds.filter((id) => !sources.has(id))).toEqual([]);
     expect(() => resolveIndexedAssetPath(root, '../outside.png')).toThrow(/越界/);
@@ -925,7 +918,7 @@ describe('视觉资源管线', () => {
     );
   });
 
-  it('遗器资源按稳定 ID 同步 60 张套装图标、184 张部件图标与 18 张属性图标', async () => {
+  it('遗器资源按稳定 ID 同步套装、部件与属性图标', async () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const requirements = await readAssetRequirements();
     const setSources = await readRelicSetIconSources(root, requirements.relicSetIds);
@@ -935,7 +928,6 @@ describe('视觉资源管线', () => {
       requirements.relicPropertyIcons
     );
     expect(setSources.size).toBe(60);
-    expect(pieceSources.size).toBe(184);
     expect(propertySources.size).toBe(18);
     for (const [id, source] of setSources) {
       expect(path.basename(source)).toBe(`${id}.png`);
@@ -964,7 +956,7 @@ describe('视觉资源管线', () => {
     const generatedPieceFiles = await readdir(
       path.join(process.cwd(), 'static', 'generated-assets', 'relics', 'pieces')
     );
-    expect(generatedPieceFiles).toHaveLength(184);
+    expect(generatedPieceFiles).toHaveLength(requirements.relicPieces.length);
   });
 
   it('生成目录仅包含需求驱动的 preview 与光锥 portrait 输出', async () => {

@@ -1,9 +1,9 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
-  import CharacterCatalogPage from '$lib/components/CharacterCatalogPage.svelte';
-  import EnemyCatalogPage from '$lib/components/EnemyCatalogPage.svelte';
-  import LightConeCatalogPage from '$lib/components/LightConeCatalogPage.svelte';
-  import RelicCatalogPage from '$lib/components/RelicCatalogPage.svelte';
+  import CharacterCatalogPage from '$lib/components/character/CharacterCatalogPage.svelte';
+  import EnemyCatalogPage from '$lib/components/enemy/EnemyCatalogPage.svelte';
+  import LightConeCatalogPage from '$lib/components/light-cone/LightConeCatalogPage.svelte';
+  import RelicCatalogPage from '$lib/components/relic/RelicCatalogPage.svelte';
   export let data;
 </script>
 

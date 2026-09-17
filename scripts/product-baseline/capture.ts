@@ -27,8 +27,8 @@ import {
 } from '../../src/lib/search/search.js';
 import { loadEnemyPortraitMap } from '../../src/lib/server/enemy-assets.js';
 import { m } from '../../src/lib/paraglide/messages.js';
-import { NAVIGATION_ITEMS } from '../../src/lib/navigation.js';
-import { SITE_NAME } from '../../src/lib/site.js';
+import { localizedNavigationItems } from '../../src/lib/navigation.js';
+import { siteName } from '../../src/lib/site.js';
 import { readAssetManifest } from '../assets/shared.js';
 import { generatedRoot, staticGeneratedRoot } from '../data/paths.js';
 import { canonicalize } from './canonical.js';
@@ -343,6 +343,7 @@ async function captureHomepage(
   const homepage = await json<HomepageRecentWarpData>(path.join(localeRoot, 'homepage.json'));
   const characterById = new Map(characters.map((entry) => [entry.id, entry]));
   const lightConeById = new Map(lightCones.map((entry) => [entry.id, entry]));
+  const navigationItems = localizedNavigationItems('zh-CN');
   return canonicalize({
     selection: homepage,
     recentCharacters: homepage.avatarUps.map(({ avatarId, gachaId }) => ({
@@ -361,15 +362,17 @@ async function captureHomepage(
         ? `/generated-assets/light-cones/preview/${equipmentId}.png`
         : null
     })),
-    directory: NAVIGATION_ITEMS.filter(({ id }) => id !== 'overview').map((item) => ({
-      id: item.id,
-      label: item.label,
-      href: item.href,
-      fallback: item.fallback,
-      iconRendered: assets.navigation.icons.available.includes(item.iconKey)
-    })),
+    directory: navigationItems
+      .filter(({ id }) => id !== 'overview')
+      .map((item) => ({
+        id: item.id,
+        label: item.label,
+        href: item.href,
+        fallback: item.fallback,
+        iconRendered: assets.navigation.icons.available.includes(item.iconKey)
+      })),
     localizedText: {
-      siteName: SITE_NAME,
+      siteName: siteName('zh-CN'),
       tagline: m.home_tagline({}, { locale: 'zh-CN' }),
       searchLabel: m.home_search_label({}, { locale: 'zh-CN' }),
       searchPlaceholder: m.home_search_placeholder({}, { locale: 'zh-CN' }),

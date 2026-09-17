@@ -1,10 +1,10 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
   import type { PageData } from './$types';
-  import CharacterOverviewCard from '$lib/components/CharacterOverviewCard.svelte';
-  import LightConeOverviewCard from '$lib/components/LightConeOverviewCard.svelte';
-  import SearchBar from '$lib/components/SearchBar.svelte';
-  import SectionHeading from '$lib/components/SectionHeading.svelte';
+  import CharacterOverviewCard from '$lib/components/character/CharacterOverviewCard.svelte';
+  import LightConeOverviewCard from '$lib/components/light-cone/LightConeOverviewCard.svelte';
+  import SearchBar from '$lib/components/search/SearchBar.svelte';
+  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import {
     getCharacterPreviewUrl,
     getLightConePreviewUrl,

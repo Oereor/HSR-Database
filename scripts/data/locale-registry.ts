@@ -43,9 +43,6 @@ export function getPublicLocales(): LocaleConfig[] {
     .filter((config) => config.publicRoutingEnabled);
 }
 
-/** Compatibility name for build-time callers; public routing capability remains authoritative. */
-export const getProductionLocale = getPublicLocale;
-
 export function getGeneratedLocales(): LocaleConfig[] {
   return Object.keys(LOCALE_REGISTRY)
     .map(getLocaleConfig)

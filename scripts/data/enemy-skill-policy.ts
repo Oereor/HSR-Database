@@ -1,10 +1,7 @@
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import type { SemanticTag } from '../../src/lib/domain/types.js';
-import { hashOf, numberOf } from './raw.js';
-import { runtimeTextSourceFromRef, type TextResolver } from './localization.js';
-import { formatGameMarkup } from './text.js';
-import { gameTextToPlain } from '../../src/lib/domain/game-text.js';
+import { hashOf } from './raw.js';
 
 export const enemySkillKinds: Readonly<Record<string, 'skill' | 'talent'>> = {
   '4236760374151560033': 'skill',
@@ -129,41 +126,4 @@ export function classifyEnemySkillSource(
     kind: normalizeEnemySkillKind(row.SkillTypeDesc, '', context),
     tag: normalizeEnemySkillTag(row.SkillTag, '', context)
   };
-}
-
-export function resolveEnemySkillSource(
-  row: Record<string, unknown>,
-  context: EnemySkillSourceContext,
-  text: TextResolver,
-  policy: EnemySkillInclusionPolicy
-) {
-  const visible = isIncludedEnemySkill(row, policy);
-  const resolve = (field: string) => {
-    const provenance = { entity: 'enemy-skill', id: context.skillId, field };
-    const source = runtimeTextSourceFromRef(row[field], provenance);
-    if (!source) return '';
-    const result = text.resolve(source, {
-      diagnosticDisposition: {
-        requirement: field === 'SkillDesc' ? 'optional' : 'required',
-        visibility: visible ? 'emitted' : 'hidden',
-        fallbackUsed: visible && (field === 'SkillName' || field === 'SkillDesc'),
-        productRouteReachability: visible ? 'reachable' : 'unreachable'
-      }
-    });
-    if (result.status === 'available') return result.value;
-    if (result.status === 'missing' || result.status === 'empty') return '';
-    throw new Error(`Enemy skill ${context.skillId} ${field} localization is ${result.status}`);
-  };
-  const kindLabel = resolve('SkillTypeDesc');
-  const tagLabel = resolve('SkillTag');
-  const kind = normalizeEnemySkillKind(row.SkillTypeDesc, kindLabel, context);
-  const tag = normalizeEnemySkillTag(row.SkillTag, tagLabel, context);
-  const formattedDescription = formatGameMarkup(
-    resolve('SkillDesc'),
-    Array.isArray(row.ParamList) ? row.ParamList.map(numberOf) : []
-  );
-  const localizedTextStatus = gameTextToPlain(formattedDescription.text).trim()
-    ? ('available' as const)
-    : ('missing' as const);
-  return { kindLabel, kind, tag, visible, formattedDescription, localizedTextStatus };
 }

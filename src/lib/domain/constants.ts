@@ -15,12 +15,3 @@ export const rarityFromCode = (value?: string): number | undefined => {
   if (match) return Number(match[1]);
   return { Normal: 2, NotNormal: 2, Rare: 3, VeryRare: 4, SuperRare: 5 }[value];
 };
-
-export const relicTypeNames: Record<string, string> = {
-  HEAD: '头部',
-  HAND: '手部',
-  BODY: '躯干',
-  FOOT: '脚部',
-  NECK: '位面球',
-  OBJECT: '连结绳'
-};
