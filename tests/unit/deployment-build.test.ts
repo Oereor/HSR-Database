@@ -2,6 +2,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type { AssetValidationContext } from '../../scripts/assets/ensure';
 import {
+  resolvePnpmInvocation,
   resolveDeploymentMode,
   runDeploymentBuild,
   type DeploymentBuildDependencies
@@ -56,6 +57,35 @@ function dependencies(
     }
   };
 }
+
+describe('pnpm launcher resolution', () => {
+  it('falls back to pnpm on PATH when npm_execpath is absent', () => {
+    expect(resolvePnpmInvocation(['check'], undefined, '/runtime/node')).toEqual({
+      command: 'pnpm',
+      args: ['check']
+    });
+  });
+
+  it.each(['/tools/pnpm.js', '/tools/pnpm.cjs', '/tools/pnpm.mjs'])(
+    'uses Node for JavaScript CLI entrypoints (%s)',
+    (entrypoint) => {
+      expect(resolvePnpmInvocation(['build'], entrypoint, '/runtime/node')).toEqual({
+        command: '/runtime/node',
+        args: [entrypoint, 'build']
+      });
+    }
+  );
+
+  it.each(['/tools/pnpm', 'C:\\tools\\pnpm.exe'])(
+    'executes native or Windows CLI entrypoints directly (%s)',
+    (entrypoint) => {
+      expect(resolvePnpmInvocation(['build'], entrypoint, '/runtime/node')).toEqual({
+        command: entrypoint,
+        args: ['build']
+      });
+    }
+  );
+});
 
 describe('deployment mode resolution', () => {
   it.each([

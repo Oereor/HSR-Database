@@ -14,6 +14,7 @@ const artifactPaths = [
   'static/generated-assets',
   'static/generated-enemy-assets',
   'build',
+  '.vercel/output',
   '.svelte-kit',
   '.vite',
   '.upstream'

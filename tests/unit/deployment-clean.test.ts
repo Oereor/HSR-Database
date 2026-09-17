@@ -35,6 +35,7 @@ it('cleans all generated namespaces, keeps tracked placeholders and runs the exi
       'static/generated-assets',
       'static/generated-enemy-assets',
       'build',
+      '.vercel/output',
       '.svelte-kit',
       '.vite',
       '.upstream'
@@ -43,6 +44,7 @@ it('cleans all generated namespaces, keeps tracked placeholders and runs the exi
       await mkdir(path.join(root, directory), { recursive: true });
       await writeFile(path.join(root, directory, 'old'), 'cache');
     }
+    await writeFile(path.join(root, '.vercel/project.json'), '{ "preserve": true }\n');
     await writeFile(path.join(root, 'src/lib/generated-assets/.gitkeep'), 'original');
     execFileSync('git', ['add', 'src/lib/generated-assets/.gitkeep'], {
       cwd: root,
@@ -54,31 +56,38 @@ it('cleans all generated namespaces, keeps tracked placeholders and runs the exi
       expect(await readFile(path.join(root, 'src/lib/generated-assets/.gitkeep'), 'utf8')).toBe(
         'original'
       );
+      expect(await readFile(path.join(root, '.vercel/project.json'), 'utf8')).toBe(
+        '{ "preserve": true }\n'
+      );
     });
     await runCleanDeploymentBuild({ root, build });
     expect(build).toHaveBeenCalledTimes(1);
   });
 });
 
-it('preflights every target before mutation and refuses tracked source artifacts', async () => {
-  await fixture(async (root) => {
-    await mkdir(path.join(root, 'build'));
-    await writeFile(path.join(root, 'build/source.ts'), 'tracked');
-    execFileSync('git', ['add', 'build/source.ts'], { cwd: root, windowsHide: true });
-    const build = vi.fn();
-    await expect(runCleanDeploymentBuild({ root, build })).rejects.toThrow('tracked artifact');
-    expect(await readFile(path.join(root, 'build/source.ts'), 'utf8')).toBe('tracked');
-    expect(build).not.toHaveBeenCalled();
-  });
-});
+it.each(['build/source.ts', '.vercel/output/source.ts'])(
+  'preflights every target before mutation and refuses tracked source artifacts (%s)',
+  async (trackedFile) => {
+    await fixture(async (root) => {
+      await mkdir(path.dirname(path.join(root, trackedFile)), { recursive: true });
+      await writeFile(path.join(root, trackedFile), 'tracked');
+      execFileSync('git', ['add', trackedFile], { cwd: root, windowsHide: true });
+      const build = vi.fn();
+      await expect(runCleanDeploymentBuild({ root, build })).rejects.toThrow('tracked artifact');
+      expect(await readFile(path.join(root, trackedFile), 'utf8')).toBe('tracked');
+      expect(build).not.toHaveBeenCalled();
+    });
+  }
+);
 
-it.each(['build/linked', 'src'])(
+it.each(['build/linked', '.vercel/output/linked', 'src'])(
   'refuses linked targets or parents (%s) before deleting earlier artifacts',
   async (link) => {
     await fixture(async (root) => {
       await mkdir(path.join(root, 'build'));
       await writeFile(path.join(root, 'build/old'), 'keep on failure');
       await mkdir(path.join(root, 'outside'));
+      await mkdir(path.dirname(path.join(root, link)), { recursive: true });
       await symlink(path.join(root, 'outside'), path.join(root, link), 'junction');
       const build = vi.fn();
       await expect(runCleanDeploymentBuild({ root, build })).rejects.toThrow(/symlink|linked/);

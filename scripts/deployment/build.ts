@@ -43,16 +43,31 @@ const TIMING_ORDER = [
   'deploy-verify'
 ] as const;
 
+export interface PnpmInvocation {
+  command: string;
+  args: string[];
+}
+
+export function resolvePnpmInvocation(
+  args: string[],
+  npmExecPath: string | undefined,
+  nodeExecPath = process.execPath
+): PnpmInvocation {
+  if (!npmExecPath) return { command: 'pnpm', args };
+  const extension = path.extname(npmExecPath).toLowerCase();
+  if (['.js', '.cjs', '.mjs'].includes(extension))
+    return { command: nodeExecPath, args: [npmExecPath, ...args] };
+  return { command: npmExecPath, args };
+}
+
 export function resolveDeploymentMode(vercelEnv: string | undefined): DeploymentMode {
   return vercelEnv === 'production' ? 'production-ci-backed' : 'preview-full';
 }
 
 const runPnpm: DeploymentCommandRunner = (args, env) =>
   new Promise((resolve, reject) => {
-    const pnpmEntrypoint = process.env.npm_execpath;
-    const command = pnpmEntrypoint ? process.execPath : 'pnpm';
-    const commandArgs = pnpmEntrypoint ? [pnpmEntrypoint, ...args] : args;
-    const child = spawn(command, commandArgs, {
+    const invocation = resolvePnpmInvocation(args, process.env.npm_execpath);
+    const child = spawn(invocation.command, invocation.args, {
       cwd: siteRoot,
       env,
       shell: false,

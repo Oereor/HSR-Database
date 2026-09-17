@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-static';
+import adapter from '@sveltejs/adapter-vercel';
 import { mdsvex } from 'mdsvex';
 import { readFileSync } from 'node:fs';
 
@@ -17,7 +17,7 @@ const config = {
   extensions: ['.svelte', '.svx'],
   preprocess: [mdsvex({ extensions: ['.svx'] })],
   kit: {
-    adapter: adapter({ fallback: '404.html' }),
+    adapter: adapter(),
     prerender: { entries: ['*', ...publicEntries] },
     ...(deploymentVersion ? { version: { name: deploymentVersion } } : {})
   }
