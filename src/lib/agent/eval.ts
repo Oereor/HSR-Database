@@ -75,6 +75,53 @@ const timeScopeSchema = z.enum([
   'none'
 ]);
 
+const presentationDetailClassificationSchema = z.enum([
+  'requested',
+  'helpful-context',
+  'unnecessary',
+  'internal'
+]);
+
+const presentationExpectationSchema = z
+  .object({
+    audience: z.enum(['ordinary', 'technical']),
+    leadFacts: z.array(z.string().min(1)).default([]),
+    softMaxSentences: z.number().int().positive().optional(),
+    limitationConcepts: z
+      .array(
+        z
+          .object({
+            anyOf: z.array(z.string().min(1)).min(1),
+            minMentions: z.number().int().min(0).default(1),
+            maxMentions: z.number().int().positive().default(1)
+          })
+          .strict()
+      )
+      .default([]),
+    forbiddenLimitationTerms: z.array(z.string().min(1)).default([]),
+    details: z
+      .array(
+        z
+          .object({
+            anyOf: z.array(z.string().min(1)).min(1),
+            classification: presentationDetailClassificationSchema
+          })
+          .strict()
+      )
+      .default([])
+  })
+  .strict()
+  .superRefine((value, context) => {
+    value.limitationConcepts.forEach((concept, index) => {
+      if (concept.minMentions > concept.maxMentions)
+        context.addIssue({
+          code: 'custom',
+          path: ['limitationConcepts', index, 'minMentions'],
+          message: 'minMentions 不能大于 maxMentions'
+        });
+    });
+  });
+
 export const evalCaseSchema = z
   .object({
     id: z.string().regex(/^[a-z0-9-]+$/),
@@ -100,6 +147,7 @@ export const evalCaseSchema = z
         facts: z.array(z.string()).default([]),
         warnings: z.array(z.string()).default([]),
         forbiddenAnswerTerms: z.array(z.string().min(1)).default([]),
+        presentation: presentationExpectationSchema.optional(),
         answerability: answerabilitySchema,
         evidenceRequired: z.boolean()
       })

@@ -87,6 +87,14 @@ describe('AI SDK ToolLoopAgent runtime', () => {
     expect(DATA_AGENT_INSTRUCTIONS).toContain('请求澄清');
     expect(DATA_AGENT_INSTRUCTIONS).toContain('select_endgame_extrema');
     expect(DATA_AGENT_INSTRUCTIONS).toContain('具体 top/bottom row');
+    expect(DATA_AGENT_INSTRUCTIONS).toContain('分析政策');
+    expect(DATA_AGENT_INSTRUCTIONS).toContain('最终回答政策');
+    expect(DATA_AGENT_INSTRUCTIONS).toContain('通常在第一句直接回答');
+    expect(DATA_AGENT_INSTRUCTIONS).toContain('没有实质限制时使用 []');
+    expect(DATA_AGENT_INSTRUCTIONS).toContain('不得静默替换指标');
+    expect(DATA_AGENT_INSTRUCTIONS).toContain('普通回答不展示');
+    expect(DATA_AGENT_INSTRUCTIONS).toContain('简单事实查询通常 1–2 句');
+    expect(DATA_AGENT_INSTRUCTIONS).toContain('生成 JSON 前做一次可见内容自检');
     expect(DATA_AGENT_INSTRUCTIONS).toContain('纯 JSON 对象');
     expect(DATA_AGENT_INSTRUCTIONS).toContain('"evidenceIds"');
   });

@@ -3,9 +3,12 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { evalCaseSchema, isExplicitAbstention, type EvalCase } from '../../../src/lib/agent/eval';
 import {
+  findInternalTermLeakage,
   includesFact,
+  inspectPresentation,
   isIntentResolved,
   loadGeneralizationCorpus,
+  loadPresentationCorpus,
   loadStepBudgetAggregationCorpus,
   parseArguments,
   score
@@ -17,6 +20,64 @@ async function cases(file: string): Promise<EvalCase[]> {
     .trim()
     .split(/\r?\n/)
     .map((line) => evalCaseSchema.parse(JSON.parse(line)));
+}
+
+function presentationResult(
+  testCase: EvalCase,
+  answer: string,
+  limitations: string[] = [],
+  truncationDisclosure: RunAgentResult['truncationDisclosure'] = {
+    required: false,
+    modelProvided: false,
+    runtimeEnforced: false
+  }
+): RunAgentResult {
+  const tools = {
+    'entity-resolution': 'search_entities',
+    'concrete-query': 'query_endgame',
+    'scalar-summary': 'aggregate_endgame',
+    'associated-extrema': 'select_endgame_extrema'
+  } as const;
+  const trace = testCase.gold.expectedOperations.flatMap((operation, index) => {
+    if (operation === 'ambiguity-resolution') return [];
+    return [
+      {
+        step: index + 1,
+        toolCallId: `call-${index + 1}`,
+        tool: tools[operation],
+        ok: true,
+        validatedArgs: testCase.gold.operationArguments[operation],
+        latencyMs: 0,
+        summary: {
+          toolResultBytes: 1,
+          evidenceCount: 1,
+          warnings: testCase.gold.warnings
+        }
+      }
+    ];
+  });
+  return {
+    answer: {
+      answer,
+      evidenceIds: testCase.gold.evidenceRequired ? ['eg1/test'] : [],
+      limitations
+    },
+    invalidEvidenceIds: [],
+    modelSteps: trace.length + 1,
+    toolCalls: trace.length,
+    usage: { inputTokens: 1, outputTokens: 1, totalTokens: 2 },
+    trace,
+    modelTrace: [],
+    answerNormalization: {
+      evidenceDeduplicated: 0,
+      evidenceCapped: 0,
+      limitationsDeduplicated: 0,
+      limitationsCapped: 0
+    },
+    structuredAnswer: true,
+    hitStepLimit: false,
+    truncationDisclosure
+  };
 }
 
 describe('Agent eval corpus', () => {
@@ -33,6 +94,10 @@ describe('Agent eval corpus', () => {
     });
     expect(parseArguments(['--suite=step-budget-aggregation-v1'])).toMatchObject({
       suite: 'step-budget-aggregation-v1',
+      modes: ['off']
+    });
+    expect(parseArguments(['--suite=presentation-v1'])).toMatchObject({
+      suite: 'presentation-v1',
       modes: ['off']
     });
     const testCase = (await cases('dev.jsonl'))[0];
@@ -208,6 +273,117 @@ describe('Agent eval corpus', () => {
     expect(
       regression.find(({ id }) => id === 'dog-006-pf-associated-extrema')?.gold.expectedOperations
     ).toEqual(['associated-extrema']);
+  });
+
+  it('presentation-v1 固定核心、简单查询与 guardrail cases', async () => {
+    const presentation = await loadPresentationCorpus();
+    expect(presentation).toHaveLength(11);
+    expect(presentation.slice(0, 4).map(({ id }) => id)).toEqual([
+      'pres-001-current-as-fastest',
+      'pres-002-moc-total-hp-trend',
+      'pres-003-current-moc-boss-average-winner',
+      'pres-004-monkey-recent-three'
+    ]);
+    expect(presentation.filter(({ tags }) => tags.includes('simple'))).toHaveLength(3);
+    expect(presentation.filter(({ tags }) => tags.includes('guardrail'))).toHaveLength(4);
+  });
+
+  it('普通回答检测内部术语，技术问题允许显式请求的 ID', async () => {
+    const presentation = await loadPresentationCorpus();
+    const ordinary = presentation[0];
+    const technical = presentation.at(-1)!;
+    const leaked = presentationResult(ordinary, '当前末日幻影 groupId 中的 enemyTemplateId 结果。');
+    expect(findInternalTermLeakage(leaked, 'ordinary')).toEqual(
+      expect.arrayContaining(['groupId', 'enemyTemplateId'])
+    );
+    const requested = presentationResult(
+      technical,
+      'groupId 表示赛期顺序；evidenceId 是证据引用，MonsterID 是敌人变体 ID。'
+    );
+    expect(findInternalTermLeakage(requested, 'technical')).toEqual([]);
+    expect(inspectPresentation(technical, requested)?.detailHits.requested).toHaveLength(3);
+  });
+
+  it('分层评分保留实质限制，并阻止重复限制与范围复述', async () => {
+    const presentation = await loadPresentationCorpus();
+    const totalHp = presentation.find(({ id }) => id === 'pres-002-moc-total-hp-trend')!;
+    const missing = presentationResult(totalHp, '最近三期的每管血量整体上升。');
+    expect(score(totalHp, missing)).toMatchObject({ tier1: false, passed: false });
+
+    const concise = presentationResult(
+      totalHp,
+      '严格整层总血量无法可靠计算，部分首领有多阶段或共享血量。若改看每管血量，最近三期整体上升。'
+    );
+    expect(score(totalHp, concise)).toMatchObject({ tier1: true, tier2: true, passed: true });
+
+    const repeated = presentationResult(
+      totalHp,
+      '严格整层总血量无法可靠计算。若改看每管血量，最近三期整体上升。',
+      ['总血量无法可靠还原。']
+    );
+    expect(score(totalHp, repeated)).toMatchObject({ tier1: true, tier2: false, passed: false });
+
+    const scoped = presentation.find(({ id }) => id === 'pres-010-scope-not-limitation')!;
+    const scopeRestated = presentationResult(scoped, '三期平均速度已列出。', [
+      '本回答不包括 upcoming，仅统计第 12 层。'
+    ]);
+    expect(score(scoped, scopeRestated)).toMatchObject({ tier2: false, passed: false });
+  });
+
+  it('结论前置与软句数目标只进入 Tier 3', async () => {
+    const testCase = (await loadPresentationCorpus())[0];
+    const direct = presentationResult(
+      testCase,
+      '当前末日幻影难度 4 速度最高的是「业火焚心的影将军」，速度为 190.08。'
+    );
+    expect(score(testCase, direct)).toMatchObject({ tier1: true, tier2: true, tier3: true });
+    const delayed = presentationResult(
+      testCase,
+      '先说明一些背景。这是一个极值查询。答案是「业火焚心的影将军」，速度 190.08。'
+    );
+    expect(score(testCase, delayed)).toMatchObject({ tier1: true, tier2: true, tier3: false });
+  });
+
+  it('截断全局结果仍必须由模型或 runtime 披露', async () => {
+    const testCase = (await loadPresentationCorpus())[0];
+    const answer = '「业火焚心的影将军」速度最高，为 190.08。';
+    const missing = presentationResult(testCase, answer, [], {
+      required: true,
+      modelProvided: false,
+      runtimeEnforced: false
+    });
+    expect(score(testCase, missing)).toMatchObject({ tier1: false, passed: false });
+    const enforced = presentationResult(testCase, answer, ['结果已截断，排名可能不完整。'], {
+      required: true,
+      modelProvided: false,
+      runtimeEnforced: true
+    });
+    expect(score(testCase, enforced)).toMatchObject({ tier1: true, passed: true });
+  });
+
+  it('身份歧义和单观察值仍保留对结论有影响的限制', async () => {
+    const presentation = await loadPresentationCorpus();
+    const ambiguity = presentation.find(({ id }) => id === 'pres-008-material-identity-ambiguity')!;
+    const clarified = presentationResult(
+      ambiguity,
+      '请确认：你指的是该敌人最近 6 次出现，还是全局最近 6 期？'
+    );
+    expect(score(ambiguity, clarified)).toMatchObject({ tier1: true, tier2: true, passed: true });
+
+    const oneObservation = presentation.find(
+      ({ id }) => id === 'pres-009-material-single-observation'
+    )!;
+    const cautious = presentationResult(
+      oneObservation,
+      '无法判断跨赛期趋势，因为只有一个可比赛期。'
+    );
+    expect(score(oneObservation, cautious)).toMatchObject({
+      tier1: true,
+      tier2: true,
+      passed: true
+    });
+    const overconfident = presentationResult(oneObservation, '首领每管血量呈上升趋势。');
+    expect(score(oneObservation, overconfident)).toMatchObject({ tier1: false, passed: false });
   });
 
   it('argMin/argMax gold 使用 architecture-neutral associated-extrema operation', async () => {

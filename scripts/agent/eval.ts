@@ -22,7 +22,7 @@ import { getAgentDataVersion } from '../../src/lib/server/agent/data-version.js'
 import { redactSecrets } from './inspector.js';
 
 type Split = 'dev' | 'held-out' | 'all';
-type Suite = 'frozen' | 'generalization-v1' | 'step-budget-aggregation-v1';
+type Suite = 'frozen' | 'generalization-v1' | 'step-budget-aggregation-v1' | 'presentation-v1';
 
 export function parseArguments(args: string[]) {
   const valueAfter = (flag: string) => {
@@ -47,8 +47,14 @@ export function parseArguments(args: string[]) {
   const modes: AgentThinkingMode[] =
     thinking === 'both' ? ['off', 'low'] : [thinking as AgentThinkingMode];
   const suite = (valueAfter('--suite') ?? 'frozen') as Suite;
-  if (!['frozen', 'generalization-v1', 'step-budget-aggregation-v1'].includes(suite))
-    throw new Error('--suite 必须是 frozen、generalization-v1 或 step-budget-aggregation-v1');
+  if (
+    !['frozen', 'generalization-v1', 'step-budget-aggregation-v1', 'presentation-v1'].includes(
+      suite
+    )
+  )
+    throw new Error(
+      '--suite 必须是 frozen、generalization-v1、step-budget-aggregation-v1 或 presentation-v1'
+    );
   if (suite !== 'frozen' && args.some((argument) => argument.startsWith('--split')))
     throw new Error(`${suite} 是独立 suite，不接受 --split`);
   return {
@@ -106,6 +112,17 @@ export async function loadStepBudgetAggregationCorpus(root = process.cwd()) {
   return cases;
 }
 
+export async function loadPresentationCorpus(root = process.cwd()) {
+  const file = path.join(root, 'evals', 'agent', 'presentation-v1.jsonl');
+  const cases = await loadFile(file);
+  if (cases.length !== 11) throw new Error(`presentation-v1 corpus 数量错误：${cases.length}`);
+  if (new Set(cases.map(({ id }) => id)).size !== cases.length)
+    throw new Error('presentation-v1 case id 必须唯一');
+  if (cases.some(({ gold }) => !gold.presentation))
+    throw new Error('presentation-v1 每个 case 都必须定义 gold.presentation');
+  return cases;
+}
+
 function isSubset(expected: unknown, actual: unknown): boolean {
   if (expected === null || typeof expected !== 'object') return Object.is(expected, actual);
   if (Array.isArray(expected))
@@ -130,6 +147,95 @@ export function isIntentResolved(answer: string): boolean {
     /(?:请问|请确认|需要确认|你指的是).*(?:还是|是指|口径|范围)/s.test(answer) ||
     /(?:我将|本回答|下文|暂按|按).{0,40}(?:理解为|口径|假设|解释)/s.test(answer)
   );
+}
+
+const internalTermPatterns: ReadonlyArray<[label: string, pattern: RegExp]> = [
+  ['enemyTemplateId', /enemyTemplateId/i],
+  ['enemyTemplate', /enemyTemplate/i],
+  ['groupId', /groupId/i],
+  ['configured-occurrence', /configured[- ]occurrence/i],
+  ['runtime-unclear', /runtime[- ]unclear/i],
+  ['battleSlot', /battleSlot/i],
+  ['encounterOrdinal', /encounterOrdinal/i],
+  ['dataRevision', /dataRevision/i],
+  ['DecimalString', /DecimalString/i],
+  ['evidenceId', /evidenceId/i],
+  ['stageId', /stageId/i],
+  ['MonsterID', /MonsterID/i],
+  ['evidence namespace', /(?:ag1|eg1|ent1)\//i],
+  ['mode abbreviation', /(?:^|[\s（(])(?:moc|pf|as|aa)(?=$|[\s）)])/i]
+];
+
+function visibleSurfaces(result: RunAgentResult): string[] {
+  return [result.answer.answer, ...result.answer.limitations];
+}
+
+export function findInternalTermLeakage(
+  result: RunAgentResult,
+  audience: 'ordinary' | 'technical'
+): string[] {
+  if (audience === 'technical') return [];
+  const visible = visibleSurfaces(result).join('\n');
+  return internalTermPatterns.flatMap(([label, pattern]) => (pattern.test(visible) ? [label] : []));
+}
+
+function sentenceCount(answer: string): number {
+  return answer
+    .split(/[。！？!?;；\n]+/)
+    .map((part) => part.replace(/^[\s•·*-]+/, '').trim())
+    .filter(Boolean).length;
+}
+
+function firstSentence(answer: string): string {
+  return answer.split(/[。！？!?;；\n]/, 1)[0]?.trim() ?? '';
+}
+
+export function inspectPresentation(testCase: EvalCase, result: RunAgentResult) {
+  const expectations = testCase.gold.presentation;
+  if (!expectations) return undefined;
+  const surfaces = visibleSurfaces(result);
+  const limitations = result.answer.limitations;
+  const internalTerms = findInternalTermLeakage(result, expectations.audience);
+  const detailHits = Object.fromEntries(
+    ['requested', 'helpful-context', 'unnecessary', 'internal'].map((classification) => [
+      classification,
+      expectations.details.flatMap((detail) =>
+        detail.classification === classification &&
+        surfaces.some((surface) => detail.anyOf.some((term) => surface.includes(term)))
+          ? [detail.anyOf[0]]
+          : []
+      )
+    ])
+  ) as Record<'requested' | 'helpful-context' | 'unnecessary' | 'internal', string[]>;
+  const limitationConcepts = expectations.limitationConcepts.map((concept) => {
+    const mentions = surfaces.filter((surface) =>
+      concept.anyOf.some((term) => surface.includes(term))
+    ).length;
+    return {
+      label: concept.anyOf[0],
+      mentions,
+      required: mentions >= concept.minMentions,
+      deduplicated: mentions <= concept.maxMentions
+    };
+  });
+  const count = sentenceCount(result.answer.answer);
+  return {
+    audience: expectations.audience,
+    internalTerms,
+    detailHits,
+    limitationConcepts,
+    materialLimitationsPreserved: limitationConcepts.every(({ required }) => required),
+    duplicateLimitationsAvoided: limitationConcepts.every(({ deduplicated }) => deduplicated),
+    scopeRestatementAvoided: expectations.forbiddenLimitationTerms.every(
+      (term) => !limitations.some((limitation) => limitation.includes(term))
+    ),
+    conclusionFirst: expectations.leadFacts.every((fact) =>
+      includesFact(firstSentence(result.answer.answer), fact)
+    ),
+    sentenceCount: count,
+    withinSoftSentenceTarget:
+      expectations.softMaxSentences === undefined || count <= expectations.softMaxSentences
+  };
 }
 
 export function score(testCase: EvalCase, result: RunAgentResult) {
@@ -159,6 +265,7 @@ export function score(testCase: EvalCase, result: RunAgentResult) {
     (term) =>
       !result.answer.answer.includes(term) && !result.answer.limitations.join(' ').includes(term)
   );
+  const presentationInspection = inspectPresentation(testCase, result);
   const warningMatch = testCase.gold.warnings.every((warning) => warnings.has(warning));
   const evidence =
     result.invalidEvidenceIds.length === 0 &&
@@ -183,6 +290,29 @@ export function score(testCase: EvalCase, result: RunAgentResult) {
     const next = nextStep && result.trace.find((item) => item.step === nextStep.step);
     return next?.tool === entry.tool && next.ok;
   }).length;
+  const correctnessPassed = ambiguityCase
+    ? ambiguityHandled && forbiddenOperations && result.structuredAnswer && truncationPreserved
+    : expectedOperations &&
+      forbiddenOperations &&
+      operationArguments &&
+      facts &&
+      warningMatch &&
+      evidence &&
+      abstained &&
+      result.structuredAnswer &&
+      truncationPreserved;
+  const tier1 = correctnessPassed && (presentationInspection?.materialLimitationsPreserved ?? true);
+  const tier2 =
+    presentation &&
+    (presentationInspection === undefined ||
+      (presentationInspection.internalTerms.length === 0 &&
+        presentationInspection.detailHits.internal.length === 0 &&
+        presentationInspection.detailHits.unnecessary.length === 0 &&
+        presentationInspection.duplicateLimitationsAvoided &&
+        presentationInspection.scopeRestatementAvoided));
+  const tier3 =
+    presentationInspection === undefined ||
+    (presentationInspection.conclusionFirst && presentationInspection.withinSoftSentenceTarget);
   return {
     ambiguityCase,
     ambiguityHandled,
@@ -207,6 +337,10 @@ export function score(testCase: EvalCase, result: RunAgentResult) {
     operationArguments,
     facts,
     presentation,
+    presentationInspection,
+    tier1,
+    tier2,
+    tier3,
     warnings: warningMatch,
     evidence,
     abstained,
@@ -233,22 +367,7 @@ export function score(testCase: EvalCase, result: RunAgentResult) {
             const operation = operationForTool(tool);
             return operation ? testCase.gold.forbiddenOperations.includes(operation) : false;
           }).length,
-    passed: ambiguityCase
-      ? ambiguityHandled &&
-        forbiddenOperations &&
-        presentation &&
-        result.structuredAnswer &&
-        truncationPreserved
-      : expectedOperations &&
-        forbiddenOperations &&
-        operationArguments &&
-        facts &&
-        presentation &&
-        warningMatch &&
-        evidence &&
-        abstained &&
-        result.structuredAnswer &&
-        truncationPreserved
+    passed: testCase.gold.presentation ? tier1 && tier2 : correctnessPassed && presentation
   };
 }
 
@@ -294,7 +413,9 @@ async function main() {
     args.suite === 'step-budget-aggregation-v1'
       ? await loadStepBudgetAggregationCorpus()
       : undefined;
-  const standalone = generalization ?? stepBudgetAggregation;
+  const presentation =
+    args.suite === 'presentation-v1' ? await loadPresentationCorpus() : undefined;
+  const standalone = generalization ?? stepBudgetAggregation ?? presentation;
   const selectedSplit = standalone
     ? standalone
     : args.split === 'dev'
@@ -348,11 +469,15 @@ async function main() {
           ? {
               generalizationV1: hash(await readFile('evals/agent/generalization-v1.jsonl', 'utf8'))
             }
-          : {
-              stepBudgetAggregationV1: hash(
-                await readFile('evals/agent/step-budget-aggregation-v1.jsonl', 'utf8')
-              )
-            },
+          : args.suite === 'step-budget-aggregation-v1'
+            ? {
+                stepBudgetAggregationV1: hash(
+                  await readFile('evals/agent/step-budget-aggregation-v1.jsonl', 'utf8')
+                )
+              }
+            : {
+                presentationV1: hash(await readFile('evals/agent/presentation-v1.jsonl', 'utf8'))
+              },
     selectedCaseIds: selected.map((item) => item.id),
     maxOutputTokens: 2048
   };
@@ -465,6 +590,9 @@ function summarize(
   const truncationRequired = completed.filter(({ score: item }) => item.truncationRequired);
   const unsupported = completed.filter(({ score: item }) => item.unsupported);
   const supported = completed.filter(({ score: item }) => item.supported);
+  const presentationCases = completed.filter(
+    ({ score: item }) => item.presentationInspection !== undefined
+  );
   const firstEligible = completed.filter(({ score: item }) => item.firstOperationEligible);
   const ambiguityCases = completed.filter(({ score: item }) => item.ambiguityCase);
   const toolResultBytes = completed.flatMap(({ result }) =>
@@ -516,6 +644,57 @@ function summarize(
       operationArgumentSubset: ratio(count('operationArguments'), completed.length),
       goldFacts: ratio(count('facts'), completed.length),
       presentationBoundary: ratio(count('presentation'), completed.length),
+      presentationTier1: ratio(
+        presentationCases.filter(({ score: item }) => item.tier1).length,
+        presentationCases.length
+      ),
+      presentationTier2: ratio(
+        presentationCases.filter(({ score: item }) => item.tier2).length,
+        presentationCases.length
+      ),
+      presentationTier3: ratio(
+        presentationCases.filter(({ score: item }) => item.tier3).length,
+        presentationCases.length
+      ),
+      internalTermLeakageCount: presentationCases.reduce(
+        (total, { score: item }) =>
+          total + (item.presentationInspection?.internalTerms.length ?? 0),
+        0
+      ),
+      unnecessaryDetailHits: presentationCases.reduce(
+        (total, { score: item }) =>
+          total + (item.presentationInspection?.detailHits.unnecessary.length ?? 0),
+        0
+      ),
+      materialLimitationsPreserved: ratio(
+        presentationCases.filter(
+          ({ score: item }) => item.presentationInspection?.materialLimitationsPreserved
+        ).length,
+        presentationCases.length
+      ),
+      duplicateLimitationsAvoided: ratio(
+        presentationCases.filter(
+          ({ score: item }) => item.presentationInspection?.duplicateLimitationsAvoided
+        ).length,
+        presentationCases.length
+      ),
+      scopeRestatementAvoided: ratio(
+        presentationCases.filter(
+          ({ score: item }) => item.presentationInspection?.scopeRestatementAvoided
+        ).length,
+        presentationCases.length
+      ),
+      conclusionFirst: ratio(
+        presentationCases.filter(({ score: item }) => item.presentationInspection?.conclusionFirst)
+          .length,
+        presentationCases.length
+      ),
+      withinSoftSentenceTarget: ratio(
+        presentationCases.filter(
+          ({ score: item }) => item.presentationInspection?.withinSoftSentenceTarget
+        ).length,
+        presentationCases.length
+      ),
       supportedGoldFacts: ratio(
         supported.filter(({ score: item }) => item.facts).length,
         supported.length
