@@ -47,18 +47,23 @@ describe('update upstreams workflow', () => {
   });
 
   it('gates validation, push and PR operations behind a real lock diff', async () => {
-    const workflow = await readFile(workflowFile, 'utf8');
+    const workflow = (await readFile(workflowFile, 'utf8')).replaceAll('\r\n', '\n');
     const changeCheck = workflow.indexOf('git diff --quiet -- upstream.lock.json');
+    const compileMessages = workflow.indexOf('run: pnpm messages:compile');
     const build = workflow.indexOf('run: pnpm deploy:build');
     const refresh = workflow.indexOf('run: pnpm data:search-names:update');
     const sync = workflow.indexOf('run: pnpm data:player-aliases:sync');
     const push = workflow.indexOf('name: Push automation branch');
     const pullRequest = workflow.indexOf('name: Create or update pull request');
     expect(changeCheck).toBeGreaterThan(0);
+    expect(compileMessages).toBeGreaterThan(changeCheck);
+    expect(refresh).toBeGreaterThan(compileMessages);
     expect(build).toBeGreaterThan(changeCheck);
-    expect(refresh).toBeGreaterThan(changeCheck);
     expect(sync).toBeGreaterThan(refresh);
     expect(build).toBeGreaterThan(sync);
+    expect(workflow).toMatch(
+      /- name: Compile site messages\n {8}if: steps\.changes\.outputs\.changed == 'true'\n {8}run: pnpm messages:compile/
+    );
     expect(workflow).toContain(
       'git add upstream.lock.json data/search/character-official-names.generated.json data/search/character-player-aliases.json'
     );
