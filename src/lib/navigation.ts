@@ -4,6 +4,7 @@ import type { Locale } from './paraglide/runtime.js';
 
 export const NAVIGATION_ICON_KEYS = [
   'overview',
+  'player',
   'characters',
   'light-cones',
   'relics',
@@ -20,6 +21,13 @@ export function getNavigationItems(locale?: Locale) {
       label: m.navigation_overview({}, { locale }),
       iconKey: 'overview',
       fallback: m.navigation_overview_fallback({}, { locale })
+    },
+    {
+      id: 'player',
+      href: '/player',
+      label: m.navigation_player({}, { locale }),
+      iconKey: 'player',
+      fallback: m.navigation_player_fallback({}, { locale })
     },
     {
       id: 'characters',

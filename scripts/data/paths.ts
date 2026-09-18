@@ -10,6 +10,7 @@ export const auditRoot = path.join(siteRoot, 'data', 'audit');
 const requiredFiles = [
   'ExcelOutput/FateRinOwner.json',
   'ExcelOutput/AvatarConfig.json',
+  'ExcelOutput/AvatarPlayerIcon.json',
   'ExcelOutput/AvatarConfigLD.json',
   'ExcelOutput/ItemConfigAvatarLD.json',
   'ExcelOutput/AvatarSkillConfigLD.json',

@@ -1,6 +1,12 @@
-import type { MiHoMoDependencies, PlayerProfile } from './contract.js';
+import type { PlayerProfile } from '../../src/lib/player/contract.js';
 import { PlayerApiError } from './errors.js';
 import { parsePlayerProfile } from './parse.js';
+
+export interface MiHoMoDependencies {
+  fetchImpl?: typeof fetch;
+  now?: () => number;
+  timeoutMs?: number;
+}
 
 const upstreamBaseUrl = 'https://api.mihomo.me/sr_info_parsed';
 const userAgent = 'HSR-Database-PlayerInfo/1.0 (+https://hsrarchive.cc)';

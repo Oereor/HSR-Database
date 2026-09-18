@@ -86,6 +86,7 @@ it('localizes roots, search results and Endgame pages without duplicate slashes'
   expect(localizedHref('/characters/1304/?uid=168902602', 'zh-CN')).toBe(
     '/characters/1304/?uid=168902602'
   );
+  expect(localeCounterpartHref('/player/?uid=168902602', 'en')).toBe('/en/player/?uid=168902602');
   expect(localizedHref('/endgame/moc/1034', 'en')).toBe('/en/endgame/moc/1034/');
   expect(localeCounterpartHref('/en/endgame/moc/1034/', 'en')).toBe('/en/endgame/moc/1034/');
 });

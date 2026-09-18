@@ -10,9 +10,10 @@ const zhItems = localizedNavigationItems('zh-CN');
 const item = (id: NavigationId) => zhItems.find((entry) => entry.id === id)!;
 
 describe('全局导航配置', () => {
-  it('为中文 locale 提供 canonical href、固定名称与六个唯一图标', () => {
+  it('为中文 locale 提供 canonical href、固定名称与七个唯一图标', () => {
     expect(zhItems.map((entry) => entry.label)).toEqual([
       '总览',
+      '玩家信息',
       '角色',
       '光锥',
       '遗器',
@@ -21,19 +22,21 @@ describe('全局导航配置', () => {
     ]);
     expect(zhItems.map((entry) => entry.href)).toEqual([
       '/',
+      '/player/',
       '/characters/',
       '/light-cones/',
       '/relics/',
       '/enemies/',
       '/endgame/'
     ]);
-    expect(new Set(zhItems.map((entry) => entry.iconKey)).size).toBe(6);
+    expect(new Set(zhItems.map((entry) => entry.iconKey)).size).toBe(7);
   });
 
   it('为英文 locale 提供英文名称与 localized href', () => {
     const enItems = localizedNavigationItems('en');
     expect(enItems.map((entry) => entry.label)).toEqual([
       'Overview',
+      'Player Info',
       'Characters',
       'Light Cones',
       'Relics',
@@ -42,6 +45,7 @@ describe('全局导航配置', () => {
     ]);
     expect(enItems.map((entry) => entry.href)).toEqual([
       '/en/',
+      '/en/player/',
       '/en/characters/',
       '/en/light-cones/',
       '/en/relics/',
@@ -53,6 +57,7 @@ describe('全局导航配置', () => {
   it('首页精确匹配，其他一级路由覆盖详情子路由', () => {
     expect(isNavigationItemActive('/', item('overview'))).toBe(true);
     expect(isNavigationItemActive('/characters', item('overview'))).toBe(false);
+    expect(isNavigationItemActive('/player/?uid=100000001', item('player'))).toBe(true);
     expect(isNavigationItemActive('/characters/1001', item('characters'))).toBe(true);
     expect(isNavigationItemActive('/characters/', item('characters'))).toBe(true);
     expect(isNavigationItemActive('/en/characters/1001/', item('characters'))).toBe(true);

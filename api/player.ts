@@ -1,6 +1,5 @@
-import type { MiHoMoDependencies } from './_player/contract.js';
 import { jsonResponse, PlayerApiError, playerErrorResponse } from './_player/errors.js';
-import { getPlayerProfile } from './_player/mihomo.js';
+import { getPlayerProfile, type MiHoMoDependencies } from './_player/mihomo.js';
 
 const successHeaders = {
   'Cache-Control': 'public, max-age=0, must-revalidate',

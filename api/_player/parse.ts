@@ -6,7 +6,7 @@ import type {
   PlayerRelicAffix,
   PlayerRelicSubAffix,
   PlayerStat
-} from './contract.js';
+} from '../../src/lib/player/contract.js';
 import { PlayerApiError } from './errors.js';
 
 type UnknownRecord = Record<string, unknown>;

@@ -79,9 +79,3 @@ export interface PlayerErrorResponse {
     retryAfterSeconds?: number;
   };
 }
-
-export interface MiHoMoDependencies {
-  fetchImpl?: typeof fetch;
-  now?: () => number;
-  timeoutMs?: number;
-}

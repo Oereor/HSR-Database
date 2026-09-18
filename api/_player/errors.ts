@@ -1,4 +1,4 @@
-import type { PlayerErrorCode, PlayerErrorResponse } from './contract.js';
+import type { PlayerErrorCode, PlayerErrorResponse } from '../../src/lib/player/contract.js';
 
 interface ErrorMetadata {
   status: number;

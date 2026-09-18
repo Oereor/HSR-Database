@@ -19,6 +19,7 @@ export function buildGeneratedRouteInventory(
     routePaths: [
       '/',
       '/search',
+      '/player',
       ...Object.entries(routes).flatMap(([category, ids]) => [
         `/${category}`,
         ...ids.map((id) => `/${category}/${id}`)

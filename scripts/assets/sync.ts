@@ -143,6 +143,9 @@ export async function syncAssets(options: SyncAssetsOptions = {}): Promise<Visua
     `  角色立绘 ${manifest.characters.portraits.available.length}，缺失 ${manifest.characters.portraits.missing.length}，${mb(sizes.portraits)}`
   );
   console.log(
+    `  玩家头像 ${manifest.playerAvatars.available.length}，缺失 ${manifest.playerAvatars.missing.length}，${mb(sizes.playerAvatars)}`
+  );
+  console.log(
     `  角色详情 icon ${Object.keys(manifest.characterDetails.icons.resolved).length}，缺失 ${manifest.characterDetails.icons.missing.length}，去重文件 ${new Set(Object.values(manifest.characterDetails.icons.resolved)).size}，${mb(sizes.characterDetailIcons)}`
   );
   console.log(
