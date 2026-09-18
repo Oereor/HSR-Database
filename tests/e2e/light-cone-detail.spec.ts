@@ -4,7 +4,7 @@ test('光锥 Detail Hero 使用完整 contain portrait、单一 Hero 命途标�
   page
 }) => {
   for (const id of ['20000', '21015', '21034', '23029', '23039']) {
-    await page.goto(`/light-cones/${id}`);
+    await page.goto(`/light-cones/${id}/`);
     const hero = page.locator('.detail-profile-hero--light-cone');
     const stage = hero.locator(`[data-light-cone-portrait="${id}"]`);
     const image = stage.locator('img');
@@ -20,7 +20,7 @@ test('光锥 Detail Hero 使用完整 contain portrait、单一 Hero 命途标�
     await expect(hero.locator('.hero-identity-copy')).not.toContainText(/仅对|装备者|叠影/);
   }
 
-  await page.goto('/light-cones/20000');
+  await page.goto('/light-cones/20000/');
   const stage = page.locator('[data-light-cone-portrait="20000"]');
   const before = await stage.boundingBox();
   await stage.locator('img').evaluate((image) => image.dispatchEvent(new Event('error')));
@@ -31,7 +31,7 @@ test('光锥 Detail Hero 使用完整 contain portrait、单一 Hero 命途标�
 });
 
 test('光锥等级与叠影滑块独立、控件先于效果且动态参数更新', async ({ page }) => {
-  await page.goto('/light-cones/20000');
+  await page.goto('/light-cones/20000/');
   const inspection = page.locator('.detail-profile-hero__inspection');
   const stats = page.locator('.base-stats-panel');
   const superimposition = page.locator('.superimposition-panel');

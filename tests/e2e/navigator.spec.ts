@@ -72,13 +72,13 @@ test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', a
   await page.getByRole('button', { name: '打开导航' }).click();
   await dialog.getByPlaceholder('搜索角色、光锥…').fill('三月七');
   await dialog.getByRole('button', { name: '开始搜索' }).click();
-  await expect(page).toHaveURL(/\/search\?q=%E4%B8%89%E6%9C%88%E4%B8%83$/);
+  await expect(page).toHaveURL(/\/search\/\?q=%E4%B8%89%E6%9C%88%E4%B8%83$/);
 });
 
 test('移动端仅保留顶部触发器并使用完整抽屉', async ({ page, isMobile }) => {
   test.skip(!isMobile, '仅移动项目执行');
   await page.setViewportSize({ width: 320, height: 720 });
-  await page.goto('/endgame');
+  await page.goto('/endgame/');
   await expect(page.locator('.navigator-rail')).toBeHidden();
   await expect(page.locator('.mobile-header')).toBeVisible();
 
@@ -121,11 +121,11 @@ test('移动端仅保留顶部触发器并使用完整抽屉', async ({ page, is
 test('导航重构后的代表路由均保留全局 shell', async ({ page }) => {
   for (const route of [
     '/',
-    '/characters/1001',
-    '/light-cones/20000',
-    '/relics/101',
-    '/enemies/1002011',
-    '/endgame'
+    '/characters/1001/',
+    '/light-cones/20000/',
+    '/relics/101/',
+    '/enemies/1002011/',
+    '/endgame/'
   ]) {
     await page.goto(route);
     await expect(page.locator('.site-shell')).toBeVisible();

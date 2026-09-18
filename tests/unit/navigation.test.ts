@@ -21,11 +21,11 @@ describe('全局导航配置', () => {
     ]);
     expect(zhItems.map((entry) => entry.href)).toEqual([
       '/',
-      '/characters',
-      '/light-cones',
-      '/relics',
-      '/enemies',
-      '/endgame'
+      '/characters/',
+      '/light-cones/',
+      '/relics/',
+      '/enemies/',
+      '/endgame/'
     ]);
     expect(new Set(zhItems.map((entry) => entry.iconKey)).size).toBe(6);
   });
@@ -42,11 +42,11 @@ describe('全局导航配置', () => {
     ]);
     expect(enItems.map((entry) => entry.href)).toEqual([
       '/en/',
-      '/en/characters',
-      '/en/light-cones',
-      '/en/relics',
-      '/en/enemies',
-      '/en/endgame'
+      '/en/characters/',
+      '/en/light-cones/',
+      '/en/relics/',
+      '/en/enemies/',
+      '/en/endgame/'
     ]);
   });
 
@@ -54,6 +54,9 @@ describe('全局导航配置', () => {
     expect(isNavigationItemActive('/', item('overview'))).toBe(true);
     expect(isNavigationItemActive('/characters', item('overview'))).toBe(false);
     expect(isNavigationItemActive('/characters/1001', item('characters'))).toBe(true);
+    expect(isNavigationItemActive('/characters/', item('characters'))).toBe(true);
+    expect(isNavigationItemActive('/en/characters/1001/', item('characters'))).toBe(true);
+    expect(isNavigationItemActive('/characters-extra/', item('characters'))).toBe(false);
     expect(isNavigationItemActive('/endgame/moc/1001', item('endgame'))).toBe(true);
     expect(isNavigationItemActive('/search', item('characters'))).toBe(false);
   });

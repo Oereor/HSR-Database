@@ -28,7 +28,7 @@
   import type { CatalogEntry } from '$lib/domain/types';
   import type { EquipmentRecommendationView } from '$lib/domain/equipment-recommendation-view';
   import { formatDocumentTitle } from '$lib/site';
-  import { localizedHref } from '$lib/i18n/routing';
+  import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   export let detail: any;
   export let category: string;
@@ -96,11 +96,14 @@
     if (enhancedEnabled) params.set('enhanced', '0');
     else params.delete('enhanced');
     const query = params.toString();
-    await goto(`${$page.url.pathname}${query ? `?${query}` : ''}${$page.url.hash}`, {
-      replaceState: true,
-      noScroll: true,
-      keepFocus: true
-    });
+    await goto(
+      `${trailingSlashHref($page.url.pathname)}${query ? `?${query}` : ''}${$page.url.hash}`,
+      {
+        replaceState: true,
+        noScroll: true,
+        keepFocus: true
+      }
+    );
   }
 </script>
 

@@ -4,7 +4,7 @@ This is the normative R6 architecture for the HSR Database product.
 
 ## Locale boundary
 
-zh-CN is the base locale and uses unprefixed URLs. en is publicly routed under /en. Paraglide uses URL plus base-locale strategies; SvelteKit de-localizes URLs for the shared route tree, and request middleware stores the resolved locale in App.Locals.locale.
+zh-CN is the base locale and uses unprefixed URLs. en is publicly routed under /en. Public page URLs use a trailing-slash convention (`/characters/1304/`, `/en/characters/1304/`); route identities in the generated manifest remain locale-neutral and do not require the presentation slash. Paraglide uses URL plus base-locale strategies; SvelteKit de-localizes URLs for the shared route tree, and request middleware stores the resolved locale in App.Locals.locale.
 
 ## Data flow
 
@@ -20,7 +20,7 @@ Site-owned prose, navigation, controls, metadata, errors, accessible labels, and
 
 ## URL helpers
 
-Use src/lib/i18n/routing.ts for canonicalization, localized internal hrefs, and same-page locale counterparts. Helpers preserve query strings and hashes. The settings switcher uses ordinary document links so the URL remains the single locale state.
+Use src/lib/i18n/routing.ts for page trailing-slash normalization, canonicalization, localized internal hrefs, and same-page locale counterparts. Helpers preserve query strings and hashes while leaving external, query-only, hash-only, and extension-bearing URLs unchanged. The settings switcher uses ordinary document links so the URL remains the single locale state.
 
 ## Changelog workflow
 

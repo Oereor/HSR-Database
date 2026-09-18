@@ -61,7 +61,8 @@ export function getNavigationItems(locale?: Locale) {
 
 export function isNavigationItemActive(pathname: string, item: { href: string }): boolean {
   const canonical = canonicalHref(pathname);
-  return item.href === '/' ? canonical === '/' : canonical.startsWith(item.href);
+  const itemHref = canonicalHref(item.href);
+  return itemHref === '/' ? canonical === '/' : canonical.startsWith(itemHref);
 }
 
 export function localizedNavigationItems(locale?: Locale) {

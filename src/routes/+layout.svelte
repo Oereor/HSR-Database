@@ -6,7 +6,7 @@
   import Navigator from '$lib/components/layout/Navigator.svelte';
   import { injectAnalytics } from '@vercel/analytics/sveltekit';
   import { getBrandIconUrl } from '$lib/data/visual-assets';
-  import { localeCounterpartHref } from '$lib/i18n/routing';
+  import { localeCounterpartHref, trailingSlashHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   import { siteName } from '$lib/site';
   import ChangelogModal from '$lib/components/layout/ChangelogModal.svelte';
@@ -22,7 +22,7 @@
   onMount(() => (appReady = true));
   // eslint-disable-next-line svelte/no-immutable-reactive-statements
   $: name = siteName();
-  $: canonicalPath = $page.url.pathname;
+  $: canonicalPath = trailingSlashHref($page.url.pathname);
   $: chinesePath = localeCounterpartHref(canonicalPath, 'zh-CN');
   $: englishPath = localeCounterpartHref(canonicalPath, 'en');
 </script>

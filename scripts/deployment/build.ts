@@ -231,6 +231,7 @@ export async function runDeploymentBuild(
       await commandRunner(['exec', 'vite', 'build'], env);
     });
     await timed('deploy-verify', () => commandRunner(['deploy:verify'], env));
+    await timed('route-verify', () => commandRunner(['deploy:verify:routes'], env));
   } finally {
     const byLabel = new Map(timings.map((timing) => [timing.label, timing]));
     console.log('[deploy:timing] summary');

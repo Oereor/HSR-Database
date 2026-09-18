@@ -1,4 +1,5 @@
 import { getManifest } from '$lib/server/generated';
+import { localizedHref } from '$lib/i18n/routing';
 
 export const prerender = true;
 
@@ -6,8 +7,6 @@ export async function GET() {
   const site = (process.env.PUBLIC_SITE_URL || 'http://localhost:5173').replace(/\/$/, '');
   const manifest = await getManifest();
   const routes = manifest.routePaths;
-  const localize = (route: string, locale: 'zh-CN' | 'en') =>
-    locale === 'zh-CN' ? route : `/en${route === '/' ? '' : route}`;
   const escapeXml = (value: string) =>
     value
       .replaceAll('&', '&amp;')
@@ -21,10 +20,10 @@ export async function GET() {
         const alternates = manifest.publicLocales
           .map(
             (alternate) =>
-              `<xhtml:link rel="alternate" hreflang="${alternate === 'zh-CN' ? 'zh-CN' : 'en'}" href="${escapeXml(site + localize(route, alternate))}" />`
+              `<xhtml:link rel="alternate" hreflang="${alternate === 'zh-CN' ? 'zh-CN' : 'en'}" href="${escapeXml(site + localizedHref(route, alternate))}" />`
           )
           .join('');
-        return `<url><loc>${escapeXml(site + localize(route, locale))}</loc>${alternates}<xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(site + localize(route, 'zh-CN'))}" /></url>`;
+        return `<url><loc>${escapeXml(site + localizedHref(route, locale))}</loc>${alternates}<xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(site + localizedHref(route, 'zh-CN'))}" /></url>`;
       })
     )
     .join('');

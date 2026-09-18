@@ -1,6 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
-  import { localizedHref } from '$lib/i18n/routing';
+  import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
@@ -96,10 +96,13 @@
 
   async function navigate(next: URLSearchParams) {
     const query = next.toString();
-    await goto(`${$page.url.pathname}${query ? `?${query}` : ''}${$page.url.hash}`, {
-      noScroll: true,
-      keepFocus: true
-    });
+    await goto(
+      `${trailingSlashHref($page.url.pathname)}${query ? `?${query}` : ''}${$page.url.hash}`,
+      {
+        noScroll: true,
+        keepFocus: true
+      }
+    );
   }
 
   async function submitQuery() {

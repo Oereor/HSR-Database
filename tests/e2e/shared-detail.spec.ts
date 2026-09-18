@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test('共享 SectionNav 提供真实锚点、scroll spy、sticky offset 与窄屏滚动', async ({ page }) => {
-  await page.goto('/characters/1001');
+  await page.goto('/characters/1001/');
   const characterNav = page.getByRole('navigation', { name: '详情章节' });
   const characterLinks = characterNav.getByRole('link');
   await expect(characterLinks).toHaveCount(5);
@@ -53,7 +53,7 @@ test('共享 SectionNav 提供真实锚点、scroll spy、sticky offset 与窄�
     expect(stickyGeometry.linkRows).toBe(1);
   }
 
-  await page.goto('/enemies/1003010');
+  await page.goto('/enemies/1003010/');
   const enemyNav = page.getByRole('navigation', { name: '详情章节' });
   expect(
     await enemyNav
@@ -69,12 +69,12 @@ test('共享 SectionNav 提供真实锚点、scroll spy、sticky offset 与窄�
   for (const id of ['stats', 'monsters', 'skills'])
     await expect(page.locator(`#${id}`)).toHaveCount(1);
 
-  await page.goto('/light-cones/20000');
+  await page.goto('/light-cones/20000/');
   await expect(page.getByRole('navigation', { name: '详情章节' })).toHaveCount(0);
 });
 
 test('四类详情页消费同一标题视觉层级并保持语义 heading hierarchy', async ({ page }) => {
-  await page.goto('/characters/1001');
+  await page.goto('/characters/1001/');
   await expect(page.getByRole('heading', { name: '技能', level: 2 })).toBeVisible();
   await expect(page.locator('#skills')).not.toContainText('5 类');
   await expect(page.locator('#traces')).not.toContainText(/\d+ 条记录/);
@@ -84,22 +84,27 @@ test('四类详情页消费同一标题视觉层级并保持语义 heading hiera
   await expect(page.getByRole('heading', { name: '隧洞遗器', level: 4 })).toBeVisible();
   await expect(page.getByRole('heading', { name: '位面饰品', level: 4 })).toBeVisible();
 
-  await page.goto('/light-cones/20000');
+  await page.goto('/light-cones/20000/');
   await expect(page.getByRole('heading', { name: '背景故事', level: 2 })).toBeVisible();
 
-  await page.goto('/enemies/1003010');
+  await page.goto('/enemies/1003010/');
   await expect(page.getByRole('heading', { name: '派生个体', level: 2 })).toBeVisible();
   await expect(page.locator('#monsters')).not.toContainText(/\d+ 个变种/);
   await expect(page.getByRole('heading', { name: '召唤单位', level: 3 })).toBeVisible();
   await expect(page.getByRole('heading', { name: '技能组', level: 3 })).toBeVisible();
   await expect(page.getByRole('heading', { name: '技能', level: 2 })).toBeVisible();
 
-  for (const url of ['/characters/1001', '/light-cones/20000', '/relics/101', '/enemies/1003010']) {
+  for (const url of [
+    '/characters/1001/',
+    '/light-cones/20000/',
+    '/relics/101/',
+    '/enemies/1003010/'
+  ]) {
     await page.goto(url);
     await expect(page.locator('.source-note')).toHaveCount(0);
   }
 
-  await page.goto('/endgame/moc/1034?encounter=5312');
+  await page.goto('/endgame/moc/1034/?encounter=5312');
   await expect(page.getByRole('heading', { name: '扫除风暴其十二', level: 2 })).toBeVisible();
   await expect(page.getByRole('heading', { name: '节点 1', level: 3 })).toBeVisible();
   await expect(page.getByRole('heading', { name: '波次 1', level: 4 }).first()).toBeVisible();
@@ -108,9 +113,9 @@ test('四类详情页消费同一标题视觉层级并保持语义 heading hiera
 test('Path、Character Element、Enemy Weakness 使用独立且稳定的 presentation semantics', async ({
   page
 }) => {
-  await page.goto('/characters?q=三月七');
+  await page.goto('/characters/?q=三月七');
   const characterMetadata = page
-    .locator('a[href="/characters/1001"] .entity-overview-card__metadata')
+    .locator('a[href="/characters/1001/"] .entity-overview-card__metadata')
     .first();
   await expect(characterMetadata.locator('[data-icon-kind="path"]')).toHaveAttribute(
     'data-icon-presentation',
@@ -121,14 +126,14 @@ test('Path、Character Element、Enemy Weakness 使用独立且稳定的 present
     'overview-icon'
   );
 
-  await page.goto('/light-cones?q=锋镝');
+  await page.goto('/light-cones/?q=锋镝');
   await expect(
-    page.locator('a[href="/light-cones/20000"] [data-icon-kind="path"]')
+    page.locator('a[href="/light-cones/20000/"] [data-icon-kind="path"]')
   ).toHaveAttribute('data-icon-presentation', 'overview-icon');
 
-  await page.goto('/enemies?sort=id');
+  await page.goto('/enemies/?sort=id');
   const weakness = page
-    .locator('a[href="/enemies/1002015"] .enemy-weakness-group [data-icon-kind="element"]')
+    .locator('a[href="/enemies/1002015/"] .enemy-weakness-group [data-icon-kind="element"]')
     .first();
   await expect(weakness).toHaveAttribute('data-icon-presentation', 'plain');
   await expect(weakness).not.toHaveAttribute(
@@ -138,7 +143,7 @@ test('Path、Character Element、Enemy Weakness 使用独立且稳定的 present
 });
 
 test('详情 Hero 立绘失败时只移除图片并保留稳定舞台', async ({ page }) => {
-  await page.goto('/characters/1001');
+  await page.goto('/characters/1001/');
   const hero = page.locator('.detail-profile-hero');
   const stage = hero.locator('[data-character-portrait="1001"]');
   const image = hero.locator('[data-character-portrait] img');
@@ -157,9 +162,9 @@ test('详情 Hero 立绘失败时只移除图片并保留稳定舞台', async ({
 
 test('角色与光锥 Detail Hero 的 rarity 与 identity presentation 保持语义隔离', async ({ page }) => {
   for (const [url, heroSelector, rarity, color, tagCount] of [
-    ['/characters/1402', '.detail-profile-hero--character', 5, 'rgb(255, 215, 0)', 2],
-    ['/characters/1001', '.detail-profile-hero--character', 4, 'rgb(199, 125, 255)', 2],
-    ['/light-cones/20000', '.detail-profile-hero--light-cone', 3, 'rgb(96, 144, 255)', 1]
+    ['/characters/1402/', '.detail-profile-hero--character', 5, 'rgb(255, 215, 0)', 2],
+    ['/characters/1001/', '.detail-profile-hero--character', 4, 'rgb(199, 125, 255)', 2],
+    ['/light-cones/20000/', '.detail-profile-hero--light-cone', 3, 'rgb(96, 144, 255)', 1]
   ] as const) {
     await page.goto(url);
     const hero = page.locator(heroSelector);
@@ -217,9 +222,9 @@ test('角色、光锥与敌人 Hero 共享 inspection stat row presentation', as
     });
   };
 
-  const character = await readRowPresentation('/characters/1001');
-  const lightCone = await readRowPresentation('/light-cones/20000');
-  const enemy = await readRowPresentation('/enemies/1004014');
+  const character = await readRowPresentation('/characters/1001/');
+  const lightCone = await readRowPresentation('/light-cones/20000/');
+  const enemy = await readRowPresentation('/enemies/1004014/');
   const withoutValueColor = ({ valueColor, ...presentation }: typeof character) => {
     void valueColor;
     return presentation;
@@ -231,26 +236,26 @@ test('角色、光锥与敌人 Hero 共享 inspection stat row presentation', as
 });
 
 test('属性行迹、普通换行与光锥 identity 内容边界正确渲染', async ({ page }) => {
-  await page.goto('/characters/1407');
+  await page.goto('/characters/1407/');
   await expect(page.locator('[data-trace-id="1407202"]')).toContainText('量子属性伤害提高3.2%');
   await expect(page.locator('[data-trace-id="1407204"]')).toContainText('暴击伤害提高5.3%');
   const introduction = page.locator('.hero-description');
   await expect(introduction.locator('.game-text')).toHaveCSS('white-space', 'pre-line');
   expect((await introduction.innerText()).split('\n')).toHaveLength(3);
 
-  await page.goto('/light-cones/20002');
+  await page.goto('/light-cones/20002/');
   const identity = page.locator('.detail-profile-hero__identity');
   await expect(identity).not.toContainText('光锥技能仅对「毁灭」命途角色生效');
   await expect(identity).not.toContainText('<color');
 });
 
 test('角色与敌人属性文字使用统一颜色', async ({ page }) => {
-  await page.goto('/characters/1005');
+  await page.goto('/characters/1005/');
   await expect(page.locator('.hero-identity-metadata').getByText('雷', { exact: true })).toHaveCSS(
     'color',
     'rgb(212, 106, 235)'
   );
-  await page.goto('/enemies/1002011');
+  await page.goto('/enemies/1002011/');
   const weaknesses = page.locator('.enemy-weakness-list');
   await expect(weaknesses.getByText('火', { exact: true })).toHaveCSS('color', 'rgb(242, 87, 64)');
   await expect(page.getByRole('heading', { name: '掉落物' })).toHaveCount(0);

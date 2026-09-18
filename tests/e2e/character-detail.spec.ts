@@ -7,17 +7,17 @@ test('角色目录与详情接入属性、命途图标和优化立绘', async ({
       failedImages.push(response.url());
     }
   });
-  await page.goto('/characters');
+  await page.goto('/characters/');
   const firstCard = page.locator('.entity-overview-card').first();
   await expect(firstCard.locator('.rarity-stars')).toHaveCSS('color', 'rgb(255, 215, 0)');
 
-  await page.goto('/characters?rarity=4');
+  await page.goto('/characters/?rarity=4');
   await expect(page.locator('.entity-overview-card').first().locator('.rarity-stars')).toHaveCSS(
     'color',
     'rgb(199, 125, 255)'
   );
 
-  await page.goto('/characters/1402');
+  await page.goto('/characters/1402/');
   const portrait = page.locator('[data-character-portrait="1402"]');
   await expect(portrait.locator('img')).toHaveAttribute(
     'src',
@@ -36,8 +36,8 @@ test('四名 LD 角色进入 Character Overview、Search、Detail 与本地资�
     ['1508', '远坂凛', '智识', '量子'],
     ['1509', '吉尔伽美什', '毁灭', '雷']
   ] as const) {
-    await page.goto(`/characters?q=${encodeURIComponent(name)}`);
-    const card = page.locator(`a[href="/characters/${id}"]`);
+    await page.goto(`/characters/?q=${encodeURIComponent(name)}`);
+    const card = page.locator(`a[href="/characters/${id}/"]`);
     await expect(card).toBeVisible();
     await expect(card.locator('.rarity-stars')).toHaveText('★★★★★');
     await expect(card.getByRole('img', { name: pathName, exact: true })).toBeVisible();
@@ -47,10 +47,10 @@ test('四名 LD 角色进入 Character Overview、Search、Detail 与本地资�
       `/generated-assets/characters/preview/${id}.png`
     );
 
-    await page.goto(`/search?q=${encodeURIComponent(name)}`);
-    await expect(page.locator(`a[href="/characters/${id}"]`)).toBeVisible();
+    await page.goto(`/search/?q=${encodeURIComponent(name)}`);
+    await expect(page.locator(`a[href="/characters/${id}/"]`)).toBeVisible();
 
-    await page.goto(`/characters/${id}`);
+    await page.goto(`/characters/${id}/`);
     await expect(page.getByRole('heading', { level: 1, name })).toBeVisible();
     await expect(page.locator(`[data-character-portrait="${id}"] img`)).toHaveAttribute(
       'src',
@@ -67,7 +67,7 @@ test('Global Buff 作为正常 Talent Variant 展示且不泄漏配置术语', a
     ['1407', '140704', '140704:global-buff:1', '掌心淌过的荒芜', '月茧之庇', '月茧'],
     ['1506', '150604', '150604:global-buff:1', '有我在，把把都是顺风局', '999安全卫士', '防火墙']
   ] as const) {
-    await page.goto(`/characters/${id}`);
+    await page.goto(`/characters/${id}/`);
     const talentCard = page.locator('[data-skill-category="talent"]');
     await expect(talentCard).toHaveCount(1);
     await expect(talentCard.locator('.skill-variant')).toHaveCount(2);
@@ -91,7 +91,7 @@ test('角色 Detail Hero 在桌面 3:2 分栏并于 820px 断点纵向堆叠', a
     { width: 390, height: 844 }
   ]) {
     await page.setViewportSize(viewport);
-    await page.goto('/characters/1310');
+    await page.goto('/characters/1310/');
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth
     );
@@ -115,14 +115,14 @@ test('角色 Detail Hero 在桌面 3:2 分栏并于 820px 断点纵向堆叠', a
 });
 
 test('多命途角色名称由统一规则生成', async ({ page }) => {
-  await page.goto('/characters/1224');
+  await page.goto('/characters/1224/');
   await expect(page.getByRole('heading', { name: '三月七·巡猎' })).toBeVisible();
-  await page.goto('/characters/8005');
+  await page.goto('/characters/8005/');
   await expect(page.getByRole('heading', { name: '开拓者·同谐' })).toBeVisible();
 });
 
 test('技能卡按语义类别合并变体并使用真实默认等级', async ({ page }) => {
-  await page.goto('/characters/1213');
+  await page.goto('/characters/1213/');
   const basicCard = page.locator('[data-skill-category="basic"]');
   await expect(basicCard).toHaveCount(1);
   await expect(basicCard.locator('.skill-variant')).toHaveCount(4);
@@ -136,14 +136,14 @@ test('技能卡按语义类别合并变体并使用真实默认等级', async ({
   await expect(skillCard.locator('[data-skill-id="121302"]')).toBeVisible();
   await expect(skillCard.locator('[data-skill-id="121309"]')).toHaveCount(0);
 
-  await page.goto('/characters/1401');
+  await page.goto('/characters/1401/');
   const hertaSkill = page.locator('[data-skill-category="skill"]');
   await expect(hertaSkill).toHaveCount(1);
   await expect(hertaSkill.locator('.skill-variant')).toHaveCount(2);
 });
 
 test('技能类别标题与正文之间只保留一条 divider，秘技隐藏固定等级', async ({ page }) => {
-  await page.goto('/characters/1001');
+  await page.goto('/characters/1001/');
   for (const category of ['basic', 'skill', 'ultimate', 'talent', 'technique']) {
     const card = page.locator(`[data-skill-category="${category}"]`);
     const dividerWidths = await card.evaluate((element) => {
@@ -167,7 +167,7 @@ test('技能类别标题与正文之间只保留一条 divider，秘技隐藏固
 });
 
 test('每个 Skill Variant 独立展示技能类型与战斗元数据', async ({ page }) => {
-  await page.goto('/characters/1001');
+  await page.goto('/characters/1001/');
   const basic = page.locator('[data-skill-id="100101"]');
   await expect(basic.locator('[data-skill-effect="SingleAttack"]')).toHaveText('单攻');
   await expect(basic.locator('[data-combat-meta="battle-point"]')).toContainText(/战技点\s*\+1/);
@@ -181,7 +181,7 @@ test('每个 Skill Variant 独立展示技能类型与战斗元数据', async ({
   await expect(skill.locator('[data-combat-meta="energy-gain"]')).toContainText(/能量恢复\s*30/);
   await expect(skill.locator('[data-combat-meta="toughness-damage"]')).toHaveCount(0);
 
-  await page.goto('/characters/1213');
+  await page.goto('/characters/1213/');
   for (const [id, bp, energy, toughness] of [
     ['121301', '+1', '20', '10'],
     ['121308', '-1', '30', '20'],
@@ -201,7 +201,7 @@ test('每个 Skill Variant 独立展示技能类型与战斗元数据', async ({
 });
 
 test('特殊资源可与战技点同时显示且忆灵元数据不回归', async ({ page }) => {
-  await page.goto('/characters/1310?enhanced=0');
+  await page.goto('/characters/1310/?enhanced=0');
   const baseFirefly = page.locator('[data-skill-id="131002"]');
   await expect(baseFirefly.locator('[data-combat-meta="special-resource"]')).toContainText(
     /技能消耗\s*40%生命值/
@@ -210,7 +210,7 @@ test('特殊资源可与战技点同时显示且忆灵元数据不回归', async
     /战技点\s*-1/
   );
 
-  await page.goto('/characters/1407');
+  await page.goto('/characters/1407/');
   const castoriceSkill = page.locator('[data-skill-id="140702"]');
   await expect(castoriceSkill.locator('[data-combat-meta="special-resource"]')).toContainText(
     '30%我方全体当前生命值'
@@ -225,7 +225,7 @@ test('特殊资源可与战技点同时显示且忆灵元数据不回归', async
   await expect(memosprite.locator('[data-combat-meta="toughness-damage"]')).toContainText('10');
   await expect(page.locator('[data-skill-id="1140712"]')).toHaveCount(0);
 
-  await page.goto('/characters/1401');
+  await page.goto('/characters/1401/');
   const normalHertaSkill = page.locator('[data-skill-id="140102"]');
   await expect(normalHertaSkill.locator('[data-stance-display="single"]')).toHaveText('单攻：15');
   await expect(normalHertaSkill.locator('[data-stance-display="blast"]')).toHaveText('扩散：10');
@@ -236,7 +236,7 @@ test('特殊资源可与战技点同时显示且忆灵元数据不回归', async
 });
 
 test('角色 ExtraEffect 使用共享 disclosure 并保持多形态归属', async ({ page }) => {
-  await page.goto('/characters/1224');
+  await page.goto('/characters/1224/');
   const normal = page.locator('[data-skill-id="122401"]');
   const enhanced = page.locator('[data-skill-id="122408"]');
   await expect(normal.locator('[data-skill-extra-effects]')).toHaveCount(0);
@@ -249,7 +249,7 @@ test('角色 ExtraEffect 使用共享 disclosure 并保持多形态归属', asyn
 });
 
 test('角色技能、行迹与星魂保留下划线并共享 ExtraEffect disclosure', async ({ page }) => {
-  await page.goto('/characters/1001');
+  await page.goto('/characters/1001/');
 
   const skill = page.locator('[data-skill-id="100104"]');
   await expect(skill.locator('u')).toContainText('反击');
@@ -274,7 +274,7 @@ test('角色技能、行迹与星魂保留下划线并共享 ExtraEffect disclos
 });
 
 test('忆灵技和忆灵天赋进入统一技能管线且不重复为行迹', async ({ page }) => {
-  await page.goto('/characters/1402');
+  await page.goto('/characters/1402/');
   await expect(page.locator('[data-skill-category="memosprite-skill"]')).toBeVisible();
   await expect(page.locator('[data-skill-category="memosprite-talent"]')).toBeVisible();
   await expect(page.locator('[data-skill-id="1140201"]')).toBeVisible();
@@ -284,7 +284,7 @@ test('忆灵技和忆灵天赋进入统一技能管线且不重复为行迹', as
 
 test('角色 Detail Hero 展示完整 identity、放大标签与不截断传记', async ({ page }) => {
   for (const id of ['1402', '1506', '1317', '1310']) {
-    await page.goto(`/characters/${id}`);
+    await page.goto(`/characters/${id}/`);
     const hero = page.locator('.detail-profile-hero--character');
     await expect(hero).toHaveCount(1);
     await expect(hero.locator(`[data-character-portrait="${id}"] img`)).toHaveAttribute(
@@ -367,7 +367,7 @@ test('角色 Detail Hero 展示完整 identity、放大标签与不截断传记'
 });
 
 test('角色等级属性默认 Lv.80、使用突破后边界并严格按语义行排序', async ({ page }) => {
-  await page.goto('/characters/1001');
+  await page.goto('/characters/1001/');
   const panel = page.locator('.base-stats-panel');
   const slider = panel.getByRole('slider', { name: '角色等级' });
   await expect(panel.locator('output')).toHaveText('Lv.80');
@@ -406,12 +406,12 @@ test('角色等级属性默认 Lv.80、使用突破后边界并严格按语义�
 
 test('特殊能量使用结构化标记且旧版银狼保持普通能量', async ({ page }) => {
   for (const id of ['1308', '1506']) {
-    await page.goto(`/characters/${id}`);
+    await page.goto(`/characters/${id}/`);
     const energy = page.locator('[data-base-stat="energy"]');
     await expect(energy.locator('dt')).toHaveText('能量上限');
     await expect(energy.locator('dd')).toHaveText('特殊能量');
   }
-  await page.goto('/characters/1006');
+  await page.goto('/characters/1006/');
   const standardEnergy = page.locator('[data-base-stat="energy"]');
   await expect(standardEnergy.locator('dt')).toHaveText('能量上限');
   await expect(standardEnergy.locator('dd')).toHaveText('110');
@@ -419,7 +419,7 @@ test('特殊能量使用结构化标记且旧版银狼保持普通能量', async
 });
 
 test('角色加强开关只渲染当前 Profile 并保持 URL 状态', async ({ page }) => {
-  await page.goto('/characters/1212');
+  await page.goto('/characters/1212/');
   const enhancement = page.getByRole('switch', { name: '角色加强' });
   await expect(enhancement).toBeVisible();
   await expect(enhancement).toHaveAttribute('aria-checked', 'true');
@@ -432,7 +432,7 @@ test('角色加强开关只渲染当前 Profile 并保持 URL 状态', async ({ 
   await expect(page.locator('[data-eidolon-id="121201"]')).toHaveCount(0);
 
   await enhancement.click();
-  await expect(page).toHaveURL(/\/characters\/1212\?enhanced=0$/);
+  await expect(page).toHaveURL(/\/characters\/1212\/\?enhanced=0$/);
   await expect(enhancement).toHaveAttribute('aria-checked', 'false');
   await expect(enhancement).toContainText('加强前');
   await expect(page.locator('[data-skill-id="121202"]')).toContainText('200%攻击力');
@@ -449,15 +449,15 @@ test('角色加强开关只渲染当前 Profile 并保持 URL 状态', async ({ 
   );
   await expect(page.locator('[data-skill-id="1121202"]')).toHaveCount(0);
   await page.getByRole('switch', { name: '角色加强' }).press('Space');
-  await expect(page).toHaveURL(/\/characters\/1212$/);
+  await expect(page).toHaveURL(/\/characters\/1212\/$/);
   await expect(page.locator('[data-skill-id="1121202"]')).toBeVisible();
 
-  await page.goto('/characters/1001');
+  await page.goto('/characters/1001/');
   await expect(page.getByRole('switch', { name: '角色加强' })).toHaveCount(0);
 });
 
 test('HideInUI 技能在玩家侧管线统一隐藏且公开技能保持可用', async ({ page }) => {
-  await page.goto('/characters/8007');
+  await page.goto('/characters/8007/');
   const remembranceBasic = page.locator('[data-skill-category="basic"]');
   await expect(remembranceBasic.locator('.skill-variant')).toHaveCount(2);
   await expect(remembranceBasic.locator('[data-skill-id="800701"]')).toContainText('包在我身上');
@@ -473,7 +473,7 @@ test('HideInUI 技能在玩家侧管线统一隐藏且公开技能保持可用',
   await expect(remembranceBasic.locator('[data-skill-id="800708"]')).toContainText('144%');
   await expect(page.locator('[data-skill-id="800709"]')).toHaveCount(0);
 
-  await page.goto('/characters/8008');
+  await page.goto('/characters/8008/');
   const remembranceBasicFemale = page.locator('[data-skill-category="basic"]');
   await expect(remembranceBasicFemale.locator('.skill-variant')).toHaveCount(2);
   await expect(remembranceBasicFemale.locator('[data-skill-id="800801"]')).toBeVisible();
@@ -483,7 +483,7 @@ test('HideInUI 技能在玩家侧管线统一隐藏且公开技能保持可用',
   await expect(remembranceBasicFemale.getByRole('slider', { name: '普攻等级' })).toHaveCount(1);
   await expect(page.locator('[data-skill-id="800809"]')).toHaveCount(0);
 
-  await page.goto('/characters/1407');
+  await page.goto('/characters/1407/');
   const memospriteSkill = page.locator('[data-skill-category="memosprite-skill"]');
   await expect(memospriteSkill.locator('[data-skill-id="1140702"]')).toBeVisible();
   await expect(memospriteSkill.locator('[data-skill-id="1140710"]')).toHaveCount(0);
@@ -495,11 +495,11 @@ test('HideInUI 技能在玩家侧管线统一隐藏且公开技能保持可用',
   await expect(memospriteTalent.locator('[data-skill-id="1140706"]')).toBeVisible();
   await expect(memospriteTalent.getByRole('slider', { name: '忆灵天赋等级' })).toHaveCount(1);
 
-  await page.goto('/characters/1507');
+  await page.goto('/characters/1507/');
   await expect(page.locator('[data-skill-id="150709"]')).toHaveCount(0);
   await expect(page.getByText('上游原始数据未提供该技能描述。')).toHaveCount(0);
 
-  await page.goto('/characters/1509');
+  await page.goto('/characters/1509/');
   await expect(page.locator('[data-skill-category="basic"] .skill-variant')).toHaveCount(1);
   await expect(page.locator('[data-skill-id="150901"]')).toContainText('漫不经心');
   const gilgameshSkill = page.locator('[data-skill-category="skill"]');
@@ -508,12 +508,12 @@ test('HideInUI 技能在玩家侧管线统一隐藏且公开技能保持可用',
   await expect(page.locator('[data-skill-id="150909"]')).toHaveCount(0);
   await expect(page.getByText('上游原始数据未提供该技能描述。')).toHaveCount(0);
 
-  await page.goto('/characters/1510');
+  await page.goto('/characters/1510/');
   await expect(page.locator('[data-skill-id="151022"]')).toBeVisible();
   await expect(page.locator('[data-skill-id="151025"]')).toHaveCount(0);
   await expect(page.locator('[data-skill-id="151026"]')).toHaveCount(0);
 
-  await page.goto('/characters/1415');
+  await page.goto('/characters/1415/');
   const cyreneMemospriteSkill = page.locator('[data-skill-category="memosprite-skill"]');
   await expect(cyreneMemospriteSkill.locator('.skill-variant')).toHaveCount(2);
   await expect(cyreneMemospriteSkill.locator('[data-skill-id="1141501"]')).toBeVisible();
@@ -526,7 +526,7 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   page,
   isMobile
 }) => {
-  await page.goto('/characters/1415');
+  await page.goto('/characters/1415/');
   const initialBodyOverflow = await page.evaluate(() => document.body.style.overflow);
   const cyreneSourceLevel = page
     .locator('[data-skill-category="memosprite-skill"]')
@@ -595,7 +595,7 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
     await expect(trigger).toBeFocused();
   }
 
-  await page.goto('/characters/1510');
+  await page.goto('/characters/1510/');
   const himekoSourceLevel = page.locator(
     '[data-skill-category="assist"] .skill-level-control input[type="range"]'
   );
@@ -623,18 +623,18 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   await expect(himekoDialog).not.toContainText('简化模式');
   await himekoDialog.getByRole('button', { name: '关闭特殊效果' }).click();
 
-  await page.goto('/characters/8007');
+  await page.goto('/characters/8007/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('开拓者·记忆');
-  await page.goto('/characters/1001');
+  await page.goto('/characters/1001/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('三月七·存护');
 
-  await page.goto('/characters/1509');
+  await page.goto('/characters/1509/');
   await expect(page.getByRole('button', { name: '查看特殊效果' })).toHaveCount(0);
   await expect(page.locator('[data-skill-id="150909"]')).toHaveCount(0);
 });
 
 test('行迹使用三列能力分组与紧凑属性卡直接展示完整内容', async ({ page, isMobile }) => {
-  await page.goto('/characters/1001');
+  await page.goto('/characters/1001/');
   const traces = page.locator('#traces');
   const abilityGroups = traces.locator('[data-trace-group]');
   const abilities = abilityGroups.locator('.trace-card--ability');
@@ -676,7 +676,7 @@ test('行迹使用三列能力分组与紧凑属性卡直接展示完整内容',
 
 test('记忆开拓者按真实前置链归组并将第四项能力独占底部整行', async ({ page }) => {
   for (const id of ['8007', '8008']) {
-    await page.goto(`/characters/${id}`);
+    await page.goto(`/characters/${id}/`);
     const traces = page.locator('#traces');
     const groups = traces.locator('[data-trace-group]');
     await expect(groups).toHaveCount(3);
@@ -712,7 +712,7 @@ test('记忆开拓者按真实前置链归组并将第四项能力独占底部�
 });
 
 test('角色详情 icon 增强保持 canonical 技能、紧凑卡片与无破图布局', async ({ page, isMobile }) => {
-  await page.goto('/characters/1407');
+  await page.goto('/characters/1407/');
   await expect(page.locator('#stats .inspection-stat-label img')).toHaveCount(5);
   const skillCards = page.locator('#skills .skill-card');
   await expect(skillCards).toHaveCount(7);
@@ -766,7 +766,7 @@ test('角色详情 icon 增强保持 canonical 技能、紧凑卡片与无破图
   expect(presentation.overflow).toBeLessThanOrEqual(isMobile ? 1 : 0);
 
   for (const id of ['8007', '8008']) {
-    await page.goto(`/characters/${id}`);
+    await page.goto(`/characters/${id}/`);
     await expect(
       page.locator(`[data-trace-id="${id}501"] .trace-card__identity > img`)
     ).toHaveAttribute(
@@ -775,7 +775,7 @@ test('角色详情 icon 增强保持 canonical 技能、紧凑卡片与无破图
     );
   }
 
-  await page.goto('/characters/1510');
+  await page.goto('/characters/1510/');
   await expect(
     page.locator('[data-skill-category="talent"] .skill-card__heading img')
   ).toHaveAttribute('src', '/generated-assets/character-details/icons/skill/1510_talent.png');

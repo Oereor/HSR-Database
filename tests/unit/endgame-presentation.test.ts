@@ -233,7 +233,7 @@ describe('Endgame shared detail primitives', () => {
       }
     });
 
-    expect(body).toContain('href="/endgame/moc"');
+    expect(body).toContain('href="/endgame/moc/"');
     expect(body).toContain('暂无赛期');
   });
 

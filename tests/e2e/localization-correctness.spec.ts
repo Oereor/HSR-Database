@@ -48,10 +48,10 @@ async function switchTo(page: Page, locale: 'en' | 'zh-CN', pathname: string) {
 
 for (const path of [
   '/',
-  '/characters/1001',
-  '/enemies/1002015',
-  '/endgame/moc/1034?encounter=5312',
-  '/search?q=March#search-results-characters'
+  '/characters/1001/',
+  '/enemies/1002015/',
+  '/endgame/moc/1034/?encounter=5312',
+  '/search/?q=March#search-results-characters'
 ]) {
   test(`document locale switch round trip: ${path}`, async ({ page }) => {
     await page.goto(path);
@@ -72,7 +72,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
   const prefix = locale === 'en' ? '/en' : '';
   for (const mode of ['moc', 'pf', 'as', 'aa']) {
     test(`${locale} ${mode} navigation and numbering`, async ({ page }) => {
-      await page.goto(`${prefix}/endgame`);
+      await page.goto(`${prefix}/endgame/`);
       const card = page.locator(`[data-endgame-overview-card="${mode}"]`);
       await expect(card).toHaveAttribute('href', new RegExp(`^${prefix}/endgame/${mode}/`));
       await card.click();
@@ -87,7 +87,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
         .first();
       if (await local.count()) {
         await local.click();
-        await expect(page).toHaveURL(new RegExp(`${prefix}/endgame/${mode}/[^?]+\\?encounter=`));
+        await expect(page).toHaveURL(new RegExp(`${prefix}/endgame/${mode}/[^/?]+/\\?encounter=`));
       }
       for (const heading of await page.locator('[data-battle-slot] h3, [data-wave] h4').all()) {
         const text = await heading.textContent();
@@ -109,7 +109,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
         await expect(page).toHaveURL(seasonUrl);
       }
       await page.locator('.endgame-breadcrumb').click();
-      await expect(page).toHaveURL(new RegExp(`${prefix}/endgame/${mode}$`));
+      await expect(page).toHaveURL(new RegExp(`${prefix}/endgame/${mode}/$`));
       const season = page.locator('a.endgame-season-card').first();
       await expect(season).toHaveAttribute('href', new RegExp(`^${prefix}/endgame/${mode}/`));
       await season.click();
@@ -143,11 +143,11 @@ for (const locale of ['zh-CN', 'en'] as const) {
       BigBoss: messages.enemy_rank_boss
     })) {
       const entry = entries.find((entry) => entry.type === rank)!;
-      await page.goto(`${prefix}/enemies?q=${encodeURIComponent(entry.name)}`);
-      const card = page.locator(`a[href="${prefix}/enemies/${entry.id}"]`);
+      await page.goto(`${prefix}/enemies/?q=${encodeURIComponent(entry.name)}`);
+      const card = page.locator(`a[href="${prefix}/enemies/${entry.id}/"]`);
       await expect(card.locator('.entity-overview-card__overlay')).toHaveText(label);
       await card.click();
-      await expect(page).toHaveURL(new RegExp(`${prefix}/enemies/${entry.id}$`));
+      await expect(page).toHaveURL(new RegExp(`${prefix}/enemies/${entry.id}/$`));
       await expect(page.locator('.enemy-rank-tag')).toHaveText(label);
     }
   });

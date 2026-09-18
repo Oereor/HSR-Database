@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test('Enemy Detail 中英文直达均恢复 compact stats', async ({ page }) => {
-  for (const detailPath of ['/enemies/8034010', '/en/enemies/8034010'] as const) {
+  for (const detailPath of ['/enemies/8034010/', '/en/enemies/8034010/'] as const) {
     await page.goto(detailPath);
     await expect(page).toHaveURL(new RegExp(`${detailPath}$`));
     await expect(page.getByRole('slider')).toHaveValue('95');
@@ -12,10 +12,10 @@ test('Enemy Detail 中英文直达均恢复 compact stats', async ({ page }) => 
 
 test('Enemy Detail Hero 复用统一分栏并仅展示 Template 基础数据', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/enemies/1004014');
+  await page.goto('/enemies/1004014/');
 
   const backLink = page.getByRole('link', { name: '← 返回敌方单位列表', exact: true });
-  await expect(backLink).toHaveAttribute('href', '/enemies');
+  await expect(backLink).toHaveAttribute('href', '/enemies/');
   const hero = page.locator('[data-enemy-hero]');
   await expect(hero).toBeVisible();
   await expect(hero.getByText('敌方单位 / 模板 ID 1004014', { exact: true })).toBeVisible();
@@ -49,7 +49,7 @@ test('Enemy Detail Hero 本地化普通、精英与首领类型', async ({ page 
     ['1003012', '精英敌人', 'Elite'],
     ['1004014', '首领敌人', 'LittleBoss']
   ]) {
-    await page.goto(`/enemies/${id}`);
+    await page.goto(`/enemies/${id}/`);
     const hero = page.locator('[data-enemy-hero]');
     const rank = hero.locator(`[data-enemy-rank-label="${label}"]`);
     await expect(rank).toHaveText(label);
@@ -59,29 +59,29 @@ test('Enemy Detail Hero 本地化普通、精英与首领类型', async ({ page 
 });
 
 test('Enemy Detail Hero 对缺失 Template 字段保留固定行', async ({ page }) => {
-  await page.goto('/enemies/3004010');
+  await page.goto('/enemies/3004010/');
   await expect(page.locator('[data-enemy-template-stat="speed"]')).toContainText('资料未提供');
   await expect(page.locator('[data-enemy-template-stat="toughness"]')).toContainText('资料未提供');
 
-  await page.goto('/enemies/1005010');
+  await page.goto('/enemies/1005010/');
   await expect(page.locator('[data-enemy-template-stat="effect-resistance"]')).toContainText(
     '资料未提供'
   );
   await expect(page.locator('[data-enemy-template-stat]')).toHaveCount(8);
 
-  await page.goto('/enemies/3002040');
+  await page.goto('/enemies/3002040/');
   await expect(page.locator('[data-enemy-template-stat="initial-action-value"]')).toContainText(
     '资料未提供'
   );
 });
 
 test('Enemy Detail 将首回合行动值比例格式化为百分比', async ({ page }) => {
-  await page.goto('/enemies/1002011');
+  await page.goto('/enemies/1002011/');
   await expect(page.locator('[data-enemy-template-stat="initial-action-value"]')).toContainText(
     '100%'
   );
 
-  await page.goto('/enemies/4014022');
+  await page.goto('/enemies/4014022/');
   await expect(page.locator('[data-enemy-template-stat="initial-action-value"]')).toContainText(
     '50%'
   );
@@ -90,7 +90,7 @@ test('Enemy Detail 将首回合行动值比例格式化为百分比', async ({ p
 test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时共享等级不重置', async ({
   page
 }) => {
-  await page.goto('/enemies/1002015');
+  await page.goto('/enemies/1002015/');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   await expect(page.getByRole('heading', { level: 2, name: '基础属性' })).toHaveCount(0);
 
@@ -127,7 +127,7 @@ test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时�
 });
 
 test('单 Monster 页面省略 selector，仍展示共享等级与七项实际属性', async ({ page }) => {
-  await page.goto('/enemies/1004011');
+  await page.goto('/enemies/1004011/');
   await expect(page.locator('[data-monster-option]')).toHaveCount(0);
   await expect(page.locator('.enemy-selected-monster-heading')).toContainText('#1004011');
   await expect(page.locator('[data-enemy-stat]')).toHaveCount(7);
@@ -141,7 +141,7 @@ test('单 Monster 页面省略 selector，仍展示共享等级与七项实际�
 
 test('战斗面板按 selected Monster 的负面抵抗自动切换三栏与两栏', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/enemies/8034010');
+  await page.goto('/enemies/8034010/');
   const threeColumnPanel = page.locator('.enemy-battle-panel');
   await expect(threeColumnPanel).toHaveAttribute('data-battle-columns', '3');
   await expect(page.locator('[data-enemy-stat]')).toHaveCount(7);
@@ -151,7 +151,7 @@ test('战斗面板按 selected Monster 的负面抵抗自动切换三栏与两�
   await expect(page.locator('[data-enemy-resistance]')).toHaveCount(3);
   await expect(page.locator('[data-enemy-resistance="Imaginary"]')).toContainText('40%');
   await expect(page.locator('[data-special-resistance="STAT_CTRL"]')).toContainText('控制抵抗50%');
-  await page.goto('/enemies/4034013');
+  await page.goto('/enemies/4034013/');
   await expect(page.locator('[data-special-resistance="STAT_CTRL_Frozen"]')).toContainText(
     '冻结抵抗75%'
   );
@@ -162,25 +162,25 @@ test('战斗面板按 selected Monster 的负面抵抗自动切换三栏与两�
     '纠缠抵抗75%'
   );
 
-  await page.goto('/enemies/3002011');
+  await page.goto('/enemies/3002011/');
   const twoColumnPanel = page.locator('.enemy-battle-panel');
   await expect(twoColumnPanel).toHaveAttribute('data-battle-columns', '2');
   await expect(page.getByRole('heading', { name: '负面效果抵抗' })).toHaveCount(0);
 });
 
 test('召唤单位严格随 selected Monster 切换，并使用解析后的 Template route', async ({ page }) => {
-  await page.goto('/enemies/1003010');
+  await page.goto('/enemies/1003010/');
   await expect(page.locator('[data-summon-template="1002040"]')).toHaveCount(1);
   await expect(page.locator('[data-summon-template="1002050"]')).toHaveCount(0);
 
   await page.locator('[data-monster-option="100301004"]').click();
   await expect(page.locator('[data-summon-template="1002040"]')).toHaveAttribute(
     'href',
-    '/enemies/1002040'
+    '/enemies/1002040/'
   );
   await expect(page.locator('[data-summon-template="1002050"]')).toHaveAttribute(
     'href',
-    '/enemies/1002050'
+    '/enemies/1002050/'
   );
   await expect(page.locator('[data-summon-monster]')).toHaveCount(2);
   const summon = page.locator('[data-summon-template="1002050"]');
@@ -189,12 +189,12 @@ test('召唤单位严格随 selected Monster 切换，并使用解析后的 Temp
   await expect(summon.locator('.enemy-weakness-group')).toHaveCount(1);
   await expect(summon).not.toContainText(/Monster #/);
   await summon.click();
-  await expect(page).toHaveURL(/\/enemies\/1002050$/);
+  await expect(page).toHaveURL(/\/enemies\/1002050\/$/);
   await expect(page.locator('.enemy-selected-monster-heading')).toContainText('#1002050');
 });
 
 test('轻量 Skill References 保留真实 Phase、属性图标与唯一完整卡 anchor', async ({ page }) => {
-  await page.goto('/enemies/8034010');
+  await page.goto('/enemies/8034010/');
   const tabs = page.getByRole('tablist', { name: '敌人技能阶段' });
   await expect(tabs.getByRole('tab')).toHaveCount(2);
   const phase1 = tabs.getByRole('tab', { name: '阶段 1' });
@@ -213,7 +213,7 @@ test('轻量 Skill References 保留真实 Phase、属性图标与唯一完整�
   await expect(page).toHaveURL(/#enemy-skill-803401002$/);
   await expect(page.locator('#enemy-skill-803401002')).toBeInViewport();
 
-  await page.goto('/enemies/4034013');
+  await page.goto('/enemies/4034013/');
   const noDamageReference = page.locator('[data-enemy-skill-reference="403401302"]');
   await expect(noDamageReference).toBeVisible();
   await expect(noDamageReference.locator('[data-icon-kind="element"]')).toHaveCount(0);
@@ -222,7 +222,7 @@ test('轻量 Skill References 保留真实 Phase、属性图标与唯一完整�
 test('完整 Skill Definitions 不随 Monster 切换重建，并按 default 顺序稳定去重', async ({
   page
 }) => {
-  await page.goto('/enemies/3003020');
+  await page.goto('/enemies/3003020/');
   const cards = page.locator('[data-enemy-skill]');
   await expect(cards).toHaveCount(4);
   const before = await cards.evaluateAll((elements) =>
@@ -240,7 +240,7 @@ test('完整 Skill Definitions 不随 Monster 切换重建，并按 default 顺�
 });
 
 test('完整 Skill Card 保留 ExtraEffect disclosure 与无描述技能过滤', async ({ page }) => {
-  await page.goto('/enemies/1004014');
+  await page.goto('/enemies/1004014/');
   const skill = page.locator('[data-enemy-skill="100401411"]');
   await expect(page.locator('[data-enemy-skill="100401414"]')).toHaveCount(0);
   await expect(skill.getByText('天赋', { exact: true })).toHaveCount(1);
@@ -259,7 +259,7 @@ test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出'
     { width: 390, height: 844 }
   ]) {
     await page.setViewportSize(viewport);
-    await page.goto('/enemies/8034010');
+    await page.goto('/enemies/8034010/');
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth
     );
@@ -274,7 +274,7 @@ test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出'
     await expect(page.locator('[data-enemy-portrait]')).toBeVisible();
   }
 
-  await page.goto('/enemies/8003060');
+  await page.goto('/enemies/8003060/');
   await expect(page.locator('[data-enemy-portrait]')).toHaveAttribute(
     'data-artwork-available',
     'false'

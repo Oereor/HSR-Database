@@ -23,7 +23,7 @@
   import { SEARCH_DISPLAY_BATCH, windowEndgameSeasons } from '$lib/search/presentation';
   import { formatDocumentTitle } from '$lib/site';
   import { getEndgameModeCopy } from '$lib/i18n/endgame';
-  import { localizedHref } from '$lib/i18n/routing';
+  import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
   import type { PageData } from './$types';
 
   export let data: PageData;
@@ -93,10 +93,13 @@
 
   async function submitSearch() {
     const nextQuery = draftQuery.trim();
-    await goto(`${$page.url.pathname}${nextQuery ? `?q=${encodeURIComponent(nextQuery)}` : ''}`, {
-      noScroll: true,
-      keepFocus: true
-    });
+    await goto(
+      `${trailingSlashHref($page.url.pathname)}${nextQuery ? `?q=${encodeURIComponent(nextQuery)}` : ''}${$page.url.hash}`,
+      {
+        noScroll: true,
+        keepFocus: true
+      }
+    );
   }
 </script>
 

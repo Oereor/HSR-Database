@@ -10,13 +10,13 @@ test('homepage and client navigation remain usable', async ({ page }) => {
   await expect(
     page.getByRole('heading', { level: 1, name: '《崩坏：星穹铁道》档案库' })
   ).toBeVisible();
-  await page.locator('.home-directory-row[href="/characters"]').click();
-  await expect(page).toHaveURL(/\/characters$/);
+  await page.locator('.home-directory-row[href="/characters/"]').click();
+  await expect(page).toHaveURL(/\/characters\/$/);
   await expect(page.locator('.entity-overview-card').first()).toBeVisible();
 });
 
 test('search locale switching preserves the route and results', async ({ page }) => {
-  await page.goto('/search?q=March#search-results-characters');
+  await page.goto('/search/?q=March#search-results-characters');
   await expectAppReady(page);
   await page.locator('.settings-trigger').click();
   const english = page.locator('.language-segments a').filter({ hasText: /^EN$/ });
@@ -33,11 +33,11 @@ test('search locale switching preserves the route and results', async ({ page })
   await Promise.all([page.waitForURL(chineseHref, { waitUntil: 'load' }), chinese.click()]);
   await expectAppReady(page);
   await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
-  await expect(page).toHaveURL(/\/search\?q=March#search-results-characters$/);
+  await expect(page).toHaveURL(/\/search\/\?q=March#search-results-characters$/);
 });
 
 test('enemy direct navigation and core interaction remain functional', async ({ page }) => {
-  await page.goto('/enemies/1002015');
+  await page.goto('/enemies/1002015/');
   await expectAppReady(page);
   const slider = page.getByRole('slider', { name: '敌人等级' });
   await expect(slider).toHaveValue('95');
@@ -58,8 +58,8 @@ test('asset request failures expose the accessible local fallback', async ({ pag
     intercepted += 1;
     return route.abort();
   });
-  await page.goto('/characters?q=%E7%A0%82%E9%87%91');
-  const card = page.locator('a[href="/characters/1304"]');
+  await page.goto('/characters/?q=%E7%A0%82%E9%87%91');
+  const card = page.locator('a[href="/characters/1304/"]');
   await card.scrollIntoViewIfNeeded();
   await expect.poll(() => intercepted).toBeGreaterThan(0);
   await expect(card.locator('[role="img"][data-icon-missing="true"]')).toHaveCount(2);
@@ -74,6 +74,6 @@ test('mobile navigation reaches a representative route', async ({ page }) => {
   const dialog = page.getByRole('dialog', { name: '完整导航' });
   await expect(dialog).toBeVisible();
   await dialog.getByRole('link', { name: '敌方单位' }).click();
-  await expect(page).toHaveURL(/\/enemies$/);
+  await expect(page).toHaveURL(/\/enemies\/$/);
   await expect(page.locator('.entity-overview-card').first()).toBeVisible();
 });
