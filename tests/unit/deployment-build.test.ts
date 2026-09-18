@@ -88,10 +88,16 @@ describe('deployment build orchestration', () => {
   it('keeps prerequisite ordering while allowing independent stages to overlap', async () => {
     const events: string[] = [];
     const environments: NodeJS.ProcessEnv[] = [];
+    let generalAssetEnvironment: NodeJS.ProcessEnv | undefined;
     const deps = dependencies(events, { VERCEL_ENV: 'preview' });
     deps.commandRunner = async (args, env) => {
       events.push(args.join(' '));
       environments.push(env);
+    };
+    deps.ensureGeneralAssets = async (env) => {
+      generalAssetEnvironment = env;
+      events.push('assets-ensure');
+      return context;
     };
     await runDeploymentBuild(deps);
 
@@ -107,6 +113,10 @@ describe('deployment build orchestration', () => {
     before('assets:ensure:enemies', 'exec svelte-kit sync');
     before('exec vite build', 'deploy:verify');
     expect(environments.every((env) => env.HSR_DEPLOYMENT_BUILD === '1')).toBe(true);
+    expect(generalAssetEnvironment).toMatchObject({
+      HSR_DATA_ROOT: '.upstream/TurnBasedGameData',
+      HSR_ASSET_ROOT: '.upstream/StarRailRes'
+    });
   });
 
   it.each([

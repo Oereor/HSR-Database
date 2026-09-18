@@ -1,4 +1,5 @@
 import path from 'node:path';
+import { resolveDataRoot } from '../data/paths.js';
 import { assertAssetRoot, assetSourceCommit, resolveAssetRoot } from './paths.js';
 import type { AssetValidationContext } from './ensure.js';
 import {
@@ -19,7 +20,8 @@ export async function verifyAssets(
   env: NodeJS.ProcessEnv = process.env
 ): Promise<void> {
   const root = assertAssetRoot(resolveAssetRoot(env.HSR_ASSET_ROOT));
-  const requirements = context?.requirements ?? (await readAssetRequirements());
+  const requirements =
+    context?.requirements ?? (await readAssetRequirements(resolveDataRoot(env.HSR_DATA_ROOT)));
   const manifest = context?.manifest ?? (await readAssetManifest());
   if (!manifest) throw new Error('缺少视觉资源 manifest，请先运行 pnpm assets:sync。');
   if (manifest.schemaVersion !== VISUAL_ASSET_SCHEMA_VERSION)

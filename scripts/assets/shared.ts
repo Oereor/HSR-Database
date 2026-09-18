@@ -233,7 +233,9 @@ export async function readPlayerAvatarRequirements(
   return requirements.sort((a, b) => a.id.localeCompare(b.id));
 }
 
-export async function readAssetRequirements(): Promise<AssetRequirements> {
+export async function readAssetRequirements(
+  dataRoot = assertDataRoot()
+): Promise<AssetRequirements> {
   const productRoot = path.join(generatedRoot, 'views', 'zh-CN');
   const characterCatalogPath = path.join(productRoot, 'catalogs', 'characters.json');
   const lightConeCatalogPath = path.join(productRoot, 'catalogs', 'light-cones.json');
@@ -275,7 +277,7 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
   }
   return {
     characterIds: uniqueSorted(characterCatalog.map((entry) => entry.id)),
-    playerAvatars: await readPlayerAvatarRequirements(),
+    playerAvatars: await readPlayerAvatarRequirements(dataRoot),
     characterDetailIconKeys: uniqueSorted(
       characterDetails.flatMap((character) => [
         ...Object.values(character.baseStats.iconKeys ?? {}),

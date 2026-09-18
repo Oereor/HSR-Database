@@ -1,6 +1,7 @@
 import { mkdir, mkdtemp, rename, rm } from 'node:fs/promises';
 import path from 'node:path';
 import type { VisualAssetManifest } from '../../src/lib/domain/visual-assets.js';
+import { resolveDataRoot } from '../data/paths.js';
 import {
   assertAssetOutputPaths,
   assertAssetRoot,
@@ -79,7 +80,8 @@ export interface SyncAssetsOptions {
 
 export async function syncAssets(options: SyncAssetsOptions = {}): Promise<VisualAssetManifest> {
   const env = options.env ?? process.env;
-  const requirements = options.requirements ?? (await readAssetRequirements());
+  const requirements =
+    options.requirements ?? (await readAssetRequirements(resolveDataRoot(env.HSR_DATA_ROOT)));
   const cached = await readAssetManifest();
   let root: string;
   let sourceCommit: string;

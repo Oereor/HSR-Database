@@ -506,6 +506,27 @@ describe('视觉资源管线', () => {
     expect(requirements.every(({ sourceFileName }) => sourceFiles.has(sourceFileName))).toBe(true);
   });
 
+  it('视觉资源需求显式读取 deployment prepared data root，而不回退到本地 sibling', async () => {
+    const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-assets-data-root-'));
+    temporaryDirectories.push(root);
+    const excelOutput = path.join(root, 'ExcelOutput');
+    await mkdir(excelOutput, { recursive: true });
+    await writeFile(
+      path.join(excelOutput, 'AvatarPlayerIcon.json'),
+      JSON.stringify([
+        {
+          ID: 201001,
+          ImagePath: 'SpriteOutput/AvatarRoundIcon/Avatar/1001.png'
+        }
+      ])
+    );
+    vi.stubEnv('HSR_DATA_ROOT', path.join(root, 'missing-global-root'));
+
+    const requirements = await readAssetRequirements(root);
+
+    expect(requirements.playerAvatars).toEqual([{ id: '201001', sourceFileName: '1001.png' }]);
+  });
+
   it('空 manifest 安全降级且不暴露任何 URL', async () => {
     const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-assets-empty-'));
     temporaryDirectories.push(root);

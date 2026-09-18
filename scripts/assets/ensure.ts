@@ -1,5 +1,6 @@
 import path from 'node:path';
 import type { VisualAssetManifest } from '../../src/lib/domain/visual-assets.js';
+import { resolveDataRoot } from '../data/paths.js';
 import { assertAssetRoot, assetSourceCommit, resolveAssetRoot } from './paths.js';
 import { syncAssets } from './sync.js';
 import {
@@ -49,7 +50,7 @@ export async function ensureAssets(
   options: EnsureAssetsOptions = {}
 ): Promise<AssetValidationContext> {
   const env = options.env ?? process.env;
-  const requirements = await readAssetRequirements();
+  const requirements = await readAssetRequirements(resolveDataRoot(env.HSR_DATA_ROOT));
   const cached = await readAssetManifest();
   const expectedCommit = env.HSR_EXPECTED_ASSET_COMMIT;
 
