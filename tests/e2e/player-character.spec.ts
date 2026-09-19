@@ -1,0 +1,162 @@
+import { expect, test } from '@playwright/test';
+
+const playerProfile = (uid: string, includeCharacter = true) => ({
+  uid,
+  nickname: 'Synthetic Player',
+  level: 70,
+  worldLevel: 6,
+  avatar: null,
+  signature: '',
+  characterCount: includeCharacter ? 1 : 0,
+  lightConeCount: 0,
+  achievementCount: 0,
+  characters: includeCharacter
+    ? [
+        {
+          characterId: '1304',
+          progression: { rank: 3, level: 80, promotion: 6, enhanced: false },
+          skillTree: [
+            { id: '1304001', level: 6 },
+            { id: '1304002', level: 10 },
+            { id: '1304003', level: 10 },
+            { id: '1304004', level: 10 },
+            { id: '1304007', level: 1 },
+            { id: '1304101', level: 1 },
+            { id: '1304102', level: 0 }
+          ],
+          lightCone: null,
+          relics: [],
+          stats: [
+            {
+              field: 'effect_hit',
+              percent: true,
+              total: '20%',
+              base: null,
+              addition: '20%'
+            },
+            {
+              field: 'hp',
+              percent: false,
+              total: '9,677',
+              base: '2,900',
+              addition: '6,777'
+            },
+            {
+              field: 'elation_dmg',
+              percent: true,
+              total: '40%',
+              base: null,
+              addition: null
+            }
+          ]
+        }
+      ]
+    : []
+});
+
+test('reuses the Player cache and renders real progression without changing static mode', async ({
+  page,
+  isMobile
+}) => {
+  let requestCount = 0;
+  await page.route('**/api/player/**', async (route) => {
+    requestCount += 1;
+    const uid = new URL(route.request().url()).searchParams.get('uid') ?? '';
+    await route.fulfill({ json: playerProfile(uid) });
+  });
+
+  await page.goto('/player/?uid=100000001');
+  await expect(page.getByRole('heading', { name: 'Synthetic Player' })).toBeVisible();
+  await page.getByRole('link', { name: /砂金/ }).click();
+
+  await expect(page).toHaveURL(/\/characters\/1304\/\?uid=100000001$/);
+  await expect(page.getByText('玩家数据', { exact: true })).toBeVisible();
+  await expect(page.getByText('UID 100000001', { exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: '返回玩家信息' })).toHaveAttribute(
+    'href',
+    '/player/?uid=100000001'
+  );
+  expect(requestCount).toBe(1);
+
+  const level = page.getByRole('slider', { name: '角色等级' });
+  await expect(level).toBeDisabled();
+  await expect(level).toHaveValue('80');
+  await expect(page.getByText('晋阶 6')).toBeVisible();
+
+  const basicLevel = page.getByRole('slider', { name: '普攻等级' });
+  await expect(basicLevel).toBeDisabled();
+  await expect(basicLevel).toHaveAttribute('aria-valuenow', '6');
+
+  await expect(page.locator('[data-trace-id="1304101"]')).toHaveAttribute(
+    'data-player-state',
+    'active'
+  );
+  await expect(page.locator('[data-trace-id="1304102"]')).toHaveAttribute(
+    'data-player-state',
+    'inactive'
+  );
+  await expect(page.locator('[data-trace-id="1304103"]')).toHaveAttribute(
+    'data-player-state',
+    'unresolved'
+  );
+  await expect(page.locator('#eidolons [data-player-state="active"]')).toHaveCount(3);
+  await expect(page.locator('#eidolons [data-player-state="inactive"]')).toHaveCount(3);
+
+  await expect(page.locator('[data-player-stat="hp"]')).toContainText('9,677');
+  await page.getByRole('button', { name: '属性拆分' }).click();
+  await expect(page.locator('[data-player-stat="hp"]')).toContainText('2,900 +6,777');
+  await expect(page.locator('[data-player-stat="effect_hit"]')).toContainText('+20%');
+  await expect(page.locator('[data-player-stat="elation_dmg"]')).toContainText('elation_dmg');
+
+  if (isMobile) {
+    const columns = await page
+      .locator('.player-stats-grid')
+      .evaluate((element) =>
+        getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).filter(Boolean)
+      );
+    expect(columns).toHaveLength(1);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+      )
+    ).toBeLessThanOrEqual(1);
+  }
+
+  await page.goto('/characters/1304/');
+  const staticLevel = page.getByRole('slider', { name: '角色等级' });
+  await expect(staticLevel).toBeEnabled();
+  await expect(page.locator('[data-player-stats-panel]')).toHaveCount(0);
+  await expect(page.locator('#eidolons [data-player-state]')).toHaveCount(0);
+});
+
+test('keeps static detail available for invalid, missing and failed Player context', async ({
+  page
+}) => {
+  let requestCount = 0;
+  await page.route('**/api/player/**', async (route) => {
+    requestCount += 1;
+    const uid = new URL(route.request().url()).searchParams.get('uid') ?? '';
+    if (uid === '100000503') {
+      await route.fulfill({
+        status: 503,
+        json: { error: { code: 'UPSTREAM_UNAVAILABLE', retryable: true } }
+      });
+      return;
+    }
+    await route.fulfill({ json: playerProfile(uid, false) });
+  });
+
+  await page.goto('/characters/1304/?uid=abc');
+  await expect(page.getByText(/玩家 UID 无效/)).toBeVisible();
+  await expect(page.getByRole('slider', { name: '角色等级' })).toBeEnabled();
+  expect(requestCount).toBe(0);
+
+  await page.goto('/characters/1304/?uid=100000002');
+  await expect(page.getByText(/没有公开展示此角色/)).toBeVisible();
+  await expect(page.getByRole('slider', { name: '角色等级' })).toBeEnabled();
+
+  await page.goto('/characters/1304/?uid=100000503');
+  await expect(page.getByText(/玩家数据暂时无法加载/)).toBeVisible();
+  await expect(page.getByRole('slider', { name: '角色等级' })).toBeEnabled();
+  expect(requestCount).toBe(2);
+});

@@ -4,18 +4,27 @@
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import type { Eidolon } from '$lib/domain/types';
   import { m } from '$lib/paraglide/messages.js';
+  import type { PlayerEidolonState } from '$lib/player/character';
 
   export let eidolon: Eidolon;
+  export let playerState: PlayerEidolonState | undefined = undefined;
 
   $: iconUrl = getCharacterDetailIconUrl(eidolon.iconKey);
 </script>
 
-<article class="info-card rank-card" data-eidolon-id={eidolon.id}>
+<article class="info-card rank-card" data-eidolon-id={eidolon.id} data-player-state={playerState}>
   {#if iconUrl}<img class="rank-icon" src={iconUrl} alt="" aria-hidden="true" />{:else}<span
       class="rank-number">{eidolon.rank}</span
     >{/if}
   <div>
-    {#if iconUrl}<small class="rank-label">{m.eidolon_rank({ rank: eidolon.rank })}</small>{/if}
+    <div class="rank-card__meta">
+      {#if iconUrl}<small class="rank-label">{m.eidolon_rank({ rank: eidolon.rank })}</small>{/if}
+      {#if playerState}<span class="player-progression-state" data-player-state-label={playerState}
+          >{playerState === 'active'
+            ? m.player_character_active()
+            : m.player_character_inactive()}</span
+        >{/if}
+    </div>
     <h3><GameText text={eidolon.name} /></h3>
     <p><GameText text={eidolon.description || m.common_localized_description_unavailable()} /></p>
     <SkillExtraEffects effects={eidolon.extraEffects ?? []} />

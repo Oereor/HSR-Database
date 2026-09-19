@@ -50,3 +50,70 @@
 .inspection-stat-list .scaling-value {
   color: var(--skill-scaling-value-color);
 }
+
+.player-stats-toggle {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px;
+  margin-top: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--border);
+  padding: 2px;
+}
+
+.player-stats-toggle button {
+  border: 0;
+  border-radius: calc(var(--radius-control) - 3px);
+  background: var(--surface);
+  padding: 0.55rem 0.75rem;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: var(--font-helper);
+  cursor: pointer;
+}
+
+.player-stats-toggle button[aria-pressed='true'] {
+  background: rgb(215 181 109 / 14%);
+  color: var(--gold-soft);
+}
+
+.player-stats-toggle button:focus-visible {
+  outline: 2px solid var(--gold-soft);
+  outline-offset: 2px;
+}
+
+.player-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+
+.player-stat-column {
+  min-width: 0;
+  margin: 0;
+  border-top: 1px solid var(--border);
+  padding: 0;
+}
+
+.player-stat-column:empty {
+  display: none;
+}
+
+.player-stats-panel .inspection-stat-row {
+  gap: var(--space-2);
+  padding-block: 0.72rem;
+}
+
+.player-stats-panel .inspection-stat-row dd strong {
+  font-size: 0.96rem;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 520px) {
+  .player-stats-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}

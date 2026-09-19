@@ -127,6 +127,55 @@
   margin: 0.7rem 0 1.15rem;
 }
 
+.player-context-notice {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin: 0 0 var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-control);
+  background: rgb(7 10 18 / 82%);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-helper);
+}
+
+.player-context-notice > div {
+  display: grid;
+  min-width: 0;
+  gap: 0.1rem;
+}
+
+.player-context-notice strong {
+  color: var(--gold-soft);
+  font-weight: 650;
+}
+
+.player-context-notice span {
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.player-context-notice a {
+  flex: 0 0 auto;
+  color: var(--gold-soft);
+  text-decoration: none;
+}
+
+.player-context-notice a:hover,
+.player-context-notice a:focus-visible {
+  text-decoration: underline;
+}
+
+.player-context-notice--fallback {
+  border-color: var(--border);
+}
+
+.player-context-notice--fallback strong {
+  color: var(--text-body);
+}
+
 .hero-description {
   width: 100%;
   overflow: visible;
@@ -199,6 +248,11 @@
 }
 
 @media (max-width: 520px) {
+  .player-context-notice {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
   .detail-profile-hero--relic .detail-profile-hero__identity {
     min-height: 500px;
   }

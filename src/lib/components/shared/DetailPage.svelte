@@ -1,7 +1,7 @@
 <script lang="ts">
   import { browser } from '$app/environment';
   import { goto } from '$app/navigation';
-  import { tick } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { page } from '$app/stores';
   import BaseStatsPanel from '$lib/components/shared/BaseStatsPanel.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
@@ -18,6 +18,8 @@
   import RelicDetailPage from '$lib/components/relic/RelicDetailPage.svelte';
   import EquipmentRecommendationSection from '$lib/components/character/EquipmentRecommendationSection.svelte';
   import EidolonCard from '$lib/components/character/EidolonCard.svelte';
+  import PlayerStatsPanel from '$lib/components/player/PlayerStatsPanel.svelte';
+  import PlayerCharacterContextNotice from '$lib/components/player/PlayerCharacterContextNotice.svelte';
   import { getElementColor } from '$lib/domain/elements';
   import { gameTextToPlain } from '$lib/domain/game-text';
   import {
@@ -25,19 +27,33 @@
     getCharacterPreviewUrl,
     getLightConePortraitUrl
   } from '$lib/data/visual-assets';
-  import type { CatalogEntry } from '$lib/domain/types';
+  import type { CatalogEntry, RelicProperty } from '$lib/domain/types';
   import type { EquipmentRecommendationView } from '$lib/domain/equipment-recommendation-view';
   import { formatDocumentTitle } from '$lib/site';
   import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
+  import { fetchPlayerProfile } from '$lib/player/client';
+  import type { PlayerCharacter } from '$lib/player/contract';
+  import { findPlayerCharacter, resolvePlayerEidolonState } from '$lib/player/character';
+  import { readPlayerUidQuery, type PlayerUidQueryState } from '$lib/player/resolve';
   export let detail: any;
   export let category: string;
   export let singular: string;
   export let specialEffectTargets: CatalogEntry[] = [];
   export let equipmentRecommendation: EquipmentRecommendationView | undefined = undefined;
+  export let relicProperties: RelicProperty[] = [];
   let specialEffectsOpen = false;
   let specialEffectTrigger: HTMLButtonElement | undefined;
   let specialEffectLevel = 1;
+  type PlayerContextState = 'idle' | 'invalid' | 'loading' | 'error' | 'missing' | 'active';
+  let playerClientReady = false;
+  let handledPlayerContext: string | null = null;
+  let playerRequestVersion = 0;
+  let playerContextState: PlayerContextState = 'idle';
+  let playerUid: string | undefined;
+  let playerCharacter: PlayerCharacter | null = null;
+
+  onMount(() => (playerClientReady = true));
 
   $: plainName = gameTextToPlain(detail.name);
   $: metaDescription = gameTextToPlain(
@@ -73,6 +89,15 @@
       ? [{ id: 'equipment-recommendation', label: m.detail_equipment_recommendation() }]
       : [])
   ];
+  $: playerQueryState =
+    playerClientReady && category === 'characters'
+      ? readPlayerUidQuery($page.url.searchParams)
+      : ({ kind: 'idle', input: '' } satisfies PlayerUidQueryState);
+  $: playerContextKey = playerClientReady
+    ? `${category}:${detail.id}:${JSON.stringify($page.url.searchParams.getAll('uid'))}`
+    : `${category}:${detail.id}:idle`;
+  $: if (playerClientReady) synchronizePlayerContext(playerContextKey, playerQueryState);
+  $: activePlayerCharacter = playerContextState === 'active' ? playerCharacter : null;
 
   function openSpecialEffects(trigger: HTMLButtonElement, level: number) {
     specialEffectTrigger = trigger;
@@ -104,6 +129,42 @@
         keepFocus: true
       }
     );
+  }
+
+  function synchronizePlayerContext(key: string, query: PlayerUidQueryState): void {
+    if (handledPlayerContext === key) return;
+    handledPlayerContext = key;
+    playerRequestVersion += 1;
+    const version = playerRequestVersion;
+    playerCharacter = null;
+    playerUid = query.kind === 'valid' ? query.uid : undefined;
+
+    if (query.kind === 'idle') {
+      playerContextState = 'idle';
+      return;
+    }
+    if (query.kind === 'invalid') {
+      playerContextState = 'invalid';
+      return;
+    }
+
+    playerContextState = 'loading';
+    const characterId = String(detail.id);
+    void fetchPlayerProfile(query.uid)
+      .then((profile) => {
+        if (playerRequestVersion !== version) return;
+        const resolved = findPlayerCharacter(profile, characterId);
+        if (!resolved) {
+          playerContextState = 'missing';
+          return;
+        }
+        playerCharacter = resolved;
+        playerContextState = 'active';
+      })
+      .catch(() => {
+        if (playerRequestVersion !== version) return;
+        playerContextState = 'error';
+      });
   }
 </script>
 
@@ -150,6 +211,9 @@
               presentation="character-element-identity"
             />{/if}
         </div>
+        {#if playerContextState !== 'idle'}
+          <PlayerCharacterContextNotice state={playerContextState} uid={playerUid} />
+        {/if}
         {#if hasEnhancedProfile}<div class="enhancement-control">
             <span>{m.detail_enhancement()}</span>
             <button
@@ -180,11 +244,24 @@
       class="detail-profile-hero__inspection section-nav-target"
       aria-label={m.detail_stats_aria()}
     >
-      <BaseStatsPanel
-        progression={detail.baseStats}
-        energy={activeProfile.energy}
-        controlId={`character-level-${detail.id}`}
-      />
+      {#if playerContextState === 'loading'}
+        <p class="data-placeholder" aria-live="polite">{m.player_character_loading()}</p>
+      {:else if activePlayerCharacter}
+        <PlayerStatsPanel
+          stats={activePlayerCharacter.stats}
+          properties={relicProperties}
+          progression={detail.baseStats}
+          level={activePlayerCharacter.progression.level}
+          promotion={activePlayerCharacter.progression.promotion}
+          controlId={`character-level-${detail.id}`}
+        />
+      {:else}
+        <BaseStatsPanel
+          progression={detail.baseStats}
+          energy={activeProfile.energy}
+          controlId={`character-level-${detail.id}`}
+        />
+      {/if}
     </aside>
   </header>
 {:else if category === 'light-cones'}
@@ -231,7 +308,7 @@
 
 {#if category === 'characters'}
   <SectionNav items={characterSectionNavItems} />
-  {#key profileMode}
+  {#key `${detail.id}:${profileMode}:${playerContextState}:${playerUid ?? ''}`}
     <section id="skills" class="detail-section section-nav-target">
       <SectionHeading level={1}>{m.detail_skills()}</SectionHeading>
       {#if activeProfile.skillCards.length}<div class="stack-list skill-card-grid">
@@ -240,21 +317,28 @@
               {specialEffectsAvailable}
               {specialEffectIconUrl}
               onOpenSpecialEffects={openSpecialEffects}
+              playerSkillTree={activePlayerCharacter?.skillTree}
             />{/each}
         </div>{:else}<p class="data-placeholder">{m.detail_skills_unavailable()}</p>{/if}
     </section>
     <section id="traces" class="detail-section section-nav-target">
       <SectionHeading level={1}>{m.detail_traces()}</SectionHeading>
-      {#if activeProfile.traces.length}<TraceCardPanel traces={activeProfile.traces} />{:else}<p
-          class="data-placeholder"
-        >
+      {#if activeProfile.traces.length}<TraceCardPanel
+          traces={activeProfile.traces}
+          playerSkillTree={activePlayerCharacter?.skillTree}
+        />{:else}<p class="data-placeholder">
           {m.detail_traces_unavailable()}
         </p>{/if}
     </section>
     <section id="eidolons" class="detail-section section-nav-target">
       <SectionHeading level={1}>{m.detail_eidolons()}</SectionHeading>
       {#if activeProfile.eidolons.length}<div class="stack-list">
-          {#each activeProfile.eidolons as rank (rank.id)}<EidolonCard eidolon={rank} />{/each}
+          {#each activeProfile.eidolons as rank (rank.id)}<EidolonCard
+              eidolon={rank}
+              playerState={activePlayerCharacter
+                ? resolvePlayerEidolonState(rank, activePlayerCharacter.progression.rank)
+                : undefined}
+            />{/each}
         </div>{:else}<p class="data-placeholder">{m.detail_eidolons_unavailable()}</p>{/if}
     </section>
   {/key}

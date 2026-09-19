@@ -26,14 +26,11 @@ export async function load({ params, locals }) {
       params.category === 'enemies'
         ? await getEnemyDetail(locals.locale, params.id)
         : await getDetail(locals.locale, params.category, params.id);
-    const specialEffectTargets =
+    const characterResources =
       params.category === 'characters'
-        ? await resolveSpecialEffectTargets(locals.locale, detail as Record<string, unknown>)
-        : [];
-    const equipmentRecommendation =
-      params.category === 'characters'
-        ? await resolveCharacterEquipmentRecommendation(
+        ? await resolveCharacterResources(
             locals.locale,
+            detail as Record<string, unknown>,
             detail as unknown as Character
           )
         : undefined;
@@ -41,29 +38,36 @@ export async function load({ params, locals }) {
       category: params.category,
       config: CATEGORY_CONFIG[params.category],
       detail,
-      specialEffectTargets,
-      equipmentRecommendation
+      specialEffectTargets: characterResources?.specialEffectTargets ?? [],
+      equipmentRecommendation: characterResources?.equipmentRecommendation,
+      relicProperties: characterResources?.relicProperties ?? []
     };
   } catch {
     error(404, '没有找到这条数据');
   }
 }
 
-async function resolveCharacterEquipmentRecommendation(
+async function resolveCharacterResources(
   locale: App.Locals['locale'],
+  detail: Record<string, unknown>,
   character: Character
 ) {
-  const [lightCones, relicSets, relicProperties] = await Promise.all([
+  const [specialEffectTargets, lightCones, relicSets, relicProperties] = await Promise.all([
+    resolveSpecialEffectTargets(locale, detail),
     getCatalog(locale, 'light-cones'),
     getRelicCatalog(locale),
     getRelicProperties(locale)
   ]);
-  return resolveEquipmentRecommendation(
-    character.equipmentRecommendation,
-    lightCones,
-    relicSets,
-    relicProperties
-  );
+  return {
+    specialEffectTargets,
+    relicProperties,
+    equipmentRecommendation: resolveEquipmentRecommendation(
+      character.equipmentRecommendation,
+      lightCones,
+      relicSets,
+      relicProperties
+    )
+  };
 }
 
 async function resolveSpecialEffectTargets(

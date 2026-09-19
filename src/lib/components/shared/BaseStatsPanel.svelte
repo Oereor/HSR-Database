@@ -3,6 +3,7 @@
   import type { BaseStatProgression, CharacterEnergy } from '$lib/domain/types';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import { m } from '$lib/paraglide/messages.js';
+  import LevelSlider from '$lib/components/shared/LevelSlider.svelte';
 
   export let progression: BaseStatProgression;
   export let controlId: string;
@@ -20,22 +21,14 @@
 
 {#if progression.stages.length}
   <div class="base-stats-panel">
-    <div class="skill-level-control stat-level-control">
-      <div>
-        <label for={controlId}>{controlLabel}</label><output for={controlId}>Lv.{level}</output>
-      </div>
-      <input
+    <div class="stat-level-control">
+      <LevelSlider
         id={controlId}
-        type="range"
+        label={controlLabel}
+        bind:value={level}
         min={progression.minLevel}
         max={progression.maxLevel}
-        step="1"
-        bind:value={level}
-        aria-valuetext={m.common_level({ level })}
       />
-      <div class="skill-level-range" aria-hidden="true">
-        <span>Lv.{progression.minLevel}</span><span>Lv.{progression.maxLevel}</span>
-      </div>
     </div>
     <dl class="inspection-stat-list">
       <div class="inspection-stat-row" data-base-stat="hp">

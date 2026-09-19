@@ -3,17 +3,23 @@
   import SkillVariantView from '$lib/components/character/SkillVariantView.svelte';
   import type { SkillCard, SkillVariant } from '$lib/domain/types';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
+  import type { PlayerCharacter } from '$lib/player/contract';
+  import { createPlayerSkillTreeIndex, resolvePlayerSkillLevel } from '$lib/player/character';
 
   export let card: SkillCard;
   export let specialEffectsAvailable = false;
   export let specialEffectIconUrl: string | undefined = undefined;
   export let onOpenSpecialEffects:
     ((trigger: HTMLButtonElement, level: number) => void) | undefined = undefined;
+  export let playerSkillTree: PlayerCharacter['skillTree'] | undefined = undefined;
 
   $: fixedVariants = card.variants.filter((variant) => !variant.progressionId);
   $: fixedVariantsNeedDivider = card.progressions.length > 0;
   const fixedLevel = (variant: SkillVariant) => variant.levels[0];
   $: iconUrl = getCharacterDetailIconUrl(card.iconKey);
+  $: playerSkillTreeIndex = playerSkillTree
+    ? createPlayerSkillTreeIndex(playerSkillTree)
+    : undefined;
 </script>
 
 <article class="info-card skill-card" data-skill-category={card.category}>
@@ -33,6 +39,9 @@
       {specialEffectsAvailable}
       {specialEffectIconUrl}
       {onOpenSpecialEffects}
+      playerLevel={playerSkillTreeIndex
+        ? resolvePlayerSkillLevel(progression, playerSkillTreeIndex)
+        : undefined}
     />
   {/each}
   {#if fixedVariants.length}<div
