@@ -205,6 +205,16 @@
   background: var(--border);
 }
 
+@media (max-width: 1180px) {
+  .detail-profile-hero--character {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .detail-profile-hero--character .detail-profile-hero__inspection {
+    border-top: 1px solid var(--border);
+  }
+}
+
 @media (max-width: 820px) {
   .detail-profile-hero {
     grid-template-columns: minmax(0, 1fr);

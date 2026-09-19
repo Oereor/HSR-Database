@@ -73,23 +73,22 @@ const playerProfile = (uid: string, includeCharacter = true) => ({
             {
               field: 'effect_hit',
               percent: true,
-              total: '20%',
-              base: null,
-              addition: '20%'
+              total: '20%'
             },
             {
               field: 'hp',
               percent: false,
-              total: '9,677',
-              base: '2,900',
-              addition: '6,777'
+              total: '9,677'
             },
             {
               field: 'elation_dmg',
               percent: true,
-              total: '40%',
-              base: null,
-              addition: null
+              total: '40%'
+            },
+            {
+              field: 'sp_rate',
+              percent: true,
+              total: '24.4%'
             }
           ]
         }
@@ -144,12 +143,29 @@ test('reuses the Player cache and renders real progression without changing stat
   );
   await expect(page.locator('#eidolons [data-player-state="active"]')).toHaveCount(3);
   await expect(page.locator('#eidolons [data-player-state="inactive"]')).toHaveCount(3);
+  const eidolonTagInsets = await page.locator('#eidolons .rank-card').evaluateAll((cards) =>
+    cards.map((card) => {
+      const tag = card.querySelector<HTMLElement>('[data-player-state-label]')!;
+      return {
+        expected: Number.parseFloat(getComputedStyle(card).paddingRight),
+        actual: card.getBoundingClientRect().right - tag.getBoundingClientRect().right
+      };
+    })
+  );
+  expect(eidolonTagInsets.every(({ expected, actual }) => Math.abs(expected - actual) <= 1)).toBe(
+    true
+  );
 
   await expect(page.locator('[data-player-stat="hp"]')).toContainText('9,677');
-  await page.getByRole('button', { name: '属性拆分' }).click();
-  await expect(page.locator('[data-player-stat="hp"]')).toContainText('2,900 +6,777');
-  await expect(page.locator('[data-player-stat="effect_hit"]')).toContainText('+20%');
-  await expect(page.locator('[data-player-stat="elation_dmg"]')).toContainText('elation_dmg');
+  await expect(page.getByRole('button', { name: '属性拆分' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: '总面板' })).toHaveCount(0);
+  await expect(page.locator('[data-player-stat="effect_hit"]')).toContainText('20%');
+  await expect(page.locator('[data-player-stat="elation_dmg"]')).toContainText('欢愉度');
+  await expect(page.locator('[data-player-stat="elation_dmg"] img')).toHaveAttribute(
+    'src',
+    '/generated-assets/relic-properties/IconJoy.png'
+  );
+  await expect(page.locator('[data-player-stat="sp_rate"]')).toContainText('124.4%');
   await expect(page.locator('#equipment')).toBeVisible();
   await expect(page.locator('#equipment-recommendation')).toHaveCount(0);
   await expect(page.locator('[data-player-light-cone="23023"]')).toContainText('命运从未公平');
@@ -176,7 +192,22 @@ test('reuses the Player cache and renders real progression without changing stat
         () => document.documentElement.scrollWidth - document.documentElement.clientWidth
       )
     ).toBeLessThanOrEqual(1);
+  } else {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await expect(page.locator('.detail-profile-hero--character')).toHaveCSS(
+      'grid-template-columns',
+      /\S+\s+\S+/
+    );
+    await page.setViewportSize({ width: 1180, height: 900 });
+    const stackedColumns = await page
+      .locator('.detail-profile-hero--character')
+      .evaluate((element) => getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/));
+    expect(stackedColumns).toHaveLength(1);
   }
+
+  await page.goto('/en/characters/1304/?uid=100000001');
+  await expect(page.locator('[data-player-stat="elation_dmg"]')).toContainText('Elation');
+  await expect(page.locator('[data-player-stat="elation_dmg"]')).not.toContainText('elation_dmg');
 
   await page.goto('/characters/1304/');
   const staticLevel = page.getByRole('slider', { name: '角色等级' });

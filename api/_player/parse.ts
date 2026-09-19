@@ -44,10 +44,6 @@ function optionalRecord(value: unknown): UnknownRecord | null {
   return value === undefined || value === null ? null : record(value);
 }
 
-function optionalArray(value: unknown): unknown[] {
-  return value === undefined ? [] : array(value);
-}
-
 function parseAffix(value: unknown): PlayerRelicAffix {
   const source = record(value);
   return {
@@ -106,26 +102,14 @@ function parseStatSource(value: unknown): StatSource {
   };
 }
 
-function firstByField(values: StatSource[]): Map<string, StatSource> {
-  const result = new Map<string, StatSource>();
-  for (const value of values) {
-    if (!result.has(value.field)) result.set(value.field, value);
-  }
-  return result;
-}
-
 function parseStats(source: UnknownRecord): PlayerStat[] {
-  const statistics = array(source.statistics).map(parseStatSource);
-  const attributes = firstByField(optionalArray(source.attributes).map(parseStatSource));
-  const additions = firstByField(optionalArray(source.additions).map(parseStatSource));
-
-  return statistics.map(({ field, display, percent }) => ({
-    field,
-    percent,
-    total: display,
-    base: attributes.get(field)?.display ?? null,
-    addition: additions.get(field)?.display ?? null
-  }));
+  return array(source.statistics)
+    .map(parseStatSource)
+    .map(({ field, display, percent }) => ({
+      field,
+      percent,
+      total: display
+    }));
 }
 
 function parseCharacter(value: unknown): PlayerCharacter {

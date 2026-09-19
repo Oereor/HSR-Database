@@ -16,7 +16,7 @@
   {#if iconUrl}<img class="rank-icon" src={iconUrl} alt="" aria-hidden="true" />{:else}<span
       class="rank-number">{eidolon.rank}</span
     >{/if}
-  <div>
+  <div class="rank-card__content">
     <div class="rank-card__meta">
       {#if iconUrl}<small class="rank-label">{m.eidolon_rank({ rank: eidolon.rank })}</small>{/if}
       {#if playerState}<span class="player-progression-state" data-player-state-label={playerState}

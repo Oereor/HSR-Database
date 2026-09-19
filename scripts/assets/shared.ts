@@ -98,6 +98,10 @@ export const UTILITY_ICON_SOURCE_NAMES: Readonly<Record<UtilityIconKey, string>>
   settings: 'SettingsIcon'
 };
 
+const PLAYER_STAT_PROPERTY_ICONS = [
+  { propertyType: 'ElationDamageAddedRatioBase', iconKey: 'IconJoy' }
+] as const;
+
 export interface AssetRequirements {
   characterIds: string[];
   playerAvatars: PlayerAvatarRequirement[];
@@ -300,9 +304,12 @@ export async function readAssetRequirements(
         set.pieces.map((piece) => ({ id: piece.id, setId: set.id, slot: piece.slot }))
       )
       .sort((a, b) => a.id.localeCompare(b.id)),
-    relicPropertyIcons: relicProperties.flatMap((property) =>
-      property.iconKey ? [{ propertyType: property.propertyType, iconKey: property.iconKey }] : []
-    ),
+    relicPropertyIcons: [
+      ...relicProperties.flatMap((property) =>
+        property.iconKey ? [{ propertyType: property.propertyType, iconKey: property.iconKey }] : []
+      ),
+      ...PLAYER_STAT_PROPERTY_ICONS
+    ],
     elements: uniqueSorted(characterCatalog.map((entry) => entry.element)),
     paths: uniqueSorted([...characterCatalog, ...lightConeCatalog].map((entry) => entry.path)),
     navigationIcons: [...NAVIGATION_ICON_KEYS],

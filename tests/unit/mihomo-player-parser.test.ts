@@ -78,33 +78,29 @@ describe('MiHoMo player response projection', () => {
     expect(enhanced.lightCone).toBeNull();
   });
 
-  it('joins stats by field while preserving statistics order and display strings', () => {
+  it('projects total stats while preserving statistics order and display strings', () => {
     const stats = parsePlayerProfile(fixture).characters[0].stats;
 
     expect(stats).toEqual([
       {
         field: 'HP',
         percent: false,
-        total: '3,456',
-        base: '1,234',
-        addition: '2,222'
+        total: '3,456'
       },
       {
         field: 'Speed',
         percent: false,
-        total: '134.2',
-        base: null,
-        addition: '34.2'
+        total: '134.2'
       },
       {
         field: 'CriticalChance',
         percent: true,
-        total: '72.3%',
-        base: '5.0%',
-        addition: null
+        total: '72.3%'
       }
     ]);
     expect(stats[0]).not.toHaveProperty('value');
+    expect(stats[0]).not.toHaveProperty('base');
+    expect(stats[0]).not.toHaveProperty('addition');
   });
 
   it('keeps the first character when the upstream response contains duplicate ids', () => {
@@ -114,15 +110,12 @@ describe('MiHoMo player response projection', () => {
     expect(profile.characters[0].progression.level).toBe(80);
   });
 
-  it('normalizes optional player branches and missing stat join sources', () => {
+  it('normalizes optional player branches without projecting breakdown sources', () => {
     const value = cloneFixture();
     const player = value.player as Record<string, unknown>;
     const characters = value.characters as Array<Record<string, unknown>>;
     player.avatar = null;
     player.space_info = null;
-    delete characters[0].attributes;
-    delete characters[0].additions;
-
     const profile = parsePlayerProfile(value);
     expect(profile.avatar).toBeNull();
     expect([profile.characterCount, profile.lightConeCount, profile.achievementCount]).toEqual([
@@ -130,9 +123,11 @@ describe('MiHoMo player response projection', () => {
       null,
       null
     ]);
-    expect(
-      profile.characters[0].stats.every(({ base, addition }) => base === null && addition === null)
-    ).toBe(true);
+    expect(profile.characters[0].stats[0]).toEqual({
+      field: 'HP',
+      percent: false,
+      total: '3,456'
+    });
   });
 
   it.each([

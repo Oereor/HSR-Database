@@ -5,7 +5,7 @@
   import { m } from '$lib/paraglide/messages.js';
   import type { PlayerStat } from '$lib/player/contract';
   import {
-    formatPlayerStatBreakdown,
+    formatPlayerStatTotal,
     groupPlayerStats,
     type ResolvedPlayerStat
   } from '$lib/player/character';
@@ -17,15 +17,15 @@
   export let promotion: number;
   export let controlId: string;
 
-  let mode: 'total' | 'breakdown' = 'total';
-  $: groupedStats = groupPlayerStats(stats, properties);
+  $: groupedStats = groupPlayerStats(stats, properties, {
+    elation_dmg: m.player_character_stat_elation()
+  });
   $: statColumns = [
     { id: 'primary', items: groupedStats.primary },
     { id: 'other', items: groupedStats.other }
   ];
 
-  const valueOf = (item: ResolvedPlayerStat): string =>
-    mode === 'total' ? item.stat.total : formatPlayerStatBreakdown(item.stat);
+  const valueOf = (item: ResolvedPlayerStat): string => formatPlayerStatTotal(item.stat);
 </script>
 
 <div class="player-stats-panel" data-player-stats-panel>
@@ -41,21 +41,12 @@
     />
   </div>
 
-  <div class="player-stats-toggle" role="group" aria-label={m.player_character_stats_view_aria()}>
-    <button type="button" aria-pressed={mode === 'total'} on:click={() => (mode = 'total')}
-      >{m.player_character_stats_total()}</button
-    >
-    <button type="button" aria-pressed={mode === 'breakdown'} on:click={() => (mode = 'breakdown')}
-      >{m.player_character_stats_breakdown()}</button
-    >
-  </div>
-
   {#if stats.length}
     <div class="player-stats-grid">
       {#each statColumns as column (column.id)}
         <dl class="player-stat-column" data-player-stat-column={column.id}>
           {#each column.items as item (item.stat.field)}
-            {@const iconUrl = getRelicPropertyIconUrl(item.property?.iconKey)}
+            {@const iconUrl = getRelicPropertyIconUrl(item.iconKey)}
             <div class="inspection-stat-row" data-player-stat={item.stat.field}>
               <dt>
                 <span class="inspection-stat-label">

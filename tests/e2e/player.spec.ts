@@ -69,7 +69,7 @@ test('maps a typed API error without exposing raw server text', async ({ page })
   await page.goto('/player/?uid=100000503');
   await expect(page.getByText('玩家信息服务暂时不可用，请稍后重试。')).toBeVisible();
   await expect(page.getByText('private upstream message')).toHaveCount(0);
-  await expect(page.getByRole('button', { name: '重试' })).toBeVisible();
+  await expect(page.getByRole('button', { name: '重试' })).toHaveCount(0);
 });
 
 test('preserves locale and reuses the SPA cache across browser history', async ({ page }) => {

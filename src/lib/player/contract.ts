@@ -60,8 +60,6 @@ export interface PlayerStat {
   field: string;
   percent: boolean;
   total: string;
-  base: string | null;
-  addition: string | null;
 }
 
 export type PlayerErrorCode =

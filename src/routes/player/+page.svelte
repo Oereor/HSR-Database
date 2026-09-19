@@ -127,12 +127,6 @@
     }
     await goto(href, { keepFocus: true, noScroll: true });
   }
-
-  function retryCurrent(): void {
-    if (queryState.kind !== 'valid') return;
-    handledSearch = null;
-    synchronizeQuery($page.url.search, queryState);
-  }
 </script>
 
 <svelte:head>
@@ -166,11 +160,6 @@
 {:else if state === 'error'}
   <section class="player-query-state player-query-state--error" aria-live="assertive">
     <p>{requestErrorMessage}</p>
-    {#if queryState.kind === 'valid'}
-      <button class="button button--quiet" type="button" on:click={retryCurrent}
-        >{m.player_retry()}</button
-      >
-    {/if}
   </section>
 {:else if profile}
   <PlayerHero {profile} {avatarUrl} />
@@ -237,8 +226,8 @@
   }
 
   .player-query-state--error {
-    flex-direction: column;
     border-color: rgb(239 137 137 / 36%);
+    padding: var(--space-4);
   }
 
   .player-query-state__indicator {

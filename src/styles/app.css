@@ -1300,7 +1300,8 @@ footer a {
   background:
     radial-gradient(circle at 8% 20%, rgb(215 181 109 / 9%), transparent 44%), rgb(14 20 34 / 88%);
 }
-.rank-card > div {
+.rank-card__content {
+  flex: 1 1 auto;
   min-width: 0;
 }
 .rank-card__meta {

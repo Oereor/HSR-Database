@@ -4,7 +4,7 @@ import type { PlayerProfile, PlayerStat } from '../../src/lib/player/contract';
 import {
   createPlayerSkillTreeIndex,
   findPlayerCharacter,
-  formatPlayerStatBreakdown,
+  formatPlayerStatTotal,
   groupPlayerStats,
   resolvePlayerEidolonState,
   resolvePlayerSkillLevel,
@@ -115,9 +115,7 @@ describe('Player stat projection', () => {
   const stat = (field: string): PlayerStat => ({
     field,
     percent: false,
-    total: '100',
-    base: '80',
-    addition: '20'
+    total: '100'
   });
 
   it('keeps fixed primary semantics and preserves upstream order in both groups', () => {
@@ -152,23 +150,30 @@ describe('Player stat projection', () => {
   it.each(mappings)('maps %s to the local %s property', (field, propertyType) => {
     const resolved = groupPlayerStats([stat(field)], properties);
     const item = [...resolved.primary, ...resolved.other][0];
-    expect(item.property?.propertyType).toBe(propertyType);
     expect(item.label).toBe(`local:${propertyType}`);
+    expect(item.iconKey).toBe(`icon:${propertyType}`);
   });
 
-  it('keeps unknown fields with their raw key and no icon metadata', () => {
-    const item = groupPlayerStats([stat('elation_dmg')], properties).other[0];
-    expect(item.label).toBe('elation_dmg');
-    expect(item.property).toBeNull();
+  it('resolves Elation through its canonical field while keeping unknown fields as raw keys', () => {
+    const elation = groupPlayerStats([stat('elation_dmg')], properties, {
+      elation_dmg: 'Elation'
+    }).other[0];
+    const unknown = groupPlayerStats([stat('unknown_stat')], properties).other[0];
+
+    expect(elation.label).toBe('Elation');
+    expect(elation.iconKey).toBe('IconJoy');
+    expect(unknown.label).toBe('unknown_stat');
+    expect(unknown.iconKey).toBeUndefined();
   });
 
   it.each([
-    [{ base: '2900', addition: '6777', total: '9677' }, '2900 +6777'],
-    [{ base: null, addition: '92.6%', total: '92.6%' }, '+92.6%'],
-    [{ base: '100', addition: null, total: '100' }, '100'],
-    [{ base: null, addition: null, total: '134.2' }, '134.2'],
-    [{ base: '100', addition: '-10', total: '90' }, '100 -10']
-  ] as const)('formats Breakdown without inventing zero values', (values, expected) => {
-    expect(formatPlayerStatBreakdown({ field: 'test', percent: false, ...values })).toBe(expected);
+    [{ field: 'sp_rate', percent: true, total: '24.4%' }, '124.4%'],
+    [{ field: 'sp_rate', percent: true, total: '0%' }, '100%'],
+    [{ field: 'sp_rate', percent: true, total: '24.40%' }, '124.40%'],
+    [{ field: 'crit_rate', percent: true, total: '24.4%' }, '24.4%'],
+    [{ field: 'sp_rate', percent: false, total: '24.4%' }, '24.4%'],
+    [{ field: 'sp_rate', percent: true, total: 'unavailable' }, 'unavailable']
+  ] as const)('formats Player total %j as %s', (value, expected) => {
+    expect(formatPlayerStatTotal(value)).toBe(expected);
   });
 });

@@ -419,7 +419,11 @@ describe('视觉资源管线', () => {
     expect(requirements.lightConeIds).toHaveLength(169);
     expect(requirements.playerAvatars).toHaveLength(93);
     expect(requirements.relicSetIds).toHaveLength(60);
-    expect(new Set(requirements.relicPropertyIcons.map((entry) => entry.iconKey)).size).toBe(18);
+    expect(new Set(requirements.relicPropertyIcons.map((entry) => entry.iconKey)).size).toBe(19);
+    expect(requirements.relicPropertyIcons).toContainEqual({
+      propertyType: 'ElationDamageAddedRatioBase',
+      iconKey: 'IconJoy'
+    });
     expect(requirements.elements).toHaveLength(7);
     expect(requirements.paths).toHaveLength(9);
     expect(requirements.navigationIcons).toHaveLength(7);
@@ -478,7 +482,10 @@ describe('视觉资源管线', () => {
     expect(generated!.lightCones.portraits.missing).toEqual([]);
     expect(generated!.relics.icons.available).toHaveLength(60);
     expect(generated!.relics.pieces.available).toHaveLength(requirements.relicPieces.length);
-    expect(generated!.relicProperties.icons.available).toHaveLength(18);
+    expect(generated!.relicProperties.icons.available).toHaveLength(19);
+    expect(resolveRelicPropertyIconAsset('IconJoy', generated)).toBe(
+      '/generated-assets/relic-properties/IconJoy.png'
+    );
     expect(generated!.navigation.icons.available).toEqual(requirements.navigationIcons);
     expect(generated!.branding.icons.available).toEqual(requirements.brandIcons);
     expect(resolveBrandIconAsset('train-party', generated)).toBe(
@@ -988,7 +995,8 @@ describe('视觉资源管线', () => {
       requirements.relicPropertyIcons
     );
     expect(setSources.size).toBe(60);
-    expect(propertySources.size).toBe(18);
+    expect(propertySources.size).toBe(19);
+    expect(path.basename(propertySources.get('IconJoy')!)).toBe('IconJoy.png');
     for (const [id, source] of setSources) {
       expect(path.basename(source)).toBe(`${id}.png`);
       expect(path.basename(source)).not.toMatch(/_\d+\.png$/);

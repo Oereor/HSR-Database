@@ -1,5 +1,5 @@
 import { render } from 'svelte/server';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import EidolonCard from '../../src/lib/components/character/EidolonCard.svelte';
 import SkillProgressionPanel from '../../src/lib/components/character/SkillProgressionPanel.svelte';
 import TraceCardPanel from '../../src/lib/components/character/TraceCardPanel.svelte';
@@ -15,6 +15,10 @@ import type {
 } from '../../src/lib/domain/types';
 import type { PlayerCharacter } from '../../src/lib/player/contract';
 import type { PlayerEquipmentCatalog } from '../../src/lib/player/equipment';
+import { getLocale, overwriteGetLocale } from '../../src/lib/paraglide/runtime.js';
+
+const originalGetLocale = getLocale;
+afterEach(() => overwriteGetLocale(originalGetLocale));
 
 const progression: BaseStatProgression = {
   minLevel: 1,
@@ -192,41 +196,49 @@ describe('Player Character presentation', () => {
         canBeSubStat: true
       }
     ];
-    const body = render(PlayerStatsPanel, {
-      props: {
-        stats: [
-          {
-            field: 'effect_hit',
-            percent: true,
-            total: '20%',
-            base: null,
-            addition: '20%'
-          },
-          { field: 'hp', percent: false, total: '3000', base: '1000', addition: '2000' },
-          {
-            field: 'elation_dmg',
-            percent: true,
-            total: '40%',
-            base: null,
-            addition: null
-          }
-        ],
-        properties,
-        progression,
-        level: 80,
-        promotion: 6,
-        controlId: 'player-level'
-      }
-    }).body;
+    const props = {
+      stats: [
+        {
+          field: 'effect_hit',
+          percent: true,
+          total: '20%'
+        },
+        { field: 'hp', percent: false, total: '3000' },
+        {
+          field: 'elation_dmg',
+          percent: true,
+          total: '40%'
+        },
+        {
+          field: 'sp_rate',
+          percent: true,
+          total: '24.4%'
+        }
+      ],
+      properties,
+      progression,
+      level: 80,
+      promotion: 6,
+      controlId: 'player-level'
+    };
+    const body = render(PlayerStatsPanel, { props }).body;
 
-    expect(body).toContain('aria-pressed="true"');
+    expect(body).not.toContain('aria-pressed=');
     expect(body).toContain('生命值');
     expect(body).toContain('效果命中');
-    expect(body).toContain('elation_dmg');
+    expect(body).toContain('欢愉度');
+    expect(body).not.toContain('elation_dmg</span>');
+    expect(body).toContain('124.4%');
     expect(body.indexOf('data-player-stat-column="primary"')).toBeLessThan(
       body.indexOf('data-player-stat-column="other"')
     );
     expect(body).toMatch(/data-player-stat="hp"[\s\S]*IconMaxHP\.png/);
+    expect(body).toMatch(/data-player-stat="elation_dmg"[\s\S]*IconJoy\.png/);
+
+    overwriteGetLocale(() => 'en');
+    const englishBody = render(PlayerStatsPanel, { props }).body;
+    expect(englishBody).toContain('Elation');
+    expect(englishBody).not.toContain('elation_dmg</span>');
   });
 
   it('renders Trace states with text while static cards omit Player state metadata', () => {
@@ -295,5 +307,6 @@ describe('Player Character presentation', () => {
     expect(staticBody).not.toContain('未激活');
     expect(playerBody).toContain('data-player-state="inactive"');
     expect(playerBody).toContain('未激活');
+    expect(playerBody).toContain('rank-card__content');
   });
 });

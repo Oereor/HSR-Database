@@ -7,7 +7,7 @@ export type PlayerEidolonState = Exclude<PlayerProgressionState, 'unresolved'>;
 export interface ResolvedPlayerStat {
   stat: PlayerStat;
   label: string;
-  property: RelicProperty | null;
+  iconKey?: string;
 }
 
 export interface GroupedPlayerStats {
@@ -36,6 +36,7 @@ const PLAYER_STAT_PROPERTY_TYPES: Readonly<Record<string, string>> = {
   effect_res: 'StatusResistanceBase',
   heal_rate: 'HealRatioBase',
   sp_rate: 'SPRatioBase',
+  elation_dmg: 'ElationDamageAddedRatioBase',
   physical_dmg: 'PhysicalAddedRatio',
   fire_dmg: 'FireAddedRatio',
   ice_dmg: 'IceAddedRatio',
@@ -88,7 +89,8 @@ export function resolvePlayerEidolonState(
 
 export function groupPlayerStats(
   stats: PlayerStat[],
-  properties: RelicProperty[]
+  properties: RelicProperty[],
+  fallbackLabels: Readonly<Record<string, string>> = {}
 ): GroupedPlayerStats {
   const propertiesByType = new Map(properties.map((property) => [property.propertyType, property]));
   const result: GroupedPlayerStats = { primary: [], other: [] };
@@ -98,8 +100,12 @@ export function groupPlayerStats(
     const property = propertyType ? (propertiesByType.get(propertyType) ?? null) : null;
     const resolved: ResolvedPlayerStat = {
       stat,
-      property,
-      label: property?.name ?? stat.field
+      label: property?.name ?? fallbackLabels[stat.field] ?? stat.field,
+      ...(property?.iconKey
+        ? { iconKey: property.iconKey }
+        : stat.field === 'elation_dmg'
+          ? { iconKey: 'IconJoy' }
+          : {})
     };
     (PRIMARY_PLAYER_STAT_FIELDS.has(stat.field) ? result.primary : result.other).push(resolved);
   }
@@ -107,14 +113,16 @@ export function groupPlayerStats(
   return result;
 }
 
-function signedAddition(value: string): string {
-  return /^[+-]/.test(value) ? value : `+${value}`;
-}
+export function formatPlayerStatTotal(stat: PlayerStat): string {
+  if (stat.field !== 'sp_rate' || !stat.percent) return stat.total;
 
-export function formatPlayerStatBreakdown(stat: PlayerStat): string {
-  if (stat.base !== null && stat.addition !== null)
-    return `${stat.base} ${signedAddition(stat.addition)}`;
-  if (stat.base !== null) return stat.base;
-  if (stat.addition !== null) return signedAddition(stat.addition);
-  return stat.total;
+  const match = /^([+-]?\d+)(?:\.(\d+))?%$/.exec(stat.total);
+  if (!match) return stat.total;
+
+  const decimalPlaces = match[2]?.length ?? 0;
+  const rawPercentage = Number(`${match[1]}${match[2] === undefined ? '' : `.${match[2]}`}`);
+  if (!Number.isFinite(rawPercentage)) return stat.total;
+
+  // MiHoMo exposes the bonus; the Player Stats UI presents the in-game 100% baseline total.
+  return `${(rawPercentage + 100).toFixed(decimalPlaces)}%`;
 }
