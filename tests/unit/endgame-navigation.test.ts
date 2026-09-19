@@ -39,7 +39,7 @@ describe('Endgame local navigation presentation', () => {
       '11',
       '12'
     ]);
-    expect(navigation.currentLabel).toBe('关卡 12');
+    expect(navigation.currentLabel).toContain(navigation.sections[0].items.at(-1)!.label);
     expect(navigation.sections[0].items.at(-1)).toMatchObject({
       href: '?encounter=5312',
       current: true
@@ -54,14 +54,12 @@ describe('Endgame local navigation presentation', () => {
     const pfNavigation = buildPureFictionLocalNavigation(pureFiction.encounters, '20254');
     const asNavigation = buildApocalypticShadowLocalNavigation(shadow.encounters, '30204');
     for (const navigation of [pfNavigation, asNavigation]) {
-      expect(navigation.sections[0].items.map((item) => item.label)).toEqual([
-        '难度 1',
-        '难度 2',
-        '难度 3',
-        '难度 4'
-      ]);
+      expect(navigation.sections[0].items.map((item) => item.id)).toHaveLength(4);
+      navigation.sections[0].items.forEach((item, index) =>
+        expect(item.label).toContain(String(index + 1))
+      );
       expect(navigation.sections[0].items.at(-1)?.current).toBe(true);
-      expect(navigation.currentLabel).toBe('难度 4');
+      expect(navigation.currentLabel).toBe(navigation.sections[0].items.at(-1)?.label);
     }
   });
 
@@ -69,16 +67,18 @@ describe('Endgame local navigation presentation', () => {
     const view = await groupView('aa', 8);
     if (view.mode !== 'aa') throw new Error('AA view mode 不匹配');
     const navigation = buildAnomalyArbitrationLocalNavigation(view.encounters, '804:hard');
-    expect(navigation.sections.map((section) => section.label)).toEqual(['骑士', '王棋']);
+    expect(navigation.sections.every((section) => section.label.trim() !== '')).toBe(true);
     expect(navigation.sections.map((section) => section.items.length)).toEqual([3, 2]);
-    expect(navigation.sections[1].items.map((item) => item.label)).toEqual([
-      '将杀王棋',
-      '将杀王棋•绝境'
-    ]);
+    expect(navigation.sections[0].items.map((item) => item.id)).toEqual(
+      view.encounters.filter(({ variant }) => variant === 'preliminary').map(({ id }) => id)
+    );
+    expect(navigation.sections[1].items.map((item) => item.id)).toEqual(
+      view.encounters.filter(({ variant }) => variant !== 'preliminary').map(({ id }) => id)
+    );
     expect(navigation.sections[1].items[1]).toMatchObject({
       href: '?encounter=804%3Ahard',
       current: true
     });
-    expect(navigation.currentLabel).toBe('将杀王棋•绝境');
+    expect(navigation.currentLabel).toBe(navigation.sections[1].items[1].label);
   });
 });

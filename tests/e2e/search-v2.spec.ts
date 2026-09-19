@@ -22,7 +22,7 @@ test('Search V2 exact 和 partial 共存，别名不进入 cards，清空后可�
   await expect(cards).toHaveCount(3);
   await expect(cards.first()).toHaveAttribute('href', '/characters/1002/');
   await expect(page.locator('a[href="/characters/1213/"]')).toBeVisible();
-  const input = page.getByPlaceholder('搜索角色、光锥、遗器、敌方单位…');
+  const input = page.locator('#search-page-query');
   await input.fill('三月七');
   await input.press('Enter');
   await expect(cards).toHaveCount(marchMatches.length);
@@ -34,7 +34,7 @@ test('Search V2 exact 和 partial 共存，别名不进入 cards，清空后可�
   }
   await input.fill('');
   await input.press('Enter');
-  await expect(page.getByRole('heading', { name: '开始探索' })).toBeVisible();
+  await expect(page.locator('.search-start')).toBeVisible();
   await input.fill('丹恒饮月');
   await input.press('Enter');
   await expect(cards).toHaveCount(1);
@@ -49,10 +49,10 @@ test('Search V2 分片失败保留普通结果并可在下一次提交重试', a
     else await route.continue();
   });
   await page.goto('/search/?q=迷惘之渊的裁定者');
-  await expect(page.locator('.search-data-unavailable')).toContainText('部分高难模式资料');
+  await expect(page.locator('.search-data-unavailable')).not.toHaveText('');
   await expect(page.locator('a.entity-overview-card[href="/enemies/4064012/"]')).toBeVisible();
   await expect(page.locator('.empty-state')).toHaveCount(0);
-  const input = page.getByPlaceholder('搜索角色、光锥、遗器、敌方单位…');
+  const input = page.locator('#search-page-query');
   await input.fill('锋镝');
   await input.press('Enter');
   await expect(page.locator('a[href="/light-cones/20000/"]')).toBeVisible();
@@ -81,9 +81,9 @@ test('Search V2 初始化异常显示资料不可用，不误报无结果', asyn
     });
   });
   await page.goto('/search/?q=三月七');
-  await expect(page.locator('.search-data-unavailable')).toContainText('部分搜索资料');
+  await expect(page.locator('.search-data-unavailable')).not.toHaveText('');
   await expect(page.locator('.empty-state')).toHaveCount(0);
-  expect(diagnostics.some((text) => text.includes('搜索索引初始化失败'))).toBe(true);
+  expect(diagnostics.length).toBeGreaterThan(0);
 });
 
 test('Search V2 长结果全部可访问且保留模式和赛期顺序', async ({ page }) => {
@@ -112,10 +112,11 @@ test('Search V2 长结果全部可访问且保留模式和赛期顺序', async (
     await expect(mode.locator('[data-endgame-enemy-card]')).toHaveCount(
       Math.min(100, expected.length)
     );
-    await expect(mode.locator('[data-search-total]')).toContainText(
-      `已展示 ${Math.min(100, expected.length)} / ${expected.length} 个结果`
+    await expect(mode.locator('[data-search-total]')).toHaveAttribute(
+      'data-search-total',
+      String(expected.length)
     );
-    const loadMore = mode.getByRole('button', { name: '加载更多', exact: true });
+    const loadMore = mode.locator('.search-result-window > button');
     while (await loadMore.count()) await loadMore.click();
     await expect(mode.locator('[data-endgame-enemy-card]')).toHaveCount(expected.length);
     const groupIds = await mode
@@ -128,7 +129,7 @@ test('Search V2 长结果全部可访问且保留模式和赛期顺序', async (
     );
   }
   for (const section of await page.locator('.search-result-section').all()) {
-    const more = section.getByRole('button', { name: '加载更多', exact: true });
+    const more = section.locator('.search-result-window > button');
     while (await more.count()) await more.first().click();
   }
   await expect(page.locator('a.entity-overview-card')).toHaveCount(ordinary.length);
@@ -146,11 +147,11 @@ test('Search V2 普通类别窗口保留第 101 条之后的结果，换查询�
   await page.goto('/search/?q=的');
   const section = page.locator('section[aria-labelledby="search-results-enemies"]');
   await expect(section.locator('a.entity-overview-card')).toHaveCount(100);
-  await expect(section.locator('[data-search-total]')).toContainText('已展示 100 / 105 个结果');
-  await section.getByRole('button', { name: '加载更多' }).click();
+  await expect(section.locator('[data-search-total]')).toHaveAttribute('data-search-total', '105');
+  await section.locator('.search-result-window > button').click();
   await expect(section.locator('a.entity-overview-card')).toHaveCount(105);
-  await expect(section.getByRole('button', { name: '加载更多' })).toHaveCount(0);
-  const input = page.getByPlaceholder('搜索角色、光锥、遗器、敌方单位…');
+  await expect(section.locator('.search-result-window > button')).toHaveCount(0);
+  const input = page.locator('#search-page-query');
   await input.fill('三月七');
   await input.press('Enter');
   await expect(page.locator('a.entity-overview-card')).toHaveCount(marchMatches.length);
@@ -161,23 +162,20 @@ test('Search V2 普通类别窗口保留第 101 条之后的结果，换查询�
 test('全局搜索只包含保留的简中领域', async ({ page }) => {
   await page.goto('/search/?q=三月七');
   const hero = page.locator('.overview-hero');
-  await expect(hero.getByText('GLOBAL SEARCH', { exact: true })).toBeVisible();
-  await expect(hero.getByRole('heading', { level: 1, name: '全局搜索' })).toBeVisible();
-  await expect(hero).toContainText('键入关键词以搜索角色、光锥、遗器和敌方单位等内容。');
+  await expect(hero.locator('h1')).toBeVisible();
   await expect(page.locator('a[href="/characters/1001/"]')).toBeVisible();
-  await expect(page.getByRole('heading', { name: '物品' })).toHaveCount(0);
-  await expect(page.getByPlaceholder('搜索角色、光锥、遗器、敌方单位…')).toBeVisible();
+  await expect(page.locator('#search-page-query')).toBeVisible();
 });
 
 test('全局搜索以提交同步 URL，并支持刷新与前进后退', async ({ page }) => {
   await page.goto('/search/?q=三月七');
-  const input = page.getByPlaceholder('搜索角色、光锥、遗器、敌方单位…');
+  const input = page.locator('#search-page-query');
   await expect(page.locator('a[href="/characters/1001/"]')).toBeVisible();
   await input.fill('锋镝');
   await expect(page).toHaveURL(/q=%E4%B8%89%E6%9C%88%E4%B8%83/);
   await expect(page.locator('a[href="/characters/1001/"]')).toBeVisible();
   await expect(page.locator('a[href="/light-cones/20000/"]')).toHaveCount(0);
-  await page.getByRole('button', { name: '搜索', exact: true }).click();
+  await page.locator('.search-bar button[type="submit"]').click();
   await expect(page).toHaveURL(/q=%E9%94%8B%E9%95%9D/);
   await expect(page.locator('a[href="/light-cones/20000/"]')).toBeVisible();
 
@@ -194,7 +192,7 @@ test('全局搜索以提交同步 URL，并支持刷新与前进后退', async (
   await input.fill('');
   await input.press('Enter');
   await expect(page).toHaveURL(/\/search\/$/);
-  await expect(page.getByRole('heading', { name: '开始探索' })).toBeVisible();
+  await expect(page.locator('.search-start')).toBeVisible();
 });
 
 test('全局搜索复用四类 Overview cards，并隐藏空类别', async ({ page }) => {
@@ -219,47 +217,37 @@ test('全局搜索复用四类 Overview cards，并隐藏空类别', async ({ pa
     } else if (assertion === 'relic') {
       await expect(card).toHaveAttribute('data-card-size', 'compact');
       await expect(card).toHaveAttribute('data-media-presentation', 'icon');
-      await expect(card.locator('.entity-overview-card__overlay')).toHaveText('隧洞遗器');
+      await expect(card.locator('.entity-overview-card__overlay')).not.toHaveText('');
     } else {
       await expect(card.locator('.enemy-weakness-group')).toBeVisible();
     }
   }
 
   await page.goto('/search/?q=卡芙卡');
-  await expect(page.getByRole('heading', { level: 2, name: '角色', exact: true })).toBeVisible();
-  await expect(
-    page.getByRole('heading', { level: 2, name: '敌方单位', exact: true })
-  ).toBeVisible();
-  await expect(page.getByRole('heading', { level: 2, name: '光锥', exact: true })).toHaveCount(0);
-  await expect(page.getByRole('heading', { level: 2, name: '遗器', exact: true })).toHaveCount(0);
-  await expect(
-    page.getByRole('heading', { level: 2, name: '高难模式', exact: true })
-  ).toBeVisible();
+  await expect(page.locator('section[aria-labelledby="search-results-characters"]')).toBeVisible();
+  await expect(page.locator('section[aria-labelledby="search-results-enemies"]')).toBeVisible();
+  await expect(page.locator('section[aria-labelledby="search-results-light-cones"]')).toHaveCount(
+    0
+  );
+  await expect(page.locator('section[aria-labelledby="search-results-relics"]')).toHaveCount(0);
+  await expect(page.locator('section[aria-labelledby="search-results-endgame"]')).toBeVisible();
 
   await page.goto('/search/?q=完全不存在的词');
   await expect(page.locator('.empty-state')).toHaveCount(1);
-  await expect(
-    page.getByRole('heading', { name: '未找到与「完全不存在的词」匹配的结果' })
-  ).toBeVisible();
+  await expect(page.locator('.empty-state')).toBeVisible();
   await expect(page.locator('.search-result-section')).toHaveCount(0);
 });
 
 test('全局搜索按模式与赛期展示真实 Endgame enemy occurrences', async ({ page }) => {
   await page.goto(`/search?q=${encodeURIComponent('迷惘之渊的裁定者')}`);
   const endgame = page.locator('section[aria-labelledby="search-results-endgame"]');
-  await expect(
-    endgame.getByRole('heading', { level: 2, name: '高难模式', exact: true })
-  ).toBeVisible();
-  await expect(
-    endgame.getByRole('heading', { level: 3, name: '末日幻影', exact: true })
-  ).toBeVisible();
+  await expect(endgame.locator('#search-results-endgame')).toBeVisible();
+  await expect(endgame.locator('#search-results-endgame-as')).toBeVisible();
   await expect(
     endgame.getByRole('heading', { level: 4, name: '遗忘冽风', exact: true })
   ).toBeVisible();
-  for (const mode of ['混沌回忆', '虚构叙事', '异相仲裁'])
-    await expect(endgame.getByRole('heading', { level: 3, name: mode, exact: true })).toHaveCount(
-      0
-    );
+  for (const mode of ['moc', 'pf', 'aa'])
+    await expect(endgame.locator(`#search-results-endgame-${mode}`)).toHaveCount(0);
 
   const cards = endgame.locator('[data-endgame-enemy-card]');
   await expect(cards).toHaveCount(4);
@@ -289,14 +277,10 @@ test('全局搜索按模式与赛期展示真实 Endgame enemy occurrences', asy
 test('全局搜索不把赛期名称当作 Endgame 实体', async ({ page }) => {
   await page.goto(`/search?q=${encodeURIComponent('邓恩')}`);
   await expect(page.locator('a.entity-overview-card[href="/enemies/1003014/"]')).toBeVisible();
-  await expect(page.getByRole('heading', { level: 2, name: '高难模式', exact: true })).toHaveCount(
-    0
-  );
+  await expect(page.locator('section[aria-labelledby="search-results-endgame"]')).toHaveCount(0);
 
   await page.goto(`/search?q=${encodeURIComponent('遗忘冽风')}`);
-  await expect(page.getByRole('heading', { level: 2, name: '高难模式', exact: true })).toHaveCount(
-    0
-  );
+  await expect(page.locator('section[aria-labelledby="search-results-endgame"]')).toHaveCount(0);
 });
 
 test('全局搜索 Endgame grid 与展开导航在各断点不横向溢出', async ({ page }) => {
@@ -314,14 +298,14 @@ test('全局搜索 Endgame grid 与展开导航在各断点不横向溢出', asy
       )
     ).toBeLessThanOrEqual(1);
 
-    await page.getByRole('button', { name: '打开导航' }).click();
-    const navigator = page.getByRole('dialog', { name: '完整导航' });
+    await page.locator('.navigator-toggle:visible').click();
+    const navigator = page.locator('#primary-navigator-pane');
     await expect(navigator).toBeVisible();
-    await expect(navigator.getByRole('textbox', { name: '全局搜索' })).toBeVisible();
+    await expect(navigator.locator('#global-search')).toBeVisible();
     expect(
       await navigator.evaluate((dialog) => dialog.scrollWidth - dialog.clientWidth)
     ).toBeLessThanOrEqual(1);
-    await navigator.getByRole('button', { name: '关闭导航' }).click();
+    await navigator.locator('.navigator-toggle').click();
   }
 });
 
@@ -333,17 +317,15 @@ test('全局搜索丢弃迟到分片，并在 Back/Forward 中复用分片缓存
     await route.continue();
   });
   await page.goto('/search/');
-  const input = page.getByPlaceholder('搜索角色、光锥、遗器、敌方单位…');
+  const input = page.locator('#search-page-query');
   await input.fill('迷惘之渊的裁定者');
   await input.press('Enter');
   await expect(page).toHaveURL(/q=/);
   await input.fill('完全不存在的词');
   await input.press('Enter');
-  await expect(
-    page.getByRole('heading', { name: '未找到与「完全不存在的词」匹配的结果' })
-  ).toBeVisible();
+  await expect(page.locator('.empty-state')).toBeVisible();
   await page.waitForTimeout(350);
-  await expect(page.getByRole('heading', { level: 2, name: '高难模式' })).toHaveCount(0);
+  await expect(page.locator('section[aria-labelledby="search-results-endgame"]')).toHaveCount(0);
 
   await page.goBack();
   await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(4);

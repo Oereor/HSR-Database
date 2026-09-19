@@ -20,6 +20,7 @@
   type="button"
   class="filter-chip"
   class:filter-chip--selected={selected}
+  data-filter-value={value}
   aria-pressed={selected}
   style:color
   on:click

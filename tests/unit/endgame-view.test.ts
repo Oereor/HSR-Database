@@ -215,16 +215,17 @@ describe('Endgame 赛期回退与推荐', () => {
   });
 
   it.each([
-    ['zh-CN', 'moc', 1035, '混沌回忆 ID 1035'],
-    ['zh-CN', 'pf', 123, '虚构叙事 ID 123'],
-    ['zh-CN', 'as', 123, '末日幻影 ID 123'],
-    ['zh-CN', 'aa', 123, '异相仲裁 ID 123'],
-    ['en', 'moc', 1035, 'MoC ID 1035'],
-    ['en', 'pf', 123, 'PF ID 123'],
-    ['en', 'as', 123, 'AS ID 123'],
-    ['en', 'aa', 123, 'AA ID 123']
-  ] as const)('%s %s 使用统一缺名回退', (locale, mode, groupId, expected) => {
-    expect(getEndgamePeriodFallbackName(mode, groupId, locale)).toBe(expected);
+    ['moc', 1035],
+    ['pf', 123],
+    ['as', 123],
+    ['aa', 123]
+  ] as const)('%s 使用 locale-aware 缺名回退并保留 canonical ID', (mode, groupId) => {
+    const chinese = getEndgamePeriodFallbackName(mode, groupId, 'zh-CN');
+    const english = getEndgamePeriodFallbackName(mode, groupId, 'en');
+    expect(chinese).toContain(String(groupId));
+    expect(english).toContain(String(groupId));
+    expect(chinese).not.toBe(mode);
+    expect(english).not.toBe(mode);
   });
 
   it('正式名称始终优先于 presentation fallback', () => {
@@ -253,7 +254,9 @@ describe('Endgame 赛期回退与推荐', () => {
     expect(group1035.encounters).toHaveLength(12);
     expect(buildPeriodView(group1034, now).status).toBe('current');
     expect(buildPeriodView(group1035, now).status).toBe('upcoming');
-    expect(buildPeriodView(group1035, now).name).toBe('混沌回忆 ID 1035');
+    expect(buildPeriodView(group1035, now).name).toBe(
+      getEndgamePeriodFallbackName('moc', 1035, 'zh-CN')
+    );
     expect(recommendedGroupId(moc.groups, now)).toBe(1034);
   });
 });

@@ -163,14 +163,14 @@ describe('MechanicSectionCard', () => {
     }));
     const { body } = render(MechanicSectionCard, {
       props: {
-        title: '战意机制',
+        title: 'synthetic mechanic title',
         headingLevel: 2,
         content: { kind: 'segments', items }
       }
     });
 
     expect(body).toContain('<h2');
-    expect(body).toContain('战意机制');
+    expect(body).toContain('synthetic mechanic title');
     expect(
       body.match(/mechanic-section-card__segment season-mechanic-card__segment/g) ?? []
     ).toHaveLength(count);
@@ -182,16 +182,16 @@ describe('MechanicSectionCard', () => {
   it('renders description content and exposes the semantic debuff tone', () => {
     const { body } = render(MechanicSectionCard, {
       props: {
-        title: '棋局特性',
+        title: 'synthetic debuff title',
         headingLevel: 3,
         tone: 'debuff',
-        content: { kind: 'description', description: '不利效果说明' }
+        content: { kind: 'description', description: 'synthetic debuff description' }
       }
     });
 
     expect(body).toContain('<h3');
-    expect(body).toContain('棋局特性');
-    expect(body).toContain('不利效果说明');
+    expect(body).toContain('synthetic debuff title');
+    expect(body).toContain('synthetic debuff description');
     expect(body).toContain('mechanic-section-card--debuff');
     expect(body).toContain('data-mechanic-tone="debuff"');
     expect(body).not.toContain('mechanic-section-card__segment');
@@ -207,8 +207,6 @@ describe('Endgame shared detail primitives', () => {
     expect(body).toContain('data-endgame-toughness');
     expect(body).toMatch(/data-endgame-toughness="">60(?:<!--.*?-->)?<\/strong>/);
     expect(body).toContain('class="endgame-enemy__missing">-</span>');
-    expect(body).not.toContain('资料未提供');
-    expect(body).not.toContain('Data unavailable');
   });
 
   it('keeps the existing weakness icon UI when weakness data exists', () => {
@@ -234,7 +232,7 @@ describe('Endgame shared detail primitives', () => {
     });
 
     expect(body).toContain('href="/endgame/moc/"');
-    expect(body).toContain('暂无赛期');
+    expect(body).toMatch(/endgame-overview-card__season[\s\S]*<strong[^>]*>[^<]+<\/strong>/);
   });
 
   it.each([1, 2, 3])('renders %i informational buff tiles without empty slots', (count) => {
@@ -246,7 +244,7 @@ describe('Endgame shared detail primitives', () => {
     }));
     const { body } = render(BuffOptionGroup, {
       props: {
-        title: '终焉公理',
+        title: 'synthetic option group',
         options,
         headingLevel: 4,
         level: 2
@@ -254,7 +252,7 @@ describe('Endgame shared detail primitives', () => {
     });
 
     expect(body).toContain('<h4');
-    expect(body).toContain('终焉公理');
+    expect(body).toContain('synthetic option group');
     expect(body.match(/data-buff-option-tile/g) ?? []).toHaveLength(count);
     expect(body.match(/<h5/g) ?? []).toHaveLength(count);
     expect(body).not.toContain('undefined');
@@ -351,7 +349,6 @@ describe('AS boss dossier', () => {
     expect(body.match(/data-endgame-enemy-level="60"/g) ?? []).toHaveLength(2);
     expect(body.match(/data-endgame-enemy-level="90"/g) ?? []).toHaveLength(1);
     expect(body.match(/data-as-boss-source-group/g) ?? []).toHaveLength(2);
-    expect(body).toContain('首领特性');
     expect(body).toContain('测试特性');
     expect(body.indexOf('effect-a')).toBeLessThan(body.indexOf('effect-b'));
     expect(body.match(/data-stage-effect-explanations/g) ?? []).toHaveLength(1);

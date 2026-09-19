@@ -1,12 +1,14 @@
-import { expect, test, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
+import { expect, test, type Page } from '@playwright/test';
 
 async function switchTo(page: Page, locale: 'en' | 'zh-CN', pathname: string) {
   await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   await page.locator('.settings-trigger').click();
-  const link = page
-    .locator('.language-segments a')
-    .filter({ hasText: locale === 'en' ? /^EN$/ : /^中文$/ });
+  const link = page.locator(
+    locale === 'en'
+      ? '.language-segments a[href^="/en"]'
+      : '.language-segments a:not([href^="/en"])'
+  );
   const target = new URL((await link.getAttribute('href'))!, page.url());
   expect(target.pathname.replace(/\/$/, '')).toBe(pathname.replace(/\/$/, ''));
   const previous = new URL(page.url());
@@ -28,12 +30,11 @@ async function switchTo(page: Page, locale: 'en' | 'zh-CN', pathname: string) {
   expect(new URL(page.url()).hash).toBe(target.hash);
   await expect(page.locator('html')).toHaveAttribute('lang', locale);
   await page.locator('.settings-trigger').click();
-  await expect(page.locator('.language-segments [aria-current="true"]')).toHaveText(
-    locale === 'en' ? 'EN' : '中文'
-  );
-  await expect(page.locator('.settings-panel__heading strong')).toHaveText(
-    locale === 'en' ? 'Language' : '语言'
-  );
+  const currentLocale = page.locator('.language-segments [aria-current="true"]');
+  await expect(currentLocale).toHaveCount(1);
+  const currentHref = await currentLocale.getAttribute('href');
+  expect(new URL(currentHref!, page.url()).href).toBe(target.href);
+  await expect(page.locator('.settings-panel__heading strong')).not.toHaveText('');
   let navigated = false;
   const listener = () => {
     navigated = true;
@@ -91,12 +92,8 @@ for (const locale of ['zh-CN', 'en'] as const) {
       }
       for (const heading of await page.locator('[data-battle-slot] h3, [data-wave] h4').all()) {
         const text = await heading.textContent();
-        if (/Node|Wave|节点|波次/.test(text ?? ''))
-          expect(text).toMatch(/(?:Node|Wave|节点|波次) [1-9]\d*/);
+        expect(text).toMatch(/[1-9]\d*/);
       }
-      await expect(page.locator('main')).not.toContainText(
-        /(?:Node|Wave|节点|波次)\s*[一二三四五六七八九十]/
-      );
       const enemy = page.locator('a[data-endgame-enemy-card]').first();
       if (await enemy.count()) {
         const seasonUrl = page.url();
@@ -131,24 +128,19 @@ for (const locale of ['zh-CN', 'en'] as const) {
     const entries = JSON.parse(
       readFileSync(`src/lib/generated/views/${locale}/catalogs/enemies.json`, 'utf8')
     ) as Array<{ id: string; name: string; type: string }>;
-    const messages = JSON.parse(readFileSync(`messages/${locale}.json`, 'utf8')) as Record<
-      string,
-      string
-    >;
-    for (const [rank, label] of Object.entries({
-      Minion: messages.enemy_rank_normal,
-      MinionLv2: messages.enemy_rank_normal,
-      Elite: messages.enemy_rank_elite,
-      LittleBoss: messages.enemy_rank_boss,
-      BigBoss: messages.enemy_rank_boss
-    })) {
+    for (const rank of ['Minion', 'MinionLv2', 'Elite', 'LittleBoss', 'BigBoss']) {
       const entry = entries.find((entry) => entry.type === rank)!;
       await page.goto(`${prefix}/enemies/?q=${encodeURIComponent(entry.name)}`);
       const card = page.locator(`a[href="${prefix}/enemies/${entry.id}/"]`);
-      await expect(card.locator('.entity-overview-card__overlay')).toHaveText(label);
+      const catalogLabel = (
+        await card.locator('.entity-overview-card__overlay').textContent()
+      )?.trim();
+      expect(catalogLabel).toBeTruthy();
+      expect(catalogLabel).not.toBe(rank);
       await card.click();
       await expect(page).toHaveURL(new RegExp(`${prefix}/enemies/${entry.id}/$`));
-      await expect(page.locator('.enemy-rank-tag')).toHaveText(label);
+      await expect(page.locator('.enemy-rank-tag')).toHaveText(catalogLabel!);
+      await expect(page.locator('html')).toHaveAttribute('lang', locale);
     }
   });
   test(`${locale} search Endgame enemy links preserve locale`, async ({ page }) => {

@@ -27,10 +27,12 @@ describe('Enemy Overview presentation', () => {
     );
   });
 
-  it('将五种 raw Rank 稳定映射为三类中文语义', () => {
+  it('将五种 raw Rank 稳定映射为三类语义', () => {
     expect(['Minion', 'MinionLv2'].map(getEnemyRankCategory)).toEqual(['normal', 'normal']);
     expect(getEnemyRankCategory('Elite')).toBe('elite');
-    expect(['LittleBoss', 'BigBoss'].map(getEnemyRankLabel)).toEqual(['首领敌人', '首领敌人']);
+    const bossLabels = ['LittleBoss', 'BigBoss'].map(getEnemyRankLabel);
+    expect(bossLabels[0]).not.toBe('');
+    expect(bossLabels[1]).toBe(bossLabels[0]);
     expect(normalizeEnemyRankFilter('MinionLv2')).toBe('normal');
     expect(normalizeEnemyRankFilter('elite')).toBe('elite');
   });

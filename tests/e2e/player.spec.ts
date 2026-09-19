@@ -36,25 +36,21 @@ test('submitting a UID updates the URL before rendering Player Hero and characte
   });
 
   await page.goto('/player/');
-  await expect(page.getByRole('heading', { name: '玩家信息', exact: true })).toBeVisible();
-  await page.getByLabel('玩家 UID').fill(' 100000001 ');
-  await page.getByRole('button', { name: '查询' }).click();
+  await expect(page.locator('.player-page__heading h1')).toBeVisible();
+  await page.locator('#player-uid-input').fill(' 100000001 ');
+  await page.locator('.player-uid-form button[type="submit"]').click();
 
   await expect(page).toHaveURL(/\/player\/\?uid=100000001$/);
-  await expect(page.getByText('正在查询玩家信息…')).toBeVisible();
+  await expect(page.locator('.player-query-state[role="status"]')).toBeVisible();
   release();
 
   await expect(page.getByRole('heading', { name: 'Synthetic Player' })).toBeVisible();
-  await expect(page.getByText('ID 1999')).toBeVisible();
+  await expect(page.locator('.unknown-character')).toContainText('1999');
   await expect(
     page.locator('img[src="/generated-assets/player-avatars/201001.png"]')
   ).toBeVisible();
   await expect(page.locator('img[src*="remote-icon-must-not-be-used"]')).toHaveCount(0);
-  await expect(page.getByRole('link', { name: 'MiHoMo API / Mar-7th' }).first()).toHaveAttribute(
-    'href',
-    'https://march7th.xyz/zh/api/'
-  );
-  await expect(page.getByText('玩家公开信息由', { exact: false })).toBeVisible();
+  await expect(page.locator('a[href="https://march7th.xyz/zh/api/"]').first()).toBeVisible();
   const heroStyles = await page.locator('.player-hero').evaluate((hero) => {
     const details = hero.querySelector<HTMLElement>('.player-hero__details')!;
     const avatar = hero.querySelector<HTMLElement>('.player-hero__avatar')!;
@@ -105,9 +101,9 @@ test('maps a typed API error without exposing raw server text', async ({ page })
   });
 
   await page.goto('/player/?uid=100000503');
-  await expect(page.getByText('玩家信息服务暂时不可用，请稍后重试。')).toBeVisible();
+  await expect(page.locator('.player-query-state--error')).toBeVisible();
   await expect(page.getByText('private upstream message')).toHaveCount(0);
-  await expect(page.getByRole('button', { name: '重试' })).toHaveCount(0);
+  await expect(page.locator('.player-query-state--error button')).toHaveCount(0);
 });
 
 test('preserves locale and reuses the SPA cache across browser history', async ({ page }) => {
@@ -116,19 +112,15 @@ test('preserves locale and reuses the SPA cache across browser history', async (
 
   await page.goto('/en/player/?uid=100000001');
   await expect(page.getByRole('heading', { name: 'Player 100000001' })).toBeVisible();
-  await expect(page.getByText('Public player information is provided via the')).toBeVisible();
-  await expect(page.getByRole('link', { name: 'MiHoMo API / Mar-7th' }).first()).toHaveAttribute(
-    'href',
-    'https://march7th.xyz/en/api/'
-  );
-  await expect(page.getByText('No public characters')).toHaveCount(0);
+  await expect(page.locator('a[href="https://march7th.xyz/en/api/"]').first()).toBeVisible();
+  await expect(page.locator('.player-characters__empty')).toHaveCount(0);
   await expect(page.getByRole('link', { name: /March 7th/ })).toHaveAttribute(
     'href',
     '/en/characters/1001/?uid=100000001'
   );
 
-  await page.getByLabel('Player UID').fill('100000002');
-  await page.getByRole('button', { name: 'Search' }).click();
+  await page.locator('#player-uid-input').fill('100000002');
+  await page.locator('.player-uid-form button[type="submit"]').click();
   await expect(page.getByRole('heading', { name: 'Player 100000002' })).toBeVisible();
   await page.goBack();
   await expect(page.getByRole('heading', { name: 'Player 100000001' })).toBeVisible();

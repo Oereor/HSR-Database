@@ -24,7 +24,7 @@ describe('Player presentation components', () => {
     expect(body).toContain('Synthetic Player');
     expect(body).toContain('Line one\nLine two');
     expect(body).toContain('100000001');
-    expect(body).toContain('玩家头像不可用');
+    expect(body).toMatch(/player-hero__avatar[\s\S]*role="img"[^>]*aria-label="[^"]+"/);
     const values = [...body.matchAll(/<dd[^>]*>([\s\S]*?)<\/dd>/g)].map((match) =>
       match[1].replaceAll(/<!--[\s\S]*?-->/g, '')
     );
@@ -34,7 +34,7 @@ describe('Player presentation components', () => {
 
   it('links an accessible validation error and disables submission while busy', () => {
     const body = render(PlayerUidForm, {
-      props: { value: 'abc', busy: true, errorMessage: '请输入有效的数字 UID。' }
+      props: { value: 'abc', busy: true, errorMessage: 'synthetic validation error' }
     }).body;
     expect(body).toContain('inputmode="numeric"');
     expect(body).toContain('aria-describedby="player-uid-error"');
@@ -44,8 +44,9 @@ describe('Player presentation components', () => {
 
   it('renders unknown characters as non-linking cards with their upstream id', () => {
     const body = render(UnknownPlayerCharacterCard, { props: { characterId: '1999' } }).body;
-    expect(body).toContain('未知角色');
-    expect(body).toContain('ID 1999');
+    expect(body).toMatch(/class="unknown-character(?:\s|\")/);
+    expect(body).toMatch(/<h3[^>]*>[^<]+<\/h3>/);
+    expect(body).toContain('1999');
     expect(body).not.toContain('<a ');
   });
 });

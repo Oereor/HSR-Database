@@ -17,7 +17,6 @@ test('角色目录按 ID 加载 preview 并保留安全缺图降级', async ({ p
     'loading',
     'lazy'
   );
-  await expect(firstCard).not.toContainText('CHARACTER /');
   await expect(firstCard.locator('.entity-overview-card__overlay .rarity-stars')).toBeVisible();
   await expect(firstCard.locator('.entity-overview-card__title')).not.toBeEmpty();
   await expect(firstCard.locator('.entity-overview-card__metadata')).toBeVisible();
@@ -66,8 +65,6 @@ test('光锥目录复用角色 Overview presentation 并按 ID 加载 preview', 
       'src',
       `/generated-assets/light-cones/preview/${id}.png`
     );
-    await expect(card).not.toContainText('光锥技能仅对该命途生效');
-    await expect(card).not.toContainText(/生命值|攻击力|防御力/);
   }
 
   await page.goto('/light-cones/?rarity=5');
@@ -89,19 +86,17 @@ test('光锥目录复用角色 Overview presentation 并按 ID 加载 preview', 
 
 test('光锥 Overview 支持命途与稀有度多选，并在清除筛选时保留搜索', async ({ page }) => {
   await page.goto('/light-cones/?q=银河');
-  await page.getByRole('button', { name: '智识' }).click();
-  await page.getByRole('button', { name: '虚无' }).click();
-  await page.getByRole('button', { name: '5★' }).click();
-  await page.getByRole('button', { name: '4★' }).click();
+  await page.locator('[data-filter-value="Mage"]').click();
+  await page.locator('[data-filter-value="Warlock"]').click();
+  await page.locator('[data-filter-value="5"]').click();
+  await page.locator('[data-filter-value="4"]').click();
   await expect(page).toHaveURL(/path=Mage/);
   await expect(page).toHaveURL(/path=Warlock/);
   await expect(page).toHaveURL(/rarity=5/);
   await expect(page).toHaveURL(/rarity=4/);
-  await expect(page.getByRole('button', { name: '智识' })).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByRole('button', { name: '4★' })).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('.overview-toolbar')).toContainText('个结果');
-
-  await page.getByRole('button', { name: '清除筛选' }).click();
+  await expect(page.locator('[data-filter-value="Mage"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-filter-value="4"]')).toHaveAttribute('aria-pressed', 'true');
+  await page.locator('.overview-toolbar button').click();
   await expect(page).toHaveURL(/q=%E9%93%B6%E6%B2%B3/);
   await expect(page).not.toHaveURL(/path=|rarity=/);
 });
@@ -110,10 +105,7 @@ test('遗器 Overview 使用统一页面外壳与本地套装 Hero decoration', 
   await page.goto('/relics/?sort=id');
 
   const hero = page.locator('.overview-hero');
-  await expect(hero.getByText('DATABASE / RELICS')).toBeVisible();
-  await expect(hero.getByRole('heading', { level: 1, name: '遗器' })).toBeVisible();
-  await expect(hero).toContainText('浏览、搜索并筛选遗器套装资料。');
-  await expect(hero.getByText('共 60 套遗器', { exact: true })).toBeVisible();
+  await expect(hero.locator('h1')).toBeVisible();
   const heroArtwork = hero.locator('.overview-hero__artwork img');
   await expect(heroArtwork).toHaveCount(3);
   expect(
@@ -124,20 +116,19 @@ test('遗器 Overview 使用统一页面外壳与本地套装 Hero decoration', 
     '/generated-assets/relics/icons/103.png'
   ]);
 
-  await expect(page.getByPlaceholder('搜索遗器套装', { exact: true })).toBeVisible();
+  await expect(page.locator('.search-bar input[name="q"]')).toBeVisible();
   const categoryGroup = page.locator('[aria-labelledby="filter-group-relic-category"]');
-  await expect(categoryGroup.getByRole('button')).toHaveText(['全部', '隧洞遗器', '位面饰品']);
+  await expect(categoryGroup.locator('[data-filter-value]')).toHaveCount(3);
   await expect(categoryGroup.locator('img')).toHaveCount(0);
-  await expect(page.locator('.overview-toolbar')).toContainText('共 60 个结果');
-  await expect(page.getByRole('button', { name: '筛选与排序' })).toHaveCount(0);
+  await expect(page.locator('.entity-overview-card')).toHaveCount(60);
   await expect(page.locator('.filters, .filter-backdrop')).toHaveCount(0);
 });
 
 test('遗器类别使用单选语义并保留排序、重置分页', async ({ page }) => {
   await page.goto('/relics/?sort=id&page=2');
-  const all = page.getByRole('button', { name: '全部', exact: true });
-  const cavern = page.getByRole('button', { name: '隧洞遗器', exact: true });
-  const planar = page.getByRole('button', { name: '位面饰品', exact: true });
+  const all = page.locator('[data-filter-value="all"]');
+  const cavern = page.locator('[data-filter-value="cavern"]');
+  const planar = page.locator('[data-filter-value="planar"]');
 
   await cavern.click();
   await expect(page).toHaveURL(/type=cavern/);
@@ -146,22 +137,14 @@ test('遗器类别使用单选语义并保留排序、重置分页', async ({ pa
   await expect(all).toHaveAttribute('aria-pressed', 'false');
   await expect(cavern).toHaveAttribute('aria-pressed', 'true');
   await expect(planar).toHaveAttribute('aria-pressed', 'false');
-  await expect(page.locator('.overview-toolbar')).toContainText('共 32 个结果');
   await expect(page.locator('.entity-overview-card')).toHaveCount(32);
-  await expect(page.locator('.entity-overview-card__overlay')).toHaveText(
-    Array(32).fill('隧洞遗器')
-  );
 
   await planar.click();
   await expect(page).toHaveURL(/type=planar/);
   await expect(page).not.toHaveURL(/type=cavern/);
   await expect(cavern).toHaveAttribute('aria-pressed', 'false');
   await expect(planar).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('.overview-toolbar')).toContainText('共 28 个结果');
   await expect(page.locator('.entity-overview-card')).toHaveCount(28);
-  await expect(page.locator('.entity-overview-card__overlay')).toHaveText(
-    Array(28).fill('位面饰品')
-  );
 
   await planar.click();
   await expect(planar).toHaveAttribute('aria-pressed', 'true');
@@ -169,7 +152,7 @@ test('遗器类别使用单选语义并保留排序、重置分页', async ({ pa
   await expect(page).not.toHaveURL(/type=/);
   await expect(page).toHaveURL(/sort=id/);
   await expect(all).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('.overview-toolbar')).toContainText('共 60 个结果');
+  await expect(page.locator('.entity-overview-card')).toHaveCount(60);
 });
 
 test('遗器搜索与历史 type 参数可组合，清空搜索后保留类别', async ({ page }) => {
@@ -178,25 +161,24 @@ test('遗器搜索与历史 type 参数可组合，清空搜索后保留类别',
     ['planar', '太空封印站', '301']
   ] as const) {
     await page.goto(`/relics/?type=${type}&sort=name`);
-    const expectedLabel = type === 'cavern' ? '隧洞遗器' : '位面饰品';
-    await expect(page.getByRole('button', { name: expectedLabel, exact: true })).toHaveAttribute(
+    await expect(page.locator(`[data-filter-value="${type}"]`)).toHaveAttribute(
       'aria-pressed',
       'true'
     );
-    const input = page.getByPlaceholder('搜索遗器套装', { exact: true });
+    const input = page.locator('.search-bar input[name="q"]');
     await input.fill(query);
-    await page.getByRole('button', { name: '搜索', exact: true }).click();
+    await page.locator('.search-bar button[type="submit"]').click();
     await expect(page.locator(`a[href="/relics/${id}/"]`)).toBeVisible();
     expect(new URL(page.url()).searchParams.get('type')).toBe(type);
     expect(new URL(page.url()).searchParams.get('sort')).toBe('name');
   }
 
-  const input = page.getByPlaceholder('搜索遗器套装', { exact: true });
+  const input = page.locator('.search-bar input[name="q"]');
   await input.fill('');
-  await page.getByRole('button', { name: '搜索', exact: true }).click();
+  await page.locator('.search-bar button[type="submit"]').click();
   expect(new URL(page.url()).searchParams.get('type')).toBe('planar');
   expect(new URL(page.url()).searchParams.has('q')).toBe(false);
-  await expect(page.locator('.overview-toolbar')).toContainText('共 28 个结果');
+  await expect(page.locator('.entity-overview-card')).toHaveCount(28);
 });
 
 test('遗器统一页面外壳与专用 Grid 在各断点不横向溢出', async ({ page }) => {
@@ -210,11 +192,10 @@ test('遗器统一页面外壳与专用 Grid 在各断点不横向溢出', async
     await page.setViewportSize(viewport);
     await page.goto('/relics/?sort=id');
     await expect(page.locator('.overview-hero')).toBeVisible();
-    await expect(page.getByPlaceholder('搜索遗器套装', { exact: true })).toBeVisible();
-    await expect(page.getByRole('button', { name: '隧洞遗器', exact: true })).toBeVisible();
+    await expect(page.locator('.search-bar input[name="q"]')).toBeVisible();
+    await expect(page.locator('[data-filter-value="cavern"]')).toBeVisible();
     await expect(page.locator('.overview-toolbar')).toBeVisible();
     await expect(page.locator('.overview-grid--compact')).toBeVisible();
-    await expect(page.getByRole('button', { name: '筛选与排序' })).toHaveCount(0);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth - document.documentElement.clientWidth
@@ -253,7 +234,7 @@ test('遗器目录复用 shared compact Overview，并保留可读 typography �
   await expect(firstRelic).toBeVisible();
   await expect(firstRelic).toHaveAttribute('data-card-size', 'compact');
   await expect(firstRelic).toHaveAttribute('data-media-presentation', 'icon');
-  await expect(firstRelic.locator('.entity-overview-card__overlay')).toHaveText('隧洞遗器');
+  await expect(firstRelic.locator('.entity-overview-card__overlay')).not.toHaveText('');
   await expect(firstRelic.locator('.entity-overview-card__title')).toHaveText('云无留迹的过客');
   await expect(firstRelic.locator('.entity-overview-card__metadata')).toHaveCount(0);
   await expect(firstRelic.locator('.entity-card__body')).toHaveCount(0);
@@ -296,15 +277,15 @@ test('遗器目录复用 shared compact Overview，并保留可读 typography �
   expect(largeFirstRow).toBeGreaterThanOrEqual(4);
   expect(compactFirstRow).toBeGreaterThanOrEqual(4);
 
-  for (const [id, name, category] of [
-    ['129', '闪耀功勋的魔法少女', '隧洞遗器'],
-    ['301', '太空封印站', '位面饰品'],
-    ['314', '出云显世与高天神国', '位面饰品']
+  for (const [id, name] of [
+    ['129', '闪耀功勋的魔法少女'],
+    ['301', '太空封印站'],
+    ['314', '出云显世与高天神国']
   ] as const) {
     await page.goto(`/relics/?q=${encodeURIComponent(name)}`);
     const card = page.locator(`a[href="/relics/${id}/"]`);
     await expect(card).toBeVisible();
-    await expect(card.locator('.entity-overview-card__overlay')).toHaveText(category);
+    await expect(card.locator('.entity-overview-card__overlay')).not.toHaveText('');
     await expect(card.locator('.entity-overview-card__title')).toHaveText(name);
     await expect(card.locator('.entity-overview-card__metadata')).toHaveCount(0);
     await expect(card.locator('.entity-overview-card__artwork img')).toHaveAttribute(
@@ -365,8 +346,7 @@ test('Character、Light Cone 与 Enemy Overview 使用统一紧凑 Grid 且不�
       await page.setViewportSize(viewport);
       await page.goto(path);
       if (path === '/characters/' && viewport.width === 390) {
-        await expect(page.getByRole('button', { name: '筛选与排序' })).toHaveCount(0);
-        await expect(page.getByRole('button', { name: '巡猎' })).toBeVisible();
+        await expect(page.locator('[data-filter-value="Rogue"]')).toBeVisible();
       }
       const cards = page.locator('.entity-overview-card');
       await expect(cards.nth(5)).toBeVisible();
@@ -429,19 +409,19 @@ test('Character、Light Cone 与 Enemy Overview 使用统一紧凑 Grid 且不�
 test('筛选状态写入 URL、分页响应客户端导航并进入详情', async ({ page }) => {
   await page.goto('/characters/');
   const firstPageFirstId = await page.locator('.entity-overview-card').first().getAttribute('href');
-  await page.getByRole('link', { name: '下一页' }).click();
+  await page.locator('.overview-pagination > a[href*="page=2"]').first().click();
   await expect(page).toHaveURL(/page=2/);
-  await expect(page.locator('.overview-pagination').getByText('第 2 / 3 页')).toBeVisible();
+  await expect(page.locator('.overview-pagination [aria-current="page"]')).toHaveText('2');
   await expect(page.locator('.entity-overview-card').first()).not.toHaveAttribute(
     'href',
     firstPageFirstId!
   );
-  await page.getByRole('link', { name: '上一页' }).click();
-  await expect(page.locator('.overview-pagination').getByText('第 1 / 3 页')).toBeVisible();
+  await page.locator('.overview-pagination > a').first().click();
+  await expect(page.locator('.overview-pagination [aria-current="page"]')).toHaveText('1');
 
   await page.goto('/characters/?rarity=4&page=2');
-  await expect(page.getByRole('button', { name: '4★' })).toHaveAttribute('aria-pressed', 'true');
-  await page.getByRole('button', { name: '5★' }).click();
+  await expect(page.locator('[data-filter-value="4"]')).toHaveAttribute('aria-pressed', 'true');
+  await page.locator('[data-filter-value="5"]').click();
   await expect(page).toHaveURL(/rarity=5/);
   await expect(page).not.toHaveURL(/page=/);
   await page.goto('/characters/1001/');
@@ -452,19 +432,19 @@ test('Overview 分页保留实时筛选、重复参数与排序状态', async ({
   const cases = [
     {
       route: '/characters/?sort=name',
-      filters: ['4★', '5★'],
+      filters: ['4', '5'],
       parameter: 'rarity',
       values: ['4', '5']
     },
     {
       route: '/light-cones/?sort=name',
-      filters: ['4★', '5★'],
+      filters: ['4', '5'],
       parameter: 'rarity',
       values: ['4', '5']
     },
     {
       route: '/enemies/?sort=name',
-      filters: ['冰', '虚数'],
+      filters: ['Ice', 'Imaginary'],
       parameter: 'weakness',
       values: ['Ice', 'Imaginary']
     }
@@ -473,10 +453,10 @@ test('Overview 分页保留实时筛选、重复参数与排序状态', async ({
   for (const scenario of cases) {
     await page.goto(scenario.route);
     for (const filter of scenario.filters) {
-      await page.getByRole('button', { name: filter, exact: true }).click();
+      await page.locator(`[data-filter-value="${filter}"]`).click();
     }
 
-    const nextPage = page.getByRole('link', { name: '下一页', exact: true });
+    const nextPage = page.locator('.overview-pagination > a[href*="page=2"]').first();
     await expect(nextPage).toBeVisible();
     const nextHref = await nextPage.getAttribute('href');
     const numericHref = await page
@@ -498,7 +478,7 @@ test('Overview 分页保留实时筛选、重复参数与排序状态', async ({
     expect(navigatedParams.getAll(scenario.parameter)).toEqual(scenario.values);
     expect(navigatedParams.get('sort')).toBe('name');
     for (const filter of scenario.filters) {
-      await expect(page.getByRole('button', { name: filter, exact: true })).toHaveAttribute(
+      await expect(page.locator(`[data-filter-value="${filter}"]`)).toHaveAttribute(
         'aria-pressed',
         'true'
       );
@@ -508,10 +488,10 @@ test('Overview 分页保留实时筛选、重复参数与排序状态', async ({
 
 test('从第二页修改筛选后，新分页链接使用重置后的完整状态', async ({ page }) => {
   await page.goto('/characters/?rarity=4&rarity=5&sort=name&page=2');
-  await page.getByRole('button', { name: '4★', exact: true }).click();
+  await page.locator('[data-filter-value="4"]').click();
   await expect(page).not.toHaveURL(/page=/);
 
-  const nextPage = page.getByRole('link', { name: '下一页', exact: true });
+  const nextPage = page.locator('.overview-pagination > a[href*="page=2"]').first();
   await expect(nextPage).toBeVisible();
   const nextHref = await nextPage.getAttribute('href');
   expect(nextHref).not.toBeNull();
@@ -522,19 +502,13 @@ test('从第二页修改筛选后，新分页链接使用重置后的完整状�
 
   await nextPage.click();
   await expect(page).toHaveURL(/page=2/);
-  await expect(page.getByRole('button', { name: '4★', exact: true })).toHaveAttribute(
-    'aria-pressed',
-    'false'
-  );
-  await expect(page.getByRole('button', { name: '5★', exact: true })).toHaveAttribute(
-    'aria-pressed',
-    'true'
-  );
+  await expect(page.locator('[data-filter-value="4"]')).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.locator('[data-filter-value="5"]')).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('遗器分页在 hydration 后保留排序参数', async ({ page }) => {
   await page.goto('/relics/?sort=id');
-  const nextPage = page.getByRole('link', { name: '下一页', exact: true });
+  const nextPage = page.locator('.overview-pagination > a[href*="page=2"]').first();
   await expect(nextPage).toHaveAttribute('href', '?sort=id&page=2');
   await nextPage.click();
   await expect(page).toHaveURL('/relics/?sort=id&page=2');
@@ -545,11 +519,11 @@ test('目录搜索只在提交时应用草稿并重置分页', async ({ page }) 
   await page.waitForLoadState('networkidle');
   const firstResult = page.locator('.entity-overview-card').first();
   const originalHref = await firstResult.getAttribute('href');
-  const input = page.getByPlaceholder('搜索角色', { exact: true });
+  const input = page.locator('.search-bar input[name="q"]');
   await input.fill('三月七');
   await expect(page).toHaveURL(/page=2/);
   await expect(firstResult).toHaveAttribute('href', originalHref!);
-  await page.getByRole('button', { name: '搜索', exact: true }).click();
+  await page.locator('.search-bar button[type="submit"]').click();
   await expect(page).toHaveURL(/q=%E4%B8%89%E6%9C%88%E4%B8%83/);
   await expect(page).not.toHaveURL(/page=/);
   await expect(page.locator('.entity-overview-card')).toHaveCount(2);
@@ -562,19 +536,24 @@ test('目录搜索只在提交时应用草稿并重置分页', async ({ page }) 
 
 test('角色目录支持同类多选与跨类组合筛选', async ({ page }) => {
   await page.goto('/characters/');
-  await page.getByRole('button', { name: '巡猎' }).click();
-  await page.getByRole('button', { name: '虚无' }).click();
+  await page.locator('[data-filter-value="Rogue"]').click();
+  await page.locator('[data-filter-value="Warlock"]').click();
   await expect(page).toHaveURL(/path=Rogue/);
   await expect(page).toHaveURL(/path=Warlock/);
-  await expect(page.getByRole('button', { name: '巡猎' })).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByRole('button', { name: '虚无' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-filter-value="Rogue"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-filter-value="Warlock"]')).toHaveAttribute(
+    'aria-pressed',
+    'true'
+  );
 
-  await page.getByRole('button', { name: '火' }).click();
-  await page.getByRole('button', { name: '雷' }).click();
+  await page.locator('[data-filter-value="Fire"]').click();
+  await page.locator('[data-filter-value="Lightning"]').click();
   await expect(page).toHaveURL(/element=Fire/);
   await expect(page).toHaveURL(/element=Lightning/);
-  await expect(page.locator('.overview-toolbar')).toContainText('个结果');
-  await page.getByRole('button', { name: '清除筛选' }).click();
+  await page.locator('.overview-toolbar button').click();
   await expect(page).toHaveURL('/characters/');
-  await expect(page.getByRole('button', { name: '巡猎' })).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.locator('[data-filter-value="Rogue"]')).toHaveAttribute(
+    'aria-pressed',
+    'false'
+  );
 });

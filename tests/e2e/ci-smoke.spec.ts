@@ -7,9 +7,7 @@ async function expectAppReady(page: Page) {
 test('homepage and client navigation remain usable', async ({ page }) => {
   await page.goto('/');
   await expectAppReady(page);
-  await expect(
-    page.getByRole('heading', { level: 1, name: '《崩坏：星穹铁道》档案库' })
-  ).toBeVisible();
+  await expect(page.locator('.home-hero h1')).toBeVisible();
   await page.locator('.home-directory-row[href="/characters/"]').click();
   await expect(page).toHaveURL(/\/characters\/$/);
   await expect(page.locator('.entity-overview-card').first()).toBeVisible();
@@ -19,7 +17,7 @@ test('search locale switching preserves the route and results', async ({ page })
   await page.goto('/search/?q=March#search-results-characters');
   await expectAppReady(page);
   await page.locator('.settings-trigger').click();
-  const english = page.locator('.language-segments a').filter({ hasText: /^EN$/ });
+  const english = page.locator('.language-segments a[href^="/en"]');
   const englishHref = new URL((await english.getAttribute('href'))!, page.url()).href;
   await Promise.all([page.waitForURL(englishHref, { waitUntil: 'load' }), english.click()]);
   await expectAppReady(page);
@@ -28,7 +26,7 @@ test('search locale switching preserves the route and results', async ({ page })
   await expect(page.locator('a[href^="/en/characters/"]').first()).toBeVisible();
 
   await page.locator('.settings-trigger').click();
-  const chinese = page.locator('.language-segments a').filter({ hasText: /^中文$/ });
+  const chinese = page.locator('.language-segments a:not([href^="/en"])');
   const chineseHref = new URL((await chinese.getAttribute('href'))!, page.url()).href;
   await Promise.all([page.waitForURL(chineseHref, { waitUntil: 'load' }), chinese.click()]);
   await expectAppReady(page);
@@ -39,13 +37,13 @@ test('search locale switching preserves the route and results', async ({ page })
 test('enemy direct navigation and core interaction remain functional', async ({ page }) => {
   await page.goto('/enemies/1002015/');
   await expectAppReady(page);
-  const slider = page.getByRole('slider', { name: '敌人等级' });
+  const slider = page.locator('#enemy-level-1002015');
   await expect(slider).toHaveValue('95');
   await slider.fill('60');
   const variant = page.locator('[data-monster-option="100201506"]');
   await variant.click();
   await expect(variant).toHaveAttribute('aria-checked', 'true');
-  await expect(page.locator('.enemy-level-control output')).toHaveText('Lv.60');
+  await expect(slider).toHaveValue('60');
 });
 
 test('asset request failures expose the accessible local fallback', async ({ page }) => {
@@ -70,8 +68,8 @@ test('mobile navigation reaches a representative route', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   await expectAppReady(page);
-  await page.getByRole('button', { name: '打开导航' }).click();
-  const dialog = page.getByRole('dialog', { name: '完整导航' });
+  await page.locator('.mobile-header .navigator-toggle').click();
+  const dialog = page.locator('#primary-navigator-pane');
   await expect(dialog).toBeVisible();
   await dialog.locator('a[href="/enemies/"]').click();
   await expect(page).toHaveURL(/\/enemies\/$/);
