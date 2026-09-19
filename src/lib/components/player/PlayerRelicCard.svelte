@@ -73,7 +73,7 @@
     min-width: 0;
     overflow: hidden;
     border: 1px solid var(--border);
-    border-radius: var(--radius-panel);
+    border-radius: var(--radius-control);
     background: linear-gradient(145deg, rgb(21 28 44 / 88%), rgb(11 16 28 / 88%));
     color: inherit;
     text-decoration: none;

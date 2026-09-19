@@ -124,9 +124,19 @@ test('reuses the Player cache and renders real progression without changing stat
   expect(requestCount).toBe(1);
 
   const level = page.getByRole('slider', { name: '角色等级' });
+  const levelValue = page.locator('.player-stats-panel .skill-level-control__value');
+  const promotionTag = levelValue.locator('.skill-effect-tag');
   await expect(level).toBeDisabled();
   await expect(level).toHaveValue('80');
-  await expect(page.getByText('晋阶 6')).toBeVisible();
+  await expect(promotionTag).toHaveText('晋阶 6');
+  await expect(levelValue.locator('output')).toHaveText('Lv.80');
+  expect(
+    await levelValue.evaluate((value) => {
+      const tag = value.querySelector('.skill-effect-tag')!;
+      const output = value.querySelector('output')!;
+      return Boolean(tag.compareDocumentPosition(output) & Node.DOCUMENT_POSITION_FOLLOWING);
+    })
+  ).toBe(true);
 
   const basicLevel = page.getByRole('slider', { name: '普攻等级' });
   await expect(basicLevel).toBeDisabled();
@@ -179,6 +189,32 @@ test('reuses the Player cache and renders real progression without changing stat
   );
   await expect(lightConeCard.locator('.player-light-cone__identity > span')).toHaveCount(2);
   await expect(lightConeCard.locator('.player-light-cone__progression > span')).toHaveCount(3);
+  const lightConeArtworkFit = await lightConeCard
+    .locator('.compact-entity-card__artwork')
+    .evaluate((artwork) => {
+      const image = artwork.querySelector('img')!;
+      const artworkBounds = artwork.getBoundingClientRect();
+      const imageBounds = image.getBoundingClientRect();
+      const imageStyles = getComputedStyle(image);
+      return {
+        insetTop: imageBounds.top - artworkBounds.top,
+        insetRight: artworkBounds.right - imageBounds.right,
+        insetBottom: artworkBounds.bottom - imageBounds.bottom,
+        insetLeft: imageBounds.left - artworkBounds.left,
+        objectFit: imageStyles.objectFit,
+        transform: imageStyles.transform
+      };
+    });
+  expect(lightConeArtworkFit.objectFit).toBe('contain');
+  expect(lightConeArtworkFit.transform).toBe('none');
+  expect(
+    [
+      lightConeArtworkFit.insetTop,
+      lightConeArtworkFit.insetRight,
+      lightConeArtworkFit.insetBottom,
+      lightConeArtworkFit.insetLeft
+    ].every((inset) => inset >= 3)
+  ).toBe(true);
   await expect(page.locator('[data-player-relic-slot]')).toHaveCount(6);
   await expect(page.locator('[data-player-relic-slot="BODY"]')).toHaveAttribute(
     'href',
@@ -213,6 +249,35 @@ test('reuses the Player cache and renders real progression without changing stat
     })
   );
   expect(relicIconContainment.every(Boolean)).toBe(true);
+  const lightConeRadius = await lightConeCard
+    .getByRole('link')
+    .evaluate((card) => getComputedStyle(card).borderRadius);
+  const relicCardGeometry = await page.locator('[data-player-relic-slot]').evaluateAll((cards) =>
+    cards.map((card) => {
+      const cardBounds = card.getBoundingClientRect();
+      const trackedContent = [
+        card.querySelector('[data-relic-icon-presentation="header"]'),
+        card.querySelector('.player-relic-card__level'),
+        card.querySelector('.player-relic-card__affixes--main .player-affix-row'),
+        ...card.querySelectorAll('.player-relic-card__affixes--sub .player-affix-row')
+      ].filter((element): element is Element => element !== null);
+      return {
+        radius: getComputedStyle(card).borderRadius,
+        contentContained: trackedContent.every((element) => {
+          const bounds = element.getBoundingClientRect();
+          return (
+            bounds.left >= cardBounds.left - 1 &&
+            bounds.top >= cardBounds.top - 1 &&
+            bounds.right <= cardBounds.right + 1 &&
+            bounds.bottom <= cardBounds.bottom + 1
+          );
+        })
+      };
+    })
+  );
+  expect(relicCardGeometry).toHaveLength(6);
+  expect(relicCardGeometry.every(({ radius }) => radius === lightConeRadius)).toBe(true);
+  expect(relicCardGeometry.every(({ contentContained }) => contentContained)).toBe(true);
 
   const contextBounds = await page
     .locator('.detail-profile-hero__character-content')
@@ -227,6 +292,16 @@ test('reuses the Player cache and renders real progression without changing stat
   expect(contextBounds.contextBottom).toBeLessThanOrEqual(contextBounds.identityTop + 1);
 
   if (isMobile) {
+    await expect(lightConeCard.locator('.player-light-cone__progression')).toHaveCSS(
+      'display',
+      'flex'
+    );
+    const progressionRows = await lightConeCard
+      .locator('.player-light-cone__progression > span')
+      .evaluateAll(
+        (items) => new Set(items.map((item) => Math.round(item.getBoundingClientRect().y))).size
+      );
+    expect(progressionRows).toBe(1);
     const columns = await page
       .locator('.player-stats-grid')
       .evaluate((element) =>
@@ -246,6 +321,10 @@ test('reuses the Player cache and renders real progression without changing stat
     ).toBeLessThanOrEqual(1);
   } else {
     await page.setViewportSize({ width: 1280, height: 900 });
+    await expect(lightConeCard.locator('.player-light-cone__progression')).toHaveCSS(
+      'display',
+      'grid'
+    );
     await expect(page.locator('.detail-profile-hero--character')).toHaveCSS(
       'grid-template-columns',
       /\S+\s+\S+/
@@ -279,6 +358,7 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(rank).toHaveAttribute('aria-valuenow', '4');
 
   await page.goto('/en/characters/1304/?uid=100000001');
+  await expect(page.locator('.player-stats-panel .skill-effect-tag')).toHaveText('Promotion 6');
   await expect(page.locator('[data-player-stat="elation_dmg"]')).toContainText('Elation');
   await expect(page.locator('[data-player-stat="elation_dmg"]')).not.toContainText('elation_dmg');
   await expect(page.locator('[data-player-light-cone="23023"] a')).toHaveAttribute(
@@ -293,6 +373,7 @@ test('reuses the Player cache and renders real progression without changing stat
   await page.goto('/characters/1304/');
   const staticLevel = page.getByRole('slider', { name: '角色等级' });
   await expect(staticLevel).toBeEnabled();
+  await expect(page.locator('.base-stats-panel .skill-effect-tag')).toHaveCount(0);
   await expect(page.locator('[data-player-stats-panel]')).toHaveCount(0);
   await expect(page.locator('#eidolons [data-player-state]')).toHaveCount(0);
   await expect(page.locator('#equipment-recommendation')).toBeVisible();

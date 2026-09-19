@@ -51,14 +51,17 @@ describe('Player Character controls', () => {
         min: 1,
         max: 80,
         interactive: false,
-        detail: '晋阶 6'
+        leadingTag: '晋阶 6'
       }
     }).body;
 
     expect(staticBody).not.toMatch(/<input[^>]*disabled/);
+    expect(staticBody).not.toContain('skill-effect-tag');
     expect(playerBody).toMatch(/<input[^>]*disabled/);
     expect(playerBody).toContain('Lv.70');
     expect(playerBody).toContain('晋阶 6');
+    expect(playerBody).toContain('<small class="skill-effect-tag">晋阶 6</small>');
+    expect(playerBody.indexOf('晋阶 6')).toBeLessThan(playerBody.indexOf('Lv.70'));
     expect(playerBody).not.toMatch(/<input[^>]*\sreadonly(?:=|\s|>)/);
   });
 
@@ -277,6 +280,8 @@ describe('Player Character presentation', () => {
     const body = render(PlayerStatsPanel, { props }).body;
 
     expect(body).not.toContain('aria-pressed=');
+    expect(body).toContain('<small class="skill-effect-tag">晋阶 6</small>');
+    expect(body.indexOf('晋阶 6')).toBeLessThan(body.indexOf('Lv.80'));
     expect(body).toContain('生命值');
     expect(body).toContain('效果命中');
     expect(body).toContain('欢愉度');
@@ -290,6 +295,7 @@ describe('Player Character presentation', () => {
 
     overwriteGetLocale(() => 'en');
     const englishBody = render(PlayerStatsPanel, { props }).body;
+    expect(englishBody).toContain('<small class="skill-effect-tag">Promotion 6</small>');
     expect(englishBody).toContain('Elation');
     expect(englishBody).not.toContain('elation_dmg</span>');
   });

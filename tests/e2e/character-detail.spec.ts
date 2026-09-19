@@ -396,7 +396,10 @@ test('角色等级属性默认 Lv.80、使用突破后边界并严格按语义�
     .evaluateAll((children) => children.map((child) => child.className));
   expect(directOrder[0]).toContain('stat-level-control');
   expect(directOrder[1]).toContain('inspection-stat-list');
+  await expect(panel.locator('.skill-effect-tag')).toHaveCount(0);
   await slider.fill('20');
+  await expect(panel.locator('output')).toHaveText('Lv.20');
+  await expect(slider).toHaveAttribute('aria-valuenow', '20');
   await expect(panel.locator('.inspection-stat-list .scaling-value').first()).toHaveText('338');
   await expect(panel.locator('.inspection-stat-list .scaling-value').first()).toHaveCSS(
     'color',

@@ -37,7 +37,7 @@
       min={progression.minLevel}
       max={progression.maxLevel}
       interactive={false}
-      detail={m.player_character_promotion({ promotion })}
+      leadingTag={m.player_character_promotion({ promotion })}
     />
   </div>
 
