@@ -73,7 +73,7 @@ test('mobile navigation reaches a representative route', async ({ page }) => {
   await page.getByRole('button', { name: '打开导航' }).click();
   const dialog = page.getByRole('dialog', { name: '完整导航' });
   await expect(dialog).toBeVisible();
-  await dialog.getByRole('link', { name: '敌方单位' }).click();
+  await dialog.locator('a[href="/enemies/"]').click();
   await expect(page).toHaveURL(/\/enemies\/$/);
   await expect(page.locator('.entity-overview-card').first()).toBeVisible();
 });

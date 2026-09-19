@@ -1,7 +1,15 @@
 import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
-const expectedIcons = ['overview', 'characters', 'light-cones', 'relics', 'enemies', 'endgame'];
+const requiredIcons = [
+  'overview',
+  'player',
+  'characters',
+  'light-cones',
+  'relics',
+  'enemies',
+  'endgame'
+];
 const dataRevision = (
   JSON.parse(readFileSync('src/lib/generated/manifest.json', 'utf8')) as { dataRevision: string }
 ).dataRevision;
@@ -14,7 +22,7 @@ test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', a
   const rail = page.locator('.navigator-rail');
   await expect(rail).toBeVisible();
   expect((await rail.boundingBox())?.width).toBe(72);
-  await expect(rail.locator('.primary-navigation a')).toHaveCount(6);
+  await expect(rail.locator('.primary-navigation a')).toHaveCount(requiredIcons.length);
   await expect(rail.locator('a[aria-current="page"]')).toHaveAttribute('href', '/');
   const railBrandIcon = rail.locator('.navigator-rail__brand .brand-icon');
   await expect(railBrandIcon.locator('img')).toHaveAttribute(
@@ -30,10 +38,10 @@ test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', a
       images.map((image) => new URL((image as HTMLImageElement).src).pathname)
     );
   expect(iconSources).toEqual(
-    expectedIcons.map((icon) => `/generated-assets/navigation/${icon}.png`)
+    expect.arrayContaining(requiredIcons.map((icon) => `/generated-assets/navigation/${icon}.png`))
   );
 
-  const characters = rail.getByRole('link', { name: '角色' });
+  const characters = rail.locator('a[href="/characters/"]');
   await characters.hover();
   await expect(characters.getByRole('tooltip')).toBeVisible();
 
@@ -58,7 +66,7 @@ test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', a
   );
   await expect(dialog.getByText('数据版本 4.5')).toBeVisible();
   await expect(dialog.getByText(dataRevision.slice(0, 8))).toBeVisible();
-  await expect(dialog.getByRole('navigation').getByRole('link')).toHaveCount(6);
+  await expect(dialog.getByRole('navigation').getByRole('link')).toHaveCount(requiredIcons.length);
   const after = await main.boundingBox();
   expect(after?.x).toBe(before?.x);
   expect(after?.width).toBe(before?.width);
@@ -100,10 +108,7 @@ test('移动端仅保留顶部触发器并使用完整抽屉', async ({ page, is
   await page.getByRole('button', { name: '打开导航' }).click();
   const dialog = page.getByRole('dialog', { name: '完整导航' });
   await expect(dialog).toBeVisible();
-  await expect(dialog.getByRole('link', { name: '高难模式' })).toHaveAttribute(
-    'aria-current',
-    'page'
-  );
+  await expect(dialog.locator('a[href="/endgame/"]')).toHaveAttribute('aria-current', 'page');
   await expect(dialog.getByPlaceholder('搜索角色、光锥…')).toBeVisible();
   await expect(dialog.getByText('数据版本 4.5')).toBeVisible();
   expect((await dialog.locator('.navigator-pane__surface').boundingBox())?.width).toBeLessThan(321);

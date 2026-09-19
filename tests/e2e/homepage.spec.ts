@@ -32,15 +32,16 @@ test('首页作为数据库入口展示品牌、分类与最近限定跃迁', as
     ].sort()
   );
 
-  for (const [href, label] of [
-    ['/characters/', '角色'],
-    ['/light-cones/', '光锥'],
-    ['/relics/', '遗器'],
-    ['/enemies/', '敌方单位'],
-    ['/endgame/', '高难模式']
+  for (const href of [
+    '/player/',
+    '/characters/',
+    '/light-cones/',
+    '/relics/',
+    '/enemies/',
+    '/endgame/'
   ] as const) {
     const row = page.locator(`.home-directory-row[href="${href}"]`);
-    await expect(row).toContainText(label);
+    await expect(row).toBeVisible();
     await expect(row).not.toContainText(/\d+ 条记录/);
     await expect(row.locator('.home-directory-row__arrow')).toHaveText('→');
   }

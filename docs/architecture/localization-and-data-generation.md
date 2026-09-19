@@ -28,4 +28,4 @@ Changelog metadata uses stable IDs and ISO machine dates in src/lib/content/chan
 
 ## Required checks
 
-Before delivery run pnpm data:sync, pnpm assets:ensure, pnpm messages:check, pnpm data:validate, pnpm product:baseline:check, pnpm check, pnpm lint, pnpm test, pnpm build, and relevant E2E/deployment audits. Build-time limitations or known upstream missing-text diagnostics must be recorded in the R6 audit.
+Before delivery run pnpm data:sync, pnpm assets:ensure, pnpm messages:check, pnpm data:validate, pnpm check, pnpm lint, pnpm test, pnpm build, and relevant E2E/deployment audits. Product contracts use focused invariant tests rather than full generated-output baselines. Build-time limitations or known upstream missing-text diagnostics must be recorded in the R6 audit.

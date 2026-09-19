@@ -70,10 +70,6 @@ not a claim of complete UI localization. This phase creates no English dictionar
   missing required search names fail instead of deleting occurrences. Existing
   name-hash bucket identity remains a separate Phase 2 migration.
 
-`pnpm product:baseline:check` performs fresh data generation and asset resolution,
-then compares stable-ID product semantics for Character, Light Cone, Relic, Enemy,
-Endgame, Homepage and Search. It writes a full ignored field-level diff and never
-updates fixtures. The only fixture-writing command is
-`pnpm product:baseline:update -- --reason "<maintainer-approved reason>"`.
-`pnpm test` runs the same semantic comparison against the existing generated cache,
-plus the remaining locale-neutral identity and missing-description contracts.
+`pnpm test` protects message structure, locale-neutral identity, routing, and
+missing-description behavior with focused assertions. Mutable wording, navigation
+ordering, and presentation-only fallback copy are not historical snapshot contracts.

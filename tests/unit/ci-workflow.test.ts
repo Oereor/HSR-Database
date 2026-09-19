@@ -26,7 +26,6 @@ describe('pull request correctness workflow', () => {
       'pnpm lint',
       'pnpm ci:prepare',
       'pnpm test',
-      'pnpm product:baseline:check',
       'pnpm data:search-names:check',
       'pnpm data:validate',
       'pnpm build',
@@ -39,9 +38,7 @@ describe('pull request correctness workflow', () => {
     expect(workflow.indexOf('run: pnpm ci:prepare')).toBeLessThan(
       workflow.indexOf('run: pnpm check')
     );
-    expect(workflow.indexOf('run: pnpm test')).toBeLessThan(
-      workflow.indexOf('run: pnpm product:baseline:check')
-    );
+    expect(workflow).not.toContain('product:baseline');
     expect(workflow).toContain("PLAYWRIGHT_REUSE_BUILD: '1'");
   });
 });

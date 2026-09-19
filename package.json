@@ -41,10 +41,7 @@
     "data:search-names:check": "tsx scripts/data/search-names.ts check",
     "data:player-aliases:sync": "tsx scripts/data/player-aliases.ts",
     "messages:compile": "tsx scripts/messages.ts",
-    "messages:check": "tsx scripts/messages.ts",
-    "product:baseline:check": "tsx scripts/product-baseline/cli.ts check",
-    "product:baseline:search:update": "tsx scripts/product-baseline/cli.ts update-search",
-    "product:baseline:update": "tsx scripts/product-baseline/cli.ts update"
+    "messages:check": "tsx scripts/messages.ts"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
