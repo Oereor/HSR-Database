@@ -44,7 +44,7 @@ describe('Player presentation components', () => {
 
   it('renders unknown characters as non-linking cards with their upstream id', () => {
     const body = render(UnknownPlayerCharacterCard, { props: { characterId: '1999' } }).body;
-    expect(body).toMatch(/class="unknown-character(?:\s|\")/);
+    expect(body).toMatch(/class="unknown-character(?:\s|")/);
     expect(body).toMatch(/<h3[^>]*>[^<]+<\/h3>/);
     expect(body).toContain('1999');
     expect(body).not.toContain('<a ');
