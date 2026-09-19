@@ -2,6 +2,7 @@
   import RelicIcon from '$lib/components/relic/RelicIcon.svelte';
   import { getRelicPieceIconUrl } from '$lib/data/visual-assets';
   import { relicSlotLabel } from '$lib/i18n/product';
+  import { localizedHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   import type { PlayerRelicSlotView } from '$lib/player/equipment';
   import PlayerAffixRow from './PlayerAffixRow.svelte';
@@ -11,10 +12,15 @@
   $: fallbackLabel = view.relic
     ? m.player_equipment_unknown_relic({ setId: view.relic.setId, type: view.type })
     : m.player_equipment_unequipped();
+  $: href = view.set ? localizedHref(`/relics/${view.set.id}`) : undefined;
+  $: elementProps = href ? { href } : {};
 </script>
 
-<article
+<svelte:element
+  this={href ? 'a' : 'article'}
+  {...elementProps}
   class:player-relic-card--empty={!view.relic}
+  class:player-relic-card--link={!!href}
   class="player-relic-card"
   data-player-relic-slot={view.slot}
   data-player-relic-state={view.relic ? (view.set && view.piece ? 'known' : 'unknown') : 'empty'}
@@ -25,7 +31,7 @@
         source={view.piece ? getRelicPieceIconUrl(view.piece.id) : undefined}
         alt={view.piece?.name ?? ''}
         fallbackLabel={view.piece?.name ?? relicSlotLabel(view.slot)}
-        presentation="card"
+        presentation="header"
       />
     </div>
     <div class="player-relic-card__identity">
@@ -41,16 +47,14 @@
   </header>
 
   {#if view.relic}
-    <section class="player-relic-card__affixes">
-      <h4>{m.player_equipment_main_affix()}</h4>
+    <div class="player-relic-card__affixes player-relic-card__affixes--main">
       {#if view.mainAffix}
-        <PlayerAffixRow affix={view.mainAffix} />
+        <PlayerAffixRow affix={view.mainAffix} presentation="main" />
       {:else}
         <p class="player-relic-card__unknown-main">— {m.player_equipment_main_affix_unknown()}</p>
       {/if}
-    </section>
-    <section class="player-relic-card__affixes">
-      <h4>{m.player_equipment_sub_affixes()}</h4>
+    </div>
+    <div class="player-relic-card__affixes player-relic-card__affixes--sub">
       {#if view.subAffixes.length}
         <div class="player-relic-card__affix-list">
           {#each view.subAffixes as affix, index (`${affix.type}:${index}`)}
@@ -60,9 +64,9 @@
       {:else}
         <p class="player-relic-card__unknown-main">—</p>
       {/if}
-    </section>
+    </div>
   {/if}
-</article>
+</svelte:element>
 
 <style>
   .player-relic-card {
@@ -71,6 +75,23 @@
     border: 1px solid var(--border);
     border-radius: var(--radius-panel);
     background: linear-gradient(145deg, rgb(21 28 44 / 88%), rgb(11 16 28 / 88%));
+    color: inherit;
+    text-decoration: none;
+    transition:
+      border-color var(--motion),
+      background var(--motion),
+      transform var(--motion);
+  }
+
+  .player-relic-card--link:hover {
+    border-color: var(--border-strong);
+    background: linear-gradient(145deg, rgb(25 34 53 / 92%), rgb(13 19 32 / 92%));
+    transform: translateY(-1px);
+  }
+
+  .player-relic-card--link:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
   }
 
   .player-relic-card > header {
@@ -122,13 +143,8 @@
     padding: 0.58rem 0.65rem;
   }
 
-  .player-relic-card__affixes h4 {
-    margin: 0 0 0.3rem;
-    color: var(--faint);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+  .player-relic-card__affixes--main {
+    padding-block: 0.68rem;
   }
 
   .player-relic-card__affix-list {

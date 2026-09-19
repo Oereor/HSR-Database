@@ -4,6 +4,7 @@
   import type { PlayerRelicAffixView } from '$lib/player/equipment';
 
   export let affix: PlayerRelicAffixView;
+  export let presentation: 'main' | 'sub' = 'sub';
 
   let failedSource: string | undefined;
   $: imageUrl = getRelicPropertyIconUrl(affix.property?.iconKey);
@@ -12,6 +13,7 @@
 
 <div
   class:player-affix-row--recommended={affix.recommended}
+  class:player-affix-row--main={presentation === 'main'}
   class="player-affix-row"
   data-affix-type={affix.type}
   data-recommended={affix.recommended}
@@ -32,9 +34,6 @@
       <span class="player-affix-row__sr-only"
         >{m.player_equipment_enhancement_count({ count: affix.count })}</span
       >
-    </span>{/if}
-  {#if affix.recommended}<span class="player-affix-row__match">
-      {m.player_equipment_recommended_match()}
     </span>{/if}
 </div>
 
@@ -81,15 +80,14 @@
     font-variant-numeric: tabular-nums;
   }
 
-  .player-affix-row__match {
-    grid-column: 1 / -1;
-    width: fit-content;
-    border: 1px solid rgb(215 181 109 / 34%);
-    border-radius: 999px;
-    padding: 0.08rem 0.42rem;
-    color: var(--gold);
-    font-size: 0.7rem;
-    line-height: 1.35;
+  .player-affix-row--main {
+    padding-block: 0.5rem;
+    font-size: var(--font-body);
+    font-weight: 600;
+  }
+
+  .player-affix-row--main strong {
+    font-size: var(--font-meta-value);
   }
 
   .player-affix-row__sr-only {

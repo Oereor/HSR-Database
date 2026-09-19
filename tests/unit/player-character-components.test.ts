@@ -5,7 +5,10 @@ import SkillProgressionPanel from '../../src/lib/components/character/SkillProgr
 import TraceCardPanel from '../../src/lib/components/character/TraceCardPanel.svelte';
 import PlayerStatsPanel from '../../src/lib/components/player/PlayerStatsPanel.svelte';
 import PlayerEquipmentSection from '../../src/lib/components/player/PlayerEquipmentSection.svelte';
+import BaseStatsPanel from '../../src/lib/components/shared/BaseStatsPanel.svelte';
 import LevelSlider from '../../src/lib/components/shared/LevelSlider.svelte';
+import SuperimpositionPanel from '../../src/lib/components/light-cone/SuperimpositionPanel.svelte';
+import { readBoundedInitialInteger } from '../../src/lib/domain/detail-initial-state';
 import type {
   BaseStatProgression,
   Eidolon,
@@ -149,13 +152,63 @@ describe('Player Character presentation', () => {
     expect(body).toContain('未知光锥 · ID 999999');
     expect(body.match(/data-player-relic-slot=/g)).toHaveLength(6);
     expect(body).toContain('未知遗器 · 套装 999998 / 类型 3');
+    expect(body).not.toContain('href="/relics/999998/"');
     expect(body).toContain('主属性未知');
     expect(body).toContain('防御力');
     expect(body).toContain('×3');
     expect(body).toContain('强化 3 次');
-    expect(body).toContain('推荐匹配');
+    expect(body).not.toContain('推荐匹配');
+    expect(body).not.toMatch(/>主属性<|>副属性</);
     expect(body).toContain('data-recommended="true"');
     expect(body).not.toContain('×0');
+  });
+
+  it('links known equipment to localized static details with only initial Light Cone state', () => {
+    const character: PlayerCharacter = {
+      characterId: '1304',
+      progression: { rank: 0, level: 80, promotion: 6, enhanced: false },
+      skillTree: [],
+      lightCone: { lightConeId: '23023', level: 70, promotion: 5, rank: 2 },
+      relics: [
+        {
+          type: 3,
+          setId: '103',
+          level: 15,
+          mainAffix: { type: 'DefenceAddedRatio', display: '54.0%', percent: true },
+          subAffixes: []
+        }
+      ],
+      stats: []
+    };
+    const catalog: PlayerEquipmentCatalog = {
+      schemaVersion: 1,
+      locale: 'en',
+      lightCones: [
+        {
+          id: '23023',
+          name: 'Destiny’s Threads Forewoven',
+          rarity: 4,
+          path: 'Knight',
+          pathName: 'Preservation'
+        }
+      ],
+      relicSets: [
+        {
+          id: '103',
+          name: 'Knight of Purity Palace',
+          pieces: [{ id: '31033', slot: 'BODY', name: 'Knight’s Solemn Breastplate' }]
+        }
+      ]
+    };
+
+    overwriteGetLocale(() => 'en');
+    const body = render(PlayerEquipmentSection, { props: { character, catalog } }).body;
+
+    expect(body).toContain('href="/en/light-cones/23023/?level=70&amp;rank=2"');
+    expect(body).toContain('href="/en/relics/103/"');
+    expect(body).toContain('compact-entity-card__aside');
+    expect(body).toContain('data-relic-icon-presentation="header"');
+    expect(body).toContain('player-affix-row--main');
   });
 
   it('renders explicit empty equipment states without collapsing relic slots', () => {
@@ -241,7 +294,7 @@ describe('Player Character presentation', () => {
     expect(englishBody).not.toContain('elation_dmg</span>');
   });
 
-  it('renders Trace states with text while static cards omit Player state metadata', () => {
+  it('keeps Trace state metadata while showing text only for unresolved cards', () => {
     const traces: Trace[] = [
       {
         id: '1304101',
@@ -285,8 +338,8 @@ describe('Player Character presentation', () => {
     expect(playerBody).toContain('data-player-state="active"');
     expect(playerBody).toContain('data-player-state="inactive"');
     expect(playerBody).toContain('data-player-state="unresolved"');
-    expect(playerBody).toContain('已激活');
-    expect(playerBody).toContain('未激活');
+    expect(playerBody).not.toContain('已激活');
+    expect(playerBody).not.toContain('未激活');
     expect(playerBody).toContain('状态未知');
     expect(staticBody).not.toContain('data-player-state=');
   });
@@ -308,5 +361,50 @@ describe('Player Character presentation', () => {
     expect(playerBody).toContain('data-player-state="inactive"');
     expect(playerBody).toContain('未激活');
     expect(playerBody).toContain('rank-card__content');
+  });
+});
+
+describe('Light Cone detail initial state', () => {
+  it('uses strict integer defaults and clamps values to the slider range', () => {
+    expect(readBoundedInitialInteger(new URLSearchParams(), 'level', 80, 1, 80)).toBe(80);
+    expect(readBoundedInitialInteger(new URLSearchParams('level=abc'), 'level', 80, 1, 80)).toBe(
+      80
+    );
+    expect(readBoundedInitialInteger(new URLSearchParams('level=12.5'), 'level', 80, 1, 80)).toBe(
+      80
+    );
+    expect(readBoundedInitialInteger(new URLSearchParams('level=0'), 'level', 80, 1, 80)).toBe(1);
+    expect(readBoundedInitialInteger(new URLSearchParams('level=999'), 'level', 80, 1, 80)).toBe(
+      80
+    );
+  });
+
+  it('initializes both existing controls without making them read-only', () => {
+    const statsBody = render(BaseStatsPanel, {
+      props: { progression, controlId: 'light-cone-level', initialLevel: 37 }
+    }).body;
+    const superimpositionBody = render(SuperimpositionPanel, {
+      props: {
+        lightConeId: '23023',
+        initialRank: 3,
+        passive: {
+          id: 'passive',
+          name: '效果',
+          superimposition: {
+            scalingParamIndexes: [],
+            levels: [1, 2, 3, 4, 5].map((level) => ({
+              level,
+              description: `等级 ${level}`,
+              descriptionTokens: [{ type: 'text' as const, value: `等级 ${level}` }]
+            }))
+          }
+        }
+      }
+    }).body;
+
+    expect(statsBody).toContain('Lv.37');
+    expect(statsBody).not.toMatch(/<input[^>]*disabled/);
+    expect(superimpositionBody).toContain('Lv.3');
+    expect(superimpositionBody).not.toMatch(/<input[^>]*disabled/);
   });
 });

@@ -9,8 +9,9 @@
   export let controlId: string;
   export let controlLabel = m.base_stats_character_level();
   export let energy: CharacterEnergy | undefined = undefined;
+  export let initialLevel: number | undefined = undefined;
 
-  let level = progression.defaultLevel;
+  let level = initialLevel ?? progression.defaultLevel;
   $: stats = getBaseStatsAtLevel(progression, level);
   $: hpIconUrl = getCharacterDetailIconUrl(progression.iconKeys?.hp);
   $: attackIconUrl = getCharacterDetailIconUrl(progression.iconKeys?.attack);

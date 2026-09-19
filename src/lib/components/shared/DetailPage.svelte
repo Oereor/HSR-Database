@@ -22,6 +22,7 @@
   import PlayerCharacterContextNotice from '$lib/components/player/PlayerCharacterContextNotice.svelte';
   import PlayerEquipmentSection from '$lib/components/player/PlayerEquipmentSection.svelte';
   import { getElementColor } from '$lib/domain/elements';
+  import { readBoundedInitialInteger } from '$lib/domain/detail-initial-state';
   import { gameTextToPlain } from '$lib/domain/game-text';
   import {
     getCharacterPortraitUrl,
@@ -53,6 +54,7 @@
   let playerContextState: PlayerContextState = 'idle';
   let playerUid: string | undefined;
   let playerCharacter: PlayerCharacter | null = null;
+  const emptySearchParams = new URLSearchParams();
 
   onMount(() => (playerClientReady = true));
 
@@ -80,6 +82,30 @@
     category === 'characters' ? getCharacterPortraitUrl(detail.id) : undefined;
   $: lightConePortraitSource =
     category === 'light-cones' ? getLightConePortraitUrl(detail.id) : undefined;
+  $: lightConeInitialLevel =
+    category === 'light-cones'
+      ? readBoundedInitialInteger(
+          browser ? $page.url.searchParams : emptySearchParams,
+          'level',
+          detail.baseStats.defaultLevel,
+          detail.baseStats.minLevel,
+          detail.baseStats.maxLevel
+        )
+      : undefined;
+  $: lightConeRanks =
+    category === 'light-cones'
+      ? detail.passive.superimposition.levels.map(({ level }: { level: number }) => level)
+      : [];
+  $: lightConeInitialRank =
+    category === 'light-cones' && lightConeRanks.length
+      ? readBoundedInitialInteger(
+          browser ? $page.url.searchParams : emptySearchParams,
+          'rank',
+          lightConeRanks[0],
+          lightConeRanks[0],
+          lightConeRanks[lightConeRanks.length - 1]
+        )
+      : undefined;
   $: if (specialEffectsOpen && !specialEffectsAvailable) specialEffectsOpen = false;
   $: characterSectionNavItems = [
     { id: 'stats', label: m.detail_stats() },
@@ -192,55 +218,61 @@
         data-character-portrait={detail.id}
       />
       <div class="detail-profile-hero__gradient" aria-hidden="true"></div>
-      <div class="hero-identity-copy">
-        <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
-        <h1><GameText text={detail.name} /></h1>
-        {#if detail.fullName && detail.fullName !== detail.name}<p class="detail-subtitle">
-            <GameText text={detail.fullName} />
-          </p>{/if}
-        <div class="hero-identity-metadata">
-          {#if detail.rarity}<RarityStars rarity={detail.rarity} size="hero" />{/if}
-          {#if detail.pathName}<SemanticIconLabel
-              kind="path"
-              code={detail.path}
-              label={detail.pathName}
-              size="hero"
-              presentation="path-identity"
-            />{/if}
-          {#if detail.elementName}<SemanticIconLabel
-              kind="element"
-              code={detail.element}
-              label={detail.elementName}
-              color={getElementColor(detail.element)}
-              size="hero"
-              presentation="character-element-identity"
-            />{/if}
-        </div>
+      <div class="detail-profile-hero__character-content">
         {#if playerContextState !== 'idle'}
-          <PlayerCharacterContextNotice state={playerContextState} uid={playerUid} />
+          <div class="detail-profile-hero__player-context">
+            <PlayerCharacterContextNotice state={playerContextState} uid={playerUid} />
+          </div>
         {/if}
-        {#if hasEnhancedProfile}<div class="enhancement-control">
-            <span>{m.detail_enhancement()}</span>
-            <button
-              class="enhancement-switch"
-              type="button"
-              role="switch"
-              aria-label={m.detail_enhancement()}
-              aria-checked={enhancedEnabled}
-              on:click={toggleEnhanced}
-            >
-              <span class="enhancement-switch__track" aria-hidden="true"><span></span></span>
-              <strong
-                >{enhancedEnabled ? m.detail_enhanced_after() : m.detail_enhanced_before()}</strong
-              >
-            </button>
-          </div>{/if}
-        <div class="hero-description">
-          {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
-              class="muted"
-            >
-              {m.detail_intro_unavailable()}
+        <div class="hero-identity-copy">
+          <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
+          <h1><GameText text={detail.name} /></h1>
+          {#if detail.fullName && detail.fullName !== detail.name}<p class="detail-subtitle">
+              <GameText text={detail.fullName} />
             </p>{/if}
+          <div class="hero-identity-metadata">
+            {#if detail.rarity}<RarityStars rarity={detail.rarity} size="hero" />{/if}
+            {#if detail.pathName}<SemanticIconLabel
+                kind="path"
+                code={detail.path}
+                label={detail.pathName}
+                size="hero"
+                presentation="path-identity"
+              />{/if}
+            {#if detail.elementName}<SemanticIconLabel
+                kind="element"
+                code={detail.element}
+                label={detail.elementName}
+                color={getElementColor(detail.element)}
+                size="hero"
+                presentation="character-element-identity"
+              />{/if}
+          </div>
+          {#if hasEnhancedProfile}<div class="enhancement-control">
+              <span>{m.detail_enhancement()}</span>
+              <button
+                class="enhancement-switch"
+                type="button"
+                role="switch"
+                aria-label={m.detail_enhancement()}
+                aria-checked={enhancedEnabled}
+                on:click={toggleEnhanced}
+              >
+                <span class="enhancement-switch__track" aria-hidden="true"><span></span></span>
+                <strong
+                  >{enhancedEnabled
+                    ? m.detail_enhanced_after()
+                    : m.detail_enhanced_before()}</strong
+                >
+              </button>
+            </div>{/if}
+          <div class="hero-description">
+            {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
+                class="muted"
+              >
+                {m.detail_intro_unavailable()}
+              </p>{/if}
+          </div>
         </div>
       </div>
     </div>
@@ -299,11 +331,13 @@
         progression={detail.baseStats}
         controlId={`light-cone-level-${detail.id}`}
         controlLabel={m.detail_light_cone_level()}
+        initialLevel={lightConeInitialLevel}
       />
       <div class="detail-inspection-divider" aria-hidden="true"></div>
       {#if detail.passive.superimposition.levels.length}<SuperimpositionPanel
           passive={detail.passive}
           lightConeId={detail.id}
+          initialRank={lightConeInitialRank}
         />{:else}<p class="data-placeholder">{m.detail_superimposition_unavailable()}</p>{/if}
     </aside>
   </header>

@@ -45,7 +45,10 @@ const playerProfile = (uid: string, includeCharacter = true) => ({
               setId: '103',
               level: 15,
               mainAffix: { type: 'DefenceAddedRatio', display: '54.0%', percent: true },
-              subAffixes: [{ type: 'SpeedDelta', display: '7', percent: false, count: 0 }]
+              subAffixes: [
+                { type: 'DefenceAddedRatio', display: '8.2%', percent: true, count: 2 },
+                { type: 'HPDelta', display: '76', percent: false, count: 0 }
+              ]
             },
             {
               type: 4,
@@ -168,11 +171,60 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(page.locator('[data-player-stat="sp_rate"]')).toContainText('124.4%');
   await expect(page.locator('#equipment')).toBeVisible();
   await expect(page.locator('#equipment-recommendation')).toHaveCount(0);
-  await expect(page.locator('[data-player-light-cone="23023"]')).toContainText('命运从未公平');
+  const lightConeCard = page.locator('[data-player-light-cone="23023"]');
+  await expect(lightConeCard).toContainText('命运从未公平');
+  await expect(lightConeCard.getByRole('link')).toHaveAttribute(
+    'href',
+    '/light-cones/23023/?level=80&rank=2'
+  );
+  await expect(lightConeCard.locator('.player-light-cone__identity > span')).toHaveCount(2);
+  await expect(lightConeCard.locator('.player-light-cone__progression > span')).toHaveCount(3);
   await expect(page.locator('[data-player-relic-slot]')).toHaveCount(6);
+  await expect(page.locator('[data-player-relic-slot="BODY"]')).toHaveAttribute(
+    'href',
+    '/relics/103/'
+  );
+  await expect(page.locator('[data-player-relic-slot="NECK"]')).toHaveAttribute(
+    'href',
+    '/relics/310/'
+  );
+  await expect(page.getByText('推荐匹配', { exact: true })).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: '主属性', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: '副属性', exact: true })).toHaveCount(0);
   await expect(
     page.locator('[data-player-relic-slot="BODY"] [data-recommended="true"]')
-  ).toHaveCount(1);
+  ).toHaveCount(2);
+  const subAffixHeights = await page
+    .locator('[data-player-relic-slot="BODY"] .player-relic-card__affixes--sub .player-affix-row')
+    .evaluateAll((rows) => rows.map((row) => row.getBoundingClientRect().height));
+  expect(subAffixHeights).toHaveLength(2);
+  expect(Math.abs(subAffixHeights[0] - subAffixHeights[1])).toBeLessThanOrEqual(1);
+  const relicIconContainment = await page.locator('[data-player-relic-slot]').evaluateAll((cards) =>
+    cards.map((card) => {
+      const header = card.querySelector('header')!.getBoundingClientRect();
+      const icon = card.querySelector<HTMLElement>('[data-relic-icon-presentation="header"]')!;
+      const bounds = icon.getBoundingClientRect();
+      return (
+        bounds.left >= header.left - 1 &&
+        bounds.top >= header.top - 1 &&
+        bounds.right <= header.right + 1 &&
+        bounds.bottom <= header.bottom + 1
+      );
+    })
+  );
+  expect(relicIconContainment.every(Boolean)).toBe(true);
+
+  const contextBounds = await page
+    .locator('.detail-profile-hero__character-content')
+    .evaluate((content) => {
+      const context = content.querySelector<HTMLElement>('.detail-profile-hero__player-context')!;
+      const identity = content.querySelector<HTMLElement>('.hero-identity-copy')!;
+      return {
+        contextBottom: context.getBoundingClientRect().bottom,
+        identityTop: identity.getBoundingClientRect().top
+      };
+    });
+  expect(contextBounds.contextBottom).toBeLessThanOrEqual(contextBounds.identityTop + 1);
 
   if (isMobile) {
     const columns = await page
@@ -203,11 +255,37 @@ test('reuses the Player cache and renders real progression without changing stat
       .locator('.detail-profile-hero--character')
       .evaluate((element) => getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/));
     expect(stackedColumns).toHaveLength(1);
+
+    await page.setViewportSize({ width: 900, height: 900 });
+    const mediumRelicColumns = await page
+      .locator('.player-equipment__relic-grid')
+      .evaluate((element) =>
+        getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).filter(Boolean)
+      );
+    expect(mediumRelicColumns).toHaveLength(2);
   }
+
+  await lightConeCard.getByRole('link').click();
+  await expect(page).toHaveURL(/\/light-cones\/23023\/\?level=80&rank=2$/);
+  await expect(page.getByRole('slider', { name: '光锥等级' })).toBeEnabled();
+  await expect(page.getByRole('slider', { name: '光锥等级' })).toHaveValue('80');
+  const rank = page.getByRole('slider', { name: '叠影等级' });
+  await expect(rank).toBeEnabled();
+  await expect(rank).toHaveAttribute('aria-valuenow', '2');
+  await rank.fill('3');
+  await expect(rank).toHaveAttribute('aria-valuenow', '4');
 
   await page.goto('/en/characters/1304/?uid=100000001');
   await expect(page.locator('[data-player-stat="elation_dmg"]')).toContainText('Elation');
   await expect(page.locator('[data-player-stat="elation_dmg"]')).not.toContainText('elation_dmg');
+  await expect(page.locator('[data-player-light-cone="23023"] a')).toHaveAttribute(
+    'href',
+    '/en/light-cones/23023/?level=80&rank=2'
+  );
+  await expect(page.locator('[data-player-relic-slot="BODY"]')).toHaveAttribute(
+    'href',
+    '/en/relics/103/'
+  );
 
   await page.goto('/characters/1304/');
   const staticLevel = page.getByRole('slider', { name: '角色等级' });

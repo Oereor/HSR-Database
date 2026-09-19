@@ -101,3 +101,30 @@ test('光锥等级与叠影滑块独立、控件先于效果且动态参数更�
   await expect(superimposition.locator('.scaling-value')).toHaveText('24%');
   await expect(stats.locator('output')).toHaveText('Lv.1');
 });
+
+test('光锥详情只用 query 初始化等级与叠影并安全处理非法值', async ({ page }) => {
+  await page.goto('/light-cones/20000/?level=37&rank=3');
+  const level = page.getByRole('slider', { name: '光锥等级' });
+  const rank = page.getByRole('slider', { name: '叠影等级' });
+
+  await expect(level).toHaveValue('37');
+  await expect(rank).toHaveAttribute('aria-valuenow', '3');
+  await level.fill('42');
+  await rank.fill('4');
+  await expect(level).toHaveValue('42');
+  await expect(rank).toHaveAttribute('aria-valuenow', '5');
+
+  await page.goto('/light-cones/20000/?level=invalid&rank=invalid');
+  await expect(page.getByRole('slider', { name: '光锥等级' })).toHaveValue('80');
+  await expect(page.getByRole('slider', { name: '叠影等级' })).toHaveAttribute(
+    'aria-valuenow',
+    '1'
+  );
+
+  await page.goto('/light-cones/20000/?level=0&rank=99');
+  await expect(page.getByRole('slider', { name: '光锥等级' })).toHaveValue('1');
+  await expect(page.getByRole('slider', { name: '叠影等级' })).toHaveAttribute(
+    'aria-valuenow',
+    '5'
+  );
+});

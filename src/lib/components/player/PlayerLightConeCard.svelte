@@ -15,28 +15,37 @@
   $: label = equipment
     ? (metadata?.name ?? m.player_equipment_unknown_light_cone({ id: equipment.lightConeId }))
     : m.player_equipment_light_cone_unequipped();
+  $: detailHref =
+    equipment && metadata
+      ? localizedHref(
+          `/light-cones/${equipment.lightConeId}/?level=${equipment.level}&rank=${equipment.rank}`
+        )
+      : undefined;
 </script>
 
 <div class="player-light-cone" data-player-light-cone={equipment ? equipment.lightConeId : 'empty'}>
   <CompactEntityCard
-    href={equipment && metadata
-      ? localizedHref(`/light-cones/${equipment.lightConeId}`)
-      : undefined}
+    href={detailHref}
     imageUrl={equipment && metadata ? getLightConePreviewUrl(equipment.lightConeId) : undefined}
     imageAlt={metadata?.name ?? ''}
     fallbackLabel={label}
   >
     <svelte:fragment slot="title"><GameText text={label} /></svelte:fragment>
     <svelte:fragment slot="secondary">
-      {#if metadata?.rarity}<RarityStars rarity={metadata.rarity} size="compact" />{/if}
-      {#if metadata?.pathName}<SemanticIconLabel
-          kind="path"
-          code={metadata.path}
-          label={metadata.pathName}
-          presentation="path-identity"
-        />{/if}
+      <span class="player-light-cone__identity">
+        {#if metadata?.rarity}<span><RarityStars rarity={metadata.rarity} size="compact" /></span
+          >{/if}
+        {#if metadata?.pathName}<span
+            ><SemanticIconLabel
+              kind="path"
+              code={metadata.path}
+              label={metadata.pathName}
+              presentation="path-identity"
+            /></span
+          >{/if}
+      </span>
     </svelte:fragment>
-    <svelte:fragment slot="tertiary">
+    <svelte:fragment slot="aside">
       {#if equipment}<span class="player-light-cone__progression">
           <span>{m.player_equipment_level({ level: equipment.level })}</span>
           <span>{m.player_equipment_promotion({ promotion: equipment.promotion })}</span>
@@ -52,8 +61,18 @@
   }
 
   .player-light-cone__progression {
+    display: grid;
+    gap: 0.28rem;
+  }
+
+  .player-light-cone__identity {
+    display: grid;
+    align-items: start;
+    gap: 0.28rem;
+  }
+
+  .player-light-cone__identity > span {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem 0.75rem;
+    min-width: 0;
   }
 </style>

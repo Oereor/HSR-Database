@@ -17,6 +17,7 @@
   {...$$restProps}
   class:compact-entity-card--link={!!href}
   class:compact-entity-card--missing={!visibleSource}
+  class:compact-entity-card--split={!!$$slots.aside}
   class="compact-entity-card"
   data-image-missing={!visibleSource}
 >
@@ -40,6 +41,7 @@
     {#if $$slots.tertiary}<span class="compact-entity-card__tertiary"><slot name="tertiary" /></span
       >{/if}
   </span>
+  {#if $$slots.aside}<span class="compact-entity-card__aside"><slot name="aside" /></span>{/if}
   {#if href}<span class="compact-entity-card__arrow" aria-hidden="true">→</span>{/if}
 </svelte:element>
 
@@ -74,6 +76,10 @@
   .compact-entity-card--link:focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 3px;
+  }
+
+  .compact-entity-card--split {
+    grid-template-columns: 4.6rem minmax(0, 1fr) auto auto;
   }
 
   .compact-entity-card__artwork {
@@ -126,6 +132,22 @@
     line-height: 1.3;
   }
 
+  .compact-entity-card__aside {
+    display: grid;
+    min-width: 8rem;
+    align-content: center;
+    align-self: stretch;
+    border-left: 1px solid var(--border);
+    padding-left: var(--space-3);
+    color: var(--text-secondary);
+    font-size: var(--font-internal);
+    line-height: 1.3;
+  }
+
+  .compact-entity-card__aside:empty {
+    display: none;
+  }
+
   .compact-entity-card__tertiary {
     --semantic-icon-gap: 0.32rem;
     --semantic-icon-image-size: 1rem;
@@ -146,6 +168,31 @@
     .compact-entity-card__artwork {
       width: 4rem;
       height: 4rem;
+    }
+
+    .compact-entity-card--split {
+      grid-template-columns: 4rem minmax(0, 1fr) auto;
+      align-items: stretch;
+    }
+
+    .compact-entity-card--split .compact-entity-card__artwork {
+      grid-row: 1 / 3;
+      align-self: center;
+    }
+
+    .compact-entity-card--split .compact-entity-card__aside {
+      grid-column: 2;
+      min-width: 0;
+      border-top: 1px solid var(--border);
+      border-left: 0;
+      padding-top: 0.45rem;
+      padding-left: 0;
+    }
+
+    .compact-entity-card--split .compact-entity-card__arrow {
+      grid-column: 3;
+      grid-row: 1 / 3;
+      align-self: center;
     }
   }
 </style>

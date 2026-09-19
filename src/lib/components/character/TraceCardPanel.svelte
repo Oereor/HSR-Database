@@ -24,13 +24,6 @@
 
   const playerStateOf = (trace: Trace): PlayerProgressionState | undefined =>
     playerSkillTreeIndex ? resolvePlayerTraceState(trace.id, playerSkillTreeIndex) : undefined;
-
-  const playerStateLabel = (state: PlayerProgressionState): string =>
-    state === 'active'
-      ? m.player_character_active()
-      : state === 'inactive'
-        ? m.player_character_inactive()
-        : m.player_character_status_unknown();
 </script>
 
 <div class="trace-card-panel">
@@ -71,9 +64,9 @@
               </h3>
               <div class="trace-card__tags">
                 <span class="skill-effect-tag">{m.trace_stat_bonus()}</span>
-                {#if statState}<span
+                {#if statState === 'unresolved'}<span
                     class="player-progression-state"
-                    data-player-state-label={statState}>{playerStateLabel(statState)}</span
+                    data-player-state-label={statState}>{m.player_character_status_unknown()}</span
                   >{/if}
               </div>
             </div>
@@ -129,9 +122,9 @@
               </h3>
               <div class="trace-card__tags">
                 <span class="skill-effect-tag">{m.trace_stat_bonus()}</span>
-                {#if statState}<span
+                {#if statState === 'unresolved'}<span
                     class="player-progression-state"
-                    data-player-state-label={statState}>{playerStateLabel(statState)}</span
+                    data-player-state-label={statState}>{m.player_character_status_unknown()}</span
                   >{/if}
               </div>
             </div>

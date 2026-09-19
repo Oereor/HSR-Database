@@ -26,12 +26,9 @@
     </div>
     <div class="trace-card__tags">
       <span class="skill-effect-tag">{m.trace_extra_ability()}</span>
-      {#if playerState}<span class="player-progression-state" data-player-state-label={playerState}
-          >{playerState === 'active'
-            ? m.player_character_active()
-            : playerState === 'inactive'
-              ? m.player_character_inactive()
-              : m.player_character_status_unknown()}</span
+      {#if playerState === 'unresolved'}<span
+          class="player-progression-state"
+          data-player-state-label={playerState}>{m.player_character_status_unknown()}</span
         >{/if}
     </div>
   </div>
@@ -40,12 +37,9 @@
     <h3><GameText text={trace.name} /></h3>
     <div class="trace-card__tags">
       <span class="skill-effect-tag">{m.trace_extra_ability()}</span>
-      {#if playerState}<span class="player-progression-state" data-player-state-label={playerState}
-          >{playerState === 'active'
-            ? m.player_character_active()
-            : playerState === 'inactive'
-              ? m.player_character_inactive()
-              : m.player_character_status_unknown()}</span
+      {#if playerState === 'unresolved'}<span
+          class="player-progression-state"
+          data-player-state-label={playerState}>{m.player_character_status_unknown()}</span
         >{/if}
     </div>
   </div>

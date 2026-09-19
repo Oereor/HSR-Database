@@ -64,6 +64,30 @@
   );
 }
 
+.detail-profile-hero__character-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: inherit;
+  flex-direction: column;
+}
+
+.detail-profile-hero__character-content .hero-identity-copy {
+  z-index: auto;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+.detail-profile-hero__player-context {
+  width: min(100%, 34rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  padding-bottom: 0;
+}
+
+.detail-profile-hero__player-context .player-context-notice {
+  margin: 0;
+}
+
 .detail-profile-hero__gradient--relic {
   background-image:
     linear-gradient(

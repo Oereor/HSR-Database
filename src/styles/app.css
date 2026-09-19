@@ -1184,12 +1184,23 @@ footer a {
 }
 .trace-card[data-player-state='inactive'] {
   border-color: var(--border);
+  background: rgb(14 20 34 / 74%);
+  box-shadow: none;
+  filter: grayscale(1);
+}
+.trace-card[data-player-state='inactive']:hover {
+  border-color: var(--border);
   box-shadow: none;
 }
-.trace-card[data-player-state='inactive'] h3,
+.trace-card[data-player-state='inactive'] .trace-card__heading,
+.trace-card[data-player-state='inactive'] .trace-card__condition,
+.trace-card[data-player-state='inactive'] .trace-card__description,
+.trace-card[data-player-state='inactive'] [data-skill-extra-effects] {
+  opacity: 0.72;
+}
 .trace-card[data-player-state='inactive'] .trace-card__identity > img,
 .trace-card[data-player-state='inactive'] .trace-card__title--icon img {
-  opacity: 0.58;
+  opacity: 0.68;
 }
 .trace-card[data-player-state='unresolved'] {
   border-style: dashed;
