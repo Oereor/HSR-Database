@@ -1,10 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { compile } from 'mdsvex';
-import {
-  changelogManifest,
-  loadChangelogEntries,
-  type ChangelogModule
-} from '../../src/lib/content/changelog';
+import type { ChangelogModule } from '../../src/lib/content/changelog';
 import {
   buildChangelogManifest,
   discoverChangelogSources,
@@ -87,45 +83,14 @@ describe('changelog manifest', () => {
   });
 
   it('catches the unquoted-colon frontmatter regression at compile-time validation', async () => {
-    const broken = await compile('---\ntitle: New Enemy Stat Display: Initial Action Value\n---\n');
-    const fixed = await compile(
-      "---\ntitle: 'New Enemy Stat Display: Initial Action Value'\n---\n"
-    );
+    const broken = await compile('---\ntitle: Synthetic title: With colon\n---\n');
+    const fixed = await compile("---\ntitle: 'Synthetic title: With colon'\n---\n");
     expect(() => validateChangelogMetadata(broken?.data?.fm, './en/broken.svx')).toThrow(
       /missing frontmatter metadata/
     );
     expect(validateChangelogMetadata(fixed?.data?.fm, './en/fixed.svx')).toEqual({
-      title: 'New Enemy Stat Display: Initial Action Value'
+      title: 'Synthetic title: With colon'
     });
-  });
-
-  it('discovers every existing historical entry exactly once in the established order', () => {
-    expect(changelogManifest.map(({ id }) => id)).toEqual([
-      '2026-09-19-player-info-v1',
-      '2026-09-09-add-init-av-stat',
-      '2026-09-09-fix-moc-season',
-      '2026-09-07-i18n-update',
-      '2026-09-04-search-update',
-      '2026-09-03-icon-update',
-      '2026-09-03-initial-release'
-    ]);
-    expect(new Set(changelogManifest.map(({ id }) => id)).size).toBe(changelogManifest.length);
-  });
-
-  it('loads both locales through the shared runtime consumer', async () => {
-    const [chinese, english] = await Promise.all([
-      loadChangelogEntries('zh-CN'),
-      loadChangelogEntries('en')
-    ]);
-    expect(chinese.map(({ id }) => id)).toEqual(english.map(({ id }) => id));
-    expect(chinese[0].title).toBe('玩家信息现已开放');
-    expect(english[0].title).toBe('Player Info is now available');
-    expect(
-      chinese.every(({ component: entryComponent }) => typeof entryComponent === 'function')
-    ).toBe(true);
-    expect(
-      english.every(({ component: entryComponent }) => typeof entryComponent === 'function')
-    ).toBe(true);
   });
 });
 

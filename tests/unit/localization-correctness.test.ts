@@ -29,8 +29,8 @@ it('resolves all enemy ranks and unknown values at call time in both locales', (
       m.enemy_rank_unknown(),
       m.enemy_rank_unknown()
     ]);
-    expect(m.endgame_node({ number: 2 })).toBe(locale === 'en' ? 'Node 2' : '节点 2');
-    expect(m.endgame_wave({ number: 3 })).toBe(locale === 'en' ? 'Wave 3' : '波次 3');
+    expect(m.endgame_node({ number: 2 })).toBe(m.endgame_node({ number: 2 }, { locale }));
+    expect(m.endgame_wave({ number: 3 })).toBe(m.endgame_wave({ number: 3 }, { locale }));
   }
 });
 

@@ -67,6 +67,7 @@ Due to special network environment, all Internet-related operations must go thro
 
 ## Verification discipline
 
+- Do not add tests that pin exact production copy for site messages or changelog entries. These user-maintained texts may change frequently; test generic locale, loader, or manifest logic with synthetic fixtures instead.
 - Verification must be risk-based and targeted. Start with the smallest deterministic checks that cover the code changed in the current task; do not run every available test layer by default.
 - Prefer targeted test files, test-name filters, or Vitest `related --run` / `--changed` when suitable. Run the full unit-test suite only when the change affects shared foundations broadly, targeted results indicate cross-cutting risk, or the task is at an explicit phase/PR/merge/release boundary.
 - Do not duplicate the same assertion across unit, component, browser, deployment, and manual checks without a distinct risk being covered at each layer. Prefer the lowest-cost layer that can verify the behavior reliably.
