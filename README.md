@@ -184,3 +184,13 @@ title: '更新标题'
 游戏名称、角色、图片及其他相关资产的权利归其各自权利人所有。第三方数据与视觉资源遵循其原始来源的许可条款。
 
 仓库根目录的 MIT License 仅适用于本项目自行编写的代码，不覆盖第三方数据、图片或游戏知识产权。
+
+## 致谢
+
+本项目的实现离不开以下开源项目与社区服务：
+
+- [TurnBasedGameData](https://github.com/DimbreathBot/TurnBasedGameData) — 提供《崩坏：星穹铁道》的游戏数据，是本站静态数据的主要来源之一。
+- [StarRailRes](https://github.com/Mar-7th/StarRailRes) — 提供角色、光锥、遗器、图标等游戏资源，用于本站的本地资源展示。
+- [MiHoMo API](https://api.mihomo.me/docs) — 提供公开玩家信息查询服务，用于本站的「玩家信息 / Player Info」功能。
+
+特别感谢以上项目及其维护者，使 HSR-Database 能够建立在稳定、开放的社区数据与资源之上。
