@@ -4,6 +4,7 @@ import EidolonCard from '../../src/lib/components/character/EidolonCard.svelte';
 import SkillProgressionPanel from '../../src/lib/components/character/SkillProgressionPanel.svelte';
 import TraceCardPanel from '../../src/lib/components/character/TraceCardPanel.svelte';
 import PlayerStatsPanel from '../../src/lib/components/player/PlayerStatsPanel.svelte';
+import PlayerEquipmentSection from '../../src/lib/components/player/PlayerEquipmentSection.svelte';
 import LevelSlider from '../../src/lib/components/shared/LevelSlider.svelte';
 import type {
   BaseStatProgression,
@@ -12,6 +13,8 @@ import type {
   SkillProgression,
   Trace
 } from '../../src/lib/domain/types';
+import type { PlayerCharacter } from '../../src/lib/player/contract';
+import type { PlayerEquipmentCatalog } from '../../src/lib/player/equipment';
 
 const progression: BaseStatProgression = {
   minLevel: 1,
@@ -85,6 +88,93 @@ describe('Player Character controls', () => {
 });
 
 describe('Player Character presentation', () => {
+  it('renders equipment fallbacks, six fixed slots and accessible enhancement counts', () => {
+    const character: PlayerCharacter = {
+      characterId: '1304',
+      progression: { rank: 0, level: 80, promotion: 6, enhanced: false },
+      skillTree: [],
+      lightCone: { lightConeId: '999999', level: 70, promotion: 5, rank: 2 },
+      relics: [
+        {
+          type: 3,
+          setId: '999998',
+          level: 15,
+          mainAffix: null,
+          subAffixes: [
+            {
+              type: 'DefenceAddedRatio',
+              display: '12.3%',
+              percent: true,
+              count: 3
+            },
+            { type: 'UnknownZero', display: '7', percent: false, count: 0 }
+          ]
+        }
+      ],
+      stats: []
+    };
+    const catalog: PlayerEquipmentCatalog = {
+      schemaVersion: 1,
+      locale: 'zh-CN',
+      lightCones: [],
+      relicSets: []
+    };
+    const recommendedProperty: RelicProperty = {
+      propertyType: 'DefenceAddedRatio',
+      name: '防御力',
+      iconKey: 'IconDefence',
+      allowedMainSlots: ['BODY'],
+      canBeSubStat: true
+    };
+    const body = render(PlayerEquipmentSection, {
+      props: {
+        character,
+        catalog,
+        relicProperties: [recommendedProperty],
+        recommendation: {
+          lightCones: [],
+          cavernSets: [],
+          planarSets: [],
+          mainStats: [],
+          subStats: [recommendedProperty]
+        }
+      }
+    }).body;
+
+    expect(body).toContain('装备信息');
+    expect(body).toContain('未知光锥 · ID 999999');
+    expect(body.match(/data-player-relic-slot=/g)).toHaveLength(6);
+    expect(body).toContain('未知遗器 · 套装 999998 / 类型 3');
+    expect(body).toContain('主属性未知');
+    expect(body).toContain('防御力');
+    expect(body).toContain('×3');
+    expect(body).toContain('强化 3 次');
+    expect(body).toContain('推荐匹配');
+    expect(body).toContain('data-recommended="true"');
+    expect(body).not.toContain('×0');
+  });
+
+  it('renders explicit empty equipment states without collapsing relic slots', () => {
+    const character: PlayerCharacter = {
+      characterId: '1304',
+      progression: { rank: 0, level: 1, promotion: 0, enhanced: false },
+      skillTree: [],
+      lightCone: null,
+      relics: [],
+      stats: []
+    };
+    const catalog: PlayerEquipmentCatalog = {
+      schemaVersion: 1,
+      locale: 'zh-CN',
+      lightCones: [],
+      relicSets: []
+    };
+    const body = render(PlayerEquipmentSection, { props: { character, catalog } }).body;
+
+    expect(body).toContain('未装备光锥');
+    expect(body.match(/data-player-relic-state="empty"/g)).toHaveLength(6);
+  });
+
   it('renders localized stats in primary-then-other DOM order with an unknown fallback', () => {
     const properties: RelicProperty[] = [
       {

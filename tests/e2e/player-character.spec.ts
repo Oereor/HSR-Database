@@ -24,8 +24,51 @@ const playerProfile = (uid: string, includeCharacter = true) => ({
             { id: '1304101', level: 1 },
             { id: '1304102', level: 0 }
           ],
-          lightCone: null,
-          relics: [],
+          lightCone: { lightConeId: '23023', rank: 2, level: 80, promotion: 6 },
+          relics: [
+            {
+              type: 1,
+              setId: '103',
+              level: 15,
+              mainAffix: { type: 'HPDelta', display: '705', percent: false },
+              subAffixes: [{ type: 'DefenceAddedRatio', display: '8.2%', percent: true, count: 2 }]
+            },
+            {
+              type: 2,
+              setId: '103',
+              level: 15,
+              mainAffix: { type: 'AttackDelta', display: '352', percent: false },
+              subAffixes: []
+            },
+            {
+              type: 3,
+              setId: '103',
+              level: 15,
+              mainAffix: { type: 'DefenceAddedRatio', display: '54.0%', percent: true },
+              subAffixes: [{ type: 'SpeedDelta', display: '7', percent: false, count: 0 }]
+            },
+            {
+              type: 4,
+              setId: '103',
+              level: 15,
+              mainAffix: { type: 'SpeedDelta', display: '25', percent: false },
+              subAffixes: []
+            },
+            {
+              type: 5,
+              setId: '310',
+              level: 15,
+              mainAffix: { type: 'DefenceAddedRatio', display: '43.2%', percent: true },
+              subAffixes: []
+            },
+            {
+              type: 6,
+              setId: '310',
+              level: 15,
+              mainAffix: { type: 'DefenceAddedRatio', display: '43.2%', percent: true },
+              subAffixes: []
+            }
+          ],
           stats: [
             {
               field: 'effect_hit',
@@ -107,6 +150,13 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(page.locator('[data-player-stat="hp"]')).toContainText('2,900 +6,777');
   await expect(page.locator('[data-player-stat="effect_hit"]')).toContainText('+20%');
   await expect(page.locator('[data-player-stat="elation_dmg"]')).toContainText('elation_dmg');
+  await expect(page.locator('#equipment')).toBeVisible();
+  await expect(page.locator('#equipment-recommendation')).toHaveCount(0);
+  await expect(page.locator('[data-player-light-cone="23023"]')).toContainText('命运从未公平');
+  await expect(page.locator('[data-player-relic-slot]')).toHaveCount(6);
+  await expect(
+    page.locator('[data-player-relic-slot="BODY"] [data-recommended="true"]')
+  ).toHaveCount(1);
 
   if (isMobile) {
     const columns = await page
@@ -115,6 +165,12 @@ test('reuses the Player cache and renders real progression without changing stat
         getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).filter(Boolean)
       );
     expect(columns).toHaveLength(1);
+    const relicColumns = await page
+      .locator('.player-equipment__relic-grid')
+      .evaluate((element) =>
+        getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).filter(Boolean)
+      );
+    expect(relicColumns).toHaveLength(1);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth - document.documentElement.clientWidth
@@ -127,6 +183,8 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(staticLevel).toBeEnabled();
   await expect(page.locator('[data-player-stats-panel]')).toHaveCount(0);
   await expect(page.locator('#eidolons [data-player-state]')).toHaveCount(0);
+  await expect(page.locator('#equipment-recommendation')).toBeVisible();
+  await expect(page.locator('#equipment')).toHaveCount(0);
 });
 
 test('keeps static detail available for invalid, missing and failed Player context', async ({
@@ -149,14 +207,17 @@ test('keeps static detail available for invalid, missing and failed Player conte
   await page.goto('/characters/1304/?uid=abc');
   await expect(page.getByText(/玩家 UID 无效/)).toBeVisible();
   await expect(page.getByRole('slider', { name: '角色等级' })).toBeEnabled();
+  await expect(page.locator('#equipment-recommendation')).toBeVisible();
   expect(requestCount).toBe(0);
 
   await page.goto('/characters/1304/?uid=100000002');
   await expect(page.getByText(/没有公开展示此角色/)).toBeVisible();
   await expect(page.getByRole('slider', { name: '角色等级' })).toBeEnabled();
+  await expect(page.locator('#equipment-recommendation')).toBeVisible();
 
   await page.goto('/characters/1304/?uid=100000503');
   await expect(page.getByText(/玩家数据暂时无法加载/)).toBeVisible();
   await expect(page.getByRole('slider', { name: '角色等级' })).toBeEnabled();
+  await expect(page.locator('#equipment-recommendation')).toBeVisible();
   expect(requestCount).toBe(2);
 });

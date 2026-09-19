@@ -41,6 +41,7 @@ import {
 } from './avatar-special-skills.js';
 import { characterLdSourceNames, characterLdSourceSpecs } from './character-sources.js';
 import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
+import { buildPlayerEquipmentCatalog } from '../../src/lib/player/equipment.js';
 import { collectEndgameSearchTargets } from '../../src/lib/domain/search-index.js';
 import { deriveCharacterNames } from './character-names.js';
 import {
@@ -966,6 +967,17 @@ export async function syncData(): Promise<DataManifest> {
       projection.globalSearchIndex,
       { locale: projectedLocale },
       `static/generated/${projectedLocale}/search.json`
+    );
+    await writeArtifact(
+      nextStaticGeneratedRoot,
+      `${projectedLocale}/player-equipment.json`,
+      buildPlayerEquipmentCatalog(
+        projectedLocale,
+        projection.catalogs['light-cones'],
+        projection.details.relics
+      ),
+      { locale: projectedLocale },
+      `static/generated/${projectedLocale}/player-equipment.json`
     );
     if (projectedLocale === 'en')
       for (const [targetId, shard] of Object.entries(projection.occurrenceShards))

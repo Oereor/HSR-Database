@@ -20,6 +20,7 @@
   import EidolonCard from '$lib/components/character/EidolonCard.svelte';
   import PlayerStatsPanel from '$lib/components/player/PlayerStatsPanel.svelte';
   import PlayerCharacterContextNotice from '$lib/components/player/PlayerCharacterContextNotice.svelte';
+  import PlayerEquipmentSection from '$lib/components/player/PlayerEquipmentSection.svelte';
   import { getElementColor } from '$lib/domain/elements';
   import { gameTextToPlain } from '$lib/domain/game-text';
   import {
@@ -86,7 +87,11 @@
     { id: 'traces', label: m.detail_traces() },
     { id: 'eidolons', label: m.detail_eidolons() },
     ...(equipmentRecommendation
-      ? [{ id: 'equipment-recommendation', label: m.detail_equipment_recommendation() }]
+      ? [
+          activePlayerCharacter
+            ? { id: 'equipment', label: m.player_equipment_title() }
+            : { id: 'equipment-recommendation', label: m.detail_equipment_recommendation() }
+        ]
       : [])
   ];
   $: playerQueryState =
@@ -342,9 +347,15 @@
         </div>{:else}<p class="data-placeholder">{m.detail_eidolons_unavailable()}</p>{/if}
     </section>
   {/key}
-  {#if equipmentRecommendation}<EquipmentRecommendationSection
+  {#if activePlayerCharacter}
+    <PlayerEquipmentSection
+      character={activePlayerCharacter}
       recommendation={equipmentRecommendation}
-    />{/if}
+      {relicProperties}
+    />
+  {:else if equipmentRecommendation}
+    <EquipmentRecommendationSection recommendation={equipmentRecommendation} />
+  {/if}
   {#if specialEffectsAvailable}<SpecialEffectDialog
       open={specialEffectsOpen}
       entries={specialEffects}
