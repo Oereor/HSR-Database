@@ -115,20 +115,28 @@ test('reuses the Player cache and renders real progression without changing stat
   await page.getByRole('link', { name: /砂金/ }).click();
 
   await expect(page).toHaveURL(/\/characters\/1304\/\?uid=100000001$/);
-  await expect(page.getByText('玩家数据', { exact: true })).toBeVisible();
-  await expect(page.getByText('UID 100000001', { exact: true })).toBeVisible();
-  await expect(page.getByRole('link', { name: '返回玩家信息' })).toHaveAttribute(
-    'href',
-    '/player/?uid=100000001'
-  );
+  const playerContext = page.locator('.player-context-notice');
+  await expect(playerContext).toBeVisible();
+  await expect(playerContext).toContainText('100000001');
+  await expect(playerContext.locator('a')).toHaveAttribute('href', '/player/?uid=100000001');
   expect(requestCount).toBe(1);
 
-  const level = page.getByRole('slider', { name: '角色等级' });
+  const level = page.locator('#player-level');
+  const levelValue = page.locator('.player-stats-panel .skill-level-control__value');
+  const promotionTag = levelValue.locator('.skill-effect-tag');
   await expect(level).toBeDisabled();
   await expect(level).toHaveValue('80');
-  await expect(page.getByText('晋阶 6')).toBeVisible();
+  await expect(promotionTag).toHaveText(/\S/);
+  await expect(levelValue.locator('output')).not.toHaveText('');
+  expect(
+    await levelValue.evaluate((value) => {
+      const tag = value.querySelector('.skill-effect-tag')!;
+      const output = value.querySelector('output')!;
+      return Boolean(tag.compareDocumentPosition(output) & Node.DOCUMENT_POSITION_FOLLOWING);
+    })
+  ).toBe(true);
 
-  const basicLevel = page.getByRole('slider', { name: '普攻等级' });
+  const basicLevel = page.locator('[data-skill-category="basic"] input[type="range"]');
   await expect(basicLevel).toBeDisabled();
   await expect(basicLevel).toHaveAttribute('aria-valuenow', '6');
 
@@ -160,10 +168,9 @@ test('reuses the Player cache and renders real progression without changing stat
   );
 
   await expect(page.locator('[data-player-stat="hp"]')).toContainText('9,677');
-  await expect(page.getByRole('button', { name: '属性拆分' })).toHaveCount(0);
-  await expect(page.getByRole('button', { name: '总面板' })).toHaveCount(0);
+  await expect(page.locator('.player-stats-panel button')).toHaveCount(0);
   await expect(page.locator('[data-player-stat="effect_hit"]')).toContainText('20%');
-  await expect(page.locator('[data-player-stat="elation_dmg"]')).toContainText('欢愉度');
+  await expect(page.locator('[data-player-stat="elation_dmg"] dt')).not.toHaveText('');
   await expect(page.locator('[data-player-stat="elation_dmg"] img')).toHaveAttribute(
     'src',
     '/generated-assets/relic-properties/IconJoy.png'
@@ -179,6 +186,32 @@ test('reuses the Player cache and renders real progression without changing stat
   );
   await expect(lightConeCard.locator('.player-light-cone__identity > span')).toHaveCount(2);
   await expect(lightConeCard.locator('.player-light-cone__progression > span')).toHaveCount(3);
+  const lightConeArtworkFit = await lightConeCard
+    .locator('.compact-entity-card__artwork')
+    .evaluate((artwork) => {
+      const image = artwork.querySelector('img')!;
+      const artworkBounds = artwork.getBoundingClientRect();
+      const imageBounds = image.getBoundingClientRect();
+      const imageStyles = getComputedStyle(image);
+      return {
+        insetTop: imageBounds.top - artworkBounds.top,
+        insetRight: artworkBounds.right - imageBounds.right,
+        insetBottom: artworkBounds.bottom - imageBounds.bottom,
+        insetLeft: imageBounds.left - artworkBounds.left,
+        objectFit: imageStyles.objectFit,
+        transform: imageStyles.transform
+      };
+    });
+  expect(lightConeArtworkFit.objectFit).toBe('contain');
+  expect(lightConeArtworkFit.transform).toBe('none');
+  expect(
+    [
+      lightConeArtworkFit.insetTop,
+      lightConeArtworkFit.insetRight,
+      lightConeArtworkFit.insetBottom,
+      lightConeArtworkFit.insetLeft
+    ].every((inset) => inset >= 3)
+  ).toBe(true);
   await expect(page.locator('[data-player-relic-slot]')).toHaveCount(6);
   await expect(page.locator('[data-player-relic-slot="BODY"]')).toHaveAttribute(
     'href',
@@ -188,9 +221,6 @@ test('reuses the Player cache and renders real progression without changing stat
     'href',
     '/relics/310/'
   );
-  await expect(page.getByText('推荐匹配', { exact: true })).toHaveCount(0);
-  await expect(page.getByRole('heading', { name: '主属性', exact: true })).toHaveCount(0);
-  await expect(page.getByRole('heading', { name: '副属性', exact: true })).toHaveCount(0);
   await expect(
     page.locator('[data-player-relic-slot="BODY"] [data-recommended="true"]')
   ).toHaveCount(2);
@@ -213,6 +243,35 @@ test('reuses the Player cache and renders real progression without changing stat
     })
   );
   expect(relicIconContainment.every(Boolean)).toBe(true);
+  const lightConeRadius = await lightConeCard
+    .getByRole('link')
+    .evaluate((card) => getComputedStyle(card).borderRadius);
+  const relicCardGeometry = await page.locator('[data-player-relic-slot]').evaluateAll((cards) =>
+    cards.map((card) => {
+      const cardBounds = card.getBoundingClientRect();
+      const trackedContent = [
+        card.querySelector('[data-relic-icon-presentation="header"]'),
+        card.querySelector('.player-relic-card__level'),
+        card.querySelector('.player-relic-card__affixes--main .player-affix-row'),
+        ...card.querySelectorAll('.player-relic-card__affixes--sub .player-affix-row')
+      ].filter((element): element is Element => element !== null);
+      return {
+        radius: getComputedStyle(card).borderRadius,
+        contentContained: trackedContent.every((element) => {
+          const bounds = element.getBoundingClientRect();
+          return (
+            bounds.left >= cardBounds.left - 1 &&
+            bounds.top >= cardBounds.top - 1 &&
+            bounds.right <= cardBounds.right + 1 &&
+            bounds.bottom <= cardBounds.bottom + 1
+          );
+        })
+      };
+    })
+  );
+  expect(relicCardGeometry).toHaveLength(6);
+  expect(relicCardGeometry.every(({ radius }) => radius === lightConeRadius)).toBe(true);
+  expect(relicCardGeometry.every(({ contentContained }) => contentContained)).toBe(true);
 
   const contextBounds = await page
     .locator('.detail-profile-hero__character-content')
@@ -227,6 +286,16 @@ test('reuses the Player cache and renders real progression without changing stat
   expect(contextBounds.contextBottom).toBeLessThanOrEqual(contextBounds.identityTop + 1);
 
   if (isMobile) {
+    await expect(lightConeCard.locator('.player-light-cone__progression')).toHaveCSS(
+      'display',
+      'flex'
+    );
+    const progressionRows = await lightConeCard
+      .locator('.player-light-cone__progression > span')
+      .evaluateAll(
+        (items) => new Set(items.map((item) => Math.round(item.getBoundingClientRect().y))).size
+      );
+    expect(progressionRows).toBe(1);
     const columns = await page
       .locator('.player-stats-grid')
       .evaluate((element) =>
@@ -246,6 +315,10 @@ test('reuses the Player cache and renders real progression without changing stat
     ).toBeLessThanOrEqual(1);
   } else {
     await page.setViewportSize({ width: 1280, height: 900 });
+    await expect(lightConeCard.locator('.player-light-cone__progression')).toHaveCSS(
+      'display',
+      'grid'
+    );
     await expect(page.locator('.detail-profile-hero--character')).toHaveCSS(
       'grid-template-columns',
       /\S+\s+\S+/
@@ -267,10 +340,10 @@ test('reuses the Player cache and renders real progression without changing stat
 
   await lightConeCard.getByRole('link').click();
   await expect(page).toHaveURL(/\/light-cones\/23023\/\?level=70&rank=2$/);
-  const lightConeLevel = page.getByRole('slider', { name: '光锥等级' });
+  const lightConeLevel = page.locator('#light-cone-level-23023');
   await expect(lightConeLevel).toBeEnabled();
   await expect(lightConeLevel).toHaveValue('70');
-  const rank = page.getByRole('slider', { name: '叠影等级' });
+  const rank = page.locator('#superimposition-level-23023');
   await expect(rank).toBeEnabled();
   await expect(rank).toHaveAttribute('aria-valuenow', '2');
   await lightConeLevel.fill('42');
@@ -279,7 +352,8 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(rank).toHaveAttribute('aria-valuenow', '4');
 
   await page.goto('/en/characters/1304/?uid=100000001');
-  await expect(page.locator('[data-player-stat="elation_dmg"]')).toContainText('Elation');
+  await expect(page.locator('.player-stats-panel .skill-effect-tag')).toHaveText(/\S/);
+  await expect(page.locator('[data-player-stat="elation_dmg"] dt')).not.toHaveText('');
   await expect(page.locator('[data-player-stat="elation_dmg"]')).not.toContainText('elation_dmg');
   await expect(page.locator('[data-player-light-cone="23023"] a')).toHaveAttribute(
     'href',
@@ -291,8 +365,9 @@ test('reuses the Player cache and renders real progression without changing stat
   );
 
   await page.goto('/characters/1304/');
-  const staticLevel = page.getByRole('slider', { name: '角色等级' });
+  const staticLevel = page.locator('#character-level-1304');
   await expect(staticLevel).toBeEnabled();
+  await expect(page.locator('.base-stats-panel .skill-effect-tag')).toHaveCount(0);
   await expect(page.locator('[data-player-stats-panel]')).toHaveCount(0);
   await expect(page.locator('#eidolons [data-player-state]')).toHaveCount(0);
   await expect(page.locator('#equipment-recommendation')).toBeVisible();
@@ -317,19 +392,19 @@ test('keeps static detail available for invalid, missing and failed Player conte
   });
 
   await page.goto('/characters/1304/?uid=abc');
-  await expect(page.getByText(/玩家 UID 无效/)).toBeVisible();
-  await expect(page.getByRole('slider', { name: '角色等级' })).toBeEnabled();
+  await expect(page.locator('.player-context-notice--fallback')).toBeVisible();
+  await expect(page.locator('#character-level-1304')).toBeEnabled();
   await expect(page.locator('#equipment-recommendation')).toBeVisible();
   expect(requestCount).toBe(0);
 
   await page.goto('/characters/1304/?uid=100000002');
-  await expect(page.getByText(/没有公开展示此角色/)).toBeVisible();
-  await expect(page.getByRole('slider', { name: '角色等级' })).toBeEnabled();
+  await expect(page.locator('.player-context-notice--fallback')).toBeVisible();
+  await expect(page.locator('#character-level-1304')).toBeEnabled();
   await expect(page.locator('#equipment-recommendation')).toBeVisible();
 
   await page.goto('/characters/1304/?uid=100000503');
-  await expect(page.getByText(/玩家数据暂时无法加载/)).toBeVisible();
-  await expect(page.getByRole('slider', { name: '角色等级' })).toBeEnabled();
+  await expect(page.locator('.player-context-notice--fallback')).toBeVisible();
+  await expect(page.locator('#character-level-1304')).toBeEnabled();
   await expect(page.locator('#equipment-recommendation')).toBeVisible();
   expect(requestCount).toBe(2);
 });

@@ -154,13 +154,13 @@ describe('Player stat projection', () => {
     expect(item.iconKey).toBe(`icon:${propertyType}`);
   });
 
-  it('resolves Elation through its canonical field while keeping unknown fields as raw keys', () => {
+  it('resolves a canonical special stat label while keeping unknown fields as raw keys', () => {
     const elation = groupPlayerStats([stat('elation_dmg')], properties, {
-      elation_dmg: 'Elation'
+      elation_dmg: 'synthetic:elation'
     }).other[0];
     const unknown = groupPlayerStats([stat('unknown_stat')], properties).other[0];
 
-    expect(elation.label).toBe('Elation');
+    expect(elation.label).toBe('synthetic:elation');
     expect(elation.iconKey).toBe('IconJoy');
     expect(unknown.label).toBe('unknown_stat');
     expect(unknown.iconKey).toBeUndefined();

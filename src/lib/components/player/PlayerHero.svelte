@@ -131,6 +131,7 @@
 
   .player-hero__metadata > div {
     display: flex;
+    align-items: center;
     gap: var(--space-2);
   }
 
@@ -171,13 +172,16 @@
 
   .player-hero__counts dt {
     min-height: 2.7em;
+    font-size: var(--font-meta-key);
+    font-weight: 600;
+    line-height: 1.35;
   }
 
   .player-hero__counts dd {
     margin-top: var(--space-1);
     color: var(--gold-soft);
     font-size: clamp(1.9rem, 4vw, 2.55rem);
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1;
   }
 
@@ -208,7 +212,7 @@
     }
 
     .player-hero__counts dt {
-      font-size: 0.68rem;
+      font-size: var(--font-helper);
     }
   }
 </style>

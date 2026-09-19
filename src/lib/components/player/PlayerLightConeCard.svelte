@@ -65,6 +65,10 @@
     gap: 0.28rem;
   }
 
+  .player-light-cone__progression > span {
+    white-space: nowrap;
+  }
+
   .player-light-cone__identity {
     display: grid;
     align-items: start;
@@ -74,5 +78,13 @@
   .player-light-cone__identity > span {
     display: flex;
     min-width: 0;
+  }
+
+  @media (max-width: 520px) {
+    .player-light-cone__progression {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2) var(--space-4);
+    }
   }
 </style>

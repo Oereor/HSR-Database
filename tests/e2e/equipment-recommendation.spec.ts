@@ -3,8 +3,7 @@ import { expect, test } from '@playwright/test';
 test('角色装备推荐解析真实实体、同权属性与本地资源', async ({ page }) => {
   await page.goto('/characters/1001/');
   const section = page.locator('#equipment-recommendation');
-  await expect(section.getByRole('heading', { level: 2, name: '装备推荐' })).toBeVisible();
-  await expect(section).toContainText('来自游戏配置中的系统推荐数据，不代表实时玩家使用率。');
+  await expect(section.locator('h2').first()).toBeVisible();
   expect(
     await page
       .locator('#eidolons, #equipment-recommendation')
@@ -12,7 +11,7 @@ test('角色装备推荐解析真实实体、同权属性与本地资源', async
   ).toEqual(['eidolons', 'equipment-recommendation']);
   expect(
     await page
-      .getByRole('navigation', { name: '详情章节' })
+      .locator('.section-nav')
       .getByRole('link')
       .evaluateAll((links) => links.map((link) => link.getAttribute('href')))
   ).toEqual(['#stats', '#skills', '#traces', '#eidolons', '#equipment-recommendation']);
@@ -33,9 +32,8 @@ test('角色装备推荐解析真实实体、同权属性与本地资源', async
     'src',
     '/generated-assets/relics/icons/103.png'
   );
-  await expect(relicSets.first()).toContainText('隧洞遗器');
+  await expect(relicSets.first().locator('.compact-entity-card__secondary')).not.toHaveText('');
   await expect(relicSets.locator('.compact-entity-card__tertiary')).toHaveCount(0);
-  await expect(section).not.toContainText(/\d件套/);
 
   const surface = section.locator('.recommendation-stats-surface');
   const slots = surface.locator('[data-relic-slot]');
@@ -43,10 +41,27 @@ test('角色装备推荐解析真实实体、同权属性与本地资源', async
   expect(
     await slots.evaluateAll((items) => items.map((item) => item.getAttribute('data-relic-slot')))
   ).toEqual(['BODY', 'FOOT', 'NECK', 'OBJECT']);
-  await expect(slots.nth(0)).toContainText(/防御力.*效果命中/);
-  await expect(slots.nth(1)).toContainText(/速度.*防御力/);
-  await expect(surface.locator('.recommendation-substats')).toContainText('效果抵抗');
-  await expect(section).not.toContainText(/最佳|次选|F2P|专属|ScoreRank/);
+  expect(
+    await slots
+      .nth(0)
+      .locator('.relic-property-token img')
+      .evaluateAll((images) => images.map((image) => image.getAttribute('src')))
+  ).toEqual([
+    '/generated-assets/relic-properties/IconDefence.png',
+    '/generated-assets/relic-properties/IconStatusProbability.png'
+  ]);
+  expect(
+    await slots
+      .nth(1)
+      .locator('.relic-property-token img')
+      .evaluateAll((images) => images.map((image) => image.getAttribute('src')))
+  ).toEqual([
+    '/generated-assets/relic-properties/IconSpeed.png',
+    '/generated-assets/relic-properties/IconDefence.png'
+  ]);
+  await expect(surface.locator('.recommendation-substats .relic-property-token')).not.toHaveCount(
+    0
+  );
 
   const brokenCard = relicSets.first();
   await brokenCard
@@ -63,9 +78,7 @@ test('推荐数量边界和具体 AvatarID ownership 保持独立', async ({ pag
   await expect(page.locator('[data-relic-slot="OBJECT"] .relic-property-token')).toHaveCount(2);
 
   await page.goto('/characters/1501/');
-  const cavernGroup = page
-    .locator('.equipment-recommendation__subgroup')
-    .filter({ has: page.getByRole('heading', { name: '隧洞遗器' }) });
+  const cavernGroup = page.locator('.equipment-recommendation__subgroup').nth(0);
   await expect(cavernGroup.locator('a[href^="/relics/"]')).toHaveCount(2);
 
   for (const id of ['1224', '8001', '8002', '1508']) {

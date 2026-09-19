@@ -93,8 +93,12 @@
   }
 
   .compact-entity-card__artwork img {
-    width: 100%;
-    height: 100%;
+    display: block;
+    width: calc(100% - var(--space-2));
+    height: calc(100% - var(--space-2));
+    max-width: 100%;
+    max-height: 100%;
+    object-position: center;
   }
 
   .compact-entity-card__fallback {

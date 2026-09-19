@@ -18,7 +18,7 @@ describe('SectionHeading', () => {
     const { body } = render(SectionHeadingFixture, { props: { level } });
 
     expect(body).toMatch(new RegExp(`<${tag}[^>]*id="heading-${level}"`));
-    expect(body).toContain('统一标题');
+    expect(body).toContain('synthetic section heading');
   });
 });
 
@@ -27,19 +27,19 @@ describe('SectionNav', () => {
     const { body } = render(SectionNav, {
       props: {
         items: [
-          { id: 'stats', label: '属性' },
-          { id: 'skills', label: '技能' }
+          { id: 'stats', label: 'synthetic stats section' },
+          { id: 'skills', label: 'synthetic skills section' }
         ]
       }
     });
 
     expect(body).toContain('<nav');
-    expect(body).toContain('aria-label="详情章节"');
+    expect(body).toMatch(/<nav[^>]*aria-label="[^"]+"/);
     expect(body).toContain('href="#stats"');
     expect(body).toContain('href="#skills"');
     expect(body).toContain('aria-current="location"');
-    expect(body).toContain('属性');
-    expect(body).toContain('技能');
+    expect(body).toContain('synthetic stats section');
+    expect(body).toContain('synthetic skills section');
   });
 });
 
@@ -48,18 +48,18 @@ describe('SearchBar', () => {
     const { body } = render(SearchBar, {
       props: {
         id: 'global-search',
-        label: '全局搜索',
-        placeholder: '搜索角色、光锥…',
+        label: 'synthetic search label',
+        placeholder: 'synthetic search placeholder',
         variant: 'sidebar'
       }
     });
 
     expect(body).toContain('<form');
     expect(body).toContain('action="/search/"');
-    expect(body).toMatch(/<label[^>]*for="global-search"[^>]*>全局搜索<\/label>/);
+    expect(body).toMatch(/<label[^>]*for="global-search"[^>]*>synthetic search label<\/label>/);
     expect(body).toContain('id="global-search"');
     expect(body).toContain('name="q"');
-    expect(body).toContain('aria-label="开始搜索"');
+    expect(body).toMatch(/<button[^>]*type="submit"[^>]*aria-label="[^"]+"/);
   });
 });
 
@@ -109,7 +109,7 @@ describe('Character detail icon enrichment', () => {
 
     const card: SkillCard = {
       category: 'skill',
-      displayLabel: '战技',
+      displayLabel: 'synthetic skill category',
       order: 1,
       iconKey: 'skill-tree--1407002',
       progressions: [],
@@ -126,8 +126,8 @@ describe('Character detail icon enrichment', () => {
   it('能力与星魂缺图时完整恢复原数字/文字布局', () => {
     const trace: Trace = {
       id: '8007501',
-      name: '未完的尾声',
-      description: '测试',
+      name: 'synthetic trace name',
+      description: 'synthetic trace description',
       type: 'ability',
       iconKey: 'skill-tree--8007501',
       sourcePointType: 5,
@@ -140,24 +140,22 @@ describe('Character detail icon enrichment', () => {
     }).body;
     expect(enhancedTrace).toContain('8007_basic_atk2.png');
     expect(fallbackTrace).not.toContain('<img ');
-    expect(fallbackTrace).toContain('未完的尾声');
+    expect(fallbackTrace).toContain('synthetic trace name');
 
     const eidolon: Eidolon = {
       id: '140701',
       rank: 1,
-      name: '雪地的圣女，付记忆入殓',
-      description: '测试',
+      name: 'synthetic eidolon name',
+      description: 'synthetic eidolon description',
       iconKey: 'rank--140701'
     };
     const enhancedEidolon = render(EidolonCard, { props: { eidolon } }).body;
     const fallbackEidolon = render(EidolonCard, {
       props: { eidolon: { ...eidolon, iconKey: undefined } }
     }).body;
-    expect(enhancedEidolon).toContain('星魂 1');
     expect(enhancedEidolon).toContain('rank-icon');
     expect(enhancedEidolon).not.toContain('rank-number');
     expect(fallbackEidolon).toContain('rank-number');
     expect(fallbackEidolon).not.toContain('rank-icon');
-    expect(fallbackEidolon).not.toContain('星魂 1');
   });
 });

@@ -67,7 +67,7 @@ Due to special network environment, all Internet-related operations must go thro
 
 ## Verification discipline
 
-- Do not add tests that pin exact production copy for site messages or changelog entries. These user-maintained texts may change frequently; test generic locale, loader, or manifest logic with synthetic fixtures instead.
+- Do not pin exact production site-message or changelog wording in any test, regardless of which component, page, SSR, navigation, unit, or browser test contains the assertion. User-maintained labels, titles, tags, notices, tooltips, errors, and similar copy may change frequently; test data, state, structure, locale selection, fallback, interaction, routing, canonical keys, and resolver behavior instead, using synthetic fixtures for generic locale/loader tests. Assert exact wording only when it is explicitly documented as a stable protocol, legal, or machine-consumer contract.
 - Prefer narrow product invariants over full product-output baselines. Do not make mutable copy, navigation ordering, or presentation details blocking CI contracts unless they are explicitly documented as stable product requirements; any broad audit baseline must remain manual and non-blocking unless every captured field is intentional contract surface.
 - Verification must be risk-based and targeted. Start with the smallest deterministic checks that cover the code changed in the current task; do not run every available test layer by default.
 - Prefer targeted test files, test-name filters, or Vitest `related --run` / `--changed` when suitable. Run the full unit-test suite only when the change affects shared foundations broadly, targeted results indicate cross-cutting risk, or the task is at an explicit phase/PR/merge/release boundary.

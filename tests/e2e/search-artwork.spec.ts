@@ -71,7 +71,8 @@ for (const locale of ['zh-CN', 'en'] as const) {
     await expect.poll(() => attempted).toBe(true);
     await expect(card.locator('[data-enemy-portrait]')).toHaveCount(0);
     await expect(card).toContainText(target.name);
-    await expect(card).toContainText(locale === 'en' ? 'E' : '敌');
+    await expect(card.locator('.endgame-enemy__fallback')).toBeVisible();
+    await expect(card.locator('.endgame-enemy__fallback')).not.toHaveText('');
   });
 }
 

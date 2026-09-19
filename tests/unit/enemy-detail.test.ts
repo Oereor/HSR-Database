@@ -292,7 +292,7 @@ describe('Enemy Detail 真实数据回归', () => {
       const skill = (await enemy(enemyId)).defaultMonster.skills.find(
         (candidate) => candidate.id === skillId
       )!;
-      expect(skill.description).not.toBe('资料未提供');
+      expect(skill.description.trim().length).toBeGreaterThan(0);
       expect(skill).not.toHaveProperty('SPHitBase');
       expect(skill).not.toHaveProperty('ModifierList');
       expect(skill).not.toHaveProperty('ParamList');

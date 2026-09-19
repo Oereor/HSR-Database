@@ -51,14 +51,20 @@ describe('Player Character controls', () => {
         min: 1,
         max: 80,
         interactive: false,
-        detail: '晋阶 6'
+        leadingTag: 'synthetic progression marker'
       }
     }).body;
 
     expect(staticBody).not.toMatch(/<input[^>]*disabled/);
+    expect(staticBody).not.toContain('skill-effect-tag');
     expect(playerBody).toMatch(/<input[^>]*disabled/);
     expect(playerBody).toContain('Lv.70');
-    expect(playerBody).toContain('晋阶 6');
+    expect(playerBody).toContain(
+      '<small class="skill-effect-tag">synthetic progression marker</small>'
+    );
+    expect(playerBody.indexOf('synthetic progression marker')).toBeLessThan(
+      playerBody.indexOf('Lv.70')
+    );
     expect(playerBody).not.toMatch(/<input[^>]*\sreadonly(?:=|\s|>)/);
   });
 
@@ -89,7 +95,7 @@ describe('Player Character controls', () => {
     expect(resolved).toContain('Lv.4');
     expect(resolved).toMatch(/<input[^>]*disabled/);
     expect(unresolved).toContain('data-player-skill-state="unresolved"');
-    expect(unresolved).toContain('玩家技能等级未知');
+    expect(unresolved).toMatch(/data-player-skill-state="unresolved"[\s\S]*<p>[^<]+<\/p>/);
     expect(unresolved).not.toContain('<input');
   });
 });
@@ -128,7 +134,7 @@ describe('Player Character presentation', () => {
     };
     const recommendedProperty: RelicProperty = {
       propertyType: 'DefenceAddedRatio',
-      name: '防御力',
+      name: 'synthetic recommended stat',
       iconKey: 'IconDefence',
       allowedMainSlots: ['BODY'],
       canBeSubStat: true
@@ -148,19 +154,16 @@ describe('Player Character presentation', () => {
       }
     }).body;
 
-    expect(body).toContain('装备信息');
-    expect(body).toContain('未知光锥 · ID 999999');
+    expect(body).toContain('data-player-light-cone="999999"');
     expect(body.match(/data-player-relic-slot=/g)).toHaveLength(6);
-    expect(body).toContain('未知遗器 · 套装 999998 / 类型 3');
+    expect(body).toContain('data-player-relic-state="unknown"');
     expect(body).not.toContain('href="/relics/999998/"');
-    expect(body).toContain('主属性未知');
-    expect(body).toContain('防御力');
-    expect(body).toContain('×3');
-    expect(body).toContain('强化 3 次');
-    expect(body).not.toContain('推荐匹配');
-    expect(body).not.toMatch(/>主属性<|>副属性</);
+    expect(body).toContain('player-relic-card__unknown-main');
+    expect(body).toContain('synthetic recommended stat');
+    expect(body).toMatch(/player-affix-row__count[\s\S]*×3/);
+    expect(body).toContain('player-affix-row--recommended');
     expect(body).toContain('data-recommended="true"');
-    expect(body).not.toContain('×0');
+    expect(body.match(/player-affix-row__count/g)).toHaveLength(1);
   });
 
   it('links known equipment to localized static details with only initial Light Cone state', () => {
@@ -228,7 +231,7 @@ describe('Player Character presentation', () => {
     };
     const body = render(PlayerEquipmentSection, { props: { character, catalog } }).body;
 
-    expect(body).toContain('未装备光锥');
+    expect(body).toContain('data-player-light-cone="empty"');
     expect(body.match(/data-player-relic-state="empty"/g)).toHaveLength(6);
   });
 
@@ -236,14 +239,14 @@ describe('Player Character presentation', () => {
     const properties: RelicProperty[] = [
       {
         propertyType: 'HPDelta',
-        name: '生命值',
+        name: 'synthetic hp label',
         iconKey: 'IconMaxHP',
         allowedMainSlots: ['HEAD'],
         canBeSubStat: true
       },
       {
         propertyType: 'StatusProbabilityBase',
-        name: '效果命中',
+        name: 'synthetic effect-hit label',
         iconKey: 'IconStatusProbability',
         allowedMainSlots: ['BODY'],
         canBeSubStat: true
@@ -277,9 +280,8 @@ describe('Player Character presentation', () => {
     const body = render(PlayerStatsPanel, { props }).body;
 
     expect(body).not.toContain('aria-pressed=');
-    expect(body).toContain('生命值');
-    expect(body).toContain('效果命中');
-    expect(body).toContain('欢愉度');
+    expect(body).toMatch(/<small class="skill-effect-tag">[^<]+<\/small>/);
+    expect(body.indexOf('skill-effect-tag')).toBeLessThan(body.indexOf('Lv.80'));
     expect(body).not.toContain('elation_dmg</span>');
     expect(body).toContain('124.4%');
     expect(body.indexOf('data-player-stat-column="primary"')).toBeLessThan(
@@ -290,7 +292,8 @@ describe('Player Character presentation', () => {
 
     overwriteGetLocale(() => 'en');
     const englishBody = render(PlayerStatsPanel, { props }).body;
-    expect(englishBody).toContain('Elation');
+    expect(englishBody).toMatch(/<small class="skill-effect-tag">[^<]+<\/small>/);
+    expect(englishBody).toContain('data-player-stat="elation_dmg"');
     expect(englishBody).not.toContain('elation_dmg</span>');
   });
 
@@ -338,9 +341,9 @@ describe('Player Character presentation', () => {
     expect(playerBody).toContain('data-player-state="active"');
     expect(playerBody).toContain('data-player-state="inactive"');
     expect(playerBody).toContain('data-player-state="unresolved"');
-    expect(playerBody).not.toContain('已激活');
-    expect(playerBody).not.toContain('未激活');
-    expect(playerBody).toContain('状态未知');
+    expect(playerBody).not.toContain('data-player-state-label="active"');
+    expect(playerBody).not.toContain('data-player-state-label="inactive"');
+    expect(playerBody).toContain('data-player-state-label="unresolved"');
     expect(staticBody).not.toContain('data-player-state=');
   });
 
@@ -357,9 +360,8 @@ describe('Player Character presentation', () => {
     }).body;
 
     expect(staticBody).not.toContain('data-player-state=');
-    expect(staticBody).not.toContain('未激活');
     expect(playerBody).toContain('data-player-state="inactive"');
-    expect(playerBody).toContain('未激活');
+    expect(playerBody).toContain('data-player-state-label="inactive"');
     expect(playerBody).toContain('rank-card__content');
   });
 });

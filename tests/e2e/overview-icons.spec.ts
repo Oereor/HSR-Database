@@ -107,7 +107,7 @@ for (const locale of ['zh-CN', 'en']) {
     for (const label of [entry.pathName!, entry.elementName!]) {
       const icon = card.getByRole('img', { name: label, exact: true });
       await expect(icon).toHaveAttribute('data-icon-missing', 'true');
-      await expect(icon).toHaveText('?');
+      await expect(icon).not.toHaveText('');
       await expect(icon.locator('img')).toHaveCount(0);
     }
     const lightCone = lightCones.find((item) => item.id === '20000')!;
@@ -117,7 +117,7 @@ for (const locale of ['zh-CN', 'en']) {
       .getByRole('img', { name: lightCone.pathName!, exact: true });
     await pathIcon.scrollIntoViewIfNeeded();
     await expect(pathIcon).toHaveAttribute('data-icon-missing', 'true');
-    await expect(pathIcon).toHaveText('?');
+    await expect(pathIcon).not.toHaveText('');
     await expect(pathIcon.locator('img')).toHaveCount(0);
   });
 }

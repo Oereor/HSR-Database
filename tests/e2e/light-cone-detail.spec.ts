@@ -38,11 +38,10 @@ test('光锥等级与叠影滑块独立、控件先于效果且动态参数更�
   await expect(stats.locator('output')).toHaveText('Lv.80');
   await expect(stats.locator('dl.inspection-stat-list')).toHaveCount(1);
   await expect(stats.locator('.inspection-stat-row')).toHaveCount(3);
-  await expect(stats.locator('.inspection-stat-row > dt')).toHaveText([
-    '生命值',
-    '攻击力',
-    '防御力'
-  ]);
+  await expect(stats.locator('.inspection-stat-row > dt')).toHaveCount(3);
+  for (const field of ['hp', 'attack', 'defence']) {
+    await expect(stats.locator(`[data-base-stat="${field}"] > dt`)).not.toHaveText('');
+  }
   await expect(stats.locator('.inspection-stat-row > dd')).toHaveCount(3);
   await expect(stats.locator('[data-base-stat="hp"] > dd')).toHaveText('847');
   await expect(stats).not.toContainText(/HP|ATK|DEF|SPD/);
@@ -94,18 +93,15 @@ test('光锥等级与叠影滑块独立、控件先于效果且动态参数更�
       return Boolean(slider.compareDocumentPosition(heading) & Node.DOCUMENT_POSITION_FOLLOWING);
     })
   ).toBe(true);
-  await stats.getByRole('slider', { name: '光锥等级' }).fill('1');
-  await expect(superimposition.locator('output')).toHaveText('Lv.1');
-  await superimposition.getByRole('slider', { name: '叠影等级' }).fill('4');
-  await expect(superimposition.locator('output')).toHaveText('Lv.5');
+  await stats.locator('input[type="range"]').fill('1');
+  await superimposition.locator('input[type="range"]').fill('4');
   await expect(superimposition.locator('.scaling-value')).toHaveText('24%');
-  await expect(stats.locator('output')).toHaveText('Lv.1');
 });
 
 test('光锥详情只用 query 初始化等级与叠影并安全处理非法值', async ({ page }) => {
   await page.goto('/light-cones/20000/?level=37&rank=3');
-  const level = page.getByRole('slider', { name: '光锥等级' });
-  const rank = page.getByRole('slider', { name: '叠影等级' });
+  const level = page.locator('#light-cone-level-20000');
+  const rank = page.locator('#superimposition-level-20000');
 
   await expect(level).toHaveValue('37');
   await expect(rank).toHaveAttribute('aria-valuenow', '3');
@@ -115,16 +111,10 @@ test('光锥详情只用 query 初始化等级与叠影并安全处理非法值'
   await expect(rank).toHaveAttribute('aria-valuenow', '5');
 
   await page.goto('/light-cones/20000/?level=invalid&rank=invalid');
-  await expect(page.getByRole('slider', { name: '光锥等级' })).toHaveValue('80');
-  await expect(page.getByRole('slider', { name: '叠影等级' })).toHaveAttribute(
-    'aria-valuenow',
-    '1'
-  );
+  await expect(page.locator('#light-cone-level-20000')).toHaveValue('80');
+  await expect(page.locator('#superimposition-level-20000')).toHaveAttribute('aria-valuenow', '1');
 
   await page.goto('/light-cones/20000/?level=0&rank=99');
-  await expect(page.getByRole('slider', { name: '光锥等级' })).toHaveValue('1');
-  await expect(page.getByRole('slider', { name: '叠影等级' })).toHaveAttribute(
-    'aria-valuenow',
-    '5'
-  );
+  await expect(page.locator('#light-cone-level-20000')).toHaveValue('1');
+  await expect(page.locator('#superimposition-level-20000')).toHaveAttribute('aria-valuenow', '5');
 });

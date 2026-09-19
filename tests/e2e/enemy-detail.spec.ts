@@ -14,28 +14,37 @@ test('Enemy Detail Hero 复用统一分栏并仅展示 Template 基础数据', a
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/enemies/1004014/');
 
-  const backLink = page.getByRole('link', { name: '← 返回敌方单位列表', exact: true });
+  const backLink = page.locator('a[href="/enemies/"]').first();
   await expect(backLink).toHaveAttribute('href', '/enemies/');
   const hero = page.locator('[data-enemy-hero]');
   await expect(hero).toBeVisible();
-  await expect(hero.getByText('敌方单位 / 模板 ID 1004014', { exact: true })).toBeVisible();
-  await expect(hero.getByRole('heading', { level: 2, name: '基础数据' })).toBeVisible();
+  await expect(hero.locator('.kicker')).toContainText('1004014');
+  await expect(hero.locator('.enemy-template-stats-panel h2')).toBeVisible();
   await expect(hero.getByRole('slider')).toHaveCount(0);
-  await expect(page.getByRole('slider', { name: '敌人等级' })).toHaveCount(1);
+  await expect(page.locator('#enemy-level-1004014')).toHaveCount(1);
   const stats = hero.locator('[data-enemy-template-stat]');
   await expect(stats).toHaveCount(8);
   await expect(hero.locator('dl.inspection-stat-list')).toHaveCount(1);
   await expect(hero.locator('.inspection-stat-row')).toHaveCount(8);
-  expect(await stats.evaluateAll((rows) => rows.map((row) => row.textContent?.trim()))).toEqual([
-    '基础生命值 5,813',
-    '基础攻击力 18',
-    '基础防御力 210',
-    '基础速度 130',
-    '基础韧性值 100',
-    '基础暴击伤害 20%',
-    '基础效果抵抗 30%',
-    '首回合行动值 20%'
-  ]);
+  expect(
+    await stats.evaluateAll((rows) =>
+      Object.fromEntries(
+        rows.map((row) => [
+          row.getAttribute('data-enemy-template-stat'),
+          row.querySelector('dd')?.textContent?.trim()
+        ])
+      )
+    )
+  ).toEqual({
+    hp: '5,813',
+    attack: '18',
+    defence: '210',
+    speed: '130',
+    toughness: '100',
+    'critical-damage': '20%',
+    'effect-resistance': '30%',
+    'initial-action-value': '20%'
+  });
   await expect(hero.locator('[data-enemy-portrait]')).toHaveAttribute(
     'data-artwork-fit',
     'contain'
@@ -43,16 +52,16 @@ test('Enemy Detail Hero 复用统一分栏并仅展示 Template 基础数据', a
   await expect(hero.locator('[data-enemy-portrait] img')).toHaveCSS('object-fit', 'contain');
 });
 
-test('Enemy Detail Hero 本地化普通、精英与首领类型', async ({ page }) => {
-  for (const [id, label, raw] of [
-    ['1002011', '普通敌人', 'MinionLv2'],
-    ['1003012', '精英敌人', 'Elite'],
-    ['1004014', '首领敌人', 'LittleBoss']
+test('Enemy Detail Hero 本地化 raw rank 而不泄露内部值', async ({ page }) => {
+  for (const [id, raw] of [
+    ['1002011', 'MinionLv2'],
+    ['1003012', 'Elite'],
+    ['1004014', 'LittleBoss']
   ]) {
     await page.goto(`/enemies/${id}/`);
     const hero = page.locator('[data-enemy-hero]');
-    const rank = hero.locator(`[data-enemy-rank-label="${label}"]`);
-    await expect(rank).toHaveText(label);
+    const rank = hero.locator('.enemy-rank-tag');
+    await expect(rank).not.toHaveText('');
     await expect(hero.locator('[data-icon-presentation="path-identity"]')).toHaveCount(0);
     await expect(hero).not.toContainText(raw);
   }
@@ -60,18 +69,21 @@ test('Enemy Detail Hero 本地化普通、精英与首领类型', async ({ page 
 
 test('Enemy Detail Hero 对缺失 Template 字段保留固定行', async ({ page }) => {
   await page.goto('/enemies/3004010/');
-  await expect(page.locator('[data-enemy-template-stat="speed"]')).toContainText('资料未提供');
-  await expect(page.locator('[data-enemy-template-stat="toughness"]')).toContainText('资料未提供');
+  const missingValue = page.locator('[data-enemy-template-stat="speed"] dd');
+  await expect(missingValue).not.toHaveText('');
+  await expect(page.locator('[data-enemy-template-stat="toughness"] dd')).toHaveText(
+    (await missingValue.textContent())!
+  );
 
   await page.goto('/enemies/1005010/');
-  await expect(page.locator('[data-enemy-template-stat="effect-resistance"]')).toContainText(
-    '资料未提供'
+  await expect(page.locator('[data-enemy-template-stat="effect-resistance"] dd')).not.toHaveText(
+    ''
   );
   await expect(page.locator('[data-enemy-template-stat]')).toHaveCount(8);
 
   await page.goto('/enemies/3002040/');
-  await expect(page.locator('[data-enemy-template-stat="initial-action-value"]')).toContainText(
-    '资料未提供'
+  await expect(page.locator('[data-enemy-template-stat="initial-action-value"] dd')).not.toHaveText(
+    ''
   );
 });
 
@@ -92,16 +104,14 @@ test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时�
 }) => {
   await page.goto('/enemies/1002015/');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-  await expect(page.getByRole('heading', { level: 2, name: '基础属性' })).toHaveCount(0);
 
   const options = page.locator('[data-monster-option]');
   await expect(options).toHaveCount(11);
   const canonical = page.locator('[data-monster-option="1002015"]');
   const quantumVariant = page.locator('[data-monster-option="100201506"]');
   await expect(canonical).toHaveAttribute('aria-checked', 'true');
-  await expect(canonical).toContainText('默认');
 
-  const slider = page.getByRole('slider', { name: '敌人等级' });
+  const slider = page.locator('#enemy-level-1002015');
   await expect(slider).toHaveValue('95');
   await slider.fill('60');
   const canonicalHp = await page.locator('[data-enemy-stat="hp"] strong').textContent();
@@ -109,7 +119,6 @@ test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时�
   await expect(quantumVariant).toHaveAttribute('aria-checked', 'true');
   await expect(page.locator('.enemy-selected-monster-heading')).toContainText('#100201506');
   await expect(slider).toHaveValue('60');
-  await expect(page.locator('.enemy-level-control output')).toHaveText('Lv.60');
   await expect(page.locator('[data-enemy-stat="hp"] strong')).not.toHaveText(canonicalHp ?? '');
 
   const weaknesses = page.locator(
@@ -131,12 +140,9 @@ test('单 Monster 页面省略 selector，仍展示共享等级与七项实际�
   await expect(page.locator('[data-monster-option]')).toHaveCount(0);
   await expect(page.locator('.enemy-selected-monster-heading')).toContainText('#1004011');
   await expect(page.locator('[data-enemy-stat]')).toHaveCount(7);
-  await expect(page.getByRole('slider', { name: '敌人等级' })).toHaveValue('95');
+  await expect(page.locator('#enemy-level-1004011')).toHaveValue('95');
   await expect(page.locator('.enemy-stats-panel table')).toHaveCount(0);
-  await expect(page.locator('.enemy-stats-list')).toHaveAttribute(
-    'aria-label',
-    'Lv.95 敌人实际属性'
-  );
+  await expect(page.locator('.enemy-stats-list')).toHaveAttribute('aria-label', /\S/);
 });
 
 test('战斗面板按 selected Monster 的负面抵抗自动切换三栏与两栏', async ({ page }) => {
@@ -165,7 +171,6 @@ test('战斗面板按 selected Monster 的负面抵抗自动切换三栏与两�
   await page.goto('/enemies/3002011/');
   const twoColumnPanel = page.locator('.enemy-battle-panel');
   await expect(twoColumnPanel).toHaveAttribute('data-battle-columns', '2');
-  await expect(page.getByRole('heading', { name: '负面效果抵抗' })).toHaveCount(0);
 });
 
 test('召唤单位严格随 selected Monster 切换，并使用解析后的 Template route', async ({ page }) => {
@@ -184,7 +189,7 @@ test('召唤单位严格随 selected Monster 切换，并使用解析后的 Temp
   );
   await expect(page.locator('[data-summon-monster]')).toHaveCount(2);
   const summon = page.locator('[data-summon-template="1002050"]');
-  await expect(summon).toContainText(/普通敌人|精英敌人|首领敌人|敌方单位/);
+  await expect(summon.locator('.compact-entity-card__tertiary')).not.toHaveText('');
   await expect(summon.locator('.compact-entity-card__tertiary')).toHaveCount(1);
   await expect(summon.locator('.enemy-weakness-group')).toHaveCount(1);
   await expect(summon).not.toContainText(/Monster #/);
@@ -195,10 +200,10 @@ test('召唤单位严格随 selected Monster 切换，并使用解析后的 Temp
 
 test('轻量 Skill References 保留真实 Phase、属性图标与唯一完整卡 anchor', async ({ page }) => {
   await page.goto('/enemies/8034010/');
-  const tabs = page.getByRole('tablist', { name: '敌人技能阶段' });
+  const tabs = page.locator('.enemy-phase-tabs');
   await expect(tabs.getByRole('tab')).toHaveCount(2);
-  const phase1 = tabs.getByRole('tab', { name: '阶段 1' });
-  const phase2 = tabs.getByRole('tab', { name: '阶段 2' });
+  const phase1 = tabs.getByRole('tab').nth(0);
+  const phase2 = tabs.getByRole('tab').nth(1);
   await expect(phase1).toHaveAttribute('aria-selected', 'true');
 
   const sharedReference = page.locator('[data-enemy-skill-reference="803401002"]');
