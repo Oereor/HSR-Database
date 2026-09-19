@@ -37,7 +37,8 @@ export const starRailAssetDirectories = [
   'icon/skill/',
   'icon/element/',
   'icon/path/',
-  'icon/sign/'
+  'icon/sign/',
+  'icon/avatar/'
 ];
 
 export async function prepareTurnBasedGameData(lock: UpstreamLock): Promise<string> {

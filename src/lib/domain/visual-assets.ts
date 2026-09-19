@@ -15,7 +15,7 @@ export const BRAND_ICON_KEYS = ['train-party'] as const;
 export type BrandIconKey = (typeof BRAND_ICON_KEYS)[number];
 
 export interface VisualAssetManifest {
-  schemaVersion: 15;
+  schemaVersion: 16;
   requirementsFingerprint?: string;
   sourceCommit?: string;
   generatedAt: string;
@@ -23,6 +23,7 @@ export interface VisualAssetManifest {
     previews: AssetAvailability;
     portraits: AssetAvailability;
   };
+  playerAvatars: AssetAvailability;
   characterDetails: {
     icons: AssetResolutionMap;
   };

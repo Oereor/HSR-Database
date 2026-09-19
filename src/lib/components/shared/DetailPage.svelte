@@ -1,7 +1,7 @@
 <script lang="ts">
   import { browser } from '$app/environment';
   import { goto } from '$app/navigation';
-  import { tick } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { page } from '$app/stores';
   import BaseStatsPanel from '$lib/components/shared/BaseStatsPanel.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
@@ -18,26 +18,45 @@
   import RelicDetailPage from '$lib/components/relic/RelicDetailPage.svelte';
   import EquipmentRecommendationSection from '$lib/components/character/EquipmentRecommendationSection.svelte';
   import EidolonCard from '$lib/components/character/EidolonCard.svelte';
+  import PlayerStatsPanel from '$lib/components/player/PlayerStatsPanel.svelte';
+  import PlayerCharacterContextNotice from '$lib/components/player/PlayerCharacterContextNotice.svelte';
+  import PlayerEquipmentSection from '$lib/components/player/PlayerEquipmentSection.svelte';
   import { getElementColor } from '$lib/domain/elements';
+  import { readBoundedInitialInteger } from '$lib/domain/detail-initial-state';
   import { gameTextToPlain } from '$lib/domain/game-text';
   import {
     getCharacterPortraitUrl,
     getCharacterPreviewUrl,
     getLightConePortraitUrl
   } from '$lib/data/visual-assets';
-  import type { CatalogEntry } from '$lib/domain/types';
+  import type { CatalogEntry, RelicProperty } from '$lib/domain/types';
   import type { EquipmentRecommendationView } from '$lib/domain/equipment-recommendation-view';
   import { formatDocumentTitle } from '$lib/site';
-  import { localizedHref } from '$lib/i18n/routing';
+  import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
+  import { fetchPlayerProfile } from '$lib/player/client';
+  import type { PlayerCharacter } from '$lib/player/contract';
+  import { findPlayerCharacter, resolvePlayerEidolonState } from '$lib/player/character';
+  import { readPlayerUidQuery, type PlayerUidQueryState } from '$lib/player/resolve';
   export let detail: any;
   export let category: string;
   export let singular: string;
   export let specialEffectTargets: CatalogEntry[] = [];
   export let equipmentRecommendation: EquipmentRecommendationView | undefined = undefined;
+  export let relicProperties: RelicProperty[] = [];
   let specialEffectsOpen = false;
   let specialEffectTrigger: HTMLButtonElement | undefined;
   let specialEffectLevel = 1;
+  type PlayerContextState = 'idle' | 'invalid' | 'loading' | 'error' | 'missing' | 'active';
+  let playerClientReady = false;
+  let handledPlayerContext: string | null = null;
+  let playerRequestVersion = 0;
+  let playerContextState: PlayerContextState = 'idle';
+  let playerUid: string | undefined;
+  let playerCharacter: PlayerCharacter | null = null;
+  const emptySearchParams = new URLSearchParams();
+
+  onMount(() => (playerClientReady = true));
 
   $: plainName = gameTextToPlain(detail.name);
   $: metaDescription = gameTextToPlain(
@@ -63,6 +82,36 @@
     category === 'characters' ? getCharacterPortraitUrl(detail.id) : undefined;
   $: lightConePortraitSource =
     category === 'light-cones' ? getLightConePortraitUrl(detail.id) : undefined;
+  $: lightConeInitialLevel =
+    category === 'light-cones'
+      ? readBoundedInitialInteger(
+          browser ? $page.url.searchParams : emptySearchParams,
+          'level',
+          detail.baseStats.defaultLevel,
+          detail.baseStats.minLevel,
+          detail.baseStats.maxLevel
+        )
+      : undefined;
+  $: lightConeRanks =
+    category === 'light-cones'
+      ? detail.passive.superimposition.levels.map(({ level }: { level: number }) => level)
+      : [];
+  $: lightConeInitialRank =
+    category === 'light-cones' && lightConeRanks.length
+      ? readBoundedInitialInteger(
+          browser ? $page.url.searchParams : emptySearchParams,
+          'rank',
+          lightConeRanks[0],
+          lightConeRanks[0],
+          lightConeRanks[lightConeRanks.length - 1]
+        )
+      : undefined;
+  $: lightConeInitialStateKey =
+    category === 'light-cones'
+      ? browser
+        ? `${detail.id}:${$page.url.search}`
+        : `${detail.id}:server`
+      : '';
   $: if (specialEffectsOpen && !specialEffectsAvailable) specialEffectsOpen = false;
   $: characterSectionNavItems = [
     { id: 'stats', label: m.detail_stats() },
@@ -70,9 +119,22 @@
     { id: 'traces', label: m.detail_traces() },
     { id: 'eidolons', label: m.detail_eidolons() },
     ...(equipmentRecommendation
-      ? [{ id: 'equipment-recommendation', label: m.detail_equipment_recommendation() }]
+      ? [
+          activePlayerCharacter
+            ? { id: 'equipment', label: m.player_equipment_title() }
+            : { id: 'equipment-recommendation', label: m.detail_equipment_recommendation() }
+        ]
       : [])
   ];
+  $: playerQueryState =
+    playerClientReady && category === 'characters'
+      ? readPlayerUidQuery($page.url.searchParams)
+      : ({ kind: 'idle', input: '' } satisfies PlayerUidQueryState);
+  $: playerContextKey = playerClientReady
+    ? `${category}:${detail.id}:${JSON.stringify($page.url.searchParams.getAll('uid'))}`
+    : `${category}:${detail.id}:idle`;
+  $: if (playerClientReady) synchronizePlayerContext(playerContextKey, playerQueryState);
+  $: activePlayerCharacter = playerContextState === 'active' ? playerCharacter : null;
 
   function openSpecialEffects(trigger: HTMLButtonElement, level: number) {
     specialEffectTrigger = trigger;
@@ -96,11 +158,50 @@
     if (enhancedEnabled) params.set('enhanced', '0');
     else params.delete('enhanced');
     const query = params.toString();
-    await goto(`${$page.url.pathname}${query ? `?${query}` : ''}${$page.url.hash}`, {
-      replaceState: true,
-      noScroll: true,
-      keepFocus: true
-    });
+    await goto(
+      `${trailingSlashHref($page.url.pathname)}${query ? `?${query}` : ''}${$page.url.hash}`,
+      {
+        replaceState: true,
+        noScroll: true,
+        keepFocus: true
+      }
+    );
+  }
+
+  function synchronizePlayerContext(key: string, query: PlayerUidQueryState): void {
+    if (handledPlayerContext === key) return;
+    handledPlayerContext = key;
+    playerRequestVersion += 1;
+    const version = playerRequestVersion;
+    playerCharacter = null;
+    playerUid = query.kind === 'valid' ? query.uid : undefined;
+
+    if (query.kind === 'idle') {
+      playerContextState = 'idle';
+      return;
+    }
+    if (query.kind === 'invalid') {
+      playerContextState = 'invalid';
+      return;
+    }
+
+    playerContextState = 'loading';
+    const characterId = String(detail.id);
+    void fetchPlayerProfile(query.uid)
+      .then((profile) => {
+        if (playerRequestVersion !== version) return;
+        const resolved = findPlayerCharacter(profile, characterId);
+        if (!resolved) {
+          playerContextState = 'missing';
+          return;
+        }
+        playerCharacter = resolved;
+        playerContextState = 'active';
+      })
+      .catch(() => {
+        if (playerRequestVersion !== version) return;
+        playerContextState = 'error';
+      });
   }
 </script>
 
@@ -123,52 +224,61 @@
         data-character-portrait={detail.id}
       />
       <div class="detail-profile-hero__gradient" aria-hidden="true"></div>
-      <div class="hero-identity-copy">
-        <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
-        <h1><GameText text={detail.name} /></h1>
-        {#if detail.fullName && detail.fullName !== detail.name}<p class="detail-subtitle">
-            <GameText text={detail.fullName} />
-          </p>{/if}
-        <div class="hero-identity-metadata">
-          {#if detail.rarity}<RarityStars rarity={detail.rarity} size="hero" />{/if}
-          {#if detail.pathName}<SemanticIconLabel
-              kind="path"
-              code={detail.path}
-              label={detail.pathName}
-              size="hero"
-              presentation="path-identity"
-            />{/if}
-          {#if detail.elementName}<SemanticIconLabel
-              kind="element"
-              code={detail.element}
-              label={detail.elementName}
-              color={getElementColor(detail.element)}
-              size="hero"
-              presentation="character-element-identity"
-            />{/if}
-        </div>
-        {#if hasEnhancedProfile}<div class="enhancement-control">
-            <span>{m.detail_enhancement()}</span>
-            <button
-              class="enhancement-switch"
-              type="button"
-              role="switch"
-              aria-label={m.detail_enhancement()}
-              aria-checked={enhancedEnabled}
-              on:click={toggleEnhanced}
-            >
-              <span class="enhancement-switch__track" aria-hidden="true"><span></span></span>
-              <strong
-                >{enhancedEnabled ? m.detail_enhanced_after() : m.detail_enhanced_before()}</strong
-              >
-            </button>
-          </div>{/if}
-        <div class="hero-description">
-          {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
-              class="muted"
-            >
-              {m.detail_intro_unavailable()}
+      <div class="detail-profile-hero__character-content">
+        {#if playerContextState !== 'idle'}
+          <div class="detail-profile-hero__player-context">
+            <PlayerCharacterContextNotice state={playerContextState} uid={playerUid} />
+          </div>
+        {/if}
+        <div class="hero-identity-copy">
+          <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
+          <h1><GameText text={detail.name} /></h1>
+          {#if detail.fullName && detail.fullName !== detail.name}<p class="detail-subtitle">
+              <GameText text={detail.fullName} />
             </p>{/if}
+          <div class="hero-identity-metadata">
+            {#if detail.rarity}<RarityStars rarity={detail.rarity} size="hero" />{/if}
+            {#if detail.pathName}<SemanticIconLabel
+                kind="path"
+                code={detail.path}
+                label={detail.pathName}
+                size="hero"
+                presentation="path-identity"
+              />{/if}
+            {#if detail.elementName}<SemanticIconLabel
+                kind="element"
+                code={detail.element}
+                label={detail.elementName}
+                color={getElementColor(detail.element)}
+                size="hero"
+                presentation="character-element-identity"
+              />{/if}
+          </div>
+          {#if hasEnhancedProfile}<div class="enhancement-control">
+              <span>{m.detail_enhancement()}</span>
+              <button
+                class="enhancement-switch"
+                type="button"
+                role="switch"
+                aria-label={m.detail_enhancement()}
+                aria-checked={enhancedEnabled}
+                on:click={toggleEnhanced}
+              >
+                <span class="enhancement-switch__track" aria-hidden="true"><span></span></span>
+                <strong
+                  >{enhancedEnabled
+                    ? m.detail_enhanced_after()
+                    : m.detail_enhanced_before()}</strong
+                >
+              </button>
+            </div>{/if}
+          <div class="hero-description">
+            {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
+                class="muted"
+              >
+                {m.detail_intro_unavailable()}
+              </p>{/if}
+          </div>
         </div>
       </div>
     </div>
@@ -177,11 +287,24 @@
       class="detail-profile-hero__inspection section-nav-target"
       aria-label={m.detail_stats_aria()}
     >
-      <BaseStatsPanel
-        progression={detail.baseStats}
-        energy={activeProfile.energy}
-        controlId={`character-level-${detail.id}`}
-      />
+      {#if playerContextState === 'loading'}
+        <p class="data-placeholder" aria-live="polite">{m.player_character_loading()}</p>
+      {:else if activePlayerCharacter}
+        <PlayerStatsPanel
+          stats={activePlayerCharacter.stats}
+          properties={relicProperties}
+          progression={detail.baseStats}
+          level={activePlayerCharacter.progression.level}
+          promotion={activePlayerCharacter.progression.promotion}
+          controlId={`character-level-${detail.id}`}
+        />
+      {:else}
+        <BaseStatsPanel
+          progression={detail.baseStats}
+          energy={activeProfile.energy}
+          controlId={`character-level-${detail.id}`}
+        />
+      {/if}
     </aside>
   </header>
 {:else if category === 'light-cones'}
@@ -210,16 +333,20 @@
       </div>
     </div>
     <aside class="detail-profile-hero__inspection" aria-label={m.detail_light_cone_stats_aria()}>
-      <BaseStatsPanel
-        progression={detail.baseStats}
-        controlId={`light-cone-level-${detail.id}`}
-        controlLabel={m.detail_light_cone_level()}
-      />
-      <div class="detail-inspection-divider" aria-hidden="true"></div>
-      {#if detail.passive.superimposition.levels.length}<SuperimpositionPanel
-          passive={detail.passive}
-          lightConeId={detail.id}
-        />{:else}<p class="data-placeholder">{m.detail_superimposition_unavailable()}</p>{/if}
+      {#key lightConeInitialStateKey}
+        <BaseStatsPanel
+          progression={detail.baseStats}
+          controlId={`light-cone-level-${detail.id}`}
+          controlLabel={m.detail_light_cone_level()}
+          initialLevel={lightConeInitialLevel}
+        />
+        <div class="detail-inspection-divider" aria-hidden="true"></div>
+        {#if detail.passive.superimposition.levels.length}<SuperimpositionPanel
+            passive={detail.passive}
+            lightConeId={detail.id}
+            initialRank={lightConeInitialRank}
+          />{:else}<p class="data-placeholder">{m.detail_superimposition_unavailable()}</p>{/if}
+      {/key}
     </aside>
   </header>
 {:else if category === 'relics'}
@@ -228,7 +355,7 @@
 
 {#if category === 'characters'}
   <SectionNav items={characterSectionNavItems} />
-  {#key profileMode}
+  {#key `${detail.id}:${profileMode}:${playerContextState}:${playerUid ?? ''}`}
     <section id="skills" class="detail-section section-nav-target">
       <SectionHeading level={1}>{m.detail_skills()}</SectionHeading>
       {#if activeProfile.skillCards.length}<div class="stack-list skill-card-grid">
@@ -237,27 +364,40 @@
               {specialEffectsAvailable}
               {specialEffectIconUrl}
               onOpenSpecialEffects={openSpecialEffects}
+              playerSkillTree={activePlayerCharacter?.skillTree}
             />{/each}
         </div>{:else}<p class="data-placeholder">{m.detail_skills_unavailable()}</p>{/if}
     </section>
     <section id="traces" class="detail-section section-nav-target">
       <SectionHeading level={1}>{m.detail_traces()}</SectionHeading>
-      {#if activeProfile.traces.length}<TraceCardPanel traces={activeProfile.traces} />{:else}<p
-          class="data-placeholder"
-        >
+      {#if activeProfile.traces.length}<TraceCardPanel
+          traces={activeProfile.traces}
+          playerSkillTree={activePlayerCharacter?.skillTree}
+        />{:else}<p class="data-placeholder">
           {m.detail_traces_unavailable()}
         </p>{/if}
     </section>
     <section id="eidolons" class="detail-section section-nav-target">
       <SectionHeading level={1}>{m.detail_eidolons()}</SectionHeading>
       {#if activeProfile.eidolons.length}<div class="stack-list">
-          {#each activeProfile.eidolons as rank (rank.id)}<EidolonCard eidolon={rank} />{/each}
+          {#each activeProfile.eidolons as rank (rank.id)}<EidolonCard
+              eidolon={rank}
+              playerState={activePlayerCharacter
+                ? resolvePlayerEidolonState(rank, activePlayerCharacter.progression.rank)
+                : undefined}
+            />{/each}
         </div>{:else}<p class="data-placeholder">{m.detail_eidolons_unavailable()}</p>{/if}
     </section>
   {/key}
-  {#if equipmentRecommendation}<EquipmentRecommendationSection
+  {#if activePlayerCharacter}
+    <PlayerEquipmentSection
+      character={activePlayerCharacter}
       recommendation={equipmentRecommendation}
-    />{/if}
+      {relicProperties}
+    />
+  {:else if equipmentRecommendation}
+    <EquipmentRecommendationSection recommendation={equipmentRecommendation} />
+  {/if}
   {#if specialEffectsAvailable}<SpecialEffectDialog
       open={specialEffectsOpen}
       entries={specialEffects}

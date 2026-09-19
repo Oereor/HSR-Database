@@ -21,7 +21,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
     const imageUrl = item.occurrence.portraitUrl!;
     expect(imageUrl).toMatch(/^\/generated-enemy-assets\//);
     expect((await request.get(imageUrl)).ok()).toBe(true);
-    await page.goto(`${prefix}/search?q=${encodeURIComponent(target.name)}`);
+    await page.goto(`${prefix}/search/?q=${encodeURIComponent(target.name)}`);
     const card = page.locator(selector).first();
     await card.scrollIntoViewIfNeeded();
     const image = card.locator('[data-enemy-portrait]');
@@ -30,7 +30,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
       .poll(() => image.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0))
       .toBe(true);
     const occurrence = target.occurrences[0].locator;
-    await page.goto(`${prefix}/endgame/${occurrence.mode}/${occurrence.groupId}`);
+    await page.goto(`${prefix}/endgame/${occurrence.mode}/${occurrence.groupId}/`);
     const detailImage = page.locator(selector).first().locator('[data-enemy-portrait]');
     await detailImage.scrollIntoViewIfNeeded();
     await expect(detailImage).toHaveAttribute('src', imageUrl);
@@ -39,7 +39,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
         detailImage.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)
       )
       .toBe(true);
-    await page.goto(`${prefix}/enemies/${target.id}`);
+    await page.goto(`${prefix}/enemies/${target.id}/`);
     const ordinaryImage = page.locator(`img[src="${imageUrl}"]`).first();
     await ordinaryImage.scrollIntoViewIfNeeded();
     await expect
@@ -47,7 +47,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
         ordinaryImage.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)
       )
       .toBe(true);
-    await page.goto(`${prefix}/enemies?sort=id`);
+    await page.goto(`${prefix}/enemies/?sort=id`);
     const overviewImage = page
       .locator(`a[href^="${prefix}/enemies/"] img[src^="/generated-enemy-assets/"]`)
       .first();
@@ -65,7 +65,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
       attempted = true;
       await route.fulfill({ status: 404, body: '' });
     });
-    await page.goto(`${prefix}/search?q=${encodeURIComponent(target.name)}`);
+    await page.goto(`${prefix}/search/?q=${encodeURIComponent(target.name)}`);
     const card = page.locator(selector).first();
     await card.scrollIntoViewIfNeeded();
     await expect.poll(() => attempted).toBe(true);

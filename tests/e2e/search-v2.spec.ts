@@ -17,18 +17,18 @@ const marchMatches = index.documents.flatMap((doc) =>
 );
 
 test('Search V2 exact 和 partial 共存，别名不进入 cards，清空后可重新搜索', async ({ page }) => {
-  await page.goto('/search?q=丹恒');
+  await page.goto('/search/?q=丹恒');
   const cards = page.locator('a.entity-overview-card');
   await expect(cards).toHaveCount(3);
-  await expect(cards.first()).toHaveAttribute('href', '/characters/1002');
-  await expect(page.locator('a[href="/characters/1213"]')).toBeVisible();
+  await expect(cards.first()).toHaveAttribute('href', '/characters/1002/');
+  await expect(page.locator('a[href="/characters/1213/"]')).toBeVisible();
   const input = page.getByPlaceholder('搜索角色、光锥、遗器、敌方单位…');
   await input.fill('三月七');
   await input.press('Enter');
   await expect(cards).toHaveCount(marchMatches.length);
   await expect(cards).toContainText(['三月七·存护', '三月七·巡猎']);
   for (const match of marchMatches) {
-    const card = page.locator(`a.entity-overview-card[href="/characters/${match.id}"]`);
+    const card = page.locator(`a.entity-overview-card[href="/characters/${match.id}/"]`);
     await expect(card).toContainText(match.name);
     if (!match.name.includes('三月七')) await expect(card).not.toContainText('三月七');
   }
@@ -38,7 +38,7 @@ test('Search V2 exact 和 partial 共存，别名不进入 cards，清空后可�
   await input.fill('丹恒饮月');
   await input.press('Enter');
   await expect(cards).toHaveCount(1);
-  await expect(cards).toHaveAttribute('href', '/characters/1213');
+  await expect(cards).toHaveAttribute('href', '/characters/1213/');
 });
 
 test('Search V2 分片失败保留普通结果并可在下一次提交重试', async ({ page }) => {
@@ -48,14 +48,14 @@ test('Search V2 分片失败保留普通结果并可在下一次提交重试', a
     if (requests === 1) await route.fulfill({ status: 503, body: 'unavailable' });
     else await route.continue();
   });
-  await page.goto('/search?q=迷惘之渊的裁定者');
+  await page.goto('/search/?q=迷惘之渊的裁定者');
   await expect(page.locator('.search-data-unavailable')).toContainText('部分高难模式资料');
-  await expect(page.locator('a.entity-overview-card[href="/enemies/4064012"]')).toBeVisible();
+  await expect(page.locator('a.entity-overview-card[href="/enemies/4064012/"]')).toBeVisible();
   await expect(page.locator('.empty-state')).toHaveCount(0);
   const input = page.getByPlaceholder('搜索角色、光锥、遗器、敌方单位…');
   await input.fill('锋镝');
   await input.press('Enter');
-  await expect(page.locator('a[href="/light-cones/20000"]')).toBeVisible();
+  await expect(page.locator('a[href="/light-cones/20000/"]')).toBeVisible();
   await input.fill('迷惘之渊的裁定者');
   await input.press('Enter');
   await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(4);
@@ -68,7 +68,7 @@ test('Search V2 初始化异常显示资料不可用，不误报无结果', asyn
   page.on('console', (message) => {
     if (message.type() === 'error') diagnostics.push(message.text());
   });
-  await page.route('**/search?*', async (route) => {
+  await page.route('**/search/?*', async (route) => {
     const response = await route.fetch();
     const body = await response.text();
     expect(body).toContain('searchIndex:{schemaVersion:3,normalizationVersion:1');
@@ -80,7 +80,7 @@ test('Search V2 初始化异常显示资料不可用，不误报无结果', asyn
       )
     });
   });
-  await page.goto('/search?q=三月七');
+  await page.goto('/search/?q=三月七');
   await expect(page.locator('.search-data-unavailable')).toContainText('部分搜索资料');
   await expect(page.locator('.empty-state')).toHaveCount(0);
   expect(diagnostics.some((text) => text.includes('搜索索引初始化失败'))).toBe(true);
@@ -99,7 +99,7 @@ test('Search V2 长结果全部可访问且保留模式和赛期顺序', async (
   const buckets = index.endgameTargets.filter((entry) =>
     normalizeSearchLabel(entry.name).includes(query)
   );
-  await page.goto(`/search?q=${query}`);
+  await page.goto(`/search/?q=${query}`);
   const modes = page.locator('.search-endgame-mode');
   await expect(modes).toHaveCount(
     new Set(buckets.flatMap((entry) => entry.occurrences.map(({ locator }) => locator.mode))).size
@@ -143,7 +143,7 @@ test('Search V2 长结果全部可访问且保留模式和赛期顺序', async (
 });
 
 test('Search V2 普通类别窗口保留第 101 条之后的结果，换查询后重置', async ({ page }) => {
-  await page.goto('/search?q=的');
+  await page.goto('/search/?q=的');
   const section = page.locator('section[aria-labelledby="search-results-enemies"]');
   await expect(section.locator('a.entity-overview-card')).toHaveCount(100);
   await expect(section.locator('[data-search-total]')).toContainText('已展示 100 / 105 个结果');
@@ -159,52 +159,52 @@ test('Search V2 普通类别窗口保留第 101 条之后的结果，换查询�
 });
 
 test('全局搜索只包含保留的简中领域', async ({ page }) => {
-  await page.goto('/search?q=三月七');
+  await page.goto('/search/?q=三月七');
   const hero = page.locator('.overview-hero');
   await expect(hero.getByText('GLOBAL SEARCH', { exact: true })).toBeVisible();
   await expect(hero.getByRole('heading', { level: 1, name: '全局搜索' })).toBeVisible();
   await expect(hero).toContainText('键入关键词以搜索角色、光锥、遗器和敌方单位等内容。');
-  await expect(page.locator('a[href="/characters/1001"]')).toBeVisible();
+  await expect(page.locator('a[href="/characters/1001/"]')).toBeVisible();
   await expect(page.getByRole('heading', { name: '物品' })).toHaveCount(0);
   await expect(page.getByPlaceholder('搜索角色、光锥、遗器、敌方单位…')).toBeVisible();
 });
 
 test('全局搜索以提交同步 URL，并支持刷新与前进后退', async ({ page }) => {
-  await page.goto('/search?q=三月七');
+  await page.goto('/search/?q=三月七');
   const input = page.getByPlaceholder('搜索角色、光锥、遗器、敌方单位…');
-  await expect(page.locator('a[href="/characters/1001"]')).toBeVisible();
+  await expect(page.locator('a[href="/characters/1001/"]')).toBeVisible();
   await input.fill('锋镝');
   await expect(page).toHaveURL(/q=%E4%B8%89%E6%9C%88%E4%B8%83/);
-  await expect(page.locator('a[href="/characters/1001"]')).toBeVisible();
-  await expect(page.locator('a[href="/light-cones/20000"]')).toHaveCount(0);
+  await expect(page.locator('a[href="/characters/1001/"]')).toBeVisible();
+  await expect(page.locator('a[href="/light-cones/20000/"]')).toHaveCount(0);
   await page.getByRole('button', { name: '搜索', exact: true }).click();
   await expect(page).toHaveURL(/q=%E9%94%8B%E9%95%9D/);
-  await expect(page.locator('a[href="/light-cones/20000"]')).toBeVisible();
+  await expect(page.locator('a[href="/light-cones/20000/"]')).toBeVisible();
 
   await page.goBack();
   await expect(page).toHaveURL(/q=%E4%B8%89%E6%9C%88%E4%B8%83/);
   await expect(input).toHaveValue('三月七');
-  await expect(page.locator('a[href="/characters/1001"]')).toBeVisible();
+  await expect(page.locator('a[href="/characters/1001/"]')).toBeVisible();
   await page.goForward();
   await expect(page).toHaveURL(/q=%E9%94%8B%E9%95%9D/);
   await page.reload();
   await expect(input).toHaveValue('锋镝');
-  await expect(page.locator('a[href="/light-cones/20000"]')).toBeVisible();
+  await expect(page.locator('a[href="/light-cones/20000/"]')).toBeVisible();
 
   await input.fill('');
   await input.press('Enter');
-  await expect(page).toHaveURL(/\/search$/);
+  await expect(page).toHaveURL(/\/search\/$/);
   await expect(page.getByRole('heading', { name: '开始探索' })).toBeVisible();
 });
 
 test('全局搜索复用四类 Overview cards，并隐藏空类别', async ({ page }) => {
   for (const [query, href, assertion] of [
-    ['卡芙卡', '/characters/1005', 'character'],
-    ['锋镝', '/light-cones/20000', 'light-cone'],
-    ['云无留迹的过客', '/relics/101', 'relic'],
-    ['银鬃尉官', '/enemies/1003010', 'enemy']
+    ['卡芙卡', '/characters/1005/', 'character'],
+    ['锋镝', '/light-cones/20000/', 'light-cone'],
+    ['云无留迹的过客', '/relics/101/', 'relic'],
+    ['银鬃尉官', '/enemies/1003010/', 'enemy']
   ] as const) {
-    await page.goto(`/search?q=${encodeURIComponent(query)}`);
+    await page.goto(`/search/?q=${encodeURIComponent(query)}`);
     const card = page.locator(`a.entity-overview-card[href="${href}"]`);
     await expect(card).toBeVisible();
     await expect(card).toHaveClass(/entity-overview-card/);
@@ -225,7 +225,7 @@ test('全局搜索复用四类 Overview cards，并隐藏空类别', async ({ pa
     }
   }
 
-  await page.goto('/search?q=卡芙卡');
+  await page.goto('/search/?q=卡芙卡');
   await expect(page.getByRole('heading', { level: 2, name: '角色', exact: true })).toBeVisible();
   await expect(
     page.getByRole('heading', { level: 2, name: '敌方单位', exact: true })
@@ -236,7 +236,7 @@ test('全局搜索复用四类 Overview cards，并隐藏空类别', async ({ pa
     page.getByRole('heading', { level: 2, name: '高难模式', exact: true })
   ).toBeVisible();
 
-  await page.goto('/search?q=完全不存在的词');
+  await page.goto('/search/?q=完全不存在的词');
   await expect(page.locator('.empty-state')).toHaveCount(1);
   await expect(
     page.getByRole('heading', { name: '未找到与「完全不存在的词」匹配的结果' })
@@ -273,10 +273,10 @@ test('全局搜索按模式与赛期展示真实 Endgame enemy occurrences', asy
   await expect(cards.locator('[data-endgame-speed]')).toHaveCount(4);
   await expect(cards.locator('[data-endgame-toughness]')).toHaveCount(4);
   await expect(cards.locator('.endgame-weaknesses')).toHaveCount(4);
-  await expect(endgame.locator('[data-endgame-enemy-card][href="/enemies/4064012"]')).toHaveCount(
+  await expect(endgame.locator('[data-endgame-enemy-card][href="/enemies/4064012/"]')).toHaveCount(
     4
   );
-  await expect(page.locator('a.entity-overview-card[href="/enemies/4064012"]')).toBeVisible();
+  await expect(page.locator('a.entity-overview-card[href="/enemies/4064012/"]')).toBeVisible();
 
   await page.goto(`/search?q=${encodeURIComponent('末日歧途的盗火者')}`);
   const seasons = page
@@ -288,7 +288,7 @@ test('全局搜索按模式与赛期展示真实 Endgame enemy occurrences', asy
 
 test('全局搜索不把赛期名称当作 Endgame 实体', async ({ page }) => {
   await page.goto(`/search?q=${encodeURIComponent('邓恩')}`);
-  await expect(page.locator('a.entity-overview-card[href="/enemies/1003014"]')).toBeVisible();
+  await expect(page.locator('a.entity-overview-card[href="/enemies/1003014/"]')).toBeVisible();
   await expect(page.getByRole('heading', { level: 2, name: '高难模式', exact: true })).toHaveCount(
     0
   );
@@ -332,7 +332,7 @@ test('全局搜索丢弃迟到分片，并在 Back/Forward 中复用分片缓存
     await new Promise((resolve) => setTimeout(resolve, 250));
     await route.continue();
   });
-  await page.goto('/search');
+  await page.goto('/search/');
   const input = page.getByPlaceholder('搜索角色、光锥、遗器、敌方单位…');
   await input.fill('迷惘之渊的裁定者');
   await input.press('Enter');

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test('隧洞遗器详情使用双栏 Hero、唯一套装效果和四张部件卡', async ({ page }) => {
   await page.setViewportSize({ width: 1600, height: 1000 });
-  await page.goto('/relics/101');
+  await page.goto('/relics/101/');
 
   const hero = page.locator('[data-relic-detail-hero]');
   await expect(hero).toBeVisible();
@@ -44,7 +44,7 @@ test('隧洞遗器详情使用双栏 Hero、唯一套装效果和四张部件卡
 });
 
 test('位面饰品只展示真实的 2 件套效果与两个部件', async ({ page }) => {
-  await page.goto('/relics/301');
+  await page.goto('/relics/301/');
   const hero = page.locator('[data-relic-detail-hero]');
   await expect(hero).toContainText('位面饰品');
   await expect(hero.locator('[data-effect-requirement]')).toHaveCount(1);
@@ -67,7 +67,7 @@ test('位面饰品只展示真实的 2 件套效果与两个部件', async ({ pa
 });
 
 test('长套装效果与图片错误保持可读降级', async ({ page }) => {
-  await page.goto('/relics/132');
+  await page.goto('/relics/132/');
   const hero = page.locator('[data-relic-detail-hero]');
   const longEffect = hero.locator('[data-effect-requirement="4"] p');
   await expect(longEffect).toContainText('持有【助燃】的我方目标造成的伤害提高15%');

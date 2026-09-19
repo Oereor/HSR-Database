@@ -51,7 +51,7 @@ for (const locale of ['zh-CN', 'en']) {
         ['light-cones', lightCones, '20000']
       ] as const) {
         const entry = entries.find((item) => item.id === id)!;
-        for (const route of [`/${type}`, '/search']) {
+        for (const route of [`/${type}`, '/search/']) {
           await page.goto(`${prefix}${route}?q=${encodeURIComponent(entry.name)}`);
           await checkCard(page.locator(`a[href="${prefix}/${type}/${id}"]`).first(), entry);
           await page
@@ -60,7 +60,7 @@ for (const locale of ['zh-CN', 'en']) {
             .screenshot({
               path: test
                 .info()
-                .outputPath(`${type}-${route === '/search' ? 'search' : 'catalog'}.png`)
+                .outputPath(`${type}-${route === '/search/' ? 'search' : 'catalog'}.png`)
             });
         }
       }
@@ -95,7 +95,7 @@ for (const locale of ['zh-CN', 'en']) {
     await page.goto(
       `${prefix}/characters?q=${encodeURIComponent(characters.find((entry) => entry.id === '1304')!.name)}`
     );
-    const card = page.locator(`a[href="${prefix}/characters/1304"]`);
+    const card = page.locator(`a[href="${prefix}/characters/1304/"]`);
     await card.scrollIntoViewIfNeeded();
     await card.locator('img').evaluateAll(async (images: HTMLImageElement[]) => {
       for (const image of images) image.loading = 'eager';
@@ -111,9 +111,9 @@ for (const locale of ['zh-CN', 'en']) {
       await expect(icon.locator('img')).toHaveCount(0);
     }
     const lightCone = lightCones.find((item) => item.id === '20000')!;
-    await page.goto(`${prefix}/light-cones?q=${encodeURIComponent(lightCone.name)}`);
+    await page.goto(`${prefix}/light-cones/?q=${encodeURIComponent(lightCone.name)}`);
     const pathIcon = page
-      .locator(`a[href="${prefix}/light-cones/20000"]`)
+      .locator(`a[href="${prefix}/light-cones/20000/"]`)
       .getByRole('img', { name: lightCone.pathName!, exact: true });
     await pathIcon.scrollIntoViewIfNeeded();
     await expect(pathIcon).toHaveAttribute('data-icon-missing', 'true');

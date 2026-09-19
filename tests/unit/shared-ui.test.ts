@@ -55,7 +55,7 @@ describe('SearchBar', () => {
     });
 
     expect(body).toContain('<form');
-    expect(body).toContain('action="/search"');
+    expect(body).toContain('action="/search/"');
     expect(body).toMatch(/<label[^>]*for="global-search"[^>]*>全局搜索<\/label>/);
     expect(body).toContain('id="global-search"');
     expect(body).toContain('name="q"');

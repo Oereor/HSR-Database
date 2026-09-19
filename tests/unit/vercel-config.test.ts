@@ -10,6 +10,7 @@ describe('Vercel deployment configuration', () => {
 
     expect(config).toEqual({
       $schema: 'https://openapi.vercel.sh/vercel.json',
+      trailingSlash: true,
       git: {
         deploymentEnabled: {
           '**': false,

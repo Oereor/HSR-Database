@@ -14,45 +14,45 @@ async function selectLocalNode(page: Page, label: string) {
 }
 
 test('Endgame 首页、模式和赛期可以直接访问', async ({ page }) => {
-  await page.goto('/endgame');
+  await page.goto('/endgame/');
   await expect(page.getByRole('heading', { name: '高难模式', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: /混沌回忆/ }).first()).toBeVisible();
 
   for (const mode of ['moc', 'pf', 'as', 'aa']) {
-    await page.goto(`/endgame/${mode}`);
+    await page.goto(`/endgame/${mode}/`);
     await expect(page.getByRole('link', { name: '← 高难模式总览', exact: true })).toHaveAttribute(
       'href',
-      '/endgame'
+      '/endgame/'
     );
   }
 
-  await page.goto('/endgame/moc');
+  await page.goto('/endgame/moc/');
   await expect(page.getByRole('heading', { name: '混沌回忆赛期', level: 1 })).toHaveClass(
     /sr-only/
   );
   await expect(page.getByRole('link', { name: /扫除风暴/ })).toBeVisible();
 
-  await page.goto('/endgame/moc/1034?encounter=5312');
+  await page.goto('/endgame/moc/1034/?encounter=5312');
   await expect(page.getByRole('link', { name: '← 混沌回忆赛期', exact: true })).toHaveAttribute(
     'href',
-    '/endgame/moc'
+    '/endgame/moc/'
   );
   await expect(page.getByRole('heading', { name: '扫除风暴', exact: true })).toBeVisible();
   await expect(page.locator('[data-battle-slot]')).toHaveCount(3);
 
-  await page.goto('/endgame/moc/1035');
+  await page.goto('/endgame/moc/1035/');
   await expect(page.getByRole('heading', { name: '混沌回忆 ID 1035', exact: true })).toBeVisible();
   await expect(
     page.locator('.endgame-season-hero').getByText('2026/09/28 – 2026/11/02', { exact: true })
   ).toBeVisible();
 
-  await page.goto('/en/endgame/moc/1035');
+  await page.goto('/en/endgame/moc/1035/');
   await expect(page.getByRole('heading', { name: 'MoC ID 1035', exact: true })).toBeVisible();
 });
 
 test('Endgame overview 四张模式卡片直达各自展示的推荐赛期', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto('/endgame');
+  await page.goto('/endgame/');
 
   await expect(page.getByText('DATABASE / ENDGAME', { exact: true })).toBeVisible();
   await expect(page.getByText('共 4 种模式', { exact: true })).toBeVisible();
@@ -68,10 +68,10 @@ test('Endgame overview 四张模式卡片直达各自展示的推荐赛期', asy
   const cards = page.locator('[data-endgame-overview-card]');
   await expect(cards).toHaveCount(4);
   for (const scenario of [
-    { mode: 'moc', season: '扫除风暴', href: '/endgame/moc/1034' },
-    { mode: 'pf', season: '构事生意', href: '/endgame/pf/2025' },
-    { mode: 'as', season: '仙客天狼', href: '/endgame/as/3020' },
-    { mode: 'aa', season: '军团再临', href: '/endgame/aa/9' }
+    { mode: 'moc', season: '扫除风暴', href: '/endgame/moc/1034/' },
+    { mode: 'pf', season: '构事生意', href: '/endgame/pf/2025/' },
+    { mode: 'as', season: '仙客天狼', href: '/endgame/as/3020/' },
+    { mode: 'aa', season: '军团再临', href: '/endgame/aa/9/' }
   ] as const) {
     const card = page.locator(`[data-endgame-overview-card="${scenario.mode}"]`);
     await expect(card).toContainText(scenario.season);
@@ -92,7 +92,7 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
 }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
 
-  await page.goto('/endgame/moc');
+  await page.goto('/endgame/moc/');
   await expect(page.locator('.endgame-mode-summary')).toHaveCount(0);
   await expect(page.getByText(/按楼层查看固定编队/)).toHaveCount(0);
   await expect(page.getByText('56 个赛期', { exact: true })).toHaveCount(0);
@@ -111,10 +111,10 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
   await expect(mocUnknown.locator('.endgame-season-card__date')).toHaveText(['-', '-']);
   await expect(page.locator('[data-endgame-season-card="historical"]')).toHaveCount(50);
   const sweep = page.getByRole('link', { name: '扫除风暴，查看赛期详情', exact: true });
-  await expect(sweep).toHaveAttribute('href', '/endgame/moc/1034');
+  await expect(sweep).toHaveAttribute('href', '/endgame/moc/1034/');
   await expect(sweep).toContainText('12 个关卡');
 
-  await page.goto('/endgame/pf');
+  await page.goto('/endgame/pf/');
   await expect(page.getByRole('heading', { name: '当前赛期', level: 2 })).toBeVisible();
   await expect(page.getByRole('heading', { name: '即将开放', level: 2 })).toBeVisible();
   await expect(page.getByRole('heading', { name: '历史赛期', level: 2 })).toBeVisible();
@@ -249,13 +249,13 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
   ).toBeLessThanOrEqual(1);
   await page.setViewportSize({ width: 1440, height: 1000 });
 
-  await page.goto('/endgame/as');
+  await page.goto('/endgame/as/');
   await expect(page.locator('[data-endgame-season-card="current"]')).toHaveCount(1);
   await expect(page.locator('[data-endgame-season-card="historical"]')).toHaveCount(19);
   await expect(page.getByRole('heading', { name: '即将开放', level: 2 })).toHaveCount(0);
   await expect(page.getByRole('heading', { name: /时间未知/, level: 2 })).toHaveCount(0);
 
-  await page.goto('/endgame/aa');
+  await page.goto('/endgame/aa/');
   await expect(page.getByRole('heading', { name: '时间未知', level: 2 })).toBeVisible();
   await expect(page.locator('[data-endgame-season-card="unknown"]')).toHaveCount(9);
   await expect(page.locator('[data-endgame-season-card="current"]')).toHaveCount(0);
@@ -264,13 +264,13 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
 });
 
 test('Endgame floating switcher 保持四项页面导航与独立页面标题', async ({ page }) => {
-  await page.goto('/endgame/pf/2025?encounter=20254');
+  await page.goto('/endgame/pf/2025/?encounter=20254');
   const modeNav = page.getByRole('navigation', { name: '高难模式切换' });
   const expectedModes = [
-    ['混沌回忆', '/endgame/moc'],
-    ['虚构叙事', '/endgame/pf'],
-    ['末日幻影', '/endgame/as'],
-    ['异相仲裁', '/endgame/aa']
+    ['混沌回忆', '/endgame/moc/'],
+    ['虚构叙事', '/endgame/pf/'],
+    ['末日幻影', '/endgame/as/'],
+    ['异相仲裁', '/endgame/aa/']
   ] as const;
   await expect(modeNav.getByRole('link')).toHaveCount(4);
   for (const [label, href] of expectedModes) {
@@ -289,10 +289,10 @@ test('Endgame floating switcher 保持四项页面导航与独立页面标题', 
 test('Endgame floating switcher 使用模式 accent 并在长页面滚动时吸附', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 800 });
   const expectations = [
-    ['/endgame/moc', '混沌回忆', '#8157f0'],
-    ['/endgame/pf', '虚构叙事', '#4fa4e1'],
-    ['/endgame/as', '末日幻影', '#d068ed'],
-    ['/endgame/aa', '异相仲裁', '#fb4554']
+    ['/endgame/moc/', '混沌回忆', '#8157f0'],
+    ['/endgame/pf/', '虚构叙事', '#4fa4e1'],
+    ['/endgame/as/', '末日幻影', '#d068ed'],
+    ['/endgame/aa/', '异相仲裁', '#fb4554']
   ] as const;
 
   for (const [url, label, accent] of expectations) {
@@ -308,7 +308,7 @@ test('Endgame floating switcher 使用模式 accent 并在长页面滚动时吸�
     ).toBe(accent);
   }
 
-  await page.goto('/endgame/moc');
+  await page.goto('/endgame/moc/');
   const switcher = page.locator('.endgame-mode-switcher');
   await page.evaluate(() => window.scrollTo(0, 1200));
   await page.waitForTimeout(500);
@@ -318,7 +318,7 @@ test('Endgame floating switcher 使用模式 accent 并在长页面滚动时吸�
 
 test('Endgame desktop local rail 保持窄栏、active ownership 与原 query href', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto('/endgame/moc/1034?encounter=5312');
+  await page.goto('/endgame/moc/1034/?encounter=5312');
   const rail = page.locator('.endgame-local-nav');
   await expect(rail).toBeVisible();
   expect((await rail.boundingBox())?.width).toBeLessThanOrEqual(160);
@@ -334,7 +334,7 @@ test('Endgame desktop local rail 保持窄栏、active ownership 与原 query hr
   await expect(page.locator('.endgame-encounter-nav, .aa-encounter-nav')).toHaveCount(0);
   await expect(page.locator('.endgame-local-nav-mobile')).toBeHidden();
 
-  await page.goto('/endgame/aa/8?encounter=804%3Anormal');
+  await page.goto('/endgame/aa/8/?encounter=804%3Anormal');
   const aaRail = page.locator('.endgame-local-nav');
   await expect(aaRail.getByRole('heading', { name: '骑士', exact: true })).toBeVisible();
   await expect(aaRail.getByRole('heading', { name: '王棋', exact: true })).toBeVisible();
@@ -346,27 +346,27 @@ test('Endgame desktop local rail 保持窄栏、active ownership 与原 query hr
 
 test('MoC、PF、AS 与全部 AA 关卡使用共享 Hero', async ({ page }) => {
   for (const scenario of [
-    { url: '/endgame/moc/1034?encounter=5312', metadata: [] },
+    { url: '/endgame/moc/1034/?encounter=5312', metadata: [] },
     {
-      url: '/endgame/pf/2025?encounter=20254',
+      url: '/endgame/pf/2025/?encounter=20254',
       groupId: '2025',
       title: '构事生意',
       metadata: ['2026/08/03 – 2026/09/14', '当前']
     },
     {
-      url: '/endgame/as/3020?encounter=30204',
+      url: '/endgame/as/3020/?encounter=30204',
       groupId: '3020',
       title: '仙客天狼',
       metadata: ['2026/08/31 – 2026/10/05', '当前']
     },
     {
-      url: '/endgame/aa/8?encounter=801%3Apreliminary',
+      url: '/endgame/aa/8/?encounter=801%3Apreliminary',
       groupId: '8',
       title: '尘世卷中',
       metadata: ['-']
     },
     {
-      url: '/endgame/aa/8?encounter=804%3Anormal',
+      url: '/endgame/aa/8/?encounter=804%3Anormal',
       groupId: '8',
       title: '尘世卷中',
       metadata: ['-']
@@ -384,7 +384,7 @@ test('MoC、PF、AS 与全部 AA 关卡使用共享 Hero', async ({ page }) => {
 });
 
 test('MoC 相同记忆紊流只展示一次并保留 GameText 格式', async ({ page }) => {
-  await page.goto('/endgame/moc/1034?encounter=5312');
+  await page.goto('/endgame/moc/1034/?encounter=5312');
   const turbulence = page.locator('[data-endgame-mechanics="memory-turbulence"]');
   await expect(turbulence).toHaveCount(1);
   const surface = turbulence.locator('.season-mechanic-card');
@@ -397,7 +397,7 @@ test('MoC 相同记忆紊流只展示一次并保留 GameText 格式', async ({ 
 });
 
 test('PF 战意机制复用 segmented MechanicSectionCard，荒腔走板保持静态中性', async ({ page }) => {
-  await page.goto('/endgame/pf/2025?encounter=20254');
+  await page.goto('/endgame/pf/2025/?encounter=20254');
   await expect(page.getByText(/本页按波次展示可能出现的敌人类型/)).toHaveCount(0);
   const battleWill = page.locator('[data-endgame-mechanics="battle-will"]');
   const fixedSurface = battleWill.locator('.season-mechanic-card');
@@ -435,7 +435,7 @@ test('PF 战意机制复用 segmented MechanicSectionCard，荒腔走板保持�
       }))
   ).toEqual({ cursor: 'auto', boxShadow: 'none' });
 
-  await page.goto('/endgame/pf/2001?encounter=20014');
+  await page.goto('/endgame/pf/2001/?encounter=20014');
   const historical = page.locator('[data-endgame-mechanics="battle-will"]');
   await expect(historical.locator('.season-mechanic-card__segment')).toHaveCount(1);
   await expect(historical.locator('[data-season-mechanic-segments]')).toHaveAttribute(
@@ -445,7 +445,7 @@ test('PF 战意机制复用 segmented MechanicSectionCard，荒腔走板保持�
 });
 
 test('AS 节点使用 BossDossier、共享敌方卡、首领特性与中性终焉公理', async ({ page }) => {
-  await page.goto('/endgame/as/3020?encounter=30204');
+  await page.goto('/endgame/as/3020/?encounter=30204');
   const aftertaste = page.locator('[data-endgame-mechanics="aftertaste"]');
   await expect(aftertaste.getByRole('heading', { name: '末法余烬', level: 2 })).toBeVisible();
   await expect(aftertaste.locator('.season-mechanic-card')).toHaveCount(1);
@@ -550,7 +550,7 @@ test('AS 节点使用 BossDossier、共享敌方卡、首领特性与中性终�
 
 test('AS 多敌人 slot 在固定一卡宽 roster 中纵向排列并保留完整战斗数据', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto('/endgame/as/3001?encounter=30014');
+  await page.goto('/endgame/as/3001/?encounter=30014');
   const slot = page.locator('[data-as-battle-slot="1"]');
   const enemies = slot.locator('[data-endgame-enemy-card]');
   await expect(enemies).toHaveCount(2);
@@ -587,7 +587,7 @@ test('AS 多敌人 slot 在固定一卡宽 roster 中纵向排列并保留完整
 });
 
 test('AS mismatch 继续使用实际 Stage 首领，并保留 slot-owned traits', async ({ page }) => {
-  await page.goto('/endgame/as/3011?encounter=30114');
+  await page.goto('/endgame/as/3011/?encounter=30114');
   const slot = page.locator('[data-as-battle-slot="2"]');
   await expect(slot.locator('[data-monster-id="203501204"]')).toBeVisible();
   await expect(slot.locator('[data-as-boss-traits] .endgame-mechanic-entry')).toHaveCount(4);
@@ -596,7 +596,7 @@ test('AS mismatch 继续使用实际 Stage 首领，并保留 slot-owned traits'
 });
 
 test('AS malformed 首领特性被省略且不产生空文案', async ({ page }) => {
-  await page.goto('/endgame/as/3003?encounter=30034');
+  await page.goto('/endgame/as/3003/?encounter=30034');
   const slot = page.locator('[data-as-battle-slot="2"]');
   await expect(slot.locator('[data-as-boss-traits] .endgame-mechanic-entry')).toHaveCount(3);
   await expect(slot).not.toContainText('枯木逢春');
@@ -609,7 +609,7 @@ test('AS malformed 首领特性被省略且不产生空文案', async ({ page })
 
 test('AA normal/hard 共用新详情组合，并在棋局特性与波次之间复用裁决象限', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto('/endgame/aa/8?encounter=804%3Anormal');
+  await page.goto('/endgame/aa/8/?encounter=804%3Anormal');
   const detail = page.locator('[data-aa-stage-detail]');
   const quadrant = page.locator('[data-endgame-mechanics="judgment-quadrant"]');
   const traits = page.locator('[data-endgame-mechanics="chess-traits"]');
@@ -669,7 +669,7 @@ test('AA normal/hard 共用新详情组合，并在棋局特性与波次之间�
 
 test('AA 骑士正文从 debuff 棋局特性进入共享波次，且不保留冗余 wrapper 标题', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto('/endgame/aa/8?encounter=801%3Apreliminary');
+  await page.goto('/endgame/aa/8/?encounter=801%3Apreliminary');
   const main = page.locator('.endgame-main-content');
   const knight = main.locator('[data-aa-stage-detail]');
   const singleTraits = knight.locator('[data-endgame-mechanics="chess-traits"]');
@@ -686,7 +686,7 @@ test('AA 骑士正文从 debuff 棋局特性进入共享波次，且不保留冗
   await expect(main.getByText('节点 1', { exact: true })).toHaveCount(0);
   await expect(main.locator('h2, h3, h4').first()).toHaveText('棋局特性');
 
-  await page.goto('/endgame/aa/8?encounter=802%3Apreliminary');
+  await page.goto('/endgame/aa/8/?encounter=802%3Apreliminary');
   const traits = page.locator('[data-endgame-mechanics="chess-traits"]');
   const surface = traits.locator('[data-mechanic-tone="debuff"]');
   const segments = traits.locator('.mechanic-section-card__segment');
@@ -773,7 +773,7 @@ test('AA 骑士正文从 debuff 棋局特性进入共享波次，且不保留冗
 });
 
 test('AA 王棋的棋局特性、裁决象限与波次保持纵向节奏并复用共享响应式', async ({ page }) => {
-  await page.goto('/endgame/aa/8?encounter=804%3Anormal');
+  await page.goto('/endgame/aa/8/?encounter=804%3Anormal');
   const detail = page.locator('[data-aa-stage-detail]');
   const traits = detail.locator('[data-endgame-mechanics="chess-traits"]');
   const quadrant = detail.locator('[data-endgame-mechanics="judgment-quadrant"]');
@@ -809,7 +809,7 @@ test('AA 王棋的棋局特性、裁决象限与波次保持纵向节奏并复�
 
 test('AA 单波单敌人自然使用共享 WaveLayout，不产生王棋专属布局', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto('/endgame/aa/2?encounter=204%3Anormal');
+  await page.goto('/endgame/aa/2/?encounter=204%3Anormal');
   const layout = page.locator('[data-aa-waves] [data-wave-layout="paired"]');
   const group = layout.locator('[data-endgame-wave-group]');
   const card = group.locator('[data-endgame-enemy-card]');
@@ -838,7 +838,7 @@ test('AA 单波单敌人自然使用共享 WaveLayout，不产生王棋专属布
 });
 
 test('PF 只显示波内唯一敌人类型', async ({ page }) => {
-  await page.goto('/endgame/pf/2025?encounter=20254');
+  await page.goto('/endgame/pf/2025/?encounter=20254');
   await expect(page.getByText(/重复生成、生成次数与先后顺序已省略/)).toHaveCount(0);
   const firstBattle = page.locator('[data-battle-slot="1"]');
   await expect(page.getByRole('heading', { name: '构事生意其四', level: 2 })).toBeVisible();
@@ -861,7 +861,7 @@ test('PF 只显示波内唯一敌人类型', async ({ page }) => {
 
 test('敌方实体卡采用 portrait-first 信息层级并保留全部战斗字段', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto('/endgame/moc/1034?encounter=5312');
+  await page.goto('/endgame/moc/1034/?encounter=5312');
   const card = page.locator('[data-endgame-enemy-card]').first();
   const artwork = card.locator('.endgame-enemy__artwork');
   const name = card.locator('.endgame-enemy__name');
@@ -899,14 +899,14 @@ test('敌方实体卡采用 portrait-first 信息层级并保留全部战斗字�
     paddingTop: '0px'
   });
 
-  await page.goto('/endgame/moc/101?encounter=108');
+  await page.goto('/endgame/moc/101/?encounter=108');
   await expect(page.locator('.endgame-enemy__count').first()).toHaveText(/^×[2-9]\d*$/);
 });
 
 test('PF 保留 compact variant 并固定一波一行，AS 与其它模式继续使用原布局', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
 
-  await page.goto('/endgame/pf/2025?encounter=20254');
+  await page.goto('/endgame/pf/2025/?encounter=20254');
   await expect(page.locator('[data-endgame-enemy-card]').first()).toHaveAttribute(
     'data-enemy-card-variant',
     'compact'
@@ -948,7 +948,7 @@ test('PF 保留 compact variant 并固定一波一行，AS 与其它模式继续
 
   await page.setViewportSize({ width: 1440, height: 1000 });
 
-  await page.goto('/endgame/as/3020?encounter=30204');
+  await page.goto('/endgame/as/3020/?encounter=30204');
   await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(3);
   expect(
     await page
@@ -959,7 +959,7 @@ test('PF 保留 compact variant 并固定一波一行，AS 与其它模式继续
   ).toBe(true);
   await expect(page.locator('[data-as-boss-profile], .as-enemy-profile-card')).toHaveCount(0);
 
-  await page.goto('/endgame/aa/8?encounter=804%3Ahard');
+  await page.goto('/endgame/aa/8/?encounter=804%3Ahard');
   await expect(page.locator('[data-endgame-enemy-card]').first()).toHaveAttribute(
     'data-enemy-card-variant',
     'standard'
@@ -967,7 +967,7 @@ test('PF 保留 compact variant 并固定一波一行，AS 与其它模式继续
 });
 
 test('PF 非 canonical Monster 展示具体实例弱点', async ({ page }) => {
-  await page.goto('/endgame/pf/2001?encounter=20011');
+  await page.goto('/endgame/pf/2001/?encounter=20011');
   const enemy = page.locator('[data-monster-id="800205005"]').first();
   await expect(enemy).toBeVisible();
   const weaknesses = enemy.locator('.endgame-weaknesses [data-icon-kind="element"]');
@@ -987,17 +987,17 @@ test('PF 非 canonical Monster 展示具体实例弱点', async ({ page }) => {
 
 test('四种 Endgame 模式的统一敌方卡使用整卡链接并显示可访问的弱点图标', async ({ page }) => {
   for (const url of [
-    '/endgame/moc/1034?encounter=5312',
-    '/endgame/pf/2025?encounter=20254',
-    '/endgame/as/3020?encounter=30204',
-    '/endgame/aa/8?encounter=804%3Ahard'
+    '/endgame/moc/1034/?encounter=5312',
+    '/endgame/pf/2025/?encounter=20254',
+    '/endgame/as/3020/?encounter=30204',
+    '/endgame/aa/8/?encounter=804%3Ahard'
   ]) {
     await page.goto(url);
     const card = page.locator('[data-endgame-enemy-card]').first();
     const templateId = await card.getAttribute('data-template-id');
     expect(templateId).not.toBeNull();
     expect(await card.evaluate((element) => element.tagName)).toBe('A');
-    await expect(card).toHaveAttribute('href', `/enemies/${templateId}`);
+    await expect(card).toHaveAttribute('href', `/enemies/${templateId}/`);
     await expect(card.locator('a')).toHaveCount(0);
     const weaknesses = page.locator(
       '[data-endgame-enemy-card] .endgame-weaknesses [data-icon-kind="element"]'
@@ -1015,11 +1015,11 @@ test('四种 Endgame 模式的统一敌方卡使用整卡链接并显示可访�
 });
 
 test('Endgame 敌方卡保留原生链接的点击、键盘与新标签页行为', async ({ page, context }) => {
-  const sourceUrl = '/endgame/moc/1034?encounter=5312';
+  const sourceUrl = '/endgame/moc/1034/?encounter=5312';
   await page.goto(sourceUrl);
   let card = page.locator('[data-endgame-enemy-card]').first();
   const href = await card.getAttribute('href');
-  expect(href).toMatch(/^\/enemies\/\d+$/);
+  expect(href).toMatch(/^\/enemies\/\d+\/$/);
   await expect(card).toHaveCSS('cursor', 'pointer');
   expect(await card.evaluate((element) => (element as HTMLElement).tabIndex)).toBe(0);
 
@@ -1045,7 +1045,7 @@ test('Endgame 敌方卡保留原生链接的点击、键盘与新标签页行为
 });
 
 test('AS 多阶段生命值显示完整整数、阶段数和属性图标', async ({ page }) => {
-  await page.goto('/endgame/as/3019?encounter=30194#battle-2');
+  await page.goto('/endgame/as/3019/?encounter=30194#battle-2');
   const boss = page.locator('[data-monster-id="401401304"]');
   await expect(boss).toBeVisible();
   await expect(boss.locator('[data-endgame-hp]')).toHaveText('14,628,489 × 2');
@@ -1076,7 +1076,7 @@ test('遗忘冽风难度 4 使用本地海报立绘和精确战斗属性', async
     if (response.request().resourceType() === 'image' && response.status() >= 400)
       failedImages.push(response.url());
   });
-  await page.goto('/endgame/as/3018?encounter=30184');
+  await page.goto('/endgame/as/3018/?encounter=30184');
   await page.waitForLoadState('networkidle');
   await expect(page.locator('[data-battle-slot]')).toHaveCount(3);
   const expectations = [
@@ -1101,7 +1101,7 @@ test('遗忘冽风难度 4 使用本地海报立绘和精确战斗属性', async
 });
 
 test('兵锋骑士难度 4 显示玩家侧韧性且不显示机制弹窗', async ({ page }) => {
-  await page.goto('/endgame/as/3019?encounter=30194');
+  await page.goto('/endgame/as/3019/?encounter=30194');
   for (const [monsterId, toughness] of [
     ['302401304', '300'],
     ['401401304', '480'],
@@ -1116,7 +1116,7 @@ test('兵锋骑士难度 4 显示玩家侧韧性且不显示机制弹窗', async
 });
 
 test('敌人立绘请求失败时保留完整数据并显示中性降级', async ({ page }) => {
-  await page.goto('/endgame/as/3018?encounter=30184');
+  await page.goto('/endgame/as/3018/?encounter=30184');
   const card = page.locator('[data-monster-id="406401204"]');
   const portrait = card.locator('[data-enemy-portrait]');
   await expect(portrait).toBeVisible();
@@ -1130,7 +1130,7 @@ test('敌人立绘请求失败时保留完整数据并显示中性降级', async
 });
 
 test('AA 王棋普通和绝境使用实际 spawned occurrence', async ({ page }) => {
-  await page.goto('/endgame/aa/8?encounter=804%3Ahard');
+  await page.goto('/endgame/aa/8/?encounter=804%3Ahard');
   await expect(page.locator('[data-monster-id="501403002"]')).toBeVisible();
   await expect(page.locator('[data-monster-id="5014030"]')).toHaveCount(0);
   await expect(page.locator('[data-monster-id="501403002"] [data-endgame-hp]')).toHaveText(
@@ -1148,7 +1148,7 @@ test('AA 王棋普通和绝境使用实际 spawned occurrence', async ({ page })
 
 test('Endgame 移动端折叠 local rail，dialog 支持 ESC、焦点返回与节点导航', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/endgame/moc/1034?encounter=5312');
+  await page.goto('/endgame/moc/1034/?encounter=5312');
   const modeNav = page.getByRole('navigation', { name: '高难模式切换' });
   const modeNavLayout = await modeNav.evaluate((element) => ({
     display: getComputedStyle(element).display,

@@ -1,6 +1,7 @@
 import { mkdir, mkdtemp, rename, rm } from 'node:fs/promises';
 import path from 'node:path';
 import type { VisualAssetManifest } from '../../src/lib/domain/visual-assets.js';
+import { resolveDataRoot } from '../data/paths.js';
 import {
   assertAssetOutputPaths,
   assertAssetRoot,
@@ -79,7 +80,8 @@ export interface SyncAssetsOptions {
 
 export async function syncAssets(options: SyncAssetsOptions = {}): Promise<VisualAssetManifest> {
   const env = options.env ?? process.env;
-  const requirements = options.requirements ?? (await readAssetRequirements());
+  const requirements =
+    options.requirements ?? (await readAssetRequirements(resolveDataRoot(env.HSR_DATA_ROOT)));
   const cached = await readAssetManifest();
   let root: string;
   let sourceCommit: string;
@@ -141,6 +143,9 @@ export async function syncAssets(options: SyncAssetsOptions = {}): Promise<Visua
   );
   console.log(
     `  角色立绘 ${manifest.characters.portraits.available.length}，缺失 ${manifest.characters.portraits.missing.length}，${mb(sizes.portraits)}`
+  );
+  console.log(
+    `  玩家头像 ${manifest.playerAvatars.available.length}，缺失 ${manifest.playerAvatars.missing.length}，${mb(sizes.playerAvatars)}`
   );
   console.log(
     `  角色详情 icon ${Object.keys(manifest.characterDetails.icons.resolved).length}，缺失 ${manifest.characterDetails.icons.missing.length}，去重文件 ${new Set(Object.values(manifest.characterDetails.icons.resolved)).size}，${mb(sizes.characterDetailIcons)}`

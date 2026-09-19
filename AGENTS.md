@@ -65,22 +65,38 @@ Due to special network environment, all Internet-related operations must go thro
 - Keep each character limited to one card per semantic skill category; variants and independent progressions remain inside that card.
 - Preserve established product and data invariants when performing visual-only refactors; do not change working business logic merely to simplify presentation code.
 
+## Verification discipline
+
+- Do not add tests that pin exact production copy for site messages or changelog entries. These user-maintained texts may change frequently; test generic locale, loader, or manifest logic with synthetic fixtures instead.
+- Prefer narrow product invariants over full product-output baselines. Do not make mutable copy, navigation ordering, or presentation details blocking CI contracts unless they are explicitly documented as stable product requirements; any broad audit baseline must remain manual and non-blocking unless every captured field is intentional contract surface.
+- Verification must be risk-based and targeted. Start with the smallest deterministic checks that cover the code changed in the current task; do not run every available test layer by default.
+- Prefer targeted test files, test-name filters, or Vitest `related --run` / `--changed` when suitable. Run the full unit-test suite only when the change affects shared foundations broadly, targeted results indicate cross-cutting risk, or the task is at an explicit phase/PR/merge/release boundary.
+- Do not duplicate the same assertion across unit, component, browser, deployment, and manual checks without a distinct risk being covered at each layer. Prefer the lowest-cost layer that can verify the behavior reliably.
+- Browser/E2E tests are required only for behavior that actually depends on browser integration, navigation, responsive behavior, accessibility interaction, or other cross-component behavior. Start with the directly relevant specs rather than the whole browser suite.
+- Production/deployment builds are not a default check for every edit. Run them when the change can affect generated output, data preparation, routing, deployment configuration, serverless Functions, or other build-time behavior, or when the task explicitly requires a phase-boundary build.
+- Do not repeatedly diagnose or rerun known pre-existing failures that are unrelated to the current diff. Record them once, distinguish them from regressions, and continue with the checks relevant to the current task.
+- Do not re-verify unchanged subsystems or remote behaviors that were already closed in an earlier phase unless the current change can reasonably affect them.
+- External-tool and authentication failures are stop conditions, not invitations to loop. After one clear failed attempt caused by environment, permissions, Deployment Protection, unavailable browser automation, or similar external constraints, stop that verification path, report what remains unverified, and provide a concise manual verification checklist. Do not spend extended time trying alternate bypasses.
+- Remote Vercel deployments are opt-in. Do not run `vercel deploy`, `vercel --prod`, or create a Preview deployment merely as a routine finishing check. Prefer local checks, `vercel build --target=preview`, and `vercel deploy --dry` where they provide sufficient evidence.
+- A remote Preview deployment is allowed only when the task explicitly requires validation of behavior that cannot be established locally or from the build output. By default, create at most one Preview deployment per task. A second Preview is justified only after a concrete platform-specific defect was found and fixed; explain the reason before redeploying. Production deployment always requires explicit user approval.
+- Do not disable or weaken Vercel Deployment Protection, create persistent automation-bypass credentials, or modify project protection settings just to complete automated verification. If protection blocks the required wire-level check, hand that small check to the user instead.
+- Keep verification proportional to the change. Once the implementation and relevant targeted checks are green, do not add extra test/build/deploy cycles solely to obtain a more exhaustive-looking report.
+
 ## Required checks
 
 Current architecture source of truth: [docs/architecture/localization-and-data-generation.md](docs/architecture/localization-and-data-generation.md). Phase and audit reports are historical/non-normative.
 
-After changing data-processing code, run the data validation and synchronization checks.
+Choose checks according to the surface changed; "applicable" does not mean "run every command below on every task."
 
-After changing visual-asset processing, verify both successful asset resolution and missing-asset fallback behavior.
-
-Before finishing, run the applicable commands for:
-
-- formatting;
-- linting;
-- TypeScript checking;
-- unit tests;
-- browser tests;
-- production build.
+- For changed source files, run targeted formatting/linting and the relevant TypeScript/Svelte checks.
+- For logic changes, run the directly related unit tests first; expand to broader tests only when the change or failures justify it.
+- After changing data-processing code, run the relevant data validation and synchronization checks.
+- After changing visual-asset processing, verify both successful asset resolution and missing-asset fallback behavior.
+- After changing routing, generated route output, deployment configuration, or Vercel Functions, run the relevant route/build checks such as `vercel build --target=preview`; a remote Preview is not implied.
+- After changing browser-visible interaction or responsive/navigation behavior, run the directly relevant browser tests.
+- Run a full production build only when the change can affect production build output or when explicitly required for a phase/PR/merge/release gate.
+- Run the full unit/browser regression suites only at an explicit broad regression boundary or when targeted verification identifies cross-cutting risk.
+- Before finishing, inspect the final diff/status and ensure the checks actually exercised the changed behavior.
 
 Finally verify that both external repositories have the same Git status they had before the task began:
 

@@ -93,11 +93,6 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 | `pnpm deploy:build`     | 使用固定 upstream 版本执行完整部署构建 |
 | `pnpm upstreams:update` | 检查并更新 upstream lock               |
 
-### 命令准备职责
-
-`pnpm product:baseline:check`、`pnpm product:baseline:update` 和
-`pnpm product:baseline:search:update` 是 self-preparing 命令。它们会依次准备站点消息、产品数据、敌人资源和通用视觉资源，再捕获当前产品输出。fixture 更新仍然只能通过带有明确 `--reason` 的 update 命令执行。
-
 `pnpm test` 和 `pnpm data:validate` 使用 prepared-workspace 模型，不会自行准备全部 generated inputs。clean pinned workspace 应先运行 `pnpm ci:prepare`；普通 `pnpm build`、CI 和部署命令继续保持各自现有的准备职责。
 
 ## 项目结构
@@ -184,3 +179,13 @@ title: '更新标题'
 游戏名称、角色、图片及其他相关资产的权利归其各自权利人所有。第三方数据与视觉资源遵循其原始来源的许可条款。
 
 仓库根目录的 MIT License 仅适用于本项目自行编写的代码，不覆盖第三方数据、图片或游戏知识产权。
+
+## 致谢
+
+本项目的实现离不开以下开源项目与社区服务：
+
+- [TurnBasedGameData](https://github.com/DimbreathBot/TurnBasedGameData) — 提供《崩坏：星穹铁道》的游戏数据，是本站静态数据的主要来源之一。
+- [StarRailRes](https://github.com/Mar-7th/StarRailRes) — 提供角色、光锥、遗器、图标等游戏资源，用于本站的本地资源展示。
+- [MiHoMo API](https://api.mihomo.me/docs) — 提供公开玩家信息查询服务，用于本站的「玩家信息 / Player Info」功能。
+
+特别感谢以上项目及其维护者，使 HSR-Database 能够建立在稳定、开放的社区数据与资源之上。

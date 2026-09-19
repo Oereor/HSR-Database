@@ -7,6 +7,7 @@ import {
   resolveCharacterPreviewAsset,
   resolveCharacterPortraitAsset,
   resolveCharacterDetailIconAsset,
+  resolvePlayerAvatarAsset,
   resolveLightConePreviewAsset,
   resolveLightConePortraitAsset,
   resolveRelicPieceIconAsset,
@@ -42,6 +43,7 @@ import {
   readRelicSetIconSources,
   readAssetManifest,
   readAssetRequirements,
+  readPlayerAvatarRequirements,
   VISUAL_ASSET_SCHEMA_VERSION,
   resolveIndexedAssetPath,
   assetOutputPaths,
@@ -59,6 +61,7 @@ const available = (values: string[]): AssetAvailability => ({ available: values,
 const manifest = (options?: {
   previews?: string[];
   portraits?: string[];
+  playerAvatars?: string[];
   lightConePreviews?: string[];
   lightConePortraits?: string[];
   relicIcons?: string[];
@@ -78,6 +81,7 @@ const manifest = (options?: {
     previews: available(options?.previews ?? []),
     portraits: available(options?.portraits ?? [])
   },
+  playerAvatars: available(options?.playerAvatars ?? []),
   characterDetails: {
     icons: { resolved: options?.characterDetailIcons ?? {}, missing: [] }
   },
@@ -141,7 +145,8 @@ describe('视觉资源管线', () => {
       'icon/skill',
       'icon/element',
       'icon/path',
-      'icon/sign'
+      'icon/sign',
+      'icon/avatar'
     ]) {
       await mkdir(path.join(root, relative), { recursive: true });
     }
@@ -169,6 +174,7 @@ describe('视觉资源管线', () => {
     const source = manifest({
       previews: ['1001'],
       portraits: ['1001'],
+      playerAvatars: ['201001'],
       lightConePreviews: ['20000'],
       lightConePortraits: ['20000'],
       relicIcons: ['101'],
@@ -188,6 +194,9 @@ describe('视觉资源管线', () => {
     );
     expect(resolveCharacterPortraitAsset('1001', source)).toBe(
       '/generated-assets/characters/portrait/1001.webp'
+    );
+    expect(resolvePlayerAvatarAsset('201001', source)).toBe(
+      '/generated-assets/player-avatars/201001.png'
     );
     expect(resolveCharacterDetailIconAsset('skill-tree--1407002', source)).toBe(
       '/generated-assets/character-details/icons/skill/1407_skill.png'
@@ -250,6 +259,7 @@ describe('视觉资源管线', () => {
     });
     expect(NAVIGATION_ICON_SOURCE_NAMES).toEqual({
       overview: 'AllIcon',
+      player: 'FriendIcon',
       characters: 'AvatarIcon',
       'light-cones': 'ShopLightConIcon',
       relics: 'InventoryFosterIcon',
@@ -267,6 +277,7 @@ describe('视觉资源管线', () => {
     const source = manifest({
       previews: ['1001'],
       portraits: ['1001'],
+      playerAvatars: ['201001'],
       lightConePreviews: ['20000'],
       lightConePortraits: ['20000'],
       elements: ['Fire'],
@@ -279,6 +290,7 @@ describe('视觉资源管线', () => {
     expect(
       manifestCoversRequirements(source, {
         characterIds: ['1001'],
+        playerAvatars: [{ id: '201001', sourceFileName: '1001.png' }],
         characterDetailIconKeys: [],
         lightConeIds: ['20000'],
         relicSetIds: [],
@@ -295,6 +307,7 @@ describe('视觉资源管线', () => {
     expect(
       manifestCoversRequirements(source, {
         characterIds: ['1001', '1002'],
+        playerAvatars: [{ id: '201001', sourceFileName: '1001.png' }],
         characterDetailIconKeys: [],
         lightConeIds: ['20000'],
         relicSetIds: [],
@@ -313,6 +326,7 @@ describe('视觉资源管线', () => {
   it('requirement fingerprint 会使同一 upstream SHA 下的新增需求使缓存失效', () => {
     const requirements = {
       characterIds: ['1001'],
+      playerAvatars: [],
       characterDetailIconKeys: [],
       lightConeIds: [],
       relicSetIds: [],
@@ -403,11 +417,16 @@ describe('视觉资源管线', () => {
     const requirements = await readAssetRequirements();
     const generated = await readAssetManifest();
     expect(requirements.lightConeIds).toHaveLength(169);
+    expect(requirements.playerAvatars).toHaveLength(93);
     expect(requirements.relicSetIds).toHaveLength(60);
-    expect(new Set(requirements.relicPropertyIcons.map((entry) => entry.iconKey)).size).toBe(18);
+    expect(new Set(requirements.relicPropertyIcons.map((entry) => entry.iconKey)).size).toBe(19);
+    expect(requirements.relicPropertyIcons).toContainEqual({
+      propertyType: 'ElationDamageAddedRatioBase',
+      iconKey: 'IconJoy'
+    });
     expect(requirements.elements).toHaveLength(7);
     expect(requirements.paths).toHaveLength(9);
-    expect(requirements.navigationIcons).toHaveLength(6);
+    expect(requirements.navigationIcons).toHaveLength(7);
     expect(requirements.brandIcons).toEqual(['train-party']);
     expect(requirements.endgameModeIcons).toEqual([
       'AbyssThemeTabIcon',
@@ -425,6 +444,11 @@ describe('视觉资源管线', () => {
     }
     expect(generated!.characters.previews.missing).toEqual([]);
     expect(generated!.characters.portraits.missing).toEqual([]);
+    expect(generated!.playerAvatars.available).toHaveLength(93);
+    expect(generated!.playerAvatars.missing).toEqual([]);
+    expect(resolvePlayerAvatarAsset('201001', generated)).toBe(
+      '/generated-assets/player-avatars/201001.png'
+    );
     expect(Object.keys(generated!.characterDetails.icons.resolved).sort()).toEqual(
       [...requirements.characterDetailIconKeys].sort()
     );
@@ -458,7 +482,10 @@ describe('视觉资源管线', () => {
     expect(generated!.lightCones.portraits.missing).toEqual([]);
     expect(generated!.relics.icons.available).toHaveLength(60);
     expect(generated!.relics.pieces.available).toHaveLength(requirements.relicPieces.length);
-    expect(generated!.relicProperties.icons.available).toHaveLength(18);
+    expect(generated!.relicProperties.icons.available).toHaveLength(19);
+    expect(resolveRelicPropertyIconAsset('IconJoy', generated)).toBe(
+      '/generated-assets/relic-properties/IconJoy.png'
+    );
     expect(generated!.navigation.icons.available).toEqual(requirements.navigationIcons);
     expect(generated!.branding.icons.available).toEqual(requirements.brandIcons);
     expect(resolveBrandIconAsset('train-party', generated)).toBe(
@@ -471,6 +498,42 @@ describe('视觉资源管线', () => {
     expect(generated).not.toHaveProperty('characterNames');
   });
 
+  it('玩家头像 authoritative mapping 唯一且全部解析到本地视觉资源', async () => {
+    const requirements = await readPlayerAvatarRequirements();
+    const root = assertAssetRoot(resolveAssetRoot());
+    const sourceFiles = new Set(await readdir(path.join(root, 'icon', 'avatar')));
+
+    expect(requirements).toHaveLength(93);
+    expect(new Set(requirements.map(({ id }) => id)).size).toBe(93);
+    expect(new Set(requirements.map(({ sourceFileName }) => sourceFileName)).size).toBe(93);
+    expect(requirements.find(({ id }) => id === '201001')).toEqual({
+      id: '201001',
+      sourceFileName: '1001.png'
+    });
+    expect(requirements.every(({ sourceFileName }) => sourceFiles.has(sourceFileName))).toBe(true);
+  });
+
+  it('视觉资源需求显式读取 deployment prepared data root，而不回退到本地 sibling', async () => {
+    const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-assets-data-root-'));
+    temporaryDirectories.push(root);
+    const excelOutput = path.join(root, 'ExcelOutput');
+    await mkdir(excelOutput, { recursive: true });
+    await writeFile(
+      path.join(excelOutput, 'AvatarPlayerIcon.json'),
+      JSON.stringify([
+        {
+          ID: 201001,
+          ImagePath: 'SpriteOutput/AvatarRoundIcon/Avatar/1001.png'
+        }
+      ])
+    );
+    vi.stubEnv('HSR_DATA_ROOT', path.join(root, 'missing-global-root'));
+
+    const requirements = await readAssetRequirements(root);
+
+    expect(requirements.playerAvatars).toEqual([{ id: '201001', sourceFileName: '1001.png' }]);
+  });
+
   it('空 manifest 安全降级且不暴露任何 URL', async () => {
     const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-assets-empty-'));
     temporaryDirectories.push(root);
@@ -480,6 +543,7 @@ describe('视觉资源管线', () => {
     const parsed = JSON.parse(await readFile(file, 'utf8')) as VisualAssetManifest;
     expect(resolveCharacterPreviewAsset('1001', parsed)).toBeUndefined();
     expect(resolveCharacterPortraitAsset('1001', parsed)).toBeUndefined();
+    expect(resolvePlayerAvatarAsset('201001', parsed)).toBeUndefined();
     expect(resolveCharacterDetailIconAsset('skill-tree--1407002', parsed)).toBeUndefined();
     expect(resolveLightConePreviewAsset('20000', parsed)).toBeUndefined();
     expect(resolveLightConePortraitAsset('20000', parsed)).toBeUndefined();
@@ -776,6 +840,7 @@ describe('视觉资源管线', () => {
       root,
       {
         characterIds: ['1001', '1002', '1003'],
+        playerAvatars: [],
         characterDetailIconKeys: [],
         lightConeIds: [],
         relicSetIds: [],
@@ -841,6 +906,7 @@ describe('视觉资源管线', () => {
       root,
       {
         characterIds: ['1001', '1002', '1003'],
+        playerAvatars: [],
         characterDetailIconKeys: [],
         lightConeIds: [],
         relicSetIds: [],
@@ -898,6 +964,7 @@ describe('视觉资源管线', () => {
         root,
         {
           characterIds: ['1001'],
+          playerAvatars: [],
           characterDetailIconKeys: [],
           lightConeIds: [],
           relicSetIds: [],
@@ -928,7 +995,8 @@ describe('视觉资源管线', () => {
       requirements.relicPropertyIcons
     );
     expect(setSources.size).toBe(60);
-    expect(propertySources.size).toBe(18);
+    expect(propertySources.size).toBe(19);
+    expect(path.basename(propertySources.get('IconJoy')!)).toBe('IconJoy.png');
     for (const [id, source] of setSources) {
       expect(path.basename(source)).toBe(`${id}.png`);
       expect(path.basename(source)).not.toMatch(/_\d+\.png$/);

@@ -6,9 +6,13 @@
 
   export let passive: LightConePassiveSkill;
   export let lightConeId: string;
+  export let initialRank: number | undefined = undefined;
 
   $: effect = passive.superimposition;
-  let selectedIndex = 0;
+  let selectedIndex = Math.max(
+    0,
+    passive.superimposition.levels.findIndex(({ level }) => level === initialRank)
+  );
   $: maxIndex = Math.max(0, effect.levels.length - 1);
   $: if (selectedIndex > maxIndex) selectedIndex = maxIndex;
   $: selected = effect.levels[selectedIndex];

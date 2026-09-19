@@ -13,6 +13,7 @@ const manifest = manifestJson as VisualAssetManifest;
 const sets = {
   preview: new Set(manifest.characters.previews.available),
   portrait: new Set(manifest.characters.portraits.available),
+  playerAvatar: new Set(manifest.playerAvatars.available),
   lightConePreview: new Set(manifest.lightCones.previews.available),
   lightConePortrait: new Set(manifest.lightCones.portraits.available),
   relicIcon: new Set(manifest.relics.icons.available),
@@ -63,6 +64,19 @@ export function resolveCharacterPortraitAsset(
     'characters/portrait',
     'webp',
     source === manifest ? sets.portrait : undefined
+  );
+}
+
+export function resolvePlayerAvatarAsset(
+  avatarId: string,
+  source: VisualAssetManifest = manifest
+): string | undefined {
+  return resolveAsset(
+    avatarId,
+    source.playerAvatars,
+    'player-avatars',
+    'png',
+    source === manifest ? sets.playerAvatar : undefined
   );
 }
 
@@ -227,6 +241,7 @@ export const getCharacterPreviewUrl = (id: string): string | undefined =>
   resolveCharacterPreviewAsset(id);
 export const getCharacterPortraitUrl = (id: string): string | undefined =>
   resolveCharacterPortraitAsset(id);
+export const getPlayerAvatarUrl = (id: string): string | undefined => resolvePlayerAvatarAsset(id);
 export const getCharacterDetailIconUrl = (
   iconKey: CharacterDetailIconKey | undefined
 ): string | undefined => resolveCharacterDetailIconAsset(iconKey);

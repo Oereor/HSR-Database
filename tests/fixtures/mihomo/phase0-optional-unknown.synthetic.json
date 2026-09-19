@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source": "synthetic Phase 0 guard vectors",
+  "player": {
+    "avatar": null,
+    "space_info": null
+  },
+  "characters": [
+    {
+      "id": "999999",
+      "enhanced": false,
+      "skill_trees": [],
+      "light_cone": {
+        "id": "999998"
+      },
+      "relics": [
+        {
+          "set_id": "999997",
+          "type": 1,
+          "main_affix": null,
+          "sub_affix": [
+            {
+              "type": "UnknownPhase0Property",
+              "display": "?",
+              "percent": false,
+              "count": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

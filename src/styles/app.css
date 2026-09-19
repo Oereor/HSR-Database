@@ -781,6 +781,19 @@ footer a {
 .skill-level-control output {
   color: var(--gold-soft);
 }
+.skill-level-control__value {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+.skill-level-control__value small {
+  color: var(--text-secondary);
+  font-size: var(--font-helper);
+}
+.skill-level-control__label {
+  color: var(--text-secondary);
+  font-size: var(--font-meta-key);
+}
 .skill-level-control label {
   color: var(--text-secondary);
   font-size: var(--font-meta-key);
@@ -795,6 +808,51 @@ footer a {
   margin: 0.65rem 0 0.2rem;
   padding: 0;
   accent-color: var(--gold);
+}
+.skill-level-control--readonly input[type='range']:disabled {
+  appearance: none;
+  background: transparent;
+  opacity: 1;
+  accent-color: var(--gold);
+  cursor: default;
+}
+.skill-level-control--readonly input[type='range']:disabled::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--gold) 0 var(--level-progress),
+    var(--border-strong) var(--level-progress) 100%
+  );
+}
+.skill-level-control--readonly input[type='range']:disabled::-webkit-slider-thumb {
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
+  border: 2px solid var(--surface);
+  border-radius: 50%;
+  appearance: none;
+  background: var(--gold);
+}
+.skill-level-control--readonly input[type='range']:disabled::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--border-strong);
+}
+.skill-level-control--readonly input[type='range']:disabled::-moz-range-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--gold);
+}
+.skill-level-control--readonly input[type='range']:disabled::-moz-range-thumb {
+  border: 2px solid var(--surface);
+  background: var(--gold);
+}
+.skill-level-control--unresolved p {
+  margin: var(--space-2) 0 0;
+  color: var(--text-secondary);
+  font-size: var(--font-helper);
+  line-height: 1.5;
 }
 .skill-level-range span {
   color: var(--text-secondary);
@@ -1098,6 +1156,55 @@ footer a {
   justify-content: space-between;
   gap: 0.75rem;
 }
+.trace-card__tags {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-1);
+}
+.player-progression-state {
+  display: inline-flex;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  padding: 0.16rem 0.42rem;
+  color: var(--gold-soft);
+  font-size: 0.6875rem;
+  font-weight: 650;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.player-progression-state[data-player-state-label='inactive'] {
+  border-color: var(--border);
+  color: var(--text-secondary);
+}
+.player-progression-state[data-player-state-label='unresolved'] {
+  border-style: dashed;
+  color: var(--text-muted);
+}
+.trace-card[data-player-state='inactive'] {
+  border-color: var(--border);
+  background: rgb(14 20 34 / 74%);
+  box-shadow: none;
+  filter: grayscale(1);
+}
+.trace-card[data-player-state='inactive']:hover {
+  border-color: var(--border);
+  box-shadow: none;
+}
+.trace-card[data-player-state='inactive'] .trace-card__heading,
+.trace-card[data-player-state='inactive'] .trace-card__condition,
+.trace-card[data-player-state='inactive'] .trace-card__description,
+.trace-card[data-player-state='inactive'] [data-skill-extra-effects] {
+  opacity: 0.72;
+}
+.trace-card[data-player-state='inactive'] .trace-card__identity > img,
+.trace-card[data-player-state='inactive'] .trace-card__title--icon img {
+  opacity: 0.68;
+}
+.trace-card[data-player-state='unresolved'] {
+  border-style: dashed;
+}
 .trace-card__heading h3 {
   min-width: 0;
   margin: 0;
@@ -1200,9 +1307,28 @@ footer a {
 .rank-card {
   display: flex;
   gap: 0.9rem;
+  border-color: var(--border-strong);
+  background:
+    radial-gradient(circle at 8% 20%, rgb(215 181 109 / 9%), transparent 44%), rgb(14 20 34 / 88%);
 }
-.rank-card > div {
+.rank-card__content {
+  flex: 1 1 auto;
   min-width: 0;
+}
+.rank-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.rank-card[data-player-state='inactive'] {
+  border-color: var(--border);
+  background: rgb(14 20 34 / 72%);
+}
+.rank-card[data-player-state='inactive'] > .rank-icon,
+.rank-card[data-player-state='inactive'] h3,
+.rank-card[data-player-state='inactive'] .rank-number {
+  opacity: 0.58;
 }
 .rank-icon {
   width: 3.25rem;

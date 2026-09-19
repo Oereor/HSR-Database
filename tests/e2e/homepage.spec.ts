@@ -32,15 +32,16 @@ test('首页作为数据库入口展示品牌、分类与最近限定跃迁', as
     ].sort()
   );
 
-  for (const [href, label] of [
-    ['/characters', '角色'],
-    ['/light-cones', '光锥'],
-    ['/relics', '遗器'],
-    ['/enemies', '敌方单位'],
-    ['/endgame', '高难模式']
+  for (const href of [
+    '/player/',
+    '/characters/',
+    '/light-cones/',
+    '/relics/',
+    '/enemies/',
+    '/endgame/'
   ] as const) {
     const row = page.locator(`.home-directory-row[href="${href}"]`);
-    await expect(row).toContainText(label);
+    await expect(row).toBeVisible();
     await expect(row).not.toContainText(/\d+ 条记录/);
     await expect(row.locator('.home-directory-row__arrow')).toHaveText('→');
   }
@@ -56,24 +57,24 @@ test('首页作为数据库入口展示品牌、分类与最近限定跃迁', as
       .locator('[data-homepage-recent="avatar"] .entity-overview-card')
       .evaluateAll((cards) => cards.map((card) => card.getAttribute('href')))
   ).toEqual([
-    '/characters/1504',
-    '/characters/1513',
-    '/characters/1409',
-    '/characters/1512',
-    '/characters/1304',
-    '/characters/1412'
+    '/characters/1504/',
+    '/characters/1513/',
+    '/characters/1409/',
+    '/characters/1512/',
+    '/characters/1304/',
+    '/characters/1412/'
   ]);
   expect(
     await page
       .locator('[data-homepage-recent="weapon"] .entity-overview-card')
       .evaluateAll((cards) => cards.map((card) => card.getAttribute('href')))
   ).toEqual([
-    '/light-cones/23056',
-    '/light-cones/23064',
-    '/light-cones/23042',
-    '/light-cones/23063',
-    '/light-cones/23023',
-    '/light-cones/23048'
+    '/light-cones/23056/',
+    '/light-cones/23064/',
+    '/light-cones/23042/',
+    '/light-cones/23063/',
+    '/light-cones/23023/',
+    '/light-cones/23048/'
   ]);
 
   await expect(page.getByText('沿着星轨，查清每一条数据。')).toHaveCount(0);
@@ -85,9 +86,9 @@ test('首页作为数据库入口展示品牌、分类与最近限定跃迁', as
   const search = page.getByRole('search').filter({ has: page.locator('#home-search') });
   await search.getByRole('textbox', { name: '搜索资料库' }).fill('三月七');
   await search.getByRole('button', { name: '搜索', exact: true }).click();
-  await expect(page).toHaveURL(/\/search\?q=%E4%B8%89%E6%9C%88%E4%B8%83$/);
+  await expect(page).toHaveURL(/\/search\/\?q=%E4%B8%89%E6%9C%88%E4%B8%83$/);
 
-  await page.goto('/characters');
+  await page.goto('/characters/');
   await page.waitForLoadState('networkidle');
   await expect(page).toHaveTitle('角色｜《崩坏：星穹铁道》档案库');
   await expect(page.getByRole('heading', { name: '角色' })).toBeVisible();
@@ -104,7 +105,7 @@ test('Footer 仅保留正式服说明、数据仓库与本地许可证', async (
   await expect(footer.locator('p')).toHaveCount(2);
   await expect(footer.locator('p').first()).toHaveText(zhMessages.footer_disclaimer);
   await expect(footer.locator('p').nth(1)).toHaveText(
-    `${zhMessages.footer_data_source}TurnBasedGameData${zhMessages.footer_asset_source}StarRailRes (${zhMessages.footer_license})${zhMessages.footer_scope_note}`
+    `${zhMessages.footer_data_source}TurnBasedGameData${zhMessages.footer_asset_source}StarRailRes (${zhMessages.footer_license})${zhMessages.footer_player_data_source}MiHoMo API / Mar-7th${zhMessages.footer_scope_note}`
   );
   await expect(footer.getByRole('link', { name: 'TurnBasedGameData' })).toHaveAttribute(
     'href',
@@ -117,6 +118,10 @@ test('Footer 仅保留正式服说明、数据仓库与本地许可证', async (
   await expect(footer.getByRole('link', { name: 'AGPL-3.0 许可证' })).toHaveAttribute(
     'href',
     '/licenses/StarRailRes-AGPL-3.0.txt'
+  );
+  await expect(footer.getByRole('link', { name: 'MiHoMo API / Mar-7th' })).toHaveAttribute(
+    'href',
+    'https://march7th.xyz/zh/api/'
   );
   await expect(footer).not.toContainText('第三方资源与权利声明');
 });

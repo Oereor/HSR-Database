@@ -63,7 +63,8 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
       `views/${locale}/catalogs/enemies.json`,
       `views/${locale}/homepage.json`,
       `views/${locale}/search-inputs.json`,
-      `static/generated/${locale}/search.json`
+      `static/generated/${locale}/search.json`,
+      `static/generated/${locale}/player-equipment.json`
     ])
       if (!(requiredPath in value.artifacts))
         throw new Error(`Generated data manifest is missing ${requiredPath}`);

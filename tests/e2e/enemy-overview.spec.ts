@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test('敌人目录使用本地立绘、default Monster 弱点和归一化类型筛选', async ({ page }) => {
-  await page.goto('/enemies?sort=id');
+  await page.goto('/enemies/?sort=id');
   const heroArtwork = page.locator('.overview-hero__artwork img');
   await expect(heroArtwork).toHaveCount(3);
   expect(
@@ -11,7 +11,7 @@ test('敌人目录使用本地立绘、default Monster 弱点和归一化类型�
     '/generated-enemy-assets/icons/Monster_2004010.webp',
     '/generated-enemy-assets/icons/Monster_4034010.webp'
   ]);
-  const card = page.locator('a[href="/enemies/1002015"]');
+  const card = page.locator('a[href="/enemies/1002015/"]');
   await expect(card).toBeVisible();
   await expect(card.locator('.entity-overview-card__artwork img')).toHaveAttribute(
     'src',
@@ -21,7 +21,7 @@ test('敌人目录使用本地立绘、default Monster 弱点和归一化类型�
     card.locator('.entity-overview-card__metadata [data-icon-kind="element"]')
   ).toHaveCount(2);
 
-  await page.goto('/enemies?type=MinionLv2&sort=id');
+  await page.goto('/enemies/?type=MinionLv2&sort=id');
   await expect(page.getByRole('button', { name: '普通', exact: true })).toHaveAttribute(
     'aria-pressed',
     'true'
@@ -33,10 +33,10 @@ test('敌人目录使用本地立绘、default Monster 弱点和归一化类型�
 test('Enemy Overview 弱点使用可访问的 icon-only 单行 Group', async ({ page, isMobile }) => {
   test.skip(isMobile, 'This test owns its responsive viewport matrix');
   await page.setViewportSize({ width: 1280, height: 800 });
-  await page.goto('/enemies');
+  await page.goto('/enemies/');
 
-  const threeWeaknesses = page.locator('a[href="/enemies/4034011"]');
-  const fourWeaknesses = page.locator('a[href="/enemies/4034018"]');
+  const threeWeaknesses = page.locator('a[href="/enemies/4034011/"]');
+  const fourWeaknesses = page.locator('a[href="/enemies/4034018/"]');
   for (const [card, count] of [
     [threeWeaknesses, 3],
     [fourWeaknesses, 4]
@@ -64,8 +64,8 @@ test('Enemy Overview 弱点使用可访问的 icon-only 单行 Group', async ({ 
   const fourHeight = await fourWeaknesses.evaluate((card) => card.getBoundingClientRect().height);
   expect(threeHeight).toBeCloseTo(fourHeight, 0);
 
-  await page.goto('/enemies?sort=id');
-  const twoWeaknesses = page.locator('a[href="/enemies/1002015"]');
+  await page.goto('/enemies/?sort=id');
+  const twoWeaknesses = page.locator('a[href="/enemies/1002015/"]');
   const twoGroup = twoWeaknesses.locator('.enemy-weakness-group');
   await expect(twoGroup.locator('.semantic-icon-label')).toHaveCount(2);
   const twoGroupBox = await twoGroup.boundingBox();
@@ -77,8 +77,8 @@ test('Enemy Overview 弱点使用可访问的 icon-only 单行 Group', async ({ 
   expect(twoGroupBox!.width).toBeLessThan(twoMetadataBox!.width);
 
   await page.setViewportSize({ width: 240, height: 720 });
-  await page.goto('/enemies');
-  const narrowGroup = page.locator('a[href="/enemies/4034018"] .enemy-weakness-group').first();
+  await page.goto('/enemies/');
+  const narrowGroup = page.locator('a[href="/enemies/4034018/"] .enemy-weakness-group').first();
   await expect(narrowGroup).toHaveAttribute('aria-label', '弱点：物理、冰、雷、量子');
   await expect(narrowGroup.locator('img')).toHaveCount(4);
   await expect(narrowGroup.locator('img').first()).toHaveCSS('width', '20px');
@@ -102,7 +102,7 @@ test('Enemy Overview 弱点使用可访问的 icon-only 单行 Group', async ({ 
 });
 
 test('敌方单位 Overview 支持类型多选、弱点 OR 与相关性优先排序', async ({ page }) => {
-  await page.goto('/enemies?page=2&sort=id');
+  await page.goto('/enemies/?page=2&sort=id');
   await page.getByRole('button', { name: '精英', exact: true }).click();
   await page.getByRole('button', { name: '首领', exact: true }).click();
   await page.getByRole('button', { name: '冰', exact: true }).click();
@@ -113,13 +113,13 @@ test('敌方单位 Overview 支持类型多选、弱点 OR 与相关性优先排
   await expect(page).toHaveURL(/weakness=Imaginary/);
   await expect(page).not.toHaveURL(/page=/);
 
-  await page.goto('/enemies?weakness=Physical&weakness=Ice&weakness=Imaginary&sort=id');
+  await page.goto('/enemies/?weakness=Physical&weakness=Ice&weakness=Imaginary&sort=id');
   const rankedCards = page.locator('.entity-overview-card');
-  await expect(rankedCards.first()).toHaveAttribute('href', '/enemies/1002030');
-  await expect(rankedCards.nth(11)).toHaveAttribute('href', '/enemies/1002020');
+  await expect(rankedCards.first()).toHaveAttribute('href', '/enemies/1002030/');
+  await expect(rankedCards.nth(11)).toHaveAttribute('href', '/enemies/1002020/');
 
   await page.goto(
-    '/enemies?q=%E8%9A%95%E9%A3%9F%E8%80%85%E4%B9%8B%E5%BD%B1&weakness=Physical&weakness=Ice&weakness=Imaginary'
+    '/enemies/?q=%E8%9A%95%E9%A3%9F%E8%80%85%E4%B9%8B%E5%BD%B1&weakness=Physical&weakness=Ice&weakness=Imaginary'
   );
   await expect(page.locator('.entity-overview-card')).toHaveCount(0);
   await expect(page.getByRole('heading', { name: '没有匹配结果' })).toBeVisible();
@@ -128,8 +128,8 @@ test('敌方单位 Overview 支持类型多选、弱点 OR 与相关性优先排
 test('敌人缺图 Template 使用共享 fallback 且不发起远程请求', async ({ page }) => {
   const requestedUrls: string[] = [];
   page.on('request', (request) => requestedUrls.push(request.url()));
-  await page.goto('/enemies?sort=id&page=2');
-  const card = page.locator('a[href="/enemies/2002020"]');
+  await page.goto('/enemies/?sort=id&page=2');
+  const card = page.locator('a[href="/enemies/2002020/"]');
   await expect(card).toBeVisible();
   await expect(card).toHaveAttribute('data-image-missing', 'true');
   await expect(card.locator('.entity-overview-card__artwork img')).toHaveCount(0);

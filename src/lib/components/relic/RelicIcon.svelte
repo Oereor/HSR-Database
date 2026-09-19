@@ -3,7 +3,7 @@
   export let source: string | undefined;
   export let alt: string;
   export let fallbackLabel: string;
-  export let presentation: 'hero' | 'card' = 'card';
+  export let presentation: 'hero' | 'card' | 'header' = 'card';
 
   let failedSource: string | undefined;
   $: visibleSource = source && source !== failedSource ? source : undefined;
@@ -57,6 +57,12 @@
       linear-gradient(180deg, rgb(255 255 255 / 2%), transparent);
   }
 
+  .relic-icon-stage--header {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgb(215 181 109 / 11%), transparent 68%);
+  }
+
   img {
     display: block;
     width: 128px;
@@ -69,6 +75,17 @@
   .relic-icon-stage--hero img {
     transform: translate(18%, -12%);
     filter: drop-shadow(0 1rem 1.25rem rgb(0 0 0 / 34%));
+  }
+
+  .relic-icon-stage--header img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .relic-icon-stage--header .relic-icon-stage__fallback {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.2rem;
   }
 
   .relic-icon-stage__fallback {

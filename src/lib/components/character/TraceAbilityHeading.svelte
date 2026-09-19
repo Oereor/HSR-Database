@@ -3,8 +3,10 @@
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import type { Trace } from '$lib/domain/types';
   import * as m from '$lib/paraglide/messages.js';
+  import type { PlayerProgressionState } from '$lib/player/character';
 
   export let trace: Trace;
+  export let playerState: PlayerProgressionState | undefined = undefined;
 
   $: iconUrl = getCharacterDetailIconUrl(trace.iconKey);
 </script>
@@ -22,12 +24,24 @@
           </p>{/if}
       </div>
     </div>
-    <span class="skill-effect-tag">{m.trace_extra_ability()}</span>
+    <div class="trace-card__tags">
+      <span class="skill-effect-tag">{m.trace_extra_ability()}</span>
+      {#if playerState === 'unresolved'}<span
+          class="player-progression-state"
+          data-player-state-label={playerState}>{m.player_character_status_unknown()}</span
+        >{/if}
+    </div>
   </div>
 {:else}
   <div class="trace-card__heading">
     <h3><GameText text={trace.name} /></h3>
-    <span class="skill-effect-tag">{m.trace_extra_ability()}</span>
+    <div class="trace-card__tags">
+      <span class="skill-effect-tag">{m.trace_extra_ability()}</span>
+      {#if playerState === 'unresolved'}<span
+          class="player-progression-state"
+          data-player-state-label={playerState}>{m.player_character_status_unknown()}</span
+        >{/if}
+    </div>
   </div>
   {#if trace.promotionLimit}<p class="trace-card__condition">
       <span>{m.trace_unlock_condition()}</span>{m.trace_promotion({

@@ -3,6 +3,7 @@
   import SkillVariantView from '$lib/components/character/SkillVariantView.svelte';
   import { gameTextToPlain } from '$lib/domain/game-text';
   import * as m from '$lib/paraglide/messages.js';
+  import LevelSlider from '$lib/components/shared/LevelSlider.svelte';
 
   export let progression: SkillProgression;
   export let variants: SkillVariant[];
@@ -12,11 +13,18 @@
   export let specialEffectIconUrl: string | undefined = undefined;
   export let onOpenSpecialEffects:
     ((trigger: HTMLButtonElement, level: number) => void) | undefined = undefined;
+  export let playerLevel: number | null | undefined = undefined;
 
   let selectedIndex = Math.max(
     0,
     progression.availableLevels.findIndex((level) => level === progression.defaultLevel)
   );
+  $: playerMode = playerLevel !== undefined;
+  $: resolvedPlayerLevel = playerLevel === null ? null : playerLevel;
+  $: if (resolvedPlayerLevel !== null && resolvedPlayerLevel !== undefined) {
+    const playerIndex = progression.availableLevels.indexOf(resolvedPlayerLevel);
+    if (playerIndex >= 0) selectedIndex = playerIndex;
+  }
   $: selectedLevel = progression.availableLevels[selectedIndex] ?? progression.defaultLevel;
 </script>
 
@@ -24,31 +32,29 @@
   {#if showGroupLabel}<p class="progression-group-label">
       {variants.map((variant) => gameTextToPlain(variant.name)).join(' / ')}
     </p>{/if}
-  {#if progression.availableLevels.length > 1}
-    <div class="skill-level-control">
+  {#if playerMode && playerLevel === null}
+    <div
+      class="skill-level-control skill-level-control--unresolved"
+      data-player-skill-state="unresolved"
+    >
       <div>
-        <label for={`skill-progression-${progression.id}`}
-          >{m.skill_level({ category: categoryLabel })}</label
-        >
-        <output for={`skill-progression-${progression.id}`}>Lv.{selectedLevel}</output>
+        <span class="skill-level-control__label">{m.skill_level({ category: categoryLabel })}</span>
+        <output>-</output>
       </div>
-      <input
-        id={`skill-progression-${progression.id}`}
-        type="range"
-        min="0"
-        max={progression.availableLevels.length - 1}
-        step="1"
-        bind:value={selectedIndex}
-        aria-valuemin={progression.availableLevels[0]}
-        aria-valuemax={progression.availableLevels.at(-1)}
-        aria-valuenow={selectedLevel}
-        aria-valuetext={m.common_level({ level: selectedLevel })}
-      />
-      <div class="skill-level-range" aria-hidden="true">
-        <span>Lv.{progression.availableLevels[0]}</span>
-        <span>Lv.{progression.availableLevels.at(-1)}</span>
-      </div>
+      <p>{m.player_character_skill_level_unknown()}</p>
     </div>
+  {:else if progression.availableLevels.length > 1}
+    <LevelSlider
+      id={`skill-progression-${progression.id}`}
+      label={m.skill_level({ category: categoryLabel })}
+      bind:value={selectedIndex}
+      min={0}
+      max={progression.availableLevels.length - 1}
+      displayValue={selectedLevel}
+      ariaValueMin={progression.availableLevels[0]}
+      ariaValueMax={progression.availableLevels.at(-1) ?? progression.availableLevels[0]}
+      interactive={!playerMode}
+    />
   {/if}
   <div class="skill-variant-list">
     {#each variants as variant (variant.id)}

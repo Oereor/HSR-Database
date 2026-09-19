@@ -18,6 +18,16 @@ it('accepts the schema-43 dual-locale generated tree and validates every emitted
   expect(manifest).not.toHaveProperty('generatedAt');
   expect(manifest).not.toHaveProperty('neutral');
   expect(manifest).not.toHaveProperty('migration');
+  expect(manifest.artifacts).toHaveProperty('static/generated/zh-CN/player-equipment.json');
+  expect(manifest.artifacts).toHaveProperty('static/generated/en/player-equipment.json');
+  for (const locale of ['zh-CN', 'en'] as const) {
+    const playerEquipment = JSON.parse(
+      await readFile(path.join(staticGeneratedRoot, locale, 'player-equipment.json'), 'utf8')
+    ) as Record<string, unknown>;
+    expect(playerEquipment).toMatchObject({ schemaVersion: 1, locale });
+    expect(playerEquipment.lightCones).toHaveLength(manifest.counts.lightCones);
+    expect(playerEquipment.relicSets).toHaveLength(manifest.counts.relics);
+  }
   await expect(validateGeneratedArtifacts(manifest)).resolves.toBeUndefined();
 }, 30_000);
 

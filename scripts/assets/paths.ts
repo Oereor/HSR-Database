@@ -7,6 +7,7 @@ export const assetManifestRoot = path.join(siteRoot, 'src', 'lib', 'generated-as
 export const assetManifestPath = path.join(assetManifestRoot, 'manifest.json');
 export const generatedAssetRoot = path.join(siteRoot, 'static', 'generated-assets');
 export const generatedCharacterRoot = path.join(generatedAssetRoot, 'characters');
+export const generatedPlayerAvatarRoot = path.join(generatedAssetRoot, 'player-avatars');
 export const generatedPreviewRoot = path.join(generatedCharacterRoot, 'preview');
 export const generatedPortraitRoot = path.join(generatedCharacterRoot, 'portrait');
 export const generatedCharacterDetailRoot = path.join(generatedAssetRoot, 'character-details');
@@ -52,7 +53,8 @@ const requiredDirectories = [
   ['icon', 'skill'],
   ['icon', 'element'],
   ['icon', 'path'],
-  ['icon', 'sign']
+  ['icon', 'sign'],
+  ['icon', 'avatar']
 ] as const;
 
 export function resolveAssetRoot(value = process.env.HSR_ASSET_ROOT): string {
@@ -89,6 +91,7 @@ export function assertAssetOutputPaths(): void {
   for (const output of [
     assetManifestRoot,
     generatedAssetRoot,
+    generatedPlayerAvatarRoot,
     generatedPreviewRoot,
     generatedPortraitRoot,
     generatedCharacterDetailRoot,

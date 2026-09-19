@@ -10,4 +10,5 @@
   singular={categorySingular(data.category)}
   specialEffectTargets={data.specialEffectTargets}
   equipmentRecommendation={data.equipmentRecommendation}
+  relicProperties={data.relicProperties}
 />

@@ -6,7 +6,7 @@ test('角色目录按 ID 加载 preview 并保留安全缺图降级', async ({ p
     if (response.request().resourceType() === 'image' && response.status() >= 400)
       failedImages.push(response.url());
   });
-  await page.goto('/characters');
+  await page.goto('/characters/');
   const firstCard = page.locator('.entity-overview-card').first();
   await expect(firstCard).toHaveAttribute('data-image-missing', 'false');
   await expect(firstCard.locator('.entity-overview-card__artwork img')).toHaveAttribute(
@@ -53,8 +53,8 @@ test('光锥目录复用角色 Overview presentation 并按 ID 加载 preview', 
     ['21015', '决心如汗珠般闪耀', '★★★★', '虚无'],
     ['23000', '银河铁道之夜', '★★★★★', '智识']
   ] as const) {
-    await page.goto(`/light-cones?q=${encodeURIComponent(name)}`);
-    const card = page.locator(`a[href="/light-cones/${id}"]`);
+    await page.goto(`/light-cones/?q=${encodeURIComponent(name)}`);
+    const card = page.locator(`a[href="/light-cones/${id}/"]`);
     await expect(card).toBeVisible();
     await expect(card).toHaveClass(/entity-overview-card/);
     await expect(card.locator('.entity-overview-card__title')).toHaveText(name);
@@ -70,7 +70,7 @@ test('光锥目录复用角色 Overview presentation 并按 ID 加载 preview', 
     await expect(card).not.toContainText(/生命值|攻击力|防御力/);
   }
 
-  await page.goto('/light-cones?rarity=5');
+  await page.goto('/light-cones/?rarity=5');
   const cards = page.locator('.entity-overview-card');
   await expect(cards.first()).toBeVisible();
   const heights = await Promise.all(
@@ -88,7 +88,7 @@ test('光锥目录复用角色 Overview presentation 并按 ID 加载 preview', 
 });
 
 test('光锥 Overview 支持命途与稀有度多选，并在清除筛选时保留搜索', async ({ page }) => {
-  await page.goto('/light-cones?q=银河');
+  await page.goto('/light-cones/?q=银河');
   await page.getByRole('button', { name: '智识' }).click();
   await page.getByRole('button', { name: '虚无' }).click();
   await page.getByRole('button', { name: '5★' }).click();
@@ -107,7 +107,7 @@ test('光锥 Overview 支持命途与稀有度多选，并在清除筛选时保�
 });
 
 test('遗器 Overview 使用统一页面外壳与本地套装 Hero decoration', async ({ page }) => {
-  await page.goto('/relics?sort=id');
+  await page.goto('/relics/?sort=id');
 
   const hero = page.locator('.overview-hero');
   await expect(hero.getByText('DATABASE / RELICS')).toBeVisible();
@@ -134,7 +134,7 @@ test('遗器 Overview 使用统一页面外壳与本地套装 Hero decoration', 
 });
 
 test('遗器类别使用单选语义并保留排序、重置分页', async ({ page }) => {
-  await page.goto('/relics?sort=id&page=2');
+  await page.goto('/relics/?sort=id&page=2');
   const all = page.getByRole('button', { name: '全部', exact: true });
   const cavern = page.getByRole('button', { name: '隧洞遗器', exact: true });
   const planar = page.getByRole('button', { name: '位面饰品', exact: true });
@@ -177,7 +177,7 @@ test('遗器搜索与历史 type 参数可组合，清空搜索后保留类别',
     ['cavern', '云无留迹的过客', '101'],
     ['planar', '太空封印站', '301']
   ] as const) {
-    await page.goto(`/relics?type=${type}&sort=name`);
+    await page.goto(`/relics/?type=${type}&sort=name`);
     const expectedLabel = type === 'cavern' ? '隧洞遗器' : '位面饰品';
     await expect(page.getByRole('button', { name: expectedLabel, exact: true })).toHaveAttribute(
       'aria-pressed',
@@ -186,7 +186,7 @@ test('遗器搜索与历史 type 参数可组合，清空搜索后保留类别',
     const input = page.getByPlaceholder('搜索遗器套装', { exact: true });
     await input.fill(query);
     await page.getByRole('button', { name: '搜索', exact: true }).click();
-    await expect(page.locator(`a[href="/relics/${id}"]`)).toBeVisible();
+    await expect(page.locator(`a[href="/relics/${id}/"]`)).toBeVisible();
     expect(new URL(page.url()).searchParams.get('type')).toBe(type);
     expect(new URL(page.url()).searchParams.get('sort')).toBe('name');
   }
@@ -208,7 +208,7 @@ test('遗器统一页面外壳与专用 Grid 在各断点不横向溢出', async
     { width: 340, height: 720 }
   ]) {
     await page.setViewportSize(viewport);
-    await page.goto('/relics?sort=id');
+    await page.goto('/relics/?sort=id');
     await expect(page.locator('.overview-hero')).toBeVisible();
     await expect(page.getByPlaceholder('搜索遗器套装', { exact: true })).toBeVisible();
     await expect(page.getByRole('button', { name: '隧洞遗器', exact: true })).toBeVisible();
@@ -227,7 +227,7 @@ test('遗器目录复用 shared compact Overview，并保留可读 typography �
   page
 }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
-  await page.goto('/characters');
+  await page.goto('/characters/');
   const largeCards = page.locator('.entity-overview-card');
   const largeFirstRow = await largeCards.evaluateAll((cards) => {
     const boxes = cards.slice(0, 8).map((card) => card.getBoundingClientRect());
@@ -247,9 +247,9 @@ test('遗器目录复用 shared compact Overview，并保留可读 typography �
     };
   });
 
-  await page.goto('/relics?sort=id');
+  await page.goto('/relics/?sort=id');
   const relicCards = page.locator('.entity-overview-card');
-  const firstRelic = page.locator('a[href="/relics/101"]');
+  const firstRelic = page.locator('a[href="/relics/101/"]');
   await expect(firstRelic).toBeVisible();
   await expect(firstRelic).toHaveAttribute('data-card-size', 'compact');
   await expect(firstRelic).toHaveAttribute('data-media-presentation', 'icon');
@@ -301,8 +301,8 @@ test('遗器目录复用 shared compact Overview，并保留可读 typography �
     ['301', '太空封印站', '位面饰品'],
     ['314', '出云显世与高天神国', '位面饰品']
   ] as const) {
-    await page.goto(`/relics?q=${encodeURIComponent(name)}`);
-    const card = page.locator(`a[href="/relics/${id}"]`);
+    await page.goto(`/relics/?q=${encodeURIComponent(name)}`);
+    const card = page.locator(`a[href="/relics/${id}/"]`);
     await expect(card).toBeVisible();
     await expect(card.locator('.entity-overview-card__overlay')).toHaveText(category);
     await expect(card.locator('.entity-overview-card__title')).toHaveText(name);
@@ -319,13 +319,13 @@ test('遗器目录复用 shared compact Overview，并保留可读 typography �
     ).toBe(true);
   }
 
-  const navigableCard = page.locator('a[href="/relics/314"]');
+  const navigableCard = page.locator('a[href="/relics/314/"]');
   await navigableCard.click();
-  await expect(page).toHaveURL(/\/relics\/314$/);
+  await expect(page).toHaveURL(/\/relics\/314\/$/);
   await expect(page.getByRole('heading', { level: 1, name: '出云显世与高天神国' })).toBeVisible();
 
-  await page.goto('/relics?q=%E4%BA%91%E6%97%A0%E7%95%99%E8%BF%B9%E7%9A%84%E8%BF%87%E5%AE%A2');
-  const fallbackCard = page.locator('a[href="/relics/101"]');
+  await page.goto('/relics/?q=%E4%BA%91%E6%97%A0%E7%95%99%E8%BF%B9%E7%9A%84%E8%BF%87%E5%AE%A2');
+  const fallbackCard = page.locator('a[href="/relics/101/"]');
   await fallbackCard
     .locator('.entity-overview-card__artwork img')
     .evaluate((image) => image.dispatchEvent(new Event('error')));
@@ -337,7 +337,7 @@ test('遗器目录复用 shared compact Overview，并保留可读 typography �
     { width: 390, height: 844, minimumColumns: 1 }
   ]) {
     await page.setViewportSize(viewport);
-    await page.goto('/relics?sort=id');
+    await page.goto('/relics/?sort=id');
     const cards = page.locator('.entity-overview-card');
     const firstRow = await cards.evaluateAll((items) => {
       const boxes = items.slice(0, 8).map((item) => item.getBoundingClientRect());
@@ -354,7 +354,7 @@ test('遗器目录复用 shared compact Overview，并保留可读 typography �
 });
 
 test('Character、Light Cone 与 Enemy Overview 使用统一紧凑 Grid 且不溢出', async ({ page }) => {
-  for (const path of ['/characters', '/light-cones', '/enemies?sort=id']) {
+  for (const path of ['/characters/', '/light-cones/', '/enemies/?sort=id']) {
     for (const viewport of [
       { width: 1600, height: 1000 },
       { width: 1280, height: 800 },
@@ -364,7 +364,7 @@ test('Character、Light Cone 与 Enemy Overview 使用统一紧凑 Grid 且不�
     ]) {
       await page.setViewportSize(viewport);
       await page.goto(path);
-      if (path === '/characters' && viewport.width === 390) {
+      if (path === '/characters/' && viewport.width === 390) {
         await expect(page.getByRole('button', { name: '筛选与排序' })).toHaveCount(0);
         await expect(page.getByRole('button', { name: '巡猎' })).toBeVisible();
       }
@@ -427,7 +427,7 @@ test('Character、Light Cone 与 Enemy Overview 使用统一紧凑 Grid 且不�
 });
 
 test('筛选状态写入 URL、分页响应客户端导航并进入详情', async ({ page }) => {
-  await page.goto('/characters');
+  await page.goto('/characters/');
   const firstPageFirstId = await page.locator('.entity-overview-card').first().getAttribute('href');
   await page.getByRole('link', { name: '下一页' }).click();
   await expect(page).toHaveURL(/page=2/);
@@ -439,31 +439,31 @@ test('筛选状态写入 URL、分页响应客户端导航并进入详情', asyn
   await page.getByRole('link', { name: '上一页' }).click();
   await expect(page.locator('.overview-pagination').getByText('第 1 / 3 页')).toBeVisible();
 
-  await page.goto('/characters?rarity=4&page=2');
+  await page.goto('/characters/?rarity=4&page=2');
   await expect(page.getByRole('button', { name: '4★' })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: '5★' }).click();
   await expect(page).toHaveURL(/rarity=5/);
   await expect(page).not.toHaveURL(/page=/);
-  await page.goto('/characters/1001');
+  await page.goto('/characters/1001/');
   await expect(page.getByRole('heading', { name: '三月七·存护' })).toBeVisible();
 });
 
 test('Overview 分页保留实时筛选、重复参数与排序状态', async ({ page }) => {
   const cases = [
     {
-      route: '/characters?sort=name',
+      route: '/characters/?sort=name',
       filters: ['4★', '5★'],
       parameter: 'rarity',
       values: ['4', '5']
     },
     {
-      route: '/light-cones?sort=name',
+      route: '/light-cones/?sort=name',
       filters: ['4★', '5★'],
       parameter: 'rarity',
       values: ['4', '5']
     },
     {
-      route: '/enemies?sort=name',
+      route: '/enemies/?sort=name',
       filters: ['冰', '虚数'],
       parameter: 'weakness',
       values: ['Ice', 'Imaginary']
@@ -507,7 +507,7 @@ test('Overview 分页保留实时筛选、重复参数与排序状态', async ({
 });
 
 test('从第二页修改筛选后，新分页链接使用重置后的完整状态', async ({ page }) => {
-  await page.goto('/characters?rarity=4&rarity=5&sort=name&page=2');
+  await page.goto('/characters/?rarity=4&rarity=5&sort=name&page=2');
   await page.getByRole('button', { name: '4★', exact: true }).click();
   await expect(page).not.toHaveURL(/page=/);
 
@@ -533,15 +533,15 @@ test('从第二页修改筛选后，新分页链接使用重置后的完整状�
 });
 
 test('遗器分页在 hydration 后保留排序参数', async ({ page }) => {
-  await page.goto('/relics?sort=id');
+  await page.goto('/relics/?sort=id');
   const nextPage = page.getByRole('link', { name: '下一页', exact: true });
   await expect(nextPage).toHaveAttribute('href', '?sort=id&page=2');
   await nextPage.click();
-  await expect(page).toHaveURL('/relics?sort=id&page=2');
+  await expect(page).toHaveURL('/relics/?sort=id&page=2');
 });
 
 test('目录搜索只在提交时应用草稿并重置分页', async ({ page }) => {
-  await page.goto('/characters?page=2');
+  await page.goto('/characters/?page=2');
   await page.waitForLoadState('networkidle');
   const firstResult = page.locator('.entity-overview-card').first();
   const originalHref = await firstResult.getAttribute('href');
@@ -553,7 +553,7 @@ test('目录搜索只在提交时应用草稿并重置分页', async ({ page }) 
   await expect(page).toHaveURL(/q=%E4%B8%89%E6%9C%88%E4%B8%83/);
   await expect(page).not.toHaveURL(/page=/);
   await expect(page.locator('.entity-overview-card')).toHaveCount(2);
-  const searchedCard = page.locator('a[href="/characters/1001"]');
+  const searchedCard = page.locator('a[href="/characters/1001/"]');
   await expect(searchedCard.locator('.entity-overview-card__artwork img')).toHaveAttribute(
     'src',
     '/generated-assets/characters/preview/1001.png'
@@ -561,7 +561,7 @@ test('目录搜索只在提交时应用草稿并重置分页', async ({ page }) 
 });
 
 test('角色目录支持同类多选与跨类组合筛选', async ({ page }) => {
-  await page.goto('/characters');
+  await page.goto('/characters/');
   await page.getByRole('button', { name: '巡猎' }).click();
   await page.getByRole('button', { name: '虚无' }).click();
   await expect(page).toHaveURL(/path=Rogue/);
@@ -575,6 +575,6 @@ test('角色目录支持同类多选与跨类组合筛选', async ({ page }) => 
   await expect(page).toHaveURL(/element=Lightning/);
   await expect(page.locator('.overview-toolbar')).toContainText('个结果');
   await page.getByRole('button', { name: '清除筛选' }).click();
-  await expect(page).toHaveURL('/characters');
+  await expect(page).toHaveURL('/characters/');
   await expect(page.getByRole('button', { name: '巡猎' })).toHaveAttribute('aria-pressed', 'false');
 });

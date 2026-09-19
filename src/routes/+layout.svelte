@@ -6,7 +6,7 @@
   import Navigator from '$lib/components/layout/Navigator.svelte';
   import { injectAnalytics } from '@vercel/analytics/sveltekit';
   import { getBrandIconUrl } from '$lib/data/visual-assets';
-  import { localeCounterpartHref } from '$lib/i18n/routing';
+  import { localeCounterpartHref, trailingSlashHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   import { siteName } from '$lib/site';
   import ChangelogModal from '$lib/components/layout/ChangelogModal.svelte';
@@ -22,9 +22,11 @@
   onMount(() => (appReady = true));
   // eslint-disable-next-line svelte/no-immutable-reactive-statements
   $: name = siteName();
-  $: canonicalPath = $page.url.pathname;
+  $: canonicalPath = trailingSlashHref($page.url.pathname);
   $: chinesePath = localeCounterpartHref(canonicalPath, 'zh-CN');
   $: englishPath = localeCounterpartHref(canonicalPath, 'en');
+  $: mihomoApiUrl =
+    data.locale === 'zh-CN' ? 'https://march7th.xyz/zh/api/' : 'https://march7th.xyz/en/api/';
 </script>
 
 <svelte:head>
@@ -51,7 +53,8 @@
           >TurnBasedGameData</a
         >{m.footer_asset_source()}<a href="https://github.com/Mar-7th/StarRailRes">StarRailRes</a>
         (<a href="/licenses/StarRailRes-AGPL-3.0.txt">{m.footer_license()}</a
-        >){m.footer_scope_note()}
+        >){m.footer_player_data_source()}<a href={mihomoApiUrl}>MiHoMo API / Mar-7th</a
+        >{m.footer_scope_note()}
       </p>
     </footer>
   </main>
