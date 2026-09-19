@@ -35,16 +35,16 @@
   let requestError: PlayerApiError | null = null;
   let localError: string | null = null;
   let draftUid = '';
-  let queryState: PlayerUidQueryState = { kind: 'idle', input: '' };
 
   const characterCatalog = createCharacterCatalogIndex(data.characters);
 
   onMount(() => (clientReady = true));
 
-  $: queryState = clientReady
-    ? readPlayerUidQuery(new URLSearchParams($page.url.searchParams))
-    : { kind: 'idle', input: '' };
-  $: if (clientReady) synchronizeQuery($page.url.search, queryState);
+  $: if (clientReady)
+    synchronizeQuery(
+      $page.url.search,
+      readPlayerUidQuery(new URLSearchParams($page.url.searchParams))
+    );
   $: avatarUrl = resolvePlayerAvatar(profile?.avatar?.id);
   $: visibleCharacters =
     profile?.characters.map((character) => ({
@@ -53,6 +53,8 @@
     })) ?? [];
   $: requestErrorMessage = requestError ? playerErrorMessage(requestError) : null;
   $: formErrorMessage = localError ?? requestErrorMessage;
+  $: mihomoApiUrl =
+    data.locale === 'zh-CN' ? 'https://march7th.xyz/zh/api/' : 'https://march7th.xyz/en/api/';
 
   function playerErrorMessage(error: PlayerApiError): string {
     switch (error.code) {
@@ -148,6 +150,11 @@
   onInput={() => (localError = null)}
 />
 
+<p class="player-page__data-source">
+  {m.player_data_source_prefix()}<a href={mihomoApiUrl}>MiHoMo API / Mar-7th</a
+  >{m.player_data_source_suffix()}
+</p>
+
 {#if state === 'idle'}
   <section class="player-query-state" aria-live="polite">
     <p>{m.player_idle()}</p>
@@ -207,6 +214,12 @@
   .player-page__heading > p:last-child {
     margin: 0;
     color: var(--text-secondary);
+  }
+
+  .player-page__data-source {
+    margin: calc(var(--space-3) * -1) 0 var(--space-6);
+    color: var(--muted);
+    font-size: var(--font-internal);
   }
 
   .player-query-state {

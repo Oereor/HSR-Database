@@ -24,7 +24,8 @@ async function mockPlayerApi(page: Page, onRequest?: (uid: string) => void) {
 }
 
 test('submitting a UID updates the URL before rendering Player Hero and character fallbacks', async ({
-  page
+  page,
+  isMobile
 }) => {
   let release!: () => void;
   const gate = new Promise<void>((resolve) => (release = resolve));
@@ -49,10 +50,40 @@ test('submitting a UID updates the URL before rendering Player Hero and characte
     page.locator('img[src="/generated-assets/player-avatars/201001.png"]')
   ).toBeVisible();
   await expect(page.locator('img[src*="remote-icon-must-not-be-used"]')).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'MiHoMo API / Mar-7th' }).first()).toHaveAttribute(
+    'href',
+    'https://march7th.xyz/zh/api/'
+  );
+  await expect(page.getByText('玩家公开信息由', { exact: false })).toBeVisible();
+  const heroStyles = await page.locator('.player-hero').evaluate((hero) => {
+    const details = hero.querySelector<HTMLElement>('.player-hero__details')!;
+    const avatar = hero.querySelector<HTMLElement>('.player-hero__avatar')!;
+    const countLabel = hero.querySelector<HTMLElement>('.player-hero__counts dt')!;
+    const countValue = hero.querySelector<HTMLElement>('.player-hero__counts dd')!;
+    return {
+      detailsJustify: getComputedStyle(details).justifyContent,
+      avatarAlign: getComputedStyle(avatar).alignSelf,
+      labelSize: Number.parseFloat(getComputedStyle(countLabel).fontSize),
+      valueSize: Number.parseFloat(getComputedStyle(countValue).fontSize),
+      valueWeight: Number.parseInt(getComputedStyle(countValue).fontWeight, 10)
+    };
+  });
+  expect(heroStyles.detailsJustify).toBe('center');
+  expect(heroStyles.avatarAlign).toBe('center');
+  expect(heroStyles.valueSize).toBeGreaterThanOrEqual(30);
+  expect(heroStyles.valueSize).toBeGreaterThan(heroStyles.labelSize);
+  expect(heroStyles.valueWeight).toBeGreaterThanOrEqual(700);
   await expect(page.getByRole('link', { name: /三月七/ })).toHaveAttribute(
     'href',
     '/characters/1001/?uid=100000001'
   );
+
+  if (!isMobile) await page.setViewportSize({ width: 768, height: 900 });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    )
+  ).toBeLessThanOrEqual(1);
 });
 
 test('maps a typed API error without exposing raw server text', async ({ page }) => {
@@ -78,6 +109,11 @@ test('preserves locale and reuses the SPA cache across browser history', async (
 
   await page.goto('/en/player/?uid=100000001');
   await expect(page.getByRole('heading', { name: 'Player 100000001' })).toBeVisible();
+  await expect(page.getByText('Public player information is provided via the')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'MiHoMo API / Mar-7th' }).first()).toHaveAttribute(
+    'href',
+    'https://march7th.xyz/en/api/'
+  );
   await expect(page.getByText('No public characters')).toHaveCount(0);
   await expect(page.getByRole('link', { name: /March 7th/ })).toHaveAttribute(
     'href',

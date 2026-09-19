@@ -113,7 +113,6 @@ describe('MiHoMo player response projection', () => {
   it('normalizes optional player branches without projecting breakdown sources', () => {
     const value = cloneFixture();
     const player = value.player as Record<string, unknown>;
-    const characters = value.characters as Array<Record<string, unknown>>;
     player.avatar = null;
     player.space_info = null;
     const profile = parsePlayerProfile(value);

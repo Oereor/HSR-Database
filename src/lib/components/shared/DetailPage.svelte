@@ -106,6 +106,12 @@
           lightConeRanks[lightConeRanks.length - 1]
         )
       : undefined;
+  $: lightConeInitialStateKey =
+    category === 'light-cones'
+      ? browser
+        ? `${detail.id}:${$page.url.search}`
+        : `${detail.id}:server`
+      : '';
   $: if (specialEffectsOpen && !specialEffectsAvailable) specialEffectsOpen = false;
   $: characterSectionNavItems = [
     { id: 'stats', label: m.detail_stats() },
@@ -327,18 +333,20 @@
       </div>
     </div>
     <aside class="detail-profile-hero__inspection" aria-label={m.detail_light_cone_stats_aria()}>
-      <BaseStatsPanel
-        progression={detail.baseStats}
-        controlId={`light-cone-level-${detail.id}`}
-        controlLabel={m.detail_light_cone_level()}
-        initialLevel={lightConeInitialLevel}
-      />
-      <div class="detail-inspection-divider" aria-hidden="true"></div>
-      {#if detail.passive.superimposition.levels.length}<SuperimpositionPanel
-          passive={detail.passive}
-          lightConeId={detail.id}
-          initialRank={lightConeInitialRank}
-        />{:else}<p class="data-placeholder">{m.detail_superimposition_unavailable()}</p>{/if}
+      {#key lightConeInitialStateKey}
+        <BaseStatsPanel
+          progression={detail.baseStats}
+          controlId={`light-cone-level-${detail.id}`}
+          controlLabel={m.detail_light_cone_level()}
+          initialLevel={lightConeInitialLevel}
+        />
+        <div class="detail-inspection-divider" aria-hidden="true"></div>
+        {#if detail.passive.superimposition.levels.length}<SuperimpositionPanel
+            passive={detail.passive}
+            lightConeId={detail.id}
+            initialRank={lightConeInitialRank}
+          />{:else}<p class="data-placeholder">{m.detail_superimposition_unavailable()}</p>{/if}
+      {/key}
     </aside>
   </header>
 {:else if category === 'relics'}

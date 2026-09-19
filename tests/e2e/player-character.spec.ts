@@ -24,7 +24,7 @@ const playerProfile = (uid: string, includeCharacter = true) => ({
             { id: '1304101', level: 1 },
             { id: '1304102', level: 0 }
           ],
-          lightCone: { lightConeId: '23023', rank: 2, level: 80, promotion: 6 },
+          lightCone: { lightConeId: '23023', rank: 2, level: 70, promotion: 6 },
           relics: [
             {
               type: 1,
@@ -175,7 +175,7 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(lightConeCard).toContainText('命运从未公平');
   await expect(lightConeCard.getByRole('link')).toHaveAttribute(
     'href',
-    '/light-cones/23023/?level=80&rank=2'
+    '/light-cones/23023/?level=70&rank=2'
   );
   await expect(lightConeCard.locator('.player-light-cone__identity > span')).toHaveCount(2);
   await expect(lightConeCard.locator('.player-light-cone__progression > span')).toHaveCount(3);
@@ -266,13 +266,16 @@ test('reuses the Player cache and renders real progression without changing stat
   }
 
   await lightConeCard.getByRole('link').click();
-  await expect(page).toHaveURL(/\/light-cones\/23023\/\?level=80&rank=2$/);
-  await expect(page.getByRole('slider', { name: '光锥等级' })).toBeEnabled();
-  await expect(page.getByRole('slider', { name: '光锥等级' })).toHaveValue('80');
+  await expect(page).toHaveURL(/\/light-cones\/23023\/\?level=70&rank=2$/);
+  const lightConeLevel = page.getByRole('slider', { name: '光锥等级' });
+  await expect(lightConeLevel).toBeEnabled();
+  await expect(lightConeLevel).toHaveValue('70');
   const rank = page.getByRole('slider', { name: '叠影等级' });
   await expect(rank).toBeEnabled();
   await expect(rank).toHaveAttribute('aria-valuenow', '2');
+  await lightConeLevel.fill('42');
   await rank.fill('3');
+  await expect(lightConeLevel).toHaveValue('42');
   await expect(rank).toHaveAttribute('aria-valuenow', '4');
 
   await page.goto('/en/characters/1304/?uid=100000001');
@@ -280,7 +283,7 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(page.locator('[data-player-stat="elation_dmg"]')).not.toContainText('elation_dmg');
   await expect(page.locator('[data-player-light-cone="23023"] a')).toHaveAttribute(
     'href',
-    '/en/light-cones/23023/?level=80&rank=2'
+    '/en/light-cones/23023/?level=70&rank=2'
   );
   await expect(page.locator('[data-player-relic-slot="BODY"]')).toHaveAttribute(
     'href',

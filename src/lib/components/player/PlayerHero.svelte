@@ -79,13 +79,21 @@
   .player-hero__identity {
     display: grid;
     grid-template-columns: 112px minmax(0, 1fr);
-    align-items: center;
+    align-items: stretch;
     gap: var(--space-6);
     min-width: 0;
   }
 
+  .player-hero__details {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .player-hero__avatar {
     display: grid;
+    align-self: center;
     width: 112px;
     height: 112px;
     place-items: center;
@@ -168,7 +176,9 @@
   .player-hero__counts dd {
     margin-top: var(--space-1);
     color: var(--gold-soft);
-    font-size: 1.45rem;
+    font-size: clamp(1.9rem, 4vw, 2.55rem);
+    font-weight: 800;
+    line-height: 1;
   }
 
   @media (max-width: 820px) {

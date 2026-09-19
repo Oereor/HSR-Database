@@ -101,6 +101,7 @@ describe('changelog manifest', () => {
 
   it('discovers every existing historical entry exactly once in the established order', () => {
     expect(changelogManifest.map(({ id }) => id)).toEqual([
+      '2026-09-19-player-info-v1',
       '2026-09-09-add-init-av-stat',
       '2026-09-09-fix-moc-season',
       '2026-09-07-i18n-update',
@@ -117,8 +118,8 @@ describe('changelog manifest', () => {
       loadChangelogEntries('en')
     ]);
     expect(chinese.map(({ id }) => id)).toEqual(english.map(({ id }) => id));
-    expect(chinese[0].title).toContain('首回合行动值');
-    expect(english[0].title).toBe('New Enemy Stat Display: Initial Action Value');
+    expect(chinese[0].title).toBe('玩家信息现已开放');
+    expect(english[0].title).toBe('Player Info is now available');
     expect(
       chinese.every(({ component: entryComponent }) => typeof entryComponent === 'function')
     ).toBe(true);

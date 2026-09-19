@@ -104,7 +104,7 @@ test('Footer 仅保留正式服说明、数据仓库与本地许可证', async (
   await expect(footer.locator('p')).toHaveCount(2);
   await expect(footer.locator('p').first()).toHaveText(zhMessages.footer_disclaimer);
   await expect(footer.locator('p').nth(1)).toHaveText(
-    `${zhMessages.footer_data_source}TurnBasedGameData${zhMessages.footer_asset_source}StarRailRes (${zhMessages.footer_license})${zhMessages.footer_scope_note}`
+    `${zhMessages.footer_data_source}TurnBasedGameData${zhMessages.footer_asset_source}StarRailRes (${zhMessages.footer_license})${zhMessages.footer_player_data_source}MiHoMo API / Mar-7th${zhMessages.footer_scope_note}`
   );
   await expect(footer.getByRole('link', { name: 'TurnBasedGameData' })).toHaveAttribute(
     'href',
@@ -117,6 +117,10 @@ test('Footer 仅保留正式服说明、数据仓库与本地许可证', async (
   await expect(footer.getByRole('link', { name: 'AGPL-3.0 许可证' })).toHaveAttribute(
     'href',
     '/licenses/StarRailRes-AGPL-3.0.txt'
+  );
+  await expect(footer.getByRole('link', { name: 'MiHoMo API / Mar-7th' })).toHaveAttribute(
+    'href',
+    'https://march7th.xyz/zh/api/'
   );
   await expect(footer).not.toContainText('第三方资源与权利声明');
 });
