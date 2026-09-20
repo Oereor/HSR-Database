@@ -12,7 +12,6 @@ const artifactPaths = [
   'static/generated',
   'src/lib/generated-assets',
   'static/generated-assets',
-  'static/generated-enemy-assets',
   'build',
   '.svelte-kit',
   '.vite',

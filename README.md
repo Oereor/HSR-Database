@@ -85,6 +85,8 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 | `pnpm data:validate`           | 验证生成数据                                |
 | `pnpm assets:sync`             | 同步页面所需视觉资源                        |
 | `pnpm assets:verify`           | 验证生成的视觉资源                          |
+| `pnpm update:enemy-assets`     | 从 Nanoka 增量更新 tracked enemy snapshot   |
+| `pnpm validate:enemy-assets`   | 离线验证 tracked enemy snapshot             |
 | `pnpm check`                   | Svelte / TypeScript 检查                    |
 | `pnpm lint`                    | Prettier / ESLint 检查                      |
 | `pnpm test`                    | 运行 Vitest 测试                            |
@@ -117,7 +119,7 @@ docs/           # 数据调查与开发文档
 tests/          # Vitest / Playwright 测试
 ```
 
-构建生成的数据和视觉资源会加入 `.gitignore`。
+构建生成的数据和普通视觉资源会加入 `.gitignore`。`static/generated-enemy-assets/` 是例外：它在维护时生成、由 Git 跟踪，并作为部署时不可变的 enemy visual snapshot。
 
 ## Upstream 与部署
 
@@ -130,6 +132,8 @@ pnpm deploy:build
 ```
 
 根据 lock 获取对应版本的上游数据，再完成数据生成、资源准备与网站构建，而不是直接追踪 upstream 的最新 commit。
+
+Enemy portraits 已随仓库 checkout 提供。Production、Preview 和 CI 只会离线验证并使用该 snapshot，不会实时请求 Nanoka；维护者通过 `pnpm update:enemy-assets` 显式检查并更新它。
 
 项目目前使用以下分支流程：
 
@@ -153,7 +157,7 @@ develop
 
 后两个 ID 可从 Vercel Project Settings 获取，也可在本地仅链接现有项目后查看 `.vercel/project.json`。不要提交 token、`.vercel/`、`.env.local` 或其他本机状态。
 
-GitHub Actions 会定期检查两个 upstream 是否有更新。发现新版本后，自动更新 `upstream.lock.json`、执行完整构建验证，并创建目标为 `develop` 的 Pull Request，交由人工审核；需要页面验收时再手动部署 Preview。
+GitHub Actions 会定期检查两个 upstream 与 Nanoka enemy snapshot 是否有更新。维护任务更新受管 metadata 和 snapshot 后，创建目标为 `develop` 的 Pull Request 交由人工审核；不会自动合并。需要页面验收时再手动部署 Preview。
 
 ### 如何添加更新日志
 
@@ -192,6 +196,7 @@ title: '更新标题'
 
 - [TurnBasedGameData](https://github.com/DimbreathBot/TurnBasedGameData) — 提供《崩坏：星穹铁道》的游戏数据，是本站静态数据的主要来源之一。
 - [StarRailRes](https://github.com/Mar-7th/StarRailRes) — 提供角色、光锥、遗器、图标等游戏资源，用于本站的本地资源展示。
+- [Nanoka](https://static.nanoka.cc) — 提供 enemy visual assets；本站在维护时生成并审核 snapshot，部署不实时依赖该服务。未确认的再分发许可不因本项目的 MIT License 而获得覆盖。
 - [MiHoMo API](https://api.mihomo.me/docs) — 提供公开玩家信息查询服务，用于本站的「玩家信息 / Player Info」功能。
 
 特别感谢以上项目及其维护者，使 HSR-Database 能够建立在稳定、开放的社区数据与资源之上。

@@ -6,8 +6,10 @@
   "scripts": {
     "ci:develop": "tsx scripts/deployment/build.ts --profile=development",
     "ci:validate": "tsx scripts/deployment/build.ts --profile=ci",
-    "assets:sync:enemies": "pnpm data:ensure && tsx scripts/assets/enemies/sync.ts",
-    "assets:ensure:enemies": "tsx scripts/assets/enemies/ensure.ts",
+    "update:enemy-assets": "tsx scripts/assets/enemies/sync.ts",
+    "validate:enemy-assets": "tsx scripts/assets/enemies/validate.ts",
+    "assets:sync:enemies": "pnpm update:enemy-assets",
+    "assets:ensure:enemies": "pnpm validate:enemy-assets",
     "assets:sync": "tsx scripts/assets/sync.ts",
     "assets:ensure": "tsx scripts/assets/ensure.ts",
     "assets:validate": "tsx scripts/assets/validate.ts",

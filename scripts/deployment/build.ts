@@ -31,7 +31,7 @@ const TIMING_ORDER = [
   'search-names-check',
   'check',
   'lint',
-  'enemy-assets-ensure',
+  'enemy-assets-validate',
   'assets-ensure',
   'assets-verify',
   'test',
@@ -215,7 +215,7 @@ export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promis
     logFileSummary('starrailres-input', assetInput);
 
     const [enemyResult, generalResult] = await Promise.allSettled([
-      timed('enemy-assets-ensure', () => runPnpm(['assets:ensure:enemies'], env)),
+      timed('enemy-assets-validate', () => runPnpm(['validate:enemy-assets'], env)),
       (async () => {
         const { ensureAssets } = await import('../assets/ensure.js');
         const context = await timed('assets-ensure', () =>
@@ -235,7 +235,7 @@ export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promis
     ]);
     const assetErrors: Error[] = [];
     if (enemyResult.status === 'rejected')
-      assetErrors.push(namedError('enemy-assets-ensure', enemyResult.reason));
+      assetErrors.push(namedError('enemy-assets-validate', enemyResult.reason));
     if (generalResult.status === 'rejected')
       assetErrors.push(namedError('general-assets', generalResult.reason));
     throwCollected(assetErrors, 'Asset preparation failed');

@@ -33,7 +33,6 @@ it('cleans all generated namespaces, keeps tracked placeholders and runs the exi
       'static/generated',
       'src/lib/generated-assets',
       'static/generated-assets',
-      'static/generated-enemy-assets',
       'build',
       '.svelte-kit',
       '.vite',
@@ -43,6 +42,12 @@ it('cleans all generated namespaces, keeps tracked placeholders and runs the exi
       await mkdir(path.join(root, directory), { recursive: true });
       await writeFile(path.join(root, directory, 'old'), 'cache');
     }
+    await mkdir(path.join(root, 'static/generated-enemy-assets'), { recursive: true });
+    await writeFile(path.join(root, 'static/generated-enemy-assets/index.json'), 'snapshot');
+    execFileSync('git', ['add', '-f', 'static/generated-enemy-assets/index.json'], {
+      cwd: root,
+      windowsHide: true
+    });
     await writeFile(path.join(root, 'src/lib/generated-assets/.gitkeep'), 'original');
     execFileSync('git', ['add', 'src/lib/generated-assets/.gitkeep'], {
       cwd: root,
@@ -54,6 +59,9 @@ it('cleans all generated namespaces, keeps tracked placeholders and runs the exi
       expect(await readFile(path.join(root, 'src/lib/generated-assets/.gitkeep'), 'utf8')).toBe(
         'original'
       );
+      expect(
+        await readFile(path.join(root, 'static/generated-enemy-assets/index.json'), 'utf8')
+      ).toBe('snapshot');
     });
     await runCleanDeploymentBuild({ root, build });
     expect(build).toHaveBeenCalledTimes(1);
