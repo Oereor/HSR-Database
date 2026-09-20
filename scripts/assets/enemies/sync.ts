@@ -1,378 +1,387 @@
+import { randomUUID } from 'node:crypto';
+import { copyFile, mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { assertInsideSite } from '../../data/paths.js';
 import { createCurlFetch } from './curl.js';
 import {
   DEFAULT_CONCURRENCY,
-  ENEMY_ASSET_SCHEMA_VERSION,
-  NANOKA_BASE_URL,
-  SANITY_CHECK_IDS,
-  cleanEnemyTemporaryFiles,
-  directoryFileSize,
-  enemyAssetRoot,
-  enemyAssetManifestPath,
-  enemyAssetReadmePath,
-  enemyIconRoot,
-  ensureEnemyIcon,
-  fetchJson,
-  fetchNanokaVersion,
   HttpError,
-  isToleratedEnemyAssetFailure,
+  fetchNanokaVersion,
+  fetchWithRetry,
   mapConcurrent,
   parseNanokaMonster,
-  provenanceReadme,
-  pruneEnemyIcons,
+  type RetryOptions
+} from './network.js';
+import {
+  SCHEMA_VERSION,
+  catalogFingerprint,
+  enemyAssetRoot,
+  inspectWebp,
+  parseManifest,
   readEnemyRequirements,
-  validateEnemyAssetCache,
-  validateWebpFile,
-  writeFileAtomically,
-  type EnemyAssetFailure,
+  validateSnapshot,
+  type EnemyAssetEntry,
   type EnemyAssetManifest,
   type EnemyRequirement,
-  type FailureKind,
-  type NanokaMonster,
-  type RetryOptions
-} from './shared.js';
+  type ImageDigest,
+  type UnavailableEntry
+} from './snapshot.js';
 
-interface DetailSuccess {
-  requirement: EnemyRequirement;
-  monster: NanokaMonster;
+const BASE_URL = 'https://static.nanoka.cc';
+const PROXY_KEYS = [
+  'HTTPS_PROXY',
+  'https_proxy',
+  'HTTP_PROXY',
+  'http_proxy',
+  'ALL_PROXY',
+  'all_proxy'
+];
+const sorted = <T>(entries: Iterable<readonly [string, T]>): Record<string, T> =>
+  Object.fromEntries([...entries].sort(([a], [b]) => a.localeCompare(b)));
+
+export interface UpdateStats {
+  catalog: number;
+  mapped: number;
+  unavailable: number;
+  images: number;
+  detailRequests: number;
+  imageDownloads: number;
+  reusedImages: number;
+  repairedImages: string[];
+  newImages: string[];
+  prunedImages: string[];
+  newTemplateIds: string[];
+  changedMappings: string[];
+  byteDelta: number;
+  changed: boolean;
+  wallSeconds: number;
 }
-
-interface DetailFailure {
-  requirement: EnemyRequirement;
-  failure: EnemyAssetFailure;
+export interface UpdateResult {
+  observedVersion: string;
+  stats: UpdateStats;
 }
-
-interface IconSuccess {
-  imageId: string;
-  disposition: 'created' | 'replaced' | 'skipped';
-  width: number;
-  height: number;
-}
-
-interface IconFailure {
-  imageId: string;
-  error: unknown;
-  endpoint: string;
-}
-
-export interface EnemyAssetSyncStats {
-  totalMonsterTemplateIds: number;
-  resolvedMonsterDetails: number;
-  mappedMonsterTemplateIds: number;
-  uniqueImageIds: number;
-  newImages: number;
-  replacedImages: number;
-  downloadedImages: number;
-  skippedImages: number;
-  prunedImages: number;
-  missingMonsterJson: number;
-  missingImagePath: number;
-  failedMonsterJson: number;
-  missingImageFiles: number;
-  failedImageDownloads: number;
-  iconDirectoryBytes: number;
-  mappingBytes: number;
-}
-
-export interface EnemyAssetSyncResult {
-  version: string;
-  manifest: EnemyAssetManifest;
-  failures: EnemyAssetFailure[];
-  stats: EnemyAssetSyncStats;
-}
-
-export interface EnemyAssetSyncOptions extends RetryOptions {
-  baseUrl?: string;
+export interface UpdateOptions extends RetryOptions {
+  assetRoot?: string;
   catalogFile?: string;
+  baseUrl?: string;
   concurrency?: number;
   force?: boolean;
   now?: () => Date;
-  log?: (message: string) => void;
-  assetRoot?: string;
+  log?: (value: string) => void;
 }
 
-function failureFromError(
-  requirement: EnemyRequirement,
-  endpoint: string,
-  error: unknown,
-  fallbackKind: FailureKind
-): EnemyAssetFailure {
-  const http = error instanceof HttpError ? error : undefined;
-  let kind = fallbackKind;
-  if (fallbackKind === 'failed-image-download' && http?.status === 404) {
-    kind = 'missing-image-file';
-  } else if (fallbackKind !== 'failed-image-download') {
-    if (http?.status === 404) kind = 'missing-monster-json';
-    else if (error instanceof Error && /image_path/.test(error.message))
-      kind = 'missing-image-path';
-    else if (!(error instanceof HttpError)) kind = 'invalid-monster-json';
+function semantic(manifest: EnemyAssetManifest): string {
+  return JSON.stringify({
+    catalogFingerprint: manifest.catalogFingerprint,
+    monsters: manifest.monsters,
+    unavailable: manifest.unavailable,
+    images: manifest.images
+  });
+}
+
+async function oldManifest(root: string): Promise<EnemyAssetManifest | undefined> {
+  try {
+    return parseManifest(JSON.parse(await readFile(path.join(root, 'index.json'), 'utf8')));
+  } catch {
+    return undefined;
   }
-  return {
-    monsterTemplateId: requirement.id,
-    name: requirement.name,
-    endpoint,
-    kind,
-    ...(http ? { status: http.status } : {}),
-    reason: error instanceof Error ? error.message : String(error)
-  };
 }
 
-const mib = (bytes: number): string => `${(bytes / 1024 / 1024).toFixed(2)} MiB`;
-const kib = (bytes: number): string => `${(bytes / 1024).toFixed(2)} KiB`;
+async function validOldImage(
+  root: string,
+  id: string,
+  old?: EnemyAssetManifest
+): Promise<ImageDigest | undefined> {
+  if (!old?.images[id]) return undefined;
+  try {
+    const image = await inspectWebp(path.join(root, 'icons', `Monster_${id}.webp`));
+    const expected = old.images[id];
+    return image.size === expected.size && image.sha256 === expected.sha256 ? image : undefined;
+  } catch {
+    return undefined;
+  }
+}
 
-function printSummary(result: EnemyAssetSyncResult, log: (message: string) => void): void {
-  const { stats } = result;
-  log('敌人头像同步统计：');
-  log(`  total MonsterTemplateIDs: ${stats.totalMonsterTemplateIds}`);
-  log(`  successfully resolved: ${stats.resolvedMonsterDetails}`);
-  log(`  mapped MonsterTemplateIDs: ${stats.mappedMonsterTemplateIds}`);
-  log(`  unique imageIds: ${stats.uniqueImageIds}`);
-  log(
-    `  downloaded: ${stats.downloadedImages}（新增 ${stats.newImages}，替换 ${stats.replacedImages}）`
+function operational(error: unknown, endpoint: string): never {
+  throw new Error(`enemy update operational failure (${endpoint}): ${(error as Error).message}`, {
+    cause: error
+  });
+}
+
+async function recoverBackup(root: string): Promise<void> {
+  const parent = path.dirname(root);
+  const backups = (await readdir(parent)).filter((name) =>
+    name.startsWith(`.${path.basename(root)}.previous-`)
   );
-  log(`  reused/skipped: ${stats.skippedImages}`);
-  log(`  pruned: ${stats.prunedImages}`);
-  log(`  missing monster JSON: ${stats.missingMonsterJson}`);
-  log(`  missing image_path: ${stats.missingImagePath}`);
-  log(`  failed monster JSON: ${stats.failedMonsterJson}`);
-  log(`  missing image file: ${stats.missingImageFiles}`);
-  log(`  failed image download: ${stats.failedImageDownloads}`);
-  log(`  image directory size: ${mib(stats.iconDirectoryBytes)}`);
-  log(`  mapping JSON size: ${kib(stats.mappingBytes)}`);
+  if (!backups.length) return;
+  const current = await oldManifest(root);
+  if (!current) {
+    if (backups.length !== 1) throw new Error('Multiple enemy backups require manual recovery');
+    await rename(path.join(parent, backups[0]), root);
+    return;
+  }
+  await validateSnapshot(await readEnemyRequirements(), root);
+  for (const backup of backups) await rm(path.join(parent, backup), { recursive: true });
 }
 
-async function printSanityChecks(
-  result: EnemyAssetSyncResult,
-  log: (message: string) => void,
-  iconRoot = enemyIconRoot
-): Promise<void> {
-  log('Sanity checks：');
-  for (const id of SANITY_CHECK_IDS) {
-    const entry = result.manifest.monsters[id];
-    if (!entry) {
-      const failure = result.failures.find((item) => item.monsterTemplateId === id);
-      log(`  ${id}: 失败 — ${failure?.reason ?? '未进入 mapping'}`);
-      continue;
+async function publish(stage: string, root: string): Promise<void> {
+  const backup = path.join(path.dirname(root), `.${path.basename(root)}.previous-${randomUUID()}`);
+  let hadOld = false;
+  try {
+    await rename(root, backup);
+    hadOld = true;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+  }
+  try {
+    await rename(stage, root);
+  } catch (error) {
+    if (hadOld) {
+      try {
+        await rename(backup, root);
+      } catch (rollback) {
+        throw new AggregateError([error, rollback], `Original snapshot remains at ${backup}`, {
+          cause: rollback
+        });
+      }
     }
-    const localPath = path.join(iconRoot, `Monster_${entry.imageId}.webp`);
-    const metadata = await validateWebpFile(localPath);
-    log(
-      `  ${id}\t${entry.name}\timageId=${entry.imageId}\t${localPath}\t${metadata.width}x${metadata.height}`
-    );
+    throw error;
+  }
+  if (hadOld) {
+    try {
+      await rm(backup, { recursive: true });
+    } catch (error) {
+      console.warn(`Enemy backup cleanup deferred: ${(error as Error).message}`);
+    }
   }
 }
 
-export async function syncEnemyAssets(
-  options: EnemyAssetSyncOptions = {}
-): Promise<EnemyAssetSyncResult> {
-  const baseUrl = (options.baseUrl ?? NANOKA_BASE_URL).replace(/\/$/, '');
-  const concurrency = options.concurrency ?? DEFAULT_CONCURRENCY;
-  const now = options.now ?? (() => new Date());
-  const log = options.log ?? console.log;
-  const assetRoot = options.assetRoot ?? enemyAssetRoot;
-  const iconRoot = path.join(assetRoot, 'icons');
-  const manifestPath =
-    options.assetRoot === undefined ? enemyAssetManifestPath : path.join(assetRoot, 'index.json');
-  const readmePath =
-    options.assetRoot === undefined ? enemyAssetReadmePath : path.join(assetRoot, 'README.md');
-  const retryOptions: RetryOptions = {
+export async function updateEnemyAssets(options: UpdateOptions = {}): Promise<UpdateResult> {
+  const started = performance.now();
+  const root = path.resolve(options.assetRoot ?? enemyAssetRoot);
+  assertInsideSite(root);
+  if (root === path.resolve(path.dirname(enemyAssetRoot)))
+    throw new Error('Refusing broad enemy update target');
+  if (!options.assetRoot) await recoverBackup(root);
+  const requirements = await readEnemyRequirements(options.catalogFile);
+  const old = await oldManifest(root);
+  let oldValid = false;
+  if (old) {
+    try {
+      await validateSnapshot(requirements, root);
+      oldValid = true;
+    } catch {
+      /* A damaged snapshot may be repaired by the explicit updater. */
+    }
+  }
+  const oldIds = new Set([
+    ...Object.keys(old?.monsters ?? {}),
+    ...Object.keys(old?.unavailable ?? {})
+  ]);
+  const baseUrl = (options.baseUrl ?? BASE_URL).replace(/\/$/, '');
+  const retry: RetryOptions = {
     ...(options.fetchImpl ? { fetchImpl: options.fetchImpl } : {}),
-    ...(options.timeoutMs === undefined ? {} : { timeoutMs: options.timeoutMs }),
     ...(options.maxRetries === undefined ? {} : { maxRetries: options.maxRetries }),
+    ...(options.timeoutMs === undefined ? {} : { timeoutMs: options.timeoutMs }),
     ...(options.sleep ? { sleep: options.sleep } : {})
   };
-
-  const requirements = await readEnemyRequirements(options.catalogFile);
-  await writeFileAtomically(readmePath, provenanceReadme);
-  const cleanedTemporaryFiles = await cleanEnemyTemporaryFiles(iconRoot);
-  if (cleanedTemporaryFiles) log(`已清理遗留临时 WebP：${cleanedTemporaryFiles}`);
-
-  const version = await fetchNanokaVersion(baseUrl, retryOptions);
-  log(`Nanoka HSR version: ${version}`);
-  const monsterIndexUrl = `${baseUrl}/hsr/${encodeURIComponent(version)}/monster.json`;
-  const monsterIndex = await fetchJson(monsterIndexUrl, retryOptions);
-  if (monsterIndex === null || (typeof monsterIndex !== 'object' && !Array.isArray(monsterIndex))) {
-    throw new Error(`Nanoka monster index 格式异常：${monsterIndexUrl}`);
-  }
-  log(`已确认 Nanoka monster index：${monsterIndexUrl}`);
-
-  const detailResults = await mapConcurrent(requirements, concurrency, async (requirement) => {
-    const endpoint = `${baseUrl}/hsr/${encodeURIComponent(version)}/zh/monster/${requirement.id}.json`;
-    try {
-      const raw = await fetchJson(endpoint, retryOptions);
+  const version = await fetchNanokaVersion(baseUrl, retry);
+  const refreshAll = options.force || old?.version !== version;
+  let detailRequests = 0;
+  const details = await mapConcurrent(
+    requirements,
+    options.concurrency ?? DEFAULT_CONCURRENCY,
+    async (
+      requirement
+    ): Promise<{
+      requirement: EnemyRequirement;
+      entry?: EnemyAssetEntry;
+      unavailable?: UnavailableEntry;
+    }> => {
+      const previous = old?.monsters[requirement.id];
+      if (!refreshAll && previous) return { requirement, entry: previous };
+      const endpoint = `${baseUrl}/hsr/${encodeURIComponent(version)}/zh/monster/${requirement.id}.json`;
+      detailRequests += 1;
+      let raw: unknown;
+      try {
+        const response = await fetchWithRetry(endpoint, retry);
+        if (response.status === 404)
+          return {
+            requirement,
+            unavailable: { name: requirement.name, kind: 'missing-monster-json', status: 404 }
+          };
+        if (!response.ok) throw new HttpError(`HTTP ${response.status}`, endpoint, response.status);
+        raw = JSON.parse(await response.text());
+      } catch (error) {
+        return operational(error, endpoint);
+      }
+      let monster;
+      try {
+        monster = parseNanokaMonster(raw, requirement, endpoint, baseUrl);
+      } catch (error) {
+        if (error instanceof Error && /缺少可解析的 image_path/.test(error.message))
+          return {
+            requirement,
+            unavailable: { name: requirement.name, kind: 'missing-image-path' }
+          };
+        return operational(error, endpoint);
+      }
       return {
         requirement,
-        monster: parseNanokaMonster(raw, requirement, endpoint, baseUrl)
-      } satisfies DetailSuccess;
-    } catch (error) {
-      return {
-        requirement,
-        failure: failureFromError(requirement, endpoint, error, 'failed-monster-json')
-      } satisfies DetailFailure;
-    }
-  });
-  const detailSuccesses = detailResults.filter(
-    (result): result is DetailSuccess => 'monster' in result
-  );
-  const failures = detailResults
-    .filter((result): result is DetailFailure => 'failure' in result)
-    .map((result) => result.failure);
-
-  const monstersByImage = new Map<string, DetailSuccess[]>();
-  for (const success of detailSuccesses) {
-    const current = monstersByImage.get(success.monster.imageId) ?? [];
-    current.push(success);
-    monstersByImage.set(success.monster.imageId, current);
-  }
-  const uniqueImages = [...monstersByImage.values()].map((values) => values[0].monster);
-  const iconResults = await mapConcurrent(uniqueImages, concurrency, async (monster) => {
-    try {
-      const written = await ensureEnemyIcon(monster, {
-        ...retryOptions,
-        force: options.force,
-        iconRoot
-      });
-      return {
-        imageId: monster.imageId,
-        disposition: written.disposition,
-        width: written.metadata.width,
-        height: written.metadata.height
-      } satisfies IconSuccess;
-    } catch (error) {
-      return {
-        imageId: monster.imageId,
-        error,
-        endpoint: monster.iconUrl
-      } satisfies IconFailure;
-    }
-  });
-
-  const successfulImageIds = new Set(
-    iconResults
-      .filter((result): result is IconSuccess => 'disposition' in result)
-      .map((r) => r.imageId)
-  );
-  const iconFailures = iconResults.filter((result): result is IconFailure => 'error' in result);
-  for (const iconFailure of iconFailures) {
-    for (const linked of monstersByImage.get(iconFailure.imageId) ?? []) {
-      failures.push(
-        failureFromError(
-          linked.requirement,
-          iconFailure.endpoint,
-          iconFailure.error,
-          'failed-image-download'
-        )
-      );
-    }
-  }
-
-  const monsters: EnemyAssetManifest['monsters'] = {};
-  for (const success of detailSuccesses) {
-    if (!successfulImageIds.has(success.monster.imageId)) continue;
-    monsters[success.requirement.id] = {
-      name: success.monster.name,
-      imageId: success.monster.imageId,
-      icon: `/generated-enemy-assets/icons/Monster_${success.monster.imageId}.webp`
-    };
-  }
-  const manifest: EnemyAssetManifest = {
-    schemaVersion: ENEMY_ASSET_SCHEMA_VERSION,
-    source: 'static.nanoka.cc',
-    version,
-    generatedAt: now().toISOString(),
-    resourceType: 'MonsterMiddleIcon',
-    monsters,
-    unavailable: Object.fromEntries(
-      failures.filter(isToleratedEnemyAssetFailure).map((failure) => [
-        failure.monsterTemplateId,
-        {
-          name: failure.name,
-          kind: failure.kind as
-            'missing-monster-json' | 'missing-image-path' | 'missing-image-file',
-          ...(failure.status === undefined ? {} : { status: failure.status })
+        entry: {
+          name: previous?.imageId === monster.imageId ? previous.name : monster.name,
+          imageId: monster.imageId,
+          icon: `/generated-enemy-assets/icons/Monster_${monster.imageId}.webp`
         }
-      ])
-    )
-  };
-
-  const hardFailures = failures.filter((failure) => !isToleratedEnemyAssetFailure(failure));
-  if (hardFailures.length) {
-    const first = hardFailures[0];
-    throw new Error(
-      `敌人资源同步存在 ${hardFailures.length} 个 operational failure；首个为 ${first.monsterTemplateId} ${first.kind}：${first.reason}`
-    );
-  }
-  const cacheValidation = await validateEnemyAssetCache(requirements, manifest, iconRoot);
-  if (!cacheValidation.valid) {
-    throw new Error(`敌人资源同步结果不可发布：${cacheValidation.reason}`);
-  }
-
-  const referencedImageIds = new Set(Object.values(monsters).map((entry) => entry.imageId));
-  const prunedImages = await pruneEnemyIcons(referencedImageIds, iconRoot);
-  const iconDirectoryBytes = await directoryFileSize(iconRoot);
-  const serializedManifest = `${JSON.stringify(manifest, null, 2)}\n`;
-  const mappingBytes = Buffer.byteLength(serializedManifest);
-  await writeFileAtomically(manifestPath, serializedManifest);
-  const successes = iconResults.filter((result): result is IconSuccess => 'disposition' in result);
-  const stats: EnemyAssetSyncStats = {
-    totalMonsterTemplateIds: requirements.length,
-    resolvedMonsterDetails: detailSuccesses.length,
-    mappedMonsterTemplateIds: Object.keys(monsters).length,
-    uniqueImageIds: uniqueImages.length,
-    newImages: successes.filter((item) => item.disposition === 'created').length,
-    replacedImages: successes.filter((item) => item.disposition === 'replaced').length,
-    downloadedImages: successes.filter((item) => item.disposition !== 'skipped').length,
-    skippedImages: successes.filter((item) => item.disposition === 'skipped').length,
-    prunedImages,
-    missingMonsterJson: failures.filter((failure) => failure.kind === 'missing-monster-json')
-      .length,
-    missingImagePath: failures.filter((failure) => failure.kind === 'missing-image-path').length,
-    failedMonsterJson: failures.filter((failure) =>
-      ['failed-monster-json', 'invalid-monster-json'].includes(failure.kind)
-    ).length,
-    missingImageFiles: iconFailures.filter(
-      (failure) => failure.error instanceof HttpError && failure.error.status === 404
-    ).length,
-    failedImageDownloads: iconFailures.filter(
-      (failure) => !(failure.error instanceof HttpError && failure.error.status === 404)
-    ).length,
-    iconDirectoryBytes,
-    mappingBytes
-  };
-  const result = { version, manifest, failures, stats };
-
-  await printSanityChecks(result, log, iconRoot);
-  printSummary(result, log);
-  if (failures.length) {
-    log('Missing/failed summary：');
-    for (const failure of failures) {
-      log(
-        `  ${failure.monsterTemplateId}\t${failure.name}\t${failure.kind}\t${failure.status ?? '-'}\t${failure.endpoint}\t${failure.reason}`
-      );
+      };
     }
-  }
-  return result;
-}
-
-function commandLineOptions(args: string[]): { force: boolean; useCurl: boolean } {
-  const unknown = args.filter((argument) => !['--', '--force', '--curl'].includes(argument));
-  if (unknown.length) {
-    throw new Error(`未知参数：${unknown.join(', ')}；仅支持 --force 和 --curl。`);
-  }
-  return { force: args.includes('--force'), useCurl: args.includes('--curl') };
-}
-
-if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.meta.filename)) {
+  );
+  const candidates = sorted(
+    details.filter((item) => item.entry).map((item) => [item.requirement.id, item.entry!] as const)
+  );
+  const unavailable = sorted(
+    details
+      .filter((item) => item.unavailable)
+      .map((item) => [item.requirement.id, item.unavailable!] as const)
+  );
+  const ids = [...new Set(Object.values(candidates).map((entry) => entry.imageId))].sort((a, b) =>
+    a.localeCompare(b)
+  );
+  const stage = path.join(path.dirname(root), `.${path.basename(root)}.staging-${randomUUID()}`);
+  assertInsideSite(stage);
+  let published = false;
   try {
-    const cli = commandLineOptions(process.argv.slice(2));
-    const result = await syncEnemyAssets({
-      force: cli.force,
-      ...(cli.useCurl ? { fetchImpl: createCurlFetch() } : {})
-    });
-    if (result.failures.length)
-      console.warn(`敌人资源包含 ${result.failures.length} 个合法缺失项。`);
-  } catch (error) {
-    console.error(error instanceof Error ? error.message : error);
-    process.exitCode = 1;
+    await mkdir(path.join(stage, 'icons'), { recursive: true });
+    let downloads = 0;
+    let reused = 0;
+    const repaired: string[] = [];
+    const added: string[] = [];
+    const results = await mapConcurrent(
+      ids,
+      options.concurrency ?? DEFAULT_CONCURRENCY,
+      async (id) => {
+        const target = path.join(stage, 'icons', `Monster_${id}.webp`);
+        const prior = await validOldImage(root, id, old);
+        if (prior) {
+          await copyFile(path.join(root, 'icons', `Monster_${id}.webp`), target);
+          reused += 1;
+          return [id, prior] as const;
+        }
+        downloads += 1;
+        const url = `${baseUrl}/assets/hsr/monstermiddleicon/Monster_${id}.webp`;
+        try {
+          const response = await fetchWithRetry(url, retry);
+          if (response.status === 404) return [id, undefined] as const;
+          if (!response.ok) throw new HttpError(`HTTP ${response.status}`, url, response.status);
+          const type = response.headers.get('content-type')?.split(';')[0].trim().toLowerCase();
+          if (
+            type &&
+            !['image/webp', 'application/octet-stream', 'binary/octet-stream'].includes(type)
+          )
+            throw new Error(`Unexpected image content-type: ${type}`);
+          await writeFile(target, new Uint8Array(await response.arrayBuffer()));
+          const digest = await inspectWebp(target);
+          (old?.images[id] ? repaired : added).push(id);
+          return [id, digest] as const;
+        } catch (error) {
+          return operational(error, url);
+        }
+      }
+    );
+    const missing = new Set(results.filter(([, digest]) => !digest).map(([id]) => id));
+    for (const [id, entry] of Object.entries(candidates)) {
+      if (!missing.has(entry.imageId)) continue;
+      delete candidates[id];
+      unavailable[id] = { name: entry.name, kind: 'missing-image-file', status: 404 };
+    }
+    const images = sorted(
+      results.filter((entry): entry is readonly [string, ImageDigest] => !!entry[1])
+    );
+    const monsters = sorted(Object.entries(candidates));
+    const missingEntries = sorted(Object.entries(unavailable));
+    const manifest: EnemyAssetManifest = {
+      schemaVersion: SCHEMA_VERSION,
+      source: 'static.nanoka.cc',
+      version,
+      generatedAt: (options.now ?? (() => new Date()))().toISOString(),
+      resourceType: 'MonsterMiddleIcon',
+      catalogFingerprint: catalogFingerprint(requirements),
+      monsters,
+      unavailable: missingEntries,
+      images
+    };
+    await writeFile(
+      path.join(stage, 'README.md'),
+      await readFile(path.join(root, 'README.md'), 'utf8')
+    );
+    await writeFile(path.join(stage, 'index.json'), `${JSON.stringify(manifest, null, 2)}\n`);
+    await validateSnapshot(requirements, stage);
+    const changed = !oldValid || !old || semantic(manifest) !== semantic(old);
+    const stats: UpdateStats = {
+      catalog: requirements.length,
+      mapped: Object.keys(monsters).length,
+      unavailable: Object.keys(missingEntries).length,
+      images: Object.keys(images).length,
+      detailRequests,
+      imageDownloads: downloads,
+      reusedImages: reused,
+      repairedImages: repaired.sort(),
+      newImages: added.sort(),
+      prunedImages: Object.keys(old?.images ?? {})
+        .filter((id) => !(id in images))
+        .sort(),
+      newTemplateIds: requirements.filter(({ id }) => !oldIds.has(id)).map(({ id }) => id),
+      changedMappings: Object.entries(monsters)
+        .filter(([id, entry]) => old?.monsters[id] && old.monsters[id].imageId !== entry.imageId)
+        .map(([id]) => id),
+      byteDelta:
+        Object.values(images).reduce((sum, item) => sum + item.size, 0) -
+        Object.values(old?.images ?? {}).reduce((sum, item) => sum + item.size, 0),
+      changed,
+      wallSeconds: (performance.now() - started) / 1000
+    };
+    if (changed) {
+      await publish(stage, root);
+      published = true;
+    }
+    const log = options.log ?? console.log;
+    log(
+      `[enemy-update] observed-version=${version} snapshot-version=${changed ? version : old?.version} changed=${changed}`
+    );
+    log(
+      `[enemy-update] catalog=${stats.catalog} mapped=${stats.mapped} unavailable=${stats.unavailable} images=${stats.images} details=${detailRequests} downloads=${downloads} reused=${reused} wall=${stats.wallSeconds.toFixed(3)}s`
+    );
+    log(
+      `[enemy-update] new-ids=${stats.newTemplateIds.join(',') || '-'} changed-mappings=${stats.changedMappings.join(',') || '-'} new-images=${added.join(',') || '-'} repaired=${repaired.join(',') || '-'} pruned=${stats.prunedImages.join(',') || '-'} byte-delta=${stats.byteDelta}`
+    );
+    return { observedVersion: version, stats };
+  } finally {
+    if (!published) await rm(stage, { recursive: true, force: true });
   }
 }
+
+export async function runEnemyUpdateCli(args: string[]): Promise<void> {
+  const unknown = args.filter((arg) => !['--', '--curl', '--force'].includes(arg));
+  if (unknown.length) throw new Error(`Unknown enemy update arguments: ${unknown.join(', ')}`);
+  const useCurl = args.includes('--curl') || PROXY_KEYS.some((key) => process.env[key]?.trim());
+  const { loadDeploymentLock, prepareTurnBasedGameData, siteRoot } =
+    await import('../../deployment/prepare.js');
+  const { ensureData } = await import('../../data/ensure.js');
+  const lock = await loadDeploymentLock();
+  const checkout = await prepareTurnBasedGameData(lock);
+  process.env.HSR_DATA_ROOT = path.relative(siteRoot, checkout.directory).replaceAll('\\', '/');
+  await ensureData();
+  const result = await updateEnemyAssets({
+    force: args.includes('--force'),
+    ...(useCurl ? { fetchImpl: createCurlFetch() } : {})
+  });
+  const report = process.env.ENEMY_UPDATE_REPORT?.trim();
+  if (report) {
+    assertInsideSite(path.resolve(report));
+    await mkdir(path.dirname(path.resolve(report)), { recursive: true });
+    await writeFile(path.resolve(report), `${JSON.stringify(result, null, 2)}\n`);
+  }
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.meta.filename))
+  await runEnemyUpdateCli(process.argv.slice(2));

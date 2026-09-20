@@ -1,5 +1,4 @@
 import { loadEnemySkillInclusionPolicy } from './enemy-skill-policy.js';
-import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { access, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -28,7 +27,6 @@ import {
   assertInsideSite,
   auditRoot,
   generatedRoot,
-  sourceCommit,
   staticGeneratedRoot
 } from './paths.js';
 import { mergeConfigSources, readTable } from './raw.js';
@@ -40,6 +38,7 @@ import {
   resolveAvatarSpecialSkillRelations
 } from './avatar-special-skills.js';
 import { characterLdSourceNames, characterLdSourceSpecs } from './character-sources.js';
+import { DATA_GENERATION_TABLE_NAMES } from './source-requirements.js';
 import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
 import { buildPlayerEquipmentCatalog } from '../../src/lib/player/equipment.js';
 import { collectEndgameSearchTargets } from '../../src/lib/domain/search-index.js';
@@ -52,7 +51,7 @@ import {
 import { buildEndgameDomain } from './endgame.js';
 import { projectEndgame } from './projection/endgame.js';
 import { buildHomepageRecentWarpData } from './homepage.js';
-import { parseGameVersion } from './source-metadata.js';
+import { canonicalJsonDigest, readPreparedSourceMetadata } from './source-metadata.js';
 import { buildCharacterDomain } from './domain/character.js';
 import { buildLightConeDomain } from './domain/light-cone.js';
 import { buildRelicDomain } from './domain/relic.js';
@@ -73,6 +72,7 @@ import { buildEndgameOccurrenceShards } from './endgame-occurrence-shards.js';
 import { assertCrossLocaleStructuralParity } from './structural-parity.js';
 import { assertEnglishCjkReport, auditEnglishCjk } from './english-cjk.js';
 import { buildGeneratedRouteInventory } from './routes.js';
+import { computeDataRevision } from './generated-artifacts.js';
 import {
   assertValidationReport,
   mergeValidationReports,
@@ -196,13 +196,13 @@ export async function syncData(): Promise<DataManifest> {
   const root = assertDataRoot();
   const locale = getPublicLocale();
   const generatedLocales = getGeneratedLocales();
-  const commit = sourceCommit(root);
-  const sourceVersion = execFileSync(
-    'git',
-    ['-c', `safe.directory=${root.replaceAll('\\', '/')}`, '-C', root, 'log', '-1', '--pretty=%s'],
-    { encoding: 'utf8', windowsHide: true }
-  ).trim();
-  const gameVersion = parseGameVersion(sourceVersion);
+  const sourceMetadata = readPreparedSourceMetadata(root);
+  const commit = sourceMetadata.sourceCommit;
+  const sourceVersion = sourceMetadata.sourceVersion;
+  const gameVersion = {
+    gameVersionFull: sourceMetadata.gameVersionFull,
+    gameVersion: sourceMetadata.gameVersion
+  };
   const siteMessageCatalogs = await validateSiteMessageFiles();
 
   console.log(`读取上游数据：${root}`);
@@ -214,7 +214,7 @@ export async function syncData(): Promise<DataManifest> {
     generatedLocales.map(async (config) => {
       const missingText = createMissingTextAuditCollector();
       const textMap = await loadTextMap(root, config.textMapCode);
-      const textMapDigest = createHash('sha256').update(JSON.stringify(textMap)).digest('hex');
+      const textMapDigest = canonicalJsonDigest(textMap);
       const text = await createTextResolver(
         { locale: config.locale, textMapCode: config.textMapCode },
         textMap,
@@ -294,53 +294,7 @@ export async function syncData(): Promise<DataManifest> {
     throw new Error('XXHash64 文本键校验失败：RelicDesc_1012');
   }
 
-  const tableNames = [
-    'AvatarConfig',
-    'AvatarConfigEnhanced',
-    'AvatarEnhancedSkill',
-    'AvatarEnhancedSkillTree',
-    'AvatarEnhancedRank',
-    'AvatarUltraSkillConfig',
-    'GridFightFrontSpecialSP',
-    'MultiplePathAvatarConfig',
-    'ItemConfigAvatar',
-    'AvatarBaseType',
-    'DamageType',
-    'AvatarSkillConfig',
-    'AvatarSkillLink',
-    'AvatarSpecialSkillTree',
-    'AvatarGlobalBuffConfig',
-    'AvatarServantConfig',
-    'AvatarServantSkillConfig',
-    'AvatarServantSkillLink',
-    'AvatarSkillTreeConfig',
-    'AvatarRankConfig',
-    'AvatarPromotionConfig',
-    'AvatarPropertyConfig',
-    'EquipmentConfig',
-    'GachaBasicInfo',
-    'ItemConfigEquipment',
-    'EquipmentSkillConfig',
-    'EquipmentPromotionConfig',
-    'RelicSetConfig',
-    'RelicSetSkillConfig',
-    'RelicDataInfo',
-    'RelicBaseType',
-    'RelicMainAffixConfig',
-    'RelicSubAffixConfig',
-    'AvatarEquipRecommend',
-    'AvatarRelicRecommend',
-    'ItemComefrom',
-    'MonsterTemplateConfig',
-    'MonsterConfig',
-    'MonsterSkillConfig',
-    'HardLevelGroup',
-    'EliteGroup',
-    'ExtraEffectConfig',
-    'ChallengeBossMazeExtra',
-    'MonsterGuideConfig',
-    'MonsterGuideTag'
-  ] as const;
+  const tableNames = DATA_GENERATION_TABLE_NAMES;
   const loaded = await Promise.all(tableNames.map((name) => readTable<Raw>(root, name)));
   const regularTables = Object.fromEntries(
     tableNames.map((name, index) => [name, loaded[index]])
@@ -989,18 +943,6 @@ export async function syncData(): Promise<DataManifest> {
         );
   };
   for (const projection of projections) await writeViewArtifacts(projection);
-  const dataRevision = createHash('sha256')
-    .update(
-      JSON.stringify({
-        sourceCommit: commit,
-        textMapDigests: Object.fromEntries(
-          projections.map(({ config, runtime }) => [config.locale, runtime.textMapDigest])
-        ),
-        artifacts
-      })
-    )
-    .digest('hex');
-
   const countsOf = (projection: (typeof projections)[number]) => ({
     characters: projection.details.characters.length,
     lightCones: projection.details['light-cones'].length,
@@ -1046,7 +988,7 @@ export async function syncData(): Promise<DataManifest> {
     enemies: baseProjection.details.enemies.map((item) => item.id)
   };
   const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
-  const manifest: DataManifest = {
+  const manifestWithoutRevision: Omit<DataManifest, 'dataRevision'> = {
     schemaVersion: 43,
     sourceCommit: commit,
     sourceVersion,
@@ -1056,11 +998,14 @@ export async function syncData(): Promise<DataManifest> {
     publicLocales: getPublicLocales().map(({ locale }) => locale),
     routePaths,
     locales: localeManifest,
-    dataRevision,
     artifacts,
     counts: countsOf(baseProjection),
     routes,
     endgame: baseProjection.endgame.audit.summary
+  };
+  const manifest: DataManifest = {
+    ...manifestWithoutRevision,
+    dataRevision: computeDataRevision(manifestWithoutRevision)
   };
   for (const projection of projections) {
     const health = projection.runtime.text.getLocalizationHealth();

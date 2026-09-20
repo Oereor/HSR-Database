@@ -1,6 +1,7 @@
-import { readdir, readFile } from 'node:fs/promises';
+import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { siteRoot } from './prepare.js';
+import type { FileSummary } from './telemetry.js';
 
 const GENERATED_NAMESPACES = ['/generated-assets/', '/generated-enemy-assets/'] as const;
 const TEXT_EXTENSIONS = new Set(['.html', '.js', '.css', '.json']);
@@ -8,12 +9,14 @@ const TEXT_EXTENSIONS = new Set(['.html', '.js', '.css', '.json']);
 interface BuildPathIndex {
   paths: Set<string>;
   textFiles: string[];
+  files: number;
+  bytes: number;
 }
 
 async function walk(
   directory: string,
   root = directory,
-  index: BuildPathIndex = { paths: new Set(), textFiles: [] }
+  index: BuildPathIndex = { paths: new Set(), textFiles: [], files: 0, bytes: 0 }
 ): Promise<BuildPathIndex> {
   const entries = await readdir(directory, { withFileTypes: true });
   for (const entry of entries) {
@@ -21,8 +24,11 @@ async function walk(
     const relative = path.relative(root, file).replaceAll('\\', '/');
     index.paths.add(relative);
     if (entry.isDirectory()) await walk(file, root, index);
-    else if (entry.isFile() && TEXT_EXTENSIONS.has(path.extname(entry.name).toLowerCase()))
-      index.textFiles.push(file);
+    else if (entry.isFile()) {
+      index.files += 1;
+      index.bytes += (await stat(file)).size;
+      if (TEXT_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) index.textFiles.push(file);
+    }
   }
   return index;
 }
@@ -38,7 +44,7 @@ function referencedAssetUrls(text: string): string[] {
 
 export async function verifyBuildAssetClosure(
   buildRoot = path.join(siteRoot, 'build')
-): Promise<void> {
+): Promise<FileSummary> {
   const index = await walk(buildRoot);
   const missing: string[] = [];
   for (const file of index.textFiles) {
@@ -76,6 +82,22 @@ export async function verifyBuildAssetClosure(
   console.log(
     `最终 build 视觉资源引用闭包验证通过：扫描 ${index.textFiles.length} 个文本文件，索引 ${index.paths.size} 条路径。`
   );
+  return { files: index.files, bytes: index.bytes };
+}
+
+export async function verifyBuildSmoke(
+  rootPagePaths: readonly string[],
+  buildRoot = path.join(siteRoot, 'build')
+): Promise<void> {
+  const entries = new Set([
+    '404.html',
+    ...rootPagePaths.map((href) => {
+      const route = href.replace(/^\//, '').replace(/\/$/, '');
+      return path.posix.join(route, 'index.html');
+    })
+  ]);
+  await Promise.all([...entries].map((entry) => readFile(path.join(buildRoot, entry), 'utf8')));
+  console.log(`Build output smoke passed: ${[...entries].sort().join(', ')}`);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.meta.filename))

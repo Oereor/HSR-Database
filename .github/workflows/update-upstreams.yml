@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AUTOMATION_BRANCH: automation/update-upstreams
+      HSR_DATA_ROOT: .upstream/TurnBasedGameData
+      ENEMY_UPDATE_REPORT: data/audit/enemy-update.json
     steps:
       - name: Checkout develop
         uses: actions/checkout@v7
@@ -59,45 +61,37 @@ jobs:
       - name: Update upstream locks
         run: pnpm upstreams:update
 
-      - name: Check for upstream changes
+      - name: Refresh enemy snapshot
+        run: pnpm update:enemy-assets
+
+      - name: Refresh official character names
+        run: pnpm data:search-names:update
+
+      - name: Sync player alias skeleton
+        run: pnpm data:player-aliases:sync
+
+      - name: Validate refreshed metadata
+        run: pnpm data:search-names:check
+
+      - name: Check maintained outputs
         id: changes
         shell: bash
         run: |
-          if git diff --quiet -- upstream.lock.json; then
+          git add upstream.lock.json data/search/character-official-names.generated.json data/search/character-player-aliases.json static/generated-enemy-assets
+          if git diff --cached --quiet -- upstream.lock.json data/search/character-official-names.generated.json data/search/character-player-aliases.json static/generated-enemy-assets; then
             echo 'changed=false' >> "$GITHUB_OUTPUT"
-            echo 'No upstream changes detected.'
+            echo 'No maintained output changes detected.'
           else
             echo 'changed=true' >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Install dependencies
-        if: steps.changes.outputs.changed == 'true'
-        run: pnpm install --frozen-lockfile
-
-      - name: Compile site messages
-        if: steps.changes.outputs.changed == 'true'
-        run: pnpm messages:compile
-
-      - name: Refresh official character names
-        if: steps.changes.outputs.changed == 'true'
-        run: pnpm data:search-names:update
-
-      - name: Sync player alias skeleton
-        if: steps.changes.outputs.changed == 'true'
-        run: pnpm data:player-aliases:sync
-
-      - name: Verify deployment build
-        if: steps.changes.outputs.changed == 'true'
-        run: pnpm deploy:build
-
-      - name: Commit upstream metadata update
+      - name: Commit maintenance update
         if: steps.changes.outputs.changed == 'true'
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add upstream.lock.json data/search/character-official-names.generated.json data/search/character-player-aliases.json
-          git commit -m 'chore(data): update upstream locks'
+          git commit -m 'chore(data): refresh upstream snapshots'
 
       - name: Push automation branch
         if: steps.changes.outputs.changed == 'true'
@@ -133,12 +127,21 @@ jobs:
               printf '| %s | `%s` | `%s` | %s |\n' "$label" "${old_sha:0:7}" "${new_sha:0:7}" "$status"
             done
             echo
+            echo '### Enemy snapshot'
+            jq -r 'def names: if length == 0 then "-" else join(", ") end; "- Nanoka observed version: `\(.observedVersion)`\n- Catalog: \(.stats.catalog); mapped: \(.stats.mapped); unavailable: \(.stats.unavailable); unique images: \(.stats.images)\n- Detail requests: \(.stats.detailRequests); downloads: \(.stats.imageDownloads); reused: \(.stats.reusedImages)\n- New TemplateIDs: \(.stats.newTemplateIds | names)\n- Changed mappings: \(.stats.changedMappings | names)\n- New images: \(.stats.newImages | names); repaired: \(.stats.repairedImages | names); pruned: \(.stats.prunedImages | names)\n- Enemy image byte delta: \(.stats.byteDelta)"' "$ENEMY_UPDATE_REPORT"
+            echo
+            echo 'Managed file diff:'
+            echo '```text'
+            git diff --stat origin/develop...HEAD -- upstream.lock.json data/search/character-official-names.generated.json data/search/character-player-aliases.json static/generated-enemy-assets
+            echo '```'
+            git diff --name-status origin/develop...HEAD -- static/generated-enemy-assets | awk 'BEGIN { added=0; changed=0; removed=0 } /^A[[:space:]]/ { added++ } /^M[[:space:]]/ { changed++ } /^D[[:space:]]/ { removed++ } END { printf "Enemy files: added %d, changed %d, removed %d\n", added, changed, removed }'
+            echo
             echo 'Checks passed:'
             echo '- `pnpm install --frozen-lockfile`'
-            echo '- `pnpm messages:compile`'
             echo '- `pnpm data:search-names:update`'
             echo '- `pnpm data:player-aliases:sync`'
-            echo '- `pnpm deploy:build`'
+            echo '- `pnpm data:search-names:check`'
+            echo '- `pnpm update:enemy-assets`'
             echo 'EOF'
           } >> "$GITHUB_OUTPUT"
 
@@ -151,7 +154,7 @@ jobs:
         run: |
           pr_number="$(gh pr list --base develop --head "$AUTOMATION_BRANCH" --state open --json number --jq '.[0].number')"
           if [[ -n "$pr_number" ]]; then
-            gh pr edit "$pr_number" --title 'chore(data): update upstream data' --body "$PR_BODY"
+            gh pr edit "$pr_number" --title 'chore(data): refresh upstream snapshots' --body "$PR_BODY"
           else
-            gh pr create --base develop --head "$AUTOMATION_BRANCH" --title 'chore(data): update upstream data' --body "$PR_BODY"
+            gh pr create --base develop --head "$AUTOMATION_BRANCH" --title 'chore(data): refresh upstream snapshots' --body "$PR_BODY"
           fi

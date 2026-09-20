@@ -7,7 +7,9 @@ source-controlled upstream.lock.json
         ↓
 pinned sparse checkouts in .upstream/
         ↓
-data ensure → Nanoka enemy ensure → StarRailRes asset ensure
+shared generation + asset preparation
+        ↓
+Preview core ⊂ Production integrity ⊂ full Correctness CI
         ↓
 static SvelteKit build/
 ```
@@ -20,7 +22,7 @@ static SvelteKit build/
 - `.upstream/`：本地 deployment-only checkout，已加入 `.gitignore`，不会进入 source 或 output。
 - `scripts/deployment/lock.ts`：lock 读取与验证。
 - `scripts/deployment/git.ts`：跨平台 Git 执行、SHA/remote/path 验证、临时目录替换和复用。
-- `scripts/deployment/prepare.ts`：TurnBasedGameData 保守 sparse checkout 与 StarRailRes 两阶段 sparse checkout。
+- `scripts/deployment/prepare.ts`：TurnBasedGameData 精确 Excel/TextMap 加保守 Config sparse checkout，以及 StarRailRes 单阶段 sparse checkout。
 - `scripts/deployment/build.ts`：deployment 编排入口。
 - `scripts/assets/enemies/ensure.ts`：验证或增量生成 Nanoka enemy cache；代理环境使用现有 curl transport。
 
@@ -36,7 +38,22 @@ static SvelteKit build/
 pnpm deploy:build
 ```
 
-该命令验证 lock，准备或复用 `.upstream/`，设置 `HSR_DATA_ROOT`/`HSR_ASSET_ROOT`，依次运行 data ensure、Nanoka enemy ensure、StarRailRes asset ensure，最后执行 `vite build` 输出 `build/`。它不会调用 `pnpm build`，因此不会递归触发自身；原有 `build`/`prebuild` 保持不变。
+本地未设置 `VERCEL_ENV` 时该命令明确使用 Production profile。也可使用：
+
+```text
+pnpm deploy:build:production
+pnpm deploy:build:preview
+pnpm ci:develop
+pnpm ci:validate
+```
+
+所有 profile 共用 lock、pinned checkout、messages、data ensure、离线 enemy snapshot validation、StarRailRes asset ensure、Vite build 和轻量 output smoke。Production 在此基础上增加 build-input 与 asset integrity、最终资源引用和 route closure；full CI 使用完整 semantic validation 并增加 repository checks。Development CI 是 Preview path 加 type/lint/unit/search checks 的非阻塞反馈，不等价于完整 Correctness。
+
+TurnBased preparation 从共享 source registry materialize 81 个实际消费的 Excel 表、两个 TextMap 和三个动态 Config 目录；当前工作树由 4,676 files / 472,882,878 bytes 降为 2,572 files / 267,724,085 bytes。StarRailRes index 与资源目录在初始 checkout 中一次指定，不再执行无消费者的第二次 sparse-set。
+
+General asset cache miss 使用 copy=1、Sharp=2 的独立有界队列，并按 copy 后 Sharp 的顺序执行；该选择来自 Phase 3 的 1/2/4/8 与 1/2/4 benchmark。生成仍经过 staging validation 和 atomic publication。发布后的 filesystem observation 只在当前 build invocation 内共享，使 ensure、输出 telemetry 和 verifier 不再重复 readdir/stat 或对同一物理 icon 重复读取 metadata；verifier仍从 requirements/manifest 独立推导预期 contract。
+
+`VERCEL_ENV=production` 选择 Production，`preview`/`development` 选择 Preview；未知值直接失败。构建脚本不调用 `pnpm build`，因此不会递归触发自身；原有 `build`/`prebuild` 保持不变。
 
 Enemy manifest 使用 schema 2，以 `monsters + unavailable` 精确覆盖当前 enemy catalog。明确的单资源 404 或缺少 `image_path` 保持 UI fallback；网络、解析、内容类型、图片签名或系统性覆盖失败会终止 deployment build。schema 1 仍可由 UI 读取，但 enemy ensure 会刷新为 schema 2。
 
@@ -44,7 +61,7 @@ Enemy manifest 使用 schema 2，以 `monsters + unavailable` 精确覆盖当前
 
 1. 获取新的 upstream 完整 commit SHA。
 2. 修改 `upstream.lock.json`。
-3. 运行 `pnpm deploy:build`。
+3. 运行 `pnpm deploy:build:production`。
 4. 运行现有 `data:validate`、`assets:verify` 和相关测试。
 5. 检查生成结果后提交 lock 变更。
 
@@ -104,7 +121,8 @@ Warm enemy ensure 仅验证 Nanoka version 与本地 cache，完整 warm deploym
 当前 `.github/workflows/update-upstreams.yml` 在 lock 确有变化时执行：
 
 ```text
-upstreams:update → data:search-names:update → data:player-aliases:sync → deploy:build
+upstreams:update → data:search-names:update → data:player-aliases:sync
+→ data:search-names:check
 → commit → automation/update-upstreams → PR to develop → 人工审核
 ```
 
@@ -112,16 +130,19 @@ upstreams:update → data:search-names:update → data:player-aliases:sync → d
 
 自动 commit 的显式文件集合为 `upstream.lock.json`、`data/search/character-official-names.generated.json`、`data/search/character-player-aliases.json`，只产生实际变化的 diff。权限维持 `contents: write` 和 `pull-requests: write`；只更新 automation 分支并创建/更新至 develop 的 PR，不直接推 main/develop，不自动审核或合并。
 
-普通 `deploy:build` 仍是校验与可重现构建，不运行 skeleton sync、不修改 tracked 输入。维护者只编辑 alias 时，运行 `pnpm data:ensure`、`pnpm test`、`pnpm data:validate`；metadata digest 会触发搜索产物增量重建。手工更新 upstream 时先刷新官方名称、显式同步 skeleton、审阅 diff，再运行 `pnpm deploy:build`。详情见 [Search V2 维护文档](search-v2.md)。
+updater 不再复制完整 deployment pipeline；其 PR 获得非 required 的 Development CI，完整语义和 Production correctness 由 `develop → main` PR 的 `Correctness` gate 验证。普通 `deploy:build` 不运行 skeleton sync、不修改 tracked 输入。维护者只编辑 alias 时，运行 `pnpm data:ensure`、`pnpm test`、`pnpm data:validate`；metadata digest 会触发搜索产物增量重建。手工更新 upstream 时先刷新官方名称、显式同步 skeleton、审阅 diff，再运行 `pnpm deploy:build:production`。详情见 [Search V2 维护文档](search-v2.md)。
 
 ## Clean deployment 与脚本类型门禁
 
 - 日常开发：`pnpm dev`。`predev` 执行 `data:ensure`，有效的 manifest、Endgame、首页和 naming cache 可使其跳过完整 `syncData()`。
 - 静态检查：`pnpm check` 包含 Svelte 检查和 `pnpm check:scripts`。后者使用独立 `tsconfig.scripts.json`，strict / noEmit，覆盖全部脚本及其导入依赖，无需先生成 `.svelte-kit` 或领域数据。
-- 普通部署验证：`pnpm deploy:build`。在数据生成前执行脚本 compiler gate，保留增量缓存及既有 pinned upstream 流程。
+- Development 验证：`pnpm ci:develop`。执行 Preview-equivalent build，并增加 type、lint、unit 和 search metadata checks。
+- 普通部署验证：`pnpm deploy:build` 或 `pnpm deploy:build:production`。Production 假设 commit 已通过可信 CI，运行 `data:validate:build-inputs` 验证 prepared source、TextMaps、manifest、artifact bytes/schema/inventory 与 build-consumer closure，不重复昂贵 semantic audit。
+- 完整 PR gate：`pnpm ci:validate`。执行 `data:validate:full`（包含共享 build-input gate 与全部 semantic audits）、Production-equivalent asset/output checks及 repository checks；GitHub workflow 复用其 build 运行浏览器 smoke。
+- Preview/Development：不运行上述两层数据 validator；`data:ensure` 的 producer postconditions保持不变。`pnpm data:validate`仍是完整语义验证 alias，不能用轻量 Production gate替代。
 - Fresh-clone 验证：`pnpm deploy:build:clean`。清理后复用同一个部署编排，成本包含上游下载与完整数据、图片生成；不放入普通 Vitest，也不与开发服务器或其他构建并发运行。
 
-Clean 白名单为 `src/lib/generated/`、`static/generated/`、`src/lib/generated-assets/`、`static/generated-assets/`、`static/generated-enemy-assets/`、`build/`、`.svelte-kit/`、`.vite/`、`.upstream/`。清理前完整检查目标及父目录，拒绝 symlink/junction，保留 tracked `.gitkeep`，若发现其他 tracked 文件则在删除前失败。不接受自定义删除路径，不清理依赖或 sibling repositories。
+Clean 白名单为 `src/lib/generated/`、`src/lib/paraglide/`、`project.inlang/cache/`、`static/generated/`、`src/lib/generated-assets/`、`static/generated-assets/`、`build/`、`.svelte-kit/`、`.vite/`、`.upstream/`。Phase 1 的 tracked `static/generated-enemy-assets/`不在清理范围。清理前完整检查目标及父目录，拒绝 symlink/junction，保留 tracked `.gitkeep`，若发现其他 tracked 文件则在删除前失败。不接受自定义删除路径，不清理依赖或 sibling repositories。
 
 清理 `.upstream` 是为了实际重新执行 lock 指定的 sparse pinned checkout。官方名称、人工 aliases 和 lock 不在清理范围，命令在构建成功或失败后均比较这三份文件的 SHA-256。普通构建不自动刷新官方快照或同步人工 aliases。
 

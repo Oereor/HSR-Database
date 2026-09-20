@@ -80,20 +80,30 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 
 | 命令                    | 用途                                   |
 | ----------------------- | -------------------------------------- |
-| `pnpm dev`              | 启动开发服务器                         |
-| `pnpm data:sync`        | 生成网站使用的数据                     |
-| `pnpm data:validate`    | 验证生成数据                           |
-| `pnpm assets:sync`      | 同步页面所需视觉资源                   |
-| `pnpm assets:verify`    | 验证生成的视觉资源                     |
-| `pnpm check`            | Svelte / TypeScript 检查               |
-| `pnpm lint`             | Prettier / ESLint 检查                 |
-| `pnpm test`             | 运行 Vitest 测试                       |
-| `pnpm test:e2e`         | 运行 Playwright 测试                   |
-| `pnpm build`            | 生成静态生产构建                       |
-| `pnpm deploy:build`     | 使用固定 upstream 版本执行完整部署构建 |
-| `pnpm upstreams:update` | 检查并更新 upstream lock               |
+| `pnpm dev`                     | 启动开发服务器                              |
+| `pnpm data:sync`               | 生成网站使用的数据                          |
+| `pnpm data:validate`           | 执行完整数据语义审计（`data:validate:full` alias） |
+| `pnpm data:validate:full`      | 执行完整 build-input 与 semantic validation |
+| `pnpm data:validate:build-inputs` | 仅验证 Production 将消费的落盘输入完整性 |
+| `pnpm assets:sync`             | 同步页面所需视觉资源                        |
+| `pnpm assets:verify`           | 验证生成的视觉资源                          |
+| `pnpm update:enemy-assets`     | 从 Nanoka 增量更新 tracked enemy snapshot   |
+| `pnpm validate:enemy-assets`   | 离线验证 tracked enemy snapshot             |
+| `pnpm check`                   | Svelte / TypeScript 检查                    |
+| `pnpm lint`                    | Prettier / ESLint 检查                      |
+| `pnpm test`                    | 运行 Vitest 测试                            |
+| `pnpm test:e2e`                | 运行 Playwright 测试                        |
+| `pnpm build`                   | 生成静态生产构建                            |
+| `pnpm deploy:build`            | 使用固定 upstream 版本执行 Production 构建 |
+| `pnpm deploy:build:preview`    | 执行轻量 Preview-equivalent 构建            |
+| `pnpm deploy:build:production` | 显式执行 Production 构建                    |
+| `pnpm ci:develop`              | 执行 develop 分支的非阻塞轻量验证           |
+| `pnpm ci:validate`             | 执行 main PR 的完整 correctness contract    |
+| `pnpm upstreams:update`        | 检查并更新 upstream lock                    |
 
-`pnpm test` 和 `pnpm data:validate` 使用 prepared-workspace 模型，不会自行准备全部 generated inputs。clean pinned workspace 应先运行 `pnpm ci:prepare`；普通 `pnpm build`、CI 和部署命令继续保持各自现有的准备职责。
+`pnpm test` 和 `pnpm data:validate` 使用 prepared-workspace 模型，不会自行准备全部 generated inputs。clean pinned workspace 应使用自准备的 `pnpm ci:develop`、`pnpm ci:validate` 或 deployment profile；普通 `pnpm build` 继续使用本地 sibling upstream 的既有 `prebuild` 路径。
+
+`data:validate:build-inputs` 是 Production orchestration 的完整性门禁，只证明 manifest、pinned source、TextMaps、artifact bytes/schema/inventory 与 build-consumer closure 自洽；它不会重新计算搜索、Endgame、角色或敌人业务语义，不能替代日常的 `pnpm data:validate`。
 
 ## 项目结构
 
@@ -113,11 +123,13 @@ docs/           # 数据调查与开发文档
 tests/          # Vitest / Playwright 测试
 ```
 
-构建生成的数据和视觉资源会加入 `.gitignore`。
+构建生成的数据和普通视觉资源会加入 `.gitignore`。`static/generated-enemy-assets/` 是例外：它在维护时生成、由 Git 跟踪，并作为部署时不可变的 enemy visual snapshot。
 
 ## Upstream 与部署
 
 `upstream.lock.json` 锚定 `TurnBasedGameData` 与 `StarRailRes` 的具体 commit SHA。
+
+部署准备只 materialize 当前生成器实际消费的 81 个 TurnBased Excel 表、CHS/EN TextMap 和保守保留的动态 Config 目录；StarRailRes 的 index 与资源目录在一次 sparse checkout 中准备。普通视觉资源在 cache miss 时通过共享的有界 copy/Sharp worker pools 生成到 staging，验证后原子发布；cache hit 和 Production verifier 复用同一次最终文件树观察，但 verifier 仍独立检查 manifest、文件集合和图片 metadata。
 
 正式部署通过：
 
@@ -126,6 +138,8 @@ pnpm deploy:build
 ```
 
 根据 lock 获取对应版本的上游数据，再完成数据生成、资源准备与网站构建，而不是直接追踪 upstream 的最新 commit。
+
+Enemy portraits 已随仓库 checkout 提供。Production、Preview 和 CI 只会离线验证并使用该 snapshot，不会实时请求 Nanoka；维护者通过 `pnpm update:enemy-assets` 显式检查并更新它。
 
 项目目前使用以下分支流程：
 
@@ -137,6 +151,8 @@ develop
 └── 活跃开发分支 / 代码同步（push 不会自动引发 Vercel preview 部署）
 ```
 
+`develop` 允许直接 push；push 或可选 PR 会运行非 required 的 `Development` 检查。`develop → main` PR 则必须由完整 `Correctness` check 验证新的 merge candidate。
+
 需要预览 `develop` 或其他分支时，在 GitHub 的 **Actions → Vercel Preview Deployment → Run workflow** 中选择对应分支并手动运行。GitHub Actions 会将所选 commit 的源码部署到 Vercel Preview，由 Vercel 使用 Preview 环境变量执行项目现有的 `pnpm deploy:build`；合并或 push 到 `main` 后，仍由 Vercel Git Integration 自动部署 Production。
 
 首次启用手动 Preview 时，workflow 文件必须先合入仓库默认分支 `main`，之后 GitHub 才会在 Actions 页面提供 Run workflow。仓库还需在 **Settings → Secrets and variables → Actions** 中配置：
@@ -147,7 +163,7 @@ develop
 
 后两个 ID 可从 Vercel Project Settings 获取，也可在本地仅链接现有项目后查看 `.vercel/project.json`。不要提交 token、`.vercel/`、`.env.local` 或其他本机状态。
 
-GitHub Actions 会定期检查两个 upstream 是否有更新。发现新版本后，自动更新 `upstream.lock.json`、执行完整构建验证，并创建目标为 `develop` 的 Pull Request，交由人工审核；需要页面验收时再手动部署 Preview。
+GitHub Actions 会定期检查两个 upstream 与 Nanoka enemy snapshot 是否有更新。维护任务更新受管 metadata 和 snapshot 后，创建目标为 `develop` 的 Pull Request 交由人工审核；不会自动合并。需要页面验收时再手动部署 Preview。
 
 ### 如何添加更新日志
 
@@ -186,6 +202,7 @@ title: '更新标题'
 
 - [TurnBasedGameData](https://github.com/DimbreathBot/TurnBasedGameData) — 提供《崩坏：星穹铁道》的游戏数据，是本站静态数据的主要来源之一。
 - [StarRailRes](https://github.com/Mar-7th/StarRailRes) — 提供角色、光锥、遗器、图标等游戏资源，用于本站的本地资源展示。
+- [Nanoka](https://static.nanoka.cc) — 提供 enemy visual assets；本站在维护时生成并审核 snapshot，部署不实时依赖该服务。未确认的再分发许可不因本项目的 MIT License 而获得覆盖。
 - [MiHoMo API](https://api.mihomo.me/docs) — 提供公开玩家信息查询服务，用于本站的「玩家信息 / Player Info」功能。
 
 特别感谢以上项目及其维护者，使 HSR-Database 能够建立在稳定、开放的社区数据与资源之上。

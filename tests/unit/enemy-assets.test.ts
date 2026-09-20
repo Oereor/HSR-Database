@@ -1,630 +1,349 @@
-import { mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { parseCurlResponse } from '../../scripts/assets/enemies/curl';
+import { updateEnemyAssets } from '../../scripts/assets/enemies/sync';
 import {
-  ensureEnemyAssets,
-  hasProxyEnvironment,
-  shouldUseCurlTransport
-} from '../../scripts/assets/enemies/ensure';
-import { syncEnemyAssets } from '../../scripts/assets/enemies/sync';
-import { loadEnemyPortraitMap } from '../../src/lib/server/enemy-assets';
-import {
-  cleanEnemyTemporaryFiles,
-  ENEMY_ASSET_SCHEMA_VERSION,
+  SCHEMA_VERSION,
+  catalogFingerprint,
   enemyAssetRoot,
-  ensureEnemyIcon,
-  extractImageId,
-  fetchWithRetry,
-  parseNanokaMonster,
-  pruneEnemyIcons,
-  readEnemyAssetManifest,
+  inspectWebp,
   readEnemyRequirements,
-  validateEnemyAssetCache,
-  validateWebpFile,
-  type EnemyRequirement,
-  type NanokaMonster
-} from '../../scripts/assets/enemies/shared';
+  validateSnapshot,
+  type EnemyAssetManifest,
+  type EnemyRequirement
+} from '../../scripts/assets/enemies/snapshot';
+import { fetchWithRetry, parseNanokaMonster } from '../../scripts/assets/enemies/network';
+import { loadEnemyPortraitMap } from '../../src/lib/server/enemy-assets';
 
-sharp.cache(false);
-
-const testRoots: string[] = [];
-let validWebp: Buffer;
-let validWebpBody: ArrayBuffer;
-
+let webp: Buffer;
+const roots: string[] = [];
 beforeAll(async () => {
-  validWebp = await sharp({
-    create: {
-      width: 16,
-      height: 12,
-      channels: 4,
-      background: { r: 20, g: 40, b: 60, alpha: 1 }
-    }
+  webp = await sharp({
+    create: { width: 12, height: 16, channels: 4, background: { r: 30, g: 60, b: 90, alpha: 1 } }
   })
     .webp()
     .toBuffer();
-  validWebpBody = Uint8Array.from(validWebp).buffer;
 });
-
 afterEach(async () => {
   vi.restoreAllMocks();
   await Promise.all(
-    testRoots.splice(0).map((directory) => rm(directory, { recursive: true, force: true }))
+    roots
+      .splice(0)
+      .map((root) => rm(root, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }))
   );
 });
 
-async function testRoot(label: string): Promise<string> {
+async function fixture(
+  label: string,
+  ids = ['1']
+): Promise<{
+  root: string;
+  catalog: string;
+  requirements: EnemyRequirement[];
+}> {
   const root = path.join(enemyAssetRoot, `.test-${label}-${crypto.randomUUID()}`);
-  testRoots.push(root);
-  await mkdir(root, { recursive: true });
-  return root;
+  roots.push(root);
+  await mkdir(path.join(root, 'icons'), { recursive: true });
+  const catalog = path.join(root, 'catalog.json');
+  const requirements = ids.map((id) => ({ id, name: `Enemy ${id}` }));
+  await writeFile(catalog, JSON.stringify(requirements));
+  await writeFile(path.join(root, 'README.md'), 'Fixture snapshot\n');
+  return { root, catalog, requirements };
 }
 
-const requirement = (id: string, name = `敌人 ${id}`): EnemyRequirement => ({ id, name });
-
-const monster = (imageId = '9001'): NanokaMonster => ({
-  id: '1',
-  name: '测试敌人',
-  imageId,
-  imagePath: `SpriteOutput/MonsterMiddleIcon/Monster_${imageId}.png`,
-  detailUrl: 'https://example.test/detail/1.json',
-  iconUrl: `https://example.test/Monster_${imageId}.webp`
-});
-
-describe('Nanoka 敌人头像同步核心', () => {
-  it('curl transport 从二进制响应尾部解析状态、类型和 Retry-After', () => {
-    const marker = '\n__MARKER__';
-    const body = Buffer.from([0, 1, 2, 255]);
-    const output = Buffer.concat([body, Buffer.from(`${marker}429\timage/webp\t3`, 'utf8')]);
-    expect(parseCurlResponse(output, marker)).toEqual({
-      body,
-      metadata: { status: 429, contentType: 'image/webp', retryAfter: '3' }
-    });
-  });
-
-  it('从网站敌人目录读取、排序并拒绝重复 canonical ID', async () => {
-    const root = await testRoot('catalog');
-    const catalog = path.join(root, 'enemies.json');
-    await writeFile(
-      catalog,
-      JSON.stringify([
-        { id: '20', name: '乙' },
-        { id: '10', name: '甲' }
-      ])
-    );
-    await expect(readEnemyRequirements(catalog)).resolves.toEqual([
-      { id: '10', name: '甲' },
-      { id: '20', name: '乙' }
-    ]);
-    await writeFile(
-      catalog,
-      JSON.stringify([
-        { id: '10', name: '甲' },
-        { id: '10', name: '重复' }
-      ])
-    );
-    await expect(readEnemyRequirements(catalog)).rejects.toThrow(/重复 ID/);
-  });
-
-  it('按 Nanoka 约定提取 imageId，并严格校验详情 ID', () => {
-    expect(extractImageId('SpriteOutput/MonsterMiddleIcon/Monster_123456.png')).toBe('123456');
-    expect(extractImageId('no-number')).toBeUndefined();
-    expect(
-      parseNanokaMonster(
-        { id: 1, name: '测试敌人', image_path: 'Monster_9001.png' },
-        requirement('1'),
-        'https://example.test/detail/1.json',
-        'https://example.test'
-      )
-    ).toMatchObject({ id: '1', name: '测试敌人', imageId: '9001' });
-    expect(() =>
-      parseNanokaMonster(
-        { id: 2, name: '错误对象', image_path: 'Monster_9001.png' },
-        requirement('1'),
-        'https://example.test/detail/1.json'
-      )
-    ).toThrow(/id 不匹配/);
-    expect(() =>
-      parseNanokaMonster(
-        { id: 1, name: '缺图' },
-        requirement('1'),
-        'https://example.test/detail/1.json'
-      )
-    ).toThrow(/image_path/);
-  });
-
-  it('429/5xx 有限重试，404 不重试', async () => {
-    const delays: number[] = [];
-    const retryFetch = vi
-      .fn<typeof fetch>()
-      .mockResolvedValueOnce(new Response('', { status: 429, headers: { 'retry-after': '0' } }))
-      .mockResolvedValueOnce(new Response('', { status: 503 }))
-      .mockResolvedValueOnce(new Response('ok', { status: 200 }));
-    const response = await fetchWithRetry('https://example.test/retry', {
-      fetchImpl: retryFetch,
-      maxRetries: 3,
-      sleep: async (milliseconds) => {
-        delays.push(milliseconds);
-      }
-    });
-    expect(response.status).toBe(200);
-    expect(retryFetch).toHaveBeenCalledTimes(3);
-    expect(delays).toEqual([0, 2000]);
-
-    const missingFetch = vi.fn<typeof fetch>().mockResolvedValue(new Response('', { status: 404 }));
-    const missing = await fetchWithRetry('https://example.test/missing', {
-      fetchImpl: missingFetch,
-      sleep: async () => undefined
-    });
-    expect(missing.status).toBe(404);
-    expect(missingFetch).toHaveBeenCalledTimes(1);
-
-    const networkFetch = vi.fn<typeof fetch>().mockRejectedValue(new Error('ECONNRESET'));
-    await expect(
-      fetchWithRetry('https://example.test/network', {
-        fetchImpl: networkFetch,
-        maxRetries: 2,
-        sleep: async () => undefined
+async function snapshot(
+  f: Awaited<ReturnType<typeof fixture>>,
+  mappings: Record<string, string>,
+  version = '1'
+): Promise<void> {
+  const imageIds = [...new Set(Object.values(mappings))];
+  const images = Object.fromEntries(
+    await Promise.all(
+      imageIds.map(async (id) => {
+        await writeFile(path.join(f.root, 'icons', `Monster_${id}.webp`), webp);
+        return [id, await inspectWebp(path.join(f.root, 'icons', `Monster_${id}.webp`))];
       })
-    ).rejects.toThrow(/example\.test\/network.*ECONNRESET/);
-    expect(networkFetch).toHaveBeenCalledTimes(3);
-  });
-
-  it('WebP 使用临时文件落盘，支持有效缓存 skip 与 force 替换', async () => {
-    const root = await testRoot('icon');
-    const iconRoot = path.join(root, 'icons');
-    const fetchImpl = vi.fn<typeof fetch>(async () =>
-      Promise.resolve(new Response(validWebpBody, { headers: { 'content-type': 'image/webp' } }))
-    );
-
-    const created = await ensureEnemyIcon(monster(), { iconRoot, fetchImpl });
-    expect(created.disposition).toBe('created');
-    expect(fetchImpl).toHaveBeenCalledTimes(1);
-    const skipped = await ensureEnemyIcon(monster(), { iconRoot, fetchImpl });
-    expect(skipped.disposition).toBe('skipped');
-    expect(fetchImpl).toHaveBeenCalledTimes(1);
-    const replaced = await ensureEnemyIcon(monster(), { iconRoot, fetchImpl, force: true });
-    expect(replaced.disposition).toBe('replaced');
-    expect(fetchImpl).toHaveBeenCalledTimes(2);
-    await expect(validateWebpFile(path.join(iconRoot, 'Monster_9001.webp'))).resolves.toMatchObject(
-      {
-        width: 16,
-        height: 12
-      }
-    );
-  });
-
-  it('拒绝 HTML、空响应和不可接受的 Content-Type，且不留下临时文件', async () => {
-    const root = await testRoot('invalid');
-    const iconRoot = path.join(root, 'icons');
-    for (const response of [
-      new Response('<html>error</html>', { headers: { 'content-type': 'text/html' } }),
-      new Response('', { headers: { 'content-type': 'image/webp' } }),
-      new Response(validWebpBody, { headers: { 'content-type': 'text/plain' } })
-    ]) {
-      await expect(
-        ensureEnemyIcon(monster(), {
-          iconRoot,
-          fetchImpl: vi.fn<typeof fetch>().mockResolvedValue(response)
-        })
-      ).rejects.toThrow();
-    }
-    await expect(stat(path.join(iconRoot, 'Monster_9001.webp'))).rejects.toBeDefined();
-  });
-
-  it('完整成功时按 imageId 去重并清理旧图', async () => {
-    const root = await testRoot('complete');
-    const catalog = path.join(root, 'catalog.json');
-    const iconRoot = path.join(root, 'icons');
-    await mkdir(iconRoot, { recursive: true });
-    await writeFile(
-      catalog,
-      JSON.stringify([
-        { id: '1', name: '本地甲' },
-        { id: '2', name: '本地乙' }
-      ])
-    );
-    await writeFile(path.join(iconRoot, 'Monster_9999.webp'), validWebp);
-    let imageRequests = 0;
-    const fetchImpl = vi.fn<typeof fetch>(async (input) => {
-      const url = String(input);
-      if (url.endsWith('/manifest.json'))
-        return new Response(JSON.stringify({ hsr: { latest: '9.9.9' } }));
-      if (url.endsWith('/monster.json')) return new Response(JSON.stringify([]));
-      if (url.includes('/zh/monster/')) {
-        const id = /\/(\d+)\.json$/.exec(url)?.[1];
-        return new Response(
-          JSON.stringify({ id, name: `Nanoka ${id}`, image_path: 'Monster_7000.png' })
-        );
-      }
-      imageRequests += 1;
-      return new Response(validWebpBody, { headers: { 'content-type': 'image/webp' } });
-    });
-
-    const result = await syncEnemyAssets({
-      assetRoot: root,
-      catalogFile: catalog,
-      baseUrl: 'https://example.test',
-      fetchImpl,
-      log: () => undefined,
-      now: () => new Date('2026-01-01T00:00:00.000Z')
-    });
-    expect(result.failures).toEqual([]);
-    expect(result.stats).toMatchObject({
-      totalMonsterTemplateIds: 2,
-      mappedMonsterTemplateIds: 2,
-      uniqueImageIds: 1,
-      downloadedImages: 1,
-      prunedImages: 1
-    });
-    expect(imageRequests).toBe(1);
-    expect(result.manifest.monsters).toEqual({
-      '1': {
-        name: 'Nanoka 1',
-        imageId: '7000',
-        icon: '/generated-enemy-assets/icons/Monster_7000.webp'
-      },
-      '2': {
-        name: 'Nanoka 2',
-        imageId: '7000',
-        icon: '/generated-enemy-assets/icons/Monster_7000.webp'
-      }
-    });
-    expect(result.manifest.unavailable).toEqual({});
-    await expect(stat(path.join(iconRoot, 'Monster_9999.webp'))).rejects.toBeDefined();
-  });
-
-  it('合法缺失进入 unavailable，仍生成 mapping 并清理未引用旧图', async () => {
-    const root = await testRoot('partial');
-    const catalog = path.join(root, 'catalog.json');
-    const iconRoot = path.join(root, 'icons');
-    await mkdir(iconRoot, { recursive: true });
-    await writeFile(
-      catalog,
-      JSON.stringify([
-        { id: '1', name: '本地甲' },
-        { id: '2', name: '本地乙' }
-      ])
-    );
-    await writeFile(path.join(iconRoot, 'Monster_9999.webp'), validWebp);
-    const fetchImpl = vi.fn<typeof fetch>(async (input) => {
-      const url = String(input);
-      if (url.endsWith('/manifest.json'))
-        return new Response(JSON.stringify({ hsr: { latest: '9.9.9' } }));
-      if (url.endsWith('/monster.json')) return new Response(JSON.stringify([]));
-      if (url.endsWith('/2.json')) return new Response('', { status: 404 });
-      if (url.endsWith('/1.json'))
-        return new Response(
-          JSON.stringify({ id: '1', name: 'Nanoka 1', image_path: 'Monster_7000.png' })
-        );
-      return new Response(validWebpBody, { headers: { 'content-type': 'image/webp' } });
-    });
-
-    const result = await syncEnemyAssets({
-      assetRoot: root,
-      catalogFile: catalog,
-      baseUrl: 'https://example.test',
-      fetchImpl,
-      log: () => undefined
-    });
-    expect(result.manifest.monsters).toHaveProperty('1');
-    expect(result.manifest.monsters).not.toHaveProperty('2');
-    expect(result.manifest.unavailable).toMatchObject({
-      '2': { kind: 'missing-monster-json', status: 404 }
-    });
-    expect(result.failures).toMatchObject([
-      { monsterTemplateId: '2', kind: 'missing-monster-json', status: 404 }
-    ]);
-    expect(result.stats.prunedImages).toBe(1);
-    await expect(stat(path.join(iconRoot, 'Monster_9999.webp'))).rejects.toBeDefined();
-  });
-
-  it('清理函数只删除未引用的标准命名 WebP', async () => {
-    const root = await testRoot('prune');
-    const iconRoot = path.join(root, 'icons');
-    await mkdir(iconRoot, { recursive: true });
-    await Promise.all([
-      writeFile(path.join(iconRoot, 'Monster_1.webp'), validWebp),
-      writeFile(path.join(iconRoot, 'Monster_2.webp'), validWebp),
-      writeFile(path.join(iconRoot, 'manual.webp'), validWebp)
-    ]);
-    await expect(pruneEnemyIcons(new Set(['1']), iconRoot)).resolves.toBe(1);
-    await expect(stat(path.join(iconRoot, 'Monster_1.webp'))).resolves.toBeDefined();
-    await expect(stat(path.join(iconRoot, 'Monster_2.webp'))).rejects.toBeDefined();
-    await expect(stat(path.join(iconRoot, 'manual.webp'))).resolves.toBeDefined();
-  });
-
-  it('只清理同步器命名的遗留临时 WebP', async () => {
-    const root = await testRoot('temporary');
-    const iconRoot = path.join(root, 'icons');
-    await mkdir(iconRoot, { recursive: true });
-    await Promise.all([
-      writeFile(path.join(iconRoot, '.Monster_1.tmp-deadbeef.webp'), validWebp),
-      writeFile(path.join(iconRoot, 'Monster_1.webp'), validWebp),
-      writeFile(path.join(iconRoot, '.manual.tmp.webp'), validWebp)
-    ]);
-    await expect(cleanEnemyTemporaryFiles(iconRoot)).resolves.toBe(1);
-    await expect(stat(path.join(iconRoot, '.Monster_1.tmp-deadbeef.webp'))).rejects.toBeDefined();
-    await expect(stat(path.join(iconRoot, 'Monster_1.webp'))).resolves.toBeDefined();
-    await expect(stat(path.join(iconRoot, '.manual.tmp.webp'))).resolves.toBeDefined();
-  });
-
-  it('图片 HTTP 错误保留精确 status', async () => {
-    const root = await testRoot('http');
-    await expect(
-      ensureEnemyIcon(monster(), {
-        iconRoot: path.join(root, 'icons'),
-        fetchImpl: vi.fn<typeof fetch>().mockResolvedValue(new Response('', { status: 404 }))
-      })
-    ).rejects.toMatchObject({ status: 404 });
-  });
-
-  it('单个图片 404 进入 unavailable，其他有效资源继续发布', async () => {
-    const root = await testRoot('missing-image-file');
-    const catalog = path.join(root, 'catalog.json');
-    await writeFile(
-      catalog,
-      JSON.stringify([
-        { id: '1', name: '有图' },
-        { id: '2', name: '缺图' }
-      ])
-    );
-    const fetchImpl = vi.fn<typeof fetch>(async (input) => {
-      const url = String(input);
-      if (url.endsWith('/manifest.json'))
-        return new Response(JSON.stringify({ hsr: { latest: '9.9.9' } }));
-      if (url.endsWith('/monster.json')) return new Response(JSON.stringify([]));
-      if (url.endsWith('/1.json'))
-        return new Response(
-          JSON.stringify({ id: '1', name: '有图', image_path: 'Monster_7000.png' })
-        );
-      if (url.endsWith('/2.json'))
-        return new Response(
-          JSON.stringify({ id: '2', name: '缺图', image_path: 'Monster_8000.png' })
-        );
-      if (url.endsWith('/Monster_8000.webp')) return new Response('', { status: 404 });
-      return new Response(validWebpBody, { headers: { 'content-type': 'image/webp' } });
-    });
-    const result = await syncEnemyAssets({
-      assetRoot: root,
-      catalogFile: catalog,
-      baseUrl: 'https://example.test',
-      fetchImpl,
-      log: () => undefined
-    });
-    expect(result.manifest.monsters).toHaveProperty('1');
-    expect(result.manifest.unavailable).toMatchObject({
-      '2': { kind: 'missing-image-file', status: 404 }
-    });
-    expect(result.stats.missingImageFiles).toBe(1);
-    expect(result.stats.failedImageDownloads).toBe(0);
-  });
-
-  it('operational failure 在发布前失败并保留旧 manifest', async () => {
-    const root = await testRoot('operational-failure');
-    const catalog = path.join(root, 'catalog.json');
-    const manifestPath = path.join(root, 'index.json');
-    const previous = '{"sentinel":true}\n';
-    await writeFile(catalog, JSON.stringify([{ id: '1', name: '失败对象' }]));
-    await writeFile(manifestPath, previous);
-    const fetchImpl = vi.fn<typeof fetch>(async (input) => {
-      const url = String(input);
-      if (url.endsWith('/manifest.json'))
-        return new Response(JSON.stringify({ hsr: { latest: '9.9.9' } }));
-      if (url.endsWith('/monster.json')) return new Response(JSON.stringify([]));
-      return new Response('', { status: 403 });
-    });
-    await expect(
-      syncEnemyAssets({
-        assetRoot: root,
-        catalogFile: catalog,
-        baseUrl: 'https://example.test',
-        fetchImpl,
-        log: () => undefined
-      })
-    ).rejects.toThrow(/operational failure/);
-    await expect(readFile(manifestPath, 'utf8')).resolves.toBe(previous);
-  });
-});
-
-describe('Enemy asset ensure cache', () => {
-  async function writeCache(
-    root: string,
-    options: { version?: string; filename?: string; schemaVersion?: number } = {}
-  ): Promise<string> {
-    const iconRoot = path.join(root, 'icons');
-    await mkdir(iconRoot, { recursive: true });
-    await writeFile(path.join(iconRoot, options.filename ?? 'Monster_7000.webp'), validWebp);
-    const manifestPath = path.join(root, 'index.json');
-    await writeFile(
-      manifestPath,
-      JSON.stringify({
-        schemaVersion: options.schemaVersion ?? ENEMY_ASSET_SCHEMA_VERSION,
-        source: 'static.nanoka.cc',
-        version: options.version ?? '9.9.9',
-        generatedAt: '2026-01-01T00:00:00.000Z',
-        resourceType: 'MonsterMiddleIcon',
-        monsters: {
-          '1': {
-            name: '测试敌人',
-            imageId: '7000',
-            icon: '/generated-enemy-assets/icons/Monster_7000.webp'
-          }
-        },
-        unavailable: {}
-      })
-    );
-    return manifestPath;
-  }
-
-  it('schema 2 cache 完整且版本一致时只请求 version manifest', async () => {
-    const root = await testRoot('ensure-warm');
-    const catalog = path.join(root, 'catalog.json');
-    await writeFile(catalog, JSON.stringify([{ id: '1', name: '测试敌人' }]));
-    await writeCache(root);
-    const fetchImpl = vi.fn<typeof fetch>(async () =>
-      Promise.resolve(new Response(JSON.stringify({ hsr: { latest: '9.9.9' } })))
-    );
-    const result = await ensureEnemyAssets({
-      assetRoot: root,
-      catalogFile: catalog,
-      baseUrl: 'https://example.test',
-      fetchImpl,
-      log: () => undefined
-    });
-    expect(result.disposition).toBe('reused');
-    expect(fetchImpl).toHaveBeenCalledTimes(1);
-  });
-
-  it('版本变化时刷新 mapping，但复用有效图片', async () => {
-    const root = await testRoot('ensure-version');
-    const catalog = path.join(root, 'catalog.json');
-    await writeFile(catalog, JSON.stringify([{ id: '1', name: '测试敌人' }]));
-    await writeCache(root, { version: '9.9.8' });
-    let imageRequests = 0;
-    const fetchImpl = vi.fn<typeof fetch>(async (input) => {
-      const url = String(input);
-      if (url.endsWith('/manifest.json'))
-        return new Response(JSON.stringify({ hsr: { latest: '9.9.9' } }));
-      if (url.endsWith('/monster.json')) return new Response(JSON.stringify([]));
-      if (url.endsWith('/1.json'))
-        return new Response(
-          JSON.stringify({ id: '1', name: '测试敌人', image_path: 'Monster_7000.png' })
-        );
-      imageRequests += 1;
-      return new Response(validWebpBody, { headers: { 'content-type': 'image/webp' } });
-    });
-    const result = await ensureEnemyAssets({
-      assetRoot: root,
-      catalogFile: catalog,
-      baseUrl: 'https://example.test',
-      fetchImpl,
-      log: () => undefined
-    });
-    expect(result.disposition).toBe('synced');
-    expect(imageRequests).toBe(0);
-  });
-
-  it('版本探测暂时失败时继续使用完整 cache', async () => {
-    const root = await testRoot('ensure-offline');
-    const catalog = path.join(root, 'catalog.json');
-    await writeFile(catalog, JSON.stringify([{ id: '1', name: '测试敌人' }]));
-    await writeCache(root);
-    const result = await ensureEnemyAssets({
-      assetRoot: root,
-      catalogFile: catalog,
-      baseUrl: 'https://example.test',
-      fetchImpl: vi.fn<typeof fetch>().mockRejectedValue(new Error('offline')),
-      maxRetries: 0,
-      log: () => undefined
-    });
-    expect(result.disposition).toBe('reused');
-    expect(result.validation.valid).toBe(true);
-  });
-
-  it('schema 1 不作为 ensure cache，且严格拒绝文件名大小写不一致', async () => {
-    const root = await testRoot('ensure-invalid');
-    const catalog = path.join(root, 'catalog.json');
-    const requirements = [requirement('1')];
-    await writeFile(catalog, JSON.stringify(requirements));
-    const legacyPath = await writeCache(root, { schemaVersion: 1 });
-    await expect(readEnemyAssetManifest(legacyPath)).resolves.toBeUndefined();
-    await rm(path.join(root, 'icons', 'Monster_7000.webp'));
-    await writeCache(root, { filename: 'monster_7000.webp' });
-    const manifest = await readEnemyAssetManifest(legacyPath);
-    await expect(
-      validateEnemyAssetCache(requirements, manifest, path.join(root, 'icons'))
-    ).resolves.toMatchObject({
-      valid: false,
-      reason: expect.stringMatching(/大小写/)
-    });
-  });
-
-  it('代理环境或显式参数选择 curl transport', () => {
-    expect(hasProxyEnvironment({ HTTPS_PROXY: 'http://127.0.0.1:7890' })).toBe(true);
-    expect(hasProxyEnvironment({})).toBe(false);
-    expect(shouldUseCurlTransport([], { ALL_PROXY: 'http://127.0.0.1:7890' })).toBe(true);
-    expect(shouldUseCurlTransport(['--curl'], {})).toBe(true);
-    expect(shouldUseCurlTransport([], {})).toBe(false);
-  });
-});
-
-describe('Endgame 本地敌人立绘 resolver', () => {
-  it('按 MonsterTemplateID 读取本地映射并复用共享 imageId', async () => {
-    const root = await testRoot('resolver');
-    const staticRoot = path.join(root, 'static');
-    const assetRoot = path.join(staticRoot, 'generated-enemy-assets');
-    const iconRoot = path.join(assetRoot, 'icons');
-    await mkdir(iconRoot, { recursive: true });
-    await writeFile(path.join(iconRoot, 'Monster_7000.webp'), validWebp);
-    await writeFile(
-      path.join(assetRoot, 'index.json'),
-      JSON.stringify({
-        schemaVersion: 2,
-        source: 'static.nanoka.cc',
-        version: '9.9.9',
-        generatedAt: '2026-01-01T00:00:00.000Z',
-        resourceType: 'MonsterMiddleIcon',
-        monsters: {
-          '1': {
-            name: '本地甲',
-            imageId: '7000',
-            icon: '/generated-enemy-assets/icons/Monster_7000.webp'
-          },
-          '2': {
-            name: '本地乙',
-            imageId: '7000',
-            icon: '/generated-enemy-assets/icons/Monster_7000.webp'
-          }
-        },
-        unavailable: {}
-      })
-    );
-    const portraits = await loadEnemyPortraitMap({
-      staticRoot,
-      manifestPath: path.join(assetRoot, 'index.json'),
-      warn: vi.fn()
-    });
-    expect(portraits.get(1)).toBe('/generated-enemy-assets/icons/Monster_7000.webp');
-    expect(portraits.get(2)).toBe('/generated-enemy-assets/icons/Monster_7000.webp');
-    expect(new Set(portraits.values()).size).toBe(1);
-  });
-
-  it('缺少 manifest、非法路径或缺图时返回安全降级', async () => {
-    const root = await testRoot('resolver-missing');
-    const staticRoot = path.join(root, 'static');
-    const assetRoot = path.join(staticRoot, 'generated-enemy-assets');
-    await mkdir(assetRoot, { recursive: true });
-    const warn = vi.fn();
-    await expect(
-      loadEnemyPortraitMap({
-        staticRoot,
-        manifestPath: path.join(assetRoot, 'missing.json'),
-        warn
-      })
-    ).resolves.toHaveProperty('size', 0);
-    await writeFile(
-      path.join(assetRoot, 'index.json'),
-      JSON.stringify({
-        schemaVersion: 1,
-        resourceType: 'MonsterMiddleIcon',
-        monsters: {
-          '1': { name: '越界', imageId: '1', icon: '/outside/Monster_1.webp' },
-          '2': {
-            name: '缺图',
-            imageId: '2',
-            icon: '/generated-enemy-assets/icons/Monster_2.webp'
-          }
+    )
+  );
+  const manifest: EnemyAssetManifest = {
+    schemaVersion: SCHEMA_VERSION,
+    source: 'static.nanoka.cc',
+    version,
+    generatedAt: '2026-01-01T00:00:00.000Z',
+    resourceType: 'MonsterMiddleIcon',
+    catalogFingerprint: catalogFingerprint(f.requirements),
+    monsters: Object.fromEntries(
+      Object.entries(mappings).map(([id, imageId]) => [
+        id,
+        {
+          name: `Enemy ${id}`,
+          imageId,
+          icon: `/generated-enemy-assets/icons/Monster_${imageId}.webp`
         }
-      })
-    );
-    const portraits = await loadEnemyPortraitMap({
-      staticRoot,
-      manifestPath: path.join(assetRoot, 'index.json'),
-      warn
+      ])
+    ),
+    unavailable: Object.fromEntries(
+      f.requirements
+        .filter(({ id }) => !(id in mappings))
+        .map(({ id, name }) => [id, { name, kind: 'missing-monster-json', status: 404 }])
+    ),
+    images
+  };
+  await writeFile(path.join(f.root, 'index.json'), `${JSON.stringify(manifest, null, 2)}\n`);
+}
+
+function provider(
+  options: {
+    version?: string;
+    ids?: Record<string, string | number>;
+    image404?: string;
+    failure?: number;
+  } = {}
+) {
+  const counts = { details: 0, images: 0 };
+  const fetchImpl = vi.fn<typeof fetch>(async (input) => {
+    const url = String(input);
+    if (url.endsWith('/manifest.json'))
+      return new Response(JSON.stringify({ hsr: { latest: options.version ?? '1' } }));
+    if (url.includes('/zh/monster/')) {
+      counts.details += 1;
+      const id = /\/(\d+)\.json$/.exec(url)?.[1] ?? '';
+      if (options.failure) return new Response('', { status: options.failure });
+      if (!(id in (options.ids ?? {}))) return new Response('', { status: 404 });
+      const value = options.ids![id];
+      return new Response(
+        JSON.stringify({
+          id,
+          name: `Enemy ${id}`,
+          ...(typeof value === 'string' ? { image_path: `Monster_${value}.png` } : {})
+        })
+      );
+    }
+    counts.images += 1;
+    if (url.endsWith(`Monster_${options.image404}.webp`)) return new Response('', { status: 404 });
+    return new Response(Uint8Array.from(webp).buffer, {
+      headers: { 'content-type': 'image/webp' }
     });
-    expect(portraits.size).toBe(0);
-    expect(warn).toHaveBeenCalled();
   });
+  return { fetchImpl, counts };
+}
+
+const update = (f: Awaited<ReturnType<typeof fixture>>, fetchImpl: typeof fetch) =>
+  updateEnemyAssets({
+    assetRoot: f.root,
+    catalogFile: f.catalog,
+    baseUrl: 'https://example.test',
+    fetchImpl,
+    maxRetries: 0,
+    log: () => undefined
+  });
+
+describe('offline tracked enemy snapshot', () => {
+  it('catalog fingerprint depends on sorted IDs, not names or order', () => {
+    expect(
+      catalogFingerprint([
+        { id: '2', name: 'A' },
+        { id: '1', name: 'B' }
+      ])
+    ).toBe(
+      catalogFingerprint([
+        { id: '1', name: 'X' },
+        { id: '2', name: 'Y' }
+      ])
+    );
+    expect(() =>
+      catalogFingerprint([
+        { id: '1', name: 'A' },
+        { id: '1', name: 'B' }
+      ])
+    ).toThrow();
+  });
+
+  it('validates coverage, canonical URLs, image digests and exact file set', async () => {
+    const f = await fixture('validation', ['1', '2']);
+    await snapshot(f, { '1': '7000', '2': '7000' });
+    expect(await validateSnapshot(f.requirements, f.root)).toMatchObject({ mapped: 2, images: 1 });
+    const index = path.join(f.root, 'index.json');
+    const original = await readFile(index, 'utf8');
+    await writeFile(index, original.replace('Monster_7000.webp', 'monster_7000.webp'));
+    await expect(validateSnapshot(f.requirements, f.root)).rejects.toThrow(/canonical/);
+    await writeFile(index, original);
+    await writeFile(path.join(f.root, 'icons', 'Monster_9999.webp'), webp);
+    await expect(validateSnapshot(f.requirements, f.root)).rejects.toThrow(/文件集合/);
+    await rm(path.join(f.root, 'icons', 'Monster_9999.webp'));
+    await writeFile(path.join(f.root, 'icons', 'Monster_7000.webp'), Buffer.from('not a WebP'));
+    await expect(validateSnapshot(f.requirements, f.root)).rejects.toThrow(/图片头部|WebP/);
+    await writeFile(path.join(f.root, 'icons', 'Monster_7000.webp'), webp);
+    const wrong = JSON.parse(original);
+    wrong.images['7000'].sha256 = createHash('sha256').update('wrong').digest('hex');
+    await writeFile(index, JSON.stringify(wrong));
+    await expect(validateSnapshot(f.requirements, f.root)).rejects.toThrow(/sha256/);
+    await writeFile(index, original);
+    await rm(path.join(f.root, 'icons', 'Monster_7000.webp'));
+    await expect(validateSnapshot(f.requirements, f.root)).rejects.toThrow(/文件集合/);
+    await writeFile(path.join(f.root, 'icons', 'Monster_7000.webp'), webp);
+    await expect(
+      validateSnapshot([...f.requirements, { id: '3', name: 'New' }], f.root)
+    ).rejects.toThrow(/fingerprint/);
+  });
+
+  it('requires a manifest and correctly sorted unique catalog', async () => {
+    const f = await fixture('missing');
+    await expect(validateSnapshot(f.requirements, f.root)).rejects.toThrow(
+      /tracked enemy snapshot invalid/
+    );
+    await writeFile(
+      f.catalog,
+      JSON.stringify([
+        { id: '2', name: 'B' },
+        { id: '1', name: 'A' }
+      ])
+    );
+    expect((await readEnemyRequirements(f.catalog)).map(({ id }) => id)).toEqual(['1', '2']);
+    await writeFile(
+      f.catalog,
+      JSON.stringify([
+        { id: '1', name: 'A' },
+        { id: '1', name: 'B' }
+      ])
+    );
+    await expect(readEnemyRequirements(f.catalog)).rejects.toThrow(/重复 ID/);
+  });
+});
+
+describe('incremental network maintenance', () => {
+  it('no-change check preserves manifest bytes and reuses every image', async () => {
+    const f = await fixture('nochange', ['1', '2']);
+    await snapshot(f, { '1': '7000', '2': '7000' });
+    const before = await readFile(path.join(f.root, 'index.json'));
+    const network = provider();
+    const result = await update(f, network.fetchImpl);
+    expect(result.stats).toMatchObject({
+      changed: false,
+      detailRequests: 0,
+      imageDownloads: 0,
+      reusedImages: 1
+    });
+    expect(network.counts).toEqual({ details: 0, images: 0 });
+    expect(await readFile(path.join(f.root, 'index.json'))).toEqual(before);
+  });
+
+  it('same version resolves only new ID and reuses a shared image', async () => {
+    const f = await fixture('new', ['1']);
+    await snapshot(f, { '1': '7000' });
+    f.requirements.push({ id: '2', name: 'Enemy 2' });
+    await writeFile(f.catalog, JSON.stringify(f.requirements));
+    const network = provider({ ids: { '2': '7000' } });
+    const result = await update(f, network.fetchImpl);
+    expect(result.stats).toMatchObject({
+      detailRequests: 1,
+      imageDownloads: 0,
+      reusedImages: 1,
+      newTemplateIds: ['2'],
+      images: 1
+    });
+    await expect(validateSnapshot(f.requirements, f.root)).resolves.toBeDefined();
+  });
+
+  it('version change refreshes mapping but downloads only changed image and prunes old one', async () => {
+    const f = await fixture('mapping');
+    await snapshot(f, { '1': '7000' });
+    const network = provider({ version: '2', ids: { '1': '8000' } });
+    const result = await update(f, network.fetchImpl);
+    expect(result.stats).toMatchObject({
+      detailRequests: 1,
+      imageDownloads: 1,
+      changedMappings: ['1'],
+      newImages: ['8000'],
+      prunedImages: ['7000']
+    });
+    expect(await readdir(path.join(f.root, 'icons'))).toEqual(['Monster_8000.webp']);
+  });
+
+  it('version-only refresh produces no diff and retains source version/timestamp', async () => {
+    const f = await fixture('version-only');
+    await snapshot(f, { '1': '7000' });
+    const before = await readFile(path.join(f.root, 'index.json'));
+    const network = provider({ version: '2', ids: { '1': '7000' } });
+    const result = await update(f, network.fetchImpl);
+    expect(result.stats).toMatchObject({ changed: false, detailRequests: 1, imageDownloads: 0 });
+    expect(await readFile(path.join(f.root, 'index.json'))).toEqual(before);
+  });
+
+  it('repairs corrupt images and leaves original snapshot intact on operational failure', async () => {
+    const f = await fixture('repair');
+    await snapshot(f, { '1': '7000' });
+    await writeFile(path.join(f.root, 'icons', 'Monster_7000.webp'), 'corrupt');
+    const corrupt = await readFile(path.join(f.root, 'icons', 'Monster_7000.webp'));
+    const failure = provider({ failure: 403, version: '2', ids: { '1': '7000' } });
+    await expect(update(f, failure.fetchImpl)).rejects.toThrow(/operational failure/);
+    expect(await readFile(path.join(f.root, 'icons', 'Monster_7000.webp'))).toEqual(corrupt);
+    const success = provider();
+    const result = await update(f, success.fetchImpl);
+    expect(result.stats.repairedImages).toEqual(['7000']);
+    await expect(validateSnapshot(f.requirements, f.root)).resolves.toBeDefined();
+  });
+
+  it('explicit provider 404 may become unavailable; 5xx never publishes', async () => {
+    const f = await fixture('unavailable', ['1', '2']);
+    await snapshot(f, { '1': '7000' });
+    const before = await readFile(path.join(f.root, 'index.json'));
+    await expect(update(f, provider({ failure: 503, version: '2' }).fetchImpl)).rejects.toThrow(
+      /operational failure/
+    );
+    expect(await readFile(path.join(f.root, 'index.json'))).toEqual(before);
+    const result = await update(
+      f,
+      provider({ ids: { '1': '7000', '2': '8000' }, image404: '8000' }).fetchImpl
+    );
+    expect(result.stats.unavailable).toBe(1);
+    await expect(validateSnapshot(f.requirements, f.root)).resolves.toBeDefined();
+  });
+});
+
+it('transport and runtime resolver preserve canonical behavior', async () => {
+  const marker = '\n__MARKER__';
+  expect(
+    parseCurlResponse(Buffer.from(`body${marker}429\timage/webp\t3`), marker).metadata.status
+  ).toBe(429);
+  const calls = vi
+    .fn<typeof fetch>()
+    .mockResolvedValueOnce(new Response('', { status: 429 }))
+    .mockResolvedValueOnce(new Response('ok'));
+  await expect(
+    fetchWithRetry('https://example.test', { fetchImpl: calls, sleep: async () => undefined })
+  ).resolves.toMatchObject({ status: 200 });
+  expect(calls).toHaveBeenCalledTimes(2);
+  expect(() =>
+    parseNanokaMonster(
+      { id: 2, name: 'Other', image_path: 'Monster_7000.png' },
+      { id: '1', name: 'A' },
+      'https://example.test'
+    )
+  ).toThrow(/id 不匹配/);
+
+  const f = await fixture('resolver');
+  await snapshot(f, { '1': '7000' });
+  const staticRoot = path.join(f.root, 'static');
+  await mkdir(path.join(staticRoot, 'generated-enemy-assets', 'icons'), { recursive: true });
+  await writeFile(
+    path.join(staticRoot, 'generated-enemy-assets', 'index.json'),
+    await readFile(path.join(f.root, 'index.json'))
+  );
+  await writeFile(
+    path.join(staticRoot, 'generated-enemy-assets', 'icons', 'Monster_7000.webp'),
+    webp
+  );
+  expect(
+    (
+      await loadEnemyPortraitMap({
+        staticRoot,
+        manifestPath: path.join(staticRoot, 'generated-enemy-assets', 'index.json'),
+        warn: vi.fn()
+      })
+    ).get(1)
+  ).toBe('/generated-enemy-assets/icons/Monster_7000.webp');
 });

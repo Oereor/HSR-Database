@@ -53,8 +53,9 @@ src/lib/generated-assets/*
 static/generated-assets/*
 !static/generated-assets/.gitkeep
 
-# Downloaded enemy icons and their generated Nanoka mapping
-static/generated-enemy-assets/
+# Tracked enemy snapshot; only updater staging/rollback directories are disposable.
+static/.generated-enemy-assets.staging-*/
+static/.generated-enemy-assets.previous-*/
 
 /src/lib/paraglide/
 /project.inlang/cache/

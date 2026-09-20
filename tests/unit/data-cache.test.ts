@@ -28,7 +28,9 @@ it('accepts the schema-43 dual-locale generated tree and validates every emitted
     expect(playerEquipment.lightCones).toHaveLength(manifest.counts.lightCones);
     expect(playerEquipment.relicSets).toHaveLength(manifest.counts.relics);
   }
-  await expect(validateGeneratedArtifacts(manifest)).resolves.toBeUndefined();
+  await expect(validateGeneratedArtifacts(manifest)).resolves.toMatchObject({
+    files: Object.keys(manifest.artifacts).length
+  });
 }, 30_000);
 
 it('does not publish neutral/source staging or root compatibility outputs', async () => {

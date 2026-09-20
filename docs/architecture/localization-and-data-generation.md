@@ -10,9 +10,15 @@ zh-CN is the base locale and uses unprefixed URLs. en is publicly routed under /
 
 Pinned upstream data and TextMaps are parsed into domain models, projected independently for each locale, and emitted below src/lib/generated/views/{locale}. Static Search indexes are emitted below static/generated/{locale}. Serialized Endgame occurrence views remain private below src/lib/generated/views/{locale}/endgame-occurrences; the shared /generated/{locale}/endgame-occurrences/{targetId} endpoint resolves portrait assets and prerenders the public shards. Static source shards must not shadow that endpoint. Runtime loaders accept locale explicitly and never fall back across locales.
 
+Deployment preparation derives its TurnBased sparse checkout from the same source registry used by generation: 81 exact Excel tables, TextMapCHS/TextMapEN, and the three dynamic Monster/BattleEvent Config directories. StarRailRes indexes and source asset directories are materialized in one sparse operation. General assets are generated with fixed bounded copy and Sharp pools into an isolated staging tree, validated, and atomically published. A final published-tree observation supplies file counts, sizes and lazily cached Sharp metadata to ensure, telemetry and the independent verifier for that build invocation only.
+
 ## Artifact contract
 
-Manifest schema 43 retains publicLocale: zh-CN, adds publicLocales, and records canonical routePaths. The route inventory is the source for static prerendering and sitemap generation. Utility asset manifest schema 15 includes the generated Settings icon.
+Manifest schema 43 retains publicLocale: zh-CN, adds publicLocales, and records canonical routePaths. The route inventory is the source for static prerendering and sitemap generation. General visual asset manifest schema 16 includes player avatars and the existing utility icon inventory; Phase 3 changes scheduling and validation observation only, not manifest semantics or public URLs.
+
+Validation has two explicit layers. `data:validate:build-inputs` reopens the manifest, prepared pinned source, TextMaps and every generated artifact from disk; it validates identity, bytes, digests, schemas, inventories and route/search consumer closure without rebuilding domain semantics. `data:validate:full` composes that gate with the complete raw-to-generated semantic audits, cross-locale structural parity and English CJK audit. The compatibility command `data:validate` remains an alias for the full validator.
+
+The protected `Correctness` check owns full semantic validation. Production runs the build-input validator before Vite, while Preview and Development retain the lighter Phase 0 path. Producer-side prepublication checks remain in generation, and validators remain separate child processes so they independently reopen published bytes.
 
 ## Ownership rules
 
@@ -28,4 +34,4 @@ Changelog metadata uses stable IDs and ISO machine dates in src/lib/content/chan
 
 ## Required checks
 
-Before delivery run pnpm data:sync, pnpm assets:ensure, pnpm messages:check, pnpm data:validate, pnpm check, pnpm lint, pnpm test, pnpm build, and relevant E2E/deployment audits. Product contracts use focused invariant tests rather than full generated-output baselines. Build-time limitations or known upstream missing-text diagnostics must be recorded in the R6 audit.
+Before delivery run pnpm data:sync, pnpm assets:ensure, pnpm messages:check, pnpm data:validate, pnpm check, pnpm lint, pnpm test, pnpm build, and relevant E2E/deployment audits. Production-specific input investigations may additionally run `pnpm data:validate:build-inputs`, but passing it is not proof of semantic correctness. Product contracts use focused invariant tests rather than full generated-output baselines. Build-time limitations or known upstream missing-text diagnostics must be recorded in the R6 audit.

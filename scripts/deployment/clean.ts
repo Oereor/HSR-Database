@@ -12,7 +12,6 @@ const artifactPaths = [
   'static/generated',
   'src/lib/generated-assets',
   'static/generated-assets',
-  'static/generated-enemy-assets',
   'build',
   '.svelte-kit',
   '.vite',
@@ -106,7 +105,7 @@ export async function runCleanDeploymentBuild(
   const errors: unknown[] = [];
   try {
     await cleanDeploymentArtifacts(root);
-    await (dependencies.build ?? runDeploymentBuild)();
+    await (dependencies.build ?? (() => runDeploymentBuild('production')))();
   } catch (error) {
     errors.push(error);
   }

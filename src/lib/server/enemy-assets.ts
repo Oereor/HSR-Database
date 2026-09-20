@@ -8,7 +8,7 @@ interface EnemyAssetEntry {
 }
 
 interface EnemyAssetManifest {
-  schemaVersion: 1 | 2;
+  schemaVersion: 1 | 2 | 3;
   resourceType: 'MonsterMiddleIcon';
   monsters: Record<string, EnemyAssetEntry>;
 }
@@ -32,7 +32,7 @@ function parseManifest(value: unknown): EnemyAssetManifest {
   const manifest = recordOf(value);
   if (
     !manifest ||
-    ![1, 2].includes(manifest.schemaVersion as number) ||
+    ![1, 2, 3].includes(manifest.schemaVersion as number) ||
     manifest.resourceType !== 'MonsterMiddleIcon' ||
     !recordOf(manifest.monsters)
   )

@@ -10,14 +10,12 @@ import {
   searchInputsPath,
   type SearchBuildInputs
 } from './search-documents.js';
-import { createHash } from 'node:crypto';
 import { access, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type {
   CatalogEntry,
   Character,
   CharacterProfile,
-  DataManifest,
   Enemy,
   HomepageRecentWarpData,
   LightCone
@@ -51,7 +49,7 @@ import {
   resolveAvatarSpecialSkillRelations,
   type AvatarSpecialSkillTreeAudit
 } from './avatar-special-skills.js';
-import { assertDataRoot, auditRoot, generatedRoot, staticGeneratedRoot } from './paths.js';
+import { auditRoot, generatedRoot, staticGeneratedRoot } from './paths.js';
 import { readTable } from './raw.js';
 import { enemySpecialResistanceLabels, resolveCanonicalEnemyStats } from './enemy-detail.js';
 import {
@@ -63,9 +61,7 @@ import {
 } from './decimal.js';
 import type { EndgameAudit } from './endgame.js';
 import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-fiction-hp.js';
-import { parseGameVersion } from './source-metadata.js';
-import { readDataManifest, validateGeneratedArtifacts } from './generated-artifacts.js';
-import { getGeneratedLocales, type Locale } from './locale-registry.js';
+import type { Locale } from './locale-registry.js';
 import { assertCrossLocaleStructuralParity } from './structural-parity.js';
 import { assertEnglishCjkReport, auditEnglishCjk } from './english-cjk.js';
 import {
@@ -83,40 +79,10 @@ import {
   validateRelationAudits,
   type ProductProjectionForValidation
 } from './robustness-invariants.js';
+import { validateBuildInputs } from './validation/build-inputs.js';
 
-const manifest: DataManifest = await readDataManifest();
-await validateGeneratedArtifacts(manifest);
-if (
-  manifest.publicLocale !== 'zh-CN' ||
-  JSON.stringify(manifest.generatedLocales) !== '["zh-CN","en"]' ||
-  JSON.stringify(manifest.publicLocales) !== '["zh-CN","en"]' ||
-  manifest.routePaths.some((route) => route.startsWith('/zh-CN')) ||
-  manifest.locales['zh-CN'].textMapCode !== 'CHS' ||
-  manifest.locales.en.textMapCode !== 'EN'
-)
-  throw new Error('生成数据 locale/TextMap 配置错误');
-const parsedGameVersion = parseGameVersion(manifest.sourceVersion);
-if (
-  manifest.gameVersionFull !== parsedGameVersion.gameVersionFull ||
-  manifest.gameVersion !== parsedGameVersion.gameVersion
-)
-  throw new Error('生成数据的游戏版本与 TurnBasedGameData sourceVersion 不一致');
-
-const rawRoot = assertDataRoot();
+const { manifest, rawRoot, textMaps: currentTextMaps } = await validateBuildInputs();
 const productRoot = path.join(generatedRoot, 'views', 'zh-CN');
-const currentTextMaps = Object.fromEntries(
-  await Promise.all(
-    getGeneratedLocales().map(async ({ locale, textMapCode }) => {
-      const textMap = JSON.parse(
-        await readFile(path.join(rawRoot, 'TextMap', `TextMap${textMapCode}.json`), 'utf8')
-      ) as Record<string, string>;
-      const digest = createHash('sha256').update(JSON.stringify(textMap)).digest('hex');
-      if (manifest.locales[locale].textMapDigest !== digest)
-        throw new Error(`${locale} view TextMap digest 已过期`);
-      return [locale, textMap] as const;
-    })
-  )
-) as Record<Locale, Record<string, string>>;
 const [homepage, homepageCharacterCatalog, homepageLightConeCatalog, homepageGachaRows] =
   await Promise.all([
     readFile(path.join(productRoot, 'homepage.json'), 'utf8').then(
@@ -1197,5 +1163,5 @@ if (audit.avatarSpecialSkillTreeAudit.diagnostics.length)
     `AvatarSpecialSkillTree relation 警告：${audit.avatarSpecialSkillTreeAudit.diagnostics.length} 条诊断，详见 data/audit/latest.json。`
   );
 console.log(
-  `数据验证通过：${manifest.sourceCommit.slice(0, 12)}，zh-CN/en 各 ${search.documents.length} 条搜索记录，${expectedShardIds.length} 个 English Endgame shards。`
+  `[data:validate:full] 数据验证通过：${manifest.sourceCommit.slice(0, 12)}，zh-CN/en 各 ${search.documents.length} 条搜索记录，${expectedShardIds.length} 个 English Endgame shards。`
 );

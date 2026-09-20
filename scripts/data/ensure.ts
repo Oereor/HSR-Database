@@ -1,4 +1,3 @@
-import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type {
@@ -18,6 +17,8 @@ import { assertDataRoot, generatedRoot, resolveDataRoot, sourceCommit } from './
 import { ensureSearchDocuments, searchArtifactPaths } from './search-documents.js';
 import { getGeneratedLocales } from './locale-registry.js';
 import { syncData } from './sync.js';
+import { withProcessTelemetry } from '../deployment/telemetry.js';
+import { readTextMapWithDigest } from './source-metadata.js';
 
 export interface DataEnsureSource {
   root: string;
@@ -81,16 +82,8 @@ async function cacheMatchesAvailableSource(
   const currentTextMapDigests = Object.fromEntries(
     await Promise.all(
       getGeneratedLocales().map(async ({ locale, textMapCode }) => {
-        const currentTextMap = await readFile(
-          path.join(source.root, 'TextMap', `TextMap${textMapCode}.json`),
-          'utf8'
-        );
-        return [
-          locale,
-          createHash('sha256')
-            .update(JSON.stringify(JSON.parse(currentTextMap)))
-            .digest('hex')
-        ];
+        const { digest } = await readTextMapWithDigest(source.root, textMapCode);
+        return [locale, digest];
       })
     )
   );
@@ -114,12 +107,15 @@ export async function ensureData(dependencies: DataEnsureDependencies = {}): Pro
   const validateArtifacts = dependencies.validateArtifacts ?? validateGeneratedArtifacts;
 
   let manifest: DataManifest | undefined;
+  let cacheResult: 'hit' | 'miss' | 'fallback' = 'miss';
+  let cacheReason = 'manifest-missing-or-invalid';
   try {
     manifest = await readManifest();
   } catch {
     // A missing, obsolete, or interrupted generation is handled below.
   }
   let validated = manifest ? await validateCache(manifest) : false;
+  if (manifest && !validated) cacheReason = 'generated-artifacts-invalid';
   let availableSource: DataEnsureSource | undefined;
   try {
     availableSource = await resolveSource();
@@ -131,16 +127,23 @@ export async function ensureData(dependencies: DataEnsureDependencies = {}): Pro
       (!env.HSR_EXPECTED_DATA_COMMIT || manifest.sourceCommit === env.HSR_EXPECTED_DATA_COMMIT)
     ) {
       console.warn(`上游暂不可用，继续使用已有生成数据：${(error as Error).message}`);
+      cacheResult = 'fallback';
+      cacheReason = 'source-unavailable-valid-cache';
     } else {
       throw error;
     }
   }
 
   if (availableSource) {
-    if (!manifest || !validated || !(await cacheMatchesSource(manifest, availableSource))) {
+    const matchesSource =
+      manifest && validated ? await cacheMatchesSource(manifest, availableSource) : false;
+    if (!manifest || !validated || !matchesSource) {
+      if (manifest && validated && !matchesSource) cacheReason = 'source-or-textmap-changed';
       manifest = await sync();
       validated = false;
     } else {
+      cacheResult = 'hit';
+      cacheReason = 'manifest-source-and-artifacts-match';
       console.log(`生成数据已是最新版本：${availableSource.commit.slice(0, 12)}`);
     }
   }
@@ -149,11 +152,18 @@ export async function ensureData(dependencies: DataEnsureDependencies = {}): Pro
   if (await ensureSearch(manifest.sourceCommit)) {
     manifest = await refreshMetadata(manifest, 'static/generated/zh-CN/search.json');
     validated = false;
+    cacheResult = 'miss';
+    cacheReason = `${cacheReason}+search-artifact-refreshed`;
   }
   if (!validated) await validateArtifacts(manifest);
+  const artifacts = Object.values(manifest.artifacts ?? {});
+  console.log(`[deploy:cache] data result=${cacheResult} reason=${cacheReason}`);
+  console.log(
+    `[deploy:io] generated-data-output files=${artifacts.length} bytes=${artifacts.reduce((total, artifact) => total + artifact.bytes, 0)}`
+  );
   return manifest;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.meta.filename)) {
-  await ensureData();
+  await withProcessTelemetry('data-ensure', ensureData);
 }

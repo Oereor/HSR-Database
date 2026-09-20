@@ -1,49 +1,14 @@
 import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { TURN_BASED_DEPLOYMENT_PATHS } from './source-requirements.js';
 
 export const siteRoot = path.resolve(import.meta.dirname, '..', '..');
 export const generatedRoot = path.join(siteRoot, 'src', 'lib', 'generated');
 export const staticGeneratedRoot = path.join(siteRoot, 'static', 'generated');
 export const auditRoot = path.join(siteRoot, 'data', 'audit');
 
-const requiredFiles = [
-  'ExcelOutput/FateRinOwner.json',
-  'ExcelOutput/AvatarConfig.json',
-  'ExcelOutput/AvatarPlayerIcon.json',
-  'ExcelOutput/AvatarConfigLD.json',
-  'ExcelOutput/ItemConfigAvatarLD.json',
-  'ExcelOutput/AvatarSkillConfigLD.json',
-  'ExcelOutput/AvatarSkillLink.json',
-  'ExcelOutput/AvatarSpecialSkillTree.json',
-  'ExcelOutput/AvatarSkillTreeConfigLD.json',
-  'ExcelOutput/AvatarRankConfigLD.json',
-  'ExcelOutput/AvatarPromotionConfigLD.json',
-  'ExcelOutput/AvatarGlobalBuffConfig.json',
-  'ExcelOutput/AvatarServantSkillLink.json',
-  'ExcelOutput/MazeBuff.json',
-  'ExcelOutput/ChallengeGroupConfig.json',
-  'ExcelOutput/ChallengeMazeConfig.json',
-  'ExcelOutput/ChallengeStoryGroupConfig.json',
-  'ExcelOutput/ChallengeStoryMazeConfig.json',
-  'ExcelOutput/ChallengeStoryGroupExtra.json',
-  'ExcelOutput/ChallengeBossGroupConfig.json',
-  'ExcelOutput/ChallengeBossMazeConfig.json',
-  'ExcelOutput/ChallengeBossGroupExtra.json',
-  'ExcelOutput/ChallengeBossMazeExtra.json',
-  'ExcelOutput/MonsterGuideConfig.json',
-  'ExcelOutput/MonsterGuideTag.json',
-  'ExcelOutput/ChallengePeakConfig.json',
-  'ExcelOutput/ChallengePeakBossConfig.json',
-  'ExcelOutput/BattleEventConfig.json',
-  'ExcelOutput/EquipmentConfig.json',
-  'ExcelOutput/GachaBasicInfo.json',
-  'ExcelOutput/RelicSetConfig.json',
-  'ExcelOutput/ItemConfig.json',
-  'ExcelOutput/MonsterTemplateConfig.json',
-  'TextMap/TextMapCHS.json',
-  'TextMap/TextMapEN.json'
-];
+const requiredFiles = TURN_BASED_DEPLOYMENT_PATHS;
 
 export function resolveDataRoot(value = process.env.HSR_DATA_ROOT): string {
   return path.resolve(siteRoot, value?.trim() || '../TurnBasedGameData');
