@@ -28,12 +28,12 @@ const TIMING_ORDER = [
   'data-ensure',
   'data-validate-full',
   'data-validate-build-inputs',
-  'search-names-check',
-  'check',
-  'lint',
   'enemy-assets-validate',
   'assets-ensure',
   'assets-verify',
+  'search-names-check',
+  'check',
+  'lint',
   'test',
   'vite-build',
   'output-smoke',
@@ -196,12 +196,6 @@ export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promis
     else if (profile === 'production')
       await timed('data-validate-build-inputs', () => runPnpm(['data:validate:build-inputs'], env));
 
-    if (repositoryChecks) {
-      await timed('search-names-check', () => runPnpm(['data:search-names:check'], env));
-      await timed('check', () => runPnpm(['check'], env));
-      await timed('lint', () => runPnpm(['lint'], env));
-    }
-
     const starRailResult = await starRailPreparation;
     if (!('value' in starRailResult)) throw starRailResult.error;
     env.HSR_ASSET_ROOT = path
@@ -242,7 +236,12 @@ export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promis
       await summarizeDirectory(path.join(siteRoot, 'static/generated-enemy-assets'))
     );
 
-    if (repositoryChecks) await timed('test', () => runPnpm(['test'], env));
+    if (repositoryChecks) {
+      await timed('search-names-check', () => runPnpm(['data:search-names:check'], env));
+      await timed('check', () => runPnpm(['check'], env));
+      await timed('lint', () => runPnpm(['lint'], env));
+      await timed('test', () => runPnpm(['test'], env));
+    }
 
     await timed('vite-build', async () => {
       await runPnpm(['exec', 'svelte-kit', 'sync'], env);
