@@ -1,7 +1,6 @@
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { siteRoot } from './prepare.js';
-import { localizedHref } from '../../src/lib/i18n/routing.js';
 import type { DataManifest } from '../../src/lib/domain/types.js';
 
 /** Verifies public page outputs and their rendered internal links independently of hydration. */
@@ -43,6 +42,7 @@ export async function verifyBuildPageRoutes(
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.meta.filename)) {
+  const { localizedHref } = await import('../../src/lib/i18n/routing.js');
   const manifest = JSON.parse(
     await readFile(path.join(siteRoot, 'src/lib/generated/manifest.json'), 'utf8')
   ) as DataManifest;

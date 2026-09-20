@@ -1,7 +1,5 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
-import type { DataManifest } from '../../src/lib/domain/types.js';
-import { localizedHref } from '../../src/lib/i18n/routing.js';
 import { siteRoot } from './prepare.js';
 import type { FileSummary } from './telemetry.js';
 
@@ -88,13 +86,13 @@ export async function verifyBuildAssetClosure(
 }
 
 export async function verifyBuildSmoke(
-  manifest: DataManifest,
+  rootPagePaths: readonly string[],
   buildRoot = path.join(siteRoot, 'build')
 ): Promise<void> {
   const entries = new Set([
     '404.html',
-    ...manifest.publicLocales.map((locale) => {
-      const route = localizedHref('/', locale).replace(/^\//, '').replace(/\/$/, '');
+    ...rootPagePaths.map((href) => {
+      const route = href.replace(/^\//, '').replace(/\/$/, '');
       return path.posix.join(route, 'index.html');
     })
   ]);

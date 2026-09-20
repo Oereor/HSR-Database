@@ -2,7 +2,6 @@ import { execFileSync, spawn } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { DataManifest } from '../../src/lib/domain/types.js';
-import { localizedHref } from '../../src/lib/i18n/routing.js';
 import {
   loadDeploymentLock,
   prepareStarRailRes,
@@ -249,7 +248,9 @@ export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promis
       await runPnpm(['exec', 'svelte-kit', 'sync'], env);
       await runPnpm(['exec', 'vite', 'build'], env);
     });
-    await timed('output-smoke', () => verifyBuildSmoke(manifest));
+    const { localizedHref } = await import('../../src/lib/i18n/routing.js');
+    const rootPagePaths = manifest.publicLocales.map((locale) => localizedHref('/', locale));
+    await timed('output-smoke', () => verifyBuildSmoke(rootPagePaths));
     if (fullIntegrity) {
       const summary = await timed('deploy-verify', () => verifyBuildAssetClosure());
       logFileSummary('build-output', summary);
