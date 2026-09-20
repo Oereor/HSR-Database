@@ -10,12 +10,12 @@ import {
   resolveAssetRoot
 } from './paths.js';
 import {
-  assetSizeSummary,
   assetRequirementsFingerprint,
   emptyAssetManifest,
-  generateVisualAssets,
+  generateVisualAssetsWithStats,
   manifestCoversRequirements,
   manifestFilesExist,
+  observeGeneratedAssetFiles,
   readAssetManifest,
   readAssetRequirements,
   validateGeneratedAssetFiles,
@@ -23,16 +23,23 @@ import {
   warnAssetFallback,
   writeAssetManifest
 } from './shared.js';
-import type { AssetRequirements } from './shared.js';
+import type { AssetGenerationStats, AssetRequirements } from './shared.js';
+import type { AssetFilesystemObservation } from './observation.js';
 
 const mb = (bytes: number): string => `${(bytes / 1024 / 1024).toFixed(2)} MiB`;
 
-async function publishGeneratedAssets(
+export async function publishGeneratedAssets(
   stagingRoot: string,
-  manifest: VisualAssetManifest
+  manifest: VisualAssetManifest,
+  options: {
+    generatedRoot?: string;
+    writeManifest?: (manifest: VisualAssetManifest) => Promise<void>;
+  } = {}
 ): Promise<void> {
-  assertAssetOutputPaths();
-  const parent = path.dirname(generatedAssetRoot);
+  const destinationRoot = options.generatedRoot ?? generatedAssetRoot;
+  const writeManifest = options.writeManifest ?? writeAssetManifest;
+  if (!options.generatedRoot) assertAssetOutputPaths();
+  const parent = path.dirname(destinationRoot);
   const resolvedStage = path.resolve(stagingRoot);
   if (
     path.dirname(resolvedStage) !== parent ||
@@ -45,23 +52,23 @@ async function publishGeneratedAssets(
   let published = false;
   try {
     try {
-      await rename(generatedAssetRoot, backupRoot);
+      await rename(destinationRoot, backupRoot);
       backedUp = true;
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
     }
-    await rename(resolvedStage, generatedAssetRoot);
+    await rename(resolvedStage, destinationRoot);
     published = true;
-    await writeAssetManifest(manifest);
+    await writeManifest(manifest);
   } catch (error) {
     if (published)
-      await rm(generatedAssetRoot, {
+      await rm(destinationRoot, {
         recursive: true,
         force: true,
         maxRetries: 10,
         retryDelay: 200
       });
-    if (backedUp) await rename(backupRoot, generatedAssetRoot);
+    if (backedUp) await rename(backupRoot, destinationRoot);
     throw error;
   }
   if (backedUp) {
@@ -78,7 +85,13 @@ export interface SyncAssetsOptions {
   env?: NodeJS.ProcessEnv;
 }
 
-export async function syncAssets(options: SyncAssetsOptions = {}): Promise<VisualAssetManifest> {
+export interface SyncAssetsResult {
+  manifest: VisualAssetManifest;
+  observation?: AssetFilesystemObservation;
+  generationStats?: AssetGenerationStats;
+}
+
+export async function syncAssets(options: SyncAssetsOptions = {}): Promise<SyncAssetsResult> {
   const env = options.env ?? process.env;
   const requirements =
     options.requirements ?? (await readAssetRequirements(resolveDataRoot(env.HSR_DATA_ROOT)));
@@ -98,28 +111,33 @@ export async function syncAssets(options: SyncAssetsOptions = {}): Promise<Visua
       (await manifestFilesExist(cached));
     if (validCache) {
       console.warn(`视觉资源上游暂不可用，保留已有缓存：${(error as Error).message}`);
-      return cached;
+      return { manifest: cached };
     }
     const manifest = emptyAssetManifest(requirements);
     await writeAssetManifest(manifest);
     console.warn(`视觉资源上游暂不可用，已启用无图片降级：${(error as Error).message}`);
-    return manifest;
+    return { manifest };
   }
 
   const stagingParent = path.dirname(generatedAssetRoot);
   await mkdir(stagingParent, { recursive: true });
   const stagingRoot = await mkdtemp(path.join(stagingParent, '.generated-assets-stage-'));
   let manifest: VisualAssetManifest;
+  let generationStats: AssetGenerationStats;
   try {
-    const generated = await generateVisualAssets(root, requirements, stagingRoot);
+    const generated = await generateVisualAssetsWithStats(root, requirements, stagingRoot);
+    generationStats = generated.stats;
     manifest = {
       schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
       requirementsFingerprint: assetRequirementsFingerprint(requirements),
       sourceCommit,
       generatedAt: new Date().toISOString(),
-      ...generated
+      ...generated.assets
     };
-    await validateGeneratedAssetFiles(manifest, stagingRoot);
+    const stagingObservation = await validateGeneratedAssetFiles(manifest, stagingRoot);
+    console.log(
+      `[assets:validation] root=staging files=${stagingObservation.summary.files} bytes=${stagingObservation.summary.bytes} metadata=${stagingObservation.metadataInspections}`
+    );
     await publishGeneratedAssets(stagingRoot, manifest);
   } catch (error) {
     console.error(`视觉资源同步失败，正式缓存保持不变：${(error as Error).message}`);
@@ -136,47 +154,26 @@ export async function syncAssets(options: SyncAssetsOptions = {}): Promise<Visua
     throw error;
   }
   await rm(stagingRoot, { recursive: true, force: true, maxRetries: 10, retryDelay: 200 });
-  const sizes = await assetSizeSummary();
+  const observation = await observeGeneratedAssetFiles();
   console.log(`视觉资源同步完成（StarRailRes ${sourceCommit.slice(0, 12)}）：`);
   console.log(
-    `  角色预览图 ${manifest.characters.previews.available.length}，缺失 ${manifest.characters.previews.missing.length}，${mb(sizes.previews)}`
+    `  角色预览图 ${manifest.characters.previews.available.length}，缺失 ${manifest.characters.previews.missing.length}`
   );
   console.log(
-    `  角色立绘 ${manifest.characters.portraits.available.length}，缺失 ${manifest.characters.portraits.missing.length}，${mb(sizes.portraits)}`
+    `  角色立绘 ${manifest.characters.portraits.available.length}，缺失 ${manifest.characters.portraits.missing.length}`
   );
   console.log(
-    `  玩家头像 ${manifest.playerAvatars.available.length}，缺失 ${manifest.playerAvatars.missing.length}，${mb(sizes.playerAvatars)}`
+    `  玩家头像 ${manifest.playerAvatars.available.length}，缺失 ${manifest.playerAvatars.missing.length}`
   );
   console.log(
-    `  角色详情 icon ${Object.keys(manifest.characterDetails.icons.resolved).length}，缺失 ${manifest.characterDetails.icons.missing.length}，去重文件 ${new Set(Object.values(manifest.characterDetails.icons.resolved)).size}，${mb(sizes.characterDetailIcons)}`
+    `  角色详情 icon ${Object.keys(manifest.characterDetails.icons.resolved).length}，缺失 ${manifest.characterDetails.icons.missing.length}，去重文件 ${new Set(Object.values(manifest.characterDetails.icons.resolved)).size}`
   );
   console.log(
-    `  光锥预览图 ${manifest.lightCones.previews.available.length}，缺失 ${manifest.lightCones.previews.missing.length}，${mb(sizes.lightConePreviews)}`
+    `[assets:generation] copies=${generationStats.copyOperations} sharp=${generationStats.sharpOperations} missing=${generationStats.missing} copy-concurrency=${generationStats.copyConcurrency} sharp-concurrency=${generationStats.sharpConcurrency} overlap=${generationStats.overlapPools}`
   );
-  console.log(
-    `  光锥立绘 ${manifest.lightCones.portraits.available.length}，缺失 ${manifest.lightCones.portraits.missing.length}，${mb(sizes.lightConePortraits)}`
-  );
-  console.log(
-    `  遗器套装图标 ${manifest.relics.icons.available.length}，缺失 ${manifest.relics.icons.missing.length}；遗器部件图标 ${manifest.relics.pieces.available.length}，缺失 ${manifest.relics.pieces.missing.length}；遗器属性图标 ${manifest.relicProperties.icons.available.length}，缺失 ${manifest.relicProperties.icons.missing.length}，合计 ${mb(sizes.relicIcons + sizes.relicPieces + sizes.relicPropertyIcons)}`
-  );
-  console.log(
-    `  属性图标 ${manifest.elements.available.length}，缺失 ${manifest.elements.missing.length}；命途图标 ${manifest.paths.available.length}，缺失 ${manifest.paths.missing.length}，合计 ${mb(sizes.elements + sizes.paths)}`
-  );
-  console.log(
-    `  导航图标 ${manifest.navigation.icons.available.length}，缺失 ${manifest.navigation.icons.missing.length}，${mb(sizes.navigation)}`
-  );
-  console.log(
-    `  品牌图标 ${manifest.branding.icons.available.length}，缺失 ${manifest.branding.icons.missing.length}，${mb(sizes.branding)}`
-  );
-  console.log(
-    `  工具图标 ${manifest.utility.icons.available.length}，缺失 ${manifest.utility.icons.missing.length}，${mb(sizes.utility)}`
-  );
-  console.log(
-    `  高难模式图标 ${manifest.endgame.modeIcons.available.length}，缺失 ${manifest.endgame.modeIcons.missing.length}，${mb(sizes.endgameModeIcons)}`
-  );
-  console.log(`  输出总计 ${mb(sizes.total)}`);
+  console.log(`  输出总计 ${observation.summary.files} files，${mb(observation.summary.bytes)}`);
   warnAssetFallback(manifest, `StarRailRes ${sourceCommit.slice(0, 12)}`);
-  return manifest;
+  return { manifest, observation, generationStats };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.meta.filename)) {

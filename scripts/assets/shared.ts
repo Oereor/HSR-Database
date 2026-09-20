@@ -1,4 +1,4 @@
-import { copyFile, mkdir, readFile, readdir, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import sharp from 'sharp';
@@ -35,22 +35,10 @@ import {
   assetManifestRoot,
   assertAssetOutputPaths,
   generatedAssetRoot,
-  generatedPlayerAvatarRoot,
-  generatedCharacterDetailPropertyIconRoot,
-  generatedCharacterDetailSkillIconRoot,
-  generatedPreviewRoot,
-  generatedLightConePreviewRoot,
-  generatedLightConePortraitRoot,
-  generatedRelicIconRoot,
-  generatedRelicPieceRoot,
-  generatedRelicPropertyRoot,
-  generatedElementRoot,
-  generatedEndgameModeRoot,
-  generatedNavigationRoot,
-  generatedBrandingRoot,
-  generatedPathRoot,
-  generatedPortraitRoot
+  generatedLightConePortraitRoot
 } from './paths.js';
+import { AssetFilesystemObservation, observeAssetFilesystem } from './observation.js';
+import { createBoundedPoolState, runBoundedPool, throwBoundedPoolFailures } from './pool.js';
 
 // Windows may otherwise retain recently inspected files in libvips' cache during rollback cleanup.
 sharp.cache(false);
@@ -123,25 +111,6 @@ export interface PlayerAvatarRequirement {
   sourceFileName: string;
 }
 
-export interface AssetSizeSummary {
-  previews: number;
-  portraits: number;
-  playerAvatars: number;
-  characterDetailIcons: number;
-  lightConePreviews: number;
-  lightConePortraits: number;
-  relicIcons: number;
-  relicPieces: number;
-  relicPropertyIcons: number;
-  elements: number;
-  paths: number;
-  navigation: number;
-  branding: number;
-  utility: number;
-  endgameModeIcons: number;
-  total: number;
-}
-
 export interface AssetOutputPaths {
   root: string;
   previews: string;
@@ -163,7 +132,29 @@ export interface AssetOutputPaths {
   endgameModeIcons: string;
 }
 
-export type AssetFileIndex = ReadonlyMap<string, ReadonlySet<string>>;
+export const DEFAULT_ASSET_COPY_CONCURRENCY = 1;
+export const DEFAULT_ASSET_SHARP_CONCURRENCY = 2;
+export const DEFAULT_ASSET_POOL_OVERLAP = false;
+
+export interface AssetGenerationOptions {
+  copyConcurrency?: number;
+  sharpConcurrency?: number;
+  overlapPools?: boolean;
+}
+
+export interface AssetGenerationStats {
+  copyOperations: number;
+  sharpOperations: number;
+  missing: number;
+  copyConcurrency: number;
+  sharpConcurrency: number;
+  overlapPools: boolean;
+}
+
+export interface GeneratedVisualAssets {
+  assets: Omit<VisualAssetManifest, 'schemaVersion' | 'sourceCommit' | 'generatedAt'>;
+  stats: AssetGenerationStats;
+}
 
 export interface AssetFallbackEntry {
   label: string;
@@ -486,37 +477,101 @@ async function prepareOutputDirectories(output: AssetOutputPaths): Promise<void>
   );
 }
 
-async function processRequested<TValue extends string>(
+type AssetTaskKind = 'copy' | 'sharp';
+
+interface AssetWorkItem {
+  order: number;
+  kind: AssetTaskKind;
+  run: () => Promise<boolean>;
+}
+
+interface PlannedAvailability {
+  tasks: AssetWorkItem[];
+  result: () => AssetAvailability;
+}
+
+function planRequested<TValue extends string>(
   requested: TValue[],
   sourcePath: (value: TValue) => string | undefined,
   outputPath: (value: TValue) => string,
+  kind: AssetTaskKind,
   transform: (source: string, output: string) => Promise<void>
-): Promise<AssetAvailability> {
-  const available: string[] = [];
-  const missing: string[] = [];
+): PlannedAvailability {
+  const status = new Map<TValue, 'available' | 'missing'>();
+  const tasks: AssetWorkItem[] = [];
   for (const value of requested) {
     const source = sourcePath(value);
     if (!source) {
-      missing.push(value);
+      status.set(value, 'missing');
       continue;
     }
-    try {
-      await stat(source);
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-        missing.push(value);
-        continue;
+    tasks.push({
+      order: 0,
+      kind,
+      run: async () => {
+        try {
+          await stat(source);
+        } catch (error) {
+          if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+            status.set(value, 'missing');
+            return false;
+          }
+          throw new Error(`无法读取视觉资源 ${value}：${source}`, { cause: error });
+        }
+        try {
+          await transform(source, outputPath(value));
+        } catch (error) {
+          throw new Error(`无法生成视觉资源 ${value}：${source}`, { cause: error });
+        }
+        status.set(value, 'available');
+        return true;
       }
-      throw new Error(`无法读取视觉资源 ${value}：${source}`, { cause: error });
-    }
-    try {
-      await transform(source, outputPath(value));
-    } catch (error) {
-      throw new Error(`无法生成视觉资源 ${value}：${source}`, { cause: error });
-    }
-    available.push(value);
+    });
   }
-  return { available, missing };
+  return {
+    tasks,
+    result: () => ({
+      available: requested.filter((value) => status.get(value) === 'available'),
+      missing: requested.filter((value) => status.get(value) === 'missing')
+    })
+  };
+}
+
+async function executeAssetTasks(
+  tasks: AssetWorkItem[],
+  options: AssetGenerationOptions = {}
+): Promise<Omit<AssetGenerationStats, 'missing'>> {
+  const copyConcurrency = options.copyConcurrency ?? DEFAULT_ASSET_COPY_CONCURRENCY;
+  const sharpConcurrency = options.sharpConcurrency ?? DEFAULT_ASSET_SHARP_CONCURRENCY;
+  const overlapPools = options.overlapPools ?? DEFAULT_ASSET_POOL_OVERLAP;
+  tasks.forEach((task, index) => (task.order = index));
+  const copyTasks = tasks.filter((task) => task.kind === 'copy');
+  const sharpTasks = tasks.filter((task) => task.kind === 'sharp');
+  const state = createBoundedPoolState();
+  let copyOperations = 0;
+  let sharpOperations = 0;
+  const run = async (items: AssetWorkItem[], concurrency: number): Promise<void> => {
+    await runBoundedPool(
+      items,
+      concurrency,
+      async (task) => {
+        if (await task.run()) {
+          if (task.kind === 'copy') copyOperations += 1;
+          else sharpOperations += 1;
+        }
+      },
+      state,
+      (task) => task.order
+    );
+  };
+  if (overlapPools)
+    await Promise.all([run(copyTasks, copyConcurrency), run(sharpTasks, sharpConcurrency)]);
+  else {
+    await run(copyTasks, copyConcurrency);
+    if (!state.failed) await run(sharpTasks, sharpConcurrency);
+  }
+  throwBoundedPoolFailures(state);
+  return { copyOperations, sharpOperations, copyConcurrency, sharpConcurrency, overlapPools };
 }
 
 interface CharacterResourceIndexEntry {
@@ -793,43 +848,81 @@ function characterDetailAssetLocation(
   };
 }
 
+interface PlannedCharacterDetailIcons {
+  tasks: AssetWorkItem[];
+  result: () => AssetResolutionMap;
+}
+
+function planCharacterDetailIcons(
+  sourceRoot: string,
+  iconKeys: CharacterDetailIconKey[],
+  output: AssetOutputPaths,
+  sources: ReadonlyMap<CharacterDetailIconKey, string>
+): PlannedCharacterDetailIcons {
+  const status = new Map<CharacterDetailIconKey, 'available' | 'missing'>();
+  const locationByKey = new Map<
+    CharacterDetailIconKey,
+    { outputPath: string; publicUrl: string }
+  >();
+  const keysBySource = new Map<string, CharacterDetailIconKey[]>();
+  for (const iconKey of iconKeys) {
+    const source = sources.get(iconKey);
+    if (!source) {
+      status.set(iconKey, 'missing');
+      continue;
+    }
+    const location = characterDetailAssetLocation(sourceRoot, source, output);
+    locationByKey.set(iconKey, location);
+    keysBySource.set(source, [...(keysBySource.get(source) ?? []), iconKey]);
+  }
+  const tasks = [...keysBySource.entries()].map(([source, sourceKeys]) => ({
+    order: 0,
+    kind: 'sharp' as const,
+    run: async (): Promise<boolean> => {
+      try {
+        await stat(source);
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+          for (const iconKey of sourceKeys) status.set(iconKey, 'missing');
+          return false;
+        }
+        throw new Error(`无法读取角色详情 icon ${sourceKeys[0]}：${source}`, { cause: error });
+      }
+      try {
+        await writeSemanticIconAsset(source, locationByKey.get(sourceKeys[0])!.outputPath);
+      } catch (error) {
+        throw new Error(`无法生成角色详情 icon ${sourceKeys[0]}：${source}`, { cause: error });
+      }
+      for (const iconKey of sourceKeys) status.set(iconKey, 'available');
+      return true;
+    }
+  }));
+  return {
+    tasks,
+    result: () => ({
+      resolved: Object.fromEntries(
+        iconKeys.flatMap((iconKey) =>
+          status.get(iconKey) === 'available'
+            ? [[iconKey, locationByKey.get(iconKey)!.publicUrl] as const]
+            : []
+        )
+      ),
+      missing: iconKeys.filter((iconKey) => status.get(iconKey) === 'missing')
+    })
+  };
+}
+
 export async function generateCharacterDetailIcons(
   sourceRoot: string,
   iconKeys: CharacterDetailIconKey[],
   output: AssetOutputPaths,
-  indexedSources?: ReadonlyMap<CharacterDetailIconKey, string>
+  indexedSources?: ReadonlyMap<CharacterDetailIconKey, string>,
+  options: AssetGenerationOptions = {}
 ): Promise<AssetResolutionMap> {
   const sources = indexedSources ?? (await readCharacterDetailIconSources(sourceRoot, iconKeys));
-  const resolved: Record<string, string> = {};
-  const missing: string[] = [];
-  const generatedSources = new Set<string>();
-  for (const iconKey of iconKeys) {
-    const source = sources.get(iconKey);
-    if (!source) {
-      missing.push(iconKey);
-      continue;
-    }
-    try {
-      await stat(source);
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-        missing.push(iconKey);
-        continue;
-      }
-      throw new Error(`无法读取角色详情 icon ${iconKey}：${source}`, { cause: error });
-    }
-    const location = characterDetailAssetLocation(sourceRoot, source, output);
-    if (!generatedSources.has(source)) {
-      try {
-        await writeSemanticIconAsset(source, location.outputPath);
-      } catch (error) {
-        throw new Error(`无法生成角色详情 icon ${iconKey}：${source}`, { cause: error });
-      }
-      generatedSources.add(source);
-    }
-    resolved[iconKey] = location.publicUrl;
-  }
-  return { resolved, missing };
+  const plan = planCharacterDetailIcons(sourceRoot, iconKeys, output, sources);
+  await executeAssetTasks(plan.tasks, options);
+  return plan.result();
 }
 
 export async function writePortraitAsset(source: string, output: string): Promise<void> {
@@ -868,58 +961,60 @@ export async function writeEndgameModeIconAsset(source: string, output: string):
 export async function generateLightConePortraitAssets(
   sourceRoot: string,
   lightConeIds: string[],
-  outputRoot = generatedLightConePortraitRoot
+  outputRoot = generatedLightConePortraitRoot,
+  options: AssetGenerationOptions = {}
 ): Promise<AssetAvailability> {
   const sources = await readLightConePortraitSources(sourceRoot, lightConeIds);
   await mkdir(outputRoot, { recursive: true });
-  return processRequested(
+  const plan = planRequested(
     lightConeIds,
     (id) => sources.get(id),
     (id) => path.join(outputRoot, `${id}.webp`),
+    'sharp',
     writePortraitAsset
   );
+  await executeAssetTasks(plan.tasks, options);
+  return plan.result();
 }
 
-export async function generateVisualAssets(
+export async function generateVisualAssetsWithStats(
   sourceRoot: string,
   requirements: AssetRequirements,
-  outputRoot = generatedAssetRoot
-): Promise<Omit<VisualAssetManifest, 'schemaVersion' | 'sourceCommit' | 'generatedAt'>> {
+  outputRoot = generatedAssetRoot,
+  options: AssetGenerationOptions = {}
+): Promise<GeneratedVisualAssets> {
   // Validate every index before touching output so malformed upstream data cannot erase a cache.
-  const previewSources = await readCharacterPreviewSources(sourceRoot, requirements.characterIds);
-  const characterDetailIconSources = await readCharacterDetailIconSources(
-    sourceRoot,
-    requirements.characterDetailIconKeys
-  );
-  const lightConePreviewSources = await readLightConePreviewSources(
-    sourceRoot,
-    requirements.lightConeIds
-  );
-  const lightConePortraitSources = await readLightConePortraitSources(
-    sourceRoot,
-    requirements.lightConeIds
-  );
-  const relicSetIconSources = await readRelicSetIconSources(sourceRoot, requirements.relicSetIds);
-  const relicPieceIconSources = await readRelicPieceIconSources(
-    sourceRoot,
-    requirements.relicPieces
-  );
-  const relicPropertyIconSources = await readRelicPropertyIconSources(
-    sourceRoot,
-    requirements.relicPropertyIcons
-  );
+  const [
+    previewSources,
+    characterDetailIconSources,
+    lightConePreviewSources,
+    lightConePortraitSources,
+    relicSetIconSources,
+    relicPieceIconSources,
+    relicPropertyIconSources
+  ] = await Promise.all([
+    readCharacterPreviewSources(sourceRoot, requirements.characterIds),
+    readCharacterDetailIconSources(sourceRoot, requirements.characterDetailIconKeys),
+    readLightConePreviewSources(sourceRoot, requirements.lightConeIds),
+    readLightConePortraitSources(sourceRoot, requirements.lightConeIds),
+    readRelicSetIconSources(sourceRoot, requirements.relicSetIds),
+    readRelicPieceIconSources(sourceRoot, requirements.relicPieces),
+    readRelicPropertyIconSources(sourceRoot, requirements.relicPropertyIcons)
+  ]);
   const output = assetOutputPaths(outputRoot);
   await prepareOutputDirectories(output);
-  const previews = await processRequested(
+  const previews = planRequested(
     requirements.characterIds,
     (id) => previewSources.get(id),
     (id) => path.join(output.previews, `${id}.png`),
+    'copy',
     async (source, output) => copyFile(source, output)
   );
-  const portraits = await processRequested(
+  const portraits = planRequested(
     requirements.characterIds,
     (id) => path.join(sourceRoot, 'image', 'character_portrait', `${id}.png`),
     (id) => path.join(output.portraits, `${id}.webp`),
+    'sharp',
     writePortraitAsset
   );
   const playerAvatarSources = new Map(
@@ -928,102 +1023,154 @@ export async function generateVisualAssets(
       path.join(sourceRoot, 'icon', 'avatar', sourceFileName)
     ])
   );
-  const playerAvatars = await processRequested(
+  const playerAvatars = planRequested(
     requirements.playerAvatars.map(({ id }) => id),
     (id) => playerAvatarSources.get(id),
     (id) => path.join(output.playerAvatars, `${id}.png`),
+    'copy',
     async (source, outputPath) => copyFile(source, outputPath)
   );
-  const characterDetailIcons = await generateCharacterDetailIcons(
+  const characterDetailIcons = planCharacterDetailIcons(
     sourceRoot,
     requirements.characterDetailIconKeys,
     output,
     characterDetailIconSources
   );
-  const lightConePreviews = await processRequested(
+  const lightConePreviews = planRequested(
     requirements.lightConeIds,
     (id) => lightConePreviewSources.get(id),
     (id) => path.join(output.lightConePreviews, `${id}.png`),
+    'copy',
     async (source, output) => copyFile(source, output)
   );
-  const lightConePortraits = await processRequested(
+  const lightConePortraits = planRequested(
     requirements.lightConeIds,
     (id) => lightConePortraitSources.get(id),
     (id) => path.join(output.lightConePortraits, `${id}.webp`),
+    'sharp',
     writePortraitAsset
   );
-  const relicIcons = await processRequested(
+  const relicIcons = planRequested(
     requirements.relicSetIds,
     (id) => relicSetIconSources.get(id),
     (id) => path.join(output.relicIcons, `${id}.png`),
+    'copy',
     async (source, output) => copyFile(source, output)
   );
-  const relicPieces = await processRequested(
+  const relicPieces = planRequested(
     requirements.relicPieces.map((piece) => piece.id),
     (id) => relicPieceIconSources.get(id),
     (id) => path.join(output.relicPieces, `${id}.png`),
+    'copy',
     async (source, output) => copyFile(source, output)
   );
   const relicPropertyIconKeys = uniqueSorted(
     requirements.relicPropertyIcons.map((entry) => entry.iconKey)
   );
-  const relicPropertyIcons = await processRequested(
+  const relicPropertyIcons = planRequested(
     relicPropertyIconKeys,
     (iconKey) => relicPropertyIconSources.get(iconKey),
     (iconKey) => path.join(output.relicPropertyIcons, `${iconKey}.png`),
+    'copy',
     async (source, output) => copyFile(source, output)
   );
-  const elements = await processRequested(
+  const elements = planRequested(
     requirements.elements,
     (code) => path.join(sourceRoot, 'icon', 'element', `${ELEMENT_SOURCE_NAMES[code]}.png`),
     (code) => path.join(output.elements, `${code}.png`),
+    'sharp',
     writeSemanticIconAsset
   );
-  const paths = await processRequested(
+  const paths = planRequested(
     requirements.paths,
     (code) => path.join(sourceRoot, 'icon', 'path', `${PATH_SOURCE_NAMES[code]}.png`),
     (code) => path.join(output.paths, `${code}.png`),
+    'sharp',
     writeSemanticIconAsset
   );
-  const navigationIcons = await processRequested(
+  const navigationIcons = planRequested(
     requirements.navigationIcons,
     (iconKey) =>
       path.join(sourceRoot, 'icon', 'sign', `${NAVIGATION_ICON_SOURCE_NAMES[iconKey]}.png`),
     (iconKey) => path.join(output.navigation, `${iconKey}.png`),
+    'sharp',
     writeNavigationIconAsset
   );
-  const brandingIcons = await processRequested(
+  const brandingIcons = planRequested(
     requirements.brandIcons,
     (iconKey) => path.join(sourceRoot, 'icon', 'sign', `${BRAND_ICON_SOURCE_NAMES[iconKey]}.png`),
     (iconKey) => path.join(output.branding, `${iconKey}.png`),
+    'copy',
     async (source, output) => copyFile(source, output)
   );
-  const utilityIcons = await processRequested(
+  const utilityIcons = planRequested(
     requirements.utilityIcons,
     (iconKey) => path.join(sourceRoot, 'icon', 'sign', `${UTILITY_ICON_SOURCE_NAMES[iconKey]}.png`),
     (iconKey) => path.join(output.utility, `${iconKey}.png`),
+    'sharp',
     writeNavigationIconAsset
   );
-  const endgameModeIcons = await processRequested(
+  const endgameModeIcons = planRequested(
     requirements.endgameModeIcons,
     (iconKey) => path.join(sourceRoot, 'icon', 'sign', `${iconKey}.png`),
     (iconKey) => path.join(output.endgameModeIcons, `${iconKey}.png`),
+    'sharp',
     writeEndgameModeIconAsset
   );
-  return {
-    characters: { previews, portraits },
+  const plans = [
+    previews,
+    portraits,
     playerAvatars,
-    characterDetails: { icons: characterDetailIcons },
-    lightCones: { previews: lightConePreviews, portraits: lightConePortraits },
-    relics: { icons: relicIcons, pieces: relicPieces },
-    relicProperties: { icons: relicPropertyIcons },
+    characterDetailIcons,
+    lightConePreviews,
+    lightConePortraits,
+    relicIcons,
+    relicPieces,
+    relicPropertyIcons,
     elements,
     paths,
-    navigation: { icons: navigationIcons },
-    branding: { icons: brandingIcons },
-    utility: { icons: utilityIcons },
-    endgame: { modeIcons: endgameModeIcons }
+    navigationIcons,
+    brandingIcons,
+    utilityIcons,
+    endgameModeIcons
+  ];
+  const taskStats = await executeAssetTasks(
+    plans.flatMap((plan) => plan.tasks),
+    options
+  );
+  const assets = {
+    characters: { previews: previews.result(), portraits: portraits.result() },
+    playerAvatars: playerAvatars.result(),
+    characterDetails: { icons: characterDetailIcons.result() },
+    lightCones: {
+      previews: lightConePreviews.result(),
+      portraits: lightConePortraits.result()
+    },
+    relics: { icons: relicIcons.result(), pieces: relicPieces.result() },
+    relicProperties: { icons: relicPropertyIcons.result() },
+    elements: elements.result(),
+    paths: paths.result(),
+    navigation: { icons: navigationIcons.result() },
+    branding: { icons: brandingIcons.result() },
+    utility: { icons: utilityIcons.result() },
+    endgame: { modeIcons: endgameModeIcons.result() }
   };
+  const missing = assetFallbackEntries({
+    schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
+    generatedAt: '',
+    ...assets
+  }).reduce((total, entry) => total + entry.missing.length, 0);
+  return { assets, stats: { ...taskStats, missing } };
+}
+
+export async function generateVisualAssets(
+  sourceRoot: string,
+  requirements: AssetRequirements,
+  outputRoot = generatedAssetRoot,
+  options: AssetGenerationOptions = {}
+): Promise<Omit<VisualAssetManifest, 'schemaVersion' | 'sourceCommit' | 'generatedAt'>> {
+  return (await generateVisualAssetsWithStats(sourceRoot, requirements, outputRoot, options))
+    .assets;
 }
 
 const collectionCovers = (collection: AssetAvailability, required: string[]): boolean => {
@@ -1123,27 +1270,46 @@ const expectedFiles = (
   [output.endgameModeIcons, manifest.endgame.modeIcons.available.map((iconKey) => `${iconKey}.png`)]
 ];
 
-export async function buildAssetFileIndex(
-  manifest: VisualAssetManifest,
+const assetOutputDirectories = (output: AssetOutputPaths): string[] => [
+  output.previews,
+  output.portraits,
+  output.playerAvatars,
+  output.characterDetailSkillIcons,
+  output.characterDetailPropertyIcons,
+  output.lightConePreviews,
+  output.lightConePortraits,
+  output.relicIcons,
+  output.relicPieces,
+  output.relicPropertyIcons,
+  output.elements,
+  output.paths,
+  output.navigation,
+  output.branding,
+  output.utility,
+  output.endgameModeIcons
+];
+
+export async function observeGeneratedAssetFiles(
   outputRoot = generatedAssetRoot
-): Promise<AssetFileIndex> {
-  const index = new Map<string, ReadonlySet<string>>();
-  for (const [directory] of expectedFiles(manifest, assetOutputPaths(outputRoot)))
-    index.set(directory, new Set(await readdir(directory)));
-  return index;
+): Promise<AssetFilesystemObservation> {
+  const output = assetOutputPaths(outputRoot);
+  return observeAssetFilesystem(outputRoot, assetOutputDirectories(output));
 }
 
 export async function manifestFilesExist(
   manifest: VisualAssetManifest,
   outputRoot = generatedAssetRoot,
-  fileIndex?: AssetFileIndex
+  observation?: AssetFilesystemObservation
 ): Promise<boolean> {
   try {
+    const actual = observation ?? (await observeGeneratedAssetFiles(outputRoot));
+    if (actual.root !== path.resolve(outputRoot)) return false;
     for (const [directory, requiredFiles] of expectedFiles(
       manifest,
       assetOutputPaths(outputRoot)
     )) {
-      const files = fileIndex?.get(directory) ?? new Set(await readdir(directory));
+      const files = actual.fileNames(directory);
+      if (!files) return false;
       if (!requiredFiles.every((file) => files.has(file))) return false;
     }
     return true;
@@ -1155,18 +1321,19 @@ export async function manifestFilesExist(
 export async function validateGeneratedAssetFiles(
   manifest: VisualAssetManifest,
   outputRoot = generatedAssetRoot,
-  fileIndex?: AssetFileIndex
-): Promise<void> {
+  observation?: AssetFilesystemObservation
+): Promise<AssetFilesystemObservation> {
   const output = assetOutputPaths(outputRoot);
-  if (!(await manifestFilesExist(manifest, outputRoot, fileIndex)))
+  const actual = observation ?? (await observeGeneratedAssetFiles(outputRoot));
+  if (!(await manifestFilesExist(manifest, outputRoot, actual)))
     throw new Error('视觉资源 manifest 与生成文件不一致。');
   for (const id of manifest.characters.previews.available) {
-    const metadata = await sharp(path.join(output.previews, `${id}.png`)).metadata();
+    const metadata = await actual.metadata(path.join(output.previews, `${id}.png`));
     if (metadata.format !== 'png' || !metadata.width || !metadata.height)
       throw new Error(`生成角色预览图格式或尺寸异常：${id}`);
   }
   for (const id of manifest.characters.portraits.available) {
-    const metadata = await sharp(path.join(output.portraits, `${id}.webp`)).metadata();
+    const metadata = await actual.metadata(path.join(output.portraits, `${id}.webp`));
     if (
       metadata.format !== 'webp' ||
       !metadata.width ||
@@ -1177,7 +1344,7 @@ export async function validateGeneratedAssetFiles(
       throw new Error(`生成立绘格式或尺寸异常：${id}`);
   }
   for (const id of manifest.playerAvatars.available) {
-    const metadata = await sharp(path.join(output.playerAvatars, `${id}.png`)).metadata();
+    const metadata = await actual.metadata(path.join(output.playerAvatars, `${id}.png`));
     if (metadata.format !== 'png' || metadata.width !== 128 || metadata.height !== 128)
       throw new Error(`玩家头像格式或尺寸异常：${id}`);
   }
@@ -1198,7 +1365,7 @@ export async function validateGeneratedAssetFiles(
         : output.characterDetailSkillIcons,
       match[2]
     );
-    const metadata = await sharp(iconPath).metadata();
+    const metadata = await actual.metadata(iconPath);
     if (
       metadata.format !== 'png' ||
       metadata.width !== 64 ||
@@ -1208,12 +1375,12 @@ export async function validateGeneratedAssetFiles(
       throw new Error(`角色详情 icon 格式或尺寸异常：${iconKey}`);
   }
   for (const id of manifest.lightCones.previews.available) {
-    const metadata = await sharp(path.join(output.lightConePreviews, `${id}.png`)).metadata();
+    const metadata = await actual.metadata(path.join(output.lightConePreviews, `${id}.png`));
     if (metadata.format !== 'png' || metadata.width !== 348 || metadata.height !== 408)
       throw new Error(`生成光锥预览图格式或尺寸异常：${id}`);
   }
   for (const id of manifest.lightCones.portraits.available) {
-    const metadata = await sharp(path.join(output.lightConePortraits, `${id}.webp`)).metadata();
+    const metadata = await actual.metadata(path.join(output.lightConePortraits, `${id}.webp`));
     if (
       metadata.format !== 'webp' ||
       !metadata.width ||
@@ -1224,32 +1391,32 @@ export async function validateGeneratedAssetFiles(
       throw new Error(`生成光锥立绘格式或尺寸异常：${id}`);
   }
   for (const id of manifest.relics.icons.available) {
-    const metadata = await sharp(path.join(output.relicIcons, `${id}.png`)).metadata();
+    const metadata = await actual.metadata(path.join(output.relicIcons, `${id}.png`));
     if (metadata.format !== 'png' || metadata.width !== 128 || metadata.height !== 128)
       throw new Error(`遗器套装图标格式或尺寸异常：${id}`);
   }
   for (const id of manifest.relics.pieces.available) {
-    const metadata = await sharp(path.join(output.relicPieces, `${id}.png`)).metadata();
+    const metadata = await actual.metadata(path.join(output.relicPieces, `${id}.png`));
     if (metadata.format !== 'png' || metadata.width !== 128 || metadata.height !== 128)
       throw new Error(`遗器部件图标格式或尺寸异常：${id}`);
   }
   for (const iconKey of manifest.relicProperties.icons.available) {
-    const metadata = await sharp(path.join(output.relicPropertyIcons, `${iconKey}.png`)).metadata();
+    const metadata = await actual.metadata(path.join(output.relicPropertyIcons, `${iconKey}.png`));
     if (metadata.format !== 'png' || metadata.width !== 128 || metadata.height !== 128)
       throw new Error(`遗器属性图标格式或尺寸异常：${iconKey}`);
   }
   for (const code of manifest.elements.available) {
-    const metadata = await sharp(path.join(output.elements, `${code}.png`)).metadata();
+    const metadata = await actual.metadata(path.join(output.elements, `${code}.png`));
     if (metadata.width !== 64 || metadata.height !== 64)
       throw new Error(`属性图标尺寸异常：${code}`);
   }
   for (const code of manifest.paths.available) {
-    const metadata = await sharp(path.join(output.paths, `${code}.png`)).metadata();
+    const metadata = await actual.metadata(path.join(output.paths, `${code}.png`));
     if (metadata.width !== 64 || metadata.height !== 64)
       throw new Error(`命途图标尺寸异常：${code}`);
   }
   for (const iconKey of manifest.navigation.icons.available) {
-    const metadata = await sharp(path.join(output.navigation, `${iconKey}.png`)).metadata();
+    const metadata = await actual.metadata(path.join(output.navigation, `${iconKey}.png`));
     if (
       metadata.format !== 'png' ||
       metadata.width !== 64 ||
@@ -1259,7 +1426,7 @@ export async function validateGeneratedAssetFiles(
       throw new Error(`导航图标格式或尺寸异常：${iconKey}`);
   }
   for (const iconKey of manifest.branding.icons.available) {
-    const metadata = await sharp(path.join(output.branding, `${iconKey}.png`)).metadata();
+    const metadata = await actual.metadata(path.join(output.branding, `${iconKey}.png`));
     if (
       metadata.format !== 'png' ||
       metadata.width !== 128 ||
@@ -1269,7 +1436,7 @@ export async function validateGeneratedAssetFiles(
       throw new Error(`品牌图标格式或尺寸异常：${iconKey}`);
   }
   for (const iconKey of manifest.utility.icons.available) {
-    const metadata = await sharp(path.join(output.utility, `${iconKey}.png`)).metadata();
+    const metadata = await actual.metadata(path.join(output.utility, `${iconKey}.png`));
     if (
       metadata.format !== 'png' ||
       metadata.width !== 64 ||
@@ -1279,7 +1446,7 @@ export async function validateGeneratedAssetFiles(
       throw new Error(`工具图标格式或尺寸异常：${iconKey}`);
   }
   for (const iconKey of manifest.endgame.modeIcons.available) {
-    const metadata = await sharp(path.join(output.endgameModeIcons, `${iconKey}.png`)).metadata();
+    const metadata = await actual.metadata(path.join(output.endgameModeIcons, `${iconKey}.png`));
     if (
       metadata.format !== 'png' ||
       metadata.width !== 128 ||
@@ -1288,88 +1455,5 @@ export async function validateGeneratedAssetFiles(
     )
       throw new Error(`高难模式图标格式或尺寸异常：${iconKey}`);
   }
-}
-
-async function directorySize(directory: string): Promise<number> {
-  try {
-    const files = await readdir(directory, { withFileTypes: true });
-    const sizes = await Promise.all(
-      files.filter((file) => file.isFile()).map((file) => stat(path.join(directory, file.name)))
-    );
-    return sizes.reduce((sum, metadata) => sum + metadata.size, 0);
-  } catch {
-    return 0;
-  }
-}
-
-export async function assetSizeSummary(): Promise<AssetSizeSummary> {
-  const [
-    previews,
-    portraits,
-    playerAvatars,
-    characterDetailIcons,
-    lightConePreviews,
-    lightConePortraits,
-    relicIcons,
-    relicPieces,
-    relicPropertyIcons,
-    elements,
-    paths,
-    navigation,
-    branding,
-    utility,
-    endgameModeIcons
-  ] = await Promise.all([
-    directorySize(generatedPreviewRoot),
-    directorySize(generatedPortraitRoot),
-    directorySize(generatedPlayerAvatarRoot),
-    Promise.all([
-      directorySize(generatedCharacterDetailSkillIconRoot),
-      directorySize(generatedCharacterDetailPropertyIconRoot)
-    ]).then((sizes) => sizes.reduce((sum, size) => sum + size, 0)),
-    directorySize(generatedLightConePreviewRoot),
-    directorySize(generatedLightConePortraitRoot),
-    directorySize(generatedRelicIconRoot),
-    directorySize(generatedRelicPieceRoot),
-    directorySize(generatedRelicPropertyRoot),
-    directorySize(generatedElementRoot),
-    directorySize(generatedPathRoot),
-    directorySize(generatedNavigationRoot),
-    directorySize(generatedBrandingRoot),
-    directorySize(path.join(generatedAssetRoot, 'utility')),
-    directorySize(generatedEndgameModeRoot)
-  ]);
-  return {
-    previews,
-    portraits,
-    playerAvatars,
-    characterDetailIcons,
-    lightConePreviews,
-    lightConePortraits,
-    relicIcons,
-    relicPieces,
-    relicPropertyIcons,
-    elements,
-    paths,
-    navigation,
-    branding,
-    utility,
-    endgameModeIcons,
-    total:
-      previews +
-      portraits +
-      playerAvatars +
-      characterDetailIcons +
-      lightConePreviews +
-      lightConePortraits +
-      relicIcons +
-      relicPieces +
-      relicPropertyIcons +
-      elements +
-      paths +
-      navigation +
-      branding +
-      utility +
-      endgameModeIcons
-  };
+  return actual;
 }

@@ -53,6 +53,7 @@ import {
   writeSemanticIconAsset,
   writeNavigationIconAsset
 } from '../../scripts/assets/shared';
+import { publishGeneratedAssets } from '../../scripts/assets/sync';
 
 sharp.cache(false);
 
@@ -869,7 +870,11 @@ describe('视觉资源管线', () => {
       available: ['1001'],
       missing: ['1002', '1003']
     });
-    await expect(validateGeneratedAssetFiles(candidate, outputRoot)).resolves.toBeUndefined();
+    const observation = await validateGeneratedAssetFiles(candidate, outputRoot);
+    expect(observation.summary).toEqual({ files: 2, bytes: expect.any(Number) });
+    expect(observation.metadataInspections).toBe(2);
+    await validateGeneratedAssetFiles(candidate, outputRoot, observation);
+    expect(observation.metadataInspections).toBe(2);
     expect(await readdir(path.join(outputRoot, 'characters', 'preview'))).toEqual(['1001.png']);
 
     await Promise.all([
@@ -983,6 +988,33 @@ describe('视觉资源管线', () => {
     await expect(readFile(path.join(publishedRoot, 'sentinel.txt'), 'utf8')).resolves.toBe(
       'old cache'
     );
+  });
+
+  it('发布后 manifest 写入失败时恢复旧目录并移除候选目录', async () => {
+    const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-asset-publish-'));
+    temporaryDirectories.push(root);
+    const publishedRoot = path.join(root, 'generated-assets');
+    const stagingRoot = path.join(root, '.generated-assets-stage-fixture');
+    await Promise.all([
+      mkdir(publishedRoot, { recursive: true }),
+      mkdir(stagingRoot, { recursive: true })
+    ]);
+    await Promise.all([
+      writeFile(path.join(publishedRoot, 'sentinel.txt'), 'old cache'),
+      writeFile(path.join(stagingRoot, 'candidate.txt'), 'new cache')
+    ]);
+    await expect(
+      publishGeneratedAssets(stagingRoot, manifest(), {
+        generatedRoot: publishedRoot,
+        writeManifest: async () => {
+          throw new Error('manifest write failed');
+        }
+      })
+    ).rejects.toThrow(/manifest write failed/);
+    await expect(readFile(path.join(publishedRoot, 'sentinel.txt'), 'utf8')).resolves.toBe(
+      'old cache'
+    );
+    await expect(readFile(path.join(publishedRoot, 'candidate.txt'), 'utf8')).rejects.toThrow();
   });
 
   it('遗器资源按稳定 ID 同步套装、部件与属性图标', async () => {

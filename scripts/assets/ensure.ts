@@ -5,20 +5,21 @@ import { assertAssetRoot, assetSourceCommit, resolveAssetRoot } from './paths.js
 import { syncAssets } from './sync.js';
 import {
   assetRequirementsFingerprint,
-  buildAssetFileIndex,
   manifestCoversRequirements,
   manifestFilesExist,
+  observeGeneratedAssetFiles,
   readAssetManifest,
   readAssetRequirements,
   warnAssetFallback
 } from './shared.js';
-import type { AssetFileIndex, AssetRequirements } from './shared.js';
+import type { AssetRequirements } from './shared.js';
+import type { AssetFilesystemObservation } from './observation.js';
 
 export interface AssetValidationContext {
   requirements: AssetRequirements;
   manifest: VisualAssetManifest;
   sourceCommit: string;
-  fileIndex: AssetFileIndex;
+  observation: AssetFilesystemObservation;
 }
 
 export interface EnsureAssetsOptions {
@@ -28,11 +29,12 @@ export interface EnsureAssetsOptions {
 async function validatedContext(
   requirements: AssetRequirements,
   manifest: VisualAssetManifest,
-  sourceCommit: string
+  sourceCommit: string,
+  observation?: AssetFilesystemObservation
 ): Promise<AssetValidationContext | undefined> {
-  let fileIndex: AssetFileIndex;
+  let actual: AssetFilesystemObservation;
   try {
-    fileIndex = await buildAssetFileIndex(manifest);
+    actual = observation ?? (await observeGeneratedAssetFiles());
   } catch {
     return undefined;
   }
@@ -40,10 +42,10 @@ async function validatedContext(
     manifest.sourceCommit !== sourceCommit ||
     manifest.requirementsFingerprint !== assetRequirementsFingerprint(requirements) ||
     !manifestCoversRequirements(manifest, requirements) ||
-    !(await manifestFilesExist(manifest, undefined, fileIndex))
+    !(await manifestFilesExist(manifest, undefined, actual))
   )
     return undefined;
-  return { requirements, manifest, sourceCommit, fileIndex };
+  return { requirements, manifest, sourceCommit, observation: actual };
 }
 
 export async function ensureAssets(
@@ -70,8 +72,13 @@ export async function ensureAssets(
       return context;
     }
     console.log('[deploy:cache] general-assets result=miss reason=manifest-or-files-stale');
-    const manifest = await syncAssets({ requirements, env });
-    const generated = await validatedContext(requirements, manifest, commit);
+    const synchronized = await syncAssets({ requirements, env });
+    const generated = await validatedContext(
+      requirements,
+      synchronized.manifest,
+      commit,
+      synchronized.observation
+    );
     if (!generated) throw new Error('视觉资源生成后未通过 manifest 与文件存在性验证。');
     return generated;
   } catch (error) {
@@ -89,8 +96,13 @@ export async function ensureAssets(
       return context;
     }
     console.log('[deploy:cache] general-assets result=miss reason=no-valid-fallback');
-    const manifest = await syncAssets({ requirements, env });
-    const fallback = await validatedContext(requirements, manifest, manifest.sourceCommit ?? '');
+    const synchronized = await syncAssets({ requirements, env });
+    const fallback = await validatedContext(
+      requirements,
+      synchronized.manifest,
+      synchronized.manifest.sourceCommit ?? '',
+      synchronized.observation
+    );
     if (!fallback) {
       throw new Error('视觉资源 fallback 未通过 manifest 与文件存在性验证。', {
         cause: error

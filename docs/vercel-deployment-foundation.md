@@ -22,7 +22,7 @@ static SvelteKit build/
 - `.upstream/`：本地 deployment-only checkout，已加入 `.gitignore`，不会进入 source 或 output。
 - `scripts/deployment/lock.ts`：lock 读取与验证。
 - `scripts/deployment/git.ts`：跨平台 Git 执行、SHA/remote/path 验证、临时目录替换和复用。
-- `scripts/deployment/prepare.ts`：TurnBasedGameData 保守 sparse checkout 与 StarRailRes 两阶段 sparse checkout。
+- `scripts/deployment/prepare.ts`：TurnBasedGameData 精确 Excel/TextMap 加保守 Config sparse checkout，以及 StarRailRes 单阶段 sparse checkout。
 - `scripts/deployment/build.ts`：deployment 编排入口。
 - `scripts/assets/enemies/ensure.ts`：验证或增量生成 Nanoka enemy cache；代理环境使用现有 curl transport。
 
@@ -47,7 +47,11 @@ pnpm ci:develop
 pnpm ci:validate
 ```
 
-所有 profile 共用 lock、pinned checkout、messages、data ensure、Nanoka enemy ensure、StarRailRes asset ensure、Vite build 和轻量 output smoke。Production 在此基础上增加完整 data/asset integrity、最终资源引用和 route closure；full CI 再增加 repository checks。Development CI 是 Preview path 加 type/lint/unit/search checks 的非阻塞反馈，不等价于完整 Correctness。
+所有 profile 共用 lock、pinned checkout、messages、data ensure、离线 enemy snapshot validation、StarRailRes asset ensure、Vite build 和轻量 output smoke。Production 在此基础上增加 build-input 与 asset integrity、最终资源引用和 route closure；full CI 使用完整 semantic validation 并增加 repository checks。Development CI 是 Preview path 加 type/lint/unit/search checks 的非阻塞反馈，不等价于完整 Correctness。
+
+TurnBased preparation 从共享 source registry materialize 81 个实际消费的 Excel 表、两个 TextMap 和三个动态 Config 目录；当前工作树由 4,676 files / 472,882,878 bytes 降为 2,572 files / 267,724,085 bytes。StarRailRes index 与资源目录在初始 checkout 中一次指定，不再执行无消费者的第二次 sparse-set。
+
+General asset cache miss 使用 copy=1、Sharp=2 的独立有界队列，并按 copy 后 Sharp 的顺序执行；该选择来自 Phase 3 的 1/2/4/8 与 1/2/4 benchmark。生成仍经过 staging validation 和 atomic publication。发布后的 filesystem observation 只在当前 build invocation 内共享，使 ensure、输出 telemetry 和 verifier 不再重复 readdir/stat 或对同一物理 icon 重复读取 metadata；verifier仍从 requirements/manifest 独立推导预期 contract。
 
 `VERCEL_ENV=production` 选择 Production，`preview`/`development` 选择 Preview；未知值直接失败。构建脚本不调用 `pnpm build`，因此不会递归触发自身；原有 `build`/`prebuild` 保持不变。
 

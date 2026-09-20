@@ -8,6 +8,7 @@ import {
   setSparseCheckout,
   type GitCommandRunner
 } from '../../scripts/deployment/git';
+import { readRaw } from '../../scripts/data/raw';
 
 const pin = {
   repository: 'https://github.com/DimbreathBot/TurnBasedGameData.git',
@@ -25,10 +26,16 @@ async function checkoutFixture(): Promise<string> {
 }
 
 const runner =
-  (remote = pin.repository, head = pin.commit, sparse = true): GitCommandRunner =>
+  (
+    remote = pin.repository,
+    head = pin.commit,
+    sparse = true,
+    sparsePaths = ['/required.json']
+  ): GitCommandRunner =>
   async (args) => {
     if (args.includes('remote.origin.url')) return remote;
     if (args.includes('core.sparseCheckout')) return sparse ? 'true' : 'false';
+    if (args[0] === 'sparse-checkout' && args[1] === 'list') return sparsePaths.join('\n');
     if (args[0] === 'rev-parse') return head;
     throw new Error(`unexpected git command: ${args.join(' ')}`);
   };
@@ -59,9 +66,14 @@ describe('deployment checkout validation', () => {
 
   it('rejects missing sparse paths loudly', async () => {
     const directory = await checkoutFixture();
-    await expect(assertCheckout(directory, pin, ['missing.json'], runner())).rejects.toThrow(
-      /缺少必需路径/
-    );
+    await expect(
+      assertCheckout(
+        directory,
+        pin,
+        ['missing.json'],
+        runner(pin.repository, pin.commit, true, ['/missing.json'])
+      )
+    ).rejects.toThrow(/缺少必需路径/);
   });
 
   it('rejects a checkout without sparse configuration', async () => {
@@ -69,6 +81,18 @@ describe('deployment checkout validation', () => {
     await expect(
       assertCheckout(directory, pin, ['required.json'], runner(pin.repository, pin.commit, false))
     ).rejects.toThrow(/sparse checkout 配置缺失/);
+  });
+
+  it('rejects a stale sparse specification even when required files are present', async () => {
+    const directory = await checkoutFixture();
+    await expect(
+      assertCheckout(
+        directory,
+        pin,
+        ['required.json'],
+        runner(pin.repository, pin.commit, true, ['/whole-directory/'])
+      )
+    ).rejects.toThrow(/specification mismatch/);
   });
 
   it('passes anchored sparse paths as an argument array', async () => {
@@ -95,5 +119,12 @@ describe('deployment checkout validation', () => {
       })
     ).rejects.toThrow(/network disconnected/);
     expect(attempts).toBe(3);
+  });
+
+  it('reports a missing materialized TurnBased source explicitly', async () => {
+    const directory = await checkoutFixture();
+    await expect(readRaw(directory, 'ExcelOutput/MissingTable.json')).rejects.toThrow(
+      'Required TurnBased source file is not materialized: ExcelOutput/MissingTable.json'
+    );
   });
 });

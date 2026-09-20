@@ -25,7 +25,16 @@ function materialize(value: unknown, key = ''): unknown {
 }
 
 export async function readRaw<T = unknown>(root: string, relativePath: string): Promise<T> {
-  const text = await readFile(path.join(root, relativePath), 'utf8');
+  let text: string;
+  try {
+    text = await readFile(path.join(root, relativePath), 'utf8');
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT')
+      throw new Error(`Required TurnBased source file is not materialized: ${relativePath}`, {
+        cause: error
+      });
+    throw error;
+  }
   return materialize(parse(text)) as T;
 }
 

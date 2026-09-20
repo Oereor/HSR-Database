@@ -1,9 +1,10 @@
 import { spawn } from 'node:child_process';
-import { access, cp, mkdir, readdir, rename, rm, stat } from 'node:fs/promises';
+import { access, cp, mkdir, rename, rm } from 'node:fs/promises';
 import path from 'node:path';
 import type { UpstreamPin } from './lock.js';
 
 export type GitCommandRunner = (args: string[], cwd?: string) => Promise<string>;
+export type CheckoutPreparationResult = 'reused' | 'sparse-updated' | 'materialized';
 
 const gitExecutable = process.platform === 'win32' ? 'git.exe' : 'git';
 
@@ -72,6 +73,18 @@ export async function assertCheckout(
   );
   if (sparseEnabled !== 'true')
     throw new Error(`[upstream] sparse checkout 配置缺失：${directory}`);
+  const normalizeSparsePath = (value: string): string => value.trim().replace(/^\/+/, '');
+  const actualSparsePaths = (await runner(['sparse-checkout', 'list'], directory))
+    .split(/\r?\n/)
+    .map(normalizeSparsePath)
+    .filter(Boolean)
+    .sort();
+  const expectedSparsePaths = [...new Set(requiredPaths.map(normalizeSparsePath))].sort();
+  if (
+    actualSparsePaths.length !== expectedSparsePaths.length ||
+    actualSparsePaths.some((value, index) => value !== expectedSparsePaths[index])
+  )
+    throw new Error(`[upstream] sparse checkout specification mismatch：${directory}`);
   for (const relative of requiredPaths) {
     if (!(await exists(path.join(directory, relative))))
       throw new Error(`[upstream] sparse checkout 缺少必需路径：${relative}`);
@@ -84,17 +97,17 @@ export async function prepareCheckout(
   sparsePaths: string[],
   rootDirectory: string,
   runner: GitCommandRunner = runGit
-): Promise<void> {
+): Promise<CheckoutPreparationResult> {
   if (await inspectCheckout(directory, pin, runner)) {
     try {
       await assertCheckout(directory, pin, sparsePaths, runner);
       console.log(`[upstream] reusing ${path.basename(directory)}`);
-      return;
+      return 'reused';
     } catch {
       await setSparseCheckout(directory, sparsePaths, runner);
       await assertCheckout(directory, pin, sparsePaths, runner);
+      return 'sparse-updated';
     }
-    return;
   }
 
   await mkdir(rootDirectory, { recursive: true });
@@ -112,6 +125,7 @@ export async function prepareCheckout(
     await assertCheckout(temporary, pin, sparsePaths, runner);
     await rm(directory, { recursive: true, force: true });
     await publishDirectory(temporary, directory);
+    return 'materialized';
   } catch (error) {
     await rm(temporary, { recursive: true, force: true });
     throw error;
@@ -183,28 +197,4 @@ async function makeTemporaryDirectory(rootDirectory: string): Promise<string> {
   const directory = path.join(rootDirectory, name);
   await mkdir(directory, { recursive: true });
   return directory;
-}
-
-export async function directorySize(directory: string): Promise<{ bytes: number; files: number }> {
-  let entries;
-  try {
-    entries = await readdir(directory, { withFileTypes: true });
-  } catch {
-    return { bytes: 0, files: 0 };
-  }
-  const children = await Promise.all(
-    entries.map(async (entry) => {
-      const child = path.join(directory, entry.name);
-      if (entry.isDirectory()) return directorySize(child);
-      if (!entry.isFile()) return { bytes: 0, files: 0 };
-      return { bytes: (await stat(child)).size, files: 1 };
-    })
-  );
-  return children.reduce(
-    (total, current) => ({
-      bytes: total.bytes + current.bytes,
-      files: total.files + current.files
-    }),
-    { bytes: 0, files: 0 }
-  );
 }

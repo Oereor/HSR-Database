@@ -114,10 +114,6 @@ function deploymentBuildVersion(env: NodeJS.ProcessEnv): string {
   ).trim();
 }
 
-function assetFileCount(fileIndex: ReadonlyMap<string, ReadonlySet<string>>): number {
-  return [...fileIndex.values()].reduce((total, files) => total + files.size, 0);
-}
-
 export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promise<void> {
   const overallStarted = performance.now();
   const timings: StageTiming[] = [];
@@ -186,7 +182,7 @@ export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promis
 
     const env = {
       ...initialEnv,
-      HSR_DATA_ROOT: path.relative(siteRoot, turnBasedResult.value).replaceAll('\\', '/'),
+      HSR_DATA_ROOT: path.relative(siteRoot, turnBasedResult.value.directory).replaceAll('\\', '/'),
       HSR_ASSET_ROOT: path
         .relative(siteRoot, path.join(siteRoot, '.upstream', 'StarRailRes'))
         .replaceAll('\\', '/')
@@ -209,14 +205,18 @@ export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promis
 
     const starRailResult = await starRailPreparation;
     if (!('value' in starRailResult)) throw starRailResult.error;
-    env.HSR_ASSET_ROOT = path.relative(siteRoot, starRailResult.value).replaceAll('\\', '/');
+    env.HSR_ASSET_ROOT = path
+      .relative(siteRoot, starRailResult.value.directory)
+      .replaceAll('\\', '/');
     console.log(`[assets] HSR_ASSET_ROOT=${env.HSR_ASSET_ROOT}`);
-    const [dataInput, assetInput] = await Promise.all([
-      summarizeDirectory(turnBasedResult.value, new Set(['.git'])),
-      summarizeDirectory(starRailResult.value, new Set(['.git']))
-    ]);
-    logFileSummary('turnbased-input', dataInput);
-    logFileSummary('starrailres-input', assetInput);
+    console.log(
+      `[deploy:cache] turnbased-checkout result=${turnBasedResult.value.result} reason=pinned-source`
+    );
+    console.log(
+      `[deploy:cache] starrailres-checkout result=${starRailResult.value.result} reason=pinned-source`
+    );
+    logFileSummary('turnbased-input', turnBasedResult.value.summary);
+    logFileSummary('starrailres-input', starRailResult.value.summary);
 
     const [enemyResult, generalResult] = await Promise.allSettled([
       timed('enemy-assets-validate', () => runPnpm(['validate:enemy-assets'], env)),
@@ -225,12 +225,7 @@ export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promis
         const context = await timed('assets-ensure', () =>
           withProcessTelemetry('general-assets', () => ensureAssets({ env }))
         );
-        const { assetSizeSummary } = await import('../assets/shared.js');
-        const sizes = await assetSizeSummary();
-        logFileSummary('general-assets-output', {
-          files: assetFileCount(context.fileIndex),
-          bytes: sizes.total
-        });
+        logFileSummary('general-assets-output', context.observation.summary);
         if (fullIntegrity) {
           const { verifyAssets } = await import('../assets/verify.js');
           await timed('assets-verify', () => verifyAssets(context, env));

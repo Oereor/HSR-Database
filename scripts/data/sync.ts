@@ -38,6 +38,7 @@ import {
   resolveAvatarSpecialSkillRelations
 } from './avatar-special-skills.js';
 import { characterLdSourceNames, characterLdSourceSpecs } from './character-sources.js';
+import { DATA_GENERATION_TABLE_NAMES } from './source-requirements.js';
 import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
 import { buildPlayerEquipmentCatalog } from '../../src/lib/player/equipment.js';
 import { collectEndgameSearchTargets } from '../../src/lib/domain/search-index.js';
@@ -293,53 +294,7 @@ export async function syncData(): Promise<DataManifest> {
     throw new Error('XXHash64 文本键校验失败：RelicDesc_1012');
   }
 
-  const tableNames = [
-    'AvatarConfig',
-    'AvatarConfigEnhanced',
-    'AvatarEnhancedSkill',
-    'AvatarEnhancedSkillTree',
-    'AvatarEnhancedRank',
-    'AvatarUltraSkillConfig',
-    'GridFightFrontSpecialSP',
-    'MultiplePathAvatarConfig',
-    'ItemConfigAvatar',
-    'AvatarBaseType',
-    'DamageType',
-    'AvatarSkillConfig',
-    'AvatarSkillLink',
-    'AvatarSpecialSkillTree',
-    'AvatarGlobalBuffConfig',
-    'AvatarServantConfig',
-    'AvatarServantSkillConfig',
-    'AvatarServantSkillLink',
-    'AvatarSkillTreeConfig',
-    'AvatarRankConfig',
-    'AvatarPromotionConfig',
-    'AvatarPropertyConfig',
-    'EquipmentConfig',
-    'GachaBasicInfo',
-    'ItemConfigEquipment',
-    'EquipmentSkillConfig',
-    'EquipmentPromotionConfig',
-    'RelicSetConfig',
-    'RelicSetSkillConfig',
-    'RelicDataInfo',
-    'RelicBaseType',
-    'RelicMainAffixConfig',
-    'RelicSubAffixConfig',
-    'AvatarEquipRecommend',
-    'AvatarRelicRecommend',
-    'ItemComefrom',
-    'MonsterTemplateConfig',
-    'MonsterConfig',
-    'MonsterSkillConfig',
-    'HardLevelGroup',
-    'EliteGroup',
-    'ExtraEffectConfig',
-    'ChallengeBossMazeExtra',
-    'MonsterGuideConfig',
-    'MonsterGuideTag'
-  ] as const;
+  const tableNames = DATA_GENERATION_TABLE_NAMES;
   const loaded = await Promise.all(tableNames.map((name) => readTable<Raw>(root, name)));
   const regularTables = Object.fromEntries(
     tableNames.map((name, index) => [name, loaded[index]])

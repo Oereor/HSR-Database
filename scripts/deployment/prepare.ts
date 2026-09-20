@@ -1,20 +1,13 @@
 import path from 'node:path';
 import { readdir, rm } from 'node:fs/promises';
+import { TURN_BASED_DEPLOYMENT_PATHS } from '../data/source-requirements.js';
 import { readUpstreamLock, type UpstreamLock } from './lock.js';
-import { prepareCheckout, setSparseCheckout } from './git.js';
+import { prepareCheckout, type CheckoutPreparationResult } from './git.js';
+import { summarizeDirectory, type FileSummary } from './telemetry.js';
 
 export const siteRoot = path.resolve(import.meta.dirname, '..', '..');
 export const resolveUpstreamRoot = (root: string): string => path.resolve(root, '.upstream');
 export const upstreamRoot = resolveUpstreamRoot(siteRoot);
-
-const turnBasedSparsePaths = [
-  'ExcelOutput/',
-  'TextMap/TextMapCHS.json',
-  'TextMap/TextMapEN.json',
-  'Config/ConfigCharacter/Monster/',
-  'Config/ConfigAbility/Monster/',
-  'Config/ConfigAbility/BattleEvent/'
-];
 
 export const starRailIndexPaths = [
   'index_new/cn/characters.json',
@@ -41,30 +34,44 @@ export const starRailAssetDirectories = [
   'icon/avatar/'
 ];
 
-export async function prepareTurnBasedGameData(lock: UpstreamLock): Promise<string> {
-  const directory = path.join(upstreamRoot, 'TurnBasedGameData');
-  console.log(`[upstream] TurnBasedGameData @ ${lock.turnBasedGameData.commit}`);
-  await prepareCheckout(directory, lock.turnBasedGameData, turnBasedSparsePaths, upstreamRoot);
-  return directory;
+export const starRailSparsePaths = [...starRailIndexPaths, ...starRailAssetDirectories];
+
+export interface PreparedUpstream {
+  directory: string;
+  result: CheckoutPreparationResult;
+  summary: FileSummary;
 }
 
-export async function prepareStarRailRes(lock: UpstreamLock): Promise<string> {
+async function preparedUpstream(
+  directory: string,
+  result: CheckoutPreparationResult
+): Promise<PreparedUpstream> {
+  const summary = await summarizeDirectory(directory, new Set(['.git']));
+  return { directory, result, summary };
+}
+
+export async function prepareTurnBasedGameData(lock: UpstreamLock): Promise<PreparedUpstream> {
+  const directory = path.join(upstreamRoot, 'TurnBasedGameData');
+  console.log(`[upstream] TurnBasedGameData @ ${lock.turnBasedGameData.commit}`);
+  const result = await prepareCheckout(
+    directory,
+    lock.turnBasedGameData,
+    TURN_BASED_DEPLOYMENT_PATHS,
+    upstreamRoot
+  );
+  return preparedUpstream(directory, result);
+}
+
+export async function prepareStarRailRes(lock: UpstreamLock): Promise<PreparedUpstream> {
   const directory = path.join(upstreamRoot, 'StarRailRes');
   console.log(`[upstream] StarRailRes @ ${lock.starRailRes.commit}`);
-  await prepareCheckout(directory, lock.starRailRes, starRailIndexPaths, upstreamRoot);
-
-  const paths = new Set([...starRailIndexPaths, ...starRailAssetDirectories]);
-
-  await setSparseCheckout(directory, paths);
-  for (const required of paths) {
-    const full = path.join(directory, required);
-    try {
-      await import('node:fs/promises').then(({ access }) => access(full));
-    } catch {
-      // Missing optional assets are handled by the existing assets pipeline's fallback manifest.
-    }
-  }
-  return directory;
+  const result = await prepareCheckout(
+    directory,
+    lock.starRailRes,
+    starRailSparsePaths,
+    upstreamRoot
+  );
+  return preparedUpstream(directory, result);
 }
 
 export async function loadDeploymentLock(): Promise<UpstreamLock> {

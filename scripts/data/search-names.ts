@@ -30,7 +30,7 @@ export async function runSearchNames(mode: 'check' | 'update'): Promise<void> {
   const root =
     process.env.HSR_DEPLOYMENT_BUILD === '1' && process.env.HSR_DATA_ROOT
       ? path.resolve(siteRoot, process.env.HSR_DATA_ROOT)
-      : await prepareTurnBasedGameData(lock);
+      : (await prepareTurnBasedGameData(lock)).directory;
   const commit = sourceCommit(root);
   if (commit !== lock.turnBasedGameData.commit)
     throw new Error('角色名称生成源与 pinned upstream SHA 不一致');

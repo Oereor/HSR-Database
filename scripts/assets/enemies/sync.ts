@@ -369,7 +369,7 @@ export async function runEnemyUpdateCli(args: string[]): Promise<void> {
   const { ensureData } = await import('../../data/ensure.js');
   const lock = await loadDeploymentLock();
   const checkout = await prepareTurnBasedGameData(lock);
-  process.env.HSR_DATA_ROOT = path.relative(siteRoot, checkout).replaceAll('\\', '/');
+  process.env.HSR_DATA_ROOT = path.relative(siteRoot, checkout.directory).replaceAll('\\', '/');
   await ensureData();
   const result = await updateEnemyAssets({
     force: args.includes('--force'),

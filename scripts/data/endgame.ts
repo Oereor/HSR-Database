@@ -47,6 +47,7 @@ import {
 } from './decimal.js';
 import { resolveEnemyConfiguredStat, resolveEnemyInternalStance } from './enemy-stats.js';
 import { readRaw, readTable } from './raw.js';
+import { ENDGAME_TABLE_NAMES } from './source-requirements.js';
 import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-fiction-hp.js';
 import {
   createMazeBuffResolver,
@@ -460,42 +461,7 @@ interface Tables {
 }
 
 async function loadTables(root: string): Promise<Tables> {
-  const names = [
-    'ScheduleDataChallengeMaze',
-    'ScheduleDataGlobal',
-    'ChallengeGroupConfig',
-    'ChallengeMazeConfig',
-    'ChallengeMazeTierce',
-    'ScheduleDataChallengeStory',
-    'ChallengeStoryGroupConfig',
-    'ChallengeStoryMazeConfig',
-    'ChallengeStoryMazeTierce',
-    'ScheduleDataChallengeBoss',
-    'ChallengeBossGroupConfig',
-    'ChallengeBossMazeConfig',
-    'ChallengeBossMazeTierce',
-    'ChallengePeakGroupConfig',
-    'ChallengePeakConfig',
-    'ChallengePeakBossConfig',
-    'PlaneEvent',
-    'StageConfig',
-    'MonsterConfig',
-    'MonsterTemplateConfig',
-    'HardLevelGroup',
-    'EliteGroup',
-    'InfiniteEliteGroup',
-    'StageInfiniteGroup',
-    'StageInfiniteWaveConfig',
-    'StageInfiniteMonsterGroup',
-    'ChallengeStoryGroupExtra',
-    'ChallengeBossGroupExtra',
-    'ChallengeBossMazeExtra',
-    'MonsterGuideConfig',
-    'MonsterGuideTag',
-    'ExtraEffectConfig',
-    'MazeBuff',
-    'BattleEventConfig'
-  ] as const;
+  const names = ENDGAME_TABLE_NAMES;
   const loaded = await Promise.all(names.map((name) => readTable(root, name)));
   const table = Object.fromEntries(names.map((name, index) => [name, loaded[index]])) as Record<
     (typeof names)[number],

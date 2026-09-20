@@ -129,6 +129,8 @@ tests/          # Vitest / Playwright 测试
 
 `upstream.lock.json` 锚定 `TurnBasedGameData` 与 `StarRailRes` 的具体 commit SHA。
 
+部署准备只 materialize 当前生成器实际消费的 81 个 TurnBased Excel 表、CHS/EN TextMap 和保守保留的动态 Config 目录；StarRailRes 的 index 与资源目录在一次 sparse checkout 中准备。普通视觉资源在 cache miss 时通过共享的有界 copy/Sharp worker pools 生成到 staging，验证后原子发布；cache hit 和 Production verifier 复用同一次最终文件树观察，但 verifier 仍独立检查 manifest、文件集合和图片 metadata。
+
 正式部署通过：
 
 ```bash
