@@ -1,4 +1,3 @@
-import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type {
@@ -19,6 +18,7 @@ import { ensureSearchDocuments, searchArtifactPaths } from './search-documents.j
 import { getGeneratedLocales } from './locale-registry.js';
 import { syncData } from './sync.js';
 import { withProcessTelemetry } from '../deployment/telemetry.js';
+import { readTextMapWithDigest } from './source-metadata.js';
 
 export interface DataEnsureSource {
   root: string;
@@ -82,16 +82,8 @@ async function cacheMatchesAvailableSource(
   const currentTextMapDigests = Object.fromEntries(
     await Promise.all(
       getGeneratedLocales().map(async ({ locale, textMapCode }) => {
-        const currentTextMap = await readFile(
-          path.join(source.root, 'TextMap', `TextMap${textMapCode}.json`),
-          'utf8'
-        );
-        return [
-          locale,
-          createHash('sha256')
-            .update(JSON.stringify(JSON.parse(currentTextMap)))
-            .digest('hex')
-        ];
+        const { digest } = await readTextMapWithDigest(source.root, textMapCode);
+        return [locale, digest];
       })
     )
   );

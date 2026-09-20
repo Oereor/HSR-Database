@@ -27,7 +27,8 @@ const TIMING_ORDER = [
   'prepare-turnbased',
   'prepare-starrailres',
   'data-ensure',
-  'data-validate',
+  'data-validate-full',
+  'data-validate-build-inputs',
   'search-names-check',
   'check',
   'lint',
@@ -195,7 +196,10 @@ export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promis
     const manifest = JSON.parse(
       await readFile(path.join(siteRoot, 'src/lib/generated/manifest.json'), 'utf8')
     ) as DataManifest;
-    if (fullIntegrity) await timed('data-validate', () => runPnpm(['data:validate'], env));
+    if (profile === 'ci')
+      await timed('data-validate-full', () => runPnpm(['data:validate:full'], env));
+    else if (profile === 'production')
+      await timed('data-validate-build-inputs', () => runPnpm(['data:validate:build-inputs'], env));
 
     if (repositoryChecks) {
       await timed('search-names-check', () => runPnpm(['data:search-names:check'], env));

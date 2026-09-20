@@ -6,6 +6,19 @@ import { generatedRoot, staticGeneratedRoot } from './paths.js';
 
 export const DATA_MANIFEST_SCHEMA_VERSION = 43 as const;
 
+export interface GeneratedArtifactValidationSummary {
+  files: number;
+  bytes: number;
+}
+
+export interface GeneratedArtifactValidationOptions {
+  onArtifact?: (
+    logicalPath: string,
+    value: unknown,
+    metadata: GeneratedArtifactMetadata
+  ) => void | Promise<void>;
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === 'object' && !Array.isArray(value);
 }
@@ -125,9 +138,11 @@ async function artifactFiles(root: string, prefix = ''): Promise<string[]> {
 
 export async function validateGeneratedArtifacts(
   manifest: DataManifest,
-  roots = { generated: generatedRoot, staticGenerated: staticGeneratedRoot }
-): Promise<void> {
+  roots = { generated: generatedRoot, staticGenerated: staticGeneratedRoot },
+  options: GeneratedArtifactValidationOptions = {}
+): Promise<GeneratedArtifactValidationSummary> {
   const listed = Object.keys(manifest.artifacts).sort();
+  let bytes = 0;
   for (const logicalPath of listed) {
     const metadata = manifest.artifacts[logicalPath];
     assertArtifactMetadata(logicalPath, metadata);
@@ -143,6 +158,8 @@ export async function validateGeneratedArtifacts(
       (!isRecord(value) || value.schemaVersion !== metadata.schemaVersion)
     )
       throw new Error(`Generated artifact schema mismatch: ${logicalPath}`);
+    bytes += serialized.byteLength;
+    await options.onArtifact?.(logicalPath, value, metadata);
   }
   const actual = [
     ...(await artifactFiles(roots.generated))
@@ -154,6 +171,26 @@ export async function validateGeneratedArtifacts(
   ].sort();
   if (JSON.stringify(actual) !== JSON.stringify(listed))
     throw new Error('Generated artifact manifest does not match the published JSON tree');
+  return { files: listed.length, bytes };
+}
+
+export function computeDataRevision(
+  manifest: Pick<DataManifest, 'sourceCommit' | 'generatedLocales' | 'locales' | 'artifacts'>
+): string {
+  return createHash('sha256')
+    .update(
+      JSON.stringify({
+        sourceCommit: manifest.sourceCommit,
+        textMapDigests: Object.fromEntries(
+          manifest.generatedLocales.map((locale) => [
+            locale,
+            manifest.locales[locale].textMapDigest
+          ])
+        ),
+        artifacts: manifest.artifacts
+      })
+    )
+    .digest('hex');
 }
 
 export async function refreshArtifactMetadata(
@@ -177,20 +214,7 @@ export async function refreshArtifactMetadata(
       ...(schemaVersion !== undefined ? { schemaVersion } : {})
     }
   };
-  const dataRevision = createHash('sha256')
-    .update(
-      JSON.stringify({
-        sourceCommit: manifest.sourceCommit,
-        textMapDigests: Object.fromEntries(
-          manifest.generatedLocales.map((locale) => [
-            locale,
-            manifest.locales[locale].textMapDigest
-          ])
-        ),
-        artifacts
-      })
-    )
-    .digest('hex');
+  const dataRevision = computeDataRevision({ ...manifest, artifacts });
   const locale = artifacts[logicalPath].locale;
   const locales = locale
     ? {

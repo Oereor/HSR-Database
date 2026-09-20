@@ -82,7 +82,9 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 | ----------------------- | -------------------------------------- |
 | `pnpm dev`                     | 启动开发服务器                              |
 | `pnpm data:sync`               | 生成网站使用的数据                          |
-| `pnpm data:validate`           | 验证生成数据                                |
+| `pnpm data:validate`           | 执行完整数据语义审计（`data:validate:full` alias） |
+| `pnpm data:validate:full`      | 执行完整 build-input 与 semantic validation |
+| `pnpm data:validate:build-inputs` | 仅验证 Production 将消费的落盘输入完整性 |
 | `pnpm assets:sync`             | 同步页面所需视觉资源                        |
 | `pnpm assets:verify`           | 验证生成的视觉资源                          |
 | `pnpm update:enemy-assets`     | 从 Nanoka 增量更新 tracked enemy snapshot   |
@@ -100,6 +102,8 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 | `pnpm upstreams:update`        | 检查并更新 upstream lock                    |
 
 `pnpm test` 和 `pnpm data:validate` 使用 prepared-workspace 模型，不会自行准备全部 generated inputs。clean pinned workspace 应使用自准备的 `pnpm ci:develop`、`pnpm ci:validate` 或 deployment profile；普通 `pnpm build` 继续使用本地 sibling upstream 的既有 `prebuild` 路径。
+
+`data:validate:build-inputs` 是 Production orchestration 的完整性门禁，只证明 manifest、pinned source、TextMaps、artifact bytes/schema/inventory 与 build-consumer closure 自洽；它不会重新计算搜索、Endgame、角色或敌人业务语义，不能替代日常的 `pnpm data:validate`。
 
 ## 项目结构
 

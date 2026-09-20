@@ -14,6 +14,10 @@ Pinned upstream data and TextMaps are parsed into domain models, projected indep
 
 Manifest schema 43 retains publicLocale: zh-CN, adds publicLocales, and records canonical routePaths. The route inventory is the source for static prerendering and sitemap generation. Utility asset manifest schema 15 includes the generated Settings icon.
 
+Validation has two explicit layers. `data:validate:build-inputs` reopens the manifest, prepared pinned source, TextMaps and every generated artifact from disk; it validates identity, bytes, digests, schemas, inventories and route/search consumer closure without rebuilding domain semantics. `data:validate:full` composes that gate with the complete raw-to-generated semantic audits, cross-locale structural parity and English CJK audit. The compatibility command `data:validate` remains an alias for the full validator.
+
+The protected `Correctness` check owns full semantic validation. Production runs the build-input validator before Vite, while Preview and Development retain the lighter Phase 0 path. Producer-side prepublication checks remain in generation, and validators remain separate child processes so they independently reopen published bytes.
+
 ## Ownership rules
 
 Site-owned prose, navigation, controls, metadata, errors, accessible labels, and footer text belong in paired Paraglide message keys. Game-owned names, descriptions, effects, and mechanics remain in localized generated views. Locale-neutral IDs, dates, ordering, and route identities must not depend on translated strings.
@@ -28,4 +32,4 @@ Changelog metadata uses stable IDs and ISO machine dates in src/lib/content/chan
 
 ## Required checks
 
-Before delivery run pnpm data:sync, pnpm assets:ensure, pnpm messages:check, pnpm data:validate, pnpm check, pnpm lint, pnpm test, pnpm build, and relevant E2E/deployment audits. Product contracts use focused invariant tests rather than full generated-output baselines. Build-time limitations or known upstream missing-text diagnostics must be recorded in the R6 audit.
+Before delivery run pnpm data:sync, pnpm assets:ensure, pnpm messages:check, pnpm data:validate, pnpm check, pnpm lint, pnpm test, pnpm build, and relevant E2E/deployment audits. Production-specific input investigations may additionally run `pnpm data:validate:build-inputs`, but passing it is not proof of semantic correctness. Product contracts use focused invariant tests rather than full generated-output baselines. Build-time limitations or known upstream missing-text diagnostics must be recorded in the R6 audit.

@@ -82,9 +82,8 @@ function project(value: unknown, key: string, parent: string, admitted: Set<stri
   return admitted.has(key) ? value : undefined;
 }
 
-function digest(value: unknown, domain: StructuralDomain): string {
-  const projected = stableStructuralProjection(value, domain);
-  return createHash('sha256').update(JSON.stringify(projected)).digest('hex');
+export function digestStructuralProjection(projection: unknown): string {
+  return createHash('sha256').update(JSON.stringify(projection)).digest('hex');
 }
 
 function firstDifference(left: unknown, right: unknown, current = '$'): string {
@@ -116,6 +115,7 @@ export interface StructuralParityProjection {
 export interface StructuralParityReport {
   comparisons: Record<string, string>;
   differences: 0;
+  projectionCount: number;
 }
 
 /** Compare all stable product identity and relationships before locale trees are published. */
@@ -123,6 +123,8 @@ export function assertCrossLocaleStructuralParity(
   base: StructuralParityProjection,
   candidate: StructuralParityProjection
 ): StructuralParityReport {
+  const started = performance.now();
+  const cpuStarted = process.cpuUsage();
   const comparisons: Array<[string, StructuralDomain, unknown, unknown]> = [
     ['catalog.characters', 'characters', base.catalogs.characters, candidate.catalogs.characters],
     ['details.characters', 'characters', base.details.characters, candidate.details.characters],
@@ -168,16 +170,22 @@ export function assertCrossLocaleStructuralParity(
     ['endgame-occurrence-shards', 'endgame', base.occurrenceShards, candidate.occurrenceShards]
   ];
   const report: Record<string, string> = {};
+  let projectionCount = 0;
   for (const [name, domain, left, right] of comparisons) {
     const leftProjection = stableStructuralProjection(left, domain);
     const rightProjection = stableStructuralProjection(right, domain);
-    const leftDigest = digest(left, domain);
-    const rightDigest = digest(right, domain);
+    projectionCount += 2;
+    const leftDigest = digestStructuralProjection(leftProjection);
+    const rightDigest = digestStructuralProjection(rightProjection);
     if (leftDigest !== rightDigest)
       throw new Error(
         `Cross-locale structural mismatch in ${name} at ${firstDifference(leftProjection, rightProjection)}: ${leftDigest} != ${rightDigest}`
       );
     report[name] = leftDigest;
   }
-  return { comparisons: report, differences: 0 };
+  const cpu = process.cpuUsage(cpuStarted);
+  console.log(
+    `[data:structural-parity] comparisons=${comparisons.length} projections=${projectionCount} wall=${((performance.now() - started) / 1000).toFixed(3)}s user=${(cpu.user / 1_000_000).toFixed(3)}s system=${(cpu.system / 1_000_000).toFixed(3)}s max-rss=${(process.resourceUsage().maxRSS / 1024).toFixed(1)} MiB`
+  );
+  return { comparisons: report, differences: 0, projectionCount };
 }

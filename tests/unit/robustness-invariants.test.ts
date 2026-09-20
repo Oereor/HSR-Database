@@ -13,7 +13,11 @@ import {
 import { classifyProductSkill } from '../../scripts/data/skills';
 import { parseRelicEffectRequirement, parseRelicPieceId } from '../../scripts/data/domain/relic';
 import type { LocalizationHealthSummary } from '../../scripts/data/localization';
-import { assertCrossLocaleStructuralParity } from '../../scripts/data/structural-parity';
+import {
+  assertCrossLocaleStructuralParity,
+  digestStructuralProjection,
+  stableStructuralProjection
+} from '../../scripts/data/structural-parity';
 
 const occurrence = (): EnemyOccurrence =>
   ({
@@ -396,7 +400,17 @@ describe('focused robustness invariants', () => {
     const base = projection();
     const localized = structuredClone(base);
     localized.details.characters[0].name = 'Arbitrary visible words';
-    expect(assertCrossLocaleStructuralParity(base, localized).differences).toBe(0);
+    const report = assertCrossLocaleStructuralParity(base, localized);
+    expect(report.differences).toBe(0);
+    expect(report.projectionCount).toBe(34);
+    expect(Object.keys(report.comparisons)).toHaveLength(17);
+
+    const characterProjection = stableStructuralProjection(base.details.characters, 'characters');
+    expect(digestStructuralProjection(characterProjection)).toBe(
+      digestStructuralProjection(
+        stableStructuralProjection(localized.details.characters, 'characters')
+      )
+    );
 
     const numericDrift = structuredClone(localized);
     numericDrift.details.characters[0].baseStats.stages[0].hp.perLevel = 3.6;
@@ -407,6 +421,14 @@ describe('focused robustness invariants', () => {
     const identityDrift = structuredClone(localized);
     identityDrift.details.characters[0].profiles.base.traces[0].prerequisiteIds = ['999'];
     expect(() => assertCrossLocaleStructuralParity(base, identityDrift)).toThrow(
+      '$.0.profiles.base.traces.0.prerequisiteIds.0'
+    );
+
+    const ordered = projection();
+    ordered.details.characters[0].profiles.base.traces[0].prerequisiteIds = ['1', '2'];
+    const reordered = structuredClone(ordered);
+    reordered.details.characters[0].profiles.base.traces[0].prerequisiteIds.reverse();
+    expect(() => assertCrossLocaleStructuralParity(ordered, reordered)).toThrow(
       'Cross-locale structural mismatch'
     );
   });

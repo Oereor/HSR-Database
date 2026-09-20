@@ -133,11 +133,12 @@ updater 不再复制完整 deployment pipeline；其 PR 获得非 required 的 D
 - 日常开发：`pnpm dev`。`predev` 执行 `data:ensure`，有效的 manifest、Endgame、首页和 naming cache 可使其跳过完整 `syncData()`。
 - 静态检查：`pnpm check` 包含 Svelte 检查和 `pnpm check:scripts`。后者使用独立 `tsconfig.scripts.json`，strict / noEmit，覆盖全部脚本及其导入依赖，无需先生成 `.svelte-kit` 或领域数据。
 - Development 验证：`pnpm ci:develop`。执行 Preview-equivalent build，并增加 type、lint、unit 和 search metadata checks。
-- 普通部署验证：`pnpm deploy:build` 或 `pnpm deploy:build:production`。Production 假设 commit 已通过可信 CI，不重复 repository checks，但保留完整 input/output integrity。
-- 完整 PR gate：`pnpm ci:validate`。执行 Production-equivalent pipeline 与全部 repository checks；GitHub workflow 复用其 build 运行浏览器 smoke。
+- 普通部署验证：`pnpm deploy:build` 或 `pnpm deploy:build:production`。Production 假设 commit 已通过可信 CI，运行 `data:validate:build-inputs` 验证 prepared source、TextMaps、manifest、artifact bytes/schema/inventory 与 build-consumer closure，不重复昂贵 semantic audit。
+- 完整 PR gate：`pnpm ci:validate`。执行 `data:validate:full`（包含共享 build-input gate 与全部 semantic audits）、Production-equivalent asset/output checks及 repository checks；GitHub workflow 复用其 build 运行浏览器 smoke。
+- Preview/Development：不运行上述两层数据 validator；`data:ensure` 的 producer postconditions保持不变。`pnpm data:validate`仍是完整语义验证 alias，不能用轻量 Production gate替代。
 - Fresh-clone 验证：`pnpm deploy:build:clean`。清理后复用同一个部署编排，成本包含上游下载与完整数据、图片生成；不放入普通 Vitest，也不与开发服务器或其他构建并发运行。
 
-Clean 白名单为 `src/lib/generated/`、`static/generated/`、`src/lib/generated-assets/`、`static/generated-assets/`、`static/generated-enemy-assets/`、`build/`、`.svelte-kit/`、`.vite/`、`.upstream/`。清理前完整检查目标及父目录，拒绝 symlink/junction，保留 tracked `.gitkeep`，若发现其他 tracked 文件则在删除前失败。不接受自定义删除路径，不清理依赖或 sibling repositories。
+Clean 白名单为 `src/lib/generated/`、`src/lib/paraglide/`、`project.inlang/cache/`、`static/generated/`、`src/lib/generated-assets/`、`static/generated-assets/`、`build/`、`.svelte-kit/`、`.vite/`、`.upstream/`。Phase 1 的 tracked `static/generated-enemy-assets/`不在清理范围。清理前完整检查目标及父目录，拒绝 symlink/junction，保留 tracked `.gitkeep`，若发现其他 tracked 文件则在删除前失败。不接受自定义删除路径，不清理依赖或 sibling repositories。
 
 清理 `.upstream` 是为了实际重新执行 lock 指定的 sparse pinned checkout。官方名称、人工 aliases 和 lock 不在清理范围，命令在构建成功或失败后均比较这三份文件的 SHA-256。普通构建不自动刷新官方快照或同步人工 aliases。
 
