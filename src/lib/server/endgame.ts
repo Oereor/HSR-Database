@@ -12,7 +12,6 @@ import {
   buildModeView,
   endgameEnemyReferenceKey,
   ENDGAME_MODES,
-  resolveEndgameEnemyReference,
   type EndgameEnemyDetailSource,
   type EndgameEnemyGridItem,
   type EndgameEnemyReference,
@@ -31,6 +30,10 @@ import { getEndgameModeCopy, getEndgamePeriodPresentation } from '$lib/i18n/endg
 
 const generatedRoot = path.resolve('src', 'lib', 'generated', 'views');
 const datasetCache = new Map<string, Promise<EndgameModeDataset>>();
+const enemyTemplateCache = new Map<
+  string,
+  Promise<ReadonlyMap<string, EndgameEnemyReference> | undefined>
+>();
 const enemyCache = new Map<string, Promise<EndgameEnemyReference>>();
 const groupViewCache = new Map<string, Promise<EndgameGroupView | undefined>>();
 
@@ -62,6 +65,48 @@ function isFileNotFound(error: unknown): boolean {
   );
 }
 
+function projectEnemyTemplateReferences(
+  detail: EndgameEnemyDetailSource
+): ReadonlyMap<string, EndgameEnemyReference> {
+  return new Map(
+    detail.monsters.map<[string, EndgameEnemyReference]>((monster) => {
+      const weaknesses: EndgameEnemyReference['weaknesses'] = [...(monster.weaknesses ?? [])];
+      Object.freeze(weaknesses);
+      return [
+        monster.monsterId,
+        Object.freeze({
+          name: detail.name,
+          rank: detail.rank,
+          weaknesses,
+          exists: true
+        })
+      ];
+    })
+  );
+}
+
+function getEnemyTemplateReferences(
+  templateId: number,
+  locale: SearchLocale
+): Promise<ReadonlyMap<string, EndgameEnemyReference> | undefined> {
+  const key = `${locale}:${templateId}`;
+  const cached = enemyTemplateCache.get(key);
+  if (cached) return cached;
+  const pending = readJson<EndgameEnemyDetailSource>(
+    locale,
+    'details',
+    'enemies',
+    `${templateId}.json`
+  )
+    .then(projectEnemyTemplateReferences)
+    .catch((error: unknown) => {
+      if (isFileNotFound(error)) return undefined;
+      throw error;
+    });
+  enemyTemplateCache.set(key, pending);
+  return pending;
+}
+
 async function getEnemyReference(
   monsterId: number,
   templateId: number,
@@ -71,15 +116,16 @@ async function getEnemyReference(
   const cached = enemyCache.get(key);
   if (cached) return cached;
   const pending = Promise.all([
-    readJson<EndgameEnemyDetailSource>(locale, 'details', 'enemies', `${templateId}.json`)
-      .then((detail) => resolveEndgameEnemyReference(detail, monsterId))
-      .catch((error: unknown) => {
-        if (isFileNotFound(error)) return { weaknesses: [], exists: false };
-        throw error;
-      }),
+    getEnemyTemplateReferences(templateId, locale).then((references) => {
+      if (!references) return { weaknesses: [], exists: false };
+      const reference = references.get(String(monsterId));
+      if (!reference) throw new Error(`敌方百科缺少 Endgame 引用的具体 MonsterID：${monsterId}`);
+      return reference;
+    }),
     getEnemyPortraitUrl(templateId)
   ]).then(([reference, portraitUrl]) => ({
     ...reference,
+    weaknesses: [...reference.weaknesses],
     ...(portraitUrl ? { portraitUrl } : {})
   }));
   enemyCache.set(key, pending);

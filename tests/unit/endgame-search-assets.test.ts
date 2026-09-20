@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { describe, expect, it } from 'vitest';
 import { getSearchIndex } from '../../src/lib/server/generated';
 import {
+  getEndgameGroup,
   getEndgameOccurrenceShard,
   getEndgameOccurrenceTargetIds
 } from '../../src/lib/server/endgame';
@@ -9,6 +10,31 @@ import { getEnemyPortraitMap } from '../../src/lib/server/enemy-assets';
 import type { EndgameOccurrenceShard } from '../../src/lib/domain/search-index';
 
 describe('Endgame Search portrait delivery', () => {
+  it('keeps cached enemy references isolated by locale', async () => {
+    const [zh, en] = await Promise.all([
+      getEndgameGroup('moc', 1034, 'zh-CN'),
+      getEndgameGroup('moc', 1034, 'en')
+    ]);
+    expect(zh).toBeDefined();
+    expect(en).toBeDefined();
+    const occurrences = (group: NonNullable<typeof zh>) =>
+      group.encounters
+        .flatMap((encounter) => encounter.battles)
+        .flatMap((battle) => battle.stages)
+        .flatMap((stage) => stage.waves)
+        .flatMap((wave) => wave.enemies);
+    const zhEnemies = new Map(occurrences(zh!).map((enemy) => [enemy.identity, enemy]));
+    const pair = occurrences(en!).find((enemy) => zhEnemies.get(enemy.identity)?.weaknesses.length);
+    expect(pair).toBeDefined();
+    const zhWeaknesses = zhEnemies.get(pair!.identity)!.weaknesses;
+    expect(pair!.weaknesses.map(({ element }) => element)).toEqual(
+      zhWeaknesses.map(({ element }) => element)
+    );
+    expect(pair!.weaknesses.map(({ name }) => name)).not.toEqual(
+      zhWeaknesses.map(({ name }) => name)
+    );
+  });
+
   it('prerenders every target for both public locales', async () => {
     const entries = await getEndgameOccurrenceTargetIds();
     for (const locale of ['zh-CN', 'en'] as const) {
