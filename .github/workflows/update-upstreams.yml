@@ -70,14 +70,6 @@ jobs:
             echo 'changed=true' >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Install dependencies
-        if: steps.changes.outputs.changed == 'true'
-        run: pnpm install --frozen-lockfile
-
-      - name: Compile site messages
-        if: steps.changes.outputs.changed == 'true'
-        run: pnpm messages:compile
-
       - name: Refresh official character names
         if: steps.changes.outputs.changed == 'true'
         run: pnpm data:search-names:update
@@ -86,9 +78,9 @@ jobs:
         if: steps.changes.outputs.changed == 'true'
         run: pnpm data:player-aliases:sync
 
-      - name: Verify deployment build
+      - name: Validate refreshed metadata
         if: steps.changes.outputs.changed == 'true'
-        run: pnpm deploy:build
+        run: pnpm data:search-names:check
 
       - name: Commit upstream metadata update
         if: steps.changes.outputs.changed == 'true'
@@ -135,10 +127,9 @@ jobs:
             echo
             echo 'Checks passed:'
             echo '- `pnpm install --frozen-lockfile`'
-            echo '- `pnpm messages:compile`'
             echo '- `pnpm data:search-names:update`'
             echo '- `pnpm data:player-aliases:sync`'
-            echo '- `pnpm deploy:build`'
+            echo '- `pnpm data:search-names:check`'
             echo 'EOF'
           } >> "$GITHUB_OUTPUT"
 

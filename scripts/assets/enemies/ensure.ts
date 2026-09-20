@@ -67,6 +67,9 @@ export async function ensureEnemyAssets(
     latestVersion = await fetchNanokaVersion(baseUrl, retryOptions);
   } catch (error) {
     if (validation.valid && manifest) {
+      console.log(
+        '[deploy:cache] enemy-assets result=fallback reason=remote-unavailable-valid-cache'
+      );
       console.warn(`Nanoka 暂不可用，继续使用完整 enemy cache：${(error as Error).message}`);
       return { disposition: 'reused', version: manifest.version, validation };
     }
@@ -77,6 +80,7 @@ export async function ensureEnemyAssets(
   }
 
   if (!options.force && validation.valid && manifest?.version === latestVersion) {
+    console.log('[deploy:cache] enemy-assets result=hit reason=version-and-cache-match');
     log(
       `敌人资源已是最新版本：Nanoka ${latestVersion}，${validation.mappedMonsterTemplateIds} 条映射、${validation.uniqueImageIds} 张图片、${validation.unavailableMonsterTemplateIds} 条合法缺失。`
     );
@@ -87,6 +91,9 @@ export async function ensureEnemyAssets(
     validation.valid
       ? `Nanoka 版本变化（${manifest?.version} → ${latestVersion}），刷新敌人资源。`
       : `enemy cache 需要生成：${validation.reason ?? 'unknown'}`
+  );
+  console.log(
+    `[deploy:cache] enemy-assets result=miss reason=${validation.valid ? 'remote-version-changed' : (validation.reason ?? 'cache-invalid')}`
   );
   const syncResult = await syncEnemyAssets(options);
   const published = await readEnemyAssetManifest(manifestPath);
@@ -116,10 +123,13 @@ if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.met
     const cli = commandLineOptions(args);
     const useCurl = shouldUseCurlTransport(args);
     console.log(`[enemy-assets] transport=${useCurl ? 'curl' : 'node-fetch'}`);
-    await ensureEnemyAssets({
+    const result = await ensureEnemyAssets({
       force: cli.force,
       ...(useCurl ? { fetchImpl: createCurlFetch() } : {})
     });
+    console.log(
+      `[deploy:io] enemy-assets-output mapped=${result.validation.mappedMonsterTemplateIds} images=${result.validation.uniqueImageIds} unavailable=${result.validation.unavailableMonsterTemplateIds}`
+    );
   } catch (error) {
     console.error(error instanceof Error ? error.message : error);
     process.exitCode = 1;

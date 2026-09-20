@@ -84,6 +84,7 @@ import {
   type ProductProjectionForValidation
 } from './robustness-invariants.js';
 
+const validationCpuStarted = process.cpuUsage();
 const manifest: DataManifest = await readDataManifest();
 await validateGeneratedArtifacts(manifest);
 if (
@@ -1198,4 +1199,8 @@ if (audit.avatarSpecialSkillTreeAudit.diagnostics.length)
   );
 console.log(
   `数据验证通过：${manifest.sourceCommit.slice(0, 12)}，zh-CN/en 各 ${search.documents.length} 条搜索记录，${expectedShardIds.length} 个 English Endgame shards。`
+);
+const validationCpu = process.cpuUsage(validationCpuStarted);
+console.log(
+  `[deploy:resource] data-validate user=${(validationCpu.user / 1_000_000).toFixed(3)}s system=${(validationCpu.system / 1_000_000).toFixed(3)}s max-rss=${(process.resourceUsage().maxRSS / 1024).toFixed(1)} MiB`
 );

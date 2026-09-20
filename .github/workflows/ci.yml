@@ -1,8 +1,12 @@
 name: CI
 
 on:
+  push:
+    branches:
+      - develop
   pull_request:
     branches:
+      - develop
       - main
 
 concurrency:
@@ -13,10 +17,10 @@ permissions:
   contents: read
 
 jobs:
-  correctness:
-    name: Correctness
+  validation:
+    name: ${{ github.event_name == 'pull_request' && github.base_ref == 'main' && 'Correctness' || 'Development' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     env:
       HSR_DATA_ROOT: .upstream/TurnBasedGameData
       HSR_ASSET_ROOT: .upstream/StarRailRes
@@ -41,34 +45,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Generate and validate messages
-        run: pnpm messages:check
+      - name: Run Development validation
+        if: github.event_name == 'push' || github.base_ref == 'develop'
+        run: pnpm ci:develop
 
-      - name: Prepare pinned data and assets
-        run: pnpm ci:prepare
-
-      - name: Check types and messages
-        run: pnpm check
-
-      - name: Check formatting and lint
-        run: pnpm lint
-
-      - name: Run unit and contract tests
-        run: pnpm test
-
-      - name: Validate search-name metadata
-        run: pnpm data:search-names:check
-
-      - name: Validate generated data
-        run: pnpm data:validate
-
-      - name: Build once for browser smoke tests
-        run: pnpm build
+      - name: Run full correctness validation
+        if: github.event_name == 'pull_request' && github.base_ref == 'main'
+        run: pnpm ci:validate
 
       - name: Install Chromium
+        if: github.event_name == 'pull_request' && github.base_ref == 'main'
         run: pnpm exec playwright install --with-deps chromium
 
       - name: Run E2E smoke tests
+        if: github.event_name == 'pull_request' && github.base_ref == 'main'
         env:
           PLAYWRIGHT_REUSE_BUILD: '1'
         run: pnpm test:e2e:smoke

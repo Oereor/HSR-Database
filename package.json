@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "ci:prepare": "tsx scripts/ci/prepare.ts",
+    "ci:develop": "tsx scripts/deployment/build.ts --profile=development",
+    "ci:validate": "tsx scripts/deployment/build.ts --profile=ci",
     "assets:sync:enemies": "pnpm data:ensure && tsx scripts/assets/enemies/sync.ts",
     "assets:ensure:enemies": "tsx scripts/assets/enemies/ensure.ts",
     "assets:sync": "tsx scripts/assets/sync.ts",
@@ -24,6 +25,8 @@
     "predev": "pnpm data:ensure && pnpm assets:ensure",
     "dev": "vite dev",
     "deploy:build": "tsx scripts/deployment/build.ts",
+    "deploy:build:preview": "tsx scripts/deployment/build.ts --profile=preview",
+    "deploy:build:production": "tsx scripts/deployment/build.ts --profile=production",
     "deploy:build:clean": "tsx scripts/deployment/clean.ts",
     "upstreams:update": "tsx scripts/update-upstream-lock.ts",
     "prebuild": "pnpm data:ensure && pnpm assets:ensure",

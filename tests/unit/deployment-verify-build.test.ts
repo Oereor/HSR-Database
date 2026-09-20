@@ -22,7 +22,7 @@ describe('final build asset closure verification', () => {
       path.join(root, 'index.html'),
       '<img src="/generated-assets/utility/changelog.png?v=1#top"><img src="/generated-assets/nested%20path/icon.png">'
     );
-    await expect(verifyBuildAssetClosure(root)).resolves.toBeUndefined();
+    await expect(verifyBuildAssetClosure(root)).resolves.toMatchObject({ files: 3 });
   });
 
   it('rejects missing, backslash and traversal URLs', async () => {
@@ -54,6 +54,6 @@ describe('final build asset closure verification', () => {
       path.join(root, 'data.json'),
       JSON.stringify(['https://example.test/a.png', 'data:image/png;base64,AA', 'blob:test'])
     );
-    await expect(verifyBuildAssetClosure(root)).resolves.toBeUndefined();
+    await expect(verifyBuildAssetClosure(root)).resolves.toMatchObject({ files: 1 });
   });
 });

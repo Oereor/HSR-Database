@@ -80,20 +80,24 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 
 | 命令                    | 用途                                   |
 | ----------------------- | -------------------------------------- |
-| `pnpm dev`              | 启动开发服务器                         |
-| `pnpm data:sync`        | 生成网站使用的数据                     |
-| `pnpm data:validate`    | 验证生成数据                           |
-| `pnpm assets:sync`      | 同步页面所需视觉资源                   |
-| `pnpm assets:verify`    | 验证生成的视觉资源                     |
-| `pnpm check`            | Svelte / TypeScript 检查               |
-| `pnpm lint`             | Prettier / ESLint 检查                 |
-| `pnpm test`             | 运行 Vitest 测试                       |
-| `pnpm test:e2e`         | 运行 Playwright 测试                   |
-| `pnpm build`            | 生成静态生产构建                       |
-| `pnpm deploy:build`     | 使用固定 upstream 版本执行完整部署构建 |
-| `pnpm upstreams:update` | 检查并更新 upstream lock               |
+| `pnpm dev`                     | 启动开发服务器                              |
+| `pnpm data:sync`               | 生成网站使用的数据                          |
+| `pnpm data:validate`           | 验证生成数据                                |
+| `pnpm assets:sync`             | 同步页面所需视觉资源                        |
+| `pnpm assets:verify`           | 验证生成的视觉资源                          |
+| `pnpm check`                   | Svelte / TypeScript 检查                    |
+| `pnpm lint`                    | Prettier / ESLint 检查                      |
+| `pnpm test`                    | 运行 Vitest 测试                            |
+| `pnpm test:e2e`                | 运行 Playwright 测试                        |
+| `pnpm build`                   | 生成静态生产构建                            |
+| `pnpm deploy:build`            | 使用固定 upstream 版本执行 Production 构建 |
+| `pnpm deploy:build:preview`    | 执行轻量 Preview-equivalent 构建            |
+| `pnpm deploy:build:production` | 显式执行 Production 构建                    |
+| `pnpm ci:develop`              | 执行 develop 分支的非阻塞轻量验证           |
+| `pnpm ci:validate`             | 执行 main PR 的完整 correctness contract    |
+| `pnpm upstreams:update`        | 检查并更新 upstream lock                    |
 
-`pnpm test` 和 `pnpm data:validate` 使用 prepared-workspace 模型，不会自行准备全部 generated inputs。clean pinned workspace 应先运行 `pnpm ci:prepare`；普通 `pnpm build`、CI 和部署命令继续保持各自现有的准备职责。
+`pnpm test` 和 `pnpm data:validate` 使用 prepared-workspace 模型，不会自行准备全部 generated inputs。clean pinned workspace 应使用自准备的 `pnpm ci:develop`、`pnpm ci:validate` 或 deployment profile；普通 `pnpm build` 继续使用本地 sibling upstream 的既有 `prebuild` 路径。
 
 ## 项目结构
 
@@ -136,6 +140,8 @@ main
 develop
 └── 活跃开发分支 / 代码同步（push 不会自动引发 Vercel preview 部署）
 ```
+
+`develop` 允许直接 push；push 或可选 PR 会运行非 required 的 `Development` 检查。`develop → main` PR 则必须由完整 `Correctness` check 验证新的 merge candidate。
 
 需要预览 `develop` 或其他分支时，在 GitHub 的 **Actions → Vercel Preview Deployment → Run workflow** 中选择对应分支并手动运行。GitHub Actions 会将所选 commit 的源码部署到 Vercel Preview，由 Vercel 使用 Preview 环境变量执行项目现有的 `pnpm deploy:build`；合并或 push 到 `main` 后，仍由 Vercel Git Integration 自动部署 Production。
 

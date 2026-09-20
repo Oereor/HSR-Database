@@ -1,26 +1,19 @@
 import { execFileSync, spawn } from 'node:child_process';
+import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { AssetValidationContext } from '../assets/ensure.js';
+import type { DataManifest } from '../../src/lib/domain/types.js';
+import { localizedHref } from '../../src/lib/i18n/routing.js';
 import {
   loadDeploymentLock,
   prepareStarRailRes,
   prepareTurnBasedGameData,
   siteRoot
 } from './prepare.js';
-import type { UpstreamLock } from './lock.js';
+import { logFileSummary, summarizeDirectory, withProcessTelemetry } from './telemetry.js';
+import { verifyBuildAssetClosure, verifyBuildSmoke } from './verify-build.js';
+import { verifyBuildPageRoutes } from './verify-routes.js';
 
-export type DeploymentMode = 'preview-full' | 'production-ci-backed';
-export type DeploymentCommandRunner = (args: string[], env: NodeJS.ProcessEnv) => Promise<void>;
-
-export interface DeploymentBuildDependencies {
-  environment?: NodeJS.ProcessEnv;
-  loadLock?: () => Promise<UpstreamLock>;
-  prepareTurnBased?: (lock: UpstreamLock) => Promise<string>;
-  prepareStarRail?: (lock: UpstreamLock) => Promise<string>;
-  commandRunner?: DeploymentCommandRunner;
-  ensureGeneralAssets?: (env: NodeJS.ProcessEnv) => Promise<AssetValidationContext>;
-  verifyGeneralAssets?: (context: AssetValidationContext, env: NodeJS.ProcessEnv) => Promise<void>;
-}
+export type BuildProfile = 'preview' | 'production' | 'development' | 'ci';
 
 interface StageTiming {
   label: string;
@@ -30,25 +23,60 @@ interface StageTiming {
 
 const TIMING_ORDER = [
   'lock',
-  'messages-and-script-checks',
+  'messages-compile',
   'prepare-turnbased',
   'prepare-starrailres',
-  'search-names-check',
   'data-ensure',
   'data-validate',
+  'search-names-check',
+  'check',
+  'lint',
   'enemy-assets-ensure',
   'assets-ensure',
   'assets-verify',
+  'test',
   'vite-build',
-  'deploy-verify'
+  'output-smoke',
+  'deploy-verify',
+  'route-verify'
 ] as const;
 
-export function resolveDeploymentMode(vercelEnv: string | undefined): DeploymentMode {
-  return vercelEnv === 'production' ? 'production-ci-backed' : 'preview-full';
+function requestedProfile(args: string[]): BuildProfile | undefined {
+  const values = args.flatMap((argument, index) => {
+    if (argument.startsWith('--profile=')) return [argument.slice('--profile='.length)];
+    if (argument === '--profile') return [args[index + 1] ?? ''];
+    return [];
+  });
+  const unknown = args.filter(
+    (argument, index) =>
+      argument !== '--' &&
+      argument !== '--profile' &&
+      args[index - 1] !== '--profile' &&
+      !argument.startsWith('--profile=')
+  );
+  if (unknown.length || values.length > 1)
+    throw new Error(`deploy:build 参数无效：${unknown.join(', ') || args.join(' ')}`);
+  if (!values.length) return undefined;
+  const value = values[0];
+  if (value === 'preview' || value === 'production' || value === 'development' || value === 'ci')
+    return value;
+  throw new Error(`未知 build profile：${value || '(empty)'}`);
 }
 
-const runPnpm: DeploymentCommandRunner = (args, env) =>
-  new Promise((resolve, reject) => {
+function resolveBuildProfile(
+  environment: NodeJS.ProcessEnv,
+  explicit?: BuildProfile
+): BuildProfile {
+  if (explicit) return explicit;
+  const vercelEnv = environment.VERCEL_ENV?.trim();
+  if (!vercelEnv) return 'production';
+  if (vercelEnv === 'production') return 'production';
+  if (vercelEnv === 'preview' || vercelEnv === 'development') return 'preview';
+  throw new Error(`无法从 VERCEL_ENV=${vercelEnv} 解析 build profile`);
+}
+
+function runPnpm(args: string[], env: NodeJS.ProcessEnv): Promise<void> {
+  return new Promise((resolve, reject) => {
     const pnpmEntrypoint = process.env.npm_execpath;
     const command = pnpmEntrypoint ? process.execPath : 'pnpm';
     const commandArgs = pnpmEntrypoint ? [pnpmEntrypoint, ...args] : args;
@@ -64,6 +92,7 @@ const runPnpm: DeploymentCommandRunner = (args, env) =>
       code === 0 ? resolve() : reject(new Error(`[build] pnpm ${args.join(' ')} 失败（${code}）`))
     );
   });
+}
 
 function namedError(label: string, error: unknown): Error {
   return new Error(`[deploy] ${label} failed: ${(error as Error).message}`, { cause: error });
@@ -72,12 +101,6 @@ function namedError(label: string, error: unknown): Error {
 function throwCollected(errors: Error[], message: string): void {
   if (errors.length === 1) throw errors[0];
   if (errors.length > 1) throw new AggregateError(errors, message);
-}
-
-function environmentLabel(value: string | undefined): string {
-  if (value === undefined || value === '') return 'unavailable';
-  if (['production', 'preview', 'development'].includes(value)) return value;
-  return 'unknown';
 }
 
 function deploymentBuildVersion(env: NodeJS.ProcessEnv): string {
@@ -90,38 +113,19 @@ function deploymentBuildVersion(env: NodeJS.ProcessEnv): string {
   ).trim();
 }
 
-export async function runDeploymentBuild(
-  dependencies: DeploymentBuildDependencies = {}
-): Promise<void> {
+function assetFileCount(fileIndex: ReadonlyMap<string, ReadonlySet<string>>): number {
+  return [...fileIndex.values()].reduce((total, files) => total + files.size, 0);
+}
+
+export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promise<void> {
   const overallStarted = performance.now();
   const timings: StageTiming[] = [];
-  const baseEnv = dependencies.environment ?? process.env;
-  const mode = resolveDeploymentMode(baseEnv.VERCEL_ENV);
-  const loadLock = dependencies.loadLock ?? loadDeploymentLock;
-  const prepareTurnBased = dependencies.prepareTurnBased ?? prepareTurnBasedGameData;
-  const prepareStarRail = dependencies.prepareStarRail ?? prepareStarRailRes;
-  const commandRunner = dependencies.commandRunner ?? runPnpm;
-  // General asset modules import navigation.ts, which imports generated Paraglide messages.
-  // Keep these imports lazy so a clean deployment can compile messages before loading consumers.
-  const ensureGeneralAssets =
-    dependencies.ensureGeneralAssets ??
-    (async (env) => {
-      const { ensureAssets } = await import('../assets/ensure.js');
-      return ensureAssets({ env });
-    });
-  const verifyGeneralAssets =
-    dependencies.verifyGeneralAssets ??
-    (async (context, env) => {
-      const { verifyAssets } = await import('../assets/verify.js');
-      return verifyAssets(context, env);
-    });
+  const profile = resolveBuildProfile(process.env, explicitProfile);
+  const fullIntegrity = profile === 'production' || profile === 'ci';
+  const repositoryChecks = profile === 'development' || profile === 'ci';
 
-  console.log(`[deploy] mode=${mode}`);
-  console.log(`[deploy] VERCEL_ENV=${environmentLabel(baseEnv.VERCEL_ENV)}`);
-  if (baseEnv.VERCEL_ENV === undefined)
-    console.log('[deploy] VERCEL_ENV unavailable; falling back to full validation');
-  else if (mode === 'preview-full' && !['preview', 'development'].includes(baseEnv.VERCEL_ENV))
-    console.log('[deploy] unrecognized VERCEL_ENV; falling back to full validation');
+  console.log(`[deploy] profile=${profile}`);
+  console.log(`[deploy] VERCEL_ENV=${process.env.VERCEL_ENV?.trim() || 'unavailable'}`);
 
   const timed = async <T>(label: string, operation: () => Promise<T>): Promise<T> => {
     const started = performance.now();
@@ -134,16 +138,18 @@ export async function runDeploymentBuild(
     } finally {
       const seconds = (performance.now() - started) / 1000;
       timings.push({ label, seconds, failed });
-      console.log(`[deploy:timing] ${label} ${seconds.toFixed(3)}s${failed ? ' (failed)' : ''}`);
+      console.log(
+        `[deploy:stage] ${label} wall=${seconds.toFixed(3)}s status=${failed ? 'failed' : 'passed'}`
+      );
     }
   };
 
   try {
-    const lock = await timed('lock', loadLock);
+    const lock = await timed('lock', loadDeploymentLock);
     const initialEnv = {
-      ...baseEnv,
+      ...process.env,
       HSR_DEPLOYMENT_BUILD: '1',
-      HSR_BUILD_VERSION: deploymentBuildVersion(baseEnv),
+      HSR_BUILD_VERSION: deploymentBuildVersion(process.env),
       HSR_EXPECTED_ASSET_COMMIT: lock.starRailRes.commit,
       HSR_EXPECTED_DATA_COMMIT: lock.turnBasedGameData.commit
     };
@@ -152,27 +158,22 @@ export async function runDeploymentBuild(
         (value) => ({ value }),
         (error) => ({ error: namedError(label, error) })
       );
-    const messageChecks = settle(
-      'messages-and-script-checks',
-      timed('messages-and-script-checks', () =>
-        commandRunner(
-          [mode === 'production-ci-backed' ? 'messages:compile' : 'check:scripts'],
-          initialEnv
-        )
-      )
+    const messages = settle(
+      'messages-compile',
+      timed('messages-compile', () => runPnpm(['messages:compile'], initialEnv))
     );
     const turnBasedPreparation = settle(
       'prepare-turnbased',
-      timed('prepare-turnbased', () => prepareTurnBased(lock))
+      timed('prepare-turnbased', () => prepareTurnBasedGameData(lock))
     );
     const starRailPreparation = settle(
       'prepare-starrailres',
-      timed('prepare-starrailres', () => prepareStarRail(lock))
+      timed('prepare-starrailres', () => prepareStarRailRes(lock))
     );
 
     const earlyErrors: Error[] = [];
-    const messageResult = await messageChecks;
-    if ('error' in messageResult) earlyErrors.push(messageResult.error);
+    const messagesResult = await messages;
+    if ('error' in messagesResult) earlyErrors.push(messagesResult.error);
     const turnBasedResult = await turnBasedPreparation;
     if ('error' in turnBasedResult) earlyErrors.push(turnBasedResult.error);
     if (earlyErrors.length) {
@@ -190,32 +191,46 @@ export async function runDeploymentBuild(
         .replaceAll('\\', '/')
     };
     console.log(`[data] HSR_DATA_ROOT=${env.HSR_DATA_ROOT}`);
-    let dataError: Error | undefined;
-    try {
-      if (mode === 'preview-full')
-        await timed('search-names-check', () => commandRunner(['data:search-names:check'], env));
-      await timed('data-ensure', () => commandRunner(['data:ensure'], env));
-      await timed('data-validate', () => commandRunner(['data:validate'], env));
-    } catch (error) {
-      dataError = namedError('data preparation', error);
+    await timed('data-ensure', () => runPnpm(['data:ensure'], env));
+    const manifest = JSON.parse(
+      await readFile(path.join(siteRoot, 'src/lib/generated/manifest.json'), 'utf8')
+    ) as DataManifest;
+    if (fullIntegrity) await timed('data-validate', () => runPnpm(['data:validate'], env));
+
+    if (repositoryChecks) {
+      await timed('search-names-check', () => runPnpm(['data:search-names:check'], env));
+      await timed('check', () => runPnpm(['check'], env));
+      await timed('lint', () => runPnpm(['lint'], env));
     }
 
     const starRailResult = await starRailPreparation;
-    const preparationErrors = [
-      ...(dataError ? [dataError] : []),
-      ...('error' in starRailResult ? [starRailResult.error] : [])
-    ];
-    throwCollected(preparationErrors, 'Data or upstream preparation failed');
     if (!('value' in starRailResult)) throw starRailResult.error;
     env.HSR_ASSET_ROOT = path.relative(siteRoot, starRailResult.value).replaceAll('\\', '/');
     console.log(`[assets] HSR_ASSET_ROOT=${env.HSR_ASSET_ROOT}`);
+    const [dataInput, assetInput] = await Promise.all([
+      summarizeDirectory(turnBasedResult.value, new Set(['.git'])),
+      summarizeDirectory(starRailResult.value, new Set(['.git']))
+    ]);
+    logFileSummary('turnbased-input', dataInput);
+    logFileSummary('starrailres-input', assetInput);
 
-    console.log('[enemy-assets] ensuring Nanoka enemy images');
     const [enemyResult, generalResult] = await Promise.allSettled([
-      timed('enemy-assets-ensure', () => commandRunner(['assets:ensure:enemies'], env)),
+      timed('enemy-assets-ensure', () => runPnpm(['assets:ensure:enemies'], env)),
       (async () => {
-        const context = await timed('assets-ensure', () => ensureGeneralAssets(env));
-        await timed('assets-verify', () => verifyGeneralAssets(context, env));
+        const { ensureAssets } = await import('../assets/ensure.js');
+        const context = await timed('assets-ensure', () =>
+          withProcessTelemetry('general-assets', () => ensureAssets({ env }))
+        );
+        const { assetSizeSummary } = await import('../assets/shared.js');
+        const sizes = await assetSizeSummary();
+        logFileSummary('general-assets-output', {
+          files: assetFileCount(context.fileIndex),
+          bytes: sizes.total
+        });
+        if (fullIntegrity) {
+          const { verifyAssets } = await import('../assets/verify.js');
+          await timed('assets-verify', () => verifyAssets(context, env));
+        }
       })()
     ]);
     const assetErrors: Error[] = [];
@@ -224,22 +239,39 @@ export async function runDeploymentBuild(
     if (generalResult.status === 'rejected')
       assetErrors.push(namedError('general-assets', generalResult.reason));
     throwCollected(assetErrors, 'Asset preparation failed');
+    logFileSummary(
+      'enemy-assets-output',
+      await summarizeDirectory(path.join(siteRoot, 'static/generated-enemy-assets'))
+    );
 
-    console.log('[build] vite build');
+    if (repositoryChecks) await timed('test', () => runPnpm(['test'], env));
+
     await timed('vite-build', async () => {
-      await commandRunner(['exec', 'svelte-kit', 'sync'], env);
-      await commandRunner(['exec', 'vite', 'build'], env);
+      await runPnpm(['exec', 'svelte-kit', 'sync'], env);
+      await runPnpm(['exec', 'vite', 'build'], env);
     });
-    await timed('deploy-verify', () => commandRunner(['deploy:verify'], env));
-    await timed('route-verify', () => commandRunner(['deploy:verify:routes'], env));
+    await timed('output-smoke', () => verifyBuildSmoke(manifest));
+    if (fullIntegrity) {
+      const summary = await timed('deploy-verify', () => verifyBuildAssetClosure());
+      logFileSummary('build-output', summary);
+      await timed('route-verify', () =>
+        verifyBuildPageRoutes(
+          manifest.publicLocales.flatMap((locale) =>
+            manifest.routePaths.map((route) => localizedHref(route, locale))
+          )
+        )
+      );
+    } else {
+      logFileSummary('build-output', await summarizeDirectory(path.join(siteRoot, 'build')));
+    }
   } finally {
     const byLabel = new Map(timings.map((timing) => [timing.label, timing]));
-    console.log('[deploy:timing] summary');
+    console.log('[deploy:stage] summary');
     for (const label of TIMING_ORDER) {
       const timing = byLabel.get(label);
       if (timing)
         console.log(
-          `  ${label.padEnd(28)} ${timing.seconds.toFixed(3)}s${timing.failed ? ' failed' : ''}`
+          `  ${label.padEnd(28)} ${timing.seconds.toFixed(3)}s ${timing.failed ? 'failed' : 'passed'}`
         );
     }
     console.log(
@@ -249,5 +281,5 @@ export async function runDeploymentBuild(
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.meta.filename)) {
-  await runDeploymentBuild();
+  await runDeploymentBuild(requestedProfile(process.argv.slice(2)));
 }

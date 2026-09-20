@@ -62,10 +62,14 @@ export async function ensureAssets(
         ? await validatedContext(requirements, cached, commit)
         : undefined;
     if (context) {
+      console.log(
+        '[deploy:cache] general-assets result=hit reason=manifest-source-and-files-match'
+      );
       console.log(`视觉资源已是最新版本：${commit.slice(0, 12)}`);
       warnAssetFallback(context.manifest, `缓存对应 StarRailRes ${commit.slice(0, 12)}`);
       return context;
     }
+    console.log('[deploy:cache] general-assets result=miss reason=manifest-or-files-stale');
     const manifest = await syncAssets({ requirements, env });
     const generated = await validatedContext(requirements, manifest, commit);
     if (!generated) throw new Error('视觉资源生成后未通过 manifest 与文件存在性验证。');
@@ -77,10 +81,14 @@ export async function ensureAssets(
         ? await validatedContext(requirements, cached, cached.sourceCommit ?? '')
         : undefined;
     if (context) {
+      console.log(
+        '[deploy:cache] general-assets result=fallback reason=source-unavailable-valid-cache'
+      );
       console.warn(`视觉资源上游暂不可用，继续使用已有缓存：${(error as Error).message}`);
       warnAssetFallback(context.manifest, '现有缓存');
       return context;
     }
+    console.log('[deploy:cache] general-assets result=miss reason=no-valid-fallback');
     const manifest = await syncAssets({ requirements, env });
     const fallback = await validatedContext(requirements, manifest, manifest.sourceCommit ?? '');
     if (!fallback) {

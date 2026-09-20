@@ -106,7 +106,7 @@ export async function runCleanDeploymentBuild(
   const errors: unknown[] = [];
   try {
     await cleanDeploymentArtifacts(root);
-    await (dependencies.build ?? runDeploymentBuild)();
+    await (dependencies.build ?? (() => runDeploymentBuild('production')))();
   } catch (error) {
     errors.push(error);
   }
