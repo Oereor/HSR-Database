@@ -338,7 +338,8 @@ describe('Player Character presentation', () => {
         traces,
         playerSkillTree: [
           { id: '1304101', level: 1 },
-          { id: '1304201', level: 0 }
+          { id: '1304201', level: 0 },
+          { id: '1304202', level: -1 }
         ]
       }
     }).body;
