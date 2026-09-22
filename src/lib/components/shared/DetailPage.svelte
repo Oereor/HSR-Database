@@ -37,7 +37,12 @@
   import { fetchPlayerProfile } from '$lib/player/client';
   import type { PlayerCharacter } from '$lib/player/contract';
   import { findPlayerCharacter, resolvePlayerEidolonState } from '$lib/player/character';
-  import { readPlayerUidQuery, type PlayerUidQueryState } from '$lib/player/resolve';
+  import {
+    readPlayerBuildQuery,
+    readPlayerUidQuery,
+    type PlayerBuildQueryState,
+    type PlayerUidQueryState
+  } from '$lib/player/resolve';
   export let detail: any;
   export let category: string;
   export let singular: string;
@@ -130,10 +135,15 @@
     playerClientReady && category === 'characters'
       ? readPlayerUidQuery($page.url.searchParams)
       : ({ kind: 'idle', input: '' } satisfies PlayerUidQueryState);
+  $: playerBuildQueryState =
+    playerClientReady && category === 'characters'
+      ? readPlayerBuildQuery($page.url.searchParams)
+      : ({ kind: 'absent' } satisfies PlayerBuildQueryState);
   $: playerContextKey = playerClientReady
-    ? `${category}:${detail.id}:${JSON.stringify($page.url.searchParams.getAll('uid'))}`
+    ? `${category}:${detail.id}:${JSON.stringify($page.url.searchParams.getAll('uid'))}:${JSON.stringify($page.url.searchParams.getAll('build'))}`
     : `${category}:${detail.id}:idle`;
-  $: if (playerClientReady) synchronizePlayerContext(playerContextKey, playerQueryState);
+  $: if (playerClientReady)
+    synchronizePlayerContext(playerContextKey, playerQueryState, playerBuildQueryState);
   $: activePlayerCharacter = playerContextState === 'active' ? playerCharacter : null;
 
   function openSpecialEffects(trigger: HTMLButtonElement, level: number) {
@@ -168,7 +178,11 @@
     );
   }
 
-  function synchronizePlayerContext(key: string, query: PlayerUidQueryState): void {
+  function synchronizePlayerContext(
+    key: string,
+    query: PlayerUidQueryState,
+    buildQuery: PlayerBuildQueryState
+  ): void {
     if (handledPlayerContext === key) return;
     handledPlayerContext = key;
     playerRequestVersion += 1;
@@ -190,7 +204,14 @@
     void fetchPlayerProfile(query.uid)
       .then((profile) => {
         if (playerRequestVersion !== version) return;
-        const resolved = findPlayerCharacter(profile, characterId);
+        const resolved =
+          buildQuery.kind === 'invalid'
+            ? null
+            : findPlayerCharacter(
+                profile,
+                characterId,
+                buildQuery.kind === 'valid' ? buildQuery.buildId : undefined
+              );
         if (!resolved) {
           playerContextState = 'missing';
           return;
@@ -355,7 +376,7 @@
 
 {#if category === 'characters'}
   <SectionNav items={characterSectionNavItems} />
-  {#key `${detail.id}:${profileMode}:${playerContextState}:${playerUid ?? ''}`}
+  {#key `${detail.id}:${profileMode}:${playerContextState}:${playerUid ?? ''}:${playerCharacter?.buildId ?? ''}`}
     <section id="skills" class="detail-section section-nav-target">
       <SectionHeading level={1}>{m.detail_skills()}</SectionHeading>
       {#if activeProfile.skillCards.length}<div class="stack-list skill-card-grid">

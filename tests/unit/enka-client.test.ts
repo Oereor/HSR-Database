@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it, vi } from 'vitest';
 import { createEnkaPlayerClient, ENKA_USER_AGENT } from '../../api/_player/enka/client';
+import { parseRetryAfter } from '../../api/_player/errors';
 
 const fixture = JSON.parse(
   readFileSync('tests/fixtures/enka/phase1-player.sanitized.json', 'utf8')
@@ -69,6 +70,17 @@ describe('Enka HTTP client', () => {
       createEnkaPlayerClient({ fetchImpl: limited }).fetchPlayerProfile('100000001')
     ).rejects.toMatchObject({ code: 'RATE_LIMITED', retryAfterSeconds: 17 });
     expect(limited).toHaveBeenCalledTimes(1);
+    expect(parseRetryAfter('Fri, 18 Sep 2026 12:00:10 GMT', Date.UTC(2026, 8, 18, 12))).toBe(10);
+    expect(parseRetryAfter('not-a-date')).toBeUndefined();
+    expect(parseRetryAfter('999999999999999999999')).toBeUndefined();
+  });
+
+  it('maps invalid JSON to the stable decode error without retrying', async () => {
+    const fetchImpl = vi.fn(async () => new Response('{', { status: 200 }));
+    await expect(
+      createEnkaPlayerClient({ fetchImpl }).fetchPlayerProfile('100000001')
+    ).rejects.toMatchObject({ code: 'UPSTREAM_INVALID_RESPONSE' });
+    expect(fetchImpl).toHaveBeenCalledOnce();
   });
 
   it.each([

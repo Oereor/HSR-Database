@@ -48,9 +48,16 @@ const PLAYER_STAT_PROPERTY_TYPES: Readonly<Record<string, string>> = {
 
 export function findPlayerCharacter(
   profile: PlayerProfile,
-  characterId: string
+  characterId: string,
+  buildId?: string
 ): PlayerCharacter | null {
-  return profile.characters.find((character) => character.characterId === characterId) ?? null;
+  return (
+    profile.characters.find(
+      (character) =>
+        character.characterId === characterId &&
+        (buildId === undefined || character.buildId === buildId)
+    ) ?? null
+  );
 }
 
 export function createPlayerSkillTreeIndex(
@@ -123,6 +130,6 @@ export function formatPlayerStatTotal(stat: PlayerStat): string {
   const rawPercentage = Number(`${match[1]}${match[2] === undefined ? '' : `.${match[2]}`}`);
   if (!Number.isFinite(rawPercentage)) return stat.total;
 
-  // MiHoMo exposes the bonus; the Player Stats UI presents the in-game 100% baseline total.
+  // The DTO stores the bonus; the Player Stats UI presents the in-game 100% baseline total.
   return `${(rawPercentage + 100).toFixed(decimalPlaces)}%`;
 }

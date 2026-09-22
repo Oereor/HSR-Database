@@ -11,7 +11,25 @@ function profile(uid: string, options: { empty?: boolean; nickname?: string } = 
     characterCount: null,
     lightConeCount: 0,
     achievementCount: null,
-    characters: options.empty ? [] : [{ characterId: '1001' }, { characterId: '1999' }]
+    characters: options.empty
+      ? []
+      : [
+          {
+            buildId: 'area:assist:position:1:order:0',
+            characterId: '1001',
+            display: { area: 'assist', position: 1, sourceOrder: 0 }
+          },
+          {
+            buildId: 'area:showcase:position:1:order:1',
+            characterId: '1001',
+            display: { area: 'showcase', position: 1, sourceOrder: 1 }
+          },
+          {
+            buildId: 'area:unknown:position:none:order:2',
+            characterId: '1999',
+            display: { area: 'unknown', sourceOrder: 2 }
+          }
+        ]
   };
 }
 
@@ -50,7 +68,11 @@ test('submitting a UID updates the URL before rendering Player Hero and characte
     page.locator('img[src="/generated-assets/player-avatars/201001.png"]')
   ).toBeVisible();
   await expect(page.locator('img[src*="remote-icon-must-not-be-used"]')).toHaveCount(0);
-  await expect(page.locator('a[href="https://march7th.xyz/zh/api/"]').first()).toBeVisible();
+  await expect(page.locator('a[href="https://enka.network/"]').first()).toBeVisible();
+  await expect(page.locator('#player-support-characters')).toBeVisible();
+  await expect(page.locator('#player-companion-characters')).toBeVisible();
+  await expect(page.locator('[aria-labelledby="player-support-characters"] a')).toHaveCount(1);
+  await expect(page.locator('[aria-labelledby="player-companion-characters"] a')).toHaveCount(1);
   const heroStyles = await page.locator('.player-hero').evaluate((hero) => {
     const details = hero.querySelector<HTMLElement>('.player-hero__details')!;
     const avatar = hero.querySelector<HTMLElement>('.player-hero__avatar')!;
@@ -76,9 +98,9 @@ test('submitting a UID updates the URL before rendering Player Hero and characte
   expect(heroStyles.valueSize).toBeGreaterThan(heroStyles.labelSize);
   expect(heroStyles.valueWeight).toBeGreaterThanOrEqual(700);
   expect(heroStyles.valueWeight).toBeLessThan(800);
-  await expect(page.getByRole('link', { name: /三月七/ })).toHaveAttribute(
+  await expect(page.getByRole('link', { name: /三月七/ }).first()).toHaveAttribute(
     'href',
-    '/characters/1001/?uid=100000001'
+    '/characters/1001/?uid=100000001&build=area%3Aassist%3Aposition%3A1%3Aorder%3A0'
   );
 
   if (!isMobile) await page.setViewportSize({ width: 768, height: 900 });
@@ -112,11 +134,11 @@ test('preserves locale and reuses the SPA cache across browser history', async (
 
   await page.goto('/en/player/?uid=100000001');
   await expect(page.getByRole('heading', { name: 'Player 100000001' })).toBeVisible();
-  await expect(page.locator('a[href="https://march7th.xyz/en/api/"]').first()).toBeVisible();
+  await expect(page.locator('a[href="https://enka.network/"]').first()).toBeVisible();
   await expect(page.locator('.player-characters__empty')).toHaveCount(0);
-  await expect(page.getByRole('link', { name: /March 7th/ })).toHaveAttribute(
+  await expect(page.getByRole('link', { name: /March 7th/ }).first()).toHaveAttribute(
     'href',
-    '/en/characters/1001/?uid=100000001'
+    '/en/characters/1001/?uid=100000001&build=area%3Aassist%3Aposition%3A1%3Aorder%3A0'
   );
 
   await page.locator('#player-uid-input').fill('100000002');

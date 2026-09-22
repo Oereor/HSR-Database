@@ -203,6 +203,6 @@ title: '更新标题'
 - [TurnBasedGameData](https://github.com/DimbreathBot/TurnBasedGameData) — 提供《崩坏：星穹铁道》的游戏数据，是本站静态数据的主要来源之一。
 - [StarRailRes](https://github.com/Mar-7th/StarRailRes) — 提供角色、光锥、遗器、图标等游戏资源，用于本站的本地资源展示。
 - [Nanoka](https://static.nanoka.cc) — 提供 enemy visual assets；本站在维护时生成并审核 snapshot，部署不实时依赖该服务。未确认的再分发许可不因本项目的 MIT License 而获得覆盖。
-- [MiHoMo API](https://api.mihomo.me/docs) — 提供公开玩家信息查询服务，用于本站的「玩家信息 / Player Info」功能。
+- [Enka.Network](https://enka.network/) — 提供公开玩家信息查询服务，用于本站的「玩家信息 / Player Info」功能。
 
 特别感谢以上项目及其维护者，使 HSR-Database 能够建立在稳定、开放的社区数据与资源之上。

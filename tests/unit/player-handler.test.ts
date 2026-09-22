@@ -1,0 +1,162 @@
+import { readFile } from 'node:fs/promises';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
+import { createEnkaPlayerClient, ENKA_USER_AGENT } from '../../api/_player/enka/client';
+import { PlayerApiError } from '../../api/_player/errors';
+import { handlePlayerRequest } from '../../api/player';
+
+let fixture: Record<string, unknown>;
+
+function request(query = '?uid=100000001', method = 'GET'): Request {
+  return new Request(`https://hsrarchive.cc/api/player/${query}`, { method });
+}
+
+async function errorBody(response: Response): Promise<{
+  error: { code: string; retryable: boolean; retryAfterSeconds?: number };
+}> {
+  return (await response.json()) as {
+    error: { code: string; retryable: boolean; retryAfterSeconds?: number };
+  };
+}
+
+beforeAll(async () => {
+  fixture = JSON.parse(
+    await readFile('tests/fixtures/enka/phase1-player.sanitized.json', 'utf8')
+  ) as Record<string, unknown>;
+});
+
+describe('Enka player Function handler', () => {
+  it('runs the Enka pipeline and preserves the public response contract', async () => {
+    const fetchImpl = vi.fn<typeof fetch>().mockResolvedValue(Response.json(fixture));
+    const log = vi.fn();
+    const response = await handlePlayerRequest(request('?uid=%20100000001%20'), {
+      client: createEnkaPlayerClient({ fetchImpl }),
+      log
+    });
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get('Content-Type')).toBe('application/json; charset=utf-8');
+    expect(response.headers.get('Cache-Control')).toBe('public, max-age=0, must-revalidate');
+    expect(response.headers.get('Vercel-CDN-Cache-Control')).toBe(
+      'public, s-maxage=300, stale-while-revalidate=600'
+    );
+    const body = (await response.json()) as {
+      uid: string;
+      characters: Array<Record<string, unknown>>;
+    };
+    expect(body.uid).toBe('100000001');
+    expect(body.characters).toHaveLength(6);
+    expect(body.characters[0]).toMatchObject({
+      buildId: expect.stringContaining('area:assist:'),
+      display: { area: 'assist', sourceOrder: 0 },
+      stats: expect.any(Array)
+    });
+    expect(fetchImpl).toHaveBeenCalledOnce();
+    const [input, init] = fetchImpl.mock.calls[0];
+    expect(String(input)).toBe('https://enka.network/api/hsr/uid/100000001/');
+    expect(new Headers(init?.headers).get('User-Agent')).toBe(ENKA_USER_AGENT);
+    expect(log).not.toHaveBeenCalled();
+  });
+
+  it('returns a successful profile when no characters are public', async () => {
+    const empty = structuredClone(fixture) as {
+      detailInfo: Record<string, unknown>;
+    };
+    empty.detailInfo.avatarDetailList = [];
+    const response = await handlePlayerRequest(request(), {
+      client: createEnkaPlayerClient({ fetchImpl: vi.fn(async () => Response.json(empty)) }),
+      log: vi.fn()
+    });
+
+    expect(response.status).toBe(200);
+    expect(await response.json()).toMatchObject({ uid: '100000001', characters: [] });
+  });
+
+  it.each(['', '?uid=', '?uid=abc', '?uid=123&uid=456'])(
+    'rejects invalid UID query %s without calling upstream',
+    async (query) => {
+      const fetchPlayerProfile = vi.fn();
+      const response = await handlePlayerRequest(request(query), {
+        client: { fetchPlayerProfile, clear: vi.fn() },
+        log: vi.fn()
+      });
+
+      expect(response.status).toBe(400);
+      expect(await errorBody(response)).toEqual({
+        error: { code: 'INVALID_UID', retryable: false }
+      });
+      expect(response.headers.get('Cache-Control')).toBe('no-store');
+      expect(fetchPlayerProfile).not.toHaveBeenCalled();
+    }
+  );
+
+  it('keeps method and typed-error envelopes stable without leaking diagnostics', async () => {
+    const methodResponse = await handlePlayerRequest(request('?uid=100000001', 'POST'));
+    expect(methodResponse.status).toBe(405);
+    expect(methodResponse.headers.get('Allow')).toBe('GET');
+
+    const log = vi.fn();
+    const response = await handlePlayerRequest(request('?uid=100000429'), {
+      client: {
+        fetchPlayerProfile: vi.fn(async () => {
+          throw new PlayerApiError('RATE_LIMITED', 17, 'private diagnostic');
+        }),
+        clear: vi.fn()
+      },
+      log
+    });
+    const body = await errorBody(response);
+    expect(response.status).toBe(429);
+    expect(body).toEqual({
+      error: { code: 'RATE_LIMITED', retryable: true, retryAfterSeconds: 17 }
+    });
+    expect(JSON.stringify(body)).not.toContain('private diagnostic');
+    expect(log).toHaveBeenCalledWith({
+      event: 'rate_limit',
+      code: 'RATE_LIMITED',
+      diagnostic: 'private diagnostic'
+    });
+  });
+
+  it.each([
+    ['UPSTREAM_TIMEOUT', 'timeout'],
+    ['UPSTREAM_INVALID_RESPONSE', 'decode_error'],
+    ['UPSTREAM_UNAVAILABLE', 'upstream_error']
+  ] as const)('logs %s with the %s event taxonomy', async (code, event) => {
+    const log = vi.fn();
+    await handlePlayerRequest(request(), {
+      client: {
+        fetchPlayerProfile: vi.fn(async () => {
+          throw new PlayerApiError(code);
+        }),
+        clear: vi.fn()
+      },
+      log
+    });
+
+    expect(log).toHaveBeenCalledWith({ event, code });
+  });
+
+  it('keeps unknown entities visible and emits structured synthesis diagnostics', async () => {
+    const source = structuredClone(fixture) as {
+      detailInfo: { avatarDetailList: Array<Record<string, unknown>> };
+    };
+    source.detailInfo.avatarDetailList[0].avatarId = 999999;
+    const log = vi.fn();
+    const response = await handlePlayerRequest(request(), {
+      client: createEnkaPlayerClient({ fetchImpl: vi.fn(async () => Response.json(source)) }),
+      log
+    });
+    const body = (await response.json()) as {
+      characters: Array<{ characterId: string; stats: unknown[] }>;
+    };
+
+    expect(response.status).toBe(200);
+    expect(body.characters[0]).toMatchObject({ characterId: '999999', stats: [] });
+    expect(log.mock.calls).toEqual(
+      expect.arrayContaining([
+        [{ event: 'synthesis_failure' }],
+        [{ event: 'unknown_entity', code: 'UNKNOWN_AVATAR', sourceId: '999999' }]
+      ])
+    );
+  });
+});

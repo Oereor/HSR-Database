@@ -23,13 +23,25 @@ const profile: PlayerProfile = {
   achievementCount: null,
   characters: [
     {
+      buildId: 'area:assist:position:1:order:0',
       characterId: '1304',
+      display: { area: 'assist', position: 1, sourceOrder: 0 },
       progression: { rank: 3, level: 80, promotion: 6, enhanced: false },
       skillTree: [
         { id: '1304001', level: 6 },
         { id: '1304101', level: 1 },
         { id: '1304102', level: 0 }
       ],
+      lightCone: null,
+      relics: [],
+      stats: []
+    },
+    {
+      buildId: 'area:showcase:position:1:order:1',
+      characterId: '1304',
+      display: { area: 'showcase', position: 1, sourceOrder: 1 },
+      progression: { rank: 1, level: 70, promotion: 5, enhanced: false },
+      skillTree: [],
       lightCone: null,
       relics: [],
       stats: []
@@ -40,6 +52,10 @@ const profile: PlayerProfile = {
 describe('Player Character resolvers', () => {
   it('matches only the exact static character id and returns null when not showcased', () => {
     expect(findPlayerCharacter(profile, '1304')).toBe(profile.characters[0]);
+    expect(findPlayerCharacter(profile, '1304', 'area:showcase:position:1:order:1')).toBe(
+      profile.characters[1]
+    );
+    expect(findPlayerCharacter(profile, '1304', 'stale-build')).toBeNull();
     expect(findPlayerCharacter(profile, '130')).toBeNull();
     expect(findPlayerCharacter(profile, '9999')).toBeNull();
   });

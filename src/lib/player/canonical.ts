@@ -1,6 +1,4 @@
-import type { PlayerProfile, PlayerStat } from './contract.js';
-
-export type PlayerDisplayArea = 'assist' | 'showcase' | 'unknown';
+import type { PlayerDisplayArea, PlayerProfile, PlayerStat } from './contract.js';
 
 export interface CanonicalPlayerTrace {
   pointId: string;
@@ -116,7 +114,7 @@ export interface PlayerFetchResult<T = CanonicalPlayerProfile> {
   metadata: PlayerFetchMetadata;
 }
 
-/** Phase-1 compatibility result; production /api/player still returns the MiHoMo path. */
+/** Internal Enka pipeline result. Only presentation is returned by /api/player. */
 export interface EnkaPlayerPipelineResult {
   canonical: ResolvedCanonicalPlayerProfile;
   presentation: PlayerProfile;

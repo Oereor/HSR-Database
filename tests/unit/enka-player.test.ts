@@ -106,6 +106,10 @@ describe('Enka production stat pipeline golden', () => {
     }
     expect(assertions).toBe(51);
     expect(result.presentation.characters).toHaveLength(6);
+    expect(result.presentation.characters[0]).toMatchObject({
+      buildId: 'area:assist:position:none:order:0',
+      display: { area: 'assist', sourceOrder: 0 }
+    });
     expect(result.presentation.characters[0].stats[0]).toEqual({
       field: 'hp',
       percent: false,

@@ -14,8 +14,16 @@ export interface PlayerProfile {
   characters: PlayerCharacter[];
 }
 
+export type PlayerDisplayArea = 'assist' | 'showcase' | 'unknown';
+
 export interface PlayerCharacter {
+  buildId: string;
   characterId: string;
+  display: {
+    area: PlayerDisplayArea;
+    position?: number;
+    sourceOrder: number;
+  };
   progression: {
     rank: number;
     level: number;

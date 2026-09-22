@@ -2,8 +2,7 @@ import type {
   CanonicalPlayerProfile,
   PlayerFetchResult
 } from '../../../src/lib/player/canonical.js';
-import { PlayerApiError } from '../errors.js';
-import { parseRetryAfter } from '../mihomo.js';
+import { parseRetryAfter, PlayerApiError } from '../errors.js';
 import { adaptEnkaProfile } from './adapter.js';
 import { decodeEnkaResponse } from './decode.js';
 

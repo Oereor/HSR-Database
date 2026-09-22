@@ -4,6 +4,7 @@ import {
   createCharacterCatalogIndex,
   playerCharacterHref,
   playerPageHref,
+  readPlayerBuildQuery,
   readPlayerUidQuery,
   resolvePlayerAvatar,
   resolvePlayerCharacter
@@ -30,11 +31,14 @@ describe('Player local resolvers and routing', () => {
   it('builds locale-aware canonical Player and Character links', () => {
     expect(playerPageHref('168902602', 'zh-CN')).toBe('/player/?uid=168902602');
     expect(playerPageHref('168902602', 'en')).toBe('/en/player/?uid=168902602');
-    expect(playerCharacterHref('1304', '168902602', 'zh-CN')).toBe(
+    expect(playerCharacterHref('1304', '168902602', undefined, 'zh-CN')).toBe(
       '/characters/1304/?uid=168902602'
     );
-    expect(playerCharacterHref('1304', '168902602', 'en')).toBe(
+    expect(playerCharacterHref('1304', '168902602', undefined, 'en')).toBe(
       '/en/characters/1304/?uid=168902602'
+    );
+    expect(playerCharacterHref('1304', '168902602', 'area:assist:position:1:order:0', 'en')).toBe(
+      '/en/characters/1304/?uid=168902602&build=area%3Aassist%3Aposition%3A1%3Aorder%3A0'
     );
   });
 
@@ -52,6 +56,18 @@ describe('Player local resolvers and routing', () => {
     expect(readPlayerUidQuery(new URLSearchParams('uid=1&uid=2'))).toEqual({
       kind: 'invalid',
       input: '1'
+    });
+  });
+
+  it('distinguishes absent, valid and invalid build query states', () => {
+    expect(readPlayerBuildQuery(new URLSearchParams())).toEqual({ kind: 'absent' });
+    expect(readPlayerBuildQuery(new URLSearchParams('build=area%3Aassist%3Aorder%3A0'))).toEqual({
+      kind: 'valid',
+      buildId: 'area:assist:order:0'
+    });
+    expect(readPlayerBuildQuery(new URLSearchParams('build='))).toEqual({ kind: 'invalid' });
+    expect(readPlayerBuildQuery(new URLSearchParams('build=a&build=b'))).toEqual({
+      kind: 'invalid'
     });
   });
 });

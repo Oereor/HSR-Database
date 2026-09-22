@@ -374,7 +374,9 @@ export function presentCanonicalPlayerProfile(
     lightConeCount: profile.records?.equipmentCount ?? null,
     achievementCount: profile.records?.achievementCount ?? null,
     characters: resolved.characters.map(({ build, stats }) => ({
+      buildId: build.buildId,
       characterId: build.avatarId,
+      display: build.display,
       progression: {
         rank: build.eidolon,
         level: build.level,

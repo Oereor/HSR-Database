@@ -13,7 +13,9 @@ const playerProfile = (uid: string, includeCharacter = true) => ({
   characters: includeCharacter
     ? [
         {
+          buildId: 'area:showcase:position:1:order:0',
           characterId: '1304',
+          display: { area: 'showcase', position: 1, sourceOrder: 0 },
           progression: { rank: 3, level: 80, promotion: 6, enhanced: false },
           skillTree: [
             { id: '1304001', level: 6 },
@@ -114,7 +116,9 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(page.getByRole('heading', { name: 'Synthetic Player' })).toBeVisible();
   await page.getByRole('link', { name: /砂金/ }).click();
 
-  await expect(page).toHaveURL(/\/characters\/1304\/\?uid=100000001$/);
+  await expect(page).toHaveURL(
+    /\/characters\/1304\/\?uid=100000001&build=area%3Ashowcase%3Aposition%3A1%3Aorder%3A0$/
+  );
   const playerContext = page.locator('.player-context-notice');
   await expect(playerContext).toBeVisible();
   await expect(playerContext).toContainText('100000001');

@@ -9,6 +9,9 @@ export type PlayerUidQueryState =
   | { kind: 'invalid'; input: string }
   | { kind: 'valid'; input: string; uid: string };
 
+export type PlayerBuildQueryState =
+  { kind: 'absent' } | { kind: 'invalid' } | { kind: 'valid'; buildId: string };
+
 export function readPlayerUidQuery(searchParams: URLSearchParams): PlayerUidQueryState {
   const values = searchParams.getAll('uid');
   if (values.length === 0) return { kind: 'idle', input: '' };
@@ -16,6 +19,13 @@ export function readPlayerUidQuery(searchParams: URLSearchParams): PlayerUidQuer
   if (values.length !== 1) return { kind: 'invalid', input };
   const uid = normalizePlayerUid(input);
   return uid ? { kind: 'valid', input, uid } : { kind: 'invalid', input };
+}
+
+export function readPlayerBuildQuery(searchParams: URLSearchParams): PlayerBuildQueryState {
+  const values = searchParams.getAll('build');
+  if (values.length === 0) return { kind: 'absent' };
+  if (values.length !== 1 || values[0] === '') return { kind: 'invalid' };
+  return { kind: 'valid', buildId: values[0] };
 }
 
 export function resolvePlayerAvatar(avatarId: string | null | undefined): string | null {
@@ -40,7 +50,14 @@ export function playerPageHref(uid: string, locale?: Locale): string {
   return locale ? localizedHref(href, locale) : localizedHref(href);
 }
 
-export function playerCharacterHref(characterId: string, uid: string, locale?: Locale): string {
-  const href = `/characters/${encodeURIComponent(characterId)}/?${new URLSearchParams({ uid })}`;
+export function playerCharacterHref(
+  characterId: string,
+  uid: string,
+  buildId?: string,
+  locale?: Locale
+): string {
+  const params = new URLSearchParams({ uid });
+  if (buildId) params.set('build', buildId);
+  const href = `/characters/${encodeURIComponent(characterId)}/?${params}`;
   return locale ? localizedHref(href, locale) : localizedHref(href);
 }

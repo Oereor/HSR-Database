@@ -51,10 +51,14 @@
       character,
       entry: resolvePlayerCharacter(character.characterId, characterCatalog)
     })) ?? [];
+  $: supportCharacters = visibleCharacters.filter(
+    ({ character }) => character.display.area === 'assist'
+  );
+  $: companionCharacters = visibleCharacters.filter(
+    ({ character }) => character.display.area !== 'assist'
+  );
   $: requestErrorMessage = requestError ? playerErrorMessage(requestError) : null;
   $: formErrorMessage = localError ?? requestErrorMessage;
-  $: mihomoApiUrl =
-    data.locale === 'zh-CN' ? 'https://march7th.xyz/zh/api/' : 'https://march7th.xyz/en/api/';
 
   function playerErrorMessage(error: PlayerApiError): string {
     switch (error.code) {
@@ -151,7 +155,7 @@
 />
 
 <p class="player-page__data-source">
-  {m.player_data_source_prefix()}<a href={mihomoApiUrl}>MiHoMo API / Mar-7th</a
+  {m.player_data_source_prefix()}<a href="https://enka.network/">Enka.Network</a
   >{m.player_data_source_suffix()}
 </p>
 
@@ -171,18 +175,51 @@
 {:else if profile}
   <PlayerHero {profile} {avatarUrl} />
 
-  <section class="player-characters" aria-labelledby="player-public-characters">
-    <SectionHeading level={1} id="player-public-characters">
-      {m.player_public_characters()}
+  <section class="player-characters" aria-labelledby="player-support-characters">
+    <SectionHeading level={1} id="player-support-characters">
+      {m.player_support_characters()}
     </SectionHeading>
 
-    {#if visibleCharacters.length}
-      <OverviewGrid variant="character">
-        {#each visibleCharacters as item, index (`${item.character.characterId}-${index}`)}
+    {#if supportCharacters.length}
+      <div class="player-characters__support-grid">
+        {#each supportCharacters as item (item.character.buildId)}
           {#if item.entry}
             <CharacterOverviewCard
               entry={item.entry}
-              href={playerCharacterHref(item.character.characterId, profile.uid)}
+              href={playerCharacterHref(
+                item.character.characterId,
+                profile.uid,
+                item.character.buildId
+              )}
+              imageUrl={getCharacterPreviewUrl(item.character.characterId)}
+              density="compact"
+            />
+          {:else}
+            <UnknownPlayerCharacterCard characterId={item.character.characterId} />
+          {/if}
+        {/each}
+      </div>
+    {:else}
+      <p class="player-characters__empty">{m.player_support_characters_empty()}</p>
+    {/if}
+  </section>
+
+  <section class="player-characters" aria-labelledby="player-companion-characters">
+    <SectionHeading level={1} id="player-companion-characters">
+      {m.player_companion_characters()}
+    </SectionHeading>
+
+    {#if companionCharacters.length}
+      <OverviewGrid variant="character">
+        {#each companionCharacters as item (item.character.buildId)}
+          {#if item.entry}
+            <CharacterOverviewCard
+              entry={item.entry}
+              href={playerCharacterHref(
+                item.character.characterId,
+                profile.uid,
+                item.character.buildId
+              )}
               imageUrl={getCharacterPreviewUrl(item.character.characterId)}
               density="compact"
             />
@@ -192,10 +229,7 @@
         {/each}
       </OverviewGrid>
     {:else}
-      <div class="player-characters__empty">
-        <h3>{m.player_public_characters_empty_title()}</h3>
-        <p>{m.player_public_characters_empty_description()}</p>
-      </div>
+      <p class="player-characters__empty">{m.player_companion_characters_empty()}</p>
     {/if}
   </section>
 {/if}
@@ -255,21 +289,24 @@
     margin-top: var(--space-8);
   }
 
+  .player-characters__support-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.85rem;
+  }
+
   .player-characters__empty {
-    margin-top: var(--space-4);
+    margin: var(--space-4) 0 0;
     border: 1px dashed var(--border);
     border-radius: var(--radius-lg);
-    padding: var(--space-8);
+    padding: var(--space-4);
+    color: var(--muted);
     text-align: center;
   }
 
-  .player-characters__empty h3,
-  .player-characters__empty p {
-    margin: 0;
-  }
-
-  .player-characters__empty p {
-    margin-top: var(--space-2);
-    color: var(--muted);
+  @media (min-width: 821px) {
+    .player-characters__support-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 </style>
