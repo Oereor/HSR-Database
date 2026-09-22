@@ -1,4 +1,4 @@
-import playerRuntimeJson from '../../../src/lib/generated/runtime/player.json';
+import playerRuntimeJson from '../../../src/lib/generated/runtime/player.json' with { type: 'json' };
 import type {
   CanonicalPlayerProfile,
   EnkaPlayerPipelineResult,
