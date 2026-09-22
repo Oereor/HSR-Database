@@ -315,7 +315,7 @@ function fixture(): { manifest: DataManifest; projection: ProductProjectionForVa
   const routes = { characters: [], 'light-cones': [], relics: [], enemies: ['100'] };
   const inventory = buildGeneratedRouteInventory(routes, endgame);
   const manifest = {
-    schemaVersion: 43,
+    schemaVersion: 44,
     generatedLocales: ['zh-CN', 'en'],
     publicLocale: 'zh-CN',
     publicLocales: ['zh-CN', 'en'],

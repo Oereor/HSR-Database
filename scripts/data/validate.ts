@@ -80,8 +80,15 @@ import {
   type ProductProjectionForValidation
 } from './robustness-invariants.js';
 import { validateBuildInputs } from './validation/build-inputs.js';
+import { buildPlayerRuntimeData, PLAYER_RUNTIME_TABLE_NAMES } from './player-runtime.js';
 
 const { manifest, rawRoot, textMaps: currentTextMaps } = await validateBuildInputs();
+const playerRuntimeTables = Object.fromEntries(
+  await Promise.all(
+    PLAYER_RUNTIME_TABLE_NAMES.map(async (name) => [name, await readTable(rawRoot, name)] as const)
+  )
+);
+buildPlayerRuntimeData(playerRuntimeTables);
 const productRoot = path.join(generatedRoot, 'views', 'zh-CN');
 const [homepage, homepageCharacterCatalog, homepageLightConeCatalog, homepageGachaRows] =
   await Promise.all([

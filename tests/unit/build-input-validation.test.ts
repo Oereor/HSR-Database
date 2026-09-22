@@ -9,6 +9,7 @@ import { buildGeneratedRouteInventory } from '../../scripts/data/routes';
 import { canonicalJsonDigest } from '../../scripts/data/source-metadata';
 import { assertCrossLocaleStructuralParity } from '../../scripts/data/structural-parity';
 import { validateBuildInputs } from '../../scripts/data/validation/build-inputs';
+import { PLAYER_PROPERTY_SEMANTICS } from '../../src/lib/player/property-semantics';
 
 const temporaryRoots: string[] = [];
 const commit = 'a'.repeat(40);
@@ -36,7 +37,7 @@ function serialized(value: unknown): Buffer {
   return Buffer.from(`${JSON.stringify(value)}\n`);
 }
 
-function metadata(value: unknown, locale: 'zh-CN' | 'en'): GeneratedArtifactMetadata {
+function metadata(value: unknown, locale?: 'zh-CN' | 'en'): GeneratedArtifactMetadata {
   const bytes = serialized(value);
   const schemaVersion =
     value && typeof value === 'object' && 'schemaVersion' in value
@@ -89,7 +90,7 @@ async function createFixture(): Promise<Fixture> {
     logicalPath.startsWith('static/generated/')
       ? path.join(staticGeneratedRoot, logicalPath.slice('static/generated/'.length))
       : path.join(generatedRoot, logicalPath);
-  const writeArtifact = async (logicalPath: string, value: unknown, locale: 'zh-CN' | 'en') => {
+  const writeArtifact = async (logicalPath: string, value: unknown, locale?: 'zh-CN' | 'en') => {
     const file = fileFor(logicalPath);
     await mkdir(path.dirname(file), { recursive: true });
     await writeFile(file, serialized(value));
@@ -159,6 +160,19 @@ async function createFixture(): Promise<Fixture> {
     },
     'en'
   );
+  await writeArtifact('runtime/player.json', {
+    schemaVersion: 1,
+    propertyTypes: Object.keys(PLAYER_PROPERTY_SEMANTICS).sort(),
+    avatarPromotions: {},
+    lightConePromotions: {},
+    lightConeAbilities: {},
+    relics: {},
+    relicMainAffixes: {},
+    relicSubAffixes: {},
+    relicSets: {},
+    traces: {},
+    eidolonSkillLevels: {}
+  });
 
   const localeEntry = (locale: 'zh-CN' | 'en') => {
     const localeArtifacts = Object.values(artifacts).filter((entry) => entry.locale === locale);
@@ -185,7 +199,7 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 43,
+    schemaVersion: 44,
     sourceCommit: commit,
     sourceVersion,
     gameVersionFull: '4.5.0',
@@ -207,7 +221,7 @@ async function createFixture(): Promise<Fixture> {
     await writeFile(path.join(generatedRoot, 'manifest.json'), serialized(manifest));
   };
   const rewrite = async (logicalPath: string, value: unknown) => {
-    const locale = artifacts[logicalPath].locale!;
+    const locale = artifacts[logicalPath].locale;
     await writeFile(fileFor(logicalPath), serialized(value));
     artifacts[logicalPath] = metadata(value, locale);
     for (const currentLocale of ['zh-CN', 'en'] as const) {

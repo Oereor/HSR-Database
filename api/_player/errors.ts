@@ -17,12 +17,14 @@ const errorMetadata: Record<PlayerErrorCode, ErrorMetadata> = {
 export class PlayerApiError extends Error {
   readonly code: PlayerErrorCode;
   readonly retryAfterSeconds?: number;
+  readonly diagnostic?: string;
 
-  constructor(code: PlayerErrorCode, retryAfterSeconds?: number) {
+  constructor(code: PlayerErrorCode, retryAfterSeconds?: number, diagnostic?: string) {
     super(code);
     this.name = 'PlayerApiError';
     this.code = code;
     this.retryAfterSeconds = retryAfterSeconds;
+    this.diagnostic = diagnostic;
   }
 }
 

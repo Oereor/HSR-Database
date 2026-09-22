@@ -4,7 +4,7 @@ import path from 'node:path';
 import type { DataManifest, GeneratedArtifactMetadata } from '../../src/lib/domain/types.js';
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
 
-export const DATA_MANIFEST_SCHEMA_VERSION = 43 as const;
+export const DATA_MANIFEST_SCHEMA_VERSION = 44 as const;
 
 export interface GeneratedArtifactValidationSummary {
   files: number;
@@ -70,6 +70,7 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
     )
       throw new Error(`Generated data manifest localization health is invalid: ${locale}`);
     for (const requiredPath of [
+      'runtime/player.json',
       `views/${locale}/catalogs/characters.json`,
       `views/${locale}/catalogs/light-cones.json`,
       `views/${locale}/catalogs/relics.json`,
