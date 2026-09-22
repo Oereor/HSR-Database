@@ -83,7 +83,8 @@ export function resolvePlayerTraceState(
   skillTree: ReadonlyMap<string, number>
 ): PlayerProgressionState {
   const level = skillTree.get(traceId);
-  if (level === undefined || !Number.isSafeInteger(level) || level < 0) return 'unresolved';
+  if (level === undefined) return 'inactive';
+  if (!Number.isSafeInteger(level) || level < 0) return 'unresolved';
   return level > 0 ? 'active' : 'inactive';
 }
 

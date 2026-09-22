@@ -80,11 +80,17 @@ describe('Player Character resolvers', () => {
     ).toBeNull();
   });
 
-  it('derives active, inactive and unresolved Trace states without conflating missing with zero', () => {
-    const index = createPlayerSkillTreeIndex(profile.characters[0].skillTree);
+  it('treats omitted Enka Trace nodes as inactive and preserves malformed levels as unresolved', () => {
+    const index = createPlayerSkillTreeIndex([
+      ...profile.characters[0].skillTree,
+      { id: 'malformed-negative', level: -1 },
+      { id: 'malformed-fraction', level: 0.5 }
+    ]);
     expect(resolvePlayerTraceState('1304101', index)).toBe('active');
     expect(resolvePlayerTraceState('1304102', index)).toBe('inactive');
-    expect(resolvePlayerTraceState('1304103', index)).toBe('unresolved');
+    expect(resolvePlayerTraceState('1304103', index)).toBe('inactive');
+    expect(resolvePlayerTraceState('malformed-negative', index)).toBe('unresolved');
+    expect(resolvePlayerTraceState('malformed-fraction', index)).toBe('unresolved');
   });
 
   it.each([
