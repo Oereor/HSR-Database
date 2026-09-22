@@ -14,7 +14,7 @@ Deployment preparation derives its TurnBased sparse checkout from the same sourc
 
 ## Artifact contract
 
-Manifest schema 43 retains publicLocale: zh-CN, adds publicLocales, and records canonical routePaths. The route inventory is the source for static prerendering and sitemap generation. General visual asset manifest schema 16 includes player avatars and the existing utility icon inventory; Phase 3 changes scheduling and validation observation only, not manifest semantics or public URLs.
+Manifest schema 44 retains publicLocale: zh-CN, publicLocales, and canonical routePaths, and adds the locale-neutral `runtime/player.json` lookup used by the isolated Enka player pipeline. The route inventory is the source for static prerendering and sitemap generation. General visual asset manifest schema 16 includes player avatars and the existing utility icon inventory; Phase 3 changes scheduling and validation observation only, not manifest semantics or public URLs.
 
 Validation has two explicit layers. `data:validate:build-inputs` reopens the manifest, prepared pinned source, TextMaps and every generated artifact from disk; it validates identity, bytes, digests, schemas, inventories and route/search consumer closure without rebuilding domain semantics. `data:validate:full` composes that gate with the complete raw-to-generated semantic audits, cross-locale structural parity and English CJK audit. The compatibility command `data:validate` remains an alias for the full validator.
 

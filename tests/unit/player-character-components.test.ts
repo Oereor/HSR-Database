@@ -103,7 +103,9 @@ describe('Player Character controls', () => {
 describe('Player Character presentation', () => {
   it('renders equipment fallbacks, six fixed slots and accessible enhancement counts', () => {
     const character: PlayerCharacter = {
+      buildId: 'area:showcase:position:1:order:0',
       characterId: '1304',
+      display: { area: 'showcase', position: 1, sourceOrder: 0 },
       progression: { rank: 0, level: 80, promotion: 6, enhanced: false },
       skillTree: [],
       lightCone: { lightConeId: '999999', level: 70, promotion: 5, rank: 2 },
@@ -168,7 +170,9 @@ describe('Player Character presentation', () => {
 
   it('links known equipment to localized static details with only initial Light Cone state', () => {
     const character: PlayerCharacter = {
+      buildId: 'area:showcase:position:1:order:0',
       characterId: '1304',
+      display: { area: 'showcase', position: 1, sourceOrder: 0 },
       progression: { rank: 0, level: 80, promotion: 6, enhanced: false },
       skillTree: [],
       lightCone: { lightConeId: '23023', level: 70, promotion: 5, rank: 2 },
@@ -216,7 +220,9 @@ describe('Player Character presentation', () => {
 
   it('renders explicit empty equipment states without collapsing relic slots', () => {
     const character: PlayerCharacter = {
+      buildId: 'area:showcase:position:1:order:0',
       characterId: '1304',
+      display: { area: 'showcase', position: 1, sourceOrder: 0 },
       progression: { rank: 0, level: 1, promotion: 0, enhanced: false },
       skillTree: [],
       lightCone: null,
@@ -332,7 +338,8 @@ describe('Player Character presentation', () => {
         traces,
         playerSkillTree: [
           { id: '1304101', level: 1 },
-          { id: '1304201', level: 0 }
+          { id: '1304201', level: 0 },
+          { id: '1304202', level: -1 }
         ]
       }
     }).body;

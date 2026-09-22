@@ -58,6 +58,9 @@ jobs:
       - name: Install updater dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Compile site messages
+        run: pnpm messages:compile
+
       - name: Update upstream locks
         run: pnpm upstreams:update
 
@@ -138,6 +141,7 @@ jobs:
             echo
             echo 'Checks passed:'
             echo '- `pnpm install --frozen-lockfile`'
+            echo '- `pnpm messages:compile`'
             echo '- `pnpm data:search-names:update`'
             echo '- `pnpm data:player-aliases:sync`'
             echo '- `pnpm data:search-names:check`'

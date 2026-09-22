@@ -8,6 +8,7 @@ import {
   validateGeneratedArtifacts,
   type GeneratedArtifactValidationSummary
 } from '../generated-artifacts.js';
+import { assertPlayerRuntimeData } from '../player-runtime.js';
 import {
   getGeneratedLocales,
   getPublicLocale,
@@ -175,6 +176,12 @@ export async function validateBuildInputs(
     { generated: generatedRoot, staticGenerated: staticGeneratedRoot },
     {
       onArtifact(logicalPath, value, metadata) {
+        if (logicalPath === 'runtime/player.json') {
+          if (metadata.locale !== undefined)
+            throw new Error('Player runtime artifact must be locale-neutral');
+          assertPlayerRuntimeData(value);
+          return;
+        }
         assertArtifactLocale(logicalPath, metadata);
         const catalogMatch = logicalPath.match(
           /^views\/(zh-CN|en)\/catalogs\/(characters|light-cones|relics|enemies)\.json$/

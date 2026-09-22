@@ -30,6 +30,7 @@ export const DATA_GENERATION_TABLE_NAMES = [
   'EquipmentPromotionConfig',
   'RelicSetConfig',
   'RelicSetSkillConfig',
+  'RelicConfig',
   'RelicDataInfo',
   'RelicBaseType',
   'RelicMainAffixConfig',

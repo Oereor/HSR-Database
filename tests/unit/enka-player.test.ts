@@ -1,0 +1,119 @@
+import { readFileSync } from 'node:fs';
+import { describe, expect, it } from 'vitest';
+import { adaptEnkaProfile } from '../../api/_player/enka/adapter';
+import { decodeEnkaResponse } from '../../api/_player/enka/decode';
+import { buildEnkaPlayerProfile, playerRuntimeData } from '../../api/_player/enka/pipeline';
+import { collectPropertyContributions } from '../../src/lib/player/stat-synthesis';
+
+const fixture = JSON.parse(
+  readFileSync('tests/fixtures/enka/phase1-player.sanitized.json', 'utf8')
+) as unknown;
+const expected = JSON.parse(
+  readFileSync('tests/fixtures/enka/phase1-player.expected-stats.json', 'utf8')
+) as Record<string, Record<string, number>>;
+
+interface MutableFixture {
+  unknownFutureField?: unknown;
+  detailInfo: {
+    uid: number;
+    avatarDetailList: Array<Record<string, unknown>>;
+  };
+}
+
+describe('Enka decoder and canonical adapter', () => {
+  it('normalizes optional fields without retaining _flat and preserves occurrence identity', () => {
+    const decoded = decodeEnkaResponse(fixture);
+    const profile = adaptEnkaProfile(decoded);
+    expect(profile.uid).toBe('100000001');
+    expect(profile.nickname).toBe('');
+    expect(profile.characters).toHaveLength(6);
+    expect(profile.characters.slice(0, 3).map((build) => build.display.area)).toEqual([
+      'assist',
+      'assist',
+      'assist'
+    ]);
+    expect(profile.characters[3].display).toMatchObject({ area: 'showcase', position: 1 });
+    expect(profile.characters[3].eidolon).toBe(0);
+    expect(profile.characters[0].relics[1].subAffixes[3]).not.toHaveProperty('step');
+    expect(JSON.stringify(profile)).not.toContain('_flat');
+  });
+
+  it('keeps duplicate avatar builds and ignores unknown response fields', () => {
+    const source = structuredClone(fixture) as MutableFixture;
+    source.unknownFutureField = { accepted: true };
+    source.detailInfo.avatarDetailList = [
+      source.detailInfo.avatarDetailList[0],
+      {
+        ...source.detailInfo.avatarDetailList[0],
+        _assist: undefined,
+        pos: 4,
+        rank: undefined
+      }
+    ];
+    const profile = adaptEnkaProfile(decodeEnkaResponse(source));
+    expect(profile.characters.map((build) => build.avatarId)).toEqual(['1310', '1310']);
+    expect(new Set(profile.characters.map((build) => build.buildId)).size).toBe(2);
+    expect(profile.characters[1].eidolon).toBe(0);
+    expect(profile.characters[1].display.area).toBe('showcase');
+  });
+
+  it('fails with a stable public code and a non-payload diagnostic path', () => {
+    const source = structuredClone(fixture) as MutableFixture;
+    source.detailInfo.uid = 2;
+    try {
+      decodeEnkaResponse(source);
+      throw new Error('decoder unexpectedly accepted mismatched UIDs');
+    } catch (error) {
+      expect(error).toMatchObject({
+        code: 'UPSTREAM_INVALID_RESPONSE',
+        diagnostic: 'detailInfo.uid'
+      });
+    }
+  });
+});
+
+describe('Enka production stat pipeline golden', () => {
+  it('reproduces 51 same-state assertions across six builds within 1e-8', () => {
+    const result = buildEnkaPlayerProfile(fixture);
+    expect(
+      new Set(
+        collectPropertyContributions(
+          result.canonical.characters[0].build,
+          playerRuntimeData
+        ).contributions.map(({ source }) => source)
+      )
+    ).toEqual(
+      new Set([
+        'avatar',
+        'lightCone',
+        'lightConeAbility',
+        'relicMain',
+        'relicSub',
+        'relicSet',
+        'trace'
+      ])
+    );
+    let assertions = 0;
+    for (const character of result.canonical.characters) {
+      expect(character.status).toBe('complete');
+      for (const [field, value] of Object.entries(expected[character.build.avatarId])) {
+        expect(character.values[field], `${character.build.avatarId}.${field}`).toBeCloseTo(
+          value,
+          8
+        );
+        assertions += 1;
+      }
+    }
+    expect(assertions).toBe(51);
+    expect(result.presentation.characters).toHaveLength(6);
+    expect(result.presentation.characters[0]).toMatchObject({
+      buildId: 'area:assist:position:none:order:0',
+      display: { area: 'assist', sourceOrder: 0 }
+    });
+    expect(result.presentation.characters[0].stats[0]).toEqual({
+      field: 'hp',
+      percent: false,
+      total: '3115'
+    });
+  });
+});

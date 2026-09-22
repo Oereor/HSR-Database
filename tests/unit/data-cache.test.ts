@@ -8,9 +8,9 @@ import {
 } from '../../scripts/data/generated-artifacts';
 import { publishGeneratedDirectories } from '../../scripts/data/sync';
 
-it('accepts the schema-43 dual-locale generated tree and validates every emitted artifact', async () => {
+it('accepts the schema-44 dual-locale generated tree and validates every emitted artifact', async () => {
   const manifest = await readDataManifest();
-  expect(manifest.schemaVersion).toBe(43);
+  expect(manifest.schemaVersion).toBe(44);
   expect(manifest.publicLocales).toEqual(['zh-CN', 'en']);
   expect(manifest.publicLocale).toBe('zh-CN');
   expect(manifest.generatedLocales).toEqual(['zh-CN', 'en']);
@@ -20,6 +20,8 @@ it('accepts the schema-43 dual-locale generated tree and validates every emitted
   expect(manifest).not.toHaveProperty('migration');
   expect(manifest.artifacts).toHaveProperty('static/generated/zh-CN/player-equipment.json');
   expect(manifest.artifacts).toHaveProperty('static/generated/en/player-equipment.json');
+  expect(manifest.artifacts).toHaveProperty('runtime/player.json');
+  expect(manifest.artifacts['runtime/player.json']).not.toHaveProperty('locale');
   for (const locale of ['zh-CN', 'en'] as const) {
     const playerEquipment = JSON.parse(
       await readFile(path.join(staticGeneratedRoot, locale, 'player-equipment.json'), 'utf8')

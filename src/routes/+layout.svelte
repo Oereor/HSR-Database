@@ -25,8 +25,6 @@
   $: canonicalPath = trailingSlashHref($page.url.pathname);
   $: chinesePath = localeCounterpartHref(canonicalPath, 'zh-CN');
   $: englishPath = localeCounterpartHref(canonicalPath, 'en');
-  $: mihomoApiUrl =
-    data.locale === 'zh-CN' ? 'https://march7th.xyz/zh/api/' : 'https://march7th.xyz/en/api/';
 </script>
 
 <svelte:head>
@@ -53,7 +51,7 @@
           >TurnBasedGameData</a
         >{m.footer_asset_source()}<a href="https://github.com/Mar-7th/StarRailRes">StarRailRes</a>
         (<a href="/licenses/StarRailRes-AGPL-3.0.txt">{m.footer_license()}</a
-        >){m.footer_player_data_source()}<a href={mihomoApiUrl}>MiHoMo API / Mar-7th</a
+        >){m.footer_player_data_source()}<a href="https://enka.network/">Enka.Network</a
         >{m.footer_scope_note()}
       </p>
     </footer>

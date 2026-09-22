@@ -98,7 +98,7 @@ describe('Player equipment resolver', () => {
     expect(unknown.equipment).toMatchObject({ level: 70, promotion: 5, rank: 2 });
   });
 
-  it('maps MiHoMo types to the canonical six-slot order', () => {
+  it('maps relic slot types to the canonical six-slot order', () => {
     expect([1, 2, 3, 4, 5, 6].map((type) => playerRelicSlot(type as PlayerRelic['type']))).toEqual([
       'HEAD',
       'HAND',

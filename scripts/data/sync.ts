@@ -55,6 +55,7 @@ import { canonicalJsonDigest, readPreparedSourceMetadata } from './source-metada
 import { buildCharacterDomain } from './domain/character.js';
 import { buildLightConeDomain } from './domain/light-cone.js';
 import { buildRelicDomain } from './domain/relic.js';
+import { buildPlayerRuntimeData } from './player-runtime.js';
 import { projectCharacter } from './projection/character.js';
 import { projectLightCone } from './projection/light-cone.js';
 import { projectRelic } from './projection/relic.js';
@@ -314,6 +315,7 @@ export async function syncData(): Promise<DataManifest> {
       ],
       spec.identityOf
     );
+  const playerRuntimeData = buildPlayerRuntimeData(tables);
 
   const avatarProperties = by(tables.AvatarPropertyConfig, 'PropertyType');
   const isEmptyTextSource = (value: unknown): boolean =>
@@ -942,6 +944,7 @@ export async function syncData(): Promise<DataManifest> {
           { locale: projectedLocale }
         );
   };
+  await writeArtifact(nextGeneratedRoot, 'runtime/player.json', playerRuntimeData);
   for (const projection of projections) await writeViewArtifacts(projection);
   const countsOf = (projection: (typeof projections)[number]) => ({
     characters: projection.details.characters.length,
@@ -989,7 +992,7 @@ export async function syncData(): Promise<DataManifest> {
   };
   const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
   const manifestWithoutRevision: Omit<DataManifest, 'dataRevision'> = {
-    schemaVersion: 43,
+    schemaVersion: 44,
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,
