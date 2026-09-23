@@ -1,0 +1,1166 @@
+{
+  "mode": "n",
+  "seed": 123456789,
+  "cases": [
+    {
+      "characterId": "1310",
+      "slot": "HEAD"
+    },
+    {
+      "characterId": "1310",
+      "slot": "HAND"
+    },
+    {
+      "characterId": "1310",
+      "slot": "BODY"
+    },
+    {
+      "characterId": "1310",
+      "slot": "FOOT"
+    },
+    {
+      "characterId": "1310",
+      "slot": "NECK"
+    },
+    {
+      "characterId": "1310",
+      "slot": "OBJECT"
+    },
+    {
+      "characterId": "1002",
+      "slot": "BODY"
+    },
+    {
+      "characterId": "1222",
+      "slot": "FOOT"
+    },
+    {
+      "characterId": "1005",
+      "slot": "NECK"
+    },
+    {
+      "characterId": "1101",
+      "slot": "HEAD"
+    }
+  ],
+  "probabilityVersion": "natural-5star-v1",
+  "K": 8192,
+  "Ns": [10, 25, 50, 100, 200],
+  "sensitivity": [
+    {
+      "N": 10,
+      "pieces": [
+        {
+          "characterId": "1310",
+          "slot": "HEAD",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 6.234615370880817,
+          "percentile": 0.9466145844478726,
+          "mainCompletion": 1,
+          "pieceScore": 96.26302091135108,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0.002197265627825702,
+            "good": 0.04912860591529777,
+            "excellent": 0.3085937437307106,
+            "extreme": 0.8789062521535707
+          },
+          "p50": 4.3942307657585475,
+          "p90": 5.874999981481483,
+          "p99": 6.9859999852793235,
+          "runtimeMs": 117.75129999999996
+        },
+        {
+          "characterId": "1310",
+          "slot": "HAND",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 4.884615372269705,
+          "percentile": 0.6738281249999998,
+          "mainCompletion": 1,
+          "pieceScore": 77.16796874999999,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0.002441406255651403,
+            "good": 0.05981445310357172,
+            "excellent": 0.3452524077690999,
+            "extreme": 0.8608774076068026
+          },
+          "p50": 4.3942307657585475,
+          "p90": 5.874999981481483,
+          "p99": 6.9859999852793235,
+          "runtimeMs": 116.51850000000002
+        },
+        {
+          "characterId": "1310",
+          "slot": "BODY",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 2.884615372269706,
+          "percentile": 0.08984374860682455,
+          "mainCompletion": 1,
+          "pieceScore": 36.28906240247772,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0.0009095149414548627,
+            "good": 0.05078125,
+            "excellent": 0.3398437468653527,
+            "extreme": 0.90625
+          },
+          "p50": 4.259615372269705,
+          "p90": 5.66249997098766,
+          "p99": 6.838980762175987,
+          "runtimeMs": 125.16729999999995
+        },
+        {
+          "characterId": "1310",
+          "slot": "FOOT",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 3.6249999814814817,
+          "percentile": 0.3124999844933314,
+          "mainCompletion": 1,
+          "pieceScore": 51.8749989145332,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0.0020122355637177333,
+            "good": 0.05859375,
+            "excellent": 0.328125,
+            "extreme": 0.888281250164569
+          },
+          "p50": 4.153846153846153,
+          "p90": 5.6249999691358035,
+          "p99": 6.788461515124347,
+          "runtimeMs": 118.87560000000008
+        },
+        {
+          "characterId": "1310",
+          "slot": "NECK",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 4.2499999629629635,
+          "percentile": 0.50390625,
+          "mainCompletion": 1,
+          "pieceScore": 65.2734375,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0.0013964843644205744,
+            "good": 0.0546875,
+            "excellent": 0.35677083672920906,
+            "extreme": 0.9218750010614024
+          },
+          "p50": 4.2499999629629635,
+          "p90": 5.653846115574549,
+          "p99": 6.869230744261634,
+          "runtimeMs": 124.51729999999998
+        },
+        {
+          "characterId": "1310",
+          "slot": "OBJECT",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 3.003846152457265,
+          "percentile": 0.14609375278983294,
+          "mainCompletion": 1,
+          "pieceScore": 40.2265626952883,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0.001953125,
+            "good": 0.0546875,
+            "excellent": 0.35546875,
+            "extreme": 0.888221154504615
+          },
+          "p50": 4.049999980787037,
+          "p90": 5.54769227847163,
+          "p99": 6.778846124093068,
+          "runtimeMs": 118.95179999999993
+        },
+        {
+          "characterId": "1002",
+          "slot": "BODY",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.8999999990740744,
+          "percentile": 0.0022719109487455646,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0.0022719109487455646,
+            "good": 0.04296875,
+            "excellent": 0.2890625100308643,
+            "extreme": 0.862999402438634
+          },
+          "p50": 4.949999997222223,
+          "p90": 6.549999998148149,
+          "p99": 7.853134607258075,
+          "runtimeMs": 123.2808
+        },
+        {
+          "characterId": "1222",
+          "slot": "FOOT",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.1999999972222226,
+          "percentile": 0.0029296875180844927,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0.0029296875180844927,
+            "good": 0.0625,
+            "excellent": 0.3828125,
+            "extreme": 0.924479164984245
+          },
+          "p50": 3.299999986805556,
+          "p90": 4.449999996319446,
+          "p99": 5.469230760705307,
+          "runtimeMs": 122.82449999999994
+        },
+        {
+          "characterId": "1005",
+          "slot": "NECK",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.769230769230769,
+          "percentile": 0.0028760302363600326,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0.0028760302363600326,
+            "good": 0.05859375,
+            "excellent": 0.32481971209490734,
+            "extreme": 0.8806090483747466
+          },
+          "p50": 4.557692305377493,
+          "p90": 6.0499999912037055,
+          "p99": 7.251211535917559,
+          "runtimeMs": 122.76490000000013
+        },
+        {
+          "characterId": "1101",
+          "slot": "HEAD",
+          "fixture": "held-out-median",
+          "rawSubUtility": 0.9499999995370372,
+          "percentile": 0.001302083393259139,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0.001302083393259139,
+            "good": 0.06551762362227771,
+            "excellent": 0.3671875,
+            "extreme": 0.8984375006526178
+          },
+          "p50": 3.6999999851851855,
+          "p90": 5.223076913200379,
+          "p99": 6.367826920419517,
+          "runtimeMs": 111.76160000000004
+        }
+      ],
+      "build": {
+        "S_base": 0.5607591126859495,
+        "targetA": 0.5607591126859495,
+        "targetB": 0.5607591126859495,
+        "B": 1,
+        "T": 1,
+        "finalBase": 62.664524578305716
+      }
+    },
+    {
+      "N": 25,
+      "pieces": [
+        {
+          "characterId": "1310",
+          "slot": "HEAD",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 6.234615370880817,
+          "percentile": 0.8765024031691445,
+          "mainCompletion": 1,
+          "pieceScore": 91.35516822184012,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0.0009016696009181303,
+            "excellent": 0.04910339576804566,
+            "extreme": 0.73046875
+          },
+          "p50": 5.144230750712251,
+          "p90": 6.349999973919754,
+          "p99": 7.307865360972638,
+          "runtimeMs": 273.9825000000001
+        },
+        {
+          "characterId": "1310",
+          "slot": "HAND",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 4.884615372269705,
+          "percentile": 0.371093755015435,
+          "mainCompletion": 1,
+          "pieceScore": 55.976562851080445,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0.0015318687265893699,
+            "excellent": 0.06521293449953348,
+            "extreme": 0.6914062531346493
+          },
+          "p50": 5.144230750712251,
+          "p90": 6.349999973919754,
+          "p99": 7.307865360972638,
+          "runtimeMs": 278.7563
+        },
+        {
+          "characterId": "1310",
+          "slot": "BODY",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 2.884615372269706,
+          "percentile": 0.003305288407768017,
+          "mainCompletion": 1,
+          "pieceScore": 30.23137018854376,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0.0013020833764514459,
+            "excellent": 0.06249999764901459,
+            "extreme": 0.7734375
+          },
+          "p50": 5.019230744539412,
+          "p90": 6.234615358535139,
+          "p99": 7.159961523664472,
+          "runtimeMs": 295.83770000000004
+        },
+        {
+          "characterId": "1310",
+          "slot": "FOOT",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 3.6249999814814817,
+          "percentile": 0.05468749907670204,
+          "mainCompletion": 1,
+          "pieceScore": 33.82812493536914,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0.0016741072609599405,
+            "excellent": 0.0625,
+            "extreme": 0.73828125
+          },
+          "p50": 4.924999986959877,
+          "p90": 6.163461532288698,
+          "p99": 7.109961530774812,
+          "runtimeMs": 286.6884
+        },
+        {
+          "characterId": "1310",
+          "slot": "NECK",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 4.2499999629629635,
+          "percentile": 0.18359375,
+          "mainCompletion": 1,
+          "pieceScore": 42.85156249999999,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0.0021551724378340784,
+            "excellent": 0.07476929505803051,
+            "extreme": 0.8085937525077143
+          },
+          "p50": 4.999999975308642,
+          "p90": 6.199999984876544,
+          "p99": 7.1644999830856495,
+          "runtimeMs": 317.51800000000003
+        },
+        {
+          "characterId": "1310",
+          "slot": "OBJECT",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 3.003846152457265,
+          "percentile": 0.007932692293966636,
+          "mainCompletion": 1,
+          "pieceScore": 30.55528846057766,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0.0009300994768296244,
+            "excellent": 0.078125,
+            "extreme": 0.737304687385716
+          },
+          "p50": 4.874999993827162,
+          "p90": 6.144230750712251,
+          "p99": 7.124999945555556,
+          "runtimeMs": 296.4196000000002
+        },
+        {
+          "characterId": "1002",
+          "slot": "BODY",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.8999999990740744,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0.001813615936717565,
+            "excellent": 0.04927884837963202,
+            "extreme": 0.6874999976490217
+          },
+          "p50": 5.849999983950618,
+          "p90": 7.151730737625832,
+          "p99": 8.324999966358025,
+          "runtimeMs": 299.21450000000004
+        },
+        {
+          "characterId": "1222",
+          "slot": "FOOT",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.1999999972222226,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0.0033845247598456663,
+            "excellent": 0.0859375,
+            "extreme": 0.8139648392684375
+          },
+          "p50": 3.909615373504274,
+          "p90": 4.969230757124288,
+          "p99": 5.838461528547187,
+          "runtimeMs": 293.68010000000004
+        },
+        {
+          "characterId": "1005",
+          "slot": "NECK",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.769230769230769,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0.0007102272816947899,
+            "excellent": 0.05528846234856834,
+            "extreme": 0.7250976570581507
+          },
+          "p50": 5.323076920993589,
+          "p90": 6.5499999935185205,
+          "p99": 7.569749993539354,
+          "runtimeMs": 311.77729999999974
+        },
+        {
+          "characterId": "1101",
+          "slot": "HEAD",
+          "fixture": "held-out-median",
+          "rawSubUtility": 0.9499999995370372,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0.0019531249457465287,
+            "excellent": 0.08203125,
+            "extreme": 0.7578125097173902
+          },
+          "p50": 4.5346153836894585,
+          "p90": 5.849999993564815,
+          "p99": 6.779365375123102,
+          "runtimeMs": 279.29119999999966
+        }
+      ],
+      "build": {
+        "S_base": 0.42226442324190167,
+        "targetA": 0.42226442324190167,
+        "targetB": 0.42226442324190167,
+        "B": 1,
+        "T": 1,
+        "finalBase": 50.892475975561645
+      }
+    },
+    {
+      "N": 50,
+      "pieces": [
+        {
+          "characterId": "1310",
+          "slot": "HEAD",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 6.234615370880817,
+          "percentile": 0.762301502992312,
+          "mainCompletion": 1,
+          "pieceScore": 83.36110520946183,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0.0024414062867341236,
+            "extreme": 0.53515625
+          },
+          "p50": 5.674999986959877,
+          "p90": 6.659615370186373,
+          "p99": 7.545442304685365,
+          "runtimeMs": 552.0241000000005
+        },
+        {
+          "characterId": "1310",
+          "slot": "HAND",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 4.884615372269705,
+          "percentile": 0.13671875,
+          "mainCompletion": 1,
+          "pieceScore": 39.5703125,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0.003756009848106497,
+            "extreme": 0.4783492814807778
+          },
+          "p50": 5.674999986959877,
+          "p90": 6.659615370186373,
+          "p99": 7.545442304685365,
+          "runtimeMs": 552.3572999999997
+        },
+        {
+          "characterId": "1310",
+          "slot": "BODY",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 2.884615372269706,
+          "percentile": 0,
+          "mainCompletion": 1,
+          "pieceScore": 30,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0.0036234446245769427,
+            "extreme": 0.58984375
+          },
+          "p50": 5.519230769230769,
+          "p90": 6.549999980787038,
+          "p99": 7.424999965601852,
+          "runtimeMs": 593.1298999999999
+        },
+        {
+          "characterId": "1310",
+          "slot": "FOOT",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 3.6249999814814817,
+          "percentile": 0.0039062498713991864,
+          "mainCompletion": 1,
+          "pieceScore": 30.27343749099794,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0.00390625,
+            "extreme": 0.54296875
+          },
+          "p50": 5.449999991049383,
+          "p90": 6.503846140111587,
+          "p99": 7.309961526407528,
+          "runtimeMs": 581.7775000000001
+        },
+        {
+          "characterId": "1310",
+          "slot": "NECK",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 4.2499999629629635,
+          "percentile": 0.03125,
+          "mainCompletion": 1,
+          "pieceScore": 32.1875,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0.003906954124637848,
+            "extreme": 0.6542968749297436
+          },
+          "p50": 5.499999987654322,
+          "p90": 6.519230756885091,
+          "p99": 7.404365359736528,
+          "runtimeMs": 602.9930999999997
+        },
+        {
+          "characterId": "1310",
+          "slot": "OBJECT",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 3.003846152457265,
+          "percentile": 0,
+          "mainCompletion": 1,
+          "pieceScore": 30,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0.0039069552260251805,
+            "extreme": 0.5336914070459061
+          },
+          "p50": 5.384615384615385,
+          "p90": 6.488076896981247,
+          "p99": 7.309961526407528,
+          "runtimeMs": 655.2483999999995
+        },
+        {
+          "characterId": "1002",
+          "slot": "BODY",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.8999999990740744,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0.003537735802075994,
+            "extreme": 0.4711914066012815
+          },
+          "p50": 6.399999974382716,
+          "p90": 7.5499999845679024,
+          "p99": 8.549999962222223,
+          "runtimeMs": 599.469
+        },
+        {
+          "characterId": "1222",
+          "slot": "FOOT",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.1999999972222226,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0.006835937570686704,
+            "extreme": 0.6582031243175095
+          },
+          "p50": 4.309615380911681,
+          "p90": 5.253846146438746,
+          "p99": 6.0692307568488255,
+          "runtimeMs": 582.237799999999
+        },
+        {
+          "characterId": "1005",
+          "slot": "NECK",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.769230769230769,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0.003779123525660342,
+            "extreme": 0.5156250015673214
+          },
+          "p50": 5.874999996527778,
+          "p90": 6.9288461515313395,
+          "p99": 7.813980764645122,
+          "runtimeMs": 615.8516
+        },
+        {
+          "characterId": "1101",
+          "slot": "HEAD",
+          "fixture": "held-out-median",
+          "rawSubUtility": 0.9499999995370372,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0.004482582140498902,
+            "extreme": 0.5898437527166928
+          },
+          "p50": 5.055769215954417,
+          "p90": 6.173076922444207,
+          "p99": 7.055769215954415,
+          "runtimeMs": 548.9956999999995
+        }
+      ],
+      "build": {
+        "S_base": 0.3678532926914577,
+        "targetA": 0.3678532926914577,
+        "targetB": 0.3678532926914577,
+        "B": 1,
+        "T": 1,
+        "finalBase": 46.2675298787739
+      }
+    },
+    {
+      "N": 100,
+      "pieces": [
+        {
+          "characterId": "1310",
+          "slot": "HEAD",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 6.234615370880817,
+          "percentile": 0.5717773458713978,
+          "mainCompletion": 1,
+          "pieceScore": 70.02441421099785,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.28515625
+          },
+          "p50": 6.124999981481482,
+          "p90": 6.963461525421415,
+          "p99": 7.744230749323362,
+          "runtimeMs": 1106.719799999999
+        },
+        {
+          "characterId": "1310",
+          "slot": "HAND",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 4.884615372269705,
+          "percentile": 0.019140624016505348,
+          "mainCompletion": 1,
+          "pieceScore": 31.339843681155372,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.23046875501542893
+          },
+          "p50": 6.124999981481482,
+          "p90": 6.963461525421415,
+          "p99": 7.744230749323362,
+          "runtimeMs": 1096.7464
+        },
+        {
+          "characterId": "1310",
+          "slot": "BODY",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 2.884615372269706,
+          "percentile": 0,
+          "mainCompletion": 1,
+          "pieceScore": 30,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.34765625
+          },
+          "p50": 5.991346142503561,
+          "p90": 6.809615382686372,
+          "p99": 7.624999982592593,
+          "runtimeMs": 1253.9213999999993
+        },
+        {
+          "characterId": "1310",
+          "slot": "FOOT",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 3.6249999814814817,
+          "percentile": 0,
+          "mainCompletion": 1,
+          "pieceScore": 30,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.296875
+          },
+          "p50": 5.903846129154797,
+          "p90": 6.759615378442547,
+          "p99": 7.528846135327635,
+          "runtimeMs": 1159.6592
+        },
+        {
+          "characterId": "1310",
+          "slot": "NECK",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 4.2499999629629635,
+          "percentile": 0.00262064860815018,
+          "mainCompletion": 1,
+          "pieceScore": 30.183445402570513,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.43359375
+          },
+          "p50": 5.973076916209639,
+          "p90": 6.803846144355413,
+          "p99": 7.650346133987359,
+          "runtimeMs": 1229.7335000000003
+        },
+        {
+          "characterId": "1310",
+          "slot": "OBJECT",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 3.003846152457265,
+          "percentile": 0,
+          "mainCompletion": 1,
+          "pieceScore": 30,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.2920673079508233
+          },
+          "p50": 5.858653826593661,
+          "p90": 6.749999975308643,
+          "p99": 7.528846136438748,
+          "runtimeMs": 1166.488300000001
+        },
+        {
+          "characterId": "1002",
+          "slot": "BODY",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.8999999990740744,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.225210540023355
+          },
+          "p50": 6.8749999691358035,
+          "p90": 7.874999956790124,
+          "p99": 8.824999979814816,
+          "runtimeMs": 1187.0682000000015
+        },
+        {
+          "characterId": "1222",
+          "slot": "FOOT",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.1999999972222226,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.4394531229624766
+          },
+          "p50": 4.726923059330485,
+          "p90": 5.48461538292557,
+          "p99": 6.184615374701033,
+          "runtimeMs": 1155.8618999999999
+        },
+        {
+          "characterId": "1005",
+          "slot": "NECK",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.769230769230769,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.2734374999999991
+          },
+          "p50": 6.29999999351852,
+          "p90": 7.199999992592593,
+          "p99": 7.99999999326389,
+          "runtimeMs": 1213.9021999999968
+        },
+        {
+          "characterId": "1101",
+          "slot": "HEAD",
+          "fixture": "held-out-median",
+          "rawSubUtility": 0.9499999995370372,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.3437500027166943
+          },
+          "p50": 5.505769225830959,
+          "p90": 6.461538461538462,
+          "p99": 7.305769215954417,
+          "runtimeMs": 1093.4629999999997
+        }
+      ],
+      "build": {
+        "S_base": 0.34173114869729426,
+        "targetA": 0.34173114869729426,
+        "targetB": 0.34173114869729426,
+        "B": 1,
+        "T": 1,
+        "finalBase": 44.04714763927001
+      }
+    },
+    {
+      "N": 200,
+      "pieces": [
+        {
+          "characterId": "1310",
+          "slot": "HEAD",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 6.234615370880817,
+          "percentile": 0.32421875,
+          "mainCompletion": 1,
+          "pieceScore": 52.69531249999999,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.07812500527506638
+          },
+          "p50": 6.444230743844967,
+          "p90": 7.194230756190646,
+          "p99": 7.878846133938747,
+          "runtimeMs": 2186.770999999997
+        },
+        {
+          "characterId": "1310",
+          "slot": "HAND",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 4.884615372269705,
+          "percentile": 0,
+          "mainCompletion": 1,
+          "pieceScore": 30,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.05468750253745336
+          },
+          "p50": 6.444230743844967,
+          "p90": 7.194230756190646,
+          "p99": 7.878846133938747,
+          "runtimeMs": 2295.9604
+        },
+        {
+          "characterId": "1310",
+          "slot": "BODY",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 2.884615372269706,
+          "percentile": 0,
+          "mainCompletion": 1,
+          "pieceScore": 30,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.1171875
+          },
+          "p50": 6.334615369491928,
+          "p90": 7.099999973919754,
+          "p99": 7.784615364013533,
+          "runtimeMs": 2405.3073000000004
+        },
+        {
+          "characterId": "1310",
+          "slot": "FOOT",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 3.6249999814814817,
+          "percentile": 0,
+          "mainCompletion": 1,
+          "pieceScore": 30,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.08984375
+          },
+          "p50": 6.2596153537511885,
+          "p90": 7.038461524881291,
+          "p99": 7.724115361451035,
+          "runtimeMs": 2356.5543999999973
+        },
+        {
+          "characterId": "1310",
+          "slot": "NECK",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 4.2499999629629635,
+          "percentile": 0,
+          "mainCompletion": 1,
+          "pieceScore": 30,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.18359375691781712
+          },
+          "p50": 6.2942307362832395,
+          "p90": 7.0692307613989795,
+          "p99": 7.809615360340693,
+          "runtimeMs": 2461.9371999999967
+        },
+        {
+          "characterId": "1310",
+          "slot": "OBJECT",
+          "fixture": "existing-normalized",
+          "rawSubUtility": 3.003846152457265,
+          "percentile": 0,
+          "mainCompletion": 1,
+          "pieceScore": 30,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.08503605874897484
+          },
+          "p50": 6.209615363319089,
+          "p90": 7.019230744539412,
+          "p99": 7.724115364784368,
+          "runtimeMs": 2423.118300000002
+        },
+        {
+          "characterId": "1002",
+          "slot": "BODY",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.8999999990740744,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.05078124927662074
+          },
+          "p50": 7.299999973456791,
+          "p90": 8.178653835690884,
+          "p99": 9.001923022849004,
+          "runtimeMs": 2399.3677000000025
+        },
+        {
+          "characterId": "1222",
+          "slot": "FOOT",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.1999999972222226,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.19726562204519468
+          },
+          "p50": 5.049999983796297,
+          "p90": 5.713461537767094,
+          "p99": 6.313461530359687,
+          "runtimeMs": 2326.422099999996
+        },
+        {
+          "characterId": "1005",
+          "slot": "NECK",
+          "fixture": "held-out-median",
+          "rawSubUtility": 1.769230769230769,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.06640625078366133
+          },
+          "p50": 6.703846151994302,
+          "p90": 7.4980769189102565,
+          "p99": 8.194230763906695,
+          "runtimeMs": 2433.3498000000036
+        },
+        {
+          "characterId": "1101",
+          "slot": "HEAD",
+          "fixture": "held-out-median",
+          "rawSubUtility": 0.9499999995370372,
+          "percentile": 0,
+          "mainCompletion": null,
+          "pieceScore": null,
+          "quality": {
+            "poor": 0,
+            "below-average": 0,
+            "average": 0,
+            "good": 0,
+            "excellent": 0,
+            "extreme": 0.12109375271669434
+          },
+          "p50": 5.961538448035375,
+          "p90": 6.728846143043685,
+          "p99": 7.535999992395063,
+          "runtimeMs": 2206.564299999998
+        }
+      ],
+      "build": {
+        "S_base": 0.3226953125,
+        "targetA": 0.3226953125,
+        "targetB": 0.3226953125,
+        "B": 1,
+        "T": 1,
+        "finalBase": 42.4291015625
+      }
+    }
+  ]
+}

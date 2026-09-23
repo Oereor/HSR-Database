@@ -52,6 +52,10 @@
     "relic-score:farming:validate": "tsx scripts/relic-score/farming-validate.ts",
     "relic-score:farming:prototype": "tsx scripts/relic-score/farming-prototype.ts",
     "relic-score:farming:frequency": "tsx scripts/relic-score/farming-frequency.ts",
+    "relic-score:score": "tsx scripts/relic-score/score-command.ts",
+    "relic-score:inspect": "tsx scripts/relic-score/score-command.ts --inspect=true",
+    "relic-score:calibrate": "tsx scripts/relic-score/calibrate.ts",
+    "relic-score:target:study": "tsx scripts/relic-score/target-study.ts",
     "messages:compile": "tsx scripts/messages.ts",
     "messages:check": "tsx scripts/messages.ts"
   },
