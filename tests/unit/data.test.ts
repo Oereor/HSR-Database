@@ -741,7 +741,7 @@ describe('真实数据管线', () => {
     const lightCone = JSON.parse(
       await readFile(path.join(localizedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
-    expect(manifest.schemaVersion).toBe(44);
+    expect(manifest.schemaVersion).toBe(45);
     expect(manifest.gameVersionFull).toBe('4.5.0');
     expect(manifest.gameVersion).toBe('4.5');
     expect(character.name).toBe('三月七·存护');

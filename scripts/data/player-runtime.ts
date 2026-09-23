@@ -90,12 +90,17 @@ function affix(
   kind: 'main' | 'sub'
 ): PlayerRuntimeAffix {
   const property = propertyValue(row.Property, row.BaseValue, context, discovered);
+  const stepNum = kind === 'sub' ? integer(row.StepNum, `${context}.StepNum`) : undefined;
+  if (stepNum === 0) throw new Error(`${context}.StepNum must be positive`);
   return {
     propertyType: property.propertyType,
     baseValue: property.value,
     ...(kind === 'main'
-      ? { levelAdd: numberOf(row.LevelAdd) }
-      : { stepValue: numberOf(row.StepValue) })
+      ? { levelAdd: finite(row.LevelAdd, `${context}.LevelAdd`) }
+      : {
+          stepValue: finite(row.StepValue, `${context}.StepValue`),
+          stepNum
+        })
   };
 }
 
@@ -251,21 +256,17 @@ export function buildPlayerRuntimeData(tables: Record<string, unknown>): PlayerR
   }
 
   const relicMainAffixes: PlayerRuntimeData['relicMainAffixes'] = {};
-  for (const row of rows(tables, 'RelicMainAffixConfig'))
-    relicMainAffixes[key(row.GroupID, row.AffixID)] = affix(
-      row,
-      `RelicMainAffixConfig ${key(row.GroupID, row.AffixID)}`,
-      discovered,
-      'main'
-    );
+  for (const row of rows(tables, 'RelicMainAffixConfig')) {
+    const id = key(row.GroupID, row.AffixID);
+    if (relicMainAffixes[id]) throw new Error(`[player-runtime/affix] duplicate main ${id}`);
+    relicMainAffixes[id] = affix(row, `RelicMainAffixConfig ${id}`, discovered, 'main');
+  }
   const relicSubAffixes: PlayerRuntimeData['relicSubAffixes'] = {};
-  for (const row of rows(tables, 'RelicSubAffixConfig'))
-    relicSubAffixes[key(row.GroupID, row.AffixID)] = affix(
-      row,
-      `RelicSubAffixConfig ${key(row.GroupID, row.AffixID)}`,
-      discovered,
-      'sub'
-    );
+  for (const row of rows(tables, 'RelicSubAffixConfig')) {
+    const id = key(row.GroupID, row.AffixID);
+    if (relicSubAffixes[id]) throw new Error(`[player-runtime/affix] duplicate sub ${id}`);
+    relicSubAffixes[id] = affix(row, `RelicSubAffixConfig ${id}`, discovered, 'sub');
+  }
   const mainGroups = new Set(
     Object.keys(relicMainAffixes).map((identity) => identity.split(':', 1)[0])
   );
@@ -373,7 +374,7 @@ export function buildPlayerRuntimeData(tables: Record<string, unknown>): PlayerR
     );
 
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     propertyTypes: actual,
     avatarPromotions,
     lightConePromotions,

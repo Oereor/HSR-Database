@@ -4,7 +4,7 @@ import path from 'node:path';
 import type { DataManifest, GeneratedArtifactMetadata } from '../../src/lib/domain/types.js';
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
 
-export const DATA_MANIFEST_SCHEMA_VERSION = 44 as const;
+export const DATA_MANIFEST_SCHEMA_VERSION = 45 as const;
 
 export interface GeneratedArtifactValidationSummary {
   files: number;

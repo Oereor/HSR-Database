@@ -25,7 +25,7 @@ import type {
   PlayerRuntimeData,
   RuntimePropertyValue
 } from './runtime-data.js';
-import { playerRuntimeKey } from './runtime-data.js';
+import { playerMainAffixValue, playerRuntimeKey, playerSubAffixValue } from './runtime-data.js';
 
 interface StatBuckets {
   base: number;
@@ -177,7 +177,7 @@ export function collectPropertyContributions(
       contributions.push(
         ...affixContribution(
           main,
-          main.baseValue + (main.levelAdd ?? 0) * relic.level,
+          playerMainAffixValue(main, relic.level),
           'relicMain',
           `${relic.tid}:${relic.mainAffixId}`,
           diagnostics
@@ -195,7 +195,7 @@ export function collectPropertyContributions(
       contributions.push(
         ...affixContribution(
           affix,
-          affix.baseValue * sub.cnt + (affix.stepValue ?? 0) * (sub.step ?? 0),
+          playerSubAffixValue(affix, sub.cnt, sub.step ?? 0),
           'relicSub',
           `${relic.tid}:${sub.affixId}`,
           diagnostics
@@ -319,19 +319,11 @@ function presentRelic(
     type: relic.type,
     setId: identity.setId,
     level: relic.level,
-    mainAffix: main
-      ? resolvedAffix(main, main.baseValue + (main.levelAdd ?? 0) * relic.level)
-      : null,
+    mainAffix: main ? resolvedAffix(main, playerMainAffixValue(main, relic.level)) : null,
     subAffixes: relic.subAffixes.flatMap((sub) => {
       const affix = runtime.relicSubAffixes[playerRuntimeKey(identity.subAffixGroup, sub.affixId)];
       return affix
-        ? [
-            resolvedSubAffix(
-              affix,
-              affix.baseValue * sub.cnt + (affix.stepValue ?? 0) * (sub.step ?? 0),
-              sub.cnt
-            )
-          ]
+        ? [resolvedSubAffix(affix, playerSubAffixValue(affix, sub.cnt, sub.step ?? 0), sub.cnt)]
         : [];
     })
   };

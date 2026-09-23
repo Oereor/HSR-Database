@@ -12,6 +12,7 @@ import {
   presentCanonicalPlayerProfile,
   synthesizePlayerProfile
 } from '../../../src/lib/player/stat-synthesis.js';
+import { normalizePlayerBuildInput } from '../../../src/lib/relic-score/normalize.js';
 import { adaptEnkaProfile } from './adapter.js';
 import { decodeEnkaResponse } from './decode.js';
 
@@ -37,6 +38,9 @@ export function resolveCanonicalPlayerProfile(
   const canonical = synthesizePlayerProfile(profile, runtime);
   return {
     canonical,
+    normalizedBuilds: canonical.characters.map((character) =>
+      normalizePlayerBuildInput(character, runtime)
+    ),
     presentation: presentCanonicalPlayerProfile(canonical, runtime),
     ...(metadata === undefined ? {} : { metadata })
   };

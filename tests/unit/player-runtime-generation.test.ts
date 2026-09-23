@@ -48,4 +48,25 @@ describe('player runtime generation validation', () => {
     relicSet.RelicSetSkillConfig = [{ SetID: 1, RequireNum: 2, PropertyList: {} }];
     expect(() => buildPlayerRuntimeData(relicSet)).toThrow('PropertyList must be an array');
   });
+
+  it('retains StepNum and rejects duplicate or nonpositive sub affixes', () => {
+    const source = tables();
+    const sub = {
+      GroupID: 5,
+      AffixID: 7,
+      Property: 'SpeedDelta',
+      BaseValue: { Value: 2 },
+      StepValue: { Value: 0.3 },
+      StepNum: 3
+    };
+    source.RelicSubAffixConfig = [sub];
+    expect(buildPlayerRuntimeData(source).relicSubAffixes['5:7']).toMatchObject({
+      stepValue: 0.3,
+      stepNum: 3
+    });
+    source.RelicSubAffixConfig = [sub, sub];
+    expect(() => buildPlayerRuntimeData(source)).toThrow('duplicate sub');
+    source.RelicSubAffixConfig = [{ ...sub, StepNum: 0 }];
+    expect(() => buildPlayerRuntimeData(source)).toThrow('StepNum must be positive');
+  });
 });

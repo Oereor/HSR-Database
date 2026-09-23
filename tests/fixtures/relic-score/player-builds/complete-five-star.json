@@ -1,0 +1,358 @@
+{
+  "characterId": "1310",
+  "panel": {
+    "hp": 3115.476010522475,
+    "atk": 2523.492824563196,
+    "def": 1447.124957,
+    "spd": 164.472,
+    "crit_rate": 0.05,
+    "crit_dmg": 0.5648000008,
+    "break_dmg": 2.3318000020000005,
+    "effect_hit": 0.19872001179999998,
+    "effect_res": 0.2966400069
+  },
+  "relics": [
+    {
+      "slot": "HEAD",
+      "relicId": "61191",
+      "setId": "119",
+      "rarity": 5,
+      "level": 15,
+      "mainStat": {
+        "key": "HPDelta",
+        "value": 705.5999999999999
+      },
+      "substats": [
+        {
+          "key": "DefenceDelta",
+          "value": 19.051896,
+          "occurrenceCount": 1,
+          "cumulativeStep": 1,
+          "rollCount": {
+            "status": "exact",
+            "count": 1,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "AttackAddedRatio",
+          "value": 0.1209600072,
+          "occurrenceCount": 3,
+          "cumulativeStep": 4,
+          "rollCount": {
+            "status": "exact",
+            "count": 3,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "SpeedDelta",
+          "value": 4.9,
+          "occurrenceCount": 2,
+          "cumulativeStep": 3,
+          "rollCount": {
+            "status": "exact",
+            "count": 2,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "BreakDamageAddedRatioBase",
+          "value": 0.11664000079999999,
+          "occurrenceCount": 2,
+          "cumulativeStep": 2,
+          "rollCount": {
+            "status": "exact",
+            "count": 2,
+            "source": "provider"
+          }
+        }
+      ]
+    },
+    {
+      "slot": "HAND",
+      "relicId": "61192",
+      "setId": "119",
+      "rarity": 5,
+      "level": 15,
+      "mainStat": {
+        "key": "AttackDelta",
+        "value": 352.79999999999995
+      },
+      "substats": [
+        {
+          "key": "HPAddedRatio",
+          "value": 0.08640000519999999,
+          "occurrenceCount": 2,
+          "cumulativeStep": 4,
+          "rollCount": {
+            "status": "exact",
+            "count": 2,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "DefenceAddedRatio",
+          "value": 0.048600000000000004,
+          "occurrenceCount": 1,
+          "cumulativeStep": 1,
+          "rollCount": {
+            "status": "exact",
+            "count": 1,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "SpeedDelta",
+          "value": 10.1,
+          "occurrenceCount": 4,
+          "cumulativeStep": 7,
+          "rollCount": {
+            "status": "exact",
+            "count": 4,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "BreakDamageAddedRatioBase",
+          "value": 0.05184,
+          "occurrenceCount": 1,
+          "cumulativeStep": 0,
+          "rollCount": {
+            "status": "exact",
+            "count": 1,
+            "source": "provider"
+          }
+        }
+      ]
+    },
+    {
+      "slot": "BODY",
+      "relicId": "61193",
+      "setId": "119",
+      "rarity": 5,
+      "level": 15,
+      "mainStat": {
+        "key": "AttackAddedRatio",
+        "value": 0.43200000000000005
+      },
+      "substats": [
+        {
+          "key": "HPDelta",
+          "value": 38.103795000000005,
+          "occurrenceCount": 1,
+          "cumulativeStep": 1,
+          "rollCount": {
+            "status": "exact",
+            "count": 1,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "SpeedDelta",
+          "value": 4.9,
+          "occurrenceCount": 2,
+          "cumulativeStep": 3,
+          "rollCount": {
+            "status": "exact",
+            "count": 2,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "StatusProbabilityBase",
+          "value": 0.1555200092,
+          "occurrenceCount": 4,
+          "cumulativeStep": 4,
+          "rollCount": {
+            "status": "exact",
+            "count": 4,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "BreakDamageAddedRatioBase",
+          "value": 0.05184,
+          "occurrenceCount": 1,
+          "cumulativeStep": 0,
+          "rollCount": {
+            "status": "exact",
+            "count": 1,
+            "source": "provider"
+          }
+        }
+      ]
+    },
+    {
+      "slot": "FOOT",
+      "relicId": "61194",
+      "setId": "119",
+      "rarity": 5,
+      "level": 15,
+      "mainStat": {
+        "key": "SpeedDelta",
+        "value": 25.032
+      },
+      "substats": [
+        {
+          "key": "HPDelta",
+          "value": 76.20759000000001,
+          "occurrenceCount": 2,
+          "cumulativeStep": 2,
+          "rollCount": {
+            "status": "exact",
+            "count": 2,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "HPAddedRatio",
+          "value": 0.0734400043,
+          "occurrenceCount": 2,
+          "cumulativeStep": 1,
+          "rollCount": {
+            "status": "exact",
+            "count": 2,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "AttackAddedRatio",
+          "value": 0.08640000519999999,
+          "occurrenceCount": 2,
+          "cumulativeStep": 4,
+          "rollCount": {
+            "status": "exact",
+            "count": 2,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "BreakDamageAddedRatioBase",
+          "value": 0.1101600004,
+          "occurrenceCount": 2,
+          "cumulativeStep": 1,
+          "rollCount": {
+            "status": "exact",
+            "count": 2,
+            "source": "provider"
+          }
+        }
+      ]
+    },
+    {
+      "slot": "NECK",
+      "relicId": "63165",
+      "setId": "316",
+      "rarity": 5,
+      "level": 15,
+      "mainStat": {
+        "key": "AttackAddedRatio",
+        "value": 0.43200000000000005
+      },
+      "substats": [
+        {
+          "key": "AttackDelta",
+          "value": 21.168773,
+          "occurrenceCount": 1,
+          "cumulativeStep": 2,
+          "rollCount": {
+            "status": "exact",
+            "count": 1,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "CriticalDamageBase",
+          "value": 0.0648000008,
+          "occurrenceCount": 1,
+          "cumulativeStep": 2,
+          "rollCount": {
+            "status": "exact",
+            "count": 1,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "StatusResistanceBase",
+          "value": 0.1166400069,
+          "occurrenceCount": 3,
+          "cumulativeStep": 3,
+          "rollCount": {
+            "status": "exact",
+            "count": 3,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "BreakDamageAddedRatioBase",
+          "value": 0.2203200008,
+          "occurrenceCount": 4,
+          "cumulativeStep": 2,
+          "rollCount": {
+            "status": "exact",
+            "count": 4,
+            "source": "provider"
+          }
+        }
+      ]
+    },
+    {
+      "slot": "OBJECT",
+      "relicId": "63166",
+      "setId": "316",
+      "rarity": 5,
+      "level": 15,
+      "mainStat": {
+        "key": "BreakDamageAddedRatioBase",
+        "value": 0.648
+      },
+      "substats": [
+        {
+          "key": "DefenceDelta",
+          "value": 59.27256500000001,
+          "occurrenceCount": 3,
+          "cumulativeStep": 4,
+          "rollCount": {
+            "status": "exact",
+            "count": 3,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "AttackAddedRatio",
+          "value": 0.0777600046,
+          "occurrenceCount": 2,
+          "cumulativeStep": 2,
+          "rollCount": {
+            "status": "exact",
+            "count": 2,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "SpeedDelta",
+          "value": 4.3,
+          "occurrenceCount": 2,
+          "cumulativeStep": 1,
+          "rollCount": {
+            "status": "exact",
+            "count": 2,
+            "source": "provider"
+          }
+        },
+        {
+          "key": "StatusProbabilityBase",
+          "value": 0.043200002599999995,
+          "occurrenceCount": 1,
+          "cumulativeStep": 2,
+          "rollCount": {
+            "status": "exact",
+            "count": 1,
+            "source": "provider"
+          }
+        }
+      ]
+    }
+  ]
+}

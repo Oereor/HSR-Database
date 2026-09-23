@@ -1,0 +1,2027 @@
+{
+  "schemaVersion": 1,
+  "profiles": [
+    {
+      "characterId": "1001",
+      "templateId": "debuff-support",
+      "substatWeights": {
+        "DefenceAddedRatio": 0.5,
+        "SpeedDelta": 1.25,
+        "StatusProbabilityBase": 1.25,
+        "StatusResistanceBase": 0.5
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "bd06df3d8397861d0d2155b2abf8c57924f8c2f7fa31024c7faf7b144dfd043f",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1002",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "b288d3036e819893f30c2a86126bd6c0927596d6836398e90cbb9cc648e168c0",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1003",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "3d15f6658938cb619b2a3de86b0441fd10e3a422bd5845c52bf8437b12807c58",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1004",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75,
+        "StatusProbabilityBase": 0.25
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "20c12be3b11a13fe1627a09d6f711c3bf45945fb218262a5b73381f6e10441ec",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1005",
+      "templateId": "dot-dps",
+      "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "70280baf51d005d54f045cbb90f402b1945cca129bb51b8b9ff33882742fd916",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1006",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75,
+        "StatusProbabilityBase": 0.25
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "028a0a66034bdbb115da295db64ebd8eeb99ea2ca4caec0e7a696ca1fdfabb10",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1008",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "66b083944505fd7c402f0e02b34019329741b2ae2b48eebaa415562da9ba933d",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1009",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "6b8f8c462235dc8c3b12aa23dffcbe945fbbd64530d38d7435460ad746f35415",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1013",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "84fec59089a09aa3ab52891c797a09df1bbfb9adedc501e64872381e22a94f75",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1014",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "bfd094dd48fe85a1a7aaabc536665af7bd7f37f57eff35c3c69690e299c205e9",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1015",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "1f205cf37af76319f68e2f2c5f28cd05d20185e17f8ceb6e832e252c52904868",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1101",
+      "templateId": "direct-support",
+      "substatWeights": {
+        "CriticalDamageBase": 1,
+        "SpeedDelta": 1.25,
+        "StatusResistanceBase": 0.5
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["MIXED_STAT_SIGNALS", "AMBIGUOUS_SCALING"],
+        "inputDigest": "55e35976b137d92165d3f2a8353d91a82ad15b07f42e8af784c2028f96f15542",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1102",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "b98723858a9f74bdf2585b5f2919606af43fdd45dc9309ccd1f032f2220e0f3d",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1103",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "735693c5c256d99f12c62dba6993404c88acea841db0cb6803d2caeb5cf34934",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1104",
+      "templateId": "debuff-support",
+      "substatWeights": {
+        "DefenceAddedRatio": 0.5,
+        "SpeedDelta": 1.25,
+        "StatusProbabilityBase": 1.25,
+        "StatusResistanceBase": 0.5
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "67c8043546a45ddaabc0ec9457c4f0d62e84d2d54c728767a29d4ca5105ef2ca",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1105",
+      "templateId": "sustain",
+      "substatWeights": { "HPAddedRatio": 1, "SpeedDelta": 1.25, "StatusResistanceBase": 0.75 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "1d2ffb9adef3c94e7014d048614c9802b32581b202cef1214f63ada65f598ef5",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1106",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75,
+        "StatusProbabilityBase": 0.25
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "66d841ee23e787385993dfbb71269aebea37ece707e60a97402002f1c93cb375",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1107",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "712bc24895c5026efaa52cbd84118154a568659f868f7441f0541aa4442bcacc",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1108",
+      "templateId": "dot-dps",
+      "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "662629a2274a564107e7d6cd7be78231bd34f6e668dcb4bc9beacef6343188eb",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1109",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "0998530fa864badc6220bad6f4c92fa8daf0c9706b386cee1a1a11e8648170c6",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1110",
+      "templateId": "sustain",
+      "substatWeights": { "HPAddedRatio": 1, "SpeedDelta": 1.25, "StatusResistanceBase": 0.75 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "e4d5fc311ddbafa83f91e3f96bc3c82437e2749442f2f386008f126c5acf25b1",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1111",
+      "templateId": "hybrid-direct-break",
+      "substatWeights": {
+        "AttackAddedRatio": 0.75,
+        "BreakDamageAddedRatioBase": 1.25,
+        "CriticalChanceBase": 1,
+        "CriticalDamageBase": 1,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "0a7b5c711a00dfca7adb8f4b86af3e7fd021cb3d692dd6e83f3983865f530823",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1112",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "da57b413c4ddd66475f3ee8fac939df2a9728d9597964c1cac0f08e5fc823d8c",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1201",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "10b0b9c17231266a3981cfa6233c28c29dc55206fbfc7590fd5f59450e125fc6",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1202",
+      "templateId": "direct-support",
+      "substatWeights": {
+        "AttackAddedRatio": 0.75,
+        "SpeedDelta": 1.25,
+        "StatusResistanceBase": 0.5
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "d62548f821603b934b94b6ed8ee23257deecafb8da2f22f5455a5e4107277961",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1203",
+      "templateId": "sustain",
+      "substatWeights": { "AttackAddedRatio": 1, "SpeedDelta": 1.25, "StatusResistanceBase": 0.75 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "1aa7521ffbb1f884e9a80daabf0df37722cdfe35da988185f0ef4e4bd6d8753d",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1204",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "a8c1ec93b8219b8cac6f4568d521c8ca17a4df51f636a24930137b1971cbbddc",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1205",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "HPAddedRatio": 1,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "619729040a6338750a52c3667c482180b91c74cd355530c941d48683742f91e3",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1206",
+      "templateId": "hybrid-direct-break",
+      "substatWeights": {
+        "AttackAddedRatio": 0.75,
+        "BreakDamageAddedRatioBase": 1.25,
+        "CriticalChanceBase": 1,
+        "CriticalDamageBase": 1,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "f9d046bacd73772cdb46864bc6a03f6053ad3b0a06fea352daade4484e835092",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1207",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "bc0acbf66f9eaea9daff8678654ad74029af04c8516f07e7ebde018173581ee6",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1208",
+      "templateId": "sustain",
+      "substatWeights": {
+        "DefenceAddedRatio": 0.5,
+        "HPAddedRatio": 1,
+        "SpeedDelta": 1.25,
+        "StatusResistanceBase": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "cb98fd7c52f2fffa80db8f7d284478ed735c9cfb69011e2ae890a7b9632100c7",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1209",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "32c6c68c84494712d7a64a6f5d717cd36e57eff1187eb2e70854d6cd21440c32",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1210",
+      "templateId": "dot-dps",
+      "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "5ef44d4c6f194cd7e1a78d83b136dd0f77b8be322ea820acfdd36ef34a4b1db8",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1211",
+      "templateId": "sustain",
+      "substatWeights": { "HPAddedRatio": 1, "SpeedDelta": 1.25, "StatusResistanceBase": 0.75 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "f1542bcda9fcfbadfce837a71c8291d8574b7d117eec632502c8961e3acc6048",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1212",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "HPAddedRatio": 1,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "375694560a0cdde58afc1ef7c3683b6cfead4a5be3cb1b6baf3e24af431f15b1",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1213",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "e9f43a1d9fa204df85a49cfd6be36473444dc74ecef71a3c6357a2f7d4a9c6d5",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1214",
+      "templateId": "hybrid-direct-break",
+      "substatWeights": {
+        "AttackAddedRatio": 0.75,
+        "BreakDamageAddedRatioBase": 1.25,
+        "CriticalChanceBase": 1,
+        "CriticalDamageBase": 1,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "ab206df9ee5aa3ecd1decc2fb179c54f0bbac1cede28aec5f1f3213d1758215b",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1215",
+      "templateId": "direct-support",
+      "substatWeights": { "SpeedDelta": 1.25, "StatusResistanceBase": 0.5 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["AMBIGUOUS_SCALING"],
+        "inputDigest": "067c3835b7681bf05dbc236b37f73d869c71d7c6ab984c9915e4f9cb7bbba3e6",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1217",
+      "templateId": "sustain",
+      "substatWeights": { "HPAddedRatio": 1, "SpeedDelta": 1.25, "StatusResistanceBase": 0.75 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "3dcd0ae263d9ad01d5ffc3f5561a92927ebf2ecdc25ba084b7330d7fbb56dc67",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1218",
+      "templateId": "dot-dps",
+      "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "30dde063372aece2607c0b6075a274ad69b8c13ee5c15ad429a552fd93c45ba4",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1220",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "b115e605ade1225910c7bae05e580ac3d67df68ec3dbc03f71ccaeb0ffafde69",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1221",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "98eeae2275a41d8787cd0a7e8ab86a03863b6fb2a056621f90e40696c076c3fe",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1222",
+      "templateId": "break",
+      "substatWeights": {
+        "AttackAddedRatio": 0.75,
+        "BreakDamageAddedRatioBase": 1.25,
+        "SpeedDelta": 1
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "61f49d89d7f51bc76798e848619ce3afc1d9694fc5b666b65a97ddaf9d3a7f05",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1223",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "d2600c31efe02e031f48fc9d7e1206f0a24dbde0be83e2baa166a33080206f2b",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1224",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "e0d3429680a6be35be6abc9aa6be9ef5d0ce9d86c68a4e7f0a9584457d55ceac",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1225",
+      "templateId": "break",
+      "substatWeights": {
+        "BreakDamageAddedRatioBase": 1.25,
+        "SpeedDelta": 1,
+        "StatusProbabilityBase": 0.25
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["MIXED_STAT_SIGNALS", "AMBIGUOUS_SCALING"],
+        "inputDigest": "8da5de5ac818de28f263563e24e196b47b0400681110e7c356d687add20e9138",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1301",
+      "templateId": "break",
+      "substatWeights": {
+        "BreakDamageAddedRatioBase": 1.25,
+        "SpeedDelta": 1,
+        "StatusResistanceBase": 0.25
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH", "AMBIGUOUS_SCALING"],
+        "inputDigest": "c26b76f577e273afc2fd45c971468cae3646800db2b0d15b0efd24f062c10382",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1302",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "b34d2051f2ca98fc8358509e8830eb2e202f85c0cc7e7bda47dc10d9793307b2",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1303",
+      "templateId": "break",
+      "substatWeights": {
+        "BreakDamageAddedRatioBase": 1.25,
+        "SpeedDelta": 1,
+        "StatusResistanceBase": 0.25
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH", "AMBIGUOUS_SCALING"],
+        "inputDigest": "da7b19e710f8a6f0d5d38466f6af69a46a1364385d00d3ca011fe1e383367ce5",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1304",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "DefenceAddedRatio": 1,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "3f822f35855db03f37343a5c951120d38835aaf9c7c3a6646fd20641759c2aa4",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1305",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "3635be2f4af329996552690b212576900f8edb6ea45a028a447643b6c53e4384",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1306",
+      "templateId": "direct-support",
+      "substatWeights": {
+        "CriticalDamageBase": 1,
+        "SpeedDelta": 1.25,
+        "StatusResistanceBase": 0.5
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["MIXED_STAT_SIGNALS", "AMBIGUOUS_SCALING"],
+        "inputDigest": "068a26a5583f02901b97a59abb20155819ed936beee3e12fce937fdbb53665eb",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1307",
+      "templateId": "dot-dps",
+      "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "caae2acb78093db43a68e574034ee64f1944ec7a1257522330a8553cf4fcb5ab",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1308",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "a0291a0a59280720a576fb0ace709508f98c82030221aa79c610b546a7e68e9e",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1309",
+      "templateId": "direct-support",
+      "substatWeights": { "AttackAddedRatio": 0.75, "AttackDelta": 0.5, "SpeedDelta": 1.25 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "e0e9e70920e674489e948e9a29bff1b52271df4785e8bad71eda16c2f8e86ec1",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1310",
+      "templateId": "break",
+      "substatWeights": {
+        "AttackAddedRatio": 0.75,
+        "BreakDamageAddedRatioBase": 1.25,
+        "SpeedDelta": 1
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "7aa3cde759eafa17c9b5f251db5a9055132e592d51d8cce0cf014e405f821982",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1312",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "e014c0c9cfd8fdedeaedd6215d3dad0dbfacef6bf8197242c52cbb89bc7d720d",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1313",
+      "templateId": "direct-support",
+      "substatWeights": {
+        "CriticalDamageBase": 1,
+        "SpeedDelta": 1.25,
+        "StatusResistanceBase": 0.5
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["MIXED_STAT_SIGNALS", "AMBIGUOUS_SCALING"],
+        "inputDigest": "c7fa53ad6d82b45e2866f2657677a9493e92621e8e5eba1f75b366a7c2842d8f",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1314",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "d329b7ac2cac0533304fe4e71f0532a2f6871aaeee3b6efaf3bb1e3f3baeb1b3",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1315",
+      "templateId": "hybrid-direct-break",
+      "substatWeights": {
+        "AttackAddedRatio": 0.75,
+        "BreakDamageAddedRatioBase": 1.25,
+        "CriticalChanceBase": 1,
+        "CriticalDamageBase": 1,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "d07f287a87d7f6f3f4d3b3277e5d876fbaed79f0f882811e0953aebafa9b91a9",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1317",
+      "templateId": "break",
+      "substatWeights": {
+        "AttackAddedRatio": 0.75,
+        "BreakDamageAddedRatioBase": 1.25,
+        "SpeedDelta": 1
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "56d258923d4cdae071b3e149dd50ca29c4aaffb830bc11c593b7c587a38871d0",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1321",
+      "templateId": "break",
+      "substatWeights": { "BreakDamageAddedRatioBase": 1.25, "SpeedDelta": 1 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["AMBIGUOUS_SCALING"],
+        "inputDigest": "3c9c7723dfc3bc662cddbc7e96154b00665b6abf13e0e7764a791c8b9b108f13",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1401",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "c2ad41b5bb9d2f9730053da47442620014758c590f108d04313c38195320155f",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1402",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "d0f2e260d03c0c46055e103d86b79cff487235c25e72abd2ca7a56d903e00e5e",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1403",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "HPAddedRatio": 1
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "da8572b2d8ac1110f1226e44d2ac1f126a3123fa3335021bfa3ad80a6afc0ab0",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1404",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "HPAddedRatio": 1,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "647ef3aae2244b31785c47d132777e4c77c4dbc83a2b45d44e52886914ab2674",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1405",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "751186c784835272f9a407ec3b76b274c6cd9e12efd99dfdbf7fca89cec54c1e",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1406",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "6b8900e0535ba847defe10b20ef0662ce75fb1355947e77b5b2b092228d7a9a3",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1407",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "HPAddedRatio": 1
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "24ce4385e4953c8073873412d6ce3493778c473a4557ecbc54b9a7926c25aa63",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1408",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "88a278b82f1032adac24b540192e3c810e0d3a63e8d78e0e802e802397a2b313",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1409",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "CriticalDamageBase": 1.25,
+        "HPAddedRatio": 1,
+        "SpeedDelta": 0.75,
+        "StatusResistanceBase": 0.25
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "MIXED_STAT_SIGNALS", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "8f48f3fe5b7811c56f0763469876ffdbd6c5b66030937bddaeffdc0ce1e6eae2",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1410",
+      "templateId": "dot-dps",
+      "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "c509b1ea3b83023ebc247b66339d68800c366d5793b51c0c280d8c1f00b386e3",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1412",
+      "templateId": "direct-support",
+      "substatWeights": { "AttackAddedRatio": 0.75, "CriticalDamageBase": 1, "SpeedDelta": 1.25 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["MIXED_STAT_SIGNALS"],
+        "inputDigest": "ebfe48b0f217925ce122b45eee6477eda7f95a6cb72b4b943535d3d754ecf738",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1413",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "HPAddedRatio": 1,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "670ec8f0c2e217a9ad2270230aed51999b6f57fa88cee272d46bac3690e9bec7",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1414",
+      "templateId": "sustain",
+      "substatWeights": { "AttackAddedRatio": 1, "SpeedDelta": 1.25 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "fdf31e8c1e2935e6d8d5e702722d059b521c4ed4b09b3b1928a1effeb0955631",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1415",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "HPAddedRatio": 1,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "e53429aa256dcacfaef4f7f806ae226aae2f0bcf1151d990641dec7ccc13fb9f",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1501",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "f08b473e4fe9acc78c2bce1617f259d5108f09a5a5447207f3cc6ef4bb62cfc4",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1502",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH", "AMBIGUOUS_SCALING"],
+        "inputDigest": "78fd38b006efd666a36df496ca53c4173f481a95a4f4c4684bc8529d18fb3d0f",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1504",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "ead129c924e7d02f2bc2a5d8ab7d9d02ee46d8ac376a828d7a2fbda96a28fd80",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1505",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "106aac00b6d7155822dff7cdda3a274c4a354ed166a2b3bdb79ec1d8cc61b30a",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1506",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH", "AMBIGUOUS_SCALING"],
+        "inputDigest": "2a22145c92d396c993372d4fc0a474f9b0dd947b7f6082b0d33f00774bf424de",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1507",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "HPAddedRatio": 1,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "0347df139d25d85ebf7af92ada0dac610eee99ba11f7c24d18980ca1ad5d24ed",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1508",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "649de47609b7ee5d98d351f8bf2626bb6e81bf35c3b7b99284ace30a127f852e",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1509",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "2a042b934c5540a7d0972ae965378972b5122b6cf8564f57e7b10fab6c48e4d9",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1510",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "885ece30ad987263096093995ed7241fe68861b1387d02a01f71975cec69fa9e",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1512",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "HPAddedRatio": 1,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "eab0e8ee207dcf74b0aaeef72edb3d9663d5b66057aed99d8d2c5a3fc407da14",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "1513",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH", "AMBIGUOUS_SCALING"],
+        "inputDigest": "a20dbfe2715c9d06462644e894e578cc94ee684ca3be92d2a4995709db03e665",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "8001",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "206066af84fa87da2bde31451e253a6c77ac2fe870bbcd6edca51ecd8386d742",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "8002",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "b0875d5407aeeb96f3f42b43ba6db87550c79a1fabf1d7d753eb6db7753757be",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "8003",
+      "templateId": "sustain",
+      "substatWeights": {
+        "DefenceAddedRatio": 1,
+        "SpeedDelta": 1.25,
+        "StatusResistanceBase": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "8c6264aa323a899165311ec1e5b34576268aa0b0c9fdab3d0e0bc670565be583",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "8004",
+      "templateId": "sustain",
+      "substatWeights": {
+        "DefenceAddedRatio": 1,
+        "SpeedDelta": 1.25,
+        "StatusResistanceBase": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "high",
+        "reviewStatus": "unreviewed",
+        "reviewReasons": [],
+        "inputDigest": "9669431549aaa33fdf85039499dd370caf810ad6121905134a390a9ba630dc27",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "8005",
+      "templateId": "break",
+      "substatWeights": { "BreakDamageAddedRatioBase": 1.25, "SpeedDelta": 1 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH", "AMBIGUOUS_SCALING"],
+        "inputDigest": "975a5cf0a802769cf9476f82324c4db7a0a50ff707fccec71871c355c1913075",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "8006",
+      "templateId": "break",
+      "substatWeights": { "BreakDamageAddedRatioBase": 1.25, "SpeedDelta": 1 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "medium",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH", "AMBIGUOUS_SCALING"],
+        "inputDigest": "a708fa2d10ff0be95ef5188d185685297728c88f29a1c0af3d7d2d42a3dd1718",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "8007",
+      "templateId": "direct-dps",
+      "substatWeights": { "AttackAddedRatio": 1, "CriticalDamageBase": 1.25, "SpeedDelta": 0.75 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "MIXED_STAT_SIGNALS", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "42b67beb6262ad772c8e3572649175d863864d32052205895f6c9dc73cc00068",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "8008",
+      "templateId": "direct-dps",
+      "substatWeights": { "AttackAddedRatio": 1, "CriticalDamageBase": 1.25, "SpeedDelta": 0.75 },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "MIXED_STAT_SIGNALS", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "8523d928f268d0862f2421cf1b53333f86d52625ef5b6b77492292ee0983bd99",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "8009",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "fd82efad589b5033adc7e92a4a18cfec6d3390b62cbebc4bee1c333cf8cc10bf",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    },
+    {
+      "characterId": "8010",
+      "templateId": "direct-dps",
+      "substatWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalChanceBase": 1.25,
+        "CriticalDamageBase": 1.25,
+        "SpeedDelta": 0.75
+      },
+      "hardBreakpoints": [],
+      "statTargets": [],
+      "statCurves": [],
+      "metadata": {
+        "inferenceConfidence": "low",
+        "reviewStatus": "needs-review",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "3a9430a9f3acdb32f2f8997ab4e157246d64b36c212f1bd4d6b9c4374e0286c8",
+        "reviewedInputDigest": null,
+        "generatorVersion": 1,
+        "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
+      }
+    }
+  ]
+}

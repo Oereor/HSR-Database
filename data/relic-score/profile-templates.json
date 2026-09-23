@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "templates": {
+    "direct-dps": {
+      "CriticalChanceBase": 1.25,
+      "CriticalDamageBase": 1.25,
+      "scaling-stat": 1,
+      "SpeedDelta": 0.75,
+      "other-recommended": 0.25
+    },
+    "direct-support": {
+      "SpeedDelta": 1.25,
+      "CriticalDamageBase": 1,
+      "StatusProbabilityBase": 0.75,
+      "scaling-stat": 0.75,
+      "StatusResistanceBase": 0.5,
+      "other-recommended": 0.5
+    },
+    "break": {
+      "BreakDamageAddedRatioBase": 1.25,
+      "SpeedDelta": 1,
+      "scaling-stat": 0.75,
+      "other-recommended": 0.25
+    },
+    "dot-dps": {
+      "scaling-stat": 1.25,
+      "StatusProbabilityBase": 1,
+      "SpeedDelta": 1,
+      "other-recommended": 0.25
+    },
+    "debuff-support": {
+      "StatusProbabilityBase": 1.25,
+      "SpeedDelta": 1.25,
+      "scaling-stat": 0.5,
+      "StatusResistanceBase": 0.5,
+      "other-recommended": 0.25
+    },
+    "sustain": {
+      "SpeedDelta": 1.25,
+      "scaling-stat": 1,
+      "StatusResistanceBase": 0.75,
+      "other-recommended": 0.5
+    },
+    "hybrid-direct-break": {
+      "BreakDamageAddedRatioBase": 1.25,
+      "CriticalChanceBase": 1,
+      "CriticalDamageBase": 1,
+      "scaling-stat": 0.75,
+      "SpeedDelta": 0.75,
+      "other-recommended": 0.25
+    }
+  }
+}

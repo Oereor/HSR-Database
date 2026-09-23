@@ -51,7 +51,7 @@ describe('Player property semantics and stat finalization', () => {
 
   it('resolves avatar, light-cone, affix, set and minor-trace sources independently', () => {
     const runtime: PlayerRuntimeData = {
-      schemaVersion: 1,
+      schemaVersion: 2,
       propertyTypes: Object.keys(PLAYER_PROPERTY_SEMANTICS) as PlayerRuntimeData['propertyTypes'],
       avatarPromotions: {
         avatar: {
@@ -90,7 +90,7 @@ describe('Player property semantics and stat finalization', () => {
         'main:1': { propertyType: 'HPDelta', baseValue: 10, levelAdd: 2 }
       },
       relicSubAffixes: {
-        'sub:2': { propertyType: 'SpeedDelta', baseValue: 1, stepValue: 0.5 }
+        'sub:2': { propertyType: 'SpeedDelta', baseValue: 1, stepValue: 0.5, stepNum: 2 }
       },
       relicSets: {
         set: [

@@ -47,6 +47,8 @@
     "data:search-names:update": "tsx scripts/data/search-names.ts update",
     "data:search-names:check": "tsx scripts/data/search-names.ts check",
     "data:player-aliases:sync": "tsx scripts/data/player-aliases.ts",
+    "relic-score:profiles:generate": "tsx scripts/relic-score/generate.ts",
+    "relic-score:validate": "tsx scripts/relic-score/validate-command.ts",
     "messages:compile": "tsx scripts/messages.ts",
     "messages:check": "tsx scripts/messages.ts"
   },
