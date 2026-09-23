@@ -1,12 +1,11 @@
 import type { AvatarEquipmentRecommendation, RelicSlot } from '../domain/types.js';
-import type { PlayerStatTarget } from '../player/property-semantics.js';
 import { lookupBenchmarkPercentile } from './benchmark/lookup.js';
 import { validateBenchmarkArtifact, type BenchmarkExpectedIdentity } from './benchmark/validate.js';
 import type { BenchmarkArtifact } from './benchmark/types.js';
-import type { CharacterRelicScoreProfile, ProfileTarget } from './profile-types.js';
+import type { CharacterRelicScoreProfile } from './profile-types.js';
 import type { RelicScoreReferenceData } from './reference.js';
 import { RELIC_SCORE_CONFIG, RELIC_SLOTS } from './scoring-config.js';
-import type { RelicStatKey } from './stat-registry.js';
+import { relicStatSemantics, type RelicStatKey } from './stat-registry.js';
 import type { NormalizedRelicPiece, PlayerBuildInput } from './types.js';
 
 export type ScoreUnavailableReason =
@@ -15,8 +14,7 @@ export type ScoreUnavailableReason =
   | 'BENCHMARK_MISSING_OR_STALE'
   | 'PIECE_INVALID'
   | 'BUILD_INCOMPLETE'
-  | 'PANEL_MISSING'
-  | 'TARGET_CONTEXT_MISSING';
+  | 'PANEL_MISSING';
 export type ScoreResult<T> =
   | { status: 'available'; value: T }
   | { status: 'unavailable' | 'invalid'; reason: ScoreUnavailableReason };
@@ -170,112 +168,74 @@ export function scorePiece(
   };
 }
 
-export interface TargetContribution {
-  slot: RelicSlot;
-  panelDelta: number;
-}
-export interface BuildTargetEntry {
+export interface SoftTargetExplanation {
   stat: RelicStatKey;
-  panelTarget: PlayerStatTarget;
-  baseline: number;
-  contributions: TargetContribution[];
-}
-export interface BuildTargetContext {
-  targets: BuildTargetEntry[];
-}
-
-export interface TargetExplanation {
-  stat: RelicStatKey;
-  panelTarget: PlayerStatTarget;
-  baseline: number;
   panelValue: number;
-  target: number;
-  baseWeight: number;
-  postTargetWeight: number;
-  baseUtility: number;
-  targetAwareUtility: number;
-  efficiency: number;
+  minimumThreshold: number;
+  maximumThreshold: number;
+  progress: number;
 }
 
-/** Target only changes complete-build utility; the Piece CDF input remains base-weight. */
-export function evaluateTarget(
-  target: ProfileTarget,
-  context: BuildTargetEntry,
-  panelValue: number,
-  pieces: readonly PieceScoreValue[],
-  profile: CharacterRelicScoreProfile
-): TargetExplanation {
-  if (
-    target.stat !== context.stat ||
-    target.panelTarget !== context.panelTarget ||
-    !validNumber(context.baseline) ||
-    !validNumber(panelValue) ||
-    context.contributions.some((part) => !validNumber(part.panelDelta)) ||
-    Math.abs(
-      context.baseline +
-        context.contributions.reduce((sum, part) => sum + part.panelDelta, 0) -
-        panelValue
-    ) >
-      1e-5 * Math.max(1, panelValue)
-  )
-    throw new Error('[relic-score] invalid target context');
-  const baseWeight = profile.substatWeights[target.stat] ?? 0;
-  const baseUtility = pieces.reduce(
-    (sum, piece) =>
-      sum +
-      piece.substats
-        .filter((sub) => sub.stat === target.stat)
-        .reduce((acc, sub) => acc + sub.weightedContribution, 0),
-    0
-  );
-  const delta = context.contributions.reduce((sum, part) => sum + part.panelDelta, 0);
-  const before = Math.min(delta, Math.max(0, target.value - context.baseline));
-  const utilityRatio =
-    delta > 0 && baseWeight > 0
-      ? (baseWeight * before + target.postTargetWeight * (delta - before)) / (baseWeight * delta)
-      : 1;
+/** Soft targets only read final OOC panel values; no relic attribution is needed. */
+export function evaluateSoftTargets(
+  profile: CharacterRelicScoreProfile,
+  panel: PlayerBuildInput['panel']
+): ScoreResult<{ progress: number; entries: SoftTargetExplanation[] }> {
+  const entries: SoftTargetExplanation[] = [];
+  for (const target of profile.softTargets) {
+    const value = panel[relicStatSemantics(target.stat).panelTarget];
+    if (value === undefined || !Number.isFinite(value))
+      return { status: 'unavailable', reason: 'PANEL_MISSING' };
+    entries.push({
+      stat: target.stat,
+      panelValue: value,
+      minimumThreshold: target.minimumThreshold,
+      maximumThreshold: target.maximumThreshold,
+      progress: clamp(
+        (value - target.minimumThreshold) / (target.maximumThreshold - target.minimumThreshold)
+      )
+    });
+  }
   return {
-    stat: target.stat,
-    panelTarget: target.panelTarget,
-    baseline: context.baseline,
-    panelValue,
-    target: target.value,
-    baseWeight,
-    postTargetWeight: target.postTargetWeight,
-    baseUtility,
-    targetAwareUtility: baseUtility * utilityRatio,
-    efficiency: clamp(utilityRatio)
+    status: 'available',
+    value: {
+      progress: entries.length
+        ? entries.reduce((sum, entry) => sum + entry.progress, 0) / entries.length
+        : 0,
+      entries
+    }
   };
 }
 
 export interface BreakpointExplanation {
   stat: RelicStatKey;
   currentPanelValue: number;
-  target: number;
+  threshold: number;
   passed: boolean;
-  weight: number;
 }
 export function evaluateBreakpoints(
   profile: CharacterRelicScoreProfile,
   panel: PlayerBuildInput['panel']
-): ScoreResult<{ score: number; entries: BreakpointExplanation[] }> {
+): ScoreResult<{ failureRatio: number; entries: BreakpointExplanation[] }> {
   const count = profile.hardBreakpoints.length;
   const entries: BreakpointExplanation[] = [];
   for (const breakpoint of profile.hardBreakpoints) {
-    const value = panel[breakpoint.panelTarget];
+    const value = panel[relicStatSemantics(breakpoint.stat).panelTarget];
     if (value === undefined || !Number.isFinite(value))
       return { status: 'unavailable', reason: 'PANEL_MISSING' };
     entries.push({
       stat: breakpoint.stat,
       currentPanelValue: value,
-      target: breakpoint.value,
-      passed: value >= breakpoint.value,
-      weight: 1 / count
+      threshold: breakpoint.threshold,
+      passed: value >= breakpoint.threshold
     });
   }
   return {
     status: 'available',
-    value: { score: count ? entries.filter((entry) => entry.passed).length / count : 1, entries }
+    value: {
+      failureRatio: count ? entries.filter((entry) => !entry.passed).length / count : 0,
+      entries
+    }
   };
 }
 
@@ -325,18 +285,15 @@ export interface BuildScoreValue {
   pieces: PieceScoreValue[];
   statCompletion: {
     base: number;
-    targetA: number | null;
-    targetB: number | null;
     aggregatedMainPart: number;
     aggregatedSubPart: number;
   };
-  breakpointScore: number;
-  breakpoints: BreakpointExplanation[];
+  softTargetProgress: number;
+  softTargets: SoftTargetExplanation[];
+  hardBreakpointFailureRatio: number;
+  hardBreakpoints: BreakpointExplanation[];
   setIntegrity: SetIntegrity;
-  targets: TargetExplanation[];
-  finalBaseScore: number;
-  finalTargetA: number | null;
-  finalTargetB: number | null;
+  finalModifierStatus: 'pending-calibration';
   effectiveHits: EffectiveHits;
 }
 
@@ -347,11 +304,7 @@ export interface BuildScoreResult {
   build?: BuildScoreValue;
 }
 
-export function scoreBuild(
-  input: PlayerBuildInput,
-  sources: ScoringSources,
-  targetContext?: BuildTargetContext
-): BuildScoreResult {
+export function scoreBuild(input: PlayerBuildInput, sources: ScoringSources): BuildScoreResult {
   const pieces = input.relics.map((piece) => scorePiece(piece, input.characterId, sources));
   const slots = new Set(input.relics.map((piece) => piece.slot));
   if (slots.size !== input.relics.length)
@@ -385,52 +338,9 @@ export function scoreBuild(
   const breakpoint = evaluateBreakpoints(profile, input.panel);
   if (breakpoint.status !== 'available')
     return { status: breakpoint.status, reason: breakpoint.reason, pieces };
-  if (profile.statTargets.length && !targetContext)
-    return { status: 'unavailable', reason: 'TARGET_CONTEXT_MISSING', pieces };
+  const soft = evaluateSoftTargets(profile, input.panel);
+  if (soft.status !== 'available') return { status: soft.status, reason: soft.reason, pieces };
   const sets = evaluateSetIntegrity(input.relics, recommendation);
-  const targets: TargetExplanation[] = [];
-  if (profile.statTargets.length && targetContext) {
-    for (const target of profile.statTargets) {
-      const context = targetContext.targets.find((item) => item.stat === target.stat);
-      const panel = input.panel[target.panelTarget];
-      if (!context) return { status: 'unavailable', reason: 'TARGET_CONTEXT_MISSING', pieces };
-      if (panel === undefined) return { status: 'unavailable', reason: 'PANEL_MISSING', pieces };
-      try {
-        targets.push(evaluateTarget(target, context, panel, available, profile));
-      } catch {
-        return { status: 'invalid', reason: 'TARGET_CONTEXT_MISSING', pieces };
-      }
-    }
-  }
-  const baseUtility = available.reduce((sum, piece) => sum + piece.rawSubUtility, 0);
-  const lostUtility = targets.reduce(
-    (sum, target) => sum + target.baseUtility - target.targetAwareUtility,
-    0
-  );
-  const efficiency = baseUtility > 0 ? clamp(1 - lostUtility / baseUtility) : 1;
-  const targetA = !profile.statTargets.length || targetContext ? main + sub * efficiency : null;
-  // Candidate B replaces only the build's substat share with a monotone
-  // target-aware absolute credit. Piece scores and main completion stay intact.
-  const medianReference = RELIC_SLOTS.reduce(
-    (sum, slot) =>
-      sum + (sources.benchmark?.distributions[input.characterId]?.[slot]?.summary.p50 ?? 0),
-    0
-  );
-  const awareUtility = Math.max(0, baseUtility - lostUtility);
-  const targetCredit =
-    medianReference > 0
-      ? RELIC_SCORE_CONFIG.piece.subShare * clamp(awareUtility / medianReference)
-      : 0;
-  const targetB = !profile.statTargets.length
-    ? base
-    : targetContext && medianReference > 0
-      ? main + targetCredit
-      : null;
-  const final = (stat: number) =>
-    100 *
-    (RELIC_SCORE_CONFIG.build.statShare * stat +
-      RELIC_SCORE_CONFIG.build.breakpointShare * breakpoint.value.score +
-      RELIC_SCORE_CONFIG.build.setShare * sets.total);
   const hits = available.reduce(
     (acc, piece) => ({
       known: acc.known + piece.effectiveHits.known,
@@ -443,14 +353,13 @@ export function scoreBuild(
     pieces,
     build: {
       pieces: available,
-      statCompletion: { base, targetA, targetB, aggregatedMainPart: main, aggregatedSubPart: sub },
-      breakpointScore: breakpoint.value.score,
-      breakpoints: breakpoint.value.entries,
+      statCompletion: { base, aggregatedMainPart: main, aggregatedSubPart: sub },
+      softTargetProgress: soft.value.progress,
+      softTargets: soft.value.entries,
+      hardBreakpointFailureRatio: breakpoint.value.failureRatio,
+      hardBreakpoints: breakpoint.value.entries,
       setIntegrity: sets,
-      targets,
-      finalBaseScore: final(base),
-      finalTargetA: targetA === null ? null : final(targetA),
-      finalTargetB: targetB === null ? null : final(targetB),
+      finalModifierStatus: 'pending-calibration',
       effectiveHits: {
         status: hits.unknown ? (hits.known ? 'partial' : 'unavailable') : 'exact',
         known: hits.known,

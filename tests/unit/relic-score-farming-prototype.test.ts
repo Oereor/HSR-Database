@@ -77,7 +77,8 @@ describe('farming prototype contract', () => {
       validateCurrentProfiles()
     ]);
     const profile = artifact.profiles.find((item) => item.characterId === '1002')!;
-    expect(profile.statTargets).toHaveLength(1);
+    expect(profile.softTargets).toHaveLength(0);
+    expect(profile.substatWeights.CriticalChanceBase).toBeGreaterThan(0);
     const piece = generateNaturalRelic('HEAD', model, createSeededRng(4));
     const expected = piece.substats.reduce(
       (total, sub) =>
@@ -148,6 +149,15 @@ describe('farming prototype contract', () => {
       benchmarkIdentityDigest({
         ...input,
         profile: { ...profile, metadata: { ...profile.metadata, sourceCommit: '0'.repeat(40) } }
+      })
+    ).toBe(digest);
+    expect(
+      benchmarkIdentityDigest({
+        ...input,
+        profile: {
+          ...profile,
+          softTargets: [{ stat: 'SpeedDelta', minimumThreshold: 120, maximumThreshold: 160 }]
+        }
       })
     ).toBe(digest);
     expect(

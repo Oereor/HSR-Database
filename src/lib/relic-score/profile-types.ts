@@ -1,4 +1,3 @@
-import type { PlayerStatTarget } from '../player/property-semantics.js';
 import type { RelicStatKey } from './stat-registry.js';
 
 export type TemplateId =
@@ -14,21 +13,13 @@ export type ReviewStatus = 'reviewed' | 'unreviewed' | 'needs-review';
 
 export interface ProfileBreakpoint {
   stat: RelicStatKey;
-  panelTarget: PlayerStatTarget;
-  value: number;
+  threshold: number;
 }
 
-export interface ProfileTarget {
+export interface CharacterSoftTarget {
   stat: RelicStatKey;
-  panelTarget: PlayerStatTarget;
-  value: number;
-  /** Marginal weight of only the panel value above `value`. Below it, use substatWeights[stat]. */
-  postTargetWeight: number;
-}
-
-export interface ProfileCurve {
-  stat: PlayerStatTarget;
-  points: Array<{ value: number; utility: number }>;
+  minimumThreshold: number;
+  maximumThreshold: number;
 }
 
 export interface CharacterRelicScoreProfile {
@@ -36,8 +27,7 @@ export interface CharacterRelicScoreProfile {
   templateId: TemplateId;
   substatWeights: Partial<Record<RelicStatKey, number>>;
   hardBreakpoints: ProfileBreakpoint[];
-  statTargets: ProfileTarget[];
-  statCurves: ProfileCurve[];
+  softTargets: CharacterSoftTarget[];
   metadata: {
     inferenceConfidence: InferenceConfidence;
     reviewStatus: ReviewStatus;
@@ -50,6 +40,6 @@ export interface CharacterRelicScoreProfile {
 }
 
 export interface CharacterProfileArtifact {
-  schemaVersion: 2;
+  schemaVersion: 3;
   profiles: CharacterRelicScoreProfile[];
 }

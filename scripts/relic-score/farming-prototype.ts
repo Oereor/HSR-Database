@@ -128,10 +128,7 @@ console.log(
       prototypeOnly: true,
       characterId,
       templateId: profile.templateId,
-      targetMode:
-        profile.statTargets.length || profile.statCurves.length
-          ? 'target-free base-weight prototype'
-          : 'target-free base-weight',
+      targetMode: 'target-free base-weight',
       slot,
       N,
       experimentCount,

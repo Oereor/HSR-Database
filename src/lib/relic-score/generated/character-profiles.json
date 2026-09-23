@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "profiles": [
     {
       "characterId": "1001",
@@ -11,15 +11,14 @@
         "StatusResistanceBase": 0.5
       },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "e63e487ac25125150b26e827e7dad5a4d73737b6e8f0371361c6d5cc49fca562",
-        "reviewedInputDigest": "e63e487ac25125150b26e827e7dad5a4d73737b6e8f0371361c6d5cc49fca562",
-        "generatorVersion": 2,
+        "inputDigest": "4898aebfd60d509d280de27029bbfd2cabd722702cdfe1775e87ad6a78450cec",
+        "reviewedInputDigest": "4898aebfd60d509d280de27029bbfd2cabd722702cdfe1775e87ad6a78450cec",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -33,22 +32,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "a6203a4e112f9c5430fc739108abde3fed1f20f8fabe7ab5b2bc4580b4825305",
-        "reviewedInputDigest": "a6203a4e112f9c5430fc739108abde3fed1f20f8fabe7ab5b2bc4580b4825305",
-        "generatorVersion": 2,
+        "inputDigest": "be56c7060b64c672d019f9ede5915d2b9b461c534560aa006b38097b7aba33f1",
+        "reviewedInputDigest": "be56c7060b64c672d019f9ede5915d2b9b461c534560aa006b38097b7aba33f1",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -62,22 +53,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "e67beef669a25ca11c17b7d115dd87baa53aab5119e248d098c34e659d33a242",
-        "reviewedInputDigest": "e67beef669a25ca11c17b7d115dd87baa53aab5119e248d098c34e659d33a242",
-        "generatorVersion": 2,
+        "inputDigest": "8fe543c1624b02032628ac3d3759f6ed3c9f8ba66b5d7c452a61fb58a374473d",
+        "reviewedInputDigest": "8fe543c1624b02032628ac3d3759f6ed3c9f8ba66b5d7c452a61fb58a374473d",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -92,22 +75,14 @@
         "StatusProbabilityBase": 0.25
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "d064171a76648e0d8fd0fa324a71aee8e47b3a16210b17f9017cb24cc49c7797",
-        "reviewedInputDigest": "d064171a76648e0d8fd0fa324a71aee8e47b3a16210b17f9017cb24cc49c7797",
-        "generatorVersion": 2,
+        "inputDigest": "b2a3c50370d32d1c54c9e919a21e953edb9906d1612fc0baddac3f12bd9a0b0f",
+        "reviewedInputDigest": "b2a3c50370d32d1c54c9e919a21e953edb9906d1612fc0baddac3f12bd9a0b0f",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -116,15 +91,14 @@
       "templateId": "dot-dps",
       "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "766d7941e55d935c553282096903718c80a6788679e7ca631a65f240b91869b1",
-        "reviewedInputDigest": "766d7941e55d935c553282096903718c80a6788679e7ca631a65f240b91869b1",
-        "generatorVersion": 2,
+        "inputDigest": "1db4ee647cad4229c7d9baba159882b8ca5f5e58f42193ffaec524e439fe6992",
+        "reviewedInputDigest": "1db4ee647cad4229c7d9baba159882b8ca5f5e58f42193ffaec524e439fe6992",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -139,22 +113,14 @@
         "StatusProbabilityBase": 0.25
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "710d74f642097034f7d93b65e70762666bc5a69e34e53d38ac3ccc750a876a30",
-        "reviewedInputDigest": "710d74f642097034f7d93b65e70762666bc5a69e34e53d38ac3ccc750a876a30",
-        "generatorVersion": 2,
+        "inputDigest": "fbe472119e6373f72cef82762969300aa645b895033d4253085bac814d6c30c3",
+        "reviewedInputDigest": "fbe472119e6373f72cef82762969300aa645b895033d4253085bac814d6c30c3",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -168,22 +134,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "6393733dcf79ae02e54e5c45690581076c4a8cff3d9f6577633684075074c4ac",
-        "reviewedInputDigest": "6393733dcf79ae02e54e5c45690581076c4a8cff3d9f6577633684075074c4ac",
-        "generatorVersion": 2,
+        "inputDigest": "ff360ac272cc450b78ed17ff511a5635d42c071f304514356508fb3d1e3ea488",
+        "reviewedInputDigest": "ff360ac272cc450b78ed17ff511a5635d42c071f304514356508fb3d1e3ea488",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -197,22 +155,14 @@
         "SpeedDelta": 1.25
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "08dddff3597458b13020f0783df0e3f3005d95596271104dc0ff671baf0969b7",
-        "reviewedInputDigest": "08dddff3597458b13020f0783df0e3f3005d95596271104dc0ff671baf0969b7",
-        "generatorVersion": 2,
+        "inputDigest": "e7594376040c03b1b109c03d26e13d4222d5e6e8e253cf28f2733ce8ceee59b3",
+        "reviewedInputDigest": "e7594376040c03b1b109c03d26e13d4222d5e6e8e253cf28f2733ce8ceee59b3",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -226,22 +176,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "0a33870904ab9ae628329f4a69a2b6c7eb991f8845a6e52102c4a47c56d0d62e",
-        "reviewedInputDigest": "0a33870904ab9ae628329f4a69a2b6c7eb991f8845a6e52102c4a47c56d0d62e",
-        "generatorVersion": 2,
+        "inputDigest": "c16c8a64aa4ff06ab0c89be96a45765f3069922dbf77065c4e07d533fcfc71c6",
+        "reviewedInputDigest": "c16c8a64aa4ff06ab0c89be96a45765f3069922dbf77065c4e07d533fcfc71c6",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -255,22 +197,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "c322cbb10eeead13f3e73092ad195e1abada8206e75a88cbd25f7ebeaf513855",
-        "reviewedInputDigest": "c322cbb10eeead13f3e73092ad195e1abada8206e75a88cbd25f7ebeaf513855",
-        "generatorVersion": 2,
+        "inputDigest": "3346d74be281c10012865b2a394008269aa777d91d604041988395d8cae189e5",
+        "reviewedInputDigest": "3346d74be281c10012865b2a394008269aa777d91d604041988395d8cae189e5",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -284,22 +218,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "2113d3c7f774594cdf9f21a111308d1b69db03a1db7d5f426a5cfb8fbf637c4a",
-        "reviewedInputDigest": "2113d3c7f774594cdf9f21a111308d1b69db03a1db7d5f426a5cfb8fbf637c4a",
-        "generatorVersion": 2,
+        "inputDigest": "03e0fd7cf9fe537629425aa892d51ff22795c2a34e6c3677c6eae67aaf1d55e3",
+        "reviewedInputDigest": "03e0fd7cf9fe537629425aa892d51ff22795c2a34e6c3677c6eae67aaf1d55e3",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -312,15 +238,14 @@
         "StatusResistanceBase": 0.5
       },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["MIXED_STAT_SIGNALS"],
-        "inputDigest": "b1326b4a674d66e208d252795b3fe1baba6b63508f0665b145f0c687ce900054",
-        "reviewedInputDigest": "b1326b4a674d66e208d252795b3fe1baba6b63508f0665b145f0c687ce900054",
-        "generatorVersion": 2,
+        "inputDigest": "cd4f4a998c69682c5f0836bd7806002d6be0a5a37b553c47371297af6dcd75d7",
+        "reviewedInputDigest": "cd4f4a998c69682c5f0836bd7806002d6be0a5a37b553c47371297af6dcd75d7",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -334,22 +259,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "bd76877b6c576537e80e7ce2fe0b64e83d62ca612a4025e949031cf1d2d45dc9",
-        "reviewedInputDigest": "bd76877b6c576537e80e7ce2fe0b64e83d62ca612a4025e949031cf1d2d45dc9",
-        "generatorVersion": 2,
+        "inputDigest": "186f4b9be2f8bfa5851e7f22f923baf7536b6b892777542f0d05471face44a8d",
+        "reviewedInputDigest": "186f4b9be2f8bfa5851e7f22f923baf7536b6b892777542f0d05471face44a8d",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -363,22 +280,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "37b2a35104b82e4ab4ef1f0139056f600424a7f5e5132d86c4cda0e9be3c4341",
-        "reviewedInputDigest": "37b2a35104b82e4ab4ef1f0139056f600424a7f5e5132d86c4cda0e9be3c4341",
-        "generatorVersion": 2,
+        "inputDigest": "b2cd51c68833277682c740667baa290352e600334f5f412cae313de91b9357e7",
+        "reviewedInputDigest": "b2cd51c68833277682c740667baa290352e600334f5f412cae313de91b9357e7",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -392,15 +301,14 @@
         "StatusResistanceBase": 0.5
       },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "cb5d9d91e7765bb863840f7b5c676ee2a7a33f7899d545b11369c3d635ca2d9f",
-        "reviewedInputDigest": "cb5d9d91e7765bb863840f7b5c676ee2a7a33f7899d545b11369c3d635ca2d9f",
-        "generatorVersion": 2,
+        "inputDigest": "094295d6cb6ac0dcebd8029585a7b4521eb16ac543ab51eb40dc9e3b462abe62",
+        "reviewedInputDigest": "094295d6cb6ac0dcebd8029585a7b4521eb16ac543ab51eb40dc9e3b462abe62",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -409,15 +317,14 @@
       "templateId": "sustain",
       "substatWeights": { "HPAddedRatio": 1, "SpeedDelta": 1.25, "StatusResistanceBase": 0.75 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "c03788982deb6202bdc0c34e3e59d58c007c41bd8ef6aa9936ea22bfea06dcf8",
-        "reviewedInputDigest": "c03788982deb6202bdc0c34e3e59d58c007c41bd8ef6aa9936ea22bfea06dcf8",
-        "generatorVersion": 2,
+        "inputDigest": "5e6019a6118af816aaadb7a2814ebe7820d0de4ae2a021a225bf9e414d04697c",
+        "reviewedInputDigest": "5e6019a6118af816aaadb7a2814ebe7820d0de4ae2a021a225bf9e414d04697c",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -432,22 +339,14 @@
         "StatusProbabilityBase": 0.25
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "7e5f362a4f101e4ca4ef840208ccf2694e7c0b2bec5f7a7ee5a70197f77fa33e",
-        "reviewedInputDigest": "7e5f362a4f101e4ca4ef840208ccf2694e7c0b2bec5f7a7ee5a70197f77fa33e",
-        "generatorVersion": 2,
+        "inputDigest": "4fd8d1edec9ec47d2d244ac269ce96fc1908feab2c94af883a8a4d659ac68c57",
+        "reviewedInputDigest": "4fd8d1edec9ec47d2d244ac269ce96fc1908feab2c94af883a8a4d659ac68c57",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -461,22 +360,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "ba4256d3ddaea8c350aedabb4f929f78bec07e176b3e4a3ec3f67e19443fe77a",
-        "reviewedInputDigest": "ba4256d3ddaea8c350aedabb4f929f78bec07e176b3e4a3ec3f67e19443fe77a",
-        "generatorVersion": 2,
+        "inputDigest": "ba6129baebb5130ffb1ba5f7c68f576e2c7a0ad2d65f84dde03359c6e3e3dfad",
+        "reviewedInputDigest": "ba6129baebb5130ffb1ba5f7c68f576e2c7a0ad2d65f84dde03359c6e3e3dfad",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -485,15 +376,14 @@
       "templateId": "dot-dps",
       "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "70e710e0ef7d8a3bd1b137628463e89a8168924a9176aa12f574c108a95cc1bc",
-        "reviewedInputDigest": "70e710e0ef7d8a3bd1b137628463e89a8168924a9176aa12f574c108a95cc1bc",
-        "generatorVersion": 2,
+        "inputDigest": "6aab0db7604cf9b5d97234d403525beaef7195158114d8cd477ee587262fe56a",
+        "reviewedInputDigest": "6aab0db7604cf9b5d97234d403525beaef7195158114d8cd477ee587262fe56a",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -507,22 +397,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "ffb5eee21432a3e38d4a45e9c2e45bbe2529da91aac97af1b76bab149c9be696",
-        "reviewedInputDigest": "ffb5eee21432a3e38d4a45e9c2e45bbe2529da91aac97af1b76bab149c9be696",
-        "generatorVersion": 2,
+        "inputDigest": "1c4b167ab6e2532da04c57d723649ca1c347053bab9fae4228281e692f91a65e",
+        "reviewedInputDigest": "1c4b167ab6e2532da04c57d723649ca1c347053bab9fae4228281e692f91a65e",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -531,15 +413,14 @@
       "templateId": "sustain",
       "substatWeights": { "HPAddedRatio": 1, "SpeedDelta": 1.25, "StatusResistanceBase": 0.75 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "624e8b3cf9c049d45b968fc131316b26566a402078fc031ce9f90d5a9608cbb0",
-        "reviewedInputDigest": "624e8b3cf9c049d45b968fc131316b26566a402078fc031ce9f90d5a9608cbb0",
-        "generatorVersion": 2,
+        "inputDigest": "e1daa9644103af2515a23c759a07fca22f715a60e5a0c283755575b9929e5cc4",
+        "reviewedInputDigest": "e1daa9644103af2515a23c759a07fca22f715a60e5a0c283755575b9929e5cc4",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -554,22 +435,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "a0bc671ed1a44c848c20ef9cca800b2bef85857e004672fae32502bdb2323458",
-        "reviewedInputDigest": "a0bc671ed1a44c848c20ef9cca800b2bef85857e004672fae32502bdb2323458",
-        "generatorVersion": 2,
+        "inputDigest": "6307cd48540258e74f1fb4ca3c3fc32410e3ce1b33b686fb2984f606f3b36d25",
+        "reviewedInputDigest": "6307cd48540258e74f1fb4ca3c3fc32410e3ce1b33b686fb2984f606f3b36d25",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -583,22 +456,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "af2b06211f684d18460476285a62f7897e57ccb3d11583f87449b9027701a6f9",
-        "reviewedInputDigest": "af2b06211f684d18460476285a62f7897e57ccb3d11583f87449b9027701a6f9",
-        "generatorVersion": 2,
+        "inputDigest": "3ac31862243481a435ab2e118d195ca20281bec5f019d32d86e89f94d38f6b0b",
+        "reviewedInputDigest": "3ac31862243481a435ab2e118d195ca20281bec5f019d32d86e89f94d38f6b0b",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -612,22 +477,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "96320a6a74e283f610c2839c1cad5224cf41ba2ad650d3cac4093c5845047cd1",
-        "reviewedInputDigest": "96320a6a74e283f610c2839c1cad5224cf41ba2ad650d3cac4093c5845047cd1",
-        "generatorVersion": 2,
+        "inputDigest": "351d1c8403de3e077f1c04c3f59232c9ccfe5e15f7a75f8727d2ce3342c40e6a",
+        "reviewedInputDigest": "351d1c8403de3e077f1c04c3f59232c9ccfe5e15f7a75f8727d2ce3342c40e6a",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -640,15 +497,14 @@
         "StatusResistanceBase": 0.5
       },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "764ca77878cb1443d882e290706ac265ad4bac7449eb4f1497a538142c374f2c",
-        "reviewedInputDigest": "764ca77878cb1443d882e290706ac265ad4bac7449eb4f1497a538142c374f2c",
-        "generatorVersion": 2,
+        "inputDigest": "d1324e5ceeafeb7d9d554434c537649cfa85f065681a20026a9016a655a6ed43",
+        "reviewedInputDigest": "d1324e5ceeafeb7d9d554434c537649cfa85f065681a20026a9016a655a6ed43",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -657,15 +513,14 @@
       "templateId": "sustain",
       "substatWeights": { "AttackAddedRatio": 1, "SpeedDelta": 1.25, "StatusResistanceBase": 0.75 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "767a1976d314af4a736ca44c7fef1f7d1aa385ebed137dc804e1f28695abd7ad",
-        "reviewedInputDigest": "767a1976d314af4a736ca44c7fef1f7d1aa385ebed137dc804e1f28695abd7ad",
-        "generatorVersion": 2,
+        "inputDigest": "0049b94afb7bd2023fc41df4b246cf7d72bb030c4c2e9525e9bb0849cb9b883a",
+        "reviewedInputDigest": "0049b94afb7bd2023fc41df4b246cf7d72bb030c4c2e9525e9bb0849cb9b883a",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -679,22 +534,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "fc9a7e24e095448943486d1ab6d3071e61f78c06711c791f81b4cc2be971ea28",
-        "reviewedInputDigest": "fc9a7e24e095448943486d1ab6d3071e61f78c06711c791f81b4cc2be971ea28",
-        "generatorVersion": 2,
+        "inputDigest": "8d70128db21dbd7fb76735f2e3f97526a7bfa8cb65501a535fd9314c19ff39d9",
+        "reviewedInputDigest": "8d70128db21dbd7fb76735f2e3f97526a7bfa8cb65501a535fd9314c19ff39d9",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -708,22 +555,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "680e04449ab394cf582d3b25888b473f7cc986f92df4e0e862d4d8cd18885c05",
-        "reviewedInputDigest": "680e04449ab394cf582d3b25888b473f7cc986f92df4e0e862d4d8cd18885c05",
-        "generatorVersion": 2,
+        "inputDigest": "dc8049c52ab3f312c5382d92b6c1041cc43138f9a929645ddfd9f6784c67eea6",
+        "reviewedInputDigest": "dc8049c52ab3f312c5382d92b6c1041cc43138f9a929645ddfd9f6784c67eea6",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -738,22 +577,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "43725680216819a4e797a9206f4cf8536e56465bf0700251e0d5347a271052ef",
-        "reviewedInputDigest": "43725680216819a4e797a9206f4cf8536e56465bf0700251e0d5347a271052ef",
-        "generatorVersion": 2,
+        "inputDigest": "bef03ced62629c164fcc6672d5623514533bec22950f82a65c7b44d0158c6e6b",
+        "reviewedInputDigest": "bef03ced62629c164fcc6672d5623514533bec22950f82a65c7b44d0158c6e6b",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -767,22 +598,14 @@
         "SpeedDelta": 1.25
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "ddc7512d0cd6cbbddd43292ae00e4ac4eb653cd8d799bf599352b10b815312d4",
-        "reviewedInputDigest": "ddc7512d0cd6cbbddd43292ae00e4ac4eb653cd8d799bf599352b10b815312d4",
-        "generatorVersion": 2,
+        "inputDigest": "2acb3008e1c69379e198055f1b4d08e14e576e50a1b1a0f5e1a3e9f8dc865b34",
+        "reviewedInputDigest": "2acb3008e1c69379e198055f1b4d08e14e576e50a1b1a0f5e1a3e9f8dc865b34",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -796,15 +619,14 @@
         "StatusResistanceBase": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "444f640b0d8f0a799841fa9733fd058fe17e710c8f1b0b4a9771b657c67a9290",
-        "reviewedInputDigest": "444f640b0d8f0a799841fa9733fd058fe17e710c8f1b0b4a9771b657c67a9290",
-        "generatorVersion": 2,
+        "inputDigest": "41948ee58aa3b8cf43c6dcc664f544ace72ada7edaba17880abbaf52b4568d73",
+        "reviewedInputDigest": "41948ee58aa3b8cf43c6dcc664f544ace72ada7edaba17880abbaf52b4568d73",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -818,22 +640,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "a49ecbd41503107490aaaf6c4834188f00505951bafbda3506dc5420ae4ecf91",
-        "reviewedInputDigest": "a49ecbd41503107490aaaf6c4834188f00505951bafbda3506dc5420ae4ecf91",
-        "generatorVersion": 2,
+        "inputDigest": "efdfc367984ccc5b21db239b7a2e88184df8eec18e101bf051b544d0f7404420",
+        "reviewedInputDigest": "efdfc367984ccc5b21db239b7a2e88184df8eec18e101bf051b544d0f7404420",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -842,15 +656,14 @@
       "templateId": "dot-dps",
       "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "489db3c2a2721c60a8d2804da22cac360574a46a375549eafb1d1e506d0dc3d5",
-        "reviewedInputDigest": "489db3c2a2721c60a8d2804da22cac360574a46a375549eafb1d1e506d0dc3d5",
-        "generatorVersion": 2,
+        "inputDigest": "6c84a89300ea2d80c4516c4e381a6f454f3cb8df1ff4ad0ac25e5870e8d8fbfc",
+        "reviewedInputDigest": "6c84a89300ea2d80c4516c4e381a6f454f3cb8df1ff4ad0ac25e5870e8d8fbfc",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -859,15 +672,14 @@
       "templateId": "sustain",
       "substatWeights": { "HPAddedRatio": 1, "SpeedDelta": 1.25, "StatusResistanceBase": 0.75 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "c8f318a8c0f3673b02e85b36da222b80d1ab378b72f1f4021ada23a1e0e874be",
-        "reviewedInputDigest": "c8f318a8c0f3673b02e85b36da222b80d1ab378b72f1f4021ada23a1e0e874be",
-        "generatorVersion": 2,
+        "inputDigest": "e92f0be98e6db940b0d7454460d3878c39f3b101cfbd62d8a714ce2281c5c1a9",
+        "reviewedInputDigest": "e92f0be98e6db940b0d7454460d3878c39f3b101cfbd62d8a714ce2281c5c1a9",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -881,22 +693,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "7e09d7f2017dccddaf34f848db8836a68d0e161f4bc24a5d7bb2e363cb9a151c",
-        "reviewedInputDigest": "7e09d7f2017dccddaf34f848db8836a68d0e161f4bc24a5d7bb2e363cb9a151c",
-        "generatorVersion": 2,
+        "inputDigest": "1dc5140f1dc024777bd2cf8470718573e6bb3fc5b3723415dbe86f379c4d6a86",
+        "reviewedInputDigest": "1dc5140f1dc024777bd2cf8470718573e6bb3fc5b3723415dbe86f379c4d6a86",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -910,22 +714,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "a61e0240113671f4d449ace03b8c8e9503e16180fcba961de28d22c57ab67945",
-        "reviewedInputDigest": "a61e0240113671f4d449ace03b8c8e9503e16180fcba961de28d22c57ab67945",
-        "generatorVersion": 2,
+        "inputDigest": "749cfcf3ff3e741c2ec6ceb1458ff0e30c1656f2142c6cbfdb8527fc87abbbdd",
+        "reviewedInputDigest": "749cfcf3ff3e741c2ec6ceb1458ff0e30c1656f2142c6cbfdb8527fc87abbbdd",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -940,22 +736,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "b455fd0cc9da18cf5eec184f04569a9bd7d2819fbccb14cf0cb7bd943d7da6c6",
-        "reviewedInputDigest": "b455fd0cc9da18cf5eec184f04569a9bd7d2819fbccb14cf0cb7bd943d7da6c6",
-        "generatorVersion": 2,
+        "inputDigest": "59383b131ae05695e3c5226e5f6691340eb3f74ae62eac08cfdfc7ba382cf2d6",
+        "reviewedInputDigest": "59383b131ae05695e3c5226e5f6691340eb3f74ae62eac08cfdfc7ba382cf2d6",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -964,15 +752,14 @@
       "templateId": "direct-support",
       "substatWeights": { "SpeedDelta": 1.25, "StatusResistanceBase": 0.5 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "5c1a37ed1061d727f8343991ecec8d87f71a5fc6dc08181a0b9ce0b4201dbe48",
-        "reviewedInputDigest": "5c1a37ed1061d727f8343991ecec8d87f71a5fc6dc08181a0b9ce0b4201dbe48",
-        "generatorVersion": 2,
+        "inputDigest": "98a09ff61958d165e634719fbfedd5371e17914cfa58a34829b0a96a780a5365",
+        "reviewedInputDigest": "98a09ff61958d165e634719fbfedd5371e17914cfa58a34829b0a96a780a5365",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -981,15 +768,14 @@
       "templateId": "sustain",
       "substatWeights": { "HPAddedRatio": 1, "SpeedDelta": 1.25, "StatusResistanceBase": 0.75 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "3cf31ae872a602de70c8880e1a5c688a49fb933c8143c8347a4049b136cdbe49",
-        "reviewedInputDigest": "3cf31ae872a602de70c8880e1a5c688a49fb933c8143c8347a4049b136cdbe49",
-        "generatorVersion": 2,
+        "inputDigest": "9930cd06a591597754ad1a501181454e267fdf223ace205346eb7cd3d5038650",
+        "reviewedInputDigest": "9930cd06a591597754ad1a501181454e267fdf223ace205346eb7cd3d5038650",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -998,15 +784,14 @@
       "templateId": "dot-dps",
       "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "5ed8b885fe69997ac9e414b68a3a97c6debfa98335b990cb37647f121f86eca7",
-        "reviewedInputDigest": "5ed8b885fe69997ac9e414b68a3a97c6debfa98335b990cb37647f121f86eca7",
-        "generatorVersion": 2,
+        "inputDigest": "49034a892987f7a3220865e492883c8a72fe5b4ae4e4d3b435bdeb16fcfa36e8",
+        "reviewedInputDigest": "49034a892987f7a3220865e492883c8a72fe5b4ae4e4d3b435bdeb16fcfa36e8",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1020,22 +805,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "539121d335a717a2a3c62f70391a082febe90f3bc000ba27b88e0027377c5f31",
-        "reviewedInputDigest": "539121d335a717a2a3c62f70391a082febe90f3bc000ba27b88e0027377c5f31",
-        "generatorVersion": 2,
+        "inputDigest": "b69a24b16100a8b599036dda38c6928ba05314c4745fd873fb4f8d4c16e9b6d9",
+        "reviewedInputDigest": "b69a24b16100a8b599036dda38c6928ba05314c4745fd873fb4f8d4c16e9b6d9",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1049,22 +826,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "1f0168b9fb54c2aeed6144223dec5b99a60f12193a13f2c159b9c43412e134eb",
-        "reviewedInputDigest": "1f0168b9fb54c2aeed6144223dec5b99a60f12193a13f2c159b9c43412e134eb",
-        "generatorVersion": 2,
+        "inputDigest": "b34359f7d25e8a4bc534c9d5f1fc5ff823526057ecc86800286c135100ee9216",
+        "reviewedInputDigest": "b34359f7d25e8a4bc534c9d5f1fc5ff823526057ecc86800286c135100ee9216",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1077,22 +846,16 @@
         "SpeedDelta": 1
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "BreakDamageAddedRatioBase",
-          "panelTarget": "break_dmg",
-          "value": 2,
-          "postTargetWeight": 0.25
-        }
+      "softTargets": [
+        { "stat": "BreakDamageAddedRatioBase", "minimumThreshold": 0, "maximumThreshold": 2 }
       ],
-      "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "af00579363f07a373ea60e050a43b66b3d05c9d558d66ffc0c59cb83ee25e4f8",
-        "reviewedInputDigest": "af00579363f07a373ea60e050a43b66b3d05c9d558d66ffc0c59cb83ee25e4f8",
-        "generatorVersion": 2,
+        "inputDigest": "4761dcb529ff32ce1aa5845a612fa661a7ea2eeacf9395e6fa236ce52774d55d",
+        "reviewedInputDigest": "4761dcb529ff32ce1aa5845a612fa661a7ea2eeacf9395e6fa236ce52774d55d",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1106,22 +869,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "e66eebee451f13c68a802284edb4bf88251a6e1e32a4599adfd0daa440b7a6df",
-        "reviewedInputDigest": "e66eebee451f13c68a802284edb4bf88251a6e1e32a4599adfd0daa440b7a6df",
-        "generatorVersion": 2,
+        "inputDigest": "127e62af2fd7af75e6de88df92a267a93e3efdb06489d1fc0cf12812ae679c57",
+        "reviewedInputDigest": "127e62af2fd7af75e6de88df92a267a93e3efdb06489d1fc0cf12812ae679c57",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1135,22 +890,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "f0f582e132c4b7ce02fe4c1ae338756c56f309873107c2f6cfcd8cc4898bc4cf",
-        "reviewedInputDigest": "f0f582e132c4b7ce02fe4c1ae338756c56f309873107c2f6cfcd8cc4898bc4cf",
-        "generatorVersion": 2,
+        "inputDigest": "11ef76981add21f8d8d33bf69bd544d789eeeb6095d978136614c5e0a319e617",
+        "reviewedInputDigest": "11ef76981add21f8d8d33bf69bd544d789eeeb6095d978136614c5e0a319e617",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1163,15 +910,14 @@
         "StatusProbabilityBase": 0.25
       },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["MIXED_STAT_SIGNALS"],
-        "inputDigest": "8c4aba236886f34d2cd06efc9371c590bfd6a936987847766b56dcc90294de7d",
-        "reviewedInputDigest": "8c4aba236886f34d2cd06efc9371c590bfd6a936987847766b56dcc90294de7d",
-        "generatorVersion": 2,
+        "inputDigest": "8ef22456c855d0668d12ad37e539d9b217e8d51f2b8c232c0bdda60b51a6c493",
+        "reviewedInputDigest": "8ef22456c855d0668d12ad37e539d9b217e8d51f2b8c232c0bdda60b51a6c493",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1184,22 +930,16 @@
         "StatusResistanceBase": 0.25
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "BreakDamageAddedRatioBase",
-          "panelTarget": "break_dmg",
-          "value": 1.5,
-          "postTargetWeight": 0.25
-        }
+      "softTargets": [
+        { "stat": "BreakDamageAddedRatioBase", "minimumThreshold": 0, "maximumThreshold": 1.5 }
       ],
-      "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "24beb61cafb66b5817a94ee1a75e5750ae72d7d7533f4f4051ee6c355902b14b",
-        "reviewedInputDigest": "24beb61cafb66b5817a94ee1a75e5750ae72d7d7533f4f4051ee6c355902b14b",
-        "generatorVersion": 2,
+        "inputDigest": "e873ee42fee1dfde6721cfebbfae24f3ab3d7168d2e733cc1a0f2110d7f47511",
+        "reviewedInputDigest": "e873ee42fee1dfde6721cfebbfae24f3ab3d7168d2e733cc1a0f2110d7f47511",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1213,22 +953,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "d504dd86094e3822c354947316c783d1fe5ebc14dbb821e9e767c489f7ebdef5",
-        "reviewedInputDigest": "d504dd86094e3822c354947316c783d1fe5ebc14dbb821e9e767c489f7ebdef5",
-        "generatorVersion": 2,
+        "inputDigest": "a1e7889e531e5aa5a90999f9b0a9352b558c641398605d38a70817b7a660ba2f",
+        "reviewedInputDigest": "a1e7889e531e5aa5a90999f9b0a9352b558c641398605d38a70817b7a660ba2f",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1241,22 +973,16 @@
         "StatusResistanceBase": 0.25
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "BreakDamageAddedRatioBase",
-          "panelTarget": "break_dmg",
-          "value": 1.8,
-          "postTargetWeight": 0.25
-        }
+      "softTargets": [
+        { "stat": "BreakDamageAddedRatioBase", "minimumThreshold": 1.2, "maximumThreshold": 1.8 }
       ],
-      "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "e4b41bff98cd510d9e6ff706a76d33b0a860b95820ffa5b24f2aaf24f9db3867",
-        "reviewedInputDigest": "e4b41bff98cd510d9e6ff706a76d33b0a860b95820ffa5b24f2aaf24f9db3867",
-        "generatorVersion": 2,
+        "inputDigest": "20ad1d5961616f1bdebc2031d7c31b1d8f09d40ab76c0af54561f259c67abfeb",
+        "reviewedInputDigest": "20ad1d5961616f1bdebc2031d7c31b1d8f09d40ab76c0af54561f259c67abfeb",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1270,28 +996,16 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        },
-        {
-          "stat": "DefenceAddedRatio",
-          "panelTarget": "def",
-          "value": 4000,
-          "postTargetWeight": 0.25
-        }
+      "softTargets": [
+        { "stat": "DefenceAddedRatio", "minimumThreshold": 1600, "maximumThreshold": 4000 }
       ],
-      "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "b1e83a158fd80fb4e5247b9cbd20ed4893bf8c280eea1cf06e46abe5d207072c",
-        "reviewedInputDigest": "b1e83a158fd80fb4e5247b9cbd20ed4893bf8c280eea1cf06e46abe5d207072c",
-        "generatorVersion": 2,
+        "inputDigest": "de327fe79aac9b629c6d409b079a0530245d6f7fd6250533e0fc474487f8982a",
+        "reviewedInputDigest": "de327fe79aac9b629c6d409b079a0530245d6f7fd6250533e0fc474487f8982a",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1305,22 +1019,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "227d76e4ade506ae5a0851d59484fd9e93d49b13957f0f0abd9052305dc56519",
-        "reviewedInputDigest": "227d76e4ade506ae5a0851d59484fd9e93d49b13957f0f0abd9052305dc56519",
-        "generatorVersion": 2,
+        "inputDigest": "2a740b30a1f9467ca8e23d523de9595de07267c9f83bd97921e8f1384e908090",
+        "reviewedInputDigest": "2a740b30a1f9467ca8e23d523de9595de07267c9f83bd97921e8f1384e908090",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1333,15 +1039,14 @@
         "StatusResistanceBase": 0.5
       },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["MIXED_STAT_SIGNALS"],
-        "inputDigest": "46d687be4575e2c543b0282559febebceb9cfa69ab1ac83afbbb03d06ffc4ba2",
-        "reviewedInputDigest": "46d687be4575e2c543b0282559febebceb9cfa69ab1ac83afbbb03d06ffc4ba2",
-        "generatorVersion": 2,
+        "inputDigest": "ee4c6248ef7684ebc6521b323f05c4974d664fdb86fb05758301a21989588ece",
+        "reviewedInputDigest": "ee4c6248ef7684ebc6521b323f05c4974d664fdb86fb05758301a21989588ece",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1350,15 +1055,14 @@
       "templateId": "dot-dps",
       "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "cbd55321ec3b75a9f71ea2b3b9bb8d91bec92721bc5f529df98ee8f0128b8ce5",
-        "reviewedInputDigest": "cbd55321ec3b75a9f71ea2b3b9bb8d91bec92721bc5f529df98ee8f0128b8ce5",
-        "generatorVersion": 2,
+        "inputDigest": "2d23741e8658d977864904044e882c7f224c526d675e3caac0344559a18b3bd3",
+        "reviewedInputDigest": "2d23741e8658d977864904044e882c7f224c526d675e3caac0344559a18b3bd3",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1372,22 +1076,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "0edff389e1ee2edb5c445ad9cbee9de9282128b657cab86763e15b1b0e4ae77d",
-        "reviewedInputDigest": "0edff389e1ee2edb5c445ad9cbee9de9282128b657cab86763e15b1b0e4ae77d",
-        "generatorVersion": 2,
+        "inputDigest": "42c9b967e6aecfc9a4578b8c52f509cc90b580ae7af49dda3f8ccbd14a44120a",
+        "reviewedInputDigest": "42c9b967e6aecfc9a4578b8c52f509cc90b580ae7af49dda3f8ccbd14a44120a",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1396,15 +1092,14 @@
       "templateId": "direct-support",
       "substatWeights": { "AttackAddedRatio": 0.75, "AttackDelta": 0.5, "SpeedDelta": 1.25 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "c4c0ca5127af79a13ad41331b1e656b298eee6f36dc36a20e8be27791846de00",
-        "reviewedInputDigest": "c4c0ca5127af79a13ad41331b1e656b298eee6f36dc36a20e8be27791846de00",
-        "generatorVersion": 2,
+        "inputDigest": "8dfe8625a3820b8113b76551170af70b7cc6d696d75adad55301aa8648e31505",
+        "reviewedInputDigest": "8dfe8625a3820b8113b76551170af70b7cc6d696d75adad55301aa8648e31505",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1417,15 +1112,14 @@
         "SpeedDelta": 1
       },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "45ee1cc49e255c3171c849ed4cd91e9033ca20ea9e1edc2bb1d295729ec63bb1",
-        "reviewedInputDigest": "45ee1cc49e255c3171c849ed4cd91e9033ca20ea9e1edc2bb1d295729ec63bb1",
-        "generatorVersion": 2,
+        "inputDigest": "70e480db49d862f76024ca595af0319e5dc0183233599110dfab5d3158da7c09",
+        "reviewedInputDigest": "70e480db49d862f76024ca595af0319e5dc0183233599110dfab5d3158da7c09",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1439,22 +1133,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "50f0b9186125a1a2185ccb5b87e62143a46716b7c32eecbf6c71eed0fe30e552",
-        "reviewedInputDigest": "50f0b9186125a1a2185ccb5b87e62143a46716b7c32eecbf6c71eed0fe30e552",
-        "generatorVersion": 2,
+        "inputDigest": "899921337ffc41ed42970adca68d131cd0405d4fe645f5e650e49a90886ed3a9",
+        "reviewedInputDigest": "899921337ffc41ed42970adca68d131cd0405d4fe645f5e650e49a90886ed3a9",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1467,15 +1153,14 @@
         "StatusResistanceBase": 0.5
       },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["MIXED_STAT_SIGNALS"],
-        "inputDigest": "bafb1a5f698a7dfb867891e12b8a9f31a8cdc17f02c4a374d213263a855689ad",
-        "reviewedInputDigest": "bafb1a5f698a7dfb867891e12b8a9f31a8cdc17f02c4a374d213263a855689ad",
-        "generatorVersion": 2,
+        "inputDigest": "d7da87d9292fd04db3fbcbedcee9d018533f6e8a0077388015f41591242c72ca",
+        "reviewedInputDigest": "d7da87d9292fd04db3fbcbedcee9d018533f6e8a0077388015f41591242c72ca",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1489,22 +1174,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "ba4837918e083643fa7d29374f67673ae38e2ec1b841dd5deb4a8960ee62297d",
-        "reviewedInputDigest": "ba4837918e083643fa7d29374f67673ae38e2ec1b841dd5deb4a8960ee62297d",
-        "generatorVersion": 2,
+        "inputDigest": "d871c8e1e9abde60c5f9db9e56d4ec13440be5ce87eeba446bf9f59ca8c2b720",
+        "reviewedInputDigest": "d871c8e1e9abde60c5f9db9e56d4ec13440be5ce87eeba446bf9f59ca8c2b720",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1519,22 +1196,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "82641491d0d7e8fbda7640a537f82eeebf9566d2f3d01f796253dc86d2492a09",
-        "reviewedInputDigest": "82641491d0d7e8fbda7640a537f82eeebf9566d2f3d01f796253dc86d2492a09",
-        "generatorVersion": 2,
+        "inputDigest": "55cb339625b655582640d6b79b994def73c9da471986f0bed8303cf11a58cf0f",
+        "reviewedInputDigest": "55cb339625b655582640d6b79b994def73c9da471986f0bed8303cf11a58cf0f",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1547,15 +1216,14 @@
         "SpeedDelta": 1
       },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "2b7d08c159567c75e72053d5fa81c2c19b0ef9b89738bf2e854ef20c5f464199",
-        "reviewedInputDigest": "2b7d08c159567c75e72053d5fa81c2c19b0ef9b89738bf2e854ef20c5f464199",
-        "generatorVersion": 2,
+        "inputDigest": "3bd300b35cf05d53f68c8056435e5ff34b979249e47678f14cdd0834c542d4a1",
+        "reviewedInputDigest": "3bd300b35cf05d53f68c8056435e5ff34b979249e47678f14cdd0834c542d4a1",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1564,15 +1232,14 @@
       "templateId": "break",
       "substatWeights": { "BreakDamageAddedRatioBase": 1.25, "SpeedDelta": 1 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "8734135d2b7716869666686d9ab6f1fef84e2c6656b3cdc4b3469148e58612ad",
-        "reviewedInputDigest": "8734135d2b7716869666686d9ab6f1fef84e2c6656b3cdc4b3469148e58612ad",
-        "generatorVersion": 2,
+        "inputDigest": "2b8d5de84facb4a2ee0c95c8f18836156a6d82569b19fa37c94e51bec8384b0c",
+        "reviewedInputDigest": "2b8d5de84facb4a2ee0c95c8f18836156a6d82569b19fa37c94e51bec8384b0c",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1586,22 +1253,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "2dc06524c0acb88849ad91316ffa758a9f911082bd9783d985cab56334aec5d6",
-        "reviewedInputDigest": "2dc06524c0acb88849ad91316ffa758a9f911082bd9783d985cab56334aec5d6",
-        "generatorVersion": 2,
+        "inputDigest": "71050ed4341a67edbe59ec6559736953d82281527e3caf9891ac1fd97c934356",
+        "reviewedInputDigest": "71050ed4341a67edbe59ec6559736953d82281527e3caf9891ac1fd97c934356",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1615,22 +1274,14 @@
         "SpeedDelta": 1
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "9b837535f055e6aa8e1cf2631dafd0deee90d5918f74d13dce639c65a9183e9f",
-        "reviewedInputDigest": "9b837535f055e6aa8e1cf2631dafd0deee90d5918f74d13dce639c65a9183e9f",
-        "generatorVersion": 2,
+        "inputDigest": "af52b67dd4a049113de2224e8f0c4ef4364c89de9b193a6a0aa54916bec5d425",
+        "reviewedInputDigest": "af52b67dd4a049113de2224e8f0c4ef4364c89de9b193a6a0aa54916bec5d425",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1639,22 +1290,14 @@
       "templateId": "direct-support",
       "substatWeights": { "CriticalChanceBase": 0.5, "CriticalDamageBase": 0.5, "HPAddedRatio": 1 },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "d38e85cdbabfa248f0784e2b0fc33477273e40bc02fb6cc1594efc3e63b75fc4",
-        "reviewedInputDigest": "d38e85cdbabfa248f0784e2b0fc33477273e40bc02fb6cc1594efc3e63b75fc4",
-        "generatorVersion": 2,
+        "inputDigest": "ff705b549571ab4d12403eab364cb7a32c68ef87c708775907789e695b5ce0ac",
+        "reviewedInputDigest": "ff705b549571ab4d12403eab364cb7a32c68ef87c708775907789e695b5ce0ac",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1668,22 +1311,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "5b744a4e2c2e79429ad1d82da72831ded7763867c87a043d25e273579b471c63",
-        "reviewedInputDigest": "5b744a4e2c2e79429ad1d82da72831ded7763867c87a043d25e273579b471c63",
-        "generatorVersion": 2,
+        "inputDigest": "f8de43e8e131421eb50ed15a115b4c60fb5fb774e74292ab39c5f9a1405ebf38",
+        "reviewedInputDigest": "f8de43e8e131421eb50ed15a115b4c60fb5fb774e74292ab39c5f9a1405ebf38",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1697,22 +1332,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "f927ba0b551c98be4b1db4dbeee1af1bfdb1cd86921df7a0e6871686289ddfc9",
-        "reviewedInputDigest": "f927ba0b551c98be4b1db4dbeee1af1bfdb1cd86921df7a0e6871686289ddfc9",
-        "generatorVersion": 2,
+        "inputDigest": "ee92a94b73e1780f6ffa76292cc0030d54223e099f554cc000ec948aa055b0a6",
+        "reviewedInputDigest": "ee92a94b73e1780f6ffa76292cc0030d54223e099f554cc000ec948aa055b0a6",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1726,22 +1353,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "aff0bb151c9811ff5863e0cdef37712d4a0ca113899bf0a4261e52d8a6d6086e",
-        "reviewedInputDigest": "aff0bb151c9811ff5863e0cdef37712d4a0ca113899bf0a4261e52d8a6d6086e",
-        "generatorVersion": 2,
+        "inputDigest": "389fcf10fa7ca3fa1c51178611fde96f5ee14721b9f66c8e66ba72bf18b56449",
+        "reviewedInputDigest": "389fcf10fa7ca3fa1c51178611fde96f5ee14721b9f66c8e66ba72bf18b56449",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1754,22 +1373,14 @@
         "HPAddedRatio": 1
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "fe9e34c679eb0b4cf26a77a7b6750d27ad9178c02ac58a39834cedfff4d63059",
-        "reviewedInputDigest": "fe9e34c679eb0b4cf26a77a7b6750d27ad9178c02ac58a39834cedfff4d63059",
-        "generatorVersion": 2,
+        "inputDigest": "7cd62911d44daf754a3d92e35f6dd80c1868121e470f2e684ab49461ac89f1bf",
+        "reviewedInputDigest": "7cd62911d44daf754a3d92e35f6dd80c1868121e470f2e684ab49461ac89f1bf",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1782,22 +1393,14 @@
         "CriticalDamageBase": 1.25
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "5000e156a0e215a5bd4fde3478235262acc0fcfe0387163d180302491ec87d43",
-        "reviewedInputDigest": "5000e156a0e215a5bd4fde3478235262acc0fcfe0387163d180302491ec87d43",
-        "generatorVersion": 2,
+        "inputDigest": "32b4072369833a5947cc369c9f219361d1e5342d062f8859c242c0c3c47e7733",
+        "reviewedInputDigest": "32b4072369833a5947cc369c9f219361d1e5342d062f8859c242c0c3c47e7733",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1810,23 +1413,17 @@
         "SpeedDelta": 1.25,
         "StatusResistanceBase": 0.25
       },
-      "hardBreakpoints": [{ "stat": "SpeedDelta", "panelTarget": "spd", "value": 200 }],
-      "statTargets": [
-        {
-          "stat": "StatusResistanceBase",
-          "panelTarget": "effect_res",
-          "value": 0.5,
-          "postTargetWeight": 0
-        }
+      "hardBreakpoints": [{ "stat": "SpeedDelta", "threshold": 200 }],
+      "softTargets": [
+        { "stat": "StatusResistanceBase", "minimumThreshold": 0, "maximumThreshold": 0.5 }
       ],
-      "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "MIXED_STAT_SIGNALS", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "e41f7d8e212684ddd0c8e64ec42f696985aff98cb6e3e8abfc6088ffb4509c58",
-        "reviewedInputDigest": "e41f7d8e212684ddd0c8e64ec42f696985aff98cb6e3e8abfc6088ffb4509c58",
-        "generatorVersion": 2,
+        "inputDigest": "0c72cd5fbf0d060502994803d500f279e210fb72464ad631387a153bbd30adcb",
+        "reviewedInputDigest": "0c72cd5fbf0d060502994803d500f279e210fb72464ad631387a153bbd30adcb",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1835,15 +1432,14 @@
       "templateId": "dot-dps",
       "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "1cc0956bc2f791c066fea54525851693e846e58d4f98e2f190e8b0f1788a000a",
-        "reviewedInputDigest": "1cc0956bc2f791c066fea54525851693e846e58d4f98e2f190e8b0f1788a000a",
-        "generatorVersion": 2,
+        "inputDigest": "29adaf8a3cb0472e0384db6b1e76ad509d4053693e980cb406fb086556352fa0",
+        "reviewedInputDigest": "29adaf8a3cb0472e0384db6b1e76ad509d4053693e980cb406fb086556352fa0",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1852,22 +1448,16 @@
       "templateId": "direct-support",
       "substatWeights": { "AttackAddedRatio": 1, "CriticalDamageBase": 0.75, "SpeedDelta": 1 },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "AttackAddedRatio",
-          "panelTarget": "atk",
-          "value": 4000,
-          "postTargetWeight": 0.25
-        }
+      "softTargets": [
+        { "stat": "AttackAddedRatio", "minimumThreshold": 2000, "maximumThreshold": 4000 }
       ],
-      "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["MIXED_STAT_SIGNALS"],
-        "inputDigest": "a4fa2079b181c45327737db171b0bb2702e45a08f453f7b699e29f4e5651a20d",
-        "reviewedInputDigest": "a4fa2079b181c45327737db171b0bb2702e45a08f453f7b699e29f4e5651a20d",
-        "generatorVersion": 2,
+        "inputDigest": "4e5e8d784d98e69b9dbb632641d5544e0d0243ab1586a47c739cc0c46e844cfd",
+        "reviewedInputDigest": "4e5e8d784d98e69b9dbb632641d5544e0d0243ab1586a47c739cc0c46e844cfd",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1881,22 +1471,14 @@
         "SpeedDelta": 0.25
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 0.65,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "227e88e84a5a32407dae446e8e955420578e8eda0f50028b2bdad1bc9e53a4a6",
-        "reviewedInputDigest": "227e88e84a5a32407dae446e8e955420578e8eda0f50028b2bdad1bc9e53a4a6",
-        "generatorVersion": 2,
+        "inputDigest": "d506f17fb026b0cbe8976154b0f7066f9c642dadfaaea885674b6c57e1a1425b",
+        "reviewedInputDigest": "d506f17fb026b0cbe8976154b0f7066f9c642dadfaaea885674b6c57e1a1425b",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1905,15 +1487,14 @@
       "templateId": "sustain",
       "substatWeights": { "AttackAddedRatio": 1, "SpeedDelta": 1.25 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "ad31ca6f398669762ad26cbedbcf5fb442c62c427378ce264ddc62a0692b7237",
-        "reviewedInputDigest": "ad31ca6f398669762ad26cbedbcf5fb442c62c427378ce264ddc62a0692b7237",
-        "generatorVersion": 2,
+        "inputDigest": "9b728d2394af6636ad8a792c7168fce04bef180415fa3aa70aa70564bbe4c830",
+        "reviewedInputDigest": "9b728d2394af6636ad8a792c7168fce04bef180415fa3aa70aa70564bbe4c830",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1926,23 +1507,15 @@
         "HPAddedRatio": 0.75,
         "SpeedDelta": 1.25
       },
-      "hardBreakpoints": [{ "stat": "SpeedDelta", "panelTarget": "spd", "value": 180 }],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 0.5,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "hardBreakpoints": [{ "stat": "SpeedDelta", "threshold": 180 }],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "a02e6350ade8f68ce39a0b2b7222578fc6ab0e0242faa690bcb88267a98043d6",
-        "reviewedInputDigest": "a02e6350ade8f68ce39a0b2b7222578fc6ab0e0242faa690bcb88267a98043d6",
-        "generatorVersion": 2,
+        "inputDigest": "1fb82256220f45a18f87b07263805c95fbb973a69ff94eb78c1839ee14cf906a",
+        "reviewedInputDigest": "1fb82256220f45a18f87b07263805c95fbb973a69ff94eb78c1839ee14cf906a",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1955,23 +1528,16 @@
         "CriticalDamageBase": 1.25
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        { "stat": "AttackAddedRatio", "panelTarget": "atk", "value": 3600, "postTargetWeight": 0 },
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
+      "softTargets": [
+        { "stat": "AttackAddedRatio", "minimumThreshold": 2000, "maximumThreshold": 3600 }
       ],
-      "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "f12e16869e5fda1aa4d9a3f95e3ac6dac81dec8a412eebbc71e1708491051fc0",
-        "reviewedInputDigest": "f12e16869e5fda1aa4d9a3f95e3ac6dac81dec8a412eebbc71e1708491051fc0",
-        "generatorVersion": 2,
+        "inputDigest": "60fca586765125d8944968038232508b5067783651bb33ecdcec589443375025",
+        "reviewedInputDigest": "60fca586765125d8944968038232508b5067783651bb33ecdcec589443375025",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1983,23 +1549,15 @@
         "CriticalDamageBase": 0.75,
         "SpeedDelta": 1.25
       },
-      "hardBreakpoints": [{ "stat": "SpeedDelta", "panelTarget": "spd", "value": 120 }],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "hardBreakpoints": [{ "stat": "SpeedDelta", "threshold": 120 }],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "e7d8937804b6f7b811b831518d11b95698f91f3ca8cc1567abc33e6d5e03de6e",
-        "reviewedInputDigest": "e7d8937804b6f7b811b831518d11b95698f91f3ca8cc1567abc33e6d5e03de6e",
-        "generatorVersion": 2,
+        "inputDigest": "31e77eb359b3f1200ce56db573d75abd4a0e38abd475141b6651c265fa90d14b",
+        "reviewedInputDigest": "31e77eb359b3f1200ce56db573d75abd4a0e38abd475141b6651c265fa90d14b",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2013,22 +1571,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "2a97af0118505c05c78eb28080a6d6e721e0e5f10d9920c3909551bbbf465a10",
-        "reviewedInputDigest": "2a97af0118505c05c78eb28080a6d6e721e0e5f10d9920c3909551bbbf465a10",
-        "generatorVersion": 2,
+        "inputDigest": "fb9371e7bafaaf421bf2afc9bb81e217f4ab7ab8018fe2bdaf9c2990162ba49c",
+        "reviewedInputDigest": "fb9371e7bafaaf421bf2afc9bb81e217f4ab7ab8018fe2bdaf9c2990162ba49c",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2042,22 +1592,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 0.7,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "3178bbb2e4bae3136db5749884326adfbf8270f50f401a9dcfea2a1f33108c87",
-        "reviewedInputDigest": "3178bbb2e4bae3136db5749884326adfbf8270f50f401a9dcfea2a1f33108c87",
-        "generatorVersion": 2,
+        "inputDigest": "0d057c7aa2677bec941aa67733795f1a331b977055a00679ecca526fdc900324",
+        "reviewedInputDigest": "0d057c7aa2677bec941aa67733795f1a331b977055a00679ecca526fdc900324",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2069,23 +1611,15 @@
         "CriticalDamageBase": 0.75,
         "SpeedDelta": 1.25
       },
-      "hardBreakpoints": [{ "stat": "SpeedDelta", "panelTarget": "spd", "value": 160 }],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "hardBreakpoints": [{ "stat": "SpeedDelta", "threshold": 160 }],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "756501ce2ed59fc190ff2904c0621046d6506bdc2c42938d3e225d8829914d23",
-        "reviewedInputDigest": "756501ce2ed59fc190ff2904c0621046d6506bdc2c42938d3e225d8829914d23",
-        "generatorVersion": 2,
+        "inputDigest": "8dc7885c9ee6f77d2c476c4887675ed1d3b0967ba3b06c2279ec91e438b5d292",
+        "reviewedInputDigest": "8dc7885c9ee6f77d2c476c4887675ed1d3b0967ba3b06c2279ec91e438b5d292",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2099,22 +1633,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "b4237af0fe889518f411d0699baee144c226a04899edc476ad87449a800a5692",
-        "reviewedInputDigest": "b4237af0fe889518f411d0699baee144c226a04899edc476ad87449a800a5692",
-        "generatorVersion": 2,
+        "inputDigest": "76886bdc9ab9a4c423d130b6c23ae0d3d85b3e6d48de9c5e7c649f9b4b2f32d8",
+        "reviewedInputDigest": "76886bdc9ab9a4c423d130b6c23ae0d3d85b3e6d48de9c5e7c649f9b4b2f32d8",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2128,22 +1654,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "c30147aaa3ac1acec83e78bfb0038b2df44ca898720b47534babc4c5ea27453c",
-        "reviewedInputDigest": "c30147aaa3ac1acec83e78bfb0038b2df44ca898720b47534babc4c5ea27453c",
-        "generatorVersion": 2,
+        "inputDigest": "b969dabd0fd28bafc73c26ec37105452477b2494dbc5100ab2837dc6935b9601",
+        "reviewedInputDigest": "b969dabd0fd28bafc73c26ec37105452477b2494dbc5100ab2837dc6935b9601",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2157,22 +1675,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "fb5d7a6ca0527acbe7994a1af39c97e74174dd8fc17f68692640b3a02c4f568f",
-        "reviewedInputDigest": "fb5d7a6ca0527acbe7994a1af39c97e74174dd8fc17f68692640b3a02c4f568f",
-        "generatorVersion": 2,
+        "inputDigest": "d1cdbaa2bcf7f3f6d75c4eab72ba798fab002786aa73c49012c15edcba096a19",
+        "reviewedInputDigest": "d1cdbaa2bcf7f3f6d75c4eab72ba798fab002786aa73c49012c15edcba096a19",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2186,22 +1696,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "59eeeb8a59f0f45d2207145eb1abbe68adfe363f4709765636dd7fbea7285f8e",
-        "reviewedInputDigest": "59eeeb8a59f0f45d2207145eb1abbe68adfe363f4709765636dd7fbea7285f8e",
-        "generatorVersion": 2,
+        "inputDigest": "30944bbefabdfd733154cca26d2c3973290ee059d16cd893cc325978b99ee893",
+        "reviewedInputDigest": "30944bbefabdfd733154cca26d2c3973290ee059d16cd893cc325978b99ee893",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2215,22 +1717,14 @@
         "SpeedDelta": 1
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 0.5,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "b080c87e5a077566d7aad4bd9d46ffe4a2b37e7b8318b05d35939be57aaf441c",
-        "reviewedInputDigest": "b080c87e5a077566d7aad4bd9d46ffe4a2b37e7b8318b05d35939be57aaf441c",
-        "generatorVersion": 2,
+        "inputDigest": "fc84505e1d8a5b93c4e1fde2cce02cf67ba1cf0b84bf3b720da02751187a65fe",
+        "reviewedInputDigest": "fc84505e1d8a5b93c4e1fde2cce02cf67ba1cf0b84bf3b720da02751187a65fe",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2238,23 +1732,15 @@
       "characterId": "1513",
       "templateId": "direct-dps",
       "substatWeights": { "CriticalChanceBase": 0.75, "CriticalDamageBase": 0.75, "SpeedDelta": 1 },
-      "hardBreakpoints": [{ "stat": "SpeedDelta", "panelTarget": "spd", "value": 140 }],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "hardBreakpoints": [{ "stat": "SpeedDelta", "threshold": 140 }],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "bcd2b5ca13e9afd687b211cd6b0fb819a446afa65a2581e7da22254787d8f1ff",
-        "reviewedInputDigest": "bcd2b5ca13e9afd687b211cd6b0fb819a446afa65a2581e7da22254787d8f1ff",
-        "generatorVersion": 2,
+        "inputDigest": "65ded9b5a12304d1c0ca9518c8a0b067af044dea828702ce8c5e5cd4de1a7504",
+        "reviewedInputDigest": "65ded9b5a12304d1c0ca9518c8a0b067af044dea828702ce8c5e5cd4de1a7504",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2268,22 +1754,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "fcf0136399032c1c210066d923be8aabc6f39007e70160e1e0d4e8a2c6914de3",
-        "reviewedInputDigest": "fcf0136399032c1c210066d923be8aabc6f39007e70160e1e0d4e8a2c6914de3",
-        "generatorVersion": 2,
+        "inputDigest": "b100bec3f30c8f2686da07722a5ce59cce7d04afa3ad66aac266f9342aedce75",
+        "reviewedInputDigest": "b100bec3f30c8f2686da07722a5ce59cce7d04afa3ad66aac266f9342aedce75",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2297,22 +1775,14 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 1,
-          "postTargetWeight": 0
-        }
-      ],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "8bb0f909ef9746708601d7511b4fe828ed00477c8e4f4e92a58bb79edce5d2b5",
-        "reviewedInputDigest": "8bb0f909ef9746708601d7511b4fe828ed00477c8e4f4e92a58bb79edce5d2b5",
-        "generatorVersion": 2,
+        "inputDigest": "d6fd85e308568cd7bb72692891fbc875744cede74643627ee228d734017329ff",
+        "reviewedInputDigest": "d6fd85e308568cd7bb72692891fbc875744cede74643627ee228d734017329ff",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2325,15 +1795,14 @@
         "StatusResistanceBase": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "639b7384b45504918682744e96f295f654a2d2c9274fdadae8084f2a13bf08e1",
-        "reviewedInputDigest": "639b7384b45504918682744e96f295f654a2d2c9274fdadae8084f2a13bf08e1",
-        "generatorVersion": 2,
+        "inputDigest": "fed2cf05c4d42cb2c042de25a5525efafb18ba7ea1d0a9d8995c1c3d8d9d7a42",
+        "reviewedInputDigest": "fed2cf05c4d42cb2c042de25a5525efafb18ba7ea1d0a9d8995c1c3d8d9d7a42",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2346,15 +1815,14 @@
         "StatusResistanceBase": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "8eaa1fd4c11dfbb36fb3ea5cfc702e0d299b963e67c09f3bc24277ea227905ae",
-        "reviewedInputDigest": "8eaa1fd4c11dfbb36fb3ea5cfc702e0d299b963e67c09f3bc24277ea227905ae",
-        "generatorVersion": 2,
+        "inputDigest": "098b7df5b3af4783aaf3e9ed36569301fcbe48fd3f543d0c964adbd9307b115b",
+        "reviewedInputDigest": "098b7df5b3af4783aaf3e9ed36569301fcbe48fd3f543d0c964adbd9307b115b",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2363,15 +1831,14 @@
       "templateId": "break",
       "substatWeights": { "BreakDamageAddedRatioBase": 1.25, "SpeedDelta": 1 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "011d48f7f99e264b48ece14caa84f056f7a3590ebefe7ff26027a094ce448eba",
-        "reviewedInputDigest": "011d48f7f99e264b48ece14caa84f056f7a3590ebefe7ff26027a094ce448eba",
-        "generatorVersion": 2,
+        "inputDigest": "2c30fe3807d75575aa7762a24532d50180a343fd7a4f560cffd9579eb4fe40d0",
+        "reviewedInputDigest": "2c30fe3807d75575aa7762a24532d50180a343fd7a4f560cffd9579eb4fe40d0",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2380,15 +1847,14 @@
       "templateId": "break",
       "substatWeights": { "BreakDamageAddedRatioBase": 1.25, "SpeedDelta": 1 },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "medium",
         "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "f25ba34f174be60e68e4f003bb6b8b0efc26efd26f31ac145f4512b46f499730",
-        "reviewedInputDigest": "f25ba34f174be60e68e4f003bb6b8b0efc26efd26f31ac145f4512b46f499730",
-        "generatorVersion": 2,
+        "inputDigest": "9fed06a07f42df65d33f45571e95d82e6a8611105f4000a598f19900b91d4d69",
+        "reviewedInputDigest": "9fed06a07f42df65d33f45571e95d82e6a8611105f4000a598f19900b91d4d69",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2401,15 +1867,14 @@
         "SpeedDelta": 1.25
       },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "MIXED_STAT_SIGNALS", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "a8a3c19b9aab7dbf44fed4e0dd083d7a237ff4ea36c80d243b089ff7084021fb",
-        "reviewedInputDigest": "a8a3c19b9aab7dbf44fed4e0dd083d7a237ff4ea36c80d243b089ff7084021fb",
-        "generatorVersion": 2,
+        "inputDigest": "f09bfdfd12d8d83657d64e18a29379640b6db5047f66c5929f32e8d51357f7e0",
+        "reviewedInputDigest": "f09bfdfd12d8d83657d64e18a29379640b6db5047f66c5929f32e8d51357f7e0",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2422,15 +1887,14 @@
         "SpeedDelta": 1.25
       },
       "hardBreakpoints": [],
-      "statTargets": [],
-      "statCurves": [],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "MIXED_STAT_SIGNALS", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "838070d4125196c5297466fd7d582b45220e8bdf08e6f03baf5c0251c8ba08cf",
-        "reviewedInputDigest": "838070d4125196c5297466fd7d582b45220e8bdf08e6f03baf5c0251c8ba08cf",
-        "generatorVersion": 2,
+        "inputDigest": "fb3f3cc197cdc804c472646b1cb824c0b0f33f919a1d96c10451776e4683d3d2",
+        "reviewedInputDigest": "fb3f3cc197cdc804c472646b1cb824c0b0f33f919a1d96c10451776e4683d3d2",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2444,28 +1908,16 @@
         "SpeedDelta": 1
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "AttackAddedRatio",
-          "panelTarget": "atk",
-          "value": 2200,
-          "postTargetWeight": 0.25
-        },
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 0.85,
-          "postTargetWeight": 0
-        }
+      "softTargets": [
+        { "stat": "AttackAddedRatio", "minimumThreshold": 1000, "maximumThreshold": 2200 }
       ],
-      "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "b162a55430687ac77649449f55fbeabcbc1d5451a598838b6cbc4786136dd73f",
-        "reviewedInputDigest": "b162a55430687ac77649449f55fbeabcbc1d5451a598838b6cbc4786136dd73f",
-        "generatorVersion": 2,
+        "inputDigest": "151fb088fdfc4ad0265316c71a9d2eee8ed9df59dc50ec4d3430388051700277",
+        "reviewedInputDigest": "151fb088fdfc4ad0265316c71a9d2eee8ed9df59dc50ec4d3430388051700277",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2479,28 +1931,16 @@
         "SpeedDelta": 1
       },
       "hardBreakpoints": [],
-      "statTargets": [
-        {
-          "stat": "AttackAddedRatio",
-          "panelTarget": "atk",
-          "value": 2200,
-          "postTargetWeight": 0.25
-        },
-        {
-          "stat": "CriticalChanceBase",
-          "panelTarget": "crit_rate",
-          "value": 0.85,
-          "postTargetWeight": 0
-        }
+      "softTargets": [
+        { "stat": "AttackAddedRatio", "minimumThreshold": 1000, "maximumThreshold": 2200 }
       ],
-      "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "10101800c06a512026d648565b2dd5f345f3b5cd7ccbd78e0da71019bbbeefa6",
-        "reviewedInputDigest": "10101800c06a512026d648565b2dd5f345f3b5cd7ccbd78e0da71019bbbeefa6",
-        "generatorVersion": 2,
+        "inputDigest": "d79eeb9e54a86eea53c75f5998982cdf3bc7e99ca7c1d448397d86e95033971b",
+        "reviewedInputDigest": "d79eeb9e54a86eea53c75f5998982cdf3bc7e99ca7c1d448397d86e95033971b",
+        "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     }

@@ -1,7 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { AvatarEquipmentRecommendation } from '../../src/lib/domain/types.js';
-import { PLAYER_PROPERTY_SEMANTICS } from '../../src/lib/player/property-semantics.js';
 import { assertPlayerRuntimeData } from '../../src/lib/player/runtime-data.js';
 import type { CharacterProfileArtifact } from '../../src/lib/relic-score/profile-types.js';
 import { buildRelicScoreReferenceData } from '../../src/lib/relic-score/reference.js';
@@ -19,18 +18,15 @@ import {
   type ProfileCharacterSource,
   type ProfileOverride,
   type ProfileOverrideConfig,
-  type ProfilePolicyConfig,
   type ProfileTemplateConfig
 } from './profiles.js';
 
 const templatesPath = path.join(siteRoot, 'data/relic-score/profile-templates.json');
 const overridesPath = path.join(siteRoot, 'data/relic-score/profile-overrides.json');
-const policyPath = path.join(siteRoot, 'data/relic-score/profile-policy.json');
 export const profilesPath = path.join(
   siteRoot,
   'src/lib/relic-score/generated/character-profiles.json'
 );
-const PANEL_TARGETS = new Set(Object.values(PLAYER_PROPERTY_SEMANTICS).map(({ target }) => target));
 
 function record(value: unknown, label: string): Record<string, unknown> {
   if (!value || typeof value !== 'object' || Array.isArray(value))
@@ -51,55 +47,29 @@ function finite(value: unknown, label: string, positive = false): number {
   return value;
 }
 
-function validateThresholds(
-  items: unknown,
-  label: string,
-  target: boolean,
-  generated = false
-): void {
+function validateThresholds(items: unknown, label: string, soft: boolean): void {
   const seen = new Set<string>();
   for (const [index, item] of array(items, label).entries()) {
     const entry = record(item, `${label}[${index}]`);
-    if (
-      typeof entry.stat !== 'string' ||
-      !isRelicStatKey(entry.stat) ||
-      !relicStatSemantics(entry.stat).canBeSubstat
-    )
+    if (typeof entry.stat !== 'string' || !isRelicStatKey(entry.stat))
       throw new Error(`[relic-score/validate] invalid threshold stat ${label}[${index}]`);
-    if (seen.has(entry.stat))
-      throw new Error(`[relic-score/validate] duplicate threshold stat ${label}`);
-    seen.add(entry.stat);
-    finite(entry.value, `${label}[${index}].value`, true);
-    if (generated && entry.panelTarget !== relicStatSemantics(entry.stat).panelTarget)
-      throw new Error(`[relic-score/validate] invalid panel target ${label}[${index}]`);
-    if (!generated && 'panelTarget' in entry)
-      throw new Error(`[relic-score/validate] source must use canonical stat ${label}[${index}]`);
-    if (target && !ALLOWED_WEIGHTS.includes(entry.postTargetWeight as never))
-      throw new Error(`[relic-score/validate] invalid post-target weight ${label}[${index}]`);
-  }
-}
-
-function validateCurves(items: unknown, label: string): void {
-  const seen = new Set<string>();
-  for (const [index, item] of array(items, label).entries()) {
-    const entry = record(item, `${label}[${index}]`);
-    if (typeof entry.stat !== 'string' || !PANEL_TARGETS.has(entry.stat as never))
-      throw new Error(`[relic-score/validate] invalid panel stat ${label}[${index}]`);
-    if (seen.has(entry.stat))
-      throw new Error(`[relic-score/validate] duplicate panel stat ${label}`);
-    seen.add(entry.stat);
-    const points = array(entry.points, `${label}[${index}].points`);
-    if (points.length < 2) throw new Error(`[relic-score/validate] curve too short ${label}`);
-    let lastValue = -Infinity;
-    let lastUtility = -Infinity;
-    for (const [pointIndex, point] of points.entries()) {
-      const p = record(point, `${label}[${index}].points[${pointIndex}]`);
-      const value = finite(p.value, `${label}.value`);
-      const utility = finite(p.utility, `${label}.utility`);
-      if (value <= lastValue || utility < lastUtility)
-        throw new Error(`[relic-score/validate] nonmonotone curve ${label}`);
-      lastValue = value;
-      lastUtility = utility;
+    if (!relicStatSemantics(entry.stat).panelTarget)
+      throw new Error(`[relic-score/validate] unresolvable panel stat ${label}[${index}]`);
+    if (soft && entry.stat === 'CriticalChanceBase')
+      throw new Error(`[relic-score/validate] crit rate soft target forbidden ${label}`);
+    const allowed = soft ? ['stat', 'minimumThreshold', 'maximumThreshold'] : ['stat', 'threshold'];
+    if (stableSerialize(Object.keys(entry).sort()) !== stableSerialize(allowed.sort()))
+      throw new Error(`[relic-score/validate] invalid threshold fields ${label}[${index}]`);
+    const key = soft ? entry.stat : `${entry.stat}:${entry.threshold}`;
+    if (seen.has(key)) throw new Error(`[relic-score/validate] duplicate threshold stat ${label}`);
+    seen.add(key);
+    if (soft) {
+      const min = finite(entry.minimumThreshold, `${label}[${index}].minimumThreshold`);
+      const max = finite(entry.maximumThreshold, `${label}[${index}].maximumThreshold`);
+      if (max <= min)
+        throw new Error(`[relic-score/validate] invalid soft target interval ${label}`);
+    } else {
+      finite(entry.threshold, `${label}[${index}].threshold`);
     }
   }
 }
@@ -107,19 +77,10 @@ function validateCurves(items: unknown, label: string): void {
 export function validateConfig(
   characters: ProfileCharacterSource[],
   templates: ProfileTemplateConfig,
-  overrides: ProfileOverrideConfig,
-  policy: ProfilePolicyConfig
+  overrides: ProfileOverrideConfig
 ): void {
-  if (templates.schemaVersion !== 1 || overrides.schemaVersion !== 2 || policy.schemaVersion !== 1)
+  if (templates.schemaVersion !== 1 || overrides.schemaVersion !== 3)
     throw new Error('[relic-score/validate] config schema version');
-  if (policy.critRateDefault?.stat !== 'CriticalChanceBase')
-    throw new Error('[relic-score/validate] invalid crit-rate policy stat');
-  if (
-    stableSerialize(Object.keys(record(policy.critRateDefault, 'critRateDefault')).sort()) !==
-    stableSerialize(['stat', 'value', 'postTargetWeight'].sort())
-  )
-    throw new Error('[relic-score/validate] invalid crit-rate policy fields');
-  validateThresholds([policy.critRateDefault], 'critRateDefault', true);
   const templateEntries = record(templates.templates, 'templates');
   if (
     stableSerialize(Object.keys(templateEntries).sort()) !==
@@ -149,8 +110,7 @@ export function validateConfig(
       'scalingStat',
       'statWeights',
       'hardBreakpoints',
-      'statTargets',
-      'statCurves',
+      'softTargets',
       'reviewedInputDigest',
       'note'
     ]);
@@ -158,13 +118,7 @@ export function validateConfig(
       throw new Error(`[relic-score/validate] unknown override field ${id}`);
     if (entry.templateId !== undefined && !TEMPLATE_IDS.includes(entry.templateId))
       throw new Error(`[relic-score/validate] unknown template ${id}`);
-    const automatic = generateCharacterProfile(
-      character,
-      templates,
-      undefined,
-      '0'.repeat(40),
-      policy
-    );
+    const automatic = generateCharacterProfile(character, templates, undefined, '0'.repeat(40));
     if (entry.templateId === automatic.templateId)
       throw new Error(`[relic-score/validate] redundant template override ${id}`);
     if (entry.scalingStat !== undefined) {
@@ -181,8 +135,7 @@ export function validateConfig(
       character,
       templates,
       entry.templateId ? { templateId: entry.templateId } : undefined,
-      '0'.repeat(40),
-      policy
+      '0'.repeat(40)
     );
     for (const [key, weight] of Object.entries(entry.statWeights ?? {})) {
       if (!isRelicStatKey(key) || !relicStatSemantics(key).canBeSubstat)
@@ -194,18 +147,11 @@ export function validateConfig(
       if ((baseline.substatWeights[key as keyof typeof baseline.substatWeights] ?? 0) === weight)
         throw new Error(`[relic-score/validate] redundant weight override ${id}:${key}`);
     }
-    for (const field of ['hardBreakpoints', 'statTargets', 'statCurves'] as const)
+    for (const field of ['hardBreakpoints', 'softTargets'] as const)
       if (entry[field] !== undefined && entry[field].length === 0)
         throw new Error(`[relic-score/validate] redundant empty override ${id}:${field}`);
     validateThresholds(entry.hardBreakpoints ?? [], `${id}.hardBreakpoints`, false);
-    validateThresholds(entry.statTargets ?? [], `${id}.statTargets`, true);
-    validateCurves(entry.statCurves ?? [], `${id}.statCurves`);
-    const resolved = generateCharacterProfile(character, templates, entry, '0'.repeat(40), policy);
-    for (const target of resolved.statTargets) {
-      const before = resolved.substatWeights[target.stat] ?? 0;
-      if (before <= 0 || target.postTargetWeight > before)
-        throw new Error(`[relic-score/validate] nonmonotone target ${id}:${target.stat}`);
-    }
+    validateThresholds(entry.softTargets ?? [], `${id}.softTargets`, true);
     if (
       entry.reviewedInputDigest !== undefined &&
       !/^[0-9a-f]{64}$/.test(entry.reviewedInputDigest)
@@ -246,7 +192,6 @@ export async function loadProfileInputs(): Promise<{
   characters: ProfileCharacterSource[];
   templates: ProfileTemplateConfig;
   overrides: ProfileOverrideConfig;
-  policy: ProfilePolicyConfig;
   sourceCommit: string;
 }> {
   const manifest = await readDataManifest(generatedRoot);
@@ -269,9 +214,8 @@ export async function loadProfileInputs(): Promise<{
   );
   const templates = JSON.parse(await readFile(templatesPath, 'utf8')) as ProfileTemplateConfig;
   const overrides = JSON.parse(await readFile(overridesPath, 'utf8')) as ProfileOverrideConfig;
-  const policy = JSON.parse(await readFile(policyPath, 'utf8')) as ProfilePolicyConfig;
-  validateConfig(characters, templates, overrides, policy);
-  return { characters, templates, overrides, policy, sourceCommit: manifest.sourceCommit };
+  validateConfig(characters, templates, overrides);
+  return { characters, templates, overrides, sourceCommit: manifest.sourceCommit };
 }
 
 export function validateProfiles(
@@ -279,9 +223,9 @@ export function validateProfiles(
   inputs: Awaited<ReturnType<typeof loadProfileInputs>>,
   options: { allowStaleReviews?: boolean } = {}
 ): void {
-  const { characters, templates, overrides, policy } = inputs;
-  validateConfig(characters, templates, overrides, policy);
-  if (artifact.schemaVersion !== 2 || !Array.isArray(artifact.profiles))
+  const { characters, templates, overrides } = inputs;
+  validateConfig(characters, templates, overrides);
+  if (artifact.schemaVersion !== 3 || !Array.isArray(artifact.profiles))
     throw new Error('[relic-score/validate] artifact schema version');
   const byId = new Map(characters.map((character) => [character.id, character]));
   const seen = new Set<string>();
@@ -310,25 +254,12 @@ export function validateProfiles(
     }
     if (!weighted)
       throw new Error(`[relic-score/validate] no weighted substat ${profile.characterId}`);
-    validateThresholds(
-      profile.hardBreakpoints,
-      `${profile.characterId}.hardBreakpoints`,
-      false,
-      true
-    );
-    validateThresholds(profile.statTargets, `${profile.characterId}.statTargets`, true, true);
-    validateCurves(profile.statCurves, `${profile.characterId}.statCurves`);
-    for (const target of profile.statTargets) {
-      const before = profile.substatWeights[target.stat] ?? 0;
-      if (before <= 0 || target.postTargetWeight > before)
-        throw new Error(
-          `[relic-score/validate] nonmonotone target ${profile.characterId}:${target.stat}`
-        );
-    }
+    validateThresholds(profile.hardBreakpoints, `${profile.characterId}.hardBreakpoints`, false);
+    validateThresholds(profile.softTargets, `${profile.characterId}.softTargets`, true);
     if (!/^[0-9a-f]{40}$/.test(profile.metadata?.sourceCommit ?? ''))
       throw new Error(`[relic-score/validate] invalid provenance ${profile.characterId}`);
     const override = overrides.overrides[profile.characterId];
-    const digest = profileInputDigest(byId.get(profile.characterId)!, templates, override, policy);
+    const digest = profileInputDigest(byId.get(profile.characterId)!, templates, override);
     if (profile.metadata.inputDigest !== digest)
       throw new Error(`[relic-score/validate] stale profile digest ${profile.characterId}`);
     if (
@@ -340,7 +271,7 @@ export function validateProfiles(
   }
   if (seen.size !== characters.length)
     throw new Error('[relic-score/validate] profile coverage incomplete');
-  const expected = generateProfiles(characters, templates, overrides, inputs.sourceCommit, policy);
+  const expected = generateProfiles(characters, templates, overrides, inputs.sourceCommit);
   if (
     stableSerialize(artifact.profiles.map((profile) => profile.characterId)) !==
     stableSerialize(expected.profiles.map((profile) => profile.characterId))

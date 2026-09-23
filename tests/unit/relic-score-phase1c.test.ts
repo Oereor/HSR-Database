@@ -14,17 +14,15 @@ import {
   calculateEffectiveHits,
   evaluateBreakpoints,
   evaluateSetIntegrity,
-  evaluateTarget,
+  evaluateSoftTargets,
   scoreBuild,
   scorePiece,
-  type PieceScoreValue,
   type ScoringSources
 } from '../../src/lib/relic-score/score.js';
 import type { PlayerBuildInput } from '../../src/lib/relic-score/types.js';
 import {
   evaluateQuantileGate,
-  expectedBenchmarkIdentity,
-  generateBenchmarkCases
+  expectedBenchmarkIdentity
 } from '../../scripts/relic-score/benchmark-core.js';
 import { loadScoringInputs } from '../../scripts/relic-score/scoring-inputs.js';
 
@@ -120,12 +118,9 @@ describe('Phase 1C scoring', () => {
         0
       )
     );
-    expect(build.finalBaseScore).toBeCloseTo(
-      100 *
-        (0.85 * build.statCompletion.base +
-          0.1 * build.breakpointScore +
-          0.05 * build.setIntegrity.total)
-    );
+    expect(build.softTargetProgress).toBe(0);
+    expect(build.hardBreakpointFailureRatio).toBe(0);
+    expect(build.finalModifierStatus).toBe('pending-calibration');
     expect(build.effectiveHits.total).toBe(27);
   });
 
@@ -209,148 +204,103 @@ describe('Phase 1C scoring', () => {
   it('scores configured breakpoints and no-breakpoint profiles', () => {
     expect(evaluateBreakpoints(sources.profile!, fixture.panel)).toEqual({
       status: 'available',
-      value: { score: 1, entries: [] }
+      value: { failureRatio: 0, entries: [] }
     });
     const profile = structuredClone(profiles.find((item) => item.characterId === '1409')!);
     const below = evaluateBreakpoints(profile, { spd: 199 });
     const exact = evaluateBreakpoints(profile, { spd: 200 });
-    expect(below.status === 'available' && below.value.score).toBe(0);
-    expect(exact.status === 'available' && exact.value.score).toBe(1);
+    expect(below.status === 'available' && below.value.failureRatio).toBe(1);
+    expect(exact.status === 'available' && exact.value.failureRatio).toBe(0);
   });
 });
 
-describe('build target primitive', () => {
-  it('matches reviewed target crossing semantics and remains continuous and monotone', () => {
-    const ids = [
-      '1002',
-      '1413',
-      '1505',
-      '8009',
-      '1222',
-      '1301',
-      '1303',
-      '1304',
-      '1409',
-      '1412',
-      '1501'
+describe('final-panel modifiers pending calibration', () => {
+  it('clamps soft target progress and averages multiple targets', () => {
+    const profile = structuredClone(sources.profile!);
+    profile.softTargets = [
+      { stat: 'BreakDamageAddedRatioBase', minimumThreshold: 1, maximumThreshold: 2 }
     ];
-    let tested = 0;
-    for (const id of ids) {
-      const profile = profiles.find((item) => item.characterId === id)!;
-      for (const target of profile.statTargets) {
-        const baseWeight = profile.substatWeights[target.stat] ?? 0;
-        const sample = (panel: number) => {
-          const piece = {
-            slot: 'HEAD',
-            substats: [{ stat: target.stat, weightedContribution: panel * baseWeight }]
-          } as PieceScoreValue;
-          return evaluateTarget(
-            target,
-            {
-              stat: target.stat,
-              panelTarget: target.panelTarget,
-              baseline: 0,
-              contributions: [{ slot: 'HEAD', panelDelta: panel }]
-            },
-            panel,
-            [piece],
-            profile
-          );
-        };
-        const eps = target.value * 1e-7;
-        const below = sample(target.value - eps),
-          exact = sample(target.value),
-          above = sample(target.value + eps),
-          far = sample(target.value * 2);
-        expect(below.targetAwareUtility).toBeLessThanOrEqual(exact.targetAwareUtility);
-        expect(exact.targetAwareUtility).toBeLessThanOrEqual(above.targetAwareUtility);
-        expect(above.targetAwareUtility).toBeLessThanOrEqual(far.targetAwareUtility);
-        expect(Math.abs(exact.targetAwareUtility - below.targetAwareUtility)).toBeLessThan(
-          baseWeight * eps * 1.01
-        );
-        expect(above.targetAwareUtility - exact.targetAwareUtility).toBeCloseTo(
-          target.postTargetWeight * eps,
-          6
-        );
-        tested++;
-      }
+    for (const [value, expectedProgress] of [
+      [0.5, 0],
+      [1, 0],
+      [1.5, 0.5],
+      [2, 1],
+      [3, 1]
+    ]) {
+      const result = evaluateSoftTargets(profile, { break_dmg: value });
+      expect(result.status === 'available' && result.value.progress).toBe(expectedProgress);
     }
-    expect(tested).toBeGreaterThanOrEqual(11);
+    profile.softTargets.push({ stat: 'SpeedDelta', minimumThreshold: 100, maximumThreshold: 200 });
+    const multiple = evaluateSoftTargets(profile, { break_dmg: 1.5, spd: 200 });
+    expect(multiple.status === 'available' && multiple.value.progress).toBe(0.75);
+    expect(evaluateSoftTargets(profile, {})).toEqual({
+      status: 'unavailable',
+      reason: 'PANEL_MISSING'
+    });
+    profile.softTargets = [];
+    expect(evaluateSoftTargets(profile, {})).toEqual({
+      status: 'available',
+      value: { progress: 0, entries: [] }
+    });
   });
 
-  it('keeps Candidate B monotone across a real Crit Rate target while A can fall', async () => {
+  it('counts failed breakpoints, including exact equality and no breakpoint', () => {
+    const profile = structuredClone(sources.profile!);
+    profile.hardBreakpoints = [
+      { stat: 'SpeedDelta', threshold: 160 },
+      { stat: 'SpeedDelta', threshold: 200 }
+    ];
+    const below = evaluateBreakpoints(profile, { spd: 159 });
+    const middle = evaluateBreakpoints(profile, { spd: 160 });
+    const above = evaluateBreakpoints(profile, { spd: 201 });
+    expect(below.status === 'available' && below.value.failureRatio).toBe(1);
+    expect(middle.status === 'available' && middle.value.failureRatio).toBe(0.5);
+    expect(above.status === 'available' && above.value.failureRatio).toBe(0);
+    expect(evaluateBreakpoints(profile, {})).toEqual({
+      status: 'unavailable',
+      reason: 'PANEL_MISSING'
+    });
+    profile.hardBreakpoints = [];
+    expect(evaluateBreakpoints(profile, {})).toEqual({
+      status: 'available',
+      value: { failureRatio: 0, entries: [] }
+    });
+  });
+
+  it('keeps Piece and benchmark inputs independent of soft target thresholds', async () => {
+    const changed = structuredClone(sources.profile!);
+    changed.softTargets = [
+      { stat: 'BreakDamageAddedRatioBase', minimumThreshold: 1, maximumThreshold: 2 }
+    ];
+    const pieceBefore = scorePiece(fixture.relics[0], fixture.characterId, sources);
+    const pieceAfter = scorePiece(fixture.relics[0], fixture.characterId, {
+      ...sources,
+      profile: changed
+    });
+    expect(pieceAfter).toEqual(pieceBefore);
+    const build = scoreBuild(fixture, { ...sources, profile: changed });
+    expect(build.status).toBe('available');
+    expect(build.build?.softTargetProgress).toBe(1);
+    expect(build.build?.pieces[0].rawSubUtility).toBe(
+      pieceBefore.status === 'available' ? pieceBefore.value.rawSubUtility : NaN
+    );
     const inputs = await loadScoringInputs();
-    const characterId = '1002';
-    const benchmark = generateBenchmarkCases(inputs, {
-      N: 3,
-      K: 128,
-      seed: 123456789,
-      cases: ['HEAD', 'HAND', 'BODY', 'FOOT', 'NECK', 'OBJECT'].map((slot) => ({
-        characterId,
-        slot: slot as RelicSlot
-      })),
+    const cases = Object.entries(artifact.distributions).flatMap(([characterId, slots]) =>
+      Object.keys(slots).map((slot) => ({ characterId, slot: slot as RelicSlot }))
+    );
+    const changedInputs = {
+      ...inputs,
+      profiles: inputs.profiles.map((profile) =>
+        profile.characterId === changed.characterId ? changed : profile
+      )
+    };
+    const after = expectedBenchmarkIdentity(changedInputs, {
+      N: artifact.metadata.budgetN,
+      K: artifact.metadata.experimentCount,
+      seed: artifact.metadata.seed,
+      cases,
       prototype: true
     });
-    const profile = inputs.profiles.find((item) => item.characterId === characterId)!;
-    const target = profile.statTargets.find((item) => item.stat === 'CriticalChanceBase')!;
-    const baseline = 0.05;
-    expect(
-      scoreBuild(
-        { ...fixture, characterId },
-        {
-          profile,
-          recommendation: inputs.recommendations.find((item) => item.avatarId === characterId),
-          reference: buildRelicScoreReferenceData(inputs.runtime),
-          benchmark: benchmark.artifact,
-          benchmarkExpected: benchmark.expected
-        }
-      ).reason
-    ).toBe('TARGET_CONTEXT_MISSING');
-    const values = [target.value - 1e-5, target.value, target.value + 1e-5, target.value * 2].map(
-      (panelValue) => {
-        const build = structuredClone(fixture);
-        build.characterId = characterId;
-        build.relics.forEach((piece) => {
-          piece.substats = [];
-        });
-        build.relics[0].substats = [
-          {
-            key: 'CriticalChanceBase',
-            value: panelValue - baseline,
-            occurrenceCount: 1,
-            cumulativeStep: 0,
-            rollCount: { status: 'exact', count: 1, source: 'provider' }
-          }
-        ];
-        build.panel.crit_rate = panelValue;
-        const scored = scoreBuild(
-          build,
-          {
-            profile,
-            recommendation: inputs.recommendations.find((item) => item.avatarId === characterId),
-            reference: buildRelicScoreReferenceData(inputs.runtime),
-            benchmark: benchmark.artifact,
-            benchmarkExpected: benchmark.expected
-          },
-          {
-            targets: [
-              {
-                stat: 'CriticalChanceBase',
-                panelTarget: 'crit_rate',
-                baseline,
-                contributions: [{ slot: 'HEAD', panelDelta: panelValue - baseline }]
-              }
-            ]
-          }
-        );
-        expect(scored.status).toBe('available');
-        return scored.build!.statCompletion;
-      }
-    );
-    expect(values[3].targetA!).toBeLessThan(values[1].targetA!);
-    expect(values[0].targetB!).toBeLessThanOrEqual(values[1].targetB! + 1e-10);
-    expect(values[1].targetB!).toBeLessThanOrEqual(values[2].targetB! + 1e-10);
-    expect(values[2].targetB!).toBeLessThanOrEqual(values[3].targetB! + 1e-10);
-    expect(values[3].targetB!).toBeCloseTo(values[1].targetB!);
+    expect(after).toEqual(expected);
   });
 });

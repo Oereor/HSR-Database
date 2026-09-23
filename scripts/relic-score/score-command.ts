@@ -3,7 +3,7 @@ import path from 'node:path';
 import type { BenchmarkArtifact } from '../../src/lib/relic-score/benchmark/types.js';
 import { validateBenchmarkArtifact } from '../../src/lib/relic-score/benchmark/validate.js';
 import { buildRelicScoreReferenceData } from '../../src/lib/relic-score/reference.js';
-import { scoreBuild, type BuildTargetContext } from '../../src/lib/relic-score/score.js';
+import { scoreBuild } from '../../src/lib/relic-score/score.js';
 import type { PlayerBuildInput } from '../../src/lib/relic-score/types.js';
 import { expectedBenchmarkIdentity } from './benchmark-core.js';
 import { loadScoringInputs } from './scoring-inputs.js';
@@ -26,7 +26,7 @@ const [inputs, fixture, benchmark] = await Promise.all([
 ]);
 const payload =
   'build' in (fixture as object)
-    ? (fixture as { build: PlayerBuildInput; targetContext?: BuildTargetContext })
+    ? (fixture as { build: PlayerBuildInput })
     : { build: fixture as PlayerBuildInput };
 if (!payload.build || !Array.isArray(payload.build.relics))
   throw new Error('[relic-score/score] fixture requires build');
@@ -45,19 +45,15 @@ const expected = expectedBenchmarkIdentity(inputs, {
   prototype: true
 });
 validateBenchmarkArtifact(artifact, expected);
-const result = scoreBuild(
-  payload.build,
-  {
-    profile: inputs.profiles.find((profile) => profile.characterId === payload.build.characterId),
-    recommendation: inputs.recommendations.find(
-      (item) => item.avatarId === payload.build.characterId
-    ),
-    reference: buildRelicScoreReferenceData(inputs.runtime),
-    benchmark: artifact,
-    benchmarkExpected: expected
-  },
-  payload.targetContext
-);
+const result = scoreBuild(payload.build, {
+  profile: inputs.profiles.find((profile) => profile.characterId === payload.build.characterId),
+  recommendation: inputs.recommendations.find(
+    (item) => item.avatarId === payload.build.characterId
+  ),
+  reference: buildRelicScoreReferenceData(inputs.runtime),
+  benchmark: artifact,
+  benchmarkExpected: expected
+});
 if (args.inspect === 'true')
   console.log(JSON.stringify({ result, benchmarkMetadata: artifact.metadata }, null, 2));
 else
@@ -76,11 +72,10 @@ else
             : piece
         ),
         statCompletion: result.build?.statCompletion,
-        B: result.build?.breakpointScore,
+        softTargetProgress: result.build?.softTargetProgress,
+        hardBreakpointFailureRatio: result.build?.hardBreakpointFailureRatio,
         T: result.build?.setIntegrity.total,
-        finalBase: result.build?.finalBaseScore,
-        finalTargetA: result.build?.finalTargetA,
-        finalTargetB: result.build?.finalTargetB,
+        finalModifierStatus: result.build?.finalModifierStatus,
         effectiveHits: result.build?.effectiveHits
       },
       null,

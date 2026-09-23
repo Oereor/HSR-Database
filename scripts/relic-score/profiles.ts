@@ -1,9 +1,9 @@
 import { createHash } from 'node:crypto';
 import type { AvatarEquipmentRecommendation } from '../../src/lib/domain/types.js';
 import type {
+  CharacterSoftTarget,
   CharacterProfileArtifact,
   CharacterRelicScoreProfile,
-  ProfileCurve,
   TemplateId
 } from '../../src/lib/relic-score/profile-types.js';
 import {
@@ -12,7 +12,7 @@ import {
   type RelicStatKey
 } from '../../src/lib/relic-score/stat-registry.js';
 
-export const PROFILE_GENERATOR_VERSION = 2;
+export const PROFILE_GENERATOR_VERSION = 3;
 export const ALLOWED_WEIGHTS = [0, 0.25, 0.5, 0.75, 1, 1.25] as const;
 export const TEMPLATE_IDS: TemplateId[] = [
   'direct-dps',
@@ -30,22 +30,9 @@ export interface ProfileTemplateConfig {
   templates: Record<TemplateId, Partial<Record<TemplateStatKey, number>>>;
 }
 
-export interface ProfilePolicyConfig {
-  schemaVersion: 1;
-  critRateDefault: {
-    stat: 'CriticalChanceBase';
-    value: number;
-    postTargetWeight: number;
-  };
-}
-
 export interface SourceBreakpoint {
   stat: RelicStatKey;
-  value: number;
-}
-
-export interface SourceTarget extends SourceBreakpoint {
-  postTargetWeight: number;
+  threshold: number;
 }
 
 export interface ProfileOverride {
@@ -54,14 +41,13 @@ export interface ProfileOverride {
   scalingStat?: RelicStatKey | null;
   statWeights?: Partial<Record<RelicStatKey, number>>;
   hardBreakpoints?: SourceBreakpoint[];
-  statTargets?: SourceTarget[];
-  statCurves?: ProfileCurve[];
+  softTargets?: CharacterSoftTarget[];
   reviewedInputDigest?: string;
   note?: string;
 }
 
 export interface ProfileOverrideConfig {
-  schemaVersion: 2;
+  schemaVersion: 3;
   overrides: Record<string, ProfileOverride>;
 }
 
@@ -89,23 +75,17 @@ export function stableSerialize(value: unknown): string {
 export function profileInputDigest(
   character: ProfileCharacterSource,
   templates: ProfileTemplateConfig,
-  override: ProfileOverride | undefined,
-  policy: ProfilePolicyConfig
+  override: ProfileOverride | undefined
 ): string {
   const recommendation = character.equipmentRecommendation;
   const templateId = override?.templateId ?? inferTemplate(character).templateId;
   const template = templates.templates[templateId];
-  const weights = resolveWeights(character, template, override);
-  const defaultCritApplies =
-    (weights.CriticalChanceBase ?? 0) > 0 &&
-    !override?.statTargets?.some(({ stat }) => stat === 'CriticalChanceBase');
   const semanticFields = {
     templateId: override?.templateId,
     scalingStat: override?.scalingStat,
     statWeights: override?.statWeights,
     hardBreakpoints: override?.hardBreakpoints,
-    statTargets: override?.statTargets,
-    statCurves: override?.statCurves
+    softTargets: override?.softTargets
   };
   const semanticOverride = Object.values(semanticFields).some((value) => value !== undefined)
     ? semanticFields
@@ -113,7 +93,7 @@ export function profileInputDigest(
   return createHash('sha256')
     .update(
       stableSerialize({
-        schemaVersion: 2,
+        schemaVersion: 3,
         generatorVersion: PROFILE_GENERATOR_VERSION,
         characterId: character.id,
         path: character.path ?? null,
@@ -125,7 +105,6 @@ export function profileInputDigest(
         },
         templateId,
         template,
-        critRateDefault: defaultCritApplies ? policy.critRateDefault : null,
         override: semanticOverride
       })
     )
@@ -222,8 +201,7 @@ export function generateCharacterProfile(
   character: ProfileCharacterSource,
   templates: ProfileTemplateConfig,
   override: ProfileOverride | undefined,
-  sourceCommit: string,
-  policy: ProfilePolicyConfig
+  sourceCommit: string
 ): CharacterRelicScoreProfile {
   const inferred = inferTemplate(character);
   const templateId = override?.templateId ?? inferred.templateId;
@@ -237,7 +215,7 @@ export function generateCharacterProfile(
     override?.scalingStat === undefined
   )
     reasons.push('AMBIGUOUS_SCALING');
-  const digest = profileInputDigest(character, templates, override, policy);
+  const digest = profileInputDigest(character, templates, override);
   const reviewedInputDigest = override?.reviewedInputDigest ?? null;
   const reviewStatus = reviewedInputDigest
     ? reviewedInputDigest === digest
@@ -250,26 +228,17 @@ export function generateCharacterProfile(
     characterId: character.id,
     templateId,
     substatWeights: weights,
-    hardBreakpoints: (override?.hardBreakpoints ?? []).map(({ stat, value }) => ({
+    hardBreakpoints: (override?.hardBreakpoints ?? []).map(({ stat, threshold }) => ({
       stat,
-      panelTarget: relicStatSemantics(stat).panelTarget,
-      value
+      threshold
     })),
-    statTargets: [
-      ...(override?.statTargets ?? []),
-      ...((weights.CriticalChanceBase ?? 0) > 0 &&
-      !override?.statTargets?.some(({ stat }) => stat === 'CriticalChanceBase')
-        ? [policy.critRateDefault]
-        : [])
-    ]
-      .map(({ stat, value, postTargetWeight }) => ({
+    softTargets: (override?.softTargets ?? [])
+      .map(({ stat, minimumThreshold, maximumThreshold }) => ({
         stat,
-        panelTarget: relicStatSemantics(stat).panelTarget,
-        value,
-        postTargetWeight
+        minimumThreshold,
+        maximumThreshold
       }))
       .sort((left, right) => left.stat.localeCompare(right.stat, 'en')),
-    statCurves: override?.statCurves ?? [],
     metadata: {
       inferenceConfidence: inferred.confidence,
       reviewStatus,
@@ -286,21 +255,19 @@ export function generateProfiles(
   characters: ProfileCharacterSource[],
   templates: ProfileTemplateConfig,
   overrides: ProfileOverrideConfig,
-  sourceCommit: string,
-  policy: ProfilePolicyConfig
+  sourceCommit: string
 ): CharacterProfileArtifact {
   const sorted = [...characters].sort((left, right) =>
     left.id < right.id ? -1 : left.id > right.id ? 1 : 0
   );
   return {
-    schemaVersion: 2,
+    schemaVersion: 3,
     profiles: sorted.map((character) =>
       generateCharacterProfile(
         character,
         templates,
         overrides.overrides[character.id],
-        sourceCommit,
-        policy
+        sourceCommit
       )
     )
   };

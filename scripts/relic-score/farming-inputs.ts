@@ -69,10 +69,7 @@ export function benchmarkIdentityDigest(input: BenchmarkIdentityInput): string {
     characterId: input.characterId,
     slot,
     profile: {
-      substatWeights: profile.substatWeights,
-      hardBreakpoints: profile.hardBreakpoints,
-      statTargets: profile.statTargets,
-      statCurves: profile.statCurves
+      substatWeights: profile.substatWeights
     },
     recommendedMains,
     probabilityModel: model.config,

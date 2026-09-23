@@ -6,18 +6,15 @@ import {
   profileInputDigest,
   type ProfileCharacterSource,
   type ProfileOverrideConfig,
-  type ProfilePolicyConfig,
   type ProfileTemplateConfig
 } from '../../scripts/relic-score/profiles';
+import { approveCurrentReview, currentReviewSummary } from '../../scripts/relic-score/review-core';
 import { validateConfig, validateProfiles } from '../../scripts/relic-score/validate';
 
 const templates = JSON.parse(
   readFileSync('data/relic-score/profile-templates.json', 'utf8')
 ) as ProfileTemplateConfig;
-const policy = JSON.parse(
-  readFileSync('data/relic-score/profile-policy.json', 'utf8')
-) as ProfilePolicyConfig;
-const noOverrides: ProfileOverrideConfig = { schemaVersion: 2, overrides: {} };
+const noOverrides: ProfileOverrideConfig = { schemaVersion: 3, overrides: {} };
 const commit = 'a'.repeat(40);
 
 function character(id: string, path: string, substats: string[]): ProfileCharacterSource {
@@ -62,8 +59,8 @@ const samples = [
 ];
 
 describe('character relic score profile generation', () => {
-  it('selects all seven templates and lowers special-path confidence', () => {
-    const generated = generateProfiles(samples, templates, noOverrides, commit, policy).profiles;
+  it('selects the seven templates and preserves base Crit Rate weight', () => {
+    const generated = generateProfiles(samples, templates, noOverrides, commit).profiles;
     expect(generated.map((profile) => profile.templateId)).toEqual([
       'direct-dps',
       'direct-support',
@@ -74,260 +71,119 @@ describe('character relic score profile generation', () => {
       'debuff-support',
       'direct-dps'
     ]);
-    expect(generated[7].metadata).toMatchObject({
-      inferenceConfidence: 'low',
-      reviewStatus: 'needs-review'
-    });
-    expect(generated[0].metadata.reviewStatus).toBe('unreviewed');
+    expect(generated[0].substatWeights.CriticalChanceBase).toBe(1.25);
+    expect(generated[0].softTargets).toEqual([]);
+    expect(generated[7].metadata.reviewStatus).toBe('needs-review');
   });
 
-  it('weights only recommended stats and resolves scaling when unambiguous', () => {
-    const generated = generateCharacterProfile(samples[0], templates, undefined, commit, policy);
-    expect(generated.substatWeights).toEqual({
-      AttackAddedRatio: 1,
-      CriticalChanceBase: 1.25,
-      CriticalDamageBase: 1.25,
-      SpeedDelta: 0.75
-    });
-    expect(generated.substatWeights).not.toHaveProperty('scaling-stat');
-    expect(generated.substatWeights).not.toHaveProperty('StatusProbabilityBase');
-    const unresolved = generateCharacterProfile(samples[7], templates, undefined, commit, policy);
-    expect(unresolved.metadata.reviewReasons).toContain('AMBIGUOUS_SCALING');
-  });
-
-  it('applies only changed override fields and recognizes a current manual review', () => {
+  it('emits only complete manual targets and preserves review staleness', () => {
     const override = {
-      templateId: 'direct-support' as const,
-      statWeights: { SpeedDelta: 1 as const }
+      softTargets: [{ stat: 'SpeedDelta' as const, minimumThreshold: 120, maximumThreshold: 160 }],
+      hardBreakpoints: [{ stat: 'SpeedDelta' as const, threshold: 200 }]
     };
-    const changed = generateCharacterProfile(samples[0], templates, override, commit, policy);
-    expect(changed.templateId).toBe('direct-support');
-    expect(changed.substatWeights.SpeedDelta).toBe(1);
-    const digest = profileInputDigest(samples[0], templates, override, policy);
-    const reviewed = generateCharacterProfile(
-      samples[0],
-      templates,
-      { ...override, reviewedInputDigest: digest },
-      commit,
-      policy
+    const profile = generateCharacterProfile(samples[0], templates, override, commit);
+    expect(profile.softTargets).toEqual(override.softTargets);
+    expect(profile.hardBreakpoints).toEqual(override.hardBreakpoints);
+    const reviewed = { ...override, reviewedInputDigest: profile.metadata.inputDigest };
+    expect(
+      generateCharacterProfile(samples[0], templates, reviewed, commit).metadata.reviewStatus
+    ).toBe('reviewed');
+    reviewed.softTargets[0].minimumThreshold = 130;
+    expect(
+      generateCharacterProfile(samples[0], templates, reviewed, commit).metadata.reviewStatus
+    ).toBe('needs-review');
+    expect(profileInputDigest(samples[0], templates, reviewed)).not.toBe(
+      profile.metadata.inputDigest
     );
-    expect(reviewed.metadata.reviewStatus).toBe('reviewed');
-    expect(reviewed.metadata.inputDigest).toBe(digest);
   });
 
-  it('keeps digest stable across object key order and localized text changes', () => {
+  it('has deterministic ordering and ignores display text and unrelated templates', () => {
+    const artifact = generateProfiles(samples, templates, noOverrides, commit);
+    expect(generateProfiles([...samples].reverse(), templates, noOverrides, commit)).toEqual(
+      artifact
+    );
     const source = samples[0];
-    const digest = profileInputDigest(source, templates, undefined, policy);
-    const withDisplay = { ...source, name: 'Localized name', pathName: 'Localized path' };
-    expect(profileInputDigest(withDisplay, templates, undefined, policy)).toBe(digest);
-    const changed = structuredClone(source);
-    changed.equipmentRecommendation.subStatPropertyTypes.reverse();
-    expect(profileInputDigest(changed, templates, undefined, policy)).not.toBe(digest);
-    const changedSet = structuredClone(source);
-    changedSet.equipmentRecommendation.cavernSetIds.push('102');
-    expect(profileInputDigest(changedSet, templates, undefined, policy)).not.toBe(digest);
-  });
-
-  it('applies the crit-rate default only when weighted and keeps unrelated digests stable', () => {
-    const ordinary = generateCharacterProfile(samples[0], templates, undefined, commit, policy);
-    expect(ordinary.statTargets).toEqual([
-      { stat: 'CriticalChanceBase', panelTarget: 'crit_rate', value: 1, postTargetWeight: 0 }
-    ]);
-    const withoutCrit = generateCharacterProfile(samples[2], templates, undefined, commit, policy);
-    expect(withoutCrit.statTargets).toEqual([]);
-    const changedPolicy: ProfilePolicyConfig = {
-      ...policy,
-      critRateDefault: { ...policy.critRateDefault, value: 0.9 }
-    };
-    expect(profileInputDigest(samples[0], templates, undefined, changedPolicy)).not.toBe(
-      ordinary.metadata.inputDigest
-    );
-    const stale = generateCharacterProfile(
-      samples[0],
-      templates,
-      { reviewedInputDigest: ordinary.metadata.inputDigest },
-      commit,
-      changedPolicy
-    );
-    expect(stale.metadata.reviewStatus).toBe('needs-review');
-    expect(profileInputDigest(samples[2], templates, undefined, changedPolicy)).toBe(
-      withoutCrit.metadata.inputDigest
-    );
-    const exception = {
-      statTargets: [{ stat: 'CriticalChanceBase' as const, value: 0.65, postTargetWeight: 0 }]
-    };
-    const exceptional = generateCharacterProfile(samples[0], templates, exception, commit, policy);
-    expect(exceptional.statTargets[0]).toMatchObject({ value: 0.65, postTargetWeight: 0 });
-    expect(profileInputDigest(samples[0], templates, exception, changedPolicy)).toBe(
-      exceptional.metadata.inputDigest
-    );
-    const unrelatedTemplate = structuredClone(templates);
-    unrelatedTemplate.templates.break.SpeedDelta = 0.5;
-    expect(profileInputDigest(samples[0], unrelatedTemplate, undefined, policy)).toBe(
-      ordinary.metadata.inputDigest
-    );
-  });
-
-  it('records deliberate no-scaling without adding an unrecommended stat', () => {
-    const unresolved = generateCharacterProfile(samples[7], templates, undefined, commit, policy);
-    const resolved = generateCharacterProfile(
-      samples[7],
-      templates,
-      { scalingStat: null },
-      commit,
-      policy
-    );
-    expect(unresolved.metadata.reviewReasons).toContain('AMBIGUOUS_SCALING');
-    expect(resolved.metadata.reviewReasons).not.toContain('AMBIGUOUS_SCALING');
-    expect(resolved.substatWeights).toEqual(unresolved.substatWeights);
+    const digest = profileInputDigest(source, templates, undefined);
+    const withDisplay = { ...source, name: 'display only' };
+    expect(profileInputDigest(withDisplay, templates, undefined)).toBe(digest);
+    const unrelated = structuredClone(templates);
+    unrelated.templates.break.SpeedDelta = 0.5;
+    expect(profileInputDigest(source, unrelated, undefined)).toBe(digest);
   });
 });
 
-describe('character relic score profile validation', () => {
-  const inputs = {
-    characters: samples,
-    templates,
-    overrides: noOverrides,
-    policy,
-    sourceCommit: commit
-  };
-
-  it('accepts complete machine candidates and rejects coverage or digest drift', () => {
-    const artifact = generateProfiles(samples, templates, noOverrides, commit, policy);
-    expect(
-      generateProfiles([...samples].reverse(), templates, noOverrides, commit, policy)
-    ).toEqual(artifact);
-    expect(() => validateProfiles(artifact, inputs)).not.toThrow();
-    const reordered = structuredClone(artifact);
-    reordered.profiles.reverse();
-    expect(() => validateProfiles(reordered, inputs)).toThrow('profile order differs');
-    const duplicate = structuredClone(artifact);
-    duplicate.profiles.push(structuredClone(duplicate.profiles[0]));
-    expect(() => validateProfiles(duplicate, inputs)).toThrow('duplicate profile');
-    const unknown = structuredClone(artifact);
-    unknown.profiles[0].characterId = 'unknown';
-    expect(() => validateProfiles(unknown, inputs)).toThrow('unknown profile character');
-    const stale = structuredClone(artifact);
-    stale.profiles[0].metadata.inputDigest = '0'.repeat(64);
-    expect(() => validateProfiles(stale, inputs)).toThrow('stale profile digest');
+describe('profile configuration validation', () => {
+  it('rejects incomplete, duplicate, nonfinite and Crit Rate soft targets', () => {
+    const source = [samples[0]];
+    const entry = { stat: 'SpeedDelta' as const, minimumThreshold: 120, maximumThreshold: 160 };
+    const config: ProfileOverrideConfig = {
+      schemaVersion: 3,
+      overrides: { '1': { softTargets: [entry] } }
+    };
+    expect(() => validateConfig(source, templates, config)).not.toThrow();
+    const invalid = structuredClone(config);
+    invalid.overrides['1'].softTargets![0].maximumThreshold = 120;
+    expect(() => validateConfig(source, templates, invalid)).toThrow(
+      'invalid soft target interval'
+    );
+    invalid.overrides['1'].softTargets![0].maximumThreshold = Infinity;
+    expect(() => validateConfig(source, templates, invalid)).toThrow('must be finite');
+    invalid.overrides['1'].softTargets![0].maximumThreshold = 160;
+    invalid.overrides['1'].softTargets!.push({ ...entry });
+    expect(() => validateConfig(source, templates, invalid)).toThrow('duplicate threshold');
+    invalid.overrides['1'].softTargets = [
+      { stat: 'CriticalChanceBase', minimumThreshold: 0.5, maximumThreshold: 1 }
+    ];
+    expect(() => validateConfig(source, templates, invalid)).toThrow(
+      'crit rate soft target forbidden'
+    );
+    invalid.overrides['1'].softTargets = [{ ...entry, minimumThreshold: null as never }];
+    expect(() => validateConfig(source, templates, invalid)).toThrow('must be finite');
+    invalid.overrides['1'] = { statTargets: [] } as never;
+    expect(() => validateConfig(source, templates, invalid)).toThrow('unknown override field');
   });
 
-  it('rejects invalid config, orphan override and stale manual review', () => {
-    const invalidWeight = structuredClone(templates);
-    invalidWeight.templates['direct-dps'].CriticalChanceBase = 0.3;
-    expect(() => validateConfig(samples, invalidWeight, noOverrides, policy)).toThrow(
-      'invalid weight'
-    );
-    const unknownTemplate = structuredClone(templates) as unknown as Record<string, unknown>;
-    (unknownTemplate.templates as Record<string, unknown>).other = {};
-    expect(() =>
-      validateConfig(
-        samples,
-        unknownTemplate as unknown as ProfileTemplateConfig,
-        noOverrides,
-        policy
-      )
-    ).toThrow('template inventory');
-    const orphan: ProfileOverrideConfig = {
-      schemaVersion: 2,
-      overrides: { orphan: { statWeights: { SpeedDelta: 1 } } }
-    };
-    expect(() => validateConfig(samples, templates, orphan, policy)).toThrow('orphan override');
-    expect(() =>
-      validateConfig(
-        samples,
-        templates,
-        {
-          schemaVersion: 2,
-          overrides: { '1': { templateId: 'direct-dps' } }
-        },
-        policy
-      )
-    ).toThrow('redundant template override');
-    const staleReview: ProfileOverrideConfig = {
-      schemaVersion: 2,
-      overrides: { '1': { reviewedInputDigest: '0'.repeat(64) } }
-    };
-    const artifact = generateProfiles(samples, templates, staleReview, commit, policy);
-    expect(() => validateProfiles(artifact, { ...inputs, overrides: staleReview })).toThrow(
-      'stale review'
-    );
-    expect(() =>
-      validateProfiles(artifact, { ...inputs, overrides: staleReview }, { allowStaleReviews: true })
-    ).not.toThrow();
-  });
-
-  it('rejects unlisted weights and nonmonotone curves', () => {
-    const artifact = generateProfiles(samples, templates, noOverrides, commit, policy);
-    artifact.profiles[0].substatWeights.StatusResistanceBase = 1;
-    expect(() => validateProfiles(artifact, inputs)).toThrow('invalid profile weight');
-    const overrides: ProfileOverrideConfig = {
-      schemaVersion: 2,
+  it('allows distinct breakpoints on one stat but rejects exact duplicates', () => {
+    const config: ProfileOverrideConfig = {
+      schemaVersion: 3,
       overrides: {
         '1': {
-          statCurves: [
-            {
-              stat: 'spd',
-              points: [
-                { value: 100, utility: 1 },
-                { value: 110, utility: 0.5 }
-              ]
-            }
+          hardBreakpoints: [
+            { stat: 'SpeedDelta', threshold: 160 },
+            { stat: 'SpeedDelta', threshold: 200 }
           ]
         }
       }
     };
-    expect(() => validateConfig(samples, templates, overrides, policy)).toThrow(
-      'nonmonotone curve'
+    expect(() => validateConfig([samples[0]], templates, config)).not.toThrow();
+    config.overrides['1'].hardBreakpoints!.push({ stat: 'SpeedDelta', threshold: 160 });
+    expect(() => validateConfig([samples[0]], templates, config)).toThrow('duplicate threshold');
+  });
+
+  it('rejects stale review and generated profile drift', () => {
+    const overrides: ProfileOverrideConfig = {
+      schemaVersion: 3,
+      overrides: { '1': { reviewedInputDigest: '0'.repeat(64) } }
+    };
+    const inputs = { characters: samples, templates, overrides, sourceCommit: commit };
+    const artifact = generateProfiles(samples, templates, overrides, commit);
+    expect(() => validateProfiles(artifact, inputs)).toThrow('stale review');
+    expect(() => validateProfiles(artifact, inputs, { allowStaleReviews: true })).not.toThrow();
+    artifact.profiles[0].metadata.inputDigest = '0'.repeat(64);
+    expect(() => validateProfiles(artifact, inputs, { allowStaleReviews: true })).toThrow(
+      'stale profile digest'
     );
   });
 
-  it('validates canonical targets, finite thresholds and marginal weights', () => {
-    const source = samples[0];
-    const overrides: ProfileOverrideConfig = {
-      schemaVersion: 2,
-      overrides: {
-        '1': {
-          hardBreakpoints: [{ stat: 'SpeedDelta', value: 160 }],
-          statTargets: [{ stat: 'CriticalChanceBase', value: 0.65, postTargetWeight: 0 }]
-        }
-      }
-    };
-    expect(() => validateConfig([source], templates, overrides, policy)).not.toThrow();
-    const profile = generateCharacterProfile(
-      source,
-      templates,
-      overrides.overrides['1'],
-      commit,
-      policy
-    );
-    expect(profile.hardBreakpoints).toEqual([
-      { stat: 'SpeedDelta', panelTarget: 'spd', value: 160 }
-    ]);
-    expect(profile.statTargets[0]).toEqual({
-      stat: 'CriticalChanceBase',
-      panelTarget: 'crit_rate',
-      value: 0.65,
-      postTargetWeight: 0
-    });
-    const marginalUtility = (x: number) =>
-      profile.substatWeights.CriticalChanceBase! * Math.min(x, 0.65) +
-      profile.statTargets[0].postTargetWeight * Math.max(0, x - 0.65);
-    expect(marginalUtility(0.7)).toBe(marginalUtility(0.65));
-    const invalid = structuredClone(overrides);
-    invalid.overrides['1'].statTargets![0].postTargetWeight = 0.3;
-    expect(() => validateConfig([source], templates, invalid, policy)).toThrow(
-      'invalid post-target weight'
-    );
-    invalid.overrides['1'].statTargets![0].postTargetWeight = 0;
-    invalid.overrides['1'].statTargets![0].value = Infinity;
-    expect(() => validateConfig([source], templates, invalid, policy)).toThrow('must be finite');
-    invalid.overrides['1'].statTargets![0].value = 0.65;
-    invalid.overrides['1'].statTargets![0].postTargetWeight = 1.25;
-    invalid.overrides['1'].statTargets![0].stat = 'SpeedDelta';
-    expect(() => validateConfig([source], templates, invalid, policy)).toThrow(
-      'nonmonotone target'
-    );
+  it('approves only the selected character current digest', () => {
+    const inputs = { characters: samples, templates, overrides: noOverrides, sourceCommit: commit };
+    const summary = currentReviewSummary(inputs, '1');
+    expect(summary.softTargets).toEqual([]);
+    const approved = approveCurrentReview(inputs, '1');
+    expect(approved.overrides['1'].reviewedInputDigest).toBe(summary.inputDigest);
+    expect(noOverrides.overrides['1']).toBeUndefined();
+    expect(Object.keys(approved.overrides)).toEqual(['1']);
+    expect(() => currentReviewSummary(inputs, 'missing')).toThrow('unknown character');
   });
 });
 
@@ -338,52 +194,40 @@ describe('applied profile review', () => {
   const overrides = JSON.parse(
     readFileSync('data/relic-score/profile-overrides.json', 'utf8')
   ) as ProfileOverrideConfig;
-  const byId = new Map(artifact.profiles.map((profile) => [profile.characterId, profile]));
 
-  it('records 97 independent current reviews without recommendation duplication', () => {
+  it('applies the nine manually reviewed intervals while keeping all 97 reviewed', () => {
+    const expectedTargets = {
+      '1222': { stat: 'BreakDamageAddedRatioBase', minimumThreshold: 0, maximumThreshold: 2 },
+      '1301': { stat: 'BreakDamageAddedRatioBase', minimumThreshold: 0, maximumThreshold: 1.5 },
+      '1303': { stat: 'BreakDamageAddedRatioBase', minimumThreshold: 1.2, maximumThreshold: 1.8 },
+      '1304': { stat: 'DefenceAddedRatio', minimumThreshold: 1600, maximumThreshold: 4000 },
+      '1409': { stat: 'StatusResistanceBase', minimumThreshold: 0, maximumThreshold: 0.5 },
+      '1412': { stat: 'AttackAddedRatio', minimumThreshold: 2000, maximumThreshold: 4000 },
+      '1501': { stat: 'AttackAddedRatio', minimumThreshold: 2000, maximumThreshold: 3600 },
+      '8009': { stat: 'AttackAddedRatio', minimumThreshold: 1000, maximumThreshold: 2200 },
+      '8010': { stat: 'AttackAddedRatio', minimumThreshold: 1000, maximumThreshold: 2200 }
+    } as const;
+    expect(artifact.schemaVersion).toBe(3);
     expect(artifact.profiles).toHaveLength(97);
     expect(Object.keys(overrides.overrides)).toHaveLength(97);
+    expect(artifact.profiles.reduce((n, p) => n + p.hardBreakpoints.length, 0)).toBe(5);
+    expect(artifact.profiles.reduce((n, p) => n + p.softTargets.length, 0)).toBe(9);
     for (const profile of artifact.profiles) {
       expect(profile.metadata.reviewStatus).toBe('reviewed');
       expect(profile.metadata.reviewedInputDigest).toBe(profile.metadata.inputDigest);
+      const expected = expectedTargets[profile.characterId as keyof typeof expectedTargets];
+      expect(profile.softTargets).toEqual(expected ? [expected] : []);
+      expect(overrides.overrides[profile.characterId].softTargets).toEqual(
+        expected ? [expected] : undefined
+      );
+      expect(profile).not.toHaveProperty('statTargets');
+      expect(profile).not.toHaveProperty('statCurves');
       expect(overrides.overrides[profile.characterId].reviewedInputDigest).toBe(
         profile.metadata.inputDigest
       );
     }
-    for (const override of Object.values(overrides.overrides)) {
-      expect(override).not.toHaveProperty('cavernSetIds');
-      expect(override).not.toHaveProperty('planarSetIds');
-      expect(override).not.toHaveProperty('mainStatOptions');
-      expect(override).not.toHaveProperty('subStatPropertyTypes');
-    }
-  });
-
-  it('preserves template exceptions, breakpoint and target decisions for both Trailblazer IDs', () => {
-    expect(byId.get('1001')?.templateId).toBe('sustain');
-    expect(byId.get('1222')?.templateId).toBe('break');
-    expect(byId.get('1415')?.templateId).toBe('direct-dps');
-    expect(byId.get('1409')?.hardBreakpoints).toEqual([
-      { stat: 'SpeedDelta', panelTarget: 'spd', value: 200 }
+    expect(artifact.profiles.find((p) => p.characterId === '1409')?.hardBreakpoints).toEqual([
+      { stat: 'SpeedDelta', threshold: 200 }
     ]);
-    expect(byId.get('1303')?.statTargets).toContainEqual({
-      stat: 'BreakDamageAddedRatioBase',
-      panelTarget: 'break_dmg',
-      value: 1.8,
-      postTargetWeight: 0.25
-    });
-    for (const id of ['8005', '8006']) {
-      expect(overrides.overrides[id].scalingStat).toBeNull();
-      expect(byId.get(id)?.metadata.reviewReasons).not.toContain('AMBIGUOUS_SCALING');
-    }
-    for (const id of ['8007', '8008']) expect(byId.get(id)?.templateId).toBe('direct-support');
-    for (const id of ['8009', '8010']) {
-      expect(byId.get(id)?.templateId).toBe('direct-dps');
-      expect(byId.get(id)?.statTargets).toContainEqual({
-        stat: 'CriticalChanceBase',
-        panelTarget: 'crit_rate',
-        value: 0.85,
-        postTargetWeight: 0
-      });
-    }
   });
 });

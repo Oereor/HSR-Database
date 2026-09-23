@@ -195,11 +195,10 @@ if (mode === 'gate') {
       build: build?.build
         ? {
             S_base: build.build.statCompletion.base,
-            targetA: build.build.statCompletion.targetA,
-            targetB: build.build.statCompletion.targetB,
-            B: build.build.breakpointScore,
+            softTargetProgress: build.build.softTargetProgress,
+            hardBreakpointFailureRatio: build.build.hardBreakpointFailureRatio,
             T: build.build.setIntegrity.total,
-            finalBase: build.build.finalBaseScore
+            finalModifierStatus: build.build.finalModifierStatus
           }
         : null
     };

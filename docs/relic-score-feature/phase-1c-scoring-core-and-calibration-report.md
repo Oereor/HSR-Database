@@ -1,5 +1,7 @@
 # Relic Score Phase 1C — Scoring Core and Calibration Report
 
+> Historical snapshot. The later [Phase 1C Soft Target simplification](phase-1c-soft-target-simplification-report.md) supersedes this report's target context, Candidate A/B, breakpoint component and final-score sections. The old target-study output was removed. N/K/257 findings remain historical observations, not production defaults.
+
 ## 1. Executive summary and Phase 1B decisions
 
 Phase 1C implements the deterministic Lens B benchmark contract, a versioned prototype artifact and stale validator, Piece/Build scoring primitives, target comparison, and offline calibration. It does **not** freeze Production N/K or produce the 97×6 benchmark. The 257-point gate **failed** under independent verification: all ten representative Lens B distributions exceeded the required maximum absolute CDF error of 0.005, and 513 points did not rescue any of them. Thus the 257-point representation remains provisional and Phase 1C is not ready for Production benchmark generation.
@@ -56,7 +58,7 @@ Set Integrity reads only upstream set recommendations: one recommended Cavern 4-
 
 Candidate A uses `E = targetAwareBuildSubUtility / baseBuildSubUtility` and `S_A = aggregatedMain + aggregatedSub × E`. Candidate B replaces only the Build-level substat share with an absolute target-aware credit. Let `M=aggregatedMain`, `R=Σ six benchmark p50 RawSubUtility` and `U*=targetAwareBuildSubUtility`; then `S_B=M+0.70×clamp(U*/R,0,1)`. With no targets, B equals `S_base`. B is continuous, retains the main component, and is nondecreasing as a positive-marginal target stat grows because `U*` is nondecreasing. A zero post-target weight caps B's contribution from that stat. Neither candidate modifies a Piece CDF input.
 
-The synthetic target study uses reviewed target values, explicit baseline and six slots, with panel values at target ± ε, exactly target and 2× target. Candidate A fell after crossing in 12 of 13 cases; Candidate B remained nondecreasing in all 13. Representative rows below show exact-target → far-above values; the [full table](phase-1c-target-results.json) includes base and target-aware utility and every crossing point.
+The synthetic target study used reviewed target values, explicit baseline and six slots, with panel values at target ± ε, exactly target and 2× target. Candidate A fell after crossing in 12 of 13 cases; Candidate B remained nondecreasing in all 13. Representative historical rows follow; the obsolete machine-readable output was removed during simplification.
 
 | Profile / stat | Target | Panel value | Base utility | Target-aware utility | Candidate A exact → far | Candidate B exact → far | Continuous / monotone B? |
 | --- | ---: | --- | ---: | ---: | --- | --- | --- |

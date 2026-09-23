@@ -54,10 +54,7 @@ export function evaluateQuantileGate(
 export function profileScoringDigest(profile: CharacterRelicScoreProfile): string {
   return sha256({
     characterId: profile.characterId,
-    substatWeights: profile.substatWeights,
-    hardBreakpoints: profile.hardBreakpoints,
-    statTargets: profile.statTargets,
-    statCurves: profile.statCurves
+    substatWeights: profile.substatWeights
   });
 }
 
