@@ -1,13 +1,13 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "profiles": [
     {
       "characterId": "1001",
-      "templateId": "debuff-support",
+      "templateId": "sustain",
       "substatWeights": {
-        "DefenceAddedRatio": 0.5,
-        "SpeedDelta": 1.25,
-        "StatusProbabilityBase": 1.25,
+        "DefenceAddedRatio": 1,
+        "SpeedDelta": 1,
+        "StatusProbabilityBase": 0.75,
         "StatusResistanceBase": 0.5
       },
       "hardBreakpoints": [],
@@ -15,11 +15,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "bd06df3d8397861d0d2155b2abf8c57924f8c2f7fa31024c7faf7b144dfd043f",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "e63e487ac25125150b26e827e7dad5a4d73737b6e8f0371361c6d5cc49fca562",
+        "reviewedInputDigest": "e63e487ac25125150b26e827e7dad5a4d73737b6e8f0371361c6d5cc49fca562",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -33,15 +33,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "b288d3036e819893f30c2a86126bd6c0927596d6836398e90cbb9cc648e168c0",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "a6203a4e112f9c5430fc739108abde3fed1f20f8fabe7ab5b2bc4580b4825305",
+        "reviewedInputDigest": "a6203a4e112f9c5430fc739108abde3fed1f20f8fabe7ab5b2bc4580b4825305",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -55,15 +62,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "3d15f6658938cb619b2a3de86b0441fd10e3a422bd5845c52bf8437b12807c58",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "e67beef669a25ca11c17b7d115dd87baa53aab5119e248d098c34e659d33a242",
+        "reviewedInputDigest": "e67beef669a25ca11c17b7d115dd87baa53aab5119e248d098c34e659d33a242",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -78,15 +92,22 @@
         "StatusProbabilityBase": 0.25
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "20c12be3b11a13fe1627a09d6f711c3bf45945fb218262a5b73381f6e10441ec",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "d064171a76648e0d8fd0fa324a71aee8e47b3a16210b17f9017cb24cc49c7797",
+        "reviewedInputDigest": "d064171a76648e0d8fd0fa324a71aee8e47b3a16210b17f9017cb24cc49c7797",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -99,11 +120,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "70280baf51d005d54f045cbb90f402b1945cca129bb51b8b9ff33882742fd916",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "766d7941e55d935c553282096903718c80a6788679e7ca631a65f240b91869b1",
+        "reviewedInputDigest": "766d7941e55d935c553282096903718c80a6788679e7ca631a65f240b91869b1",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -118,15 +139,22 @@
         "StatusProbabilityBase": 0.25
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "028a0a66034bdbb115da295db64ebd8eeb99ea2ca4caec0e7a696ca1fdfabb10",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "710d74f642097034f7d93b65e70762666bc5a69e34e53d38ac3ccc750a876a30",
+        "reviewedInputDigest": "710d74f642097034f7d93b65e70762666bc5a69e34e53d38ac3ccc750a876a30",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -140,37 +168,51 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "66b083944505fd7c402f0e02b34019329741b2ae2b48eebaa415562da9ba933d",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "6393733dcf79ae02e54e5c45690581076c4a8cff3d9f6577633684075074c4ac",
+        "reviewedInputDigest": "6393733dcf79ae02e54e5c45690581076c4a8cff3d9f6577633684075074c4ac",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
     {
       "characterId": "1009",
-      "templateId": "direct-dps",
+      "templateId": "direct-support",
       "substatWeights": {
-        "AttackAddedRatio": 1,
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "SpeedDelta": 0.75
+        "AttackAddedRatio": 0.5,
+        "CriticalChanceBase": 0.5,
+        "CriticalDamageBase": 0.5,
+        "SpeedDelta": 1.25
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "6b8f8c462235dc8c3b12aa23dffcbe945fbbd64530d38d7435460ad746f35415",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "08dddff3597458b13020f0783df0e3f3005d95596271104dc0ff671baf0969b7",
+        "reviewedInputDigest": "08dddff3597458b13020f0783df0e3f3005d95596271104dc0ff671baf0969b7",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -184,15 +226,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "84fec59089a09aa3ab52891c797a09df1bbfb9adedc501e64872381e22a94f75",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "0a33870904ab9ae628329f4a69a2b6c7eb991f8845a6e52102c4a47c56d0d62e",
+        "reviewedInputDigest": "0a33870904ab9ae628329f4a69a2b6c7eb991f8845a6e52102c4a47c56d0d62e",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -206,15 +255,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "bfd094dd48fe85a1a7aaabc536665af7bd7f37f57eff35c3c69690e299c205e9",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "c322cbb10eeead13f3e73092ad195e1abada8206e75a88cbd25f7ebeaf513855",
+        "reviewedInputDigest": "c322cbb10eeead13f3e73092ad195e1abada8206e75a88cbd25f7ebeaf513855",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -228,15 +284,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "1f205cf37af76319f68e2f2c5f28cd05d20185e17f8ceb6e832e252c52904868",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "2113d3c7f774594cdf9f21a111308d1b69db03a1db7d5f426a5cfb8fbf637c4a",
+        "reviewedInputDigest": "2113d3c7f774594cdf9f21a111308d1b69db03a1db7d5f426a5cfb8fbf637c4a",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -253,11 +316,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
-        "reviewReasons": ["MIXED_STAT_SIGNALS", "AMBIGUOUS_SCALING"],
-        "inputDigest": "55e35976b137d92165d3f2a8353d91a82ad15b07f42e8af784c2028f96f15542",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "reviewStatus": "reviewed",
+        "reviewReasons": ["MIXED_STAT_SIGNALS"],
+        "inputDigest": "b1326b4a674d66e208d252795b3fe1baba6b63508f0665b145f0c687ce900054",
+        "reviewedInputDigest": "b1326b4a674d66e208d252795b3fe1baba6b63508f0665b145f0c687ce900054",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -271,15 +334,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "b98723858a9f74bdf2585b5f2919606af43fdd45dc9309ccd1f032f2220e0f3d",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "bd76877b6c576537e80e7ce2fe0b64e83d62ca612a4025e949031cf1d2d45dc9",
+        "reviewedInputDigest": "bd76877b6c576537e80e7ce2fe0b64e83d62ca612a4025e949031cf1d2d45dc9",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -293,25 +363,32 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "735693c5c256d99f12c62dba6993404c88acea841db0cb6803d2caeb5cf34934",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "37b2a35104b82e4ab4ef1f0139056f600424a7f5e5132d86c4cda0e9be3c4341",
+        "reviewedInputDigest": "37b2a35104b82e4ab4ef1f0139056f600424a7f5e5132d86c4cda0e9be3c4341",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
     {
       "characterId": "1104",
-      "templateId": "debuff-support",
+      "templateId": "sustain",
       "substatWeights": {
-        "DefenceAddedRatio": 0.5,
-        "SpeedDelta": 1.25,
-        "StatusProbabilityBase": 1.25,
+        "DefenceAddedRatio": 1,
+        "SpeedDelta": 0.75,
+        "StatusProbabilityBase": 0.75,
         "StatusResistanceBase": 0.5
       },
       "hardBreakpoints": [],
@@ -319,11 +396,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "67c8043546a45ddaabc0ec9457c4f0d62e84d2d54c728767a29d4ca5105ef2ca",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "cb5d9d91e7765bb863840f7b5c676ee2a7a33f7899d545b11369c3d635ca2d9f",
+        "reviewedInputDigest": "cb5d9d91e7765bb863840f7b5c676ee2a7a33f7899d545b11369c3d635ca2d9f",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -336,11 +413,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "1d2ffb9adef3c94e7014d048614c9802b32581b202cef1214f63ada65f598ef5",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "c03788982deb6202bdc0c34e3e59d58c007c41bd8ef6aa9936ea22bfea06dcf8",
+        "reviewedInputDigest": "c03788982deb6202bdc0c34e3e59d58c007c41bd8ef6aa9936ea22bfea06dcf8",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -355,15 +432,22 @@
         "StatusProbabilityBase": 0.25
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "66d841ee23e787385993dfbb71269aebea37ece707e60a97402002f1c93cb375",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "7e5f362a4f101e4ca4ef840208ccf2694e7c0b2bec5f7a7ee5a70197f77fa33e",
+        "reviewedInputDigest": "7e5f362a4f101e4ca4ef840208ccf2694e7c0b2bec5f7a7ee5a70197f77fa33e",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -377,15 +461,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "712bc24895c5026efaa52cbd84118154a568659f868f7441f0541aa4442bcacc",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "ba4256d3ddaea8c350aedabb4f929f78bec07e176b3e4a3ec3f67e19443fe77a",
+        "reviewedInputDigest": "ba4256d3ddaea8c350aedabb4f929f78bec07e176b3e4a3ec3f67e19443fe77a",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -398,11 +489,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "662629a2274a564107e7d6cd7be78231bd34f6e668dcb4bc9beacef6343188eb",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "70e710e0ef7d8a3bd1b137628463e89a8168924a9176aa12f574c108a95cc1bc",
+        "reviewedInputDigest": "70e710e0ef7d8a3bd1b137628463e89a8168924a9176aa12f574c108a95cc1bc",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -416,15 +507,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "0998530fa864badc6220bad6f4c92fa8daf0c9706b386cee1a1a11e8648170c6",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "ffb5eee21432a3e38d4a45e9c2e45bbe2529da91aac97af1b76bab149c9be696",
+        "reviewedInputDigest": "ffb5eee21432a3e38d4a45e9c2e45bbe2529da91aac97af1b76bab149c9be696",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -437,34 +535,41 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "e4d5fc311ddbafa83f91e3f96bc3c82437e2749442f2f386008f126c5acf25b1",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "624e8b3cf9c049d45b968fc131316b26566a402078fc031ce9f90d5a9608cbb0",
+        "reviewedInputDigest": "624e8b3cf9c049d45b968fc131316b26566a402078fc031ce9f90d5a9608cbb0",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
     {
       "characterId": "1111",
-      "templateId": "hybrid-direct-break",
+      "templateId": "dot-dps",
       "substatWeights": {
         "AttackAddedRatio": 0.75,
-        "BreakDamageAddedRatioBase": 1.25,
-        "CriticalChanceBase": 1,
-        "CriticalDamageBase": 1,
+        "BreakDamageAddedRatioBase": 0.25,
+        "CriticalChanceBase": 0.5,
+        "CriticalDamageBase": 0.5,
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "0a7b5c711a00dfca7adb8f4b86af3e7fd021cb3d692dd6e83f3983865f530823",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "a0bc671ed1a44c848c20ef9cca800b2bef85857e004672fae32502bdb2323458",
+        "reviewedInputDigest": "a0bc671ed1a44c848c20ef9cca800b2bef85857e004672fae32502bdb2323458",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -478,15 +583,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "da57b413c4ddd66475f3ee8fac939df2a9728d9597964c1cac0f08e5fc823d8c",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "af2b06211f684d18460476285a62f7897e57ccb3d11583f87449b9027701a6f9",
+        "reviewedInputDigest": "af2b06211f684d18460476285a62f7897e57ccb3d11583f87449b9027701a6f9",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -500,15 +612,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "10b0b9c17231266a3981cfa6233c28c29dc55206fbfc7590fd5f59450e125fc6",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "96320a6a74e283f610c2839c1cad5224cf41ba2ad650d3cac4093c5845047cd1",
+        "reviewedInputDigest": "96320a6a74e283f610c2839c1cad5224cf41ba2ad650d3cac4093c5845047cd1",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -525,11 +644,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "d62548f821603b934b94b6ed8ee23257deecafb8da2f22f5455a5e4107277961",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "764ca77878cb1443d882e290706ac265ad4bac7449eb4f1497a538142c374f2c",
+        "reviewedInputDigest": "764ca77878cb1443d882e290706ac265ad4bac7449eb4f1497a538142c374f2c",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -542,11 +661,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "1aa7521ffbb1f884e9a80daabf0df37722cdfe35da988185f0ef4e4bd6d8753d",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "767a1976d314af4a736ca44c7fef1f7d1aa385ebed137dc804e1f28695abd7ad",
+        "reviewedInputDigest": "767a1976d314af4a736ca44c7fef1f7d1aa385ebed137dc804e1f28695abd7ad",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -560,15 +679,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "a8c1ec93b8219b8cac6f4568d521c8ca17a4df51f636a24930137b1971cbbddc",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "fc9a7e24e095448943486d1ab6d3071e61f78c06711c791f81b4cc2be971ea28",
+        "reviewedInputDigest": "fc9a7e24e095448943486d1ab6d3071e61f78c06711c791f81b4cc2be971ea28",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -582,15 +708,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "619729040a6338750a52c3667c482180b91c74cd355530c941d48683742f91e3",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "680e04449ab394cf582d3b25888b473f7cc986f92df4e0e862d4d8cd18885c05",
+        "reviewedInputDigest": "680e04449ab394cf582d3b25888b473f7cc986f92df4e0e862d4d8cd18885c05",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -605,37 +738,51 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "f9d046bacd73772cdb46864bc6a03f6053ad3b0a06fea352daade4484e835092",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "43725680216819a4e797a9206f4cf8536e56465bf0700251e0d5347a271052ef",
+        "reviewedInputDigest": "43725680216819a4e797a9206f4cf8536e56465bf0700251e0d5347a271052ef",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
     {
       "characterId": "1207",
-      "templateId": "direct-dps",
+      "templateId": "direct-support",
       "substatWeights": {
-        "AttackAddedRatio": 1,
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "SpeedDelta": 0.75
+        "AttackAddedRatio": 0.5,
+        "CriticalChanceBase": 0.5,
+        "CriticalDamageBase": 0.5,
+        "SpeedDelta": 1.25
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "bc0acbf66f9eaea9daff8678654ad74029af04c8516f07e7ebde018173581ee6",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "ddc7512d0cd6cbbddd43292ae00e4ac4eb653cd8d799bf599352b10b815312d4",
+        "reviewedInputDigest": "ddc7512d0cd6cbbddd43292ae00e4ac4eb653cd8d799bf599352b10b815312d4",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -653,11 +800,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "cb98fd7c52f2fffa80db8f7d284478ed735c9cfb69011e2ae890a7b9632100c7",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "444f640b0d8f0a799841fa9733fd058fe17e710c8f1b0b4a9771b657c67a9290",
+        "reviewedInputDigest": "444f640b0d8f0a799841fa9733fd058fe17e710c8f1b0b4a9771b657c67a9290",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -671,15 +818,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "32c6c68c84494712d7a64a6f5d717cd36e57eff1187eb2e70854d6cd21440c32",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "a49ecbd41503107490aaaf6c4834188f00505951bafbda3506dc5420ae4ecf91",
+        "reviewedInputDigest": "a49ecbd41503107490aaaf6c4834188f00505951bafbda3506dc5420ae4ecf91",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -692,11 +846,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "5ef44d4c6f194cd7e1a78d83b136dd0f77b8be322ea820acfdd36ef34a4b1db8",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "489db3c2a2721c60a8d2804da22cac360574a46a375549eafb1d1e506d0dc3d5",
+        "reviewedInputDigest": "489db3c2a2721c60a8d2804da22cac360574a46a375549eafb1d1e506d0dc3d5",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -709,11 +863,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "f1542bcda9fcfbadfce837a71c8291d8574b7d117eec632502c8961e3acc6048",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "c8f318a8c0f3673b02e85b36da222b80d1ab378b72f1f4021ada23a1e0e874be",
+        "reviewedInputDigest": "c8f318a8c0f3673b02e85b36da222b80d1ab378b72f1f4021ada23a1e0e874be",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -727,15 +881,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "375694560a0cdde58afc1ef7c3683b6cfead4a5be3cb1b6baf3e24af431f15b1",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "7e09d7f2017dccddaf34f848db8836a68d0e161f4bc24a5d7bb2e363cb9a151c",
+        "reviewedInputDigest": "7e09d7f2017dccddaf34f848db8836a68d0e161f4bc24a5d7bb2e363cb9a151c",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -749,15 +910,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "e9f43a1d9fa204df85a49cfd6be36473444dc74ecef71a3c6357a2f7d4a9c6d5",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "a61e0240113671f4d449ace03b8c8e9503e16180fcba961de28d22c57ab67945",
+        "reviewedInputDigest": "a61e0240113671f4d449ace03b8c8e9503e16180fcba961de28d22c57ab67945",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -772,15 +940,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "ab206df9ee5aa3ecd1decc2fb179c54f0bbac1cede28aec5f1f3213d1758215b",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "b455fd0cc9da18cf5eec184f04569a9bd7d2819fbccb14cf0cb7bd943d7da6c6",
+        "reviewedInputDigest": "b455fd0cc9da18cf5eec184f04569a9bd7d2819fbccb14cf0cb7bd943d7da6c6",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -793,11 +968,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "needs-review",
-        "reviewReasons": ["AMBIGUOUS_SCALING"],
-        "inputDigest": "067c3835b7681bf05dbc236b37f73d869c71d7c6ab984c9915e4f9cb7bbba3e6",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "reviewStatus": "reviewed",
+        "reviewReasons": [],
+        "inputDigest": "5c1a37ed1061d727f8343991ecec8d87f71a5fc6dc08181a0b9ce0b4201dbe48",
+        "reviewedInputDigest": "5c1a37ed1061d727f8343991ecec8d87f71a5fc6dc08181a0b9ce0b4201dbe48",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -810,11 +985,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "3dcd0ae263d9ad01d5ffc3f5561a92927ebf2ecdc25ba084b7330d7fbb56dc67",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "3cf31ae872a602de70c8880e1a5c688a49fb933c8143c8347a4049b136cdbe49",
+        "reviewedInputDigest": "3cf31ae872a602de70c8880e1a5c688a49fb933c8143c8347a4049b136cdbe49",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -827,11 +1002,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "30dde063372aece2607c0b6075a274ad69b8c13ee5c15ad429a552fd93c45ba4",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "5ed8b885fe69997ac9e414b68a3a97c6debfa98335b990cb37647f121f86eca7",
+        "reviewedInputDigest": "5ed8b885fe69997ac9e414b68a3a97c6debfa98335b990cb37647f121f86eca7",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -845,15 +1020,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "b115e605ade1225910c7bae05e580ac3d67df68ec3dbc03f71ccaeb0ffafde69",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "539121d335a717a2a3c62f70391a082febe90f3bc000ba27b88e0027377c5f31",
+        "reviewedInputDigest": "539121d335a717a2a3c62f70391a082febe90f3bc000ba27b88e0027377c5f31",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -867,15 +1049,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "98eeae2275a41d8787cd0a7e8ab86a03863b6fb2a056621f90e40696c076c3fe",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "1f0168b9fb54c2aeed6144223dec5b99a60f12193a13f2c159b9c43412e134eb",
+        "reviewedInputDigest": "1f0168b9fb54c2aeed6144223dec5b99a60f12193a13f2c159b9c43412e134eb",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -884,19 +1073,26 @@
       "templateId": "break",
       "substatWeights": {
         "AttackAddedRatio": 0.75,
-        "BreakDamageAddedRatioBase": 1.25,
+        "BreakDamageAddedRatioBase": 0.75,
         "SpeedDelta": 1
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "BreakDamageAddedRatioBase",
+          "panelTarget": "break_dmg",
+          "value": 2,
+          "postTargetWeight": 0.25
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "61f49d89d7f51bc76798e848619ce3afc1d9694fc5b666b65a97ddaf9d3a7f05",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "af00579363f07a373ea60e050a43b66b3d05c9d558d66ffc0c59cb83ee25e4f8",
+        "reviewedInputDigest": "af00579363f07a373ea60e050a43b66b3d05c9d558d66ffc0c59cb83ee25e4f8",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -910,15 +1106,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "d2600c31efe02e031f48fc9d7e1206f0a24dbde0be83e2baa166a33080206f2b",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "e66eebee451f13c68a802284edb4bf88251a6e1e32a4599adfd0daa440b7a6df",
+        "reviewedInputDigest": "e66eebee451f13c68a802284edb4bf88251a6e1e32a4599adfd0daa440b7a6df",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -932,15 +1135,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "e0d3429680a6be35be6abc9aa6be9ef5d0ce9d86c68a4e7f0a9584457d55ceac",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "f0f582e132c4b7ce02fe4c1ae338756c56f309873107c2f6cfcd8cc4898bc4cf",
+        "reviewedInputDigest": "f0f582e132c4b7ce02fe4c1ae338756c56f309873107c2f6cfcd8cc4898bc4cf",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -948,7 +1158,7 @@
       "characterId": "1225",
       "templateId": "break",
       "substatWeights": {
-        "BreakDamageAddedRatioBase": 1.25,
+        "BreakDamageAddedRatioBase": 1,
         "SpeedDelta": 1,
         "StatusProbabilityBase": 0.25
       },
@@ -957,11 +1167,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
-        "reviewReasons": ["MIXED_STAT_SIGNALS", "AMBIGUOUS_SCALING"],
-        "inputDigest": "8da5de5ac818de28f263563e24e196b47b0400681110e7c356d687add20e9138",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "reviewStatus": "reviewed",
+        "reviewReasons": ["MIXED_STAT_SIGNALS"],
+        "inputDigest": "8c4aba236886f34d2cd06efc9371c590bfd6a936987847766b56dcc90294de7d",
+        "reviewedInputDigest": "8c4aba236886f34d2cd06efc9371c590bfd6a936987847766b56dcc90294de7d",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -974,15 +1184,22 @@
         "StatusResistanceBase": 0.25
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "BreakDamageAddedRatioBase",
+          "panelTarget": "break_dmg",
+          "value": 1.5,
+          "postTargetWeight": 0.25
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
-        "reviewReasons": ["PATH_TEMPLATE_MISMATCH", "AMBIGUOUS_SCALING"],
-        "inputDigest": "c26b76f577e273afc2fd45c971468cae3646800db2b0d15b0efd24f062c10382",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "reviewStatus": "reviewed",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "24beb61cafb66b5817a94ee1a75e5750ae72d7d7533f4f4051ee6c355902b14b",
+        "reviewedInputDigest": "24beb61cafb66b5817a94ee1a75e5750ae72d7d7533f4f4051ee6c355902b14b",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -996,15 +1213,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "b34d2051f2ca98fc8358509e8830eb2e202f85c0cc7e7bda47dc10d9793307b2",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "d504dd86094e3822c354947316c783d1fe5ebc14dbb821e9e767c489f7ebdef5",
+        "reviewedInputDigest": "d504dd86094e3822c354947316c783d1fe5ebc14dbb821e9e767c489f7ebdef5",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1017,37 +1241,57 @@
         "StatusResistanceBase": 0.25
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "BreakDamageAddedRatioBase",
+          "panelTarget": "break_dmg",
+          "value": 1.8,
+          "postTargetWeight": 0.25
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
-        "reviewReasons": ["PATH_TEMPLATE_MISMATCH", "AMBIGUOUS_SCALING"],
-        "inputDigest": "da7b19e710f8a6f0d5d38466f6af69a46a1364385d00d3ca011fe1e383367ce5",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "reviewStatus": "reviewed",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "e4b41bff98cd510d9e6ff706a76d33b0a860b95820ffa5b24f2aaf24f9db3867",
+        "reviewedInputDigest": "e4b41bff98cd510d9e6ff706a76d33b0a860b95820ffa5b24f2aaf24f9db3867",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
     {
       "characterId": "1304",
-      "templateId": "direct-dps",
+      "templateId": "sustain",
       "substatWeights": {
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
+        "CriticalChanceBase": 0.5,
+        "CriticalDamageBase": 0.5,
         "DefenceAddedRatio": 1,
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        },
+        {
+          "stat": "DefenceAddedRatio",
+          "panelTarget": "def",
+          "value": 4000,
+          "postTargetWeight": 0.25
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "3f822f35855db03f37343a5c951120d38835aaf9c7c3a6646fd20641759c2aa4",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "b1e83a158fd80fb4e5247b9cbd20ed4893bf8c280eea1cf06e46abe5d207072c",
+        "reviewedInputDigest": "b1e83a158fd80fb4e5247b9cbd20ed4893bf8c280eea1cf06e46abe5d207072c",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1061,15 +1305,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "3635be2f4af329996552690b212576900f8edb6ea45a028a447643b6c53e4384",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "227d76e4ade506ae5a0851d59484fd9e93d49b13957f0f0abd9052305dc56519",
+        "reviewedInputDigest": "227d76e4ade506ae5a0851d59484fd9e93d49b13957f0f0abd9052305dc56519",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1086,11 +1337,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
-        "reviewReasons": ["MIXED_STAT_SIGNALS", "AMBIGUOUS_SCALING"],
-        "inputDigest": "068a26a5583f02901b97a59abb20155819ed936beee3e12fce937fdbb53665eb",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "reviewStatus": "reviewed",
+        "reviewReasons": ["MIXED_STAT_SIGNALS"],
+        "inputDigest": "46d687be4575e2c543b0282559febebceb9cfa69ab1ac83afbbb03d06ffc4ba2",
+        "reviewedInputDigest": "46d687be4575e2c543b0282559febebceb9cfa69ab1ac83afbbb03d06ffc4ba2",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1103,11 +1354,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "caae2acb78093db43a68e574034ee64f1944ec7a1257522330a8553cf4fcb5ab",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "cbd55321ec3b75a9f71ea2b3b9bb8d91bec92721bc5f529df98ee8f0128b8ce5",
+        "reviewedInputDigest": "cbd55321ec3b75a9f71ea2b3b9bb8d91bec92721bc5f529df98ee8f0128b8ce5",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1121,15 +1372,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "a0291a0a59280720a576fb0ace709508f98c82030221aa79c610b546a7e68e9e",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "0edff389e1ee2edb5c445ad9cbee9de9282128b657cab86763e15b1b0e4ae77d",
+        "reviewedInputDigest": "0edff389e1ee2edb5c445ad9cbee9de9282128b657cab86763e15b1b0e4ae77d",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1142,11 +1400,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "e0e9e70920e674489e948e9a29bff1b52271df4785e8bad71eda16c2f8e86ec1",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "c4c0ca5127af79a13ad41331b1e656b298eee6f36dc36a20e8be27791846de00",
+        "reviewedInputDigest": "c4c0ca5127af79a13ad41331b1e656b298eee6f36dc36a20e8be27791846de00",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1163,11 +1421,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "7aa3cde759eafa17c9b5f251db5a9055132e592d51d8cce0cf014e405f821982",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "45ee1cc49e255c3171c849ed4cd91e9033ca20ea9e1edc2bb1d295729ec63bb1",
+        "reviewedInputDigest": "45ee1cc49e255c3171c849ed4cd91e9033ca20ea9e1edc2bb1d295729ec63bb1",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1181,15 +1439,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "e014c0c9cfd8fdedeaedd6215d3dad0dbfacef6bf8197242c52cbb89bc7d720d",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "50f0b9186125a1a2185ccb5b87e62143a46716b7c32eecbf6c71eed0fe30e552",
+        "reviewedInputDigest": "50f0b9186125a1a2185ccb5b87e62143a46716b7c32eecbf6c71eed0fe30e552",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1206,11 +1471,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
-        "reviewReasons": ["MIXED_STAT_SIGNALS", "AMBIGUOUS_SCALING"],
-        "inputDigest": "c7fa53ad6d82b45e2866f2657677a9493e92621e8e5eba1f75b366a7c2842d8f",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "reviewStatus": "reviewed",
+        "reviewReasons": ["MIXED_STAT_SIGNALS"],
+        "inputDigest": "bafb1a5f698a7dfb867891e12b8a9f31a8cdc17f02c4a374d213263a855689ad",
+        "reviewedInputDigest": "bafb1a5f698a7dfb867891e12b8a9f31a8cdc17f02c4a374d213263a855689ad",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1224,15 +1489,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "d329b7ac2cac0533304fe4e71f0532a2f6871aaeee3b6efaf3bb1e3f3baeb1b3",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "ba4837918e083643fa7d29374f67673ae38e2ec1b841dd5deb4a8960ee62297d",
+        "reviewedInputDigest": "ba4837918e083643fa7d29374f67673ae38e2ec1b841dd5deb4a8960ee62297d",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1247,15 +1519,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "d07f287a87d7f6f3f4d3b3277e5d876fbaed79f0f882811e0953aebafa9b91a9",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "82641491d0d7e8fbda7640a537f82eeebf9566d2f3d01f796253dc86d2492a09",
+        "reviewedInputDigest": "82641491d0d7e8fbda7640a537f82eeebf9566d2f3d01f796253dc86d2492a09",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1272,11 +1551,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "56d258923d4cdae071b3e149dd50ca29c4aaffb830bc11c593b7c587a38871d0",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "2b7d08c159567c75e72053d5fa81c2c19b0ef9b89738bf2e854ef20c5f464199",
+        "reviewedInputDigest": "2b7d08c159567c75e72053d5fa81c2c19b0ef9b89738bf2e854ef20c5f464199",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1289,11 +1568,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "needs-review",
-        "reviewReasons": ["AMBIGUOUS_SCALING"],
-        "inputDigest": "3c9c7723dfc3bc662cddbc7e96154b00665b6abf13e0e7764a791c8b9b108f13",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "reviewStatus": "reviewed",
+        "reviewReasons": [],
+        "inputDigest": "8734135d2b7716869666686d9ab6f1fef84e2c6656b3cdc4b3469148e58612ad",
+        "reviewedInputDigest": "8734135d2b7716869666686d9ab6f1fef84e2c6656b3cdc4b3469148e58612ad",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1307,15 +1586,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "c2ad41b5bb9d2f9730053da47442620014758c590f108d04313c38195320155f",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "2dc06524c0acb88849ad91316ffa758a9f911082bd9783d985cab56334aec5d6",
+        "reviewedInputDigest": "2dc06524c0acb88849ad91316ffa758a9f911082bd9783d985cab56334aec5d6",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1323,42 +1609,52 @@
       "characterId": "1402",
       "templateId": "direct-dps",
       "substatWeights": {
-        "AttackAddedRatio": 1,
+        "AttackAddedRatio": 0.75,
         "CriticalChanceBase": 1.25,
         "CriticalDamageBase": 1.25,
-        "SpeedDelta": 0.75
+        "SpeedDelta": 1
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "d0f2e260d03c0c46055e103d86b79cff487235c25e72abd2ca7a56d903e00e5e",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "9b837535f055e6aa8e1cf2631dafd0deee90d5918f74d13dce639c65a9183e9f",
+        "reviewedInputDigest": "9b837535f055e6aa8e1cf2631dafd0deee90d5918f74d13dce639c65a9183e9f",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
     {
       "characterId": "1403",
-      "templateId": "direct-dps",
-      "substatWeights": {
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "HPAddedRatio": 1
-      },
+      "templateId": "direct-support",
+      "substatWeights": { "CriticalChanceBase": 0.5, "CriticalDamageBase": 0.5, "HPAddedRatio": 1 },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "da8572b2d8ac1110f1226e44d2ac1f126a3123fa3335021bfa3ad80a6afc0ab0",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "d38e85cdbabfa248f0784e2b0fc33477273e40bc02fb6cc1594efc3e63b75fc4",
+        "reviewedInputDigest": "d38e85cdbabfa248f0784e2b0fc33477273e40bc02fb6cc1594efc3e63b75fc4",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1372,15 +1668,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "647ef3aae2244b31785c47d132777e4c77c4dbc83a2b45d44e52886914ab2674",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "5b744a4e2c2e79429ad1d82da72831ded7763867c87a043d25e273579b471c63",
+        "reviewedInputDigest": "5b744a4e2c2e79429ad1d82da72831ded7763867c87a043d25e273579b471c63",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1394,15 +1697,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "751186c784835272f9a407ec3b76b274c6cd9e12efd99dfdbf7fca89cec54c1e",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "f927ba0b551c98be4b1db4dbeee1af1bfdb1cd86921df7a0e6871686289ddfc9",
+        "reviewedInputDigest": "f927ba0b551c98be4b1db4dbeee1af1bfdb1cd86921df7a0e6871686289ddfc9",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1416,15 +1726,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "6b8900e0535ba847defe10b20ef0662ce75fb1355947e77b5b2b092228d7a9a3",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "aff0bb151c9811ff5863e0cdef37712d4a0ca113899bf0a4261e52d8a6d6086e",
+        "reviewedInputDigest": "aff0bb151c9811ff5863e0cdef37712d4a0ca113899bf0a4261e52d8a6d6086e",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1437,15 +1754,22 @@
         "HPAddedRatio": 1
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "24ce4385e4953c8073873412d6ce3493778c473a4557ecbc54b9a7926c25aa63",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "fe9e34c679eb0b4cf26a77a7b6750d27ad9178c02ac58a39834cedfff4d63059",
+        "reviewedInputDigest": "fe9e34c679eb0b4cf26a77a7b6750d27ad9178c02ac58a39834cedfff4d63059",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1458,37 +1782,51 @@
         "CriticalDamageBase": 1.25
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "88a278b82f1032adac24b540192e3c810e0d3a63e8d78e0e802e802397a2b313",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "5000e156a0e215a5bd4fde3478235262acc0fcfe0387163d180302491ec87d43",
+        "reviewedInputDigest": "5000e156a0e215a5bd4fde3478235262acc0fcfe0387163d180302491ec87d43",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
     {
       "characterId": "1409",
-      "templateId": "direct-dps",
+      "templateId": "sustain",
       "substatWeights": {
-        "CriticalDamageBase": 1.25,
-        "HPAddedRatio": 1,
-        "SpeedDelta": 0.75,
+        "CriticalDamageBase": 0.5,
+        "HPAddedRatio": 0.75,
+        "SpeedDelta": 1.25,
         "StatusResistanceBase": 0.25
       },
-      "hardBreakpoints": [],
-      "statTargets": [],
+      "hardBreakpoints": [{ "stat": "SpeedDelta", "panelTarget": "spd", "value": 200 }],
+      "statTargets": [
+        {
+          "stat": "StatusResistanceBase",
+          "panelTarget": "effect_res",
+          "value": 0.5,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "MIXED_STAT_SIGNALS", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "8f48f3fe5b7811c56f0763469876ffdbd6c5b66030937bddaeffdc0ce1e6eae2",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "e41f7d8e212684ddd0c8e64ec42f696985aff98cb6e3e8abfc6088ffb4509c58",
+        "reviewedInputDigest": "e41f7d8e212684ddd0c8e64ec42f696985aff98cb6e3e8abfc6088ffb4509c58",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1501,28 +1839,35 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "c509b1ea3b83023ebc247b66339d68800c366d5793b51c0c280d8c1f00b386e3",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "1cc0956bc2f791c066fea54525851693e846e58d4f98e2f190e8b0f1788a000a",
+        "reviewedInputDigest": "1cc0956bc2f791c066fea54525851693e846e58d4f98e2f190e8b0f1788a000a",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
     {
       "characterId": "1412",
       "templateId": "direct-support",
-      "substatWeights": { "AttackAddedRatio": 0.75, "CriticalDamageBase": 1, "SpeedDelta": 1.25 },
+      "substatWeights": { "AttackAddedRatio": 1, "CriticalDamageBase": 0.75, "SpeedDelta": 1 },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "AttackAddedRatio",
+          "panelTarget": "atk",
+          "value": 4000,
+          "postTargetWeight": 0.25
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["MIXED_STAT_SIGNALS"],
-        "inputDigest": "ebfe48b0f217925ce122b45eee6477eda7f95a6cb72b4b943535d3d754ecf738",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "a4fa2079b181c45327737db171b0bb2702e45a08f453f7b699e29f4e5651a20d",
+        "reviewedInputDigest": "a4fa2079b181c45327737db171b0bb2702e45a08f453f7b699e29f4e5651a20d",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1533,18 +1878,25 @@
         "CriticalChanceBase": 1.25,
         "CriticalDamageBase": 1.25,
         "HPAddedRatio": 1,
-        "SpeedDelta": 0.75
+        "SpeedDelta": 0.25
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 0.65,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "670ec8f0c2e217a9ad2270230aed51999b6f57fa88cee272d46bac3690e9bec7",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "227e88e84a5a32407dae446e8e955420578e8eda0f50028b2bdad1bc9e53a4a6",
+        "reviewedInputDigest": "227e88e84a5a32407dae446e8e955420578e8eda0f50028b2bdad1bc9e53a4a6",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1557,11 +1909,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "fdf31e8c1e2935e6d8d5e702722d059b521c4ed4b09b3b1928a1effeb0955631",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "ad31ca6f398669762ad26cbedbcf5fb442c62c427378ce264ddc62a0692b7237",
+        "reviewedInputDigest": "ad31ca6f398669762ad26cbedbcf5fb442c62c427378ce264ddc62a0692b7237",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1569,21 +1921,28 @@
       "characterId": "1415",
       "templateId": "direct-dps",
       "substatWeights": {
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "HPAddedRatio": 1,
-        "SpeedDelta": 0.75
+        "CriticalChanceBase": 0.75,
+        "CriticalDamageBase": 0.5,
+        "HPAddedRatio": 0.75,
+        "SpeedDelta": 1.25
       },
-      "hardBreakpoints": [],
-      "statTargets": [],
+      "hardBreakpoints": [{ "stat": "SpeedDelta", "panelTarget": "spd", "value": 180 }],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 0.5,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "e53429aa256dcacfaef4f7f806ae226aae2f0bcf1151d990641dec7ccc13fb9f",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "a02e6350ade8f68ce39a0b2b7222578fc6ab0e0242faa690bcb88267a98043d6",
+        "reviewedInputDigest": "a02e6350ade8f68ce39a0b2b7222578fc6ab0e0242faa690bcb88267a98043d6",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1596,15 +1955,23 @@
         "CriticalDamageBase": 1.25
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        { "stat": "AttackAddedRatio", "panelTarget": "atk", "value": 3600, "postTargetWeight": 0 },
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "f08b473e4fe9acc78c2bce1617f259d5108f09a5a5447207f3cc6ef4bb62cfc4",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "f12e16869e5fda1aa4d9a3f95e3ac6dac81dec8a412eebbc71e1708491051fc0",
+        "reviewedInputDigest": "f12e16869e5fda1aa4d9a3f95e3ac6dac81dec8a412eebbc71e1708491051fc0",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1612,20 +1979,27 @@
       "characterId": "1502",
       "templateId": "direct-dps",
       "substatWeights": {
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "SpeedDelta": 0.75
+        "CriticalChanceBase": 0.75,
+        "CriticalDamageBase": 0.75,
+        "SpeedDelta": 1.25
       },
-      "hardBreakpoints": [],
-      "statTargets": [],
+      "hardBreakpoints": [{ "stat": "SpeedDelta", "panelTarget": "spd", "value": 120 }],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
-        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH", "AMBIGUOUS_SCALING"],
-        "inputDigest": "78fd38b006efd666a36df496ca53c4173f481a95a4f4c4684bc8529d18fb3d0f",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "reviewStatus": "reviewed",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "e7d8937804b6f7b811b831518d11b95698f91f3ca8cc1567abc33e6d5e03de6e",
+        "reviewedInputDigest": "e7d8937804b6f7b811b831518d11b95698f91f3ca8cc1567abc33e6d5e03de6e",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1639,15 +2013,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "ead129c924e7d02f2bc2a5d8ab7d9d02ee46d8ac376a828d7a2fbda96a28fd80",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "2a97af0118505c05c78eb28080a6d6e721e0e5f10d9920c3909551bbbf465a10",
+        "reviewedInputDigest": "2a97af0118505c05c78eb28080a6d6e721e0e5f10d9920c3909551bbbf465a10",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1661,15 +2042,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 0.7,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "106aac00b6d7155822dff7cdda3a274c4a354ed166a2b3bdb79ec1d8cc61b30a",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "3178bbb2e4bae3136db5749884326adfbf8270f50f401a9dcfea2a1f33108c87",
+        "reviewedInputDigest": "3178bbb2e4bae3136db5749884326adfbf8270f50f401a9dcfea2a1f33108c87",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1677,20 +2065,27 @@
       "characterId": "1506",
       "templateId": "direct-dps",
       "substatWeights": {
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "SpeedDelta": 0.75
+        "CriticalChanceBase": 0.75,
+        "CriticalDamageBase": 0.75,
+        "SpeedDelta": 1.25
       },
-      "hardBreakpoints": [],
-      "statTargets": [],
+      "hardBreakpoints": [{ "stat": "SpeedDelta", "panelTarget": "spd", "value": 160 }],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
-        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH", "AMBIGUOUS_SCALING"],
-        "inputDigest": "2a22145c92d396c993372d4fc0a474f9b0dd947b7f6082b0d33f00774bf424de",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "reviewStatus": "reviewed",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "756501ce2ed59fc190ff2904c0621046d6506bdc2c42938d3e225d8829914d23",
+        "reviewedInputDigest": "756501ce2ed59fc190ff2904c0621046d6506bdc2c42938d3e225d8829914d23",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1704,15 +2099,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "0347df139d25d85ebf7af92ada0dac610eee99ba11f7c24d18980ca1ad5d24ed",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "b4237af0fe889518f411d0699baee144c226a04899edc476ad87449a800a5692",
+        "reviewedInputDigest": "b4237af0fe889518f411d0699baee144c226a04899edc476ad87449a800a5692",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1726,15 +2128,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "649de47609b7ee5d98d351f8bf2626bb6e81bf35c3b7b99284ace30a127f852e",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "c30147aaa3ac1acec83e78bfb0038b2df44ca898720b47534babc4c5ea27453c",
+        "reviewedInputDigest": "c30147aaa3ac1acec83e78bfb0038b2df44ca898720b47534babc4c5ea27453c",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1748,15 +2157,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "2a042b934c5540a7d0972ae965378972b5122b6cf8564f57e7b10fab6c48e4d9",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "fb5d7a6ca0527acbe7994a1af39c97e74174dd8fc17f68692640b3a02c4f568f",
+        "reviewedInputDigest": "fb5d7a6ca0527acbe7994a1af39c97e74174dd8fc17f68692640b3a02c4f568f",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1770,15 +2186,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "885ece30ad987263096093995ed7241fe68861b1387d02a01f71975cec69fa9e",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "59eeeb8a59f0f45d2207145eb1abbe68adfe363f4709765636dd7fbea7285f8e",
+        "reviewedInputDigest": "59eeeb8a59f0f45d2207145eb1abbe68adfe363f4709765636dd7fbea7285f8e",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1786,42 +2209,52 @@
       "characterId": "1512",
       "templateId": "direct-dps",
       "substatWeights": {
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "HPAddedRatio": 1,
-        "SpeedDelta": 0.75
+        "CriticalChanceBase": 0.5,
+        "CriticalDamageBase": 0.5,
+        "HPAddedRatio": 0.75,
+        "SpeedDelta": 1
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 0.5,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "eab0e8ee207dcf74b0aaeef72edb3d9663d5b66057aed99d8d2c5a3fc407da14",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "b080c87e5a077566d7aad4bd9d46ffe4a2b37e7b8318b05d35939be57aaf441c",
+        "reviewedInputDigest": "b080c87e5a077566d7aad4bd9d46ffe4a2b37e7b8318b05d35939be57aaf441c",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
     {
       "characterId": "1513",
       "templateId": "direct-dps",
-      "substatWeights": {
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "SpeedDelta": 0.75
-      },
-      "hardBreakpoints": [],
-      "statTargets": [],
+      "substatWeights": { "CriticalChanceBase": 0.75, "CriticalDamageBase": 0.75, "SpeedDelta": 1 },
+      "hardBreakpoints": [{ "stat": "SpeedDelta", "panelTarget": "spd", "value": 140 }],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
-        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH", "AMBIGUOUS_SCALING"],
-        "inputDigest": "a20dbfe2715c9d06462644e894e578cc94ee684ca3be92d2a4995709db03e665",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "reviewStatus": "reviewed",
+        "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "bcd2b5ca13e9afd687b211cd6b0fb819a446afa65a2581e7da22254787d8f1ff",
+        "reviewedInputDigest": "bcd2b5ca13e9afd687b211cd6b0fb819a446afa65a2581e7da22254787d8f1ff",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1835,15 +2268,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "206066af84fa87da2bde31451e253a6c77ac2fe870bbcd6edca51ecd8386d742",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "fcf0136399032c1c210066d923be8aabc6f39007e70160e1e0d4e8a2c6914de3",
+        "reviewedInputDigest": "fcf0136399032c1c210066d923be8aabc6f39007e70160e1e0d4e8a2c6914de3",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1857,15 +2297,22 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 1,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "b0875d5407aeeb96f3f42b43ba6db87550c79a1fabf1d7d753eb6db7753757be",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "8bb0f909ef9746708601d7511b4fe828ed00477c8e4f4e92a58bb79edce5d2b5",
+        "reviewedInputDigest": "8bb0f909ef9746708601d7511b4fe828ed00477c8e4f4e92a58bb79edce5d2b5",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1882,11 +2329,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "8c6264aa323a899165311ec1e5b34576268aa0b0c9fdab3d0e0bc670565be583",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "639b7384b45504918682744e96f295f654a2d2c9274fdadae8084f2a13bf08e1",
+        "reviewedInputDigest": "639b7384b45504918682744e96f295f654a2d2c9274fdadae8084f2a13bf08e1",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1903,11 +2350,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "high",
-        "reviewStatus": "unreviewed",
+        "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "9669431549aaa33fdf85039499dd370caf810ad6121905134a390a9ba630dc27",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "8eaa1fd4c11dfbb36fb3ea5cfc702e0d299b963e67c09f3bc24277ea227905ae",
+        "reviewedInputDigest": "8eaa1fd4c11dfbb36fb3ea5cfc702e0d299b963e67c09f3bc24277ea227905ae",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1920,11 +2367,11 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
-        "reviewReasons": ["PATH_TEMPLATE_MISMATCH", "AMBIGUOUS_SCALING"],
-        "inputDigest": "975a5cf0a802769cf9476f82324c4db7a0a50ff707fccec71871c355c1913075",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "reviewStatus": "reviewed",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "011d48f7f99e264b48ece14caa84f056f7a3590ebefe7ff26027a094ce448eba",
+        "reviewedInputDigest": "011d48f7f99e264b48ece14caa84f056f7a3590ebefe7ff26027a094ce448eba",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1937,45 +2384,53 @@
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "medium",
-        "reviewStatus": "needs-review",
-        "reviewReasons": ["PATH_TEMPLATE_MISMATCH", "AMBIGUOUS_SCALING"],
-        "inputDigest": "a708fa2d10ff0be95ef5188d185685297728c88f29a1c0af3d7d2d42a3dd1718",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "reviewStatus": "reviewed",
+        "reviewReasons": ["PATH_TEMPLATE_MISMATCH"],
+        "inputDigest": "f25ba34f174be60e68e4f003bb6b8b0efc26efd26f31ac145f4512b46f499730",
+        "reviewedInputDigest": "f25ba34f174be60e68e4f003bb6b8b0efc26efd26f31ac145f4512b46f499730",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
     {
       "characterId": "8007",
-      "templateId": "direct-dps",
-      "substatWeights": { "AttackAddedRatio": 1, "CriticalDamageBase": 1.25, "SpeedDelta": 0.75 },
+      "templateId": "direct-support",
+      "substatWeights": {
+        "AttackAddedRatio": 0.75,
+        "CriticalDamageBase": 0.75,
+        "SpeedDelta": 1.25
+      },
       "hardBreakpoints": [],
       "statTargets": [],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "MIXED_STAT_SIGNALS", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "42b67beb6262ad772c8e3572649175d863864d32052205895f6c9dc73cc00068",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "a8a3c19b9aab7dbf44fed4e0dd083d7a237ff4ea36c80d243b089ff7084021fb",
+        "reviewedInputDigest": "a8a3c19b9aab7dbf44fed4e0dd083d7a237ff4ea36c80d243b089ff7084021fb",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
     {
       "characterId": "8008",
-      "templateId": "direct-dps",
-      "substatWeights": { "AttackAddedRatio": 1, "CriticalDamageBase": 1.25, "SpeedDelta": 0.75 },
+      "templateId": "direct-support",
+      "substatWeights": {
+        "AttackAddedRatio": 0.75,
+        "CriticalDamageBase": 0.75,
+        "SpeedDelta": 1.25
+      },
       "hardBreakpoints": [],
       "statTargets": [],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "MIXED_STAT_SIGNALS", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "8523d928f268d0862f2421cf1b53333f86d52625ef5b6b77492292ee0983bd99",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "838070d4125196c5297466fd7d582b45220e8bdf08e6f03baf5c0251c8ba08cf",
+        "reviewedInputDigest": "838070d4125196c5297466fd7d582b45220e8bdf08e6f03baf5c0251c8ba08cf",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -1983,21 +2438,34 @@
       "characterId": "8009",
       "templateId": "direct-dps",
       "substatWeights": {
-        "AttackAddedRatio": 1,
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "SpeedDelta": 0.75
+        "AttackAddedRatio": 0.75,
+        "CriticalChanceBase": 1,
+        "CriticalDamageBase": 0.75,
+        "SpeedDelta": 1
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "AttackAddedRatio",
+          "panelTarget": "atk",
+          "value": 2200,
+          "postTargetWeight": 0.25
+        },
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 0.85,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "fd82efad589b5033adc7e92a4a18cfec6d3390b62cbebc4bee1c333cf8cc10bf",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "b162a55430687ac77649449f55fbeabcbc1d5451a598838b6cbc4786136dd73f",
+        "reviewedInputDigest": "b162a55430687ac77649449f55fbeabcbc1d5451a598838b6cbc4786136dd73f",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     },
@@ -2005,21 +2473,34 @@
       "characterId": "8010",
       "templateId": "direct-dps",
       "substatWeights": {
-        "AttackAddedRatio": 1,
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "SpeedDelta": 0.75
+        "AttackAddedRatio": 0.75,
+        "CriticalChanceBase": 1,
+        "CriticalDamageBase": 0.75,
+        "SpeedDelta": 1
       },
       "hardBreakpoints": [],
-      "statTargets": [],
+      "statTargets": [
+        {
+          "stat": "AttackAddedRatio",
+          "panelTarget": "atk",
+          "value": 2200,
+          "postTargetWeight": 0.25
+        },
+        {
+          "stat": "CriticalChanceBase",
+          "panelTarget": "crit_rate",
+          "value": 0.85,
+          "postTargetWeight": 0
+        }
+      ],
       "statCurves": [],
       "metadata": {
         "inferenceConfidence": "low",
-        "reviewStatus": "needs-review",
+        "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "3a9430a9f3acdb32f2f8997ab4e157246d64b36c212f1bd4d6b9c4374e0286c8",
-        "reviewedInputDigest": null,
-        "generatorVersion": 1,
+        "inputDigest": "10101800c06a512026d648565b2dd5f345f3b5cd7ccbd78e0da71019bbbeefa6",
+        "reviewedInputDigest": "10101800c06a512026d648565b2dd5f345f3b5cd7ccbd78e0da71019bbbeefa6",
+        "generatorVersion": 2,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
     }

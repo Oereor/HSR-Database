@@ -3,9 +3,7 @@ import type { AvatarEquipmentRecommendation } from '../../src/lib/domain/types.j
 import type {
   CharacterProfileArtifact,
   CharacterRelicScoreProfile,
-  ProfileBreakpoint,
   ProfileCurve,
-  ProfileTarget,
   TemplateId
 } from '../../src/lib/relic-score/profile-types.js';
 import {
@@ -14,7 +12,7 @@ import {
   type RelicStatKey
 } from '../../src/lib/relic-score/stat-registry.js';
 
-export const PROFILE_GENERATOR_VERSION = 1;
+export const PROFILE_GENERATOR_VERSION = 2;
 export const ALLOWED_WEIGHTS = [0, 0.25, 0.5, 0.75, 1, 1.25] as const;
 export const TEMPLATE_IDS: TemplateId[] = [
   'direct-dps',
@@ -32,18 +30,38 @@ export interface ProfileTemplateConfig {
   templates: Record<TemplateId, Partial<Record<TemplateStatKey, number>>>;
 }
 
+export interface ProfilePolicyConfig {
+  schemaVersion: 1;
+  critRateDefault: {
+    stat: 'CriticalChanceBase';
+    value: number;
+    postTargetWeight: number;
+  };
+}
+
+export interface SourceBreakpoint {
+  stat: RelicStatKey;
+  value: number;
+}
+
+export interface SourceTarget extends SourceBreakpoint {
+  postTargetWeight: number;
+}
+
 export interface ProfileOverride {
   templateId?: TemplateId;
+  /** null records a deliberate decision that no scaling stat is needed. */
+  scalingStat?: RelicStatKey | null;
   statWeights?: Partial<Record<RelicStatKey, number>>;
-  hardBreakpoints?: ProfileBreakpoint[];
-  statTargets?: ProfileTarget[];
+  hardBreakpoints?: SourceBreakpoint[];
+  statTargets?: SourceTarget[];
   statCurves?: ProfileCurve[];
   reviewedInputDigest?: string;
   note?: string;
 }
 
 export interface ProfileOverrideConfig {
-  schemaVersion: 1;
+  schemaVersion: 2;
   overrides: Record<string, ProfileOverride>;
 }
 
@@ -71,22 +89,31 @@ export function stableSerialize(value: unknown): string {
 export function profileInputDigest(
   character: ProfileCharacterSource,
   templates: ProfileTemplateConfig,
-  override: ProfileOverride | undefined
+  override: ProfileOverride | undefined,
+  policy: ProfilePolicyConfig
 ): string {
   const recommendation = character.equipmentRecommendation;
-  const semanticOverride = override
-    ? {
-        templateId: override.templateId,
-        statWeights: override.statWeights,
-        hardBreakpoints: override.hardBreakpoints,
-        statTargets: override.statTargets,
-        statCurves: override.statCurves
-      }
+  const templateId = override?.templateId ?? inferTemplate(character).templateId;
+  const template = templates.templates[templateId];
+  const weights = resolveWeights(character, template, override);
+  const defaultCritApplies =
+    (weights.CriticalChanceBase ?? 0) > 0 &&
+    !override?.statTargets?.some(({ stat }) => stat === 'CriticalChanceBase');
+  const semanticFields = {
+    templateId: override?.templateId,
+    scalingStat: override?.scalingStat,
+    statWeights: override?.statWeights,
+    hardBreakpoints: override?.hardBreakpoints,
+    statTargets: override?.statTargets,
+    statCurves: override?.statCurves
+  };
+  const semanticOverride = Object.values(semanticFields).some((value) => value !== undefined)
+    ? semanticFields
     : null;
   return createHash('sha256')
     .update(
       stableSerialize({
-        schemaVersion: 1,
+        schemaVersion: 2,
         generatorVersion: PROFILE_GENERATOR_VERSION,
         characterId: character.id,
         path: character.path ?? null,
@@ -96,7 +123,9 @@ export function profileInputDigest(
           mainStatOptions: recommendation.mainStatOptions,
           subStatPropertyTypes: recommendation.subStatPropertyTypes
         },
-        templates,
+        templateId,
+        template,
+        critRateDefault: defaultCritApplies ? policy.critRateDefault : null,
         override: semanticOverride
       })
     )
@@ -142,7 +171,7 @@ function inferTemplate(character: ProfileCharacterSource): {
   return { templateId, confidence, reasons };
 }
 
-function resolveScalingStat(character: ProfileCharacterSource): RelicStatKey | undefined {
+export function resolveScalingStat(character: ProfileCharacterSource): RelicStatKey | undefined {
   const candidates = character.equipmentRecommendation.subStatPropertyTypes.filter((key) =>
     ['AttackAddedRatio', 'HPAddedRatio', 'DefenceAddedRatio'].includes(key)
   );
@@ -157,18 +186,16 @@ function resolveScalingStat(character: ProfileCharacterSource): RelicStatKey | u
   return undefined;
 }
 
-export function generateCharacterProfile(
+function resolveWeights(
   character: ProfileCharacterSource,
-  templates: ProfileTemplateConfig,
-  override: ProfileOverride | undefined,
-  sourceCommit: string
-): CharacterRelicScoreProfile {
-  const inferred = inferTemplate(character);
-  const templateId = override?.templateId ?? inferred.templateId;
-  const template = templates.templates[templateId];
-  if (!template) throw new Error(`[relic-score/profile] unknown template ${templateId}`);
+  template: ProfileTemplateConfig['templates'][TemplateId],
+  override: ProfileOverride | undefined
+): CharacterRelicScoreProfile['substatWeights'] {
   const recommended = character.equipmentRecommendation.subStatPropertyTypes;
-  const scaling = resolveScalingStat(character);
+  const scaling =
+    override?.scalingStat === null
+      ? undefined
+      : (override?.scalingStat ?? resolveScalingStat(character));
   const weights: CharacterRelicScoreProfile['substatWeights'] = {};
   for (const key of [...recommended].sort()) {
     if (!isRelicStatKey(key) || !relicStatSemantics(key).canBeSubstat)
@@ -188,9 +215,29 @@ export function generateCharacterProfile(
     if (weight === 0) delete weights[key as RelicStatKey];
     else weights[key as RelicStatKey] = weight;
   }
+  return weights;
+}
+
+export function generateCharacterProfile(
+  character: ProfileCharacterSource,
+  templates: ProfileTemplateConfig,
+  override: ProfileOverride | undefined,
+  sourceCommit: string,
+  policy: ProfilePolicyConfig
+): CharacterRelicScoreProfile {
+  const inferred = inferTemplate(character);
+  const templateId = override?.templateId ?? inferred.templateId;
+  const template = templates.templates[templateId];
+  if (!template) throw new Error(`[relic-score/profile] unknown template ${templateId}`);
+  const weights = resolveWeights(character, template, override);
   const reasons = [...inferred.reasons];
-  if (template['scaling-stat'] !== undefined && !scaling) reasons.push('AMBIGUOUS_SCALING');
-  const digest = profileInputDigest(character, templates, override);
+  if (
+    template['scaling-stat'] !== undefined &&
+    !resolveScalingStat(character) &&
+    override?.scalingStat === undefined
+  )
+    reasons.push('AMBIGUOUS_SCALING');
+  const digest = profileInputDigest(character, templates, override, policy);
   const reviewedInputDigest = override?.reviewedInputDigest ?? null;
   const reviewStatus = reviewedInputDigest
     ? reviewedInputDigest === digest
@@ -203,8 +250,25 @@ export function generateCharacterProfile(
     characterId: character.id,
     templateId,
     substatWeights: weights,
-    hardBreakpoints: override?.hardBreakpoints ?? [],
-    statTargets: override?.statTargets ?? [],
+    hardBreakpoints: (override?.hardBreakpoints ?? []).map(({ stat, value }) => ({
+      stat,
+      panelTarget: relicStatSemantics(stat).panelTarget,
+      value
+    })),
+    statTargets: [
+      ...(override?.statTargets ?? []),
+      ...((weights.CriticalChanceBase ?? 0) > 0 &&
+      !override?.statTargets?.some(({ stat }) => stat === 'CriticalChanceBase')
+        ? [policy.critRateDefault]
+        : [])
+    ]
+      .map(({ stat, value, postTargetWeight }) => ({
+        stat,
+        panelTarget: relicStatSemantics(stat).panelTarget,
+        value,
+        postTargetWeight
+      }))
+      .sort((left, right) => left.stat.localeCompare(right.stat, 'en')),
     statCurves: override?.statCurves ?? [],
     metadata: {
       inferenceConfidence: inferred.confidence,
@@ -222,19 +286,21 @@ export function generateProfiles(
   characters: ProfileCharacterSource[],
   templates: ProfileTemplateConfig,
   overrides: ProfileOverrideConfig,
-  sourceCommit: string
+  sourceCommit: string,
+  policy: ProfilePolicyConfig
 ): CharacterProfileArtifact {
   const sorted = [...characters].sort((left, right) =>
     left.id < right.id ? -1 : left.id > right.id ? 1 : 0
   );
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     profiles: sorted.map((character) =>
       generateCharacterProfile(
         character,
         templates,
         overrides.overrides[character.id],
-        sourceCommit
+        sourceCommit,
+        policy
       )
     )
   };

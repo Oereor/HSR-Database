@@ -13,13 +13,17 @@ export type InferenceConfidence = 'high' | 'medium' | 'low';
 export type ReviewStatus = 'reviewed' | 'unreviewed' | 'needs-review';
 
 export interface ProfileBreakpoint {
-  stat: PlayerStatTarget;
+  stat: RelicStatKey;
+  panelTarget: PlayerStatTarget;
   value: number;
 }
 
 export interface ProfileTarget {
-  stat: PlayerStatTarget;
+  stat: RelicStatKey;
+  panelTarget: PlayerStatTarget;
   value: number;
+  /** Marginal weight of only the panel value above `value`. Below it, use substatWeights[stat]. */
+  postTargetWeight: number;
 }
 
 export interface ProfileCurve {
@@ -46,6 +50,6 @@ export interface CharacterRelicScoreProfile {
 }
 
 export interface CharacterProfileArtifact {
-  schemaVersion: 1;
+  schemaVersion: 2;
   profiles: CharacterRelicScoreProfile[];
 }

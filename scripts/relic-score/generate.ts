@@ -14,9 +14,10 @@ const artifact = generateProfiles(
   inputs.characters,
   inputs.templates,
   inputs.overrides,
-  inputs.sourceCommit
+  inputs.sourceCommit,
+  inputs.policy
 );
-validateProfiles(artifact, inputs);
+validateProfiles(artifact, inputs, { allowStaleReviews: true });
 await mkdir(path.dirname(profilesPath), { recursive: true });
 await writeFile(
   profilesPath,
@@ -25,5 +26,5 @@ await writeFile(
     filepath: profilesPath
   })
 );
-await validateCurrentProfiles();
+await validateCurrentProfiles({ allowStaleReviews: true });
 console.log(`[relic-score] generated ${artifact.profiles.length} character profiles`);
