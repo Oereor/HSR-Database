@@ -55,7 +55,6 @@ export function normalizePlayerBuildInput(
 
   const seenSlots = new Set<RelicSlot>();
   const normalized: NormalizedRelicPiece[] = [];
-  let unsupportedRarityRelicId: string | undefined;
   for (const relic of build.relics) {
     const identity = runtime.relics[relic.tid];
     if (!identity) return fail('unavailable', 'UNKNOWN_RELIC', relic.tid);
@@ -81,7 +80,6 @@ export function normalizePlayerBuildInput(
       return fail('unavailable', 'NONFINITE_VALUE', `${relic.tid}:main`);
     const seenStats = new Set<string>();
     const substats: NormalizedRelicPiece['substats'] = [];
-    let totalOccurrences = 0;
     for (const sub of relic.subAffixes) {
       const affix = runtime.relicSubAffixes[playerRuntimeKey(identity.subAffixGroup, sub.affixId)];
       if (!affix) return fail('unavailable', 'UNKNOWN_AFFIX', `${relic.tid}:sub:${sub.affixId}`);
@@ -94,20 +92,14 @@ export function normalizePlayerBuildInput(
         return fail('invalid', 'MAIN_SUB_CONFLICT', relic.tid);
       if (seenStats.has(affix.propertyType)) return fail('invalid', 'DUPLICATE_SUBSTAT', relic.tid);
       seenStats.add(affix.propertyType);
-      if (!Number.isSafeInteger(sub.cnt) || sub.cnt < 1 || sub.cnt > 9)
+      if (!Number.isSafeInteger(sub.cnt) || sub.cnt < 1)
         return fail('invalid', 'INVALID_ROLL_COUNT', relic.tid);
       const step = sub.step ?? 0;
-      if (
-        !Number.isSafeInteger(step) ||
-        step < 0 ||
-        !Number.isSafeInteger(affix.stepNum) ||
-        step > sub.cnt * Number(affix.stepNum)
-      )
+      if (!Number.isSafeInteger(step) || step < 0)
         return fail('invalid', 'INVALID_STEP', relic.tid);
       const value = playerSubAffixValue(affix, sub.cnt, step);
       if (!Number.isFinite(value) || value <= 0)
         return fail('unavailable', 'NONFINITE_VALUE', `${relic.tid}:sub:${sub.affixId}`);
-      totalOccurrences += sub.cnt;
       substats.push({
         key: affix.propertyType,
         value,
@@ -115,15 +107,6 @@ export function normalizePlayerBuildInput(
         cumulativeStep: step,
         rollCount: { status: 'exact', count: sub.cnt, source: 'provider' }
       });
-    }
-    if (substats.length > 4) return fail('invalid', 'INVALID_SUBSTAT', relic.tid);
-    if (identity.rarity === 5) {
-      const upgrades = Math.floor(relic.level / 3);
-      const possible = [3 + upgrades, 4 + upgrades];
-      if (!possible.includes(totalOccurrences) || substats.length !== Math.min(4, totalOccurrences))
-        return fail('invalid', 'IMPOSSIBLE_OCCURRENCES', relic.tid);
-    } else {
-      unsupportedRarityRelicId ??= relic.tid;
     }
     normalized.push({
       slot,
@@ -141,12 +124,5 @@ export function normalizePlayerBuildInput(
     (left, right) => EXPECTED_SLOTS.indexOf(left.slot) - EXPECTED_SLOTS.indexOf(right.slot)
   );
   const input = { characterId: build.avatarId, panel, relics: normalized };
-  if (unsupportedRarityRelicId)
-    return {
-      status: 'unavailable',
-      reason: 'UNSUPPORTED_RARITY_ROLLS',
-      detail: unsupportedRarityRelicId,
-      partialInput: input
-    };
   return { status: 'valid', input };
 }

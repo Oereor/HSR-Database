@@ -2,6 +2,12 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { buildEnkaPlayerProfile, playerRuntimeData } from '../../api/_player/enka/pipeline';
 import { normalizePlayerBuildInput } from '../../src/lib/relic-score/normalize';
+import {
+  assertPlayerRuntimeData,
+  playerMainAffixValue,
+  playerRuntimeKey,
+  playerSubAffixValue
+} from '../../src/lib/player/runtime-data';
 import { synthesizePlayerCharacter } from '../../src/lib/player/stat-synthesis';
 import type { CanonicalPlayerCharacterBuild } from '../../src/lib/player/canonical';
 import {
@@ -15,6 +21,13 @@ import {
 const raw = JSON.parse(
   readFileSync('tests/fixtures/enka/phase1-player.sanitized.json', 'utf8')
 ) as unknown;
+
+interface FixtureRelic {
+  tid: number;
+  level: number;
+  mainAffixId: number;
+  subAffixList: Array<{ affixId: number; cnt: number; step?: number }>;
+}
 
 function withBuild(update: (build: CanonicalPlayerCharacterBuild) => void) {
   const source = structuredClone(buildEnkaPlayerProfile(raw).canonical.characters[0].build);
@@ -52,7 +65,7 @@ describe('relic score player input normalization', () => {
     expect(JSON.stringify(first.input)).not.toMatch(/uid|nickname|display|%/i);
   });
 
-  it('distinguishes missing, unknown and impossible relic inputs', () => {
+  it('rejects structural relic errors while preserving provider roll evidence', () => {
     expect(withBuild((build) => build.relics.pop())).toMatchObject({
       status: 'unavailable',
       reason: 'MISSING_SLOT'
@@ -71,11 +84,19 @@ describe('relic score player input normalization', () => {
         reason: 'DUPLICATE_SLOT'
       }
     );
-    expect(withBuild((build) => (build.relics[0].subAffixes[0].cnt = 10))).toMatchObject({
+    expect(withBuild((build) => (build.relics[0].subAffixes[0].cnt = -1))).toMatchObject({
       status: 'invalid',
       reason: 'INVALID_ROLL_COUNT'
     });
-    expect(withBuild((build) => (build.relics[0].subAffixes[0].step = 3))).toMatchObject({
+    expect(withBuild((build) => (build.relics[0].subAffixes[0].cnt = 1.5))).toMatchObject({
+      status: 'invalid',
+      reason: 'INVALID_ROLL_COUNT'
+    });
+    expect(withBuild((build) => (build.relics[0].subAffixes[0].step = -1))).toMatchObject({
+      status: 'invalid',
+      reason: 'INVALID_STEP'
+    });
+    expect(withBuild((build) => (build.relics[0].subAffixes[0].step = 1.5))).toMatchObject({
       status: 'invalid',
       reason: 'INVALID_STEP'
     });
@@ -83,9 +104,9 @@ describe('relic score player input normalization', () => {
       status: 'unavailable',
       reason: 'UNKNOWN_AFFIX'
     });
-    expect(withBuild((build) => (build.relics[0].subAffixes[0].cnt = 3))).toMatchObject({
-      status: 'invalid',
-      reason: 'IMPOSSIBLE_OCCURRENCES'
+    expect(withBuild((build) => (build.relics[0].subAffixes[0].affixId = 999))).toMatchObject({
+      status: 'unavailable',
+      reason: 'UNKNOWN_AFFIX'
     });
     expect(
       withBuild((build) => build.relics[0].subAffixes.push(build.relics[0].subAffixes[0]))
@@ -97,20 +118,79 @@ describe('relic score player input normalization', () => {
       status: 'invalid',
       reason: 'MAIN_SUB_CONFLICT'
     });
-    const fourStarHead = Object.entries(playerRuntimeData.relics).find(
-      ([, relic]) => relic.rarity === 4 && relic.slot === 1
-    )![0];
-    const lowerRarity = withBuild((build) => {
-      build.relics[0].tid = fourStarHead;
-      build.relics[0].level = 12;
-    });
-    expect(lowerRarity).toMatchObject({
+    expect(withBuild((build) => (build.avatarId = 'unknown'))).toMatchObject({
       status: 'unavailable',
-      reason: 'UNSUPPORTED_RARITY_ROLLS'
+      reason: 'SYNTHESIS_FAILED'
     });
-    if (lowerRarity.status === 'unavailable') {
-      expect(lowerRarity.partialInput?.relics[0].rarity).toBe(4);
-      expect(lowerRarity.partialInput?.relics[0].mainStat.value).toBeGreaterThan(0);
+    const runtime = structuredClone(playerRuntimeData);
+    const head = buildEnkaPlayerProfile(raw).canonical.characters[0].build.relics[0];
+    const identity = runtime.relics[head.tid];
+    const key = playerRuntimeKey(identity.subAffixGroup, head.subAffixes[0].affixId);
+    (runtime.relicSubAffixes[key] as { propertyType: string }).propertyType = 'UnknownProperty';
+    const build = structuredClone(buildEnkaPlayerProfile(raw).canonical.characters[0].build);
+    expect(
+      normalizePlayerBuildInput(synthesizePlayerCharacter(build, runtime), runtime)
+    ).toMatchObject({
+      status: 'unavailable',
+      reason: 'SYNTHESIS_FAILED'
+    });
+  });
+
+  it.each([2, 3, 4])('normalizes a runtime-backed %i-star Enka relic', (rarity) => {
+    const source = structuredClone(raw) as {
+      detailInfo: { avatarDetailList: Array<{ relicList: FixtureRelic[] }> };
+    };
+    const relic = source.detailInfo.avatarDetailList[0].relicList[0];
+    const [relicId, identity] = Object.entries(playerRuntimeData.relics).find(
+      ([, candidate]) => candidate.rarity === rarity && candidate.slot === 1
+    )!;
+    relic.tid = Number(relicId);
+    relic.level = identity.maxLevel!;
+    const runtime = structuredClone(playerRuntimeData);
+    for (const [key, affix] of Object.entries(runtime.relicSubAffixes))
+      if (key.startsWith(`${identity.subAffixGroup}:`)) delete affix.stepNum;
+    assertPlayerRuntimeData(runtime);
+    const result = buildEnkaPlayerProfile(source, runtime).normalizedBuilds[0];
+    expect(result.status).toBe('valid');
+    if (result.status !== 'valid') return;
+    const head = result.input.relics[0];
+    expect(head).toMatchObject({ relicId, rarity, level: relic.level, slot: 'HEAD' });
+    const main =
+      runtime.relicMainAffixes[playerRuntimeKey(identity.mainAffixGroup, relic.mainAffixId)];
+    expect(head.mainStat).toEqual({
+      key: main.propertyType,
+      value: playerMainAffixValue(main, relic.level)
+    });
+    expect(head.substats).toHaveLength(relic.subAffixList.length);
+    for (const [index, sub] of relic.subAffixList.entries()) {
+      const affix = runtime.relicSubAffixes[playerRuntimeKey(identity.subAffixGroup, sub.affixId)];
+      expect(affix.stepNum).toBeUndefined();
+      expect(head.substats[index]).toEqual({
+        key: affix.propertyType,
+        value: playerSubAffixValue(affix, sub.cnt, sub.step ?? 0),
+        occurrenceCount: sub.cnt,
+        cumulativeStep: sub.step ?? 0,
+        rollCount: { status: 'exact', count: sub.cnt, source: 'provider' }
+      });
+    }
+  });
+
+  it('accepts structurally parseable 5-star data without reconstructing enhancement history', () => {
+    for (const update of [
+      (build: CanonicalPlayerCharacterBuild) => (build.relics[0].subAffixes[0].cnt = 3),
+      (build: CanonicalPlayerCharacterBuild) => {
+        build.relics[0].subAffixes[0].cnt = 10;
+        build.relics[0].subAffixes[0].step = 100;
+      }
+    ]) {
+      const result = withBuild(update);
+      expect(result.status).toBe('valid');
+      if (result.status !== 'valid') continue;
+      expect(result.input.relics[0].substats[0].rollCount).toEqual({
+        status: 'exact',
+        count: result.input.relics[0].substats[0].occurrenceCount,
+        source: 'provider'
+      });
     }
   });
 

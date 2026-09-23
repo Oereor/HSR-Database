@@ -90,7 +90,10 @@ function affix(
   kind: 'main' | 'sub'
 ): PlayerRuntimeAffix {
   const property = propertyValue(row.Property, row.BaseValue, context, discovered);
-  const stepNum = kind === 'sub' ? integer(row.StepNum, `${context}.StepNum`) : undefined;
+  const stepNum =
+    kind === 'sub' && row.StepNum !== undefined && row.StepNum !== null
+      ? integer(row.StepNum, `${context}.StepNum`)
+      : undefined;
   if (stepNum === 0) throw new Error(`${context}.StepNum must be positive`);
   return {
     propertyType: property.propertyType,
@@ -99,7 +102,7 @@ function affix(
       ? { levelAdd: finite(row.LevelAdd, `${context}.LevelAdd`) }
       : {
           stepValue: finite(row.StepValue, `${context}.StepValue`),
-          stepNum
+          ...(stepNum === undefined ? {} : { stepNum })
         })
   };
 }

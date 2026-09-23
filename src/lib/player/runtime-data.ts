@@ -92,7 +92,8 @@ export function assertPlayerRuntimeData(value: unknown): asserts value is Player
     !source.traces ||
     !source.eidolonSkillLevels ||
     Object.values(source.relicSubAffixes).some(
-      (affix) => !Number.isSafeInteger(affix.stepNum) || (affix.stepNum ?? 0) <= 0
+      (affix) =>
+        affix.stepNum !== undefined && (!Number.isSafeInteger(affix.stepNum) || affix.stepNum <= 0)
     )
   )
     throw new Error('Player runtime data is incomplete');

@@ -43,7 +43,6 @@ export type NormalizationReason =
   | 'UNKNOWN_RELIC'
   | 'UNKNOWN_AFFIX'
   | 'UNKNOWN_RARITY'
-  | 'UNSUPPORTED_RARITY_ROLLS'
   | 'MISSING_PANEL_STAT'
   | 'DUPLICATE_SLOT'
   | 'SLOT_MISMATCH'
@@ -54,7 +53,6 @@ export type NormalizationReason =
   | 'MAIN_SUB_CONFLICT'
   | 'INVALID_ROLL_COUNT'
   | 'INVALID_STEP'
-  | 'IMPOSSIBLE_OCCURRENCES'
   | 'NONFINITE_VALUE';
 
 export type PlayerBuildNormalization =
@@ -63,6 +61,5 @@ export type PlayerBuildNormalization =
       status: 'unavailable';
       reason: NormalizationReason;
       detail?: string;
-      partialInput?: PlayerBuildInput;
     }
   | { status: 'invalid'; reason: NormalizationReason; detail?: string };

@@ -68,5 +68,11 @@ describe('player runtime generation validation', () => {
     expect(() => buildPlayerRuntimeData(source)).toThrow('duplicate sub');
     source.RelicSubAffixConfig = [{ ...sub, StepNum: 0 }];
     expect(() => buildPlayerRuntimeData(source)).toThrow('StepNum must be positive');
+    source.RelicSubAffixConfig = [{ ...sub, GroupID: 2, StepNum: undefined }];
+    expect(buildPlayerRuntimeData(source).relicSubAffixes['2:7']).toMatchObject({
+      propertyType: 'SpeedDelta',
+      stepValue: 0.3
+    });
+    expect(buildPlayerRuntimeData(source).relicSubAffixes['2:7']).not.toHaveProperty('stepNum');
   });
 });

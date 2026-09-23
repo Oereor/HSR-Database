@@ -10,4 +10,13 @@ describe('relic score architecture boundary', () => {
     expect(source).not.toMatch(/api\/_player\/enka|HSR-Relic-Simulator-Cross-Platform/);
     expect(source).not.toMatch(/\.display\b|parseFloat\(/);
   });
+
+  it('keeps production normalization separate from farming and simulation code', () => {
+    const source = [
+      readFileSync('src/lib/relic-score/normalize.ts', 'utf8'),
+      readFileSync('api/_player/enka/pipeline.ts', 'utf8')
+    ].join('\n');
+    expect(source).not.toMatch(/(?:from|import\s*\()[^\n]*(?:farming|probability|simulat)/i);
+    expect(source).not.toMatch(/HSR-Relic-Simulator-Cross-Platform/);
+  });
 });
