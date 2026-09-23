@@ -61,6 +61,8 @@
 
 ## needs-review 逐角色审核
 
+> **此条说明是维护者人工增加的。** 我们约定：在没有特别说明的情况下，crit-rate 的 target 默认为 100%，且在达到了 target 之后权重直接降低至 0。特别说明的情况包括 target 的值改变，或是在超出 target 之后权重不为 0。
+
 ### 1001 · 三月七·存护
 
 - **Character ID：** `1001`；**命途：** 存护（`Knight`）；**inference confidence：** `medium`。
@@ -529,8 +531,8 @@
 
 | PropertyType | 中文属性名 | Weight |
 | --- | --- | ---: |
-| `CriticalChanceBase` | 暴击率 | 1.25 |
-| `CriticalDamageBase` | 暴击伤害 | 1.25 |
+| `CriticalChanceBase` | 暴击率 | ~~1.25~~ 0.5 |
+| `CriticalDamageBase` | 暴击伤害 | ~~1.25~~ 0.5 |
 | `DefenceAddedRatio` | 防御力 | 1 |
 | `SpeedDelta` | 速度 | 0.75 |
 
@@ -543,13 +545,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*不正确。砂金是生存位。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*scaling-stat 使用 DEF。*
+- [x] 当前各推荐副词条权重是否合理？*不合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*需要。DEF 在达到 4000 之后，权重降低至 0.25。*
+- [x] 是否需要 weight override？*需要。已在表格中标出。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*修改。*
 
 ### 1306 · 花火
 
@@ -584,13 +586,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*正确。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*无需 scaling-stat；花火不参与输出。*
+- [x] 当前各推荐副词条权重是否合理？*合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*不需要。*
+- [x] 是否需要 weight override？*不需要。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*接受。*
 
 ### 1313 · 星期日
 
@@ -625,13 +627,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*正确。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*不需要 scaling-stat；星期日不参与输出。*
+- [x] 当前各推荐副词条权重是否合理？*合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*不需要。*
+- [x] 是否需要 weight override？*不需要。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*接受。*
 
 ### 1321 · 大丽花
 
@@ -664,13 +666,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*正确。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*无需 scaling-stat；击破出伤不依赖基础属性。*
+- [x] 当前各推荐副词条权重是否合理？*合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*不需要。*
+- [x] 是否需要 weight override？*不需要。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*接受。*
 
 ### 1402 · 阿格莱雅
 
@@ -691,10 +693,10 @@
 
 | PropertyType | 中文属性名 | Weight |
 | --- | --- | ---: |
-| `AttackAddedRatio` | 攻击力 | 1 |
+| `AttackAddedRatio` | 攻击力 | ~~1~~ 0.75 |
 | `CriticalChanceBase` | 暴击率 | 1.25 |
 | `CriticalDamageBase` | 暴击伤害 | 1.25 |
-| `SpeedDelta` | 速度 | 0.75 |
+| `SpeedDelta` | 速度 | ~~0.75~~ 1 |
 
 - **Override：** 无。
 - **已生成的 Hard Breakpoint / stat target / curve：** 0 / 0 / 0；仅供核对，未替人工补值。
@@ -706,13 +708,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*正确。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*scaling-stat 为 ATK。*
+- [x] 当前各推荐副词条权重是否合理？*不合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*不需要。*
+- [x] 是否需要 weight override？*需要，已在表格中标出。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*修改。*
 
 ### 1403 · 缇宝
 
@@ -733,8 +735,8 @@
 
 | PropertyType | 中文属性名 | Weight |
 | --- | --- | ---: |
-| `CriticalChanceBase` | 暴击率 | 1.25 |
-| `CriticalDamageBase` | 暴击伤害 | 1.25 |
+| `CriticalChanceBase` | 暴击率 | ~~1.25~~ 0.5 |
+| `CriticalDamageBase` | 暴击伤害 | ~~1.25~~ 0.5 |
 | `HPAddedRatio` | 生命值 | 1 |
 
 - **Override：** 无。
@@ -746,13 +748,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*不正确。应为 direct-support。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*scaling-stat 是 HP。*
+- [x] 当前各推荐副词条权重是否合理？*不合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*不需要。*
+- [x] 是否需要 weight override？*需要，已在表格中标出。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*修改。*
 
 ### 1407 · 遐蝶
 
@@ -787,13 +789,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*正确。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*scaling-stat 是 HP。*
+- [x] 当前各推荐副词条权重是否合理？*合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*不需要。*
+- [x] 是否需要 weight override？*不需要。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*接受。*
 
 ### 1409 · 风堇
 
@@ -814,9 +816,9 @@
 
 | PropertyType | 中文属性名 | Weight |
 | --- | --- | ---: |
-| `CriticalDamageBase` | 暴击伤害 | 1.25 |
-| `HPAddedRatio` | 生命值 | 1 |
-| `SpeedDelta` | 速度 | 0.75 |
+| `CriticalDamageBase` | 暴击伤害 | ~~1.25~~ 0.5 |
+| `HPAddedRatio` | 生命值 | ~~1~~ 0.75 |
+| `SpeedDelta` | 速度 | ~~0.75~~ 1.25 |
 | `StatusResistanceBase` | 效果抵抗 | 0.25 |
 
 - **Override：** 无。
@@ -830,13 +832,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*不正确。风堇是生存位。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*scaling-stat 是 HP。*
+- [x] 当前各推荐副词条权重是否合理？*不合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*存在。SPD 有明确的 breakpoint 为 200。*
+- [x] 是否需要 stat target / curve？*需要。effect-res 的 target 为 50%，达到 target 之后权重降低为 0（继续增加没有任何收益）。其余属性不设置 target 或者 curve。*
+- [x] 是否需要 weight override？*需要。已在表格中标出。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*修改。*
 
 ### 1412 · 刻律德菈
 
@@ -857,9 +859,9 @@
 
 | PropertyType | 中文属性名 | Weight |
 | --- | --- | ---: |
-| `AttackAddedRatio` | 攻击力 | 0.75 |
-| `CriticalDamageBase` | 暴击伤害 | 1 |
-| `SpeedDelta` | 速度 | 1.25 |
+| `AttackAddedRatio` | 攻击力 | ~~0.75~~ 1 |
+| `CriticalDamageBase` | 暴击伤害 | ~~1~~ 0.75 |
+| `SpeedDelta` | 速度 | ~~1.25~~ 1 |
 
 - **Override：** 无。
 - **已生成的 Hard Breakpoint / stat target / curve：** 0 / 0 / 0；仅供核对，未替人工补值。
@@ -870,13 +872,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*正确。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*scaling-stat 为 ATK。*
+- [x] 当前各推荐副词条权重是否合理？*不合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*需要。ATK 的 target 为 4000，达到 target 后权重降低至 0.25。*
+- [x] 是否需要 weight override？*需要。已在表格中标出。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*修改。*
 
 ### 1413 · 长夜月
 
@@ -900,7 +902,7 @@
 | `CriticalChanceBase` | 暴击率 | 1.25 |
 | `CriticalDamageBase` | 暴击伤害 | 1.25 |
 | `HPAddedRatio` | 生命值 | 1 |
-| `SpeedDelta` | 速度 | 0.75 |
+| `SpeedDelta` | 速度 | ~~0.75~~ 0.25 |
 
 - **Override：** 无。
 - **已生成的 Hard Breakpoint / stat target / curve：** 0 / 0 / 0；仅供核对，未替人工补值。
@@ -912,13 +914,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*正确。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*scaling-stat 是 HP。*
+- [x] 当前各推荐副词条权重是否合理？*不合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*需要。crit-rate 的 target 为 65%，达到 target 后权重降低为 0（此后暴击率溢出了，无收益）。*
+- [x] 是否需要 weight override？*需要，已在表格中标出。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*修改。*
 
 ### 1415 · 昔涟
 
@@ -939,10 +941,10 @@
 
 | PropertyType | 中文属性名 | Weight |
 | --- | --- | ---: |
-| `CriticalChanceBase` | 暴击率 | 1.25 |
-| `CriticalDamageBase` | 暴击伤害 | 1.25 |
-| `HPAddedRatio` | 生命值 | 1 |
-| `SpeedDelta` | 速度 | 0.75 |
+| `CriticalChanceBase` | 暴击率 | ~~1.25~~ 0.75 |
+| `CriticalDamageBase` | 暴击伤害 | ~~1.25~~ 0.5 |
+| `HPAddedRatio` | 生命值 | ~~1~~ 0.75 |
+| `SpeedDelta` | 速度 | ~~0.75~~ 1.25 |
 
 - **Override：** 无。
 - **已生成的 Hard Breakpoint / stat target / curve：** 0 / 0 / 0；仅供核对，未替人工补值。
@@ -954,13 +956,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*不正确，但是昔涟的 template 不重要。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*scaling-stat 为 HP。*
+- [x] 当前各推荐副词条权重是否合理？*不合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*存在。SPD 的 breakpoint 为 180。*
+- [x] 是否需要 stat target / curve？*需要。crit-rate 的 target 为 50%，达到 target 之后权重降低为 0。*
+- [x] 是否需要 weight override？*需要，已在表格中标出。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*修改。*
 
 ### 1501 · 火花
 
@@ -995,13 +997,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*正确。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*scaling-stat 是 ATK。*
+- [x] 当前各推荐副词条权重是否合理？*合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*需要。ATK 的 target 为 3600，达到 target 后权重降低至 0。*
+- [x] 是否需要 weight override？*不需要。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*接受。*
 
 ### 1502 · 爻光
 
@@ -1022,9 +1024,9 @@
 
 | PropertyType | 中文属性名 | Weight |
 | --- | --- | ---: |
-| `CriticalChanceBase` | 暴击率 | 1.25 |
-| `CriticalDamageBase` | 暴击伤害 | 1.25 |
-| `SpeedDelta` | 速度 | 0.75 |
+| `CriticalChanceBase` | 暴击率 | ~~1.25~~ 0.75 |
+| `CriticalDamageBase` | 暴击伤害 | ~~1.25~~ 0.75 |
+| `SpeedDelta` | 速度 | ~~0.75~~ 1.25 |
 
 - **Override：** 无。
 - **已生成的 Hard Breakpoint / stat target / curve：** 0 / 0 / 0；仅供核对，未替人工补值。
@@ -1037,13 +1039,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*不正确，但是爻光的 template 不重要。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*无需 scaling-stat；欢愉伤害不依赖基础属性。*
+- [x] 当前各推荐副词条权重是否合理？*不合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*存在。SPD 的 breakpoint 为 120。*
+- [x] 是否需要 stat target / curve？*不需要。*
+- [x] 是否需要 weight override？*需要。已经在表格中标出。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*修改。*
 
 ### 1505 · 绯英
 
@@ -1079,13 +1081,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*正确。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*scaling-stat 使用 ATK。*
+- [x] 当前各推荐副词条权重是否合理？*合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*需要。crit-rate 的 target 为 70%，达到 target 之后权重降低至 0。*
+- [x] 是否需要 weight override？*不需要。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*接受。*
 
 ### 1506 · 银狼LV.999
 
@@ -1106,9 +1108,9 @@
 
 | PropertyType | 中文属性名 | Weight |
 | --- | --- | ---: |
-| `CriticalChanceBase` | 暴击率 | 1.25 |
-| `CriticalDamageBase` | 暴击伤害 | 1.25 |
-| `SpeedDelta` | 速度 | 0.75 |
+| `CriticalChanceBase` | 暴击率 | ~~1.25~~ 0.75 |
+| `CriticalDamageBase` | 暴击伤害 | ~~1.25~~ 0.75 |
+| `SpeedDelta` | 速度 | ~~0.75~~ 1.25 |
 
 - **Override：** 无。
 - **已生成的 Hard Breakpoint / stat target / curve：** 0 / 0 / 0；仅供核对，未替人工补值。
@@ -1121,13 +1123,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*正确。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*无需 scaling-stat；银狼LV.999 主要输出手段为欢愉伤害，不受基础属性值影响。*
+- [x] 当前各推荐副词条权重是否合理？*不合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*存在。SPD 的 breakpoint 为 160。*
+- [x] 是否需要 stat target / curve？*不需要。*
+- [x] 是否需要 weight override？*需要。已在表格中标出。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*修改。*
 
 ### 1512 · 知更鸟•晴歌
 
@@ -1148,10 +1150,10 @@
 
 | PropertyType | 中文属性名 | Weight |
 | --- | --- | ---: |
-| `CriticalChanceBase` | 暴击率 | 1.25 |
-| `CriticalDamageBase` | 暴击伤害 | 1.25 |
-| `HPAddedRatio` | 生命值 | 1 |
-| `SpeedDelta` | 速度 | 0.75 |
+| `CriticalChanceBase` | 暴击率 | ~~1.25~~ 0.5 |
+| `CriticalDamageBase` | 暴击伤害 | ~~1.25~~ 0.5 |
+| `HPAddedRatio` | 生命值 | ~~1~~ 0.75 |
+| `SpeedDelta` | 速度 | ~~0.75~~ 1 |
 
 - **Override：** 无。
 - **已生成的 Hard Breakpoint / stat target / curve：** 0 / 0 / 0；仅供核对，未替人工补值。
@@ -1163,13 +1165,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*不正确，但是知更鸟·晴歌的 template 不重要。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*scaling-stat 是 HP。*
+- [x] 当前各推荐副词条权重是否合理？*不合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*需要。crit-rate 的 target 为 50%，达到 target 后权重降低至 0。*
+- [x] 是否需要 weight override？*需要。已经在表格中标出。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*修改。*
 
 ### 1513 · 砂金•戏浪
 
@@ -1190,9 +1192,9 @@
 
 | PropertyType | 中文属性名 | Weight |
 | --- | --- | ---: |
-| `CriticalChanceBase` | 暴击率 | 1.25 |
-| `CriticalDamageBase` | 暴击伤害 | 1.25 |
-| `SpeedDelta` | 速度 | 0.75 |
+| `CriticalChanceBase` | 暴击率 | ~~1.25~~ 0.75 |
+| `CriticalDamageBase` | 暴击伤害 | ~~1.25~~ 0.75 |
+| `SpeedDelta` | 速度 | ~~0.75~~ 1 |
 
 - **Override：** 无。
 - **已生成的 Hard Breakpoint / stat target / curve：** 0 / 0 / 0；仅供核对，未替人工补值。
@@ -1205,15 +1207,17 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*正确。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*无需 scaling-stat；砂金·戏浪的主要输出手段是欢愉伤害，不受基础属性影响。*
+- [x] 当前各推荐副词条权重是否合理？*不合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*存在。SPD 的 breakpoint 为 140。*
+- [x] 是否需要 stat target / curve？*不需要。*
+- [x] 是否需要 weight override？*需要。已经在表格中标出。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*修改。*
 
-### 8005 · 开拓者·同谐
+> **这条说明是维护者人工加入的。** 开拓者有男/女两种性别，但他们的战斗属性是完全一致的，因此下方不做性别上的区分。8005/8006 都是开拓者·同谐；8007/8008 都是开拓者·记忆；8009/8010 都是开拓者·欢愉。
+
+### 8005/8006 · 开拓者·同谐
 
 - **Character ID：** `8005`；**命途：** 同谐（`Shaman`）；**inference confidence：** `medium`。
 - **当前 inferred template：** `break`；**完整 review reasons：** `PATH_TEMPLATE_MISMATCH`、`AMBIGUOUS_SCALING`。
@@ -1245,55 +1249,15 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*正确.*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*无需 scaling-stat；击破伤害不受基础属性影响。*
+- [x] 当前各推荐副词条权重是否合理？*合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*不需要。*
+- [x] 是否需要 weight override？*不需要。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*接受。*
 
-### 8006 · 开拓者·同谐
-
-- **Character ID：** `8006`；**命途：** 同谐（`Shaman`）；**inference confidence：** `medium`。
-- **当前 inferred template：** `break`；**完整 review reasons：** `PATH_TEMPLATE_MISMATCH`、`AMBIGUOUS_SCALING`。
-
-#### 上游 Recommendation
-
-- **Cavern 推荐（原顺序）：** 机心戏梦的钟表匠（`118`）、流星追迹的怪盗（`111`）、骇域漫游的信使（`114`）。
-- **Planar 推荐（原顺序）：** 盗贼公国塔利亚（`307`）、劫火莲灯铸炼宫（`316`）、不老者的仙舟（`302`）。
-- **BODY 主词条：** 生命值（`HPAddedRatio`）、防御力（`DefenceAddedRatio`）。
-- **FOOT 主词条：** 速度（`SpeedDelta`）。
-- **NECK / Sphere 主词条：** 防御力（`DefenceAddedRatio`）、生命值（`HPAddedRatio`）。
-- **OBJECT / Rope 主词条：** 击破特攻（`BreakDamageAddedRatioBase`）。
-- **推荐副词条（原顺序）：** 击破特攻（`BreakDamageAddedRatioBase`）、速度（`SpeedDelta`）。
-
-#### 当前 Generated Profile
-
-| PropertyType | 中文属性名 | Weight |
-| --- | --- | ---: |
-| `BreakDamageAddedRatioBase` | 击破特攻 | 1.25 |
-| `SpeedDelta` | 速度 | 1 |
-
-- **Override：** 无。
-- **已生成的 Hard Breakpoint / stat target / curve：** 0 / 0 / 0；仅供核对，未替人工补值。
-
-#### Review reason 解释
-
-- **`PATH_TEMPLATE_MISMATCH`：** 同谐路径先验只匹配 direct-support；推荐击破特攻且没有双暴；击破分支选择 break；最终 `break` 不在该路径先验匹配集合中。这里仅描述生成器的分类冲突，不判断角色实际定位。
-- **`AMBIGUOUS_SCALING`：** 推荐副词条里没有 ATK/HP/DEF 百分比候选；推荐主词条中的 BODY：生命值（`HPAddedRatio`）、BODY：防御力（`DefenceAddedRatio`）、NECK：防御力（`DefenceAddedRatio`）、NECK：生命值（`HPAddedRatio`） 不能替推荐副词条新增 scaling 权重，因此生成器没有解析 scaling-stat。
-
-#### 人工审核 checklist
-
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
-
-### 8007 · 开拓者·记忆
+### 8007/8008 · 开拓者·记忆
 
 - **Character ID：** `8007`；**命途：** 记忆（`Memory`）；**inference confidence：** `low`。
 - **当前 inferred template：** `direct-dps`；**完整 review reasons：** `SPECIAL_PATH`、`MIXED_STAT_SIGNALS`、`PATH_TEMPLATE_MISMATCH`。
@@ -1312,9 +1276,9 @@
 
 | PropertyType | 中文属性名 | Weight |
 | --- | --- | ---: |
-| `AttackAddedRatio` | 攻击力 | 1 |
-| `CriticalDamageBase` | 暴击伤害 | 1.25 |
-| `SpeedDelta` | 速度 | 0.75 |
+| `AttackAddedRatio` | 攻击力 | ~~1~~ 0.75 |
+| `CriticalDamageBase` | 暴击伤害 | ~~1.25~~ 0.75 |
+| `SpeedDelta` | 速度 | ~~0.75~~ 1.25 |
 
 - **Override：** 无。
 - **已生成的 Hard Breakpoint / stat target / curve：** 0 / 0 / 0；仅供核对，未替人工补值。
@@ -1327,57 +1291,15 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*不正确。开拓者·记忆是辅助位。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*scaling-stat 为 ATK。*
+- [x] 当前各推荐副词条权重是否合理？*不合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*不需要。*
+- [x] 是否需要 weight override？*需要，已在表格中标出。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*修改。*
 
-### 8008 · 开拓者·记忆
-
-- **Character ID：** `8008`；**命途：** 记忆（`Memory`）；**inference confidence：** `low`。
-- **当前 inferred template：** `direct-dps`；**完整 review reasons：** `SPECIAL_PATH`、`MIXED_STAT_SIGNALS`、`PATH_TEMPLATE_MISMATCH`。
-
-#### 上游 Recommendation
-
-- **Cavern 推荐（原顺序）：** 凯歌祝捷的英豪（`123`）、密林卧雪的猎人（`104`）、晨昏交界的翔鹰（`110`）。
-- **Planar 推荐（原顺序）：** 沉陆海域露莎卡（`317`）、梦想之地匹诺康尼（`312`）、奇想蕉乐园（`318`）。
-- **BODY 主词条：** 暴击伤害（`CriticalDamageBase`）。
-- **FOOT 主词条：** 速度（`SpeedDelta`）、攻击力（`AttackAddedRatio`）。
-- **NECK / Sphere 主词条：** 冰属性伤害提高（`IceAddedRatio`）。
-- **OBJECT / Rope 主词条：** 能量恢复效率（`SPRatioBase`）、攻击力（`AttackAddedRatio`）。
-- **推荐副词条（原顺序）：** 暴击伤害（`CriticalDamageBase`）、速度（`SpeedDelta`）、攻击力（`AttackAddedRatio`）。
-
-#### 当前 Generated Profile
-
-| PropertyType | 中文属性名 | Weight |
-| --- | --- | ---: |
-| `AttackAddedRatio` | 攻击力 | 1 |
-| `CriticalDamageBase` | 暴击伤害 | 1.25 |
-| `SpeedDelta` | 速度 | 0.75 |
-
-- **Override：** 无。
-- **已生成的 Hard Breakpoint / stat target / curve：** 0 / 0 / 0；仅供核对，未替人工补值。
-
-#### Review reason 解释
-
-- **`SPECIAL_PATH`：** 当前命途为 记忆（`Memory`）；生成器没有针对该特殊命途的专用机制分类，只将 inference confidence 降为 low，保留当前模板候选供人工复核。
-- **`MIXED_STAT_SIGNALS`：** 双暴只出现一项：暴击伤害（`CriticalDamageBase`）；生成器因此降低置信度，未据此推断战斗机制。
-- **`PATH_TEMPLATE_MISMATCH`：** 生成器没有为 Memory 设置匹配模板集合；前面属性和路径分支未命中；最终回退为 direct-dps；最终 `direct-dps` 不在该路径先验匹配集合中。这里仅描述生成器的分类冲突，不判断角色实际定位。
-
-#### 人工审核 checklist
-
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
-
-### 8009 · 开拓者·欢愉
+### 8009/8010 · 开拓者·欢愉
 
 - **Character ID：** `8009`；**命途：** 欢愉（`Elation`）；**inference confidence：** `low`。
 - **当前 inferred template：** `direct-dps`；**完整 review reasons：** `SPECIAL_PATH`、`PATH_TEMPLATE_MISMATCH`。
@@ -1396,10 +1318,10 @@
 
 | PropertyType | 中文属性名 | Weight |
 | --- | --- | ---: |
-| `AttackAddedRatio` | 攻击力 | 1 |
-| `CriticalChanceBase` | 暴击率 | 1.25 |
-| `CriticalDamageBase` | 暴击伤害 | 1.25 |
-| `SpeedDelta` | 速度 | 0.75 |
+| `AttackAddedRatio` | 攻击力 | ~~1~~ 0.75 |
+| `CriticalChanceBase` | 暴击率 | ~~1.25~~ 1 |
+| `CriticalDamageBase` | 暴击伤害 | ~~1.25~~ 0.75 |
+| `SpeedDelta` | 速度 | ~~0.75~~ 1 |
 
 - **Override：** 无。
 - **已生成的 Hard Breakpoint / stat target / curve：** 0 / 0 / 0；仅供核对，未替人工补值。
@@ -1411,55 +1333,13 @@
 
 #### 人工审核 checklist
 
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
-
-### 8010 · 开拓者·欢愉
-
-- **Character ID：** `8010`；**命途：** 欢愉（`Elation`）；**inference confidence：** `low`。
-- **当前 inferred template：** `direct-dps`；**完整 review reasons：** `SPECIAL_PATH`、`PATH_TEMPLATE_MISMATCH`。
-
-#### 上游 Recommendation
-
-- **Cavern 推荐（原顺序）：** 应天涉远的卜者（`130`）、闪耀功勋的魔法少女（`129`）、野穗伴行的快枪手（`102`）。
-- **Planar 推荐（原顺序）：** 沉陆海域露莎卡（`317`）、零号关卡朋克洛德（`325`）、太空封印站（`301`）。
-- **BODY 主词条：** 暴击伤害（`CriticalDamageBase`）、暴击率（`CriticalChanceBase`）。
-- **FOOT 主词条：** 速度（`SpeedDelta`）、攻击力（`AttackAddedRatio`）。
-- **NECK / Sphere 主词条：** 攻击力（`AttackAddedRatio`）。
-- **OBJECT / Rope 主词条：** 能量恢复效率（`SPRatioBase`）、攻击力（`AttackAddedRatio`）。
-- **推荐副词条（原顺序）：** 暴击率（`CriticalChanceBase`）、暴击伤害（`CriticalDamageBase`）、速度（`SpeedDelta`）、攻击力（`AttackAddedRatio`）。
-
-#### 当前 Generated Profile
-
-| PropertyType | 中文属性名 | Weight |
-| --- | --- | ---: |
-| `AttackAddedRatio` | 攻击力 | 1 |
-| `CriticalChanceBase` | 暴击率 | 1.25 |
-| `CriticalDamageBase` | 暴击伤害 | 1.25 |
-| `SpeedDelta` | 速度 | 0.75 |
-
-- **Override：** 无。
-- **已生成的 Hard Breakpoint / stat target / curve：** 0 / 0 / 0；仅供核对，未替人工补值。
-
-#### Review reason 解释
-
-- **`SPECIAL_PATH`：** 当前命途为 欢愉（`Elation`）；生成器没有针对该特殊命途的专用机制分类，只将 inference confidence 降为 low，保留当前模板候选供人工复核。
-- **`PATH_TEMPLATE_MISMATCH`：** 生成器没有为 Elation 设置匹配模板集合；同时推荐暴击率与暴击伤害；双暴分支选择 direct-dps；最终 `direct-dps` 不在该路径先验匹配集合中。这里仅描述生成器的分类冲突，不判断角色实际定位。
-
-#### 人工审核 checklist
-
-- [ ] 当前 Template 是否正确？
-- [ ] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。
-- [ ] 当前各推荐副词条权重是否合理？
-- [ ] 是否存在角色自身明确的 Hard Breakpoint？
-- [ ] 是否需要 stat target / curve？
-- [ ] 是否需要 weight override？
-- [ ] 结论：接受 / 修改 / 待进一步调查。
+- [x] 当前 Template 是否正确？*不正确，但是开拓者·欢愉的 template 不重要。*
+- [x] scaling stat 应为哪个 PropertyType？如不适用，请记录原因。*scaling-stat 为 ATK。*
+- [x] 当前各推荐副词条权重是否合理？*不合理。*
+- [x] 是否存在角色自身明确的 Hard Breakpoint？*不存在。*
+- [x] 是否需要 stat target / curve？*需要。ATK 的 target 为 2200，达到 target 之后的权重降低为 0.25；crit-rate 的 target 为 85%，达到 target 之后权重降低为 0。*
+- [x] 是否需要 weight override？*需要，已经在表格中标出。*
+- [x] 结论：接受 / 修改 / 待进一步调查。*修改。*
 
 ## AMBIGUOUS_SCALING 汇总
 
