@@ -49,6 +49,9 @@
     "data:player-aliases:sync": "tsx scripts/data/player-aliases.ts",
     "relic-score:profiles:generate": "tsx scripts/relic-score/generate.ts",
     "relic-score:validate": "tsx scripts/relic-score/validate-command.ts",
+    "relic-score:farming:validate": "tsx scripts/relic-score/farming-validate.ts",
+    "relic-score:farming:prototype": "tsx scripts/relic-score/farming-prototype.ts",
+    "relic-score:farming:frequency": "tsx scripts/relic-score/farming-frequency.ts",
     "messages:compile": "tsx scripts/messages.ts",
     "messages:check": "tsx scripts/messages.ts"
   },
