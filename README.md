@@ -13,6 +13,7 @@
 - 遗器：套装、部件信息与套装效果。
 - 敌方单位：基础属性、弱点、抗性、技能及其他战斗信息。
 - 高难模式：三路深渊（混沌回忆、虚构叙事、末日幻影），以及异相仲裁的赛期、关卡、波次与敌方实例数据。
+- 玩家信息：通过 UID 查询玩家们的公开角色信息，包括角色养成情况等，并提供遗器评分功能。
 - ……
 
 项目仍在持续完善中。
@@ -202,7 +203,7 @@ title: '更新标题'
 
 - [TurnBasedGameData](https://github.com/DimbreathBot/TurnBasedGameData) — 提供《崩坏：星穹铁道》的游戏数据，是本站静态数据的主要来源之一。
 - [StarRailRes](https://github.com/Mar-7th/StarRailRes) — 提供角色、光锥、遗器、图标等游戏资源，用于本站的本地资源展示。
-- [Nanoka](https://static.nanoka.cc) — 提供 enemy visual assets；本站在维护时生成并审核 snapshot，部署不实时依赖该服务。未确认的再分发许可不因本项目的 MIT License 而获得覆盖。
+- [Nanoka](https://static.nanoka.cc) — 提供 enemy visual assets。未确认的再分发许可不因本项目的 MIT License 而获得覆盖。
 - [Enka.Network](https://enka.network/) — 提供公开玩家信息查询服务，用于本站的「玩家信息 / Player Info」功能。
 
 特别感谢以上项目及其维护者，使 HSR-Database 能够建立在稳定、开放的社区数据与资源之上。
