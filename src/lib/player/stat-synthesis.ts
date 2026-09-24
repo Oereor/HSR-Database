@@ -25,6 +25,7 @@ import type {
   PlayerRuntimeData,
   RuntimePropertyValue
 } from './runtime-data.js';
+import { formatPlayerDisplayNumber } from './display-number.js';
 import { playerMainAffixValue, playerRuntimeKey, playerSubAffixValue } from './runtime-data.js';
 
 interface StatBuckets {
@@ -57,12 +58,6 @@ const DISPLAY_ORDER = [
 ] as const;
 
 const PRIMARY_FIELDS = new Set<string>(DISPLAY_ORDER.slice(0, 6));
-
-function displayNumber(value: number, percent: boolean): string {
-  if (!percent) return String(Math.trunc(value + Math.sign(value || 1) * 1e-9));
-  const truncated = Math.trunc(value * 1_000 + Math.sign(value || 1) * 1e-9) / 10;
-  return `${truncated.toFixed(1)}%`;
-}
 
 function visiblePercent(field: string): boolean {
   return !['hp', 'atk', 'def', 'spd'].includes(field);
@@ -256,7 +251,9 @@ export function finalizePlayerStats(buckets: Partial<Record<PlayerStatTarget, St
     const value = values[field];
     if (value === undefined || (!PRIMARY_FIELDS.has(field) && value === 0)) return [];
     const percent = visiblePercent(field);
-    return [{ field, percent, total: displayNumber(value, percent) } satisfies PlayerStat];
+    return [
+      { field, percent, total: formatPlayerDisplayNumber(value, percent) } satisfies PlayerStat
+    ];
   });
   return { stats, values };
 }
@@ -293,7 +290,7 @@ function resolvedAffix(affix: PlayerRuntimeAffix, value: number): PlayerRelicAff
   const percent = PLAYER_PROPERTY_SEMANTICS[affix.propertyType].percent;
   return {
     type: affix.propertyType,
-    display: displayNumber(value, percent),
+    display: formatPlayerDisplayNumber(value, percent),
     percent
   };
 }

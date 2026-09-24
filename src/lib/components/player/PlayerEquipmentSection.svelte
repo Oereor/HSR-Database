@@ -16,6 +16,7 @@
   } from '$lib/player/equipment';
   import PlayerLightConeCard from './PlayerLightConeCard.svelte';
   import PlayerRelicCard from './PlayerRelicCard.svelte';
+  import PlayerRelicScoreSummary from './PlayerRelicScoreSummary.svelte';
 
   export let character: PlayerCharacter;
   export let recommendation: EquipmentRecommendationView | undefined = undefined;
@@ -64,9 +65,16 @@
 
     <div class="player-equipment__group">
       <SectionHeading level={2}>{m.player_equipment_relics()}</SectionHeading>
+      {#if character.relicScore}
+        <PlayerRelicScoreSummary score={character.relicScore.build} properties={relicProperties} />
+      {/if}
       <div class="player-equipment__relic-grid">
         {#each relicSlots as view (view.slot)}
-          <PlayerRelicCard {view} />
+          <PlayerRelicCard
+            {view}
+            score={character.relicScore?.pieces[view.slot]}
+            showScore={!!character.relicScore}
+          />
         {/each}
       </div>
     </div>

@@ -378,6 +378,207 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(page.locator('#equipment')).toHaveCount(0);
 });
 
+test('presents relic scores and target details without changing the Player request flow', async ({
+  page,
+  isMobile
+}, testInfo) => {
+  let playerRequests = 0;
+  await page.route('**/api/player/**', async (route) => {
+    playerRequests += 1;
+    const uid = new URL(route.request().url()).searchParams.get('uid') ?? '';
+    const fixture = playerProfile(uid);
+    Object.assign(fixture.characters[0], {
+      relicScore: {
+        version: 1,
+        build: {
+          status: 'available',
+          score: 86.6,
+          coreScore: 85.2,
+          statCompletion: 0.825,
+          setIntegrity: 2 / 3,
+          effectiveHits: {
+            status: 'partial',
+            known: 23,
+            unknownRecommendedSubstats: 2,
+            total: null
+          },
+          softTarget: {
+            progress: 0.75,
+            details: [
+              {
+                stat: 'StatusResistanceBase',
+                currentValue: 0.5,
+                minimumThreshold: 0,
+                maximumThreshold: 0.8,
+                progress: 0.625
+              }
+            ]
+          },
+          hardBreakpoint: {
+            failureRatio: 0,
+            details: [{ stat: 'SpeedDelta', currentValue: 200, threshold: 200, passed: true }]
+          }
+        },
+        pieces: Object.fromEntries(
+          ['HEAD', 'HAND', 'BODY', 'FOOT', 'NECK', 'OBJECT'].map((slot, index) => [
+            slot,
+            index === 2
+              ? { status: 'unavailable', reason: 'piece-unavailable' }
+              : {
+                  status: 'available',
+                  score: index === 0 ? 0 : index === 1 ? 99.6 : 82.4,
+                  mainCompletion: 1,
+                  benchmarkPercentile: 0.7,
+                  rawSubUtility: 10,
+                  effectiveHits: {
+                    status: 'exact',
+                    known: 4,
+                    unknownRecommendedSubstats: 0,
+                    total: 4
+                  }
+                }
+          ])
+        )
+      }
+    });
+    await route.fulfill({ json: fixture });
+  });
+  await page.route('**/generated/en/player-equipment.json', async (route) => {
+    await route.fulfill({
+      json: {
+        schemaVersion: 1,
+        locale: 'en',
+        lightCones: [],
+        relicSets: [
+          {
+            id: '103',
+            name: 'Knight of Purity Palace with an intentionally long English set name',
+            pieces: ['HEAD', 'HAND', 'BODY', 'FOOT'].map((slot, index) => ({
+              id: `3103${index + 1}`,
+              slot,
+              name: `A long English relic name for the ${slot.toLowerCase()} slot and responsive layout`
+            }))
+          },
+          {
+            id: '310',
+            name: 'A similarly long planar ornament set name for responsive layout',
+            pieces: ['NECK', 'OBJECT'].map((slot, index) => ({
+              id: `3310${index + 1}`,
+              slot,
+              name: `A long English planar relic name for the ${slot.toLowerCase()} slot`
+            }))
+          }
+        ]
+      }
+    });
+  });
+
+  await page.goto(
+    '/en/characters/1304/?uid=100000001&build=area%3Ashowcase%3Aposition%3A1%3Aorder%3A0'
+  );
+  const summary = page.locator('[data-player-relic-score-summary]');
+  await expect(summary).toBeVisible();
+  await expect(summary.locator('[data-player-build-score]')).toHaveText('87');
+  await expect(summary.locator('[data-player-effective-hits]')).toContainText('23');
+  await expect(summary.locator('[data-player-soft-target]')).toContainText('75%');
+  await expect(summary.locator('[data-player-hard-breakpoint]')).toBeVisible();
+  await expect(page.locator('[data-player-relic-piece-score]')).toHaveCount(6);
+  await expect(
+    page.locator('[data-player-relic-slot="HEAD"] [data-player-relic-piece-score]')
+  ).toContainText('0');
+  await expect(
+    page.locator('[data-player-relic-slot="HAND"] [data-player-relic-piece-score]')
+  ).toContainText('100');
+  await expect(
+    page.locator('[data-player-relic-slot="BODY"] [data-player-relic-piece-score]')
+  ).toContainText('—');
+  expect(playerRequests).toBe(1);
+
+  const details = summary.locator('[data-player-score-details]');
+  await details.locator('summary').focus();
+  await page.keyboard.press('Enter');
+  await expect(details).toHaveAttribute('open', '');
+  await expect(details).toContainText('50.0%');
+  await expect(details).toContainText('200');
+  await expect(details).not.toContainText('StatusResistanceBase');
+  await expect(details).not.toContainText('SpeedDelta');
+  const geometry = await page.locator('[data-player-relic-slot]').evaluateAll((cards) =>
+    cards.map((card) => {
+      const cardBounds = card.getBoundingClientRect();
+      const meta = card.querySelector('.player-relic-card__meta')!.getBoundingClientRect();
+      const level = card.querySelector('.player-relic-card__level')!.getBoundingClientRect();
+      return {
+        metaContained: meta.right <= cardBounds.right + 1,
+        levelContained: level.right <= cardBounds.right + 1
+      };
+    })
+  );
+  expect(
+    geometry.every(({ metaContained, levelContained }) => metaContained && levelContained)
+  ).toBe(true);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    )
+  ).toBeLessThanOrEqual(1);
+  await summary.screenshot({
+    path: testInfo.outputPath(`relic-score-${isMobile ? 'mobile' : 'desktop'}.png`)
+  });
+});
+
+test('keeps piece scores when a five-piece build cannot be scored', async ({ page }) => {
+  await page.route('**/api/player/**', async (route) => {
+    const uid = new URL(route.request().url()).searchParams.get('uid') ?? '';
+    const fixture = playerProfile(uid);
+    fixture.characters[0].relics.pop();
+    Object.assign(fixture.characters[0], {
+      relicScore: {
+        version: 1,
+        build: { status: 'unavailable', reason: 'incomplete-build' },
+        pieces: Object.fromEntries(
+          ['HEAD', 'HAND', 'BODY', 'FOOT', 'NECK'].map((slot) => [
+            slot,
+            {
+              status: 'available',
+              score: 84.5,
+              mainCompletion: 1,
+              benchmarkPercentile: 0.7,
+              rawSubUtility: 10,
+              effectiveHits: {
+                status: 'exact',
+                known: 4,
+                unknownRecommendedSubstats: 0,
+                total: 4
+              }
+            }
+          ])
+        )
+      }
+    });
+    await route.fulfill({ json: fixture });
+  });
+
+  await page.goto(
+    '/characters/1304/?uid=100000001&build=area%3Ashowcase%3Aposition%3A1%3Aorder%3A0'
+  );
+  const summary = page.locator('[data-player-relic-score-summary]');
+  await expect(summary.locator('[data-player-build-score]')).toHaveText('—');
+  await expect(summary.locator('[data-player-build-score-unavailable]')).toBeVisible();
+  await expect(page.locator('[data-player-relic-piece-score]')).toHaveCount(5);
+  await expect(
+    page.locator('[data-player-relic-slot="HEAD"] [data-player-relic-piece-score]')
+  ).toContainText('85');
+  await expect(page.locator('[data-player-relic-slot="OBJECT"]')).toHaveAttribute(
+    'data-player-relic-state',
+    'empty'
+  );
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    )
+  ).toBeLessThanOrEqual(1);
+});
+
 test('keeps static detail available for invalid, missing and failed Player context', async ({
   page
 }) => {
