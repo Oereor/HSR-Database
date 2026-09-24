@@ -1,6 +1,7 @@
 import { jsonResponse, PlayerApiError, playerErrorResponse } from './_player/errors.js';
 import { createEnkaPlayerClient, type EnkaPlayerClient } from './_player/enka/client.js';
 import { playerRuntimeData, resolveCanonicalPlayerProfile } from './_player/enka/pipeline.js';
+import type { scorePlayerCharacterBuild } from '../src/lib/server/relic-score/player.js';
 
 const successHeaders = {
   'Cache-Control': 'public, max-age=0, must-revalidate',
@@ -17,6 +18,7 @@ interface PlayerLogEvent {
     | 'decode_error'
     | 'unknown_entity'
     | 'synthesis_failure'
+    | 'scoring_failure'
     | 'display_area_drift';
   code?: string;
   diagnostic?: string;
@@ -27,6 +29,7 @@ interface PlayerLogEvent {
 export interface PlayerHandlerDependencies {
   client?: EnkaPlayerClient;
   log?: (event: PlayerLogEvent) => void;
+  scoreCharacter?: typeof scorePlayerCharacterBuild;
 }
 
 function defaultLog(event: PlayerLogEvent): void {
@@ -66,9 +69,12 @@ export async function handlePlayerRequest(
     const result = resolveCanonicalPlayerProfile(
       fetched.profile,
       playerRuntimeData,
-      fetched.metadata
+      fetched.metadata,
+      dependencies.scoreCharacter
     );
     const log = dependencies.log ?? defaultLog;
+    for (const failure of result.scoringFailures)
+      log({ event: 'scoring_failure', sourceId: failure.buildId, diagnostic: failure.diagnostic });
     for (const character of result.canonical.characters) {
       if (character.build.display.area === 'unknown')
         log({ event: 'display_area_drift', area: character.build.display.area });

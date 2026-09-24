@@ -1,0 +1,674 @@
+{
+  "phase": "1D",
+  "mode": "modifiers",
+  "seed": 123456789,
+  "heldoutSeed": 2734581936,
+  "Ns": [3],
+  "Ks": [16384],
+  "alphas": [0.2, 0.25, 0.3, 0.35, 0.4],
+  "cases": [
+    {
+      "characterId": "1002",
+      "slot": "BODY"
+    },
+    {
+      "characterId": "1002",
+      "slot": "NECK"
+    },
+    {
+      "characterId": "1222",
+      "slot": "FOOT"
+    },
+    {
+      "characterId": "1222",
+      "slot": "OBJECT"
+    },
+    {
+      "characterId": "1005",
+      "slot": "BODY"
+    },
+    {
+      "characterId": "1005",
+      "slot": "NECK"
+    },
+    {
+      "characterId": "1101",
+      "slot": "HEAD"
+    },
+    {
+      "characterId": "1101",
+      "slot": "HAND"
+    },
+    {
+      "characterId": "1104",
+      "slot": "OBJECT"
+    },
+    {
+      "characterId": "1409",
+      "slot": "FOOT"
+    }
+  ],
+  "corpusQualityQuantiles": {
+    "poor": 0.05,
+    "below-average": 0.2,
+    "average": 0.5,
+    "good": 0.8,
+    "excellent": 0.95,
+    "extreme": 0.995
+  },
+  "modelVersion": "natural-5star-v1",
+  "modifiers": {
+    "N": 3,
+    "K": 16384,
+    "seed": 123456789,
+    "simulationRuntimeMs": 743.7398749999999,
+    "softRows": [
+      {
+        "maxBonus": 2,
+        "progress": 0,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 44.521484375,
+        "delta": 0
+      },
+      {
+        "maxBonus": 2,
+        "progress": 0.25,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 45.021484375,
+        "delta": 0.5
+      },
+      {
+        "maxBonus": 2,
+        "progress": 0.5,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 45.521484375,
+        "delta": 1
+      },
+      {
+        "maxBonus": 2,
+        "progress": 0.75,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 46.021484375,
+        "delta": 1.5
+      },
+      {
+        "maxBonus": 2,
+        "progress": 1,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 46.521484375,
+        "delta": 2
+      },
+      {
+        "maxBonus": 2,
+        "progress": 0,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 66.97822265625001,
+        "delta": 0
+      },
+      {
+        "maxBonus": 2,
+        "progress": 0.25,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 67.47822265625001,
+        "delta": 0.5
+      },
+      {
+        "maxBonus": 2,
+        "progress": 0.5,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 67.97822265625001,
+        "delta": 1
+      },
+      {
+        "maxBonus": 2,
+        "progress": 0.75,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 68.47822265625001,
+        "delta": 1.5
+      },
+      {
+        "maxBonus": 2,
+        "progress": 1,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 68.97822265625001,
+        "delta": 2
+      },
+      {
+        "maxBonus": 2,
+        "progress": 0,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 87.08138312251319,
+        "delta": 0
+      },
+      {
+        "maxBonus": 2,
+        "progress": 0.25,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 87.58138312251319,
+        "delta": 0.5
+      },
+      {
+        "maxBonus": 2,
+        "progress": 0.5,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 88.08138312251319,
+        "delta": 1
+      },
+      {
+        "maxBonus": 2,
+        "progress": 0.75,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 88.58138312251319,
+        "delta": 1.5
+      },
+      {
+        "maxBonus": 2,
+        "progress": 1,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 89.08138312251319,
+        "delta": 2
+      },
+      {
+        "maxBonus": 4,
+        "progress": 0,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 44.521484375,
+        "delta": 0
+      },
+      {
+        "maxBonus": 4,
+        "progress": 0.25,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 45.521484375,
+        "delta": 1
+      },
+      {
+        "maxBonus": 4,
+        "progress": 0.5,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 46.521484375,
+        "delta": 2
+      },
+      {
+        "maxBonus": 4,
+        "progress": 0.75,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 47.521484375,
+        "delta": 3
+      },
+      {
+        "maxBonus": 4,
+        "progress": 1,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 48.521484375,
+        "delta": 4
+      },
+      {
+        "maxBonus": 4,
+        "progress": 0,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 66.97822265625001,
+        "delta": 0
+      },
+      {
+        "maxBonus": 4,
+        "progress": 0.25,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 67.97822265625001,
+        "delta": 1
+      },
+      {
+        "maxBonus": 4,
+        "progress": 0.5,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 68.97822265625001,
+        "delta": 2
+      },
+      {
+        "maxBonus": 4,
+        "progress": 0.75,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 69.97822265625001,
+        "delta": 3
+      },
+      {
+        "maxBonus": 4,
+        "progress": 1,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 70.97822265625001,
+        "delta": 4
+      },
+      {
+        "maxBonus": 4,
+        "progress": 0,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 87.08138312251319,
+        "delta": 0
+      },
+      {
+        "maxBonus": 4,
+        "progress": 0.25,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 88.08138312251319,
+        "delta": 1
+      },
+      {
+        "maxBonus": 4,
+        "progress": 0.5,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 89.08138312251319,
+        "delta": 2
+      },
+      {
+        "maxBonus": 4,
+        "progress": 0.75,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 90.08138312251319,
+        "delta": 3
+      },
+      {
+        "maxBonus": 4,
+        "progress": 1,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 91.08138312251319,
+        "delta": 4
+      },
+      {
+        "maxBonus": 6,
+        "progress": 0,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 44.521484375,
+        "delta": 0
+      },
+      {
+        "maxBonus": 6,
+        "progress": 0.25,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 46.021484375,
+        "delta": 1.5
+      },
+      {
+        "maxBonus": 6,
+        "progress": 0.5,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 47.521484375,
+        "delta": 3
+      },
+      {
+        "maxBonus": 6,
+        "progress": 0.75,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 49.021484375,
+        "delta": 4.5
+      },
+      {
+        "maxBonus": 6,
+        "progress": 1,
+        "buildFixture": "average",
+        "coreBuildScore": 44.521484375,
+        "finalScore": 50.521484375,
+        "delta": 6
+      },
+      {
+        "maxBonus": 6,
+        "progress": 0,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 66.97822265625001,
+        "delta": 0
+      },
+      {
+        "maxBonus": 6,
+        "progress": 0.25,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 68.47822265625001,
+        "delta": 1.5
+      },
+      {
+        "maxBonus": 6,
+        "progress": 0.5,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 69.97822265625001,
+        "delta": 3
+      },
+      {
+        "maxBonus": 6,
+        "progress": 0.75,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 71.47822265625001,
+        "delta": 4.5
+      },
+      {
+        "maxBonus": 6,
+        "progress": 1,
+        "buildFixture": "good",
+        "coreBuildScore": 66.97822265625001,
+        "finalScore": 72.97822265625001,
+        "delta": 6
+      },
+      {
+        "maxBonus": 6,
+        "progress": 0,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 87.08138312251319,
+        "delta": 0
+      },
+      {
+        "maxBonus": 6,
+        "progress": 0.25,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 88.58138312251319,
+        "delta": 1.5
+      },
+      {
+        "maxBonus": 6,
+        "progress": 0.5,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 90.08138312251319,
+        "delta": 3
+      },
+      {
+        "maxBonus": 6,
+        "progress": 0.75,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 91.58138312251319,
+        "delta": 4.5
+      },
+      {
+        "maxBonus": 6,
+        "progress": 1,
+        "buildFixture": "excellent",
+        "coreBuildScore": 87.08138312251319,
+        "finalScore": 93.08138312251319,
+        "delta": 6
+      }
+    ],
+    "penaltyRows": [
+      {
+        "maxPenalty": 5,
+        "panelValue": 199.999,
+        "failureRatio": 1,
+        "buildFixture": "average",
+        "coreBuildScore": 43.46904296854918,
+        "finalScore": 38.46904296854918,
+        "delta": -5
+      },
+      {
+        "maxPenalty": 5,
+        "panelValue": 200,
+        "failureRatio": 0,
+        "buildFixture": "average",
+        "coreBuildScore": 43.46904296854918,
+        "finalScore": 43.46904296854918,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 5,
+        "panelValue": 200.001,
+        "failureRatio": 0,
+        "buildFixture": "average",
+        "coreBuildScore": 43.46904296854918,
+        "finalScore": 43.46904296854918,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 5,
+        "panelValue": 199.999,
+        "failureRatio": 1,
+        "buildFixture": "good",
+        "coreBuildScore": 63.528906251935645,
+        "finalScore": 58.528906251935645,
+        "delta": -5
+      },
+      {
+        "maxPenalty": 5,
+        "panelValue": 200,
+        "failureRatio": 0,
+        "buildFixture": "good",
+        "coreBuildScore": 63.528906251935645,
+        "finalScore": 63.528906251935645,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 5,
+        "panelValue": 200.001,
+        "failureRatio": 0,
+        "buildFixture": "good",
+        "coreBuildScore": 63.528906251935645,
+        "finalScore": 63.528906251935645,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 5,
+        "panelValue": 199.999,
+        "failureRatio": 1,
+        "buildFixture": "excellent",
+        "coreBuildScore": 86.82313843475352,
+        "finalScore": 81.82313843475352,
+        "delta": -5
+      },
+      {
+        "maxPenalty": 5,
+        "panelValue": 200,
+        "failureRatio": 0,
+        "buildFixture": "excellent",
+        "coreBuildScore": 86.82313843475352,
+        "finalScore": 86.82313843475352,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 5,
+        "panelValue": 200.001,
+        "failureRatio": 0,
+        "buildFixture": "excellent",
+        "coreBuildScore": 86.82313843475352,
+        "finalScore": 86.82313843475352,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 8,
+        "panelValue": 199.999,
+        "failureRatio": 1,
+        "buildFixture": "average",
+        "coreBuildScore": 43.46904296854918,
+        "finalScore": 35.46904296854918,
+        "delta": -8
+      },
+      {
+        "maxPenalty": 8,
+        "panelValue": 200,
+        "failureRatio": 0,
+        "buildFixture": "average",
+        "coreBuildScore": 43.46904296854918,
+        "finalScore": 43.46904296854918,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 8,
+        "panelValue": 200.001,
+        "failureRatio": 0,
+        "buildFixture": "average",
+        "coreBuildScore": 43.46904296854918,
+        "finalScore": 43.46904296854918,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 8,
+        "panelValue": 199.999,
+        "failureRatio": 1,
+        "buildFixture": "good",
+        "coreBuildScore": 63.528906251935645,
+        "finalScore": 55.528906251935645,
+        "delta": -8
+      },
+      {
+        "maxPenalty": 8,
+        "panelValue": 200,
+        "failureRatio": 0,
+        "buildFixture": "good",
+        "coreBuildScore": 63.528906251935645,
+        "finalScore": 63.528906251935645,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 8,
+        "panelValue": 200.001,
+        "failureRatio": 0,
+        "buildFixture": "good",
+        "coreBuildScore": 63.528906251935645,
+        "finalScore": 63.528906251935645,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 8,
+        "panelValue": 199.999,
+        "failureRatio": 1,
+        "buildFixture": "excellent",
+        "coreBuildScore": 86.82313843475352,
+        "finalScore": 78.82313843475352,
+        "delta": -8
+      },
+      {
+        "maxPenalty": 8,
+        "panelValue": 200,
+        "failureRatio": 0,
+        "buildFixture": "excellent",
+        "coreBuildScore": 86.82313843475352,
+        "finalScore": 86.82313843475352,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 8,
+        "panelValue": 200.001,
+        "failureRatio": 0,
+        "buildFixture": "excellent",
+        "coreBuildScore": 86.82313843475352,
+        "finalScore": 86.82313843475352,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 10,
+        "panelValue": 199.999,
+        "failureRatio": 1,
+        "buildFixture": "average",
+        "coreBuildScore": 43.46904296854918,
+        "finalScore": 33.46904296854918,
+        "delta": -10
+      },
+      {
+        "maxPenalty": 10,
+        "panelValue": 200,
+        "failureRatio": 0,
+        "buildFixture": "average",
+        "coreBuildScore": 43.46904296854918,
+        "finalScore": 43.46904296854918,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 10,
+        "panelValue": 200.001,
+        "failureRatio": 0,
+        "buildFixture": "average",
+        "coreBuildScore": 43.46904296854918,
+        "finalScore": 43.46904296854918,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 10,
+        "panelValue": 199.999,
+        "failureRatio": 1,
+        "buildFixture": "good",
+        "coreBuildScore": 63.528906251935645,
+        "finalScore": 53.528906251935645,
+        "delta": -10
+      },
+      {
+        "maxPenalty": 10,
+        "panelValue": 200,
+        "failureRatio": 0,
+        "buildFixture": "good",
+        "coreBuildScore": 63.528906251935645,
+        "finalScore": 63.528906251935645,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 10,
+        "panelValue": 200.001,
+        "failureRatio": 0,
+        "buildFixture": "good",
+        "coreBuildScore": 63.528906251935645,
+        "finalScore": 63.528906251935645,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 10,
+        "panelValue": 199.999,
+        "failureRatio": 1,
+        "buildFixture": "excellent",
+        "coreBuildScore": 86.82313843475352,
+        "finalScore": 76.82313843475352,
+        "delta": -10
+      },
+      {
+        "maxPenalty": 10,
+        "panelValue": 200,
+        "failureRatio": 0,
+        "buildFixture": "excellent",
+        "coreBuildScore": 86.82313843475352,
+        "finalScore": 86.82313843475352,
+        "delta": 0
+      },
+      {
+        "maxPenalty": 10,
+        "panelValue": 200.001,
+        "failureRatio": 0,
+        "buildFixture": "excellent",
+        "coreBuildScore": 86.82313843475352,
+        "finalScore": 86.82313843475352,
+        "delta": 0
+      }
+    ]
+  },
+  "totalRuntimeMs": 956.7429999999999
+}

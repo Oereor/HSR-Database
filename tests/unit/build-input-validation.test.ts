@@ -161,7 +161,7 @@ async function createFixture(): Promise<Fixture> {
     'en'
   );
   await writeArtifact('runtime/player.json', {
-    schemaVersion: 1,
+    schemaVersion: 2,
     propertyTypes: Object.keys(PLAYER_PROPERTY_SEMANTICS).sort(),
     avatarPromotions: {},
     lightConePromotions: {},
@@ -172,6 +172,20 @@ async function createFixture(): Promise<Fixture> {
     relicSets: {},
     traces: {},
     eidolonSkillLevels: {}
+  });
+  await writeArtifact('runtime/relic-score-recommendations.json', {
+    '1': {
+      avatarId: '1',
+      cavernSetIds: [],
+      planarSetIds: [],
+      mainStatOptions: [
+        { slot: 'BODY', propertyTypes: [] },
+        { slot: 'FOOT', propertyTypes: [] },
+        { slot: 'NECK', propertyTypes: [] },
+        { slot: 'OBJECT', propertyTypes: [] }
+      ],
+      subStatPropertyTypes: []
+    }
   });
 
   const localeEntry = (locale: 'zh-CN' | 'en') => {
@@ -199,7 +213,7 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 44,
+    schemaVersion: 45,
     sourceCommit: commit,
     sourceVersion,
     gameVersionFull: '4.5.0',

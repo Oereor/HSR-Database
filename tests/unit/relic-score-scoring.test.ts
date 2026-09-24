@@ -1,0 +1,341 @@
+import { readFileSync } from 'node:fs';
+import { beforeAll, describe, expect, it } from 'vitest';
+import type { RelicSlot } from '../../src/lib/domain/types.js';
+import { lookupBenchmarkPercentile } from '../../src/lib/relic-score/benchmark/lookup.js';
+import {
+  validateBenchmarkArtifact,
+  type BenchmarkExpectedIdentity
+} from '../../src/lib/relic-score/benchmark/validate.js';
+import type { BenchmarkArtifact } from '../../src/lib/relic-score/benchmark/types.js';
+import { lookupDenseCdf } from '../../src/lib/relic-score/farming/dense-quantile.js';
+import { buildRelicScoreReferenceData } from '../../src/lib/relic-score/reference.js';
+import { RELIC_SCORE_CONFIG } from '../../src/lib/relic-score/scoring-config.js';
+import {
+  coreBuildScore,
+  finalBuildScore,
+  pieceNormalized
+} from '../../src/lib/relic-score/scoring-math.js';
+import {
+  calculateEffectiveHits,
+  evaluateBreakpoints,
+  evaluateSetIntegrity,
+  evaluateSoftTargets,
+  scoreBuild,
+  scorePiece,
+  type ScoringSources
+} from '../../src/lib/relic-score/score.js';
+import type { PlayerBuildInput } from '../../src/lib/relic-score/types.js';
+import { expectedBenchmarkIdentity } from '../../scripts/relic-score/benchmark-core.js';
+import { loadScoringInputs } from '../../scripts/relic-score/scoring-inputs.js';
+
+const fixture = JSON.parse(
+  readFileSync('tests/fixtures/relic-score/player-builds/complete-five-star.json', 'utf8')
+) as PlayerBuildInput;
+const artifact = JSON.parse(
+  readFileSync('tests/fixtures/relic-score/benchmark/prototype.json', 'utf8')
+) as BenchmarkArtifact;
+let sources: ScoringSources;
+let expected: BenchmarkExpectedIdentity;
+let profiles: Awaited<ReturnType<typeof loadScoringInputs>>['profiles'];
+beforeAll(async () => {
+  const inputs = await loadScoringInputs();
+  profiles = inputs.profiles;
+  const cases = Object.entries(artifact.distributions).flatMap(([characterId, slots]) =>
+    Object.keys(slots).map((slot) => ({ characterId, slot: slot as RelicSlot }))
+  );
+  expected = expectedBenchmarkIdentity(inputs, {
+    N: artifact.metadata.budgetN,
+    K: artifact.metadata.experimentCount,
+    seed: artifact.metadata.seed,
+    cases,
+    prototype: true
+  });
+  sources = {
+    profile: inputs.profiles.find((p) => p.characterId === fixture.characterId),
+    recommendation: inputs.recommendations.find((r) => r.avatarId === fixture.characterId),
+    reference: buildRelicScoreReferenceData(inputs.runtime),
+    benchmark: artifact,
+    benchmarkExpected: expected
+  };
+});
+
+describe('Relic Score benchmark contract', () => {
+  it('validates 257 Lens-B knots and rejects stale identity, wrong N, and production fixture use', () => {
+    expect(() => validateBenchmarkArtifact(artifact, expected)).not.toThrow();
+    const wrongN = structuredClone(expected);
+    wrongN.budgetN++;
+    expect(() => validateBenchmarkArtifact(artifact, wrongN)).toThrow(/stale/);
+    const production = structuredClone(expected);
+    production.allowPrototype = false;
+    expect(() => validateBenchmarkArtifact(artifact, production)).toThrow(/prototype/);
+    const wrongMode = structuredClone(artifact);
+    wrongMode.metadata.selectionMode = 'C' as never;
+    expect(() => validateBenchmarkArtifact(wrongMode, expected)).toThrow(/metadata/);
+    const wrongProfile = structuredClone(expected);
+    wrongProfile.profileDigests['1310'] = '0'.repeat(64);
+    expect(() => validateBenchmarkArtifact(artifact, wrongProfile)).toThrow(/profile/);
+    const nonmonotone = structuredClone(artifact);
+    nonmonotone.distributions['1310'].HEAD!.quantiles[5] = -1;
+    expect(() => validateBenchmarkArtifact(nonmonotone, expected)).toThrow(/quantiles/);
+  });
+
+  it('uses right-continuous ties, interpolation, and endpoint clamp', () => {
+    const q = [1, 1, 2, 4];
+    expect(lookupDenseCdf(q, 0)).toBe(0);
+    expect(lookupDenseCdf(q, 1)).toBeCloseTo(1 / 3);
+    expect(lookupDenseCdf(q, 1.5)).toBeCloseTo(0.5);
+    expect(lookupDenseCdf(q, 4)).toBe(1);
+    expect(lookupBenchmarkPercentile(artifact.distributions['1310'].HEAD!, -100)).toBe(0);
+  });
+});
+
+describe('Relic Score scoring', () => {
+  it('keeps Piece formula and six-slot weighted aggregation explainable', () => {
+    const piece = pieceNormalized(1, 0.5, RELIC_SCORE_CONFIG.piece.mainShare);
+    expect(piece).toBeCloseTo(0.35 + 0.65 * 0.5);
+    const core = coreBuildScore(piece, 1, RELIC_SCORE_CONFIG.build.statShare);
+    expect(core).toBeCloseTo(100 * (0.95 * piece + 0.05));
+    expect(finalBuildScore(core, 0.5, 0.5, 4, 8)).toBeCloseTo(core - 2);
+    expect(finalBuildScore(99, 1, 0, 4, 8)).toBe(100);
+    expect(finalBuildScore(1, 0, 1, 4, 8)).toBe(0);
+    const result = scoreBuild(fixture, sources);
+    expect(result.status).toBe('available');
+    const build = result.build!;
+    expect(build.pieces).toHaveLength(6);
+    for (const piece of build.pieces) {
+      expect(piece.pieceScore).toBeCloseTo(
+        100 *
+          (RELIC_SCORE_CONFIG.piece.mainShare * piece.mainCompletion +
+            RELIC_SCORE_CONFIG.piece.subShare * piece.benchmarkPercentile)
+      );
+      expect(piece.rawSubUtility).toBeCloseTo(
+        piece.substats.reduce((sum, sub) => sum + sub.weightedContribution, 0)
+      );
+      expect(piece.pieceNormalized).toBeGreaterThanOrEqual(0);
+      expect(piece.pieceNormalized).toBeLessThanOrEqual(1);
+    }
+    expect(build.statCompletion.base).toBeCloseTo(
+      build.pieces.reduce(
+        (sum, piece) => sum + RELIC_SCORE_CONFIG.slots[piece.slot] * piece.pieceNormalized,
+        0
+      )
+    );
+    expect(build.softTargetProgress).toBe(0);
+    expect(build.hardBreakpointFailureRatio).toBe(0);
+    expect(build.coreBuildScore).toBeCloseTo(
+      100 * (0.95 * build.statCompletion.base + 0.05 * build.setIntegrity.total)
+    );
+    expect(build.finalBuildScore).toBeCloseTo(build.coreBuildScore);
+    expect(build.effectiveHits.total).toBe(27);
+  });
+
+  it('scores lower rarity and level against unchanged five-star references', () => {
+    const full = scorePiece(fixture.relics[0], fixture.characterId, sources);
+    const lower = structuredClone(fixture.relics[0]);
+    lower.rarity = 3;
+    lower.level = 6;
+    lower.mainStat.value /= 2;
+    const result = scorePiece(lower, fixture.characterId, sources);
+    expect(full.status).toBe('available');
+    expect(result.status).toBe('available');
+    if (full.status === 'available' && result.status === 'available') {
+      expect(result.value.mainCompletion).toBeCloseTo(full.value.mainCompletion / 2);
+      expect(result.value.pieceScore).toBeLessThan(full.value.pieceScore);
+      expect(result.value.substats[0].highRollReference).toBe(
+        full.value.substats[0].highRollReference
+      );
+    }
+    const wrong = structuredClone(fixture.relics[2]);
+    wrong.mainStat.key = 'CriticalDamageBase';
+    const wrongScore = scorePiece(wrong, fixture.characterId, sources);
+    expect(wrongScore.status).toBe('available');
+    if (wrongScore.status === 'available') expect(wrongScore.value.mainCompletion).toBe(0);
+  });
+
+  it('keeps effective hit evidence independent of scoring', () => {
+    const piece = structuredClone(fixture.relics[0]);
+    piece.substats[1].rollCount = { status: 'ambiguous', candidates: [2, 3] };
+    const result = scorePiece(piece, fixture.characterId, sources);
+    const exact = scorePiece(fixture.relics[0], fixture.characterId, sources);
+    expect(result.status).toBe('available');
+    expect(exact.status).toBe('available');
+    if (result.status === 'available' && exact.status === 'available') {
+      expect(result.value.effectiveHits.status).toBe('partial');
+      expect(result.value.pieceScore).toBe(exact.value.pieceScore);
+    }
+    expect(calculateEffectiveHits(piece, sources.recommendation!).total).toBeNull();
+  });
+
+  it('returns missing/stale benchmark unavailable and preserves partial piece results', () => {
+    expect(
+      scorePiece(fixture.relics[0], fixture.characterId, { ...sources, benchmark: undefined })
+        .status
+    ).toBe('unavailable');
+    const stale = structuredClone(expected);
+    stale.seed++;
+    expect(
+      scorePiece(fixture.relics[0], fixture.characterId, { ...sources, benchmarkExpected: stale })
+        .status
+    ).toBe('unavailable');
+    const incomplete = structuredClone(fixture);
+    incomplete.relics.pop();
+    const result = scoreBuild(incomplete, sources);
+    expect(result.status).toBe('unavailable');
+    expect(result.reason).toBe('BUILD_INCOMPLETE');
+    expect(result.pieces.every((piece) => piece.status === 'available')).toBe(true);
+  });
+
+  it('scores actual set structures and only matches recommended complete sets', () => {
+    const recommendation = structuredClone(sources.recommendation!);
+    recommendation.cavernSetIds = ['A', 'B'];
+    recommendation.planarSetIds = ['P', 'Q'];
+    const relics = structuredClone(fixture.relics);
+    relics.slice(4).forEach((piece) => {
+      piece.setId = 'P';
+    });
+    const cavernCases: Array<{
+      sets: string[];
+      integrity: number;
+      matched: string | null;
+    }> = [
+      { sets: ['A', 'A', 'A', 'A'], integrity: 1, matched: 'A' },
+      { sets: ['B', 'B', 'B', 'B'], integrity: 1, matched: 'B' },
+      { sets: ['C', 'C', 'C', 'C'], integrity: 0.8, matched: null },
+      { sets: ['A', 'A', 'B', 'B'], integrity: 0.5, matched: null },
+      { sets: ['C', 'C', 'D', 'D'], integrity: 0.5, matched: null },
+      { sets: ['A', 'A', 'A', 'C'], integrity: 0.2, matched: null },
+      { sets: ['C', 'C', 'C', 'A'], integrity: 0.2, matched: null },
+      { sets: ['A', 'A', 'C', 'D'], integrity: 0.2, matched: null },
+      { sets: ['C', 'C', 'D', 'E'], integrity: 0.2, matched: null },
+      { sets: ['A', 'C', 'D', 'E'], integrity: 0, matched: null }
+    ];
+    for (const { sets, integrity, matched } of cavernCases) {
+      relics.slice(0, 4).forEach((piece, index) => {
+        piece.setId = sets[index];
+      });
+      const result = evaluateSetIntegrity(relics, recommendation);
+      expect(result.cavern).toBe(integrity);
+      expect(result.matchedCavernSetId).toBe(matched);
+      expect(result.planar).toBe(1);
+      expect(result.total).toBeCloseTo((2 / 3) * integrity + 1 / 3);
+    }
+
+    for (const { sets, integrity, matched } of [
+      { sets: ['P', 'P'], integrity: 1, matched: 'P' },
+      { sets: ['Q', 'Q'], integrity: 1, matched: 'Q' },
+      { sets: ['R', 'R'], integrity: 0.5, matched: null },
+      { sets: ['P', 'R'], integrity: 0, matched: null }
+    ]) {
+      relics.slice(4).forEach((piece, index) => {
+        piece.setId = sets[index];
+      });
+      const result = evaluateSetIntegrity(relics, recommendation);
+      expect(result.planar).toBe(integrity);
+      expect(result.matchedPlanarSetId).toBe(matched);
+      expect(result.total).toBeCloseTo((2 / 3) * result.cavern + (1 / 3) * integrity);
+    }
+  });
+
+  it('scores configured breakpoints and no-breakpoint profiles', () => {
+    expect(evaluateBreakpoints(sources.profile!, fixture.panel)).toEqual({
+      status: 'available',
+      value: { failureRatio: 0, entries: [] }
+    });
+    const profile = structuredClone(profiles.find((item) => item.characterId === '1409')!);
+    const below = evaluateBreakpoints(profile, { spd: 199 });
+    const exact = evaluateBreakpoints(profile, { spd: 200 });
+    expect(below.status === 'available' && below.value.failureRatio).toBe(1);
+    expect(exact.status === 'available' && exact.value.failureRatio).toBe(0);
+  });
+});
+
+describe('Relic Score final-panel modifiers', () => {
+  it('clamps soft target progress and averages multiple targets', () => {
+    const profile = structuredClone(sources.profile!);
+    profile.softTargets = [
+      { stat: 'BreakDamageAddedRatioBase', minimumThreshold: 1, maximumThreshold: 2 }
+    ];
+    for (const [value, expectedProgress] of [
+      [0.5, 0],
+      [1, 0],
+      [1.5, 0.5],
+      [2, 1],
+      [3, 1]
+    ]) {
+      const result = evaluateSoftTargets(profile, { break_dmg: value });
+      expect(result.status === 'available' && result.value.progress).toBe(expectedProgress);
+    }
+    profile.softTargets.push({ stat: 'SpeedDelta', minimumThreshold: 100, maximumThreshold: 200 });
+    const multiple = evaluateSoftTargets(profile, { break_dmg: 1.5, spd: 200 });
+    expect(multiple.status === 'available' && multiple.value.progress).toBe(0.75);
+    expect(evaluateSoftTargets(profile, {})).toEqual({
+      status: 'unavailable',
+      reason: 'PANEL_MISSING'
+    });
+    profile.softTargets = [];
+    expect(evaluateSoftTargets(profile, {})).toEqual({
+      status: 'available',
+      value: { progress: 0, entries: [] }
+    });
+  });
+
+  it('counts failed breakpoints, including exact equality and no breakpoint', () => {
+    const profile = structuredClone(sources.profile!);
+    profile.hardBreakpoints = [
+      { stat: 'SpeedDelta', threshold: 160 },
+      { stat: 'SpeedDelta', threshold: 200 }
+    ];
+    const below = evaluateBreakpoints(profile, { spd: 159 });
+    const middle = evaluateBreakpoints(profile, { spd: 160 });
+    const above = evaluateBreakpoints(profile, { spd: 201 });
+    expect(below.status === 'available' && below.value.failureRatio).toBe(1);
+    expect(middle.status === 'available' && middle.value.failureRatio).toBe(0.5);
+    expect(above.status === 'available' && above.value.failureRatio).toBe(0);
+    expect(evaluateBreakpoints(profile, {})).toEqual({
+      status: 'unavailable',
+      reason: 'PANEL_MISSING'
+    });
+    profile.hardBreakpoints = [];
+    expect(evaluateBreakpoints(profile, {})).toEqual({
+      status: 'available',
+      value: { failureRatio: 0, entries: [] }
+    });
+  });
+
+  it('keeps Piece and benchmark inputs independent of soft target thresholds', async () => {
+    const changed = structuredClone(sources.profile!);
+    changed.softTargets = [
+      { stat: 'BreakDamageAddedRatioBase', minimumThreshold: 1, maximumThreshold: 2 }
+    ];
+    const pieceBefore = scorePiece(fixture.relics[0], fixture.characterId, sources);
+    const pieceAfter = scorePiece(fixture.relics[0], fixture.characterId, {
+      ...sources,
+      profile: changed
+    });
+    expect(pieceAfter).toEqual(pieceBefore);
+    const build = scoreBuild(fixture, { ...sources, profile: changed });
+    expect(build.status).toBe('available');
+    expect(build.build?.softTargetProgress).toBe(1);
+    expect(build.build?.pieces[0].rawSubUtility).toBe(
+      pieceBefore.status === 'available' ? pieceBefore.value.rawSubUtility : NaN
+    );
+    const inputs = await loadScoringInputs();
+    const cases = Object.entries(artifact.distributions).flatMap(([characterId, slots]) =>
+      Object.keys(slots).map((slot) => ({ characterId, slot: slot as RelicSlot }))
+    );
+    const changedInputs = {
+      ...inputs,
+      profiles: inputs.profiles.map((profile) =>
+        profile.characterId === changed.characterId ? changed : profile
+      )
+    };
+    const after = expectedBenchmarkIdentity(changedInputs, {
+      N: artifact.metadata.budgetN,
+      K: artifact.metadata.experimentCount,
+      seed: artifact.metadata.seed,
+      cases,
+      prototype: true
+    });
+    expect(after).toEqual(expected);
+  });
+});

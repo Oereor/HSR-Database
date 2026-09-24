@@ -378,6 +378,224 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(page.locator('#equipment')).toHaveCount(0);
 });
 
+test('presents relic scores and target details without changing the Player request flow', async ({
+  page,
+  isMobile
+}) => {
+  let playerRequests = 0;
+  await page.route('**/api/player/**', async (route) => {
+    playerRequests += 1;
+    const uid = new URL(route.request().url()).searchParams.get('uid') ?? '';
+    const fixture = playerProfile(uid);
+    Object.assign(fixture.characters[0], {
+      relicScore: {
+        version: 1,
+        build: {
+          status: 'available',
+          score: 86.6,
+          coreScore: 85.2,
+          statCompletion: 0.825,
+          setIntegrity: 2 / 3,
+          effectiveHits: {
+            status: 'partial',
+            known: 23,
+            unknownRecommendedSubstats: 2,
+            total: null
+          },
+          softTarget: {
+            progress: 0.75,
+            details: [
+              {
+                stat: 'StatusResistanceBase',
+                currentValue: 0.5,
+                minimumThreshold: 0,
+                maximumThreshold: 0.8,
+                progress: 0.625
+              }
+            ]
+          },
+          hardBreakpoint: {
+            failureRatio: 0,
+            details: [{ stat: 'SpeedDelta', currentValue: 200, threshold: 200, passed: true }]
+          }
+        },
+        pieces: Object.fromEntries(
+          ['HEAD', 'HAND', 'BODY', 'FOOT', 'NECK', 'OBJECT'].map((slot, index) => [
+            slot,
+            index === 2
+              ? { status: 'unavailable', reason: 'piece-unavailable' }
+              : {
+                  status: 'available',
+                  score: index === 0 ? 0 : index === 1 ? 99.6 : 82.4,
+                  mainCompletion: 1,
+                  benchmarkPercentile: 0.7,
+                  rawSubUtility: 10,
+                  effectiveHits: {
+                    status: 'exact',
+                    known: 4,
+                    unknownRecommendedSubstats: 0,
+                    total: 4
+                  }
+                }
+          ])
+        )
+      }
+    });
+    await route.fulfill({ json: fixture });
+  });
+  await page.route('**/generated/en/player-equipment.json', async (route) => {
+    await route.fulfill({
+      json: {
+        schemaVersion: 1,
+        locale: 'en',
+        lightCones: [],
+        relicSets: [
+          {
+            id: '103',
+            name: 'Knight of Purity Palace with an intentionally long English set name',
+            pieces: ['HEAD', 'HAND', 'BODY', 'FOOT'].map((slot, index) => ({
+              id: `3103${index + 1}`,
+              slot,
+              name: `A long English relic name for the ${slot.toLowerCase()} slot and responsive layout`
+            }))
+          },
+          {
+            id: '310',
+            name: 'A similarly long planar ornament set name for responsive layout',
+            pieces: ['NECK', 'OBJECT'].map((slot, index) => ({
+              id: `3310${index + 1}`,
+              slot,
+              name: `A long English planar relic name for the ${slot.toLowerCase()} slot`
+            }))
+          }
+        ]
+      }
+    });
+  });
+
+  await page.goto(
+    '/en/characters/1304/?uid=100000001&build=area%3Ashowcase%3Aposition%3A1%3Aorder%3A0'
+  );
+  const summary = page.locator('[data-player-relic-score-summary]');
+  await expect(summary).toBeVisible();
+  await expect(summary.locator('[data-player-build-score]')).toHaveText('86.6');
+  await expect(summary.locator('[data-player-effective-hits]')).toContainText('23');
+  await expect(summary.locator('[data-player-soft-target]')).toContainText('75%');
+  await expect(summary.locator('[data-player-hard-breakpoint]')).toBeVisible();
+  const readSummaryLayout = () =>
+    summary.evaluate((element) => {
+      const strip = element.querySelector('[data-player-score-breakdown]')!;
+      return {
+        stripInside:
+          strip.getBoundingClientRect().right <= element.getBoundingClientRect().right + 1,
+        canScroll: strip.scrollWidth > strip.clientWidth
+      };
+    });
+  const layout = await readSummaryLayout();
+  expect(layout.stripInside).toBe(true);
+  if (isMobile) {
+    expect(layout.canScroll).toBe(true);
+    await summary.locator('[data-player-score-breakdown]').focus();
+    await page.keyboard.press('ArrowRight');
+    await expect
+      .poll(() =>
+        summary.locator('[data-player-score-breakdown]').evaluate((strip) => strip.scrollLeft)
+      )
+      .toBeGreaterThan(0);
+  }
+  await expect(page.locator('[data-player-relic-piece-score]')).toHaveCount(6);
+  await expect(
+    page.locator('[data-player-relic-slot="HEAD"] [data-player-relic-piece-score] strong')
+  ).toHaveText('0.0');
+  await expect(
+    page.locator('[data-player-relic-slot="HAND"] [data-player-relic-piece-score] strong')
+  ).toHaveText('99.6');
+  await expect(
+    page.locator('[data-player-relic-slot="HAND"] [data-player-relic-piece-score]')
+  ).toHaveAttribute('aria-label', /99\.6/);
+  await expect(
+    page.locator('[data-player-relic-slot="BODY"] [data-player-relic-piece-score]')
+  ).toContainText('—');
+  expect(playerRequests).toBe(1);
+
+  const details = summary.locator('[data-player-score-details]');
+  await details.locator('summary').focus();
+  await page.keyboard.press('Enter');
+  await expect(details).toHaveAttribute('open', '');
+  await expect(details).toContainText('50.0%');
+  await expect(details).toContainText('200');
+  await expect(details).not.toContainText('StatusResistanceBase');
+  await expect(details).not.toContainText('SpeedDelta');
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    )
+  ).toBeLessThanOrEqual(1);
+  if (!isMobile) {
+    await page.setViewportSize({ width: 900, height: 800 });
+    const tabletLayout = await readSummaryLayout();
+    expect(tabletLayout.stripInside).toBe(true);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+      )
+    ).toBeLessThanOrEqual(1);
+  }
+});
+
+test('keeps piece scores when a five-piece build cannot be scored', async ({ page }) => {
+  await page.route('**/api/player/**', async (route) => {
+    const uid = new URL(route.request().url()).searchParams.get('uid') ?? '';
+    const fixture = playerProfile(uid);
+    fixture.characters[0].relics.pop();
+    Object.assign(fixture.characters[0], {
+      relicScore: {
+        version: 1,
+        build: { status: 'unavailable', reason: 'incomplete-build' },
+        pieces: Object.fromEntries(
+          ['HEAD', 'HAND', 'BODY', 'FOOT', 'NECK'].map((slot) => [
+            slot,
+            {
+              status: 'available',
+              score: 84.5,
+              mainCompletion: 1,
+              benchmarkPercentile: 0.7,
+              rawSubUtility: 10,
+              effectiveHits: {
+                status: 'exact',
+                known: 4,
+                unknownRecommendedSubstats: 0,
+                total: 4
+              }
+            }
+          ])
+        )
+      }
+    });
+    await route.fulfill({ json: fixture });
+  });
+
+  await page.goto(
+    '/characters/1304/?uid=100000001&build=area%3Ashowcase%3Aposition%3A1%3Aorder%3A0'
+  );
+  const summary = page.locator('[data-player-relic-score-summary]');
+  await expect(summary.locator('[data-player-build-score]')).toHaveText('—');
+  await expect(summary.locator('[data-player-build-score-unavailable]')).toBeVisible();
+  await expect(page.locator('[data-player-relic-piece-score]')).toHaveCount(5);
+  await expect(
+    page.locator('[data-player-relic-slot="HEAD"] [data-player-relic-piece-score] strong')
+  ).toHaveText('84.5');
+  await expect(page.locator('[data-player-relic-slot="OBJECT"]')).toHaveAttribute(
+    'data-player-relic-state',
+    'empty'
+  );
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    )
+  ).toBeLessThanOrEqual(1);
+});
+
 test('keeps static detail available for invalid, missing and failed Player context', async ({
   page
 }) => {

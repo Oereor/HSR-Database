@@ -3,6 +3,8 @@ import { beforeAll, describe, expect, it, vi } from 'vitest';
 import { createEnkaPlayerClient, ENKA_USER_AGENT } from '../../api/_player/enka/client';
 import { PlayerApiError } from '../../api/_player/errors';
 import { handlePlayerRequest } from '../../api/player';
+import { buildEnkaPlayerProfile, playerRuntimeData } from '../../api/_player/enka/pipeline';
+import { presentCanonicalPlayerProfile } from '../../src/lib/player/stat-synthesis';
 
 let fixture: Record<string, unknown>;
 
@@ -25,6 +27,42 @@ beforeAll(async () => {
 });
 
 describe('Enka player Function handler', () => {
+  it('serves a profile with an unascended light cone from the compatibility fixture', async () => {
+    const source = JSON.parse(
+      await readFile('tests/fixtures/enka/compatibility-missing-promotion.sanitized.json', 'utf8')
+    ) as { detailInfo: { avatarDetailList: Array<{ equipment?: Record<string, unknown> }> } };
+    const log = vi.fn();
+    const fetchImpl = vi.fn(async () => Response.json(source));
+    const client = createEnkaPlayerClient({ fetchImpl });
+    const response = await handlePlayerRequest(request('?uid=100000101'), { client, log });
+    const body = (await response.json()) as { uid: string; characters: unknown[] };
+
+    expect(response.status).toBe(200);
+    expect(body.uid).toBe('100000101');
+    expect(body.characters).toHaveLength(7);
+    expect(log).not.toHaveBeenCalledWith(expect.objectContaining({ event: 'decode_error' }));
+    expect(JSON.stringify(body)).not.toContain(
+      'detailInfo.avatarDetailList[4].equipment.promotion'
+    );
+
+    source.detailInfo.avatarDetailList[4].equipment!.promotion = null;
+    const invalidResponse = await handlePlayerRequest(request('?uid=100000101'), {
+      client: createEnkaPlayerClient({ fetchImpl: vi.fn(async () => Response.json(source)) }),
+      log
+    });
+    const invalidBody = await errorBody(invalidResponse);
+    expect(invalidResponse.status).toBe(502);
+    expect(invalidBody).toMatchObject({ error: { code: 'UPSTREAM_INVALID_RESPONSE' } });
+    expect(JSON.stringify(invalidBody)).not.toContain(
+      'detailInfo.avatarDetailList[4].equipment.promotion'
+    );
+    expect(log).toHaveBeenCalledWith({
+      event: 'decode_error',
+      code: 'UPSTREAM_INVALID_RESPONSE',
+      diagnostic: 'detailInfo.avatarDetailList[4].equipment.promotion'
+    });
+  });
+
   it('runs the Enka pipeline and preserves the public response contract', async () => {
     const fetchImpl = vi.fn<typeof fetch>().mockResolvedValue(Response.json(fixture));
     const log = vi.fn();
@@ -50,6 +88,16 @@ describe('Enka player Function handler', () => {
       display: { area: 'assist', sourceOrder: 0 },
       stats: expect.any(Array)
     });
+    expect(body.characters[0].relicScore).toMatchObject({
+      version: 1,
+      build: { status: 'available', score: expect.any(Number) },
+      pieces: { HEAD: { status: 'available', score: expect.any(Number) } }
+    });
+    const withoutScores = structuredClone(body);
+    withoutScores.characters.forEach((character) => delete character.relicScore);
+    expect(withoutScores).toEqual(
+      presentCanonicalPlayerProfile(buildEnkaPlayerProfile(fixture).canonical, playerRuntimeData)
+    );
     expect(fetchImpl).toHaveBeenCalledOnce();
     const [input, init] = fetchImpl.mock.calls[0];
     expect(String(input)).toBe('https://enka.network/api/hsr/uid/100000001/');
@@ -157,6 +205,36 @@ describe('Enka player Function handler', () => {
         [{ event: 'synthesis_failure' }],
         [{ event: 'unknown_entity', code: 'UNKNOWN_AVATAR', sourceId: '999999' }]
       ])
+    );
+  });
+
+  it('isolates an unexpected scoring failure from a successful Player Info response', async () => {
+    const log = vi.fn();
+    const response = await handlePlayerRequest(request(), {
+      client: createEnkaPlayerClient({ fetchImpl: vi.fn(async () => Response.json(fixture)) }),
+      scoreCharacter: () => {
+        throw new Error('private scoring diagnostic');
+      },
+      log
+    });
+    const body = (await response.json()) as {
+      characters: Array<{ relicScore: { build: unknown; pieces: Record<string, unknown> } }>;
+    };
+    expect(response.status).toBe(200);
+    expect(body.characters[0].relicScore.build).toEqual({
+      status: 'unavailable',
+      reason: 'score-unavailable'
+    });
+    expect(body.characters[0].relicScore.pieces.HEAD).toEqual({
+      status: 'unavailable',
+      reason: 'score-unavailable'
+    });
+    expect(JSON.stringify(body)).not.toContain('private scoring diagnostic');
+    expect(log).toHaveBeenCalledWith(
+      expect.objectContaining({
+        event: 'scoring_failure',
+        diagnostic: 'private scoring diagnostic'
+      })
     );
   });
 });

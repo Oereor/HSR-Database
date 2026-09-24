@@ -5,9 +5,13 @@
   import { localizedHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   import type { PlayerRelicSlotView } from '$lib/player/equipment';
+  import type { PlayerRelicPieceScore } from '$lib/player/relic-score-contract';
+  import { formatRelicScore } from '$lib/player/relic-score-presentation';
   import PlayerAffixRow from './PlayerAffixRow.svelte';
 
   export let view: PlayerRelicSlotView;
+  export let score: PlayerRelicPieceScore | undefined = undefined;
+  export let showScore = false;
 
   $: fallbackLabel = view.relic
     ? m.player_equipment_unknown_relic({ setId: view.relic.setId, type: view.type })
@@ -43,7 +47,26 @@
         <h3>{m.player_equipment_unequipped()}</h3>
       {/if}
     </div>
-    {#if view.relic}<strong class="player-relic-card__level">+{view.relic.level}</strong>{/if}
+    {#if view.relic}
+      <div class="player-relic-card__meta">
+        <strong class="player-relic-card__level">+{view.relic.level}</strong>
+        {#if showScore}
+          <span
+            class="player-relic-card__score"
+            data-player-relic-piece-score
+            aria-label={m.player_relic_score_piece_value({
+              value:
+                score?.status === 'available'
+                  ? formatRelicScore(score.score)
+                  : m.player_relic_score_unavailable()
+            })}
+            >{m.player_relic_score_piece()}
+            <strong>{score?.status === 'available' ? formatRelicScore(score.score) : '—'}</strong
+            ></span
+          >
+        {/if}
+      </div>
+    {/if}
   </header>
 
   {#if view.relic}
@@ -132,9 +155,29 @@
     line-height: 1.3;
   }
 
+  .player-relic-card__meta {
+    display: grid;
+    min-width: 0;
+    justify-items: end;
+    align-self: start;
+    gap: 0.2rem;
+  }
+
   .player-relic-card__level {
     align-self: start;
     color: var(--gold);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .player-relic-card__score {
+    color: var(--text-secondary);
+    font-size: var(--font-helper);
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  .player-relic-card__score strong {
+    color: var(--text-primary);
     font-variant-numeric: tabular-nums;
   }
 

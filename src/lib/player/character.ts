@@ -46,6 +46,23 @@ const PLAYER_STAT_PROPERTY_TYPES: Readonly<Record<string, string>> = {
   imaginary_dmg: 'ImaginaryAddedRatio'
 };
 
+export function resolvePlayerStatIdentity(
+  field: string,
+  propertiesByType: ReadonlyMap<string, RelicProperty>,
+  fallbackLabels: Readonly<Record<string, string>> = {}
+): Pick<ResolvedPlayerStat, 'label' | 'iconKey'> {
+  const propertyType = PLAYER_STAT_PROPERTY_TYPES[field];
+  const property = propertyType ? propertiesByType.get(propertyType) : undefined;
+  return {
+    label: property?.name ?? fallbackLabels[field] ?? field,
+    ...(property?.iconKey
+      ? { iconKey: property.iconKey }
+      : field === 'elation_dmg'
+        ? { iconKey: 'IconJoy' }
+        : {})
+  };
+}
+
 export function findPlayerCharacter(
   profile: PlayerProfile,
   characterId: string,
@@ -104,16 +121,9 @@ export function groupPlayerStats(
   const result: GroupedPlayerStats = { primary: [], other: [] };
 
   for (const stat of stats) {
-    const propertyType = PLAYER_STAT_PROPERTY_TYPES[stat.field];
-    const property = propertyType ? (propertiesByType.get(propertyType) ?? null) : null;
     const resolved: ResolvedPlayerStat = {
       stat,
-      label: property?.name ?? fallbackLabels[stat.field] ?? stat.field,
-      ...(property?.iconKey
-        ? { iconKey: property.iconKey }
-        : stat.field === 'elation_dmg'
-          ? { iconKey: 'IconJoy' }
-          : {})
+      ...resolvePlayerStatIdentity(stat.field, propertiesByType, fallbackLabels)
     };
     (PRIMARY_PLAYER_STAT_FIELDS.has(stat.field) ? result.primary : result.other).push(resolved);
   }

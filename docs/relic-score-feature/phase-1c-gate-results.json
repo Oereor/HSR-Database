@@ -1,0 +1,184 @@
+{
+  "mode": "gate",
+  "seed": 123456789,
+  "cases": [
+    {
+      "characterId": "1002",
+      "slot": "BODY"
+    },
+    {
+      "characterId": "1222",
+      "slot": "FOOT"
+    },
+    {
+      "characterId": "1005",
+      "slot": "NECK"
+    },
+    {
+      "characterId": "1101",
+      "slot": "HEAD"
+    },
+    {
+      "characterId": "1001",
+      "slot": "OBJECT"
+    },
+    {
+      "characterId": "1310",
+      "slot": "HAND"
+    },
+    {
+      "characterId": "1002",
+      "slot": "NECK"
+    },
+    {
+      "characterId": "1222",
+      "slot": "OBJECT"
+    },
+    {
+      "characterId": "1005",
+      "slot": "BODY"
+    },
+    {
+      "characterId": "1101",
+      "slot": "HAND"
+    }
+  ],
+  "probabilityVersion": "natural-5star-v1",
+  "N": 50,
+  "K": 32768,
+  "verificationK": 16384,
+  "verificationSeed": 2574038188,
+  "validation": [
+    {
+      "characterId": "1002",
+      "slot": "BODY",
+      "N": 50,
+      "K": 32768,
+      "verificationK": 16384,
+      "maxCdfError": 0.012381408198705257,
+      "meanCdfError": 0.003491919616309265,
+      "maxRankError": 202.85699192758693,
+      "pass257": false,
+      "error513": 0.010986321855718906,
+      "runtimeMs": 3835.910699999999
+    },
+    {
+      "characterId": "1222",
+      "slot": "FOOT",
+      "N": 50,
+      "K": 32768,
+      "verificationK": 16384,
+      "maxCdfError": 0.0125732421875,
+      "meanCdfError": 0.0030400168462141374,
+      "maxRankError": 206,
+      "pass257": false,
+      "error513": 0.0106201171875,
+      "runtimeMs": 3902.5320999999976
+    },
+    {
+      "characterId": "1005",
+      "slot": "NECK",
+      "N": 50,
+      "K": 32768,
+      "verificationK": 16384,
+      "maxCdfError": 0.008666990620176174,
+      "meanCdfError": 0.002079393752196912,
+      "maxRankError": 141.99997432096643,
+      "pass257": false,
+      "error513": 0.007568358199508074,
+      "runtimeMs": 3961.583999999999
+    },
+    {
+      "characterId": "1101",
+      "slot": "HEAD",
+      "N": 50,
+      "K": 32768,
+      "verificationK": 16384,
+      "maxCdfError": 0.01007080078125,
+      "meanCdfError": 0.002587435719321962,
+      "maxRankError": 165,
+      "pass257": false,
+      "error513": 0.00970458984375,
+      "runtimeMs": 3815.5004
+    },
+    {
+      "characterId": "1001",
+      "slot": "OBJECT",
+      "N": 50,
+      "K": 32768,
+      "verificationK": 16384,
+      "maxCdfError": 0.011657711291560235,
+      "meanCdfError": 0.002302592878729237,
+      "maxRankError": 190.9999418009229,
+      "pass257": false,
+      "error513": 0.009704589608650949,
+      "runtimeMs": 4033.7312999999995
+    },
+    {
+      "characterId": "1310",
+      "slot": "HAND",
+      "N": 50,
+      "K": 32768,
+      "verificationK": 16384,
+      "maxCdfError": 0.009460424141692347,
+      "meanCdfError": 0.0032024023822954523,
+      "maxRankError": 154.99958913748742,
+      "pass257": false,
+      "error513": 0.008605944492423578,
+      "runtimeMs": 4068.968399999998
+    },
+    {
+      "characterId": "1002",
+      "slot": "NECK",
+      "N": 50,
+      "K": 32768,
+      "verificationK": 16384,
+      "maxCdfError": 0.010070797887730687,
+      "meanCdfError": 0.0022931631297771855,
+      "maxRankError": 164.99995259257958,
+      "pass257": false,
+      "error513": 0.008728023048151123,
+      "runtimeMs": 4714.481999999998
+    },
+    {
+      "characterId": "1222",
+      "slot": "OBJECT",
+      "N": 50,
+      "K": 32768,
+      "verificationK": 16384,
+      "maxCdfError": 0.013427731318712985,
+      "meanCdfError": 0.0035430220274299184,
+      "maxRankError": 219.99994992579354,
+      "pass257": false,
+      "error513": 0.01275634459997696,
+      "runtimeMs": 4198.888900000002
+    },
+    {
+      "characterId": "1005",
+      "slot": "BODY",
+      "N": 50,
+      "K": 32768,
+      "verificationK": 16384,
+      "maxCdfError": 0.01068115234375,
+      "meanCdfError": 0.0024990930737314276,
+      "maxRankError": 175,
+      "pass257": false,
+      "error513": 0.00885009648075874,
+      "runtimeMs": 3867.0354000000007
+    },
+    {
+      "characterId": "1101",
+      "slot": "HAND",
+      "N": 50,
+      "K": 32768,
+      "verificationK": 16384,
+      "maxCdfError": 0.01007080078125,
+      "meanCdfError": 0.002587435719321962,
+      "maxRankError": 165,
+      "pass257": false,
+      "error513": 0.00970458984375,
+      "runtimeMs": 3958.5166000000027
+    }
+  ],
+  "gatePassed": false
+}

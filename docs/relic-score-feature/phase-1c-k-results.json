@@ -1,0 +1,171 @@
+{
+  "mode": "k",
+  "seed": 123456789,
+  "cases": [
+    {
+      "characterId": "1002",
+      "slot": "BODY"
+    },
+    {
+      "characterId": "1222",
+      "slot": "FOOT"
+    },
+    {
+      "characterId": "1005",
+      "slot": "NECK"
+    },
+    {
+      "characterId": "1101",
+      "slot": "HEAD"
+    },
+    {
+      "characterId": "1001",
+      "slot": "OBJECT"
+    },
+    {
+      "characterId": "1310",
+      "slot": "HAND"
+    },
+    {
+      "characterId": "1002",
+      "slot": "NECK"
+    },
+    {
+      "characterId": "1222",
+      "slot": "OBJECT"
+    },
+    {
+      "characterId": "1005",
+      "slot": "BODY"
+    },
+    {
+      "characterId": "1101",
+      "slot": "HAND"
+    }
+  ],
+  "probabilityVersion": "natural-5star-v1",
+  "N": 50,
+  "Ks": [8192, 16384, 32768, 65536],
+  "convergence": [
+    {
+      "K": 8192,
+      "characterId": "1002",
+      "slot": "BODY",
+      "p50Drift": 8.881784197001252e-16,
+      "p90Drift": 1.1111111142270147e-8,
+      "p99Drift": 0.025000016481481424,
+      "maxLookupDrift": 0.0078125,
+      "runtimeMs": 632.9713
+    },
+    {
+      "K": 8192,
+      "characterId": "1222",
+      "slot": "FOOT",
+      "p50Drift": 0.021153842450142513,
+      "p90Drift": 0.015384612259614627,
+      "p99Drift": 0.059615387742699255,
+      "maxLookupDrift": 0.011718751364980684,
+      "runtimeMs": 606.8188999999999
+    },
+    {
+      "K": 8192,
+      "characterId": "1005",
+      "slot": "NECK",
+      "p50Drift": 0.019230769230769162,
+      "p90Drift": 0.005769226602564181,
+      "p99Drift": 0.014865380751958313,
+      "maxLookupDrift": 0.011718749412254148,
+      "runtimeMs": 642.7393
+    },
+    {
+      "K": 16384,
+      "characterId": "1002",
+      "slot": "BODY",
+      "p50Drift": 0.00961537226970588,
+      "p90Drift": 0,
+      "p99Drift": 0.0019230611823353172,
+      "maxLookupDrift": 0.01171875,
+      "runtimeMs": 1189.0930000000003
+    },
+    {
+      "K": 16384,
+      "characterId": "1222",
+      "slot": "FOOT",
+      "p50Drift": 0.005769225676639067,
+      "p90Drift": 0.0011538526584731201,
+      "p99Drift": 0.013788472531516938,
+      "maxLookupDrift": 0.007812498253556011,
+      "runtimeMs": 1148.9297999999994
+    },
+    {
+      "K": 16384,
+      "characterId": "1005",
+      "slot": "NECK",
+      "p50Drift": 0.019230766915954156,
+      "p90Drift": 0.005769226371082681,
+      "p99Drift": 0.024999994791667923,
+      "maxLookupDrift": 0.0078125,
+      "runtimeMs": 1207.2297000000008
+    },
+    {
+      "K": 32768,
+      "characterId": "1002",
+      "slot": "BODY",
+      "p50Drift": 1.2345679145653321e-8,
+      "p90Drift": 0,
+      "p99Drift": 0.024999992901234336,
+      "maxLookupDrift": 0.00390625,
+      "runtimeMs": 2326.9938
+    },
+    {
+      "K": 32768,
+      "characterId": "1222",
+      "slot": "FOOT",
+      "p50Drift": 0,
+      "p90Drift": 0.005769224172008869,
+      "p99Drift": 0.0031730880897251623,
+      "maxLookupDrift": 0.00390625,
+      "runtimeMs": 2273.4907000000003
+    },
+    {
+      "K": 32768,
+      "characterId": "1005",
+      "slot": "NECK",
+      "p50Drift": 0.009615388087607535,
+      "p90Drift": 0,
+      "p99Drift": 0.009615381883903318,
+      "maxLookupDrift": 0.00390625,
+      "runtimeMs": 2409.5298999999995
+    },
+    {
+      "K": 65536,
+      "characterId": "1002",
+      "slot": "BODY",
+      "p50Drift": 0,
+      "p90Drift": 0,
+      "p99Drift": 0,
+      "maxLookupDrift": 0,
+      "runtimeMs": 4663.0147000000015
+    },
+    {
+      "K": 65536,
+      "characterId": "1222",
+      "slot": "FOOT",
+      "p50Drift": 0,
+      "p90Drift": 0,
+      "p99Drift": 0,
+      "maxLookupDrift": 0,
+      "runtimeMs": 4525.911
+    },
+    {
+      "K": 65536,
+      "characterId": "1005",
+      "slot": "NECK",
+      "p50Drift": 0,
+      "p90Drift": 0,
+      "p99Drift": 0,
+      "maxLookupDrift": 0,
+      "runtimeMs": 4806.509999999998
+    }
+  ]
+}

@@ -1,0 +1,510 @@
+{
+  "schemaVersion": 3,
+  "overrides": {
+    "1001": {
+      "templateId": "sustain",
+      "statWeights": {
+        "SpeedDelta": 1,
+        "StatusProbabilityBase": 0.75,
+        "StatusResistanceBase": 0.5
+      },
+      "reviewedInputDigest": "4898aebfd60d509d280de27029bbfd2cabd722702cdfe1775e87ad6a78450cec"
+    },
+    "1002": {
+      "reviewedInputDigest": "be56c7060b64c672d019f9ede5915d2b9b461c534560aa006b38097b7aba33f1"
+    },
+    "1003": {
+      "reviewedInputDigest": "8fe543c1624b02032628ac3d3759f6ed3c9f8ba66b5d7c452a61fb58a374473d"
+    },
+    "1004": {
+      "reviewedInputDigest": "b2a3c50370d32d1c54c9e919a21e953edb9906d1612fc0baddac3f12bd9a0b0f"
+    },
+    "1005": {
+      "reviewedInputDigest": "1db4ee647cad4229c7d9baba159882b8ca5f5e58f42193ffaec524e439fe6992"
+    },
+    "1006": {
+      "reviewedInputDigest": "fbe472119e6373f72cef82762969300aa645b895033d4253085bac814d6c30c3"
+    },
+    "1008": {
+      "reviewedInputDigest": "ff360ac272cc450b78ed17ff511a5635d42c071f304514356508fb3d1e3ea488"
+    },
+    "1009": {
+      "templateId": "direct-support",
+      "statWeights": {
+        "AttackAddedRatio": 0.5,
+        "CriticalDamageBase": 0.5
+      },
+      "reviewedInputDigest": "e7594376040c03b1b109c03d26e13d4222d5e6e8e253cf28f2733ce8ceee59b3"
+    },
+    "1013": {
+      "reviewedInputDigest": "c16c8a64aa4ff06ab0c89be96a45765f3069922dbf77065c4e07d533fcfc71c6"
+    },
+    "1014": {
+      "reviewedInputDigest": "3346d74be281c10012865b2a394008269aa777d91d604041988395d8cae189e5"
+    },
+    "1015": {
+      "reviewedInputDigest": "03e0fd7cf9fe537629425aa892d51ff22795c2a34e6c3677c6eae67aaf1d55e3"
+    },
+    "1101": {
+      "scalingStat": null,
+      "reviewedInputDigest": "cd4f4a998c69682c5f0836bd7806002d6be0a5a37b553c47371297af6dcd75d7"
+    },
+    "1102": {
+      "reviewedInputDigest": "186f4b9be2f8bfa5851e7f22f923baf7536b6b892777542f0d05471face44a8d"
+    },
+    "1103": {
+      "reviewedInputDigest": "b2cd51c68833277682c740667baa290352e600334f5f412cae313de91b9357e7"
+    },
+    "1104": {
+      "templateId": "sustain",
+      "statWeights": {
+        "SpeedDelta": 0.75,
+        "StatusProbabilityBase": 0.75,
+        "StatusResistanceBase": 0.5
+      },
+      "reviewedInputDigest": "094295d6cb6ac0dcebd8029585a7b4521eb16ac543ab51eb40dc9e3b462abe62"
+    },
+    "1105": {
+      "reviewedInputDigest": "5e6019a6118af816aaadb7a2814ebe7820d0de4ae2a021a225bf9e414d04697c"
+    },
+    "1106": {
+      "reviewedInputDigest": "4fd8d1edec9ec47d2d244ac269ce96fc1908feab2c94af883a8a4d659ac68c57"
+    },
+    "1107": {
+      "reviewedInputDigest": "ba6129baebb5130ffb1ba5f7c68f576e2c7a0ad2d65f84dde03359c6e3e3dfad"
+    },
+    "1108": {
+      "reviewedInputDigest": "6aab0db7604cf9b5d97234d403525beaef7195158114d8cd477ee587262fe56a"
+    },
+    "1109": {
+      "reviewedInputDigest": "1c4b167ab6e2532da04c57d723649ca1c347053bab9fae4228281e692f91a65e"
+    },
+    "1110": {
+      "reviewedInputDigest": "e1daa9644103af2515a23c759a07fca22f715a60e5a0c283755575b9929e5cc4"
+    },
+    "1111": {
+      "templateId": "dot-dps",
+      "statWeights": {
+        "AttackAddedRatio": 0.75,
+        "CriticalChanceBase": 0.5,
+        "CriticalDamageBase": 0.5,
+        "SpeedDelta": 0.75
+      },
+      "reviewedInputDigest": "6307cd48540258e74f1fb4ca3c3fc32410e3ce1b33b686fb2984f606f3b36d25"
+    },
+    "1112": {
+      "reviewedInputDigest": "3ac31862243481a435ab2e118d195ca20281bec5f019d32d86e89f94d38f6b0b"
+    },
+    "1201": {
+      "reviewedInputDigest": "351d1c8403de3e077f1c04c3f59232c9ccfe5e15f7a75f8727d2ce3342c40e6a"
+    },
+    "1202": {
+      "reviewedInputDigest": "d1324e5ceeafeb7d9d554434c537649cfa85f065681a20026a9016a655a6ed43"
+    },
+    "1203": {
+      "reviewedInputDigest": "0049b94afb7bd2023fc41df4b246cf7d72bb030c4c2e9525e9bb0849cb9b883a"
+    },
+    "1204": {
+      "reviewedInputDigest": "8d70128db21dbd7fb76735f2e3f97526a7bfa8cb65501a535fd9314c19ff39d9"
+    },
+    "1205": {
+      "reviewedInputDigest": "dc8049c52ab3f312c5382d92b6c1041cc43138f9a929645ddfd9f6784c67eea6"
+    },
+    "1206": {
+      "reviewedInputDigest": "bef03ced62629c164fcc6672d5623514533bec22950f82a65c7b44d0158c6e6b"
+    },
+    "1207": {
+      "templateId": "direct-support",
+      "statWeights": {
+        "AttackAddedRatio": 0.5,
+        "CriticalDamageBase": 0.5
+      },
+      "reviewedInputDigest": "2acb3008e1c69379e198055f1b4d08e14e576e50a1b1a0f5e1a3e9f8dc865b34"
+    },
+    "1208": {
+      "reviewedInputDigest": "41948ee58aa3b8cf43c6dcc664f544ace72ada7edaba17880abbaf52b4568d73"
+    },
+    "1209": {
+      "reviewedInputDigest": "efdfc367984ccc5b21db239b7a2e88184df8eec18e101bf051b544d0f7404420"
+    },
+    "1210": {
+      "reviewedInputDigest": "6c84a89300ea2d80c4516c4e381a6f454f3cb8df1ff4ad0ac25e5870e8d8fbfc"
+    },
+    "1211": {
+      "reviewedInputDigest": "e92f0be98e6db940b0d7454460d3878c39f3b101cfbd62d8a714ce2281c5c1a9"
+    },
+    "1212": {
+      "reviewedInputDigest": "1dc5140f1dc024777bd2cf8470718573e6bb3fc5b3723415dbe86f379c4d6a86"
+    },
+    "1213": {
+      "reviewedInputDigest": "749cfcf3ff3e741c2ec6ceb1458ff0e30c1656f2142c6cbfdb8527fc87abbbdd"
+    },
+    "1214": {
+      "reviewedInputDigest": "59383b131ae05695e3c5226e5f6691340eb3f74ae62eac08cfdfc7ba382cf2d6"
+    },
+    "1215": {
+      "scalingStat": null,
+      "reviewedInputDigest": "98a09ff61958d165e634719fbfedd5371e17914cfa58a34829b0a96a780a5365"
+    },
+    "1217": {
+      "reviewedInputDigest": "9930cd06a591597754ad1a501181454e267fdf223ace205346eb7cd3d5038650"
+    },
+    "1218": {
+      "reviewedInputDigest": "49034a892987f7a3220865e492883c8a72fe5b4ae4e4d3b435bdeb16fcfa36e8"
+    },
+    "1220": {
+      "reviewedInputDigest": "b69a24b16100a8b599036dda38c6928ba05314c4745fd873fb4f8d4c16e9b6d9"
+    },
+    "1221": {
+      "reviewedInputDigest": "b34359f7d25e8a4bc534c9d5f1fc5ff823526057ecc86800286c135100ee9216"
+    },
+    "1222": {
+      "statWeights": {
+        "BreakDamageAddedRatioBase": 0.75
+      },
+      "softTargets": [
+        {
+          "stat": "BreakDamageAddedRatioBase",
+          "minimumThreshold": 0.0,
+          "maximumThreshold": 2.0
+        }
+      ],
+      "reviewedInputDigest": "4761dcb529ff32ce1aa5845a612fa661a7ea2eeacf9395e6fa236ce52774d55d"
+    },
+    "1223": {
+      "reviewedInputDigest": "127e62af2fd7af75e6de88df92a267a93e3efdb06489d1fc0cf12812ae679c57"
+    },
+    "1224": {
+      "reviewedInputDigest": "11ef76981add21f8d8d33bf69bd544d789eeeb6095d978136614c5e0a319e617"
+    },
+    "1225": {
+      "scalingStat": null,
+      "statWeights": {
+        "BreakDamageAddedRatioBase": 1
+      },
+      "reviewedInputDigest": "8ef22456c855d0668d12ad37e539d9b217e8d51f2b8c232c0bdda60b51a6c493"
+    },
+    "1301": {
+      "scalingStat": null,
+      "softTargets": [
+        {
+          "stat": "BreakDamageAddedRatioBase",
+          "minimumThreshold": 0.0,
+          "maximumThreshold": 1.5
+        }
+      ],
+      "reviewedInputDigest": "e873ee42fee1dfde6721cfebbfae24f3ab3d7168d2e733cc1a0f2110d7f47511"
+    },
+    "1302": {
+      "reviewedInputDigest": "a1e7889e531e5aa5a90999f9b0a9352b558c641398605d38a70817b7a660ba2f"
+    },
+    "1303": {
+      "scalingStat": null,
+      "softTargets": [
+        {
+          "stat": "BreakDamageAddedRatioBase",
+          "minimumThreshold": 1.2,
+          "maximumThreshold": 1.8
+        }
+      ],
+      "reviewedInputDigest": "20ad1d5961616f1bdebc2031d7c31b1d8f09d40ab76c0af54561f259c67abfeb"
+    },
+    "1304": {
+      "templateId": "sustain",
+      "statWeights": {
+        "SpeedDelta": 0.75
+      },
+      "softTargets": [
+        {
+          "stat": "DefenceAddedRatio",
+          "minimumThreshold": 1600.0,
+          "maximumThreshold": 4000.0
+        }
+      ],
+      "reviewedInputDigest": "de327fe79aac9b629c6d409b079a0530245d6f7fd6250533e0fc474487f8982a"
+    },
+    "1305": {
+      "reviewedInputDigest": "2a740b30a1f9467ca8e23d523de9595de07267c9f83bd97921e8f1384e908090"
+    },
+    "1306": {
+      "scalingStat": null,
+      "reviewedInputDigest": "ee4c6248ef7684ebc6521b323f05c4974d664fdb86fb05758301a21989588ece"
+    },
+    "1307": {
+      "reviewedInputDigest": "2d23741e8658d977864904044e882c7f224c526d675e3caac0344559a18b3bd3"
+    },
+    "1308": {
+      "reviewedInputDigest": "42c9b967e6aecfc9a4578b8c52f509cc90b580ae7af49dda3f8ccbd14a44120a"
+    },
+    "1309": {
+      "reviewedInputDigest": "8dfe8625a3820b8113b76551170af70b7cc6d696d75adad55301aa8648e31505"
+    },
+    "1310": {
+      "reviewedInputDigest": "70e480db49d862f76024ca595af0319e5dc0183233599110dfab5d3158da7c09"
+    },
+    "1312": {
+      "reviewedInputDigest": "899921337ffc41ed42970adca68d131cd0405d4fe645f5e650e49a90886ed3a9"
+    },
+    "1313": {
+      "scalingStat": null,
+      "reviewedInputDigest": "d7da87d9292fd04db3fbcbedcee9d018533f6e8a0077388015f41591242c72ca"
+    },
+    "1314": {
+      "reviewedInputDigest": "d871c8e1e9abde60c5f9db9e56d4ec13440be5ce87eeba446bf9f59ca8c2b720"
+    },
+    "1315": {
+      "reviewedInputDigest": "55cb339625b655582640d6b79b994def73c9da471986f0bed8303cf11a58cf0f"
+    },
+    "1317": {
+      "reviewedInputDigest": "3bd300b35cf05d53f68c8056435e5ff34b979249e47678f14cdd0834c542d4a1"
+    },
+    "1321": {
+      "scalingStat": null,
+      "reviewedInputDigest": "2b8d5de84facb4a2ee0c95c8f18836156a6d82569b19fa37c94e51bec8384b0c"
+    },
+    "1401": {
+      "reviewedInputDigest": "71050ed4341a67edbe59ec6559736953d82281527e3caf9891ac1fd97c934356"
+    },
+    "1402": {
+      "statWeights": {
+        "AttackAddedRatio": 0.75,
+        "SpeedDelta": 1
+      },
+      "reviewedInputDigest": "af52b67dd4a049113de2224e8f0c4ef4364c89de9b193a6a0aa54916bec5d425"
+    },
+    "1403": {
+      "templateId": "direct-support",
+      "statWeights": {
+        "CriticalDamageBase": 0.5,
+        "HPAddedRatio": 1
+      },
+      "reviewedInputDigest": "ff705b549571ab4d12403eab364cb7a32c68ef87c708775907789e695b5ce0ac"
+    },
+    "1404": {
+      "reviewedInputDigest": "f8de43e8e131421eb50ed15a115b4c60fb5fb774e74292ab39c5f9a1405ebf38"
+    },
+    "1405": {
+      "reviewedInputDigest": "ee92a94b73e1780f6ffa76292cc0030d54223e099f554cc000ec948aa055b0a6"
+    },
+    "1406": {
+      "reviewedInputDigest": "389fcf10fa7ca3fa1c51178611fde96f5ee14721b9f66c8e66ba72bf18b56449"
+    },
+    "1407": {
+      "reviewedInputDigest": "7cd62911d44daf754a3d92e35f6dd80c1868121e470f2e684ab49461ac89f1bf"
+    },
+    "1408": {
+      "reviewedInputDigest": "32b4072369833a5947cc369c9f219361d1e5342d062f8859c242c0c3c47e7733"
+    },
+    "1409": {
+      "templateId": "sustain",
+      "statWeights": {
+        "HPAddedRatio": 0.75,
+        "StatusResistanceBase": 0.25
+      },
+      "hardBreakpoints": [
+        {
+          "stat": "SpeedDelta",
+          "threshold": 200
+        }
+      ],
+      "softTargets": [
+        {
+          "stat": "StatusResistanceBase",
+          "minimumThreshold": 0.0,
+          "maximumThreshold": 0.5
+        }
+      ],
+      "reviewedInputDigest": "0c72cd5fbf0d060502994803d500f279e210fb72464ad631387a153bbd30adcb"
+    },
+    "1410": {
+      "reviewedInputDigest": "29adaf8a3cb0472e0384db6b1e76ad509d4053693e980cb406fb086556352fa0"
+    },
+    "1412": {
+      "statWeights": {
+        "AttackAddedRatio": 1,
+        "CriticalDamageBase": 0.75,
+        "SpeedDelta": 1
+      },
+      "softTargets": [
+        {
+          "stat": "AttackAddedRatio",
+          "minimumThreshold": 2000.0,
+          "maximumThreshold": 4000.0
+        }
+      ],
+      "reviewedInputDigest": "4e5e8d784d98e69b9dbb632641d5544e0d0243ab1586a47c739cc0c46e844cfd"
+    },
+    "1413": {
+      "statWeights": {
+        "SpeedDelta": 0.25
+      },
+      "reviewedInputDigest": "d506f17fb026b0cbe8976154b0f7066f9c642dadfaaea885674b6c57e1a1425b"
+    },
+    "1414": {
+      "reviewedInputDigest": "9b728d2394af6636ad8a792c7168fce04bef180415fa3aa70aa70564bbe4c830"
+    },
+    "1415": {
+      "statWeights": {
+        "CriticalChanceBase": 0.75,
+        "CriticalDamageBase": 0.5,
+        "HPAddedRatio": 0.75,
+        "SpeedDelta": 1.25
+      },
+      "hardBreakpoints": [
+        {
+          "stat": "SpeedDelta",
+          "threshold": 180
+        }
+      ],
+      "reviewedInputDigest": "1fb82256220f45a18f87b07263805c95fbb973a69ff94eb78c1839ee14cf906a"
+    },
+    "1501": {
+      "softTargets": [
+        {
+          "stat": "AttackAddedRatio",
+          "minimumThreshold": 2000.0,
+          "maximumThreshold": 3600.0
+        }
+      ],
+      "reviewedInputDigest": "60fca586765125d8944968038232508b5067783651bb33ecdcec589443375025"
+    },
+    "1502": {
+      "scalingStat": null,
+      "statWeights": {
+        "CriticalChanceBase": 0.75,
+        "CriticalDamageBase": 0.75,
+        "SpeedDelta": 1.25
+      },
+      "hardBreakpoints": [
+        {
+          "stat": "SpeedDelta",
+          "threshold": 120
+        }
+      ],
+      "reviewedInputDigest": "31e77eb359b3f1200ce56db573d75abd4a0e38abd475141b6651c265fa90d14b"
+    },
+    "1504": {
+      "reviewedInputDigest": "fb9371e7bafaaf421bf2afc9bb81e217f4ab7ab8018fe2bdaf9c2990162ba49c"
+    },
+    "1505": {
+      "reviewedInputDigest": "0d057c7aa2677bec941aa67733795f1a331b977055a00679ecca526fdc900324"
+    },
+    "1506": {
+      "scalingStat": null,
+      "statWeights": {
+        "CriticalChanceBase": 0.75,
+        "CriticalDamageBase": 0.75,
+        "SpeedDelta": 1.25
+      },
+      "hardBreakpoints": [
+        {
+          "stat": "SpeedDelta",
+          "threshold": 160
+        }
+      ],
+      "reviewedInputDigest": "8dc7885c9ee6f77d2c476c4887675ed1d3b0967ba3b06c2279ec91e438b5d292"
+    },
+    "1507": {
+      "reviewedInputDigest": "76886bdc9ab9a4c423d130b6c23ae0d3d85b3e6d48de9c5e7c649f9b4b2f32d8"
+    },
+    "1508": {
+      "reviewedInputDigest": "b969dabd0fd28bafc73c26ec37105452477b2494dbc5100ab2837dc6935b9601"
+    },
+    "1509": {
+      "reviewedInputDigest": "d1cdbaa2bcf7f3f6d75c4eab72ba798fab002786aa73c49012c15edcba096a19"
+    },
+    "1510": {
+      "reviewedInputDigest": "30944bbefabdfd733154cca26d2c3973290ee059d16cd893cc325978b99ee893"
+    },
+    "1512": {
+      "statWeights": {
+        "CriticalChanceBase": 0.5,
+        "CriticalDamageBase": 0.5,
+        "HPAddedRatio": 0.75,
+        "SpeedDelta": 1
+      },
+      "reviewedInputDigest": "fc84505e1d8a5b93c4e1fde2cce02cf67ba1cf0b84bf3b720da02751187a65fe"
+    },
+    "1513": {
+      "scalingStat": null,
+      "statWeights": {
+        "CriticalChanceBase": 0.75,
+        "CriticalDamageBase": 0.75,
+        "SpeedDelta": 1
+      },
+      "hardBreakpoints": [
+        {
+          "stat": "SpeedDelta",
+          "threshold": 140
+        }
+      ],
+      "reviewedInputDigest": "65ded9b5a12304d1c0ca9518c8a0b067af044dea828702ce8c5e5cd4de1a7504"
+    },
+    "8001": {
+      "reviewedInputDigest": "b100bec3f30c8f2686da07722a5ce59cce7d04afa3ad66aac266f9342aedce75"
+    },
+    "8002": {
+      "reviewedInputDigest": "d6fd85e308568cd7bb72692891fbc875744cede74643627ee228d734017329ff"
+    },
+    "8003": {
+      "reviewedInputDigest": "fed2cf05c4d42cb2c042de25a5525efafb18ba7ea1d0a9d8995c1c3d8d9d7a42"
+    },
+    "8004": {
+      "reviewedInputDigest": "098b7df5b3af4783aaf3e9ed36569301fcbe48fd3f543d0c964adbd9307b115b"
+    },
+    "8005": {
+      "scalingStat": null,
+      "reviewedInputDigest": "2c30fe3807d75575aa7762a24532d50180a343fd7a4f560cffd9579eb4fe40d0"
+    },
+    "8006": {
+      "scalingStat": null,
+      "reviewedInputDigest": "9fed06a07f42df65d33f45571e95d82e6a8611105f4000a598f19900b91d4d69"
+    },
+    "8007": {
+      "templateId": "direct-support",
+      "statWeights": {
+        "CriticalDamageBase": 0.75
+      },
+      "reviewedInputDigest": "f09bfdfd12d8d83657d64e18a29379640b6db5047f66c5929f32e8d51357f7e0"
+    },
+    "8008": {
+      "templateId": "direct-support",
+      "statWeights": {
+        "CriticalDamageBase": 0.75
+      },
+      "reviewedInputDigest": "fb3f3cc197cdc804c472646b1cb824c0b0f33f919a1d96c10451776e4683d3d2"
+    },
+    "8009": {
+      "statWeights": {
+        "AttackAddedRatio": 0.75,
+        "CriticalChanceBase": 1,
+        "CriticalDamageBase": 0.75,
+        "SpeedDelta": 1
+      },
+      "softTargets": [
+        {
+          "stat": "AttackAddedRatio",
+          "minimumThreshold": 1000.0,
+          "maximumThreshold": 2200.0
+        }
+      ],
+      "reviewedInputDigest": "151fb088fdfc4ad0265316c71a9d2eee8ed9df59dc50ec4d3430388051700277"
+    },
+    "8010": {
+      "statWeights": {
+        "AttackAddedRatio": 0.75,
+        "CriticalChanceBase": 1,
+        "CriticalDamageBase": 0.75,
+        "SpeedDelta": 1
+      },
+      "softTargets": [
+        {
+          "stat": "AttackAddedRatio",
+          "minimumThreshold": 1000.0,
+          "maximumThreshold": 2200.0
+        }
+      ],
+      "reviewedInputDigest": "d79eeb9e54a86eea53c75f5998982cdf3bc7e99ca7c1d448397d86e95033971b"
+    }
+  }
+}

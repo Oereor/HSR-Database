@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "modelVersion": "natural-5star-v1",
+  "mainStatProbabilities": {
+    "BODY": [
+      { "stat": "HPAddedRatio", "probability": 0.2 },
+      { "stat": "AttackAddedRatio", "probability": 0.2 },
+      { "stat": "DefenceAddedRatio", "probability": 0.2 },
+      { "stat": "StatusProbabilityBase", "probability": 0.1 },
+      { "stat": "HealRatioBase", "probability": 0.1 },
+      { "stat": "CriticalChanceBase", "probability": 0.1 },
+      { "stat": "CriticalDamageBase", "probability": 0.1 }
+    ],
+    "FOOT": [
+      { "stat": "HPAddedRatio", "probability": 0.28 },
+      { "stat": "AttackAddedRatio", "probability": 0.3 },
+      { "stat": "DefenceAddedRatio", "probability": 0.3 },
+      { "stat": "SpeedDelta", "probability": 0.12 }
+    ],
+    "NECK": [
+      { "stat": "HPAddedRatio", "probability": 0.12 },
+      { "stat": "AttackAddedRatio", "probability": 0.13 },
+      { "stat": "DefenceAddedRatio", "probability": 0.12 },
+      { "stat": "PhysicalAddedRatio", "probability": 0.09 },
+      { "stat": "FireAddedRatio", "probability": 0.09 },
+      { "stat": "IceAddedRatio", "probability": 0.09 },
+      { "stat": "WindAddedRatio", "probability": 0.09 },
+      { "stat": "ThunderAddedRatio", "probability": 0.09 },
+      { "stat": "QuantumAddedRatio", "probability": 0.09 },
+      { "stat": "ImaginaryAddedRatio", "probability": 0.09 }
+    ],
+    "OBJECT": [
+      { "stat": "HPAddedRatio", "probability": 0.26 },
+      { "stat": "AttackAddedRatio", "probability": 0.27 },
+      { "stat": "DefenceAddedRatio", "probability": 0.26 },
+      { "stat": "BreakDamageAddedRatioBase", "probability": 0.16 },
+      { "stat": "SPRatioBase", "probability": 0.05 }
+    ]
+  },
+  "substatSelectionWeights": [
+    { "stat": "SpeedDelta", "weight": 4 },
+    { "stat": "HPDelta", "weight": 10 },
+    { "stat": "AttackDelta", "weight": 10 },
+    { "stat": "DefenceDelta", "weight": 10 },
+    { "stat": "HPAddedRatio", "weight": 10 },
+    { "stat": "AttackAddedRatio", "weight": 10 },
+    { "stat": "DefenceAddedRatio", "weight": 10 },
+    { "stat": "BreakDamageAddedRatioBase", "weight": 8 },
+    { "stat": "StatusProbabilityBase", "weight": 8 },
+    { "stat": "StatusResistanceBase", "weight": 8 },
+    { "stat": "CriticalChanceBase", "weight": 6 },
+    { "stat": "CriticalDamageBase", "weight": 6 }
+  ],
+  "initialSubstatModel": { "threeProbability": 0.8, "fourProbability": 0.2 },
+  "rollGradeModel": { "policy": "uniform-step-num-inclusive" },
+  "enhancementModel": {
+    "maxLevel": 15,
+    "nodes": [3, 6, 9, 12, 15],
+    "threeInitialFirstNode": "reveal-fourth",
+    "targetPolicy": "uniform-existing"
+  },
+  "metadata": {
+    "mainStatProbabilities": {
+      "class": "maintainer-approved-probability-fact",
+      "source": "HSR-Relic-Simulator-Cross-Platform/src/data/MainAffixProbabilityConfig.json; maintainer-approved wiki transcription"
+    },
+    "substatSelectionWeights": {
+      "class": "maintainer-approved-probability-fact",
+      "source": "HSR-Relic-Simulator-Cross-Platform/src/data/SubAffixConfig.json; maintainer-approved wiki transcription"
+    },
+    "affixValuesAndLegality": {
+      "class": "upstream-derived",
+      "source": "TurnBasedGameData RelicConfig, RelicMainAffixConfig, RelicSubAffixConfig via player runtime"
+    },
+    "initialSubstatModel": {
+      "class": "v1-simulation-assumption",
+      "source": "Natural behavior reference; not encoded by current upstream affix tables"
+    },
+    "rollGradeModel": {
+      "class": "v1-simulation-assumption",
+      "source": "Uniform grades across upstream StepNum range"
+    },
+    "enhancementModel": {
+      "class": "v1-simulation-assumption",
+      "source": "Natural behavior reference; maxLevel verified against upstream 5-star relics"
+    }
+  }
+}

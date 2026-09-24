@@ -1,0 +1,203 @@
+{
+  "phase": "1D",
+  "mode": "representation",
+  "seed": 123456789,
+  "heldoutSeed": 2734581936,
+  "Ns": [3],
+  "Ks": [65536],
+  "alphas": [0.2, 0.25, 0.3, 0.35, 0.4],
+  "cases": [
+    {
+      "characterId": "1002",
+      "slot": "BODY"
+    },
+    {
+      "characterId": "1002",
+      "slot": "NECK"
+    },
+    {
+      "characterId": "1222",
+      "slot": "FOOT"
+    },
+    {
+      "characterId": "1222",
+      "slot": "OBJECT"
+    },
+    {
+      "characterId": "1005",
+      "slot": "BODY"
+    },
+    {
+      "characterId": "1005",
+      "slot": "NECK"
+    },
+    {
+      "characterId": "1101",
+      "slot": "HEAD"
+    },
+    {
+      "characterId": "1101",
+      "slot": "HAND"
+    },
+    {
+      "characterId": "1104",
+      "slot": "OBJECT"
+    },
+    {
+      "characterId": "1409",
+      "slot": "FOOT"
+    }
+  ],
+  "corpusQualityQuantiles": {
+    "poor": 0.05,
+    "below-average": 0.2,
+    "average": 0.5,
+    "good": 0.8,
+    "excellent": 0.95,
+    "extreme": 0.995
+  },
+  "modelVersion": "natural-5star-v1",
+  "representation": [
+    {
+      "characterId": "1002",
+      "slot": "BODY",
+      "N": 3,
+      "K": 65536,
+      "seed": 123456789,
+      "quantilePoints": 257,
+      "maxRepresentationError": 0.0038452113956316536,
+      "meanRepresentationError": 0.0007189230826558155,
+      "maxRankError": 251.99977402411605,
+      "pass": true,
+      "error513": null,
+      "runtimeMs": 240.42370900000003
+    },
+    {
+      "characterId": "1002",
+      "slot": "NECK",
+      "N": 3,
+      "K": 65536,
+      "seed": 123456789,
+      "quantilePoints": 257,
+      "maxRepresentationError": 0.0038909912109375,
+      "meanRepresentationError": 0.0007407445897889583,
+      "maxRankError": 255,
+      "pass": true,
+      "error513": null,
+      "runtimeMs": 274.2060829999999
+    },
+    {
+      "characterId": "1222",
+      "slot": "FOOT",
+      "N": 3,
+      "K": 65536,
+      "seed": 123456789,
+      "quantilePoints": 257,
+      "maxRepresentationError": 0.0037078857421875,
+      "meanRepresentationError": 0.0005075112267628282,
+      "maxRankError": 243,
+      "pass": true,
+      "error513": null,
+      "runtimeMs": 256.655208
+    },
+    {
+      "characterId": "1222",
+      "slot": "OBJECT",
+      "N": 3,
+      "K": 65536,
+      "seed": 123456789,
+      "quantilePoints": 257,
+      "maxRepresentationError": 0.0038757299768537035,
+      "meanRepresentationError": 0.0005425320535617716,
+      "maxRankError": 253.9998397630843,
+      "pass": true,
+      "error513": null,
+      "runtimeMs": 254.286333
+    },
+    {
+      "characterId": "1005",
+      "slot": "BODY",
+      "N": 3,
+      "K": 65536,
+      "seed": 123456789,
+      "quantilePoints": 257,
+      "maxRepresentationError": 0.003906246117088452,
+      "meanRepresentationError": 0.000568054096459558,
+      "maxRankError": 255.9997455295088,
+      "pass": true,
+      "error513": null,
+      "runtimeMs": 257.8688750000001
+    },
+    {
+      "characterId": "1005",
+      "slot": "NECK",
+      "N": 3,
+      "K": 65536,
+      "seed": 123456789,
+      "quantilePoints": 257,
+      "maxRepresentationError": 0.0038909912109375,
+      "meanRepresentationError": 0.0006237496696680802,
+      "maxRankError": 255,
+      "pass": true,
+      "error513": null,
+      "runtimeMs": 272.86400000000003
+    },
+    {
+      "characterId": "1101",
+      "slot": "HEAD",
+      "N": 3,
+      "K": 65536,
+      "seed": 123456789,
+      "quantilePoints": 257,
+      "maxRepresentationError": 0.00384521484375,
+      "meanRepresentationError": 0.000631018998488587,
+      "maxRankError": 252,
+      "pass": true,
+      "error513": null,
+      "runtimeMs": 245.49445800000012
+    },
+    {
+      "characterId": "1101",
+      "slot": "HAND",
+      "N": 3,
+      "K": 65536,
+      "seed": 123456789,
+      "quantilePoints": 257,
+      "maxRepresentationError": 0.00384521484375,
+      "meanRepresentationError": 0.000631018998488587,
+      "maxRankError": 252,
+      "pass": true,
+      "error513": null,
+      "runtimeMs": 240.31716700000015
+    },
+    {
+      "characterId": "1104",
+      "slot": "OBJECT",
+      "N": 3,
+      "K": 65536,
+      "seed": 123456789,
+      "quantilePoints": 257,
+      "maxRepresentationError": 0.0038299542679400833,
+      "meanRepresentationError": 0.0007748293526554851,
+      "maxRankError": 250.9998829037213,
+      "pass": true,
+      "error513": null,
+      "runtimeMs": 254.62533299999996
+    },
+    {
+      "characterId": "1409",
+      "slot": "FOOT",
+      "N": 3,
+      "K": 65536,
+      "seed": 123456789,
+      "quantilePoints": 257,
+      "maxRepresentationError": 0.0039062400299353373,
+      "meanRepresentationError": 0.0006608326406710688,
+      "maxRankError": 255.99934660184226,
+      "pass": true,
+      "error513": null,
+      "runtimeMs": 250.693041
+    }
+  ],
+  "totalRuntimeMs": 2789.783417
+}
