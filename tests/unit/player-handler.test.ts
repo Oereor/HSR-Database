@@ -3,6 +3,8 @@ import { beforeAll, describe, expect, it, vi } from 'vitest';
 import { createEnkaPlayerClient, ENKA_USER_AGENT } from '../../api/_player/enka/client';
 import { PlayerApiError } from '../../api/_player/errors';
 import { handlePlayerRequest } from '../../api/player';
+import { buildEnkaPlayerProfile, playerRuntimeData } from '../../api/_player/enka/pipeline';
+import { presentCanonicalPlayerProfile } from '../../src/lib/player/stat-synthesis';
 
 let fixture: Record<string, unknown>;
 
@@ -50,6 +52,16 @@ describe('Enka player Function handler', () => {
       display: { area: 'assist', sourceOrder: 0 },
       stats: expect.any(Array)
     });
+    expect(body.characters[0].relicScore).toMatchObject({
+      version: 1,
+      build: { status: 'available', score: expect.any(Number) },
+      pieces: { HEAD: { status: 'available', score: expect.any(Number) } }
+    });
+    const withoutScores = structuredClone(body);
+    withoutScores.characters.forEach((character) => delete character.relicScore);
+    expect(withoutScores).toEqual(
+      presentCanonicalPlayerProfile(buildEnkaPlayerProfile(fixture).canonical, playerRuntimeData)
+    );
     expect(fetchImpl).toHaveBeenCalledOnce();
     const [input, init] = fetchImpl.mock.calls[0];
     expect(String(input)).toBe('https://enka.network/api/hsr/uid/100000001/');
@@ -157,6 +169,36 @@ describe('Enka player Function handler', () => {
         [{ event: 'synthesis_failure' }],
         [{ event: 'unknown_entity', code: 'UNKNOWN_AVATAR', sourceId: '999999' }]
       ])
+    );
+  });
+
+  it('isolates an unexpected scoring failure from a successful Player Info response', async () => {
+    const log = vi.fn();
+    const response = await handlePlayerRequest(request(), {
+      client: createEnkaPlayerClient({ fetchImpl: vi.fn(async () => Response.json(fixture)) }),
+      scoreCharacter: () => {
+        throw new Error('private scoring diagnostic');
+      },
+      log
+    });
+    const body = (await response.json()) as {
+      characters: Array<{ relicScore: { build: unknown; pieces: Record<string, unknown> } }>;
+    };
+    expect(response.status).toBe(200);
+    expect(body.characters[0].relicScore.build).toEqual({
+      status: 'unavailable',
+      reason: 'score-unavailable'
+    });
+    expect(body.characters[0].relicScore.pieces.HEAD).toEqual({
+      status: 'unavailable',
+      reason: 'score-unavailable'
+    });
+    expect(JSON.stringify(body)).not.toContain('private scoring diagnostic');
+    expect(log).toHaveBeenCalledWith(
+      expect.objectContaining({
+        event: 'scoring_failure',
+        diagnostic: 'private scoring diagnostic'
+      })
     );
   });
 });

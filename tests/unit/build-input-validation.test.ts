@@ -173,6 +173,20 @@ async function createFixture(): Promise<Fixture> {
     traces: {},
     eidolonSkillLevels: {}
   });
+  await writeArtifact('runtime/relic-score-recommendations.json', {
+    '1': {
+      avatarId: '1',
+      cavernSetIds: [],
+      planarSetIds: [],
+      mainStatOptions: [
+        { slot: 'BODY', propertyTypes: [] },
+        { slot: 'FOOT', propertyTypes: [] },
+        { slot: 'NECK', propertyTypes: [] },
+        { slot: 'OBJECT', propertyTypes: [] }
+      ],
+      subStatPropertyTypes: []
+    }
+  });
 
   const localeEntry = (locale: 'zh-CN' | 'en') => {
     const localeArtifacts = Object.values(artifacts).filter((entry) => entry.locale === locale);

@@ -21,6 +21,10 @@ it('accepts the schema-45 dual-locale generated tree and validates every emitted
   expect(manifest.artifacts).toHaveProperty('static/generated/zh-CN/player-equipment.json');
   expect(manifest.artifacts).toHaveProperty('static/generated/en/player-equipment.json');
   expect(manifest.artifacts).toHaveProperty('runtime/player.json');
+  expect(manifest.artifacts).toHaveProperty('runtime/relic-score-recommendations.json');
+  expect(manifest.artifacts['runtime/relic-score-recommendations.json']).not.toHaveProperty(
+    'locale'
+  );
   expect(manifest.artifacts['runtime/player.json']).not.toHaveProperty('locale');
   for (const locale of ['zh-CN', 'en'] as const) {
     const playerEquipment = JSON.parse(

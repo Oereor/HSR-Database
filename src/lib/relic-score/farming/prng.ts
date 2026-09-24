@@ -1,5 +1,5 @@
 /** Mulberry32 v1: explicit uint32 seed, uint32 state, and float output in [0, 1). */
-export const PRNG_VERSION = 'mulberry32-v1' as const;
+export { PRNG_VERSION } from '../benchmark/versions.js';
 
 export interface SeededRng {
   next(): number;

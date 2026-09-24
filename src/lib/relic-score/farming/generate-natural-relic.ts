@@ -8,7 +8,7 @@ import type {
 } from './probability-model.js';
 import type { SeededRng } from './prng.js';
 
-export const NATURAL_GENERATOR_VERSION = 'natural-plus15-v1' as const;
+export { NATURAL_GENERATOR_VERSION } from '../benchmark/versions.js';
 
 export interface GeneratedNaturalRelic {
   slot: RelicSlot;

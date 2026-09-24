@@ -61,5 +61,17 @@ export type PlayerBuildNormalization =
       status: 'unavailable';
       reason: NormalizationReason;
       detail?: string;
+      partialInput?: PlayerBuildInput;
+      pieceFailures?: Partial<
+        Record<RelicSlot, { status: 'unavailable' | 'invalid'; reason: NormalizationReason }>
+      >;
     }
-  | { status: 'invalid'; reason: NormalizationReason; detail?: string };
+  | {
+      status: 'invalid';
+      reason: NormalizationReason;
+      detail?: string;
+      partialInput?: PlayerBuildInput;
+      pieceFailures?: Partial<
+        Record<RelicSlot, { status: 'unavailable' | 'invalid'; reason: NormalizationReason }>
+      >;
+    };

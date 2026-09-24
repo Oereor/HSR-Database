@@ -1,4 +1,4 @@
-import { lookupDenseCdf } from '../farming/dense-quantile.js';
+import { lookupDenseCdf } from './cdf.js';
 import type { BenchmarkDistribution } from './types.js';
 
 /** Lookup never synthesizes a missing distribution or loads a test fixture. */

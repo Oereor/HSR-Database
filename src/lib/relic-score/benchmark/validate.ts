@@ -1,7 +1,9 @@
 import type { RelicSlot } from '../../domain/types.js';
-import { QUANTILE_REPRESENTATION_VERSION } from '../farming/dense-quantile.js';
-import { PRNG_VERSION } from '../farming/prng.js';
-import { NATURAL_GENERATOR_VERSION } from '../farming/generate-natural-relic.js';
+import {
+  NATURAL_GENERATOR_VERSION,
+  PRNG_VERSION,
+  QUANTILE_REPRESENTATION_VERSION
+} from './versions.js';
 import { RELIC_SLOTS } from '../scoring-config.js';
 import {
   BENCHMARK_QUANTILE_POINTS,

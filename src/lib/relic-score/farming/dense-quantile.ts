@@ -1,6 +1,8 @@
 import { empiricalQuantile } from './prototype.js';
+import { lookupDenseCdf } from '../benchmark/cdf.js';
 
-export const QUANTILE_REPRESENTATION_VERSION = 'linear-right-continuous-v1' as const;
+export { QUANTILE_REPRESENTATION_VERSION } from '../benchmark/versions.js';
+export { lookupDenseCdf } from '../benchmark/cdf.js';
 
 export function encodeDenseQuantiles(sorted: readonly number[], pointCount: 257 | 513): number[] {
   if (
@@ -24,18 +26,6 @@ function upperBound(values: readonly number[], target: number): number {
     else high = mid;
   }
   return low;
-}
-
-/** Right-continuous at ties, linear between distinct knots, clamped outside endpoints. */
-export function lookupDenseCdf(quantiles: readonly number[], value: number): number {
-  if (quantiles.length < 2 || !Number.isFinite(value))
-    throw new Error('[relic-score/farming] invalid CDF lookup');
-  if (value < quantiles[0]) return 0;
-  if (value >= quantiles[quantiles.length - 1]) return 1;
-  const right = upperBound(quantiles, value);
-  const left = right - 1;
-  const fraction = (value - quantiles[left]) / (quantiles[right] - quantiles[left]);
-  return (left + fraction) / (quantiles.length - 1);
 }
 
 export function exactEmpiricalCdf(sorted: readonly number[], value: number): number {

@@ -71,6 +71,7 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
       throw new Error(`Generated data manifest localization health is invalid: ${locale}`);
     for (const requiredPath of [
       'runtime/player.json',
+      'runtime/relic-score-recommendations.json',
       `views/${locale}/catalogs/characters.json`,
       `views/${locale}/catalogs/light-cones.json`,
       `views/${locale}/catalogs/relics.json`,

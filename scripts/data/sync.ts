@@ -945,6 +945,22 @@ export async function syncData(): Promise<DataManifest> {
         );
   };
   await writeArtifact(nextGeneratedRoot, 'runtime/player.json', playerRuntimeData);
+  await writeArtifact(
+    nextGeneratedRoot,
+    'runtime/relic-score-recommendations.json',
+    Object.fromEntries(
+      characterDomains.map((character) => [
+        character.id,
+        {
+          avatarId: character.id,
+          cavernSetIds: character.equipmentRecommendation.cavernSetIds,
+          planarSetIds: character.equipmentRecommendation.planarSetIds,
+          mainStatOptions: character.equipmentRecommendation.mainStatOptions,
+          subStatPropertyTypes: character.equipmentRecommendation.subStatPropertyTypes
+        }
+      ])
+    )
+  );
   for (const projection of projections) await writeViewArtifacts(projection);
   const countsOf = (projection: (typeof projections)[number]) => ({
     characters: projection.details.characters.length,

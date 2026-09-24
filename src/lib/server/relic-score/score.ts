@@ -1,4 +1,4 @@
-import type { AvatarEquipmentRecommendation } from '../../domain/types.js';
+import type { RelicScoreRecommendation } from '../../relic-score/recommendations.js';
 import { scoreBuild, type BuildScoreResult } from '../../relic-score/score.js';
 import type { PlayerBuildInput } from '../../relic-score/types.js';
 import { getProductionBenchmarkContext } from './benchmark-loader.js';
@@ -6,7 +6,7 @@ import { getProductionBenchmarkContext } from './benchmark-loader.js';
 /** Internal server scoring entry; the current Player API response is unchanged. */
 export function scoreProductionBuild(
   input: PlayerBuildInput,
-  recommendation?: AvatarEquipmentRecommendation
+  recommendation?: RelicScoreRecommendation
 ): BuildScoreResult {
   const context = getProductionBenchmarkContext();
   if (context.status !== 'available')
@@ -16,6 +16,7 @@ export function scoreProductionBuild(
     recommendation,
     reference: context.reference,
     benchmark: context.artifact,
-    benchmarkExpected: context.expected
+    benchmarkExpected: context.expected,
+    benchmarkValidated: true
   });
 }

@@ -1,4 +1,5 @@
-import type { AvatarEquipmentRecommendation, RelicSlot } from '../domain/types.js';
+import type { RelicSlot } from '../domain/types.js';
+import type { RelicScoreRecommendation } from './recommendations.js';
 import { lookupBenchmarkPercentile } from './benchmark/lookup.js';
 import { validateBenchmarkArtifact, type BenchmarkExpectedIdentity } from './benchmark/validate.js';
 import type { BenchmarkArtifact } from './benchmark/types.js';
@@ -22,10 +23,12 @@ export type ScoreResult<T> =
 
 export interface ScoringSources {
   profile?: CharacterRelicScoreProfile;
-  recommendation?: AvatarEquipmentRecommendation;
+  recommendation?: RelicScoreRecommendation;
   reference: RelicScoreReferenceData;
   benchmark?: BenchmarkArtifact;
   benchmarkExpected?: BenchmarkExpectedIdentity;
+  /** Only the server loader may set this after validating its module-cached artifact. */
+  benchmarkValidated?: boolean;
 }
 
 export interface SubstatScoreExplanation {
@@ -63,7 +66,7 @@ const validNumber = (x: number) => Number.isFinite(x) && x >= 0;
 
 export function calculateEffectiveHits(
   piece: NormalizedRelicPiece,
-  recommendation: AvatarEquipmentRecommendation
+  recommendation: RelicScoreRecommendation
 ): EffectiveHits {
   const recommended = new Set(recommendation.subStatPropertyTypes);
   let known = 0;
@@ -138,10 +141,12 @@ export function scorePiece(
   if (!Number.isFinite(rawSubUtility)) return { status: 'invalid', reason: 'PIECE_INVALID' };
   if (!benchmark || !benchmarkExpected)
     return { status: 'unavailable', reason: 'BENCHMARK_MISSING_OR_STALE' };
-  try {
-    validateBenchmarkArtifact(benchmark, benchmarkExpected);
-  } catch {
-    return { status: 'unavailable', reason: 'BENCHMARK_MISSING_OR_STALE' };
+  if (!sources.benchmarkValidated) {
+    try {
+      validateBenchmarkArtifact(benchmark, benchmarkExpected);
+    } catch {
+      return { status: 'unavailable', reason: 'BENCHMARK_MISSING_OR_STALE' };
+    }
   }
   const distribution = benchmark.distributions[characterId]?.[piece.slot];
   if (
@@ -251,7 +256,7 @@ export interface SetIntegrity {
 }
 export function evaluateSetIntegrity(
   pieces: readonly NormalizedRelicPiece[],
-  recommendation: AvatarEquipmentRecommendation
+  recommendation: RelicScoreRecommendation
 ): SetIntegrity {
   const cavern = pieces.filter((piece) => ['HEAD', 'HAND', 'BODY', 'FOOT'].includes(piece.slot));
   const planar = pieces.filter((piece) => ['NECK', 'OBJECT'].includes(piece.slot));

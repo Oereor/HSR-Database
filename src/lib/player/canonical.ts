@@ -119,5 +119,6 @@ export interface EnkaPlayerPipelineResult {
   canonical: ResolvedCanonicalPlayerProfile;
   normalizedBuilds: import('../relic-score/types.js').PlayerBuildNormalization[];
   presentation: PlayerProfile;
+  scoringFailures: Array<{ buildId: string; diagnostic: string }>;
   metadata?: PlayerFetchMetadata;
 }

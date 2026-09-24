@@ -9,6 +9,7 @@ import {
   type GeneratedArtifactValidationSummary
 } from '../generated-artifacts.js';
 import { assertPlayerRuntimeData } from '../player-runtime.js';
+import { assertRelicScoreRecommendations } from '../../../src/lib/relic-score/recommendations.js';
 import {
   getGeneratedLocales,
   getPublicLocale,
@@ -180,6 +181,14 @@ export async function validateBuildInputs(
           if (metadata.locale !== undefined)
             throw new Error('Player runtime artifact must be locale-neutral');
           assertPlayerRuntimeData(value);
+          return;
+        }
+        if (logicalPath === 'runtime/relic-score-recommendations.json') {
+          if (metadata.locale !== undefined)
+            throw new Error('Relic score recommendations must be locale-neutral');
+          assertRelicScoreRecommendations(value);
+          if (!exactSet(Object.keys(value), manifest.routes.characters))
+            throw new Error('Relic score recommendation coverage mismatch');
           return;
         }
         assertArtifactLocale(logicalPath, metadata);

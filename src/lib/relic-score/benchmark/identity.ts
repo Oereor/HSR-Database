@@ -6,10 +6,12 @@ import type {
   ProbabilityModelConfig
 } from '../farming/probability-model.js';
 import type { FarmingBudget } from '../farming/farming-contract.js';
-import { NATURAL_GENERATOR_VERSION } from '../farming/generate-natural-relic.js';
-import { QUANTILE_REPRESENTATION_VERSION } from '../farming/dense-quantile.js';
+import {
+  NATURAL_GENERATOR_VERSION,
+  PRNG_VERSION,
+  QUANTILE_REPRESENTATION_VERSION
+} from './versions.js';
 import type { CandidateLens } from '../farming/prototype.js';
-import { PRNG_VERSION } from '../farming/prng.js';
 import { RELIC_SLOTS } from '../scoring-config.js';
 import {
   BENCHMARK_GENERATOR_VERSION,
