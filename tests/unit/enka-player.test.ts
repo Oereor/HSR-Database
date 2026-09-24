@@ -11,6 +11,14 @@ const fixture = JSON.parse(
 const expected = JSON.parse(
   readFileSync('tests/fixtures/enka/phase1-player.expected-stats.json', 'utf8')
 ) as Record<string, Record<string, number>>;
+const compatibilityFixtures = [
+  ['compatibility-missing-promotion.sanitized.json', '100000101', 7],
+  ['compatibility-control-a.sanitized.json', '100000102', 6],
+  ['compatibility-control-b.sanitized.json', '100000103', 8]
+] as const;
+const missingPromotionFixture = JSON.parse(
+  readFileSync('tests/fixtures/enka/compatibility-missing-promotion.sanitized.json', 'utf8')
+) as unknown;
 
 interface MutableFixture {
   unknownFutureField?: unknown;
@@ -21,6 +29,61 @@ interface MutableFixture {
 }
 
 describe('Enka decoder and canonical adapter', () => {
+  it.each(compatibilityFixtures)(
+    'accepts full Enka fixture %s through decoding, adaptation and presentation',
+    (filename, uid, characterCount) => {
+      const raw = JSON.parse(readFileSync(`tests/fixtures/enka/${filename}`, 'utf8')) as unknown;
+      const decoded = decodeEnkaResponse(raw);
+      const adapted = adaptEnkaProfile(decoded);
+      const result = buildEnkaPlayerProfile(raw);
+
+      expect(decoded.uid).toBe(uid);
+      expect(adapted.characters).toHaveLength(characterCount);
+      expect(result.canonical.characters).toHaveLength(characterCount);
+      expect(
+        result.canonical.characters.every((character) => character.status === 'complete')
+      ).toBe(true);
+      expect(result.presentation.characters).toHaveLength(characterCount);
+    }
+  );
+
+  it('normalizes only an omitted light-cone promotion to zero', () => {
+    const source = structuredClone(missingPromotionFixture) as MutableFixture;
+    const avatar = source.detailInfo.avatarDetailList[4];
+    const equipment = avatar.equipment as Record<string, unknown>;
+    expect(equipment).not.toHaveProperty('promotion');
+
+    const result = buildEnkaPlayerProfile(source);
+    expect(result.canonical.characters[4].build.lightCone).toMatchObject({
+      lightConeId: '21033',
+      level: 1,
+      promotion: 0
+    });
+    expect(result.canonical.characters[4].status).toBe('complete');
+
+    for (const value of [0, null, '0', -1, 1.5]) {
+      const variant = structuredClone(source);
+      (variant.detailInfo.avatarDetailList[4].equipment as Record<string, unknown>).promotion =
+        value;
+      if (value === 0) {
+        expect(
+          decodeEnkaResponse(variant).detailInfo.avatarDetailList[4].equipment?.promotion
+        ).toBe(0);
+      } else {
+        let error: unknown;
+        try {
+          decodeEnkaResponse(variant);
+        } catch (caught) {
+          error = caught;
+        }
+        expect(error).toMatchObject({
+          code: 'UPSTREAM_INVALID_RESPONSE',
+          diagnostic: 'detailInfo.avatarDetailList[4].equipment.promotion'
+        });
+      }
+    }
+  });
+
   it('normalizes optional fields without retaining _flat and preserves occurrence identity', () => {
     const decoded = decodeEnkaResponse(fixture);
     const profile = adaptEnkaProfile(decoded);

@@ -180,7 +180,10 @@ function parseAvatar(value: unknown, index: number): EnkaRawAvatar {
             tid: integer(item.tid, `${path}.equipment.tid`),
             rank: superimposition,
             level: integer(item.level, `${path}.equipment.level`),
-            promotion: integer(item.promotion, `${path}.equipment.promotion`)
+            promotion:
+              item.promotion === undefined
+                ? 0
+                : integer(item.promotion, `${path}.equipment.promotion`)
           };
         })();
   const relicList = optionalArray(source.relicList, `${path}.relicList`).map(
