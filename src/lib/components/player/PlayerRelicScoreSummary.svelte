@@ -31,68 +31,74 @@
 </script>
 
 <div class="player-relic-score-summary" data-player-relic-score-summary>
-  <div class="player-relic-score-summary__primary">
-    <div class="player-relic-score-summary__score">
-      <span>{m.player_relic_score_build()}</span>
-      <div>
-        <strong data-player-build-score
-          >{score.status === 'available' ? formatRelicScore(score.score) : '—'}</strong
-        >
-        {#if score.status === 'available'}<small>/ 100</small>{/if}
+  <div class="player-relic-score-summary__overview">
+    <div class="player-relic-score-summary__primary">
+      <div class="player-relic-score-summary__score">
+        <span>{m.player_relic_score_build()}</span>
+        <div>
+          <strong data-player-build-score
+            >{score.status === 'available' ? formatRelicScore(score.score) : '—'}</strong
+          >
+          {#if score.status === 'available'}<small>/ 100</small>{/if}
+        </div>
+        {#if score.status === 'unavailable'}
+          <p data-player-build-score-unavailable>{relicScoreUnavailableMessage(score.reason)}</p>
+        {/if}
       </div>
-      {#if score.status === 'unavailable'}
-        <p data-player-build-score-unavailable>{relicScoreUnavailableMessage(score.reason)}</p>
-      {/if}
+
+      <div class="player-relic-score-summary__hits" data-player-effective-hits>
+        <span>{m.player_relic_score_effective_hits()}</span>
+        {#if score.status === 'available' && score.effectiveHits.status === 'exact' && score.effectiveHits.total !== null}
+          <strong>{score.effectiveHits.total}</strong>
+        {:else if score.status === 'available' && score.effectiveHits.status === 'partial'}
+          <strong>{m.player_relic_score_at_least({ count: score.effectiveHits.known })}</strong>
+          <small>{m.player_relic_score_hits_partial()}</small>
+        {:else}
+          <strong aria-label={m.player_relic_score_unavailable()}>—</strong>
+        {/if}
+      </div>
     </div>
 
-    <div class="player-relic-score-summary__hits" data-player-effective-hits>
-      <span>{m.player_relic_score_effective_hits()}</span>
-      {#if score.status === 'available' && score.effectiveHits.status === 'exact' && score.effectiveHits.total !== null}
-        <strong>{score.effectiveHits.total}</strong>
-      {:else if score.status === 'available' && score.effectiveHits.status === 'partial'}
-        <strong>{m.player_relic_score_at_least({ count: score.effectiveHits.known })}</strong>
-        <small>{m.player_relic_score_hits_partial()}</small>
-      {:else}
-        <strong aria-label={m.player_relic_score_unavailable()}>—</strong>
-      {/if}
-    </div>
+    {#if score.status === 'available'}
+      <!-- Keyboard focus allows horizontal scrolling on narrow screens. -->
+      <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+      <dl class="player-relic-score-summary__breakdown" data-player-score-breakdown tabindex="0">
+        <div>
+          <dt>{m.player_relic_score_stat_completion()}</dt>
+          <dd>{formatRelicScorePercent(score.statCompletion)}</dd>
+        </div>
+        <div>
+          <dt>{m.player_relic_score_set_integrity()}</dt>
+          <dd>{formatRelicScorePercent(score.setIntegrity)}</dd>
+        </div>
+        {#if score.softTarget.details.length}
+          <div data-player-soft-target>
+            <dt>{m.player_relic_score_soft_target()}</dt>
+            <dd>{formatRelicScorePercent(score.softTarget.progress)}</dd>
+          </div>
+        {/if}
+        {#if score.hardBreakpoint.details.length}
+          <div data-player-hard-breakpoint>
+            <dt>{m.player_relic_score_hard_breakpoint()}</dt>
+            <dd>
+              {#if score.hardBreakpoint.details.length === 1}
+                {score.hardBreakpoint.details[0].passed
+                  ? m.player_relic_score_passed()
+                  : m.player_relic_score_failed()}
+              {:else}
+                {m.player_relic_score_passed_count({
+                  passed: passedBreakpoints,
+                  total: score.hardBreakpoint.details.length
+                })}
+              {/if}
+            </dd>
+          </div>
+        {/if}
+      </dl>
+    {/if}
   </div>
 
   {#if score.status === 'available'}
-    <dl class="player-relic-score-summary__breakdown" data-player-score-breakdown>
-      <div>
-        <dt>{m.player_relic_score_stat_completion()}</dt>
-        <dd>{formatRelicScorePercent(score.statCompletion)}</dd>
-      </div>
-      <div>
-        <dt>{m.player_relic_score_set_integrity()}</dt>
-        <dd>{formatRelicScorePercent(score.setIntegrity)}</dd>
-      </div>
-      {#if score.softTarget.details.length}
-        <div data-player-soft-target>
-          <dt>{m.player_relic_score_soft_target()}</dt>
-          <dd>{formatRelicScorePercent(score.softTarget.progress)}</dd>
-        </div>
-      {/if}
-      {#if score.hardBreakpoint.details.length}
-        <div data-player-hard-breakpoint>
-          <dt>{m.player_relic_score_hard_breakpoint()}</dt>
-          <dd>
-            {#if score.hardBreakpoint.details.length === 1}
-              {score.hardBreakpoint.details[0].passed
-                ? m.player_relic_score_passed()
-                : m.player_relic_score_failed()}
-            {:else}
-              {m.player_relic_score_passed_count({
-                passed: passedBreakpoints,
-                total: score.hardBreakpoint.details.length
-              })}
-            {/if}
-          </dd>
-        </div>
-      {/if}
-    </dl>
-
     {#if score.softTarget.details.length || score.hardBreakpoint.details.length}
       <details class="player-relic-score-summary__details" data-player-score-details>
         <summary>{m.player_relic_score_details()}</summary>
@@ -144,6 +150,7 @@
 
 <style>
   .player-relic-score-summary {
+    container-type: inline-size;
     min-width: 0;
     border: 1px solid var(--border);
     border-radius: var(--radius-control);
@@ -151,11 +158,20 @@
     background: rgb(21 28 44 / 58%);
   }
 
-  .player-relic-score-summary__primary {
-    display: flex;
+  .player-relic-score-summary__overview {
+    display: grid;
     min-width: 0;
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .player-relic-score-summary__primary {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: max-content minmax(0, 1fr);
     align-items: start;
-    gap: var(--space-8);
+    gap: var(--space-4);
   }
 
   .player-relic-score-summary__score,
@@ -170,6 +186,14 @@
   .player-relic-score-summary__breakdown dt {
     color: var(--text-secondary);
     font-size: var(--font-meta-key);
+    font-weight: 650;
+    white-space: nowrap;
+  }
+
+  .player-relic-score-summary__score > span,
+  .player-relic-score-summary__hits > span {
+    color: var(--text-body);
+    font-weight: 650;
   }
 
   .player-relic-score-summary__score > div {
@@ -179,8 +203,9 @@
   }
 
   .player-relic-score-summary__score strong {
-    color: var(--text-primary);
-    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    color: var(--gold);
+    font-size: clamp(2.15rem, 3vw, 2.65rem);
+    font-weight: 750;
     line-height: 1.1;
     font-variant-numeric: tabular-nums;
   }
@@ -199,32 +224,53 @@
 
   .player-relic-score-summary__hits strong {
     color: var(--text-primary);
-    font-size: var(--font-meta-value);
+    font-size: var(--font-major-title);
+    line-height: 1.3;
     font-variant-numeric: tabular-nums;
   }
 
   .player-relic-score-summary__breakdown {
     display: flex;
     min-width: 0;
-    flex-wrap: wrap;
-    gap: var(--space-3) var(--space-6);
-    margin: var(--space-4) 0 0;
-    border-top: 1px solid var(--border);
-    padding-top: var(--space-3);
+    align-items: start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 0;
+    padding: var(--space-1) 0;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+  }
+
+  .player-relic-score-summary__breakdown::-webkit-scrollbar {
+    display: none;
+  }
+
+  .player-relic-score-summary__breakdown:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: -2px;
   }
 
   .player-relic-score-summary__breakdown > div {
     display: grid;
-    min-width: 0;
+    flex: 0 0 auto;
     gap: 0.1rem;
+    text-align: left;
+  }
+
+  .player-relic-score-summary__breakdown > div + div {
+    margin-inline-start: var(--space-4);
+    border-inline-start: 1px solid var(--border);
+    padding-inline-start: var(--space-4);
   }
 
   .player-relic-score-summary__breakdown dd {
     margin: 0;
     color: var(--text-primary);
-    font-size: var(--font-body);
+    font-size: var(--font-major-title);
     font-weight: 650;
     font-variant-numeric: tabular-nums;
+    white-space: nowrap;
   }
 
   .player-relic-score-summary__details {
@@ -238,7 +284,9 @@
 
   .player-relic-score-summary__details summary {
     width: fit-content;
+    color: var(--text-body);
     cursor: pointer;
+    font-weight: 600;
   }
 
   .player-relic-score-summary__details summary:focus-visible {
@@ -254,14 +302,16 @@
 
   .player-relic-score-summary__detail-groups h4 {
     margin: 0 0 var(--space-2);
+    color: var(--text-body);
     font-size: var(--font-meta-key);
+    font-weight: 650;
   }
 
   .player-relic-score-summary__detail-row {
     display: grid;
     min-width: 0;
-    grid-template-columns: minmax(5rem, 0.8fr) minmax(0, 2fr) auto;
-    gap: var(--space-2);
+    grid-template-columns: minmax(7rem, 20%) minmax(0, 1fr) max-content;
+    gap: var(--space-4);
     padding: 0.25rem 0;
   }
 
@@ -273,16 +323,40 @@
   .player-relic-score-summary__detail-row strong {
     color: var(--text-primary);
     font-variant-numeric: tabular-nums;
+    text-align: right;
   }
 
-  @media (max-width: 680px) {
+  .player-relic-score-summary__detail-row > :first-child {
+    color: var(--text-body);
+    font-weight: 600;
+  }
+
+  @container (max-width: 48rem) {
+    .player-relic-score-summary__overview {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-3);
+    }
+
     .player-relic-score-summary__primary {
-      flex-wrap: wrap;
-      gap: var(--space-3) var(--space-6);
+      grid-template-columns: max-content max-content;
+      gap: var(--space-6);
+    }
+  }
+
+  @container (max-width: 32rem) {
+    .player-relic-score-summary__primary {
+      grid-template-columns: max-content minmax(0, 1fr);
+      gap: var(--space-3);
+    }
+
+    .player-relic-score-summary__breakdown > div + div {
+      margin-inline-start: var(--space-3);
+      padding-inline-start: var(--space-3);
     }
 
     .player-relic-score-summary__detail-row {
       grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--space-1) var(--space-2);
     }
 
     .player-relic-score-summary__detail-row > :nth-child(2) {

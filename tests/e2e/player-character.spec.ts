@@ -482,6 +482,52 @@ test('presents relic scores and target details without changing the Player reque
   await expect(summary.locator('[data-player-effective-hits]')).toContainText('23');
   await expect(summary.locator('[data-player-soft-target]')).toContainText('75%');
   await expect(summary.locator('[data-player-hard-breakpoint]')).toBeVisible();
+  const readSummaryLayout = () =>
+    summary.evaluate((element) => {
+      const primary = element.querySelector('.player-relic-score-summary__primary')!;
+      const strip = element.querySelector('[data-player-score-breakdown]')!;
+      const metrics = Array.from(strip.children);
+      const primaryBounds = primary.getBoundingClientRect();
+      const stripBounds = strip.getBoundingClientRect();
+      return {
+        primaryRight: primaryBounds.right,
+        primaryBottom: primaryBounds.bottom,
+        stripLeft: stripBounds.left,
+        stripTop: stripBounds.top,
+        stripInside: stripBounds.right <= element.getBoundingClientRect().right + 1,
+        stripWrap: getComputedStyle(strip).flexWrap,
+        metricTops: metrics.map((metric) => metric.getBoundingClientRect().top),
+        dividerWidths: metrics.map((metric) => getComputedStyle(metric).borderInlineStartWidth),
+        valuesLeftAligned: metrics.every((metric) => {
+          const label = metric.querySelector('dt')!;
+          const value = metric.querySelector('dd')!;
+          return (
+            Math.abs(label.getBoundingClientRect().left - value.getBoundingClientRect().left) < 1
+          );
+        }),
+        canScroll: strip.scrollWidth > strip.clientWidth
+      };
+    });
+  const layout = await readSummaryLayout();
+  expect(layout.metricTops).toHaveLength(4);
+  expect(new Set(layout.metricTops).size).toBe(1);
+  expect(layout.stripWrap).toBe('nowrap');
+  expect(layout.stripInside).toBe(true);
+  expect(layout.dividerWidths).toEqual(['0px', '1px', '1px', '1px']);
+  expect(layout.valuesLeftAligned).toBe(true);
+  if (isMobile) {
+    expect(layout.stripTop).toBeGreaterThanOrEqual(layout.primaryBottom - 1);
+    expect(layout.canScroll).toBe(true);
+    await summary.locator('[data-player-score-breakdown]').focus();
+    await page.keyboard.press('ArrowRight');
+    await expect
+      .poll(() =>
+        summary.locator('[data-player-score-breakdown]').evaluate((strip) => strip.scrollLeft)
+      )
+      .toBeGreaterThan(0);
+  } else {
+    expect(layout.stripLeft).toBeGreaterThanOrEqual(layout.primaryRight - 1);
+  }
   await expect(page.locator('[data-player-relic-piece-score]')).toHaveCount(6);
   await expect(
     page.locator('[data-player-relic-slot="HEAD"] [data-player-relic-piece-score] strong')
@@ -527,6 +573,19 @@ test('presents relic scores and target details without changing the Player reque
   await summary.screenshot({
     path: testInfo.outputPath(`relic-score-${isMobile ? 'mobile' : 'desktop'}.png`)
   });
+  if (!isMobile) {
+    await page.setViewportSize({ width: 900, height: 800 });
+    const tabletLayout = await readSummaryLayout();
+    expect(tabletLayout.stripTop).toBeGreaterThanOrEqual(tabletLayout.primaryBottom - 1);
+    expect(new Set(tabletLayout.metricTops).size).toBe(1);
+    expect(tabletLayout.stripInside).toBe(true);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+      )
+    ).toBeLessThanOrEqual(1);
+    await summary.screenshot({ path: testInfo.outputPath('relic-score-tablet.png') });
+  }
 });
 
 test('keeps piece scores when a five-piece build cannot be scored', async ({ page }) => {

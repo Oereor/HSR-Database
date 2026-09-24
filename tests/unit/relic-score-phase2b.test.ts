@@ -247,6 +247,43 @@ describe('Relic Score Phase 2B presentation', () => {
     expect(absentBody).not.toContain('data-player-score-details');
   });
 
+  it('renders only the available breakdown metrics in their fixed order', () => {
+    for (const [showSoftTarget, showHardBreakpoint] of [
+      [false, false],
+      [true, false],
+      [false, true],
+      [true, true]
+    ]) {
+      const build = availableBuild();
+      if (!showSoftTarget) build.softTarget = { progress: 0, details: [] };
+      if (!showHardBreakpoint) build.hardBreakpoint = { failureRatio: 0, details: [] };
+      const body = render(PlayerRelicScoreSummary, { props: { score: build, properties } }).body;
+      const breakdown = body.slice(
+        body.indexOf('data-player-score-breakdown'),
+        body.indexOf('</dl>')
+      );
+      const labels = [
+        m.player_relic_score_stat_completion(),
+        m.player_relic_score_set_integrity(),
+        ...(showSoftTarget ? [m.player_relic_score_soft_target()] : []),
+        ...(showHardBreakpoint ? [m.player_relic_score_hard_breakpoint()] : [])
+      ];
+
+      expect(breakdown.match(/<div(?:\s[^>]*)?>/g) ?? []).toHaveLength(labels.length);
+      expect(labels.map((label) => breakdown.indexOf(label))).toEqual(
+        [...labels.map((label) => breakdown.indexOf(label))].sort((a, b) => a - b)
+      );
+      expect(labels.every((label) => breakdown.includes(label))).toBe(true);
+      expect(breakdown.includes('data-player-soft-target')).toBe(showSoftTarget);
+      expect(breakdown.includes('data-player-hard-breakpoint')).toBe(showHardBreakpoint);
+      expect(body).toMatch(/data-player-build-score[^>]*>86\.5</);
+      expect(body).toMatch(/data-player-effective-hits[\s\S]*?<strong[^>]*>27<\/strong>/);
+      expect(breakdown).toContain('83%');
+      expect(breakdown).toContain('67%');
+      expect(body.includes('data-player-score-details')).toBe(showSoftTarget || showHardBreakpoint);
+    }
+  });
+
   it('shows pass and fail for individual breakpoints', () => {
     for (const passed of [true, false]) {
       const build = availableBuild();
