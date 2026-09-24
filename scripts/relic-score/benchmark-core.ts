@@ -1,14 +1,16 @@
-import { createHash } from 'node:crypto';
 import type { RelicSlot } from '../../src/lib/domain/types.js';
 import type { AvatarEquipmentRecommendation } from '../../src/lib/domain/types.js';
 import type { CharacterRelicScoreProfile } from '../../src/lib/relic-score/profile-types.js';
 import type { CompiledProbabilityModel } from '../../src/lib/relic-score/farming/probability-model.js';
-import { buildRelicScoreReferenceData } from '../../src/lib/relic-score/reference.js';
 import type { PlayerRuntimeData } from '../../src/lib/player/runtime-data.js';
 import { RELIC_SLOTS } from '../../src/lib/relic-score/scoring-config.js';
+import { buildExpectedBenchmarkIdentity } from '../../src/lib/relic-score/benchmark/identity.js';
 import {
   BENCHMARK_QUANTILE_POINTS,
+  BENCHMARK_GENERATOR_VERSION,
+  BENCHMARK_MAX_REPRESENTATION_ERROR,
   BENCHMARK_SCHEMA_VERSION,
+  BENCHMARK_SEED_CONTRACT,
   BENCHMARK_SELECTION_MODE,
   BENCHMARK_VERSION,
   type BenchmarkArtifact,
@@ -27,16 +29,14 @@ import {
 import { NATURAL_GENERATOR_VERSION } from '../../src/lib/relic-score/farming/generate-natural-relic.js';
 import { rawSubUtility, empiricalQuantile } from '../../src/lib/relic-score/farming/prototype.js';
 import { createSeededRng, PRNG_VERSION } from '../../src/lib/relic-score/farming/prng.js';
-import { benchmarkIdentityDigest, probabilityModelDigest } from './farming-inputs.js';
-import { stableSerialize } from './profiles.js';
-
-export const sha256 = (value: unknown): string =>
-  createHash('sha256').update(stableSerialize(value)).digest('hex');
 
 /** Representation error compares the compressed table with its own training CDF. */
 export function evaluateQuantileGate(trainingSorted: readonly number[]) {
-  const error257 = measureQuantileError(trainingSorted, encodeDenseQuantiles(trainingSorted, 257));
-  const pass257 = error257.maxAbsoluteCdfError <= 0.005;
+  const error257 = measureQuantileError(
+    trainingSorted,
+    encodeDenseQuantiles(trainingSorted, BENCHMARK_QUANTILE_POINTS)
+  );
+  const pass257 = error257.maxAbsoluteCdfError <= BENCHMARK_MAX_REPRESENTATION_ERROR;
   return {
     pass257,
     error257,
@@ -45,13 +45,6 @@ export function evaluateQuantileGate(trainingSorted: readonly number[]) {
       : measureQuantileError(trainingSorted, encodeDenseQuantiles(trainingSorted, 513))
   };
 }
-export function profileScoringDigest(profile: CharacterRelicScoreProfile): string {
-  return sha256({
-    characterId: profile.characterId,
-    substatWeights: profile.substatWeights
-  });
-}
-
 export interface BenchmarkInputs {
   runtime: PlayerRuntimeData;
   model: CompiledProbabilityModel;
@@ -70,47 +63,12 @@ export function expectedBenchmarkIdentity(
   inputs: BenchmarkInputs,
   options: BenchmarkOptions
 ): BenchmarkExpectedIdentity {
-  const profiles = new Map(inputs.profiles.map((profile) => [profile.characterId, profile]));
-  const recommendations = new Map(
-    inputs.recommendations.map((recommendation) => [recommendation.avatarId, recommendation])
-  );
-  const profileDigests: Record<string, string> = {};
-  const distributions: BenchmarkExpectedIdentity['distributions'] = {};
-  for (const { characterId, slot } of options.cases) {
-    const profile = profiles.get(characterId);
-    const recommendation = recommendations.get(characterId);
-    if (
-      !profile ||
-      !recommendation ||
-      profile.metadata.reviewStatus !== 'reviewed' ||
-      profile.metadata.inputDigest !== profile.metadata.reviewedInputDigest
-    )
-      throw new Error(`[relic-score/benchmark] reviewed inputs required: ${characterId}`);
-    profileDigests[characterId] = profileScoringDigest(profile);
-    (distributions[characterId] ??= {})[slot] = benchmarkIdentityDigest({
-      characterId,
-      slot,
-      profile,
-      recommendation,
-      model: inputs.model,
-      budget: farmingBudget(options.N),
-      experimentCount: options.K,
-      seed: options.seed,
-      lens: 'B',
-      quantilePoints: 257
-    });
-  }
-  return {
-    budgetN: options.N,
-    experimentCount: options.K,
-    seed: options.seed,
-    farmingModelVersion: inputs.model.config.modelVersion,
-    profileDigests,
-    probabilityDigest: probabilityModelDigest(inputs.model.config),
-    referenceDigest: sha256(buildRelicScoreReferenceData(inputs.runtime)),
-    distributions,
+  return buildExpectedBenchmarkIdentity(inputs, {
+    ...options,
+    lens: 'B',
+    quantilePoints: BENCHMARK_QUANTILE_POINTS,
     allowPrototype: options.prototype
-  };
+  });
 }
 
 export interface GeneratedCase {
@@ -149,7 +107,7 @@ export function generateBenchmarkCases(
     const quantiles = encodeDenseQuantiles(samples, BENCHMARK_QUANTILE_POINTS);
     const error257 = measureQuantileError(samples, quantiles);
     const error513 =
-      error257.maxAbsoluteCdfError > 0.005
+      error257.maxAbsoluteCdfError > BENCHMARK_MAX_REPRESENTATION_ERROR
         ? measureQuantileError(samples, encodeDenseQuantiles(samples, 513))
         : undefined;
     const distribution: BenchmarkDistribution = {
@@ -183,8 +141,10 @@ export function generateBenchmarkCases(
       prototype: true,
       farmingModelVersion: expected.farmingModelVersion,
       generatorVersion: NATURAL_GENERATOR_VERSION,
+      benchmarkGeneratorVersion: BENCHMARK_GENERATOR_VERSION,
       prngVersion: PRNG_VERSION,
       seed: options.seed,
+      seedContract: BENCHMARK_SEED_CONTRACT,
       budgetN: options.N,
       experimentCount: options.K,
       selectionMode: BENCHMARK_SELECTION_MODE,

@@ -1,8 +1,14 @@
 import type { RelicSlot } from '../domain/types.js';
 
-/** Phase 1D source of truth. Benchmark generation remains an explicit maintenance task. */
+/** V1 source of truth. Benchmark generation remains an explicit maintenance task. */
 export const RELIC_SCORE_CONFIG = {
-  benchmark: { budgetN: 3, experimentCount: 65_536, seed: 123_456_789 },
+  benchmark: {
+    budgetN: 3,
+    experimentCount: 65_536,
+    seed: 123_456_789,
+    selectionMode: 'B',
+    quantilePoints: 257
+  },
   piece: { mainShare: 0.35, subShare: 0.65 },
   build: { statShare: 0.95, setShare: 0.05, maxSoftTargetBonus: 4, maxBreakpointPenalty: 8 },
   slots: { HEAD: 0.1, HAND: 0.1, BODY: 0.2, FOOT: 0.2, NECK: 0.2, OBJECT: 0.2 } as Record<
@@ -32,6 +38,8 @@ export function validateScoringConfig(): void {
     !Number.isSafeInteger(benchmark.seed) ||
     benchmark.seed < 0 ||
     benchmark.seed > 0xffffffff ||
+    benchmark.selectionMode !== 'B' ||
+    benchmark.quantilePoints !== 257 ||
     Math.abs(sum(Object.values(piece)) - 1) > 1e-12 ||
     Math.abs(build.statShare + build.setShare - 1) > 1e-12 ||
     Math.abs(sum(Object.values(slots)) - 1) > 1e-12 ||

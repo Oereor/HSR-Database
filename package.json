@@ -33,7 +33,7 @@
     "deploy:build:production": "tsx scripts/deployment/build.ts --profile=production",
     "deploy:build:clean": "tsx scripts/deployment/clean.ts",
     "upstreams:update": "tsx scripts/update-upstream-lock.ts",
-    "prebuild": "pnpm data:ensure && pnpm assets:ensure",
+    "prebuild": "pnpm data:ensure && pnpm assets:ensure && pnpm relic-score:benchmarks:validate",
     "build": "vite build",
     "preview": "vite preview",
     "check": "pnpm messages:check && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json && pnpm check:scripts && pnpm check:api",
@@ -56,6 +56,8 @@
     "relic-score:score": "tsx scripts/relic-score/score-command.ts",
     "relic-score:inspect": "tsx scripts/relic-score/score-command.ts --inspect=true",
     "relic-score:calibrate": "tsx scripts/relic-score/calibrate.ts",
+    "relic-score:benchmarks:generate": "tsx scripts/relic-score/benchmarks-generate.ts",
+    "relic-score:benchmarks:validate": "tsx scripts/relic-score/benchmarks-validate.ts",
     "messages:compile": "tsx scripts/messages.ts",
     "messages:check": "tsx scripts/messages.ts"
   },

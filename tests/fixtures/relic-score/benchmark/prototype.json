@@ -1,12 +1,14 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "benchmarkVersion": "lens-b-base-raw-v1",
   "metadata": {
     "prototype": true,
     "farmingModelVersion": "natural-5star-v1",
     "generatorVersion": "natural-plus15-v1",
+    "benchmarkGeneratorVersion": "lens-b-production-v1",
     "prngVersion": "mulberry32-v1",
     "seed": 123456789,
+    "seedContract": "same-seed-reset-per-distribution-v1",
     "budgetN": 10,
     "experimentCount": 512,
     "selectionMode": "best-base-raw-sub-utility",
@@ -15,13 +17,13 @@
     "profileDigests": {
       "1310": "9490bb70db7c6fa9d47af625ac6b6ccc0a8c3b3a2a1607817fe9105951ae0128"
     },
-    "probabilityDigest": "9ebe3219d183bd824cae85d9350f3b2b874909835a892a42dfd0a1a5907be657",
-    "referenceDigest": "2bad789131f440343e401eabf56251f9be0a16a0a06b3875e593d19d30a0ba51"
+    "probabilityDigest": "6dc4d60c271117bf293a61c591114a5cf87fa1f2d100edf4fd8b96c522846f42",
+    "referenceDigest": "242d3ce0b2a390bd5efbbbcff611765506493c8d2422c697c245eec8eacb97de"
   },
   "distributions": {
     "1310": {
       "HEAD": {
-        "identityDigest": "b2d34a2beefd3e2ae9dc104d19cfe72db8cc5053c523c0cd93d24f79cf6013e0",
+        "identityDigest": "d8e2b326007607c9ede64c0d98684c71d1be3fc08b3ef5c0f4d1f8c637d99ed4",
         "summary": {
           "mean": 4.388112215185016,
           "p25": 3.6249999938271604,
@@ -99,7 +101,7 @@
         ]
       },
       "HAND": {
-        "identityDigest": "a2daf315ced9d81adebd1cb88500f80161a5066e888f37b0657a532bcbbe720c",
+        "identityDigest": "63f343f01bd4bc56e749e366af8e6a447b3c78cac3e6e26675760a443d2fe888",
         "summary": {
           "mean": 4.388112215185016,
           "p25": 3.6249999938271604,
@@ -177,7 +179,7 @@
         ]
       },
       "BODY": {
-        "identityDigest": "0cbe6785044f86ee50bb416c0fb1d2f90e1ba8348d926e7b49593deb11a005dc",
+        "identityDigest": "8175d3fa8177fb8e8b10c567eaad6dbd6c4fca9c24f548210acb2b9f06ae2392",
         "summary": {
           "mean": 4.244264558856952,
           "p25": 3.4999999876543213,
@@ -255,7 +257,7 @@
         ]
       },
       "FOOT": {
-        "identityDigest": "f488b88eb792d9803eec8f14a5557d89f8e011b9c64d10a9cccbb96b60607182",
+        "identityDigest": "1c9f9d00c9995c8423a434faf1ee2cacd0104a1c0306a9d6cbb6cf5ac10fd17d",
         "summary": {
           "mean": 4.12219800250009,
           "p25": 3.4749999800925933,
@@ -333,7 +335,7 @@
         ]
       },
       "NECK": {
-        "identityDigest": "1b93b110b7dad5d8d5f3770808e71be3310f82d28bbbf4b02b763b5113611f53",
+        "identityDigest": "ccafba9fd99db6309b9af00389718ece3c94ad4749e0771e14a853773580271b",
         "summary": {
           "mean": 4.206531686874011,
           "p25": 3.4999999876543213,
@@ -411,7 +413,7 @@
         ]
       },
       "OBJECT": {
-        "identityDigest": "b19f15f543e1844118941c62833c5b7d7cece7218dae2d73713e79fcc669044d",
+        "identityDigest": "0031d5d35741192e776e19bea540824264554a3a6a54c52b89f841ec6d8fa2eb",
         "summary": {
           "mean": 4.058916753662321,
           "p25": 3.3749999814814817,

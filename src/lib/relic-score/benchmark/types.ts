@@ -1,8 +1,12 @@
 import type { RelicSlot } from '../../domain/types.js';
+import { RELIC_SCORE_CONFIG } from '../scoring-config.js';
 
-export const BENCHMARK_SCHEMA_VERSION = 1 as const;
+export const BENCHMARK_SCHEMA_VERSION = 2 as const;
 export const BENCHMARK_VERSION = 'lens-b-base-raw-v1' as const;
-export const BENCHMARK_QUANTILE_POINTS = 257 as const;
+export const BENCHMARK_GENERATOR_VERSION = 'lens-b-production-v1' as const;
+export const BENCHMARK_SEED_CONTRACT = 'same-seed-reset-per-distribution-v1' as const;
+export const BENCHMARK_MAX_REPRESENTATION_ERROR = 0.005 as const;
+export const BENCHMARK_QUANTILE_POINTS = RELIC_SCORE_CONFIG.benchmark.quantilePoints;
 export const BENCHMARK_SELECTION_MODE = 'best-base-raw-sub-utility' as const;
 
 export interface BenchmarkSummary {
@@ -25,8 +29,10 @@ export interface BenchmarkMetadata {
   prototype: boolean;
   farmingModelVersion: string;
   generatorVersion: string;
+  benchmarkGeneratorVersion: string;
   prngVersion: string;
   seed: number;
+  seedContract: typeof BENCHMARK_SEED_CONTRACT;
   budgetN: number;
   experimentCount: number;
   selectionMode: typeof BENCHMARK_SELECTION_MODE;
