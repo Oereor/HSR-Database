@@ -121,28 +121,28 @@ describe('Relic Score production benchmarks', () => {
     const scoring = RELIC_SCORE_CONFIG as unknown as {
       piece: { mainShare: number };
       build: { statShare: number; maxSoftTargetBonus: number; maxBreakpointPenalty: number };
-      sets: { recommended4pcHalf: number };
+      sets: { cavernOnePair: number };
     };
     const original = {
       mainShare: scoring.piece.mainShare,
       statShare: scoring.build.statShare,
       bonus: scoring.build.maxSoftTargetBonus,
       penalty: scoring.build.maxBreakpointPenalty,
-      halfSet: scoring.sets.recommended4pcHalf
+      onePair: scoring.sets.cavernOnePair
     };
     try {
       scoring.piece.mainShare = 0.4;
       scoring.build.statShare = 0.9;
       scoring.build.maxSoftTargetBonus = 6;
       scoring.build.maxBreakpointPenalty = 10;
-      scoring.sets.recommended4pcHalf = 0.25;
+      scoring.sets.cavernOnePair = 0.25;
       expect(benchmarkIdentityDigest(input)).toBe(digest);
     } finally {
       scoring.piece.mainShare = original.mainShare;
       scoring.build.statShare = original.statShare;
       scoring.build.maxSoftTargetBonus = original.bonus;
       scoring.build.maxBreakpointPenalty = original.penalty;
-      scoring.sets.recommended4pcHalf = original.halfSet;
+      scoring.sets.cavernOnePair = original.onePair;
     }
   });
 

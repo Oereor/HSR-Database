@@ -185,25 +185,55 @@ describe('Relic Score scoring', () => {
     expect(result.pieces.every((piece) => piece.status === 'available')).toBe(true);
   });
 
-  it('does not promote two different recommended cavern 2-piece sets to a 4-piece match', () => {
+  it('scores actual set structures and only matches recommended complete sets', () => {
     const recommendation = structuredClone(sources.recommendation!);
     recommendation.cavernSetIds = ['A', 'B'];
-    recommendation.planarSetIds = ['P'];
+    recommendation.planarSetIds = ['P', 'Q'];
     const relics = structuredClone(fixture.relics);
-    relics.slice(0, 4).forEach((piece, i) => {
-      piece.setId = i < 2 ? 'A' : 'B';
-    });
     relics.slice(4).forEach((piece) => {
       piece.setId = 'P';
     });
-    const result = evaluateSetIntegrity(relics, recommendation);
-    expect(result.cavern).toBe(0.5);
-    expect(result.planar).toBe(1);
-    expect(result.total).toBeCloseTo((2 / 3) * 0.5 + 1 / 3);
-    relics.slice(0, 4).forEach((piece) => {
-      piece.setId = 'A';
-    });
-    expect(evaluateSetIntegrity(relics, recommendation).cavern).toBe(1);
+    const cavernCases: Array<{
+      sets: string[];
+      integrity: number;
+      matched: string | null;
+    }> = [
+      { sets: ['A', 'A', 'A', 'A'], integrity: 1, matched: 'A' },
+      { sets: ['B', 'B', 'B', 'B'], integrity: 1, matched: 'B' },
+      { sets: ['C', 'C', 'C', 'C'], integrity: 0.8, matched: null },
+      { sets: ['A', 'A', 'B', 'B'], integrity: 0.5, matched: null },
+      { sets: ['C', 'C', 'D', 'D'], integrity: 0.5, matched: null },
+      { sets: ['A', 'A', 'A', 'C'], integrity: 0.2, matched: null },
+      { sets: ['C', 'C', 'C', 'A'], integrity: 0.2, matched: null },
+      { sets: ['A', 'A', 'C', 'D'], integrity: 0.2, matched: null },
+      { sets: ['C', 'C', 'D', 'E'], integrity: 0.2, matched: null },
+      { sets: ['A', 'C', 'D', 'E'], integrity: 0, matched: null }
+    ];
+    for (const { sets, integrity, matched } of cavernCases) {
+      relics.slice(0, 4).forEach((piece, index) => {
+        piece.setId = sets[index];
+      });
+      const result = evaluateSetIntegrity(relics, recommendation);
+      expect(result.cavern).toBe(integrity);
+      expect(result.matchedCavernSetId).toBe(matched);
+      expect(result.planar).toBe(1);
+      expect(result.total).toBeCloseTo((2 / 3) * integrity + 1 / 3);
+    }
+
+    for (const { sets, integrity, matched } of [
+      { sets: ['P', 'P'], integrity: 1, matched: 'P' },
+      { sets: ['Q', 'Q'], integrity: 1, matched: 'Q' },
+      { sets: ['R', 'R'], integrity: 0.5, matched: null },
+      { sets: ['P', 'R'], integrity: 0, matched: null }
+    ]) {
+      relics.slice(4).forEach((piece, index) => {
+        piece.setId = sets[index];
+      });
+      const result = evaluateSetIntegrity(relics, recommendation);
+      expect(result.planar).toBe(integrity);
+      expect(result.matchedPlanarSetId).toBe(matched);
+      expect(result.total).toBeCloseTo((2 / 3) * result.cavern + (1 / 3) * integrity);
+    }
   });
 
   it('scores configured breakpoints and no-breakpoint profiles', () => {

@@ -260,32 +260,43 @@ export function evaluateSetIntegrity(
 ): SetIntegrity {
   const cavern = pieces.filter((piece) => ['HEAD', 'HAND', 'BODY', 'FOOT'].includes(piece.slot));
   const planar = pieces.filter((piece) => ['NECK', 'OBJECT'].includes(piece.slot));
-  const count = (part: readonly NormalizedRelicPiece[], id: string) =>
-    part.filter((piece) => piece.setId === id).length;
-  const cavernScores = recommendation.cavernSetIds.map((id) => ({
-    id,
-    score: count(cavern, id) >= 4 ? 1 : count(cavern, id) >= 2 ? 0.5 : 0
-  }));
-  const planarScores = recommendation.planarSetIds.map((id) => ({
-    id,
-    score: count(planar, id) >= 2 ? 1 : 0
-  }));
-  const bestCavern = cavernScores.reduce((best, item) => (item.score > best.score ? item : best), {
-    id: '',
-    score: 0
-  });
-  const bestPlanar = planarScores.reduce((best, item) => (item.score > best.score ? item : best), {
-    id: '',
-    score: 0
-  });
+  const cavernCounts = new Map<string, number>();
+  for (const piece of cavern)
+    cavernCounts.set(piece.setId, (cavernCounts.get(piece.setId) ?? 0) + 1);
+  const fullCavernSetId = [...cavernCounts].find(([, count]) => count === 4)?.[0] ?? null;
+  const cavernPairCount = [...cavernCounts.values()].filter((count) => count >= 2).length;
+  const matchedCavernSetId =
+    fullCavernSetId && recommendation.cavernSetIds.includes(fullCavernSetId)
+      ? fullCavernSetId
+      : null;
+  const cavernIntegrity = fullCavernSetId
+    ? matchedCavernSetId
+      ? RELIC_SCORE_CONFIG.sets.cavernRecommended4pc
+      : RELIC_SCORE_CONFIG.sets.cavernOther4pc
+    : cavernPairCount === 2
+      ? RELIC_SCORE_CONFIG.sets.cavernTwoPairs
+      : cavernPairCount === 1
+        ? RELIC_SCORE_CONFIG.sets.cavernOnePair
+        : 0;
+  const fullPlanarSetId =
+    planar.length === 2 && planar[0].setId === planar[1].setId ? planar[0].setId : null;
+  const matchedPlanarSetId =
+    fullPlanarSetId && recommendation.planarSetIds.includes(fullPlanarSetId)
+      ? fullPlanarSetId
+      : null;
+  const planarIntegrity = fullPlanarSetId
+    ? matchedPlanarSetId
+      ? RELIC_SCORE_CONFIG.sets.planarRecommended2pc
+      : RELIC_SCORE_CONFIG.sets.planarOther2pc
+    : 0;
   return {
-    cavern: bestCavern.score,
-    planar: bestPlanar.score,
+    cavern: cavernIntegrity,
+    planar: planarIntegrity,
     total:
-      RELIC_SCORE_CONFIG.sets.cavernShare * bestCavern.score +
-      RELIC_SCORE_CONFIG.sets.planarShare * bestPlanar.score,
-    matchedCavernSetId: bestCavern.score ? bestCavern.id : null,
-    matchedPlanarSetId: bestPlanar.score ? bestPlanar.id : null
+      RELIC_SCORE_CONFIG.sets.cavernShare * cavernIntegrity +
+      RELIC_SCORE_CONFIG.sets.planarShare * planarIntegrity,
+    matchedCavernSetId,
+    matchedPlanarSetId
   };
 }
 

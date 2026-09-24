@@ -226,7 +226,13 @@ describe('Player Info relic scoring integration', () => {
       }
     );
     expect(broken.build.status).toBe('available');
-    if (broken.build.status === 'available') expect(broken.build.setIntegrity).toBeLessThan(1);
+    if (broken.build.status === 'available') {
+      expect(broken.build.setIntegrity).toBeCloseTo((2 / 3) * 0.2 + 1 / 3);
+      expect(broken.build.coreScore).toBeCloseTo(
+        100 * (0.95 * broken.build.statCompletion + 0.05 * broken.build.setIntegrity)
+      );
+      expect(broken.build.score).toBeCloseTo(broken.build.coreScore);
+    }
     expect(broken.pieces.BODY).toMatchObject({ status: 'available', mainCompletion: 0 });
   });
 

@@ -18,9 +18,12 @@ export const RELIC_SCORE_CONFIG = {
   sets: {
     cavernShare: 2 / 3,
     planarShare: 1 / 3,
-    recommended4pcFull: 1,
-    recommended4pcHalf: 0.5,
-    recommendedPlanarFull: 1
+    cavernRecommended4pc: 1,
+    cavernOther4pc: 0.8,
+    cavernTwoPairs: 0.5,
+    cavernOnePair: 0.2,
+    planarRecommended2pc: 1,
+    planarOther2pc: 0.5
   }
 } as const;
 
