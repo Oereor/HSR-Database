@@ -36,4 +36,4 @@
 
 阈值使用内部最终面板单位。比例属性 `1.0 = 100%`，例如击破特攻 `1.8 = 180%`；SPD、ATK、DEF 使用最终面板数值。`AttackAddedRatio`、`DefenceAddedRatio` 等 stat 是 canonical 属性键，阈值仍对应映射后的最终面板 ATK、DEF 数值。
 
-Soft Target 进度和 Hard Breakpoint 失败比例目前只作为 Build 结果输出。最终 bonus、penalty 及其分数强度仍待校准，不在 Character Profile 中设置。Piece Score 和 farming benchmark 只使用基础副词条权重。
+Soft Target 进度和 Hard Breakpoint 失败比例只在 Build 层转为 bonus、penalty；上限位于 `src/lib/relic-score/scoring-config.ts` 的集中配置，不在 Character Profile 中设置。Piece Score 和 farming benchmark 只使用基础副词条权重。Phase 1D 校准依据与维护命令见 `phase-1d-scoring-and-benchmark-calibration-report.md`。

@@ -5,6 +5,7 @@ import type { BenchmarkArtifact } from './benchmark/types.js';
 import type { CharacterRelicScoreProfile } from './profile-types.js';
 import type { RelicScoreReferenceData } from './reference.js';
 import { RELIC_SCORE_CONFIG, RELIC_SLOTS } from './scoring-config.js';
+import { coreBuildScore, finalBuildScore, pieceNormalized } from './scoring-math.js';
 import { relicStatSemantics, type RelicStatKey } from './stat-registry.js';
 import type { NormalizedRelicPiece, PlayerBuildInput } from './types.js';
 
@@ -149,9 +150,11 @@ export function scorePiece(
   )
     return { status: 'unavailable', reason: 'BENCHMARK_MISSING_OR_STALE' };
   const benchmarkPercentile = lookupBenchmarkPercentile(distribution, rawSubUtility);
-  const pieceNormalized =
-    RELIC_SCORE_CONFIG.piece.mainShare * mainCompletion +
-    RELIC_SCORE_CONFIG.piece.subShare * benchmarkPercentile;
+  const normalized = pieceNormalized(
+    mainCompletion,
+    benchmarkPercentile,
+    RELIC_SCORE_CONFIG.piece.mainShare
+  );
   return {
     status: 'available',
     value: {
@@ -159,8 +162,8 @@ export function scorePiece(
       mainCompletion,
       rawSubUtility,
       benchmarkPercentile,
-      pieceNormalized,
-      pieceScore: 100 * pieceNormalized,
+      pieceNormalized: normalized,
+      pieceScore: 100 * normalized,
       substats,
       effectiveHits: calculateEffectiveHits(piece, recommendation),
       benchmarkIdentity: distribution.identityDigest
@@ -293,7 +296,10 @@ export interface BuildScoreValue {
   hardBreakpointFailureRatio: number;
   hardBreakpoints: BreakpointExplanation[];
   setIntegrity: SetIntegrity;
-  finalModifierStatus: 'pending-calibration';
+  coreBuildScore: number;
+  softTargetBonus: number;
+  hardBreakpointPenalty: number;
+  finalBuildScore: number;
   effectiveHits: EffectiveHits;
 }
 
@@ -341,6 +347,17 @@ export function scoreBuild(input: PlayerBuildInput, sources: ScoringSources): Bu
   const soft = evaluateSoftTargets(profile, input.panel);
   if (soft.status !== 'available') return { status: soft.status, reason: soft.reason, pieces };
   const sets = evaluateSetIntegrity(input.relics, recommendation);
+  const core = coreBuildScore(base, sets.total, RELIC_SCORE_CONFIG.build.statShare);
+  const softTargetBonus = RELIC_SCORE_CONFIG.build.maxSoftTargetBonus * soft.value.progress;
+  const hardBreakpointPenalty =
+    RELIC_SCORE_CONFIG.build.maxBreakpointPenalty * breakpoint.value.failureRatio;
+  const finalScore = finalBuildScore(
+    core,
+    soft.value.progress,
+    breakpoint.value.failureRatio,
+    RELIC_SCORE_CONFIG.build.maxSoftTargetBonus,
+    RELIC_SCORE_CONFIG.build.maxBreakpointPenalty
+  );
   const hits = available.reduce(
     (acc, piece) => ({
       known: acc.known + piece.effectiveHits.known,
@@ -359,7 +376,10 @@ export function scoreBuild(input: PlayerBuildInput, sources: ScoringSources): Bu
       hardBreakpointFailureRatio: breakpoint.value.failureRatio,
       hardBreakpoints: breakpoint.value.entries,
       setIntegrity: sets,
-      finalModifierStatus: 'pending-calibration',
+      coreBuildScore: core,
+      softTargetBonus,
+      hardBreakpointPenalty,
+      finalBuildScore: finalScore,
       effectiveHits: {
         status: hits.unknown ? (hits.known ? 'partial' : 'unavailable') : 'exact',
         known: hits.known,

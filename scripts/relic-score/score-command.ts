@@ -75,7 +75,10 @@ else
         softTargetProgress: result.build?.softTargetProgress,
         hardBreakpointFailureRatio: result.build?.hardBreakpointFailureRatio,
         T: result.build?.setIntegrity.total,
-        finalModifierStatus: result.build?.finalModifierStatus,
+        coreBuildScore: result.build?.coreBuildScore,
+        softTargetBonus: result.build?.softTargetBonus,
+        hardBreakpointPenalty: result.build?.hardBreakpointPenalty,
+        finalBuildScore: result.build?.finalBuildScore,
         effectiveHits: result.build?.effectiveHits
       },
       null,

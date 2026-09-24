@@ -1,20 +1,32 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
+import { gzipSync } from 'node:zlib';
+import { format } from 'prettier';
 import type { RelicSlot } from '../../src/lib/domain/types.js';
 import { lookupBenchmarkPercentile } from '../../src/lib/relic-score/benchmark/lookup.js';
 import { validateBenchmarkArtifact } from '../../src/lib/relic-score/benchmark/validate.js';
-import { buildRelicScoreReferenceData } from '../../src/lib/relic-score/reference.js';
-import { scoreBuild, scorePiece } from '../../src/lib/relic-score/score.js';
-import type { PlayerBuildInput } from '../../src/lib/relic-score/types.js';
 import { generateNaturalRelic } from '../../src/lib/relic-score/farming/generate-natural-relic.js';
 import { createSeededRng } from '../../src/lib/relic-score/farming/prng.js';
 import { rawSubUtility } from '../../src/lib/relic-score/farming/prototype.js';
+import {
+  RELIC_SCORE_CONFIG,
+  RELIC_SLOTS,
+  validateScoringConfig
+} from '../../src/lib/relic-score/scoring-config.js';
+import {
+  coreBuildScore,
+  finalBuildScore,
+  pieceNormalized
+} from '../../src/lib/relic-score/scoring-math.js';
+import { evaluateBreakpoints, evaluateSoftTargets } from '../../src/lib/relic-score/score.js';
 import {
   evaluateQuantileGate,
   generateBenchmarkCases,
   type BenchmarkOptions
 } from './benchmark-core.js';
+import { maxKnotDrift, parseCandidateList, quantile } from './calibration-core.js';
 import { loadScoringInputs } from './scoring-inputs.js';
 
+const commandStarted = performance.now();
 const args = Object.fromEntries(
   process.argv.slice(2).map((arg) => {
     const match = /^--([a-zA-Z]+)=(.+)$/.exec(arg);
@@ -22,233 +34,361 @@ const args = Object.fromEntries(
     return [match[1], match[2]];
   })
 );
-const int = (name: string, fallback: number) => {
-  const value = args[name] === undefined ? fallback : Number(args[name]);
-  if (!Number.isSafeInteger(value) || value < (name === 'seed' ? 0 : 1))
-    throw new Error(`[relic-score/calibrate] invalid ${name}`);
-  return value;
-};
-const mode = args.mode ?? 'gate';
-if (!['gate', 'n', 'k', 'fixture'].includes(mode))
-  throw new Error('[relic-score/calibrate] invalid mode');
-const seed = int('seed', 123456789);
-const cases = (
-  args.cases ??
-  '1002:BODY,1222:FOOT,1005:NECK,1101:HEAD,1001:OBJECT,1310:HAND,1002:NECK,1222:OBJECT,1005:BODY,1101:HAND'
-)
-  .split(',')
-  .map((value) => {
-    const [characterId, slot] = value.split(':');
-    if (!characterId || !['HEAD', 'HAND', 'BODY', 'FOOT', 'NECK', 'OBJECT'].includes(slot))
-      throw new Error('[relic-score/calibrate] invalid case');
-    return { characterId, slot: slot as RelicSlot };
-  });
+for (const key of Object.keys(args))
+  if (!['mode', 'n', 'N', 'k', 'K', 'alpha', 'seed', 'cases', 'out'].includes(key))
+    throw new Error(`[relic-score/calibrate] unknown option ${key}`);
+const mode = args.mode ?? 'all';
+validateScoringConfig();
+if (!['all', 'representation', 'stability', 'matrix', 'modifiers', 'fixture'].includes(mode))
+  throw new Error(`[relic-score/calibrate] invalid mode ${mode}`);
+const seed = Number(args.seed ?? RELIC_SCORE_CONFIG.benchmark.seed);
+if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff)
+  throw new Error('[relic-score/calibrate] invalid seed');
+const Ns = parseCandidateList(
+  args.n ??
+    (mode === 'fixture' ? undefined : args.N) ??
+    (mode === 'all' || mode === 'matrix'
+      ? '1,3,5,7,9'
+      : String(RELIC_SCORE_CONFIG.benchmark.budgetN)),
+  'n'
+);
+const Ks = parseCandidateList(
+  args.k ??
+    args.K ??
+    (mode === 'all' || mode === 'stability'
+      ? '16384,32768,65536'
+      : mode === 'fixture'
+        ? '512'
+        : '8192'),
+  'k'
+);
+const alphas = parseCandidateList(args.alpha ?? '0.2,0.25,0.3,0.35,0.4', 'alpha');
+const defaultCases =
+  '1002:BODY,1002:NECK,1222:FOOT,1222:OBJECT,1005:BODY,1005:NECK,1101:HEAD,1101:HAND,1104:OBJECT,1409:FOOT';
+const cases = (args.cases ?? defaultCases).split(',').map((value) => {
+  const [characterId, slot] = value.split(':');
+  if (!characterId || !RELIC_SLOTS.includes(slot as RelicSlot))
+    throw new Error(`[relic-score/calibrate] invalid case ${value}`);
+  return { characterId, slot: slot as RelicSlot };
+});
 const inputs = await loadScoringInputs();
-const run = (N: number, K: number, selectedCases = cases) => {
-  const options: BenchmarkOptions = { N, K, seed, cases: selectedCases, prototype: true };
+const profiles = new Map(inputs.profiles.map((item) => [item.characterId, item]));
+const recommendations = new Map(inputs.recommendations.map((item) => [item.avatarId, item]));
+const run = (N: number, K: number, runSeed: number, selected = cases) => {
+  const options: BenchmarkOptions = { N, K, seed: runSeed, cases: selected, prototype: true };
   const generated = generateBenchmarkCases(inputs, options);
   validateBenchmarkArtifact(generated.artifact, generated.expected);
   return generated;
 };
-const output: Record<string, unknown> = {
-  mode,
-  seed,
-  cases,
-  probabilityVersion: inputs.model.config.modelVersion
-};
-if (mode === 'gate') {
-  const N = int('N', 50),
-    K = int('K', 32768);
-  if (K < 16384) throw new Error('[relic-score/calibrate] gate requires K >= 16384');
-  const generated = run(N, K);
-  const verificationSeed = (seed ^ 0x9e3779b9) >>> 0;
-  const verification = generateBenchmarkCases(inputs, {
-    N,
-    K: 16384,
-    seed: verificationSeed,
-    cases,
-    prototype: true
-  });
-  output.N = N;
-  output.K = K;
-  output.verificationK = 16384;
-  output.verificationSeed = verificationSeed;
-  output.validation = generated.cases.map((item, index) => {
-    const gate = evaluateQuantileGate(item.samples, verification.cases[index].samples);
+const quality = [
+  ['poor', 0.05],
+  ['below-average', 0.2],
+  ['average', 0.5],
+  ['good', 0.8],
+  ['excellent', 0.95],
+  ['extreme', 0.995]
+] as const;
+type HeldPiece = { utility: number; mainCompletion: number; usefulDensity: number };
+const heldoutSeed = (seed ^ 0xa5a5a5a5) >>> 0;
+const corpus = new Map<
+  string,
+  { correct: Record<string, HeldPiece>; wrong: Record<string, HeldPiece> }
+>();
+function held(characterId: string, slot: RelicSlot) {
+  const key = `${characterId}:${slot}`;
+  if (corpus.has(key)) return corpus.get(key)!;
+  const profile = profiles.get(characterId)!;
+  const recommendation = recommendations.get(characterId)!;
+  const mains =
+    slot === 'HEAD' || slot === 'HAND'
+      ? inputs.model.mainBySlot[slot].map((item) => item.key)
+      : (recommendation.mainStatOptions.find((item) => item.slot === slot)?.propertyTypes ?? []);
+  const accepted = new Set(mains);
+  const rng = createSeededRng(
+    (heldoutSeed + Number(characterId) * 17 + RELIC_SLOTS.indexOf(slot)) >>> 0
+  );
+  const all = Array.from({ length: 4096 }, () => {
+    const piece = generateNaturalRelic(slot, inputs.model, rng);
     return {
-      characterId: item.characterId,
-      slot: item.slot,
-      N,
-      K,
-      verificationK: 16384,
-      maxCdfError: gate.error257.maxAbsoluteCdfError,
-      meanCdfError: gate.error257.meanAbsoluteCdfError,
-      maxRankError: gate.error257.maxSampleRankError,
-      pass257: gate.pass257,
-      error513: gate.error513?.maxAbsoluteCdfError,
-      runtimeMs: item.runtimeMs + verification.cases[index].runtimeMs
+      utility: rawSubUtility(piece, profile, inputs.model),
+      mainCompletion: accepted.has(piece.mainStat.key) ? 1 : 0,
+      usefulDensity:
+        piece.substats.filter((sub) => (profile.substatWeights[sub.key] ?? 0) > 0).length /
+        piece.substats.length
     };
   });
-  output.gatePassed = (output.validation as Array<{ pass257: boolean }>).every(
-    (item) => item.pass257
-  );
-} else if (mode === 'n') {
-  const K = int('K', 8192);
-  const Ns = (args.Ns ?? '10,25,50,100,200').split(',').map(Number);
-  if (Ns.some((N) => !Number.isSafeInteger(N) || N <= 0))
-    throw new Error('[relic-score/calibrate] invalid Ns');
-  const reference = buildRelicScoreReferenceData(inputs.runtime);
-  const fixture = JSON.parse(
-    await readFile(
-      args.fixture ?? 'tests/fixtures/relic-score/player-builds/complete-five-star.json',
-      'utf8'
-    )
-  ) as PlayerBuildInput;
-  const quality = ['poor', 'below-average', 'average', 'good', 'excellent', 'extreme'] as const;
-  const quantilePositions = [0.1, 0.25, 0.5, 0.75, 0.9, 0.99];
-  const fixedCorpus = Object.fromEntries(
-    cases.map(({ characterId, slot }) => {
-      const profile = inputs.profiles.find((item) => item.characterId === characterId)!;
-      const rng = createSeededRng(
-        (seed +
-          Number(characterId) * 17 +
-          ['HEAD', 'HAND', 'BODY', 'FOOT', 'NECK', 'OBJECT'].indexOf(slot)) >>>
-          0
-      );
-      const values = Array.from({ length: 2048 }, () =>
-        rawSubUtility(generateNaturalRelic(slot, inputs.model, rng), profile, inputs.model)
-      ).sort((a, b) => a - b);
-      return [
-        `${characterId}:${slot}`,
-        quantilePositions.map((p) => values[Math.floor(p * (values.length - 1))])
-      ];
-    })
-  ) as Record<string, number[]>;
-  output.K = K;
-  output.Ns = Ns;
-  output.sensitivity = Ns.map((N) => {
-    const generated = run(N, K);
-    const pieces = generated.cases.map((item) => {
-      const fixturePiece =
-        fixture.characterId === item.characterId
-          ? fixture.relics.find((piece) => piece.slot === item.slot)
-          : undefined;
-      const fixed = fixedCorpus[`${item.characterId}:${item.slot}`];
-      const sample = fixed[2];
-      const percentile = lookupBenchmarkPercentile(
-        item.distribution,
-        fixturePiece
-          ? fixturePiece.substats.reduce(
-              (sum, sub) =>
-                sum +
-                (sub.value / reference.subHighRoll[sub.key]!) *
-                  (inputs.profiles.find((profile) => profile.characterId === item.characterId)!
-                    .substatWeights[sub.key] ?? 0),
-              0
-            )
-          : sample
-      );
-      const pieceScore = fixturePiece
-        ? scorePiece(fixturePiece, item.characterId, {
-            profile: inputs.profiles.find((profile) => profile.characterId === item.characterId),
-            recommendation: inputs.recommendations.find((r) => r.avatarId === item.characterId),
-            reference,
-            benchmark: generated.artifact,
-            benchmarkExpected: generated.expected
-          })
-        : undefined;
+  const select = (main: number) => {
+    const sorted = all
+      .filter((item) => item.mainCompletion === main)
+      .sort((a, b) => a.utility - b.utility);
+    return Object.fromEntries(
+      quality.map(([label, p]) => [label, sorted.length ? quantile(sorted, p) : undefined])
+    ) as Record<string, HeldPiece>;
+  };
+  const result = { correct: select(1), wrong: select(0) };
+  corpus.set(key, result);
+  return result;
+}
+const output: Record<string, unknown> = {
+  phase: '1D',
+  mode,
+  seed,
+  heldoutSeed,
+  Ns,
+  Ks,
+  alphas,
+  cases,
+  corpusQualityQuantiles: Object.fromEntries(quality),
+  modelVersion: inputs.model.config.modelVersion
+};
+
+if (mode === 'fixture') {
+  if (!args.out) throw new Error('[relic-score/calibrate] --out required for fixture');
+  const selected = RELIC_SLOTS.map((slot) => ({ characterId: '1310', slot }));
+  const N = Number(args.N ?? 10);
+  const generated = run(N, Ks[0], seed, selected);
+  await writeFile(args.out, await format(JSON.stringify(generated.artifact), { parser: 'json' }));
+  console.log(JSON.stringify({ mode, N, K: Ks[0], seed, out: args.out }));
+} else {
+  if (mode === 'all' || mode === 'representation') {
+    const N = Ns.includes(RELIC_SCORE_CONFIG.benchmark.budgetN)
+      ? RELIC_SCORE_CONFIG.benchmark.budgetN
+      : Ns[0];
+    const K = Ks.includes(32768) ? 32768 : Ks[0];
+    if (K < 16384) throw new Error('[relic-score/calibrate] representation requires k >= 16384');
+    output.representation = run(N, K, seed).cases.map((item) => {
+      const gate = evaluateQuantileGate(item.samples);
       return {
         characterId: item.characterId,
         slot: item.slot,
-        fixture: fixturePiece ? 'existing-normalized' : 'held-out-median',
-        rawSubUtility: pieceScore?.status === 'available' ? pieceScore.value.rawSubUtility : sample,
-        percentile,
-        mainCompletion: pieceScore?.status === 'available' ? pieceScore.value.mainCompletion : null,
-        pieceScore: pieceScore?.status === 'available' ? pieceScore.value.pieceScore : null,
-        quality: Object.fromEntries(
-          quality.map((label, index) => [
-            label,
-            lookupBenchmarkPercentile(item.distribution, fixed[index])
-          ])
-        ),
-        p50: item.distribution.summary.p50,
-        p90: item.distribution.summary.p90,
-        p99: item.distribution.summary.p99,
+        N,
+        K,
+        seed,
+        quantilePoints: 257,
+        maxRepresentationError: gate.error257.maxAbsoluteCdfError,
+        meanRepresentationError: gate.error257.meanAbsoluteCdfError,
+        maxRankError: gate.error257.maxSampleRankError,
+        pass: gate.pass257,
+        error513: gate.error513?.maxAbsoluteCdfError ?? null,
         runtimeMs: item.runtimeMs
       };
     });
-    const build =
-      fixture.characterId &&
-      generated.artifact.distributions[fixture.characterId] &&
-      Object.keys(generated.artifact.distributions[fixture.characterId]).length === 6
-        ? scoreBuild(fixture, {
-            profile: inputs.profiles.find((p) => p.characterId === fixture.characterId),
-            recommendation: inputs.recommendations.find((r) => r.avatarId === fixture.characterId),
-            reference,
-            benchmark: generated.artifact,
-            benchmarkExpected: generated.expected
-          })
-        : null;
-    return {
-      N,
-      pieces,
-      build: build?.build
-        ? {
-            S_base: build.build.statCompletion.base,
-            softTargetProgress: build.build.softTargetProgress,
-            hardBreakpointFailureRatio: build.build.hardBreakpointFailureRatio,
-            T: build.build.setIntegrity.total,
-            finalModifierStatus: build.build.finalModifierStatus
-          }
-        : null
-    };
-  });
-} else if (mode === 'k') {
-  const N = int('N', 50);
-  const Ks = (args.Ks ?? '8192,16384,32768').split(',').map(Number);
-  if (Ks.some((K) => !Number.isSafeInteger(K) || K <= 0))
-    throw new Error('[relic-score/calibrate] invalid Ks');
-  const selectedCases = cases.slice(0, 3);
-  const runs = Ks.map((K) => ({ K, generated: run(N, K, selectedCases) }));
-  const largest = runs[runs.length - 1].generated;
-  output.N = N;
-  output.Ks = Ks;
-  output.convergence = runs.flatMap(({ K, generated }) =>
-    generated.cases.map((item, index) => {
-      const baseline = largest.cases[index].distribution;
-      const queries = baseline.quantiles;
-      return {
-        K,
-        characterId: item.characterId,
-        slot: item.slot,
-        p50Drift: Math.abs(item.distribution.summary.p50 - baseline.summary.p50),
-        p90Drift: Math.abs(item.distribution.summary.p90 - baseline.summary.p90),
-        p99Drift: Math.abs(item.distribution.summary.p99 - baseline.summary.p99),
-        maxLookupDrift: Math.max(
-          ...queries.map((value) =>
-            Math.abs(
-              lookupBenchmarkPercentile(item.distribution, value) -
-                lookupBenchmarkPercentile(baseline, value)
+  }
+  if (mode === 'all' || mode === 'stability') {
+    const N = Ns.includes(RELIC_SCORE_CONFIG.benchmark.budgetN)
+      ? RELIC_SCORE_CONFIG.benchmark.budgetN
+      : Ns[0];
+    const runSeeds = [seed, (seed ^ 0x9e3779b9) >>> 0, (seed ^ 0x85ebca6b) >>> 0];
+    const referenceK = Math.max(...Ks);
+    const runs = runSeeds.flatMap((runSeed) =>
+      Ks.map((K) => ({ runSeed, K, generated: run(N, K, runSeed) }))
+    );
+    const reference = runs.find((item) => item.runSeed === seed && item.K === referenceK)!;
+    output.stability = runs.flatMap(({ runSeed, K, generated }) =>
+      generated.cases.map((item, index) => {
+        const baseline = reference.generated.cases[index].distribution;
+        const s = item.distribution.summary,
+          b = baseline.summary;
+        const group = held(item.characterId, item.slot).correct;
+        const queries = [group.poor, group.average, group.excellent, group.extreme]
+          .filter((piece): piece is HeldPiece => !!piece)
+          .map((piece) => piece.utility);
+        return {
+          N,
+          K,
+          seed: runSeed,
+          characterId: item.characterId,
+          slot: item.slot,
+          p50Drift: Math.abs(s.p50 - b.p50),
+          p90Drift: Math.abs(s.p90 - b.p90),
+          p95Drift: Math.abs(s.p95 - b.p95),
+          p99Drift: Math.abs(s.p99 - b.p99),
+          maxKnotDrift: maxKnotDrift(item.distribution.quantiles, baseline.quantiles),
+          maxFixedLookupDrift: Math.max(
+            ...queries.map((value) =>
+              Math.abs(
+                lookupBenchmarkPercentile(item.distribution, value) -
+                  lookupBenchmarkPercentile(baseline, value)
+              )
             )
-          )
-        ),
-        runtimeMs: item.runtimeMs
-      };
-    })
-  );
-} else {
-  const N = int('N', 10),
-    K = int('K', 512);
-  const selectedCases = cases.filter((item) => item.characterId === '1310');
-  if (selectedCases.length !== 6)
-    throw new Error('[relic-score/calibrate] fixture requires six 1310 slots');
-  const generated = run(N, K, selectedCases);
-  output.N = N;
-  output.K = K;
-  output.fixture = true;
-  if (!args.out) throw new Error('[relic-score/calibrate] --out required for fixture');
-  await writeFile(args.out, `${JSON.stringify(generated.artifact, null, 2)}\n`);
+          ),
+          runtimeMs: item.runtimeMs
+        };
+      })
+    );
+    const artifactJson = JSON.stringify(reference.generated.artifact);
+    const count = reference.generated.cases.length;
+    const meanRuntime =
+      reference.generated.cases.reduce((sum, item) => sum + item.runtimeMs, 0) / count;
+    output.productionProjection = {
+      N,
+      K: referenceK,
+      quantilePoints: 257,
+      distributions: 582,
+      generatedPieces: 582 * N * referenceK,
+      runtimeMs: meanRuntime * 582,
+      roughQuantileBytes: 582 * 257 * 8,
+      rawJsonBytesApprox: (Buffer.byteLength(artifactJson) / count) * 582,
+      gzipBytesApprox: (gzipSync(artifactJson).length / count) * 582,
+      basis: 'linear extrapolation from representative prototype artifact and simulation runtimes'
+    };
+  }
+  if (mode === 'all' || mode === 'matrix') {
+    const characters = ['1002', '1222', '1005', '1101', '1104', '1409'];
+    const selected = characters.flatMap((characterId) =>
+      RELIC_SLOTS.map((slot) => ({ characterId, slot }))
+    );
+    const K = Ks.includes(8192) ? 8192 : Math.min(...Ks);
+    const pieceRows: Array<Record<string, unknown>> = [];
+    const buildRows: Array<Record<string, unknown>> = [];
+    const runs: Array<{ N: number; K: number; runtimeMs: number }> = [];
+    for (const N of Ns) {
+      const generated = run(N, K, seed, selected);
+      runs.push({
+        N,
+        K,
+        runtimeMs: generated.cases.reduce((sum, item) => sum + item.runtimeMs, 0)
+      });
+      for (const item of generated.cases) {
+        for (const [mainCase, group] of Object.entries(held(item.characterId, item.slot))) {
+          for (const [label] of quality) {
+            const piece = group[label];
+            if (!piece) continue;
+            const percentile = lookupBenchmarkPercentile(item.distribution, piece.utility);
+            for (const alpha of alphas)
+              pieceRows.push({
+                N,
+                K,
+                seed,
+                alpha,
+                characterId: item.characterId,
+                slot: item.slot,
+                fixtureQuality: label,
+                mainCase,
+                rawSubUtility: piece.utility,
+                usefulDensity: piece.usefulDensity,
+                mainCompletion: piece.mainCompletion,
+                benchmarkPercentile: percentile,
+                pieceScore: 100 * pieceNormalized(piece.mainCompletion, percentile, alpha)
+              });
+          }
+        }
+      }
+      for (const characterId of characters)
+        for (const [label] of quality)
+          for (const alpha of alphas) {
+            const S = RELIC_SLOTS.reduce((sum, slot) => {
+              const piece = held(characterId, slot).correct[label];
+              const distribution = generated.artifact.distributions[characterId][slot]!;
+              return (
+                sum +
+                RELIC_SCORE_CONFIG.slots[slot] *
+                  pieceNormalized(
+                    piece.mainCompletion,
+                    lookupBenchmarkPercentile(distribution, piece.utility),
+                    alpha
+                  )
+              );
+            }, 0);
+            for (const T of [0, 2 / 3, 1])
+              buildRows.push({
+                N,
+                K,
+                seed,
+                alpha,
+                characterId,
+                buildFixture: label,
+                S,
+                T,
+                coreBuildScore: coreBuildScore(S, T, RELIC_SCORE_CONFIG.build.statShare)
+              });
+          }
+    }
+    output.matrix = { K, characters, runs, pieceRows, buildRows };
+  }
+  if (mode === 'all' || mode === 'modifiers') {
+    const N = Ns.includes(RELIC_SCORE_CONFIG.benchmark.budgetN)
+      ? RELIC_SCORE_CONFIG.benchmark.budgetN
+      : Ns[0];
+    const K = Ks.includes(8192) ? 8192 : Math.min(...Ks);
+    const selected = ['1222', '1409'].flatMap((characterId) =>
+      RELIC_SLOTS.map((slot) => ({ characterId, slot }))
+    );
+    const generated = run(N, K, seed, selected);
+    const coreFor = (characterId: string, label: string) => {
+      const S = RELIC_SLOTS.reduce((sum, slot) => {
+        const piece = held(characterId, slot).correct[label];
+        const distribution = generated.artifact.distributions[characterId][slot]!;
+        return (
+          sum +
+          RELIC_SCORE_CONFIG.slots[slot] *
+            pieceNormalized(
+              piece.mainCompletion,
+              lookupBenchmarkPercentile(distribution, piece.utility),
+              RELIC_SCORE_CONFIG.piece.mainShare
+            )
+        );
+      }, 0);
+      return coreBuildScore(S, 1, RELIC_SCORE_CONFIG.build.statShare);
+    };
+    const softProfile = profiles.get('1222')!;
+    const target = softProfile.softTargets[0];
+    const softRows = [2, 4, 6].flatMap((maxBonus) =>
+      ['average', 'good', 'excellent'].flatMap((label) =>
+        [0, 0.25, 0.5, 0.75, 1].map((expectedProgress) => {
+          const panel = {
+            break_dmg:
+              target.minimumThreshold +
+              expectedProgress * (target.maximumThreshold - target.minimumThreshold)
+          };
+          const result = evaluateSoftTargets(softProfile, panel);
+          if (result.status !== 'available')
+            throw new Error('[relic-score/calibrate] soft panel unavailable');
+          const core = coreFor('1222', label);
+          const finalScore = finalBuildScore(core, result.value.progress, 0, maxBonus, 0);
+          return {
+            maxBonus,
+            progress: result.value.progress,
+            buildFixture: label,
+            coreBuildScore: core,
+            finalScore,
+            delta: finalScore - core
+          };
+        })
+      )
+    );
+    const bpProfile = profiles.get('1409')!;
+    const threshold = bpProfile.hardBreakpoints[0].threshold;
+    const penaltyRows = [5, 8, 10].flatMap((maxPenalty) =>
+      ['average', 'good', 'excellent'].flatMap((label) =>
+        [threshold - 0.001, threshold, threshold + 0.001].map((spd) => {
+          const result = evaluateBreakpoints(bpProfile, { spd });
+          if (result.status !== 'available')
+            throw new Error('[relic-score/calibrate] breakpoint panel unavailable');
+          const core = coreFor('1409', label);
+          const finalScore = finalBuildScore(core, 0, result.value.failureRatio, 0, maxPenalty);
+          return {
+            maxPenalty,
+            panelValue: spd,
+            failureRatio: result.value.failureRatio,
+            buildFixture: label,
+            coreBuildScore: core,
+            finalScore,
+            delta: finalScore - core
+          };
+        })
+      )
+    );
+    output.modifiers = {
+      N,
+      K,
+      seed,
+      simulationRuntimeMs: generated.cases.reduce((sum, item) => sum + item.runtimeMs, 0),
+      softRows,
+      penaltyRows
+    };
+  }
+  output.totalRuntimeMs = performance.now() - commandStarted;
+  if (args.out) await writeFile(args.out, await format(JSON.stringify(output), { parser: 'json' }));
+  else console.log(JSON.stringify(output, null, 2));
 }
-const serialized = `${JSON.stringify(output, null, 2)}\n`;
-if (args.out && mode !== 'fixture') await writeFile(args.out, serialized);
-else console.log(serialized);

@@ -86,10 +86,9 @@ describe('Phase 1C benchmark contract', () => {
     expect(lookupBenchmarkPercentile(artifact.distributions['1310'].HEAD!, -100)).toBe(0);
   });
 
-  it('measures a failing 257 gate explicitly and compares 513', () => {
-    const train = Array.from({ length: 16384 }, (_, index) => (index < 8192 ? 0 : 1));
-    const verify = Array.from({ length: 16384 }, (_, index) => (index < 8500 ? 0 : 1));
-    const gate = evaluateQuantileGate(train, verify);
+  it('measures same-sample representation and compares 513 on failure', () => {
+    const train = Array.from({ length: 16 }, (_, index) => index);
+    const gate = evaluateQuantileGate(train);
     expect(gate.pass257).toBe(false);
     expect(gate.error257.maxAbsoluteCdfError).toBeGreaterThan(0.005);
     expect(gate.error513).not.toBeNull();
@@ -104,7 +103,9 @@ describe('Phase 1C scoring', () => {
     expect(build.pieces).toHaveLength(6);
     for (const piece of build.pieces) {
       expect(piece.pieceScore).toBeCloseTo(
-        100 * (0.3 * piece.mainCompletion + 0.7 * piece.benchmarkPercentile)
+        100 *
+          (RELIC_SCORE_CONFIG.piece.mainShare * piece.mainCompletion +
+            RELIC_SCORE_CONFIG.piece.subShare * piece.benchmarkPercentile)
       );
       expect(piece.rawSubUtility).toBeCloseTo(
         piece.substats.reduce((sum, sub) => sum + sub.weightedContribution, 0)
@@ -120,7 +121,10 @@ describe('Phase 1C scoring', () => {
     );
     expect(build.softTargetProgress).toBe(0);
     expect(build.hardBreakpointFailureRatio).toBe(0);
-    expect(build.finalModifierStatus).toBe('pending-calibration');
+    expect(build.coreBuildScore).toBeCloseTo(
+      100 * (0.95 * build.statCompletion.base + 0.05 * build.setIntegrity.total)
+    );
+    expect(build.finalBuildScore).toBeCloseTo(build.coreBuildScore);
     expect(build.effectiveHits.total).toBe(27);
   });
 

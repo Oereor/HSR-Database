@@ -33,22 +33,16 @@ import { stableSerialize } from './profiles.js';
 export const sha256 = (value: unknown): string =>
   createHash('sha256').update(stableSerialize(value)).digest('hex');
 
-/** Fit and verification samples are separate, avoiding an in-sample 1/256 error ceiling. */
-export function evaluateQuantileGate(
-  trainingSorted: readonly number[],
-  verificationSorted: readonly number[]
-) {
-  const error257 = measureQuantileError(
-    verificationSorted,
-    encodeDenseQuantiles(trainingSorted, 257)
-  );
+/** Representation error compares the compressed table with its own training CDF. */
+export function evaluateQuantileGate(trainingSorted: readonly number[]) {
+  const error257 = measureQuantileError(trainingSorted, encodeDenseQuantiles(trainingSorted, 257));
   const pass257 = error257.maxAbsoluteCdfError <= 0.005;
   return {
     pass257,
     error257,
     error513: pass257
       ? null
-      : measureQuantileError(verificationSorted, encodeDenseQuantiles(trainingSorted, 513))
+      : measureQuantileError(trainingSorted, encodeDenseQuantiles(trainingSorted, 513))
   };
 }
 export function profileScoringDigest(profile: CharacterRelicScoreProfile): string {
