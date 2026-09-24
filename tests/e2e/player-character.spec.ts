@@ -489,13 +489,27 @@ test('presents relic scores and target details without changing the Player reque
       const metrics = Array.from(strip.children);
       const primaryBounds = primary.getBoundingClientRect();
       const stripBounds = strip.getBoundingClientRect();
+      const scoreValue = primary.querySelector('[data-player-build-score]')!;
+      const hits = primary.querySelector('[data-player-effective-hits]')!;
+      const hitsValue = hits.querySelector('strong')!;
       return {
+        primaryLeft: primaryBounds.left,
         primaryRight: primaryBounds.right,
         primaryBottom: primaryBounds.bottom,
         stripLeft: stripBounds.left,
         stripTop: stripBounds.top,
+        rightInset: element.getBoundingClientRect().right - stripBounds.right,
         stripInside: stripBounds.right <= element.getBoundingClientRect().right + 1,
         stripWrap: getComputedStyle(strip).flexWrap,
+        primaryDividerWidth: getComputedStyle(hits).borderInlineStartWidth,
+        scoreFontSize: parseFloat(getComputedStyle(scoreValue).fontSize),
+        hitsFontSize: parseFloat(getComputedStyle(hitsValue).fontSize),
+        breakdownFontSize: parseFloat(getComputedStyle(metrics[0].querySelector('dd')!).fontSize),
+        scoreColor: getComputedStyle(scoreValue).color,
+        hitsColor: getComputedStyle(hitsValue).color,
+        heroBottomGap: Math.abs(
+          scoreValue.getBoundingClientRect().bottom - hitsValue.getBoundingClientRect().bottom
+        ),
         metricTops: metrics.map((metric) => metric.getBoundingClientRect().top),
         dividerWidths: metrics.map((metric) => getComputedStyle(metric).borderInlineStartWidth),
         valuesLeftAligned: metrics.every((metric) => {
@@ -513,8 +527,12 @@ test('presents relic scores and target details without changing the Player reque
   expect(new Set(layout.metricTops).size).toBe(1);
   expect(layout.stripWrap).toBe('nowrap');
   expect(layout.stripInside).toBe(true);
+  expect(layout.primaryDividerWidth).toBe('1px');
   expect(layout.dividerWidths).toEqual(['0px', '1px', '1px', '1px']);
   expect(layout.valuesLeftAligned).toBe(true);
+  expect(layout.scoreFontSize).toBeGreaterThan(layout.hitsFontSize);
+  expect(layout.hitsFontSize).toBeGreaterThan(layout.breakdownFontSize);
+  expect(layout.scoreColor).not.toBe(layout.hitsColor);
   if (isMobile) {
     expect(layout.stripTop).toBeGreaterThanOrEqual(layout.primaryBottom - 1);
     expect(layout.canScroll).toBe(true);
@@ -527,6 +545,8 @@ test('presents relic scores and target details without changing the Player reque
       .toBeGreaterThan(0);
   } else {
     expect(layout.stripLeft).toBeGreaterThanOrEqual(layout.primaryRight - 1);
+    expect(layout.rightInset).toBeLessThanOrEqual(20);
+    expect(layout.heroBottomGap).toBeLessThanOrEqual(5);
   }
   await expect(page.locator('[data-player-relic-piece-score]')).toHaveCount(6);
   await expect(
@@ -551,6 +571,31 @@ test('presents relic scores and target details without changing the Player reque
   await expect(details).toContainText('200');
   await expect(details).not.toContainText('StatusResistanceBase');
   await expect(details).not.toContainText('SpeedDelta');
+  const detailWeights = await details.evaluate((element) => ({
+    toggle: parseInt(getComputedStyle(element.querySelector('summary')!).fontWeight, 10),
+    heading: parseInt(getComputedStyle(element.querySelector('h4')!).fontWeight, 10),
+    name: parseInt(
+      getComputedStyle(element.querySelector('.player-relic-score-summary__detail-row > span')!)
+        .fontWeight,
+      10
+    ),
+    description: parseInt(
+      getComputedStyle(
+        element.querySelector('.player-relic-score-summary__detail-row > span + span')!
+      ).fontWeight,
+      10
+    ),
+    result: parseInt(
+      getComputedStyle(element.querySelector('.player-relic-score-summary__detail-row > strong')!)
+        .fontWeight,
+      10
+    )
+  }));
+  expect(detailWeights.toggle).toBe(400);
+  expect(detailWeights.name).toBe(400);
+  expect(detailWeights.description).toBe(400);
+  expect(detailWeights.heading).toBeGreaterThan(detailWeights.name);
+  expect(detailWeights.result).toBeLessThanOrEqual(detailWeights.heading);
   const geometry = await page.locator('[data-player-relic-slot]').evaluateAll((cards) =>
     cards.map((card) => {
       const cardBounds = card.getBoundingClientRect();
@@ -577,6 +622,7 @@ test('presents relic scores and target details without changing the Player reque
     await page.setViewportSize({ width: 900, height: 800 });
     const tabletLayout = await readSummaryLayout();
     expect(tabletLayout.stripTop).toBeGreaterThanOrEqual(tabletLayout.primaryBottom - 1);
+    expect(tabletLayout.stripLeft).toBeGreaterThanOrEqual(tabletLayout.primaryLeft - 1);
     expect(new Set(tabletLayout.metricTops).size).toBe(1);
     expect(tabletLayout.stripInside).toBe(true);
     expect(

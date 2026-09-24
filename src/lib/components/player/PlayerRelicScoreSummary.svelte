@@ -161,7 +161,7 @@
   .player-relic-score-summary__overview {
     display: grid;
     min-width: 0;
-    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+    grid-template-columns: max-content minmax(0, 1fr);
     align-items: center;
     gap: var(--space-6);
   }
@@ -169,7 +169,7 @@
   .player-relic-score-summary__primary {
     display: grid;
     min-width: 0;
-    grid-template-columns: max-content minmax(0, 1fr);
+    grid-template-columns: max-content max-content;
     align-items: start;
     gap: var(--space-4);
   }
@@ -178,7 +178,13 @@
   .player-relic-score-summary__hits {
     display: grid;
     min-width: 0;
+    grid-template-rows: minmax(1.3rem, auto) minmax(3.15rem, auto) auto;
     gap: 0.15rem;
+  }
+
+  .player-relic-score-summary__hits {
+    border-inline-start: 1px solid var(--border);
+    padding-inline-start: var(--space-4);
   }
 
   .player-relic-score-summary__score > span,
@@ -198,6 +204,7 @@
 
   .player-relic-score-summary__score > div {
     display: flex;
+    align-self: end;
     align-items: baseline;
     gap: 0.3rem;
   }
@@ -223,17 +230,22 @@
   }
 
   .player-relic-score-summary__hits strong {
+    align-self: end;
     color: var(--text-primary);
-    font-size: var(--font-major-title);
-    line-height: 1.3;
+    font-size: clamp(1.8rem, 2.8vw, 2.3rem);
+    line-height: 1.1;
     font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
   }
 
   .player-relic-score-summary__breakdown {
     display: flex;
+    width: max-content;
+    max-width: 100%;
     min-width: 0;
     align-items: start;
     flex-wrap: nowrap;
+    justify-self: end;
     overflow-x: auto;
     overflow-y: hidden;
     margin: 0;
@@ -286,7 +298,11 @@
     width: fit-content;
     color: var(--text-body);
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 400;
+  }
+
+  .player-relic-score-summary__details summary:hover {
+    color: var(--text-primary);
   }
 
   .player-relic-score-summary__details summary:focus-visible {
@@ -322,13 +338,14 @@
 
   .player-relic-score-summary__detail-row strong {
     color: var(--text-primary);
+    font-weight: 600;
     font-variant-numeric: tabular-nums;
     text-align: right;
   }
 
   .player-relic-score-summary__detail-row > :first-child {
     color: var(--text-body);
-    font-weight: 600;
+    font-weight: 400;
   }
 
   @container (max-width: 48rem) {
@@ -341,12 +358,24 @@
       grid-template-columns: max-content max-content;
       gap: var(--space-6);
     }
+
+    .player-relic-score-summary__breakdown {
+      justify-self: start;
+    }
   }
 
   @container (max-width: 32rem) {
     .player-relic-score-summary__primary {
       grid-template-columns: max-content minmax(0, 1fr);
       gap: var(--space-3);
+    }
+
+    .player-relic-score-summary__hits {
+      padding-inline-start: var(--space-3);
+    }
+
+    .player-relic-score-summary__hits > span {
+      white-space: normal;
     }
 
     .player-relic-score-summary__breakdown > div + div {

@@ -258,6 +258,10 @@ describe('Relic Score Phase 2B presentation', () => {
       if (!showSoftTarget) build.softTarget = { progress: 0, details: [] };
       if (!showHardBreakpoint) build.hardBreakpoint = { failureRatio: 0, details: [] };
       const body = render(PlayerRelicScoreSummary, { props: { score: build, properties } }).body;
+      const primary = body.slice(
+        body.indexOf('class="player-relic-score-summary__primary"'),
+        body.indexOf('data-player-score-breakdown')
+      );
       const breakdown = body.slice(
         body.indexOf('data-player-score-breakdown'),
         body.indexOf('</dl>')
@@ -269,6 +273,8 @@ describe('Relic Score Phase 2B presentation', () => {
         ...(showHardBreakpoint ? [m.player_relic_score_hard_breakpoint()] : [])
       ];
 
+      expect(primary).toContain('data-player-build-score');
+      expect(primary).toContain('data-player-effective-hits');
       expect(breakdown.match(/<div(?:\s[^>]*)?>/g) ?? []).toHaveLength(labels.length);
       expect(labels.map((label) => breakdown.indexOf(label))).toEqual(
         [...labels.map((label) => breakdown.indexOf(label))].sort((a, b) => a - b)
@@ -281,6 +287,9 @@ describe('Relic Score Phase 2B presentation', () => {
       expect(breakdown).toContain('83%');
       expect(breakdown).toContain('67%');
       expect(body.includes('data-player-score-details')).toBe(showSoftTarget || showHardBreakpoint);
+      expect(body.match(/<h4>/g) ?? []).toHaveLength(
+        Number(showSoftTarget) + Number(showHardBreakpoint)
+      );
     }
   });
 
