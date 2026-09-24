@@ -132,11 +132,13 @@ function slotMarkup(body: string, slot: string): string {
 }
 
 describe('Relic Score Phase 2B presentation', () => {
-  it('rounds only in the UI and shares the Player panel number scale', () => {
-    expect(formatRelicScore(86.49)).toBe('86');
-    expect(formatRelicScore(86.5)).toBe('87');
-    expect(formatRelicScore(0)).toBe('0');
-    expect(formatRelicScore(100)).toBe('100');
+  it('formats scores to one decimal only in the UI and shares the Player panel number scale', () => {
+    expect(formatRelicScore(90)).toBe('90.0');
+    expect(formatRelicScore(90.04)).toBe('90.0');
+    expect(formatRelicScore(90.0625)).toBe('90.1');
+    expect(formatRelicScore(87.36)).toBe('87.4');
+    expect(formatRelicScore(0)).toBe('0.0');
+    expect(formatRelicScore(100)).toBe('100.0');
     expect(formatRelicScorePercent(0.825)).toBe('83%');
     expect(formatRelicScorePercent(2 / 3)).toBe('67%');
     expect(formatRelicScorePanelValue('StatusResistanceBase', 0.5)).toBe('50.0%');
@@ -154,25 +156,33 @@ describe('Relic Score Phase 2B presentation', () => {
       body.indexOf('player-equipment__relic-grid')
     );
     expect(body).toContain('data-player-build-score');
-    expect(body).toMatch(/data-player-build-score[^>]*>87</);
+    expect(body).toMatch(/data-player-build-score[^>]*>86\.5</);
     expect(body).toMatch(/data-player-effective-hits[\s\S]*?<strong[^>]*>27<\/strong>/);
     expect(body).toContain('83%');
     expect(body).toContain('67%');
     expect(slotMarkup(body, 'HEAD')).toMatch(
-      /data-player-relic-piece-score[\s\S]*?<strong[^>]*>0<\/strong>/
+      /data-player-relic-piece-score[\s\S]*?<strong[^>]*>0\.0<\/strong>/
     );
     expect(slotMarkup(body, 'HAND')).toMatch(
-      /data-player-relic-piece-score[\s\S]*?<strong[^>]*>100<\/strong>/
+      /data-player-relic-piece-score[\s\S]*?<strong[^>]*>99\.6<\/strong>/
     );
+    expect(slotMarkup(body, 'HAND')).toMatch(/aria-label="[^"]*99\.6"/);
+    expect(slotMarkup(body, 'HEAD')).toContain('+15');
     expect(slotMarkup(body, 'BODY')).toMatch(
       /data-player-relic-piece-score[\s\S]*?<strong[^>]*>—<\/strong>/
     );
     expect(slotMarkup(body, 'FOOT')).toMatch(
-      /data-player-relic-piece-score[\s\S]*?<strong[^>]*>86<\/strong>/
+      /data-player-relic-piece-score[\s\S]*?<strong[^>]*>85\.5<\/strong>/
     );
     expect(slotMarkup(body, 'OBJECT')).toMatch(
       /data-player-relic-piece-score[\s\S]*?<strong[^>]*>—<\/strong>/
     );
+    const integerBuild = availableBuild();
+    integerBuild.score = 90;
+    const integerBuildBody = render(PlayerRelicScoreSummary, {
+      props: { score: integerBuild, properties }
+    }).body;
+    expect(integerBuildBody).toMatch(/data-player-build-score[^>]*>90\.0</);
   });
 
   it('keeps unavailable, partial and exact hit counts distinct', () => {

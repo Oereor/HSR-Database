@@ -6,7 +6,7 @@ import { PLAYER_PROPERTY_SEMANTICS } from './property-semantics.js';
 import type { PlayerRelicScoreUnavailableReason } from './relic-score-contract.js';
 
 export function formatRelicScore(value: number): string {
-  return String(Math.round(value));
+  return value.toFixed(1);
 }
 
 export function formatRelicScorePercent(value: number): string {

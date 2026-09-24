@@ -478,17 +478,20 @@ test('presents relic scores and target details without changing the Player reque
   );
   const summary = page.locator('[data-player-relic-score-summary]');
   await expect(summary).toBeVisible();
-  await expect(summary.locator('[data-player-build-score]')).toHaveText('87');
+  await expect(summary.locator('[data-player-build-score]')).toHaveText('86.6');
   await expect(summary.locator('[data-player-effective-hits]')).toContainText('23');
   await expect(summary.locator('[data-player-soft-target]')).toContainText('75%');
   await expect(summary.locator('[data-player-hard-breakpoint]')).toBeVisible();
   await expect(page.locator('[data-player-relic-piece-score]')).toHaveCount(6);
   await expect(
-    page.locator('[data-player-relic-slot="HEAD"] [data-player-relic-piece-score]')
-  ).toContainText('0');
+    page.locator('[data-player-relic-slot="HEAD"] [data-player-relic-piece-score] strong')
+  ).toHaveText('0.0');
+  await expect(
+    page.locator('[data-player-relic-slot="HAND"] [data-player-relic-piece-score] strong')
+  ).toHaveText('99.6');
   await expect(
     page.locator('[data-player-relic-slot="HAND"] [data-player-relic-piece-score]')
-  ).toContainText('100');
+  ).toHaveAttribute('aria-label', /99\.6/);
   await expect(
     page.locator('[data-player-relic-slot="BODY"] [data-player-relic-piece-score]')
   ).toContainText('—');
@@ -566,8 +569,8 @@ test('keeps piece scores when a five-piece build cannot be scored', async ({ pag
   await expect(summary.locator('[data-player-build-score-unavailable]')).toBeVisible();
   await expect(page.locator('[data-player-relic-piece-score]')).toHaveCount(5);
   await expect(
-    page.locator('[data-player-relic-slot="HEAD"] [data-player-relic-piece-score]')
-  ).toContainText('85');
+    page.locator('[data-player-relic-slot="HEAD"] [data-player-relic-piece-score] strong')
+  ).toHaveText('84.5');
   await expect(page.locator('[data-player-relic-slot="OBJECT"]')).toHaveAttribute(
     'data-player-relic-state',
     'empty'
