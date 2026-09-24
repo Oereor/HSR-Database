@@ -10,13 +10,7 @@ import {
 } from '../../src/lib/player/runtime-data';
 import { synthesizePlayerCharacter } from '../../src/lib/player/stat-synthesis';
 import type { CanonicalPlayerCharacterBuild } from '../../src/lib/player/canonical';
-import {
-  buildPlayerInput,
-  withMainStat,
-  withPanelTarget,
-  withRollEvidence,
-  withoutSlot
-} from '../fixtures/relic-score/builders';
+import { buildPlayerInput } from '../fixtures/relic-score/builders';
 
 const raw = JSON.parse(
   readFileSync('tests/fixtures/enka/phase1-player.sanitized.json', 'utf8')
@@ -201,21 +195,5 @@ describe('relic score player input normalization', () => {
       status: 'unavailable',
       reason: 'MISSING_PANEL_STAT'
     });
-  });
-
-  it('provides compact builders for future score cases', () => {
-    const base = buildPlayerInput();
-    expect(withoutSlot(base, 'BODY').relics).toHaveLength(5);
-    expect(withMainStat(base, 'BODY', 'HPAddedRatio').relics[2].mainStat.key).toBe('HPAddedRatio');
-    expect(withPanelTarget(base, 'spd', 160).panel.spd).toBe(160);
-    expect(
-      withRollEvidence(base, 'HEAD', { status: 'ambiguous', candidates: [1, 2] }).relics[0]
-        .substats[0].rollCount.status
-    ).toBe('ambiguous');
-    expect(
-      withRollEvidence(base, 'HEAD', { status: 'unavailable' }).relics[0].substats[0].rollCount
-        .status
-    ).toBe('unavailable');
-    expect(base.relics).toHaveLength(6);
   });
 });

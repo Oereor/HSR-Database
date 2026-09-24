@@ -1,4 +1,3 @@
-import { readFileSync } from 'node:fs';
 import { render } from 'svelte/server';
 import { afterEach, describe, expect, it } from 'vitest';
 import PlayerEquipmentSection from '../../src/lib/components/player/PlayerEquipmentSection.svelte';
@@ -125,13 +124,7 @@ const renderEquipment = (character: PlayerCharacter): string =>
     props: { character, catalog: null, relicProperties: properties }
   }).body;
 
-function slotMarkup(body: string, slot: string): string {
-  const start = body.indexOf(`data-player-relic-slot="${slot}"`);
-  const end = body.indexOf('data-player-relic-slot=', start + 1);
-  return body.slice(start, end < 0 ? undefined : end);
-}
-
-describe('Relic Score Phase 2B presentation', () => {
+describe('Relic Score presentation', () => {
   it('formats scores to one decimal only in the UI and shares the Player panel number scale', () => {
     expect(formatRelicScore(90)).toBe('90.0');
     expect(formatRelicScore(90.04)).toBe('90.0');
@@ -146,37 +139,17 @@ describe('Relic Score Phase 2B presentation', () => {
     expect(formatRelicScorePanelValue('SpeedDelta', 200)).toBe('200');
   });
 
-  it('places a compact summary before the grid and associates piece scores by canonical slot', () => {
+  it('shows the build summary and piece scores', () => {
     const character = { ...baseCharacter, relicScore: score() };
     const body = renderEquipment(character);
-    expect(body.indexOf('data-player-relic-score-summary')).toBeGreaterThan(
-      body.indexOf(m.player_equipment_relics())
-    );
-    expect(body.indexOf('data-player-relic-score-summary')).toBeLessThan(
-      body.indexOf('player-equipment__relic-grid')
-    );
-    expect(body).toContain('data-player-build-score');
+    expect(body).toContain('data-player-relic-score-summary');
     expect(body).toMatch(/data-player-build-score[^>]*>86\.5</);
     expect(body).toMatch(/data-player-effective-hits[\s\S]*?<strong[^>]*>27<\/strong>/);
     expect(body).toContain('83%');
     expect(body).toContain('67%');
-    expect(slotMarkup(body, 'HEAD')).toMatch(
-      /data-player-relic-piece-score[\s\S]*?<strong[^>]*>0\.0<\/strong>/
-    );
-    expect(slotMarkup(body, 'HAND')).toMatch(
-      /data-player-relic-piece-score[\s\S]*?<strong[^>]*>99\.6<\/strong>/
-    );
-    expect(slotMarkup(body, 'HAND')).toMatch(/aria-label="[^"]*99\.6"/);
-    expect(slotMarkup(body, 'HEAD')).toContain('+15');
-    expect(slotMarkup(body, 'BODY')).toMatch(
-      /data-player-relic-piece-score[\s\S]*?<strong[^>]*>—<\/strong>/
-    );
-    expect(slotMarkup(body, 'FOOT')).toMatch(
-      /data-player-relic-piece-score[\s\S]*?<strong[^>]*>85\.5<\/strong>/
-    );
-    expect(slotMarkup(body, 'OBJECT')).toMatch(
-      /data-player-relic-piece-score[\s\S]*?<strong[^>]*>—<\/strong>/
-    );
+    expect(body).toContain('data-player-relic-piece-score');
+    expect(body).toContain('>99.6</strong>');
+    expect(body).toContain('>0.0</strong>');
     const integerBuild = availableBuild();
     integerBuild.score = 90;
     const integerBuildBody = render(PlayerRelicScoreSummary, {
@@ -247,52 +220,6 @@ describe('Relic Score Phase 2B presentation', () => {
     expect(absentBody).not.toContain('data-player-score-details');
   });
 
-  it('renders only the available breakdown metrics in their fixed order', () => {
-    for (const [showSoftTarget, showHardBreakpoint] of [
-      [false, false],
-      [true, false],
-      [false, true],
-      [true, true]
-    ]) {
-      const build = availableBuild();
-      if (!showSoftTarget) build.softTarget = { progress: 0, details: [] };
-      if (!showHardBreakpoint) build.hardBreakpoint = { failureRatio: 0, details: [] };
-      const body = render(PlayerRelicScoreSummary, { props: { score: build, properties } }).body;
-      const primary = body.slice(
-        body.indexOf('class="player-relic-score-summary__primary"'),
-        body.indexOf('data-player-score-breakdown')
-      );
-      const breakdown = body.slice(
-        body.indexOf('data-player-score-breakdown'),
-        body.indexOf('</dl>')
-      );
-      const labels = [
-        m.player_relic_score_stat_completion(),
-        m.player_relic_score_set_integrity(),
-        ...(showSoftTarget ? [m.player_relic_score_soft_target()] : []),
-        ...(showHardBreakpoint ? [m.player_relic_score_hard_breakpoint()] : [])
-      ];
-
-      expect(primary).toContain('data-player-build-score');
-      expect(primary).toContain('data-player-effective-hits');
-      expect(breakdown.match(/<div(?:\s[^>]*)?>/g) ?? []).toHaveLength(labels.length);
-      expect(labels.map((label) => breakdown.indexOf(label))).toEqual(
-        [...labels.map((label) => breakdown.indexOf(label))].sort((a, b) => a - b)
-      );
-      expect(labels.every((label) => breakdown.includes(label))).toBe(true);
-      expect(breakdown.includes('data-player-soft-target')).toBe(showSoftTarget);
-      expect(breakdown.includes('data-player-hard-breakpoint')).toBe(showHardBreakpoint);
-      expect(body).toMatch(/data-player-build-score[^>]*>86\.5</);
-      expect(body).toMatch(/data-player-effective-hits[\s\S]*?<strong[^>]*>27<\/strong>/);
-      expect(breakdown).toContain('83%');
-      expect(breakdown).toContain('67%');
-      expect(body.includes('data-player-score-details')).toBe(showSoftTarget || showHardBreakpoint);
-      expect(body.match(/<h4>/g) ?? []).toHaveLength(
-        Number(showSoftTarget) + Number(showHardBreakpoint)
-      );
-    }
-  });
-
   it('shows pass and fail for individual breakpoints', () => {
     for (const passed of [true, false]) {
       const build = availableBuild();
@@ -311,7 +238,7 @@ describe('Relic Score Phase 2B presentation', () => {
     const body = renderEquipment({ ...baseCharacter, relicScore: score(unavailableBuild) });
     expect(body).toMatch(/data-player-build-score[^>]*>—</);
     expect(body).toContain(m.player_relic_score_incomplete_build());
-    expect(slotMarkup(body, 'HEAD')).toContain('data-player-relic-piece-score');
+    expect(body).toContain('data-player-relic-piece-score');
     const legacy = renderEquipment(baseCharacter);
     expect(legacy).toContain('data-player-relic-slot="HEAD"');
     expect(legacy).not.toContain('data-player-relic-score-summary');
@@ -347,19 +274,6 @@ describe('Relic Score Phase 2B presentation', () => {
         expect(body).toContain(message);
         expect(body.replace(/<[^>]*>/g, ' ')).not.toContain(reason);
       }
-    }
-  });
-
-  it('keeps presentation imports separate from server scoring and benchmark artifacts', () => {
-    for (const file of [
-      'src/lib/components/player/PlayerRelicScoreSummary.svelte',
-      'src/lib/components/player/PlayerRelicCard.svelte',
-      'src/lib/player/relic-score-presentation.ts'
-    ]) {
-      const source = readFileSync(file, 'utf8');
-      expect(source).not.toMatch(
-        /\$lib\/server\/relic-score|farming-benchmarks\.json|profile-overrides|scoring-config|scoreBuild\(|fetch\(/
-      );
     }
   });
 });

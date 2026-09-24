@@ -107,7 +107,7 @@
             <section>
               <h4>{m.player_relic_score_soft_target()}</h4>
               {#each score.softTarget.details as detail (detail.stat)}
-                <div class="player-relic-score-summary__detail-row" data-score-stat={detail.stat}>
+                <div class="player-relic-score-summary__detail-row">
                   <span>{statLabel(detail.stat)}</span>
                   <span
                     >{m.player_relic_score_target_detail({
@@ -125,7 +125,7 @@
             <section>
               <h4>{m.player_relic_score_hard_breakpoint()}</h4>
               {#each score.hardBreakpoint.details as detail, index (`${detail.stat}:${index}`)}
-                <div class="player-relic-score-summary__detail-row" data-score-stat={detail.stat}>
+                <div class="player-relic-score-summary__detail-row">
                   <span>{statLabel(detail.stat)}</span>
                   <span
                     >{m.player_relic_score_breakpoint_detail({

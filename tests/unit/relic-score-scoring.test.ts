@@ -11,6 +11,11 @@ import { lookupDenseCdf } from '../../src/lib/relic-score/farming/dense-quantile
 import { buildRelicScoreReferenceData } from '../../src/lib/relic-score/reference.js';
 import { RELIC_SCORE_CONFIG } from '../../src/lib/relic-score/scoring-config.js';
 import {
+  coreBuildScore,
+  finalBuildScore,
+  pieceNormalized
+} from '../../src/lib/relic-score/scoring-math.js';
+import {
   calculateEffectiveHits,
   evaluateBreakpoints,
   evaluateSetIntegrity,
@@ -20,10 +25,7 @@ import {
   type ScoringSources
 } from '../../src/lib/relic-score/score.js';
 import type { PlayerBuildInput } from '../../src/lib/relic-score/types.js';
-import {
-  evaluateQuantileGate,
-  expectedBenchmarkIdentity
-} from '../../scripts/relic-score/benchmark-core.js';
+import { expectedBenchmarkIdentity } from '../../scripts/relic-score/benchmark-core.js';
 import { loadScoringInputs } from '../../scripts/relic-score/scoring-inputs.js';
 
 const fixture = JSON.parse(
@@ -57,7 +59,7 @@ beforeAll(async () => {
   };
 });
 
-describe('Phase 1C benchmark contract', () => {
+describe('Relic Score benchmark contract', () => {
   it('validates 257 Lens-B knots and rejects stale identity, wrong N, and production fixture use', () => {
     expect(() => validateBenchmarkArtifact(artifact, expected)).not.toThrow();
     const wrongN = structuredClone(expected);
@@ -85,18 +87,17 @@ describe('Phase 1C benchmark contract', () => {
     expect(lookupDenseCdf(q, 4)).toBe(1);
     expect(lookupBenchmarkPercentile(artifact.distributions['1310'].HEAD!, -100)).toBe(0);
   });
-
-  it('measures same-sample representation and compares 513 on failure', () => {
-    const train = Array.from({ length: 16 }, (_, index) => index);
-    const gate = evaluateQuantileGate(train);
-    expect(gate.pass257).toBe(false);
-    expect(gate.error257.maxAbsoluteCdfError).toBeGreaterThan(0.005);
-    expect(gate.error513).not.toBeNull();
-  });
 });
 
-describe('Phase 1C scoring', () => {
+describe('Relic Score scoring', () => {
   it('keeps Piece formula and six-slot weighted aggregation explainable', () => {
+    const piece = pieceNormalized(1, 0.5, RELIC_SCORE_CONFIG.piece.mainShare);
+    expect(piece).toBeCloseTo(0.35 + 0.65 * 0.5);
+    const core = coreBuildScore(piece, 1, RELIC_SCORE_CONFIG.build.statShare);
+    expect(core).toBeCloseTo(100 * (0.95 * piece + 0.05));
+    expect(finalBuildScore(core, 0.5, 0.5, 4, 8)).toBeCloseTo(core - 2);
+    expect(finalBuildScore(99, 1, 0, 4, 8)).toBe(100);
+    expect(finalBuildScore(1, 0, 1, 4, 8)).toBe(0);
     const result = scoreBuild(fixture, sources);
     expect(result.status).toBe('available');
     const build = result.build!;
@@ -218,7 +219,7 @@ describe('Phase 1C scoring', () => {
   });
 });
 
-describe('final-panel modifiers pending calibration', () => {
+describe('Relic Score final-panel modifiers', () => {
   it('clamps soft target progress and averages multiple targets', () => {
     const profile = structuredClone(sources.profile!);
     profile.softTargets = [

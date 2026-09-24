@@ -103,17 +103,6 @@ function productionState() {
   return production;
 }
 
-export function getBenchmarkDistribution(
-  characterId: string,
-  slot: RelicSlot
-): BenchmarkLookupResult {
-  try {
-    return productionState().loader.get(characterId, slot);
-  } catch {
-    return { status: 'unavailable', reason: 'BENCHMARK_STALE' };
-  }
-}
-
 export function getProductionBenchmarkContext() {
   try {
     const state = productionState();

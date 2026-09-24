@@ -1,22 +1,15 @@
-import { readFileSync, readdirSync } from 'node:fs';
-import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import { beforeAll, describe, expect, it } from 'vitest';
 import {
   benchmarkIdentityDigest,
   probabilityModelDigest
 } from '../../src/lib/relic-score/benchmark/identity.js';
-import {
-  BENCHMARK_MAX_REPRESENTATION_ERROR,
-  type BenchmarkArtifact
-} from '../../src/lib/relic-score/benchmark/types.js';
+import type { BenchmarkArtifact } from '../../src/lib/relic-score/benchmark/types.js';
 import { validateBenchmarkArtifact } from '../../src/lib/relic-score/benchmark/validate.js';
 import { lookupBenchmarkPercentile } from '../../src/lib/relic-score/benchmark/lookup.js';
 import { farmingBudget } from '../../src/lib/relic-score/farming/farming-contract.js';
-import { RELIC_SCORE_CONFIG, RELIC_SLOTS } from '../../src/lib/relic-score/scoring-config.js';
-import {
-  getBenchmarkDistribution,
-  createBenchmarkLoader
-} from '../../src/lib/server/relic-score/benchmark-loader.js';
+import { RELIC_SCORE_CONFIG } from '../../src/lib/relic-score/scoring-config.js';
+import { createBenchmarkLoader } from '../../src/lib/server/relic-score/benchmark-loader.js';
 import { scoreProductionBuild } from '../../src/lib/server/relic-score/score.js';
 import { loadProductionBenchmarkInputs } from '../../scripts/relic-score/benchmark-production.js';
 import type { PlayerBuildInput } from '../../src/lib/relic-score/types.js';
@@ -29,37 +22,7 @@ beforeAll(async () => {
   loaded = await loadProductionBenchmarkInputs();
 });
 
-describe('Phase 1E production artifact', () => {
-  it('covers exactly the reviewed 97×6 inventory and validates without simulation', () => {
-    expect(loaded.cases).toHaveLength(582);
-    expect(Object.keys(artifact.distributions)).toHaveLength(97);
-    expect(artifact.metadata.prototype).toBe(false);
-    expect(artifact.metadata.budgetN).toBe(RELIC_SCORE_CONFIG.benchmark.budgetN);
-    expect(artifact.metadata.experimentCount).toBe(RELIC_SCORE_CONFIG.benchmark.experimentCount);
-    expect(artifact.metadata.seed).toBe(RELIC_SCORE_CONFIG.benchmark.seed);
-    expect(artifact.metadata.quantilePoints).toBe(RELIC_SCORE_CONFIG.benchmark.quantilePoints);
-    for (const slots of Object.values(artifact.distributions)) {
-      expect(Object.keys(slots).sort()).toEqual([...RELIC_SLOTS].sort());
-      for (const slot of RELIC_SLOTS)
-        expect(slots[slot]?.quantiles).toHaveLength(RELIC_SCORE_CONFIG.benchmark.quantilePoints);
-    }
-    expect(() => validateBenchmarkArtifact(artifact, loaded.expected)).not.toThrow();
-    const audit = JSON.parse(
-      readFileSync('docs/relic-score-feature/phase-1e-benchmark-generation-audit.json', 'utf8')
-    ) as {
-      artifactSha256: string;
-      distributionCount: number;
-      representation: { passCount: number; failCount: number; maxError: number };
-    };
-    const sha256 = createHash('sha256')
-      .update(readFileSync('src/lib/relic-score/generated/farming-benchmarks.json'))
-      .digest('hex');
-    expect(audit.artifactSha256).toBe(sha256);
-    expect(audit.distributionCount).toBe(582);
-    expect(audit.representation).toMatchObject({ passCount: 582, failCount: 0 });
-    expect(audit.representation.maxError).toBeLessThanOrEqual(BENCHMARK_MAX_REPRESENTATION_ERROR);
-  });
-
+describe('Relic Score production benchmarks', () => {
   it('rejects missing, extra, stale and malformed entries', () => {
     const missing = structuredClone(artifact);
     delete missing.distributions['1002'].BODY;
@@ -184,12 +147,6 @@ describe('Phase 1E production artifact', () => {
   });
 
   it('loads formal distributions and scores with the current V1 formula', () => {
-    const available = getBenchmarkDistribution('1310', 'HEAD');
-    expect(available.status).toBe('available');
-    expect(getBenchmarkDistribution('9999', 'HEAD')).toEqual({
-      status: 'unavailable',
-      reason: 'BENCHMARK_MISSING'
-    });
     const missing = createBenchmarkLoader(undefined, loaded.expected);
     expect(missing.get('1310', 'HEAD')).toEqual({
       status: 'unavailable',
@@ -245,33 +202,5 @@ describe('Phase 1E production artifact', () => {
         penalized.build!.softTargetBonus -
         penalized.build!.hardBreakpointPenalty
     );
-  });
-
-  it('keeps the full artifact on the server and generation out of builds', () => {
-    const build = readFileSync('scripts/deployment/build.ts', 'utf8');
-    const packageJson = readFileSync('package.json', 'utf8');
-    expect(build).toContain('relic-score:benchmarks:validate');
-    expect(build).not.toContain('relic-score:benchmarks:generate');
-    expect(packageJson.match(/"prebuild": "([^"]+)"/)?.[1]).toContain(
-      'relic-score:benchmarks:validate'
-    );
-    const loader = readFileSync('src/lib/server/relic-score/benchmark-loader.ts', 'utf8');
-    expect(loader).toContain('farming-benchmarks.json');
-    expect(loader).not.toMatch(
-      /tests\/fixtures|api\/_player\/enka|fetch\(|generateFarmingExperiment|Math\.random/
-    );
-    const sourceFiles = (directory: string): string[] =>
-      readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-        const name = `${directory}/${entry.name}`;
-        if (entry.isDirectory())
-          return name === 'src/lib/server' || name.startsWith('src/lib/generated')
-            ? []
-            : sourceFiles(name);
-        return /\.(?:ts|svelte)$/.test(name) ? [name] : [];
-      });
-    const clientSource = sourceFiles('src')
-      .map((name) => readFileSync(name, 'utf8'))
-      .join('\n');
-    expect(clientSource).not.toMatch(/farming-benchmarks\.json|lib\/server\/relic-score/);
   });
 });

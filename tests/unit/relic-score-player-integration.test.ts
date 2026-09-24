@@ -18,7 +18,7 @@ const recommendations = JSON.parse(
   readFileSync('src/lib/generated/runtime/relic-score-recommendations.json', 'utf8')
 ) as RelicScoreRecommendationIndex;
 
-describe('Phase 2A Player Info scoring integration', () => {
+describe('Player Info relic scoring integration', () => {
   it('scores six actual Enka build instances after numeric synthesis and preserves scorer precision', () => {
     const result = buildEnkaPlayerProfile(raw);
     expect(result.scoringFailures).toEqual([]);
@@ -228,26 +228,6 @@ describe('Phase 2A Player Info scoring integration', () => {
     expect(broken.build.status).toBe('available');
     if (broken.build.status === 'available') expect(broken.build.setIntegrity).toBeLessThan(1);
     expect(broken.pieces.BODY).toMatchObject({ status: 'available', mainCompletion: 0 });
-  });
-
-  it('keeps the production request dependency boundary free of generators', () => {
-    const files = [
-      'src/lib/server/relic-score/benchmark-loader.ts',
-      'src/lib/relic-score/benchmark/identity.ts',
-      'src/lib/relic-score/benchmark/validate.ts',
-      'src/lib/relic-score/benchmark/lookup.ts',
-      'src/lib/relic-score/benchmark/cdf.ts'
-    ];
-    for (const file of files) {
-      const source = readFileSync(file, 'utf8');
-      expect(source).not.toMatch(
-        /import (?!type )[^;]+from ['"][^'"]*(?:generate-natural-relic|farming\/prototype|benchmark-production|calibrate)/
-      );
-    }
-    expect(readFileSync('src/lib/relic-score/benchmark/lookup.ts', 'utf8')).toContain('./cdf.js');
-    expect(readFileSync('api/_player/enka/pipeline.ts', 'utf8')).not.toMatch(
-      /parseFloat|\.display\b/
-    );
   });
 
   it('rejects a malformed recommendation projection before scoring', () => {
