@@ -10,12 +10,20 @@ export function coreBuildScore(
   return 100 * (statShare * statCompletion + (1 - statShare) * setIntegrity);
 }
 
-export function finalBuildScore(
-  core: number,
+export function normalizedStatCompletion(
+  statCompletion: number,
   progress: number,
   failureRatio: number,
-  maxBonus: number,
-  maxPenalty: number
+  hasSoftTarget: boolean,
+  hasHardBreakpoint: boolean,
+  baseStatWeight: number,
+  softTargetWeight: number,
+  hardBreakpointWeight: number
 ): number {
-  return Math.min(100, Math.max(0, core + maxBonus * progress - maxPenalty * failureRatio));
+  const softWeight = hasSoftTarget ? softTargetWeight : 0;
+  const hardWeight = hasHardBreakpoint ? hardBreakpointWeight : 0;
+  return (
+    (baseStatWeight * statCompletion + softWeight * progress + hardWeight * (1 - failureRatio)) /
+    (baseStatWeight + softWeight + hardWeight)
+  );
 }

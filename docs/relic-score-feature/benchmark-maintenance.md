@@ -12,7 +12,7 @@ Lens B 仍比较三件中的最高副词条质量，且不按角色推荐主词�
 
 需要重新生成：已审核 Profile 的基础副词条权重、实际采样概率、5★ 主／副词条参考、N、K、seed、PRNG、Lens、量化契约或生成器行为发生变化。若修改生成器行为，应先提升 benchmark generator version，再生成并检查差异。角色增删也需要维护者明确审核覆盖契约。
 
-不需要重新生成：Soft Target 区间、Hard Breakpoint 阈值、推荐套装和主词条、Main/Sub 份额、Build Stat/Set 份额、bonus/penalty、Set Integrity、UI、本地化、Profile review note 或概率模型的文字来源说明。Profile 自身可能仍需按 [Profile 维护流程](profile-maintenance.md)重新审核；这与 benchmark 是否过期是两个独立判断。
+不需要重新生成：Soft Target 区间、Hard Breakpoint 阈值、推荐套装和主词条、Main/Sub 份额、Build Stat/Set 份额、Build modifier 归一化权重、Set Integrity、UI、本地化、Profile review note 或概率模型的文字来源说明。当前 Build modifier 使用 `95×S + 8×Is×P + 5×Ih×(1−F)` 的归一化属性完成度，再按 Stat/Set `0.95/0.05` 聚合；完整公式见 [Profile 维护](profile-maintenance.md)。旧版最终分数外加 bonus、扣除 penalty 的公式已废弃。Profile 自身可能仍需按 [Profile 维护流程](profile-maintenance.md)重新审核；这与 benchmark 是否过期是两个独立判断。
 
 ## 操作步骤
 

@@ -6,7 +6,7 @@ import type { BenchmarkArtifact } from './benchmark/types.js';
 import type { CharacterRelicScoreProfile } from './profile-types.js';
 import type { RelicScoreReferenceData } from './reference.js';
 import { RELIC_SCORE_CONFIG, RELIC_SLOTS } from './scoring-config.js';
-import { coreBuildScore, finalBuildScore, pieceNormalized } from './scoring-math.js';
+import { coreBuildScore, normalizedStatCompletion, pieceNormalized } from './scoring-math.js';
 import { relicStatSemantics, type RelicStatKey } from './stat-registry.js';
 import type { NormalizedRelicPiece, PlayerBuildInput } from './types.js';
 
@@ -305,6 +305,7 @@ export interface BuildScoreValue {
   pieces: PieceScoreValue[];
   statCompletion: {
     base: number;
+    normalized: number;
     aggregatedMainPart: number;
     aggregatedSubPart: number;
   };
@@ -314,8 +315,6 @@ export interface BuildScoreValue {
   hardBreakpoints: BreakpointExplanation[];
   setIntegrity: SetIntegrity;
   coreBuildScore: number;
-  softTargetBonus: number;
-  hardBreakpointPenalty: number;
   finalBuildScore: number;
   effectiveHits: EffectiveHits;
 }
@@ -365,15 +364,19 @@ export function scoreBuild(input: PlayerBuildInput, sources: ScoringSources): Bu
   if (soft.status !== 'available') return { status: soft.status, reason: soft.reason, pieces };
   const sets = evaluateSetIntegrity(input.relics, recommendation);
   const core = coreBuildScore(base, sets.total, RELIC_SCORE_CONFIG.build.statShare);
-  const softTargetBonus = RELIC_SCORE_CONFIG.build.maxSoftTargetBonus * soft.value.progress;
-  const hardBreakpointPenalty =
-    RELIC_SCORE_CONFIG.build.maxBreakpointPenalty * breakpoint.value.failureRatio;
-  const finalScore = finalBuildScore(
-    core,
+  const normalized = normalizedStatCompletion(
+    base,
     soft.value.progress,
     breakpoint.value.failureRatio,
-    RELIC_SCORE_CONFIG.build.maxSoftTargetBonus,
-    RELIC_SCORE_CONFIG.build.maxBreakpointPenalty
+    profile.softTargets.length > 0,
+    profile.hardBreakpoints.length > 0,
+    RELIC_SCORE_CONFIG.build.baseStatWeight,
+    RELIC_SCORE_CONFIG.build.softTargetWeight,
+    RELIC_SCORE_CONFIG.build.hardBreakpointWeight
+  );
+  const finalScore = Math.min(
+    100,
+    Math.max(0, coreBuildScore(normalized, sets.total, RELIC_SCORE_CONFIG.build.statShare))
   );
   const hits = available.reduce(
     (acc, piece) => ({
@@ -387,15 +390,13 @@ export function scoreBuild(input: PlayerBuildInput, sources: ScoringSources): Bu
     pieces,
     build: {
       pieces: available,
-      statCompletion: { base, aggregatedMainPart: main, aggregatedSubPart: sub },
+      statCompletion: { base, normalized, aggregatedMainPart: main, aggregatedSubPart: sub },
       softTargetProgress: soft.value.progress,
       softTargets: soft.value.entries,
       hardBreakpointFailureRatio: breakpoint.value.failureRatio,
       hardBreakpoints: breakpoint.value.entries,
       setIntegrity: sets,
       coreBuildScore: core,
-      softTargetBonus,
-      hardBreakpointPenalty,
       finalBuildScore: finalScore,
       effectiveHits: {
         status: hits.unknown ? (hits.known ? 'partial' : 'unavailable') : 'exact',

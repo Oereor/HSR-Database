@@ -10,7 +10,13 @@ export const RELIC_SCORE_CONFIG = {
     quantilePoints: 257
   },
   piece: { mainShare: 0.35, subShare: 0.65 },
-  build: { statShare: 0.95, setShare: 0.05, maxSoftTargetBonus: 4, maxBreakpointPenalty: 8 },
+  build: {
+    statShare: 0.95,
+    setShare: 0.05,
+    baseStatWeight: 95,
+    softTargetWeight: 8,
+    hardBreakpointWeight: 5
+  },
   slots: { HEAD: 0.1, HAND: 0.1, BODY: 0.2, FOOT: 0.2, NECK: 0.2, OBJECT: 0.2 } as Record<
     RelicSlot,
     number
@@ -53,9 +59,12 @@ export function validateScoringConfig(): void {
     [build.statShare, build.setShare].some(
       (value) => !Number.isFinite(value) || value < 0 || value > 1
     ) ||
-    [build.maxSoftTargetBonus, build.maxBreakpointPenalty].some(
-      (value) => !Number.isFinite(value) || value < 0 || value > 100
-    )
+    !Number.isFinite(build.baseStatWeight) ||
+    build.baseStatWeight <= 0 ||
+    !Number.isFinite(build.softTargetWeight) ||
+    build.softTargetWeight < 0 ||
+    !Number.isFinite(build.hardBreakpointWeight) ||
+    build.hardBreakpointWeight < 0
   )
     throw new Error('[relic-score] invalid scoring config');
 }
