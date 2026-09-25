@@ -3,6 +3,7 @@ import type { AvatarEquipmentRecommendation } from '../../src/lib/domain/types.j
 import type { CharacterRelicScoreProfile } from '../../src/lib/relic-score/profile-types.js';
 import type { CompiledProbabilityModel } from '../../src/lib/relic-score/farming/probability-model.js';
 import type { PlayerRuntimeData } from '../../src/lib/player/runtime-data.js';
+import type { RelicStatKey } from '../../src/lib/relic-score/stat-registry.js';
 import { RELIC_SLOTS } from '../../src/lib/relic-score/scoring-config.js';
 import { buildExpectedBenchmarkIdentity } from '../../src/lib/relic-score/benchmark/identity.js';
 import {
@@ -59,12 +60,26 @@ export interface BenchmarkOptions {
   prototype: true;
 }
 
+function expandCases(inputs: BenchmarkInputs, cases: BenchmarkOptions['cases']) {
+  return cases.flatMap(({ characterId, slot }) => {
+    if (!RELIC_SLOTS.includes(slot))
+      throw new Error(`[relic-score/benchmark] invalid slot ${slot}`);
+    return inputs.model.mainBySlot[slot].map(({ key: mainStatKey }) => ({
+      characterId,
+      slot,
+      mainStatKey
+    }));
+  });
+}
+
 export function expectedBenchmarkIdentity(
   inputs: BenchmarkInputs,
   options: BenchmarkOptions
 ): BenchmarkExpectedIdentity {
+  const cases = expandCases(inputs, options.cases);
   return buildExpectedBenchmarkIdentity(inputs, {
     ...options,
+    cases,
     lens: 'B',
     quantilePoints: BENCHMARK_QUANTILE_POINTS,
     allowPrototype: options.prototype
@@ -74,6 +89,7 @@ export function expectedBenchmarkIdentity(
 export interface GeneratedCase {
   characterId: string;
   slot: RelicSlot;
+  mainStatKey: RelicStatKey;
   samples: number[];
   distribution: BenchmarkDistribution;
   runtimeMs: number;
@@ -88,9 +104,8 @@ export function generateBenchmarkCases(
   const profiles = new Map(inputs.profiles.map((profile) => [profile.characterId, profile]));
   const cases: GeneratedCase[] = [];
   const distributions: BenchmarkArtifact['distributions'] = {};
-  for (const { characterId, slot } of options.cases) {
-    if (!RELIC_SLOTS.includes(slot))
-      throw new Error(`[relic-score/benchmark] invalid slot ${slot}`);
+  const expanded = expandCases(inputs, options.cases);
+  for (const { characterId, slot, mainStatKey } of expanded) {
     const profile = profiles.get(characterId)!;
     const rng = createSeededRng(options.seed);
     const budget = farmingBudget(options.N);
@@ -98,7 +113,7 @@ export function generateBenchmarkCases(
     const start = performance.now();
     for (let experiment = 0; experiment < options.K; experiment++) {
       let best = -Infinity;
-      for (const piece of generateFarmingExperiment(slot, budget, inputs.model, rng))
+      for (const piece of generateFarmingExperiment(slot, budget, inputs.model, rng, mainStatKey))
         best = Math.max(best, rawSubUtility(piece, profile, inputs.model));
       samples.push(best);
     }
@@ -111,7 +126,7 @@ export function generateBenchmarkCases(
         ? measureQuantileError(samples, encodeDenseQuantiles(samples, 513))
         : undefined;
     const distribution: BenchmarkDistribution = {
-      identityDigest: expected.distributions[characterId]![slot]!,
+      identityDigest: expected.distributions[characterId]![slot]![mainStatKey]!,
       summary: {
         mean: samples.reduce((a, b) => a + b, 0) / samples.length,
         p25: empiricalQuantile(samples, 0.25),
@@ -123,10 +138,11 @@ export function generateBenchmarkCases(
       },
       quantiles
     };
-    (distributions[characterId] ??= {})[slot] = distribution;
+    ((distributions[characterId] ??= {})[slot] ??= {})[mainStatKey] = distribution;
     cases.push({
       characterId,
       slot,
+      mainStatKey,
       samples,
       distribution,
       runtimeMs,

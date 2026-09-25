@@ -169,6 +169,37 @@ describe('independent farming probability model', () => {
     ).toBe(true);
   });
 
+  it('conditions every generated piece on a legal canonical main stat', () => {
+    for (const mainStatKey of ['SpeedDelta', 'HPAddedRatio'] as const) {
+      const pieces = generateFarmingExperiment(
+        'FOOT',
+        farmingBudget(40),
+        compiled,
+        createSeededRng(78),
+        mainStatKey
+      );
+      expect(pieces.every((piece) => piece.mainStat.key === mainStatKey)).toBe(true);
+      expect(pieces.every((piece) => piece.substats.every((sub) => sub.key !== mainStatKey))).toBe(
+        true
+      );
+    }
+    expect(() =>
+      generateNaturalRelic('FOOT', compiled, createSeededRng(1), 'CriticalChanceBase')
+    ).toThrow('illegal main');
+    expect(compiled.subByKey.HealRatioBase).toBeUndefined();
+    const healingBody = generateNaturalRelic(
+      'BODY',
+      compiled,
+      createSeededRng(123),
+      'HealRatioBase'
+    );
+    expect(healingBody.substats).toHaveLength(4);
+    expect(healingBody.substats.every((sub) => compiled.subByKey[sub.key])).toBe(true);
+    const fixedHead = generateNaturalRelic('HEAD', compiled, createSeededRng(123), 'HPDelta');
+    const naturalHead = generateNaturalRelic('HEAD', compiled, createSeededRng(123));
+    expect(fixedHead).toEqual(naturalHead);
+  });
+
   it('takes grade bounds from runtime StepNum instead of a fixed three-grade list', () => {
     const runtime = structuredClone(playerRuntimeData) as PlayerRuntimeData;
     runtime.relicSubAffixes['5:7'].stepNum = 3;

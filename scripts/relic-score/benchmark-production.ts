@@ -26,7 +26,13 @@ export async function loadProductionBenchmarkInputs() {
   if (ids.length !== 97 || new Set(ids).size !== 97)
     throw new Error(`[relic-score/benchmark] expected 97 reviewed profiles, found ${ids.length}`);
   const cases = ids.flatMap((characterId) =>
-    RELIC_SLOTS.map((slot) => ({ characterId, slot: slot as RelicSlot }))
+    RELIC_SLOTS.flatMap((slot) =>
+      inputs.model.mainBySlot[slot].map(({ key: mainStatKey }) => ({
+        characterId,
+        slot: slot as RelicSlot,
+        mainStatKey
+      }))
+    )
   );
   const expected: BenchmarkExpectedIdentity = buildExpectedBenchmarkIdentity(inputs, {
     N: RELIC_SCORE_CONFIG.benchmark.budgetN,

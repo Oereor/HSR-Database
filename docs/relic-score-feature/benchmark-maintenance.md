@@ -4,7 +4,9 @@
 
 ## V1 契约
 
-`src/lib/relic-score/scoring-config.ts` 是 N、K、seed、Lens B、257 点和评分份额的唯一配置入口。每个角色／槽位从相同 seed `123456789` 重新初始化 `mulberry32-v1`，自然生成三件同槽 5★ 遗器并全部强化至 +15，取基础副词条 RawSubUtility 的最大值；重复 65,536 次。角色和槽位按稳定顺序处理，正式产物不保存样本。
+`src/lib/relic-score/scoring-config.ts` 是 N、K、seed、Lens B、257 点和评分份额的唯一配置入口。每个角色／槽位／合法主词条从相同 seed `123456789` 重新初始化 `mulberry32-v1`，生成三件**主词条固定且相同**的同槽 5★ 遗器并全部强化至 +15，取基础副词条 RawSubUtility 的最大值；重复 65,536 次。主词条与同名副词条按 canonical stat key 互斥。角色、槽位和主词条按稳定顺序处理，正式产物不保存样本。
+
+Lens B 仍比较三件中的最高副词条质量，且不按角色推荐主词条筛选。错误主词条也有自己的条件分布；推荐与否只由 MainCompletion 评价。这个 benchmark 以已经取得三件同槽且同主词条遗器为前提，不计主词条掉率或体力成本。运行时以实际主词条查询静态产物；缺项或过期时评分不可用，不使用旧槽位混合分布。
 
 ## 何时重新生成
 
@@ -16,7 +18,7 @@
 
 1. 如修改 Profile，先完成逐角色审核，并运行 `pnpm relic-score:validate`。
 2. 运行 `pnpm relic-score:farming:validate`。
-3. 运行 `pnpm relic-score:benchmarks:generate`，确认输出 `582/582 generated` 与 `582/582 gate passed`。任一分布超过 `0.005` 时，命令会输出角色／槽位和 513 点诊断，并保持正式产物不变；需人工调查，不自动改格式。
+3. 运行 `pnpm relic-score:benchmarks:generate`，确认输出 `2716/2716 generated` 与 `2716/2716 gate passed`。任一分布超过 `0.005` 时，命令会输出角色／槽位／主词条和 513 点诊断，并保持正式产物不变；需人工调查，不自动改格式。
 4. 运行 `pnpm relic-score:benchmarks:validate`，检查正式 JSON 与当前输入、配置及完整覆盖一致。
 5. 检查正式 JSON、审计摘要和配置的 Git diff；再运行相关单测、`pnpm check`、`pnpm lint`、`pnpm data:validate:build-inputs` 与 `pnpm build`。
 6. 提交产物、审计和必要的源代码。普通 build／CI 只做廉价校验，绝不执行 Monte Carlo 生成。

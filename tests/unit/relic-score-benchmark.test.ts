@@ -24,6 +24,8 @@ beforeAll(async () => {
 
 describe('Relic Score production benchmarks', () => {
   it('rejects missing, extra, stale and malformed entries', () => {
+    expect(loaded.cases).toHaveLength(2716);
+    expect(() => validateBenchmarkArtifact(artifact, loaded.expected)).not.toThrow();
     const missing = structuredClone(artifact);
     delete missing.distributions['1002'].BODY;
     expect(() => validateBenchmarkArtifact(missing, loaded.expected)).toThrow(/coverage/);
@@ -43,8 +45,18 @@ describe('Relic Score production benchmarks', () => {
     prototype.metadata.prototype = true;
     expect(() => validateBenchmarkArtifact(prototype, loaded.expected)).toThrow(/prototype/);
     const malformed = structuredClone(artifact);
-    malformed.distributions['1002'].BODY!.quantiles[1] = -1;
+    malformed.distributions['1002'].BODY!.CriticalChanceBase!.quantiles[1] = -1;
     expect(() => validateBenchmarkArtifact(malformed, loaded.expected)).toThrow(/quantiles/);
+    const missingMain = structuredClone(artifact);
+    delete missingMain.distributions['1002'].BODY!.CriticalChanceBase;
+    expect(() => validateBenchmarkArtifact(missingMain, loaded.expected)).toThrow(
+      /main stat coverage/
+    );
+    const oldSchema = structuredClone(artifact) as unknown as { schemaVersion: number };
+    oldSchema.schemaVersion = 2;
+    expect(() =>
+      validateBenchmarkArtifact(oldSchema as unknown as BenchmarkArtifact, loaded.expected)
+    ).toThrow(/schema/);
   });
 
   it('keeps Lens B identity limited to distribution inputs', () => {
@@ -53,6 +65,7 @@ describe('Relic Score production benchmarks', () => {
     const input = {
       characterId: '1002',
       slot: 'BODY' as const,
+      mainStatKey: 'CriticalChanceBase' as const,
       profile,
       recommendation,
       model: loaded.inputs.model,
@@ -63,7 +76,10 @@ describe('Relic Score production benchmarks', () => {
       quantilePoints: RELIC_SCORE_CONFIG.benchmark.quantilePoints
     };
     const digest = benchmarkIdentityDigest(input);
-    expect(digest).toBe(loaded.expected.distributions['1002'].BODY);
+    expect(digest).toBe(loaded.expected.distributions['1002'].BODY?.CriticalChanceBase);
+    expect(benchmarkIdentityDigest({ ...input, mainStatKey: 'CriticalDamageBase' })).not.toBe(
+      digest
+    );
     const changedRecommendation = structuredClone(recommendation);
     changedRecommendation.mainStatOptions
       .find((item) => item.slot === 'BODY')!
@@ -148,19 +164,28 @@ describe('Relic Score production benchmarks', () => {
 
   it('loads formal distributions and scores with the current V1 formula', () => {
     const missing = createBenchmarkLoader(undefined, loaded.expected);
-    expect(missing.get('1310', 'HEAD')).toEqual({
+    expect(missing.get('1310', 'HEAD', 'HPDelta')).toEqual({
       status: 'unavailable',
       reason: 'BENCHMARK_MISSING'
     });
     const stale = structuredClone(artifact);
     stale.metadata.seed++;
-    expect(createBenchmarkLoader(stale, loaded.expected).get('1310', 'HEAD')).toEqual({
+    expect(createBenchmarkLoader(stale, loaded.expected).get('1310', 'HEAD', 'HPDelta')).toEqual({
       status: 'unavailable',
       reason: 'BENCHMARK_STALE'
     });
-    const distribution = artifact.distributions['1310'].HEAD!;
+    const distribution = artifact.distributions['1310'].HEAD!.HPDelta!;
     expect(lookupBenchmarkPercentile(distribution, -1)).toBe(0);
     expect(lookupBenchmarkPercentile(distribution, distribution.quantiles.at(-1)!)).toBe(1);
+    const body = createBenchmarkLoader(artifact, loaded.expected);
+    const critRate = body.get('1002', 'BODY', 'CriticalChanceBase');
+    const critDamage = body.get('1002', 'BODY', 'CriticalDamageBase');
+    expect(critRate.status).toBe('available');
+    expect(critDamage.status).toBe('available');
+    if (critRate.status === 'available' && critDamage.status === 'available')
+      expect(critRate.distribution.identityDigest).not.toBe(critDamage.distribution.identityDigest);
+    const windFoot = artifact.distributions['1409'].FOOT!;
+    expect(windFoot.SpeedDelta!.summary.p50).not.toBe(windFoot.HPAddedRatio!.summary.p50);
     const fixture = JSON.parse(
       readFileSync('tests/fixtures/relic-score/player-builds/complete-five-star.json', 'utf8')
     ) as PlayerBuildInput;

@@ -1,4 +1,5 @@
 import type { RelicSlot } from '../../domain/types.js';
+import type { RelicStatKey } from '../stat-registry.js';
 import {
   NATURAL_GENERATOR_VERSION,
   PRNG_VERSION,
@@ -24,8 +25,8 @@ export interface BenchmarkExpectedIdentity {
   profileDigests: Record<string, string>;
   probabilityDigest: string;
   referenceDigest: string;
-  /** Expected Lens-B digest for each requested character/slot. */
-  distributions: Record<string, Partial<Record<RelicSlot, string>>>;
+  /** Expected Lens-B digest for each requested character/slot/main stat. */
+  distributions: Record<string, Partial<Record<RelicSlot, Partial<Record<RelicStatKey, string>>>>>;
   requireCompleteCoverage?: boolean;
   allowPrototype?: boolean;
 }
@@ -148,21 +149,38 @@ export function validateBenchmarkArtifact(
       (expected.requireCompleteCoverage && RELIC_SLOTS.some((slot) => !slots[slot]))
     )
       throw new Error('[relic-score/benchmark] character/slot coverage');
-    for (const [slot, value] of Object.entries(slots)) {
-      if (!RELIC_SLOTS.includes(slot as RelicSlot) || !value)
+    for (const [slot, mains] of Object.entries(slots)) {
+      if (!RELIC_SLOTS.includes(slot as RelicSlot) || !mains)
         throw new Error('[relic-score/benchmark] invalid slot');
-      validateBenchmarkDistribution(value);
-      if (value.identityDigest !== expected.distributions[id]?.[slot as RelicSlot])
-        throw new Error('[relic-score/benchmark] stale distribution identity');
+      const expectedMains = expected.distributions[id]?.[slot as RelicSlot];
+      if (
+        Object.keys(mains).sort().join(',') !==
+        Object.keys(expectedMains ?? {})
+          .sort()
+          .join(',')
+      )
+        throw new Error('[relic-score/benchmark] main stat coverage');
+      for (const [mainStatKey, value] of Object.entries(mains)) {
+        validateBenchmarkDistribution(value);
+        if (value.identityDigest !== expectedMains?.[mainStatKey as RelicStatKey])
+          throw new Error('[relic-score/benchmark] stale distribution identity');
+      }
     }
   }
   if (
     expected.requireCompleteCoverage &&
     Object.values(artifact.distributions).reduce(
-      (sum, slots) => sum + Object.keys(slots).length,
+      (sum, slots) =>
+        sum +
+        Object.values(slots).reduce((inner, mains) => inner + Object.keys(mains ?? {}).length, 0),
       0
     ) !==
-      Object.keys(expected.distributions).length * RELIC_SLOTS.length
+      Object.values(expected.distributions).reduce(
+        (sum, slots) =>
+          sum +
+          Object.values(slots).reduce((inner, mains) => inner + Object.keys(mains ?? {}).length, 0),
+        0
+      )
   )
     throw new Error('[relic-score/benchmark] distribution coverage');
 }
