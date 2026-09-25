@@ -13,12 +13,7 @@ import {
   RELIC_SLOTS,
   validateScoringConfig
 } from '../../src/lib/relic-score/scoring-config.js';
-import {
-  coreBuildScore,
-  finalBuildScore,
-  pieceNormalized
-} from '../../src/lib/relic-score/scoring-math.js';
-import { evaluateBreakpoints, evaluateSoftTargets } from '../../src/lib/relic-score/score.js';
+import { coreBuildScore, pieceNormalized } from '../../src/lib/relic-score/scoring-math.js';
 import {
   evaluateQuantileGate,
   generateBenchmarkCases,
@@ -40,7 +35,7 @@ for (const key of Object.keys(args))
     throw new Error(`[relic-score/calibrate] unknown option ${key}`);
 const mode = args.mode ?? 'all';
 validateScoringConfig();
-if (!['all', 'representation', 'stability', 'matrix', 'modifiers', 'fixture'].includes(mode))
+if (!['all', 'representation', 'stability', 'matrix', 'fixture'].includes(mode))
   throw new Error(`[relic-score/calibrate] invalid mode ${mode}`);
 const seed = Number(args.seed ?? RELIC_SCORE_CONFIG.benchmark.seed);
 if (!Number.isSafeInteger(seed) || seed < 0 || seed > 0xffffffff)
@@ -320,89 +315,6 @@ if (mode === 'fixture') {
           }
     }
     output.matrix = { K, characters, runs, pieceRows, buildRows };
-  }
-  if (mode === 'all' || mode === 'modifiers') {
-    const N = Ns.includes(RELIC_SCORE_CONFIG.benchmark.budgetN)
-      ? RELIC_SCORE_CONFIG.benchmark.budgetN
-      : Ns[0];
-    const K = Ks.includes(8192) ? 8192 : Math.min(...Ks);
-    const selected = ['1222', '1409'].flatMap((characterId) =>
-      RELIC_SLOTS.map((slot) => ({ characterId, slot }))
-    );
-    const generated = run(N, K, seed, selected);
-    const coreFor = (characterId: string, label: string) => {
-      const S = RELIC_SLOTS.reduce((sum, slot) => {
-        const piece = held(characterId, slot).correct[label];
-        const distribution =
-          generated.artifact.distributions[characterId][slot]![piece.mainStatKey]!;
-        return (
-          sum +
-          RELIC_SCORE_CONFIG.slots[slot] *
-            pieceNormalized(
-              piece.mainCompletion,
-              lookupBenchmarkPercentile(distribution, piece.utility),
-              RELIC_SCORE_CONFIG.piece.mainShare
-            )
-        );
-      }, 0);
-      return coreBuildScore(S, 1, RELIC_SCORE_CONFIG.build.statShare);
-    };
-    const softProfile = profiles.get('1222')!;
-    const target = softProfile.softTargets[0];
-    const softRows = [2, 4, 6].flatMap((maxBonus) =>
-      ['average', 'good', 'excellent'].flatMap((label) =>
-        [0, 0.25, 0.5, 0.75, 1].map((expectedProgress) => {
-          const panel = {
-            break_dmg:
-              target.minimumThreshold +
-              expectedProgress * (target.maximumThreshold - target.minimumThreshold)
-          };
-          const result = evaluateSoftTargets(softProfile, panel);
-          if (result.status !== 'available')
-            throw new Error('[relic-score/calibrate] soft panel unavailable');
-          const core = coreFor('1222', label);
-          const finalScore = finalBuildScore(core, result.value.progress, 0, maxBonus, 0);
-          return {
-            maxBonus,
-            progress: result.value.progress,
-            buildFixture: label,
-            coreBuildScore: core,
-            finalScore,
-            delta: finalScore - core
-          };
-        })
-      )
-    );
-    const bpProfile = profiles.get('1409')!;
-    const threshold = bpProfile.hardBreakpoints[0].threshold;
-    const penaltyRows = [5, 8, 10].flatMap((maxPenalty) =>
-      ['average', 'good', 'excellent'].flatMap((label) =>
-        [threshold - 0.001, threshold, threshold + 0.001].map((spd) => {
-          const result = evaluateBreakpoints(bpProfile, { spd });
-          if (result.status !== 'available')
-            throw new Error('[relic-score/calibrate] breakpoint panel unavailable');
-          const core = coreFor('1409', label);
-          const finalScore = finalBuildScore(core, 0, result.value.failureRatio, 0, maxPenalty);
-          return {
-            maxPenalty,
-            panelValue: spd,
-            failureRatio: result.value.failureRatio,
-            buildFixture: label,
-            coreBuildScore: core,
-            finalScore,
-            delta: finalScore - core
-          };
-        })
-      )
-    );
-    output.modifiers = {
-      N,
-      K,
-      seed,
-      simulationRuntimeMs: generated.cases.reduce((sum, item) => sum + item.runtimeMs, 0),
-      softRows,
-      penaltyRows
-    };
   }
   output.totalRuntimeMs = performance.now() - commandStarted;
   if (args.out) await writeFile(args.out, await format(JSON.stringify(output), { parser: 'json' }));

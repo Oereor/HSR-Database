@@ -12,7 +12,7 @@ import { buildRelicScoreReferenceData } from '../../src/lib/relic-score/referenc
 import { RELIC_SCORE_CONFIG } from '../../src/lib/relic-score/scoring-config.js';
 import {
   coreBuildScore,
-  finalBuildScore,
+  normalizedStatCompletion,
   pieceNormalized
 } from '../../src/lib/relic-score/scoring-math.js';
 import {
@@ -120,10 +120,10 @@ describe('Relic Score scoring', () => {
     expect(piece).toBeCloseTo(0.35 + 0.65 * 0.5);
     const core = coreBuildScore(piece, 1, RELIC_SCORE_CONFIG.build.statShare);
     expect(core).toBeCloseTo(100 * (0.95 * piece + 0.05));
-    expect(finalBuildScore(core, 0.5, 0.5, 4, 8)).toBeCloseTo(core - 2);
-    expect(finalBuildScore(99, 1, 0, 4, 8)).toBe(100);
-    expect(finalBuildScore(1, 0, 1, 4, 8)).toBe(0);
-    const result = scoreBuild(fixture, sources);
+    const noModifierProfile = structuredClone(sources.profile!);
+    noModifierProfile.softTargets = [];
+    noModifierProfile.hardBreakpoints = [];
+    const result = scoreBuild(fixture, { ...sources, profile: noModifierProfile });
     expect(result.status).toBe('available');
     const build = result.build!;
     expect(build.pieces).toHaveLength(6);
@@ -145,6 +145,7 @@ describe('Relic Score scoring', () => {
         0
       )
     );
+    expect(build.statCompletion.normalized).toBeCloseTo(build.statCompletion.base);
     expect(build.softTargetProgress).toBe(0);
     expect(build.hardBreakpointFailureRatio).toBe(0);
     expect(build.coreBuildScore).toBeCloseTo(
@@ -152,6 +153,92 @@ describe('Relic Score scoring', () => {
     );
     expect(build.finalBuildScore).toBeCloseTo(build.coreBuildScore);
     expect(build.effectiveHits.total).toBe(27);
+
+    const { baseStatWeight, softTargetWeight, hardBreakpointWeight, statShare } =
+      RELIC_SCORE_CONFIG.build;
+    expect(
+      normalizedStatCompletion(
+        build.statCompletion.base,
+        1,
+        1,
+        false,
+        false,
+        baseStatWeight,
+        softTargetWeight,
+        hardBreakpointWeight
+      )
+    ).toBeCloseTo(build.statCompletion.base);
+    expect(
+      normalizedStatCompletion(
+        0,
+        0,
+        1,
+        true,
+        true,
+        baseStatWeight,
+        softTargetWeight,
+        hardBreakpointWeight
+      )
+    ).toBe(0);
+    expect(
+      normalizedStatCompletion(
+        1,
+        1,
+        0,
+        true,
+        true,
+        baseStatWeight,
+        softTargetWeight,
+        hardBreakpointWeight
+      )
+    ).toBe(1);
+    for (const { soft, hard, progress, failure } of [
+      { soft: false, hard: false, progress: 0, failure: 0 },
+      { soft: true, hard: false, progress: 0, failure: 0 },
+      { soft: true, hard: false, progress: 1, failure: 0 },
+      { soft: false, hard: true, progress: 0, failure: 0 },
+      { soft: false, hard: true, progress: 0, failure: 1 },
+      { soft: true, hard: true, progress: 0, failure: 1 },
+      { soft: true, hard: true, progress: 1, failure: 0 }
+    ]) {
+      const profile = structuredClone(noModifierProfile);
+      if (soft)
+        profile.softTargets = [
+          { stat: 'BreakDamageAddedRatioBase', minimumThreshold: 1, maximumThreshold: 2 }
+        ];
+      if (hard) profile.hardBreakpoints = [{ stat: 'SpeedDelta', threshold: 200 }];
+      const input = structuredClone(fixture);
+      input.panel.break_dmg = progress ? 2 : 1;
+      input.panel.spd = failure ? 199 : 200;
+      const scored = scoreBuild(input, { ...sources, profile });
+      expect(scored.status).toBe('available');
+      const actual = scored.build!;
+      const expectedNormalized =
+        (baseStatWeight * build.statCompletion.base +
+          (soft ? softTargetWeight * progress : 0) +
+          (hard ? hardBreakpointWeight * (1 - failure) : 0)) /
+        (baseStatWeight + (soft ? softTargetWeight : 0) + (hard ? hardBreakpointWeight : 0));
+      expect(
+        normalizedStatCompletion(
+          build.statCompletion.base,
+          progress,
+          failure,
+          soft,
+          hard,
+          baseStatWeight,
+          softTargetWeight,
+          hardBreakpointWeight
+        )
+      ).toBeCloseTo(expectedNormalized);
+      expect(actual.statCompletion.normalized).toBeCloseTo(expectedNormalized);
+      expect(actual.finalBuildScore).toBeCloseTo(
+        100 * (statShare * expectedNormalized + (1 - statShare) * actual.setIntegrity.total)
+      );
+      expect(actual.statCompletion.normalized).toBeGreaterThanOrEqual(0);
+      expect(actual.statCompletion.normalized).toBeLessThanOrEqual(1);
+      expect(actual.finalBuildScore).toBeGreaterThanOrEqual(0);
+      expect(actual.finalBuildScore).toBeLessThanOrEqual(100);
+    }
   });
 
   it('scores lower rarity and level against unchanged five-star references', () => {

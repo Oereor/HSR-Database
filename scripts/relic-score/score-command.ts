@@ -77,8 +77,6 @@ else
         hardBreakpointFailureRatio: result.build?.hardBreakpointFailureRatio,
         T: result.build?.setIntegrity.total,
         coreBuildScore: result.build?.coreBuildScore,
-        softTargetBonus: result.build?.softTargetBonus,
-        hardBreakpointPenalty: result.build?.hardBreakpointPenalty,
         finalBuildScore: result.build?.finalBuildScore,
         effectiveHits: result.build?.effectiveHits
       },

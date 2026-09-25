@@ -36,6 +36,15 @@
 
 阈值使用内部最终面板单位。比例属性 `1.0 = 100%`，例如击破特攻 `1.8 = 180%`；SPD、ATK、DEF 使用最终面板数值。`AttackAddedRatio`、`DefenceAddedRatio` 等 stat 是 canonical 属性键，阈值仍对应映射后的最终面板 ATK、DEF 数值。
 
-Soft Target 进度和 Hard Breakpoint 失败比例只在 Build 层转为 bonus、penalty；上限位于 `src/lib/relic-score/scoring-config.ts` 的集中配置，不在 Character Profile 中设置。Piece Score 和 farming benchmark 只使用基础副词条权重。Phase 1D 校准依据与维护命令见 `phase-1d-scoring-and-benchmark-calibration-report.md`。
+Soft Target 进度和 Hard Breakpoint 失败比例只在 Build 层参与评分，权重位于 `src/lib/relic-score/scoring-config.ts` 的集中配置，不在 Character Profile 中设置。Piece Score 和 farming benchmark 只使用基础副词条权重。
+
+当前 Build Score 先计算归一化属性完成度，再按属性 95%、套装 5% 聚合。令 `S` 为原 Stat Completion、`T` 为 Set Integrity、`P` 为 Soft Target Progress、`F` 为 Hard Breakpoint Failure Ratio；`Is` 和 `Ih` 分别表示 Profile 是否存在 Soft Target 和 Hard Breakpoint（有则为 1，否则为 0）：
+
+```text
+N = (95×S + 8×Is×P + 5×Ih×(1−F)) / (95 + 8×Is + 5×Ih)
+FinalBuildScore = 100×(0.95×N + 0.05×T)
+```
+
+Soft Target 权重为 8，Hard Breakpoint 权重为 5。没有两类 modifier 时 `N=S`；有 modifier 时，它们只在 `N` 中应用一次。旧版 `CoreBuildScore + soft bonus − hard penalty` 已废弃，不能再用来计算当前分数。Phase 1D 报告记录历史校准结果，不代表当前评分规则。
 
 正式 benchmark 的过期规则和独立再生成步骤见 [Benchmark 维护](benchmark-maintenance.md)。

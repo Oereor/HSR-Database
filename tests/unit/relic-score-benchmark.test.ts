@@ -143,28 +143,36 @@ describe('Relic Score production benchmarks', () => {
     expect(probabilityModelDigest(provenance)).toBe(probabilityModelDigest(input.model.config));
     const scoring = RELIC_SCORE_CONFIG as unknown as {
       piece: { mainShare: number };
-      build: { statShare: number; maxSoftTargetBonus: number; maxBreakpointPenalty: number };
+      build: {
+        statShare: number;
+        baseStatWeight: number;
+        softTargetWeight: number;
+        hardBreakpointWeight: number;
+      };
       sets: { cavernOnePair: number };
     };
     const original = {
       mainShare: scoring.piece.mainShare,
       statShare: scoring.build.statShare,
-      bonus: scoring.build.maxSoftTargetBonus,
-      penalty: scoring.build.maxBreakpointPenalty,
+      baseStatWeight: scoring.build.baseStatWeight,
+      softTargetWeight: scoring.build.softTargetWeight,
+      hardBreakpointWeight: scoring.build.hardBreakpointWeight,
       onePair: scoring.sets.cavernOnePair
     };
     try {
       scoring.piece.mainShare = 0.4;
       scoring.build.statShare = 0.9;
-      scoring.build.maxSoftTargetBonus = 6;
-      scoring.build.maxBreakpointPenalty = 10;
+      scoring.build.baseStatWeight = 90;
+      scoring.build.softTargetWeight = 6;
+      scoring.build.hardBreakpointWeight = 10;
       scoring.sets.cavernOnePair = 0.25;
       expect(benchmarkIdentityDigest(input)).toBe(digest);
     } finally {
       scoring.piece.mainShare = original.mainShare;
       scoring.build.statShare = original.statShare;
-      scoring.build.maxSoftTargetBonus = original.bonus;
-      scoring.build.maxBreakpointPenalty = original.penalty;
+      scoring.build.baseStatWeight = original.baseStatWeight;
+      scoring.build.softTargetWeight = original.softTargetWeight;
+      scoring.build.hardBreakpointWeight = original.hardBreakpointWeight;
       scoring.sets.cavernOnePair = original.onePair;
     }
   });
@@ -211,9 +219,9 @@ describe('Relic Score production benchmarks', () => {
           RELIC_SCORE_CONFIG.build.setShare * result.build!.setIntegrity.total)
     );
     expect(result.build!.finalBuildScore).toBeCloseTo(
-      result.build!.coreBuildScore +
-        result.build!.softTargetBonus -
-        result.build!.hardBreakpointPenalty
+      100 *
+        (RELIC_SCORE_CONFIG.build.statShare * result.build!.statCompletion.normalized +
+          RELIC_SCORE_CONFIG.build.setShare * result.build!.setIntegrity.total)
     );
   });
 });
