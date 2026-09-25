@@ -1,9 +1,10 @@
 import type { RelicSlot } from '../../domain/types.js';
 import { RELIC_SCORE_CONFIG } from '../scoring-config.js';
+import type { RelicStatKey } from '../stat-registry.js';
 
-export const BENCHMARK_SCHEMA_VERSION = 2 as const;
-export const BENCHMARK_VERSION = 'lens-b-base-raw-v1' as const;
-export const BENCHMARK_GENERATOR_VERSION = 'lens-b-production-v1' as const;
+export const BENCHMARK_SCHEMA_VERSION = 3 as const;
+export const BENCHMARK_VERSION = 'lens-b-main-conditioned-v2' as const;
+export const BENCHMARK_GENERATOR_VERSION = 'lens-b-production-main-conditioned-v2' as const;
 export const BENCHMARK_SEED_CONTRACT = 'same-seed-reset-per-distribution-v1' as const;
 export const BENCHMARK_MAX_REPRESENTATION_ERROR = 0.005 as const;
 export const BENCHMARK_QUANTILE_POINTS = RELIC_SCORE_CONFIG.benchmark.quantilePoints;
@@ -47,5 +48,8 @@ export interface BenchmarkArtifact {
   schemaVersion: typeof BENCHMARK_SCHEMA_VERSION;
   benchmarkVersion: typeof BENCHMARK_VERSION;
   metadata: BenchmarkMetadata;
-  distributions: Record<string, Partial<Record<RelicSlot, BenchmarkDistribution>>>;
+  distributions: Record<
+    string,
+    Partial<Record<RelicSlot, Partial<Record<RelicStatKey, BenchmarkDistribution>>>>
+  >;
 }

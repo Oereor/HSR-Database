@@ -1,4 +1,5 @@
 import type { RelicSlot } from '../../domain/types.js';
+import type { RelicStatKey } from '../stat-registry.js';
 import { generateNaturalRelic, type GeneratedNaturalRelic } from './generate-natural-relic.js';
 import type { CompiledProbabilityModel } from './probability-model.js';
 import type { SeededRng } from './prng.js';
@@ -27,7 +28,8 @@ export function generateFarmingExperiment(
   slot: RelicSlot,
   budget: FarmingBudget,
   model: CompiledProbabilityModel,
-  rng: SeededRng
+  rng: SeededRng,
+  mainStatKey?: RelicStatKey
 ): GeneratedNaturalRelic[] {
   if (
     budget.unit !== 'target-slot-natural-piece' ||
@@ -37,5 +39,7 @@ export function generateFarmingExperiment(
   )
     throw new Error('[relic-score/farming] unsupported farming budget');
   farmingBudget(budget.pieceCount);
-  return Array.from({ length: budget.pieceCount }, () => generateNaturalRelic(slot, model, rng));
+  return Array.from({ length: budget.pieceCount }, () =>
+    generateNaturalRelic(slot, model, rng, mainStatKey)
+  );
 }

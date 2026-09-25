@@ -1,7 +1,8 @@
 import { writeFile } from 'node:fs/promises';
 import { gzipSync } from 'node:zlib';
-import { format } from 'prettier';
+import { format, resolveConfig } from 'prettier';
 import type { RelicSlot } from '../../src/lib/domain/types.js';
+import type { RelicStatKey } from '../../src/lib/relic-score/stat-registry.js';
 import { lookupBenchmarkPercentile } from '../../src/lib/relic-score/benchmark/lookup.js';
 import { validateBenchmarkArtifact } from '../../src/lib/relic-score/benchmark/validate.js';
 import { generateNaturalRelic } from '../../src/lib/relic-score/farming/generate-natural-relic.js';
@@ -88,7 +89,12 @@ const quality = [
   ['excellent', 0.95],
   ['extreme', 0.995]
 ] as const;
-type HeldPiece = { utility: number; mainCompletion: number; usefulDensity: number };
+type HeldPiece = {
+  mainStatKey: RelicStatKey;
+  utility: number;
+  mainCompletion: number;
+  usefulDensity: number;
+};
 const heldoutSeed = (seed ^ 0xa5a5a5a5) >>> 0;
 const corpus = new Map<
   string,
@@ -110,6 +116,7 @@ function held(characterId: string, slot: RelicSlot) {
   const all = Array.from({ length: 4096 }, () => {
     const piece = generateNaturalRelic(slot, inputs.model, rng);
     return {
+      mainStatKey: piece.mainStat.key,
       utility: rawSubUtility(piece, profile, inputs.model),
       mainCompletion: accepted.has(piece.mainStat.key) ? 1 : 0,
       usefulDensity:
@@ -147,7 +154,13 @@ if (mode === 'fixture') {
   const selected = RELIC_SLOTS.map((slot) => ({ characterId: '1310', slot }));
   const N = Number(args.N ?? 10);
   const generated = run(N, Ks[0], seed, selected);
-  await writeFile(args.out, await format(JSON.stringify(generated.artifact), { parser: 'json' }));
+  await writeFile(
+    args.out,
+    await format(JSON.stringify(generated.artifact), {
+      ...(await resolveConfig(args.out)),
+      parser: 'json'
+    })
+  );
   console.log(JSON.stringify({ mode, N, K: Ks[0], seed, out: args.out }));
 } else {
   if (mode === 'all' || mode === 'representation') {
@@ -189,10 +202,7 @@ if (mode === 'fixture') {
         const baseline = reference.generated.cases[index].distribution;
         const s = item.distribution.summary,
           b = baseline.summary;
-        const group = held(item.characterId, item.slot).correct;
-        const queries = [group.poor, group.average, group.excellent, group.extreme]
-          .filter((piece): piece is HeldPiece => !!piece)
-          .map((piece) => piece.utility);
+        const queries = [13, 128, 243, 255].map((index) => baseline.quantiles[index]);
         return {
           N,
           K,
@@ -220,16 +230,19 @@ if (mode === 'fixture') {
     const count = reference.generated.cases.length;
     const meanRuntime =
       reference.generated.cases.reduce((sum, item) => sum + item.runtimeMs, 0) / count;
+    const productionCount =
+      inputs.profiles.length *
+      RELIC_SLOTS.reduce((sum, slot) => sum + inputs.model.mainBySlot[slot].length, 0);
     output.productionProjection = {
       N,
       K: referenceK,
       quantilePoints: 257,
-      distributions: 582,
-      generatedPieces: 582 * N * referenceK,
-      runtimeMs: meanRuntime * 582,
-      roughQuantileBytes: 582 * 257 * 8,
-      rawJsonBytesApprox: (Buffer.byteLength(artifactJson) / count) * 582,
-      gzipBytesApprox: (gzipSync(artifactJson).length / count) * 582,
+      distributions: productionCount,
+      generatedPieces: productionCount * N * referenceK,
+      runtimeMs: meanRuntime * productionCount,
+      roughQuantileBytes: productionCount * 257 * 8,
+      rawJsonBytesApprox: (Buffer.byteLength(artifactJson) / count) * productionCount,
+      gzipBytesApprox: (gzipSync(artifactJson).length / count) * productionCount,
       basis: 'linear extrapolation from representative prototype artifact and simulation runtimes'
     };
   }
@@ -254,6 +267,7 @@ if (mode === 'fixture') {
           for (const [label] of quality) {
             const piece = group[label];
             if (!piece) continue;
+            if (piece.mainStatKey !== item.mainStatKey) continue;
             const percentile = lookupBenchmarkPercentile(item.distribution, piece.utility);
             for (const alpha of alphas)
               pieceRows.push({
@@ -279,7 +293,8 @@ if (mode === 'fixture') {
           for (const alpha of alphas) {
             const S = RELIC_SLOTS.reduce((sum, slot) => {
               const piece = held(characterId, slot).correct[label];
-              const distribution = generated.artifact.distributions[characterId][slot]!;
+              const distribution =
+                generated.artifact.distributions[characterId][slot]![piece.mainStatKey]!;
               return (
                 sum +
                 RELIC_SCORE_CONFIG.slots[slot] *
@@ -318,7 +333,8 @@ if (mode === 'fixture') {
     const coreFor = (characterId: string, label: string) => {
       const S = RELIC_SLOTS.reduce((sum, slot) => {
         const piece = held(characterId, slot).correct[label];
-        const distribution = generated.artifact.distributions[characterId][slot]!;
+        const distribution =
+          generated.artifact.distributions[characterId][slot]![piece.mainStatKey]!;
         return (
           sum +
           RELIC_SCORE_CONFIG.slots[slot] *

@@ -148,10 +148,11 @@ export function scorePiece(
       return { status: 'unavailable', reason: 'BENCHMARK_MISSING_OR_STALE' };
     }
   }
-  const distribution = benchmark.distributions[characterId]?.[piece.slot];
+  const distribution = benchmark.distributions[characterId]?.[piece.slot]?.[piece.mainStat.key];
   if (
     !distribution ||
-    distribution.identityDigest !== benchmarkExpected.distributions[characterId]?.[piece.slot]
+    distribution.identityDigest !==
+      benchmarkExpected.distributions[characterId]?.[piece.slot]?.[piece.mainStat.key]
   )
     return { status: 'unavailable', reason: 'BENCHMARK_MISSING_OR_STALE' };
   const benchmarkPercentile = lookupBenchmarkPercentile(distribution, rawSubUtility);

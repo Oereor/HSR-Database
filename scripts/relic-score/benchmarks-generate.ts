@@ -40,6 +40,7 @@ const distributions: BenchmarkArtifact['distributions'] = {};
 const auditRows: Array<{
   characterId: string;
   slot: string;
+  mainStatKey: string;
   summary: BenchmarkDistribution['summary'];
   maxRepresentationError: number;
   meanRepresentationError: number;
@@ -55,14 +56,14 @@ const compare = (left: string, right: string) => (left < right ? -1 : left > rig
 const { budgetN: N, experimentCount: K, seed } = RELIC_SCORE_CONFIG.benchmark;
 const budget = farmingBudget(N);
 
-for (const [index, { characterId, slot }] of cases.entries()) {
+for (const [index, { characterId, slot, mainStatKey }] of cases.entries()) {
   const profile = profiles.get(characterId)!;
-  // Phase 1B/1D contract: restart the same seed for each character/slot distribution.
+  // Restart the same seed for each character/slot/main-stat distribution.
   const rng = createSeededRng(seed);
   const samples = new Array<number>(K);
   for (let experiment = 0; experiment < K; experiment++) {
     let best = -Infinity;
-    for (const piece of generateFarmingExperiment(slot, budget, inputs.model, rng))
+    for (const piece of generateFarmingExperiment(slot, budget, inputs.model, rng, mainStatKey))
       best = Math.max(best, rawSubUtility(piece, profile, inputs.model));
     samples[experiment] = best;
   }
@@ -72,7 +73,7 @@ for (const [index, { characterId, slot }] of cases.entries()) {
   if (error.maxAbsoluteCdfError > BENCHMARK_MAX_REPRESENTATION_ERROR) {
     const diagnostic = measureQuantileError(samples, encodeDenseQuantiles(samples, 513));
     throw new Error(
-      `[relic-score/benchmark] ${characterId}:${slot} 257 gate failed ` +
+      `[relic-score/benchmark] ${characterId}:${slot}:${mainStatKey} 257 gate failed ` +
         `max=${error.maxAbsoluteCdfError} 513=${diagnostic.maxAbsoluteCdfError}; artifact unchanged`
     );
   }
@@ -86,14 +87,15 @@ for (const [index, { characterId, slot }] of cases.entries()) {
     p99: empiricalQuantile(samples, 0.99)
   };
   const distribution: BenchmarkDistribution = {
-    identityDigest: expected.distributions[characterId]![slot]!,
+    identityDigest: expected.distributions[characterId]![slot]![mainStatKey]!,
     summary,
     quantiles
   };
-  (distributions[characterId] ??= {})[slot] = distribution;
+  ((distributions[characterId] ??= {})[slot] ??= {})[mainStatKey] = distribution;
   auditRows.push({
     characterId,
     slot,
+    mainStatKey,
     summary,
     maxRepresentationError: error.maxAbsoluteCdfError,
     meanRepresentationError: error.meanAbsoluteCdfError,
@@ -103,7 +105,7 @@ for (const [index, { characterId, slot }] of cases.entries()) {
   maxRankError = Math.max(maxRankError, error.maxSampleRankError);
   if (error.maxAbsoluteCdfError > maxError) {
     maxError = error.maxAbsoluteCdfError;
-    worstCase = `${characterId}:${slot}`;
+    worstCase = `${characterId}:${slot}:${mainStatKey}`;
   }
   const memory = process.memoryUsage();
   peakRss = Math.max(peakRss, memory.rss);
@@ -167,13 +169,22 @@ const audit = {
         (left, right) =>
           right.maxRepresentationError - left.maxRepresentationError ||
           compare(left.characterId, right.characterId) ||
-          compare(left.slot, right.slot)
+          compare(left.slot, right.slot) ||
+          compare(left.mainStatKey, right.mainStatKey)
       )
       .slice(0, 10)
       .map(
-        ({ characterId, slot, maxRepresentationError, meanRepresentationError, maxRankError }) => ({
+        ({
           characterId,
           slot,
+          mainStatKey,
+          maxRepresentationError,
+          meanRepresentationError,
+          maxRankError
+        }) => ({
+          characterId,
+          slot,
+          mainStatKey,
           maxRepresentationError,
           meanRepresentationError,
           maxRankError

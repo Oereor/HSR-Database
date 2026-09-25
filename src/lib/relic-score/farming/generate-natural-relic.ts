@@ -48,12 +48,18 @@ function grade(entry: CompiledSubstat, rng: SeededRng): number {
 export function generateNaturalRelic(
   slot: RelicSlot,
   model: CompiledProbabilityModel,
-  rng: SeededRng
+  rng: SeededRng,
+  mainStatKey?: RelicStatKey
 ): GeneratedNaturalRelic {
   const mains = model.mainBySlot[slot];
   if (!mains?.length) throw new Error(`[relic-score/farming] invalid slot ${slot}`);
+  const fixedMain =
+    mainStatKey === undefined ? undefined : mains.find((entry) => entry.key === mainStatKey);
+  if (mainStatKey !== undefined && !fixedMain)
+    throw new Error(`[relic-score/farming] illegal main ${slot}:${mainStatKey}`);
   const main: CompiledMainStat =
-    mains.length === 1 ? mains[0] : drawWeighted(mains, (entry) => entry.probability, rng);
+    fixedMain ??
+    (mains.length === 1 ? mains[0] : drawWeighted(mains, (entry) => entry.probability, rng));
   const initialSubstatCount: 3 | 4 =
     rng.next() < model.config.initialSubstatModel.fourProbability ? 4 : 3;
   const available = model.substats.filter((entry) => entry.key !== main.key);

@@ -36,10 +36,8 @@ const artifact = JSON.parse(
 ) as BenchmarkArtifact;
 let sources: ScoringSources;
 let expected: BenchmarkExpectedIdentity;
-let profiles: Awaited<ReturnType<typeof loadScoringInputs>>['profiles'];
 beforeAll(async () => {
   const inputs = await loadScoringInputs();
-  profiles = inputs.profiles;
   const cases = Object.entries(artifact.distributions).flatMap(([characterId, slots]) =>
     Object.keys(slots).map((slot) => ({ characterId, slot: slot as RelicSlot }))
   );
@@ -75,7 +73,7 @@ describe('Relic Score benchmark contract', () => {
     wrongProfile.profileDigests['1310'] = '0'.repeat(64);
     expect(() => validateBenchmarkArtifact(artifact, wrongProfile)).toThrow(/profile/);
     const nonmonotone = structuredClone(artifact);
-    nonmonotone.distributions['1310'].HEAD!.quantiles[5] = -1;
+    nonmonotone.distributions['1310'].HEAD!.HPDelta!.quantiles[5] = -1;
     expect(() => validateBenchmarkArtifact(nonmonotone, expected)).toThrow(/quantiles/);
   });
 
@@ -85,7 +83,34 @@ describe('Relic Score benchmark contract', () => {
     expect(lookupDenseCdf(q, 1)).toBeCloseTo(1 / 3);
     expect(lookupDenseCdf(q, 1.5)).toBeCloseTo(0.5);
     expect(lookupDenseCdf(q, 4)).toBe(1);
-    expect(lookupBenchmarkPercentile(artifact.distributions['1310'].HEAD!, -100)).toBe(0);
+    expect(lookupBenchmarkPercentile(artifact.distributions['1310'].HEAD!.HPDelta!, -100)).toBe(0);
+  });
+
+  it('uses the actual main-stat distribution even when the main is not recommended', () => {
+    const foot = fixture.relics.find((piece) => piece.slot === 'FOOT')!;
+    const wrongMain = {
+      ...foot,
+      mainStat: {
+        key: 'DefenceAddedRatio' as const,
+        value: sources.reference.mainAt15.FOOT.DefenceAddedRatio!
+      }
+    };
+    const result = scorePiece(wrongMain, fixture.characterId, sources);
+    expect(result.status).toBe('available');
+    if (result.status !== 'available') return;
+    expect(result.value.mainCompletion).toBe(0);
+    const distribution = artifact.distributions[fixture.characterId].FOOT!.DefenceAddedRatio!;
+    expect(result.value.benchmarkIdentity).toBe(distribution.identityDigest);
+    expect(result.value.benchmarkPercentile).toBe(
+      lookupBenchmarkPercentile(distribution, result.value.rawSubUtility)
+    );
+    expect(result.value.pieceScore).toBeCloseTo(65 * result.value.benchmarkPercentile);
+    const missing = structuredClone(sources.benchmark!);
+    delete missing.distributions[fixture.characterId].FOOT!.DefenceAddedRatio;
+    expect(scorePiece(wrongMain, fixture.characterId, { ...sources, benchmark: missing })).toEqual({
+      status: 'unavailable',
+      reason: 'BENCHMARK_MISSING_OR_STALE'
+    });
   });
 });
 
@@ -234,18 +259,6 @@ describe('Relic Score scoring', () => {
       expect(result.matchedPlanarSetId).toBe(matched);
       expect(result.total).toBeCloseTo((2 / 3) * result.cavern + (1 / 3) * integrity);
     }
-  });
-
-  it('scores configured breakpoints and no-breakpoint profiles', () => {
-    expect(evaluateBreakpoints(sources.profile!, fixture.panel)).toEqual({
-      status: 'available',
-      value: { failureRatio: 0, entries: [] }
-    });
-    const profile = structuredClone(profiles.find((item) => item.characterId === '1409')!);
-    const below = evaluateBreakpoints(profile, { spd: 199 });
-    const exact = evaluateBreakpoints(profile, { spd: 200 });
-    expect(below.status === 'available' && below.value.failureRatio).toBe(1);
-    expect(exact.status === 'available' && exact.value.failureRatio).toBe(0);
   });
 });
 

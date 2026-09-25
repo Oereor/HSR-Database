@@ -3,6 +3,7 @@ import profilesJson from '../../relic-score/generated/character-profiles.json' w
 import playerRuntimeJson from '../../generated/runtime/player.json' with { type: 'json' };
 import probabilityJson from '../../../../data/relic-score/probability-model.json' with { type: 'json' };
 import type { RelicSlot } from '../../domain/types.js';
+import type { RelicStatKey } from '../../relic-score/stat-registry.js';
 import { assertPlayerRuntimeData } from '../../player/runtime-data.js';
 import { buildExpectedBenchmarkIdentity } from '../../relic-score/benchmark/identity.js';
 import type {
@@ -45,10 +46,10 @@ export function createBenchmarkLoader(
     return validation === 'valid';
   };
   return {
-    get(characterId: string, slot: RelicSlot): BenchmarkLookupResult {
+    get(characterId: string, slot: RelicSlot, mainStatKey: RelicStatKey): BenchmarkLookupResult {
       if (!artifact) return { status: 'unavailable', reason: 'BENCHMARK_MISSING' };
       if (!valid()) return { status: 'unavailable', reason: 'BENCHMARK_STALE' };
-      const distribution = artifact!.distributions[characterId]?.[slot];
+      const distribution = artifact!.distributions[characterId]?.[slot]?.[mainStatKey];
       return distribution
         ? { status: 'available', distribution }
         : { status: 'unavailable', reason: 'BENCHMARK_MISSING' };
@@ -82,7 +83,11 @@ function productionState() {
   const ids = profiles.profiles.map((profile) => profile.characterId).sort();
   if (ids.length !== 97 || new Set(ids).size !== 97)
     throw new Error('[relic-score/benchmark] production profile coverage');
-  const cases = ids.flatMap((characterId) => RELIC_SLOTS.map((slot) => ({ characterId, slot })));
+  const cases = ids.flatMap((characterId) =>
+    RELIC_SLOTS.flatMap((slot) =>
+      model.mainBySlot[slot].map(({ key: mainStatKey }) => ({ characterId, slot, mainStatKey }))
+    )
+  );
   const expected = buildExpectedBenchmarkIdentity(
     { model, profiles: profiles.profiles },
     {

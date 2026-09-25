@@ -13,6 +13,7 @@ import {
 } from './versions.js';
 import type { CandidateLens } from '../farming/prototype.js';
 import { RELIC_SLOTS } from '../scoring-config.js';
+import type { RelicStatKey } from '../stat-registry.js';
 import {
   BENCHMARK_GENERATOR_VERSION,
   BENCHMARK_SCHEMA_VERSION,
@@ -81,6 +82,8 @@ export function fiveStarReferenceDigest(model: CompiledProbabilityModel): string
 export interface BenchmarkIdentityInput {
   characterId: string;
   slot: RelicSlot;
+  /** Omission is reserved for the historical natural-mixture diagnostic CLI. */
+  mainStatKey?: RelicStatKey;
   profile: CharacterRelicScoreProfile;
   recommendation?: AvatarEquipmentRecommendation;
   model: CompiledProbabilityModel;
@@ -96,6 +99,11 @@ export function benchmarkIdentityDigest(input: BenchmarkIdentityInput): string {
   const { profile, model, slot } = input;
   if (profile.characterId !== input.characterId)
     throw new Error('[relic-score/benchmark] character mismatch');
+  if (
+    input.mainStatKey !== undefined &&
+    !model.mainBySlot[slot]?.some((main) => main.key === input.mainStatKey)
+  )
+    throw new Error(`[relic-score/benchmark] illegal main ${slot}:${input.mainStatKey}`);
   let recommendedMains: string[] | undefined;
   if (input.lens === 'C') {
     if (input.recommendation?.avatarId !== input.characterId)
@@ -113,6 +121,7 @@ export function benchmarkIdentityDigest(input: BenchmarkIdentityInput): string {
     benchmarkGeneratorVersion: BENCHMARK_GENERATOR_VERSION,
     characterId: input.characterId,
     slot,
+    mainStatCondition: input.mainStatKey ?? 'natural-mixture-diagnostic',
     profileWeightDigest: profileScoringDigest(profile),
     ...(recommendedMains ? { recommendedMains } : {}),
     probabilityModelDigest: probabilityModelDigest(model.config),
@@ -141,7 +150,7 @@ export function buildExpectedBenchmarkIdentity(
     N: number;
     K: number;
     seed: number;
-    cases: readonly { characterId: string; slot: RelicSlot }[];
+    cases: readonly { characterId: string; slot: RelicSlot; mainStatKey: RelicStatKey }[];
     lens: CandidateLens;
     quantilePoints: 257 | 513;
     allowPrototype?: boolean;
@@ -154,7 +163,7 @@ export function buildExpectedBenchmarkIdentity(
   );
   const profileDigests: Record<string, string> = {};
   const distributions: BenchmarkExpectedIdentity['distributions'] = {};
-  for (const { characterId, slot } of options.cases) {
+  for (const { characterId, slot, mainStatKey } of options.cases) {
     const profile = profiles.get(characterId);
     if (
       !profile ||
@@ -164,9 +173,15 @@ export function buildExpectedBenchmarkIdentity(
     )
       throw new Error(`[relic-score/benchmark] reviewed inputs required: ${characterId}:${slot}`);
     profileDigests[characterId] = profileScoringDigest(profile);
-    (distributions[characterId] ??= {})[slot] = benchmarkIdentityDigest({
+    const mains = ((distributions[characterId] ??= {})[slot] ??= {});
+    if (mains[mainStatKey])
+      throw new Error(
+        `[relic-score/benchmark] duplicate case ${characterId}:${slot}:${mainStatKey}`
+      );
+    mains[mainStatKey] = benchmarkIdentityDigest({
       characterId,
       slot,
+      mainStatKey,
       profile,
       recommendation: recommendations.get(characterId),
       model: inputs.model,
@@ -182,6 +197,17 @@ export function buildExpectedBenchmarkIdentity(
       lens: options.lens,
       quantilePoints: options.quantilePoints
     });
+  }
+  if (options.requireCompleteCoverage) {
+    for (const [characterId, slots] of Object.entries(distributions))
+      for (const slot of RELIC_SLOTS) {
+        const actual = Object.keys(slots[slot] ?? {}).sort();
+        const legal = inputs.model.mainBySlot[slot].map((main) => main.key).sort();
+        if (JSON.stringify(actual) !== JSON.stringify(legal))
+          throw new Error(
+            `[relic-score/benchmark] incomplete expected coverage ${characterId}:${slot}`
+          );
+      }
   }
   return {
     budgetN: options.N,

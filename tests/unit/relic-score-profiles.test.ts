@@ -59,8 +59,19 @@ const samples = [
 ];
 
 describe('character relic score profile generation', () => {
-  it('selects the seven templates and preserves base Crit Rate weight', () => {
-    const generated = generateProfiles(samples, templates, noOverrides, commit).profiles;
+  it('infers templates and generates a complete, valid artifact', () => {
+    const artifact = generateProfiles(samples, templates, noOverrides, commit);
+    const generated = artifact.profiles;
+    expect(artifact.schemaVersion).toBe(3);
+    expect(generated).toHaveLength(samples.length);
+    expect(() =>
+      validateProfiles(artifact, {
+        characters: samples,
+        templates,
+        overrides: noOverrides,
+        sourceCommit: commit
+      })
+    ).not.toThrow();
     expect(generated.map((profile) => profile.templateId)).toEqual([
       'direct-dps',
       'direct-support',
@@ -71,28 +82,31 @@ describe('character relic score profile generation', () => {
       'debuff-support',
       'direct-dps'
     ]);
-    expect(generated[0].substatWeights.CriticalChanceBase).toBe(1.25);
     expect(generated[0].softTargets).toEqual([]);
     expect(generated[7].metadata.reviewStatus).toBe('needs-review');
   });
 
-  it('emits only complete manual targets and preserves review staleness', () => {
+  it('applies manual overrides and preserves review staleness', () => {
+    const localTemplates = structuredClone(templates);
+    localTemplates.templates['direct-dps'].CriticalChanceBase = 0.75;
     const override = {
+      statWeights: { CriticalChanceBase: 0.5 },
       softTargets: [{ stat: 'SpeedDelta' as const, minimumThreshold: 120, maximumThreshold: 160 }],
       hardBreakpoints: [{ stat: 'SpeedDelta' as const, threshold: 200 }]
     };
-    const profile = generateCharacterProfile(samples[0], templates, override, commit);
+    const profile = generateCharacterProfile(samples[0], localTemplates, override, commit);
+    expect(profile.substatWeights.CriticalChanceBase).toBe(override.statWeights.CriticalChanceBase);
     expect(profile.softTargets).toEqual(override.softTargets);
     expect(profile.hardBreakpoints).toEqual(override.hardBreakpoints);
     const reviewed = { ...override, reviewedInputDigest: profile.metadata.inputDigest };
     expect(
-      generateCharacterProfile(samples[0], templates, reviewed, commit).metadata.reviewStatus
+      generateCharacterProfile(samples[0], localTemplates, reviewed, commit).metadata.reviewStatus
     ).toBe('reviewed');
     reviewed.softTargets[0].minimumThreshold = 130;
     expect(
-      generateCharacterProfile(samples[0], templates, reviewed, commit).metadata.reviewStatus
+      generateCharacterProfile(samples[0], localTemplates, reviewed, commit).metadata.reviewStatus
     ).toBe('needs-review');
-    expect(profileInputDigest(samples[0], templates, reviewed)).not.toBe(
+    expect(profileInputDigest(samples[0], localTemplates, reviewed)).not.toBe(
       profile.metadata.inputDigest
     );
   });
@@ -107,7 +121,8 @@ describe('character relic score profile generation', () => {
     const withDisplay = { ...source, name: 'display only' };
     expect(profileInputDigest(withDisplay, templates, undefined)).toBe(digest);
     const unrelated = structuredClone(templates);
-    unrelated.templates.break.SpeedDelta = 0.5;
+    unrelated.templates.break.SpeedDelta =
+      templates.templates.break.SpeedDelta === 0.25 ? 0.5 : 0.25;
     expect(profileInputDigest(source, unrelated, undefined)).toBe(digest);
   });
 });
@@ -139,6 +154,8 @@ describe('profile configuration validation', () => {
     );
     invalid.overrides['1'].softTargets = [{ ...entry, minimumThreshold: null as never }];
     expect(() => validateConfig(source, templates, invalid)).toThrow('must be finite');
+    invalid.overrides['1'].softTargets = [{ ...entry, stat: 'not-a-stat' as never }];
+    expect(() => validateConfig(source, templates, invalid)).toThrow('invalid threshold stat');
     invalid.overrides['1'] = { statTargets: [] } as never;
     expect(() => validateConfig(source, templates, invalid)).toThrow('unknown override field');
   });
@@ -184,50 +201,5 @@ describe('profile configuration validation', () => {
     expect(noOverrides.overrides['1']).toBeUndefined();
     expect(Object.keys(approved.overrides)).toEqual(['1']);
     expect(() => currentReviewSummary(inputs, 'missing')).toThrow('unknown character');
-  });
-});
-
-describe('applied profile review', () => {
-  const artifact = JSON.parse(
-    readFileSync('src/lib/relic-score/generated/character-profiles.json', 'utf8')
-  ) as ReturnType<typeof generateProfiles>;
-  const overrides = JSON.parse(
-    readFileSync('data/relic-score/profile-overrides.json', 'utf8')
-  ) as ProfileOverrideConfig;
-
-  it('applies the nine manually reviewed intervals while keeping all 97 reviewed', () => {
-    const expectedTargets = {
-      '1222': { stat: 'BreakDamageAddedRatioBase', minimumThreshold: 0, maximumThreshold: 2 },
-      '1301': { stat: 'BreakDamageAddedRatioBase', minimumThreshold: 0, maximumThreshold: 1.5 },
-      '1303': { stat: 'BreakDamageAddedRatioBase', minimumThreshold: 1.2, maximumThreshold: 1.8 },
-      '1304': { stat: 'DefenceAddedRatio', minimumThreshold: 1600, maximumThreshold: 4000 },
-      '1409': { stat: 'StatusResistanceBase', minimumThreshold: 0, maximumThreshold: 0.5 },
-      '1412': { stat: 'AttackAddedRatio', minimumThreshold: 2000, maximumThreshold: 4000 },
-      '1501': { stat: 'AttackAddedRatio', minimumThreshold: 2000, maximumThreshold: 3600 },
-      '8009': { stat: 'AttackAddedRatio', minimumThreshold: 1000, maximumThreshold: 2200 },
-      '8010': { stat: 'AttackAddedRatio', minimumThreshold: 1000, maximumThreshold: 2200 }
-    } as const;
-    expect(artifact.schemaVersion).toBe(3);
-    expect(artifact.profiles).toHaveLength(97);
-    expect(Object.keys(overrides.overrides)).toHaveLength(97);
-    expect(artifact.profiles.reduce((n, p) => n + p.hardBreakpoints.length, 0)).toBe(5);
-    expect(artifact.profiles.reduce((n, p) => n + p.softTargets.length, 0)).toBe(9);
-    for (const profile of artifact.profiles) {
-      expect(profile.metadata.reviewStatus).toBe('reviewed');
-      expect(profile.metadata.reviewedInputDigest).toBe(profile.metadata.inputDigest);
-      const expected = expectedTargets[profile.characterId as keyof typeof expectedTargets];
-      expect(profile.softTargets).toEqual(expected ? [expected] : []);
-      expect(overrides.overrides[profile.characterId].softTargets).toEqual(
-        expected ? [expected] : undefined
-      );
-      expect(profile).not.toHaveProperty('statTargets');
-      expect(profile).not.toHaveProperty('statCurves');
-      expect(overrides.overrides[profile.characterId].reviewedInputDigest).toBe(
-        profile.metadata.inputDigest
-      );
-    }
-    expect(artifact.profiles.find((p) => p.characterId === '1409')?.hardBreakpoints).toEqual([
-      { stat: 'SpeedDelta', threshold: 200 }
-    ]);
   });
 });

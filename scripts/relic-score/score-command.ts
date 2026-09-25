@@ -52,7 +52,8 @@ const result = scoreBuild(payload.build, {
   ),
   reference: buildRelicScoreReferenceData(inputs.runtime),
   benchmark: artifact,
-  benchmarkExpected: expected
+  benchmarkExpected: expected,
+  benchmarkValidated: true
 });
 if (args.inspect === 'true')
   console.log(JSON.stringify({ result, benchmarkMetadata: artifact.metadata }, null, 2));

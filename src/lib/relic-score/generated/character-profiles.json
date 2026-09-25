@@ -68,20 +68,22 @@
       "characterId": "1004",
       "templateId": "direct-dps",
       "substatWeights": {
-        "AttackAddedRatio": 1,
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "SpeedDelta": 0.75,
-        "StatusProbabilityBase": 0.25
+        "AttackAddedRatio": 0.75,
+        "CriticalChanceBase": 0.75,
+        "CriticalDamageBase": 0.75,
+        "SpeedDelta": 1,
+        "StatusProbabilityBase": 0.75
       },
       "hardBreakpoints": [],
-      "softTargets": [],
+      "softTargets": [
+        { "stat": "StatusProbabilityBase", "minimumThreshold": 0.4, "maximumThreshold": 0.8 }
+      ],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "b2a3c50370d32d1c54c9e919a21e953edb9906d1612fc0baddac3f12bd9a0b0f",
-        "reviewedInputDigest": "b2a3c50370d32d1c54c9e919a21e953edb9906d1612fc0baddac3f12bd9a0b0f",
+        "inputDigest": "f3d6466a901cbe0bb54b11c3f6e7b1d700ffbbb6d31336c83ff0cd07cd3862de",
+        "reviewedInputDigest": "f3d6466a901cbe0bb54b11c3f6e7b1d700ffbbb6d31336c83ff0cd07cd3862de",
         "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
@@ -106,20 +108,22 @@
       "characterId": "1006",
       "templateId": "direct-dps",
       "substatWeights": {
-        "AttackAddedRatio": 1,
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "SpeedDelta": 0.75,
-        "StatusProbabilityBase": 0.25
+        "AttackAddedRatio": 0.75,
+        "CriticalChanceBase": 0.75,
+        "CriticalDamageBase": 0.75,
+        "SpeedDelta": 1,
+        "StatusProbabilityBase": 0.75
       },
       "hardBreakpoints": [],
-      "softTargets": [],
+      "softTargets": [
+        { "stat": "StatusProbabilityBase", "minimumThreshold": 0, "maximumThreshold": 0.5 }
+      ],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "fbe472119e6373f72cef82762969300aa645b895033d4253085bac814d6c30c3",
-        "reviewedInputDigest": "fbe472119e6373f72cef82762969300aa645b895033d4253085bac814d6c30c3",
+        "inputDigest": "abfe24b3eeda1616b6b9dddbcecd173ef5294a2b57d634964d2ffba7c75ec7c6",
+        "reviewedInputDigest": "abfe24b3eeda1616b6b9dddbcecd173ef5294a2b57d634964d2ffba7c75ec7c6",
         "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
@@ -214,8 +218,8 @@
       "substatWeights": {
         "AttackAddedRatio": 1,
         "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "SpeedDelta": 0.75
+        "CriticalDamageBase": 1,
+        "SpeedDelta": 0.25
       },
       "hardBreakpoints": [],
       "softTargets": [],
@@ -223,8 +227,8 @@
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "03e0fd7cf9fe537629425aa892d51ff22795c2a34e6c3677c6eae67aaf1d55e3",
-        "reviewedInputDigest": "03e0fd7cf9fe537629425aa892d51ff22795c2a34e6c3677c6eae67aaf1d55e3",
+        "inputDigest": "707aca7f8bb8d34c1288710ed85bd7fe767e7dc6630733247aad45fb23cf716a",
+        "reviewedInputDigest": "707aca7f8bb8d34c1288710ed85bd7fe767e7dc6630733247aad45fb23cf716a",
         "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
@@ -332,11 +336,11 @@
       "characterId": "1106",
       "templateId": "direct-dps",
       "substatWeights": {
-        "AttackAddedRatio": 1,
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "SpeedDelta": 0.75,
-        "StatusProbabilityBase": 0.25
+        "AttackAddedRatio": 0.75,
+        "CriticalChanceBase": 0.5,
+        "CriticalDamageBase": 0.5,
+        "SpeedDelta": 1,
+        "StatusProbabilityBase": 0.75
       },
       "hardBreakpoints": [],
       "softTargets": [],
@@ -344,8 +348,8 @@
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "4fd8d1edec9ec47d2d244ac269ce96fc1908feab2c94af883a8a4d659ac68c57",
-        "reviewedInputDigest": "4fd8d1edec9ec47d2d244ac269ce96fc1908feab2c94af883a8a4d659ac68c57",
+        "inputDigest": "de7b0210234379e476f7a59772dbdc9d77159e606c681292665c23c7d5cc41c4",
+        "reviewedInputDigest": "de7b0210234379e476f7a59772dbdc9d77159e606c681292665c23c7d5cc41c4",
         "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
@@ -782,15 +786,17 @@
     {
       "characterId": "1218",
       "templateId": "dot-dps",
-      "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
+      "substatWeights": { "AttackAddedRatio": 1, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
       "hardBreakpoints": [],
-      "softTargets": [],
+      "softTargets": [
+        { "stat": "StatusProbabilityBase", "minimumThreshold": 0.8, "maximumThreshold": 1.4 }
+      ],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "49034a892987f7a3220865e492883c8a72fe5b4ae4e4d3b435bdeb16fcfa36e8",
-        "reviewedInputDigest": "49034a892987f7a3220865e492883c8a72fe5b4ae4e4d3b435bdeb16fcfa36e8",
+        "inputDigest": "f8f022ac003f382191e08cbcd1274f8c4ad0a983613653314be638d766a06f3a",
+        "reviewedInputDigest": "f8f022ac003f382191e08cbcd1274f8c4ad0a983613653314be638d766a06f3a",
         "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
@@ -1055,13 +1061,15 @@
       "templateId": "dot-dps",
       "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
       "hardBreakpoints": [],
-      "softTargets": [],
+      "softTargets": [
+        { "stat": "StatusProbabilityBase", "minimumThreshold": 0, "maximumThreshold": 1.2 }
+      ],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "2d23741e8658d977864904044e882c7f224c526d675e3caac0344559a18b3bd3",
-        "reviewedInputDigest": "2d23741e8658d977864904044e882c7f224c526d675e3caac0344559a18b3bd3",
+        "inputDigest": "1388e87e76cdd5f8a79bba1dcc37194f3fbde2bbd40b32bb20e8ffe92e9f1400",
+        "reviewedInputDigest": "1388e87e76cdd5f8a79bba1dcc37194f3fbde2bbd40b32bb20e8ffe92e9f1400",
         "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
@@ -1189,20 +1197,22 @@
       "characterId": "1315",
       "templateId": "hybrid-direct-break",
       "substatWeights": {
-        "AttackAddedRatio": 0.75,
+        "AttackAddedRatio": 0.5,
         "BreakDamageAddedRatioBase": 1.25,
-        "CriticalChanceBase": 1,
-        "CriticalDamageBase": 1,
-        "SpeedDelta": 0.75
+        "CriticalChanceBase": 0.5,
+        "CriticalDamageBase": 0.5,
+        "SpeedDelta": 1
       },
       "hardBreakpoints": [],
-      "softTargets": [],
+      "softTargets": [
+        { "stat": "BreakDamageAddedRatioBase", "minimumThreshold": 0, "maximumThreshold": 3 }
+      ],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "55cb339625b655582640d6b79b994def73c9da471986f0bed8303cf11a58cf0f",
-        "reviewedInputDigest": "55cb339625b655582640d6b79b994def73c9da471986f0bed8303cf11a58cf0f",
+        "inputDigest": "6261b62fb2a6d8bd35d54788fc3ffe7bdb1f8174110b9b74dda7786e50a2cab8",
+        "reviewedInputDigest": "6261b62fb2a6d8bd35d54788fc3ffe7bdb1f8174110b9b74dda7786e50a2cab8",
         "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
@@ -1216,13 +1226,15 @@
         "SpeedDelta": 1
       },
       "hardBreakpoints": [],
-      "softTargets": [],
+      "softTargets": [
+        { "stat": "AttackAddedRatio", "minimumThreshold": 2400, "maximumThreshold": 3200 }
+      ],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "3bd300b35cf05d53f68c8056435e5ff34b979249e47678f14cdd0834c542d4a1",
-        "reviewedInputDigest": "3bd300b35cf05d53f68c8056435e5ff34b979249e47678f14cdd0834c542d4a1",
+        "inputDigest": "986689c1e2466de8f096a0b430eeb79bd0fde1bd26b55d4c6dfb29a66a650770",
+        "reviewedInputDigest": "986689c1e2466de8f096a0b430eeb79bd0fde1bd26b55d4c6dfb29a66a650770",
         "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
@@ -1311,13 +1323,15 @@
         "SpeedDelta": 0.75
       },
       "hardBreakpoints": [],
-      "softTargets": [],
+      "softTargets": [
+        { "stat": "HPAddedRatio", "minimumThreshold": 4000, "maximumThreshold": 8000 }
+      ],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "f8de43e8e131421eb50ed15a115b4c60fb5fb774e74292ab39c5f9a1405ebf38",
-        "reviewedInputDigest": "f8de43e8e131421eb50ed15a115b4c60fb5fb774e74292ab39c5f9a1405ebf38",
+        "inputDigest": "792bc40942a5863768bde54ce751ea94e710429d840e7f990fc77450ec0031fb",
+        "reviewedInputDigest": "792bc40942a5863768bde54ce751ea94e710429d840e7f990fc77450ec0031fb",
         "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
@@ -1348,18 +1362,18 @@
       "templateId": "direct-dps",
       "substatWeights": {
         "AttackAddedRatio": 1,
-        "CriticalChanceBase": 1.25,
-        "CriticalDamageBase": 1.25,
-        "SpeedDelta": 0.75
+        "CriticalChanceBase": 1,
+        "CriticalDamageBase": 1,
+        "SpeedDelta": 1.25
       },
-      "hardBreakpoints": [],
+      "hardBreakpoints": [{ "stat": "SpeedDelta", "threshold": 170 }],
       "softTargets": [],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "389fcf10fa7ca3fa1c51178611fde96f5ee14721b9f66c8e66ba72bf18b56449",
-        "reviewedInputDigest": "389fcf10fa7ca3fa1c51178611fde96f5ee14721b9f66c8e66ba72bf18b56449",
+        "inputDigest": "8953becadbab5bd1c26a48fc6b89b3b42feb17c8e7a72a467c017cea891c11cf",
+        "reviewedInputDigest": "8953becadbab5bd1c26a48fc6b89b3b42feb17c8e7a72a467c017cea891c11cf",
         "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
@@ -1432,13 +1446,15 @@
       "templateId": "dot-dps",
       "substatWeights": { "AttackAddedRatio": 1.25, "SpeedDelta": 1, "StatusProbabilityBase": 1 },
       "hardBreakpoints": [],
-      "softTargets": [],
+      "softTargets": [
+        { "stat": "StatusProbabilityBase", "minimumThreshold": 0.6, "maximumThreshold": 1.2 }
+      ],
       "metadata": {
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "29adaf8a3cb0472e0384db6b1e76ad509d4053693e980cb406fb086556352fa0",
-        "reviewedInputDigest": "29adaf8a3cb0472e0384db6b1e76ad509d4053693e980cb406fb086556352fa0",
+        "inputDigest": "a806c6373ae733a9f32c8e65433117bb22c6b3f11b0aba65367f4e503227536f",
+        "reviewedInputDigest": "a806c6373ae733a9f32c8e65433117bb22c6b3f11b0aba65367f4e503227536f",
         "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
@@ -1693,7 +1709,7 @@
         "AttackAddedRatio": 1,
         "CriticalChanceBase": 1.25,
         "CriticalDamageBase": 1.25,
-        "SpeedDelta": 0.75
+        "SpeedDelta": 0.5
       },
       "hardBreakpoints": [],
       "softTargets": [],
@@ -1701,8 +1717,8 @@
         "inferenceConfidence": "high",
         "reviewStatus": "reviewed",
         "reviewReasons": [],
-        "inputDigest": "30944bbefabdfd733154cca26d2c3973290ee059d16cd893cc325978b99ee893",
-        "reviewedInputDigest": "30944bbefabdfd733154cca26d2c3973290ee059d16cd893cc325978b99ee893",
+        "inputDigest": "0f944f75944b73900c2d29f376ee6c3debd32c1702a845beccec00a9f2485607",
+        "reviewedInputDigest": "0f944f75944b73900c2d29f376ee6c3debd32c1702a845beccec00a9f2485607",
         "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
