@@ -159,6 +159,9 @@ describe('Player Character presentation', () => {
     expect(body).toContain('data-player-light-cone="999999"');
     expect(body.match(/data-player-relic-slot=/g)).toHaveLength(6);
     expect(body).toContain('data-player-relic-state="unknown"');
+    expect(body).toMatch(
+      /player-relic-card__level[^>]*style="color: var\(--gold\)[^"]*"[^>]*>\+15/
+    );
     expect(body).not.toContain('href="/relics/999998/"');
     expect(body).toContain('player-relic-card__unknown-main');
     expect(body).toContain('synthetic recommended stat');
@@ -181,6 +184,7 @@ describe('Player Character presentation', () => {
           type: 3,
           setId: '103',
           level: 15,
+          rarity: 4,
           mainAffix: { type: 'DefenceAddedRatio', display: '54.0%', percent: true },
           subAffixes: []
         }
@@ -215,6 +219,7 @@ describe('Player Character presentation', () => {
     expect(body).toContain('href="/en/relics/103/"');
     expect(body).toContain('compact-entity-card__aside');
     expect(body).toContain('data-relic-icon-presentation="header"');
+    expect(body).toMatch(/player-relic-card__level[^>]*style="color: #c77dff[^"]*"[^>]*>\+15/);
     expect(body).toContain('player-affix-row--main');
   });
 

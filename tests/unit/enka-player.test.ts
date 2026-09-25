@@ -3,7 +3,10 @@ import { describe, expect, it } from 'vitest';
 import { adaptEnkaProfile } from '../../api/_player/enka/adapter';
 import { decodeEnkaResponse } from '../../api/_player/enka/decode';
 import { buildEnkaPlayerProfile, playerRuntimeData } from '../../api/_player/enka/pipeline';
-import { collectPropertyContributions } from '../../src/lib/player/stat-synthesis';
+import {
+  collectPropertyContributions,
+  presentCanonicalPlayerProfile
+} from '../../src/lib/player/stat-synthesis';
 
 const fixture = JSON.parse(
   readFileSync('tests/fixtures/enka/phase1-player.sanitized.json', 'utf8')
@@ -14,11 +17,18 @@ const expected = JSON.parse(
 const compatibilityFixtures = [
   ['compatibility-missing-promotion.sanitized.json', '100000101', 7],
   ['compatibility-control-a.sanitized.json', '100000102', 6],
-  ['compatibility-control-b.sanitized.json', '100000103', 8]
+  ['compatibility-control-b.sanitized.json', '100000103', 8],
+  ['compatibility-missing-relic-level.sanitized.json', '100000104', 1]
 ] as const;
 const missingPromotionFixture = JSON.parse(
   readFileSync('tests/fixtures/enka/compatibility-missing-promotion.sanitized.json', 'utf8')
 ) as unknown;
+const fullFixture = JSON.parse(
+  readFileSync('tests/fixtures/enka/compatibility-control-a.sanitized.json', 'utf8')
+) as MutableFixture;
+const missingRelicLevelFixture = JSON.parse(
+  readFileSync('tests/fixtures/enka/compatibility-missing-relic-level.sanitized.json', 'utf8')
+) as MutableFixture;
 
 interface MutableFixture {
   unknownFutureField?: unknown;
@@ -67,7 +77,7 @@ describe('Enka decoder and canonical adapter', () => {
         value;
       if (value === 0) {
         expect(
-          decodeEnkaResponse(variant).detailInfo.avatarDetailList[4].equipment?.promotion
+          decodeEnkaResponse(variant).detailInfo.avatarDetailList![4].equipment?.promotion
         ).toBe(0);
       } else {
         let error: unknown;
@@ -79,6 +89,59 @@ describe('Enka decoder and canonical adapter', () => {
         expect(error).toMatchObject({
           code: 'UPSTREAM_INVALID_RESPONSE',
           diagnostic: 'detailInfo.avatarDetailList[4].equipment.promotion'
+        });
+      }
+    }
+  });
+
+  it('normalizes omitted relic levels to zero while rejecting malformed present values', () => {
+    const source = structuredClone(missingRelicLevelFixture);
+    const relics = source.detailInfo.avatarDetailList[0].relicList as Array<
+      Record<string, unknown>
+    >;
+    expect(relics[4]).not.toHaveProperty('level');
+    expect(relics[5]).not.toHaveProperty('level');
+
+    const decoded = decodeEnkaResponse(source);
+    expect(decoded.detailInfo.avatarDetailList![0].relicList![4]).not.toHaveProperty('level');
+    const adapted = adaptEnkaProfile(decoded);
+    expect(adapted.characters[0].relics.map((relic) => relic.level)).toEqual([
+      12, 12, 12, 12, 0, 0
+    ]);
+    const result = buildEnkaPlayerProfile(source);
+    expect(result.canonical.characters[0].status).toBe('complete');
+    expect(result.scoringFailures).toEqual([]);
+    expect(result.presentation.characters[0].relics.slice(4).map((relic) => relic.level)).toEqual([
+      0, 0
+    ]);
+
+    const explicitZero = structuredClone(source);
+    (
+      explicitZero.detailInfo.avatarDetailList[0].relicList as Array<Record<string, unknown>>
+    )[4].level = 0;
+    expect(adaptEnkaProfile(decodeEnkaResponse(explicitZero)).characters[0].relics[4].level).toBe(
+      0
+    );
+
+    for (const [value, received] of [
+      [null, 'null'],
+      ['0', 'string'],
+      [-1, 'number'],
+      [1.5, 'number']
+    ] as const) {
+      const invalid = structuredClone(source);
+      (
+        invalid.detailInfo.avatarDetailList[0].relicList as Array<Record<string, unknown>>
+      )[4].level = value;
+      try {
+        decodeEnkaResponse(invalid);
+        throw new Error('decoder unexpectedly accepted an invalid relic level');
+      } catch (error) {
+        expect(error).toMatchObject({
+          code: 'UPSTREAM_INVALID_RESPONSE',
+          diagnostic: 'detailInfo.avatarDetailList[0].relicList[4].level',
+          expected: 'non-negative safe integer',
+          received
         });
       }
     }
@@ -118,6 +181,131 @@ describe('Enka decoder and canonical adapter', () => {
     expect(new Set(profile.characters.map((build) => build.buildId)).size).toBe(2);
     expect(profile.characters[1].eidolon).toBe(0);
     expect(profile.characters[1].display.area).toBe('showcase');
+  });
+
+  it.each([
+    'privacySettingInfo',
+    'platform',
+    'friendCount',
+    'personalCardId',
+    'playerDisplayArea',
+    'isDisplayAvatar'
+  ])('ignores absent or changed unused detail field %s', (field) => {
+    const baseline = adaptEnkaProfile(decodeEnkaResponse(fullFixture));
+    const absent = structuredClone(fullFixture);
+    delete (absent.detailInfo as Record<string, unknown>)[field];
+    expect(adaptEnkaProfile(decodeEnkaResponse(absent))).toEqual(baseline);
+
+    const changed = structuredClone(fullFixture);
+    (changed.detailInfo as Record<string, unknown>)[field] = { futureShape: true };
+    expect(adaptEnkaProfile(decodeEnkaResponse(changed))).toEqual(baseline);
+  });
+
+  it.each(['missing', 'empty'] as const)(
+    'normalizes %s avatarDetailList to no public characters',
+    (variant) => {
+      const source = structuredClone(fullFixture);
+      if (variant === 'missing')
+        delete (source.detailInfo as Record<string, unknown>).avatarDetailList;
+      else source.detailInfo.avatarDetailList = [];
+      expect(adaptEnkaProfile(decodeEnkaResponse(source)).characters).toEqual([]);
+    }
+  );
+
+  it('preserves each available count when recordInfo is partial', () => {
+    const source = structuredClone(fullFixture);
+    (source.detailInfo as Record<string, unknown>).recordInfo = {
+      avatarCount: 0,
+      bookCount: 'future format'
+    };
+    const result = buildEnkaPlayerProfile(source);
+    expect(result.canonical.profile.records).toEqual({ avatarCount: 0 });
+    expect(result.presentation).toMatchObject({
+      characterCount: 0,
+      lightConeCount: null,
+      achievementCount: null
+    });
+
+    delete (source.detailInfo as Record<string, unknown>).recordInfo;
+    expect(buildEnkaPlayerProfile(source).presentation).toMatchObject({
+      characterCount: null,
+      lightConeCount: null,
+      achievementCount: null
+    });
+  });
+
+  it('normalizes absent optional character lists and equipment independently', () => {
+    const source = structuredClone(fullFixture);
+    const avatar = source.detailInfo.avatarDetailList[0];
+    delete avatar.skillTreeList;
+    delete avatar.relicList;
+    delete avatar.equipment;
+    delete avatar._assist;
+    delete avatar.enhancedId;
+    const build = adaptEnkaProfile(decodeEnkaResponse(source)).characters[0];
+    expect(build).toMatchObject({ traces: [], relics: [] });
+    expect(build.lightCone).toBeUndefined();
+    expect(build.enhancedId).toBeUndefined();
+
+    const withRelic = structuredClone(fullFixture);
+    const relic = (
+      withRelic.detailInfo.avatarDetailList[0].relicList as Array<Record<string, unknown>>
+    )[0];
+    delete relic.subAffixList;
+    expect(
+      adaptEnkaProfile(decodeEnkaResponse(withRelic)).characters[0].relics[0].subAffixes
+    ).toEqual([]);
+  });
+
+  it('ignores unknown fields at every parsed level', () => {
+    const source = structuredClone(fullFixture);
+    source.unknownFutureField = { foo: 'bar' };
+    (source.detailInfo as Record<string, unknown>).futureDetail = { foo: 'bar' };
+    source.detailInfo.avatarDetailList[0].futureAvatar = { foo: 'bar' };
+    const equipment = source.detailInfo.avatarDetailList[0].equipment as Record<string, unknown>;
+    equipment.futureEquipment = { foo: 'bar' };
+    expect(adaptEnkaProfile(decodeEnkaResponse(source))).toEqual(
+      adaptEnkaProfile(decodeEnkaResponse(fullFixture))
+    );
+  });
+
+  it.each([
+    [
+      'detailInfo',
+      (source: MutableFixture): void => {
+        (source as unknown as Record<string, unknown>).detailInfo = 'broken';
+      }
+    ],
+    [
+      'detailInfo.avatarDetailList[0].avatarId',
+      (source: MutableFixture): void => {
+        delete source.detailInfo.avatarDetailList[0].avatarId;
+      }
+    ],
+    [
+      'detailInfo.avatarDetailList[0].promotion',
+      (source: MutableFixture): void => {
+        delete source.detailInfo.avatarDetailList[0].promotion;
+      }
+    ],
+    [
+      'detailInfo.avatarDetailList',
+      (source: MutableFixture): void => {
+        (source.detailInfo as Record<string, unknown>).avatarDetailList = 'broken';
+      }
+    ],
+    [
+      'detailInfo.recordInfo.avatarCount',
+      (source: MutableFixture): void => {
+        (source.detailInfo as Record<string, unknown>).recordInfo = { avatarCount: 'broken' };
+      }
+    ]
+  ] as const)('rejects malformed core field %s', (path, mutate) => {
+    const source = structuredClone(fullFixture);
+    mutate(source);
+    expect(() => decodeEnkaResponse(source)).toThrowError(
+      expect.objectContaining({ code: 'UPSTREAM_INVALID_RESPONSE', diagnostic: path })
+    );
   });
 
   it('fails with a stable public code and a non-payload diagnostic path', () => {
@@ -178,5 +366,21 @@ describe('Enka production stat pipeline golden', () => {
       percent: false,
       total: '3115'
     });
+    const firstRelic = result.canonical.characters[0].build.relics[0];
+    expect(result.presentation.characters[0].relics[0].rarity).toBe(
+      playerRuntimeData.relics[firstRelic.tid].rarity
+    );
+    expect(result.presentation.characters[0].relics[0].rarity).toBe(5);
+
+    const runtimeWithoutRarity = structuredClone(playerRuntimeData);
+    delete runtimeWithoutRarity.relics[firstRelic.tid].rarity;
+    expect(
+      presentCanonicalPlayerProfile(result.canonical, runtimeWithoutRarity).characters[0].relics[0]
+    ).not.toHaveProperty('rarity');
+    const unknownRelic = structuredClone(result.canonical);
+    unknownRelic.characters[0].build.relics[0].tid = 'unknown';
+    expect(
+      presentCanonicalPlayerProfile(unknownRelic, playerRuntimeData).characters[0].relics[0]
+    ).not.toHaveProperty('rarity');
   });
 });

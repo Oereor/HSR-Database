@@ -5,13 +5,14 @@ describe('rarity presentation', () => {
   it.each([
     [5, '#ffd700'],
     [4, '#c77dff'],
-    [3, '#6090ff']
+    [3, '#6090ff'],
+    [2, '#8ae1e3']
   ])('maps %s-star rarity to its shared presentation color', (rarity, color) => {
     expect(getRarityColor(rarity)).toBe(color);
   });
 
   it('leaves unsupported and missing rarities unstyled', () => {
-    expect(getRarityColor(2)).toBeUndefined();
+    expect(getRarityColor(1)).toBeUndefined();
     expect(getRarityColor(undefined)).toBeUndefined();
   });
 });

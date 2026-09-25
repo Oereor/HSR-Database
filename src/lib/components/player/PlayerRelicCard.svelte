@@ -1,6 +1,7 @@
 <script lang="ts">
   import RelicIcon from '$lib/components/relic/RelicIcon.svelte';
   import { getRelicPieceIconUrl } from '$lib/data/visual-assets';
+  import { getRarityColor } from '$lib/domain/rarity';
   import { relicSlotLabel } from '$lib/i18n/product';
   import { localizedHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
@@ -49,7 +50,11 @@
     </div>
     {#if view.relic}
       <div class="player-relic-card__meta">
-        <strong class="player-relic-card__level">+{view.relic.level}</strong>
+        <strong
+          class="player-relic-card__level"
+          style:color={getRarityColor(view.relic.rarity) ?? 'var(--gold)'}
+          >+{view.relic.level}</strong
+        >
         {#if showScore}
           <span
             class="player-relic-card__score"

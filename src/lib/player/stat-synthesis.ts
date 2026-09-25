@@ -316,6 +316,7 @@ function presentRelic(
     type: relic.type,
     setId: identity.setId,
     level: relic.level,
+    ...(identity.rarity === undefined ? {} : { rarity: identity.rarity }),
     mainAffix: main ? resolvedAffix(main, playerMainAffixValue(main, relic.level)) : null,
     subAffixes: relic.subAffixes.flatMap((sub) => {
       const affix = runtime.relicSubAffixes[playerRuntimeKey(identity.subAffixGroup, sub.affixId)];

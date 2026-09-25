@@ -17,9 +17,9 @@ export interface EnkaRawLightCone {
 export interface EnkaRawRelic {
   tid: number;
   type: 1 | 2 | 3 | 4 | 5 | 6;
-  level: number;
+  level?: number;
   mainAffixId: number;
-  subAffixList: Array<{ affixId: number; cnt: number; step?: number }>;
+  subAffixList?: Array<{ affixId: number; cnt: number; step?: number }>;
 }
 
 export interface EnkaRawAvatar {
@@ -31,9 +31,9 @@ export interface EnkaRawAvatar {
   promotion: number;
   enhancedId?: number;
   dressedSkinId?: number;
-  skillTreeList: EnkaRawTrace[];
+  skillTreeList?: EnkaRawTrace[];
   equipment?: EnkaRawLightCone;
-  relicList: EnkaRawRelic[];
+  relicList?: EnkaRawRelic[];
 }
 
 export interface EnkaRawResponse {
@@ -47,36 +47,44 @@ export interface EnkaRawResponse {
     worldLevel: number;
     signature?: string;
     headIcon?: number;
-    personalCardId?: number;
-    friendCount?: number;
-    isDisplayAvatar?: boolean;
-    platform?: string;
-    privacySettingInfo?: Record<string, boolean>;
-    recordInfo?: Record<string, number>;
-    playerDisplayArea?: {
-      normalDynamicList: Array<{ diceSlotId: number; diyDynamicId: number }>;
-      photoDynamicList: Array<{ id: number; type: number; slot: number }>;
+    recordInfo?: {
+      achievementCount?: number;
+      avatarCount?: number;
+      equipmentCount?: number;
     };
-    avatarDetailList: EnkaRawAvatar[];
+    avatarDetailList?: EnkaRawAvatar[];
   };
 }
 
-function invalid(path: string): never {
-  throw new PlayerApiError('UPSTREAM_INVALID_RESPONSE', undefined, path);
+function shape(value: unknown): string {
+  if (value === undefined) return 'missing';
+  if (value === null) return 'null';
+  if (Array.isArray(value)) return 'array';
+  return typeof value;
+}
+
+function invalid(path: string, expected?: string, value?: unknown): never {
+  throw new PlayerApiError(
+    'UPSTREAM_INVALID_RESPONSE',
+    undefined,
+    path,
+    expected === undefined ? undefined : { expected, received: shape(value) }
+  );
 }
 
 function record(value: unknown, path: string): UnknownRecord {
-  if (!value || typeof value !== 'object' || Array.isArray(value)) invalid(path);
+  if (!value || typeof value !== 'object' || Array.isArray(value)) invalid(path, 'object', value);
   return value as UnknownRecord;
 }
 
 function string(value: unknown, path: string): string {
-  if (typeof value !== 'string') invalid(path);
+  if (typeof value !== 'string') invalid(path, 'string', value);
   return value;
 }
 
 function integer(value: unknown, path: string): number {
-  if (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 0) invalid(path);
+  if (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 0)
+    invalid(path, 'non-negative safe integer', value);
   return value;
 }
 
@@ -90,78 +98,28 @@ function optionalString(value: unknown, path: string): string | undefined {
 
 function optionalBoolean(value: unknown, path: string): boolean | undefined {
   if (value === undefined || value === null) return undefined;
-  if (typeof value !== 'boolean') invalid(path);
+  if (typeof value !== 'boolean') invalid(path, 'boolean', value);
   return value;
 }
 
-function optionalArray(value: unknown, path: string): unknown[] {
-  if (value === undefined || value === null) return [];
-  if (!Array.isArray(value)) invalid(path);
+function optionalArray(value: unknown, path: string): unknown[] | undefined {
+  if (value === undefined || value === null) return undefined;
+  if (!Array.isArray(value)) invalid(path, 'array', value);
   return value;
 }
 
-function parseKnownBooleans(value: unknown, path: string): Record<string, boolean> | undefined {
+function parseKnownCounts(
+  value: unknown,
+  path: string
+): EnkaRawResponse['detailInfo']['recordInfo'] {
   if (value === undefined || value === null) return undefined;
   const source = record(value, path);
-  const result: Record<string, boolean> = {};
-  for (const key of [
-    'displayCollection',
-    'displayRecord',
-    'displayRecordTeam',
-    'displayOnlineStatus',
-    'displayDiary'
-  ]) {
-    const parsed = optionalBoolean(source[key], `${path}.${key}`);
-    if (parsed !== undefined) result[key] = parsed;
-  }
-  return result;
-}
-
-function parseKnownCounts(value: unknown, path: string): Record<string, number> | undefined {
-  if (value === undefined || value === null) return undefined;
-  const source = record(value, path);
-  const result: Record<string, number> = {};
-  for (const key of [
-    'achievementCount',
-    'bookCount',
-    'avatarCount',
-    'equipmentCount',
-    'musicCount',
-    'relicCount',
-    'maxRogueChallengeScore'
-  ]) {
+  const result: NonNullable<EnkaRawResponse['detailInfo']['recordInfo']> = {};
+  for (const key of ['achievementCount', 'avatarCount', 'equipmentCount'] as const) {
     const parsed = optionalInteger(source[key], `${path}.${key}`);
     if (parsed !== undefined) result[key] = parsed;
   }
   return result;
-}
-
-function parseDisplayArea(value: unknown): EnkaRawResponse['detailInfo']['playerDisplayArea'] {
-  if (value === undefined || value === null) return undefined;
-  const source = record(value, 'detailInfo.playerDisplayArea');
-  return {
-    normalDynamicList: optionalArray(
-      source.normalDynamicList,
-      'detailInfo.playerDisplayArea.normalDynamicList'
-    ).map((value, index) => {
-      const item = record(value, `detailInfo.playerDisplayArea.normalDynamicList[${index}]`);
-      return {
-        diceSlotId: integer(item.diceSlotId, `normalDynamicList[${index}].diceSlotId`),
-        diyDynamicId: integer(item.diyDynamicId, `normalDynamicList[${index}].diyDynamicId`)
-      };
-    }),
-    photoDynamicList: optionalArray(
-      source.photoDynamicList,
-      'detailInfo.playerDisplayArea.photoDynamicList'
-    ).map((value, index) => {
-      const item = record(value, `detailInfo.playerDisplayArea.photoDynamicList[${index}]`);
-      return {
-        id: integer(item.id, `photoDynamicList[${index}].id`),
-        type: integer(item.type, `photoDynamicList[${index}].type`),
-        slot: integer(item.slot, `photoDynamicList[${index}].slot`)
-      };
-    })
-  };
 }
 
 function parseAvatar(value: unknown, index: number): EnkaRawAvatar {
@@ -186,29 +144,42 @@ function parseAvatar(value: unknown, index: number): EnkaRawAvatar {
                 : integer(item.promotion, `${path}.equipment.promotion`)
           };
         })();
-  const relicList = optionalArray(source.relicList, `${path}.relicList`).map(
+  const relicList = optionalArray(source.relicList, `${path}.relicList`)?.map(
     (value, relicIndex) => {
       const relicPath = `${path}.relicList[${relicIndex}]`;
       const item = record(value, relicPath);
       const type = integer(item.type, `${relicPath}.type`);
-      if (type < 1 || type > 6) invalid(`${relicPath}.type`);
+      if (type < 1 || type > 6) invalid(`${relicPath}.type`, 'integer from 1 to 6', type);
+      const level =
+        item.level === undefined ? undefined : integer(item.level, `${relicPath}.level`);
+      const subAffixList = optionalArray(item.subAffixList, `${relicPath}.subAffixList`)?.map(
+        (value, affixIndex) => {
+          const affixPath = `${relicPath}.subAffixList[${affixIndex}]`;
+          const affix = record(value, affixPath);
+          const step = optionalInteger(affix.step, `${affixPath}.step`);
+          return {
+            affixId: integer(affix.affixId, `${affixPath}.affixId`),
+            cnt: integer(affix.cnt, `${affixPath}.cnt`),
+            ...(step === undefined ? {} : { step })
+          };
+        }
+      );
       return {
         tid: integer(item.tid, `${relicPath}.tid`),
         type: type as EnkaRawRelic['type'],
-        level: integer(item.level, `${relicPath}.level`),
+        ...(level === undefined ? {} : { level }),
         mainAffixId: integer(item.mainAffixId, `${relicPath}.mainAffixId`),
-        subAffixList: optionalArray(item.subAffixList, `${relicPath}.subAffixList`).map(
-          (value, affixIndex) => {
-            const affixPath = `${relicPath}.subAffixList[${affixIndex}]`;
-            const affix = record(value, affixPath);
-            const step = optionalInteger(affix.step, `${affixPath}.step`);
-            return {
-              affixId: integer(affix.affixId, `${affixPath}.affixId`),
-              cnt: integer(affix.cnt, `${affixPath}.cnt`),
-              ...(step === undefined ? {} : { step })
-            };
-          }
-        )
+        ...(subAffixList === undefined ? {} : { subAffixList })
+      };
+    }
+  );
+  const skillTreeList = optionalArray(source.skillTreeList, `${path}.skillTreeList`)?.map(
+    (value, traceIndex) => {
+      const tracePath = `${path}.skillTreeList[${traceIndex}]`;
+      const trace = record(value, tracePath);
+      return {
+        pointId: integer(trace.pointId, `${tracePath}.pointId`),
+        level: integer(trace.level, `${tracePath}.level`)
       };
     }
   );
@@ -228,18 +199,9 @@ function parseAvatar(value: unknown, index: number): EnkaRawAvatar {
     ...(optionalInteger(source.dressedSkinId, `${path}.dressedSkinId`) === undefined
       ? {}
       : { dressedSkinId: optionalInteger(source.dressedSkinId, `${path}.dressedSkinId`) }),
-    skillTreeList: optionalArray(source.skillTreeList, `${path}.skillTreeList`).map(
-      (value, traceIndex) => {
-        const tracePath = `${path}.skillTreeList[${traceIndex}]`;
-        const trace = record(value, tracePath);
-        return {
-          pointId: integer(trace.pointId, `${tracePath}.pointId`),
-          level: integer(trace.level, `${tracePath}.level`)
-        };
-      }
-    ),
+    ...(skillTreeList === undefined ? {} : { skillTreeList }),
     ...(equipment ? { equipment } : {}),
-    relicList
+    ...(relicList === undefined ? {} : { relicList })
   };
 }
 
@@ -253,6 +215,12 @@ export function decodeEnkaResponse(value: unknown): EnkaRawResponse {
   const ttl = optionalInteger(source.ttl, 'ttl');
   const nickname = optionalString(detailInfo.nickname, 'detailInfo.nickname');
   const signature = optionalString(detailInfo.signature, 'detailInfo.signature');
+  const headIcon = optionalInteger(detailInfo.headIcon, 'detailInfo.headIcon');
+  const recordInfo = parseKnownCounts(detailInfo.recordInfo, 'detailInfo.recordInfo');
+  const avatarDetailList = optionalArray(
+    detailInfo.avatarDetailList,
+    'detailInfo.avatarDetailList'
+  )?.map(parseAvatar);
   return {
     uid,
     ...(region === undefined ? {} : { region }),
@@ -263,47 +231,9 @@ export function decodeEnkaResponse(value: unknown): EnkaRawResponse {
       level: integer(detailInfo.level, 'detailInfo.level'),
       worldLevel: integer(detailInfo.worldLevel, 'detailInfo.worldLevel'),
       ...(signature === undefined ? {} : { signature }),
-      ...(optionalInteger(detailInfo.headIcon, 'detailInfo.headIcon') === undefined
-        ? {}
-        : { headIcon: optionalInteger(detailInfo.headIcon, 'detailInfo.headIcon') }),
-      ...(optionalInteger(detailInfo.personalCardId, 'detailInfo.personalCardId') === undefined
-        ? {}
-        : {
-            personalCardId: optionalInteger(detailInfo.personalCardId, 'detailInfo.personalCardId')
-          }),
-      ...(optionalInteger(detailInfo.friendCount, 'detailInfo.friendCount') === undefined
-        ? {}
-        : { friendCount: optionalInteger(detailInfo.friendCount, 'detailInfo.friendCount') }),
-      ...(optionalBoolean(detailInfo.isDisplayAvatar, 'detailInfo.isDisplayAvatar') === undefined
-        ? {}
-        : {
-            isDisplayAvatar: optionalBoolean(
-              detailInfo.isDisplayAvatar,
-              'detailInfo.isDisplayAvatar'
-            )
-          }),
-      ...(optionalString(detailInfo.platform, 'detailInfo.platform') === undefined
-        ? {}
-        : { platform: optionalString(detailInfo.platform, 'detailInfo.platform') }),
-      ...(parseKnownBooleans(detailInfo.privacySettingInfo, 'detailInfo.privacySettingInfo') ===
-      undefined
-        ? {}
-        : {
-            privacySettingInfo: parseKnownBooleans(
-              detailInfo.privacySettingInfo,
-              'detailInfo.privacySettingInfo'
-            )
-          }),
-      ...(parseKnownCounts(detailInfo.recordInfo, 'detailInfo.recordInfo') === undefined
-        ? {}
-        : { recordInfo: parseKnownCounts(detailInfo.recordInfo, 'detailInfo.recordInfo') }),
-      ...(parseDisplayArea(detailInfo.playerDisplayArea) === undefined
-        ? {}
-        : { playerDisplayArea: parseDisplayArea(detailInfo.playerDisplayArea) }),
-      avatarDetailList: optionalArray(
-        detailInfo.avatarDetailList,
-        'detailInfo.avatarDetailList'
-      ).map(parseAvatar)
+      ...(headIcon === undefined ? {} : { headIcon }),
+      ...(recordInfo === undefined ? {} : { recordInfo }),
+      ...(avatarDetailList === undefined ? {} : { avatarDetailList })
     }
   };
 }

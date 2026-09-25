@@ -18,13 +18,22 @@ export class PlayerApiError extends Error {
   readonly code: PlayerErrorCode;
   readonly retryAfterSeconds?: number;
   readonly diagnostic?: string;
+  readonly expected?: string;
+  readonly received?: string;
 
-  constructor(code: PlayerErrorCode, retryAfterSeconds?: number, diagnostic?: string) {
+  constructor(
+    code: PlayerErrorCode,
+    retryAfterSeconds?: number,
+    diagnostic?: string,
+    shape?: { expected: string; received: string }
+  ) {
     super(code);
     this.name = 'PlayerApiError';
     this.code = code;
     this.retryAfterSeconds = retryAfterSeconds;
     this.diagnostic = diagnostic;
+    this.expected = shape?.expected;
+    this.received = shape?.received;
   }
 }
 

@@ -22,6 +22,8 @@ interface PlayerLogEvent {
     | 'display_area_drift';
   code?: string;
   diagnostic?: string;
+  expected?: string;
+  received?: string;
   sourceId?: string;
   area?: string;
 }
@@ -93,7 +95,9 @@ export async function handlePlayerRequest(
     (dependencies.log ?? defaultLog)({
       event: upstreamLogEvent(resolved.code),
       code: resolved.code,
-      ...(resolved.diagnostic === undefined ? {} : { diagnostic: resolved.diagnostic })
+      ...(resolved.diagnostic === undefined ? {} : { diagnostic: resolved.diagnostic }),
+      ...(resolved.expected === undefined ? {} : { expected: resolved.expected }),
+      ...(resolved.received === undefined ? {} : { received: resolved.received })
     });
     return playerErrorResponse(resolved);
   }

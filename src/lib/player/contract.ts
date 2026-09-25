@@ -53,6 +53,7 @@ export interface PlayerRelic {
   type: 1 | 2 | 3 | 4 | 5 | 6;
   setId: string;
   level: number;
+  rarity?: number;
   mainAffix: PlayerRelicAffix | null;
   subAffixes: PlayerRelicSubAffix[];
 }

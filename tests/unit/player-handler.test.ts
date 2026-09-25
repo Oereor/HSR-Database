@@ -59,7 +59,47 @@ describe('Enka player Function handler', () => {
     expect(log).toHaveBeenCalledWith({
       event: 'decode_error',
       code: 'UPSTREAM_INVALID_RESPONSE',
-      diagnostic: 'detailInfo.avatarDetailList[4].equipment.promotion'
+      diagnostic: 'detailInfo.avatarDetailList[4].equipment.promotion',
+      expected: 'non-negative safe integer',
+      received: 'null'
+    });
+  });
+
+  it('serves the sanitized unlevelled-relic fixture and keeps malformed shape details server-side', async () => {
+    const source = JSON.parse(
+      await readFile('tests/fixtures/enka/compatibility-missing-relic-level.sanitized.json', 'utf8')
+    ) as {
+      detailInfo: { avatarDetailList: Array<{ relicList: Array<Record<string, unknown>> }> };
+    };
+    const log = vi.fn();
+    const response = await handlePlayerRequest(request('?uid=100000104'), {
+      client: createEnkaPlayerClient({ fetchImpl: vi.fn(async () => Response.json(source)) }),
+      log
+    });
+    const body = (await response.json()) as {
+      uid: string;
+      characters: Array<{ relics: Array<{ level: number }> }>;
+    };
+    expect(response.status).toBe(200);
+    expect(body.uid).toBe('100000104');
+    expect(body.characters[0].relics.slice(4).map((relic) => relic.level)).toEqual([0, 0]);
+    expect(log).not.toHaveBeenCalledWith(expect.objectContaining({ event: 'decode_error' }));
+
+    source.detailInfo.avatarDetailList[0].relicList[4].level = null;
+    const invalidResponse = await handlePlayerRequest(request('?uid=100000104'), {
+      client: createEnkaPlayerClient({ fetchImpl: vi.fn(async () => Response.json(source)) }),
+      log
+    });
+    const invalidBody = await errorBody(invalidResponse);
+    expect(invalidResponse.status).toBe(502);
+    expect(invalidBody).toEqual({ error: { code: 'UPSTREAM_INVALID_RESPONSE', retryable: true } });
+    expect(JSON.stringify(invalidBody)).not.toContain('relicList');
+    expect(log).toHaveBeenCalledWith({
+      event: 'decode_error',
+      code: 'UPSTREAM_INVALID_RESPONSE',
+      diagnostic: 'detailInfo.avatarDetailList[0].relicList[4].level',
+      expected: 'non-negative safe integer',
+      received: 'null'
     });
   });
 
@@ -117,6 +157,27 @@ describe('Enka player Function handler', () => {
 
     expect(response.status).toBe(200);
     expect(await response.json()).toMatchObject({ uid: '100000001', characters: [] });
+  });
+
+  it('serves a privacy-restricted profile with no showcased characters or records', async () => {
+    const sparse = structuredClone(fixture) as { detailInfo: Record<string, unknown> };
+    delete sparse.detailInfo.avatarDetailList;
+    delete sparse.detailInfo.recordInfo;
+    const log = vi.fn();
+    const response = await handlePlayerRequest(request(), {
+      client: createEnkaPlayerClient({ fetchImpl: vi.fn(async () => Response.json(sparse)) }),
+      log
+    });
+
+    expect(response.status).toBe(200);
+    expect(await response.json()).toMatchObject({
+      uid: '100000001',
+      characters: [],
+      characterCount: null,
+      lightConeCount: null,
+      achievementCount: null
+    });
+    expect(log).not.toHaveBeenCalledWith(expect.objectContaining({ event: 'decode_error' }));
   });
 
   it.each(['', '?uid=', '?uid=abc', '?uid=123&uid=456'])(
