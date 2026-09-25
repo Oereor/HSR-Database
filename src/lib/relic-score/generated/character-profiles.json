@@ -1428,15 +1428,13 @@
         "StatusResistanceBase": 0.25
       },
       "hardBreakpoints": [{ "stat": "SpeedDelta", "threshold": 200 }],
-      "softTargets": [
-        { "stat": "StatusResistanceBase", "minimumThreshold": 0, "maximumThreshold": 0.5 }
-      ],
+      "softTargets": [],
       "metadata": {
         "inferenceConfidence": "low",
         "reviewStatus": "reviewed",
         "reviewReasons": ["SPECIAL_PATH", "MIXED_STAT_SIGNALS", "PATH_TEMPLATE_MISMATCH"],
-        "inputDigest": "0c72cd5fbf0d060502994803d500f279e210fb72464ad631387a153bbd30adcb",
-        "reviewedInputDigest": "0c72cd5fbf0d060502994803d500f279e210fb72464ad631387a153bbd30adcb",
+        "inputDigest": "a227f67194f1a958e7e3999f97dd687a88d49a71ce43352c331618fddbec071a",
+        "reviewedInputDigest": "a227f67194f1a958e7e3999f97dd687a88d49a71ce43352c331618fddbec071a",
         "generatorVersion": 3,
         "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221"
       }
