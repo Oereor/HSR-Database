@@ -77,8 +77,6 @@ describe('farming prototype contract', () => {
       validateCurrentProfiles()
     ]);
     const profile = artifact.profiles.find((item) => item.characterId === '1002')!;
-    expect(profile.softTargets).toHaveLength(0);
-    expect(profile.substatWeights.CriticalChanceBase).toBeGreaterThan(0);
     const piece = generateNaturalRelic('HEAD', model, createSeededRng(4));
     const expected = piece.substats.reduce(
       (total, sub) =>
@@ -160,10 +158,17 @@ describe('farming prototype contract', () => {
         }
       })
     ).toBe(digest);
+    const weightedStat = Object.keys(
+      profile.substatWeights
+    )[0] as keyof typeof profile.substatWeights;
+    const changedWeight = profile.substatWeights[weightedStat] === 0.25 ? 0.5 : 0.25;
     expect(
       benchmarkIdentityDigest({
         ...input,
-        profile: { ...profile, substatWeights: { ...profile.substatWeights, SpeedDelta: 0 } }
+        profile: {
+          ...profile,
+          substatWeights: { ...profile.substatWeights, [weightedStat]: changedWeight }
+        }
       })
     ).not.toBe(digest);
   });

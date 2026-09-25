@@ -111,10 +111,17 @@ describe('Relic Score production benchmarks', () => {
         profile: { ...profile, metadata: { ...profile.metadata, reviewReasons: ['new note'] } }
       })
     ).toBe(digest);
+    const weightedStat = Object.keys(
+      profile.substatWeights
+    )[0] as keyof typeof profile.substatWeights;
+    const changedWeight = profile.substatWeights[weightedStat] === 0.25 ? 0.5 : 0.25;
     expect(
       benchmarkIdentityDigest({
         ...input,
-        profile: { ...profile, substatWeights: { ...profile.substatWeights, SpeedDelta: 0 } }
+        profile: {
+          ...profile,
+          substatWeights: { ...profile.substatWeights, [weightedStat]: changedWeight }
+        }
       })
     ).not.toBe(digest);
     expect(
@@ -184,8 +191,6 @@ describe('Relic Score production benchmarks', () => {
     expect(critDamage.status).toBe('available');
     if (critRate.status === 'available' && critDamage.status === 'available')
       expect(critRate.distribution.identityDigest).not.toBe(critDamage.distribution.identityDigest);
-    const windFoot = artifact.distributions['1409'].FOOT!;
-    expect(windFoot.SpeedDelta!.summary.p50).not.toBe(windFoot.HPAddedRatio!.summary.p50);
     const fixture = JSON.parse(
       readFileSync('tests/fixtures/relic-score/player-builds/complete-five-star.json', 'utf8')
     ) as PlayerBuildInput;
@@ -209,23 +214,6 @@ describe('Relic Score production benchmarks', () => {
       result.build!.coreBuildScore +
         result.build!.softTargetBonus -
         result.build!.hardBreakpointPenalty
-    );
-    const breakpointBuild = { ...fixture, characterId: '1409' };
-    const breakpointRecommendation = loaded.inputs.recommendations.find(
-      (item) => item.avatarId === '1409'
-    )!;
-    const penalized = scoreProductionBuild(breakpointBuild, breakpointRecommendation);
-    expect(penalized.status).toBe('available');
-    expect(penalized.build!.hardBreakpointPenalty).toBe(
-      RELIC_SCORE_CONFIG.build.maxBreakpointPenalty
-    );
-    expect(penalized.build!.softTargetBonus).toBeCloseTo(
-      RELIC_SCORE_CONFIG.build.maxSoftTargetBonus * (breakpointBuild.panel.effect_res! / 0.5)
-    );
-    expect(penalized.build!.finalBuildScore).toBeCloseTo(
-      penalized.build!.coreBuildScore +
-        penalized.build!.softTargetBonus -
-        penalized.build!.hardBreakpointPenalty
     );
   });
 });

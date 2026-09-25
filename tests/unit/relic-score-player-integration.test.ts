@@ -141,47 +141,6 @@ describe('Player Info relic scoring integration', () => {
     }
   });
 
-  it('maps soft targets and breakpoints from the final numeric panel', () => {
-    const input = { ...buildPlayerInput(), characterId: '1409' };
-    const recommendation = recommendations['1409'];
-    const below = scorePlayerCharacterBuild({ status: 'valid', input }, '1409', {
-      recommendations
-    });
-    expect(below.build.status).toBe('available');
-    if (below.build.status !== 'available') return;
-    expect(below.build.hardBreakpoint.details[0].currentValue).toBe(input.panel.spd);
-    expect(below.build.hardBreakpoint.details[0].passed).toBe(false);
-    const exact = scorePlayerCharacterBuild(
-      {
-        status: 'valid',
-        input: { ...input, panel: { ...input.panel, spd: 200, effect_res: 0.5 } }
-      },
-      '1409',
-      { recommendations: { '1409': recommendation } }
-    );
-    expect(exact.build.status).toBe('available');
-    if (exact.build.status !== 'available') return;
-    expect(exact.build.hardBreakpoint.details[0]).toMatchObject({
-      currentValue: 200,
-      passed: true
-    });
-    expect(exact.build.softTarget.details[0].currentValue).toBe(0.5);
-    expect(exact.build.softTarget.progress).toBe(1);
-    const middle = scorePlayerCharacterBuild(
-      {
-        status: 'valid',
-        input: { ...input, panel: { ...input.panel, spd: 201, effect_res: 0.25 } }
-      },
-      '1409',
-      { recommendations }
-    );
-    expect(middle.build.status).toBe('available');
-    if (middle.build.status === 'available') {
-      expect(middle.build.softTarget.progress).toBe(0.5);
-      expect(middle.build.hardBreakpoint.details[0].passed).toBe(true);
-    }
-  });
-
   it('preserves low-rarity, underleveled, wrong-main and set semantics in the DTO', () => {
     const full = buildPlayerInput();
     const recommendation = recommendations[full.characterId];

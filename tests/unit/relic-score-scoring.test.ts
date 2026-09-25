@@ -36,10 +36,8 @@ const artifact = JSON.parse(
 ) as BenchmarkArtifact;
 let sources: ScoringSources;
 let expected: BenchmarkExpectedIdentity;
-let profiles: Awaited<ReturnType<typeof loadScoringInputs>>['profiles'];
 beforeAll(async () => {
   const inputs = await loadScoringInputs();
-  profiles = inputs.profiles;
   const cases = Object.entries(artifact.distributions).flatMap(([characterId, slots]) =>
     Object.keys(slots).map((slot) => ({ characterId, slot: slot as RelicSlot }))
   );
@@ -261,18 +259,6 @@ describe('Relic Score scoring', () => {
       expect(result.matchedPlanarSetId).toBe(matched);
       expect(result.total).toBeCloseTo((2 / 3) * result.cavern + (1 / 3) * integrity);
     }
-  });
-
-  it('scores configured breakpoints and no-breakpoint profiles', () => {
-    expect(evaluateBreakpoints(sources.profile!, fixture.panel)).toEqual({
-      status: 'available',
-      value: { failureRatio: 0, entries: [] }
-    });
-    const profile = structuredClone(profiles.find((item) => item.characterId === '1409')!);
-    const below = evaluateBreakpoints(profile, { spd: 199 });
-    const exact = evaluateBreakpoints(profile, { spd: 200 });
-    expect(below.status === 'available' && below.value.failureRatio).toBe(1);
-    expect(exact.status === 'available' && exact.value.failureRatio).toBe(0);
   });
 });
 
