@@ -44,22 +44,10 @@ export interface CanonicalPlayerCharacterBuild {
   relics: CanonicalPlayerRelic[];
 }
 
-export interface CanonicalPlayerPrivacy {
-  displayCollection?: boolean;
-  displayRecord?: boolean;
-  displayRecordTeam?: boolean;
-  displayOnlineStatus?: boolean;
-  displayDiary?: boolean;
-}
-
 export interface CanonicalPlayerRecords {
   achievementCount?: number;
-  bookCount?: number;
   avatarCount?: number;
   equipmentCount?: number;
-  musicCount?: number;
-  relicCount?: number;
-  maxRogueChallengeScore?: number;
 }
 
 export interface CanonicalPlayerProfile {
@@ -69,10 +57,6 @@ export interface CanonicalPlayerProfile {
   worldLevel: number;
   signature?: string;
   headIconId?: string;
-  personalCardId?: string;
-  friendCount?: number;
-  isDisplayAvatar?: boolean;
-  privacy?: CanonicalPlayerPrivacy;
   records?: CanonicalPlayerRecords;
   characters: CanonicalPlayerCharacterBuild[];
 }

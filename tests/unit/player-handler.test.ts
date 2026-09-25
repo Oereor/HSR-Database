@@ -119,6 +119,27 @@ describe('Enka player Function handler', () => {
     expect(await response.json()).toMatchObject({ uid: '100000001', characters: [] });
   });
 
+  it('serves a privacy-restricted profile with no showcased characters or records', async () => {
+    const sparse = structuredClone(fixture) as { detailInfo: Record<string, unknown> };
+    delete sparse.detailInfo.avatarDetailList;
+    delete sparse.detailInfo.recordInfo;
+    const log = vi.fn();
+    const response = await handlePlayerRequest(request(), {
+      client: createEnkaPlayerClient({ fetchImpl: vi.fn(async () => Response.json(sparse)) }),
+      log
+    });
+
+    expect(response.status).toBe(200);
+    expect(await response.json()).toMatchObject({
+      uid: '100000001',
+      characters: [],
+      characterCount: null,
+      lightConeCount: null,
+      achievementCount: null
+    });
+    expect(log).not.toHaveBeenCalledWith(expect.objectContaining({ event: 'decode_error' }));
+  });
+
   it.each(['', '?uid=', '?uid=abc', '?uid=123&uid=456'])(
     'rejects invalid UID query %s without calling upstream',
     async (query) => {
