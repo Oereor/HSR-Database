@@ -17,7 +17,7 @@ export interface EnkaRawLightCone {
 export interface EnkaRawRelic {
   tid: number;
   type: 1 | 2 | 3 | 4 | 5 | 6;
-  level: number;
+  level?: number;
   mainAffixId: number;
   subAffixList?: Array<{ affixId: number; cnt: number; step?: number }>;
 }
@@ -56,22 +56,35 @@ export interface EnkaRawResponse {
   };
 }
 
-function invalid(path: string): never {
-  throw new PlayerApiError('UPSTREAM_INVALID_RESPONSE', undefined, path);
+function shape(value: unknown): string {
+  if (value === undefined) return 'missing';
+  if (value === null) return 'null';
+  if (Array.isArray(value)) return 'array';
+  return typeof value;
+}
+
+function invalid(path: string, expected?: string, value?: unknown): never {
+  throw new PlayerApiError(
+    'UPSTREAM_INVALID_RESPONSE',
+    undefined,
+    path,
+    expected === undefined ? undefined : { expected, received: shape(value) }
+  );
 }
 
 function record(value: unknown, path: string): UnknownRecord {
-  if (!value || typeof value !== 'object' || Array.isArray(value)) invalid(path);
+  if (!value || typeof value !== 'object' || Array.isArray(value)) invalid(path, 'object', value);
   return value as UnknownRecord;
 }
 
 function string(value: unknown, path: string): string {
-  if (typeof value !== 'string') invalid(path);
+  if (typeof value !== 'string') invalid(path, 'string', value);
   return value;
 }
 
 function integer(value: unknown, path: string): number {
-  if (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 0) invalid(path);
+  if (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 0)
+    invalid(path, 'non-negative safe integer', value);
   return value;
 }
 
@@ -85,13 +98,13 @@ function optionalString(value: unknown, path: string): string | undefined {
 
 function optionalBoolean(value: unknown, path: string): boolean | undefined {
   if (value === undefined || value === null) return undefined;
-  if (typeof value !== 'boolean') invalid(path);
+  if (typeof value !== 'boolean') invalid(path, 'boolean', value);
   return value;
 }
 
 function optionalArray(value: unknown, path: string): unknown[] | undefined {
   if (value === undefined || value === null) return undefined;
-  if (!Array.isArray(value)) invalid(path);
+  if (!Array.isArray(value)) invalid(path, 'array', value);
   return value;
 }
 
@@ -136,7 +149,9 @@ function parseAvatar(value: unknown, index: number): EnkaRawAvatar {
       const relicPath = `${path}.relicList[${relicIndex}]`;
       const item = record(value, relicPath);
       const type = integer(item.type, `${relicPath}.type`);
-      if (type < 1 || type > 6) invalid(`${relicPath}.type`);
+      if (type < 1 || type > 6) invalid(`${relicPath}.type`, 'integer from 1 to 6', type);
+      const level =
+        item.level === undefined ? undefined : integer(item.level, `${relicPath}.level`);
       const subAffixList = optionalArray(item.subAffixList, `${relicPath}.subAffixList`)?.map(
         (value, affixIndex) => {
           const affixPath = `${relicPath}.subAffixList[${affixIndex}]`;
@@ -152,7 +167,7 @@ function parseAvatar(value: unknown, index: number): EnkaRawAvatar {
       return {
         tid: integer(item.tid, `${relicPath}.tid`),
         type: type as EnkaRawRelic['type'],
-        level: integer(item.level, `${relicPath}.level`),
+        ...(level === undefined ? {} : { level }),
         mainAffixId: integer(item.mainAffixId, `${relicPath}.mainAffixId`),
         ...(subAffixList === undefined ? {} : { subAffixList })
       };

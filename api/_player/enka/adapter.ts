@@ -44,7 +44,7 @@ export function adaptEnkaProfile(raw: EnkaRawResponse): CanonicalPlayerProfile {
         relics: (avatar.relicList ?? []).map((relic) => ({
           tid: String(relic.tid),
           type: relic.type,
-          level: relic.level,
+          level: relic.level === undefined ? 0 : relic.level,
           mainAffixId: relic.mainAffixId,
           subAffixes: (relic.subAffixList ?? []).map((affix) => ({
             affixId: affix.affixId,

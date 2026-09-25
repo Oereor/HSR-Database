@@ -1,0 +1,370 @@
+{
+  "uid": "100000104",
+  "region": "CN",
+  "ttl": 45,
+  "detailInfo": {
+    "uid": 100000104,
+    "level": 41,
+    "worldLevel": 3,
+    "avatarDetailList": [
+      {
+        "relicList": [
+          {
+            "mainAffixId": 1,
+            "subAffixList": [
+              {
+                "affixId": 2,
+                "cnt": 2
+              },
+              {
+                "affixId": 5,
+                "cnt": 1,
+                "step": 2
+              },
+              {
+                "affixId": 8,
+                "cnt": 2,
+                "step": 4
+              },
+              {
+                "affixId": 12,
+                "cnt": 1,
+                "step": 1
+              }
+            ],
+            "tid": 51051,
+            "type": 1,
+            "level": 12,
+            "_flat": {
+              "props": [
+                {
+                  "type": "HPDelta",
+                  "value": 469.64736
+                },
+                {
+                  "type": "AttackDelta",
+                  "value": 27.096032
+                },
+                {
+                  "type": "AttackAddedRatio",
+                  "value": 0.03456
+                },
+                {
+                  "type": "CriticalChance",
+                  "value": 0.05184
+                },
+                {
+                  "type": "BreakDamageAddedRatio",
+                  "value": 0.046656
+                }
+              ],
+              "setName": "5894179782703982789",
+              "setID": 105
+            }
+          },
+          {
+            "mainAffixId": 1,
+            "subAffixList": [
+              {
+                "affixId": 1,
+                "cnt": 1,
+                "step": 2
+              },
+              {
+                "affixId": 5,
+                "cnt": 3,
+                "step": 4
+              },
+              {
+                "affixId": 11,
+                "cnt": 1,
+                "step": 1
+              },
+              {
+                "affixId": 12,
+                "cnt": 1,
+                "step": 1
+              }
+            ],
+            "tid": 51052,
+            "type": 2,
+            "level": 12,
+            "_flat": {
+              "props": [
+                {
+                  "type": "AttackDelta",
+                  "value": 234.82368
+                },
+                {
+                  "type": "HPDelta",
+                  "value": 33.870039
+                },
+                {
+                  "type": "AttackAddedRatio",
+                  "value": 0.096768
+                },
+                {
+                  "type": "StatusResistance",
+                  "value": 0.031104
+                },
+                {
+                  "type": "BreakDamageAddedRatio",
+                  "value": 0.046656
+                }
+              ],
+              "setName": "5894179782703982789",
+              "setID": 105
+            }
+          },
+          {
+            "mainAffixId": 1,
+            "subAffixList": [
+              {
+                "affixId": 2,
+                "cnt": 1
+              },
+              {
+                "affixId": 4,
+                "cnt": 3,
+                "step": 3
+              },
+              {
+                "affixId": 5,
+                "cnt": 2,
+                "step": 1
+              },
+              {
+                "affixId": 6,
+                "cnt": 1,
+                "step": 1
+              }
+            ],
+            "tid": 55006,
+            "type": 3,
+            "level": 12,
+            "_flat": {
+              "props": [
+                {
+                  "type": "CriticalChanceBase",
+                  "value": 0.215652
+                },
+                {
+                  "type": "AttackDelta",
+                  "value": 13.548016
+                },
+                {
+                  "type": "HPAddedRatio",
+                  "value": 0.093312
+                },
+                {
+                  "type": "AttackAddedRatio",
+                  "value": 0.058752
+                },
+                {
+                  "type": "DefenceAddedRatio",
+                  "value": 0.03888
+                }
+              ],
+              "setName": "5894179782703982789",
+              "setID": 105
+            }
+          },
+          {
+            "mainAffixId": 1,
+            "subAffixList": [
+              {
+                "affixId": 2,
+                "cnt": 3,
+                "step": 3
+              },
+              {
+                "affixId": 5,
+                "cnt": 1,
+                "step": 1
+              },
+              {
+                "affixId": 9,
+                "cnt": 1,
+                "step": 2
+              },
+              {
+                "affixId": 10,
+                "cnt": 1,
+                "step": 1
+              }
+            ],
+            "tid": 51054,
+            "type": 4,
+            "level": 12,
+            "_flat": {
+              "props": [
+                {
+                  "type": "HPAddedRatio",
+                  "value": 0.287544
+                },
+                {
+                  "type": "AttackDelta",
+                  "value": 45.724554
+                },
+                {
+                  "type": "AttackAddedRatio",
+                  "value": 0.031104
+                },
+                {
+                  "type": "CriticalDamage",
+                  "value": 0.05184
+                },
+                {
+                  "type": "StatusProbability",
+                  "value": 0.031104
+                }
+              ],
+              "setName": "5894179782703982789",
+              "setID": 105
+            }
+          },
+          {
+            "mainAffixId": 3,
+            "subAffixList": [
+              {
+                "affixId": 4,
+                "cnt": 1,
+                "step": 1
+              },
+              {
+                "affixId": 10,
+                "cnt": 1,
+                "step": 2
+              }
+            ],
+            "tid": 53025,
+            "type": 5,
+            "_flat": {
+              "props": [
+                {
+                  "type": "DefenceAddedRatio",
+                  "value": 0.06912
+                },
+                {
+                  "type": "HPAddedRatio",
+                  "value": 0.031104
+                },
+                {
+                  "type": "StatusProbability",
+                  "value": 0.03456
+                }
+              ],
+              "setName": "6868625933039604696",
+              "setID": 302
+            }
+          },
+          {
+            "mainAffixId": 5,
+            "subAffixList": [
+              {
+                "affixId": 4,
+                "cnt": 1,
+                "step": 2
+              },
+              {
+                "affixId": 5,
+                "cnt": 1,
+                "step": 2
+              }
+            ],
+            "tid": 43026,
+            "type": 6,
+            "_flat": {
+              "props": [
+                {
+                  "type": "DefenceAddedRatio",
+                  "value": 0.05184
+                },
+                {
+                  "type": "HPAddedRatio",
+                  "value": 0.02592
+                },
+                {
+                  "type": "AttackAddedRatio",
+                  "value": 0.02592
+                }
+              ],
+              "setName": "6868625933039604696",
+              "setID": 302
+            }
+          }
+        ],
+        "rank": 6,
+        "level": 60,
+        "promotion": 4,
+        "skillTreeList": [
+          {
+            "pointId": 8002001,
+            "level": 4
+          },
+          {
+            "pointId": 8002002,
+            "level": 5
+          },
+          {
+            "pointId": 8002003,
+            "level": 5
+          },
+          {
+            "pointId": 8002004,
+            "level": 4
+          },
+          {
+            "pointId": 8002007,
+            "level": 1
+          },
+          {
+            "pointId": 8002101,
+            "level": 1
+          },
+          {
+            "pointId": 8002102,
+            "level": 1
+          },
+          {
+            "pointId": 8002201,
+            "level": 1
+          },
+          {
+            "pointId": 8002202,
+            "level": 1
+          },
+          {
+            "pointId": 8002203,
+            "level": 1
+          }
+        ],
+        "equipment": {
+          "rank": 1,
+          "tid": 21026,
+          "promotion": 4,
+          "level": 60,
+          "_flat": {
+            "props": [
+              {
+                "type": "BaseHP",
+                "value": 684.72
+              },
+              {
+                "type": "BaseAttack",
+                "value": 342.36
+              },
+              {
+                "type": "BaseDefence",
+                "value": 237.75
+              }
+            ],
+            "name": "2865330475640667594"
+          }
+        },
+        "avatarId": 8002,
+        "_assist": true
+      }
+    ]
+  }
+}

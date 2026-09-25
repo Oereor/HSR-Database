@@ -3,7 +3,10 @@ import { describe, expect, it } from 'vitest';
 import { adaptEnkaProfile } from '../../api/_player/enka/adapter';
 import { decodeEnkaResponse } from '../../api/_player/enka/decode';
 import { buildEnkaPlayerProfile, playerRuntimeData } from '../../api/_player/enka/pipeline';
-import { collectPropertyContributions } from '../../src/lib/player/stat-synthesis';
+import {
+  collectPropertyContributions,
+  presentCanonicalPlayerProfile
+} from '../../src/lib/player/stat-synthesis';
 
 const fixture = JSON.parse(
   readFileSync('tests/fixtures/enka/phase1-player.sanitized.json', 'utf8')
@@ -14,13 +17,17 @@ const expected = JSON.parse(
 const compatibilityFixtures = [
   ['compatibility-missing-promotion.sanitized.json', '100000101', 7],
   ['compatibility-control-a.sanitized.json', '100000102', 6],
-  ['compatibility-control-b.sanitized.json', '100000103', 8]
+  ['compatibility-control-b.sanitized.json', '100000103', 8],
+  ['compatibility-missing-relic-level.sanitized.json', '100000104', 1]
 ] as const;
 const missingPromotionFixture = JSON.parse(
   readFileSync('tests/fixtures/enka/compatibility-missing-promotion.sanitized.json', 'utf8')
 ) as unknown;
 const fullFixture = JSON.parse(
   readFileSync('tests/fixtures/enka/compatibility-control-a.sanitized.json', 'utf8')
+) as MutableFixture;
+const missingRelicLevelFixture = JSON.parse(
+  readFileSync('tests/fixtures/enka/compatibility-missing-relic-level.sanitized.json', 'utf8')
 ) as MutableFixture;
 
 interface MutableFixture {
@@ -82,6 +89,59 @@ describe('Enka decoder and canonical adapter', () => {
         expect(error).toMatchObject({
           code: 'UPSTREAM_INVALID_RESPONSE',
           diagnostic: 'detailInfo.avatarDetailList[4].equipment.promotion'
+        });
+      }
+    }
+  });
+
+  it('normalizes omitted relic levels to zero while rejecting malformed present values', () => {
+    const source = structuredClone(missingRelicLevelFixture);
+    const relics = source.detailInfo.avatarDetailList[0].relicList as Array<
+      Record<string, unknown>
+    >;
+    expect(relics[4]).not.toHaveProperty('level');
+    expect(relics[5]).not.toHaveProperty('level');
+
+    const decoded = decodeEnkaResponse(source);
+    expect(decoded.detailInfo.avatarDetailList![0].relicList![4]).not.toHaveProperty('level');
+    const adapted = adaptEnkaProfile(decoded);
+    expect(adapted.characters[0].relics.map((relic) => relic.level)).toEqual([
+      12, 12, 12, 12, 0, 0
+    ]);
+    const result = buildEnkaPlayerProfile(source);
+    expect(result.canonical.characters[0].status).toBe('complete');
+    expect(result.scoringFailures).toEqual([]);
+    expect(result.presentation.characters[0].relics.slice(4).map((relic) => relic.level)).toEqual([
+      0, 0
+    ]);
+
+    const explicitZero = structuredClone(source);
+    (
+      explicitZero.detailInfo.avatarDetailList[0].relicList as Array<Record<string, unknown>>
+    )[4].level = 0;
+    expect(adaptEnkaProfile(decodeEnkaResponse(explicitZero)).characters[0].relics[4].level).toBe(
+      0
+    );
+
+    for (const [value, received] of [
+      [null, 'null'],
+      ['0', 'string'],
+      [-1, 'number'],
+      [1.5, 'number']
+    ] as const) {
+      const invalid = structuredClone(source);
+      (
+        invalid.detailInfo.avatarDetailList[0].relicList as Array<Record<string, unknown>>
+      )[4].level = value;
+      try {
+        decodeEnkaResponse(invalid);
+        throw new Error('decoder unexpectedly accepted an invalid relic level');
+      } catch (error) {
+        expect(error).toMatchObject({
+          code: 'UPSTREAM_INVALID_RESPONSE',
+          diagnostic: 'detailInfo.avatarDetailList[0].relicList[4].level',
+          expected: 'non-negative safe integer',
+          received
         });
       }
     }
@@ -306,5 +366,21 @@ describe('Enka production stat pipeline golden', () => {
       percent: false,
       total: '3115'
     });
+    const firstRelic = result.canonical.characters[0].build.relics[0];
+    expect(result.presentation.characters[0].relics[0].rarity).toBe(
+      playerRuntimeData.relics[firstRelic.tid].rarity
+    );
+    expect(result.presentation.characters[0].relics[0].rarity).toBe(5);
+
+    const runtimeWithoutRarity = structuredClone(playerRuntimeData);
+    delete runtimeWithoutRarity.relics[firstRelic.tid].rarity;
+    expect(
+      presentCanonicalPlayerProfile(result.canonical, runtimeWithoutRarity).characters[0].relics[0]
+    ).not.toHaveProperty('rarity');
+    const unknownRelic = structuredClone(result.canonical);
+    unknownRelic.characters[0].build.relics[0].tid = 'unknown';
+    expect(
+      presentCanonicalPlayerProfile(unknownRelic, playerRuntimeData).characters[0].relics[0]
+    ).not.toHaveProperty('rarity');
   });
 });

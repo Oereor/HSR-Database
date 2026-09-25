@@ -1,7 +1,8 @@
 const RARITY_COLORS: Readonly<Partial<Record<number, string>>> = {
   5: '#ffd700',
   4: '#c77dff',
-  3: '#6090ff'
+  3: '#6090ff',
+  2: '#8ae1e3'
 };
 
 export const getRarityColor = (rarity: number | undefined): string | undefined =>
