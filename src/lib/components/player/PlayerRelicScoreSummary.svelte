@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Disclosure from '$lib/components/shared/Disclosure.svelte';
   import type { RelicProperty } from '$lib/domain/types';
   import { m } from '$lib/paraglide/messages.js';
   import { resolvePlayerStatIdentity } from '$lib/player/character';
@@ -100,8 +101,7 @@
 
   {#if score.status === 'available'}
     {#if score.softTarget.details.length || score.hardBreakpoint.details.length}
-      <details class="player-relic-score-summary__details" data-player-score-details>
-        <summary>{m.player_relic_score_details()}</summary>
+      <Disclosure label={m.player_relic_score_details()} data-player-score-details>
         <div class="player-relic-score-summary__detail-groups">
           {#if score.softTarget.details.length}
             <section>
@@ -143,7 +143,7 @@
             </section>
           {/if}
         </div>
-      </details>
+      </Disclosure>
     {/if}
   {/if}
 </div>
@@ -283,31 +283,6 @@
     font-weight: 650;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
-  }
-
-  .player-relic-score-summary__details {
-    min-width: 0;
-    margin-top: var(--space-3);
-    border-top: 1px solid var(--border);
-    padding-top: var(--space-3);
-    color: var(--text-secondary);
-    font-size: var(--font-helper);
-  }
-
-  .player-relic-score-summary__details summary {
-    width: fit-content;
-    color: var(--text-body);
-    cursor: pointer;
-    font-weight: 400;
-  }
-
-  .player-relic-score-summary__details summary:hover {
-    color: var(--text-primary);
-  }
-
-  .player-relic-score-summary__details summary:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 3px;
   }
 
   .player-relic-score-summary__detail-groups {

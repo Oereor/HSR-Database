@@ -3,7 +3,7 @@
   export let source: string | undefined;
   export let alt: string;
   export let fallbackLabel: string;
-  export let presentation: 'hero' | 'card' | 'header' = 'card';
+  export let presentation: 'hero' | 'card' | 'header' | 'piece' = 'card';
 
   let failedSource: string | undefined;
   $: visibleSource = source && source !== failedSource ? source : undefined;
@@ -57,6 +57,23 @@
       linear-gradient(180deg, rgb(255 255 255 / 2%), transparent);
   }
 
+  .relic-icon-stage--piece {
+    width: 96px;
+    height: 96px;
+    border-radius: var(--radius-control);
+    background: radial-gradient(circle, rgb(215 181 109 / 11%), transparent 70%);
+  }
+
+  .relic-icon-stage--piece img {
+    width: 88px;
+    height: 88px;
+  }
+
+  .relic-icon-stage--piece .relic-icon-stage__fallback {
+    width: 4rem;
+    height: 4rem;
+  }
+
   .relic-icon-stage--header {
     width: 100%;
     height: 100%;
@@ -108,6 +125,24 @@
 
     .relic-icon-stage--hero img {
       transform: translate(12%, -10%);
+    }
+  }
+
+  @media (max-width: 820px) {
+    .relic-icon-stage--piece {
+      width: 64px;
+      height: 64px;
+    }
+
+    .relic-icon-stage--piece img {
+      width: 56px;
+      height: 56px;
+    }
+
+    .relic-icon-stage--piece .relic-icon-stage__fallback {
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.2rem;
     }
   }
 </style>
