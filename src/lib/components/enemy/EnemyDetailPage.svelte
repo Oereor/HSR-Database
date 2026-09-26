@@ -271,7 +271,6 @@
         {#each selectedMonster.summons as summon (summon.monsterId)}<CompactEntityCard
             href={localizedHref(summon.href)}
             imageUrl={summon.portraitUrl}
-            fallbackLabel={summon.name}
             data-summon-monster={summon.monsterId}
             data-summon-template={summon.monsterTemplateId}
           >

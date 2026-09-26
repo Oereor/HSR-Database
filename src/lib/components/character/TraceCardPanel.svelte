@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
   import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import SkillExtraEffects from '$lib/components/shared/SkillExtraEffects.svelte';
@@ -58,9 +59,12 @@
           >
             <div class="trace-card__heading">
               <h3 class:trace-card__title--icon={!!statIconUrl}>
-                {#if statIconUrl}<img src={statIconUrl} alt="" aria-hidden="true" />{/if}<span
-                  ><GameText text={stat.name} /></span
-                >
+                {#if statIconUrl}<AssetImage
+                    decorative
+                    src={statIconUrl}
+                    alt=""
+                    aria-hidden="true"
+                  />{/if}<span><GameText text={stat.name} /></span>
               </h3>
               <div class="trace-card__tags">
                 <span class="skill-effect-tag">{m.trace_stat_bonus()}</span>
@@ -116,9 +120,12 @@
           >
             <div class="trace-card__heading">
               <h3 class:trace-card__title--icon={!!statIconUrl}>
-                {#if statIconUrl}<img src={statIconUrl} alt="" aria-hidden="true" />{/if}<span
-                  ><GameText text={stat.name} /></span
-                >
+                {#if statIconUrl}<AssetImage
+                    decorative
+                    src={statIconUrl}
+                    alt=""
+                    aria-hidden="true"
+                  />{/if}<span><GameText text={stat.name} /></span>
               </h3>
               <div class="trace-card__tags">
                 <span class="skill-effect-tag">{m.trace_stat_bonus()}</span>

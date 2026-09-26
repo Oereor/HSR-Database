@@ -194,6 +194,7 @@ export interface NeutralRelicPiece {
   slotNameSource?: NeutralTextSource;
   nameSource?: NeutralTextSource;
   descriptionSource?: NeutralTextSource;
+  loreSource?: NeutralTextSource;
 }
 
 export interface NeutralRelicEffect {

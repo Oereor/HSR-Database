@@ -1,13 +1,11 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   export let href: string | undefined = undefined;
   export let imageUrl: string | undefined = undefined;
   export let imageAlt = '';
-  export let fallbackLabel: string;
   export let artworkFit: 'contain' | 'cover' | 'scale-down' = 'contain';
 
-  let failedSource: string | undefined;
-  $: visibleSource = imageUrl && imageUrl !== failedSource ? imageUrl : undefined;
-  $: fallbackMark = fallbackLabel.trim().slice(0, 1) || '?';
+  let imageMissing = !imageUrl?.trim();
   $: elementProps = href ? { href } : {};
 </script>
 
@@ -16,24 +14,21 @@
   {...elementProps}
   {...$$restProps}
   class:compact-entity-card--link={!!href}
-  class:compact-entity-card--missing={!visibleSource}
+  class:compact-entity-card--missing={imageMissing}
   class:compact-entity-card--split={!!$$slots.aside}
   class="compact-entity-card"
-  data-image-missing={!visibleSource}
+  data-image-missing={imageMissing}
 >
   <span class="compact-entity-card__artwork" aria-hidden={!imageAlt}>
-    {#if visibleSource}
-      <img
-        src={visibleSource}
-        alt={imageAlt}
-        style:object-fit={artworkFit}
-        loading="lazy"
-        decoding="async"
-        on:error={() => (failedSource = visibleSource)}
-      />
-    {:else}
-      <span class="compact-entity-card__fallback" aria-hidden="true">{fallbackMark}</span>
-    {/if}
+    <AssetImage
+      src={imageUrl}
+      alt={imageAlt}
+      style={`object-fit: ${artworkFit};`}
+      loading="lazy"
+      decoding="async"
+      bind:missing={imageMissing}
+      fallbackClass="compact-entity-card__fallback"
+    />
   </span>
   <span class="compact-entity-card__content">
     <strong class="compact-entity-card__title"><slot name="title" /></strong>
@@ -92,7 +87,7 @@
     background: radial-gradient(circle, rgb(215 181 109 / 13%), transparent 70%);
   }
 
-  .compact-entity-card__artwork img {
+  .compact-entity-card__artwork :global(img) {
     display: block;
     width: calc(100% - var(--space-2));
     height: calc(100% - var(--space-2));
@@ -101,10 +96,8 @@
     object-position: center;
   }
 
-  .compact-entity-card__fallback {
-    color: var(--gold);
-    font-size: 1.45rem;
-    font-weight: 700;
+  .compact-entity-card__artwork :global(.compact-entity-card__fallback) {
+    --image-fallback-font-size: 1.45rem;
   }
 
   .compact-entity-card__content {

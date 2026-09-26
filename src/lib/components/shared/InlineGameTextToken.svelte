@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import type { InlineGameTextIcon } from '$lib/domain/types';
 
   export let token: {
@@ -11,9 +12,6 @@
     unbreak?: boolean;
   };
   export let iconUrl: string | undefined = undefined;
-
-  let failedIconUrl: string | undefined;
-  $: visibleIconUrl = iconUrl && iconUrl !== failedIconUrl ? iconUrl : undefined;
 </script>
 
 {#if token.icon}<span
@@ -23,14 +21,14 @@
     data-game-icon-id={token.icon.id}
     style:color={token.color}
     aria-hidden="true"
-    >{#if visibleIconUrl}<img
-        src={visibleIconUrl}
-        alt=""
-        width="24"
-        height="24"
-        decoding="async"
-        on:error={() => (failedIconUrl = visibleIconUrl)}
-      />{:else}<span aria-hidden="true">✦</span>{/if}</span
+    ><AssetImage
+      src={iconUrl}
+      alt=""
+      width="24"
+      height="24"
+      decoding="async"
+      fallbackClass="game-text-inline-icon__fallback"
+    /></span
   >{:else if token.underline && token.italic}<u
     class:description-token--unbreak={token.unbreak}
     class:scaling-value={token.type === 'scaling-value'}

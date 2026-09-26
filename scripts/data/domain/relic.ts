@@ -48,7 +48,8 @@ export function buildRelicDomain(source: RelicSource): RelicSetDomain[] {
       slot: String(piece.Type ?? ''),
       slotNameSource: textSource(baseTypes.get(String(piece.Type))?.BaseTypeText),
       nameSource: textSource(piece.RelicName),
-      descriptionSource: textSource(piece.ItemBGDesc)
+      descriptionSource: textSource(piece.ItemBGDesc),
+      loreSource: textSource(piece.BGStoryContent)
     }));
     const effects = (skillsBySet.get(id) ?? []).map((skill) => ({
       required: parseRelicEffectRequirement(skill.RequireNum, id),

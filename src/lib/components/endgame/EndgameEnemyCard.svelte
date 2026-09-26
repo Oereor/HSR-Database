@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
   import SemanticIconLabel from '$lib/components/shared/SemanticIconLabel.svelte';
   import { getElementColor } from '$lib/domain/elements';
@@ -12,7 +13,7 @@
   export let variant: EndgameEnemyCardVariant = 'standard';
   export let level: number | undefined = undefined;
 
-  let portraitFailed = false;
+  let imageMissing = !occurrence.portraitUrl?.trim();
   $: elementProps = occurrence.enemyHref ? { href: localizedHref(occurrence.enemyHref) } : {};
 </script>
 
@@ -21,7 +22,7 @@
   {...elementProps}
   class:endgame-enemy--compact={variant === 'compact'}
   class:endgame-enemy--link={!!occurrence.enemyHref}
-  class:endgame-enemy--with-art={occurrence.portraitUrl && !portraitFailed}
+  class:endgame-enemy--with-art={!imageMissing}
   class="endgame-enemy"
   data-endgame-enemy-card
   data-enemy-card-variant={variant}
@@ -30,20 +31,17 @@
   data-endgame-enemy-level={level}
 >
   <div class="endgame-enemy__artwork" aria-hidden="true">
-    {#if occurrence.portraitUrl && !portraitFailed}
-      <img
-        src={occurrence.portraitUrl}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        width="376"
-        height="512"
-        data-enemy-portrait
-        on:error={() => (portraitFailed = true)}
-      />
-    {:else}
-      <span class="endgame-enemy__fallback">{m.endgame_enemy_fallback()}</span>
-    {/if}
+    <AssetImage
+      src={occurrence.portraitUrl}
+      alt=""
+      loading="lazy"
+      decoding="async"
+      width="376"
+      height="512"
+      data-enemy-portrait
+      bind:missing={imageMissing}
+      fallbackClass="endgame-enemy__fallback"
+    />
     {#if level !== undefined || occurrence.count}
       <span class="endgame-enemy__artwork-tags">
         {#if level !== undefined}<span class="endgame-enemy__level">Lv.{level}</span>{/if}

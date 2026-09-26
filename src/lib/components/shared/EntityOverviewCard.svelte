@@ -1,8 +1,8 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   export let href: string;
   export let imageUrl: string | undefined = undefined;
   export let imageAlt = '';
-  export let fallbackLabel: string;
   export let artworkFit: 'contain' | 'cover' | 'scale-down' = 'contain';
   export let artworkPosition = 'center bottom';
   export let artworkScale = 1;
@@ -11,40 +11,31 @@
   export let mediaPresentation: 'artwork' | 'icon' = 'artwork';
   export let metadataLayout: 'default' | 'icons' = 'default';
 
-  let failedSource: string | undefined;
-  $: visibleSource = imageUrl && imageUrl !== failedSource ? imageUrl : undefined;
-  $: fallbackMark = fallbackLabel.trim().slice(0, 1) || '?';
+  let imageMissing = !imageUrl?.trim();
 </script>
 
 <a
   class="entity-overview-card"
-  class:entity-overview-card--missing={!visibleSource}
+  class:entity-overview-card--missing={imageMissing}
   class:entity-overview-card--compact={size === 'compact'}
   class:entity-overview-card--dense={density === 'compact'}
   class:entity-overview-card--icon-media={mediaPresentation === 'icon'}
-  data-image-missing={!visibleSource}
+  data-image-missing={imageMissing}
   data-card-size={size}
   data-card-density={density}
   data-media-presentation={mediaPresentation}
   {href}
 >
   <span class="entity-overview-card__artwork" aria-hidden={!imageAlt}>
-    {#if visibleSource}
-      <img
-        src={visibleSource}
-        alt={imageAlt}
-        style:object-fit={artworkFit}
-        style:object-position={artworkPosition}
-        style:transform={`scale(${artworkScale})`}
-        loading="lazy"
-        decoding="async"
-        on:error={() => (failedSource = visibleSource)}
-      />
-    {:else}
-      <span class="entity-overview-card__fallback" aria-hidden="true">
-        <span>{fallbackMark}</span>
-      </span>
-    {/if}
+    <AssetImage
+      src={imageUrl}
+      alt={imageAlt}
+      style={`object-fit: ${artworkFit}; object-position: ${artworkPosition}; transform: scale(${artworkScale});`}
+      loading="lazy"
+      decoding="async"
+      bind:missing={imageMissing}
+      fallbackClass="entity-overview-card__fallback"
+    />
   </span>
   <span class="entity-overview-card__overlay"><slot name="overlay" /></span>
   <span
@@ -109,7 +100,7 @@
     pointer-events: none;
   }
 
-  .entity-overview-card__artwork img {
+  .entity-overview-card__artwork :global(img) {
     position: absolute;
     inset: 0;
     display: block;
@@ -124,7 +115,7 @@
     place-items: center;
   }
 
-  .entity-overview-card--icon-media .entity-overview-card__artwork img {
+  .entity-overview-card--icon-media .entity-overview-card__artwork :global(img) {
     width: calc(100% - 2 * var(--space-6));
     height: calc(100% - 2 * var(--space-6));
     max-width: 8rem;
@@ -230,22 +221,18 @@
     gap: var(--space-2);
   }
 
-  .entity-overview-card__fallback {
-    display: grid;
+  .entity-overview-card__artwork :global(.entity-overview-card__fallback) {
     width: 9rem;
     height: 9rem;
-    margin-bottom: 3rem;
-    place-items: center;
+    place-self: center;
     border: 1px solid var(--border);
     border-radius: 50%;
     background:
       radial-gradient(circle at 50% 45%, rgb(215 181 109 / 18%), transparent 56%), var(--surface-2);
-    color: var(--text-muted);
-    font-size: 2rem;
-    font-weight: 700;
+    --image-fallback-font-size: 2rem;
   }
 
-  .entity-overview-card--compact .entity-overview-card__fallback {
+  .entity-overview-card.entity-overview-card--compact :global(.entity-overview-card__fallback) {
     width: 7rem;
     height: 7rem;
     margin-bottom: 0;

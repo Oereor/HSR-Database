@@ -30,7 +30,6 @@ describe('全局导航配置', () => {
       expect(new Set(items.map(({ iconKey }) => iconKey)).size).toBe(items.length);
       for (const entry of items) {
         expect(entry.label.trim()).not.toBe('');
-        expect(entry.fallback.trim()).not.toBe('');
         expect(entry.href).toBe(trailingSlashHref(entry.href));
       }
     }

@@ -48,6 +48,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
       )
       .toBe(true);
     await page.goto(`${prefix}/enemies/?sort=id`);
+    await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
     const overviewImage = page
       .locator(`a[href^="${prefix}/enemies/"] img[src^="/generated-enemy-assets/"]`)
       .first();
@@ -71,8 +72,8 @@ for (const locale of ['zh-CN', 'en'] as const) {
     await expect.poll(() => attempted).toBe(true);
     await expect(card.locator('[data-enemy-portrait]')).toHaveCount(0);
     await expect(card).toContainText(target.name);
-    await expect(card.locator('.endgame-enemy__fallback')).toBeVisible();
-    await expect(card.locator('.endgame-enemy__fallback')).not.toHaveText('');
+    await expect(card.locator('[data-image-fallback]')).toBeVisible();
+    await expect(card.locator('[data-image-fallback]')).not.toHaveText('');
   });
 }
 

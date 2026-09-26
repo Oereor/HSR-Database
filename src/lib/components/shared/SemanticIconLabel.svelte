@@ -1,6 +1,6 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import { getElementIconUrl, getPathIconUrl } from '$lib/data/visual-assets';
-  import { onMount } from 'svelte';
 
   export let kind: 'element' | 'path';
   export let code: string | undefined;
@@ -10,45 +10,32 @@
   export let presentation:
     'plain' | 'path-identity' | 'character-element-identity' | 'overview-icon' = 'plain';
   export let showLabel = true;
-  export let fallbackMark: string | undefined = undefined;
 
-  let failedSource: string | undefined;
-  let imageElement: HTMLImageElement | undefined;
   $: source = kind === 'element' ? getElementIconUrl(code) : getPathIconUrl(code);
-  $: visibleSource = source && source !== failedSource ? source : undefined;
-
-  function markSourceMissing() {
-    if (visibleSource) failedSource = visibleSource;
-  }
-
-  onMount(() => {
-    if (imageElement?.complete && imageElement.naturalWidth === 0) markSourceMissing();
-  });
+  let imageMissing = false;
 </script>
 
 <span
   class="semantic-icon-label"
   style:color
   data-icon-kind={kind}
-  data-icon-missing={!visibleSource}
+  data-icon-missing={imageMissing || !source}
   data-label-size={size}
   data-icon-presentation={presentation}
   role={showLabel ? undefined : 'img'}
   aria-label={showLabel ? undefined : label}
 >
-  {#if visibleSource}<img
-      bind:this={imageElement}
-      src={visibleSource}
-      alt=""
-      aria-hidden="true"
-      width="64"
-      height="64"
-      loading="lazy"
-      decoding="async"
-      on:error={markSourceMissing}
-    />{:else if fallbackMark}<span class="semantic-icon-label__fallback" aria-hidden="true"
-      >{fallbackMark}</span
-    >{/if}
+  <AssetImage
+    src={source}
+    alt=""
+    decorative={showLabel}
+    width="64"
+    height="64"
+    loading="lazy"
+    decoding="async"
+    bind:missing={imageMissing}
+    fallbackClass="semantic-icon-label__fallback"
+  />
   {#if showLabel}<span class="semantic-icon-label__text">{label}</span>{/if}
 </span>
 
@@ -59,7 +46,7 @@
     gap: var(--semantic-icon-gap, 0.32rem);
   }
 
-  .semantic-icon-label img {
+  .semantic-icon-label :global(img) {
     display: block;
     width: var(--semantic-icon-image-size, 1rem);
     height: var(--semantic-icon-image-size, 1rem);
@@ -78,16 +65,13 @@
     white-space: var(--semantic-icon-label-white-space, normal);
   }
 
-  .semantic-icon-label__fallback {
-    display: grid;
+  .semantic-icon-label :global(.semantic-icon-label__fallback) {
     width: var(--semantic-icon-image-size, 1rem);
     height: var(--semantic-icon-image-size, 1rem);
     flex: 0 0 auto;
-    place-items: center;
     border: 1px solid currentColor;
     border-radius: 50%;
-    font-size: calc(var(--semantic-icon-image-size, 1rem) * 0.42);
-    font-weight: 800;
+    --image-fallback-font-size: calc(var(--semantic-icon-image-size, 1rem) * 0.42);
   }
 
   .semantic-icon-label[data-label-size='large'] {
@@ -97,7 +81,8 @@
     line-height: 1.2;
   }
 
-  .semantic-icon-label[data-label-size='large'] img {
+  .semantic-icon-label[data-label-size='large'] :global(img),
+  .semantic-icon-label[data-label-size='large'] :global(.semantic-icon-label__fallback) {
     width: 1.15rem;
     height: 1.15rem;
   }
@@ -110,7 +95,8 @@
     line-height: 1.2;
   }
 
-  .semantic-icon-label[data-label-size='hero'] img {
+  .semantic-icon-label[data-label-size='hero'] :global(img),
+  .semantic-icon-label[data-label-size='hero'] :global(.semantic-icon-label__fallback) {
     width: 1.5rem;
     height: 1.5rem;
   }
@@ -153,7 +139,7 @@
     color: var(--text-secondary);
   }
 
-  .semantic-icon-label[data-icon-presentation='overview-icon'] img {
+  .semantic-icon-label[data-icon-presentation='overview-icon'] :global(img) {
     width: var(--semantic-icon-image-size);
     height: var(--semantic-icon-image-size);
   }

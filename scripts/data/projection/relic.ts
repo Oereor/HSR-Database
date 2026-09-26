@@ -81,7 +81,8 @@ export function projectRelic(domain: RelicSetDomain, context: RelicProjectionCon
           context.resolver,
           piece.descriptionSource,
           field(`piece.${piece.id}.description`)
-        )
+        ),
+        lore: optionalText(context.resolver, piece.loreSource, field(`piece.${piece.id}.lore`))
       };
     }),
     sources: domain.sourceLabelSources

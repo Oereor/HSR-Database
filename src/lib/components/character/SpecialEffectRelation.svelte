@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
   import { resolveSpecialEffectLinkedAvatarPresentation } from '$lib/domain/special-effects-presentation';
   import type { CatalogEntry, CharacterSpecialEffectEntry } from '$lib/domain/types';
@@ -9,9 +10,6 @@
   export let ownerCharacterId: string;
 
   $: targetById = new Map(targets.map((target) => [target.id, target]));
-  const hideBrokenImage = (event: Event) => {
-    (event.currentTarget as HTMLImageElement).hidden = true;
-  };
 </script>
 
 <div
@@ -32,14 +30,14 @@
       data-linked-avatar-id={presentation.sourceAvatarId}
       data-display-avatar-id={presentation.displayAvatarId}
     >
-      {#if getCharacterPreviewUrl(presentation.displayAvatarId)}<img
-          src={getCharacterPreviewUrl(presentation.displayAvatarId)}
-          alt=""
-          width="48"
-          height="48"
-          decoding="async"
-          on:error={hideBrokenImage}
-        />{/if}
+      <AssetImage
+        src={getCharacterPreviewUrl(presentation.displayAvatarId)}
+        alt=""
+        width="48"
+        height="48"
+        decoding="async"
+        fallbackClass="special-effect-target__fallback"
+      />
       <span
         ><small>{m.special_effect_given_to()}</small><strong>{presentation.displayName}</strong
         ></span
@@ -61,14 +59,14 @@
           data-linked-avatar-id={presentation.sourceAvatarId}
           data-display-avatar-id={presentation.displayAvatarId}
         >
-          {#if getCharacterPreviewUrl(presentation.displayAvatarId)}<img
-              src={getCharacterPreviewUrl(presentation.displayAvatarId)}
-              alt=""
-              width="40"
-              height="40"
-              decoding="async"
-              on:error={hideBrokenImage}
-            />{/if}
+          <AssetImage
+            src={getCharacterPreviewUrl(presentation.displayAvatarId)}
+            alt=""
+            width="40"
+            height="40"
+            decoding="async"
+            fallbackClass="special-effect-target__fallback"
+          />
           <strong>{presentation.displayName}</strong>
         </span>
       {/each}

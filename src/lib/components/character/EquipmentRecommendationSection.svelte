@@ -33,7 +33,6 @@
         <CompactEntityCard
           href={localizedHref(`/light-cones/${lightCone.id}`)}
           imageUrl={getLightConePreviewUrl(lightCone.id)}
-          fallbackLabel={lightCone.name}
         >
           <svelte:fragment slot="title"><GameText text={lightCone.name} /></svelte:fragment>
           <svelte:fragment slot="secondary">
@@ -61,7 +60,6 @@
           <CompactEntityCard
             href={localizedHref(`/relics/${relicSet.id}`)}
             imageUrl={getRelicSetIconUrl(relicSet.id)}
-            fallbackLabel={relicSet.name}
           >
             <svelte:fragment slot="title"><GameText text={relicSet.name} /></svelte:fragment>
             <svelte:fragment slot="secondary">{relicCategoryLabel('cavern')}</svelte:fragment>
@@ -76,7 +74,6 @@
           <CompactEntityCard
             href={localizedHref(`/relics/${relicSet.id}`)}
             imageUrl={getRelicSetIconUrl(relicSet.id)}
-            fallbackLabel={relicSet.name}
           >
             <svelte:fragment slot="title"><GameText text={relicSet.name} /></svelte:fragment>
             <svelte:fragment slot="secondary">{relicCategoryLabel('planar')}</svelte:fragment>

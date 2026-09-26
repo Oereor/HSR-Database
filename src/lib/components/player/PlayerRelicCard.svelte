@@ -14,7 +14,7 @@
   export let score: PlayerRelicPieceScore | undefined = undefined;
   export let showScore = false;
 
-  $: fallbackLabel = view.relic
+  $: unresolvedLabel = view.relic
     ? m.player_equipment_unknown_relic({ setId: view.relic.setId, type: view.type })
     : m.player_equipment_unequipped();
   $: href = view.set ? localizedHref(`/relics/${view.set.id}`) : undefined;
@@ -35,15 +35,14 @@
       <RelicIcon
         source={view.piece ? getRelicPieceIconUrl(view.piece.id) : undefined}
         alt={view.piece?.name ?? ''}
-        fallbackLabel={view.piece?.name ?? relicSlotLabel(view.slot)}
         presentation="header"
       />
     </div>
     <div class="player-relic-card__identity">
       <span>{relicSlotLabel(view.slot)}</span>
       {#if view.relic}
-        <h3>{view.set?.name ?? fallbackLabel}</h3>
-        <p>{view.piece?.name ?? fallbackLabel}</p>
+        <h3>{view.set?.name ?? unresolvedLabel}</h3>
+        <p>{view.piece?.name ?? unresolvedLabel}</p>
       {:else}
         <h3>{m.player_equipment_unequipped()}</h3>
       {/if}

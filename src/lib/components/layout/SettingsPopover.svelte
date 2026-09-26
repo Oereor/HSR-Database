@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import { page } from '$app/stores';
   import { browser } from '$app/environment';
   import { getUtilityIconUrl } from '$lib/data/visual-assets';
@@ -84,8 +85,7 @@
     bind:this={trigger}
     on:click={toggle}
   >
-    {#if settingsIconUrl}<img src={settingsIconUrl} alt="" />{:else}<span aria-hidden="true">?</span
-      >{/if}
+    <AssetImage src={settingsIconUrl} alt="" fallbackClass="utility-image-fallback" />
   </button>
 </div>
 
@@ -123,7 +123,8 @@
     transform: translateY(-1px);
   }
 
-  .settings-trigger img {
+  .settings-trigger :global(img),
+  .settings-trigger :global(.utility-image-fallback) {
     width: 27px;
     height: 27px;
     object-fit: contain;

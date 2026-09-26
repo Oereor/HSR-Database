@@ -126,6 +126,7 @@ function parseAvatar(value: unknown, index: number): EnkaRawAvatar {
   const path = `detailInfo.avatarDetailList[${index}]`;
   const source = record(value, path);
   const rank = optionalInteger(source.rank, `${path}.rank`) ?? 0;
+  const promotion = optionalInteger(source.promotion, `${path}.promotion`) ?? 0;
   const equipmentSource = source.equipment;
   const equipment =
     equipmentSource === undefined || equipmentSource === null
@@ -192,7 +193,7 @@ function parseAvatar(value: unknown, index: number): EnkaRawAvatar {
       source._assist === undefined ? false : optionalBoolean(source._assist, `${path}._assist`)!,
     rank,
     level: integer(source.level, `${path}.level`),
-    promotion: integer(source.promotion, `${path}.promotion`),
+    promotion,
     ...(optionalInteger(source.enhancedId, `${path}.enhancedId`) === undefined
       ? {}
       : { enhancedId: optionalInteger(source.enhancedId, `${path}.enhancedId`) }),
@@ -229,7 +230,7 @@ export function decodeEnkaResponse(value: unknown): EnkaRawResponse {
       uid: detailUid,
       ...(nickname === undefined ? {} : { nickname }),
       level: integer(detailInfo.level, 'detailInfo.level'),
-      worldLevel: integer(detailInfo.worldLevel, 'detailInfo.worldLevel'),
+      worldLevel: optionalInteger(detailInfo.worldLevel, 'detailInfo.worldLevel') ?? 0,
       ...(signature === undefined ? {} : { signature }),
       ...(headIcon === undefined ? {} : { headIcon }),
       ...(recordInfo === undefined ? {} : { recordInfo }),

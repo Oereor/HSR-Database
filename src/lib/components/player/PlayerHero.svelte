@@ -1,27 +1,22 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import { m } from '$lib/paraglide/messages.js';
   import type { PlayerProfile } from '$lib/player/contract';
 
   export let profile: PlayerProfile;
   export let avatarUrl: string | null = null;
 
-  let failedAvatarUrl: string | null = null;
-  $: showAvatar = avatarUrl !== null && failedAvatarUrl !== avatarUrl;
   const displayCount = (value: number | null) => (value === null ? '-' : String(value));
 </script>
 
 <section class="player-hero" aria-labelledby="player-profile-name">
   <div class="player-hero__identity">
     <div class="player-hero__avatar">
-      {#if showAvatar}
-        <img
-          src={avatarUrl ?? ''}
-          alt={m.player_avatar_alt({ nickname: profile.nickname })}
-          on:error={() => (failedAvatarUrl = avatarUrl)}
-        />
-      {:else}
-        <span role="img" aria-label={m.player_avatar_unavailable()}>?</span>
-      {/if}
+      <AssetImage
+        src={avatarUrl}
+        alt={m.player_avatar_alt({ nickname: profile.nickname })}
+        fallbackClass="player-hero__avatar-fallback"
+      />
     </div>
 
     <div class="player-hero__details">
@@ -105,7 +100,7 @@
     font-size: 2rem;
   }
 
-  .player-hero__avatar img {
+  .player-hero__avatar :global(img) {
     width: 100%;
     height: 100%;
     object-fit: cover;

@@ -3,8 +3,8 @@
   import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
   import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import RelicIcon from '$lib/components/relic/RelicIcon.svelte';
-  import { getRelicPieceIconUrl, getRelicSetIconUrl } from '$lib/data/visual-assets';
-  import { relicSlotLabel } from '$lib/i18n/product';
+  import RelicPieceCard from '$lib/components/relic/RelicPieceCard.svelte';
+  import { getRelicSetIconUrl } from '$lib/data/visual-assets';
   import { m } from '$lib/paraglide/messages.js';
   import type { RelicSet } from '$lib/domain/types';
 
@@ -12,12 +12,14 @@
   export let singular: string;
 </script>
 
-<header class="detail-profile-hero detail-profile-hero--relic" data-relic-detail-hero>
+<header
+  class="detail-profile-hero detail-profile-hero--relic detail-profile-hero--relic-compact"
+  data-relic-detail-hero
+>
   <div class="detail-profile-hero__identity">
     <RelicIcon
       source={getRelicSetIconUrl(detail.id)}
       alt={m.relic_set_preview_alt({ name: detail.name })}
-      fallbackLabel={detail.name}
       presentation="hero"
     />
     <div
@@ -62,28 +64,9 @@
 <section class="detail-section relic-piece-section" data-relic-piece-count={detail.pieces.length}>
   <SectionHeading level={1}>{m.relic_pieces()}</SectionHeading>
   {#if detail.pieces.length}
-    <div class="relic-piece-grid">
+    <div class="relic-piece-list">
       {#each detail.pieces as piece (piece.id)}
-        <article
-          class="relic-piece-card"
-          data-relic-piece-id={piece.id}
-          data-relic-slot={piece.slot}
-        >
-          <RelicIcon
-            source={getRelicPieceIconUrl(piece.id)}
-            alt={piece.name}
-            fallbackLabel={piece.name}
-          />
-          <div class="relic-piece-card__content">
-            <span class="relic-piece-card__slot">
-              {relicSlotLabel(piece.slot) || m.relic_piece_type_unavailable()}
-            </span>
-            <h3><GameText text={piece.name} /></h3>
-            <p class:muted={!piece.description}>
-              <GameText text={piece.description || m.relic_piece_description_unavailable()} />
-            </p>
-          </div>
-        </article>
+        <RelicPieceCard {piece} />
       {/each}
     </div>
   {:else}
@@ -100,8 +83,7 @@
     margin-top: var(--space-2);
   }
 
-  .relic-identity-tags span,
-  .relic-piece-card__slot {
+  .relic-identity-tags span {
     display: inline-flex;
     width: fit-content;
     align-items: center;
@@ -121,6 +103,7 @@
     display: grid;
     min-height: 100%;
     grid-template-rows: auto minmax(0, 1fr);
+    padding: clamp(1.25rem, 2vw, 2rem);
   }
 
   .relic-effect-list {
@@ -131,7 +114,7 @@
 
   .relic-effect {
     min-width: 0;
-    padding: clamp(1.5rem, 3vw, 2.25rem) 0;
+    padding: clamp(1rem, 2vw, 1.5rem) 0;
   }
 
   .relic-effect + .relic-effect {
@@ -149,76 +132,23 @@
 
   .relic-effect p {
     max-width: 40rem;
-    margin: var(--space-4) 0 0;
+    margin: var(--space-3) 0 0;
     color: var(--text-body);
     font-size: var(--font-body);
     line-height: 1.85;
     overflow-wrap: anywhere;
   }
 
-  .relic-piece-grid {
+  .relic-piece-list {
     display: grid;
     min-width: 0;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-    align-items: stretch;
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--space-4);
-  }
-
-  .relic-piece-card {
-    position: relative;
-    display: flex;
-    min-width: 0;
-    height: 100%;
-    flex-direction: column;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card);
-    background: linear-gradient(155deg, rgb(255 255 255 / 4%), transparent 46%), var(--surface);
-  }
-
-  .relic-piece-card__content {
-    display: flex;
-    min-width: 0;
-    flex: 1 1 auto;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: var(--space-4);
-  }
-
-  .relic-piece-card__slot {
-    position: absolute;
-    z-index: 1;
-    top: var(--space-4);
-    right: var(--space-4);
-    padding: 0.3rem 0.58rem;
-  }
-
-  .relic-piece-card h3 {
-    margin: var(--space-3) 0 0;
-    color: var(--text-primary);
-    font-size: var(--font-major-title);
-    font-weight: 700;
-    line-height: 1.35;
-    overflow-wrap: anywhere;
-  }
-
-  .relic-piece-card p {
-    margin: var(--space-3) 0 0;
-    color: var(--text-secondary);
-    font-size: var(--font-body);
-    line-height: 1.72;
-    overflow-wrap: anywhere;
   }
 
   @media (max-width: 820px) {
     .relic-effect-list {
       align-content: start;
-    }
-  }
-
-  @media (max-width: 520px) {
-    .relic-piece-grid {
-      grid-template-columns: minmax(0, 1fr);
     }
   }
 </style>

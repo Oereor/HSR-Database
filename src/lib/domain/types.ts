@@ -302,7 +302,7 @@ export interface RelicSet extends RelicCatalogEntry {
     description: string;
     descriptionTokens: DescriptionToken[];
   }>;
-  pieces: Array<{ id: string; slot: RelicSlot; name: string; description: string }>;
+  pieces: Array<{ id: string; slot: RelicSlot; name: string; description: string; lore: string }>;
   sources: string[];
 }
 

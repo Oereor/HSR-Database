@@ -1049,7 +1049,6 @@ test('遗忘冽风难度 4 使用本地海报立绘和精确战斗属性', async
     await expect(card.locator('[data-endgame-speed]')).toHaveText(speed);
   }
   expect(failedImages).toEqual([]);
-  await expect(page.locator('.endgame-enemy__placeholder')).toHaveCount(0);
 });
 
 test('兵锋骑士难度 4 显示玩家侧韧性且不显示机制弹窗', async ({ page }) => {
@@ -1074,7 +1073,7 @@ test('敌人立绘请求失败时保留完整数据并显示中性降级', async
   const artworkBefore = await card.locator('.endgame-enemy__artwork').boundingBox();
   await portrait.evaluate((image) => image.dispatchEvent(new Event('error')));
   await expect(card.locator('[data-enemy-portrait]')).toHaveCount(0);
-  await expect(card.locator('.endgame-enemy__fallback')).toBeVisible();
+  await expect(card.locator('[data-image-fallback]')).toBeVisible();
   const artworkAfter = await card.locator('.endgame-enemy__artwork').boundingBox();
   expect(artworkAfter?.height).toBe(artworkBefore?.height);
   await expect(card.locator('[data-endgame-hp]')).toHaveText('7,259,250 × 2');

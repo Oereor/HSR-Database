@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import { m } from '$lib/paraglide/messages.js';
   import { afterNavigate } from '$app/navigation';
   import { page } from '$app/stores';
@@ -71,7 +72,7 @@
     aria-label={m.navigation_home_aria({ siteName: name })}
   >
     <span class="brand-icon" aria-hidden="true">
-      {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
+      <AssetImage src={trainPartyIconUrl} alt="" fallbackClass="brand-image-fallback" />
     </span>
   </a>
   <button
@@ -90,9 +91,7 @@
     aria-label={m.navigation_changelog()}
     on:click={onOpenChangelog}
   >
-    {#if changelogIconUrl}<img src={changelogIconUrl} alt="" />{:else}<span aria-hidden="true"
-        >{m.navigation_changelog_fallback()}</span
-      >{/if}
+    <AssetImage src={changelogIconUrl} alt="" fallbackClass="utility-image-fallback" />
     <span class="changelog-trigger__tooltip" role="tooltip">{m.navigation_changelog()}</span>
   </button>
   <PrimaryNavigation pathname={$page.url.pathname} compact />
@@ -105,7 +104,7 @@
 <header class="mobile-header">
   <a class="brand" href={homeHref}>
     <span class="brand-icon" aria-hidden="true">
-      {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
+      <AssetImage src={trainPartyIconUrl} alt="" fallbackClass="brand-image-fallback" />
     </span><strong>{name}</strong>
   </a>
   <div class="mobile-header__actions">
@@ -115,9 +114,7 @@
       aria-label={m.navigation_changelog()}
       on:click={onOpenChangelog}
     >
-      {#if changelogIconUrl}<img src={changelogIconUrl} alt="" />{:else}<span aria-hidden="true"
-          >{m.navigation_changelog_fallback()}</span
-        >{/if}
+      <AssetImage src={changelogIconUrl} alt="" fallbackClass="utility-image-fallback" />
       <span class="changelog-trigger__tooltip" role="tooltip">{m.navigation_changelog()}</span>
     </button>
     <button
@@ -146,7 +143,7 @@
     <div class="navigator-pane__heading">
       <a class="brand navigator-pane__brand" href={homeHref} on:click={closeNavigator}>
         <span class="brand-icon" aria-hidden="true">
-          {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
+          <AssetImage src={trainPartyIconUrl} alt="" fallbackClass="brand-image-fallback" />
         </span>
         <span><strong>{name}</strong><small>{m.site_short_tagline()}</small></span>
       </a>

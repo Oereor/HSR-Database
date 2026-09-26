@@ -213,7 +213,7 @@ small {
   place-items: center;
   overflow: visible;
 }
-.brand-icon img {
+.brand-icon :is(img, .brand-image-fallback) {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -299,7 +299,7 @@ small {
     background var(--motion),
     color var(--motion);
 }
-.changelog-trigger img {
+.changelog-trigger :is(img, .utility-image-fallback) {
   width: 30px;
   height: 30px;
   object-fit: contain;
@@ -360,15 +360,12 @@ small {
   opacity: 0.66;
   transition: opacity var(--motion);
 }
-.primary-navigation__fallback {
-  display: grid;
+.primary-navigation__icon .navigation-image-fallback {
   width: 26px;
   height: 26px;
-  place-items: center;
   border: 1px solid var(--border);
   border-radius: 7px;
-  color: var(--faint);
-  font-size: 0.66rem;
+  --image-fallback-font-size: 0.66rem;
 }
 .primary-navigation a:hover {
   border-color: var(--border);
@@ -388,9 +385,8 @@ small {
 .primary-navigation a.active::before {
   background: var(--gold);
 }
-.primary-navigation a.active .primary-navigation__fallback {
+.primary-navigation a.active .primary-navigation__icon .navigation-image-fallback {
   border-color: var(--border-strong);
-  color: var(--gold-soft);
 }
 .primary-navigation--compact {
   width: 48px;
@@ -735,7 +731,7 @@ footer a {
   line-height: 1;
   vertical-align: -0.14em;
 }
-.game-text-inline-icon img {
+.game-text-inline-icon :is(img, .game-text-inline-icon__fallback) {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -904,7 +900,7 @@ footer a {
   align-items: center;
   gap: 0.6rem;
 }
-.skill-card__title--icon img {
+.skill-card__title--icon :is(img, .skill-card__icon-fallback) {
   width: 1.75rem;
   height: 1.75rem;
   flex: 0 0 auto;
@@ -1086,7 +1082,7 @@ footer a {
   gap: var(--space-2);
   color: var(--text-body);
 }
-.special-effect-target img {
+.special-effect-target :is(img, .special-effect-target__fallback) {
   width: 2.5rem;
   height: 2.5rem;
   flex: 0 0 auto;
@@ -1095,7 +1091,9 @@ footer a {
   background: var(--surface-2);
   object-fit: cover;
 }
-.special-effect-relation[data-special-effect-kind='servant-skill-link'] .special-effect-target img {
+.special-effect-relation[data-special-effect-kind='servant-skill-link']
+  .special-effect-target
+  :is(img, .special-effect-target__fallback) {
   width: 3rem;
   height: 3rem;
 }
@@ -1194,7 +1192,9 @@ footer a {
 .trace-card[data-player-state='inactive'] [data-skill-extra-effects] {
   opacity: 0.72;
 }
-.trace-card[data-player-state='inactive'] .trace-card__identity > img,
+.trace-card[data-player-state='inactive']
+  .trace-card__identity
+  > :is(img, .trace-card__icon-fallback),
 .trace-card[data-player-state='inactive'] .trace-card__title--icon img {
   opacity: 0.68;
 }
@@ -1214,7 +1214,7 @@ footer a {
   align-items: flex-start;
   gap: 0.75rem;
 }
-.trace-card__identity > img {
+.trace-card__identity > :is(img, .trace-card__icon-fallback) {
   width: 3rem;
   height: 3rem;
   flex: 0 0 auto;
@@ -1322,8 +1322,7 @@ footer a {
   background: rgb(14 20 34 / 72%);
 }
 .rank-card[data-player-state='inactive'] > .rank-icon,
-.rank-card[data-player-state='inactive'] h3,
-.rank-card[data-player-state='inactive'] .rank-number {
+.rank-card[data-player-state='inactive'] h3 {
   opacity: 0.58;
 }
 .rank-icon {
@@ -1341,17 +1340,6 @@ footer a {
 }
 .rank-label + h3 {
   margin-top: 0;
-}
-.rank-number {
-  display: grid;
-  width: 2rem;
-  height: 2rem;
-  flex: 0 0 auto;
-  place-items: center;
-  border: 1px solid var(--border-strong);
-  border-radius: 50%;
-  color: var(--gold);
-  font-weight: 600;
 }
 .data-placeholder {
   margin: 0;
@@ -1640,17 +1628,13 @@ footer a {
   height: 170px;
 }
 .endgame-enemy__fallback {
-  display: grid;
   width: 7rem;
   height: 7rem;
-  margin-bottom: 2rem;
-  place-items: center;
+  place-self: center;
   border: 1px solid rgb(255 255 255 / 7%);
   border-radius: 50%;
   background: rgb(255 255 255 / 2%);
-  color: rgb(160 171 190 / 24%);
-  font-family: serif;
-  font-size: 2.25rem;
+  --image-fallback-font-size: 2.25rem;
   line-height: 1;
 }
 .endgame-enemy__artwork-tags {
