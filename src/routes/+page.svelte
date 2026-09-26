@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import { m } from '$lib/paraglide/messages.js';
   import type { PageData } from './$types';
   import CharacterOverviewCard from '$lib/components/character/CharacterOverviewCard.svelte';
@@ -40,28 +41,36 @@
 
     <div class="home-hero__collage" aria-hidden="true">
       {#if onlySilencePreview}
-        <img
+        <AssetImage
+          decorative
           class="home-hero__light-cone home-hero__light-cone--silence"
           src={onlySilencePreview}
           alt=""
         />
       {/if}
       {#if danHengPreview}
-        <img
+        <AssetImage
+          decorative
           class="home-hero__character home-hero__character--dan-heng"
           src={danHengPreview}
           alt=""
         />
       {/if}
       {#if thisIsMePreview}
-        <img
+        <AssetImage
+          decorative
           class="home-hero__light-cone home-hero__light-cone--this-is-me"
           src={thisIsMePreview}
           alt=""
         />
       {/if}
       {#if marchPreview}
-        <img class="home-hero__character home-hero__character--march" src={marchPreview} alt="" />
+        <AssetImage
+          decorative
+          class="home-hero__character home-hero__character--march"
+          src={marchPreview}
+          alt=""
+        />
       {/if}
     </div>
   </section>
@@ -81,7 +90,7 @@
         <a class="home-directory-row" href={item.href}>
           <span class="home-directory-row__identity">
             <span class="home-directory-row__icon" aria-hidden="true">
-              {#if iconUrl}<img src={iconUrl} alt="" />{:else}<span>{item.fallback}</span>{/if}
+              <AssetImage src={iconUrl} alt="" fallbackClass="navigation-image-fallback" />
             </span>
             <strong>{item.label}</strong>
           </span>
@@ -192,21 +201,21 @@
     pointer-events: none;
   }
 
-  .home-hero__collage img {
+  .home-hero__collage :global(img) {
     position: absolute;
     display: block;
     object-fit: contain;
     filter: saturate(0.9);
   }
 
-  .home-hero__character--march {
+  .home-hero__collage :global(.home-hero__character--march) {
     z-index: 5;
     bottom: -12%;
     left: 24%;
     width: min(42%, 300px);
   }
 
-  .home-hero__character--dan-heng {
+  .home-hero__collage :global(.home-hero__character--dan-heng) {
     z-index: 2;
     right: -2%;
     bottom: -16%;
@@ -214,7 +223,7 @@
     opacity: 0.76;
   }
 
-  .home-hero__light-cone--this-is-me {
+  .home-hero__collage :global(.home-hero__light-cone--this-is-me) {
     z-index: 4;
     right: 12%;
     bottom: 5%;
@@ -223,7 +232,7 @@
     transform: rotate(5deg);
   }
 
-  .home-hero__light-cone--silence {
+  .home-hero__collage :global(.home-hero__light-cone--silence) {
     z-index: 1;
     top: 7%;
     left: 7%;
@@ -288,14 +297,14 @@
     place-items: center;
   }
 
-  .home-directory-row__icon img {
+  .home-directory-row__icon :global(img) {
     width: 32px;
     height: 32px;
     object-fit: contain;
     opacity: 0.82;
   }
 
-  .home-directory-row__icon > span {
+  .home-directory-row__icon :global(.navigation-image-fallback) {
     display: grid;
     width: 30px;
     height: 30px;
@@ -362,7 +371,7 @@
         linear-gradient(0deg, var(--bg) 0%, transparent 30%);
     }
 
-    .home-hero__character--march {
+    .home-hero__collage :global(.home-hero__character--march) {
       left: 31%;
     }
 
@@ -384,21 +393,21 @@
       min-height: 235px;
     }
 
-    .home-hero__character--march {
+    .home-hero__collage :global(.home-hero__character--march) {
       left: 25%;
       width: 46%;
     }
 
-    .home-hero__character--dan-heng {
+    .home-hero__collage :global(.home-hero__character--dan-heng) {
       width: 41%;
     }
 
-    .home-hero__light-cone--silence {
+    .home-hero__collage :global(.home-hero__light-cone--silence) {
       left: 0;
       width: 30%;
     }
 
-    .home-hero__light-cone--this-is-me {
+    .home-hero__collage :global(.home-hero__light-cone--this-is-me) {
       right: 7%;
       width: 34%;
     }

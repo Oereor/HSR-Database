@@ -19,50 +19,43 @@ export function getNavigationItems(locale?: Locale) {
       id: 'overview',
       href: '/',
       label: m.navigation_overview({}, { locale }),
-      iconKey: 'overview',
-      fallback: m.navigation_overview_fallback({}, { locale })
+      iconKey: 'overview'
     },
     {
       id: 'player',
       href: '/player',
       label: m.navigation_player({}, { locale }),
-      iconKey: 'player',
-      fallback: m.navigation_player_fallback({}, { locale })
+      iconKey: 'player'
     },
     {
       id: 'characters',
       href: '/characters',
       label: m.navigation_characters({}, { locale }),
-      iconKey: 'characters',
-      fallback: m.navigation_characters_fallback({}, { locale })
+      iconKey: 'characters'
     },
     {
       id: 'light-cones',
       href: '/light-cones',
       label: m.navigation_light_cones({}, { locale }),
-      iconKey: 'light-cones',
-      fallback: m.navigation_light_cones_fallback({}, { locale })
+      iconKey: 'light-cones'
     },
     {
       id: 'relics',
       href: '/relics',
       label: m.navigation_relics({}, { locale }),
-      iconKey: 'relics',
-      fallback: m.navigation_relics_fallback({}, { locale })
+      iconKey: 'relics'
     },
     {
       id: 'enemies',
       href: '/enemies',
       label: m.navigation_enemies({}, { locale }),
-      iconKey: 'enemies',
-      fallback: m.navigation_enemies_fallback({}, { locale })
+      iconKey: 'enemies'
     },
     {
       id: 'endgame',
       href: '/endgame',
       label: m.navigation_endgame({}, { locale }),
-      iconKey: 'endgame',
-      fallback: m.navigation_endgame_fallback({}, { locale })
+      iconKey: 'endgame'
     }
   ] as const;
 }

@@ -1,11 +1,12 @@
 <script lang="ts">
+  import ImageFallback from '$lib/components/shared/ImageFallback.svelte';
   import { m } from '$lib/paraglide/messages.js';
 
   export let characterId: string;
 </script>
 
 <article class="unknown-character" aria-label={m.player_unknown_character()}>
-  <div class="unknown-character__placeholder" aria-hidden="true">?</div>
+  <ImageFallback class="unknown-character__placeholder" />
   <div>
     <h3>{m.player_unknown_character()}</h3>
     <p>{m.player_unknown_character_id({ id: characterId })}</p>
@@ -23,12 +24,9 @@
     background: var(--surface-2);
   }
 
-  .unknown-character__placeholder {
-    display: grid;
-    place-items: center;
+  .unknown-character :global(.unknown-character__placeholder) {
     background: linear-gradient(145deg, var(--surface-3), var(--surface));
-    color: var(--faint);
-    font-size: 2rem;
+    --image-fallback-font-size: 2rem;
   }
 
   .unknown-character > div:last-child {

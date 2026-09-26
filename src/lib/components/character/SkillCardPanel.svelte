@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import SkillProgressionPanel from '$lib/components/character/SkillProgressionPanel.svelte';
   import SkillVariantView from '$lib/components/character/SkillVariantView.svelte';
   import type { SkillCard, SkillVariant } from '$lib/domain/types';
@@ -24,8 +25,8 @@
 
 <article class="info-card skill-card" data-skill-category={card.category}>
   <div class="info-card__heading skill-card__heading">
-    <h3 class:skill-card__title--icon={!!iconUrl}>
-      {#if iconUrl}<img src={iconUrl} alt="" aria-hidden="true" />{/if}<span
+    <h3 class="skill-card__title--icon">
+      <AssetImage src={iconUrl} alt="" fallbackClass="skill-card__icon-fallback" /><span
         >{card.displayLabel}</span
       >
     </h3>

@@ -42,6 +42,7 @@
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
+    "test:components": "playwright test -c playwright.components.config.ts",
     "test:e2e": "playwright test --project=desktop-chromium --project=mobile-chromium",
     "test:e2e:smoke": "playwright test --project=ci-smoke",
     "data:search-names:update": "tsx scripts/data/search-names.ts update",

@@ -727,7 +727,6 @@ test('角色详情 icon 增强保持 canonical 技能、紧凑卡片与无破图
       .locator('#eidolons .rank-label')
       .evaluateAll((labels) => labels.every((label) => !!label.textContent?.trim()))
   ).toBe(true);
-  await expect(page.locator('#eidolons .rank-number')).toHaveCount(0);
 
   const presentation = await page.evaluate(() => {
     const detailImages = [

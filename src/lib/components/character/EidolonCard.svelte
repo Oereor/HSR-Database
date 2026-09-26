@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
   import SkillExtraEffects from '$lib/components/shared/SkillExtraEffects.svelte';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
@@ -13,12 +14,10 @@
 </script>
 
 <article class="info-card rank-card" data-eidolon-id={eidolon.id} data-player-state={playerState}>
-  {#if iconUrl}<img class="rank-icon" src={iconUrl} alt="" aria-hidden="true" />{:else}<span
-      class="rank-number">{eidolon.rank}</span
-    >{/if}
+  <AssetImage class="rank-icon" src={iconUrl} alt="" fallbackClass="rank-icon" />
   <div class="rank-card__content">
     <div class="rank-card__meta">
-      {#if iconUrl}<small class="rank-label">{m.eidolon_rank({ rank: eidolon.rank })}</small>{/if}
+      <small class="rank-label">{m.eidolon_rank({ rank: eidolon.rank })}</small>
       {#if playerState}<span class="player-progression-state" data-player-state-label={playerState}
           >{playerState === 'active'
             ? m.player_character_active()

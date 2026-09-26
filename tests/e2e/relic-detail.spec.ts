@@ -82,13 +82,13 @@ test('长套装效果与图片错误保持可读降级', async ({ page }) => {
   await heroStage.locator('img').evaluate((image) => image.dispatchEvent(new Event('error')));
   await expect(heroStage).toHaveAttribute('data-image-missing', 'true');
   await expect(heroStage.locator('img')).toHaveCount(0);
-  await expect(heroStage.locator('.relic-icon-stage__fallback')).toBeVisible();
+  await expect(heroStage.locator('[data-image-fallback]')).toBeVisible();
 
   const pieceStage = page.locator('.relic-icon-stage--piece').first();
   await pieceStage.locator('img').evaluate((image) => image.dispatchEvent(new Event('error')));
   await expect(pieceStage).toHaveAttribute('data-image-missing', 'true');
   await expect(pieceStage.locator('img')).toHaveCount(0);
-  await expect(pieceStage.locator('.relic-icon-stage__fallback')).toBeVisible();
+  await expect(pieceStage.locator('[data-image-fallback]')).toBeVisible();
 });
 
 test('宽屏部件为单列长卡，故事直接可读且 Hero 仅在遗器页紧凑', async ({ page }) => {

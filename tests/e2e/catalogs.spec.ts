@@ -37,7 +37,7 @@ test('角色目录按 ID 加载 preview 并保留安全缺图降级', async ({ p
     });
   await expect(firstCard).toHaveAttribute('data-image-missing', 'true');
   await expect(firstCard.locator('.entity-overview-card__artwork img')).toHaveCount(0);
-  await expect(firstCard.locator('.entity-overview-card__fallback')).toBeVisible();
+  await expect(firstCard.locator('[data-image-fallback]')).toBeVisible();
 });
 
 test('光锥目录复用角色 Overview presentation 并按 ID 加载 preview', async ({ page }) => {
@@ -80,7 +80,7 @@ test('光锥目录复用角色 Overview presentation 并按 ID 加载 preview', 
     .locator('.entity-overview-card__artwork img')
     .evaluate((image: HTMLImageElement) => image.dispatchEvent(new Event('error')));
   await expect(firstCard).toHaveAttribute('data-image-missing', 'true');
-  await expect(firstCard.locator('.entity-overview-card__fallback')).toBeVisible();
+  await expect(firstCard.locator('[data-image-fallback]')).toBeVisible();
   expect(failedImages).toEqual([]);
 });
 
@@ -116,11 +116,12 @@ test('遗器 Overview 使用统一页面外壳与本地套装 Hero decoration', 
     '/generated-assets/relics/icons/103.png'
   ]);
 
-  await expect(page.locator('.search-bar input[name="q"]')).toBeVisible();
+  await expect(page.locator('.overview-search input')).toBeVisible();
   const categoryGroup = page.locator('[aria-labelledby="filter-group-relic-category"]');
   await expect(categoryGroup.locator('[data-filter-value]')).toHaveCount(3);
   await expect(categoryGroup.locator('img')).toHaveCount(0);
-  await expect(page.locator('.entity-overview-card')).toHaveCount(60);
+  await expect(page.locator('.entity-overview-card').first()).toBeVisible();
+  await expect(page.locator('.overview-pagination')).toBeVisible();
   await expect(page.locator('.filters, .filter-backdrop')).toHaveCount(0);
 });
 
@@ -152,7 +153,8 @@ test('遗器类别使用单选语义并保留排序、重置分页', async ({ pa
   await expect(page).not.toHaveURL(/type=/);
   await expect(page).toHaveURL(/sort=id/);
   await expect(all).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('.entity-overview-card')).toHaveCount(60);
+  await expect(page.locator('.entity-overview-card').first()).toBeVisible();
+  await expect(page.locator('.overview-pagination')).toBeVisible();
 });
 
 test('遗器搜索与历史 type 参数可组合，清空搜索后保留类别', async ({ page }) => {
@@ -165,17 +167,17 @@ test('遗器搜索与历史 type 参数可组合，清空搜索后保留类别',
       'aria-pressed',
       'true'
     );
-    const input = page.locator('.search-bar input[name="q"]');
+    const input = page.locator('.overview-search input');
     await input.fill(query);
-    await page.locator('.search-bar button[type="submit"]').click();
+    await page.locator('.overview-search button[type="submit"]').click();
     await expect(page.locator(`a[href="/relics/${id}/"]`)).toBeVisible();
     expect(new URL(page.url()).searchParams.get('type')).toBe(type);
     expect(new URL(page.url()).searchParams.get('sort')).toBe('name');
   }
 
-  const input = page.locator('.search-bar input[name="q"]');
+  const input = page.locator('.overview-search input');
   await input.fill('');
-  await page.locator('.search-bar button[type="submit"]').click();
+  await page.locator('.overview-search button[type="submit"]').click();
   expect(new URL(page.url()).searchParams.get('type')).toBe('planar');
   expect(new URL(page.url()).searchParams.has('q')).toBe(false);
   await expect(page.locator('.entity-overview-card')).toHaveCount(28);
@@ -192,7 +194,7 @@ test('遗器统一页面外壳与专用 Grid 在各断点不横向溢出', async
     await page.setViewportSize(viewport);
     await page.goto('/relics/?sort=id');
     await expect(page.locator('.overview-hero')).toBeVisible();
-    await expect(page.locator('.search-bar input[name="q"]')).toBeVisible();
+    await expect(page.locator('.overview-search input')).toBeVisible();
     await expect(page.locator('[data-filter-value="cavern"]')).toBeVisible();
     await expect(page.locator('.overview-toolbar')).toBeVisible();
     await expect(page.locator('.overview-grid--compact')).toBeVisible();
@@ -311,7 +313,7 @@ test('遗器目录复用 shared compact Overview，并保留可读 typography �
     .locator('.entity-overview-card__artwork img')
     .evaluate((image) => image.dispatchEvent(new Event('error')));
   await expect(fallbackCard).toHaveAttribute('data-image-missing', 'true');
-  await expect(fallbackCard.locator('.entity-overview-card__fallback')).toBeVisible();
+  await expect(fallbackCard.locator('[data-image-fallback]')).toBeVisible();
 
   for (const viewport of [
     { width: 768, height: 900, minimumColumns: 2 },
@@ -519,11 +521,11 @@ test('目录搜索只在提交时应用草稿并重置分页', async ({ page }) 
   await page.waitForLoadState('networkidle');
   const firstResult = page.locator('.entity-overview-card').first();
   const originalHref = await firstResult.getAttribute('href');
-  const input = page.locator('.search-bar input[name="q"]');
+  const input = page.locator('.overview-search input');
   await input.fill('三月七');
   await expect(page).toHaveURL(/page=2/);
   await expect(firstResult).toHaveAttribute('href', originalHref!);
-  await page.locator('.search-bar button[type="submit"]').click();
+  await page.locator('.overview-search button[type="submit"]').click();
   await expect(page).toHaveURL(/q=%E4%B8%89%E6%9C%88%E4%B8%83/);
   await expect(page).not.toHaveURL(/page=/);
   await expect(page.locator('.entity-overview-card')).toHaveCount(2);

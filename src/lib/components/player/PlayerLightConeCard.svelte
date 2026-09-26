@@ -28,7 +28,6 @@
     href={detailHref}
     imageUrl={equipment && metadata ? getLightConePreviewUrl(equipment.lightConeId) : undefined}
     imageAlt={metadata?.name ?? ''}
-    fallbackLabel={label}
   >
     <svelte:fragment slot="title"><GameText text={label} /></svelte:fragment>
     <svelte:fragment slot="secondary">

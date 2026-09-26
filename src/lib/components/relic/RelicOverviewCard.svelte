@@ -13,7 +13,6 @@
   {href}
   {imageUrl}
   imageAlt=""
-  fallbackLabel={entry.name}
   artworkFit="contain"
   artworkPosition="center"
   size="compact"

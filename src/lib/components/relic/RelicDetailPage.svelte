@@ -20,7 +20,6 @@
     <RelicIcon
       source={getRelicSetIconUrl(detail.id)}
       alt={m.relic_set_preview_alt({ name: detail.name })}
-      fallbackLabel={detail.name}
       presentation="hero"
     />
     <div

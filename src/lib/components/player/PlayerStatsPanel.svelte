@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import LevelSlider from '$lib/components/shared/LevelSlider.svelte';
   import { getRelicPropertyIconUrl } from '$lib/data/visual-assets';
   import type { BaseStatProgression, RelicProperty } from '$lib/domain/types';
@@ -50,7 +51,12 @@
             <div class="inspection-stat-row" data-player-stat={item.stat.field}>
               <dt>
                 <span class="inspection-stat-label">
-                  {#if iconUrl}<img src={iconUrl} alt="" aria-hidden="true" />{/if}
+                  {#if iconUrl}<AssetImage
+                      decorative
+                      src={iconUrl}
+                      alt=""
+                      aria-hidden="true"
+                    />{/if}
                   <span>{item.label}</span>
                 </span>
               </dt>

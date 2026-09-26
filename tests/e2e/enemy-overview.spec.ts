@@ -133,6 +133,6 @@ test('敌人缺图 Template 使用共享 fallback 且不发起远程请求', asy
   await expect(card).toBeVisible();
   await expect(card).toHaveAttribute('data-image-missing', 'true');
   await expect(card.locator('.entity-overview-card__artwork img')).toHaveCount(0);
-  await expect(card.locator('.entity-overview-card__fallback')).toBeVisible();
+  await expect(card.locator('[data-image-fallback]')).toBeVisible();
   expect(requestedUrls.some((url) => url.includes('nanoka'))).toBe(false);
 });

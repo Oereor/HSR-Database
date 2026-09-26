@@ -123,7 +123,7 @@ describe('Character detail icon enrichment', () => {
     ).not.toContain('<img ');
   });
 
-  it('能力与星魂缺图时完整恢复原数字/文字布局', () => {
+  it('能力与星魂缺图时保留信息并使用共享图片占位', () => {
     const trace: Trace = {
       id: '8007501',
       name: 'synthetic trace name',
@@ -141,6 +141,7 @@ describe('Character detail icon enrichment', () => {
     expect(enhancedTrace).toContain('8007_basic_atk2.png');
     expect(fallbackTrace).not.toContain('<img ');
     expect(fallbackTrace).toContain('synthetic trace name');
+    expect(fallbackTrace).toContain('data-image-fallback');
 
     const eidolon: Eidolon = {
       id: '140701',
@@ -154,8 +155,9 @@ describe('Character detail icon enrichment', () => {
       props: { eidolon: { ...eidolon, iconKey: undefined } }
     }).body;
     expect(enhancedEidolon).toContain('rank-icon');
-    expect(enhancedEidolon).not.toContain('rank-number');
-    expect(fallbackEidolon).toContain('rank-number');
-    expect(fallbackEidolon).not.toContain('rank-icon');
+    expect(enhancedEidolon).toContain('rank-label');
+    expect(fallbackEidolon).toContain('data-image-fallback');
+    expect(fallbackEidolon).toContain('rank-label');
+    expect(fallbackEidolon).toContain('synthetic eidolon name');
   });
 });

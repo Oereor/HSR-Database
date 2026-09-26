@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import { m } from '$lib/paraglide/messages.js';
   export let eyebrow: string = m.overview_eyebrow();
   export let title: string = m.characters_title();
@@ -20,7 +21,8 @@
         <slot name="artwork" />
       {:else}
         {#each artwork as item, index (item.id)}
-          <img
+          <AssetImage
+            decorative
             src={item.url}
             alt=""
             class={`overview-hero__character overview-hero__character--${index + 1}`}
@@ -91,7 +93,7 @@
     background: linear-gradient(90deg, var(--bg) 0%, transparent 36%, rgb(7 10 18 / 20%) 100%);
   }
 
-  .overview-hero__character {
+  .overview-hero__artwork :global(.overview-hero__character) {
     position: absolute;
     bottom: -1.2rem;
     width: 45%;
@@ -102,17 +104,17 @@
     filter: saturate(0.82);
   }
 
-  .overview-hero__character--1 {
+  .overview-hero__artwork :global(.overview-hero__character--1) {
     right: 40%;
     opacity: 0.62;
   }
 
-  .overview-hero__character--2 {
+  .overview-hero__artwork :global(.overview-hero__character--2) {
     right: 17%;
     opacity: 0.82;
   }
 
-  .overview-hero__character--3 {
+  .overview-hero__artwork :global(.overview-hero__character--3) {
     right: -2%;
     opacity: 0.48;
   }
@@ -137,20 +139,20 @@
       opacity: 0.48;
     }
 
-    .overview-hero__character {
+    .overview-hero__artwork :global(.overview-hero__character) {
       width: 60%;
       height: 11rem;
     }
 
-    .overview-hero__character--1 {
+    .overview-hero__artwork :global(.overview-hero__character--1) {
       right: 30%;
     }
 
-    .overview-hero__character--2 {
+    .overview-hero__artwork :global(.overview-hero__character--2) {
       right: 0;
     }
 
-    .overview-hero__character--3 {
+    .overview-hero__artwork :global(.overview-hero__character--3) {
       display: none;
     }
   }

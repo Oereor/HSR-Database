@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import { getRelicPropertyIconUrl } from '$lib/data/visual-assets';
   import { m } from '$lib/paraglide/messages.js';
   import type { PlayerRelicAffixView } from '$lib/player/equipment';
@@ -6,9 +7,7 @@
   export let affix: PlayerRelicAffixView;
   export let presentation: 'main' | 'sub' = 'sub';
 
-  let failedSource: string | undefined;
   $: imageUrl = getRelicPropertyIconUrl(affix.property?.iconKey);
-  $: visibleSource = imageUrl && imageUrl !== failedSource ? imageUrl : undefined;
 </script>
 
 <div
@@ -19,13 +18,7 @@
   data-recommended={affix.recommended}
 >
   <span class="player-affix-row__identity">
-    {#if visibleSource}<img
-        src={visibleSource}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        on:error={() => (failedSource = visibleSource)}
-      />{/if}
+    <AssetImage decorative src={imageUrl} alt="" loading="lazy" decoding="async" />
     <span>{affix.property?.name ?? affix.type}</span>
   </span>
   <strong>{affix.display}</strong>
@@ -63,7 +56,7 @@
     overflow-wrap: anywhere;
   }
 
-  .player-affix-row__identity img {
+  .player-affix-row__identity :global(img) {
     width: 1.15rem;
     height: 1.15rem;
     flex: 0 0 auto;

@@ -11,14 +11,7 @@
 </script>
 
 {#key entry.id}
-  <EntityOverviewCard
-    {href}
-    {imageUrl}
-    density="compact"
-    imageAlt=""
-    fallbackLabel={entry.name}
-    metadataLayout="icons"
-  >
+  <EntityOverviewCard {href} {imageUrl} density="compact" imageAlt="" metadataLayout="icons">
     <svelte:fragment slot="overlay">
       {#if entry.rarity}<RarityStars rarity={entry.rarity} />{/if}
     </svelte:fragment>
@@ -29,7 +22,6 @@
           code={entry.path}
           label={entry.pathName}
           showLabel={false}
-          fallbackMark="?"
           presentation="overview-icon"
         />{/if}
     </svelte:fragment>

@@ -41,6 +41,24 @@ async function mockPlayerApi(page: Page, onRequest?: (uid: string) => void) {
   });
 }
 
+test('failed player images preserve profile metadata and character identity', async ({
+  page
+}, testInfo) => {
+  await mockPlayerApi(page);
+  await page.route('**/generated-assets/**', (route) => route.abort());
+  await page.goto('/player/?uid=100000001');
+  await expect(page.getByRole('heading', { name: 'Player 100000001' })).toBeVisible();
+  const avatar = page.locator('.player-hero__avatar');
+  await expect(avatar.locator('[data-image-fallback]')).toHaveText('?');
+  await expect(avatar.getByRole('img')).toHaveAttribute('aria-label', /Player 100000001/);
+  const character = page.locator('.entity-overview-card__artwork').first();
+  await character.scrollIntoViewIfNeeded();
+  await expect(character.locator('[data-image-fallback]')).toHaveText('?');
+  await expect(page.locator('.unknown-character')).toContainText('1999');
+  await expect(page.locator('.player-hero__uid')).toHaveText('100000001');
+  await page.screenshot({ path: testInfo.outputPath('player-missing-images.png') });
+});
+
 test('submitting a UID updates the URL before rendering Player Hero and character fallbacks', async ({
   page,
   isMobile

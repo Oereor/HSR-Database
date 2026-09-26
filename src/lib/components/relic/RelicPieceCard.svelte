@@ -12,12 +12,7 @@
 
 <article class="relic-piece-card" data-relic-piece-id={piece.id} data-relic-slot={piece.slot}>
   <div class="relic-piece-card__primary">
-    <RelicIcon
-      source={getRelicPieceIconUrl(piece.id)}
-      alt={piece.name}
-      fallbackLabel={piece.name}
-      presentation="piece"
-    />
+    <RelicIcon source={getRelicPieceIconUrl(piece.id)} alt={piece.name} presentation="piece" />
     <div class="relic-piece-card__copy">
       <div class="relic-piece-card__heading">
         <h3><GameText text={piece.name} /></h3>

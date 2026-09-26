@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import { m } from '$lib/paraglide/messages.js';
   import { getNavigationIconUrl } from '$lib/data/visual-assets';
   import { isNavigationItemActive, localizedNavigationItems } from '$lib/navigation';
@@ -25,11 +26,7 @@
       on:click={() => onSelect?.()}
     >
       <span class="primary-navigation__icon" aria-hidden="true">
-        {#if iconUrl}
-          <img src={iconUrl} alt="" />
-        {:else}
-          <span class="primary-navigation__fallback">{item.fallback}</span>
-        {/if}
+        <AssetImage src={iconUrl} alt="" fallbackClass="navigation-image-fallback" />
       </span>
       {#if !compact}<span class="primary-navigation__label">{item.label}</span>{/if}
       {#if compact}<span class="primary-navigation__tooltip" role="tooltip">{item.label}</span>{/if}

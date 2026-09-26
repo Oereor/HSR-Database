@@ -92,7 +92,7 @@ test('Footer 仅保留正式服说明、数据仓库与本地许可证', async (
     'https://github.com/DimbreathBot/TurnBasedGameData',
     'https://github.com/Mar-7th/StarRailRes',
     '/licenses/StarRailRes-AGPL-3.0.txt',
-    'https://march7th.xyz/zh/api/'
+    'https://enka.network/'
   ]) {
     await expect(footer.locator(`a[href="${href}"]`)).toHaveCount(1);
   }

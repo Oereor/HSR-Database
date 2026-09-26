@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import { formatBaseStat, getBaseStatsAtLevel } from '$lib/domain/stats';
   import type { BaseStatProgression, CharacterEnergy } from '$lib/domain/types';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
@@ -35,9 +36,12 @@
       <div class="inspection-stat-row" data-base-stat="hp">
         <dt>
           <span class="inspection-stat-label"
-            >{#if hpIconUrl}<img src={hpIconUrl} alt="" aria-hidden="true" />{/if}<span
-              >{m.common_hp()}</span
-            ></span
+            >{#if hpIconUrl}<AssetImage
+                decorative
+                src={hpIconUrl}
+                alt=""
+                aria-hidden="true"
+              />{/if}<span>{m.common_hp()}</span></span
           >
         </dt>
         <dd><strong class="scaling-value">{formatBaseStat(stats.hp)}</strong></dd>
@@ -45,9 +49,12 @@
       <div class="inspection-stat-row" data-base-stat="attack">
         <dt>
           <span class="inspection-stat-label"
-            >{#if attackIconUrl}<img src={attackIconUrl} alt="" aria-hidden="true" />{/if}<span
-              >{m.common_attack()}</span
-            ></span
+            >{#if attackIconUrl}<AssetImage
+                decorative
+                src={attackIconUrl}
+                alt=""
+                aria-hidden="true"
+              />{/if}<span>{m.common_attack()}</span></span
           >
         </dt>
         <dd><strong class="scaling-value">{formatBaseStat(stats.attack)}</strong></dd>
@@ -55,9 +62,12 @@
       <div class="inspection-stat-row" data-base-stat="defence">
         <dt>
           <span class="inspection-stat-label"
-            >{#if defenceIconUrl}<img src={defenceIconUrl} alt="" aria-hidden="true" />{/if}<span
-              >{m.common_defence()}</span
-            ></span
+            >{#if defenceIconUrl}<AssetImage
+                decorative
+                src={defenceIconUrl}
+                alt=""
+                aria-hidden="true"
+              />{/if}<span>{m.common_defence()}</span></span
           >
         </dt>
         <dd><strong class="scaling-value">{formatBaseStat(stats.defence)}</strong></dd>
@@ -68,9 +78,12 @@
         >
           <dt>
             <span class="inspection-stat-label"
-              >{#if speedIconUrl}<img src={speedIconUrl} alt="" aria-hidden="true" />{/if}<span
-                >{m.common_base_speed()}</span
-              ></span
+              >{#if speedIconUrl}<AssetImage
+                  decorative
+                  src={speedIconUrl}
+                  alt=""
+                  aria-hidden="true"
+                />{/if}<span>{m.common_base_speed()}</span></span
             >
           </dt>
           <dd><strong>{formatBaseStat(progression.fixed.speed)}</strong></dd>
@@ -78,9 +91,12 @@
       {#if energy}<div class="inspection-stat-row" data-base-stat="energy">
           <dt>
             <span class="inspection-stat-label"
-              >{#if energyIconUrl}<img src={energyIconUrl} alt="" aria-hidden="true" />{/if}<span
-                >{m.common_energy_max()}</span
-              ></span
+              >{#if energyIconUrl}<AssetImage
+                  decorative
+                  src={energyIconUrl}
+                  alt=""
+                  aria-hidden="true"
+                />{/if}<span>{m.common_energy_max()}</span></span
             >
           </dt>
           <dd>

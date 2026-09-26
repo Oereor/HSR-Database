@@ -1,4 +1,5 @@
 <script lang="ts">
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import { getElementColor } from '$lib/domain/elements';
   import { getElementIconUrl, getPathIconUrl } from '$lib/data/visual-assets';
 
@@ -25,7 +26,14 @@
   style:color
   on:click
 >
-  {#if icon}<img src={icon} alt="" aria-hidden="true" width="18" height="18" />{/if}
+  {#if icon}<AssetImage
+      decorative
+      src={icon}
+      alt=""
+      aria-hidden="true"
+      width="18"
+      height="18"
+    />{/if}
   <span>{label}</span>
 </button>
 
@@ -50,7 +58,7 @@
       transform var(--motion);
   }
 
-  .filter-chip img {
+  .filter-chip :global(img) {
     width: 1.1rem;
     height: 1.1rem;
     object-fit: contain;
