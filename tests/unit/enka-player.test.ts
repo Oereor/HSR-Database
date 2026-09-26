@@ -57,6 +57,81 @@ describe('Enka decoder and canonical adapter', () => {
     }
   );
 
+  it('normalizes omitted world level and avatar promotion before adaptation and synthesis', () => {
+    const source = {
+      uid: '100000001',
+      detailInfo: {
+        uid: 100000001,
+        level: 1,
+        avatarDetailList: [{ avatarId: 1310, level: 1 }]
+      }
+    };
+    const decoded = decodeEnkaResponse(source);
+    expect(decoded.detailInfo.worldLevel).toBe(0);
+    expect(decoded.detailInfo.avatarDetailList![0].promotion).toBe(0);
+
+    const adapted = adaptEnkaProfile(decoded);
+    expect(adapted.worldLevel).toBe(0);
+    expect(adapted.characters[0].promotion).toBe(0);
+
+    const result = buildEnkaPlayerProfile(source);
+    expect(result.canonical.profile.worldLevel).toBe(0);
+    expect(result.canonical.characters[0].build.promotion).toBe(0);
+  });
+
+  it.each([
+    [null, 0],
+    [0, 0],
+    [6, 6]
+  ] as const)('normalizes present worldLevel %s to %s', (value, expected) => {
+    const source = structuredClone(fullFixture);
+    (source.detailInfo as Record<string, unknown>).worldLevel = value;
+    const decoded = decodeEnkaResponse(source);
+    expect(decoded.detailInfo.worldLevel).toBe(expected);
+    expect(adaptEnkaProfile(decoded).worldLevel).toBe(expected);
+  });
+
+  it('rejects a malformed worldLevel', () => {
+    const source = structuredClone(fullFixture);
+    (source.detailInfo as Record<string, unknown>).worldLevel = 'invalid';
+    expect(() => decodeEnkaResponse(source)).toThrowError(
+      expect.objectContaining({
+        code: 'UPSTREAM_INVALID_RESPONSE',
+        diagnostic: 'detailInfo.worldLevel'
+      })
+    );
+  });
+
+  it.each([
+    [null, 0],
+    [0, 0],
+    [6, 6]
+  ] as const)('normalizes present avatar promotion %s to %s', (value, expected) => {
+    const source = structuredClone(fullFixture);
+    source.detailInfo.avatarDetailList[0].promotion = value;
+    const decoded = decodeEnkaResponse(source);
+    expect(decoded.detailInfo.avatarDetailList![0].promotion).toBe(expected);
+    expect(adaptEnkaProfile(decoded).characters[0].promotion).toBe(expected);
+  });
+
+  it('rejects a malformed avatar promotion', () => {
+    const source = structuredClone(fullFixture);
+    source.detailInfo.avatarDetailList[0].promotion = 'invalid';
+    expect(() => decodeEnkaResponse(source)).toThrowError(
+      expect.objectContaining({
+        code: 'UPSTREAM_INVALID_RESPONSE',
+        diagnostic: 'detailInfo.avatarDetailList[0].promotion'
+      })
+    );
+  });
+
+  it('normalizes a numeric detail UID to the canonical string UID', () => {
+    const decoded = decodeEnkaResponse(fullFixture);
+    expect(decoded.uid).toBe('100000102');
+    expect(decoded.detailInfo.uid).toBe('100000102');
+    expect(adaptEnkaProfile(decoded).uid).toBe('100000102');
+  });
+
   it('normalizes only an omitted light-cone promotion to zero', () => {
     const source = structuredClone(missingPromotionFixture) as MutableFixture;
     const avatar = source.detailInfo.avatarDetailList[4];
@@ -283,9 +358,46 @@ describe('Enka decoder and canonical adapter', () => {
       }
     ],
     [
-      'detailInfo.avatarDetailList[0].promotion',
+      'uid',
       (source: MutableFixture): void => {
-        delete source.detailInfo.avatarDetailList[0].promotion;
+        (source as unknown as Record<string, unknown>).uid = 100000102;
+      }
+    ],
+    [
+      'detailInfo.uid',
+      (source: MutableFixture): void => {
+        (source.detailInfo as Record<string, unknown>).uid = '100000102';
+      }
+    ],
+    [
+      'detailInfo.level',
+      (source: MutableFixture): void => {
+        delete (source.detailInfo as Record<string, unknown>).level;
+      }
+    ],
+    [
+      'detailInfo.avatarDetailList[0].level',
+      (source: MutableFixture): void => {
+        delete source.detailInfo.avatarDetailList[0].level;
+      }
+    ],
+    ...(['tid', 'rank', 'level'] as const).map(
+      (field) =>
+        [
+          `detailInfo.avatarDetailList[0].equipment.${field}`,
+          (source: MutableFixture): void => {
+            delete (source.detailInfo.avatarDetailList[0].equipment as Record<string, unknown>)[
+              field
+            ];
+          }
+        ] as const
+    ),
+    [
+      'detailInfo.avatarDetailList[0].relicList[0].mainAffixId',
+      (source: MutableFixture): void => {
+        delete (
+          source.detailInfo.avatarDetailList[0].relicList as Array<Record<string, unknown>>
+        )[0].mainAffixId;
       }
     ],
     [
@@ -305,6 +417,17 @@ describe('Enka decoder and canonical adapter', () => {
     mutate(source);
     expect(() => decodeEnkaResponse(source)).toThrowError(
       expect.objectContaining({ code: 'UPSTREAM_INVALID_RESPONSE', diagnostic: path })
+    );
+  });
+
+  it.each([0, 6])('rejects light-cone rank %s outside 1–5', (rank) => {
+    const source = structuredClone(fullFixture);
+    (source.detailInfo.avatarDetailList[0].equipment as Record<string, unknown>).rank = rank;
+    expect(() => decodeEnkaResponse(source)).toThrowError(
+      expect.objectContaining({
+        code: 'UPSTREAM_INVALID_RESPONSE',
+        diagnostic: 'detailInfo.avatarDetailList[0].equipment.rank'
+      })
     );
   });
 
