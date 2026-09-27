@@ -71,7 +71,7 @@
     "@sveltejs/kit": "latest",
     "@sveltejs/vite-plugin-svelte": "latest",
     "@tailwindcss/vite": "latest",
-    "@types/node": "latest",
+    "@types/node": "24.19.0",
     "eslint": "latest",
     "eslint-config-prettier": "latest",
     "eslint-plugin-svelte": "latest",
@@ -88,14 +88,14 @@
     "tsx": "latest",
     "typescript": "5.9.3",
     "typescript-eslint": "latest",
-    "vite": "7.2.4",
+    "vite": "8.3.1",
     "vitest": "latest",
     "xxhash-wasm": "latest"
   },
   "packageManager": "pnpm@11.9.0",
   "engines": {
-    "node": ">=22",
-    "pnpm": ">=10"
+    "node": "24.x",
+    "pnpm": ">=11.9.0 <12"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

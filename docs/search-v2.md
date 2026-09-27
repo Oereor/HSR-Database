@@ -40,9 +40,9 @@ pnpm data:search-names:update
 pnpm data:search-names:check
 ```
 
-只有 pinned update 命令写 tracked 官方快照。不要手改该文件；更新后审阅 diff。`deploy:build` 在数据生成前执行 check，复用部署已准备的数据根并再次核对 SHA。失配会给出 update 命令并终止，绝不自动改写快照。
+只有 pinned update 命令写 tracked 官方快照。不要手改该文件；更新后审阅 diff。完整 CI 的 repository checks 在 data/assets preparation 后执行 `data:search-names:check`，复用已准备的数据根并核对 SHA。Production profile 执行 build-input integrity validation，不运行独立的名称 check 或完整 semantic audit；需要完整正确性验收时使用 `pnpm ci:validate`。失配绝不自动改写 tracked 快照。
 
-updater 工作流顺序为更新 lock → 检测真实 lock diff → `data:search-names:update`（准备并核对 pinned upstream）→ `data:player-aliases:sync` → `deploy:build` → 提交 lock、官方快照和人工 alias 文件的实际 diff → 更新 `automation/update-upstreams` → PR 至 `develop`，由维护者审核。updater 只自动补空 ID entry，不填写任何 player alias。无新 ID 时人工文件没有 diff；stale/非法 metadata 会使 workflow 在提交、push、创建 PR 前明确失败。
+updater 工作流顺序为更新 lock → `update:enemy-assets` → `data:search-names:update`（准备并核对 pinned upstream）→ `data:player-aliases:sync` → `data:search-names:check` → 检测 lock、enemy snapshot、官方快照和人工 alias 文件的实际 diff → 更新 `automation/update-upstreams` → PR 至 `develop`，由维护者审核。updater 不执行部署构建；它只自动补空 ID entry，不填写任何 player alias。无新 ID 时人工文件没有 diff；stale/非法 metadata 会使 workflow 在提交、push、创建 PR 前明确失败。
 
 权限仍只有 `contents: write`、`pull-requests: write`；不直接 push main/develop，不自动 approve 或 merge。手工更新上游仍使用上文的刷新 → 同步 → 审阅 diff → `pnpm deploy:build` 流程。
 
@@ -54,7 +54,7 @@ pnpm test
 pnpm data:validate
 ```
 
-`src/lib/generated/search-inputs.json` 缓存已生成的官方名称、仅含 `id/name` 的 catalog 投影和 Endgame 名称桶；alias-only 更新只重建 `static/generated/search.json`，复用缓存，不重新解析整个上游。搜索 bundle 含 schema 2、normalization 1、naming policy 1、sourceCommit 和 metadata SHA-256 digest。数据 manifest 为 schema 36。缓存版本或来源不匹配必须重新生成；非法人工 metadata 不能进入离线 fallback。fallback 只处理上游访问失败，生成错误直接向外抛出。
+`src/lib/generated/views/{locale}/search-inputs.json` 缓存对应语言的官方名称、仅含 `id/name` 的 catalog 投影和 Endgame 名称桶；public bundle 位于 `static/generated/{locale}/search.json`。人工 aliases 仅用于 `zh-CN`，alias-only 更新复用缓存并只刷新中文搜索产物，不重新解析整个上游。搜索 bundle 含 schema 3、normalization 1、naming policy 1、sourceCommit 和 metadata SHA-256 digest。数据 manifest 为 schema 46。缓存版本或来源不匹配必须重新生成；非法人工 metadata 不能进入离线 fallback。fallback 只处理上游访问失败，生成错误直接向外抛出。下文初次实施与性能测量保留当时的路径、版本和结果，属于历史记录。
 
 ## 查询架构
 

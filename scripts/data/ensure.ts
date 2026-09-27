@@ -9,6 +9,7 @@ import { CHARACTER_NAMING_POLICY_VERSION } from '../../src/lib/search/name-metad
 import { SEARCH_NORMALIZATION_VERSION } from '../../src/lib/search/normalization.js';
 import {
   readDataManifest,
+  type DataManifestFailure,
   refreshArtifactMetadata,
   validateGeneratedArtifacts
 } from './generated-artifacts.js';
@@ -27,7 +28,7 @@ export interface DataEnsureSource {
 
 export interface DataEnsureDependencies {
   env?: NodeJS.ProcessEnv;
-  readManifest?: () => Promise<DataManifest>;
+  readManifest?: (onFailure?: (reason: DataManifestFailure) => void) => Promise<DataManifest>;
   validateCache?: (candidate: DataManifest) => Promise<boolean>;
   resolveSource?: () => Promise<DataEnsureSource>;
   cacheMatchesSource?: (manifest: DataManifest, source: DataEnsureSource) => Promise<boolean>;
@@ -97,7 +98,8 @@ async function cacheMatchesAvailableSource(
 
 export async function ensureData(dependencies: DataEnsureDependencies = {}): Promise<DataManifest> {
   const env = dependencies.env ?? process.env;
-  const readManifest = dependencies.readManifest ?? readDataManifest;
+  const readManifest =
+    dependencies.readManifest ?? ((onFailure) => readDataManifest(undefined, onFailure));
   const validateCache = dependencies.validateCache ?? cacheValid;
   const resolveSource = dependencies.resolveSource ?? resolveAvailableSource;
   const cacheMatchesSource = dependencies.cacheMatchesSource ?? cacheMatchesAvailableSource;
@@ -108,9 +110,11 @@ export async function ensureData(dependencies: DataEnsureDependencies = {}): Pro
 
   let manifest: DataManifest | undefined;
   let cacheResult: 'hit' | 'miss' | 'fallback' = 'miss';
-  let cacheReason = 'manifest-missing-or-invalid';
+  let cacheReason = 'manifest-read-failed';
   try {
-    manifest = await readManifest();
+    manifest = await readManifest((reason) => {
+      cacheReason = reason;
+    });
   } catch {
     // A missing, obsolete, or interrupted generation is handled below.
   }
@@ -138,7 +142,9 @@ export async function ensureData(dependencies: DataEnsureDependencies = {}): Pro
     const matchesSource =
       manifest && validated ? await cacheMatchesSource(manifest, availableSource) : false;
     if (!manifest || !validated || !matchesSource) {
-      if (manifest && validated && !matchesSource) cacheReason = 'source-or-textmap-changed';
+      if (manifest && validated && !matchesSource)
+        cacheReason =
+          manifest.sourceCommit !== availableSource.commit ? 'source-changed' : 'textmap-changed';
       manifest = await sync();
       validated = false;
     } else {

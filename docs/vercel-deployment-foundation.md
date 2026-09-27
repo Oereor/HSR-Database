@@ -16,6 +16,8 @@ static SvelteKit build/
 
 `deploy:build` 在 build time 准备两个固定 SHA 的 shallow Git checkout。构建完成后，`build/` 只包含静态站点和生成数据/资源。
 
+当前工具链为 Node 24.x、pnpm 11.9.0、Vite 8.3.1、`@types/node` 24.19.0；CI、updater、Preview workflow 与 Vercel 项目 Node 设置保持一致。SvelteKit 2.70.3、Svelte 5.57.0 与 Svelte plugin 7.3.0 保持原锁定版本。Vite 使用默认浏览器目标，兼容性与验收见 [2026-09-27 工具链报告](investigations/runtime-toolchain-alignment-2026-09-27.md)。下方测量保留其原始环境，不能视为当前工具链测量。
+
 ## Files
 
 - `upstream.lock.json`：两个公开 upstream 的 schema 1、repository URL 和完整 commit SHA。
@@ -24,7 +26,8 @@ static SvelteKit build/
 - `scripts/deployment/git.ts`：跨平台 Git 执行、SHA/remote/path 验证、临时目录替换和复用。
 - `scripts/deployment/prepare.ts`：TurnBasedGameData 精确 Excel/TextMap 加保守 Config sparse checkout，以及 StarRailRes 单阶段 sparse checkout。
 - `scripts/deployment/build.ts`：deployment 编排入口。
-- `scripts/assets/enemies/ensure.ts`：验证或增量生成 Nanoka enemy cache；代理环境使用现有 curl transport。
+- `scripts/assets/enemies/validate.ts`：离线验证 Git 跟踪的 enemy snapshot；部署不访问 Nanoka。
+- `scripts/assets/enemies/sync.ts`：由显式 `update:enemy-assets` 或 upstream updater 增量更新快照；代理环境使用现有 curl transport。
 
 ## Local Development
 
@@ -55,15 +58,15 @@ General asset cache miss 使用 copy=1、Sharp=2 的独立有界队列，并按 
 
 `VERCEL_ENV=production` 选择 Production，`preview`/`development` 选择 Preview；未知值直接失败。构建脚本不调用 `pnpm build`，因此不会递归触发自身；原有 `build`/`prebuild` 保持不变。
 
-Enemy manifest 使用 schema 2，以 `monsters + unavailable` 精确覆盖当前 enemy catalog。明确的单资源 404 或缺少 `image_path` 保持 UI fallback；网络、解析、内容类型、图片签名或系统性覆盖失败会终止 deployment build。schema 1 仍可由 UI 读取，但 enemy ensure 会刷新为 schema 2。
+Enemy snapshot 使用 schema 3，以 `monsters + unavailable` 精确覆盖当前 enemy catalog。部署只验证 tracked manifest、pinned source 与图片完整性，不刷新快照、不访问 Nanoka。明确的单资源 404 或缺少 `image_path` 在更新阶段记录为 unavailable，保留 UI fallback；网络、解析、内容类型、图片签名或系统性覆盖失败会终止 updater。无效或过期快照会使离线部署校验失败，必须经显式更新与审阅后修复。
 
 ## Updating Upstreams
 
 1. 获取新的 upstream 完整 commit SHA。
 2. 修改 `upstream.lock.json`。
-3. 运行 `pnpm deploy:build:production`。
-4. 运行现有 `data:validate`、`assets:verify` 和相关测试。
-5. 检查生成结果后提交 lock 变更。
+3. 运行 `pnpm update:enemy-assets`、`pnpm data:search-names:update`、`pnpm data:player-aliases:sync`，再运行 `pnpm data:search-names:check`。
+4. 审阅 lock、enemy snapshot、官方名称与人工 alias 的实际 diff；运行 `pnpm ci:validate`，必要时补充本地 Production profile 验证。
+5. 通过审核后提交这些维护产物。部署本身不改写 tracked 快照或 metadata。
 
 禁止将 branch、tag、`HEAD` 或 `latest` 写入 lock。
 
@@ -118,10 +121,10 @@ Warm enemy ensure 仅验证 Nanoka version 与本地 cache，完整 warm deploym
 
 ## Search V2 Upstream Metadata Automation
 
-当前 `.github/workflows/update-upstreams.yml` 在 lock 确有变化时执行：
+当前 `.github/workflows/update-upstreams.yml` 先刷新并校验维护产物，再仅在这些产物存在实际 diff 时提交与创建或更新 PR：
 
 ```text
-upstreams:update → data:search-names:update → data:player-aliases:sync
+upstreams:update → update:enemy-assets → data:search-names:update → data:player-aliases:sync
 → data:search-names:check
 → commit → automation/update-upstreams → PR to develop → 人工审核
 ```

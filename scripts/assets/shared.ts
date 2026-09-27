@@ -39,6 +39,7 @@ import {
 } from './paths.js';
 import { AssetFilesystemObservation, observeAssetFilesystem } from './observation.js';
 import { createBoundedPoolState, runBoundedPool, throwBoundedPoolFailures } from './pool.js';
+import { readCacheJson, type ManifestReadFailure } from '../deployment/cache-diagnostics.js';
 
 // Windows may otherwise retain recently inspected files in libvips' cache during rollback cleanup.
 sharp.cache(false);
@@ -310,9 +311,11 @@ export async function readAssetRequirements(
   };
 }
 
-export async function readAssetManifest(): Promise<VisualAssetManifest | undefined> {
+export async function readAssetManifest(
+  onFailure?: (reason: ManifestReadFailure) => void
+): Promise<VisualAssetManifest | undefined> {
   try {
-    return JSON.parse(await readFile(assetManifestPath, 'utf8')) as VisualAssetManifest;
+    return (await readCacheJson(assetManifestPath, onFailure)) as VisualAssetManifest;
   } catch {
     return undefined;
   }
@@ -1296,24 +1299,33 @@ export async function observeGeneratedAssetFiles(
   return observeAssetFilesystem(outputRoot, assetOutputDirectories(output));
 }
 
+export type AssetFilesFailure = 'generated-files-missing' | 'filesystem-observation-failed';
+
 export async function manifestFilesExist(
   manifest: VisualAssetManifest,
   outputRoot = generatedAssetRoot,
-  observation?: AssetFilesystemObservation
+  observation?: AssetFilesystemObservation,
+  onFailure?: (reason: AssetFilesFailure) => void
 ): Promise<boolean> {
   try {
     const actual = observation ?? (await observeGeneratedAssetFiles(outputRoot));
-    if (actual.root !== path.resolve(outputRoot)) return false;
+    if (actual.root !== path.resolve(outputRoot)) {
+      onFailure?.('filesystem-observation-failed');
+      return false;
+    }
     for (const [directory, requiredFiles] of expectedFiles(
       manifest,
       assetOutputPaths(outputRoot)
     )) {
       const files = actual.fileNames(directory);
-      if (!files) return false;
-      if (!requiredFiles.every((file) => files.has(file))) return false;
+      if (!files || !requiredFiles.every((file) => files.has(file))) {
+        onFailure?.('generated-files-missing');
+        return false;
+      }
     }
     return true;
   } catch {
+    onFailure?.('filesystem-observation-failed');
     return false;
   }
 }
