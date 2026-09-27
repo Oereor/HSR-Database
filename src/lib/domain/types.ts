@@ -444,7 +444,7 @@ export interface PublicSiteVersion {
 }
 
 export interface DataManifest {
-  schemaVersion: 45;
+  schemaVersion: 46;
   sourceCommit: string;
   sourceVersion: string;
   gameVersionFull: string | null;

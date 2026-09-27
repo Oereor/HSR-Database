@@ -751,3 +751,19 @@ describe('Endgame mechanics 视图投影', () => {
     ).toEqual([2, 2, 3, 3, 9, 9]);
   });
 });
+
+describe('Voracity occurrence identity', () => {
+  it('keeps different pollution states separate without changing HP views', () => {
+    const plain = occurrence();
+    const first = occurrence({ voracityLevel: 1 });
+    const second = occurrence({ voracityLevel: 2 });
+    const input = [plain, first, second, occurrence({ voracityLevel: 2 })];
+    expect(uniqueSpawnOccurrences(input)).toEqual([plain, first, second]);
+    expect(mergeFixedOccurrences(input).map(({ count }) => count)).toEqual([1, 1, 2]);
+    expect(buildOccurrenceView(first).voracityLevel).toBe(1);
+    expect(buildOccurrenceView(second).voracityLevel).toBe(2);
+    expect(buildOccurrenceView(plain)).not.toHaveProperty('voracityLevel');
+    expect(buildOccurrenceView(second).hp).toEqual(buildOccurrenceView(plain).hp);
+    expect(second.hp).toEqual(plain.hp);
+  });
+});

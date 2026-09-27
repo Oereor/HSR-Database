@@ -1008,7 +1008,7 @@ export async function syncData(): Promise<DataManifest> {
   };
   const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
   const manifestWithoutRevision: Omit<DataManifest, 'dataRevision'> = {
-    schemaVersion: 45,
+    schemaVersion: 46,
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,

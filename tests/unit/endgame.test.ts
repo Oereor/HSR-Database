@@ -778,6 +778,9 @@ describe('Endgame 真实数据管线', () => {
         for (const encounter of group.encounters) {
           const encounterRecord = encounter as unknown as Record<string, unknown>;
           for (const field of encounterFields[mode]) delete encounterRecord[field];
+          for (const battle of encounter.battles)
+            for (const stage of battle.stages)
+              for (const occurrence of occurrences(stage)) delete occurrence.voracityLevel;
         }
       }
       expect(createHash('sha256').update(JSON.stringify(data.groups)).digest('hex')).toBe(

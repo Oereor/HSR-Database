@@ -42,9 +42,16 @@
       bind:missing={imageMissing}
       fallbackClass="endgame-enemy__fallback"
     />
-    {#if level !== undefined || occurrence.count}
+    {#if level !== undefined || occurrence.voracityLevel !== undefined || occurrence.count}
       <span class="endgame-enemy__artwork-tags">
-        {#if level !== undefined}<span class="endgame-enemy__level">Lv.{level}</span>{/if}
+        {#if occurrence.voracityLevel !== undefined}
+          <span class="endgame-enemy__level-tags">
+            <span class="endgame-enemy__voracity" data-voracity-level={occurrence.voracityLevel}>
+              {m.endgame_enemy_voracity({ level: occurrence.voracityLevel })}
+            </span>
+            {#if level !== undefined}<span class="endgame-enemy__level">Lv.{level}</span>{/if}
+          </span>
+        {:else if level !== undefined}<span class="endgame-enemy__level">Lv.{level}</span>{/if}
         {#if occurrence.count}
           <span
             class="endgame-enemy__count"

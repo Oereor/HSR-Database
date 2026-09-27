@@ -213,7 +213,7 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 45,
+    schemaVersion: 46,
     sourceCommit: commit,
     sourceVersion,
     gameVersionFull: '4.5.0',

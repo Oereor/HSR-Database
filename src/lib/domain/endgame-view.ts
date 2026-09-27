@@ -128,6 +128,7 @@ export function resolveEndgameEnemyReference(
 
 export interface EnemyOccurrenceView {
   identity: string;
+  voracityLevel?: number;
   monsterId: number;
   monsterTemplateId: number;
   name: string;
@@ -368,6 +369,7 @@ function mechanicsIdentity(mechanics: EnemyMechanics): string {
 
 export function occurrenceIdentity(occurrence: EnemyOccurrence): string {
   return JSON.stringify([
+    occurrence.voracityLevel,
     occurrence.monsterId,
     occurrence.monsterTemplateId,
     occurrence.hp.hpBase,
@@ -421,6 +423,7 @@ export function buildOccurrenceView(
   const mechanics = occurrence.mechanics;
   return {
     identity: occurrenceIdentity(occurrence),
+    ...(occurrence.voracityLevel !== undefined ? { voracityLevel: occurrence.voracityLevel } : {}),
     monsterId: occurrence.monsterId,
     monsterTemplateId: occurrence.monsterTemplateId,
     name: occurrence.name || reference?.name || presentation.unknownEnemy,

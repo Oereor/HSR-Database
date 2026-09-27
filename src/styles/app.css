@@ -1649,6 +1649,7 @@ footer a {
   pointer-events: none;
 }
 .endgame-enemy__level,
+.endgame-enemy__voracity,
 .endgame-enemy__count {
   border: 1px solid rgb(215 181 109 / 28%);
   border-radius: 999px;
@@ -1659,7 +1660,8 @@ footer a {
   font-size: var(--font-helper);
   font-weight: 700;
 }
-.endgame-enemy__level {
+.endgame-enemy__level,
+.endgame-enemy__voracity {
   border-color: rgb(180 198 230 / 18%);
   background: rgb(7 10 18 / 72%);
   padding: 0.2rem 0.44rem;
@@ -1667,6 +1669,17 @@ footer a {
   font-size: var(--font-internal);
   font-variant-numeric: tabular-nums;
   font-weight: 650;
+}
+.endgame-enemy__level-tags {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  white-space: nowrap;
+}
+.endgame-enemy__voracity {
+  border-color: rgb(248 113 113 / 32%);
+  background: rgb(45 12 18 / 72%);
+  color: #fca5a5;
 }
 .endgame-enemy__content {
   display: flex;
