@@ -10,10 +10,12 @@ import {
   observeGeneratedAssetFiles,
   readAssetManifest,
   readAssetRequirements,
+  VISUAL_ASSET_SCHEMA_VERSION,
   warnAssetFallback
 } from './shared.js';
-import type { AssetRequirements } from './shared.js';
+import type { AssetRequirements, AssetFilesFailure } from './shared.js';
 import type { AssetFilesystemObservation } from './observation.js';
+import type { ManifestReadFailure } from '../deployment/cache-diagnostics.js';
 
 export interface AssetValidationContext {
   requirements: AssetRequirements;
@@ -26,26 +28,48 @@ export interface EnsureAssetsOptions {
   env?: NodeJS.ProcessEnv;
 }
 
+type AssetCacheFailure =
+  | ManifestReadFailure
+  | AssetFilesFailure
+  | 'source-changed'
+  | 'manifest-schema-invalid'
+  | 'requirements-fingerprint-changed'
+  | 'requirements-coverage-mismatch';
+
+type AssetCacheCheck =
+  | { context: AssetValidationContext; reason?: never }
+  | { context?: never; reason: AssetCacheFailure };
+
 async function validatedContext(
   requirements: AssetRequirements,
   manifest: VisualAssetManifest,
   sourceCommit: string,
   observation?: AssetFilesystemObservation
-): Promise<AssetValidationContext | undefined> {
+): Promise<AssetCacheCheck> {
   let actual: AssetFilesystemObservation;
   try {
     actual = observation ?? (await observeGeneratedAssetFiles());
   } catch {
-    return undefined;
+    return { reason: 'filesystem-observation-failed' };
   }
+  if (manifest.sourceCommit !== sourceCommit) return { reason: 'source-changed' };
+  if (manifest.requirementsFingerprint !== assetRequirementsFingerprint(requirements))
+    return { reason: 'requirements-fingerprint-changed' };
+  if (!manifestCoversRequirements(manifest, requirements))
+    return {
+      reason:
+        manifest.schemaVersion !== VISUAL_ASSET_SCHEMA_VERSION
+          ? 'manifest-schema-invalid'
+          : 'requirements-coverage-mismatch'
+    };
+  let reason: AssetFilesFailure = 'generated-files-missing';
   if (
-    manifest.sourceCommit !== sourceCommit ||
-    manifest.requirementsFingerprint !== assetRequirementsFingerprint(requirements) ||
-    !manifestCoversRequirements(manifest, requirements) ||
-    !(await manifestFilesExist(manifest, undefined, actual))
+    !(await manifestFilesExist(manifest, undefined, actual, (failure) => {
+      reason = failure;
+    }))
   )
-    return undefined;
-  return { requirements, manifest, sourceCommit, observation: actual };
+    return { reason };
+  return { context: { requirements, manifest, sourceCommit, observation: actual } };
 }
 
 export async function ensureAssets(
@@ -53,16 +77,21 @@ export async function ensureAssets(
 ): Promise<AssetValidationContext> {
   const env = options.env ?? process.env;
   const requirements = await readAssetRequirements(resolveDataRoot(env.HSR_DATA_ROOT));
-  const cached = await readAssetManifest();
+  // A successfully parsed falsy JSON value still follows the existing cache-miss path.
+  let manifestFailure: AssetCacheFailure = 'manifest-schema-invalid';
+  const cached = await readAssetManifest((reason) => {
+    manifestFailure = reason;
+  });
   const expectedCommit = env.HSR_EXPECTED_ASSET_COMMIT;
 
   try {
     const root = assertAssetRoot(resolveAssetRoot(env.HSR_ASSET_ROOT));
     const commit = assetSourceCommit(root);
-    const context =
+    const check: AssetCacheCheck =
       cached && (!expectedCommit || cached.sourceCommit === expectedCommit)
         ? await validatedContext(requirements, cached, commit)
-        : undefined;
+        : { reason: cached ? 'source-changed' : manifestFailure };
+    const { context } = check;
     if (context) {
       console.log(
         '[deploy:cache] general-assets result=hit reason=manifest-source-and-files-match'
@@ -71,7 +100,7 @@ export async function ensureAssets(
       warnAssetFallback(context.manifest, `缓存对应 StarRailRes ${commit.slice(0, 12)}`);
       return context;
     }
-    console.log('[deploy:cache] general-assets result=miss reason=manifest-or-files-stale');
+    console.log(`[deploy:cache] general-assets result=miss reason=${check.reason}`);
     const synchronized = await syncAssets({ requirements, env });
     const generated = await validatedContext(
       requirements,
@@ -79,14 +108,15 @@ export async function ensureAssets(
       commit,
       synchronized.observation
     );
-    if (!generated) throw new Error('视觉资源生成后未通过 manifest 与文件存在性验证。');
-    return generated;
+    if (!generated.context) throw new Error('视觉资源生成后未通过 manifest 与文件存在性验证。');
+    return generated.context;
   } catch (error) {
     if (env.HSR_DEPLOYMENT_BUILD === '1') throw error;
-    const context =
+    const check: AssetCacheCheck =
       cached && (!expectedCommit || cached.sourceCommit === expectedCommit)
         ? await validatedContext(requirements, cached, cached.sourceCommit ?? '')
-        : undefined;
+        : { reason: cached ? 'source-changed' : manifestFailure };
+    const { context } = check;
     if (context) {
       console.log(
         '[deploy:cache] general-assets result=fallback reason=source-unavailable-valid-cache'
@@ -103,12 +133,12 @@ export async function ensureAssets(
       synchronized.manifest.sourceCommit ?? '',
       synchronized.observation
     );
-    if (!fallback) {
+    if (!fallback.context) {
       throw new Error('视觉资源 fallback 未通过 manifest 与文件存在性验证。', {
         cause: error
       });
     }
-    return fallback;
+    return fallback.context;
   }
 }
 

@@ -153,6 +153,38 @@ interface StageRow {
   MonsterList?: Array<Record<string, Id>>;
 }
 
+export interface StageInvasionRow {
+  StageID: Id;
+  InvasionID: Id;
+  MonsterInvasionList: Array<{ DBLDCKODNEN: Id }>;
+}
+
+const VORACITY_LEVEL_BY_INVASION_ID: Readonly<Partial<Record<number, number>>> = { 1: 1, 2: 2 };
+
+export function createVoracityResolver(
+  rows: readonly StageInvasionRow[],
+  issues: Pick<Diagnostics, 'warn'>
+): (stageId: number, monsterId: number) => number | undefined {
+  const rules = buildUniqueIndex(rows, (row) => row.StageID, 'StageInvasionConfig.StageID');
+  const levels = new Map<number, Map<number, number>>();
+  for (const row of rules.values()) {
+    const level = VORACITY_LEVEL_BY_INVASION_ID[row.InvasionID];
+    if (level === undefined) {
+      issues.warn('unknown-voracity-invasion', '未知 InvasionID，跳过贪饕污染标识', {
+        stageId: row.StageID,
+        invasionId: row.InvasionID
+      });
+      continue;
+    }
+    // LMEBOHHDIAG intentionally ignored for current Endgame presentation.
+    levels.set(
+      row.StageID,
+      new Map(row.MonsterInvasionList.map((entry) => [entry.DBLDCKODNEN, level]))
+    );
+  }
+  return (stageId, monsterId) => levels.get(stageId)?.get(monsterId);
+}
+
 interface MonsterRow {
   MonsterID: Id;
   MonsterTemplateID: Id;
@@ -442,6 +474,7 @@ interface Tables {
   peakBosses: PeakBossRow[];
   planeEvents: PlaneEventRow[];
   stages: StageRow[];
+  stageInvasions: StageInvasionRow[];
   monsters: MonsterRow[];
   templates: MonsterTemplateRow[];
   hardLevels: HardLevelRow[];
@@ -494,6 +527,7 @@ async function loadTables(root: string): Promise<Tables> {
     peakBosses: table.ChallengePeakBossConfig,
     planeEvents: table.PlaneEvent,
     stages: table.StageConfig,
+    stageInvasions: table.StageInvasionConfig,
     monsters: table.MonsterConfig,
     templates: table.MonsterTemplateConfig,
     hardLevels: table.HardLevelGroup,
@@ -648,6 +682,7 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
   };
 
   const stages = buildUniqueIndex(tables.stages, (row) => row.StageID, 'StageConfig.StageID');
+  const voracityLevelFor = createVoracityResolver(tables.stageInvasions, diagnostics);
   const monsters = buildUniqueIndex(
     tables.monsters,
     (row) => row.MonsterID,
@@ -1173,8 +1208,10 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
       contextSource === 'stage'
         ? `${occurrenceScope}:fixed:${String(contextData.wave)}:position:${String(contextData.position)}:monster:${monsterId}`
         : `${occurrenceScope}:spawn:${String(contextData.waveId)}:group:${String(contextData.monsterGroupId)}:position:${String(contextData.position)}:monster:${monsterId}`;
+    const voracityLevel = voracityLevelFor(stage.StageID, monsterId);
     return {
       occurrenceId,
+      ...(voracityLevel !== undefined ? { voracityLevel } : {}),
       monsterId,
       monsterTemplateId: monster.MonsterTemplateID,
       hp: {

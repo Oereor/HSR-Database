@@ -255,6 +255,7 @@ function projectOccurrence(
   const name = context.enemyNamesByTemplateId.get(String(occurrence.monsterTemplateId));
   return {
     monsterId: occurrence.monsterId,
+    ...(occurrence.voracityLevel !== undefined ? { voracityLevel: occurrence.voracityLevel } : {}),
     monsterTemplateId: occurrence.monsterTemplateId,
     ...(name ? { name } : {}),
     hp: occurrence.hp,

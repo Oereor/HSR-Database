@@ -185,6 +185,7 @@ export interface EnemyMechanics {
 
 export interface EnemyOccurrence {
   occurrenceId?: string;
+  voracityLevel?: number;
   monsterId: number;
   monsterTemplateId: number;
   name?: string;

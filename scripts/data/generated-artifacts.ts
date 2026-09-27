@@ -3,8 +3,9 @@ import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { DataManifest, GeneratedArtifactMetadata } from '../../src/lib/domain/types.js';
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
+import { readCacheJson, type ManifestReadFailure } from '../deployment/cache-diagnostics.js';
 
-export const DATA_MANIFEST_SCHEMA_VERSION = 45 as const;
+export const DATA_MANIFEST_SCHEMA_VERSION = 46 as const;
 
 export interface GeneratedArtifactValidationSummary {
   files: number;
@@ -95,9 +96,19 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
     throw new Error('Generated data manifest English occurrence shards are incomplete');
 }
 
-export async function readDataManifest(root = generatedRoot): Promise<DataManifest> {
-  const value: unknown = JSON.parse(await readFile(path.join(root, 'manifest.json'), 'utf8'));
-  assertDataManifest(value);
+export type DataManifestFailure = ManifestReadFailure | 'manifest-schema-invalid';
+
+export async function readDataManifest(
+  root = generatedRoot,
+  onFailure?: (reason: DataManifestFailure) => void
+): Promise<DataManifest> {
+  const value = await readCacheJson(path.join(root, 'manifest.json'), onFailure);
+  try {
+    assertDataManifest(value);
+  } catch (error) {
+    onFailure?.('manifest-schema-invalid');
+    throw error;
+  }
   return value;
 }
 

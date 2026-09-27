@@ -30,8 +30,8 @@ Due to special network environment, all Internet-related operations must go thro
 - Use only real game data discovered in `../TurnBasedGameData/`.
 - Do not use StarRailRes index files as a replacement source for character, skill, trace, light-cone, enemy, stat, or relationship data unless explicitly requested.
 - Do not invent characters, items, skills, statistics, IDs, descriptions, translations, or relationships.
-- Data generation supports `zh-CN` and `en` from their matching pinned TextMaps; public website routes and loaders remain Simplified-Chinese-only until an explicit product change.
-- Paraglide compiles manually maintained `zh-CN` and `en` Site Messages. Use explicit locale message calls. Do not add mutable locale state, language switching, localized routing, cross-locale TextMap fallback, or locale detection/redirects.
+- Data generation and public loaders support `zh-CN` and `en` from their matching pinned TextMaps. Chinese routes have no locale prefix; English routes use `/en/`. Preserve the shared locale-neutral route inventory and trailing slashes.
+- Paraglide compiles manually maintained `zh-CN` and `en` Site Messages. Use explicit locale message calls and URL-authoritative locale selection, including the existing language switch links. Do not add mutable locale state, cross-locale TextMap fallback, or locale detection/redirects.
 - Keep TextMap hashes as decimal strings throughout the data pipeline; never pass them through JavaScript `number`.
 - Keep raw-data parsing separate from UI components.
 - Use the shared TextMap resolver instead of accessing TextMap records from business code.
@@ -58,6 +58,7 @@ Due to special network environment, all Internet-related operations must go thro
 ## Development rules
 
 - Prefer SvelteKit, TypeScript, Vite, Tailwind CSS, and pnpm unless this repository already uses another suitable stack.
+- Use Node.js 24.x (`.nvmrc`: `24`) and the `pnpm@11.9.0` baseline; the supported pnpm range is `>=11.9.0 <12`. Vite is pinned to 8.3.1 and `@types/node` to 24.19.0. Keep local shells, CI, and Vercel aligned; do not broadly refresh unrelated `latest` dependencies during targeted maintenance.
 - Use strict TypeScript types derived from the actual upstream data.
 - Keep parsing, normalization, domain models, generated data, visual-asset resolution, and presentation components separated.
 - Do not add unnecessary backend services, databases, authentication, or production dependencies.

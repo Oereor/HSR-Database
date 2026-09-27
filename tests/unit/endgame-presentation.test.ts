@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { render } from 'svelte/server';
+import { m } from '../../src/lib/paraglide/messages.js';
 import AsBossDossier from '../../src/lib/components/endgame/as/AsBossDossier.svelte';
 import EndgameEnemyCard from '../../src/lib/components/endgame/EndgameEnemyCard.svelte';
 import EndgameOverviewCard from '../../src/lib/components/endgame/EndgameOverviewCard.svelte';
@@ -352,5 +353,48 @@ describe('AS boss dossier', () => {
     expect(body).toContain('测试特性');
     expect(body.indexOf('effect-a')).toBeLessThan(body.indexOf('effect-b'));
     expect(body.match(/data-stage-effect-explanations/g) ?? []).toHaveLength(1);
+  });
+});
+
+describe('Voracity card tags', () => {
+  it.each(['standard', 'compact'] as const)(
+    'renders the pollution tag before the unchanged level in %s cards',
+    (variant) => {
+      const occurrence = { ...enemy('voracity', 'Fixture', 5013010), voracityLevel: 2, count: 3 };
+      const { body } = render(EndgameEnemyCard, { props: { occurrence, variant, level: 85 } });
+      expect(body).toContain('data-voracity-level="2"');
+      expect(body).toContain(m.endgame_enemy_voracity({ level: 2 }, { locale: 'zh-CN' }));
+      expect(body.indexOf('data-voracity-level')).toBeLessThan(
+        body.indexOf('class="endgame-enemy__level"')
+      );
+      expect(body.indexOf('class="endgame-enemy__level"')).toBeLessThan(
+        body.indexOf('class="endgame-enemy__count"')
+      );
+      expect(body).toContain('Lv.85');
+    }
+  );
+
+  it('leaves unpolluted markup unchanged and permits a tag without a stage level', () => {
+    const occurrence = enemy('plain', 'Fixture', 5013010);
+    const plain = render(EndgameEnemyCard, { props: { occurrence, level: 85 } }).body;
+    expect(plain).not.toContain('data-voracity-level');
+    expect(plain).not.toContain('endgame-enemy__level-tags');
+    expect(plain).toContain('Lv.85');
+    const pollutionOnly = render(EndgameEnemyCard, {
+      props: { occurrence: { ...occurrence, voracityLevel: 1 } }
+    }).body;
+    expect(pollutionOnly).toContain('data-voracity-level="1"');
+    expect(pollutionOnly).not.toContain('class="endgame-enemy__level"');
+  });
+
+  it('resolves both locale messages and interpolates levels without raw keys', () => {
+    const labels = ['zh-CN', 'en'].map((locale) => {
+      const label = m.endgame_enemy_voracity({ level: 2 }, { locale: locale as 'zh-CN' | 'en' });
+      expect(label).toContain('2');
+      expect(label).not.toContain('{level}');
+      expect(label).not.toContain('endgame_enemy_voracity');
+      return label;
+    });
+    expect(labels[0]).not.toBe(labels[1]);
   });
 });

@@ -27,6 +27,8 @@
 
 网站使用静态构建，运行时不依赖其他数据仓库。
 
+网站提供 `zh-CN` 与 `en`：中文使用无前缀路由，英文使用 `/en/`，URL 决定 locale。两种语言分别读取对应的 pinned TextMap，不跨语言回退。
+
 ## 数据来源
 
 项目主要使用以下两个公开仓库：
@@ -49,8 +51,8 @@ workspace/
 
 环境要求：
 
-- Node.js 22+
-- pnpm 10+
+- Node.js 24.x（`.nvmrc` 为 `24`，可使用版本管理器或当前进程的 PATH 切换）
+- pnpm 11.9.0（`packageManager` baseline；支持范围 `>=11.9.0 <12`）
 - Git
 
 准备两个上游仓库：
@@ -76,6 +78,8 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 ```
 
 如有需要，可复制 `.env.example` 后覆盖这些配置。
+
+安装前确认 `node --version` 与 `pnpm --version`。CI 和 Vercel 项目使用 Node 24.x；Vite 精确固定为 8.3.1，Node typings 为 24.19.0。采用 Vite 8 默认浏览器目标（Baseline 2026-01-01），不再承诺 Vite 7 默认目标所覆盖的旧浏览器；详见 [工具链对齐验收](docs/investigations/runtime-toolchain-alignment-2026-09-27.md)。
 
 ## 常用命令
 
