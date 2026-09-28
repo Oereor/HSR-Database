@@ -38,30 +38,31 @@ export function normalizeEnemyPhases(value: unknown): number[] {
 export interface EnemySkillPhaseInput {
   id: string;
   phases: number[];
-  visible: boolean;
 }
 
 export function buildEnemySkillPhases(skills: EnemySkillPhaseInput[]): EnemySkillPhase[] {
-  const normalizedSkills = skills.map((skill) => ({
-    ...skill,
-    phases: normalizeEnemyPhases(skill.phases)
+  const normalizedSkills = skills.map(({ id, phases }) => ({
+    id,
+    phases: normalizeEnemyPhases(phases)
   }));
   const explicitPhases = [...new Set(normalizedSkills.flatMap((skill) => skill.phases))].sort(
     (left, right) => left - right
   );
   const phaseIndexes = explicitPhases.length ? explicitPhases : [1];
 
-  return phaseIndexes.map((index) => {
-    const skillIds: string[] = [];
-    const seen = new Set<string>();
-    for (const skill of normalizedSkills) {
-      if (!skill.visible || seen.has(skill.id)) continue;
-      if (skill.phases.length && !skill.phases.includes(index)) continue;
-      seen.add(skill.id);
-      skillIds.push(skill.id);
-    }
-    return { index, skillIds };
-  });
+  return phaseIndexes
+    .map((index) => {
+      const skillIds: string[] = [];
+      const seen = new Set<string>();
+      for (const skill of normalizedSkills) {
+        if (seen.has(skill.id)) continue;
+        if (skill.phases.length && !skill.phases.includes(index)) continue;
+        seen.add(skill.id);
+        skillIds.push(skill.id);
+      }
+      return { index, skillIds };
+    })
+    .filter((phase) => phase.skillIds.length > 0 || phaseIndexes.length === 1);
 }
 
 export function normalizeSpecialResistances(value: unknown): {

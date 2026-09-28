@@ -228,7 +228,6 @@ export interface EnemySkillDomain {
   tagCode: string;
   damageType?: ElementType;
   phases: number[];
-  included: boolean;
   extraEffectIds: string[];
 }
 
@@ -262,7 +261,6 @@ export interface EnemyMonsterDomain {
   specialResistances: EnemySpecialResistanceDomain[];
   summons: EnemySummonDomain[];
   skills: EnemySkillDomain[];
-  skillPhases: Array<{ index: number; skillIds: string[] }>;
 }
 
 export interface EnemyTemplateDomain {

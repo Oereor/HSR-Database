@@ -11,16 +11,14 @@ import { textSource, parameterized, rows, type Raw } from './shared.js';
 import { decimalOf } from '../decimal.js';
 import { numberOf } from '../raw.js';
 import {
-  buildEnemySkillPhases,
   normalizeEnemyPhases,
   normalizeSpecialResistances,
   resolveCanonicalEnemyStats
 } from '../enemy-detail.js';
-import { classifyEnemySkillSource, type EnemySkillInclusionPolicy } from '../enemy-skill-policy.js';
+import { classifyEnemySkillSource } from '../enemy-skill-policy.js';
 
 export interface EnemySource {
   tables: Record<string, unknown>;
-  inclusionPolicy: EnemySkillInclusionPolicy;
 }
 
 export interface EnemyDomainAudit {
@@ -112,14 +110,9 @@ function extraEffectIds(row: Raw): string[] {
   return unique([...ids(row.ExtraEffectIDList), ...ids(row.SimpleExtraEffectIDList)]);
 }
 
-function buildSkill(
-  row: Raw,
-  enemyId: string,
-  policy: EnemySkillInclusionPolicy,
-  audit: EnemyDomainAudit
-): EnemySkillDomain {
+function buildSkill(row: Raw, enemyId: string, audit: EnemyDomainAudit): EnemySkillDomain {
   const id = String(row.SkillID);
-  const semantics = classifyEnemySkillSource(row, { enemyId, skillId: id }, policy);
+  const semantics = classifyEnemySkillSource(row, { enemyId, skillId: id });
   const damageType =
     row.DamageType === undefined
       ? undefined
@@ -134,7 +127,6 @@ function buildSkill(
     tagCode: semantics.tag.code,
     ...(damageType ? { damageType } : {}),
     phases: normalizeEnemyPhases(row.PhaseList),
-    included: semantics.visible,
     extraEffectIds: extraEffectIds(row)
   };
 }
@@ -228,11 +220,8 @@ export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
         audit.unresolvedSkills.push({ enemyId, skillId: rawSkillId });
         return [];
       }
-      return [buildSkill(skill, enemyId, source.inclusionPolicy, audit)];
+      return [buildSkill(skill, enemyId, audit)];
     });
-    const phases = buildEnemySkillPhases(
-      skillDomains.map((skill) => ({ id: skill.id, phases: skill.phases, visible: skill.included }))
-    );
     const special = normalizeSpecialResistances(config.DebuffResist);
     audit.unknownDebuffResist.push(...special.unknownKeys.map((key) => ({ enemyId, key })));
     if (template.SpeedBase === undefined) audit.missingAttributes.speedBase.push(templateId);
@@ -270,8 +259,7 @@ export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
         audit,
         enemyId === templateId
       ),
-      skills: skillDomains,
-      skillPhases: phases
+      skills: skillDomains
     };
   };
 

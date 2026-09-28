@@ -55,13 +55,13 @@ not a claim of complete UI localization. This phase creates no English dictionar
 - `scripts/data/enemy-skill-policy.ts` maps reviewed decimal source hashes to
   semantic kind/tag codes. Unknown sources fail with entity/skill/field/hash/text
   diagnostics. Localized labels are separate.
-- `data/policies/enemy-skill-inclusion.json` freezes the historical scope for all
-  3,548 MonsterSkillConfig rows. This table has no HideInUI. Entries contain stable
-  SkillID, raw-source signature, description hash and inclusion, with provenance
-  and the historical reason documented at the root. Normal generation never
-  recalculates inclusion from translations. New/changed sources require review;
-  do not blindly regenerate the manifest after an upstream update. Explicitly run
-  `pnpm data:sync` after a reviewed policy edit against the same source commit.
+- Enemy skill displayability is determined independently in each locale projection
+  from the resolved, formatted `SkillDesc`. Empty descriptions are omitted from
+  public skill lists and phases. Configured skills remain in the locale-neutral
+  domain. Full validation checks each locale's list and phases against its own
+  TextMap; cross-locale structural parity continues to check Enemy identity and
+  numeric structure.
+  Unknown semantic kind/tag source hashes still require review.
 - Generator annotations connect reviewed character icon provenance to explicit
   profile skill-link relations. Presentation segments these references without
   inspecting visible words or deriving identity from style.

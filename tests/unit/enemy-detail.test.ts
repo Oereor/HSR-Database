@@ -110,13 +110,12 @@ describe('Enemy Detail parser/resolver', () => {
     expect(normalized.unknownKeys).toEqual(['STAT_FUTURE']);
   });
 
-  it('规范化真实阶段、共享技能、过滤后空阶段与原始技能顺序', () => {
+  it('仅用投影后的技能构建阶段，保留共享技能和原始顺序', () => {
     expect(
       buildEnemySkillPhases([
-        { id: 'shared', phases: [], visible: true },
-        { id: 'later', phases: [3, 2, 3, 0], visible: true },
-        { id: 'filtered', phases: [2], visible: false },
-        { id: 'last', phases: [3], visible: true }
+        { id: 'shared', phases: [] },
+        { id: 'later', phases: [3, 2, 3, 0] },
+        { id: 'last', phases: [3] }
       ])
     ).toEqual([
       { index: 2, skillIds: ['shared', 'later'] },
@@ -124,16 +123,13 @@ describe('Enemy Detail parser/resolver', () => {
     ]);
     expect(
       buildEnemySkillPhases([
-        { id: 'only-filtered', phases: [1], visible: false },
-        { id: 'visible-later', phases: [2], visible: true }
+        { id: 'visible-later', phases: [2] }
       ])
-    ).toEqual([
-      { index: 1, skillIds: [] },
-      { index: 2, skillIds: ['visible-later'] }
-    ]);
-    expect(buildEnemySkillPhases([{ id: 'single', phases: [], visible: true }])).toEqual([
+    ).toEqual([{ index: 2, skillIds: ['visible-later'] }]);
+    expect(buildEnemySkillPhases([{ id: 'single', phases: [] }])).toEqual([
       { index: 1, skillIds: ['single'] }
     ]);
+    expect(buildEnemySkillPhases([])).toEqual([{ index: 1, skillIds: [] }]);
   });
 });
 

@@ -24,6 +24,8 @@ The protected `Correctness` check owns full semantic validation. Production runs
 
 Site-owned prose, navigation, controls, metadata, errors, accessible labels, and footer text belong in paired Paraglide message keys. Game-owned names, descriptions, effects, and mechanics remain in localized generated views. Locale-neutral IDs, dates, ordering, and route identities must not depend on translated strings.
 
+Enemy skill existence and semantic kind/tag come from `MonsterConfig.SkillList` and `MonsterSkillConfig` in the locale-neutral domain. Each locale projection resolves and formats its own `SkillDesc` with the shared TextResolver/GameText pipeline and displays the skill only when the resulting plain text is nonempty after trimming. Skill phases are built from those displayed skills. Full validation independently checks each locale's public skill list and phases against its TextMap. Cross-locale structural parity still checks Enemy identity and numeric structure, while allowing skill lists and phases to differ when localized descriptions differ. Unknown kind/tag source hashes still require explicit semantic review. There is no per-SkillID inclusion snapshot.
+
 ## URL helpers
 
 Use src/lib/i18n/routing.ts for page trailing-slash normalization, canonicalization, localized internal hrefs, and same-page locale counterparts. Helpers preserve query strings and hashes while leaving external, query-only, hash-only, and extension-bearing URLs unchanged. The settings switcher uses ordinary document links so the URL remains the single locale state.
