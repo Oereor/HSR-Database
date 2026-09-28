@@ -414,19 +414,25 @@ const skillDescriptionResolvers = await Promise.all(
   }))
 );
 const displayableSkillIds = new Map(
-  skillDescriptionResolvers.map(({ locale, resolver }) => [
-    locale,
-    new Map(
-      rawEnemySkills.map((row) => {
-        const id = String(row.SkillID);
-        return [
-          id,
-          projectEnemySkillDescription(resolver, id, parameterized(row.SkillDesc, row.ParamList))
-            .status === 'available'
-        ] as const;
-      })
-    )
-  ] as const)
+  skillDescriptionResolvers.map(
+    ({ locale, resolver }) =>
+      [
+        locale,
+        new Map(
+          rawEnemySkills.map((row) => {
+            const id = String(row.SkillID);
+            return [
+              id,
+              projectEnemySkillDescription(
+                resolver,
+                id,
+                parameterized(row.SkillDesc, row.ParamList)
+              ).status === 'available'
+            ] as const;
+          })
+        )
+      ] as const
+  )
 );
 const rawTemplateById = new Map(
   rawTemplates.map((row) => [String(row.MonsterTemplateID), row] as const)
@@ -524,10 +530,7 @@ for (const enemy of enemyDetails) {
     if (generatedIndex !== generatedSkillIds.length)
       throw new Error(`Monster ${monster.monsterId} 技能链或顺序异常`);
     for (const skill of monster.skills) {
-      if (
-        skill.localizedTextStatus !== 'available' ||
-        !gameTextToPlain(skill.description).trim()
-      )
+      if (skill.localizedTextStatus !== 'available' || !gameTextToPlain(skill.description).trim())
         throw new Error(`Monster ${monster.monsterId} 技能 ${skill.id} 缺少公开描述`);
       const rawSkill = rawSkillById.get(skill.id);
       const context = { enemyId: enemy.id, skillId: skill.id };
@@ -1073,15 +1076,13 @@ for (const { locale, projection } of [
         )
       ];
       if (
-        JSON.stringify(monster.skills.map((skill) => skill.id)) !==
-        JSON.stringify(expectedSkillIds)
+        JSON.stringify(monster.skills.map((skill) => skill.id)) !== JSON.stringify(expectedSkillIds)
       )
         throw new Error(`Monster ${monster.monsterId} ${locale} 技能显示范围与 SkillDesc 不一致`);
       if (
         monster.skills.some(
           (skill) =>
-            skill.localizedTextStatus !== 'available' ||
-            !gameTextToPlain(skill.description).trim()
+            skill.localizedTextStatus !== 'available' || !gameTextToPlain(skill.description).trim()
         )
       )
         throw new Error(`Monster ${monster.monsterId} ${locale} 包含无公开描述的技能`);

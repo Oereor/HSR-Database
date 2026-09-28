@@ -6,10 +6,7 @@ import { projectEnemies } from '../../scripts/data/projection/enemy';
 const wrapped = (Value: string | number) => ({ Value });
 const hash = (Hash: string) => ({ Hash });
 
-function sourceTables(
-  skill: Record<string, unknown> | Record<string, unknown>[],
-  skillIds = [1]
-) {
+function sourceTables(skill: Record<string, unknown> | Record<string, unknown>[], skillIds = [1]) {
   return {
     MonsterTemplateConfig: [
       {

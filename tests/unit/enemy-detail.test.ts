@@ -121,11 +121,9 @@ describe('Enemy Detail parser/resolver', () => {
       { index: 2, skillIds: ['shared', 'later'] },
       { index: 3, skillIds: ['shared', 'later', 'last'] }
     ]);
-    expect(
-      buildEnemySkillPhases([
-        { id: 'visible-later', phases: [2] }
-      ])
-    ).toEqual([{ index: 2, skillIds: ['visible-later'] }]);
+    expect(buildEnemySkillPhases([{ id: 'visible-later', phases: [2] }])).toEqual([
+      { index: 2, skillIds: ['visible-later'] }
+    ]);
     expect(buildEnemySkillPhases([{ id: 'single', phases: [] }])).toEqual([
       { index: 1, skillIds: ['single'] }
     ]);
