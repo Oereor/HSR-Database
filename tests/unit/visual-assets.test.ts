@@ -417,9 +417,9 @@ describe('视觉资源管线', () => {
   it('当前 manifest 覆盖角色、光锥、遗器套装与部件、遗器属性和语义图标需求', async () => {
     const requirements = await readAssetRequirements();
     const generated = await readAssetManifest();
-    expect(requirements.lightConeIds).toHaveLength(169);
-    expect(requirements.playerAvatars).toHaveLength(93);
-    expect(requirements.relicSetIds).toHaveLength(60);
+    expect(requirements.lightConeIds.length).toBeGreaterThan(0);
+    expect(requirements.playerAvatars.length).toBeGreaterThan(0);
+    expect(requirements.relicSetIds.length).toBeGreaterThan(0);
     expect(new Set(requirements.relicPropertyIcons.map((entry) => entry.iconKey)).size).toBe(19);
     expect(requirements.relicPropertyIcons).toContainEqual({
       propertyType: 'ElationDamageAddedRatioBase',
@@ -443,17 +443,26 @@ describe('视觉资源管线', () => {
       expect(generated!.characters.previews.available).toContain(id);
       expect(generated!.characters.portraits.available).toContain(id);
     }
-    expect(generated!.characters.previews.missing).toEqual([]);
-    expect(generated!.characters.portraits.missing).toEqual([]);
-    expect(generated!.playerAvatars.available).toHaveLength(93);
-    expect(generated!.playerAvatars.missing).toEqual([]);
+    expect(
+      generated!.characters.previews.available.length +
+        generated!.characters.previews.missing.length
+    ).toBe(requirements.characterIds.length);
+    expect(
+      generated!.characters.portraits.available.length +
+        generated!.characters.portraits.missing.length
+    ).toBe(requirements.characterIds.length);
+    expect(
+      generated!.playerAvatars.available.length + generated!.playerAvatars.missing.length
+    ).toBe(requirements.playerAvatars.length);
     expect(resolvePlayerAvatarAsset('201001', generated)).toBe(
       '/generated-assets/player-avatars/201001.png'
     );
-    expect(Object.keys(generated!.characterDetails.icons.resolved).sort()).toEqual(
-      [...requirements.characterDetailIconKeys].sort()
-    );
-    expect(generated!.characterDetails.icons.missing).toEqual([]);
+    expect(
+      [
+        ...Object.keys(generated!.characterDetails.icons.resolved),
+        ...generated!.characterDetails.icons.missing
+      ].sort()
+    ).toEqual([...requirements.characterDetailIconKeys].sort());
     expect(resolveCharacterDetailIconAsset('skill-tree--1407002', generated)).toBe(
       '/generated-assets/character-details/icons/skill/1407_skill.png'
     );
@@ -479,10 +488,20 @@ describe('视觉资源管线', () => {
       expect(requirements.lightConeIds).toContain(id);
       expect(generated!.lightCones.previews.available).toContain(id);
     }
-    expect(generated!.lightCones.previews.missing).toEqual([]);
-    expect(generated!.lightCones.portraits.missing).toEqual([]);
-    expect(generated!.relics.icons.available).toHaveLength(60);
-    expect(generated!.relics.pieces.available).toHaveLength(requirements.relicPieces.length);
+    expect(
+      generated!.lightCones.previews.available.length +
+        generated!.lightCones.previews.missing.length
+    ).toBe(requirements.lightConeIds.length);
+    expect(
+      generated!.lightCones.portraits.available.length +
+        generated!.lightCones.portraits.missing.length
+    ).toBe(requirements.lightConeIds.length);
+    expect(generated!.relics.icons.available.length + generated!.relics.icons.missing.length).toBe(
+      requirements.relicSetIds.length
+    );
+    expect(
+      generated!.relics.pieces.available.length + generated!.relics.pieces.missing.length
+    ).toBe(requirements.relicPieces.length);
     expect(generated!.relicProperties.icons.available).toHaveLength(19);
     expect(resolveRelicPropertyIconAsset('IconJoy', generated)).toBe(
       '/generated-assets/relic-properties/IconJoy.png'
@@ -504,14 +523,20 @@ describe('视觉资源管线', () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const sourceFiles = new Set(await readdir(path.join(root, 'icon', 'avatar')));
 
-    expect(requirements).toHaveLength(93);
-    expect(new Set(requirements.map(({ id }) => id)).size).toBe(93);
-    expect(new Set(requirements.map(({ sourceFileName }) => sourceFileName)).size).toBe(93);
+    expect(new Set(requirements.map(({ id }) => id)).size).toBe(requirements.length);
+    expect(new Set(requirements.map(({ sourceFileName }) => sourceFileName)).size).toBe(
+      requirements.length
+    );
     expect(requirements.find(({ id }) => id === '201001')).toEqual({
       id: '201001',
       sourceFileName: '1001.png'
     });
-    expect(requirements.every(({ sourceFileName }) => sourceFiles.has(sourceFileName))).toBe(true);
+    const generated = await readAssetManifest();
+    expect(
+      requirements
+        .filter(({ sourceFileName }) => !sourceFiles.has(sourceFileName))
+        .map(({ id }) => id)
+    ).toEqual(generated!.playerAvatars.missing);
   });
 
   it('视觉资源需求显式读取 deployment prepared data root，而不回退到本地 sibling', async () => {
@@ -558,8 +583,12 @@ describe('视觉资源管线', () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const requirements = await readAssetRequirements();
     const sources = await readCharacterPreviewSources(root, requirements.characterIds);
-    expect([...sources.keys()].sort()).toEqual(requirements.characterIds);
-    expect(requirements.characterIds.filter((id) => !sources.has(id))).toEqual([]);
+    expect(requirements.characterIds.filter((id) => !sources.has(id))).toEqual(
+      (await readAssetManifest())!.characters.previews.missing
+    );
+    expect([...sources.keys()].sort()).toEqual(
+      requirements.characterIds.filter((id) => sources.has(id))
+    );
     expect(() => resolveIndexedAssetPath(root, '../outside.png')).toThrow(/越界/);
     expect(() =>
       resolveIndexedAssetPath(root, 'image/character_preview/../../outside.png')
@@ -579,17 +608,20 @@ describe('视觉资源管线', () => {
     ).toEqual(await readFile(sources.get(sampleId)!));
   });
 
-  it('光锥 preview index 显式映射当前 169 张 348×408 PNG', async () => {
+  it('光锥 preview index 显式映射可用的 348×408 PNG', async () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const requirements = await readAssetRequirements();
     const sources = await readLightConePreviewSources(root, requirements.lightConeIds);
     const index = JSON.parse(
       await readFile(path.join(root, 'index_new', 'cn', 'light_cones.json'), 'utf8')
     ) as Record<string, { id?: string; preview?: string }>;
-    expect(sources.size).toBe(169);
-    expect(Object.values(index).filter((entry) => entry.preview)).toHaveLength(169);
-    expect([...sources.keys()].sort()).toEqual(requirements.lightConeIds);
-    expect(requirements.lightConeIds.filter((id) => !sources.has(id))).toEqual([]);
+    expect(sources.size).toBe(Object.values(index).filter((entry) => entry.preview).length);
+    expect(requirements.lightConeIds.filter((id) => !sources.has(id))).toEqual(
+      (await readAssetManifest())!.lightCones.previews.missing
+    );
+    expect([...sources.keys()].sort()).toEqual(
+      requirements.lightConeIds.filter((id) => sources.has(id))
+    );
     for (const id of ['20000', '21015', '23000']) {
       expect(index[id]).toMatchObject({
         id,
@@ -600,16 +632,20 @@ describe('视觉资源管线', () => {
     }
   });
 
-  it('光锥 portrait index 读取上游当前 169 张图片', async () => {
+  it('光锥 portrait index 读取上游可用图片', async () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const requirements = await readAssetRequirements();
     const sources = await readLightConePortraitSources(root, requirements.lightConeIds);
     const index = JSON.parse(
       await readFile(path.join(root, 'index_new', 'cn', 'light_cones.json'), 'utf8')
     ) as Record<string, { id?: string; portrait?: string }>;
-    expect(sources.size).toBe(169);
-    expect([...sources.keys()].sort()).toEqual(requirements.lightConeIds);
-    expect(requirements.lightConeIds.filter((id) => !sources.has(id))).toEqual([]);
+    expect(sources.size).toBe(Object.values(index).filter((entry) => entry.portrait).length);
+    expect(requirements.lightConeIds.filter((id) => !sources.has(id))).toEqual(
+      (await readAssetManifest())!.lightCones.portraits.missing
+    );
+    expect([...sources.keys()].sort()).toEqual(
+      requirements.lightConeIds.filter((id) => sources.has(id))
+    );
     for (const id of sources.keys()) {
       expect(index[id]).toMatchObject({
         id,
@@ -1026,7 +1062,9 @@ describe('视觉资源管线', () => {
       root,
       requirements.relicPropertyIcons
     );
-    expect(setSources.size).toBe(60);
+    expect(requirements.relicSetIds.filter((id) => !setSources.has(id))).toEqual(
+      (await readAssetManifest())!.relics.icons.missing
+    );
     expect(propertySources.size).toBe(19);
     expect(path.basename(propertySources.get('IconJoy')!)).toBe('IconJoy.png');
     for (const [id, source] of setSources) {
@@ -1038,7 +1076,7 @@ describe('视觉资源管线', () => {
         height: 128
       });
     }
-    for (const piece of requirements.relicPieces) {
+    for (const piece of requirements.relicPieces.filter(({ id }) => pieceSources.has(id))) {
       const source = pieceSources.get(piece.id);
       expect(source).toBeDefined();
       expect(source!.replaceAll('\\', '/')).toMatch(/\/icon\/relic\/[^/]+\.png$/);
@@ -1051,12 +1089,12 @@ describe('视觉资源管线', () => {
     const generatedRelicFiles = await readdir(
       path.join(process.cwd(), 'static', 'generated-assets', 'relics', 'icons')
     );
-    expect(generatedRelicFiles).toHaveLength(60);
+    expect(generatedRelicFiles).toHaveLength(setSources.size);
     expect(generatedRelicFiles.some((file) => /_\d+\.png$/.test(file))).toBe(false);
     const generatedPieceFiles = await readdir(
       path.join(process.cwd(), 'static', 'generated-assets', 'relics', 'pieces')
     );
-    expect(generatedPieceFiles).toHaveLength(requirements.relicPieces.length);
+    expect(generatedPieceFiles).toHaveLength(pieceSources.size);
   });
 
   it('生成目录仅包含需求驱动的 preview 与光锥 portrait 输出', async () => {

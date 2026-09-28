@@ -1,9 +1,7 @@
-import {
-  loadEnemySkillInclusionPolicy,
-  isIncludedEnemySkill,
-  normalizeEnemySkillKind,
-  normalizeEnemySkillTag
-} from './enemy-skill-policy.js';
+import { normalizeEnemySkillKind, normalizeEnemySkillTag } from './enemy-skill-policy.js';
+import { createTextResolver } from './localization.js';
+import { parameterized } from './domain/shared.js';
+import { projectEnemySkillDescription } from './projection/enemy.js';
 import {
   buildSearchDocuments,
   loadPlayerAliases,
@@ -51,7 +49,11 @@ import {
 } from './avatar-special-skills.js';
 import { auditRoot, generatedRoot, staticGeneratedRoot } from './paths.js';
 import { readTable } from './raw.js';
-import { enemySpecialResistanceLabels, resolveCanonicalEnemyStats } from './enemy-detail.js';
+import {
+  buildEnemySkillPhases,
+  enemySpecialResistanceLabels,
+  resolveCanonicalEnemyStats
+} from './enemy-detail.js';
 import {
   addDecimals,
   decimalOf,
@@ -401,8 +403,37 @@ const [rawTemplates, rawConfigs, rawHardLevels, rawElites, rawEnemySkills] = awa
   readTable<Record<string, any>>(rawRoot, 'EliteGroup'),
   readTable<Record<string, any>>(rawRoot, 'MonsterSkillConfig')
 ]);
-const inclusionPolicy = await loadEnemySkillInclusionPolicy();
 const rawSkillById = new Map(rawEnemySkills.map((row) => [String(row.SkillID), row]));
+const skillDescriptionResolvers = await Promise.all(
+  (['zh-CN', 'en'] as const).map(async (locale) => ({
+    locale,
+    resolver: await createTextResolver(
+      { locale, textMapCode: locale === 'zh-CN' ? 'CHS' : 'EN' },
+      currentTextMaps[locale]
+    )
+  }))
+);
+const displayableSkillIds = new Map(
+  skillDescriptionResolvers.map(
+    ({ locale, resolver }) =>
+      [
+        locale,
+        new Map(
+          rawEnemySkills.map((row) => {
+            const id = String(row.SkillID);
+            return [
+              id,
+              projectEnemySkillDescription(
+                resolver,
+                id,
+                parameterized(row.SkillDesc, row.ParamList)
+              ).status === 'available'
+            ] as const;
+          })
+        )
+      ] as const
+  )
+);
 const rawTemplateById = new Map(
   rawTemplates.map((row) => [String(row.MonsterTemplateID), row] as const)
 );
@@ -493,28 +524,13 @@ for (const enemy of enemyDetails) {
 
     const rawSkillIds = (rawMonster.SkillList ?? []).map(String);
     const generatedSkillIds = monster.skills.map((skill) => skill.id);
-    const expectedSkillIds = rawSkillIds.filter((id: string) => {
-      const row = rawSkillById.get(id);
-      return row && isIncludedEnemySkill(row, inclusionPolicy);
-    });
-    if (
-      JSON.stringify([...new Set(generatedSkillIds)]) !==
-      JSON.stringify([...new Set(expectedSkillIds)])
-    )
-      throw new Error(
-        `Monster ${monster.monsterId} neutral skill inclusion differs from reviewed policy`
-      );
     let generatedIndex = 0;
     for (const rawSkillId of rawSkillIds)
       if (rawSkillId === generatedSkillIds[generatedIndex]) generatedIndex += 1;
     if (generatedIndex !== generatedSkillIds.length)
       throw new Error(`Monster ${monster.monsterId} 技能链或顺序异常`);
     for (const skill of monster.skills) {
-      if (
-        skill.localizedTextStatus !== 'available' ||
-        !skill.description.trim() ||
-        skill.description === '资料未提供'
-      )
+      if (skill.localizedTextStatus !== 'available' || !gameTextToPlain(skill.description).trim())
         throw new Error(`Monster ${monster.monsterId} 技能 ${skill.id} 缺少公开描述`);
       const rawSkill = rawSkillById.get(skill.id);
       const context = { enemyId: enemy.id, skillId: skill.id };
@@ -1044,6 +1060,40 @@ const [zhProjection, enProjection, enSearchInputs] = await Promise.all([
   )
 ]);
 assertCrossLocaleStructuralParity(zhProjection, enProjection);
+
+for (const { locale, projection } of [
+  { locale: 'zh-CN' as const, projection: zhProjection },
+  { locale: 'en' as const, projection: enProjection }
+]) {
+  const visibleById = displayableSkillIds.get(locale)!;
+  for (const enemy of (projection.details as { enemies: Enemy[] }).enemies) {
+    for (const monster of enemy.monsters) {
+      const rawMonster = rawConfigByMonsterId.get(monster.monsterId);
+      if (!rawMonster) throw new Error(`Monster ${monster.monsterId} 缺少 raw config`);
+      const expectedSkillIds = [
+        ...new Set(
+          (rawMonster.SkillList ?? []).map(String).filter((id: string) => visibleById.get(id))
+        )
+      ];
+      if (
+        JSON.stringify(monster.skills.map((skill) => skill.id)) !== JSON.stringify(expectedSkillIds)
+      )
+        throw new Error(`Monster ${monster.monsterId} ${locale} 技能显示范围与 SkillDesc 不一致`);
+      if (
+        monster.skills.some(
+          (skill) =>
+            skill.localizedTextStatus !== 'available' || !gameTextToPlain(skill.description).trim()
+        )
+      )
+        throw new Error(`Monster ${monster.monsterId} ${locale} 包含无公开描述的技能`);
+      if (
+        JSON.stringify(monster.skillPhases) !==
+        JSON.stringify(buildEnemySkillPhases(monster.skills))
+      )
+        throw new Error(`Monster ${monster.monsterId} ${locale} 阶段与公开技能不一致`);
+    }
+  }
+}
 
 for (const projection of [
   { locale: 'zh-CN' as const, value: zhProjection },

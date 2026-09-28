@@ -1,11 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { enemySkillSourceSignature } from '../../scripts/data/enemy-skill-policy';
 import { buildEnemyDomain } from '../../scripts/data/domain/enemy';
+import { createTextResolver } from '../../scripts/data/localization';
+import { projectEnemies } from '../../scripts/data/projection/enemy';
 
 const wrapped = (Value: string | number) => ({ Value });
 const hash = (Hash: string) => ({ Hash });
 
-function sourceTables(skill: Record<string, unknown>) {
+function sourceTables(skill: Record<string, unknown> | Record<string, unknown>[], skillIds = [1]) {
   return {
     MonsterTemplateConfig: [
       {
@@ -48,7 +49,7 @@ function sourceTables(skill: Record<string, unknown>) {
         StanceWeakList: ['Fire'],
         DamageTypeResistance: [],
         DebuffResist: [],
-        SkillList: [1],
+        SkillList: skillIds,
         SummonIDList: [200]
       },
       {
@@ -68,7 +69,7 @@ function sourceTables(skill: Record<string, unknown>) {
         SummonIDList: []
       }
     ],
-    MonsterSkillConfig: [skill],
+    MonsterSkillConfig: Array.isArray(skill) ? skill : [skill],
     DamageType: [{ ID: 'Fire', DamageTypeName: hash('3000') }],
     HardLevelGroup: [
       {
@@ -97,7 +98,7 @@ function sourceTables(skill: Record<string, unknown>) {
 }
 
 describe('EnemyDomain', () => {
-  it('retains neutral TextRefs, stable IDs, and structural skill inclusion state', () => {
+  it('retains neutral TextRefs, stable IDs, and configured skills without a display snapshot', () => {
     const skill = {
       SkillID: 1,
       SkillName: hash('4000'),
@@ -109,21 +110,7 @@ describe('EnemyDomain', () => {
       ExtraEffectIDList: []
     };
     const tables = sourceTables(skill);
-    const result = buildEnemyDomain({
-      tables,
-      inclusionPolicy: {
-        schemaVersion: 1,
-        sourceCommit: 'test',
-        reason: 'test',
-        skills: {
-          '1': {
-            sourceSignature: enemySkillSourceSignature(skill),
-            included: false,
-            descriptionHash: null
-          }
-        }
-      }
-    });
+    const result = buildEnemyDomain({ tables });
     const enemy = result.enemies.find((item) => item.id === '100')!;
     const domainSkill = enemy.monsters[0].skills[0];
 
@@ -135,9 +122,10 @@ describe('EnemyDomain', () => {
     expect(domainSkill).toMatchObject({
       id: '1',
       kind: 'skill',
-      tagCode: 'Bounce',
-      included: false
+      tagCode: 'Bounce'
     });
+    expect(domainSkill).not.toHaveProperty('included');
+    expect(enemy.monsters[0]).not.toHaveProperty('skillPhases');
     expect(domainSkill.nameSource).toEqual({ kind: 'direct', ref: { kind: 'hash', hash: '4000' } });
     expect(domainSkill.descriptionSource).toEqual({
       kind: 'parameterized',
@@ -162,22 +150,78 @@ describe('EnemyDomain', () => {
       ParamList: [],
       ExtraEffectIDList: []
     };
+    expect(() => buildEnemyDomain({ tables: sourceTables(skill) })).toThrow(
+      /Unknown enemy skill source/
+    );
     expect(() =>
       buildEnemyDomain({
-        tables: sourceTables(skill),
-        inclusionPolicy: {
-          schemaVersion: 1,
-          sourceCommit: 'test',
-          reason: 'test',
-          skills: {
-            '1': {
-              sourceSignature: enemySkillSourceSignature(skill),
-              included: true,
-              descriptionHash: null
-            }
-          }
-        }
+        tables: sourceTables({
+          ...skill,
+          SkillTypeDesc: hash('4236760374151560033'),
+          SkillTag: hash('999999')
+        })
       })
     ).toThrow(/Unknown enemy skill source/);
+  });
+
+  it('projects each locale from its description and accepts changed or newly configured rows', async () => {
+    const skill = (id: number, descriptionHash: string, phases: number[]) => ({
+      SkillID: id,
+      SkillName: hash('4000'),
+      SkillDesc: hash(descriptionHash),
+      SkillTypeDesc: hash('4236760374151560033'),
+      SkillTag: hash('3319273756603801898'),
+      PhaseList: phases,
+      ParamList: [],
+      ExtraEffectIDList: [],
+      SPHitBase: wrapped('42')
+    });
+    const domain = buildEnemyDomain({
+      tables: sourceTables(
+        [skill(1, '4001', [2]), skill(2, '4002', [1]), skill(3, '4003', [3])],
+        [1, 2, 1, 3]
+      )
+    }).enemies;
+    expect(() =>
+      buildEnemyDomain({
+        tables: sourceTables(
+          [
+            { ...skill(1, '4001', [2]), SPHitBase: wrapped('99') },
+            skill(2, '4002', [1]),
+            skill(3, '4003', [3])
+          ],
+          [1, 2, 1, 3]
+        )
+      })
+    ).not.toThrow();
+    const byId = new Map(domain.map((enemy) => [enemy.id, enemy]));
+    const text: Record<string, string> = {
+      '4000': 'Skill',
+      '4001': 'Visible',
+      '4003': 'Also visible',
+      '4236760374151560033': 'Skill',
+      '3319273756603801898': 'Bounce'
+    };
+    const project = async (locale: 'zh-CN' | 'en', map: Record<string, string>) =>
+      projectEnemies(domain, {
+        resolver: await createTextResolver(
+          { locale, textMapCode: locale === 'zh-CN' ? 'CHS' : 'EN' },
+          map
+        ),
+        enemiesById: byId,
+        extraEffectsById: new Map()
+      }).enemies.find((enemy) => enemy.id === '100')!.defaultMonster;
+    const chinese = await project('zh-CN', text);
+    expect(chinese.skills.map(({ id }) => id)).toEqual(['1', '3']);
+    expect(chinese.skillPhases).toEqual([
+      { index: 2, skillIds: ['1'] },
+      { index: 3, skillIds: ['3'] }
+    ]);
+    const english = await project('en', { ...text, '4001': ' ', '4002': 'English text' });
+    expect(english.skills.map(({ id }) => id)).toEqual(['2', '3']);
+    expect(english.skillPhases).toEqual([
+      { index: 1, skillIds: ['2'] },
+      { index: 3, skillIds: ['3'] }
+    ]);
   });
 });

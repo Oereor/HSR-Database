@@ -81,7 +81,8 @@ function productionState() {
   assertPlayerRuntimeData(runtime);
   const model = compileProbabilityModel(probabilityJson, runtime);
   const ids = profiles.profiles.map((profile) => profile.characterId).sort();
-  if (ids.length !== 97 || new Set(ids).size !== 97)
+  const expectedIds = Object.keys(runtime.avatarPromotions).sort();
+  if (ids.length !== new Set(ids).size || ids.join(',') !== expectedIds.join(','))
     throw new Error('[relic-score/benchmark] production profile coverage');
   const cases = ids.flatMap((characterId) =>
     RELIC_SLOTS.flatMap((slot) =>

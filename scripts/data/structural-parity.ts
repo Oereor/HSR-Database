@@ -24,7 +24,7 @@ combatLevels combatMetaLevels combatMeta effect code known tag damageType stance
 const equipmentFields = `pieces effects effectRequirements required allowedMainSlots canBeSubStat releaseVersion
 equipmentRecommendation sourceLabelSources slotCode pathCode categoryCode typeCode`;
 const enemyFields = `template monsters defaultMonsterId defaultMonster modifiers stats weaknesses resistances
-specialResistances summons skills skillPhases phaseList tag damageType included visible
+specialResistances summons skills skillPhases phaseList tag damageType visible
 hardLevelGroup eliteGroup baseStats criticalDamage`;
 const endgameFields = `groups encounters battles stages schedule waveModel waves enemies orderedEnemies monsterGroups
 spawnSequence maxMonsterCount maxTeammateCount ability params clearPreviousAbility stageAbilities
@@ -56,18 +56,26 @@ const localizedContainers = new Set([
 
 type StructuralDomain = keyof typeof neutralFieldsByDomain;
 
-function project(value: unknown, key: string, parent: string, admitted: Set<string>): unknown {
+function project(
+  value: unknown,
+  key: string,
+  parent: string,
+  admitted: Set<string>,
+  domain: StructuralDomain
+): unknown {
   if (localizedContainers.has(key)) return undefined;
+  // Public Enemy skills and their phase memberships depend on each locale's SkillDesc.
+  if (domain === 'enemies' && (key === 'skills' || key === 'skillPhases')) return undefined;
   if (Array.isArray(value))
     return value
-      .map((item) => project(item, key, parent, admitted))
+      .map((item) => project(item, key, parent, admitted, domain))
       .filter((item) => item !== undefined);
   if (value && typeof value === 'object')
     return Object.fromEntries(
       Object.entries(value)
         .sort(([left], [right]) => left.localeCompare(right, 'en'))
         .flatMap(([childKey, child]) => {
-          const projected = project(child, childKey, key, admitted);
+          const projected = project(child, childKey, key, admitted, domain);
           return projected === undefined ? [] : [[childKey, projected]];
         })
     );
@@ -99,7 +107,7 @@ function firstDifference(left: unknown, right: unknown, current = '$'): string {
 }
 
 export function stableStructuralProjection(value: unknown, domain: StructuralDomain): unknown {
-  return project(value, domain, '', neutralFieldsByDomain[domain]);
+  return project(value, domain, '', neutralFieldsByDomain[domain], domain);
 }
 
 export interface StructuralParityProjection {

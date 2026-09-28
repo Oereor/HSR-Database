@@ -1,5 +1,3 @@
-import { createHash } from 'node:crypto';
-import { readFile } from 'node:fs/promises';
 import type { SemanticTag } from '../../src/lib/domain/types.js';
 import { hashOf } from './raw.js';
 
@@ -63,66 +61,15 @@ export function normalizeEnemySkillTag(
     known: true
   };
 }
-export interface EnemySkillInclusionPolicy {
-  schemaVersion: 1;
-  sourceCommit: string;
-  reason: string;
-  skills: Record<
-    string,
-    { sourceSignature: string; included: boolean; descriptionHash: string | null }
-  >;
-}
-function canonical(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(canonical);
-  if (value && typeof value === 'object')
-    return Object.fromEntries(
-      Object.entries(value)
-        .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))
-        .map(([k, v]) => [k, canonical(v)])
-    );
-  return value;
-}
-/** Raw source only: includes hash provenance, never resolved text. */
-export function enemySkillSourceSignature(row: Record<string, unknown>) {
-  return createHash('sha256')
-    .update(JSON.stringify(canonical(row)))
-    .digest('hex');
-}
-export async function loadEnemySkillInclusionPolicy(): Promise<EnemySkillInclusionPolicy> {
-  const policy = JSON.parse(
-    await readFile(
-      new URL('../../data/policies/enemy-skill-inclusion.json', import.meta.url),
-      'utf8'
-    )
-  );
-  if (policy.schemaVersion !== 1) throw new Error('Unsupported enemy inclusion policy');
-  return policy;
-}
-export function isIncludedEnemySkill(
-  row: Record<string, unknown>,
-  policy: EnemySkillInclusionPolicy
-): boolean {
-  const id = String(row.SkillID);
-  const entry = policy.skills[id];
-  if (!entry || entry.sourceSignature !== enemySkillSourceSignature(row))
-    throw new Error(
-      `MonsterSkillConfig.${id} inclusion source changed; review neutral policy before generation`
-    );
-  return entry.included;
-}
-
 /**
  * Resolve only locale-neutral Enemy skill semantics.  This function must not
  * consult TextMap or translated labels; the returned refs are projected later.
  */
 export function classifyEnemySkillSource(
   row: Record<string, unknown>,
-  context: EnemySkillSourceContext,
-  policy: EnemySkillInclusionPolicy
+  context: EnemySkillSourceContext
 ) {
-  const visible = isIncludedEnemySkill(row, policy);
   return {
-    visible,
     kind: normalizeEnemySkillKind(row.SkillTypeDesc, '', context),
     tag: normalizeEnemySkillTag(row.SkillTag, '', context)
   };

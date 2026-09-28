@@ -1,3 +1,5 @@
+# HISTORICAL / NON-NORMATIVE — see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md) for the current system.
+
 # i18n/l10n Architecture Rebaseline Audit
 
 **Audit date:** 2026-09-06

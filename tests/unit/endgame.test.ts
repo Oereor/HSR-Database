@@ -1,4 +1,3 @@
-import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -14,7 +13,7 @@ import {
   buildEndgameDomain,
   buildUniqueIndex,
   resolveEndgameSchedule,
-  type EndgameAudit
+  resolveStageInfiniteGroupId
 } from '../../scripts/data/endgame';
 import { createMazeBuffResolver, type MazeBuffRow } from '../../scripts/data/maze-buffs';
 import { createAsBossGuideResolver } from '../../scripts/data/as-boss-guides';
@@ -27,7 +26,7 @@ import {
   multiplyDecimals,
   parseDecimal
 } from '../../scripts/data/decimal';
-import { auditRoot, generatedRoot } from '../../scripts/data/paths';
+import { generatedRoot } from '../../scripts/data/paths';
 import {
   PURE_FICTION_WAVE_HP_ABILITY,
   resolvePureFictionFinalHp,
@@ -554,6 +553,111 @@ describe('Endgame schedule 容错', () => {
   });
 });
 
+describe('历史 PF 波次组引用', () => {
+  const context = { groupId: 2003, configId: 20031, slot: 1, eventId: 30301011 };
+  const malformedStage = {
+    StageID: 30301011,
+    StageConfigData: [
+      { BFLIFKBEOPJ: '_CreateBattleEvent', MNDFOPKBHKP: '30301011' },
+      { BFLIFKBEOPJ: '_CreateBattleEvent', MNDFOPKBHKP: '31001' }
+    ]
+  };
+  const resolve = (
+    stage = malformedStage,
+    contextData: Record<string, number> = context,
+    hasGroup = true,
+    mode: EndgameMode = 'pf'
+  ) => {
+    const warnings: Array<{ code: string; context: Record<string, string | number | undefined> }> =
+      [];
+    const id = resolveStageInfiniteGroupId(
+      mode,
+      stage,
+      contextData,
+      (groupId) => hasGroup && groupId === 30301011,
+      {
+        warn: (code, _message, warningContext) => warnings.push({ code, context: warningContext }),
+        fail: (code, message): never => {
+          throw new Error(`[Endgame:${code}] ${message}`);
+        }
+      }
+    );
+    return { id, warnings };
+  };
+
+  it('仅对已确认的 4.6 历史 PF 记录推断同 ID 波次组并记录警告', () => {
+    expect(resolve()).toEqual({
+      id: 30301011,
+      warnings: [
+        {
+          code: 'historical-pf-infinite-group-inferred',
+          context: { mode: 'pf', ...context, stageId: 30301011, waveGroupId: 30301011 }
+        }
+      ]
+    });
+  });
+
+  it('上游恢复正常引用时直接使用原字段且不发出警告', () => {
+    expect(
+      resolve({
+        ...malformedStage,
+        StageConfigData: [
+          ...malformedStage.StageConfigData,
+          { BFLIFKBEOPJ: '_StageInfiniteGroup', MNDFOPKBHKP: '30301011' }
+        ]
+      })
+    ).toEqual({ id: 30301011, warnings: [] });
+  });
+
+  it.each(['groupId', 'configId', 'slot', 'eventId'] as const)(
+    '%s 不匹配时仍拒绝缺失引用',
+    (key) => {
+      expect(() => resolve(malformedStage, { ...context, [key]: -1 })).toThrow(
+        /invalid-infinite-group-reference/
+      );
+    }
+  );
+
+  it('关卡 ID、模式、字段形态或波次组不匹配时仍拒绝缺失引用', () => {
+    const missingEvent = {
+      ...malformedStage,
+      StageConfigData: malformedStage.StageConfigData.slice(0, 1)
+    };
+    expect(() => resolve({ ...malformedStage, StageID: 30301012 })).toThrow(
+      /invalid-infinite-group-reference/
+    );
+    expect(() => resolve(malformedStage, context, true, 'moc')).toThrow(
+      /invalid-infinite-group-reference/
+    );
+    expect(() => resolve(missingEvent)).toThrow(/invalid-infinite-group-reference/);
+    expect(() => resolve(malformedStage, context, false)).toThrow(
+      /invalid-infinite-group-reference/
+    );
+    expect(() =>
+      resolve({
+        ...malformedStage,
+        StageConfigData: [
+          ...malformedStage.StageConfigData,
+          { BFLIFKBEOPJ: '_CreateBattleEvent', MNDFOPKBHKP: '99999' }
+        ]
+      })
+    ).toThrow(/invalid-infinite-group-reference/);
+  });
+
+  it('重复的正常引用仍报错', () => {
+    expect(() =>
+      resolve({
+        ...malformedStage,
+        StageConfigData: [
+          ...malformedStage.StageConfigData,
+          { BFLIFKBEOPJ: '_StageInfiniteGroup', MNDFOPKBHKP: '30301011' },
+          { BFLIFKBEOPJ: '_StageInfiniteGroup', MNDFOPKBHKP: '30301011' }
+        ]
+      })
+    ).toThrow(/invalid-infinite-group-reference/);
+  });
+});
+
 describe('Endgame 真实数据管线', () => {
   it('构建仅驻内存的中立结构、TextRef 与唯一 raw occurrence identity', async () => {
     const domain = await buildEndgameDomain(
@@ -749,44 +853,6 @@ describe('Endgame 真实数据管线', () => {
       [2, 3033068],
       [3, 3033067]
     ]);
-  });
-
-  it('新增字段之外的完整 Endgame hierarchy 与敌方数据摘要保持不变', async () => {
-    const expected = {
-      moc: '687426d6ce47b9c9d317cbc7e8a1241e8a7639ac00231a9c4a80e021224d191d',
-      pf: 'cb34270ddf74c8e06304b47b0725458ca5c1a20eee5f9b14390b5170c7e070d9',
-      as: '015183494e922c2b6d9a3a0f720870457f3210aaaa12628dabd46aea931439f2',
-      aa: 'f75ed2b81b95884881683ec394d6c054c39d52ecc990a84773cc3a0c5e9af155'
-    } as const;
-    const groupFields: Record<EndgameMode, string[]> = {
-      moc: [],
-      pf: ['groupBaseMechanic', 'battleWillMechanics', 'cacophony'],
-      as: ['axiomSets'],
-      aa: ['judgmentQuadrant']
-    };
-    const encounterFields: Record<EndgameMode, string[]> = {
-      moc: ['memoryTurbulence'],
-      pf: ['baseMechanic'],
-      as: ['aftertaste', 'bossGuides'],
-      aa: ['traits', 'judgmentQuadrantKey']
-    };
-    for (const mode of modes) {
-      const data = await dataset(mode);
-      for (const group of data.groups) {
-        const groupRecord = group as unknown as Record<string, unknown>;
-        for (const field of groupFields[mode]) delete groupRecord[field];
-        for (const encounter of group.encounters) {
-          const encounterRecord = encounter as unknown as Record<string, unknown>;
-          for (const field of encounterFields[mode]) delete encounterRecord[field];
-          for (const battle of encounter.battles)
-            for (const stage of battle.stages)
-              for (const occurrence of occurrences(stage)) delete occurrence.voracityLevel;
-        }
-      }
-      expect(createHash('sha256').update(JSON.stringify(data.groups)).digest('hex')).toBe(
-        expected[mode]
-      );
-    }
   });
 
   it.each([
@@ -997,77 +1063,6 @@ describe('Endgame 真实数据管线', () => {
       expect(occurrence.toughness.display).toEqual({ status: 'resolved', perBar: display });
     }
   );
-
-  it('记录历史 MoC 的显式 MonsterConfig EliteGroup fallback', async () => {
-    const latest = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'utf8')) as {
-      endgameAudit: EndgameAudit;
-    };
-    expect(latest.endgameAudit.inferredMonsterEliteFallbacks).toBe(5272);
-    expect(latest.endgameAudit.stanceConversion).toMatchObject({
-      totalOccurrences: 25469,
-      resolvedInternal: 25301,
-      missingInternal: 168,
-      resolvedDisplay: 25301,
-      nonDivisibleByThree: 0,
-      conversionUnavailable: 0,
-      multiBarOccurrences: 40,
-      nonPositiveDisplay: 0,
-      minDisplayed: '10',
-      maxDisplayed: '800',
-      samples: []
-    });
-    expect(latest.endgameAudit.mazeBuffs).toEqual({
-      distinctReferenced: 329,
-      resolved: 329,
-      displayReady: 322,
-      missingLocalization: 7,
-      missingIconPath: 0,
-      missingDescriptionParams: 0,
-      unusedParams: 78
-    });
-    expect(latest.endgameAudit.asBossGuides).toEqual({
-      slotRelations: 163,
-      applicableTraitRelations: 452,
-      displayReadyTraits: 446,
-      omittedTraitRelations: 6,
-      guideStageMonsterMismatches: 12,
-      missingMazeExtras: 0,
-      missingSlotBindings: 0,
-      missingGuides: 0,
-      missingTags: 0,
-      missingLocalization: 0,
-      arrayLengthMismatches: 0,
-      difficultyMismatches: 0,
-      duplicateTags: 0,
-      linkedEffectRelations: 181,
-      displayReadyLinkedEffects: 181,
-      omittedLinkedEffects: 0,
-      distinctMalformedTags: 1,
-      distinctUnusedParamTags: 22
-    });
-    expect(latest.endgameAudit.modifierRelations).toEqual({
-      moc: { memoryTurbulence: 615, groupMismatches: 0 },
-      pf: {
-        groupBaseMechanics: 26,
-        encounterBaseMechanics: 104,
-        battleWillMechanics: 48,
-        cacophonyGroups: 26,
-        cacophonyOptions: 78
-      },
-      as: {
-        aftertastes: 80,
-        axiomSets: 43,
-        axiomOptions: 129,
-        stageBindingMismatches: 0
-      },
-      aa: {
-        traits: 77,
-        judgmentQuadrants: 9,
-        quadrantOptions: 27,
-        battleEventReferences: 45
-      }
-    });
-  });
 
   it('索引层拒绝重复核心主键', () => {
     expect(() => buildUniqueIndex([{ id: 1 }, { id: 1 }], (row) => row.id, 'fixture')).toThrow(

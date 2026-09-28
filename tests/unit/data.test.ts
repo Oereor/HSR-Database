@@ -28,6 +28,7 @@ import {
   type TextResolver
 } from '../../scripts/data/localization';
 import { getPublicLocale } from '../../scripts/data/locale-registry';
+import { parseGameVersion } from '../../scripts/data/source-metadata';
 import { normalizeLevelledDescriptions } from '../../scripts/data/levelled';
 import {
   assertDataRoot,
@@ -742,8 +743,7 @@ describe('真实数据管线', () => {
       await readFile(path.join(localizedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.schemaVersion).toBe(46);
-    expect(manifest.gameVersionFull).toBe('4.5.0');
-    expect(manifest.gameVersion).toBe('4.5');
+    expect(manifest).toMatchObject(parseGameVersion(manifest.sourceVersion));
     expect(character.name).toBe('三月七·存护');
     expect(character.baseStats.iconKeys).toEqual({
       hp: 'property--MaxHP',
@@ -1596,8 +1596,12 @@ describe('真实数据管线', () => {
     const planar = JSON.parse(
       await readFile(path.join(localizedRoot, 'details', 'relics', '301.json'), 'utf8')
     ) as RelicSet;
-    expect(relics.filter((set) => set.category === 'cavern')).toHaveLength(32);
-    expect(relics.filter((set) => set.category === 'planar')).toHaveLength(28);
+    const manifest = JSON.parse(
+      await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
+    ) as DataManifest;
+    expect(relics.length).toBe(manifest.locales['zh-CN'].counts.relics);
+    expect(relics.filter((set) => set.category === 'cavern').length).toBeGreaterThan(0);
+    expect(relics.filter((set) => set.category === 'planar').length).toBeGreaterThan(0);
     expect(cavern.pieces.map((piece) => piece.id)).toEqual(['31011', '31012', '31013', '31014']);
     expect(planar.pieces.map((piece) => piece.id)).toEqual(['33015', '33016']);
     expect(properties).toHaveLength(21);

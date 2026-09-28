@@ -159,20 +159,53 @@ export interface StageInvasionRow {
   MonsterInvasionList: Array<{ DBLDCKODNEN: Id }>;
 }
 
-const VORACITY_LEVEL_BY_INVASION_ID: Readonly<Partial<Record<number, number>>> = { 1: 1, 2: 2 };
+export interface StageInvasionBuffRow {
+  InvasionID: Id;
+  MazeBuffID: Id;
+}
 
 export function createVoracityResolver(
   rows: readonly StageInvasionRow[],
+  invasionBuffRows: readonly StageInvasionBuffRow[],
+  mazeBuffRows: readonly MazeBuffRow[],
   issues: Pick<Diagnostics, 'warn'>
 ): (stageId: number, monsterId: number) => number | undefined {
   const rules = buildUniqueIndex(rows, (row) => row.StageID, 'StageInvasionConfig.StageID');
+  const invasionBuffs = groupBy(invasionBuffRows, (row) => row.InvasionID);
+  const mazeBuffs = groupBy(mazeBuffRows, (row) => row.ID);
   const levels = new Map<number, Map<number, number>>();
   for (const row of rules.values()) {
-    const level = VORACITY_LEVEL_BY_INVASION_ID[row.InvasionID];
-    if (level === undefined) {
-      issues.warn('unknown-voracity-invasion', '未知 InvasionID，跳过贪饕污染标识', {
+    const invasionMatches = invasionBuffs.get(String(row.InvasionID)) ?? [];
+    if (invasionMatches.length !== 1) {
+      issues.warn('unknown-voracity-invasion', 'InvasionID 必须对应唯一污染配置', {
         stageId: row.StageID,
-        invasionId: row.InvasionID
+        invasionId: row.InvasionID,
+        matches: invasionMatches.length
+      });
+      continue;
+    }
+    const mazeBuffId = invasionMatches[0].MazeBuffID;
+    const buffMatches = (mazeBuffs.get(String(mazeBuffId)) ?? []).filter(
+      (buff) => (buff.Lv ?? 1) === 1
+    );
+    if (buffMatches.length !== 1) {
+      issues.warn('unknown-voracity-maze-buff', '污染配置必须对应唯一 Lv=1 MazeBuff', {
+        stageId: row.StageID,
+        invasionId: row.InvasionID,
+        mazeBuffId,
+        matches: buffMatches.length
+      });
+      continue;
+    }
+    const bindingKey = buffMatches[0].InBattleBindingKey;
+    const match = bindingKey?.match(/^ChallengePeakBattle_GluttonyAbility_LV([1-9]\d*)$/);
+    const level = match ? Number(match[1]) : undefined;
+    if (level === undefined || !Number.isSafeInteger(level)) {
+      issues.warn('invalid-voracity-binding', '污染 MazeBuff 的绑定键没有有效等级', {
+        stageId: row.StageID,
+        invasionId: row.InvasionID,
+        mazeBuffId,
+        bindingKey
       });
       continue;
     }
@@ -454,13 +487,70 @@ class Diagnostics {
     throw new Error(`[Endgame:${code}] ${message}${rendered ? ` (${rendered})` : ''}`);
   }
 
-  warn(code: string, message: string, context: EndgameDiagnosticSample['context']): void {
+  warn(
+    code: string,
+    message: string,
+    context: EndgameDiagnosticSample['context'],
+    prioritizeSample = false
+  ): void {
     const key = JSON.stringify([code, context]);
     if (this.warningKeys.has(key)) return;
     this.warningKeys.add(key);
     this.warningCount += 1;
-    if (this.warnings.length < MAX_SAMPLES) this.warnings.push({ code, message, context });
+    if (prioritizeSample) {
+      this.warnings.unshift({ code, message, context });
+      if (this.warnings.length > MAX_SAMPLES) this.warnings.pop();
+    } else if (this.warnings.length < MAX_SAMPLES) {
+      this.warnings.push({ code, message, context });
+    }
   }
+}
+
+export function resolveStageInfiniteGroupId(
+  mode: EndgameMode,
+  stage: Pick<StageRow, 'StageID' | 'StageConfigData'>,
+  contextData: Record<string, string | number | undefined>,
+  hasInfiniteGroup: (id: number) => boolean,
+  diagnostics: Pick<Diagnostics, 'fail' | 'warn'>
+): number {
+  const entries = stage.StageConfigData ?? [];
+  const matches = entries.filter((entry) => entry.BFLIFKBEOPJ === '_StageInfiniteGroup');
+  if (matches.length === 1)
+    return integer(matches[0].MNDFOPKBHKP, 'StageConfigData._StageInfiniteGroup');
+
+  // 4.6 mislabels the historical PF stage's group reference as a battle event.
+  // Keep this inference tied to the exact observed row so other broken references fail.
+  const battleEvents = entries
+    .filter((entry) => entry.BFLIFKBEOPJ === '_CreateBattleEvent')
+    .map((entry) => entry.MNDFOPKBHKP);
+  if (
+    matches.length === 0 &&
+    mode === 'pf' &&
+    contextData.groupId === 2003 &&
+    contextData.configId === 20031 &&
+    contextData.slot === 1 &&
+    contextData.eventId === 30301011 &&
+    stage.StageID === 30301011 &&
+    battleEvents.length === 2 &&
+    battleEvents.includes('30301011') &&
+    battleEvents.includes('31001') &&
+    hasInfiniteGroup(30301011)
+  ) {
+    diagnostics.warn(
+      'historical-pf-infinite-group-inferred',
+      '4.6 历史 PF 关卡缺少 _StageInfiniteGroup，临时使用同 ID 的 StageInfiniteGroup',
+      { mode, ...contextData, stageId: stage.StageID, waveGroupId: 30301011 },
+      true
+    );
+    return 30301011;
+  }
+
+  diagnostics.fail('invalid-infinite-group-reference', '关卡必须包含唯一 _StageInfiniteGroup', {
+    mode,
+    ...contextData,
+    stageId: stage.StageID,
+    referenceCount: matches.length
+  });
 }
 
 interface Tables {
@@ -475,6 +565,7 @@ interface Tables {
   planeEvents: PlaneEventRow[];
   stages: StageRow[];
   stageInvasions: StageInvasionRow[];
+  stageInvasionBuffs: StageInvasionBuffRow[];
   monsters: MonsterRow[];
   templates: MonsterTemplateRow[];
   hardLevels: HardLevelRow[];
@@ -528,6 +619,7 @@ async function loadTables(root: string): Promise<Tables> {
     planeEvents: table.PlaneEvent,
     stages: table.StageConfig,
     stageInvasions: table.StageInvasionConfig,
+    stageInvasionBuffs: table.StageInvasionBuff,
     monsters: table.MonsterConfig,
     templates: table.MonsterTemplateConfig,
     hardLevels: table.HardLevelGroup,
@@ -682,7 +774,12 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
   };
 
   const stages = buildUniqueIndex(tables.stages, (row) => row.StageID, 'StageConfig.StageID');
-  const voracityLevelFor = createVoracityResolver(tables.stageInvasions, diagnostics);
+  const voracityLevelFor = createVoracityResolver(
+    tables.stageInvasions,
+    tables.stageInvasionBuffs,
+    tables.mazeBuffs,
+    diagnostics
+  );
   const monsters = buildUniqueIndex(
     tables.monsters,
     (row) => row.MonsterID,
@@ -1329,30 +1426,19 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
     };
   };
 
-  const infiniteGroupIdOf = (
-    mode: EndgameMode,
-    stage: StageRow,
-    contextData: Record<string, string | number | undefined>
-  ): number => {
-    const matches = (stage.StageConfigData ?? []).filter(
-      (entry) => entry.BFLIFKBEOPJ === '_StageInfiniteGroup'
-    );
-    if (matches.length !== 1)
-      diagnostics.fail('invalid-infinite-group-reference', '关卡必须包含唯一 _StageInfiniteGroup', {
-        ...context(mode, contextData),
-        stageId: stage.StageID,
-        referenceCount: matches.length
-      });
-    return integer(matches[0].MNDFOPKBHKP, 'StageConfigData._StageInfiniteGroup');
-  };
-
   const buildSpawnStage = async (
     mode: EndgameMode,
     eventId: number,
     contextData: Record<string, string | number | undefined>
   ): Promise<EndgameStage> => {
     const stage = resolveStage(mode, eventId, contextData);
-    const waveGroupId = infiniteGroupIdOf(mode, stage, { ...contextData, eventId });
+    const waveGroupId = resolveStageInfiniteGroupId(
+      mode,
+      stage,
+      { ...contextData, eventId },
+      (id) => infiniteGroups.has(String(id)),
+      diagnostics
+    );
     const waveGroup =
       infiniteGroups.get(String(waveGroupId)) ??
       diagnostics.fail('missing-infinite-group', '找不到 StageInfiniteGroup', {

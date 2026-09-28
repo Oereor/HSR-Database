@@ -431,6 +431,35 @@ describe('focused robustness invariants', () => {
     expect(() => assertCrossLocaleStructuralParity(ordered, reordered)).toThrow(
       'Cross-locale structural mismatch'
     );
+
+    const withEnemySkills = {
+      ...projection(),
+      details: {
+        ...projection().details,
+        enemies: [
+          {
+            id: '100',
+            monsters: [
+              {
+                modifiers: { hp: { ratio: '1' } },
+                skills: [{ id: '1' }],
+                skillPhases: [{ index: 1, skillIds: ['1'] }]
+              }
+            ]
+          }
+        ]
+      }
+    };
+    const missingLocalizedSkill = structuredClone(withEnemySkills);
+    missingLocalizedSkill.details.enemies[0].monsters[0].skills.splice(0);
+    missingLocalizedSkill.details.enemies[0].monsters[0].skillPhases.splice(0);
+    expect(() =>
+      assertCrossLocaleStructuralParity(withEnemySkills, missingLocalizedSkill)
+    ).not.toThrow();
+    missingLocalizedSkill.details.enemies[0].monsters[0].modifiers.hp.ratio = '2';
+    expect(() => assertCrossLocaleStructuralParity(withEnemySkills, missingLocalizedSkill)).toThrow(
+      'Cross-locale structural mismatch in details.enemies'
+    );
   });
 
   it('parses source-backed Relic piece identity strictly', () => {

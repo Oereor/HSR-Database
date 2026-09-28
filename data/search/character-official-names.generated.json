@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "normalizationVersion": 1,
   "namingPolicyVersion": 1,
-  "sourceCommit": "4ce30f69b32dc259ab9a8da3ba57035485103221",
+  "sourceCommit": "8b178dd48698e5e7b12f0cc319ddab149f2ffc5c",
   "characters": {
     "1001": {
       "canonicalName": "三月七·存护",
@@ -890,6 +890,17 @@
         "recordId": "1502",
         "field": "AvatarName",
         "textHash": "5676363387127417629",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1503": {
+      "canonicalName": "真珠",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1503",
+        "field": "AvatarName",
+        "textHash": "17971979440145228372",
         "policy": "avatar-name"
       },
       "officialAliases": []

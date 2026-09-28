@@ -10,7 +10,7 @@ zh-CN is the base locale and uses unprefixed URLs. en is publicly routed under /
 
 Pinned upstream data and TextMaps are parsed into domain models, projected independently for each locale, and emitted below src/lib/generated/views/{locale}. Static Search indexes are emitted below static/generated/{locale}. Serialized Endgame occurrence views remain private below src/lib/generated/views/{locale}/endgame-occurrences; the shared /generated/{locale}/endgame-occurrences/{targetId} endpoint resolves portrait assets and prerenders the public shards. Static source shards must not shadow that endpoint. Runtime loaders accept locale explicitly and never fall back across locales.
 
-Deployment preparation derives its TurnBased sparse checkout from the same source registry used by generation: 81 exact Excel tables, TextMapCHS/TextMapEN, and the three dynamic Monster/BattleEvent Config directories. StarRailRes indexes and source asset directories are materialized in one sparse operation. General assets are generated with fixed bounded copy and Sharp pools into an isolated staging tree, validated, and atomically published. A final published-tree observation supplies file counts, sizes and lazily cached Sharp metadata to ensure, telemetry and the independent verifier for that build invocation only.
+Deployment preparation derives its TurnBased sparse checkout from the same source registry used by generation: 82 exact Excel tables, TextMapCHS/TextMapEN, and the three dynamic Monster/BattleEvent Config directories. StarRailRes indexes and source asset directories are materialized in one sparse operation. General assets are generated with fixed bounded copy and Sharp pools into an isolated staging tree, validated, and atomically published. A final published-tree observation supplies file counts, sizes and lazily cached Sharp metadata to ensure, telemetry and the independent verifier for that build invocation only.
 
 ## Artifact contract
 
@@ -23,6 +23,8 @@ The protected `Correctness` check owns full semantic validation. Production runs
 ## Ownership rules
 
 Site-owned prose, navigation, controls, metadata, errors, accessible labels, and footer text belong in paired Paraglide message keys. Game-owned names, descriptions, effects, and mechanics remain in localized generated views. Locale-neutral IDs, dates, ordering, and route identities must not depend on translated strings.
+
+Enemy skill existence and semantic kind/tag come from `MonsterConfig.SkillList` and `MonsterSkillConfig` in the locale-neutral domain. Each locale projection resolves and formats its own `SkillDesc` with the shared TextResolver/GameText pipeline and displays the skill only when the resulting plain text is nonempty after trimming. Skill phases are built from those displayed skills. Full validation independently checks each locale's public skill list and phases against its TextMap. Cross-locale structural parity still checks Enemy identity and numeric structure, while allowing skill lists and phases to differ when localized descriptions differ. Unknown kind/tag source hashes still require explicit semantic review. There is no per-SkillID inclusion snapshot.
 
 ## URL helpers
 

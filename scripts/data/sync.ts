@@ -1,4 +1,3 @@
-import { loadEnemySkillInclusionPolicy } from './enemy-skill-policy.js';
 import { createHash } from 'node:crypto';
 import { access, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -656,8 +655,7 @@ export async function syncData(): Promise<DataManifest> {
       'DamageType',
       'HardLevelGroup',
       'EliteGroup'
-    ]),
-    inclusionPolicy: await loadEnemySkillInclusionPolicy()
+    ])
   });
   const enemyDomainsById = new Map(enemyDomainBuild.enemies.map((enemy) => [enemy.id, enemy]));
   console.log('构建 Endgame 敌方实例与精确 HP…');

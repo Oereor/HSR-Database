@@ -357,13 +357,23 @@ describe('AS boss dossier', () => {
 });
 
 describe('Voracity card tags', () => {
-  it.each(['standard', 'compact'] as const)(
-    'renders the pollution tag before the unchanged level in %s cards',
-    (variant) => {
-      const occurrence = { ...enemy('voracity', 'Fixture', 5013010), voracityLevel: 2, count: 3 };
+  it.each(
+    (['standard', 'compact'] as const).flatMap((variant) =>
+      [1, 2, 3].map((pollutionLevel) => ({ variant, pollutionLevel }))
+    )
+  )(
+    'renders pollution $pollutionLevel before the unchanged level in $variant cards',
+    ({ variant, pollutionLevel }) => {
+      const occurrence = {
+        ...enemy('voracity', 'Fixture', 5013010),
+        voracityLevel: pollutionLevel,
+        count: 3
+      };
       const { body } = render(EndgameEnemyCard, { props: { occurrence, variant, level: 85 } });
-      expect(body).toContain('data-voracity-level="2"');
-      expect(body).toContain(m.endgame_enemy_voracity({ level: 2 }, { locale: 'zh-CN' }));
+      expect(body).toContain(`data-voracity-level="${pollutionLevel}"`);
+      expect(body).toContain(
+        m.endgame_enemy_voracity({ level: pollutionLevel }, { locale: 'zh-CN' })
+      );
       expect(body.indexOf('data-voracity-level')).toBeLessThan(
         body.indexOf('class="endgame-enemy__level"')
       );

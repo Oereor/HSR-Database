@@ -160,6 +160,18 @@ function projectSkill(
   skill: import('../../../src/lib/domain/neutral.js').EnemySkillDomain,
   context: EnemyProjectionContext
 ): EnemySkill | undefined {
+  const description = projectEnemySkillDescription(
+    context.resolver,
+    skill.id,
+    skill.descriptionSource,
+    (diagnostics) =>
+      context.onDescriptionDiagnostics?.(
+        'enemy-skill',
+        skill.id,
+        diagnostics.map((diagnostic) => ({ level: 1, ...diagnostic }))
+      )
+  );
+  if (description.status !== 'available') return undefined;
   const kindLabel = projectText(
     context.resolver,
     skill.kindSource,
@@ -167,9 +179,9 @@ function projectSkill(
     '',
     {
       requirement: 'required',
-      visibility: skill.included ? 'emitted' : 'hidden',
+      visibility: 'emitted',
       fallbackUsed: false,
-      productRouteReachability: skill.included ? 'reachable' : 'unreachable'
+      productRouteReachability: 'reachable'
     }
   );
   const tagLabel = projectText(
@@ -179,30 +191,11 @@ function projectSkill(
     '',
     {
       requirement: 'required',
-      visibility: skill.included ? 'emitted' : 'hidden',
+      visibility: 'emitted',
       fallbackUsed: false,
-      productRouteReachability: skill.included ? 'reachable' : 'unreachable'
+      productRouteReachability: 'reachable'
     }
   );
-  const description = projectGameText(
-    context.resolver,
-    skill.descriptionSource,
-    source('enemy-skill', skill.id, 'SkillDesc'),
-    '',
-    {
-      requirement: 'optional',
-      visibility: skill.included ? 'emitted' : 'hidden',
-      fallbackUsed: skill.included,
-      productRouteReachability: skill.included ? 'reachable' : 'unreachable'
-    },
-    (diagnostics) =>
-      context.onDescriptionDiagnostics?.(
-        'enemy-skill',
-        skill.id,
-        diagnostics.map((diagnostic) => ({ level: 1, ...diagnostic }))
-      )
-  );
-  if (!skill.included) return undefined;
   const name = projectText(
     context.resolver,
     skill.nameSource,
@@ -239,23 +232,41 @@ function projectSkill(
   };
 }
 
+export function projectEnemySkillDescription(
+  resolver: TextResolver,
+  skillId: string,
+  descriptionSource: NeutralTextSource | undefined,
+  onDiagnostics?: (diagnostics: DescriptionDiagnostic[]) => void
+): { text: string; status: 'available' | 'missing' } {
+  return projectGameText(
+    resolver,
+    descriptionSource,
+    source('enemy-skill', skillId, 'SkillDesc'),
+    '',
+    {
+      requirement: 'optional',
+      visibility: 'emitted',
+      fallbackUsed: false,
+      productRouteReachability: 'reachable'
+    },
+    onDiagnostics
+  );
+}
+
 function projectEnemy(domain: EnemyDomain, context: EnemyProjectionContext): Enemy {
   const elementSource = (code: string) =>
     domain.elementNameSources[code as keyof typeof domain.elementNameSources];
   const projectWeaknesses = (codes: string[], field: string) =>
     codes.map((code) => elementLabel(code, elementSource(code), context, domain.id, field));
   const projectMonster = (monster: EnemyDomain['monsters'][number]) => {
+    const seenSkillIds = new Set<string>();
     const skills = monster.skills.flatMap((skill) => {
+      if (seenSkillIds.has(skill.id)) return [];
+      seenSkillIds.add(skill.id);
       const projected = projectSkill(domain.id, skill, context);
       return projected ? [projected] : [];
     });
-    const skillPhases = buildEnemySkillPhases(
-      monster.skills.map((skill) => ({
-        id: skill.id,
-        phases: skill.phases,
-        visible: skill.included
-      }))
-    );
+    const skillPhases = buildEnemySkillPhases(skills);
     return {
       monsterId: monster.monsterId,
       monsterTemplateId: monster.monsterTemplateId,
