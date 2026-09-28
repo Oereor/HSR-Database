@@ -69,6 +69,7 @@ export const ENDGAME_TABLE_NAMES = [
   'PlaneEvent',
   'StageConfig',
   'StageInvasionConfig',
+  'StageInvasionBuff',
   'MonsterConfig',
   'MonsterTemplateConfig',
   'HardLevelGroup',

@@ -74,4 +74,46 @@ for (const locale of ['zh-CN', 'en']) {
       expect(pageErrors).toEqual([]);
     });
   }
+
+  test(`v4.6 AA pollution level 3: ${locale}`, async ({ page }) => {
+    const prefix = locale === 'en' ? '/en' : '';
+    await page.setViewportSize({ width: 900, height: 1000 });
+    await page.goto(`${prefix}/endgame/aa/10/?encounter=1001%3Apreliminary`);
+    const card = page.locator('[data-endgame-enemy-card][data-monster-id="5014020"]');
+    await expect(card).toBeVisible();
+    const tag = card.locator('[data-voracity-level="3"]');
+    const level = card.locator('.endgame-enemy__level');
+    await expect(tag).toBeVisible();
+    await expect(level).toHaveText('Lv.95');
+    const layout = await card.evaluate((element) => {
+      const tag = element.querySelector<HTMLElement>('[data-voracity-level="3"]')!;
+      const level = element.querySelector<HTMLElement>('.endgame-enemy__level')!;
+      const artwork = element.querySelector<HTMLElement>('.endgame-enemy__artwork')!;
+      const tagRect = tag.getBoundingClientRect();
+      const levelRect = level.getBoundingClientRect();
+      const artworkRect = artwork.getBoundingClientRect();
+      const tagStyle = getComputedStyle(tag);
+      const levelStyle = getComputedStyle(level);
+      const [red, green, blue] = tagStyle.color.match(/\d+/g)!.map(Number);
+      return {
+        text: tag.textContent?.trim(),
+        contained: tagRect.left >= artworkRect.left && levelRect.right <= artworkRect.right,
+        sameRow: Math.abs(tagRect.top - levelRect.top) < 1,
+        ordered: tagRect.right <= levelRect.left,
+        sameShape:
+          tagStyle.borderRadius === levelStyle.borderRadius &&
+          tagStyle.padding === levelStyle.padding &&
+          tagStyle.fontSize === levelStyle.fontSize,
+        red: red > green && red > blue
+      };
+    });
+    expect(layout).toMatchObject({
+      contained: true,
+      sameRow: true,
+      ordered: true,
+      sameShape: true,
+      red: true
+    });
+    expect(layout.text).toContain('3');
+  });
 }

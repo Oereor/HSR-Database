@@ -159,20 +159,53 @@ export interface StageInvasionRow {
   MonsterInvasionList: Array<{ DBLDCKODNEN: Id }>;
 }
 
-const VORACITY_LEVEL_BY_INVASION_ID: Readonly<Partial<Record<number, number>>> = { 1: 1, 2: 2 };
+export interface StageInvasionBuffRow {
+  InvasionID: Id;
+  MazeBuffID: Id;
+}
 
 export function createVoracityResolver(
   rows: readonly StageInvasionRow[],
+  invasionBuffRows: readonly StageInvasionBuffRow[],
+  mazeBuffRows: readonly MazeBuffRow[],
   issues: Pick<Diagnostics, 'warn'>
 ): (stageId: number, monsterId: number) => number | undefined {
   const rules = buildUniqueIndex(rows, (row) => row.StageID, 'StageInvasionConfig.StageID');
+  const invasionBuffs = groupBy(invasionBuffRows, (row) => row.InvasionID);
+  const mazeBuffs = groupBy(mazeBuffRows, (row) => row.ID);
   const levels = new Map<number, Map<number, number>>();
   for (const row of rules.values()) {
-    const level = VORACITY_LEVEL_BY_INVASION_ID[row.InvasionID];
-    if (level === undefined) {
-      issues.warn('unknown-voracity-invasion', '未知 InvasionID，跳过贪饕污染标识', {
+    const invasionMatches = invasionBuffs.get(String(row.InvasionID)) ?? [];
+    if (invasionMatches.length !== 1) {
+      issues.warn('unknown-voracity-invasion', 'InvasionID 必须对应唯一污染配置', {
         stageId: row.StageID,
-        invasionId: row.InvasionID
+        invasionId: row.InvasionID,
+        matches: invasionMatches.length
+      });
+      continue;
+    }
+    const mazeBuffId = invasionMatches[0].MazeBuffID;
+    const buffMatches = (mazeBuffs.get(String(mazeBuffId)) ?? []).filter(
+      (buff) => (buff.Lv ?? 1) === 1
+    );
+    if (buffMatches.length !== 1) {
+      issues.warn('unknown-voracity-maze-buff', '污染配置必须对应唯一 Lv=1 MazeBuff', {
+        stageId: row.StageID,
+        invasionId: row.InvasionID,
+        mazeBuffId,
+        matches: buffMatches.length
+      });
+      continue;
+    }
+    const bindingKey = buffMatches[0].InBattleBindingKey;
+    const match = bindingKey?.match(/^ChallengePeakBattle_GluttonyAbility_LV([1-9]\d*)$/);
+    const level = match ? Number(match[1]) : undefined;
+    if (level === undefined || !Number.isSafeInteger(level)) {
+      issues.warn('invalid-voracity-binding', '污染 MazeBuff 的绑定键没有有效等级', {
+        stageId: row.StageID,
+        invasionId: row.InvasionID,
+        mazeBuffId,
+        bindingKey
       });
       continue;
     }
@@ -532,6 +565,7 @@ interface Tables {
   planeEvents: PlaneEventRow[];
   stages: StageRow[];
   stageInvasions: StageInvasionRow[];
+  stageInvasionBuffs: StageInvasionBuffRow[];
   monsters: MonsterRow[];
   templates: MonsterTemplateRow[];
   hardLevels: HardLevelRow[];
@@ -585,6 +619,7 @@ async function loadTables(root: string): Promise<Tables> {
     planeEvents: table.PlaneEvent,
     stages: table.StageConfig,
     stageInvasions: table.StageInvasionConfig,
+    stageInvasionBuffs: table.StageInvasionBuff,
     monsters: table.MonsterConfig,
     templates: table.MonsterTemplateConfig,
     hardLevels: table.HardLevelGroup,
@@ -739,7 +774,12 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
   };
 
   const stages = buildUniqueIndex(tables.stages, (row) => row.StageID, 'StageConfig.StageID');
-  const voracityLevelFor = createVoracityResolver(tables.stageInvasions, diagnostics);
+  const voracityLevelFor = createVoracityResolver(
+    tables.stageInvasions,
+    tables.stageInvasionBuffs,
+    tables.mazeBuffs,
+    diagnostics
+  );
   const monsters = buildUniqueIndex(
     tables.monsters,
     (row) => row.MonsterID,
