@@ -7,7 +7,8 @@ import {
   RELIC_SLOTS,
   validateScoringConfig
 } from '../../src/lib/relic-score/scoring-config.js';
-import { siteRoot } from '../data/paths.js';
+import { readDataManifest } from '../data/generated-artifacts.js';
+import { generatedRoot, siteRoot } from '../data/paths.js';
 import { loadScoringInputs } from './scoring-inputs.js';
 
 export const productionBenchmarkPath = path.join(
@@ -23,8 +24,10 @@ export async function loadProductionBenchmarkInputs() {
   validateScoringConfig();
   const inputs = await loadScoringInputs();
   const ids = inputs.profiles.map((profile) => profile.characterId).sort();
-  if (ids.length !== 97 || new Set(ids).size !== 97)
-    throw new Error(`[relic-score/benchmark] expected 97 reviewed profiles, found ${ids.length}`);
+  const manifest = await readDataManifest(generatedRoot);
+  const expectedIds = [...manifest.routes.characters].sort();
+  if (ids.length !== new Set(ids).size || ids.join(',') !== expectedIds.join(','))
+    throw new Error('[relic-score/benchmark] profiles do not cover generated characters');
   const cases = ids.flatMap((characterId) =>
     RELIC_SLOTS.flatMap((slot) =>
       inputs.model.mainBySlot[slot].map(({ key: mainStatKey }) => ({

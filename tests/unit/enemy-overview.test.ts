@@ -13,7 +13,7 @@ import {
   readEnemyOverviewFilterState,
   writeEnemyOverviewFilterState
 } from '../../src/lib/domain/enemy-overview';
-import type { Enemy, EnemyCatalogEntry } from '../../src/lib/domain/types';
+import type { DataManifest, Enemy, EnemyCatalogEntry } from '../../src/lib/domain/types';
 import { getEnemyPortraitMap } from '../../src/lib/server/enemy-assets';
 
 const generatedRoot = path.join(process.cwd(), 'src', 'lib', 'generated');
@@ -41,7 +41,11 @@ describe('Enemy Overview presentation', () => {
     const catalog = JSON.parse(
       await readFile(path.join(generatedRoot, 'views', 'zh-CN', 'catalogs', 'enemies.json'), 'utf8')
     ) as EnemyCatalogEntry[];
-    expect(catalog).toHaveLength(628);
+    const manifest = JSON.parse(
+      await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
+    ) as DataManifest;
+    expect(catalog).toHaveLength(manifest.locales['zh-CN'].counts.enemies);
+    expect(new Set(catalog.map(({ id }) => id)).size).toBe(catalog.length);
     for (const entry of catalog) {
       const detail = JSON.parse(
         await readFile(

@@ -7,18 +7,18 @@
     "selectionMode": "best-base-raw-sub-utility",
     "quantilePoints": 257
   },
-  "artifactSha256": "da5c8a244a3518ee0fbf5b5e081825b86338eee32176231ebe690ca4054e726c",
-  "artifactBytes": 22210422,
-  "artifactGzipBytes": 1310993,
-  "generationSeconds": 776.3922502,
-  "roughPeakRssBytes": 189206528,
-  "roughPeakHeapBytes": 101625328,
-  "distributionCount": 2716,
+  "artifactSha256": "bedf7579503c7bb1f49662ad1bdea69ccba1b506ebd6b9d4306e45210f580cd9",
+  "artifactBytes": 22401085,
+  "artifactGzipBytes": 1317261,
+  "generationSeconds": 544.343799333,
+  "roughPeakRssBytes": 332480512,
+  "roughPeakHeapBytes": 160409240,
+  "distributionCount": 2744,
   "representation": {
-    "passCount": 2716,
+    "passCount": 2744,
     "failCount": 0,
     "maxError": 0.00390625,
-    "meanError": 0.0007242087518600502,
+    "meanError": 0.0007253273010952808,
     "maxRankError": 256,
     "worstCase": "1005:BODY:HealRatioBase",
     "worstCases": [
@@ -37232,6 +37232,482 @@
       "maxRepresentationError": 0.003860473632812389,
       "meanRepresentationError": 0.000671562256149451,
       "maxRankError": 252.99999999999272
+    },
+    {
+      "characterId": "1503",
+      "slot": "HEAD",
+      "mainStatKey": "HPDelta",
+      "summary": {
+        "mean": 2.0982584733227783,
+        "p25": 1.4134615384615383,
+        "p50": 1.9903846153846154,
+        "p75": 2.8,
+        "p90": 3.6,
+        "p95": 3.9403846153846147,
+        "p99": 4.717307692307692
+      },
+      "maxRepresentationError": 0.003875732421875,
+      "meanRepresentationError": 0.000715146015017583,
+      "maxRankError": 254
+    },
+    {
+      "characterId": "1503",
+      "slot": "HAND",
+      "mainStatKey": "AttackDelta",
+      "summary": {
+        "mean": 2.0982584733227783,
+        "p25": 1.4134615384615383,
+        "p50": 1.9903846153846154,
+        "p75": 2.8,
+        "p90": 3.6,
+        "p95": 3.9403846153846147,
+        "p99": 4.717307692307692
+      },
+      "maxRepresentationError": 0.003875732421875,
+      "meanRepresentationError": 0.000715146015017583,
+      "maxRankError": 254
+    },
+    {
+      "characterId": "1503",
+      "slot": "BODY",
+      "mainStatKey": "HPAddedRatio",
+      "summary": {
+        "mean": 2.0982584733227783,
+        "p25": 1.4134615384615383,
+        "p50": 1.9903846153846154,
+        "p75": 2.8,
+        "p90": 3.6,
+        "p95": 3.9403846153846147,
+        "p99": 4.717307692307692
+      },
+      "maxRepresentationError": 0.003875732421875,
+      "meanRepresentationError": 0.000715146015017583,
+      "maxRankError": 254
+    },
+    {
+      "characterId": "1503",
+      "slot": "BODY",
+      "mainStatKey": "AttackAddedRatio",
+      "summary": {
+        "mean": 2.0982584733227783,
+        "p25": 1.4134615384615383,
+        "p50": 1.9903846153846154,
+        "p75": 2.8,
+        "p90": 3.6,
+        "p95": 3.9403846153846147,
+        "p99": 4.717307692307692
+      },
+      "maxRepresentationError": 0.003875732421875,
+      "meanRepresentationError": 0.000715146015017583,
+      "maxRankError": 254
+    },
+    {
+      "characterId": "1503",
+      "slot": "BODY",
+      "mainStatKey": "DefenceAddedRatio",
+      "summary": {
+        "mean": 0.6910171508788154,
+        "p25": 0,
+        "p50": 0,
+        "p75": 1.3269230769230766,
+        "p90": 1.9903846153846154,
+        "p95": 2.1634615384615383,
+        "p99": 2.7403846153846154
+      },
+      "maxRepresentationError": 0.0038299560546875,
+      "meanRepresentationError": 0.0013818267968658607,
+      "maxRankError": 251
+    },
+    {
+      "characterId": "1503",
+      "slot": "BODY",
+      "mainStatKey": "StatusProbabilityBase",
+      "summary": {
+        "mean": 2.072212571364012,
+        "p25": 1.4134615384615383,
+        "p50": 1.9038461538461537,
+        "p75": 2.8,
+        "p90": 3.6,
+        "p95": 3.9038461538461537,
+        "p99": 4.703846153846154
+      },
+      "maxRepresentationError": 0.0037841796875,
+      "meanRepresentationError": 0.0006886568983556794,
+      "maxRankError": 248
+    },
+    {
+      "characterId": "1503",
+      "slot": "BODY",
+      "mainStatKey": "HealRatioBase",
+      "summary": {
+        "mean": 1.9601833050065862,
+        "p25": 1.1538461538461537,
+        "p50": 1.8999999999999997,
+        "p75": 2.6999999999999993,
+        "p90": 3.4999999999999996,
+        "p95": 3.826923076923076,
+        "p99": 4.676923076923076
+      },
+      "maxRepresentationError": 0.0038604736328125,
+      "meanRepresentationError": 0.0007212495068122902,
+      "maxRankError": 253
+    },
+    {
+      "characterId": "1503",
+      "slot": "BODY",
+      "mainStatKey": "CriticalChanceBase",
+      "summary": {
+        "mean": 2.047396850585753,
+        "p25": 1.3269230769230766,
+        "p50": 1.9038461538461537,
+        "p75": 2.8,
+        "p90": 3.6,
+        "p95": 3.9,
+        "p99": 4.7
+      },
+      "maxRepresentationError": 0.003768920898437056,
+      "meanRepresentationError": 0.0007126193903711877,
+      "maxRankError": 246.9999999999709
+    },
+    {
+      "characterId": "1503",
+      "slot": "BODY",
+      "mainStatKey": "CriticalDamageBase",
+      "summary": {
+        "mean": 2.047396850585753,
+        "p25": 1.3269230769230766,
+        "p50": 1.9038461538461537,
+        "p75": 2.8,
+        "p90": 3.6,
+        "p95": 3.9,
+        "p99": 4.7
+      },
+      "maxRepresentationError": 0.003768920898437056,
+      "meanRepresentationError": 0.0007126193903711877,
+      "maxRankError": 246.9999999999709
+    },
+    {
+      "characterId": "1503",
+      "slot": "FOOT",
+      "mainStatKey": "HPAddedRatio",
+      "summary": {
+        "mean": 2.0982584733227783,
+        "p25": 1.4134615384615383,
+        "p50": 1.9903846153846154,
+        "p75": 2.8,
+        "p90": 3.6,
+        "p95": 3.9403846153846147,
+        "p99": 4.717307692307692
+      },
+      "maxRepresentationError": 0.003875732421875,
+      "meanRepresentationError": 0.000715146015017583,
+      "maxRankError": 254
+    },
+    {
+      "characterId": "1503",
+      "slot": "FOOT",
+      "mainStatKey": "AttackAddedRatio",
+      "summary": {
+        "mean": 2.0982584733227783,
+        "p25": 1.4134615384615383,
+        "p50": 1.9903846153846154,
+        "p75": 2.8,
+        "p90": 3.6,
+        "p95": 3.9403846153846147,
+        "p99": 4.717307692307692
+      },
+      "maxRepresentationError": 0.003875732421875,
+      "meanRepresentationError": 0.000715146015017583,
+      "maxRankError": 254
+    },
+    {
+      "characterId": "1503",
+      "slot": "FOOT",
+      "mainStatKey": "DefenceAddedRatio",
+      "summary": {
+        "mean": 0.6910171508788154,
+        "p25": 0,
+        "p50": 0,
+        "p75": 1.3269230769230766,
+        "p90": 1.9903846153846154,
+        "p95": 2.1634615384615383,
+        "p99": 2.7403846153846154
+      },
+      "maxRepresentationError": 0.0038299560546875,
+      "meanRepresentationError": 0.0013818267968658607,
+      "maxRankError": 251
+    },
+    {
+      "characterId": "1503",
+      "slot": "FOOT",
+      "mainStatKey": "SpeedDelta",
+      "summary": {
+        "mean": 1.6437149047850221,
+        "p25": 0.7999999999999999,
+        "p50": 1.8,
+        "p75": 2.5999999999999996,
+        "p90": 2.8999999999999995,
+        "p95": 3.4999999999999996,
+        "p99": 3.9
+      },
+      "maxRepresentationError": 0.0037689208984375,
+      "meanRepresentationError": 0.0013745786771492624,
+      "maxRankError": 247
+    },
+    {
+      "characterId": "1503",
+      "slot": "NECK",
+      "mainStatKey": "HPAddedRatio",
+      "summary": {
+        "mean": 2.0982584733227783,
+        "p25": 1.4134615384615383,
+        "p50": 1.9903846153846154,
+        "p75": 2.8,
+        "p90": 3.6,
+        "p95": 3.9403846153846147,
+        "p99": 4.717307692307692
+      },
+      "maxRepresentationError": 0.003875732421875,
+      "meanRepresentationError": 0.000715146015017583,
+      "maxRankError": 254
+    },
+    {
+      "characterId": "1503",
+      "slot": "NECK",
+      "mainStatKey": "AttackAddedRatio",
+      "summary": {
+        "mean": 2.0982584733227783,
+        "p25": 1.4134615384615383,
+        "p50": 1.9903846153846154,
+        "p75": 2.8,
+        "p90": 3.6,
+        "p95": 3.9403846153846147,
+        "p99": 4.717307692307692
+      },
+      "maxRepresentationError": 0.003875732421875,
+      "meanRepresentationError": 0.000715146015017583,
+      "maxRankError": 254
+    },
+    {
+      "characterId": "1503",
+      "slot": "NECK",
+      "mainStatKey": "DefenceAddedRatio",
+      "summary": {
+        "mean": 0.6910171508788154,
+        "p25": 0,
+        "p50": 0,
+        "p75": 1.3269230769230766,
+        "p90": 1.9903846153846154,
+        "p95": 2.1634615384615383,
+        "p99": 2.7403846153846154
+      },
+      "maxRepresentationError": 0.0038299560546875,
+      "meanRepresentationError": 0.0013818267968658607,
+      "maxRankError": 251
+    },
+    {
+      "characterId": "1503",
+      "slot": "NECK",
+      "mainStatKey": "PhysicalAddedRatio",
+      "summary": {
+        "mean": 1.9601833050065862,
+        "p25": 1.1538461538461537,
+        "p50": 1.8999999999999997,
+        "p75": 2.6999999999999993,
+        "p90": 3.4999999999999996,
+        "p95": 3.826923076923076,
+        "p99": 4.676923076923076
+      },
+      "maxRepresentationError": 0.0038604736328125,
+      "meanRepresentationError": 0.0007212495068122902,
+      "maxRankError": 253
+    },
+    {
+      "characterId": "1503",
+      "slot": "NECK",
+      "mainStatKey": "FireAddedRatio",
+      "summary": {
+        "mean": 1.9601833050065862,
+        "p25": 1.1538461538461537,
+        "p50": 1.8999999999999997,
+        "p75": 2.6999999999999993,
+        "p90": 3.4999999999999996,
+        "p95": 3.826923076923076,
+        "p99": 4.676923076923076
+      },
+      "maxRepresentationError": 0.0038604736328125,
+      "meanRepresentationError": 0.0007212495068122902,
+      "maxRankError": 253
+    },
+    {
+      "characterId": "1503",
+      "slot": "NECK",
+      "mainStatKey": "IceAddedRatio",
+      "summary": {
+        "mean": 1.9601833050065862,
+        "p25": 1.1538461538461537,
+        "p50": 1.8999999999999997,
+        "p75": 2.6999999999999993,
+        "p90": 3.4999999999999996,
+        "p95": 3.826923076923076,
+        "p99": 4.676923076923076
+      },
+      "maxRepresentationError": 0.0038604736328125,
+      "meanRepresentationError": 0.0007212495068122902,
+      "maxRankError": 253
+    },
+    {
+      "characterId": "1503",
+      "slot": "NECK",
+      "mainStatKey": "WindAddedRatio",
+      "summary": {
+        "mean": 1.9601833050065862,
+        "p25": 1.1538461538461537,
+        "p50": 1.8999999999999997,
+        "p75": 2.6999999999999993,
+        "p90": 3.4999999999999996,
+        "p95": 3.826923076923076,
+        "p99": 4.676923076923076
+      },
+      "maxRepresentationError": 0.0038604736328125,
+      "meanRepresentationError": 0.0007212495068122902,
+      "maxRankError": 253
+    },
+    {
+      "characterId": "1503",
+      "slot": "NECK",
+      "mainStatKey": "ThunderAddedRatio",
+      "summary": {
+        "mean": 1.9601833050065862,
+        "p25": 1.1538461538461537,
+        "p50": 1.8999999999999997,
+        "p75": 2.6999999999999993,
+        "p90": 3.4999999999999996,
+        "p95": 3.826923076923076,
+        "p99": 4.676923076923076
+      },
+      "maxRepresentationError": 0.0038604736328125,
+      "meanRepresentationError": 0.0007212495068122902,
+      "maxRankError": 253
+    },
+    {
+      "characterId": "1503",
+      "slot": "NECK",
+      "mainStatKey": "QuantumAddedRatio",
+      "summary": {
+        "mean": 1.9601833050065862,
+        "p25": 1.1538461538461537,
+        "p50": 1.8999999999999997,
+        "p75": 2.6999999999999993,
+        "p90": 3.4999999999999996,
+        "p95": 3.826923076923076,
+        "p99": 4.676923076923076
+      },
+      "maxRepresentationError": 0.0038604736328125,
+      "meanRepresentationError": 0.0007212495068122902,
+      "maxRankError": 253
+    },
+    {
+      "characterId": "1503",
+      "slot": "NECK",
+      "mainStatKey": "ImaginaryAddedRatio",
+      "summary": {
+        "mean": 1.9601833050065862,
+        "p25": 1.1538461538461537,
+        "p50": 1.8999999999999997,
+        "p75": 2.6999999999999993,
+        "p90": 3.4999999999999996,
+        "p95": 3.826923076923076,
+        "p99": 4.676923076923076
+      },
+      "maxRepresentationError": 0.0038604736328125,
+      "meanRepresentationError": 0.0007212495068122902,
+      "maxRankError": 253
+    },
+    {
+      "characterId": "1503",
+      "slot": "OBJECT",
+      "mainStatKey": "HPAddedRatio",
+      "summary": {
+        "mean": 2.0982584733227783,
+        "p25": 1.4134615384615383,
+        "p50": 1.9903846153846154,
+        "p75": 2.8,
+        "p90": 3.6,
+        "p95": 3.9403846153846147,
+        "p99": 4.717307692307692
+      },
+      "maxRepresentationError": 0.003875732421875,
+      "meanRepresentationError": 0.000715146015017583,
+      "maxRankError": 254
+    },
+    {
+      "characterId": "1503",
+      "slot": "OBJECT",
+      "mainStatKey": "AttackAddedRatio",
+      "summary": {
+        "mean": 2.0982584733227783,
+        "p25": 1.4134615384615383,
+        "p50": 1.9903846153846154,
+        "p75": 2.8,
+        "p90": 3.6,
+        "p95": 3.9403846153846147,
+        "p99": 4.717307692307692
+      },
+      "maxRepresentationError": 0.003875732421875,
+      "meanRepresentationError": 0.000715146015017583,
+      "maxRankError": 254
+    },
+    {
+      "characterId": "1503",
+      "slot": "OBJECT",
+      "mainStatKey": "DefenceAddedRatio",
+      "summary": {
+        "mean": 0.6910171508788154,
+        "p25": 0,
+        "p50": 0,
+        "p75": 1.3269230769230766,
+        "p90": 1.9903846153846154,
+        "p95": 2.1634615384615383,
+        "p99": 2.7403846153846154
+      },
+      "maxRepresentationError": 0.0038299560546875,
+      "meanRepresentationError": 0.0013818267968658607,
+      "maxRankError": 251
+    },
+    {
+      "characterId": "1503",
+      "slot": "OBJECT",
+      "mainStatKey": "BreakDamageAddedRatioBase",
+      "summary": {
+        "mean": 2.072212571364012,
+        "p25": 1.4134615384615383,
+        "p50": 1.9038461538461537,
+        "p75": 2.8,
+        "p90": 3.6,
+        "p95": 3.9038461538461537,
+        "p99": 4.703846153846154
+      },
+      "maxRepresentationError": 0.0037841796875,
+      "meanRepresentationError": 0.0006886568983556794,
+      "maxRankError": 248
+    },
+    {
+      "characterId": "1503",
+      "slot": "OBJECT",
+      "mainStatKey": "SPRatioBase",
+      "summary": {
+        "mean": 1.9601833050065862,
+        "p25": 1.1538461538461537,
+        "p50": 1.8999999999999997,
+        "p75": 2.6999999999999993,
+        "p90": 3.4999999999999996,
+        "p95": 3.826923076923076,
+        "p99": 4.676923076923076
+      },
+      "maxRepresentationError": 0.0038604736328125,
+      "meanRepresentationError": 0.0007212495068122902,
+      "maxRankError": 253
     },
     {
       "characterId": "1504",

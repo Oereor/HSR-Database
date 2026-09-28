@@ -159,7 +159,7 @@
       "reviewedInputDigest": "1dc5140f1dc024777bd2cf8470718573e6bb3fc5b3723415dbe86f379c4d6a86"
     },
     "1213": {
-      "reviewedInputDigest": "749cfcf3ff3e741c2ec6ceb1458ff0e30c1656f2142c6cbfdb8527fc87abbbdd"
+      "reviewedInputDigest": "4777e62aded46fc3ca854afc60cd873854d7b4c80b6ff81bb51e1f7494abe6c8"
     },
     "1214": {
       "reviewedInputDigest": "59383b131ae05695e3c5226e5f6691340eb3f74ae62eac08cfdfc7ba382cf2d6"
@@ -311,7 +311,7 @@
       "reviewedInputDigest": "7cd62911d44daf754a3d92e35f6dd80c1868121e470f2e684ab49461ac89f1bf"
     },
     "1408": {
-      "reviewedInputDigest": "32b4072369833a5947cc369c9f219361d1e5342d062f8859c242c0c3c47e7733"
+      "reviewedInputDigest": "e677ecd1889b2ee0bca2fbfe98d1862e977009d2112a7796bb2156bc5b412ba6"
     },
     "1409": {
       "templateId": "sustain",
@@ -360,6 +360,12 @@
       "statWeights": { "CriticalChanceBase": 0.75, "CriticalDamageBase": 0.75, "SpeedDelta": 1.25 },
       "hardBreakpoints": [{ "stat": "SpeedDelta", "threshold": 120 }],
       "reviewedInputDigest": "31e77eb359b3f1200ce56db573d75abd4a0e38abd475141b6651c265fa90d14b"
+    },
+    "1503": {
+      "templateId": "direct-support",
+      "statWeights": { "DefenceAddedRatio": 1, "SpeedDelta": 0.75 },
+      "hardBreakpoints": [{ "stat": "DefenceAddedRatio", "threshold": 2400 }],
+      "reviewedInputDigest": "9c7921d1d199b2fd1a18db6982e73a8b92c35d6c6e136da355af5685f3b7fef4"
     },
     "1504": {
       "reviewedInputDigest": "fb9371e7bafaaf421bf2afc9bb81e217f4ab7ab8018fe2bdaf9c2990162ba49c"

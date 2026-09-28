@@ -18,7 +18,7 @@ Lens B 仍比较三件中的最高副词条质量，且不按角色推荐主词�
 
 1. 如修改 Profile，先完成逐角色审核，并运行 `pnpm relic-score:validate`。
 2. 运行 `pnpm relic-score:farming:validate`。
-3. 运行 `pnpm relic-score:benchmarks:generate`，确认输出 `2716/2716 generated` 与 `2716/2716 gate passed`。任一分布超过 `0.005` 时，命令会输出角色／槽位／主词条和 513 点诊断，并保持正式产物不变；需人工调查，不自动改格式。
+3. 运行 `pnpm relic-score:benchmarks:generate`，确认全部角色、槽位和合法主词条分布均显示 `generated` 与 `gate passed`。任一分布超过 `0.005` 时，命令会输出角色／槽位／主词条和 513 点诊断，并保持正式产物不变；需人工调查，不自动改格式。
 4. 运行 `pnpm relic-score:benchmarks:validate`，检查正式 JSON 与当前输入、配置及完整覆盖一致。
 5. 检查正式 JSON、审计摘要和配置的 Git diff；再运行相关单测、`pnpm check`、`pnpm lint`、`pnpm data:validate:build-inputs` 与 `pnpm build`。
 6. 提交产物、审计和必要的源代码。普通 build／CI 只做廉价校验，绝不执行 Monte Carlo 生成。

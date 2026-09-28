@@ -24,7 +24,10 @@ beforeAll(async () => {
 
 describe('Relic Score production benchmarks', () => {
   it('rejects missing, extra, stale and malformed entries', () => {
-    expect(loaded.cases).toHaveLength(2716);
+    expect(loaded.cases.length).toBeGreaterThan(0);
+    expect(new Set(loaded.cases.map(({ characterId }) => characterId))).toEqual(
+      new Set(loaded.inputs.profiles.map(({ characterId }) => characterId))
+    );
     expect(() => validateBenchmarkArtifact(artifact, loaded.expected)).not.toThrow();
     const missing = structuredClone(artifact);
     delete missing.distributions['1002'].BODY;
