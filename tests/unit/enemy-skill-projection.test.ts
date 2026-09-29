@@ -43,11 +43,14 @@ describe('enemy skill page projection', () => {
       ]);
       expect(variantSkill.detail?.damage?.[0].totals).toEqual(['1']);
       expect(
-        (await skill(locale, '4064012', '4064012', '406401201'))?.detail?.damage?.[0].totals
+        (await skill(locale, '4035010', '4035010', '403501001'))?.detail?.damage?.[0].totals
+      ).toEqual(['4.5']);
+      expect(
+        (await skill(locale, '4035010', '403501001', '403501001'))?.detail?.damage?.[0].totals
       ).toEqual(['4']);
       expect(
-        (await skill(locale, '4064012', '406401201', '406401201'))?.detail?.damage?.[0].totals
-      ).toEqual(['3.6']);
+        (await skill(locale, '4064012', '4064012', '406401201'))?.detail?.damage
+      ).toBeUndefined();
     }
   });
 
@@ -67,6 +70,18 @@ describe('enemy skill page projection', () => {
       expect(application).not.toHaveProperty('duration');
     }
     expect(names[0]).not.toBe(names[1]);
+  });
+
+  it('projects anonymous Kafka probabilities without exposing modifier names', async () => {
+    for (const locale of ['zh-CN', 'en'] as const) {
+      const first = (await skill(locale, '2004010', '2004010', '200401001'))?.detail;
+      const control = (await skill(locale, '2004010', '2004010', '200401004'))?.detail;
+      expect(first?.applications).toEqual([{ target: 'primary', baseChance: '1' }]);
+      expect(first?.damage).toBeUndefined();
+      expect(control?.applications).toEqual([{ target: 'primary', baseChance: '1.2' }]);
+      expect(control?.actionShifts).toEqual([{ kind: 'advance', ratio: '1' }]);
+      expect(JSON.stringify([first, control])).not.toContain('MCommon_');
+    }
   });
 
   it('keeps action shifts and removes obsolete detail fields', async () => {

@@ -4,7 +4,11 @@ import type { EnemySkillDetailDomain } from '../../src/lib/domain/neutral.js';
 import type { DecimalString } from '../../src/lib/domain/endgame.js';
 import { readRaw } from './raw.js';
 import { effectiveSkillParams } from './enemy-skill-params.js';
-import { parseEnemySkillDetail } from './enemy-skill-semantics.js';
+import {
+  parseEnemySkillDetail,
+  type EnemySkillDamageDiagnostic,
+  type EnemySkillChanceDiagnostic
+} from './enemy-skill-semantics.js';
 
 type Raw = Record<string, any>;
 
@@ -28,7 +32,17 @@ async function exists(root: string, relative: string): Promise<boolean> {
 /** Build-only facts, keyed first by concrete Monster ID and then by skill ID. */
 export async function buildEnemySkillDetails(
   root: string,
-  tables: Record<string, Raw[]>
+  tables: Record<string, Raw[]>,
+  onDamageDiagnostic?: (
+    monsterId: string,
+    skillId: string,
+    reason: EnemySkillDamageDiagnostic
+  ) => void,
+  onChanceDiagnostic?: (
+    monsterId: string,
+    skillId: string,
+    reason: EnemySkillChanceDiagnostic
+  ) => void
 ): Promise<Map<string, Map<string, EnemySkillDetailDomain>>> {
   const templates = tables.MonsterTemplateConfig ?? [];
   const monsters = tables.MonsterConfig ?? [];
@@ -115,7 +129,19 @@ export async function buildEnemySkillDetails(
           params,
           character,
           ability,
-          statusesByModifier
+          statusesByModifier,
+          ...(onDamageDiagnostic
+            ? {
+                onDamageDiagnostic: (reason: EnemySkillDamageDiagnostic) =>
+                  onDamageDiagnostic(monsterId, skillId, reason)
+              }
+            : {}),
+          ...(onChanceDiagnostic
+            ? {
+                onChanceDiagnostic: (reason: EnemySkillChanceDiagnostic) =>
+                  onChanceDiagnostic(monsterId, skillId, reason)
+              }
+            : {})
         });
         if (detail) details.set(skillId, detail);
       }

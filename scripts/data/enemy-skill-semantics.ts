@@ -3,28 +3,22 @@ import type {
   EnemySkillDetailDomain
 } from '../../src/lib/domain/neutral.js';
 import type { DecimalString } from '../../src/lib/domain/endgame.js';
+import { addDecimals, compareDecimals, decimalEquals } from './decimal.js';
 import { normalizedActionShift, resolveSkillValue } from './enemy-skill-params.js';
 
 type Raw = Record<string, any>;
 
-// Phase 1 only publishes traces checked in the investigation report. The task parser
-// remains structural; this gate prevents unreviewed Ability branches becoming facts.
-const VERIFIED_DAMAGE_SKILLS = new Set([
-  '102201001',
-  '100204001',
-  '100203001',
-  '100203003',
-  '200401003',
-  '100402001',
-  '100402002',
-  '100402004',
-  '201201001',
-  '201201002',
-  '401301001',
-  '401301002',
-  '406401201',
-  '406401207'
-]);
+export type EnemySkillDamageDiagnostic =
+  | 'damage-no-supported-task'
+  | 'damage-not-linear'
+  | 'damage-conditional'
+  | 'damage-multiple-abilities'
+  | 'damage-unresolved-value'
+  | 'damage-unsupported-target'
+  | 'damage-runtime-mutation';
+
+export type EnemySkillChanceDiagnostic =
+  'chance-unresolved' | 'chance-unsupported-target' | 'chance-ambiguous-application';
 
 interface Task {
   raw: Raw;
@@ -41,6 +35,8 @@ export interface SkillSemanticSource {
   character: Raw;
   ability: Raw;
   statusesByModifier: ReadonlyMap<string, string>;
+  onDamageDiagnostic?: (reason: EnemySkillDamageDiagnostic) => void;
+  onChanceDiagnostic?: (reason: EnemySkillChanceDiagnostic) => void;
 }
 
 function asRaw(value: unknown): Raw | undefined {
@@ -69,7 +65,7 @@ function target(value: unknown): EnemySkillDamageTarget | 'self' | undefined {
   }
 }
 
-function tasksFor(ability: Raw, triggerKey: string, skillId: string): Task[] {
+function linkedAbilityNames(ability: Raw, triggerKey: string): Set<string> {
   const names = new Set<string>();
   for (const row of Array.isArray(ability.characterSkillAbilities)
     ? ability.characterSkillAbilities
@@ -81,6 +77,11 @@ function tasksFor(ability: Raw, triggerKey: string, skillId: string): Task[] {
     (row: Raw) => row.Name === triggerKey
   )?.EntryAbility;
   if (typeof entry === 'string') names.add(entry);
+  return names;
+}
+
+function tasksFor(ability: Raw, triggerKey: string, skillId: string): Task[] {
+  const names = linkedAbilityNames(ability, triggerKey);
   const result: Task[] = [];
   const walk = (
     value: unknown,
@@ -116,7 +117,9 @@ function tasksFor(ability: Raw, triggerKey: string, skillId: string): Task[] {
   return result;
 }
 
-function damageRows(
+// These two reviewed traces have skill-specific activation/marker semantics that are
+// narrower than generic conditional-path aggregation. Keep them explicit and tested.
+function reviewedConditionalDamageRows(
   skillId: string,
   tasks: readonly Task[],
   resolve: (value: unknown) => DecimalString | undefined
@@ -163,6 +166,158 @@ function damageRows(
   return rows;
 }
 
+interface DamageOccurrence {
+  raw: Raw;
+  abilityName: string;
+  topLevelIndex?: number;
+  role?: EnemySkillDamageTarget | 'sweep-left' | 'sweep-right' | 'self';
+}
+
+export function normalizeEnemySkillTotals(values: readonly DecimalString[]): DecimalString[] {
+  return [...values]
+    .sort(compareDecimals)
+    .filter((value, index, ordered) => index === 0 || !decimalEquals(value, ordered[index - 1]));
+}
+
+function structuralDamageRows(
+  ability: Raw,
+  triggerKey: string,
+  resolve: (value: unknown) => DecimalString | undefined,
+  diagnostic?: (reason: EnemySkillDamageDiagnostic) => void
+): NonNullable<EnemySkillDetailDomain['damage']> {
+  const names = linkedAbilityNames(ability, triggerKey);
+  const linked = (Array.isArray(ability.AbilityList) ? ability.AbilityList : []).filter(
+    (row: Raw) => names.has(row.Name)
+  );
+  const occurrences: DamageOccurrence[] = [];
+  const unsafeAbilities = new Map<string, EnemySkillDamageDiagnostic>();
+  const walk = (value: unknown, abilityName: string, topLevelIndex?: number): void => {
+    if (Array.isArray(value)) {
+      for (const child of value) walk(child, abilityName);
+      return;
+    }
+    const row = asRaw(value);
+    if (!row) return;
+    if (row.$type === 'RPG.GameCore.DamageByAttackProperty') {
+      const rawTarget = alias(row.TargetType);
+      occurrences.push({
+        raw: row,
+        abilityName,
+        topLevelIndex,
+        role:
+          rawTarget === 'AbilityTargetLeftEntity'
+            ? 'sweep-left'
+            : rawTarget === 'AbilityTargetRightEntity'
+              ? 'sweep-right'
+              : target(row.TargetType)
+      });
+    }
+    for (const [key, child] of Object.entries(row)) {
+      if (key !== '$type' && key !== 'Predicate') walk(child, abilityName);
+    }
+  };
+  for (const row of linked) {
+    const abilityName = String(row.Name);
+    for (const [key, value] of Object.entries(row)) {
+      if (key === 'OnStart' && Array.isArray(value)) {
+        for (const [index, task] of value.entries()) {
+          const direct = asRaw(task)?.$type === 'RPG.GameCore.DamageByAttackProperty';
+          walk(task, abilityName, direct ? index : undefined);
+        }
+      } else if (key !== 'Name') {
+        walk(value, abilityName);
+      }
+    }
+    const onStart = Array.isArray(row.OnStart) ? row.OnStart : [];
+    const lastDamage = Math.max(
+      -1,
+      ...occurrences
+        .filter((hit) => hit.abilityName === abilityName && hit.topLevelIndex !== undefined)
+        .map((hit) => hit.topLevelIndex!)
+    );
+    for (const task of onStart.slice(0, lastDamage + 1)) {
+      const found = new Set<string>();
+      const inspect = (value: unknown): void => {
+        if (Array.isArray(value)) return value.forEach(inspect);
+        const item = asRaw(value);
+        if (!item) return;
+        if (typeof item.$type === 'string') found.add(item.$type);
+        for (const [key, child] of Object.entries(item)) if (key !== 'Predicate') inspect(child);
+      };
+      inspect(task);
+      if ([...found].some((type) => /(?:SetDynamicValue|Retarget)/.test(type)))
+        unsafeAbilities.set(abilityName, 'damage-runtime-mutation');
+      else if ([...found].some((type) => /(?:LoopExecuteTaskList|SkillPerformFinish)/.test(type)))
+        unsafeAbilities.set(abilityName, 'damage-not-linear');
+    }
+  }
+  if (!occurrences.length) {
+    diagnostic?.('damage-no-supported-task');
+    return [];
+  }
+  if (occurrences.some((hit) => !hit.role || hit.role === 'self')) {
+    diagnostic?.('damage-unsupported-target');
+    return [];
+  }
+  const byRole = new Map<string, DamageOccurrence[]>();
+  for (const hit of occurrences) byRole.set(hit.role!, [...(byRole.get(hit.role!) ?? []), hit]);
+  const rows: NonNullable<EnemySkillDetailDomain['damage']> = [];
+  const rejected = new Set<EnemySkillDamageDiagnostic>();
+  const accept = (role: EnemySkillDamageTarget, hits: DamageOccurrence[]) => {
+    const abilities = new Set(hits.map((hit) => hit.abilityName));
+    const reason =
+      abilities.size > 1
+        ? 'damage-multiple-abilities'
+        : hits.some((hit) => hit.topLevelIndex === undefined)
+          ? 'damage-conditional'
+          : unsafeAbilities.get(hits[0].abilityName);
+    if (reason) {
+      rejected.add(reason);
+      return;
+    }
+    const values = hits.map((hit) => resolve(hit.raw.AttackProperty?.DamagePercentage));
+    if (values.some((value) => !value || value.startsWith('-'))) {
+      rejected.add('damage-unresolved-value');
+      return;
+    }
+    rows.push({
+      target: role,
+      totals: normalizeEnemySkillTotals([addDecimals(values as DecimalString[])]),
+      scaling: 'attack'
+    });
+  };
+  const left = byRole.get('sweep-left') ?? [];
+  const right = byRole.get('sweep-right') ?? [];
+  if (left.length || right.length) {
+    const center = byRole.get('primary') ?? [];
+    const sweep = [...left, ...center, ...right];
+    const values = sweep.map((hit) => resolve(hit.raw.AttackProperty?.DamagePercentage));
+    if (
+      left.length === 1 &&
+      right.length === 1 &&
+      center.length === 1 &&
+      new Set(sweep.map((hit) => hit.abilityName)).size === 1 &&
+      sweep.every((hit) => hit.topLevelIndex !== undefined) &&
+      !unsafeAbilities.has(sweep[0].abilityName) &&
+      values.every((value) => value && !value.startsWith('-')) &&
+      values.every((value) => decimalEquals(value!, values[0]!))
+    ) {
+      rows.push({
+        target: 'each-swept',
+        totals: normalizeEnemySkillTotals([values[0]!]),
+        scaling: 'attack'
+      });
+    } else rejected.add('damage-not-linear');
+    byRole.delete('primary');
+  }
+  for (const [role, hits] of byRole) {
+    if (role === 'sweep-left' || role === 'sweep-right') continue;
+    accept(role as EnemySkillDamageTarget, hits);
+  }
+  for (const reason of rejected) diagnostic?.(reason);
+  return rows;
+}
+
 export function parseEnemySkillDetail(
   source: SkillSemanticSource
 ): EnemySkillDetailDomain | undefined {
@@ -175,25 +330,44 @@ export function parseEnemySkillDetail(
   if (!tasks.length) return undefined;
   const floats = source.character.DynamicValues?.Floats ?? {};
   const resolve = (value: unknown) => resolveSkillValue(value, source.params, floats);
-  const damage = VERIFIED_DAMAGE_SKILLS.has(source.skillId)
-    ? damageRows(source.skillId, tasks, resolve)
-    : [];
+  const damage =
+    source.skillId === '201201002' || source.skillId === '406401207'
+      ? reviewedConditionalDamageRows(source.skillId, tasks, resolve)
+      : structuralDamageRows(linkedAbility, source.triggerKey, resolve, source.onDamageDiagnostic);
   const statusCandidates: Array<{
-    statusId: string;
+    modifierName: string;
+    statusId?: string;
     role: EnemySkillDamageTarget | 'self';
-    chance?: DecimalString;
+    chance: DecimalString;
   }> = [];
+  const invalidApplications = new Set<string>();
   const actionShifts: NonNullable<EnemySkillDetailDomain['actionShifts']> = [];
   for (const { raw, conditional } of tasks) {
-    if (raw.$type === 'RPG.GameCore.AddModifier') {
-      const statusId = source.statusesByModifier.get(String(raw.ModifierName?.Value ?? ''));
+    if (raw.$type === 'RPG.GameCore.AddModifier' && raw.Chance !== undefined) {
+      const modifierName = String(raw.ModifierName?.Value ?? '');
       const role = target(raw.TargetType);
-      if (!statusId || !role) continue;
+      if (!modifierName) {
+        source.onChanceDiagnostic?.('chance-ambiguous-application');
+        continue;
+      }
+      if (!role) {
+        source.onChanceDiagnostic?.('chance-unsupported-target');
+        continue;
+      }
       const chance = resolve(raw.Chance);
+      const key = `${modifierName}:${role}`;
+      if (!chance || chance.startsWith('-')) {
+        invalidApplications.add(key);
+        source.onChanceDiagnostic?.('chance-unresolved');
+        continue;
+      }
       statusCandidates.push({
-        statusId,
+        modifierName,
+        ...(source.statusesByModifier.has(modifierName)
+          ? { statusId: source.statusesByModifier.get(modifierName)! }
+          : {}),
         role,
-        ...(chance && !chance.startsWith('-') ? { chance } : {})
+        chance
       });
     }
     if (raw.$type === 'RPG.GameCore.ModifyActionDelay' && !conditional) {
@@ -202,11 +376,52 @@ export function parseEnemySkillDetail(
       if (shift) actionShifts.push(shift);
     }
   }
-  const uniqueApplications: NonNullable<EnemySkillDetailDomain['applications']> = [
-    ...new Map(statusCandidates.map((candidate) => [candidate.statusId, candidate])).values()
-  ].flatMap(({ statusId, role, chance }) =>
-    chance ? [{ baseChance: chance, statusId, ...(role === 'self' ? {} : { target: role }) }] : []
-  );
+  const candidatesByIdentity = new Map<string, typeof statusCandidates>();
+  for (const candidate of statusCandidates) {
+    const key = `${candidate.modifierName}:${candidate.role}`;
+    candidatesByIdentity.set(key, [...(candidatesByIdentity.get(key) ?? []), candidate]);
+  }
+  const settled: typeof statusCandidates = [];
+  for (const [key, candidates] of candidatesByIdentity) {
+    if (
+      invalidApplications.has(key) ||
+      candidates.some((candidate) => !decimalEquals(candidate.chance, candidates[0].chance))
+    ) {
+      source.onChanceDiagnostic?.('chance-ambiguous-application');
+      continue;
+    }
+    settled.push(candidates[0]);
+  }
+  const distinct: typeof settled = [];
+  for (const candidate of settled) {
+    if (
+      !distinct.some(
+        (existing) =>
+          existing.statusId === candidate.statusId &&
+          existing.role === candidate.role &&
+          decimalEquals(existing.chance, candidate.chance)
+      )
+    )
+      distinct.push(candidate);
+  }
+  const uniqueApplications: NonNullable<EnemySkillDetailDomain['applications']> = [];
+  for (const candidate of distinct) {
+    const competitors = distinct.filter(
+      (other) => other !== candidate && other.role === candidate.role
+    );
+    if (
+      !candidate.statusId &&
+      competitors.some((other) => !decimalEquals(other.chance, candidate.chance))
+    ) {
+      source.onChanceDiagnostic?.('chance-ambiguous-application');
+      continue;
+    }
+    uniqueApplications.push({
+      baseChance: candidate.chance,
+      ...(candidate.statusId ? { statusId: candidate.statusId } : {}),
+      ...(candidate.role === 'self' ? {} : { target: candidate.role })
+    });
+  }
   const uniqueShifts = [
     ...new Map(actionShifts.map((shift) => [`${shift.kind}:${shift.ratio}`, shift])).values()
   ];

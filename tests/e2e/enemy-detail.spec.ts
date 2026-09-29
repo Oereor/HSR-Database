@@ -247,15 +247,15 @@ test('Skill Browser 保留阶段筛选、技能顺序与本地选择状态', asy
 });
 
 test('同一技能跨 Monster 保持选择并更新有效倍率', async ({ page }) => {
-  await page.goto('/enemies/4064012/');
-  const selected = page.locator('[data-enemy-skill-detail="406401201"]');
-  await expect(selected.locator('[data-damage-target="primary"]')).toContainText('400%');
-  await page.locator('[data-monster-option="406401201"]').click();
-  await expect(page.locator('[data-enemy-skill-option="406401201"]')).toHaveAttribute(
+  await page.goto('/enemies/4035010/');
+  const selected = page.locator('[data-enemy-skill-detail="403501001"]');
+  await expect(selected.locator('[data-damage-target="primary"]')).toContainText('450%');
+  await page.locator('[data-monster-option="403501001"]').click();
+  await expect(page.locator('[data-enemy-skill-option="403501001"]')).toHaveAttribute(
     'aria-pressed',
     'true'
   );
-  await expect(selected.locator('[data-damage-target="primary"]')).toContainText('360%');
+  await expect(selected.locator('[data-damage-target="primary"]')).toContainText('400%');
   await expect(page.locator('[data-enemy-skill-detail]')).toHaveCount(1);
 });
 
@@ -285,13 +285,24 @@ test('Skill Browser 显示已有的数值伤害、概率和行动变化', async 
   await expect(page.locator('[data-action-shift="delay"]')).toContainText('50%');
 
   await page.goto('/enemies/2004010/');
+  await page.locator('[data-enemy-skill-option="200401001"]').click();
+  await expect(
+    page.locator('[data-enemy-skill-detail="200401001"] [data-base-chance]')
+  ).toContainText('100%');
+  await expect(
+    page.locator('[data-enemy-skill-detail="200401001"] [data-enemy-skill-damage]')
+  ).toHaveCount(0);
+  await page.locator('[data-enemy-skill-option="200401002"]').click();
+  await expect(page.locator('[data-damage-target="primary"]')).toContainText('900%');
+  await expect(page.locator('[data-damage-target="adjacent"]')).toContainText('200%');
   await page.locator('[data-enemy-skill-option="200401004"]').click();
+  await expect(page.locator('[data-base-chance]')).toContainText('120%');
   await expect(page.locator('[data-action-shift="advance"]')).toContainText('100%');
 
   await page.goto('/enemies/3003051/');
   const statuses = page.locator('[data-enemy-skill-detail="300305101"]');
-  await expect(statuses.locator('[data-status-id]')).toHaveCount(2);
-  await expect(statuses.locator('[data-base-chance]')).toHaveCount(2);
+  await expect(statuses.locator('[data-status-id]')).toHaveCount(0);
+  await expect(statuses.locator('[data-base-chance]')).toHaveCount(1);
   await expect(statuses.locator('[data-base-chance]').first()).toContainText('100%');
   await page.locator('[data-enemy-skill-option="300305105"]').click();
   await expect(page.locator('[data-enemy-skill-facts]')).toHaveCount(0);
@@ -315,6 +326,12 @@ test('技能内召唤与弹射旧事实不再出现', async ({ page }) => {
   await expect(page.locator('[data-enemy-skill-facts]')).toHaveCount(0);
   await page.locator('[data-enemy-skill-option="401401208"]').click();
   await expect(page.locator('[data-enemy-skill-facts]')).toHaveCount(0);
+
+  await page.goto('/enemies/4064012/');
+  await page.locator('[data-enemy-skill-option="406401204"]').click();
+  await expect(page.locator('[data-enemy-skill-damage]')).toHaveCount(0);
+  await page.locator('[data-enemy-skill-option="406401205"]').click();
+  await expect(page.locator('[data-damage-target="all"]')).toContainText('1,050%');
 });
 
 test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出', async ({ page }) => {

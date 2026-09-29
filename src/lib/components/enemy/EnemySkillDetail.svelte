@@ -4,7 +4,11 @@
   import SkillEffectTag from '$lib/components/shared/SkillEffectTag.svelte';
   import SkillExtraEffects from '$lib/components/shared/SkillExtraEffects.svelte';
   import { getElementColor } from '$lib/domain/elements';
-  import { formatEnemySkillPercent, formatEnemySkillTotals } from '$lib/domain/enemy-skill-format';
+  import {
+    formatEnemySkillPercent,
+    formatEnemySkillTotals,
+    visibleEnemySkillApplications
+  } from '$lib/domain/enemy-skill-format';
   import type { EnemySkillDamageTarget } from '$lib/domain/types';
   import type { EnemySkillView } from '$lib/domain/enemy-view';
   import * as m from '$lib/paraglide/messages.js';
@@ -34,9 +38,10 @@
     m.enemy_skill_attack_ratio({ percent: formatEnemySkillTotals(totals) });
 
   $: facts = skill.detail;
+  $: displayedApplications = visibleEnemySkillApplications(facts?.applications ?? []);
   $: hasFacts = !!(
     facts?.damage?.length ||
-    facts?.applications?.length ||
+    displayedApplications.length ||
     facts?.actionShifts?.length
   );
 </script>
@@ -71,11 +76,11 @@
           {/each}
         </section>{/if}
 
-      {#if facts?.applications?.length}<section
+      {#if displayedApplications.length}<section
           class="enemy-skill-fact-section"
           data-enemy-skill-applications
         >
-          {#each facts.applications as application, index (index)}
+          {#each displayedApplications as application, index (index)}
             <div class="enemy-skill-application" data-status-id={application.statusId}>
               {#if application.name}<strong class="enemy-skill-application__name"
                   ><GameText text={application.name} /></strong

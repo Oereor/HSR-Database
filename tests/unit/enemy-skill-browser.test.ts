@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { parseDecimal } from '../../scripts/data/decimal';
 import type { EnemySkillPhaseView, EnemySkillView } from '../../src/lib/domain/enemy-view';
 import {
   enemySkillsInPhase,
@@ -6,7 +7,8 @@ import {
 } from '../../src/lib/domain/enemy-skill-browser';
 import {
   formatEnemySkillPercent,
-  formatEnemySkillTotals
+  formatEnemySkillTotals,
+  visibleEnemySkillApplications
 } from '../../src/lib/domain/enemy-skill-format';
 
 const skill = (id: string): EnemySkillView => ({ id }) as EnemySkillView;
@@ -19,6 +21,31 @@ describe('Enemy Skill Browser state and formatting', () => {
   it('formats one or several proven damage totals without numeric rounding', () => {
     expect(formatEnemySkillTotals(['3'])).toBe('300%');
     expect(formatEnemySkillTotals(['3', '5'])).toBe('300% / 500%');
+  });
+  it('collapses a shared chance and hides unexplained different chances', () => {
+    const chance = parseDecimal;
+    expect(
+      visibleEnemySkillApplications([
+        { statusId: 'a', name: 'A', baseChance: chance('1') },
+        { statusId: 'b', name: 'B', baseChance: chance('1.0') }
+      ])
+    ).toEqual([{ baseChance: '1' }]);
+    expect(
+      visibleEnemySkillApplications([
+        { baseChance: chance('0.5'), target: 'primary' },
+        { baseChance: chance('0.8'), target: 'primary' }
+      ])
+    ).toEqual([]);
+    expect(
+      visibleEnemySkillApplications([
+        { statusId: 'a', name: 'A', baseChance: chance('0.5'), target: 'primary' },
+        { baseChance: chance('0.8'), target: 'primary' },
+        { baseChance: chance('0.7'), target: 'adjacent' }
+      ])
+    ).toEqual([
+      { statusId: 'a', name: 'A', baseChance: '0.5', target: 'primary' },
+      { baseChance: '0.7', target: 'adjacent' }
+    ]);
   });
   it('keeps concrete skill order while filtering by phase', () => {
     const skills = [skill('c'), skill('a'), skill('b')];

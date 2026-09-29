@@ -4,7 +4,10 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import { readTable } from '../../scripts/data/raw';
 import { parseDecimal } from '../../scripts/data/decimal';
 import { buildEnemySkillDetails } from '../../scripts/data/enemy-skill-details';
-import { parseEnemySkillDetail } from '../../scripts/data/enemy-skill-semantics';
+import {
+  normalizeEnemySkillTotals,
+  parseEnemySkillDetail
+} from '../../scripts/data/enemy-skill-semantics';
 import {
   effectiveSkillParams,
   normalizedActionShift,
@@ -50,7 +53,7 @@ describe('enemy skill parameter foundation', () => {
     ).toBeUndefined();
   });
 
-  it('stores a configured 1.2 chance only for an identified status', () => {
+  it('retains a configured 1.2 chance with or without status identity', () => {
     const source = {
       monsterId: 'synthetic',
       skillId: '1',
@@ -82,7 +85,7 @@ describe('enemy skill parameter foundation', () => {
     ]);
     expect(
       parseEnemySkillDetail({ ...source, statusesByModifier: new Map() })?.applications
-    ).toBeUndefined();
+    ).toEqual([{ target: 'primary', baseChance: '1.2' }]);
     expect(
       parseEnemySkillDetail({
         ...source,
@@ -128,8 +131,167 @@ describe('enemy skill parameter foundation', () => {
             }
           ]
         }
-      })
+      })?.applications
+    ).toEqual([{ statusId: 'status-1', target: 'primary', baseChance: '1.2' }]);
+  });
+});
+
+describe('base chance application identity', () => {
+  const add = (modifier: string, chance: unknown, target = 'AbilityTargetEntity') => ({
+    $type: 'RPG.GameCore.AddModifier',
+    TargetType: { Alias: target },
+    ModifierName: { Value: modifier },
+    Chance: chance
+  });
+  const fixed = (value: string) => ({ IsDynamic: false, FixedValue: { Value: value } });
+  const parse = (tasks: unknown[], statuses: [string, string][] = []) =>
+    parseEnemySkillDetail({
+      monsterId: 'synthetic',
+      skillId: 'synthetic',
+      triggerKey: 'Skill01',
+      params: new Map(),
+      character: {
+        SkillAbilityList: [{ Skill: 'Skill01', AbilityList: ['Apply'] }],
+        DynamicValues: { Floats: {} }
+      },
+      ability: { AbilityList: [{ Name: 'Apply', OnStart: tasks }] },
+      statusesByModifier: new Map(statuses)
+    });
+
+  it('keeps the same status on different targets and different named statuses', () => {
+    expect(
+      parse(
+        [
+          add('Burn', fixed('0.8')),
+          add('Burn', fixed('0.8'), 'AbilityTargetAdjoinEntity'),
+          add('Slow', fixed('0.5'))
+        ],
+        [
+          ['Burn', 'burn-id'],
+          ['Slow', 'slow-id']
+        ]
+      )?.applications
+    ).toEqual([
+      { statusId: 'burn-id', target: 'primary', baseChance: '0.8' },
+      { statusId: 'burn-id', target: 'adjacent', baseChance: '0.8' },
+      { statusId: 'slow-id', target: 'primary', baseChance: '0.5' }
+    ]);
+  });
+
+  it('collapses identical anonymous facts and rejects indistinguishable different chances', () => {
+    expect(parse([add('One', fixed('1')), add('Two', fixed('1.0'))])?.applications).toEqual([
+      { target: 'primary', baseChance: '1' }
+    ]);
+    expect(
+      parse([add('One', fixed('0.5')), add('Two', fixed('0.8'))])?.applications
     ).toBeUndefined();
+    expect(
+      parse([add('Named', fixed('0.5')), add('Anonymous', fixed('0.8'))], [['Named', 'named-id']])
+        ?.applications
+    ).toEqual([{ statusId: 'named-id', target: 'primary', baseChance: '0.5' }]);
+    expect(
+      parse([add('One', fixed('0.5')), add('Two', fixed('0.8'), 'AbilityTargetAdjoinEntity')])
+        ?.applications
+    ).toEqual([
+      { target: 'primary', baseChance: '0.5' },
+      { target: 'adjacent', baseChance: '0.8' }
+    ]);
+  });
+
+  it('omits unsupported chance expressions while preserving an independent action shift', () => {
+    const unsupported = { IsDynamic: true, PostfixExpr: { OpCodes: 'AQAAAAQR' } };
+    expect(parse([add('One', unsupported)])).toBeUndefined();
+    expect(parse([add('One', fixed('0.8')), add('One', unsupported)])).toBeUndefined();
+    expect(parse([add('One', fixed('0.8'), 'AllLightTeam')])).toBeUndefined();
+    expect(
+      parse([
+        add('One', fixed('1.2')),
+        { $type: 'RPG.GameCore.ModifyActionDelay', AddNormalizedValue: fixed('-1') }
+      ])
+    ).toEqual({
+      applications: [{ target: 'primary', baseChance: '1.2' }],
+      actionShifts: [{ kind: 'advance', ratio: '1' }]
+    });
+  });
+});
+
+describe('structural damage totals', () => {
+  it('deduplicates equivalent decimals and orders totals numerically', () => {
+    expect(
+      normalizeEnemySkillTotals(['10', '1.0', '2', '1'].map((value) => parseDecimal(value)))
+    ).toEqual(['1.0', '2', '10']);
+  });
+  const hit = (ratio: string, target = 'AbilityTargetEntity') => ({
+    $type: 'RPG.GameCore.DamageByAttackProperty',
+    TargetType: { Alias: target },
+    AttackProperty: { DamagePercentage: { IsDynamic: false, FixedValue: { Value: ratio } } }
+  });
+  const source = (onStart: unknown[], otherAbilities: unknown[] = []) => ({
+    monsterId: 'synthetic',
+    skillId: 'synthetic',
+    triggerKey: 'Skill01',
+    params: new Map(),
+    character: {
+      SkillAbilityList: [
+        {
+          Skill: 'Skill01',
+          AbilityList: ['Execute', ...otherAbilities.map((_, index) => `Other${index}`)]
+        }
+      ],
+      DynamicValues: { Floats: {} }
+    },
+    ability: {
+      AbilityList: [
+        { Name: 'Execute', OnStart: onStart },
+        ...otherAbilities.map((row, index) => ({ Name: `Other${index}`, OnStart: row }))
+      ]
+    },
+    statusesByModifier: new Map<string, string>()
+  });
+
+  it('sums same-path hits exactly and keeps other target roles separate', () => {
+    expect(
+      parseEnemySkillDetail(source([hit('0.1'), hit('0.2'), hit('2', 'AbilityTargetAdjoinEntity')]))
+        ?.damage
+    ).toEqual([
+      { target: 'primary', totals: ['0.3'], scaling: 'attack' },
+      { target: 'adjacent', totals: ['2'], scaling: 'attack' }
+    ]);
+  });
+
+  it('rejects incomplete conditional, cross-Ability, unresolved, unsupported and mutable damage', () => {
+    const cases: Array<[unknown[], unknown[], string]> = [
+      [
+        [hit('3'), { $type: 'RPG.GameCore.PredicateTaskList', SuccessTaskList: [hit('2')] }],
+        [],
+        'damage-conditional'
+      ],
+      [[hit('3')], [[hit('3')]], 'damage-multiple-abilities'],
+      [
+        [
+          hit('3'),
+          {
+            ...hit('2'),
+            AttackProperty: {
+              DamagePercentage: { IsDynamic: true, PostfixExpr: { OpCodes: 'AQAAAAQR' } }
+            }
+          }
+        ],
+        [],
+        'damage-unresolved-value'
+      ],
+      [[hit('3'), hit('2', 'AllLightTeam')], [], 'damage-unsupported-target'],
+      [[{ $type: 'RPG.GameCore.SetDynamicValue' }, hit('3')], [], 'damage-runtime-mutation']
+    ];
+    for (const [onStart, others, reason] of cases) {
+      const diagnostics: string[] = [];
+      const detail = parseEnemySkillDetail({
+        ...source(onStart, others),
+        onDamageDiagnostic: (value: string) => diagnostics.push(value)
+      });
+      expect(detail?.damage).toBeUndefined();
+      expect(diagnostics).toContain(reason);
+    }
   });
 });
 
@@ -144,16 +306,22 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
       readTable<Record<string, any>>(root, 'MonsterStatusConfig')
     ]);
     const ids = new Set([
+      '1002011',
+      '1002020',
+      '1002041',
+      '1003010',
       '1022010',
       '1002040',
       '1002030',
       '2004010',
+      '3003013',
       '1004020',
       '2012010',
       '3003051',
       '4013010',
       '4014012',
-      '4064012'
+      '4064012',
+      '4035010'
     ]);
     details = await buildEnemySkillDetails(root, {
       MonsterTemplateConfig: templates.filter((row) => ids.has(String(row.MonsterTemplateID))),
@@ -169,9 +337,22 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
       { target: 'adjacent', totals: ['1'], scaling: 'attack' }
     ]);
     expect(get('100203026', '100203001')?.damage?.[0].totals).toEqual(['1']);
-    expect(get('4064012', '406401201')?.damage?.[0].totals).toEqual(['4']);
-    expect(get('406401201', '406401201')?.damage?.[0].totals).toEqual(['3.6']);
+    expect(get('4064012', '406401201')?.damage).toBeUndefined();
+    expect(get('406401201', '406401201')?.damage).toBeUndefined();
     expect(get('100402017', '100402001')?.damage?.[0].totals).toEqual(['2']);
+    expect(get('4035010', '403501001')?.damage?.[0].totals).toEqual(['4.5']);
+    expect(get('403501001', '403501001')?.damage?.[0].totals).toEqual(['4']);
+  });
+
+  it('opens formerly gated direct damage without inventing a skill-specific rule', () => {
+    expect(get('1002011', '100201101')?.damage).toEqual([
+      { target: 'all', totals: ['2'], scaling: 'attack' }
+    ]);
+    expect(get('1002020', '100202001')?.damage).toEqual([
+      { target: 'primary', totals: ['2.5'], scaling: 'attack' }
+    ]);
+    expect(get('1002041', '100204101')?.damage?.[0].totals).toEqual(['3']);
+    expect(get('1003010', '100301001')?.damage?.[0].totals).toEqual(['3']);
   });
 
   it('keeps target roles and omits unsupported repeated totals and toughness', () => {
@@ -196,10 +377,17 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
       { target: 'marked', totals: ['12'], scaling: 'attack' }
     ]);
     expect(get('4064012', '406401204')?.damage).toBeUndefined();
+    expect(get('2004010', '200401002')?.damage).toEqual([
+      { target: 'primary', totals: ['9'], scaling: 'attack' },
+      { target: 'adjacent', totals: ['2'], scaling: 'attack' }
+    ]);
+    expect(get('4064012', '406401205')?.damage).toEqual([
+      { target: 'all', totals: ['10.5'], scaling: 'attack' }
+    ]);
     expect(JSON.stringify(get('1022010', '102201001'))).not.toContain('toughness');
   });
 
-  it('publishes only numeric applications with stable status identity', () => {
+  it('publishes numeric applications with optional status identity', () => {
     expect(get('3003051', '300305101')?.applications).toEqual([
       {
         statusId: '230030501',
@@ -216,7 +404,18 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
       statusId: '210010101',
       baseChance: '1'
     });
-    expect(get('2004010', '200401004')?.applications).toBeUndefined();
+    expect(get('2004010', '200401004')?.applications).toEqual([
+      { target: 'primary', baseChance: '1.2' }
+    ]);
+    expect(get('2004010', '200401001')?.applications).toEqual([
+      { target: 'primary', baseChance: '1' }
+    ]);
+    expect(get('3003013', '300301301')?.applications).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ baseChance: '0.8' }),
+        expect.objectContaining({ baseChance: '0.5' })
+      ])
+    );
   });
 
   it('keeps action shifts and removes obsolete detail-only facts', () => {
@@ -231,5 +430,24 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
   it('does not manufacture bounce totals', () => {
     expect(get('4014012', '401401207')).toBeUndefined();
     expect(get('4014012', '401401208')).toBeUndefined();
+  });
+
+  it.each([
+    ['1022010', '102201001', true],
+    ['1002040', '100204001', true],
+    ['1002030', '100203001', true],
+    ['1002030', '100203003', false],
+    ['2004010', '200401003', true],
+    ['1004020', '100402001', true],
+    ['1004020', '100402002', true],
+    ['1004020', '100402004', true],
+    ['2012010', '201201001', true],
+    ['2012010', '201201002', true],
+    ['4013010', '401301001', true],
+    ['4013010', '401301002', true],
+    ['4064012', '406401201', false],
+    ['4064012', '406401207', true]
+  ])('keeps reviewed %s/%s as a structural regression fixture', (monsterId, skillId, expected) => {
+    expect(Boolean(get(monsterId, skillId)?.damage?.length)).toBe(expected);
   });
 });

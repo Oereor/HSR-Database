@@ -1,3 +1,5 @@
+import type { EnemySkillDetail } from './types';
+
 /** Multiply a non-negative decimal ratio by 100 without binary floating-point rounding. */
 export function formatEnemySkillPercent(value: string): string {
   const match = /^(\d+)(?:\.(\d+))?$/.exec(value);
@@ -12,4 +14,22 @@ export function formatEnemySkillPercent(value: string): string {
 /** Keep the unit outside a list of possible totals. */
 export function formatEnemySkillTotals(totals: readonly string[]): string {
   return totals.map(formatEnemySkillPercent).join(' / ');
+}
+
+/** Keep only base-chance rows whose numeric fact has a clear visible association. */
+export function visibleEnemySkillApplications(
+  applications: NonNullable<EnemySkillDetail['applications']>
+): NonNullable<EnemySkillDetail['applications']> {
+  if (applications.length <= 1) return applications;
+  if (
+    new Set(applications.map((application) => formatEnemySkillPercent(application.baseChance)))
+      .size === 1
+  )
+    return [{ baseChance: applications[0].baseChance }];
+  return applications.filter(
+    (application) =>
+      !!application.name ||
+      (!!application.target &&
+        applications.filter((other) => other.target === application.target).length === 1)
+  );
 }
