@@ -112,7 +112,8 @@ describe('EnemyDomain', () => {
     const tables = sourceTables(skill);
     const result = buildEnemyDomain({ tables });
     const enemy = result.enemies.find((item) => item.id === '100')!;
-    const domainSkill = enemy.monsters[0].skills[0];
+    const binding = enemy.monsters[0].skills[0];
+    const domainSkill = enemy.skillDefinitions[binding.skillId];
 
     expect(enemy.template.baseStats.initialDelayRatio).toBe('0.5');
     expect(result.enemies.find((item) => item.id === '200')!.template.baseStats).not.toHaveProperty(
@@ -124,6 +125,7 @@ describe('EnemyDomain', () => {
       kind: 'skill',
       tagCode: 'Bounce'
     });
+    expect(binding).toEqual({ skillId: '1' });
     expect(domainSkill).not.toHaveProperty('included');
     expect(enemy.monsters[0]).not.toHaveProperty('skillPhases');
     expect(domainSkill.nameSource).toEqual({ kind: 'direct', ref: { kind: 'hash', hash: '4000' } });

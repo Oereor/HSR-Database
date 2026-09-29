@@ -260,10 +260,12 @@ function projectEnemy(domain: EnemyDomain, context: EnemyProjectionContext): Ene
     codes.map((code) => elementLabel(code, elementSource(code), context, domain.id, field));
   const projectMonster = (monster: EnemyDomain['monsters'][number]) => {
     const seenSkillIds = new Set<string>();
-    const skills = monster.skills.flatMap((skill) => {
-      if (seenSkillIds.has(skill.id)) return [];
-      seenSkillIds.add(skill.id);
-      const projected = projectSkill(domain.id, skill, context);
+    const skills = monster.skills.flatMap((binding) => {
+      if (seenSkillIds.has(binding.skillId)) return [];
+      seenSkillIds.add(binding.skillId);
+      const definition = domain.skillDefinitions[binding.skillId];
+      if (!definition) return [];
+      const projected = projectSkill(domain.id, definition, context);
       return projected ? [projected] : [];
     });
     const skillPhases = buildEnemySkillPhases(skills);

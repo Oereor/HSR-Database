@@ -231,6 +231,29 @@ export interface EnemySkillDomain {
   extraEffectIds: string[];
 }
 
+export type EnemySkillTarget =
+  'primary' | 'adjacent' | 'all' | 'each-swept' | 'enemy-ally' | 'marked' | 'other-marked';
+
+export interface EnemySkillDetailDomain {
+  damage?: Array<{ target: EnemySkillTarget; ratio: DecimalString; scaling: 'attack' }>;
+  bounce?: { count: number };
+  statuses?: Array<{
+    statusId: string;
+    kind: 'Buff' | 'Debuff' | 'Other';
+    target: EnemySkillTarget | 'self';
+    baseChance?: DecimalString;
+    duration?: { kind: 'turns'; value: number };
+  }>;
+  actionShifts?: Array<{ kind: 'advance' | 'delay'; ratio: DecimalString }>;
+  effects?: Array<{ kind: 'trigger-dot' | 'clear-dot' }>;
+  summons?: Array<{ monsterId: string }>;
+}
+
+export interface EnemySkillBindingDomain {
+  skillId: string;
+  detail?: EnemySkillDetailDomain;
+}
+
 export interface EnemySummonDomain {
   monsterId: string;
   monsterTemplateId: string;
@@ -260,7 +283,7 @@ export interface EnemyMonsterDomain {
   resistances: Array<{ element: ElementType; value: number }>;
   specialResistances: EnemySpecialResistanceDomain[];
   summons: EnemySummonDomain[];
-  skills: EnemySkillDomain[];
+  skills: EnemySkillBindingDomain[];
 }
 
 export interface EnemyTemplateDomain {
@@ -277,6 +300,7 @@ export interface EnemyDomain {
   rank: string;
   elementNameSources: Partial<Record<ElementType, NeutralTextSource>>;
   template: EnemyTemplateDomain;
+  skillDefinitions: Record<string, EnemySkillDomain>;
   monsters: EnemyMonsterDomain[];
   defaultMonsterId: string;
 }

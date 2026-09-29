@@ -41,6 +41,7 @@ export const DATA_GENERATION_TABLE_NAMES = [
   'MonsterTemplateConfig',
   'MonsterConfig',
   'MonsterSkillConfig',
+  'MonsterStatusConfig',
   'HardLevelGroup',
   'EliteGroup',
   'ExtraEffectConfig',

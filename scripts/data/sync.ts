@@ -59,6 +59,7 @@ import { projectCharacter } from './projection/character.js';
 import { projectLightCone } from './projection/light-cone.js';
 import { projectRelic } from './projection/relic.js';
 import { buildEnemyDomain } from './domain/enemy.js';
+import { buildEnemySkillDetails } from './enemy-skill-details.js';
 import { projectEnemies } from './projection/enemy.js';
 import { validateSiteMessageFiles } from '../messages.js';
 import {
@@ -647,15 +648,18 @@ export async function syncData(): Promise<DataManifest> {
       if (!extraEffectsById.has(id))
         throw new Error(`角色 ${domain.id} 引用了未知 ExtraEffect ${id}`);
   }
+  const enemySkillDetails = await buildEnemySkillDetails(root, tables);
   const enemyDomainBuild = buildEnemyDomain({
     tables: tableSubset([
       'MonsterTemplateConfig',
       'MonsterConfig',
       'MonsterSkillConfig',
+      'MonsterStatusConfig',
       'DamageType',
       'HardLevelGroup',
       'EliteGroup'
-    ])
+    ]),
+    skillDetails: enemySkillDetails
   });
   const enemyDomainsById = new Map(enemyDomainBuild.enemies.map((enemy) => [enemy.id, enemy]));
   console.log('构建 Endgame 敌方实例与精确 HP…');
