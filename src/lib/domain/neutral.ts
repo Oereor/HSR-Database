@@ -231,8 +231,7 @@ export interface EnemySkillDomain {
   extraEffectIds: string[];
 }
 
-export type EnemySkillTarget =
-  'primary' | 'adjacent' | 'all' | 'each-swept' | 'enemy-ally' | 'marked' | 'other-marked';
+export type EnemySkillTarget = import('./types.js').EnemySkillTarget;
 
 export interface EnemySkillDetailDomain {
   damage?: Array<{ target: EnemySkillTarget; ratio: DecimalString; scaling: 'attack' }>;

@@ -6,6 +6,7 @@ import { formatRoundedDecimal } from '../../src/lib/domain/endgame-view';
 import {
   buildEnemyDetailPageData,
   enemySkillAnchorId,
+  getEnemySkillsForMonster,
   getEnemyMonsterStatProgression,
   getEnemyStatsAtLevel
 } from '../../src/lib/domain/enemy-view';
@@ -340,6 +341,9 @@ describe('Enemy Detail presentation', () => {
     expect(view.skillDefinitions.map((skill) => skill.id)).toEqual(
       detail.defaultMonster.skills.map((skill) => skill.id)
     );
+    expect(getEnemySkillsForMonster(view, monster.monsterId).map((skill) => skill.id)).toEqual(
+      detail.defaultMonster.skills.map((skill) => skill.id)
+    );
   });
 
   it('完整技能按 default-first 稳定去重，reference anchor 全部命中唯一 target', async () => {
@@ -475,8 +479,8 @@ describe('Enemy Detail presentation', () => {
     expect(complexPageData.skillDefinitions.some((skill) => skill.extraEffects.length > 0)).toBe(
       true
     );
-    expect(complexPageData.skillDefinitions[0]).not.toHaveProperty('kind');
+    expect(complexPageData.skillDefinitions[0]).toHaveProperty('kind');
     expect(complexPageData.skillDefinitions[0]).not.toHaveProperty('localizedTextStatus');
-    expect(complexPageData.skillDefinitions[0]).not.toHaveProperty('phases');
+    expect(complexPageData.skillDefinitions[0]).toHaveProperty('phases');
   });
 });

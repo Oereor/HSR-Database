@@ -3,6 +3,7 @@ import type {
   ElementLabel,
   Enemy,
   EnemySkill,
+  EnemySkillDetail,
   EnemyStatProgression,
   EnemyStatValue,
   EnemySummonReference,
@@ -29,9 +30,24 @@ export interface EnemySkillDefinitionView {
   id: string;
   name: string;
   description: string;
+  kind: EnemySkill['kind'];
   tag: EnemySkill['tag'];
   damageType?: ElementLabel;
+  phases: EnemySkill['phases'];
   extraEffects: EnemySkill['extraEffects'];
+}
+
+export interface EnemySkillDetailView extends Omit<EnemySkillDetail, 'summons'> {
+  summons?: EnemySummonView[];
+}
+
+export interface EnemySkillBindingView {
+  id: string;
+  detail?: EnemySkillDetailView;
+}
+
+export interface EnemySkillView extends EnemySkillDefinitionView {
+  detail?: EnemySkillDetailView;
 }
 
 export type EnemyStatCompactValue = DecimalString | null;
@@ -66,6 +82,7 @@ export interface EnemyMonsterPageData {
   resistances: Monster['resistances'];
   specialResistances: Monster['specialResistances'];
   summons: EnemySummonView[];
+  skills: EnemySkillBindingView[];
   skillPhases: EnemySkillPhaseView[];
 }
 
@@ -103,8 +120,10 @@ function buildEnemySkillDefinitions(enemy: Enemy): EnemySkillDefinitionView[] {
         id: skill.id,
         name: skill.name,
         description: skill.description,
+        kind: skill.kind,
         tag: skill.tag,
         ...(skill.damageType ? { damageType: skill.damageType } : {}),
+        phases: skill.phases,
         extraEffects: skill.extraEffects
       });
     }
@@ -162,8 +181,30 @@ function buildEnemyMonsterPageData(monster: Monster, statsRef: number): EnemyMon
     resistances: monster.resistances,
     specialResistances: monster.specialResistances,
     summons,
+    skills: monster.skills.map((skill) => ({
+      id: skill.id,
+      ...(skill.detail ? { detail: skill.detail } : {})
+    })),
     skillPhases
   };
+}
+
+/** Resolve ordered, locale-ready skills for one concrete Monster without parser data. */
+export function getEnemySkillsForMonster(
+  page: EnemyDetailPageData,
+  monsterId: string
+): EnemySkillView[] {
+  const monster = page.monsters.find((candidate) => candidate.monsterId === monsterId);
+  if (!monster) throw new Error(`Enemy ${page.id} 缺少 Monster ${monsterId}`);
+  const definitions = new Map(page.skillDefinitions.map((skill) => [skill.id, skill]));
+  return monster.skills.map((binding) => {
+    const definition = definitions.get(binding.id);
+    if (!definition) throw new Error(`Monster ${monsterId} 引用了未知技能定义 ${binding.id}`);
+    return {
+      ...definition,
+      ...(binding.detail ? { detail: binding.detail } : {})
+    };
+  });
 }
 
 export function buildEnemyDetailPageData(enemy: Enemy): EnemyDetailPageData {

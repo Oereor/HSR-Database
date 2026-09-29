@@ -1,8 +1,16 @@
-import type { EnemyDomain, NeutralTextSource } from '../../../src/lib/domain/neutral.js';
+import type {
+  EnemyDomain,
+  EnemyMonsterDomain,
+  EnemySkillDetailDomain,
+  EnemySummonDomain,
+  NeutralTextSource
+} from '../../../src/lib/domain/neutral.js';
 import type {
   Enemy,
   EnemyCatalogEntry,
   EnemySkill,
+  EnemySkillDetail,
+  EnemySummonReference,
   ElementLabel,
   SkillExtraEffect
 } from '../../../src/lib/domain/types.js';
@@ -20,6 +28,7 @@ export interface EnemyProjectionContext {
     string,
     import('../../../src/lib/domain/neutral.js').NeutralExtraEffect
   >;
+  statusNamesById?: ReadonlyMap<string, NeutralTextSource>;
   elementNameFallbacks?: Partial<Record<string, string>>;
   specialResistanceLabels?: Partial<Record<string, string>>;
   enemyNameFallback?: (id: string) => string;
@@ -31,6 +40,8 @@ export interface EnemyProjectionContext {
   ) => void;
   onUnresolvedExtraEffect?: (enemyId: string, skillId: string, extraEffectId: string) => void;
 }
+
+type MonsterLookup = ReadonlyMap<string, { enemy: EnemyDomain; monster: EnemyMonsterDomain }>;
 
 function source(entity: string, id: string, field: string): BuildTextProvenance {
   return { entity, id, field };
@@ -253,7 +264,92 @@ export function projectEnemySkillDescription(
   );
 }
 
-function projectEnemy(domain: EnemyDomain, context: EnemyProjectionContext): Enemy {
+function projectSummon(
+  summon: EnemySummonDomain,
+  context: EnemyProjectionContext
+): EnemySummonReference {
+  const target = context.enemiesById.get(summon.monsterTemplateId);
+  const name = target
+    ? projectText(
+        context.resolver,
+        target.nameSource ?? target.template.nameSource,
+        source('enemy', target.id, 'MonsterName'),
+        context.enemyNameFallback?.(target.id) ?? `Enemy ${target.id}`,
+        {
+          requirement: 'required',
+          visibility: 'emitted',
+          fallbackUsed: true,
+          productRouteReachability: 'reachable'
+        }
+      )
+    : (context.enemyNameFallback?.(summon.monsterTemplateId) ??
+      `Enemy ${summon.monsterTemplateId}`);
+  return {
+    monsterId: summon.monsterId,
+    monsterTemplateId: summon.monsterTemplateId,
+    name,
+    rank: summon.rank,
+    weaknesses: target
+      ? projectWeaknessesFrom(target, summon.weaknesses, context)
+      : summon.weaknesses.map((code) => ({ element: code, name: code })),
+    href: `/enemies/${summon.monsterTemplateId}`
+  };
+}
+
+function projectSkillDetail(
+  detail: EnemySkillDetailDomain,
+  context: EnemyProjectionContext,
+  monstersById: MonsterLookup
+): EnemySkillDetail {
+  return {
+    ...(detail.damage ? { damage: detail.damage } : {}),
+    ...(detail.bounce ? { bounce: detail.bounce } : {}),
+    ...(detail.statuses
+      ? {
+          statuses: detail.statuses.map((status) => ({
+            ...status,
+            name: projectText(
+              context.resolver,
+              context.statusNamesById?.get(status.statusId),
+              source('enemy-status', status.statusId, 'StatusName'),
+              `Status ${status.statusId}`,
+              {
+                requirement: 'required',
+                visibility: 'emitted',
+                fallbackUsed: true,
+                productRouteReachability: 'reachable'
+              }
+            )
+          }))
+        }
+      : {}),
+    ...(detail.actionShifts ? { actionShifts: detail.actionShifts } : {}),
+    ...(detail.effects ? { effects: detail.effects } : {}),
+    ...(detail.summons
+      ? {
+          summons: detail.summons.map(({ monsterId }) => {
+            const target = monstersById.get(monsterId);
+            if (!target) throw new Error(`Enemy skill detail 引用了未知召唤 Monster ${monsterId}`);
+            return projectSummon(
+              {
+                monsterId,
+                monsterTemplateId: target.monster.monsterTemplateId,
+                rank: target.enemy.rank,
+                weaknesses: target.monster.weaknesses
+              },
+              context
+            );
+          })
+        }
+      : {})
+  };
+}
+
+function projectEnemy(
+  domain: EnemyDomain,
+  context: EnemyProjectionContext,
+  monstersById: MonsterLookup
+): Enemy {
   const elementSource = (code: string) =>
     domain.elementNameSources[code as keyof typeof domain.elementNameSources];
   const projectWeaknesses = (codes: string[], field: string) =>
@@ -266,7 +362,16 @@ function projectEnemy(domain: EnemyDomain, context: EnemyProjectionContext): Ene
       const definition = domain.skillDefinitions[binding.skillId];
       if (!definition) return [];
       const projected = projectSkill(domain.id, definition, context);
-      return projected ? [projected] : [];
+      return projected
+        ? [
+            {
+              ...projected,
+              ...(binding.detail
+                ? { detail: projectSkillDetail(binding.detail, context, monstersById) }
+                : {})
+            }
+          ]
+        : [];
     });
     const skillPhases = buildEnemySkillPhases(skills);
     return {
@@ -292,34 +397,7 @@ function projectEnemy(domain: EnemyDomain, context: EnemyProjectionContext): Ene
         label: context.specialResistanceLabels?.[code] ?? code,
         value
       })),
-      summons: monster.summons.map((summon) => {
-        const target = context.enemiesById.get(summon.monsterTemplateId);
-        const targetName = target
-          ? projectText(
-              context.resolver,
-              target.nameSource ?? target.template.nameSource,
-              source('enemy', target.id, 'MonsterName'),
-              context.enemyNameFallback?.(target.id) ?? `Enemy ${target.id}`,
-              {
-                requirement: 'required',
-                visibility: 'emitted',
-                fallbackUsed: true,
-                productRouteReachability: 'reachable'
-              }
-            )
-          : (context.enemyNameFallback?.(summon.monsterTemplateId) ??
-            `Enemy ${summon.monsterTemplateId}`);
-        return {
-          monsterId: summon.monsterId,
-          monsterTemplateId: summon.monsterTemplateId,
-          name: targetName,
-          rank: summon.rank,
-          weaknesses: target
-            ? projectWeaknessesFrom(target, summon.weaknesses, context)
-            : summon.weaknesses.map((code) => ({ element: code, name: code })),
-          href: `/enemies/${summon.monsterTemplateId}`
-        };
-      }),
+      summons: monster.summons.map((summon) => projectSummon(summon, context)),
       skills,
       skillPhases
     };
@@ -393,7 +471,10 @@ export function projectEnemies(
   domains: EnemyDomain[],
   context: EnemyProjectionContext
 ): { enemies: Enemy[]; catalog: EnemyCatalogEntry[] } {
-  const enemies = domains.map((domain) => projectEnemy(domain, context));
+  const monstersById = new Map<string, { enemy: EnemyDomain; monster: EnemyMonsterDomain }>();
+  for (const enemy of domains)
+    for (const monster of enemy.monsters) monstersById.set(monster.monsterId, { enemy, monster });
+  const enemies = domains.map((domain) => projectEnemy(domain, context, monstersById));
   const catalog = enemies.map(({ id, name, description, type, typeName, weaknesses }) => ({
     id,
     name,

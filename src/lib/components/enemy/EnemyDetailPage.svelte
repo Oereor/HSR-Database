@@ -19,7 +19,6 @@
     type EnemyMonsterPageData
   } from '$lib/domain/enemy-view';
   import * as m from '$lib/paraglide/messages.js';
-  import { localizedHref } from '$lib/i18n/routing';
   import { formatLocalizedList } from '$lib/i18n/format';
   import { getLocale } from '$lib/paraglide/runtime.js';
 
@@ -269,7 +268,7 @@
       <SectionHeading level={2}>{m.enemy_summons()}</SectionHeading>
       <div class="enemy-summon-list">
         {#each selectedMonster.summons as summon (summon.monsterId)}<CompactEntityCard
-            href={localizedHref(summon.href)}
+            href={summon.href}
             imageUrl={summon.portraitUrl}
             data-summon-monster={summon.monsterId}
             data-summon-template={summon.monsterTemplateId}
