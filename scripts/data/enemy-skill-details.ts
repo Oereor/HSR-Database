@@ -25,19 +25,6 @@ async function exists(root: string, relative: string): Promise<boolean> {
   );
 }
 
-function candidateSummons(monster: Raw, character: Raw, validIds: ReadonlySet<string>): string[] {
-  const values = new Map<string, string>();
-  for (const [key, value] of Object.entries(character.CustomValues ?? {}))
-    if (/^SummonID\d*$/.test(key)) values.set(key, String(value));
-  for (const row of Array.isArray(monster.CustomValues) ? monster.CustomValues : [])
-    if (/^SummonID\d*$/.test(String(row.BFLIFKBEOPJ ?? '')))
-      values.set(String(row.BFLIFKBEOPJ), String(row.MNDFOPKBHKP));
-  const permitted = new Set(
-    (Array.isArray(monster.SummonIDList) ? monster.SummonIDList : []).map(String)
-  );
-  return [...new Set([...values.values()])].filter((id) => permitted.has(id) && validIds.has(id));
-}
-
 /** Build-only facts, keyed first by concrete Monster ID and then by skill ID. */
 export async function buildEnemySkillDetails(
   root: string,
@@ -48,15 +35,14 @@ export async function buildEnemySkillDetails(
   const skills = new Map(
     (tables.MonsterSkillConfig ?? []).map((row) => [String(row.SkillID), row])
   );
-  const monsterIds = new Set(monsters.map((row) => String(row.MonsterID)));
-  const statusesByModifier = new Map<string, { id: string; kind: 'Buff' | 'Debuff' | 'Other' }>();
+  const statusesByModifier = new Map<string, string>();
   const duplicateModifiers = new Set<string>();
   for (const row of tables.MonsterStatusConfig ?? []) {
     const name = String(row.ModifierName ?? '');
     const kind = row.StatusType;
     if (!name || !['Buff', 'Debuff', 'Other'].includes(kind)) continue;
     if (statusesByModifier.has(name)) duplicateModifiers.add(name);
-    else statusesByModifier.set(name, { id: String(row.StatusID), kind });
+    else statusesByModifier.set(name, String(row.StatusID));
   }
   for (const name of duplicateModifiers) statusesByModifier.delete(name);
   const monstersByTemplate = new Map<string, Raw[]>();
@@ -97,8 +83,7 @@ export async function buildEnemySkillDetails(
       for (const row of Array.isArray(file.AbilityList) ? file.AbilityList : [])
         if (!abilitiesByName.has(row.Name)) abilitiesByName.set(row.Name, row);
     const ability: Raw = {
-      AbilityList: [...abilitiesByName.values()],
-      GlobalModifiers: Object.assign({}, ...abilityFiles.map((file) => file.GlobalModifiers ?? {}))
+      AbilityList: [...abilitiesByName.values()]
     };
     for (const monster of monstersByTemplate.get(String(template.MonsterTemplateID)) ?? []) {
       const monsterId = String(monster.MonsterID);
@@ -130,8 +115,7 @@ export async function buildEnemySkillDetails(
           params,
           character,
           ability,
-          statusesByModifier,
-          summonIds: candidateSummons(monster, character, monsterIds)
+          statusesByModifier
         });
         if (detail) details.set(skillId, detail);
       }

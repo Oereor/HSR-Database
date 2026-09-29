@@ -231,21 +231,16 @@ export interface EnemySkillDomain {
   extraEffectIds: string[];
 }
 
-export type EnemySkillTarget = import('./types.js').EnemySkillTarget;
+export type EnemySkillDamageTarget = import('./types.js').EnemySkillDamageTarget;
 
 export interface EnemySkillDetailDomain {
-  damage?: Array<{ target: EnemySkillTarget; ratio: DecimalString; scaling: 'attack' }>;
-  bounce?: { count: number };
-  statuses?: Array<{
-    statusId: string;
-    kind: 'Buff' | 'Debuff' | 'Other';
-    target: EnemySkillTarget | 'self';
-    baseChance?: DecimalString;
-    duration?: { kind: 'turns'; value: number };
+  damage?: Array<{ target: EnemySkillDamageTarget; totals: DecimalString[]; scaling: 'attack' }>;
+  applications?: Array<{
+    baseChance: DecimalString;
+    statusId?: string;
+    target?: EnemySkillDamageTarget;
   }>;
   actionShifts?: Array<{ kind: 'advance' | 'delay'; ratio: DecimalString }>;
-  effects?: Array<{ kind: 'trigger-dot' | 'clear-dot' }>;
-  summons?: Array<{ monsterId: string }>;
 }
 
 export interface EnemySkillBindingDomain {

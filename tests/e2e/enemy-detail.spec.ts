@@ -274,13 +274,14 @@ test('选中技能保留 ExtraEffect disclosure，缺失详情不出现空事实
   await expect(details.locator('[data-extra-effect="70000304"]')).toHaveCount(1);
 });
 
-test('Skill Browser 显示有证据的伤害、状态、行动和效果事实', async ({ page }) => {
+test('Skill Browser 显示已有的数值伤害、概率和行动变化', async ({ page }) => {
   await page.goto('/enemies/1002030/');
   const damage = page.locator('[data-enemy-skill-detail="100203001"]');
   await expect(damage.locator('[data-damage-target="primary"]')).toContainText('130%');
   await expect(damage.locator('[data-damage-target="adjacent"]')).toContainText('100%');
 
   await page.goto('/enemies/1022010/');
+  await expect(page.locator('[data-damage-target="primary"]')).toContainText('300%');
   await expect(page.locator('[data-action-shift="delay"]')).toContainText('50%');
 
   await page.goto('/enemies/2004010/');
@@ -292,35 +293,28 @@ test('Skill Browser 显示有证据的伤害、状态、行动和效果事实', 
   await expect(statuses.locator('[data-status-id]')).toHaveCount(2);
   await expect(statuses.locator('[data-base-chance]')).toHaveCount(2);
   await expect(statuses.locator('[data-base-chance]').first()).toContainText('100%');
-  await expect(statuses.locator('[data-status-duration]')).toHaveCount(2);
   await page.locator('[data-enemy-skill-option="300305105"]').click();
-  await expect(page.locator('[data-dot-effect="trigger-dot"]')).toHaveCount(1);
-  await expect(page.locator('[data-dot-effect="clear-dot"]')).toHaveCount(1);
+  await expect(page.locator('[data-enemy-skill-facts]')).toHaveCount(0);
 
   await page.goto('/enemies/1002040/');
   await expect(page.locator('[data-base-chance]')).toContainText('100%');
   await expect(page.locator('[data-status-duration]')).toHaveCount(0);
 });
 
-test('候选召唤复用实体卡，弹射不补造缺失倍率', async ({ page }) => {
+test('技能内召唤与弹射旧事实不再出现', async ({ page }) => {
   await page.goto('/enemies/4013010/');
   await page.locator('[data-enemy-skill-option="401301005"]').click();
-  await expect(page.locator('[data-skill-summon-monster="4012010"]')).toHaveAttribute(
-    'href',
-    '/enemies/4012010/'
-  );
+  await expect(page.locator('[data-enemy-skill-facts]')).toHaveCount(0);
 
   await page.goto('/en/enemies/4013010/');
   await page.locator('[data-enemy-skill-option="401301005"]').click();
-  await expect(page.locator('[data-skill-summon-monster="4012010"]')).toHaveAttribute(
-    'href',
-    '/en/enemies/4012010/'
-  );
+  await expect(page.locator('[data-enemy-skill-facts]')).toHaveCount(0);
 
   await page.goto('/enemies/4014012/');
   await page.locator('[data-enemy-skill-option="401401207"]').click();
-  await expect(page.locator('[data-enemy-skill-bounce]')).toContainText('5');
-  await expect(page.locator('[data-enemy-skill-damage]')).toHaveCount(0);
+  await expect(page.locator('[data-enemy-skill-facts]')).toHaveCount(0);
+  await page.locator('[data-enemy-skill-option="401401208"]').click();
+  await expect(page.locator('[data-enemy-skill-facts]')).toHaveCount(0);
 });
 
 test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出', async ({ page }) => {

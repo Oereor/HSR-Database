@@ -412,31 +412,26 @@ export interface EnemySkillPhase {
   skillIds: string[];
 }
 
-export type EnemySkillTarget =
-  'primary' | 'adjacent' | 'all' | 'each-swept' | 'enemy-ally' | 'marked' | 'other-marked';
+export type EnemySkillDamageTarget =
+  'primary' | 'adjacent' | 'all' | 'each-swept' | 'enemy-side' | 'marked' | 'other-marked';
 
 /** Localized identity and semantic facts for one concrete Monster's skill. */
 export interface EnemySkillDetail {
   damage?: Array<{
-    target: EnemySkillTarget;
-    ratio: import('./endgame.js').DecimalString;
+    target: EnemySkillDamageTarget;
+    totals: import('./endgame.js').DecimalString[];
     scaling: 'attack';
   }>;
-  bounce?: { count: number };
-  statuses?: Array<{
-    statusId: string;
-    name: string;
-    kind: 'Buff' | 'Debuff' | 'Other';
-    target: EnemySkillTarget | 'self';
-    baseChance?: import('./endgame.js').DecimalString;
-    duration?: { kind: 'turns'; value: number };
+  applications?: Array<{
+    baseChance: import('./endgame.js').DecimalString;
+    statusId?: string;
+    name?: string;
+    target?: EnemySkillDamageTarget;
   }>;
   actionShifts?: Array<{
     kind: 'advance' | 'delay';
     ratio: import('./endgame.js').DecimalString;
   }>;
-  effects?: Array<{ kind: 'trigger-dot' | 'clear-dot' }>;
-  summons?: EnemySummonReference[];
 }
 
 export interface EnemySkill {

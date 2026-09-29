@@ -36,9 +36,7 @@ export interface EnemySkillDefinitionView {
   extraEffects: EnemySkill['extraEffects'];
 }
 
-export interface EnemySkillDetailView extends Omit<EnemySkillDetail, 'summons'> {
-  summons?: EnemySummonView[];
-}
+export type EnemySkillDetailView = EnemySkillDetail;
 
 export interface EnemySkillBindingView {
   id: string;

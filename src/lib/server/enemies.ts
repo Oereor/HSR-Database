@@ -15,12 +15,7 @@ export async function getEnemyDetail(
   const view = buildEnemyDetailPageData(detail);
   const summonTemplateIds = [
     ...new Set(
-      view.monsters.flatMap((monster) => [
-        ...monster.summons.map((summon) => summon.monsterTemplateId),
-        ...monster.skills.flatMap((skill) =>
-          (skill.detail?.summons ?? []).map((summon) => summon.monsterTemplateId)
-        )
-      ])
+      view.monsters.flatMap((monster) => monster.summons.map((summon) => summon.monsterTemplateId))
     )
   ];
   const [portraitUrl, summonPortraitEntries] = await Promise.all([
@@ -45,18 +40,7 @@ export async function getEnemyDetail(
     ...(portraitUrl ? { portraitUrl } : {}),
     monsters: view.monsters.map((monster) => ({
       ...monster,
-      summons: monster.summons.map(projectSummonForPage),
-      skills: monster.skills.map((skill) => ({
-        ...skill,
-        ...(skill.detail?.summons
-          ? {
-              detail: {
-                ...skill.detail,
-                summons: skill.detail.summons.map(projectSummonForPage)
-              }
-            }
-          : {})
-      }))
+      summons: monster.summons.map(projectSummonForPage)
     }))
   };
 }

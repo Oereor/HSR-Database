@@ -4,7 +4,10 @@ import {
   enemySkillsInPhase,
   resolveEnemySkillSelection
 } from '../../src/lib/domain/enemy-skill-browser';
-import { formatEnemySkillPercent } from '../../src/lib/domain/enemy-skill-format';
+import {
+  formatEnemySkillPercent,
+  formatEnemySkillTotals
+} from '../../src/lib/domain/enemy-skill-format';
 
 const skill = (id: string): EnemySkillView => ({ id }) as EnemySkillView;
 const phase = (index: number, ids: string[]): EnemySkillPhaseView => ({
@@ -13,6 +16,10 @@ const phase = (index: number, ids: string[]): EnemySkillPhaseView => ({
 });
 
 describe('Enemy Skill Browser state and formatting', () => {
+  it('formats one or several proven damage totals without numeric rounding', () => {
+    expect(formatEnemySkillTotals(['3'])).toBe('300%');
+    expect(formatEnemySkillTotals(['3', '5'])).toBe('300% / 500%');
+  });
   it('keeps concrete skill order while filtering by phase', () => {
     const skills = [skill('c'), skill('a'), skill('b')];
     expect(enemySkillsInPhase(skills, phase(2, ['a', 'c'])).map((entry) => entry.id)).toEqual([

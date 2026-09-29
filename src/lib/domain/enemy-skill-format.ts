@@ -8,3 +8,8 @@ export function formatEnemySkillPercent(value: string): string {
   const formattedWhole = new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 0 }).format(whole);
   return `${formattedWhole}${remainder ? `.${remainder}` : ''}%`;
 }
+
+/** Keep the unit outside a list of possible totals. */
+export function formatEnemySkillTotals(totals: readonly string[]): string {
+  return totals.map(formatEnemySkillPercent).join(' / ');
+}

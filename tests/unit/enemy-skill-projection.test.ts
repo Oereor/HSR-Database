@@ -38,55 +38,46 @@ describe('enemy skill page projection', () => {
       expect(defaultSkill.name).toBe(variantSkill.name);
       expect(defaultSkill.description).toBe(variantSkill.description);
       expect(defaultSkill.detail?.damage).toEqual([
-        { target: 'primary', ratio: '1.3', scaling: 'attack' },
-        { target: 'adjacent', ratio: '1', scaling: 'attack' }
+        { target: 'primary', totals: ['1.3'], scaling: 'attack' },
+        { target: 'adjacent', totals: ['1'], scaling: 'attack' }
       ]);
-      expect(variantSkill.detail?.damage?.[0].ratio).toBe('1');
+      expect(variantSkill.detail?.damage?.[0].totals).toEqual(['1']);
       expect(
-        (await skill(locale, '4064012', '4064012', '406401201'))?.detail?.damage?.[0].ratio
-      ).toBe('4');
+        (await skill(locale, '4064012', '4064012', '406401201'))?.detail?.damage?.[0].totals
+      ).toEqual(['4']);
       expect(
-        (await skill(locale, '4064012', '406401201', '406401201'))?.detail?.damage?.[0].ratio
-      ).toBe('3.6');
+        (await skill(locale, '4064012', '406401201', '406401201'))?.detail?.damage?.[0].totals
+      ).toEqual(['3.6']);
     }
   });
 
-  it('localizes status identity while retaining chance and verified duration semantics', async () => {
+  it('localizes optional application identity while retaining numeric chance', async () => {
     const names: string[] = [];
     for (const locale of ['zh-CN', 'en'] as const) {
-      const status = (await skill(locale, '3003051', '3003051', '300305101'))?.detail
-        ?.statuses?.[0];
-      expect(status).toMatchObject({
+      const application = (await skill(locale, '3003051', '3003051', '300305101'))?.detail
+        ?.applications?.[0];
+      expect(application).toMatchObject({
         statusId: '230030501',
-        kind: 'Debuff',
         target: 'primary',
-        baseChance: '1',
-        duration: { kind: 'turns', value: 2 }
+        baseChance: '1'
       });
-      expect(status?.name).toBeTruthy();
-      expect(status?.name).not.toContain(status!.statusId);
-      names.push(status!.name);
-      expect(
-        (await skill(locale, '1002040', '1002040', '100204001'))?.detail?.statuses?.[0]
-      ).not.toHaveProperty('duration');
+      expect(application?.name).toBeTruthy();
+      expect(application?.name).not.toContain(application!.statusId);
+      names.push(application!.name!);
+      expect(application).not.toHaveProperty('duration');
     }
     expect(names[0]).not.toBe(names[1]);
   });
 
-  it('keeps action shifts, DoT effects, bounce limits and exact candidate summons', async () => {
+  it('keeps action shifts and removes obsolete detail fields', async () => {
     expect((await skill('zh-CN', '1022010', '1022010', '102201001'))?.detail?.actionShifts).toEqual(
       [{ kind: 'delay', ratio: '0.5' }]
     );
     expect((await skill('zh-CN', '2004010', '2004010', '200401004'))?.detail?.actionShifts).toEqual(
       [{ kind: 'advance', ratio: '1' }]
     );
-    expect((await skill('zh-CN', '3003051', '3003051', '300305105'))?.detail?.effects).toEqual([
-      { kind: 'trigger-dot' },
-      { kind: 'clear-dot' }
-    ]);
-    const bounce = (await skill('zh-CN', '4014012', '4014012', '401401207'))?.detail;
-    expect(bounce?.bounce).toEqual({ count: 5 });
-    expect(bounce?.damage).toBeUndefined();
+    expect((await skill('zh-CN', '3003051', '3003051', '300305105'))?.detail).toBeUndefined();
+    expect((await skill('zh-CN', '4014012', '4014012', '401401207'))?.detail).toBeUndefined();
     expect(
       (await skill('zh-CN', '4013010', '4013010', '401301001'))?.detail?.damage?.[0].target
     ).toBe('each-swept');
@@ -95,22 +86,13 @@ describe('enemy skill page projection', () => {
         ({ target }) => target
       )
     ).toEqual(['other-marked', 'marked']);
-    const summons = (await skill('zh-CN', '1004020', '1004020', '100402005'))?.detail?.summons;
-    expect(summons?.map(({ monsterId }) => monsterId)).toEqual(['1002050', '1002030']);
+    expect((await skill('zh-CN', '1004020', '1004020', '100402005'))?.detail).toBeUndefined();
+    const english = await getEnemyDetail('en', '8034010');
     expect(
-      summons?.every(({ name, href }) => name.length > 0 && href.startsWith('/enemies/'))
-    ).toBe(true);
-    expect(
-      (await skill('zh-CN', '4064012', '4064012', '406401202'))?.detail?.summons?.[0].monsterId
-    ).toBe('406201002');
-    expect(
-      (await skill('zh-CN', '4064012', '406401202', '406401202'))?.detail?.summons?.[0].monsterId
-    ).toBe('406201003');
-    const english = await getEnemyDetail('en', '4013010');
-    const candidate = getEnemySkillsForMonster(english, '4013010').find(
-      ({ id }) => id === '401301005'
-    )?.detail?.summons?.[0];
-    expect(candidate).toMatchObject({ monsterId: '4012010', href: '/en/enemies/4012010/' });
+      english.monsters.find(({ monsterId }) => monsterId === '8034010')?.summons
+    ).toContainEqual(
+      expect.objectContaining({ monsterId: '8032030', href: '/en/enemies/8032030/' })
+    );
   });
 
   it('preserves order, omits absent detail, and rejects broken references', async () => {

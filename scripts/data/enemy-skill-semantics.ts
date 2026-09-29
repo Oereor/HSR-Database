@@ -1,4 +1,7 @@
-import type { EnemySkillDetailDomain, EnemySkillTarget } from '../../src/lib/domain/neutral.js';
+import type {
+  EnemySkillDamageTarget,
+  EnemySkillDetailDomain
+} from '../../src/lib/domain/neutral.js';
 import type { DecimalString } from '../../src/lib/domain/endgame.js';
 import { normalizedActionShift, resolveSkillValue } from './enemy-skill-params.js';
 
@@ -22,7 +25,6 @@ const VERIFIED_DAMAGE_SKILLS = new Set([
   '406401201',
   '406401207'
 ]);
-const VERIFIED_SUMMON_SKILLS = new Set(['401301005', '100402005', '406401202']);
 
 interface Task {
   raw: Raw;
@@ -38,8 +40,7 @@ export interface SkillSemanticSource {
   params: ReadonlyMap<string, readonly (DecimalString | undefined)[]>;
   character: Raw;
   ability: Raw;
-  statusesByModifier: ReadonlyMap<string, { id: string; kind: 'Buff' | 'Debuff' | 'Other' }>;
-  summonIds: readonly string[];
+  statusesByModifier: ReadonlyMap<string, string>;
 }
 
 function asRaw(value: unknown): Raw | undefined {
@@ -51,7 +52,7 @@ function alias(value: unknown): string | undefined {
   return asRaw(value)?.Alias;
 }
 
-function target(value: unknown): EnemySkillTarget | 'self' | undefined {
+function target(value: unknown): EnemySkillDamageTarget | 'self' | undefined {
   switch (alias(value)) {
     case 'AbilityTargetEntity':
       return 'primary';
@@ -60,7 +61,7 @@ function target(value: unknown): EnemySkillTarget | 'self' | undefined {
     case 'AllEnemy':
       return 'all';
     case 'AllTeammate':
-      return 'enemy-ally';
+      return 'enemy-side';
     case 'Caster':
       return 'self';
     default:
@@ -121,7 +122,7 @@ function damageRows(
   resolve: (value: unknown) => DecimalString | undefined
 ): NonNullable<EnemySkillDetailDomain['damage']> {
   const occurrences = new Map<
-    EnemySkillTarget | 'sweep-edge',
+    EnemySkillDamageTarget | 'sweep-edge',
     Array<{ ratio?: DecimalString; abilityName: string }>
   >();
   for (const task of tasks) {
@@ -150,14 +151,14 @@ function damageRows(
     centers[0].ratio &&
     edges.every((edge) => edge.ratio === centers[0].ratio)
   ) {
-    rows.push({ target: 'each-swept', ratio: centers[0].ratio, scaling: 'attack' });
+    rows.push({ target: 'each-swept', totals: [centers[0].ratio], scaling: 'attack' });
     occurrences.delete('primary');
   }
   for (const [role, hits] of occurrences) {
     if (role === 'sweep-edge' || !hits.length || !hits[0].ratio) continue;
     if (hits.some((hit) => hit.ratio !== hits[0].ratio)) continue;
     if (new Set(hits.map((hit) => hit.abilityName)).size !== hits.length) continue;
-    rows.push({ target: role, ratio: hits[0].ratio, scaling: 'attack' });
+    rows.push({ target: role, totals: [hits[0].ratio], scaling: 'attack' });
   }
   return rows;
 }
@@ -177,30 +178,22 @@ export function parseEnemySkillDetail(
   const damage = VERIFIED_DAMAGE_SKILLS.has(source.skillId)
     ? damageRows(source.skillId, tasks, resolve)
     : [];
-  const statuses: NonNullable<EnemySkillDetailDomain['statuses']> = [];
+  const statusCandidates: Array<{
+    statusId: string;
+    role: EnemySkillDamageTarget | 'self';
+    chance?: DecimalString;
+  }> = [];
   const actionShifts: NonNullable<EnemySkillDetailDomain['actionShifts']> = [];
   for (const { raw, conditional } of tasks) {
     if (raw.$type === 'RPG.GameCore.AddModifier') {
-      const stable = source.statusesByModifier.get(String(raw.ModifierName?.Value ?? ''));
+      const statusId = source.statusesByModifier.get(String(raw.ModifierName?.Value ?? ''));
       const role = target(raw.TargetType);
-      if (!stable || !role) continue;
+      if (!statusId || !role) continue;
       const chance = resolve(raw.Chance);
-      const duration = resolve(raw.LifeTime);
-      const modifier = source.ability.GlobalModifiers?.[raw.ModifierName.Value];
-      const simpleTurns =
-        source.skillId.startsWith('3003051') &&
-        (stable.id === '230030501' || stable.id === '230030502') &&
-        modifier?.LifeStepMoment === 'ModifierPhase1End' &&
-        duration &&
-        /^\d+$/.test(duration) &&
-        Number.isSafeInteger(Number(duration)) &&
-        Number(duration) > 0;
-      statuses.push({
-        statusId: stable.id,
-        kind: stable.kind,
-        target: role,
-        ...(chance && !chance.startsWith('-') ? { baseChance: chance } : {}),
-        ...(simpleTurns ? { duration: { kind: 'turns', value: Number(duration) } as const } : {})
+      statusCandidates.push({
+        statusId,
+        role,
+        ...(chance && !chance.startsWith('-') ? { chance } : {})
       });
     }
     if (raw.$type === 'RPG.GameCore.ModifyActionDelay' && !conditional) {
@@ -209,53 +202,18 @@ export function parseEnemySkillDetail(
       if (shift) actionShifts.push(shift);
     }
   }
-  const uniqueStatuses = [...new Map(statuses.map((status) => [status.statusId, status])).values()];
+  const uniqueApplications: NonNullable<EnemySkillDetailDomain['applications']> = [
+    ...new Map(statusCandidates.map((candidate) => [candidate.statusId, candidate])).values()
+  ].flatMap(({ statusId, role, chance }) =>
+    chance ? [{ baseChance: chance, statusId, ...(role === 'self' ? {} : { target: role }) }] : []
+  );
   const uniqueShifts = [
     ...new Map(actionShifts.map((shift) => [`${shift.kind}:${shift.ratio}`, shift])).values()
   ];
-  const triggerDot = tasks.some(
-    (task) => task.raw.$type === 'RPG.GameCore.TriggerModifierCustomEvent'
-  );
-  const clearDot = tasks.some(
-    (task) =>
-      task.raw.$type === 'RPG.GameCore.RemoveModifierByBehaviorFlag' &&
-      task.raw.ModifierBehaviorFlags?.includes('STAT_DOT')
-  );
-  const effects =
-    source.skillId === '300305105' && triggerDot && clearDot
-      ? ([{ kind: 'trigger-dot' }, { kind: 'clear-dot' }] as const)
-      : undefined;
-  const hasSummon = tasks.some((task) => task.raw.$type === 'RPG.GameCore.SummonMonster');
-  const summons =
-    hasSummon && VERIFIED_SUMMON_SKILLS.has(source.skillId)
-      ? [...new Set(source.summonIds)].map((monsterId) => ({ monsterId }))
-      : [];
-  const count =
-    source.skillId === '401401207'
-      ? source.params.get('Skill04')?.[1]
-      : source.skillId === '401401208'
-        ? source.params.get('Skill04')?.[2]
-        : undefined;
-  const hasLoop = tasks.some((task) => task.raw.$type === 'RPG.GameCore.LoopExecuteTaskList');
-  const bounce =
-    hasLoop && count && /^\d+$/.test(count) && Number(count) > 0
-      ? { count: Number(count) }
-      : undefined;
-  if (
-    !damage.length &&
-    !uniqueStatuses.length &&
-    uniqueShifts.length !== 1 &&
-    !effects &&
-    !summons.length &&
-    !bounce
-  )
-    return undefined;
+  if (!damage.length && !uniqueApplications.length && uniqueShifts.length !== 1) return undefined;
   return {
     ...(damage.length ? { damage } : {}),
-    ...(bounce ? { bounce } : {}),
-    ...(uniqueStatuses.length ? { statuses: uniqueStatuses } : {}),
-    ...(uniqueShifts.length === 1 ? { actionShifts: uniqueShifts } : {}),
-    ...(effects ? { effects: [...effects] } : {}),
-    ...(summons.length ? { summons } : {})
+    ...(uniqueApplications.length ? { applications: uniqueApplications } : {}),
+    ...(uniqueShifts.length === 1 ? { actionShifts: uniqueShifts } : {})
   };
 }

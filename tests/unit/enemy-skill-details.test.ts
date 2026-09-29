@@ -75,12 +75,60 @@ describe('enemy skill parameter foundation', () => {
           }
         ]
       },
-      statusesByModifier: new Map([['Mapped', { id: 'status-1', kind: 'Debuff' as const }]]),
-      summonIds: []
+      statusesByModifier: new Map([['Mapped', 'status-1']])
     };
-    expect(parseEnemySkillDetail(source)?.statuses?.[0].baseChance).toBe('1.2');
+    expect(parseEnemySkillDetail(source)?.applications).toEqual([
+      { statusId: 'status-1', target: 'primary', baseChance: '1.2' }
+    ]);
     expect(
-      parseEnemySkillDetail({ ...source, statusesByModifier: new Map() })?.statuses
+      parseEnemySkillDetail({ ...source, statusesByModifier: new Map() })?.applications
+    ).toBeUndefined();
+    expect(
+      parseEnemySkillDetail({
+        ...source,
+        ability: {
+          AbilityList: [
+            {
+              Name: 'Apply',
+              OnStart: [{ ...source.ability.AbilityList[0].OnStart[0], Chance: undefined }]
+            }
+          ]
+        }
+      })
+    ).toBeUndefined();
+    expect(
+      parseEnemySkillDetail({
+        ...source,
+        ability: {
+          AbilityList: [
+            {
+              Name: 'Apply',
+              OnStart: [
+                {
+                  ...source.ability.AbilityList[0].OnStart[0],
+                  TargetType: { Alias: 'Caster' }
+                }
+              ]
+            }
+          ]
+        }
+      })?.applications
+    ).toEqual([{ statusId: 'status-1', baseChance: '1.2' }]);
+    expect(
+      parseEnemySkillDetail({
+        ...source,
+        ability: {
+          AbilityList: [
+            {
+              Name: 'Apply',
+              OnStart: [
+                source.ability.AbilityList[0].OnStart[0],
+                { ...source.ability.AbilityList[0].OnStart[0], Chance: undefined }
+              ]
+            }
+          ]
+        }
+      })
     ).toBeUndefined();
   });
 });
@@ -117,81 +165,71 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
 
   it('uses the concrete Monster overrides for damage', () => {
     expect(get('1002030', '100203001')?.damage).toEqual([
-      { target: 'primary', ratio: '1.3', scaling: 'attack' },
-      { target: 'adjacent', ratio: '1', scaling: 'attack' }
+      { target: 'primary', totals: ['1.3'], scaling: 'attack' },
+      { target: 'adjacent', totals: ['1'], scaling: 'attack' }
     ]);
-    expect(get('100203026', '100203001')?.damage?.[0].ratio).toBe('1');
-    expect(get('4064012', '406401201')?.damage?.[0].ratio).toBe('4');
-    expect(get('406401201', '406401201')?.damage?.[0].ratio).toBe('3.6');
-    expect(get('100402017', '100402001')?.damage?.[0].ratio).toBe('2');
+    expect(get('100203026', '100203001')?.damage?.[0].totals).toEqual(['1']);
+    expect(get('4064012', '406401201')?.damage?.[0].totals).toEqual(['4']);
+    expect(get('406401201', '406401201')?.damage?.[0].totals).toEqual(['3.6']);
+    expect(get('100402017', '100402001')?.damage?.[0].totals).toEqual(['2']);
   });
 
   it('keeps target roles and omits unsupported repeated totals and toughness', () => {
     expect(get('1022010', '102201001')?.damage?.[0]).toMatchObject({
       target: 'primary',
-      ratio: '3'
+      totals: ['3']
     });
-    expect(get('2004010', '200401003')?.damage?.[0]).toMatchObject({ target: 'all', ratio: '2.5' });
+    expect(get('2004010', '200401003')?.damage?.[0]).toMatchObject({
+      target: 'all',
+      totals: ['2.5']
+    });
     expect(get('2012010', '201201002')?.damage?.[0]).toMatchObject({
-      target: 'enemy-ally',
-      ratio: '0.4'
+      target: 'enemy-side',
+      totals: ['0.4']
     });
     expect(get('4013010', '401301001')?.damage?.[0]).toMatchObject({
       target: 'each-swept',
-      ratio: '2.8'
+      totals: ['2.8']
     });
     expect(get('4064012', '406401207')?.damage).toEqual([
-      { target: 'other-marked', ratio: '4', scaling: 'attack' },
-      { target: 'marked', ratio: '12', scaling: 'attack' }
+      { target: 'other-marked', totals: ['4'], scaling: 'attack' },
+      { target: 'marked', totals: ['12'], scaling: 'attack' }
     ]);
     expect(get('4064012', '406401204')?.damage).toBeUndefined();
     expect(JSON.stringify(get('1022010', '102201001'))).not.toContain('toughness');
   });
 
-  it('resolves stable statuses and only verified turn durations', () => {
-    expect(get('3003051', '300305101')?.statuses).toEqual([
+  it('publishes only numeric applications with stable status identity', () => {
+    expect(get('3003051', '300305101')?.applications).toEqual([
       {
         statusId: '230030501',
-        kind: 'Debuff',
         target: 'primary',
-        baseChance: '1',
-        duration: { kind: 'turns', value: 2 }
+        baseChance: '1'
       },
       {
         statusId: '230030502',
-        kind: 'Debuff',
         target: 'primary',
-        baseChance: '1',
-        duration: { kind: 'turns', value: 2 }
+        baseChance: '1'
       }
     ]);
-    expect(get('1002040', '100204001')?.statuses?.[0]).toMatchObject({
+    expect(get('1002040', '100204001')?.applications?.[0]).toMatchObject({
       statusId: '210010101',
       baseChance: '1'
     });
-    expect(get('1002040', '100204001')?.statuses?.[0]).not.toHaveProperty('duration');
-    expect(get('2004010', '200401004')?.statuses).toBeUndefined();
+    expect(get('2004010', '200401004')?.applications).toBeUndefined();
   });
 
-  it('normalizes action shifts, records candidate summons and dot effects', () => {
+  it('keeps action shifts and removes obsolete detail-only facts', () => {
     expect(get('1022010', '102201001')?.actionShifts).toEqual([{ kind: 'delay', ratio: '0.5' }]);
     expect(get('2004010', '200401004')?.actionShifts).toEqual([{ kind: 'advance', ratio: '1' }]);
-    expect(get('4013010', '401301005')?.summons).toEqual([{ monsterId: '4012010' }]);
-    expect(get('1004020', '100402005')?.summons).toEqual([
-      { monsterId: '1002050' },
-      { monsterId: '1002030' }
-    ]);
-    expect(get('4064012', '406401202')?.summons).toEqual([{ monsterId: '406201002' }]);
-    expect(get('406401202', '406401202')?.summons).toEqual([{ monsterId: '406201003' }]);
-    expect(get('3003051', '300305105')?.effects).toEqual([
-      { kind: 'trigger-dot' },
-      { kind: 'clear-dot' }
-    ]);
+    expect(get('3003051', '300305105')).toBeUndefined();
+    expect(get('4013010', '401301005')).toBeUndefined();
+    expect(get('4064012', '406401202')).toBeUndefined();
+    expect(get('4064012', '406401201')?.applications).toBeUndefined();
   });
 
-  it('records bounce counts without an unconditional special-action multiplier', () => {
-    expect(get('4014012', '401401207')?.bounce).toEqual({ count: 5 });
-    expect(get('4014012', '401401208')?.bounce).toEqual({ count: 10 });
-    expect(get('4014012', '401401207')?.damage).toBeUndefined();
+  it('does not manufacture bounce totals', () => {
+    expect(get('4014012', '401401207')).toBeUndefined();
+    expect(get('4014012', '401401208')).toBeUndefined();
   });
 });
