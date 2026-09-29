@@ -189,7 +189,6 @@ test('召唤单位严格随 selected Monster 切换，并使用解析后的 Temp
   );
   await expect(page.locator('[data-summon-monster]')).toHaveCount(2);
   const summon = page.locator('[data-summon-template="1002050"]');
-  await expect(summon.locator('.compact-entity-card__tertiary')).not.toHaveText('');
   await expect(summon.locator('.compact-entity-card__tertiary')).toHaveCount(1);
   await expect(summon.locator('.enemy-weakness-group')).toHaveCount(1);
   await expect(summon).not.toContainText(/Monster #/);
@@ -198,63 +197,130 @@ test('召唤单位严格随 selected Monster 切换，并使用解析后的 Temp
   await expect(page.locator('.enemy-selected-monster-heading')).toContainText('#1002050');
 });
 
-test('轻量 Skill References 保留真实 Phase、属性图标与唯一完整卡 anchor', async ({ page }) => {
+test('Skill Browser 保留阶段筛选、技能顺序与本地选择状态', async ({ page }) => {
   await page.goto('/enemies/8034010/');
   const tabs = page.locator('.enemy-phase-tabs');
   await expect(tabs.getByRole('tab')).toHaveCount(2);
   const phase1 = tabs.getByRole('tab').nth(0);
   const phase2 = tabs.getByRole('tab').nth(1);
   await expect(phase1).toHaveAttribute('aria-selected', 'true');
-
-  const sharedReference = page.locator('[data-enemy-skill-reference="803401002"]');
-  await expect(sharedReference).toBeVisible();
-  await expect(sharedReference).toHaveAttribute('href', '#enemy-skill-803401002');
-  await expect(sharedReference.locator('[data-icon-kind="element"]')).toHaveCount(1);
+  const selector = page.locator('[data-enemy-skill-selector]');
+  await expect(selector.locator('button').first()).toHaveAttribute(
+    'data-enemy-skill-option',
+    '803401001'
+  );
+  await expect(page.locator('[data-enemy-skill-detail="803401001"]')).toBeVisible();
+  const sharedOption = selector.locator('[data-enemy-skill-option="803401002"]');
+  await expect(sharedOption.locator('[data-icon-kind="element"]')).toHaveCount(1);
+  await sharedOption.scrollIntoViewIfNeeded();
+  const scrollBeforeSelection = await page.evaluate(() => window.scrollY);
+  await sharedOption.click();
+  expect(await page.evaluate(() => window.scrollY)).toBe(scrollBeforeSelection);
+  await expect(sharedOption).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-enemy-skill-detail="803401002"]')).toBeVisible();
+  await expect(page).not.toHaveURL(/#enemy-skill-/);
+  await expect(sharedOption).toBeFocused();
+  await page.keyboard.press('Tab');
+  const nextOption = selector.locator('[data-enemy-skill-option="803401003"]');
+  await expect(nextOption).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(nextOption).toHaveAttribute('aria-pressed', 'true');
+  await sharedOption.click();
   await phase2.click();
-  await expect(sharedReference).toBeVisible();
-  await expect(page.locator('#enemy-skill-803401002')).toHaveCount(1);
-
-  await sharedReference.click();
-  await expect(page).toHaveURL(/#enemy-skill-803401002$/);
-  await expect(page.locator('#enemy-skill-803401002')).toBeInViewport();
+  await expect(sharedOption).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-enemy-skill-detail="803401002"]')).toBeVisible();
+  await expect(selector.locator('[data-enemy-skill-option="803401004"]')).toHaveCount(0);
+  await phase1.click();
+  await selector.locator('[data-enemy-skill-option="803401004"]').click();
+  await phase1.focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(phase2).toBeFocused();
+  await expect(selector.locator('[data-enemy-skill-option="803401001"]')).toHaveAttribute(
+    'aria-pressed',
+    'true'
+  );
 
   await page.goto('/enemies/4034013/');
-  const noDamageReference = page.locator('[data-enemy-skill-reference="403401302"]');
-  await expect(noDamageReference).toBeVisible();
-  await expect(noDamageReference.locator('[data-icon-kind="element"]')).toHaveCount(0);
+  const noDamageOption = page.locator('[data-enemy-skill-option="403401302"]');
+  await expect(noDamageOption).toBeVisible();
+  await expect(noDamageOption.locator('[data-icon-kind="element"]')).toHaveCount(0);
 });
 
-test('完整 Skill Definitions 不随 Monster 切换重建，并按 default 顺序稳定去重', async ({
-  page
-}) => {
-  await page.goto('/enemies/3003020/');
-  const cards = page.locator('[data-enemy-skill]');
-  await expect(cards).toHaveCount(4);
-  const before = await cards.evaluateAll((elements) =>
-    elements.map((element) => element.getAttribute('data-enemy-skill'))
+test('同一技能跨 Monster 保持选择并更新有效倍率', async ({ page }) => {
+  await page.goto('/enemies/4064012/');
+  const selected = page.locator('[data-enemy-skill-detail="406401201"]');
+  await expect(selected.locator('[data-damage-target="primary"]')).toContainText('400%');
+  await page.locator('[data-monster-option="406401201"]').click();
+  await expect(page.locator('[data-enemy-skill-option="406401201"]')).toHaveAttribute(
+    'aria-pressed',
+    'true'
   );
-  expect(new Set(before).size).toBe(before.length);
-
-  await page.locator('[data-monster-option="300302013"]').click();
-  await expect(cards).toHaveCount(4);
-  expect(
-    await cards.evaluateAll((elements) =>
-      elements.map((element) => element.getAttribute('data-enemy-skill'))
-    )
-  ).toEqual(before);
+  await expect(selected.locator('[data-damage-target="primary"]')).toContainText('360%');
+  await expect(page.locator('[data-enemy-skill-detail]')).toHaveCount(1);
 });
 
-test('完整 Skill Card 保留 ExtraEffect disclosure 与无描述技能过滤', async ({ page }) => {
+test('选中技能保留 ExtraEffect disclosure，缺失详情不出现空事实区', async ({ page }) => {
   await page.goto('/enemies/1004014/');
-  const skill = page.locator('[data-enemy-skill="100401411"]');
-  await expect(page.locator('[data-enemy-skill="100401414"]')).toHaveCount(0);
-  await expect(skill.getByText('天赋', { exact: true })).toHaveCount(1);
+  await page.locator('[data-enemy-skill-option="100401411"]').click();
+  const skill = page.locator('[data-enemy-skill-detail="100401411"]');
+  await expect(page.locator('[data-enemy-skill-option="100401414"]')).toHaveCount(0);
+  await expect(skill.locator('[data-skill-effect]')).toHaveCount(1);
+  await expect(skill.locator('[data-enemy-skill-facts]')).toHaveCount(0);
   const details = skill.locator('details');
   await expect(details).not.toHaveAttribute('open', '');
   await details.locator('summary').focus();
   await page.keyboard.press('Enter');
   await expect(details).toHaveAttribute('open', '');
-  await expect(details.locator('[data-extra-effect="70000304"]')).toContainText('转移');
+  await expect(details.locator('[data-extra-effect="70000304"]')).toHaveCount(1);
+});
+
+test('Skill Browser 显示有证据的伤害、状态、行动和效果事实', async ({ page }) => {
+  await page.goto('/enemies/1002030/');
+  const damage = page.locator('[data-enemy-skill-detail="100203001"]');
+  await expect(damage.locator('[data-damage-target="primary"]')).toContainText('130%');
+  await expect(damage.locator('[data-damage-target="adjacent"]')).toContainText('100%');
+
+  await page.goto('/enemies/1022010/');
+  await expect(page.locator('[data-action-shift="delay"]')).toContainText('50%');
+
+  await page.goto('/enemies/2004010/');
+  await page.locator('[data-enemy-skill-option="200401004"]').click();
+  await expect(page.locator('[data-action-shift="advance"]')).toContainText('100%');
+
+  await page.goto('/enemies/3003051/');
+  const statuses = page.locator('[data-enemy-skill-detail="300305101"]');
+  await expect(statuses.locator('[data-status-id]')).toHaveCount(2);
+  await expect(statuses.locator('[data-base-chance]')).toHaveCount(2);
+  await expect(statuses.locator('[data-base-chance]').first()).toContainText('100%');
+  await expect(statuses.locator('[data-status-duration]')).toHaveCount(2);
+  await page.locator('[data-enemy-skill-option="300305105"]').click();
+  await expect(page.locator('[data-dot-effect="trigger-dot"]')).toHaveCount(1);
+  await expect(page.locator('[data-dot-effect="clear-dot"]')).toHaveCount(1);
+
+  await page.goto('/enemies/1002040/');
+  await expect(page.locator('[data-base-chance]')).toContainText('100%');
+  await expect(page.locator('[data-status-duration]')).toHaveCount(0);
+});
+
+test('候选召唤复用实体卡，弹射不补造缺失倍率', async ({ page }) => {
+  await page.goto('/enemies/4013010/');
+  await page.locator('[data-enemy-skill-option="401301005"]').click();
+  await expect(page.locator('[data-skill-summon-monster="4012010"]')).toHaveAttribute(
+    'href',
+    '/enemies/4012010/'
+  );
+
+  await page.goto('/en/enemies/4013010/');
+  await page.locator('[data-enemy-skill-option="401301005"]').click();
+  await expect(page.locator('[data-skill-summon-monster="4012010"]')).toHaveAttribute(
+    'href',
+    '/en/enemies/4012010/'
+  );
+
+  await page.goto('/enemies/4014012/');
+  await page.locator('[data-enemy-skill-option="401401207"]').click();
+  await expect(page.locator('[data-enemy-skill-bounce]')).toContainText('5');
+  await expect(page.locator('[data-enemy-skill-damage]')).toHaveCount(0);
 });
 
 test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出', async ({ page }) => {
@@ -277,6 +343,12 @@ test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出'
         true
       );
     await expect(page.locator('[data-enemy-portrait]')).toBeVisible();
+    const browserGrid = page.locator('.enemy-skill-browser__grid');
+    await expect(browserGrid).toBeVisible();
+    const columns = await browserGrid.evaluate(
+      (element) => getComputedStyle(element).gridTemplateColumns.split(' ').length
+    );
+    expect(columns).toBe(viewport.width <= 820 ? 1 : 2);
   }
 
   await page.goto('/enemies/8003060/');

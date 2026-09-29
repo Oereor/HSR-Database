@@ -17,7 +17,6 @@ export interface EnemySummonView extends EnemySummonReference {
 export interface EnemySkillReferenceView {
   id: string;
   name: string;
-  href: string;
   damageType?: ElementLabel;
 }
 
@@ -98,8 +97,6 @@ export interface EnemyDetailPageData {
   skillDefinitions: EnemySkillDefinitionView[];
 }
 
-export const enemySkillAnchorId = (skillId: string): string => `enemy-skill-${skillId}`;
-
 function buildEnemySkillDefinitions(enemy: Enemy): EnemySkillDefinitionView[] {
   const defaultMonster = enemy.monsters.find(
     (monster) => monster.monsterId === enemy.defaultMonsterId
@@ -169,7 +166,6 @@ function buildEnemyMonsterPageData(monster: Monster, statsRef: number): EnemyMon
       return {
         id: skill.id,
         name: skill.name,
-        href: `#${enemySkillAnchorId(skill.id)}`,
         ...(skill.damageType ? { damageType: skill.damageType } : {})
       };
     })

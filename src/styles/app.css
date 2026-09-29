@@ -2056,11 +2056,6 @@ th {
   grid-template-columns: repeat(auto-fit, minmax(260px, 420px));
   gap: 0.7rem;
 }
-.enemy-skill-list {
-  display: grid;
-  width: 100%;
-  gap: var(--space-4);
-}
 .enemy-phase-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -2085,84 +2080,6 @@ th {
 .enemy-phase-tab:focus-visible {
   outline: 2px solid var(--gold);
   outline-offset: 3px;
-}
-.enemy-skill-reference-list[role='tabpanel']:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 4px;
-}
-.enemy-skill-reference-list {
-  display: grid;
-  gap: var(--space-2);
-}
-.enemy-skill-reference {
-  display: grid;
-  min-width: 0;
-  grid-template-columns: 1.3rem minmax(0, 1fr) auto;
-  align-items: center;
-  gap: var(--space-3);
-  border-bottom: 1px solid var(--border);
-  color: var(--text-body);
-  padding: 0.75rem 0.1rem;
-}
-.enemy-skill-reference:hover {
-  color: var(--gold-soft);
-}
-.enemy-skill-reference:last-child {
-  border-bottom: 0;
-}
-.enemy-skill-reference strong {
-  min-width: 0;
-  font-size: var(--font-meta-value);
-  overflow-wrap: anywhere;
-}
-.enemy-skill-reference > span:last-child {
-  color: var(--gold);
-}
-.enemy-skill-reference__icon {
-  --semantic-icon-image-size: 1.15rem;
-
-  display: grid;
-  width: 1.3rem;
-  height: 1.3rem;
-  place-items: center;
-}
-.enemy-skill-card {
-  min-width: 0;
-  scroll-margin-top: 80px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-card);
-  background: rgb(14 20 34 / 68%);
-  padding: clamp(1rem, 2vw, 1.5rem);
-}
-.enemy-skill-card__heading {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-}
-.enemy-skill-card h3 {
-  margin: 0;
-  font-size: var(--font-major-title);
-  font-weight: 700;
-  line-height: 1.35;
-}
-.enemy-skill-card > p {
-  margin: 1rem 0 0;
-  color: var(--text-body);
-  font-size: var(--font-body);
-  line-height: 1.75;
-}
-.enemy-skill-meta {
-  --semantic-icon-gap: 0.32rem;
-  --semantic-icon-image-size: 1em;
-
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.42rem;
-  margin-top: 0.65rem;
-  color: var(--text-secondary);
-  font-size: var(--font-helper);
 }
 .enemy-extra-effects {
   margin-top: 1rem;
@@ -2510,8 +2427,7 @@ th {
     padding-block: 2.5rem;
   }
   .enemy-level-control--standalone,
-  .enemy-battle-column,
-  .enemy-skill-card {
+  .enemy-battle-column {
     padding: var(--space-4);
   }
   .enemy-summon-list {
@@ -2527,10 +2443,6 @@ th {
   .recommendation-main-stat,
   .recommendation-substats {
     padding: var(--space-4);
-  }
-  .enemy-skill-card__heading {
-    flex-wrap: wrap;
-    gap: 0.65rem;
   }
   .split-section {
     grid-template-columns: 1fr;
