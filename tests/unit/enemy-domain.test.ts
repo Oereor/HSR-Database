@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { buildEnemyDomain } from '../../scripts/data/domain/enemy';
+import { parseDecimal } from '../../scripts/data/decimal';
 import { createTextResolver } from '../../scripts/data/localization';
 import { projectEnemies } from '../../scripts/data/projection/enemy';
+import type { EnemySkillDetailDomain } from '../../src/lib/domain/neutral';
 
 const wrapped = (Value: string | number) => ({ Value });
 const hash = (Hash: string) => ({ Hash });
@@ -98,6 +100,39 @@ function sourceTables(skill: Record<string, unknown> | Record<string, unknown>[]
 }
 
 describe('EnemyDomain', () => {
+  it('projects a numeric application without requiring status identity', async () => {
+    const skill = {
+      SkillID: 1,
+      SkillName: hash('4000'),
+      SkillDesc: hash('4001'),
+      SkillTypeDesc: hash('4236760374151560033'),
+      SkillTag: hash('3319273756603801898'),
+      PhaseList: [1],
+      ParamList: [],
+      ExtraEffectIDList: []
+    };
+    const skillDetails = new Map<string, Map<string, EnemySkillDetailDomain>>([
+      ['100', new Map([['1', { applications: [{ baseChance: parseDecimal('1.2') }] }]])]
+    ]);
+    const domains = buildEnemyDomain({ tables: sourceTables(skill), skillDetails }).enemies;
+    const projected = projectEnemies(domains, {
+      resolver: await createTextResolver(
+        { locale: 'en', textMapCode: 'EN' },
+        {
+          '4000': 'Skill',
+          '4001': 'Description',
+          '4236760374151560033': 'Skill',
+          '3319273756603801898': 'Bounce'
+        }
+      ),
+      enemiesById: new Map(domains.map((enemy) => [enemy.id, enemy])),
+      extraEffectsById: new Map()
+    }).enemies.find((enemy) => enemy.id === '100')!;
+    expect(projected.defaultMonster.skills[0].detail?.applications).toEqual([
+      { baseChance: '1.2' }
+    ]);
+  });
+
   it('retains neutral TextRefs, stable IDs, and configured skills without a display snapshot', () => {
     const skill = {
       SkillID: 1,
@@ -112,7 +147,8 @@ describe('EnemyDomain', () => {
     const tables = sourceTables(skill);
     const result = buildEnemyDomain({ tables });
     const enemy = result.enemies.find((item) => item.id === '100')!;
-    const domainSkill = enemy.monsters[0].skills[0];
+    const binding = enemy.monsters[0].skills[0];
+    const domainSkill = enemy.skillDefinitions[binding.skillId];
 
     expect(enemy.template.baseStats.initialDelayRatio).toBe('0.5');
     expect(result.enemies.find((item) => item.id === '200')!.template.baseStats).not.toHaveProperty(
@@ -124,6 +160,7 @@ describe('EnemyDomain', () => {
       kind: 'skill',
       tagCode: 'Bounce'
     });
+    expect(binding).toEqual({ skillId: '1' });
     expect(domainSkill).not.toHaveProperty('included');
     expect(enemy.monsters[0]).not.toHaveProperty('skillPhases');
     expect(domainSkill.nameSource).toEqual({ kind: 'direct', ref: { kind: 'hash', hash: '4000' } });

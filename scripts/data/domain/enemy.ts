@@ -1,6 +1,7 @@
 import type {
   EnemyDomain,
   EnemyMonsterDomain,
+  EnemySkillDetailDomain,
   EnemySkillDomain,
   EnemySummonDomain,
   EnemyTemplateDomain
@@ -19,6 +20,7 @@ import { classifyEnemySkillSource } from '../enemy-skill-policy.js';
 
 export interface EnemySource {
   tables: Record<string, unknown>;
+  skillDetails?: ReadonlyMap<string, ReadonlyMap<string, EnemySkillDetailDomain>>;
 }
 
 export interface EnemyDomainAudit {
@@ -220,7 +222,8 @@ export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
         audit.unresolvedSkills.push({ enemyId, skillId: rawSkillId });
         return [];
       }
-      return [buildSkill(skill, enemyId, audit)];
+      const detail = source.skillDetails?.get(enemyId)?.get(rawSkillId);
+      return [{ skillId: rawSkillId, ...(detail ? { detail } : {}) }];
     });
     const special = normalizeSpecialResistances(config.DebuffResist);
     audit.unknownDebuffResist.push(...special.unknownKeys.map((key) => ({ enemyId, key })));
@@ -308,6 +311,13 @@ export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
       }
     };
     const related = configs.filter((row) => String(row.MonsterTemplateID) === id);
+    const skillDefinitions: Record<string, EnemySkillDomain> = {};
+    for (const config of related)
+      for (const skillId of ids(config.SkillList)) {
+        if (skillDefinitions[skillId]) continue;
+        const row = skills.get(skillId);
+        if (row) skillDefinitions[skillId] = buildSkill(row, id, audit);
+      }
     return {
       id,
       nameSource: textSource(template.MonsterName) ?? textSource(canonical.MonsterName),
@@ -315,6 +325,7 @@ export function buildEnemyDomain(source: EnemySource): EnemyDomainBuild {
       rank: templateDomain.rank,
       elementNameSources,
       template: templateDomain,
+      skillDefinitions,
       monsters: related.map((config) => buildMonster(template, config, id)),
       defaultMonsterId: id
     };

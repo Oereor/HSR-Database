@@ -412,6 +412,28 @@ export interface EnemySkillPhase {
   skillIds: string[];
 }
 
+export type EnemySkillDamageTarget =
+  'primary' | 'adjacent' | 'all' | 'each-swept' | 'enemy-side' | 'marked' | 'other-marked';
+
+/** Localized identity and semantic facts for one concrete Monster's skill. */
+export interface EnemySkillDetail {
+  damage?: Array<{
+    target?: EnemySkillDamageTarget;
+    multipliers: import('./endgame.js').DecimalString[];
+    scaling: 'attack';
+  }>;
+  applications?: Array<{
+    baseChance: import('./endgame.js').DecimalString;
+    statusId?: string;
+    name?: string;
+    target?: EnemySkillDamageTarget;
+  }>;
+  actionShifts?: Array<{
+    kind: 'advance' | 'delay';
+    ratio: import('./endgame.js').DecimalString;
+  }>;
+}
+
 export interface EnemySkill {
   id: string;
   name: string;
@@ -423,6 +445,7 @@ export interface EnemySkill {
   damageType?: ElementLabel;
   phases: number[];
   extraEffects: EnemyExtraEffect[];
+  detail?: EnemySkillDetail;
 }
 
 export interface HomepageRecentWarpData {
@@ -444,7 +467,7 @@ export interface PublicSiteVersion {
 }
 
 export interface DataManifest {
-  schemaVersion: 46;
+  schemaVersion: 47;
   sourceCommit: string;
   sourceVersion: string;
   gameVersionFull: string | null;

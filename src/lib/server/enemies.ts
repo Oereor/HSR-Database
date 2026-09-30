@@ -1,6 +1,7 @@
 import type { Enemy } from '$lib/domain/types';
-import type { EnemyDetailPageData } from '$lib/domain/enemy-view';
+import type { EnemyDetailPageData, EnemySummonView } from '$lib/domain/enemy-view';
 import { buildEnemyDetailPageData } from '$lib/domain/enemy-view';
+import { localizedHref } from '$lib/i18n/routing';
 import { getEnemyPortraitUrl } from '$lib/server/enemy-assets';
 import { getDetail } from '$lib/server/generated';
 import type { SearchLocale } from '$lib/domain/search-index';
@@ -26,18 +27,20 @@ export async function getEnemyDetail(
     )
   ]);
   const summonPortraits = new Map(summonPortraitEntries);
+  const projectSummonForPage = (summon: EnemySummonView): EnemySummonView => {
+    const summonPortraitUrl = summonPortraits.get(summon.monsterTemplateId);
+    return {
+      ...summon,
+      href: localizedHref(summon.href, locale),
+      ...(summonPortraitUrl ? { portraitUrl: summonPortraitUrl } : {})
+    };
+  };
   return {
     ...view,
     ...(portraitUrl ? { portraitUrl } : {}),
     monsters: view.monsters.map((monster) => ({
       ...monster,
-      summons: monster.summons.map((summon) => {
-        const summonPortraitUrl = summonPortraits.get(summon.monsterTemplateId);
-        return {
-          ...summon,
-          ...(summonPortraitUrl ? { portraitUrl: summonPortraitUrl } : {})
-        };
-      })
+      summons: monster.summons.map(projectSummonForPage)
     }))
   };
 }

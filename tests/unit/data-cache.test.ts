@@ -3,14 +3,15 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { generatedRoot, staticGeneratedRoot } from '../../scripts/data/paths';
 import {
+  assertDataManifest,
   readDataManifest,
   validateGeneratedArtifacts
 } from '../../scripts/data/generated-artifacts';
 import { publishGeneratedDirectories } from '../../scripts/data/sync';
 
-it('accepts the schema-46 dual-locale generated tree and validates every emitted artifact', async () => {
+it('accepts the schema-47 dual-locale generated tree and validates every emitted artifact', async () => {
   const manifest = await readDataManifest();
-  expect(manifest.schemaVersion).toBe(46);
+  expect(manifest.schemaVersion).toBe(47);
   expect(manifest.publicLocales).toEqual(['zh-CN', 'en']);
   expect(manifest.publicLocale).toBe('zh-CN');
   expect(manifest.generatedLocales).toEqual(['zh-CN', 'en']);
@@ -38,6 +39,13 @@ it('accepts the schema-46 dual-locale generated tree and validates every emitted
     files: Object.keys(manifest.artifacts).length
   });
 }, 30_000);
+
+it('rejects the previous manifest schema so cached totals cannot be reused', async () => {
+  const manifest = await readDataManifest();
+  expect(() => assertDataManifest({ ...manifest, schemaVersion: 46 })).toThrow(
+    'Unsupported generated data manifest schema'
+  );
+});
 
 it('does not publish neutral/source staging or root compatibility outputs', async () => {
   await expect(readFile(path.join(generatedRoot, 'neutral', 'source.json'))).rejects.toMatchObject({

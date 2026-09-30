@@ -1,5 +1,5 @@
 <script lang="ts">
-  import EnemySkillCard from './EnemySkillCard.svelte';
+  import EnemySkillBrowser from './EnemySkillBrowser.svelte';
   import EnemyStatsPanel from './EnemyStatsPanel.svelte';
   import EnemyTemplateBaseStatsPanel from './EnemyTemplateBaseStatsPanel.svelte';
   import EnemyRankTag from './EnemyRankTag.svelte';
@@ -19,7 +19,6 @@
     type EnemyMonsterPageData
   } from '$lib/domain/enemy-view';
   import * as m from '$lib/paraglide/messages.js';
-  import { localizedHref } from '$lib/i18n/routing';
   import { formatLocalizedList } from '$lib/i18n/format';
   import { getLocale } from '$lib/paraglide/runtime.js';
 
@@ -38,13 +37,10 @@
   const initialProgression = getEnemyMonsterStatProgression(detail, initialMonster);
   let selectedMonsterId = detail.defaultMonsterId;
   let level = initialProgression.defaultLevel;
-  let activePhaseIndex = initialMonster.skillPhases[0]?.index;
 
   $: selectedMonster =
     detail.monsters.find((monster) => monster.monsterId === selectedMonsterId) ?? initialMonster;
   $: selectedProgression = getEnemyMonsterStatProgression(detail, selectedMonster);
-  $: if (!selectedMonster.skillPhases.some((phase) => phase.index === activePhaseIndex))
-    activePhaseIndex = selectedMonster.skillPhases[0]?.index;
 
   function selectMonster(monsterId: string, target?: HTMLElement): void {
     selectedMonsterId = monsterId;
@@ -65,30 +61,6 @@
     selectMonster(
       nextMonster.monsterId,
       document.getElementById(`enemy-monster-option-${nextMonster.monsterId}`) ?? undefined
-    );
-  }
-
-  function selectPhase(index: number, target?: HTMLElement): void {
-    activePhaseIndex = index;
-    target?.focus();
-  }
-
-  function handlePhaseKeydown(event: KeyboardEvent, currentIndex: number): void {
-    const phaseIndexes = selectedMonster.skillPhases.map((phase) => phase.index);
-    const currentPosition = phaseIndexes.indexOf(currentIndex);
-    let nextPosition: number;
-    if (event.key === 'ArrowRight') nextPosition = (currentPosition + 1) % phaseIndexes.length;
-    else if (event.key === 'ArrowLeft')
-      nextPosition = (currentPosition - 1 + phaseIndexes.length) % phaseIndexes.length;
-    else if (event.key === 'Home') nextPosition = 0;
-    else if (event.key === 'End') nextPosition = phaseIndexes.length - 1;
-    else return;
-    event.preventDefault();
-    const nextIndex = phaseIndexes[nextPosition];
-    selectPhase(
-      nextIndex,
-      document.getElementById(`enemy-phase-tab-${selectedMonster.monsterId}-${nextIndex}`) ??
-        undefined
     );
   }
 
@@ -269,7 +241,7 @@
       <SectionHeading level={2}>{m.enemy_summons()}</SectionHeading>
       <div class="enemy-summon-list">
         {#each selectedMonster.summons as summon (summon.monsterId)}<CompactEntityCard
-            href={localizedHref(summon.href)}
+            href={summon.href}
             imageUrl={summon.portraitUrl}
             data-summon-monster={summon.monsterId}
             data-summon-template={summon.monsterTemplateId}
@@ -282,65 +254,9 @@
           </CompactEntityCard>{/each}
       </div>
     </section>{/if}
-
-  <section id="skill-groups" class="enemy-owned-section">
-    <SectionHeading level={2}>{m.enemy_skill_groups()}</SectionHeading>
-    {#if selectedMonster.skillPhases.length > 1}
-      <div class="enemy-phase-tabs" role="tablist" aria-label={m.enemy_skill_phases_aria()}>
-        {#each selectedMonster.skillPhases as phase (phase.index)}
-          <button
-            id={`enemy-phase-tab-${selectedMonster.monsterId}-${phase.index}`}
-            class="enemy-phase-tab"
-            class:enemy-phase-tab--active={phase.index === activePhaseIndex}
-            type="button"
-            role="tab"
-            aria-selected={phase.index === activePhaseIndex}
-            aria-controls={`enemy-phase-panel-${selectedMonster.monsterId}-${phase.index}`}
-            tabindex={phase.index === activePhaseIndex ? 0 : -1}
-            on:click={(event) => selectPhase(phase.index, event.currentTarget)}
-            on:keydown={(event) => handlePhaseKeydown(event, phase.index)}
-            >{m.enemy_phase({ phase: phase.index })}</button
-          >
-        {/each}
-      </div>
-    {/if}
-    {#each selectedMonster.skillPhases as phase (phase.index)}
-      {#if phase.index === activePhaseIndex}
-        <div
-          id={`enemy-phase-panel-${selectedMonster.monsterId}-${phase.index}`}
-          class="enemy-skill-reference-list"
-          role={selectedMonster.skillPhases.length > 1 ? 'tabpanel' : undefined}
-          aria-labelledby={selectedMonster.skillPhases.length > 1
-            ? `enemy-phase-tab-${selectedMonster.monsterId}-${phase.index}`
-            : undefined}
-        >
-          {#if phase.skills.length}
-            {#each phase.skills as skill (skill.id)}<a
-                class="enemy-skill-reference"
-                href={skill.href}
-                data-enemy-skill-reference={skill.id}
-              >
-                <span class="enemy-skill-reference__icon" aria-hidden="true">
-                  {#if skill.damageType}<SemanticIconLabel
-                      kind="element"
-                      code={skill.damageType.element}
-                      label={skill.damageType.name}
-                      color={getElementColor(skill.damageType.element)}
-                      showLabel={false}
-                    />{/if}
-                </span>
-                <strong><GameText text={skill.name} /></strong><span aria-hidden="true">↘</span>
-              </a>{/each}
-          {:else}<p class="data-placeholder">{m.enemy_phase_empty()}</p>{/if}
-        </div>
-      {/if}
-    {/each}
-  </section>
 </section>
 
 <section id="skills" class="detail-section enemy-detail-section section-nav-target">
   <SectionHeading level={1}>{m.detail_skills()}</SectionHeading>
-  {#if detail.skillDefinitions.length}<div class="enemy-skill-list">
-      {#each detail.skillDefinitions as skill (skill.id)}<EnemySkillCard {skill} />{/each}
-    </div>{:else}<p class="data-placeholder">{m.enemy_skills_empty()}</p>{/if}
+  <EnemySkillBrowser {detail} monsterId={selectedMonsterId} />
 </section>

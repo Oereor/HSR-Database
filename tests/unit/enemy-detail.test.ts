@@ -5,7 +5,7 @@ import type { Enemy } from '../../src/lib/domain/types';
 import { formatRoundedDecimal } from '../../src/lib/domain/endgame-view';
 import {
   buildEnemyDetailPageData,
-  enemySkillAnchorId,
+  getEnemySkillsForMonster,
   getEnemyMonsterStatProgression,
   getEnemyStatsAtLevel
 } from '../../src/lib/domain/enemy-view';
@@ -331,18 +331,21 @@ describe('Enemy Detail presentation', () => {
     ]);
     expect(sharedSkill).toMatchObject({
       name: '分散投资',
-      href: '#enemy-skill-803401002',
       damageType: { element: 'Imaginary', name: '虚数' }
     });
+    expect(sharedSkill).not.toHaveProperty('href');
     expect(
       monster.skillPhases.filter((phase) => phase.skills.some((skill) => skill.id === '803401002'))
     ).toHaveLength(2);
     expect(view.skillDefinitions.map((skill) => skill.id)).toEqual(
       detail.defaultMonster.skills.map((skill) => skill.id)
     );
+    expect(getEnemySkillsForMonster(view, monster.monsterId).map((skill) => skill.id)).toEqual(
+      detail.defaultMonster.skills.map((skill) => skill.id)
+    );
   });
 
-  it('完整技能按 default-first 稳定去重，reference anchor 全部命中唯一 target', async () => {
+  it('完整技能按 default-first 稳定去重，各 Monster 绑定按原始顺序解析', async () => {
     const detail = await enemy('1002015');
     const canonical = detail.defaultMonster;
     const variantBase = detail.monsters.find((monster) => monster.monsterId === '100201506')!;
@@ -372,12 +375,13 @@ describe('Enemy Detail presentation', () => {
       ...canonical.skills.map((skill) => skill.id),
       'variant-only'
     ]);
-    const targets = view.skillDefinitions.map((skill) => enemySkillAnchorId(skill.id));
-    expect(new Set(targets).size).toBe(targets.length);
-    for (const reference of view.monsters.flatMap((monster) =>
-      monster.skillPhases.flatMap((phase) => phase.skills)
-    ))
-      expect(targets).toContain(reference.href.slice(1));
+    expect(getEnemySkillsForMonster(view, variant.monsterId).map((skill) => skill.id)).toEqual([
+      shared.id,
+      variantOnly.id
+    ]);
+    expect(
+      view.monsters.flatMap((monster) => monster.skillPhases.flatMap((phase) => phase.skills))
+    ).not.toContainEqual(expect.objectContaining({ href: expect.any(String) }));
   });
 
   it('保留有/无负面抵抗的 selected Monster 条件数据', async () => {
@@ -475,8 +479,8 @@ describe('Enemy Detail presentation', () => {
     expect(complexPageData.skillDefinitions.some((skill) => skill.extraEffects.length > 0)).toBe(
       true
     );
-    expect(complexPageData.skillDefinitions[0]).not.toHaveProperty('kind');
+    expect(complexPageData.skillDefinitions[0]).toHaveProperty('kind');
     expect(complexPageData.skillDefinitions[0]).not.toHaveProperty('localizedTextStatus');
-    expect(complexPageData.skillDefinitions[0]).not.toHaveProperty('phases');
+    expect(complexPageData.skillDefinitions[0]).toHaveProperty('phases');
   });
 });

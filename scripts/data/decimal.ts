@@ -79,6 +79,12 @@ export function multiplyDecimals(values: readonly DecimalString[]): DecimalStrin
   return renderParts({ coefficient, scale });
 }
 
+/** Remove insignificant fractional zeroes without converting through a JS number. */
+export function canonicalDecimal(value: DecimalString): DecimalString {
+  if (!value.includes('.')) return value;
+  return parseDecimal(value.replace(/0+$/, '').replace(/\.$/, ''));
+}
+
 export function compareDecimals(left: DecimalString, right: DecimalString): number {
   const a = parts(left);
   const b = parts(right);

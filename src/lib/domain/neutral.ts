@@ -231,6 +231,27 @@ export interface EnemySkillDomain {
   extraEffectIds: string[];
 }
 
+export type EnemySkillDamageTarget = import('./types.js').EnemySkillDamageTarget;
+
+export interface EnemySkillDetailDomain {
+  damage?: Array<{
+    target?: EnemySkillDamageTarget;
+    multipliers: DecimalString[];
+    scaling: 'attack';
+  }>;
+  applications?: Array<{
+    baseChance: DecimalString;
+    statusId?: string;
+    target?: EnemySkillDamageTarget;
+  }>;
+  actionShifts?: Array<{ kind: 'advance' | 'delay'; ratio: DecimalString }>;
+}
+
+export interface EnemySkillBindingDomain {
+  skillId: string;
+  detail?: EnemySkillDetailDomain;
+}
+
 export interface EnemySummonDomain {
   monsterId: string;
   monsterTemplateId: string;
@@ -260,7 +281,7 @@ export interface EnemyMonsterDomain {
   resistances: Array<{ element: ElementType; value: number }>;
   specialResistances: EnemySpecialResistanceDomain[];
   summons: EnemySummonDomain[];
-  skills: EnemySkillDomain[];
+  skills: EnemySkillBindingDomain[];
 }
 
 export interface EnemyTemplateDomain {
@@ -277,6 +298,7 @@ export interface EnemyDomain {
   rank: string;
   elementNameSources: Partial<Record<ElementType, NeutralTextSource>>;
   template: EnemyTemplateDomain;
+  skillDefinitions: Record<string, EnemySkillDomain>;
   monsters: EnemyMonsterDomain[];
   defaultMonsterId: string;
 }

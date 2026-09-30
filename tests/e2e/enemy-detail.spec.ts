@@ -189,7 +189,6 @@ test('召唤单位严格随 selected Monster 切换，并使用解析后的 Temp
   );
   await expect(page.locator('[data-summon-monster]')).toHaveCount(2);
   const summon = page.locator('[data-summon-template="1002050"]');
-  await expect(summon.locator('.compact-entity-card__tertiary')).not.toHaveText('');
   await expect(summon.locator('.compact-entity-card__tertiary')).toHaveCount(1);
   await expect(summon.locator('.enemy-weakness-group')).toHaveCount(1);
   await expect(summon).not.toContainText(/Monster #/);
@@ -198,63 +197,246 @@ test('召唤单位严格随 selected Monster 切换，并使用解析后的 Temp
   await expect(page.locator('.enemy-selected-monster-heading')).toContainText('#1002050');
 });
 
-test('轻量 Skill References 保留真实 Phase、属性图标与唯一完整卡 anchor', async ({ page }) => {
+test('Skill Browser 保留阶段筛选、技能顺序与本地选择状态', async ({ page }) => {
   await page.goto('/enemies/8034010/');
   const tabs = page.locator('.enemy-phase-tabs');
   await expect(tabs.getByRole('tab')).toHaveCount(2);
   const phase1 = tabs.getByRole('tab').nth(0);
   const phase2 = tabs.getByRole('tab').nth(1);
   await expect(phase1).toHaveAttribute('aria-selected', 'true');
-
-  const sharedReference = page.locator('[data-enemy-skill-reference="803401002"]');
-  await expect(sharedReference).toBeVisible();
-  await expect(sharedReference).toHaveAttribute('href', '#enemy-skill-803401002');
-  await expect(sharedReference.locator('[data-icon-kind="element"]')).toHaveCount(1);
+  const selector = page.locator('[data-enemy-skill-selector]');
+  await expect(selector.locator('button').first()).toHaveAttribute(
+    'data-enemy-skill-option',
+    '803401001'
+  );
+  await expect(page.locator('[data-enemy-skill-detail="803401001"]')).toBeVisible();
+  const sharedOption = selector.locator('[data-enemy-skill-option="803401002"]');
+  await expect(sharedOption.locator('[data-icon-kind="element"]')).toHaveCount(1);
+  await sharedOption.scrollIntoViewIfNeeded();
+  const scrollBeforeSelection = await page.evaluate(() => window.scrollY);
+  await sharedOption.click();
+  expect(await page.evaluate(() => window.scrollY)).toBe(scrollBeforeSelection);
+  await expect(sharedOption).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-enemy-skill-detail="803401002"]')).toBeVisible();
+  await expect(page).not.toHaveURL(/#enemy-skill-/);
+  await expect(sharedOption).toBeFocused();
+  await page.keyboard.press('Tab');
+  const nextOption = selector.locator('[data-enemy-skill-option="803401003"]');
+  await expect(nextOption).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(nextOption).toHaveAttribute('aria-pressed', 'true');
+  await sharedOption.click();
   await phase2.click();
-  await expect(sharedReference).toBeVisible();
-  await expect(page.locator('#enemy-skill-803401002')).toHaveCount(1);
-
-  await sharedReference.click();
-  await expect(page).toHaveURL(/#enemy-skill-803401002$/);
-  await expect(page.locator('#enemy-skill-803401002')).toBeInViewport();
+  await expect(sharedOption).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-enemy-skill-detail="803401002"]')).toBeVisible();
+  await expect(selector.locator('[data-enemy-skill-option="803401004"]')).toHaveCount(0);
+  await phase1.click();
+  await selector.locator('[data-enemy-skill-option="803401004"]').click();
+  await phase1.focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(phase2).toBeFocused();
+  await expect(selector.locator('[data-enemy-skill-option="803401001"]')).toHaveAttribute(
+    'aria-pressed',
+    'true'
+  );
 
   await page.goto('/enemies/4034013/');
-  const noDamageReference = page.locator('[data-enemy-skill-reference="403401302"]');
-  await expect(noDamageReference).toBeVisible();
-  await expect(noDamageReference.locator('[data-icon-kind="element"]')).toHaveCount(0);
+  const noDamageOption = page.locator('[data-enemy-skill-option="403401302"]');
+  await expect(noDamageOption).toBeVisible();
+  await expect(noDamageOption.locator('.enemy-skill-selector__icon')).toHaveCount(1);
+  await expect(noDamageOption.locator('[data-icon-kind="element"]')).toHaveCount(0);
 });
 
-test('完整 Skill Definitions 不随 Monster 切换重建，并按 default 顺序稳定去重', async ({
-  page
-}) => {
-  await page.goto('/enemies/3003020/');
-  const cards = page.locator('[data-enemy-skill]');
-  await expect(cards).toHaveCount(4);
-  const before = await cards.evaluateAll((elements) =>
-    elements.map((element) => element.getAttribute('data-enemy-skill'))
+test('同一技能跨 Monster 保持选择并更新有效倍率', async ({ page }) => {
+  await page.goto('/enemies/4035010/');
+  const selected = page.locator('[data-enemy-skill-detail="403501001"]');
+  await expect(selected.locator('[data-damage-target="primary"]')).toContainText('450%');
+  await page.locator('[data-monster-option="403501001"]').click();
+  await expect(page.locator('[data-enemy-skill-option="403501001"]')).toHaveAttribute(
+    'aria-pressed',
+    'true'
   );
-  expect(new Set(before).size).toBe(before.length);
-
-  await page.locator('[data-monster-option="300302013"]').click();
-  await expect(cards).toHaveCount(4);
-  expect(
-    await cards.evaluateAll((elements) =>
-      elements.map((element) => element.getAttribute('data-enemy-skill'))
-    )
-  ).toEqual(before);
+  await expect(selected.locator('[data-damage-target="primary"]')).toContainText('400%');
+  await expect(page.locator('[data-enemy-skill-detail]')).toHaveCount(1);
 });
 
-test('完整 Skill Card 保留 ExtraEffect disclosure 与无描述技能过滤', async ({ page }) => {
+test('选中技能保留 ExtraEffect disclosure，缺失详情不出现空事实区', async ({ page }) => {
   await page.goto('/enemies/1004014/');
-  const skill = page.locator('[data-enemy-skill="100401411"]');
-  await expect(page.locator('[data-enemy-skill="100401414"]')).toHaveCount(0);
-  await expect(skill.getByText('天赋', { exact: true })).toHaveCount(1);
+  await page.locator('[data-enemy-skill-option="100401411"]').click();
+  const skill = page.locator('[data-enemy-skill-detail="100401411"]');
+  await expect(page.locator('[data-enemy-skill-option="100401414"]')).toHaveCount(0);
+  await expect(skill.locator('[data-skill-effect]')).toHaveCount(1);
+  await expect(skill.locator('[data-enemy-skill-facts]')).toHaveCount(0);
   const details = skill.locator('details');
   await expect(details).not.toHaveAttribute('open', '');
   await details.locator('summary').focus();
   await page.keyboard.press('Enter');
   await expect(details).toHaveAttribute('open', '');
-  await expect(details.locator('[data-extra-effect="70000304"]')).toContainText('转移');
+  await expect(details.locator('[data-extra-effect="70000304"]')).toHaveCount(1);
+});
+
+test('Skill Browser 显示已有的数值伤害、概率和行动变化', async ({ page }) => {
+  await page.goto('/enemies/1002030/');
+  const damage = page.locator('[data-enemy-skill-detail="100203001"]');
+  await expect(damage.locator('[data-damage-target="primary"]')).toContainText('130%');
+  await expect(damage.locator('[data-damage-target="adjacent"]')).toContainText('100%');
+
+  await page.goto('/enemies/1022010/');
+  await expect(page.locator('[data-damage-target="primary"]')).toContainText('300%');
+  await expect(page.locator('[data-action-shift="delay"]')).toContainText('50%');
+
+  await page.goto('/enemies/2004010/');
+  await page.locator('[data-enemy-skill-option="200401001"]').click();
+  await expect(
+    page.locator('[data-enemy-skill-detail="200401001"] [data-base-chance]')
+  ).toContainText('100%');
+  await expect(
+    page.locator('[data-enemy-skill-detail="200401001"] [data-enemy-skill-damage]')
+  ).toContainText('250%');
+  await page.locator('[data-enemy-skill-option="200401002"]').click();
+  await expect(page.locator('[data-damage-target="primary"]')).toContainText('900%');
+  await expect(page.locator('[data-damage-target="adjacent"]')).toContainText('200%');
+  await page.locator('[data-enemy-skill-option="200401004"]').click();
+  await expect(page.locator('[data-base-chance]')).toContainText('120%');
+  await expect(page.locator('[data-action-shift="advance"]')).toContainText('100%');
+
+  await page.goto('/enemies/3003051/');
+  const statuses = page.locator('[data-enemy-skill-detail="300305101"]');
+  await expect(statuses.locator('[data-status-id]')).toHaveCount(0);
+  await expect(statuses.locator('[data-base-chance]')).toHaveCount(1);
+  await expect(statuses.locator('[data-base-chance]').first()).toContainText('100%');
+  await page.locator('[data-enemy-skill-option="300305105"]').click();
+  await expect(page.locator('[data-enemy-skill-facts]')).toHaveCount(0);
+});
+
+test('Skill Browser 展示独立候选并省略无标签组的目标说明', async ({ page }) => {
+  for (const prefix of ['', '/en']) {
+    await page.goto(`${prefix}/enemies/4014018/`);
+    await page.locator('[data-enemy-skill-option="401401803"]').click();
+    await expect(page.locator('[data-enemy-skill-damage]')).toContainText('180% / 360%');
+    await page.locator('.enemy-phase-tabs').getByRole('tab').nth(1).click();
+    await page.locator('[data-enemy-skill-option="401401802"]').click();
+    const row = page.locator('[data-enemy-skill-damage] .enemy-skill-fact-row');
+    await expect(row).toHaveCount(1);
+    await expect(row.locator('span')).toHaveCount(0);
+    await expect(row.locator('strong')).toContainText('90% / 110% / 180% / 220%');
+    const gridLeft = await row
+      .locator('..')
+      .evaluate((element) => element.getBoundingClientRect().left);
+    const valueLeft = await row
+      .locator('strong')
+      .evaluate((element) => element.getBoundingClientRect().left);
+    expect(Math.abs(valueLeft - gridLeft)).toBeLessThanOrEqual(1);
+  }
+  await page.goto('/enemies/4064012/');
+  await page.locator('[data-enemy-skill-option="406401204"]').click();
+  await expect(page.locator('[data-enemy-skill-damage]')).toContainText('600% / 4,200%');
+  await page.locator('[data-enemy-skill-option="406401205"]').click();
+  await expect(page.locator('[data-damage-target="all"]')).toContainText('1,050%');
+});
+
+test('Skill Browser 紧凑数值列、图标槽和长文本在双语不同宽度下安全布局', async ({ page }) => {
+  test.setTimeout(60_000);
+  for (const prefix of ['', '/en']) {
+    for (const width of [1440, 900, 390, 320]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(`${prefix}/enemies/2004010/`);
+      const selector = page.locator('[data-enemy-skill-selector]');
+      const options = selector.locator('button');
+      const names = await options
+        .locator('strong')
+        .evaluateAll((elements) => elements.map((element) => element.getBoundingClientRect().left));
+      expect(Math.max(...names) - Math.min(...names)).toBeLessThanOrEqual(1);
+      for (const option of await options.all()) {
+        await expect(option.locator('.enemy-skill-selector__icon')).toHaveCount(1);
+        await expect(option).toHaveAccessibleName(
+          (await option.locator('strong').innerText()).trim()
+        );
+      }
+      const chanceOption = selector.locator('[data-enemy-skill-option="200401004"]');
+      await chanceOption.focus();
+      await page.keyboard.press('Enter');
+      await expect(chanceOption).toHaveAttribute('aria-pressed', 'true');
+      await expect(chanceOption).toBeFocused();
+
+      await selector.locator('[data-enemy-skill-option="200401002"]').click();
+      const detail = page.locator('[data-enemy-skill-detail="200401002"]');
+      const metadata = detail.locator('header .enemy-skill-detail__metadata');
+      await expect(metadata.locator('[data-icon-kind="element"]')).toHaveCount(1);
+      await expect(metadata.locator('[data-skill-effect]')).toHaveCount(1);
+      expect(
+        await metadata.evaluate((element) => {
+          const icon = element.querySelector('[data-icon-kind="element"]')!;
+          const tag = element.querySelector('[data-skill-effect]')!;
+          return !!(icon.compareDocumentPosition(tag) & Node.DOCUMENT_POSITION_FOLLOWING);
+        })
+      ).toBe(true);
+      const damage = detail.locator('[data-enemy-skill-damage]');
+      await expect(damage.locator('h5')).toHaveCount(1);
+      const grid = damage.locator('.enemy-skill-fact-grid');
+      const gridBox = (await grid.boundingBox())!;
+      const gridLimit = await grid.evaluate(
+        () => 34 * parseFloat(getComputedStyle(document.documentElement).fontSize)
+      );
+      expect(gridBox.width).toBeLessThanOrEqual(gridLimit + 1);
+      const primary = damage.locator('[data-damage-target="primary"]');
+      // Read geometry together so scroll anchoring during panel replacement cannot skew y values.
+      const geometry = await grid.evaluate((element) => {
+        const primaryRow = element.querySelector('[data-damage-target="primary"]')!;
+        return {
+          qualifier: primaryRow.querySelector('span')!.getBoundingClientRect().toJSON(),
+          primary: primaryRow.querySelector('strong')!.getBoundingClientRect().toJSON(),
+          adjacent: element
+            .querySelector('[data-damage-target="adjacent"] strong')!
+            .getBoundingClientRect()
+            .toJSON(),
+          gap: parseFloat(getComputedStyle(element).columnGap)
+        };
+      });
+      expect(Math.abs(geometry.primary.x - geometry.adjacent.x)).toBeLessThanOrEqual(1);
+      if (width > 520) {
+        const gap = geometry.primary.x - geometry.qualifier.right;
+        expect(gap).toBeGreaterThan(0);
+        expect(gap).toBeLessThanOrEqual(geometry.gap + 1);
+      } else {
+        expect(geometry.primary.y).toBeGreaterThanOrEqual(geometry.qualifier.bottom);
+      }
+
+      // Stress the real layout with extended existing text, without changing production fixtures.
+      await selector.locator('strong').evaluateAll((elements) => {
+        for (const element of elements) element.textContent = element.textContent!.repeat(5);
+      });
+      await detail.locator('h3').evaluate((element) => {
+        element.textContent = element.textContent!.repeat(8);
+      });
+      await primary.locator('span').evaluate((element) => {
+        element.textContent = element.textContent!.repeat(12);
+      });
+      await primary.locator('strong').evaluate((element) => {
+        element.textContent = Array(12).fill(element.textContent).join(' / ');
+      });
+      for (const element of [
+        selector,
+        detail,
+        grid,
+        primary.locator('span'),
+        primary.locator('strong')
+      ]) {
+        expect(
+          await element.evaluate((node) => node.scrollWidth - node.clientWidth)
+        ).toBeLessThanOrEqual(1);
+      }
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+        )
+      ).toBeLessThanOrEqual(1);
+      if (width > 520)
+        expect((await primary.locator('span').boundingBox())!.width).toBeLessThanOrEqual(
+          (gridLimit * 10) / 34 + 1
+        );
+    }
+  }
 });
 
 test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出', async ({ page }) => {
@@ -277,6 +459,12 @@ test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出'
         true
       );
     await expect(page.locator('[data-enemy-portrait]')).toBeVisible();
+    const browserGrid = page.locator('.enemy-skill-browser__grid');
+    await expect(browserGrid).toBeVisible();
+    const columns = await browserGrid.evaluate(
+      (element) => getComputedStyle(element).gridTemplateColumns.split(' ').length
+    );
+    expect(columns).toBe(viewport.width <= 820 ? 1 : 2);
   }
 
   await page.goto('/enemies/8003060/');

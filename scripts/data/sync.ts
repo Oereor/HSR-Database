@@ -59,6 +59,8 @@ import { projectCharacter } from './projection/character.js';
 import { projectLightCone } from './projection/light-cone.js';
 import { projectRelic } from './projection/relic.js';
 import { buildEnemyDomain } from './domain/enemy.js';
+import { textSource } from './domain/shared.js';
+import { buildEnemySkillDetails } from './enemy-skill-details.js';
 import { projectEnemies } from './projection/enemy.js';
 import { validateSiteMessageFiles } from '../messages.js';
 import {
@@ -647,16 +649,25 @@ export async function syncData(): Promise<DataManifest> {
       if (!extraEffectsById.has(id))
         throw new Error(`角色 ${domain.id} 引用了未知 ExtraEffect ${id}`);
   }
+  const enemySkillDetails = await buildEnemySkillDetails(root, tables);
   const enemyDomainBuild = buildEnemyDomain({
     tables: tableSubset([
       'MonsterTemplateConfig',
       'MonsterConfig',
       'MonsterSkillConfig',
+      'MonsterStatusConfig',
       'DamageType',
       'HardLevelGroup',
       'EliteGroup'
-    ])
+    ]),
+    skillDetails: enemySkillDetails
   });
+  const enemyStatusNamesById = new Map(
+    (tables.MonsterStatusConfig ?? []).flatMap((row) => {
+      const nameSource = textSource(row.StatusName);
+      return nameSource ? [[String(row.StatusID), nameSource] as const] : [];
+    })
+  );
   const enemyDomainsById = new Map(enemyDomainBuild.enemies.map((enemy) => [enemy.id, enemy]));
   console.log('构建 Endgame 敌方实例与精确 HP…');
   // Normalize and validate every required relation before replacing the last known-good output.
@@ -761,6 +772,7 @@ export async function syncData(): Promise<DataManifest> {
       resolver: runtime.text,
       enemiesById: enemyDomainsById,
       extraEffectsById,
+      statusNamesById: enemyStatusNamesById,
       elementNameFallbacks: projectionPolicy.elementLabels,
       specialResistanceLabels: projectionPolicy.specialResistanceLabels,
       enemyNameFallback: projectionPolicy.enemyName,
@@ -1006,7 +1018,7 @@ export async function syncData(): Promise<DataManifest> {
   };
   const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
   const manifestWithoutRevision: Omit<DataManifest, 'dataRevision'> = {
-    schemaVersion: 46,
+    schemaVersion: 47,
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,
