@@ -11,9 +11,9 @@ export function formatEnemySkillPercent(value: string): string {
   return `${formattedWhole}${remainder ? `.${remainder}` : ''}%`;
 }
 
-/** Keep the unit outside a list of possible totals. */
-export function formatEnemySkillTotals(totals: readonly string[]): string {
-  return totals.map(formatEnemySkillPercent).join(' / ');
+/** Keep the unit outside a list of possible multipliers. */
+export function formatEnemySkillMultipliers(multipliers: readonly string[]): string {
+  return multipliers.map(formatEnemySkillPercent).join(' / ');
 }
 
 /** Keep only base-chance rows whose numeric fact has a clear visible association. */

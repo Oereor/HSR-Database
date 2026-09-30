@@ -329,9 +329,23 @@ test('技能内召唤与弹射旧事实不再出现', async ({ page }) => {
 
   await page.goto('/enemies/4064012/');
   await page.locator('[data-enemy-skill-option="406401204"]').click();
-  await expect(page.locator('[data-enemy-skill-damage]')).toHaveCount(0);
+  await expect(page.locator('[data-enemy-skill-damage]')).toContainText('600% / 4,200%');
   await page.locator('[data-enemy-skill-option="406401205"]').click();
   await expect(page.locator('[data-damage-target="all"]')).toContainText('1,050%');
+});
+
+test('Skill Browser 展示分支候选并省略无标签组的目标说明', async ({ page }) => {
+  for (const prefix of ['', '/en']) {
+    await page.goto(`${prefix}/enemies/4014018/`);
+    await page.locator('[data-enemy-skill-option="401401803"]').click();
+    await expect(page.locator('[data-enemy-skill-damage]')).toContainText('180% / 360%');
+    await page.locator('.enemy-phase-tabs').getByRole('tab').nth(1).click();
+    await page.locator('[data-enemy-skill-option="401401802"]').click();
+    const row = page.locator('[data-enemy-skill-damage] .enemy-skill-fact-row');
+    await expect(row).toHaveCount(1);
+    await expect(row.locator('span')).toHaveCount(0);
+    await expect(row.locator('strong')).toContainText('90% / 110% / 180% / 220%');
+  }
 });
 
 test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出', async ({ page }) => {

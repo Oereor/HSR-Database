@@ -234,7 +234,11 @@ export interface EnemySkillDomain {
 export type EnemySkillDamageTarget = import('./types.js').EnemySkillDamageTarget;
 
 export interface EnemySkillDetailDomain {
-  damage?: Array<{ target: EnemySkillDamageTarget; totals: DecimalString[]; scaling: 'attack' }>;
+  damage?: Array<{
+    target?: EnemySkillDamageTarget;
+    multipliers: DecimalString[];
+    scaling: 'attack';
+  }>;
   applications?: Array<{
     baseChance: DecimalString;
     statusId?: string;

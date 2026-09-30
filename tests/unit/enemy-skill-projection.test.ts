@@ -38,19 +38,19 @@ describe('enemy skill page projection', () => {
       expect(defaultSkill.name).toBe(variantSkill.name);
       expect(defaultSkill.description).toBe(variantSkill.description);
       expect(defaultSkill.detail?.damage).toEqual([
-        { target: 'primary', totals: ['1.3'], scaling: 'attack' },
-        { target: 'adjacent', totals: ['1'], scaling: 'attack' }
+        { target: 'primary', multipliers: ['1.3'], scaling: 'attack' },
+        { target: 'adjacent', multipliers: ['1'], scaling: 'attack' }
       ]);
-      expect(variantSkill.detail?.damage?.[0].totals).toEqual(['1']);
+      expect(variantSkill.detail?.damage?.[0].multipliers).toEqual(['1']);
       expect(
-        (await skill(locale, '4035010', '4035010', '403501001'))?.detail?.damage?.[0].totals
+        (await skill(locale, '4035010', '4035010', '403501001'))?.detail?.damage?.[0].multipliers
       ).toEqual(['4.5']);
       expect(
-        (await skill(locale, '4035010', '403501001', '403501001'))?.detail?.damage?.[0].totals
+        (await skill(locale, '4035010', '403501001', '403501001'))?.detail?.damage?.[0].multipliers
       ).toEqual(['4']);
-      expect(
-        (await skill(locale, '4064012', '4064012', '406401201'))?.detail?.damage
-      ).toBeUndefined();
+      expect((await skill(locale, '4064012', '4064012', '406401201'))?.detail?.damage).toEqual([
+        { target: 'primary', multipliers: ['4'], scaling: 'attack' }
+      ]);
     }
   });
 
@@ -77,15 +77,31 @@ describe('enemy skill page projection', () => {
       const first = (await skill(locale, '2004010', '2004010', '200401001'))?.detail;
       const control = (await skill(locale, '2004010', '2004010', '200401004'))?.detail;
       expect(first?.applications).toEqual([{ target: 'primary', baseChance: '1' }]);
-      expect(first?.damage).toEqual([{ target: 'primary', totals: ['2.5'], scaling: 'attack' }]);
+      expect(first?.damage).toEqual([
+        { target: 'primary', multipliers: ['2.5'], scaling: 'attack' }
+      ]);
       expect(control?.applications).toEqual([{ target: 'primary', baseChance: '1.2' }]);
       expect(control?.actionShifts).toEqual([{ kind: 'advance', ratio: '1' }]);
       expect(
-        (await skill(locale, '3024010', '302401013', '302401005'))?.detail?.damage?.[0].totals
+        (await skill(locale, '3024010', '302401013', '302401005'))?.detail?.damage?.[0].multipliers
       ).toEqual(['1.75']);
       expect(JSON.stringify([first, control])).not.toMatch(
         /MCommon_|AQAAAAQR|DynamicHash|ReadInfo|ModifierName/
       );
+    }
+  });
+
+  it('projects unlabelled and multi-value candidates in both locales', async () => {
+    for (const locale of ['zh-CN', 'en'] as const) {
+      expect((await skill(locale, '4014018', '4014018', '401401802'))?.detail?.damage).toEqual([
+        { multipliers: ['0.9', '1.1', '1.8', '2.2'], scaling: 'attack' }
+      ]);
+      expect((await skill(locale, '4014018', '4014018', '401401803'))?.detail?.damage).toEqual([
+        { target: 'primary', multipliers: ['1.8', '3.6'], scaling: 'attack' }
+      ]);
+      expect(
+        (await skill(locale, '4064012', '4064012', '406401204'))?.detail?.damage?.[0].multipliers
+      ).toEqual(['6', '42']);
     }
   });
 

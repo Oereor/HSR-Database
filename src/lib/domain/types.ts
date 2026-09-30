@@ -418,8 +418,8 @@ export type EnemySkillDamageTarget =
 /** Localized identity and semantic facts for one concrete Monster's skill. */
 export interface EnemySkillDetail {
   damage?: Array<{
-    target: EnemySkillDamageTarget;
-    totals: import('./endgame.js').DecimalString[];
+    target?: EnemySkillDamageTarget;
+    multipliers: import('./endgame.js').DecimalString[];
     scaling: 'attack';
   }>;
   applications?: Array<{
@@ -467,7 +467,7 @@ export interface PublicSiteVersion {
 }
 
 export interface DataManifest {
-  schemaVersion: 46;
+  schemaVersion: 47;
   sourceCommit: string;
   sourceVersion: string;
   gameVersionFull: string | null;

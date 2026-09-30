@@ -5,7 +5,7 @@ import { readTable } from '../../scripts/data/raw';
 import { decimalEquals, parseDecimal } from '../../scripts/data/decimal';
 import { buildEnemySkillDetails } from '../../scripts/data/enemy-skill-details';
 import {
-  normalizeEnemySkillTotals,
+  normalizeEnemySkillMultipliers,
   parseEnemySkillDetail
 } from '../../scripts/data/enemy-skill-semantics';
 import {
@@ -125,6 +125,22 @@ describe('enemy skill parameter foundation', () => {
       })
     ).toBeUndefined();
   });
+
+  it.each([-1, 0.5, 1, Number.MAX_SAFE_INTEGER + 1])(
+    'rejects invalid/out-of-range SkillParam index %s',
+    (index) => {
+      expect(
+        resolveSkillValue(
+          {
+            IsDynamic: true,
+            PostfixExpr: { OpCodes: 'AQAR', FixedValues: [], DynamicHashes: [7] }
+          },
+          new Map([['Skill01', [parseDecimal('2')]]]),
+          { '7': { ReadInfo: { Type: 'SkillParam', TriggerKey: 'Skill01', Index: index } } }
+        )
+      ).toBeUndefined();
+    }
+  );
 
   it('retains a configured 1.2 chance with or without status identity', () => {
     const source = {
@@ -288,10 +304,10 @@ describe('base chance application identity', () => {
   });
 });
 
-describe('structural damage totals', () => {
-  it('deduplicates equivalent decimals and orders totals numerically', () => {
+describe('static damage multiplier candidates', () => {
+  it('deduplicates equivalent decimals and orders multiplier candidates numerically', () => {
     expect(
-      normalizeEnemySkillTotals(['10', '1.0', '2', '1'].map((value) => parseDecimal(value)))
+      normalizeEnemySkillMultipliers(['10', '1.0', '2', '1'].map((value) => parseDecimal(value)))
     ).toEqual(['1.0', '2', '10']);
   });
   const hit = (ratio: string, target = 'AbilityTargetEntity') => ({
@@ -327,44 +343,149 @@ describe('structural damage totals', () => {
       parseEnemySkillDetail(source([hit('0.1'), hit('0.2'), hit('2', 'AbilityTargetAdjoinEntity')]))
         ?.damage
     ).toEqual([
-      { target: 'primary', totals: ['0.3'], scaling: 'attack' },
-      { target: 'adjacent', totals: ['2'], scaling: 'attack' }
+      { target: 'primary', multipliers: ['0.3'], scaling: 'attack' },
+      { target: 'adjacent', multipliers: ['2'], scaling: 'attack' }
     ]);
   });
 
-  it('rejects incomplete conditional, cross-Ability, unresolved, unsupported and mutable damage', () => {
-    const cases: Array<[unknown[], unknown[], string]> = [
-      [
-        [hit('3'), { $type: 'RPG.GameCore.PredicateTaskList', SuccessTaskList: [hit('2')] }],
-        [],
-        'damage-conditional'
-      ],
-      [[hit('3')], [[hit('3')]], 'damage-multiple-abilities'],
-      [
-        [
-          hit('3'),
+  const branch = (success: unknown[], failed: unknown[] = []) => ({
+    $type: 'RPG.GameCore.PredicateTaskList',
+    SuccessTaskList: success,
+    FailedTaskList: failed
+  });
+  const unknownHit = {
+    ...hit('2'),
+    AttackProperty: { DamagePercentage: { IsDynamic: true, PostfixExpr: { OpCodes: 'AQABAQQR' } } }
+  };
+
+  it('unions branch and ability candidates without prefix/branch or cross-ability sums', () => {
+    expect(
+      parseEnemySkillDetail(
+        source([hit('3'), branch([hit('2')], [hit('4')])], [[hit('6'), hit('6')]])
+      )?.damage
+    ).toEqual([{ target: 'primary', multipliers: ['2', '3', '4', '12'], scaling: 'attack' }]);
+  });
+
+  it('aggregates within branches and callbacks but never across callbacks', () => {
+    expect(
+      parseEnemySkillDetail(
+        source([
+          branch([hit('0.1'), hit('0.2')], [hit('0.3')]),
+          { $type: 'RPG.GameCore.FireProjectile', OnProjectileHit: [hit('1'), hit('1'), hit('1')] },
+          { $type: 'RPG.GameCore.FireProjectile', OnProjectileHit: [hit('2')] }
+        ])
+      )?.damage
+    ).toEqual([{ target: 'primary', multipliers: ['0.3', '2', '3'], scaling: 'attack' }]);
+  });
+
+  it('keeps known siblings without publishing a partial local sum', () => {
+    const diagnostics: string[] = [];
+    expect(
+      parseEnemySkillDetail({
+        ...source([hit('3'), unknownHit, hit('4')]),
+        onDamageDiagnostic: (reason) => diagnostics.push(reason)
+      })?.damage
+    ).toEqual([{ target: 'primary', multipliers: ['3', '4'], scaling: 'attack' }]);
+    expect(diagnostics).toEqual(['damage-unsupported-expression']);
+    expect(
+      parseEnemySkillDetail(source([branch([hit('2.2')], [unknownHit])]))?.damage?.[0].multipliers
+    ).toEqual(['2.2']);
+  });
+
+  it('keeps loop values without multiplying by count or summing outer hits', () => {
+    expect(
+      parseEnemySkillDetail(
+        source([
+          hit('2'),
           {
-            ...hit('2'),
-            AttackProperty: {
-              DamagePercentage: { IsDynamic: true, PostfixExpr: { OpCodes: 'AQAAAAQR' } }
-            }
-          }
-        ],
-        [],
-        'damage-unresolved-value'
-      ],
-      [[hit('3'), hit('2', 'AllLightTeam')], [], 'damage-unsupported-target'],
-      [[{ $type: 'RPG.GameCore.SetDynamicValue' }, hit('3')], [], 'damage-runtime-mutation']
-    ];
-    for (const [onStart, others, reason] of cases) {
-      const diagnostics: string[] = [];
-      const detail = parseEnemySkillDetail({
-        ...source(onStart, others),
-        onDamageDiagnostic: (value: string) => diagnostics.push(value)
-      });
-      expect(detail?.damage).toBeUndefined();
-      expect(diagnostics).toContain(reason);
-    }
+            $type: 'RPG.GameCore.LoopExecuteTaskList',
+            Count: 5,
+            TaskList: [hit('0.9')]
+          },
+          hit('3')
+        ])
+      )?.damage?.[0].multipliers
+    ).toEqual(['0.9', '2', '3']);
+  });
+
+  it('separates unmapped target candidates and does not aggregate their different entities', () => {
+    expect(
+      parseEnemySkillDetail(
+        source([hit('3'), hit('2', 'ParamEntity'), hit('4', 'ProjectileHitEntity')])
+      )?.damage
+    ).toEqual([
+      { target: 'primary', multipliers: ['3'], scaling: 'attack' },
+      { multipliers: ['2', '4'], scaling: 'attack' }
+    ]);
+  });
+
+  it('degrades retargeted entity roles without discarding numbers or summing roles', () => {
+    expect(
+      parseEnemySkillDetail(
+        source([
+          { $type: 'RPG.GameCore.Retarget' },
+          branch(
+            [hit('1.1'), hit('0.9', 'AbilityTargetAdjoinEntity')],
+            [hit('2.2'), hit('1.8', 'AbilityTargetAdjoinEntity')]
+          )
+        ])
+      )?.damage
+    ).toEqual([{ multipliers: ['0.9', '1.1', '1.8', '2.2'], scaling: 'attack' }]);
+  });
+
+  it('preserves local aggregation before a later retarget', () => {
+    expect(
+      parseEnemySkillDetail(
+        source([hit('3'), hit('3'), hit('3'), { $type: 'RPG.GameCore.Retarget' }])
+      )?.damage
+    ).toEqual([{ target: 'primary', multipliers: ['9'], scaling: 'attack' }]);
+  });
+
+  it('does not suppress static values because an unrelated dynamic key is written', () => {
+    expect(
+      parseEnemySkillDetail(
+        source([
+          { $type: 'RPG.GameCore.SetDynamicValue', DynamicKey: 'Unrelated' },
+          hit('0.1'),
+          hit('0.2')
+        ])
+      )?.damage?.[0].multipliers
+    ).toEqual(['0.3']);
+  });
+
+  it('rejects a runtime numeric dependency but retains an independent parameter value', () => {
+    const dynamicHit = {
+      ...hit('2'),
+      AttackProperty: {
+        DamagePercentage: {
+          IsDynamic: true,
+          PostfixExpr: { OpCodes: 'AQAR', FixedValues: [], DynamicHashes: [7] }
+        }
+      }
+    };
+    const fixture = source([
+      { $type: 'RPG.GameCore.SetDynamicValue', DynamicKey: 'RuntimeDamage' },
+      dynamicHit,
+      hit('2.2')
+    ]);
+    fixture.character.DynamicValues.Floats = {
+      '7': { ReadInfo: { Type: 'DynamicValue', Key: 'RuntimeDamage' } }
+    };
+    expect(parseEnemySkillDetail(fixture)?.damage?.[0].multipliers).toEqual(['2.2']);
+  });
+
+  it('rejects malformed, negative, unresolved and non-attack-scaling values individually', () => {
+    expect(
+      parseEnemySkillDetail(
+        source([
+          hit('-1'),
+          hit('bad'),
+          unknownHit,
+          { ...hit('6'), $type: 'RPG.GameCore.DamageByHPProperty' },
+          hit('2')
+        ])
+      )?.damage
+    ).toEqual([{ target: 'primary', multipliers: ['2'], scaling: 'attack' }]);
   });
 });
 
@@ -396,6 +517,9 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
       '3003051',
       '4013010',
       '4014012',
+      '4014018',
+      '2034010',
+      '8003050',
       '4064012',
       '4035010',
       '8012010'
@@ -410,71 +534,93 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
 
   it('uses the concrete Monster overrides for damage', () => {
     expect(get('1002030', '100203001')?.damage).toEqual([
-      { target: 'primary', totals: ['1.3'], scaling: 'attack' },
-      { target: 'adjacent', totals: ['1'], scaling: 'attack' }
+      { target: 'primary', multipliers: ['1.3'], scaling: 'attack' },
+      { target: 'adjacent', multipliers: ['1'], scaling: 'attack' }
     ]);
-    expect(get('100203026', '100203001')?.damage?.[0].totals).toEqual(['1']);
-    expect(get('4064012', '406401201')?.damage).toBeUndefined();
-    expect(get('406401201', '406401201')?.damage).toBeUndefined();
-    expect(get('100402017', '100402001')?.damage?.[0].totals).toEqual(['2']);
-    expect(get('4035010', '403501001')?.damage?.[0].totals).toEqual(['4.5']);
-    expect(get('403501001', '403501001')?.damage?.[0].totals).toEqual(['4']);
+    expect(get('100203026', '100203001')?.damage?.[0].multipliers).toEqual(['1']);
+    expect(get('4064012', '406401201')?.damage?.[0].multipliers).toEqual(['4']);
+    expect(get('406401201', '406401201')?.damage?.[0].multipliers).toEqual(['3.6']);
+    expect(get('100402017', '100402001')?.damage?.[0].multipliers).toEqual(['2']);
+    expect(get('4035010', '403501001')?.damage?.[0].multipliers).toEqual(['4.5']);
+    expect(get('403501001', '403501001')?.damage?.[0].multipliers).toEqual(['4']);
   });
 
   it('opens formerly gated direct damage without inventing a skill-specific rule', () => {
     expect(get('1002011', '100201101')?.damage).toEqual([
-      { target: 'all', totals: ['2'], scaling: 'attack' }
+      { target: 'all', multipliers: ['2'], scaling: 'attack' }
     ]);
     expect(get('1002020', '100202001')?.damage).toEqual([
-      { target: 'primary', totals: ['2.5'], scaling: 'attack' }
+      { target: 'primary', multipliers: ['2.5'], scaling: 'attack' }
     ]);
-    expect(get('1002041', '100204101')?.damage?.[0].totals).toEqual(['3']);
-    expect(get('1003010', '100301001')?.damage?.[0].totals).toEqual(['3']);
+    expect(get('1002041', '100204101')?.damage?.[0].multipliers).toEqual(['3']);
+    expect(get('1003010', '100301001')?.damage?.[0].multipliers).toEqual(['3']);
   });
 
-  it('adds verified expression damage while keeping the existing structural gates', () => {
+  it('keeps bounded expression support while allowing wrapped values', () => {
     expect(get('2004010', '200401001')?.damage).toEqual([
-      { target: 'primary', totals: ['2.5'], scaling: 'attack' }
+      { target: 'primary', multipliers: ['2.5'], scaling: 'attack' }
     ]);
-    expect(get('1013010', '101301004')?.damage?.[0].totals).toEqual(['4']);
-    expect(get('3024010', '302401005')?.damage?.[0].totals).toEqual(['3.6']);
-    expect(get('302401013', '302401005')?.damage?.[0].totals).toEqual(['1.75']);
-    expect(get('8012010', '801201001')?.damage?.[0].totals).toEqual(['2.5']);
-    expect(get('1004010', '100401003')?.damage).toBeUndefined();
-    expect(get('1004010', '100401001')?.damage).toBeUndefined();
-    expect(get('1003010', '100301002')?.damage).toBeUndefined();
+    expect(get('1013010', '101301004')?.damage?.[0].multipliers).toEqual(['4']);
+    expect(get('3024010', '302401005')?.damage?.[0].multipliers).toEqual(['3.6']);
+    expect(get('302401013', '302401005')?.damage?.[0].multipliers).toEqual(['1.75']);
+    expect(get('8012010', '801201001')?.damage?.[0].multipliers).toEqual(['2.5']);
+    expect(get('1004010', '100401003')?.damage?.[0].multipliers).toEqual(['5']);
   });
 
-  it('keeps target roles and omits unsupported repeated totals and toughness', () => {
+  it('keeps target roles and local aggregates without exposing toughness', () => {
     expect(get('1022010', '102201001')?.damage?.[0]).toMatchObject({
       target: 'primary',
-      totals: ['3']
+      multipliers: ['3']
     });
     expect(get('2004010', '200401003')?.damage?.[0]).toMatchObject({
       target: 'all',
-      totals: ['2.5']
+      multipliers: ['2.5']
     });
     expect(get('2012010', '201201002')?.damage?.[0]).toMatchObject({
       target: 'enemy-side',
-      totals: ['0.4']
+      multipliers: ['0.4']
     });
     expect(get('4013010', '401301001')?.damage?.[0]).toMatchObject({
       target: 'each-swept',
-      totals: ['2.8']
+      multipliers: ['2.8']
     });
     expect(get('4064012', '406401207')?.damage).toEqual([
-      { target: 'other-marked', totals: ['4'], scaling: 'attack' },
-      { target: 'marked', totals: ['12'], scaling: 'attack' }
+      { target: 'other-marked', multipliers: ['4'], scaling: 'attack' },
+      { target: 'marked', multipliers: ['12'], scaling: 'attack' }
     ]);
-    expect(get('4064012', '406401204')?.damage).toBeUndefined();
+    expect(get('4064012', '406401204')?.damage?.[0].multipliers).toEqual(['6', '42']);
     expect(get('2004010', '200401002')?.damage).toEqual([
-      { target: 'primary', totals: ['9'], scaling: 'attack' },
-      { target: 'adjacent', totals: ['2'], scaling: 'attack' }
+      { target: 'primary', multipliers: ['9'], scaling: 'attack' },
+      { target: 'adjacent', multipliers: ['2'], scaling: 'attack' }
     ]);
     expect(get('4064012', '406401205')?.damage).toEqual([
-      { target: 'all', totals: ['10.5'], scaling: 'attack' }
+      { target: 'all', multipliers: ['10.5'], scaling: 'attack' }
     ]);
     expect(JSON.stringify(get('1022010', '102201001'))).not.toContain('toughness');
+  });
+
+  it.each([
+    ['4014018', '401401803', ['1.8', '3.6']],
+    ['4014018', '401401805', ['1.4', '2.8']],
+    ['4014018', '401401809', ['0.4', '0.8']],
+    ['4014018', '401401801', ['1.2', '2.4']],
+    ['4014018', '401401806', ['8.0', '16.0']],
+    ['2034010', '203401001', ['2']],
+    ['4014012', '401401201', ['2.2']]
+  ])('collects real conditional/callback values for %s/%s', (monsterId, skillId, expected) => {
+    expect(get(monsterId, skillId)?.damage?.[0].multipliers).toEqual(expected);
+  });
+
+  it('retains the four retargeted values in an unlabelled group', () => {
+    expect(get('4014018', '401401802')?.damage).toEqual([
+      { multipliers: ['0.9', '1.1', '1.8', '2.2'], scaling: 'attack' }
+    ]);
+  });
+
+  it('retains the real loop-contained value without inventing repetition', () => {
+    expect(get('8003050', '800305004')?.damage).toEqual([
+      { target: 'primary', multipliers: ['4.5'], scaling: 'attack' }
+    ]);
   });
 
   it('publishes numeric applications with optional status identity', () => {
@@ -517,7 +663,7 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
     expect(get('4064012', '406401201')?.applications).toBeUndefined();
   });
 
-  it('does not manufacture bounce totals', () => {
+  it('omits bounce values whose numeric source is unresolved', () => {
     expect(get('4014012', '401401207')).toBeUndefined();
     expect(get('4014012', '401401208')).toBeUndefined();
   });
@@ -526,7 +672,7 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
     ['1022010', '102201001', true],
     ['1002040', '100204001', true],
     ['1002030', '100203001', true],
-    ['1002030', '100203003', false],
+    ['1002030', '100203003', true],
     ['2004010', '200401003', true],
     ['1004020', '100402001', true],
     ['1004020', '100402002', true],
@@ -535,7 +681,7 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
     ['2012010', '201201002', true],
     ['4013010', '401301001', true],
     ['4013010', '401301002', true],
-    ['4064012', '406401201', false],
+    ['4064012', '406401201', true],
     ['4064012', '406401207', true]
   ])('keeps reviewed %s/%s as a structural regression fixture', (monsterId, skillId, expected) => {
     expect(Boolean(get(monsterId, skillId)?.damage?.length)).toBe(expected);

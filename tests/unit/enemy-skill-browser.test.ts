@@ -7,7 +7,7 @@ import {
 } from '../../src/lib/domain/enemy-skill-browser';
 import {
   formatEnemySkillPercent,
-  formatEnemySkillTotals,
+  formatEnemySkillMultipliers,
   visibleEnemySkillApplications
 } from '../../src/lib/domain/enemy-skill-format';
 
@@ -18,9 +18,9 @@ const phase = (index: number, ids: string[]): EnemySkillPhaseView => ({
 });
 
 describe('Enemy Skill Browser state and formatting', () => {
-  it('formats one or several proven damage totals without numeric rounding', () => {
-    expect(formatEnemySkillTotals(['3'])).toBe('300%');
-    expect(formatEnemySkillTotals(['3', '5'])).toBe('300% / 500%');
+  it('formats one or several damage multiplier candidates without numeric rounding', () => {
+    expect(formatEnemySkillMultipliers(['3'])).toBe('300%');
+    expect(formatEnemySkillMultipliers(['3', '5'])).toBe('300% / 500%');
   });
   it('collapses a shared chance and hides unexplained different chances', () => {
     const chance = parseDecimal;

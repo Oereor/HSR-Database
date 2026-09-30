@@ -6,7 +6,7 @@
   import { getElementColor } from '$lib/domain/elements';
   import {
     formatEnemySkillPercent,
-    formatEnemySkillTotals,
+    formatEnemySkillMultipliers,
     visibleEnemySkillApplications
   } from '$lib/domain/enemy-skill-format';
   import type { EnemySkillDamageTarget } from '$lib/domain/types';
@@ -34,8 +34,8 @@
     }
   };
 
-  const attackRatio = (totals: readonly string[]): string =>
-    m.enemy_skill_attack_ratio({ percent: formatEnemySkillTotals(totals) });
+  const attackRatio = (multipliers: readonly string[]): string =>
+    m.enemy_skill_attack_ratio({ percent: formatEnemySkillMultipliers(multipliers) });
 
   $: facts = skill.detail;
   $: displayedApplications = visibleEnemySkillApplications(facts?.applications ?? []);
@@ -68,10 +68,10 @@
     <div class="enemy-skill-detail__facts" data-enemy-skill-facts>
       {#if facts?.damage?.length}<section class="enemy-skill-fact-section" data-enemy-skill-damage>
           <h4>{m.enemy_skill_damage_multiplier()}</h4>
-          {#each facts.damage as damage (damage.target)}
+          {#each facts.damage as damage (damage.target ?? 'unlabelled')}
             <div class="enemy-skill-fact-row" data-damage-target={damage.target}>
-              <span>{targetLabel(damage.target)}</span>
-              <strong>{attackRatio(damage.totals)}</strong>
+              {#if damage.target}<span>{targetLabel(damage.target)}</span>{/if}
+              <strong>{attackRatio(damage.multipliers)}</strong>
             </div>
           {/each}
         </section>{/if}
@@ -177,6 +177,7 @@
     margin: 0;
   }
   .enemy-skill-fact-row strong {
+    margin-left: auto;
     color: var(--text-primary);
     font-weight: 600;
     text-align: right;
