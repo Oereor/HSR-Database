@@ -72,15 +72,20 @@ describe('enemy skill page projection', () => {
     expect(names[0]).not.toBe(names[1]);
   });
 
-  it('projects anonymous Kafka probabilities without exposing modifier names', async () => {
+  it('projects Kafka damage and anonymous probabilities without exposing parser data', async () => {
     for (const locale of ['zh-CN', 'en'] as const) {
       const first = (await skill(locale, '2004010', '2004010', '200401001'))?.detail;
       const control = (await skill(locale, '2004010', '2004010', '200401004'))?.detail;
       expect(first?.applications).toEqual([{ target: 'primary', baseChance: '1' }]);
-      expect(first?.damage).toBeUndefined();
+      expect(first?.damage).toEqual([{ target: 'primary', totals: ['2.5'], scaling: 'attack' }]);
       expect(control?.applications).toEqual([{ target: 'primary', baseChance: '1.2' }]);
       expect(control?.actionShifts).toEqual([{ kind: 'advance', ratio: '1' }]);
-      expect(JSON.stringify([first, control])).not.toContain('MCommon_');
+      expect(
+        (await skill(locale, '3024010', '302401013', '302401005'))?.detail?.damage?.[0].totals
+      ).toEqual(['1.75']);
+      expect(JSON.stringify([first, control])).not.toMatch(
+        /MCommon_|AQAAAAQR|DynamicHash|ReadInfo|ModifierName/
+      );
     }
   });
 

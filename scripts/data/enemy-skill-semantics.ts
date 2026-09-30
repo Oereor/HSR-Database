@@ -3,7 +3,7 @@ import type {
   EnemySkillDetailDomain
 } from '../../src/lib/domain/neutral.js';
 import type { DecimalString } from '../../src/lib/domain/endgame.js';
-import { addDecimals, compareDecimals, decimalEquals } from './decimal.js';
+import { addDecimals, canonicalDecimal, compareDecimals, decimalEquals } from './decimal.js';
 import { normalizedActionShift, resolveSkillValue } from './enemy-skill-params.js';
 
 type Raw = Record<string, any>;
@@ -280,9 +280,14 @@ function structuralDamageRows(
       rejected.add('damage-unresolved-value');
       return;
     }
+    const total = addDecimals(values as DecimalString[]);
+    // Keep pre-existing direct-value spelling stable; new products use a canonical total.
+    const hasProduct = hits.some(
+      (hit) => hit.raw.AttackProperty?.DamagePercentage?.PostfixExpr?.OpCodes === 'AQAAAAQR'
+    );
     rows.push({
       target: role,
-      totals: normalizeEnemySkillTotals([addDecimals(values as DecimalString[])]),
+      totals: normalizeEnemySkillTotals([hasProduct ? canonicalDecimal(total) : total]),
       scaling: 'attack'
     });
   };

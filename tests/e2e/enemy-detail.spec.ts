@@ -291,7 +291,7 @@ test('Skill Browser 显示已有的数值伤害、概率和行动变化', async 
   ).toContainText('100%');
   await expect(
     page.locator('[data-enemy-skill-detail="200401001"] [data-enemy-skill-damage]')
-  ).toHaveCount(0);
+  ).toContainText('250%');
   await page.locator('[data-enemy-skill-option="200401002"]').click();
   await expect(page.locator('[data-damage-target="primary"]')).toContainText('900%');
   await expect(page.locator('[data-damage-target="adjacent"]')).toContainText('200%');

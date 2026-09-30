@@ -1,5 +1,5 @@
 import type { DecimalString } from '../../src/lib/domain/endgame.js';
-import { parseDecimal } from './decimal.js';
+import { multiplyDecimals, parseDecimal } from './decimal.js';
 
 type Raw = Record<string, any>;
 
@@ -26,7 +26,7 @@ export function effectiveSkillParams(skill: Raw, monster: Raw): Array<DecimalStr
   return base;
 }
 
-/** Only direct SkillParam reads are supported. The hash never leaves the build-time parser. */
+/** Only direct SkillParam reads and the verified hash-times-fixed shape are supported. */
 export function resolveSkillValue(
   value: unknown,
   params: ReadonlyMap<string, readonly (DecimalString | undefined)[]>,
@@ -38,10 +38,18 @@ export function resolveSkillValue(
   if (source.IsDynamic !== true) return undefined;
   const expression = source.PostfixExpr;
   if (
-    expression?.OpCodes !== 'AQAR' ||
+    (expression?.OpCodes !== 'AQAR' && expression?.OpCodes !== 'AQAAAAQR') ||
     !Array.isArray(expression.DynamicHashes) ||
-    expression.DynamicHashes.length !== 1 ||
-    (expression.FixedValues?.length ?? 0) !== 0
+    expression.DynamicHashes.length !== 1
+  )
+    return undefined;
+  if (expression.OpCodes === 'AQAR') {
+    if ((expression.FixedValues?.length ?? 0) !== 0) return undefined;
+  } else if (
+    Object.keys(expression).length !== 3 ||
+    !Number.isSafeInteger(expression.DynamicHashes[0]) ||
+    !Array.isArray(expression.FixedValues) ||
+    expression.FixedValues.length !== 1
   )
     return undefined;
   const read = dynamicFloats[String(expression.DynamicHashes[0])]?.ReadInfo;
@@ -49,7 +57,19 @@ export function resolveSkillValue(
   // A shared dynamic key may legitimately read another trigger's parameters (e.g. bounce).
   const values = params.get(read.TriggerKey);
   if (!values || !Number.isSafeInteger(read.Index) || read.Index < 0) return undefined;
-  return values[read.Index];
+  const param = values[read.Index];
+  if (!param || expression.OpCodes === 'AQAR') return param;
+  const fixed = expression.FixedValues[0];
+  if (
+    !fixed ||
+    typeof fixed !== 'object' ||
+    Array.isArray(fixed) ||
+    Object.keys(fixed).length !== 1 ||
+    !('Value' in fixed)
+  )
+    return undefined;
+  const factor = decimal(fixed);
+  return factor ? multiplyDecimals([param, factor]) : undefined;
 }
 
 export function normalizedActionShift(

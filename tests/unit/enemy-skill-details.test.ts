@@ -2,7 +2,7 @@ import path from 'node:path';
 import { access } from 'node:fs/promises';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { readTable } from '../../scripts/data/raw';
-import { parseDecimal } from '../../scripts/data/decimal';
+import { decimalEquals, parseDecimal } from '../../scripts/data/decimal';
 import { buildEnemySkillDetails } from '../../scripts/data/enemy-skill-details';
 import {
   normalizeEnemySkillTotals,
@@ -50,6 +50,79 @@ describe('enemy skill parameter foundation', () => {
         new Map(),
         {}
       )
+    ).toBeUndefined();
+  });
+
+  it('multiplies only the verified dynamic-first SkillParam and fixed-value shape', () => {
+    const expression = (factor: string, opCodes = 'AQAAAAQR') => ({
+      IsDynamic: true,
+      PostfixExpr: {
+        OpCodes: opCodes,
+        FixedValues: [{ Value: factor }],
+        DynamicHashes: [-1126825319]
+      }
+    });
+    const params = new Map([['Skill01', [parseDecimal('2.5')]]]);
+    const floats = {
+      '-1126825319': { ReadInfo: { Type: 'SkillParam', TriggerKey: 'Skill01', Index: 0 } }
+    };
+    expect(resolveSkillValue(expression('0.5'), params, floats)).toBe('1.25');
+    expect(resolveSkillValue(expression('0.125'), params, floats)).toBe('0.3125');
+    expect(
+      decimalEquals(resolveSkillValue(expression('0'), params, floats)!, parseDecimal('0'))
+    ).toBe(true);
+
+    const overridden = effectiveSkillParams(
+      { SkillID: 1, ParamList: [{ Value: '2.5' }] },
+      { OverrideSkillParams: [{ BOKJJKFCFME: 1, PBLPLDJKPEI: [{ Value: '3.2' }] }] }
+    );
+    expect(resolveSkillValue(expression('0.5'), new Map([['Skill01', overridden]]), floats)).toBe(
+      '1.60'
+    );
+
+    expect(resolveSkillValue(expression('0.5', 'AAABAAQR'), params, floats)).toBeUndefined();
+    expect(
+      resolveSkillValue(
+        {
+          ...expression('0.5'),
+          PostfixExpr: { ...expression('0.5').PostfixExpr, DynamicHashes: [1, 2] }
+        },
+        params,
+        floats
+      )
+    ).toBeUndefined();
+    expect(
+      resolveSkillValue(
+        {
+          ...expression('0.5'),
+          PostfixExpr: { ...expression('0.5').PostfixExpr, NestedExpr: {} }
+        },
+        params,
+        floats
+      )
+    ).toBeUndefined();
+    expect(
+      resolveSkillValue(
+        {
+          ...expression('0.5'),
+          PostfixExpr: {
+            ...expression('0.5').PostfixExpr,
+            FixedValues: [{ Value: '0.5' }, { Value: '2' }]
+          }
+        },
+        params,
+        floats
+      )
+    ).toBeUndefined();
+    expect(
+      resolveSkillValue(expression('0.5'), params, {
+        '-1126825319': { ReadInfo: { Type: 'DynamicValue', TriggerKey: 'Skill01', Index: 0 } }
+      })
+    ).toBeUndefined();
+    expect(
+      resolveSkillValue(expression('0.5'), params, {
+        '-1126825319': { ReadInfo: { Type: 'SkillParam', TriggerKey: 'Missing', Index: 0 } }
+      })
     ).toBeUndefined();
   });
 
@@ -310,10 +383,13 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
       '1002020',
       '1002041',
       '1003010',
+      '1004010',
+      '1013010',
       '1022010',
       '1002040',
       '1002030',
       '2004010',
+      '3024010',
       '3003013',
       '1004020',
       '2012010',
@@ -321,7 +397,8 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
       '4013010',
       '4014012',
       '4064012',
-      '4035010'
+      '4035010',
+      '8012010'
     ]);
     details = await buildEnemySkillDetails(root, {
       MonsterTemplateConfig: templates.filter((row) => ids.has(String(row.MonsterTemplateID))),
@@ -353,6 +430,19 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
     ]);
     expect(get('1002041', '100204101')?.damage?.[0].totals).toEqual(['3']);
     expect(get('1003010', '100301001')?.damage?.[0].totals).toEqual(['3']);
+  });
+
+  it('adds verified expression damage while keeping the existing structural gates', () => {
+    expect(get('2004010', '200401001')?.damage).toEqual([
+      { target: 'primary', totals: ['2.5'], scaling: 'attack' }
+    ]);
+    expect(get('1013010', '101301004')?.damage?.[0].totals).toEqual(['4']);
+    expect(get('3024010', '302401005')?.damage?.[0].totals).toEqual(['3.6']);
+    expect(get('302401013', '302401005')?.damage?.[0].totals).toEqual(['1.75']);
+    expect(get('8012010', '801201001')?.damage?.[0].totals).toEqual(['2.5']);
+    expect(get('1004010', '100401003')?.damage).toBeUndefined();
+    expect(get('1004010', '100401001')?.damage).toBeUndefined();
+    expect(get('1003010', '100301002')?.damage).toBeUndefined();
   });
 
   it('keeps target roles and omits unsupported repeated totals and toughness', () => {
