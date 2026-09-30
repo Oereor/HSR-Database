@@ -1,5 +1,7 @@
 # Enemy Skill Details V2 Phase 4A：窄条件分支调查
 
+> 历史阶段记录：本文描述实施当时的模型与结论，不是当前实现规范。当前契约以 [规范架构文档](../architecture/localization-and-data-generation.md)、[V2 Phase 4 倍率候选报告](v2-phase4-multiplier-candidates-cleanup.md) 和 [UI Round 1 报告](ui-round1-information-hierarchy.md) 为准；历史测试、覆盖和文案记录不代表当前状态。
+
 调查日期：2026-09-30。网站 `develop` (`106c8f3`)，只读上游 `TurnBasedGameData` (`6b2bc17ebf`)。本次只调查，不修改解析器、产品数据或 UI。下文数值是 `DamagePercentage` 的攻击力缩放输入，不是实战伤害。
 
 ## 1. Executive Summary

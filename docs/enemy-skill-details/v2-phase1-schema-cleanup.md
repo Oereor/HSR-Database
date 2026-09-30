@@ -1,5 +1,7 @@
 # Enemy Skill Details V2 Phase 1：契约精简与旧功能清理
 
+> 历史阶段记录：本文描述实施当时的模型与结论，不是当前实现规范。当前契约以 [规范架构文档](../architecture/localization-and-data-generation.md)、[V2 Phase 4 倍率候选报告](v2-phase4-multiplier-candidates-cleanup.md) 和 [UI Round 1 报告](ui-round1-information-hierarchy.md) 为准；历史测试、覆盖和文案记录不代表当前状态。
+
 ## Architecture
 
 技能详情仍沿用 `MonsterConfig` 的具体技能绑定：构建期 `EnemySkillDetailDomain` 附在 Monster–Skill binding，按语言投影为 `EnemySkillDetail`，页面通过 `EnemySkillBindingView` 和 `getEnemySkillsForMonster` 与共享技能定义联接。官方描述、技能类别、元素、阶段和 `SkillExtraEffects` 不经详情解析器重建。

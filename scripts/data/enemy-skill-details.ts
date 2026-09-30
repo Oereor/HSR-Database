@@ -123,7 +123,6 @@ export async function buildEnemySkillDetails(
         const triggerKey = String(row.SkillTriggerKey ?? '');
         if (!triggerKey) continue;
         const detail = parseEnemySkillDetail({
-          monsterId,
           skillId,
           triggerKey,
           params,

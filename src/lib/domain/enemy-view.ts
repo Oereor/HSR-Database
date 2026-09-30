@@ -36,15 +36,13 @@ export interface EnemySkillDefinitionView {
   extraEffects: EnemySkill['extraEffects'];
 }
 
-export type EnemySkillDetailView = EnemySkillDetail;
-
 export interface EnemySkillBindingView {
   id: string;
-  detail?: EnemySkillDetailView;
+  detail?: EnemySkillDetail;
 }
 
 export interface EnemySkillView extends EnemySkillDefinitionView {
-  detail?: EnemySkillDetailView;
+  detail?: EnemySkillDetail;
 }
 
 export type EnemyStatCompactValue = DecimalString | null;

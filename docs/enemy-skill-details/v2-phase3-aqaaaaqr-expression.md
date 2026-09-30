@@ -1,5 +1,7 @@
 # Enemy Skill Details V2 Phase 3：`AQAAAAQR` 有界表达式
 
+> 历史阶段记录：本文描述实施当时的模型与结论，不是当前实现规范。当前契约以 [规范架构文档](../architecture/localization-and-data-generation.md)、[V2 Phase 4 倍率候选报告](v2-phase4-multiplier-candidates-cleanup.md) 和 [UI Round 1 报告](ui-round1-information-hierarchy.md) 为准；历史测试、覆盖和文案记录不代表当前状态。
+
 ## 1. Executive Summary
 
 检查点 A 已完成：现有上游数据足以高置信确认 `AQAAAAQR` 的相关形状为“动态值 × 固定值”，且动态值可限定为直接读取有效 Monster `SkillParam`。检查点 B 已实施，新增 403 个页面可达伤害绑定；原有伤害绑定没有消失。倍率是配置输入，不代表最终伤害。

@@ -307,35 +307,9 @@ test('Skill Browser 显示已有的数值伤害、概率和行动变化', async 
   await expect(statuses.locator('[data-base-chance]').first()).toContainText('100%');
   await page.locator('[data-enemy-skill-option="300305105"]').click();
   await expect(page.locator('[data-enemy-skill-facts]')).toHaveCount(0);
-
-  await page.goto('/enemies/1002040/');
-  await expect(page.locator('[data-base-chance]')).toContainText('100%');
-  await expect(page.locator('[data-status-duration]')).toHaveCount(0);
 });
 
-test('技能内召唤与弹射旧事实不再出现', async ({ page }) => {
-  await page.goto('/enemies/4013010/');
-  await page.locator('[data-enemy-skill-option="401301005"]').click();
-  await expect(page.locator('[data-enemy-skill-facts]')).toHaveCount(0);
-
-  await page.goto('/en/enemies/4013010/');
-  await page.locator('[data-enemy-skill-option="401301005"]').click();
-  await expect(page.locator('[data-enemy-skill-facts]')).toHaveCount(0);
-
-  await page.goto('/enemies/4014012/');
-  await page.locator('[data-enemy-skill-option="401401207"]').click();
-  await expect(page.locator('[data-enemy-skill-facts]')).toHaveCount(0);
-  await page.locator('[data-enemy-skill-option="401401208"]').click();
-  await expect(page.locator('[data-enemy-skill-facts]')).toHaveCount(0);
-
-  await page.goto('/enemies/4064012/');
-  await page.locator('[data-enemy-skill-option="406401204"]').click();
-  await expect(page.locator('[data-enemy-skill-damage]')).toContainText('600% / 4,200%');
-  await page.locator('[data-enemy-skill-option="406401205"]').click();
-  await expect(page.locator('[data-damage-target="all"]')).toContainText('1,050%');
-});
-
-test('Skill Browser 展示分支候选并省略无标签组的目标说明', async ({ page }) => {
+test('Skill Browser 展示独立候选并省略无标签组的目标说明', async ({ page }) => {
   for (const prefix of ['', '/en']) {
     await page.goto(`${prefix}/enemies/4014018/`);
     await page.locator('[data-enemy-skill-option="401401803"]').click();
@@ -354,6 +328,11 @@ test('Skill Browser 展示分支候选并省略无标签组的目标说明', asy
       .evaluate((element) => element.getBoundingClientRect().left);
     expect(Math.abs(valueLeft - gridLeft)).toBeLessThanOrEqual(1);
   }
+  await page.goto('/enemies/4064012/');
+  await page.locator('[data-enemy-skill-option="406401204"]').click();
+  await expect(page.locator('[data-enemy-skill-damage]')).toContainText('600% / 4,200%');
+  await page.locator('[data-enemy-skill-option="406401205"]').click();
+  await expect(page.locator('[data-damage-target="all"]')).toContainText('1,050%');
 });
 
 test('Skill Browser 紧凑数值列、图标槽和长文本在双语不同宽度下安全布局', async ({ page }) => {

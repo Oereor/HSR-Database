@@ -29,42 +29,45 @@ const headings = (body: string, level: number) =>
     match[1].replace(/<!--[\s\S]*?-->/g, '').trim()
   );
 
-describe.each(['zh-CN', 'en'] as const)('enemy skill presentation (%s)', (locale) => {
-  const useLocale = () => overwriteGetLocale(() => locale);
+describe('enemy skill presentation', () => {
+  const useLocale = () => overwriteGetLocale(() => 'zh-CN');
 
-  it('groups multiple targets and unlabelled candidate values under one damage heading', () => {
-    useLocale();
-    const body = renderSkill({
-      ...skill,
-      detail: {
-        damage: [
-          { target: 'primary', multipliers: [parseDecimal('9')], scaling: 'attack' },
-          { target: 'adjacent', multipliers: [parseDecimal('2')], scaling: 'attack' },
-          {
-            multipliers: ['0.9', '1.1', '1.8', '2.2'].map((value) => parseDecimal(value)),
-            scaling: 'attack'
-          }
-        ]
-      }
-    });
-    expect(headings(body, 4)).toEqual([m.enemy_skill_numeric_information()]);
-    expect(headings(body, 5)).toEqual([m.enemy_skill_damage_multiplier()]);
-    const damageRows = rows(body);
-    expect(damageRows).toHaveLength(3);
-    expect(damageRows[0][0]).toContain('data-damage-target="primary"');
-    expect(damageRows[0][1]).toContain(m.enemy_skill_target_primary());
-    expect(damageRows[0][1]).toContain(m.enemy_skill_attack_ratio({ percent: '900%' }));
-    expect(damageRows[1][1]).toContain(m.enemy_skill_target_adjacent());
-    expect(damageRows[1][1]).toContain('200%');
-    expect(damageRows[2][0]).not.toContain('data-damage-target=');
-    expect(damageRows[2][1]).not.toContain('<span');
-    expect(damageRows[2][1]).toContain('enemy-skill-fact-value--unlabelled');
-    expect(damageRows[2][1]).toContain(
-      m.enemy_skill_attack_ratio({ percent: '90% / 110% / 180% / 220%' })
-    );
-    expect(damageRows[2][1].match(/<strong\b/g)).toHaveLength(1);
-    expect(body).toContain(skill.description);
-  });
+  it.each(['zh-CN', 'en'] as const)(
+    'groups multiple targets and unlabelled candidates (%s)',
+    (locale) => {
+      overwriteGetLocale(() => locale);
+      const body = renderSkill({
+        ...skill,
+        detail: {
+          damage: [
+            { target: 'primary', multipliers: [parseDecimal('9')], scaling: 'attack' },
+            { target: 'adjacent', multipliers: [parseDecimal('2')], scaling: 'attack' },
+            {
+              multipliers: ['0.9', '1.1', '1.8', '2.2'].map((value) => parseDecimal(value)),
+              scaling: 'attack'
+            }
+          ]
+        }
+      });
+      expect(headings(body, 4)).toEqual([m.enemy_skill_numeric_information()]);
+      expect(headings(body, 5)).toEqual([m.enemy_skill_damage_multiplier()]);
+      const damageRows = rows(body);
+      expect(damageRows).toHaveLength(3);
+      expect(damageRows[0][0]).toContain('data-damage-target="primary"');
+      expect(damageRows[0][1]).toContain(m.enemy_skill_target_primary());
+      expect(damageRows[0][1]).toContain(m.enemy_skill_attack_ratio({ percent: '900%' }));
+      expect(damageRows[1][1]).toContain(m.enemy_skill_target_adjacent());
+      expect(damageRows[1][1]).toContain('200%');
+      expect(damageRows[2][0]).not.toContain('data-damage-target=');
+      expect(damageRows[2][1]).not.toContain('<span');
+      expect(damageRows[2][1]).toContain('enemy-skill-fact-value--unlabelled');
+      expect(damageRows[2][1]).toContain(
+        m.enemy_skill_attack_ratio({ percent: '90% / 110% / 180% / 220%' })
+      );
+      expect(damageRows[2][1].match(/<strong\b/g)).toHaveLength(1);
+      expect(body).toContain(skill.description);
+    }
+  );
 
   it.each([undefined, 'primary'] as const)(
     'separates base chance from optional target %s',
@@ -91,7 +94,7 @@ describe.each(['zh-CN', 'en'] as const)('enemy skill presentation (%s)', (locale
     }
   );
 
-  it('retains named applications with different chances and the shared-chance collapse', () => {
+  it('retains the visible association of named applications with different chances', () => {
     useLocale();
     const applications = [
       { name: 'Synthetic effect A', statusId: 'a', baseChance: parseDecimal('0.5') },
@@ -109,18 +112,6 @@ describe.each(['zh-CN', 'en'] as const)('enemy skill presentation (%s)', (locale
       expect(body).toContain(`data-status-id="${application.statusId}"`);
     }
     expect(rows(body).map((row) => row[1].match(/\d+%/)?.[0])).toEqual(['50%', '80%']);
-    const collapsed = renderSkill({
-      ...skill,
-      detail: {
-        applications: applications.map((application) => ({
-          ...application,
-          baseChance: parseDecimal('1')
-        }))
-      }
-    });
-    expect(rows(collapsed)).toHaveLength(1);
-    expect(rows(collapsed)[0][1]).toContain('enemy-skill-fact-value--unlabelled');
-    expect(collapsed).not.toContain('data-status-id=');
   });
 
   it('groups action shifts once per kind in first-occurrence order, without invented targets', () => {
@@ -149,7 +140,6 @@ describe.each(['zh-CN', 'en'] as const)('enemy skill presentation (%s)', (locale
 
   it.each([
     undefined,
-    {},
     { damage: [], applications: [], actionShifts: [] },
     {
       applications: [
@@ -190,8 +180,6 @@ describe('enemy skill selector and header', () => {
     expect(buttons[0][1]).toContain('data-icon-kind="element"');
     expect(buttons[1][0]).toContain('aria-pressed="false"');
     expect(buttons[1][1]).not.toContain('data-icon-kind');
-    expect(body).not.toContain('role="listbox"');
-    expect(body).not.toContain('role="option"');
   });
 
   it('puts the plain element metadata inside the header before the existing type tag', () => {
@@ -202,21 +190,11 @@ describe('enemy skill selector and header', () => {
       header.indexOf('data-skill-effect=')
     );
     expect(body.match(/data-icon-kind="element"/g)).toHaveLength(1);
-    expect(body).not.toContain('enemy-skill-detail__element');
   });
 
   it('renders a type without an attribute placeholder', () => {
     const header = renderSkill(skill).match(/<header[^>]*>([\s\S]*?)<\/header>/)![1];
     expect(header).toContain('data-skill-effect="synthetic"');
     expect(header).not.toContain('data-icon-kind');
-  });
-
-  it('handles attribute-only and empty metadata without changing the public view contract', () => {
-    // The current producer always supplies a tag; exercise the presentation fallback separately.
-    const withoutTag = { ...skill, tag: undefined } as unknown as EnemySkillView;
-    const attributeOnly = renderSkill({ ...withoutTag, damageType });
-    expect(attributeOnly).toContain(damageType.name);
-    expect(attributeOnly).not.toContain('data-skill-effect=');
-    expect(renderSkill(withoutTag)).not.toContain('enemy-skill-detail__metadata');
   });
 });

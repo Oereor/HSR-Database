@@ -5,10 +5,8 @@ import type {
 import type { DecimalString } from '../../src/lib/domain/endgame.js';
 import { decimalEquals } from './decimal.js';
 import { normalizedActionShift, resolveSkillValue } from './enemy-skill-params.js';
-
 import { collectEnemySkillDamage, type EnemySkillDamageDiagnostic } from './enemy-skill-damage.js';
 export type { EnemySkillDamageDiagnostic } from './enemy-skill-damage.js';
-export { normalizeEnemySkillMultipliers } from './enemy-skill-damage.js';
 
 type Raw = Record<string, any>;
 
@@ -20,8 +18,7 @@ interface Task {
   conditional: boolean;
 }
 
-export interface SkillSemanticSource {
-  monsterId: string;
+interface SkillSemanticSource {
   skillId: string;
   triggerKey: string;
   params: ReadonlyMap<string, readonly (DecimalString | undefined)[]>;
@@ -58,15 +55,13 @@ function target(value: unknown): EnemySkillDamageTarget | 'self' | undefined {
   }
 }
 
-function linkedAbilityNames(ability: Raw, triggerKey: string): Set<string> {
+function linkedAbilityNames(character: Raw, triggerKey: string): Set<string> {
   const names = new Set<string>();
-  for (const row of Array.isArray(ability.characterSkillAbilities)
-    ? ability.characterSkillAbilities
-    : [])
+  for (const row of Array.isArray(character.SkillAbilityList) ? character.SkillAbilityList : [])
     if (row.Skill === triggerKey)
       for (const name of Array.isArray(row.AbilityList) ? row.AbilityList : [])
         if (typeof name === 'string') names.add(name);
-  const entry = (Array.isArray(ability.characterSkills) ? ability.characterSkills : []).find(
+  const entry = (Array.isArray(character.SkillList) ? character.SkillList : []).find(
     (row: Raw) => row.Name === triggerKey
   )?.EntryAbility;
   if (typeof entry === 'string') names.add(entry);
@@ -74,8 +69,7 @@ function linkedAbilityNames(ability: Raw, triggerKey: string): Set<string> {
 }
 
 /** Preserve the existing Chance/action-shift traversal independently of damage candidates. */
-function tasksFor(ability: Raw, triggerKey: string): Task[] {
-  const names = linkedAbilityNames(ability, triggerKey);
+function tasksFor(abilities: readonly Raw[]): Task[] {
   const result: Task[] = [];
   const walk = (value: unknown, conditional: boolean): void => {
     if (Array.isArray(value)) {
@@ -93,28 +87,23 @@ function tasksFor(ability: Raw, triggerKey: string): Task[] {
       );
     }
   };
-  for (const row of Array.isArray(ability.AbilityList) ? ability.AbilityList : [])
-    if (names.has(row.Name)) walk(row, false);
+  for (const row of abilities) walk(row, false);
   return result;
 }
 
 export function parseEnemySkillDetail(
   source: SkillSemanticSource
 ): EnemySkillDetailDomain | undefined {
-  const linkedAbility: Raw = {
-    ...source.ability,
-    characterSkillAbilities: source.character.SkillAbilityList,
-    characterSkills: source.character.SkillList
-  };
-  const tasks = tasksFor(linkedAbility, source.triggerKey);
+  const names = linkedAbilityNames(source.character, source.triggerKey);
+  const abilities: Raw[] = (
+    Array.isArray(source.ability.AbilityList) ? source.ability.AbilityList : []
+  ).filter((row: Raw) => names.has(row.Name));
+  const tasks = tasksFor(abilities);
   if (!tasks.length) return undefined;
   const floats = source.character.DynamicValues?.Floats ?? {};
   const resolve = (value: unknown) => resolveSkillValue(value, source.params, floats);
-  const names = linkedAbilityNames(linkedAbility, source.triggerKey);
   const damage = collectEnemySkillDamage(
-    (Array.isArray(linkedAbility.AbilityList) ? linkedAbility.AbilityList : []).filter((row: Raw) =>
-      names.has(row.Name)
-    ),
+    abilities,
     source.skillId,
     resolve,
     source.onDamageDiagnostic

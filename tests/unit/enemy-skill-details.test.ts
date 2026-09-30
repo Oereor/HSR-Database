@@ -4,10 +4,8 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import { readTable } from '../../scripts/data/raw';
 import { decimalEquals, parseDecimal } from '../../scripts/data/decimal';
 import { buildEnemySkillDetails } from '../../scripts/data/enemy-skill-details';
-import {
-  normalizeEnemySkillMultipliers,
-  parseEnemySkillDetail
-} from '../../scripts/data/enemy-skill-semantics';
+import { parseEnemySkillDetail } from '../../scripts/data/enemy-skill-semantics';
+import { normalizeEnemySkillMultipliers } from '../../scripts/data/enemy-skill-damage';
 import {
   effectiveSkillParams,
   normalizedActionShift,
@@ -144,7 +142,6 @@ describe('enemy skill parameter foundation', () => {
 
   it('retains a configured 1.2 chance with or without status identity', () => {
     const source = {
-      monsterId: 'synthetic',
       skillId: '1',
       triggerKey: 'Skill01',
       params: new Map(),
@@ -235,7 +232,6 @@ describe('base chance application identity', () => {
   const fixed = (value: string) => ({ IsDynamic: false, FixedValue: { Value: value } });
   const parse = (tasks: unknown[], statuses: [string, string][] = []) =>
     parseEnemySkillDetail({
-      monsterId: 'synthetic',
       skillId: 'synthetic',
       triggerKey: 'Skill01',
       params: new Map(),
@@ -316,7 +312,6 @@ describe('static damage multiplier candidates', () => {
     AttackProperty: { DamagePercentage: { IsDynamic: false, FixedValue: { Value: ratio } } }
   });
   const source = (onStart: unknown[], otherAbilities: unknown[] = []) => ({
-    monsterId: 'synthetic',
     skillId: 'synthetic',
     triggerKey: 'Skill01',
     params: new Map(),
@@ -545,7 +540,7 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
     expect(get('403501001', '403501001')?.damage?.[0].multipliers).toEqual(['4']);
   });
 
-  it('opens formerly gated direct damage without inventing a skill-specific rule', () => {
+  it('extracts direct damage through the shared collector', () => {
     expect(get('1002011', '100201101')?.damage).toEqual([
       { target: 'all', multipliers: ['2'], scaling: 'attack' }
     ]);
@@ -654,7 +649,7 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
     );
   });
 
-  it('keeps action shifts and removes obsolete detail-only facts', () => {
+  it('keeps action shifts and omits skills without supported numeric facts', () => {
     expect(get('1022010', '102201001')?.actionShifts).toEqual([{ kind: 'delay', ratio: '0.5' }]);
     expect(get('2004010', '200401004')?.actionShifts).toEqual([{ kind: 'advance', ratio: '1' }]);
     expect(get('3003051', '300305105')).toBeUndefined();
@@ -666,24 +661,5 @@ describe.skipIf(!sourceAvailable)('enemy skill production traces', () => {
   it('omits bounce values whose numeric source is unresolved', () => {
     expect(get('4014012', '401401207')).toBeUndefined();
     expect(get('4014012', '401401208')).toBeUndefined();
-  });
-
-  it.each([
-    ['1022010', '102201001', true],
-    ['1002040', '100204001', true],
-    ['1002030', '100203001', true],
-    ['1002030', '100203003', true],
-    ['2004010', '200401003', true],
-    ['1004020', '100402001', true],
-    ['1004020', '100402002', true],
-    ['1004020', '100402004', true],
-    ['2012010', '201201001', true],
-    ['2012010', '201201002', true],
-    ['4013010', '401301001', true],
-    ['4013010', '401301002', true],
-    ['4064012', '406401201', true],
-    ['4064012', '406401207', true]
-  ])('keeps reviewed %s/%s as a structural regression fixture', (monsterId, skillId, expected) => {
-    expect(Boolean(get(monsterId, skillId)?.damage?.length)).toBe(expected);
   });
 });

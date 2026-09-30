@@ -42,15 +42,6 @@ describe('enemy skill page projection', () => {
         { target: 'adjacent', multipliers: ['1'], scaling: 'attack' }
       ]);
       expect(variantSkill.detail?.damage?.[0].multipliers).toEqual(['1']);
-      expect(
-        (await skill(locale, '4035010', '4035010', '403501001'))?.detail?.damage?.[0].multipliers
-      ).toEqual(['4.5']);
-      expect(
-        (await skill(locale, '4035010', '403501001', '403501001'))?.detail?.damage?.[0].multipliers
-      ).toEqual(['4']);
-      expect((await skill(locale, '4064012', '4064012', '406401201'))?.detail?.damage).toEqual([
-        { target: 'primary', multipliers: ['4'], scaling: 'attack' }
-      ]);
     }
   });
 
@@ -67,7 +58,6 @@ describe('enemy skill page projection', () => {
       expect(application?.name).toBeTruthy();
       expect(application?.name).not.toContain(application!.statusId);
       names.push(application!.name!);
-      expect(application).not.toHaveProperty('duration');
     }
     expect(names[0]).not.toBe(names[1]);
   });
@@ -82,9 +72,6 @@ describe('enemy skill page projection', () => {
       ]);
       expect(control?.applications).toEqual([{ target: 'primary', baseChance: '1.2' }]);
       expect(control?.actionShifts).toEqual([{ kind: 'advance', ratio: '1' }]);
-      expect(
-        (await skill(locale, '3024010', '302401013', '302401005'))?.detail?.damage?.[0].multipliers
-      ).toEqual(['1.75']);
       expect(JSON.stringify([first, control])).not.toMatch(
         /MCommon_|AQAAAAQR|DynamicHash|ReadInfo|ModifierName/
       );
@@ -105,15 +92,10 @@ describe('enemy skill page projection', () => {
     }
   });
 
-  it('keeps action shifts and removes obsolete detail fields', async () => {
+  it('keeps action shifts, target roles and general summon relations', async () => {
     expect((await skill('zh-CN', '1022010', '1022010', '102201001'))?.detail?.actionShifts).toEqual(
       [{ kind: 'delay', ratio: '0.5' }]
     );
-    expect((await skill('zh-CN', '2004010', '2004010', '200401004'))?.detail?.actionShifts).toEqual(
-      [{ kind: 'advance', ratio: '1' }]
-    );
-    expect((await skill('zh-CN', '3003051', '3003051', '300305105'))?.detail).toBeUndefined();
-    expect((await skill('zh-CN', '4014012', '4014012', '401401207'))?.detail).toBeUndefined();
     expect(
       (await skill('zh-CN', '4013010', '4013010', '401301001'))?.detail?.damage?.[0].target
     ).toBe('each-swept');

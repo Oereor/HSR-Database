@@ -1,5 +1,7 @@
 # Enemy Skill Details — Phase 2B Skill Browser UI
 
+> 历史阶段记录：本文描述实施当时的模型与结论，不是当前实现规范。当前契约以 [规范架构文档](../architecture/localization-and-data-generation.md)、[V2 Phase 4 倍率候选报告](v2-phase4-multiplier-candidates-cleanup.md) 和 [UI Round 1 报告](ui-round1-information-hierarchy.md) 为准；历史测试、覆盖和文案记录不代表当前状态。
+
 ## Information architecture and components
 
 The old enemy page put phase skill references in the Monster section. Those references jumped to a second, complete list of shared skill cards below. The Skills section now contains one browser: phase tabs, a compact skill selector, and exactly one selected detail. There are no enemy skill anchors or duplicate full-card list. The Monster selector, stats and Monster summon section retain their existing roles.
