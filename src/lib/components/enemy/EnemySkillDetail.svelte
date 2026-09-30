@@ -39,6 +39,7 @@
 
   $: facts = skill.detail;
   $: displayedApplications = visibleEnemySkillApplications(facts?.applications ?? []);
+  $: shiftKinds = [...new Set(facts?.actionShifts?.map((shift) => shift.kind) ?? [])];
   $: hasFacts = !!(
     facts?.damage?.length ||
     displayedApplications.length ||
@@ -49,16 +50,20 @@
 <article class="enemy-skill-detail" data-enemy-skill-detail={skill.id}>
   <header class="enemy-skill-detail__heading">
     <h3><GameText text={skill.name} /></h3>
-    <SkillEffectTag effect={skill.tag} />
+    {#if skill.damageType || skill.tag}
+      <div class="enemy-skill-detail__metadata">
+        {#if skill.damageType}
+          <SemanticIconLabel
+            kind="element"
+            code={skill.damageType.element}
+            label={skill.damageType.name}
+            color={getElementColor(skill.damageType.element)}
+          />
+        {/if}
+        <SkillEffectTag effect={skill.tag} />
+      </div>
+    {/if}
   </header>
-  {#if skill.damageType}<div class="enemy-skill-detail__element">
-      <SemanticIconLabel
-        kind="element"
-        code={skill.damageType.element}
-        label={skill.damageType.name}
-        color={getElementColor(skill.damageType.element)}
-      />
-    </div>{/if}
   <p class:muted={!skill.description} class="enemy-skill-detail__description">
     <GameText text={skill.description} />
   </p>
@@ -66,53 +71,60 @@
 
   {#if hasFacts}
     <div class="enemy-skill-detail__facts" data-enemy-skill-facts>
+      <h4>{m.enemy_skill_numeric_information()}</h4>
       {#if facts?.damage?.length}<section class="enemy-skill-fact-section" data-enemy-skill-damage>
-          <h4>{m.enemy_skill_damage_multiplier()}</h4>
-          {#each facts.damage as damage (damage.target ?? 'unlabelled')}
-            <div class="enemy-skill-fact-row" data-damage-target={damage.target}>
-              {#if damage.target}<span>{targetLabel(damage.target)}</span>{/if}
-              <strong>{attackRatio(damage.multipliers)}</strong>
-            </div>
-          {/each}
+          <h5>{m.enemy_skill_damage_multiplier()}</h5>
+          <div class="enemy-skill-fact-grid">
+            {#each facts.damage as damage (damage.target ?? 'unlabelled')}
+              <div class="enemy-skill-fact-row" data-damage-target={damage.target}>
+                {#if damage.target}<span>{targetLabel(damage.target)}</span>{/if}
+                <strong class:enemy-skill-fact-value--unlabelled={!damage.target}
+                  >{attackRatio(damage.multipliers)}</strong
+                >
+              </div>
+            {/each}
+          </div>
         </section>{/if}
 
       {#if displayedApplications.length}<section
           class="enemy-skill-fact-section"
           data-enemy-skill-applications
         >
-          {#each displayedApplications as application, index (index)}
-            <div class="enemy-skill-application" data-status-id={application.statusId}>
-              {#if application.name}<strong class="enemy-skill-application__name"
-                  ><GameText text={application.name} /></strong
-                >{/if}
-              <div class="enemy-skill-fact-row" data-base-chance>
-                <span>
-                  {m.enemy_skill_base_chance()}
-                  {#if application.target}
-                    · {targetLabel(application.target)}{/if}
-                </span>
-                <strong>{formatEnemySkillPercent(application.baseChance)}</strong>
+          <h5>{m.enemy_skill_base_chance()}</h5>
+          <div class="enemy-skill-fact-grid">
+            {#each displayedApplications as application, index (index)}
+              <div class="enemy-skill-application" data-status-id={application.statusId}>
+                {#if application.name}<div class="enemy-skill-application__name">
+                    <GameText text={application.name} />
+                  </div>{/if}
+                <div class="enemy-skill-fact-row" data-base-chance>
+                  {#if application.target}<span>{targetLabel(application.target)}</span>{/if}
+                  <strong class:enemy-skill-fact-value--unlabelled={!application.target}
+                    >{formatEnemySkillPercent(application.baseChance)}</strong
+                  >
+                </div>
               </div>
-            </div>
-          {/each}
+            {/each}
+          </div>
         </section>{/if}
 
-      {#if facts?.actionShifts?.length}<section
+      {#each shiftKinds as kind (kind)}<section
           class="enemy-skill-fact-section"
           data-enemy-skill-action-shifts
         >
-          {#each facts.actionShifts as shift, index (index)}<div
-              class="enemy-skill-fact-row"
-              data-action-shift={shift.kind}
-            >
-              <h4>
-                {shift.kind === 'advance'
-                  ? m.enemy_skill_action_advance()
-                  : m.enemy_skill_action_delay()}
-              </h4>
-              <strong>{formatEnemySkillPercent(shift.ratio)}</strong>
-            </div>{/each}
-        </section>{/if}
+          <h5>
+            {kind === 'advance' ? m.enemy_skill_action_advance() : m.enemy_skill_action_delay()}
+          </h5>
+          <div class="enemy-skill-fact-grid">
+            {#each facts?.actionShifts?.filter((shift) => shift.kind === kind) ?? [] as shift, index (index)}
+              <div class="enemy-skill-fact-row" data-action-shift={shift.kind}>
+                <strong class="enemy-skill-fact-value--unlabelled"
+                  >{formatEnemySkillPercent(shift.ratio)}</strong
+                >
+              </div>
+            {/each}
+          </div>
+        </section>{/each}
     </div>
   {/if}
 </article>
@@ -128,19 +140,33 @@
   }
   .enemy-skill-detail__heading {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 1rem;
+    gap: var(--space-3) var(--space-4);
   }
   .enemy-skill-detail h3 {
+    min-width: 0;
+    flex: 1 1 12rem;
     margin: 0;
     font-size: var(--font-major-title);
     font-weight: 700;
     line-height: 1.35;
     overflow-wrap: anywhere;
   }
-  .enemy-skill-detail__element {
-    margin-top: var(--space-3);
+  .enemy-skill-detail__metadata {
+    display: flex;
+    min-width: 0;
+    max-width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-2) var(--space-3);
+    margin-left: auto;
+    overflow-wrap: anywhere;
+  }
+  .enemy-skill-detail__metadata :global(.semantic-icon-label) {
+    min-width: 0;
   }
   .enemy-skill-detail__description {
     margin: 1rem 0 0;
@@ -155,50 +181,64 @@
     padding-top: var(--space-6);
     border-top: 1px solid var(--border);
   }
-  .enemy-skill-fact-section + .enemy-skill-fact-section {
-    padding-top: var(--space-4);
-    border-top: 1px solid var(--border);
+  .enemy-skill-detail__facts > h4 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: var(--font-major-title);
+    font-weight: 700;
   }
-  .enemy-skill-fact-section h4 {
+  .enemy-skill-fact-section h5 {
     margin: 0 0 var(--space-2);
-    color: var(--text-secondary);
+    color: var(--text-body);
     font-size: var(--font-meta-value);
+    font-weight: 600;
+  }
+  .enemy-skill-fact-grid {
+    display: grid;
+    width: min(100%, 34rem);
+    grid-template-columns: fit-content(10rem) minmax(0, 1fr);
+    gap: var(--space-2) var(--space-4);
   }
   .enemy-skill-fact-row {
-    display: flex;
+    display: grid;
     min-width: 0;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
     align-items: baseline;
-    justify-content: space-between;
-    gap: var(--space-4);
-    padding-block: 0.25rem;
+    row-gap: var(--space-2);
     color: var(--text-secondary);
   }
-  .enemy-skill-fact-row h4 {
-    margin: 0;
+  .enemy-skill-fact-row > span,
+  .enemy-skill-fact-row > strong {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
   .enemy-skill-fact-row strong {
-    margin-left: auto;
     color: var(--text-primary);
     font-weight: 600;
-    text-align: right;
+    text-align: left;
   }
-  .enemy-skill-application + .enemy-skill-application {
-    margin-top: var(--space-3);
-    padding-top: var(--space-3);
-    border-top: 1px solid var(--border);
+  .enemy-skill-fact-value--unlabelled {
+    grid-column: 1 / -1;
+  }
+  .enemy-skill-application {
+    display: grid;
+    min-width: 0;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    row-gap: var(--space-2);
   }
   .enemy-skill-application__name {
-    display: block;
-    margin-bottom: var(--space-2);
+    grid-column: 1 / -1;
+    color: var(--text-secondary);
     overflow-wrap: anywhere;
   }
   @media (max-width: 520px) {
     .enemy-skill-detail {
       padding: var(--space-4);
     }
-    .enemy-skill-detail__heading {
-      flex-wrap: wrap;
-      gap: 0.65rem;
+    .enemy-skill-fact-grid {
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 </style>

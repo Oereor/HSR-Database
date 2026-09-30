@@ -243,6 +243,7 @@ test('Skill Browser 保留阶段筛选、技能顺序与本地选择状态', asy
   await page.goto('/enemies/4034013/');
   const noDamageOption = page.locator('[data-enemy-skill-option="403401302"]');
   await expect(noDamageOption).toBeVisible();
+  await expect(noDamageOption.locator('.enemy-skill-selector__icon')).toHaveCount(1);
   await expect(noDamageOption.locator('[data-icon-kind="element"]')).toHaveCount(0);
 });
 
@@ -345,6 +346,117 @@ test('Skill Browser 展示分支候选并省略无标签组的目标说明', asy
     await expect(row).toHaveCount(1);
     await expect(row.locator('span')).toHaveCount(0);
     await expect(row.locator('strong')).toContainText('90% / 110% / 180% / 220%');
+    const gridLeft = await row
+      .locator('..')
+      .evaluate((element) => element.getBoundingClientRect().left);
+    const valueLeft = await row
+      .locator('strong')
+      .evaluate((element) => element.getBoundingClientRect().left);
+    expect(Math.abs(valueLeft - gridLeft)).toBeLessThanOrEqual(1);
+  }
+});
+
+test('Skill Browser 紧凑数值列、图标槽和长文本在双语不同宽度下安全布局', async ({ page }) => {
+  test.setTimeout(60_000);
+  for (const prefix of ['', '/en']) {
+    for (const width of [1440, 900, 390, 320]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(`${prefix}/enemies/2004010/`);
+      const selector = page.locator('[data-enemy-skill-selector]');
+      const options = selector.locator('button');
+      const names = await options
+        .locator('strong')
+        .evaluateAll((elements) => elements.map((element) => element.getBoundingClientRect().left));
+      expect(Math.max(...names) - Math.min(...names)).toBeLessThanOrEqual(1);
+      for (const option of await options.all()) {
+        await expect(option.locator('.enemy-skill-selector__icon')).toHaveCount(1);
+        await expect(option).toHaveAccessibleName(
+          (await option.locator('strong').innerText()).trim()
+        );
+      }
+      const chanceOption = selector.locator('[data-enemy-skill-option="200401004"]');
+      await chanceOption.focus();
+      await page.keyboard.press('Enter');
+      await expect(chanceOption).toHaveAttribute('aria-pressed', 'true');
+      await expect(chanceOption).toBeFocused();
+
+      await selector.locator('[data-enemy-skill-option="200401002"]').click();
+      const detail = page.locator('[data-enemy-skill-detail="200401002"]');
+      const metadata = detail.locator('header .enemy-skill-detail__metadata');
+      await expect(metadata.locator('[data-icon-kind="element"]')).toHaveCount(1);
+      await expect(metadata.locator('[data-skill-effect]')).toHaveCount(1);
+      expect(
+        await metadata.evaluate((element) => {
+          const icon = element.querySelector('[data-icon-kind="element"]')!;
+          const tag = element.querySelector('[data-skill-effect]')!;
+          return !!(icon.compareDocumentPosition(tag) & Node.DOCUMENT_POSITION_FOLLOWING);
+        })
+      ).toBe(true);
+      const damage = detail.locator('[data-enemy-skill-damage]');
+      await expect(damage.locator('h5')).toHaveCount(1);
+      const grid = damage.locator('.enemy-skill-fact-grid');
+      const gridBox = (await grid.boundingBox())!;
+      const gridLimit = await grid.evaluate(
+        () => 34 * parseFloat(getComputedStyle(document.documentElement).fontSize)
+      );
+      expect(gridBox.width).toBeLessThanOrEqual(gridLimit + 1);
+      const primary = damage.locator('[data-damage-target="primary"]');
+      // Read geometry together so scroll anchoring during panel replacement cannot skew y values.
+      const geometry = await grid.evaluate((element) => {
+        const primaryRow = element.querySelector('[data-damage-target="primary"]')!;
+        return {
+          qualifier: primaryRow.querySelector('span')!.getBoundingClientRect().toJSON(),
+          primary: primaryRow.querySelector('strong')!.getBoundingClientRect().toJSON(),
+          adjacent: element
+            .querySelector('[data-damage-target="adjacent"] strong')!
+            .getBoundingClientRect()
+            .toJSON(),
+          gap: parseFloat(getComputedStyle(element).columnGap)
+        };
+      });
+      expect(Math.abs(geometry.primary.x - geometry.adjacent.x)).toBeLessThanOrEqual(1);
+      if (width > 520) {
+        const gap = geometry.primary.x - geometry.qualifier.right;
+        expect(gap).toBeGreaterThan(0);
+        expect(gap).toBeLessThanOrEqual(geometry.gap + 1);
+      } else {
+        expect(geometry.primary.y).toBeGreaterThanOrEqual(geometry.qualifier.bottom);
+      }
+
+      // Stress the real layout with extended existing text, without changing production fixtures.
+      await selector.locator('strong').evaluateAll((elements) => {
+        for (const element of elements) element.textContent = element.textContent!.repeat(5);
+      });
+      await detail.locator('h3').evaluate((element) => {
+        element.textContent = element.textContent!.repeat(8);
+      });
+      await primary.locator('span').evaluate((element) => {
+        element.textContent = element.textContent!.repeat(12);
+      });
+      await primary.locator('strong').evaluate((element) => {
+        element.textContent = Array(12).fill(element.textContent).join(' / ');
+      });
+      for (const element of [
+        selector,
+        detail,
+        grid,
+        primary.locator('span'),
+        primary.locator('strong')
+      ]) {
+        expect(
+          await element.evaluate((node) => node.scrollWidth - node.clientWidth)
+        ).toBeLessThanOrEqual(1);
+      }
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+        )
+      ).toBeLessThanOrEqual(1);
+      if (width > 520)
+        expect((await primary.locator('span').boundingBox())!.width).toBeLessThanOrEqual(
+          (gridLimit * 10) / 34 + 1
+        );
+    }
   }
 });
 

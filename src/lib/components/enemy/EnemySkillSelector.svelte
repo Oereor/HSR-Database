@@ -19,15 +19,15 @@
       data-enemy-skill-option={skill.id}
       on:click={() => onSelect(skill.id)}
     >
-      {#if skill.damageType}<span class="enemy-skill-selector__icon" aria-hidden="true"
-          ><SemanticIconLabel
+      <span class="enemy-skill-selector__icon" aria-hidden="true">
+        {#if skill.damageType}<SemanticIconLabel
             kind="element"
             code={skill.damageType.element}
             label={skill.damageType.name}
             color={getElementColor(skill.damageType.element)}
             showLabel={false}
-          /></span
-        >{/if}
+          />{/if}
+      </span>
       <strong><GameText text={skill.name} /></strong>
     </button>
   {/each}
@@ -43,7 +43,8 @@
     background: rgb(14 20 34 / 48%);
   }
   .enemy-skill-selector__option {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1.3rem minmax(0, 1fr);
     width: 100%;
     min-width: 0;
     align-items: center;
@@ -83,7 +84,6 @@
   .enemy-skill-selector__icon {
     --semantic-icon-image-size: 1.15rem;
     display: grid;
-    flex: 0 0 1.3rem;
     place-items: center;
   }
 </style>
