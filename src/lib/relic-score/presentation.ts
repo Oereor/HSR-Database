@@ -37,7 +37,7 @@ export function unavailableRelicScore(
   slots: readonly RelicSlot[] = []
 ): PlayerRelicScorePresentation {
   return {
-    version: 1,
+    version: 2,
     build: { status: 'unavailable', reason },
     pieces: Object.fromEntries(slots.map((slot) => [slot, { status: 'unavailable', reason }]))
   };
@@ -58,6 +58,7 @@ export function presentRelicScoreResult(
             status: 'available',
             score: scored.value.pieceScore,
             mainCompletion: scored.value.mainCompletion,
+            mainStatStatus: scored.value.mainStatStatus,
             benchmarkPercentile: scored.value.benchmarkPercentile,
             rawSubUtility: scored.value.rawSubUtility,
             effectiveHits: scored.value.effectiveHits
@@ -104,5 +105,5 @@ export function presentRelicScoreResult(
               ? scoreReason(result.reason)
               : normalizationReason(normalized.reason)
         };
-  return { version: 1, build, pieces };
+  return { version: 2, build, pieces };
 }

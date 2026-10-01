@@ -3,6 +3,14 @@ import path from 'node:path';
 import type { AvatarEquipmentRecommendation } from '../../src/lib/domain/types.js';
 import { assertPlayerRuntimeData } from '../../src/lib/player/runtime-data.js';
 import type { CharacterProfileArtifact } from '../../src/lib/relic-score/profile-types.js';
+import {
+  VARIABLE_RELIC_SLOTS,
+  resolveMainStatPolicy
+} from '../../src/lib/relic-score/main-stat-policy.js';
+import type {
+  CharacterRelicScoreProfile,
+  VariableRelicSlot
+} from '../../src/lib/relic-score/profile-types.js';
 import { buildRelicScoreReferenceData } from '../../src/lib/relic-score/reference.js';
 import { isRelicStatKey, relicStatSemantics } from '../../src/lib/relic-score/stat-registry.js';
 import { readDataManifest } from '../data/generated-artifacts.js';
@@ -74,12 +82,66 @@ function validateThresholds(items: unknown, label: string, soft: boolean): void 
   }
 }
 
+function validateMainStatOverrides(
+  value: unknown,
+  character: ProfileCharacterSource,
+  profile: CharacterRelicScoreProfile
+): void {
+  const label = `${character.id}.mainStatOverrides`;
+  const entry = record(value, label);
+  if (
+    !Object.keys(entry).length ||
+    Object.keys(entry).some((key) => !['addAccepted', 'agnosticSlots'].includes(key))
+  )
+    throw new Error(`[relic-score/validate] empty or unknown main-stat override field ${label}`);
+  const agnostic =
+    entry.agnosticSlots === undefined ? [] : array(entry.agnosticSlots, `${label}.agnosticSlots`);
+  if (entry.agnosticSlots !== undefined && !agnostic.length)
+    throw new Error(`[relic-score/validate] empty agnostic slots ${label}`);
+  if (
+    agnostic.some((slot) => !VARIABLE_RELIC_SLOTS.includes(slot as VariableRelicSlot)) ||
+    new Set(agnostic).size !== agnostic.length
+  )
+    throw new Error(`[relic-score/validate] illegal or duplicate agnostic slot ${label}`);
+  if (entry.addAccepted !== undefined) {
+    const additions = record(entry.addAccepted, `${label}.addAccepted`);
+    if (!Object.keys(additions).length)
+      throw new Error(`[relic-score/validate] empty addAccepted ${label}`);
+    for (const [slot, raw] of Object.entries(additions)) {
+      if (!VARIABLE_RELIC_SLOTS.includes(slot as VariableRelicSlot))
+        throw new Error(`[relic-score/validate] illegal main-stat override slot ${label}:${slot}`);
+      if (agnostic.includes(slot))
+        throw new Error(`[relic-score/validate] agnostic/addAccepted conflict ${label}:${slot}`);
+      const stats = array(raw, `${label}.addAccepted.${slot}`);
+      if (!stats.length || new Set(stats).size !== stats.length)
+        throw new Error(`[relic-score/validate] empty or duplicate accepted stat ${label}:${slot}`);
+      const natural = resolveMainStatPolicy(
+        slot as VariableRelicSlot,
+        character.equipmentRecommendation,
+        { substatWeights: profile.substatWeights }
+      );
+      for (const stat of stats) {
+        if (
+          typeof stat !== 'string' ||
+          !isRelicStatKey(stat) ||
+          !relicStatSemantics(stat).mainSlots.includes(slot as VariableRelicSlot)
+        )
+          throw new Error(`[relic-score/validate] illegal accepted stat ${label}:${slot}:${stat}`);
+        if (natural.accepted.includes(stat))
+          throw new Error(
+            `[relic-score/validate] redundant accepted stat ${label}:${slot}:${stat}`
+          );
+      }
+    }
+  }
+}
+
 export function validateConfig(
   characters: ProfileCharacterSource[],
   templates: ProfileTemplateConfig,
   overrides: ProfileOverrideConfig
 ): void {
-  if (templates.schemaVersion !== 1 || overrides.schemaVersion !== 3)
+  if (templates.schemaVersion !== 1 || overrides.schemaVersion !== 4)
     throw new Error('[relic-score/validate] config schema version');
   const templateEntries = record(templates.templates, 'templates');
   if (
@@ -111,6 +173,7 @@ export function validateConfig(
       'statWeights',
       'hardBreakpoints',
       'softTargets',
+      'mainStatOverrides',
       'reviewedInputDigest',
       'note'
     ]);
@@ -152,6 +215,15 @@ export function validateConfig(
         throw new Error(`[relic-score/validate] redundant empty override ${id}:${field}`);
     validateThresholds(entry.hardBreakpoints ?? [], `${id}.hardBreakpoints`, false);
     validateThresholds(entry.softTargets ?? [], `${id}.softTargets`, true);
+    if (entry.mainStatOverrides !== undefined) {
+      // Validate shape before normalization, using final weights without main-stat policy.
+      const weightOverride = { ...entry, mainStatOverrides: undefined };
+      validateMainStatOverrides(
+        entry.mainStatOverrides,
+        character,
+        generateCharacterProfile(character, templates, weightOverride, '0'.repeat(40))
+      );
+    }
     if (
       entry.reviewedInputDigest !== undefined &&
       !/^[0-9a-f]{64}$/.test(entry.reviewedInputDigest)
@@ -225,7 +297,7 @@ export function validateProfiles(
 ): void {
   const { characters, templates, overrides } = inputs;
   validateConfig(characters, templates, overrides);
-  if (artifact.schemaVersion !== 3 || !Array.isArray(artifact.profiles))
+  if (artifact.schemaVersion !== 4 || !Array.isArray(artifact.profiles))
     throw new Error('[relic-score/validate] artifact schema version');
   const byId = new Map(characters.map((character) => [character.id, character]));
   const seen = new Set<string>();
@@ -256,6 +328,8 @@ export function validateProfiles(
       throw new Error(`[relic-score/validate] no weighted substat ${profile.characterId}`);
     validateThresholds(profile.hardBreakpoints, `${profile.characterId}.hardBreakpoints`, false);
     validateThresholds(profile.softTargets, `${profile.characterId}.softTargets`, true);
+    if (profile.mainStatOverrides !== undefined)
+      validateMainStatOverrides(profile.mainStatOverrides, byId.get(profile.characterId)!, profile);
     if (!/^[0-9a-f]{40}$/.test(profile.metadata?.sourceCommit ?? ''))
       throw new Error(`[relic-score/validate] invalid provenance ${profile.characterId}`);
     const override = overrides.overrides[profile.characterId];

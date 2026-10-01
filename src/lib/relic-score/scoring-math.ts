@@ -1,5 +1,25 @@
+import type { MainStatStatus } from './main-stat-policy.js';
+
+export function pieceContributions(
+  status: MainStatStatus,
+  completion: number,
+  percentile: number,
+  alpha: number
+) {
+  const mainCompletion = status === 'agnostic' ? null : status === 'accepted' ? completion : 0;
+  const mainContribution = alpha * (mainCompletion ?? 0);
+  const subContribution = (status === 'agnostic' ? 1 : 1 - alpha) * percentile;
+  return {
+    mainCompletion,
+    mainContribution,
+    subContribution,
+    pieceNormalized: mainContribution + subContribution
+  };
+}
+
+/** Kept for the historical calibration tools; runtime consumes contributions. */
 export function pieceNormalized(main: number, percentile: number, alpha: number): number {
-  return alpha * main + (1 - alpha) * percentile;
+  return pieceContributions('accepted', main, percentile, alpha).pieceNormalized;
 }
 
 export function coreBuildScore(

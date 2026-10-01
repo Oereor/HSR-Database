@@ -50,6 +50,7 @@ const availablePiece = (score: number): PlayerRelicPieceScore => ({
   status: 'available',
   score,
   mainCompletion: 1,
+  mainStatStatus: 'accepted',
   benchmarkPercentile: 0.8,
   rawSubUtility: 10,
   effectiveHits: { status: 'exact', known: 4, total: 4, unknownRecommendedSubstats: 0 }
@@ -108,7 +109,7 @@ const baseCharacter: PlayerCharacter = {
 };
 
 const score = (build: PlayerRelicBuildScore = availableBuild()): PlayerRelicScorePresentation => ({
-  version: 1,
+  version: 2,
   build,
   pieces: {
     HEAD: availablePiece(0),

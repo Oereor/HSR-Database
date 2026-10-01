@@ -1,5 +1,6 @@
 import type { RelicSlot } from '../domain/types.js';
 import type { RelicStatKey } from '../relic-score/stat-registry.js';
+import type { MainStatStatus } from '../relic-score/main-stat-policy.js';
 
 export type PlayerRelicScoreUnavailableReason =
   | 'profile-unavailable'
@@ -21,7 +22,8 @@ export type PlayerRelicPieceScore =
   | {
       status: 'available';
       score: number;
-      mainCompletion: number;
+      mainStatStatus: MainStatStatus;
+      mainCompletion: number | null;
       benchmarkPercentile: number;
       rawSubUtility: number;
       effectiveHits: PlayerRelicEffectiveHits;
@@ -59,7 +61,7 @@ export type PlayerRelicBuildScore =
   | { status: 'unavailable'; reason: PlayerRelicScoreUnavailableReason };
 
 export interface PlayerRelicScorePresentation {
-  version: 1;
+  version: 2;
   build: PlayerRelicBuildScore;
   pieces: Partial<Record<RelicSlot, PlayerRelicPieceScore>>;
 }

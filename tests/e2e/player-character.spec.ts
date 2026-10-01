@@ -389,7 +389,7 @@ test('presents relic scores and target details without changing the Player reque
     const fixture = playerProfile(uid);
     Object.assign(fixture.characters[0], {
       relicScore: {
-        version: 1,
+        version: 2,
         build: {
           status: 'available',
           score: 86.6,
@@ -428,6 +428,7 @@ test('presents relic scores and target details without changing the Player reque
                   status: 'available',
                   score: index === 0 ? 0 : index === 1 ? 99.6 : 82.4,
                   mainCompletion: 1,
+                  mainStatStatus: 'accepted',
                   benchmarkPercentile: 0.7,
                   rawSubUtility: 10,
                   effectiveHits: {
@@ -550,7 +551,7 @@ test('keeps piece scores when a five-piece build cannot be scored', async ({ pag
     fixture.characters[0].relics.pop();
     Object.assign(fixture.characters[0], {
       relicScore: {
-        version: 1,
+        version: 2,
         build: { status: 'unavailable', reason: 'incomplete-build' },
         pieces: Object.fromEntries(
           ['HEAD', 'HAND', 'BODY', 'FOOT', 'NECK'].map((slot) => [
@@ -559,6 +560,7 @@ test('keeps piece scores when a five-piece build cannot be scored', async ({ pag
               status: 'available',
               score: 84.5,
               mainCompletion: 1,
+              mainStatStatus: 'accepted',
               benchmarkPercentile: 0.7,
               rawSubUtility: 10,
               effectiveHits: {

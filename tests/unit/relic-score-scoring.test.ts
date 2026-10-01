@@ -26,7 +26,7 @@ import {
 } from '../../src/lib/relic-score/score.js';
 import type { PlayerBuildInput } from '../../src/lib/relic-score/types.js';
 import { expectedBenchmarkIdentity } from '../../scripts/relic-score/benchmark-core.js';
-import { loadScoringInputs } from '../../scripts/relic-score/scoring-inputs.js';
+import { loadFixtureScoringInputs as loadScoringInputs } from '../fixtures/relic-score/scoring-sources.js';
 
 const fixture = JSON.parse(
   readFileSync('tests/fixtures/relic-score/player-builds/complete-five-star.json', 'utf8')
@@ -128,11 +128,7 @@ describe('Relic Score scoring', () => {
     const build = result.build!;
     expect(build.pieces).toHaveLength(6);
     for (const piece of build.pieces) {
-      expect(piece.pieceScore).toBeCloseTo(
-        100 *
-          (RELIC_SCORE_CONFIG.piece.mainShare * piece.mainCompletion +
-            RELIC_SCORE_CONFIG.piece.subShare * piece.benchmarkPercentile)
-      );
+      expect(piece.pieceScore).toBeCloseTo(100 * (piece.mainContribution + piece.subContribution));
       expect(piece.rawSubUtility).toBeCloseTo(
         piece.substats.reduce((sum, sub) => sum + sub.weightedContribution, 0)
       );
@@ -251,7 +247,7 @@ describe('Relic Score scoring', () => {
     expect(full.status).toBe('available');
     expect(result.status).toBe('available');
     if (full.status === 'available' && result.status === 'available') {
-      expect(result.value.mainCompletion).toBeCloseTo(full.value.mainCompletion / 2);
+      expect(result.value.mainCompletion).toBeCloseTo(full.value.mainCompletion! / 2);
       expect(result.value.pieceScore).toBeLessThan(full.value.pieceScore);
       expect(result.value.substats[0].highRollReference).toBe(
         full.value.substats[0].highRollReference

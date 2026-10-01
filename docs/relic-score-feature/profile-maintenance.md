@@ -12,6 +12,27 @@
 
 不要直接编辑 `src/lib/relic-score/generated/character-profiles.json`。该文件只由 generator 写入。
 
+## 主词条政策（schema / generator v4）
+
+主词条 accepted 集合为上游推荐、有效副词条同名推导和显式 `addAccepted` 的并集。推导要求该词条属于上游推荐副词条、最终权重大于零、canonical registry 允许作为副词条且允许作为当前槽主词条。flat 属性不映射成百分比；ERR、治疗量和属性伤害不能通过副词条推导。上游推荐始终保留。
+
+同一角色的稀疏例外写入现有 override，例如：
+
+```json
+"mainStatOverrides": {
+  "addAccepted": { "OBJECT": ["SPRatioBase"] },
+  "agnosticSlots": ["NECK"]
+}
+```
+
+只允许 BODY、FOOT、NECK、OBJECT。HEAD/HAND 采用合法固定主词条。拒绝重复、空字段、非法 stat/slot、已被上游或最终权重自然接受的冗余增补，以及在同一 agnostic 槽再写 `addAccepted`。`addAccepted` 不要求属于推荐副词条。没有 `removeAccepted`。
+
+accepted 保留 `Q=clamp(actualMainValue / fiveStarAt15MainValue,0,1)`，单件归一分为 `0.35×Q+0.65×P`；mismatch 为 `0.65×P`；agnostic 为 `P`，mainCompletion 为 null。所有状态的 P 都查询实际主词条的 Lens B 条件分布。Build 按原槽权重聚合单件已计算的主副贡献，不重复乘份额。UI 推荐高亮仍表示上游推荐。
+
+新增字段参与输入 digest，集合稳定排序；note 不参与。`pnpm relic-score:profiles:review --all` 只读展示全部角色的状态、配置和 resolved policy 证据；不支持全量批准。逐角色审批命令保留原用法，批准后报告剩余待审核角色，不因其他角色 stale 而错误宣称审批失败；正式 `relic-score:validate` 和 runtime 门禁仍严格。
+
+v3→v4 是全局 schema/generator 迁移，当前 98 个旧审批全部失效。生成操作不会更新旧 `reviewedInputDigest`。审核完成前正式评分、benchmark 校验及其依赖测试可能不可用，不能自动填充审批 digest。当前迁移差异见 [实施报告](main-stat-policy-implementation.md) 和 [审核摘要](main-stat-policy-review.json)。
+
 ## Soft Target
 
 在角色 override 中写完整对象，例如：

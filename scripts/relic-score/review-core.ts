@@ -4,6 +4,10 @@ import {
   type ProfileOverrideConfig
 } from './profiles.js';
 import type { loadProfileInputs } from './validate.js';
+import {
+  resolveMainStatPolicy,
+  VARIABLE_RELIC_SLOTS
+} from '../../src/lib/relic-score/main-stat-policy.js';
 
 type ProfileInputs = Awaited<ReturnType<typeof loadProfileInputs>>;
 
@@ -23,9 +27,29 @@ export function currentReviewSummary(inputs: ProfileInputs, characterId: string)
     substatWeights: profile.substatWeights,
     softTargets: profile.softTargets,
     hardBreakpoints: profile.hardBreakpoints,
+    mainStatOverrides: profile.mainStatOverrides ?? null,
+    mainStatPolicy: Object.fromEntries(
+      VARIABLE_RELIC_SLOTS.map((slot) => [
+        slot,
+        resolveMainStatPolicy(slot, character.equipmentRecommendation, profile)
+      ])
+    ),
     inputDigest: profileInputDigest(character, inputs.templates, override),
     reviewedInputDigest: override?.reviewedInputDigest ?? null,
     reviewStatus: profile.metadata.reviewStatus
+  };
+}
+
+export function allReviewSummaries(inputs: ProfileInputs) {
+  const summaries = [...inputs.characters]
+    .sort((a, b) => a.id.localeCompare(b.id, 'en'))
+    .map((character) => currentReviewSummary(inputs, character.id));
+  return {
+    total: summaries.length,
+    pending: summaries
+      .filter((summary) => summary.reviewStatus !== 'reviewed')
+      .map((summary) => summary.characterId),
+    summaries
   };
 }
 

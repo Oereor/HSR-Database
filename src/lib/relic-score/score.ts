@@ -6,7 +6,12 @@ import type { BenchmarkArtifact } from './benchmark/types.js';
 import type { CharacterRelicScoreProfile } from './profile-types.js';
 import type { RelicScoreReferenceData } from './reference.js';
 import { RELIC_SCORE_CONFIG, RELIC_SLOTS } from './scoring-config.js';
-import { coreBuildScore, normalizedStatCompletion, pieceNormalized } from './scoring-math.js';
+import { coreBuildScore, normalizedStatCompletion, pieceContributions } from './scoring-math.js';
+import {
+  resolveMainStatPolicy,
+  resolveMainStatStatus,
+  type MainStatStatus
+} from './main-stat-policy.js';
 import { relicStatSemantics, type RelicStatKey } from './stat-registry.js';
 import type { NormalizedRelicPiece, PlayerBuildInput } from './types.js';
 
@@ -51,7 +56,10 @@ export interface EffectiveHits {
 
 export interface PieceScoreValue {
   slot: RelicSlot;
-  mainCompletion: number;
+  mainStatStatus: MainStatStatus;
+  mainCompletion: number | null;
+  mainContribution: number;
+  subContribution: number;
   rawSubUtility: number;
   benchmarkPercentile: number;
   pieceNormalized: number;
@@ -106,17 +114,12 @@ export function scorePiece(
   )
     return { status: 'invalid', reason: 'PIECE_INVALID' };
   const mainReference = reference.mainAt15[piece.slot]?.[piece.mainStat.key];
-  const mains =
-    piece.slot === 'HEAD' || piece.slot === 'HAND'
-      ? new Set(Object.keys(reference.mainAt15[piece.slot]))
-      : new Set(
-          recommendation.mainStatOptions.find((option) => option.slot === piece.slot)
-            ?.propertyTypes ?? []
-        );
-  const suitability = mains.has(piece.mainStat.key) ? 1 : 0;
   if (!mainReference || !validNumber(mainReference))
     return { status: 'invalid', reason: 'PIECE_INVALID' };
-  const mainCompletion = suitability * clamp(piece.mainStat.value / mainReference);
+  const mainStatStatus = resolveMainStatStatus(
+    resolveMainStatPolicy(piece.slot, recommendation, profile),
+    piece.mainStat.key
+  );
   const recommendedSubstats = new Set(recommendation.subStatPropertyTypes);
   const substats: SubstatScoreExplanation[] = [];
   for (const sub of piece.substats) {
@@ -156,8 +159,9 @@ export function scorePiece(
   )
     return { status: 'unavailable', reason: 'BENCHMARK_MISSING_OR_STALE' };
   const benchmarkPercentile = lookupBenchmarkPercentile(distribution, rawSubUtility);
-  const normalized = pieceNormalized(
-    mainCompletion,
+  const contributions = pieceContributions(
+    mainStatStatus,
+    clamp(piece.mainStat.value / mainReference),
     benchmarkPercentile,
     RELIC_SCORE_CONFIG.piece.mainShare
   );
@@ -165,11 +169,11 @@ export function scorePiece(
     status: 'available',
     value: {
       slot: piece.slot,
-      mainCompletion,
+      mainStatStatus,
+      ...contributions,
       rawSubUtility,
       benchmarkPercentile,
-      pieceNormalized: normalized,
-      pieceScore: 100 * normalized,
+      pieceScore: 100 * contributions.pieceNormalized,
       substats,
       effectiveHits: calculateEffectiveHits(piece, recommendation),
       benchmarkIdentity: distribution.identityDigest
@@ -341,22 +345,17 @@ export function scoreBuild(input: PlayerBuildInput, sources: ScoringSources): Bu
     (piece) => (piece as Extract<typeof piece, { status: 'available' }>).value
   );
   const main = available.reduce(
-    (sum, piece) =>
-      sum +
-      RELIC_SCORE_CONFIG.slots[piece.slot] *
-        RELIC_SCORE_CONFIG.piece.mainShare *
-        piece.mainCompletion,
+    (sum, piece) => sum + RELIC_SCORE_CONFIG.slots[piece.slot] * piece.mainContribution,
     0
   );
   const sub = available.reduce(
-    (sum, piece) =>
-      sum +
-      RELIC_SCORE_CONFIG.slots[piece.slot] *
-        RELIC_SCORE_CONFIG.piece.subShare *
-        piece.benchmarkPercentile,
+    (sum, piece) => sum + RELIC_SCORE_CONFIG.slots[piece.slot] * piece.subContribution,
     0
   );
-  const base = main + sub;
+  const base = available.reduce(
+    (sum, piece) => sum + RELIC_SCORE_CONFIG.slots[piece.slot] * piece.pieceNormalized,
+    0
+  );
   const breakpoint = evaluateBreakpoints(profile, input.panel);
   if (breakpoint.status !== 'available')
     return { status: breakpoint.status, reason: breakpoint.reason, pieces };
