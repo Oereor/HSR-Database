@@ -8,6 +8,8 @@
 
 Lens B 仍比较三件中的最高副词条质量，且不按角色推荐主词条筛选。错误主词条也有自己的条件分布；推荐与否只由 MainCompletion 评价。这个 benchmark 以已经取得三件同槽且同主词条遗器为前提，不计主词条掉率或体力成本。运行时以实际主词条查询静态产物；缺项或过期时评分不可用，不使用旧槽位混合分布。
 
+主词条政策 v4 中，accepted 来源还包括有效副词条同名推导和显式 `addAccepted`；agnostic 退出主词条直接评价，但依然使用实际主词条 CDF。`mainStatOverrides` 不参与 `profileScoringDigest` 或正式 Lens B identity，因此不会要求重新模拟。Profile schema/generator 迁移产生的 stale review 仍会阻止正式校验入口：这属于人工审核门禁，不代表分布 identity 已改变。不得以放宽该门禁或重新生成 benchmark 来解决审批问题。
+
 ## 何时重新生成
 
 需要重新生成：已审核 Profile 的基础副词条权重、实际采样概率、5★ 主／副词条参考、N、K、seed、PRNG、Lens、量化契约或生成器行为发生变化。若修改生成器行为，应先提升 benchmark generator version，再生成并检查差异。角色增删也需要维护者明确审核覆盖契约。

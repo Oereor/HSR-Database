@@ -10,11 +10,12 @@ import {
 } from '../../scripts/relic-score/profiles';
 import { approveCurrentReview, currentReviewSummary } from '../../scripts/relic-score/review-core';
 import { validateConfig, validateProfiles } from '../../scripts/relic-score/validate';
+import type { MainStatOverrides } from '../../src/lib/relic-score/profile-types';
 
 const templates = JSON.parse(
   readFileSync('data/relic-score/profile-templates.json', 'utf8')
 ) as ProfileTemplateConfig;
-const noOverrides: ProfileOverrideConfig = { schemaVersion: 3, overrides: {} };
+const noOverrides: ProfileOverrideConfig = { schemaVersion: 4, overrides: {} };
 const commit = 'a'.repeat(40);
 
 function character(id: string, path: string, substats: string[]): ProfileCharacterSource {
@@ -62,7 +63,7 @@ describe('character relic score profile generation', () => {
   it('infers templates and generates a complete, valid artifact', () => {
     const artifact = generateProfiles(samples, templates, noOverrides, commit);
     const generated = artifact.profiles;
-    expect(artifact.schemaVersion).toBe(3);
+    expect(artifact.schemaVersion).toBe(4);
     expect(generated).toHaveLength(samples.length);
     expect(() =>
       validateProfiles(artifact, {
@@ -128,11 +129,112 @@ describe('character relic score profile generation', () => {
 });
 
 describe('profile configuration validation', () => {
+  it('validates sparse main-stat policies against final weights and canonical slots', () => {
+    const valid: ProfileOverrideConfig = {
+      schemaVersion: 4,
+      overrides: {
+        '1': {
+          mainStatOverrides: { addAccepted: { OBJECT: ['SPRatioBase'] }, agnosticSlots: ['NECK'] }
+        }
+      }
+    };
+    expect(() => validateConfig([samples[0]], templates, valid)).not.toThrow();
+    const invalidPolicies: unknown[] = [
+      {},
+      { removeAccepted: {} },
+      { agnosticSlots: [] },
+      { addAccepted: {} },
+      { agnosticSlots: ['HEAD'] },
+      { agnosticSlots: ['HAND'] },
+      { agnosticSlots: ['NO_SLOT'] },
+      { agnosticSlots: ['NECK', 'NECK'] },
+      { agnosticSlots: null },
+      { addAccepted: { HEAD: ['HPDelta'] } },
+      { addAccepted: { HAND: ['AttackDelta'] } },
+      { addAccepted: { BODY: ['SPRatioBase'] } },
+      { addAccepted: { OBJECT: ['unknown'] } },
+      { addAccepted: { OBJECT: [] } },
+      { addAccepted: { OBJECT: ['SPRatioBase', 'SPRatioBase'] } },
+      { agnosticSlots: ['OBJECT'], addAccepted: { OBJECT: ['SPRatioBase'] } },
+      { addAccepted: { BODY: ['CriticalChanceBase'] } }, // upstream
+      { addAccepted: { BODY: ['CriticalDamageBase'] } }, // inferred
+      { addAccepted: [] }
+    ];
+    for (const mainStatOverrides of invalidPolicies) {
+      const config = structuredClone(valid);
+      config.overrides['1'].mainStatOverrides = mainStatOverrides as MainStatOverrides;
+      expect(
+        () => validateConfig([samples[0]], templates, config),
+        JSON.stringify(mainStatOverrides)
+      ).toThrow();
+    }
+    const finalWeight = structuredClone(valid);
+    finalWeight.overrides['1'] = {
+      statWeights: { CriticalDamageBase: 0 },
+      mainStatOverrides: { addAccepted: { BODY: ['CriticalDamageBase'] } }
+    };
+    expect(() => validateConfig([samples[0]], templates, finalWeight)).not.toThrow();
+    finalWeight.overrides['missing'] = {};
+    expect(() => validateConfig([samples[0]], templates, finalWeight)).toThrow(/orphan/);
+  });
+
+  it('digests normalized policies, marks changes stale, and reviews resolved evidence', () => {
+    const override = {
+      mainStatOverrides: {
+        addAccepted: { OBJECT: ['SPRatioBase' as const] },
+        agnosticSlots: ['NECK' as const, 'FOOT' as const]
+      }
+    };
+    const digest = profileInputDigest(samples[0], templates, override);
+    expect(profileInputDigest(samples[0], templates, { ...override, note: 'review note' })).toBe(
+      digest
+    );
+    expect(
+      profileInputDigest(samples[0], templates, {
+        mainStatOverrides: { ...override.mainStatOverrides, agnosticSlots: ['FOOT', 'NECK'] }
+      })
+    ).toBe(digest);
+    const inputs = {
+      characters: [samples[0]],
+      templates,
+      overrides: {
+        schemaVersion: 4 as const,
+        overrides: { '1': { ...override, reviewedInputDigest: digest } }
+      },
+      sourceCommit: commit
+    };
+    const artifact = generateProfiles(inputs.characters, templates, inputs.overrides, commit);
+    expect(artifact.profiles[0].mainStatOverrides?.agnosticSlots).toEqual(['FOOT', 'NECK']);
+    expect(() => validateProfiles(artifact, inputs)).not.toThrow();
+    const summary = currentReviewSummary(inputs, '1');
+    expect(summary.mainStatPolicy.OBJECT.evidence.SPRatioBase).toEqual(['explicit-override']);
+    expect(summary.mainStatPolicy.NECK.agnostic).toBe(true);
+    for (const policy of [
+      { agnosticSlots: ['NECK'] },
+      { addAccepted: { BODY: ['HealRatioBase'] } }
+    ]) {
+      const changed = {
+        ...override,
+        reviewedInputDigest: digest,
+        mainStatOverrides: policy as MainStatOverrides
+      };
+      expect(
+        generateCharacterProfile(samples[0], templates, changed, commit).metadata.reviewStatus
+      ).toBe('needs-review');
+      expect(profileInputDigest(samples[0], templates, changed)).not.toBe(digest);
+    }
+    const oldSchema = { ...artifact, schemaVersion: 3 };
+    expect(() => validateProfiles(oldSchema as never, inputs)).toThrow(/schema/);
+    const malformed = structuredClone(artifact);
+    malformed.profiles[0].mainStatOverrides!.agnosticSlots = ['HEAD' as never];
+    expect(() => validateProfiles(malformed, inputs)).toThrow(/agnostic slot/);
+  });
+
   it('rejects incomplete, duplicate, nonfinite and Crit Rate soft targets', () => {
     const source = [samples[0]];
     const entry = { stat: 'SpeedDelta' as const, minimumThreshold: 120, maximumThreshold: 160 };
     const config: ProfileOverrideConfig = {
-      schemaVersion: 3,
+      schemaVersion: 4,
       overrides: { '1': { softTargets: [entry] } }
     };
     expect(() => validateConfig(source, templates, config)).not.toThrow();
@@ -162,7 +264,7 @@ describe('profile configuration validation', () => {
 
   it('allows distinct breakpoints on one stat but rejects exact duplicates', () => {
     const config: ProfileOverrideConfig = {
-      schemaVersion: 3,
+      schemaVersion: 4,
       overrides: {
         '1': {
           hardBreakpoints: [
@@ -179,7 +281,7 @@ describe('profile configuration validation', () => {
 
   it('rejects stale review and generated profile drift', () => {
     const overrides: ProfileOverrideConfig = {
-      schemaVersion: 3,
+      schemaVersion: 4,
       overrides: { '1': { reviewedInputDigest: '0'.repeat(64) } }
     };
     const inputs = { characters: samples, templates, overrides, sourceCommit: commit };

@@ -129,7 +129,7 @@ describe('Enka player Function handler', () => {
       stats: expect.any(Array)
     });
     expect(body.characters[0].relicScore).toMatchObject({
-      version: 1,
+      version: 2,
       build: { status: 'available', score: expect.any(Number) },
       pieces: { HEAD: { status: 'available', score: expect.any(Number) } }
     });

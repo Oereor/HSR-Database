@@ -211,11 +211,7 @@ describe('Relic Score production benchmarks', () => {
     const result = scoreProductionBuild(fixture, recommendation);
     expect(result.status).toBe('available');
     for (const piece of result.build!.pieces)
-      expect(piece.pieceScore).toBeCloseTo(
-        100 *
-          (RELIC_SCORE_CONFIG.piece.mainShare * piece.mainCompletion +
-            RELIC_SCORE_CONFIG.piece.subShare * piece.benchmarkPercentile)
-      );
+      expect(piece.pieceScore).toBeCloseTo(100 * (piece.mainContribution + piece.subContribution));
     expect(result.build!.coreBuildScore).toBeCloseTo(
       100 *
         (RELIC_SCORE_CONFIG.build.statShare * result.build!.statCompletion.base +

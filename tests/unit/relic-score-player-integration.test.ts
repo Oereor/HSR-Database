@@ -29,7 +29,7 @@ describe('Player Info relic scoring integration', () => {
       if (normalized.status !== 'valid') continue;
       const direct = scoreProductionBuild(normalized.input, recommendations[character.characterId]);
       expect(character.relicScore).toEqual(presentRelicScoreResult(normalized, direct));
-      expect(character.relicScore?.version).toBe(1);
+      expect(character.relicScore?.version).toBe(2);
       expect(Object.keys(character.relicScore?.pieces ?? {})).toHaveLength(6);
       if (direct.status === 'available' && character.relicScore?.build.status === 'available') {
         expect(character.relicScore.build.score).toBe(direct.build!.finalBuildScore);
@@ -172,7 +172,7 @@ describe('Player Info relic scoring integration', () => {
       lowScore.pieces.HEAD?.status === 'available' &&
       baseline.pieces.HEAD?.status === 'available'
     )
-      expect(lowScore.pieces.HEAD.mainCompletion).toBe(baseline.pieces.HEAD.mainCompletion / 2);
+      expect(lowScore.pieces.HEAD.mainCompletion).toBe(baseline.pieces.HEAD.mainCompletion! / 2);
 
     const changed = structuredClone(full);
     changed.relics.find((piece) => piece.slot === 'BODY')!.mainStat.key = 'HPAddedRatio';

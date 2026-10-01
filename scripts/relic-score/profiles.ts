@@ -4,6 +4,7 @@ import type {
   CharacterSoftTarget,
   CharacterProfileArtifact,
   CharacterRelicScoreProfile,
+  MainStatOverrides,
   TemplateId
 } from '../../src/lib/relic-score/profile-types.js';
 import {
@@ -12,7 +13,7 @@ import {
   type RelicStatKey
 } from '../../src/lib/relic-score/stat-registry.js';
 
-export const PROFILE_GENERATOR_VERSION = 3;
+export const PROFILE_GENERATOR_VERSION = 4;
 export const ALLOWED_WEIGHTS = [0, 0.25, 0.5, 0.75, 1, 1.25] as const;
 export const TEMPLATE_IDS: TemplateId[] = [
   'direct-dps',
@@ -42,12 +43,13 @@ export interface ProfileOverride {
   statWeights?: Partial<Record<RelicStatKey, number>>;
   hardBreakpoints?: SourceBreakpoint[];
   softTargets?: CharacterSoftTarget[];
+  mainStatOverrides?: MainStatOverrides;
   reviewedInputDigest?: string;
   note?: string;
 }
 
 export interface ProfileOverrideConfig {
-  schemaVersion: 3;
+  schemaVersion: 4;
   overrides: Record<string, ProfileOverride>;
 }
 
@@ -72,6 +74,24 @@ export function stableSerialize(value: unknown): string {
   return JSON.stringify(stableValue(value));
 }
 
+export function normalizeMainStatOverrides(
+  value: MainStatOverrides | undefined
+): MainStatOverrides | undefined {
+  if (!value) return undefined;
+  return {
+    ...(value.addAccepted
+      ? {
+          addAccepted: Object.fromEntries(
+            Object.entries(value.addAccepted)
+              .sort(([a], [b]) => a.localeCompare(b, 'en'))
+              .map(([slot, stats]) => [slot, [...stats].sort()])
+          )
+        }
+      : {}),
+    ...(value.agnosticSlots ? { agnosticSlots: [...value.agnosticSlots].sort() } : {})
+  };
+}
+
 export function profileInputDigest(
   character: ProfileCharacterSource,
   templates: ProfileTemplateConfig,
@@ -85,7 +105,8 @@ export function profileInputDigest(
     scalingStat: override?.scalingStat,
     statWeights: override?.statWeights,
     hardBreakpoints: override?.hardBreakpoints,
-    softTargets: override?.softTargets
+    softTargets: override?.softTargets,
+    mainStatOverrides: normalizeMainStatOverrides(override?.mainStatOverrides)
   };
   const semanticOverride = Object.values(semanticFields).some((value) => value !== undefined)
     ? semanticFields
@@ -93,7 +114,7 @@ export function profileInputDigest(
   return createHash('sha256')
     .update(
       stableSerialize({
-        schemaVersion: 3,
+        schemaVersion: 4,
         generatorVersion: PROFILE_GENERATOR_VERSION,
         characterId: character.id,
         path: character.path ?? null,
@@ -228,6 +249,9 @@ export function generateCharacterProfile(
     characterId: character.id,
     templateId,
     substatWeights: weights,
+    ...(override?.mainStatOverrides
+      ? { mainStatOverrides: normalizeMainStatOverrides(override.mainStatOverrides) }
+      : {}),
     hardBreakpoints: (override?.hardBreakpoints ?? []).map(({ stat, threshold }) => ({
       stat,
       threshold
@@ -261,7 +285,7 @@ export function generateProfiles(
     left.id < right.id ? -1 : left.id > right.id ? 1 : 0
   );
   return {
-    schemaVersion: 3,
+    schemaVersion: 4,
     profiles: sorted.map((character) =>
       generateCharacterProfile(
         character,

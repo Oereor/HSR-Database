@@ -1,5 +1,11 @@
 import type { RelicStatKey } from './stat-registry.js';
 
+export type VariableRelicSlot = 'BODY' | 'FOOT' | 'NECK' | 'OBJECT';
+export interface MainStatOverrides {
+  addAccepted?: Partial<Record<VariableRelicSlot, RelicStatKey[]>>;
+  agnosticSlots?: VariableRelicSlot[];
+}
+
 export type TemplateId =
   | 'direct-dps'
   | 'direct-support'
@@ -26,6 +32,7 @@ export interface CharacterRelicScoreProfile {
   characterId: string;
   templateId: TemplateId;
   substatWeights: Partial<Record<RelicStatKey, number>>;
+  mainStatOverrides?: MainStatOverrides;
   hardBreakpoints: ProfileBreakpoint[];
   softTargets: CharacterSoftTarget[];
   metadata: {
@@ -40,6 +47,6 @@ export interface CharacterRelicScoreProfile {
 }
 
 export interface CharacterProfileArtifact {
-  schemaVersion: 3;
+  schemaVersion: 4;
   profiles: CharacterRelicScoreProfile[];
 }
