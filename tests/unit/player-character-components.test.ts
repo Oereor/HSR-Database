@@ -16,7 +16,7 @@ import type {
   SkillProgression,
   Trace
 } from '../../src/lib/domain/types';
-import type { PlayerCharacter } from '../../src/lib/player/contract';
+import type { PlayerCharacter, PlayerStat } from '../../src/lib/player/contract';
 import type { PlayerEquipmentCatalog } from '../../src/lib/player/equipment';
 import { getLocale, overwriteGetLocale } from '../../src/lib/paraglide/runtime.js';
 
@@ -375,6 +375,84 @@ describe('Player Character presentation', () => {
     expect(playerBody).toContain('data-player-state="inactive"');
     expect(playerBody).toContain('data-player-state-label="inactive"');
     expect(playerBody).toContain('rank-card__content');
+  });
+});
+
+describe('Player Hero stat composition', () => {
+  const properties: RelicProperty[] = [
+    {
+      propertyType: 'HPDelta',
+      name: 'synthetic hp label',
+      iconKey: 'IconMaxHP',
+      allowedMainSlots: ['HEAD'],
+      canBeSubStat: true
+    }
+  ];
+  const renderStats = (stats: PlayerStat[]) =>
+    render(PlayerStatsPanel, {
+      props: {
+        stats,
+        properties,
+        progression,
+        level: 70,
+        promotion: 5,
+        controlId: 'synthetic-player-level'
+      }
+    }).body;
+
+  it('renders each semantic group through a shared list without alternating or reordering rows', () => {
+    const fields = [
+      'effect_hit',
+      'hp',
+      'crit_rate',
+      'atk',
+      'unknown_stat',
+      'def',
+      'spd',
+      'crit_dmg'
+    ];
+    const body = renderStats(fields.map((field) => ({ field, percent: false, total: '100' })));
+    expect([...body.matchAll(/data-player-stat="([^"]+)"/g)].map((match) => match[1])).toEqual([
+      'hp',
+      'crit_rate',
+      'atk',
+      'def',
+      'spd',
+      'crit_dmg',
+      'effect_hit',
+      'unknown_stat'
+    ]);
+    expect(body.match(/<dl[^>]*data-player-stat-column=/g)).toHaveLength(2);
+    expect(body.match(/hero-stat-list--flush/g)).toHaveLength(2);
+    expect(body.match(/hero-stat-row/g)).toHaveLength(fields.length);
+    expect(body).toContain('unknown_stat');
+    expect(body.match(/<img /g)).toHaveLength(1);
+    expect(body).toMatch(/<span[^>]*hero-stat-icon[^>]*aria-hidden="true"/);
+  });
+
+  it.each([
+    ['hp', 'primary'],
+    ['sp_rate', 'other']
+  ] as const)('omits the empty group when only %s exists', (field, group) => {
+    const body = renderStats([
+      { field, percent: field === 'sp_rate', total: field === 'sp_rate' ? '19.4%' : '5072' }
+    ]);
+    expect(
+      [...body.matchAll(/data-player-stat-column="([^"]+)"/g)].map((match) => match[1])
+    ).toEqual([group]);
+    expect(body).not.toContain('player-stats-grid--two-groups');
+    expect(body).toContain(field === 'sp_rate' ? '119.4%' : '5072');
+  });
+
+  it('keeps the real level and promotion control when no stats are available', () => {
+    const body = renderStats([]);
+    expect(body).toContain('data-player-stats-panel');
+    expect(body).not.toContain('data-player-stat-column');
+    expect(body).not.toContain('data-player-stat=');
+    expect(body).toMatch(/<input[^>]*disabled/);
+    expect(body).toMatch(/<label[^>]*for="synthetic-player-level"/);
+    expect(body.indexOf('skill-effect-tag')).toBeLessThan(body.indexOf('Lv.70'));
+    expect(body).toContain('data-placeholder');
   });
 });
 

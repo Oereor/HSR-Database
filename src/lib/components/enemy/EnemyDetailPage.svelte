@@ -108,7 +108,7 @@
   </div>
   <aside
     id="stats"
-    class="detail-profile-hero__inspection section-nav-target"
+    class="detail-profile-hero__inspection section-nav-target hero-basic-data-pane"
     aria-label={m.enemy_template_stats_aria()}
   >
     <EnemyTemplateBaseStatsPanel baseStats={detail.template.baseStats} />

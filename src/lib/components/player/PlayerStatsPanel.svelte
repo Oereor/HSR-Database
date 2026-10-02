@@ -1,5 +1,6 @@
 <script lang="ts">
-  import AssetImage from '$lib/components/shared/AssetImage.svelte';
+  import StatList from '$lib/components/shared/StatList.svelte';
+  import StatRow from '$lib/components/shared/StatRow.svelte';
   import LevelSlider from '$lib/components/shared/LevelSlider.svelte';
   import { getRelicPropertyIconUrl } from '$lib/data/visual-assets';
   import type { BaseStatProgression, RelicProperty } from '$lib/domain/types';
@@ -24,7 +25,10 @@
   $: statColumns = [
     { id: 'primary', items: groupedStats.primary },
     { id: 'other', items: groupedStats.other }
-  ];
+  ].filter((column) => column.items.length);
+  $: hasIcons = statColumns.some((column) =>
+    column.items.some((item) => Boolean(getRelicPropertyIconUrl(item.iconKey)))
+  );
 
   const valueOf = (item: ResolvedPlayerStat): string => formatPlayerStatTotal(item.stat);
 </script>
@@ -43,30 +47,49 @@
   </div>
 
   {#if stats.length}
-    <div class="player-stats-grid">
+    <div class="player-stats-grid" class:player-stats-grid--two-groups={statColumns.length === 2}>
       {#each statColumns as column (column.id)}
-        <dl class="player-stat-column" data-player-stat-column={column.id}>
+        <StatList
+          class="player-stat-column"
+          data-player-stat-column={column.id}
+          spacing="flush"
+          {hasIcons}
+        >
           {#each column.items as item (item.stat.field)}
             {@const iconUrl = getRelicPropertyIconUrl(item.iconKey)}
-            <div class="inspection-stat-row" data-player-stat={item.stat.field}>
-              <dt>
-                <span class="inspection-stat-label">
-                  {#if iconUrl}<AssetImage
-                      decorative
-                      src={iconUrl}
-                      alt=""
-                      aria-hidden="true"
-                    />{/if}
-                  <span>{item.label}</span>
-                </span>
-              </dt>
-              <dd><strong>{valueOf(item)}</strong></dd>
-            </div>
+            <StatRow
+              data-player-stat={item.stat.field}
+              label={item.label}
+              value={valueOf(item)}
+              {iconUrl}
+            />
           {/each}
-        </dl>
+        </StatList>
       {/each}
     </div>
   {:else}
     <p class="data-placeholder">{m.player_character_stats_unavailable()}</p>
   {/if}
 </div>
+
+<style>
+  .player-stats-panel {
+    container-name: player-hero-stats;
+    container-type: inline-size;
+    min-width: 0;
+  }
+
+  .player-stats-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+
+  @container player-hero-stats (min-width: 28rem) {
+    .player-stats-grid--two-groups {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

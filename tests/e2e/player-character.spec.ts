@@ -101,6 +101,220 @@ const playerProfile = (uid: string, includeCharacter = true) => ({
     : []
 });
 
+const heroStats = [
+  { field: 'hp', percent: false, total: '5,072' },
+  { field: 'atk', percent: false, total: '1,363' },
+  { field: 'def', percent: false, total: '1,417' },
+  { field: 'spd', percent: false, total: '217' },
+  { field: 'crit_rate', percent: true, total: '5.0%' },
+  { field: 'crit_dmg', percent: true, total: '50.0%' },
+  { field: 'break_dmg', percent: true, total: '18.7%' },
+  { field: 'effect_res', percent: true, total: '45.6%' },
+  { field: 'sp_rate', percent: true, total: '19.4%' },
+  { field: 'heal_rate', percent: true, total: '34.5%' },
+  { field: 'unknown_stat', percent: false, total: '42' }
+];
+
+const heroProfile = (uid: string, stats = heroStats) => {
+  const profile = playerProfile(uid);
+  profile.characters[0].stats = stats;
+  return profile;
+};
+
+for (const prefix of ['', '/en']) {
+  test(`Player Hero stats reflow by available width in ${prefix ? 'en' : 'zh-CN'}`, async ({
+    page
+  }, testInfo) => {
+    const errors: string[] = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.route('**/api/player/**', (route) =>
+      route.fulfill({ json: heroProfile('100000001') })
+    );
+    await page.goto(`${prefix}/characters/1304/?uid=100000001`);
+    const panel = page.locator('[data-player-stats-panel]');
+    const pane = page.locator('.hero-basic-data-pane');
+    const grid = panel.locator('.player-stats-grid');
+    const groups = grid.locator('dl[data-player-stat-column]');
+    await expect(groups).toHaveCount(2);
+    await expect(groups.first()).toHaveAttribute('data-player-stat-column', 'primary');
+    await expect(groups.last()).toHaveAttribute('data-player-stat-column', 'other');
+    await expect(panel.getByRole('slider')).toBeDisabled();
+    await expect(panel.locator('.skill-effect-tag')).not.toBeEmpty();
+    await expect(panel.locator('.stat-level-control > .skill-level-control')).toHaveCSS(
+      'border-top-width',
+      '0px'
+    );
+    await expect(panel.locator('[data-player-stat="sp_rate"] dd')).toHaveText('119.4%');
+    await expect(panel.locator('[data-player-stat="unknown_stat"] dt')).toHaveText('unknown_stat');
+    await expect(panel.locator('[data-player-stat="unknown_stat"] img')).toHaveCount(0);
+    expect(
+      await panel
+        .locator('[data-player-stat]')
+        .evaluateAll((rows) => rows.map((row) => row.getAttribute('data-player-stat')))
+    ).toEqual(heroStats.map((stat) => stat.field));
+
+    for (const width of [1600, 1440, 1280, 1024, 390]) {
+      await page.setViewportSize({ width, height: 1000 });
+      const expectedColumns = width === 1280 || width === 390 ? 1 : 2;
+      await expect
+        .poll(() =>
+          grid.evaluate(
+            (element) => getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).length
+          )
+        )
+        .toBe(expectedColumns);
+      await expect(grid).toHaveCSS('gap', '24px');
+      await expect(grid).toHaveCSS('margin-top', '24px');
+      await expect(pane).toHaveCSS('padding-left', width <= 820 ? '24px' : '32px');
+      for (const group of await groups.all()) {
+        await expect(group).toHaveCSS('margin-top', '0px');
+        await expect(group).toHaveCSS('border-top-width', '0px');
+      }
+      const groupBoxes = await groups.evaluateAll((elements) =>
+        elements.map((element) => {
+          const rect = element.getBoundingClientRect();
+          return { x: rect.x, y: rect.y, width: rect.width, bottom: rect.bottom };
+        })
+      );
+      if (expectedColumns === 2) {
+        expect(groupBoxes[0].width).toBeCloseTo(groupBoxes[1].width, 0);
+        expect(groupBoxes[0].y).toBeCloseTo(groupBoxes[1].y, 0);
+        expect(groupBoxes[1].x - groupBoxes[0].x - groupBoxes[0].width).toBeCloseTo(24, 0);
+      } else {
+        expect(groupBoxes[1].y - groupBoxes[0].bottom).toBeCloseTo(24, 0);
+        const labelPositions = await panel
+          .locator('.hero-stat-label-text')
+          .evaluateAll((elements) =>
+            elements.map((element) => element.getBoundingClientRect().left)
+          );
+        expect(new Set(labelPositions).size).toBe(1);
+      }
+      const rowsFit = await panel.locator('.hero-stat-row').evaluateAll((elements) =>
+        elements.every((element) => {
+          const label = element.querySelector('dt')!.getBoundingClientRect();
+          const value = element.querySelector('dd')!.getBoundingClientRect();
+          return (
+            label.right <= value.left &&
+            value.right <= element.getBoundingClientRect().right + 1 &&
+            element.scrollWidth <= element.clientWidth + 1
+          );
+        })
+      );
+      expect(rowsFit).toBe(true);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+        )
+      ).toBeLessThanOrEqual(1);
+      if (!prefix)
+        await pane
+          .locator('..')
+          .screenshot({ path: testInfo.outputPath(`player-hero-${width}.png`) });
+    }
+
+    // Lock the container boundary independently of viewport and Hero composition.
+    await page.setViewportSize({ width: 1024, height: 1000 });
+    for (const width of [447, 448]) {
+      await panel.evaluate((element, size) => {
+        element.style.width = `${size}px`;
+      }, width);
+      await expect
+        .poll(() =>
+          grid.evaluate(
+            (element) => getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).length
+          )
+        )
+        .toBe(width === 448 ? 2 : 1);
+    }
+    await panel.evaluate((element) => {
+      element.style.width = '';
+    });
+    await page.setViewportSize({ width: 390, height: 1000 });
+    const before = await panel
+      .locator('.hero-stat-label-text')
+      .evaluateAll((elements) => elements.map((element) => element.getBoundingClientRect().left));
+    await panel
+      .locator('.hero-stat-icon img')
+      .first()
+      .evaluate((image) => image.dispatchEvent(new Event('error')));
+    await expect(panel.locator('[data-player-stat="hp"] img')).toHaveCount(0);
+    const after = await panel
+      .locator('.hero-stat-label-text')
+      .evaluateAll((elements) => elements.map((element) => element.getBoundingClientRect().left));
+    expect(after).toEqual(before);
+    await expect(panel.locator('[data-image-fallback]')).toHaveCount(0);
+    const row = panel.locator('[data-player-stat="unknown_stat"]');
+    await row.evaluate((element) => {
+      element.querySelector('.hero-stat-label-text')!.textContent =
+        'Synthetic very long localized label ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      element.querySelector('dd strong')!.textContent = '123,456,789,012,345,678,901,234';
+    });
+    expect(
+      await row.evaluate(
+        (element) =>
+          element.querySelector('dt')!.getBoundingClientRect().right <=
+            element.querySelector('dd')!.getBoundingClientRect().left &&
+          element.scrollWidth <= element.clientWidth + 1
+      )
+    ).toBe(true);
+    expect(errors).toEqual([]);
+  });
+}
+
+test('Player Hero stats show a single full-width group or the empty state', async ({ page }) => {
+  await page.setViewportSize({ width: 1600, height: 1000 });
+  let stats = heroStats.slice(0, 1);
+  await page.route('**/api/player/**', (route) =>
+    route.fulfill({
+      json: heroProfile(new URL(route.request().url()).searchParams.get('uid')!, stats)
+    })
+  );
+  for (const [index, fields] of [heroStats.slice(0, 1), heroStats.slice(6, 7), []].entries()) {
+    stats = fields;
+    await page.goto(`/characters/1304/?uid=10000000${index + 1}`);
+    const panel = page.locator('[data-player-stats-panel]');
+    await expect(panel).toBeVisible();
+    await expect(panel.getByRole('slider')).toBeDisabled();
+    const groups = panel.locator('dl[data-player-stat-column]');
+    await expect(groups).toHaveCount(fields.length ? 1 : 0);
+    if (fields.length) {
+      const widths = await groups.evaluate((element) => ({
+        list: element.getBoundingClientRect().width,
+        grid: element.parentElement!.getBoundingClientRect().width
+      }));
+      expect(widths.list).toBeCloseTo(widths.grid, 0);
+    } else await expect(panel.locator('.data-placeholder')).toBeVisible();
+  }
+});
+
+test('Player Hero stats keep pane padding stable while loading and falling back', async ({
+  page
+}) => {
+  let finishResponse = () => {};
+  const responseReady = new Promise<void>((resolve) => {
+    finishResponse = resolve;
+  });
+  await page.route('**/api/player/**', async (route) => {
+    await responseReady;
+    await route.fulfill({
+      status: 503,
+      json: { error: { code: 'UPSTREAM_UNAVAILABLE', retryable: true } }
+    });
+  });
+  await page.goto('/characters/1304/?uid=100000503');
+  const pane = page.locator('.hero-basic-data-pane');
+  try {
+    await expect(pane.locator(':scope > .data-placeholder')).toBeVisible();
+    const padding = await pane.evaluate((element) => getComputedStyle(element).paddingLeft);
+    finishResponse();
+    await expect(pane.locator('.base-stats-panel')).toBeVisible();
+    await expect(pane).toHaveCSS('padding-left', padding);
+    await expect(pane.getByRole('slider')).toBeEnabled();
+  } finally {
+    finishResponse();
+  }
+});
+
 test('reuses the Player cache and renders real progression without changing static mode', async ({
   page,
   isMobile
@@ -125,7 +339,7 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(playerContext.locator('a')).toHaveAttribute('href', '/player/?uid=100000001');
   expect(requestCount).toBe(1);
 
-  const level = page.locator('#player-level');
+  const level = page.locator('[data-player-stats-panel]').getByRole('slider');
   const levelValue = page.locator('.player-stats-panel .skill-level-control__value');
   const promotionTag = levelValue.locator('.skill-effect-tag');
   await expect(level).toBeDisabled();
