@@ -15,7 +15,7 @@
           <AssetImage decorative src={iconUrl} alt="" />
         </span>
       {/if}
-      <span class="hero-stat-label-text">{label}</span>
+      <span class="hero-stat-label-text"><slot name="label">{label}</slot></span>
     </span>
   </dt>
   <dd>

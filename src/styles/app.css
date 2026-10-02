@@ -762,6 +762,7 @@ footer a {
   font-weight: 650;
 }
 .skill-level-control {
+  min-width: 0;
   margin-top: 1rem;
   border-top: 1px solid var(--border);
   padding-top: 0.8rem;
@@ -779,6 +780,7 @@ footer a {
 }
 .skill-level-control__value {
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   gap: var(--space-2);
 }
@@ -787,6 +789,8 @@ footer a {
   font-size: var(--font-meta-key);
 }
 .skill-level-control label {
+  min-width: 0;
+  overflow-wrap: anywhere;
   color: var(--text-secondary);
   font-size: var(--font-meta-key);
 }
@@ -796,6 +800,7 @@ footer a {
   font-variant-numeric: tabular-nums;
 }
 .skill-level-control input[type='range'] {
+  min-width: 0;
   width: 100%;
   margin: 0.65rem 0 0.2rem;
   padding: 0;
@@ -1827,52 +1832,11 @@ th {
   border-bottom: 0;
   padding-block: 3.75rem;
 }
-.enemy-stats-panel {
-  width: 100%;
-}
-.enemy-stats-list {
-  width: 100%;
-  margin: 0;
-}
-.enemy-stat-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-6);
-  border-bottom: 1px solid var(--border);
-  padding: 0.9rem 0.1rem;
-}
-.enemy-stat-row dt {
-  color: var(--text-secondary);
-  font-size: var(--font-meta-key);
-  font-weight: 400;
-}
-.enemy-stat-row dd {
-  margin: 0;
-  text-align: right;
-}
-.enemy-stat-row dd strong {
-  color: var(--text-primary);
-  font-size: 1rem;
-  font-variant-numeric: tabular-nums;
-}
-.enemy-stat-row:last-child {
-  border-bottom: 0;
-}
-.enemy-level-control {
-  margin: 0;
-}
-.enemy-level-control--standalone {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-card);
-  background: linear-gradient(145deg, rgb(17 24 40 / 78%), rgb(11 16 28 / 70%));
-  padding: clamp(1rem, 2vw, 1.4rem);
-}
 .enemy-monster-selector {
   display: flex;
   width: 100%;
   gap: var(--space-3);
-  margin-top: var(--space-4);
+  margin-top: var(--space-6);
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   padding: 0.2rem 0 0.6rem;
@@ -1881,27 +1845,32 @@ th {
 }
 .enemy-monster-option {
   display: grid;
-  min-width: 10.5rem;
-  min-height: 5rem;
+  min-width: 10rem;
+  min-height: 4rem;
   flex: 0 0 auto;
-  align-content: space-between;
-  gap: var(--space-3);
+  align-content: center;
+  gap: var(--space-2);
   scroll-snap-align: start;
   border: 1px solid var(--border);
   border-radius: var(--radius-control);
   background: rgb(14 20 34 / 68%);
   color: var(--text-primary);
-  padding: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  line-height: 1.2;
   text-align: left;
   cursor: pointer;
   transition:
     border-color var(--motion),
     background var(--motion);
 }
-.enemy-monster-option:hover,
-.enemy-monster-option--selected {
+.enemy-monster-option:hover {
+  border-color: var(--border-strong);
+  background: rgb(255 255 255 / 4%);
+}
+.enemy-monster-option--selected,
+.enemy-monster-option--selected:hover {
   border-color: var(--gold);
-  background: rgb(215 181 109 / 10%);
+  background: rgb(215 181 109 / 4%);
 }
 .enemy-monster-option:focus-visible {
   outline: 2px solid var(--gold);
@@ -1931,28 +1900,12 @@ th {
   --semantic-icon-image-size: 1.1rem;
 
   min-height: 1.2rem;
-  gap: 0.45rem;
-}
-.enemy-selected-monster-heading {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-4);
-  margin: var(--space-8) 0 var(--space-3);
-}
-.enemy-selected-monster-heading span {
-  color: var(--faint);
-  font-size: var(--font-internal);
-  letter-spacing: 0.12em;
-}
-.enemy-selected-monster-heading h3 {
-  margin: 0;
-  font-size: var(--font-major-title);
-  font-variant-numeric: tabular-nums;
+  gap: 0.35rem;
 }
 .enemy-battle-panel {
   display: grid;
   width: 100%;
+  margin-top: var(--space-4);
   grid-template-columns: repeat(3, minmax(0, 1fr));
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
@@ -1967,22 +1920,29 @@ th {
   padding: clamp(1rem, 2.4vw, 1.75rem);
 }
 .enemy-battle-column + .enemy-battle-column {
-  border-left: 1px solid var(--border);
+  border-left: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
 }
 .enemy-battle-column h3 {
-  margin: 0 0 1.5rem;
+  margin: 0 0 var(--space-6);
   color: var(--text-primary);
   font-size: var(--font-major-title);
   font-weight: 700;
 }
 .enemy-resistance-subsection + .enemy-resistance-subsection {
-  margin-top: 1.75rem;
+  margin-top: var(--space-6);
 }
 .enemy-resistance-subsection h4 {
-  margin: 0 0 0.85rem;
+  margin: 0 0 var(--space-3);
   color: var(--text-secondary);
   font-size: var(--font-meta-key);
   font-weight: 600;
+}
+.enemy-resistance-subsection .semantic-icon-label {
+  min-width: 0;
+  max-width: 100%;
+}
+.enemy-resistance-subsection .semantic-icon-label__text {
+  min-width: 0;
 }
 .enemy-weakness-list {
   --semantic-icon-image-size: 1.05rem;
@@ -1997,54 +1957,6 @@ th {
   background: rgb(255 255 255 / 3%);
   padding: 0.32rem 0.58rem;
   font-size: var(--font-helper);
-}
-.enemy-resistance-table {
-  width: 100%;
-}
-.enemy-resistance-row {
-  --semantic-icon-image-size: 1.05rem;
-
-  display: flex;
-  min-width: 0;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  border-bottom: 1px solid var(--border);
-  padding: 0.65rem 0.1rem;
-}
-.enemy-resistance-row strong {
-  color: var(--text-primary);
-  font-size: var(--font-meta-value);
-  font-variant-numeric: tabular-nums;
-}
-.enemy-resistance-row:last-child {
-  border-bottom: 0;
-}
-.enemy-special-resistance-table {
-  width: 100%;
-}
-.enemy-special-resistance-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  border-bottom: 1px solid var(--border);
-  padding: 0.65rem 0.1rem;
-}
-.enemy-special-resistance-item span {
-  min-width: 0;
-  color: var(--text-secondary);
-  font-size: var(--font-meta-key);
-  overflow-wrap: anywhere;
-}
-.enemy-special-resistance-item strong {
-  flex: none;
-  color: var(--text-primary);
-  font-size: var(--font-meta-value);
-  font-variant-numeric: tabular-nums;
-}
-.enemy-special-resistance-item:last-child {
-  border-bottom: 0;
 }
 .enemy-owned-section {
   scroll-margin-top: 70px;
@@ -2241,12 +2153,12 @@ th {
   .skill-card-grid {
     grid-template-columns: 1fr;
   }
-  .enemy-battle-panel:not(.enemy-battle-panel--two-column) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .enemy-battle-panel,
+  .enemy-battle-panel--two-column {
+    grid-template-columns: minmax(0, 1fr);
   }
-  .enemy-battle-panel:not(.enemy-battle-panel--two-column) .enemy-battle-column--negative {
-    grid-column: 1 / -1;
-    border-top: 1px solid var(--border);
+  .enemy-battle-column + .enemy-battle-column {
+    border-top: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
     border-left: 0;
   }
   .endgame-content-layout {
@@ -2374,17 +2286,6 @@ th {
   .enemy-detail-section {
     padding-block: 3rem;
   }
-  .enemy-battle-panel:not(.enemy-battle-panel--two-column),
-  .enemy-battle-panel--two-column {
-    grid-template-columns: 1fr;
-  }
-  .enemy-battle-panel:not(.enemy-battle-panel--two-column) .enemy-battle-column--negative {
-    grid-column: auto;
-  }
-  .enemy-battle-column + .enemy-battle-column {
-    border-top: 1px solid var(--border);
-    border-left: 0;
-  }
   .stage-list {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2426,7 +2327,6 @@ th {
   .enemy-detail-section {
     padding-block: 2.5rem;
   }
-  .enemy-level-control--standalone,
   .enemy-battle-column {
     padding: var(--space-4);
   }

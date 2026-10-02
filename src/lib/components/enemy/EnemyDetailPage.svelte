@@ -10,6 +10,9 @@
   import SemanticIconLabel from '$lib/components/shared/SemanticIconLabel.svelte';
   import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import SectionNav from '$lib/components/shared/SectionNav.svelte';
+  import LevelSlider from '$lib/components/shared/LevelSlider.svelte';
+  import StatList from '$lib/components/shared/StatList.svelte';
+  import StatRow from '$lib/components/shared/StatRow.svelte';
   import { getElementColor } from '$lib/domain/elements';
   import { formatRatioPercentage } from '$lib/domain/endgame-view';
   import { getEnemyRankLabel } from '$lib/domain/enemy-overview';
@@ -120,65 +123,37 @@
 <section id="monsters" class="detail-section enemy-detail-section section-nav-target">
   <SectionHeading level={1}>{m.enemy_variants_section()}</SectionHeading>
 
-  <div class="skill-level-control enemy-level-control enemy-level-control--standalone">
-    <div>
-      <label for={`enemy-level-${detail.id}`}>{m.enemy_level()}</label><output
-        for={`enemy-level-${detail.id}`}>Lv.{level}</output
+  <div class="enemy-monster-selector" role="radiogroup" aria-label={m.enemy_specific_units()}>
+    {#each detail.monsters as monster (monster.monsterId)}
+      <button
+        id={`enemy-monster-option-${monster.monsterId}`}
+        class:enemy-monster-option--selected={monster.monsterId === selectedMonsterId}
+        class="enemy-monster-option"
+        type="button"
+        role="radio"
+        aria-checked={monster.monsterId === selectedMonsterId}
+        tabindex={monster.monsterId === selectedMonsterId ? 0 : -1}
+        data-monster-option={monster.monsterId}
+        on:click={(event) => selectMonster(monster.monsterId, event.currentTarget)}
+        on:keydown={(event) => handleMonsterKeydown(event, monster.monsterId)}
       >
-    </div>
-    <input
-      id={`enemy-level-${detail.id}`}
-      type="range"
-      min={initialProgression.minLevel}
-      max={initialProgression.maxLevel}
-      step="1"
-      bind:value={level}
-      aria-valuetext={m.common_level({ level })}
-    />
-    <div class="skill-level-range" aria-hidden="true">
-      <span>Lv.{initialProgression.minLevel}</span><span>Lv.{initialProgression.maxLevel}</span>
-    </div>
-  </div>
-
-  {#if detail.monsters.length > 1}
-    <div class="enemy-monster-selector" role="radiogroup" aria-label={m.enemy_specific_units()}>
-      {#each detail.monsters as monster (monster.monsterId)}
-        <button
-          id={`enemy-monster-option-${monster.monsterId}`}
-          class:enemy-monster-option--selected={monster.monsterId === selectedMonsterId}
-          class="enemy-monster-option"
-          type="button"
-          role="radio"
-          aria-checked={monster.monsterId === selectedMonsterId}
-          tabindex={monster.monsterId === selectedMonsterId ? 0 : -1}
-          data-monster-option={monster.monsterId}
-          on:click={(event) => selectMonster(monster.monsterId, event.currentTarget)}
-          on:keydown={(event) => handleMonsterKeydown(event, monster.monsterId)}
-        >
-          <span class="enemy-monster-option__identity">
-            <strong>#{monster.monsterId}</strong>
-            {#if monster.monsterId === detail.defaultMonsterId}<small>{m.enemy_default()}</small
-              >{/if}
-          </span>
-          <span class="enemy-monster-option__weaknesses" aria-label={monsterWeaknessLabel(monster)}>
-            {#each monster.weaknesses as weakness (weakness.element)}<span aria-hidden="true"
-                ><SemanticIconLabel
-                  kind="element"
-                  code={weakness.element}
-                  label={weakness.name}
-                  color={getElementColor(weakness.element)}
-                  showLabel={false}
-                /></span
-              >{/each}
-          </span>
-        </button>
-      {/each}
-    </div>
-  {/if}
-
-  <div class="enemy-selected-monster-heading">
-    <span>MONSTER ID</span>
-    <h3>#{selectedMonster.monsterId}</h3>
+        <span class="enemy-monster-option__identity">
+          <strong>#{monster.monsterId}</strong>
+          {#if monster.monsterId === detail.defaultMonsterId}<small>{m.enemy_default()}</small>{/if}
+        </span>
+        <span class="enemy-monster-option__weaknesses" aria-label={monsterWeaknessLabel(monster)}>
+          {#each monster.weaknesses as weakness (weakness.element)}<span aria-hidden="true"
+              ><SemanticIconLabel
+                kind="element"
+                code={weakness.element}
+                label={weakness.name}
+                color={getElementColor(weakness.element)}
+                showLabel={false}
+              /></span
+            >{/each}
+        </span>
+      </button>
+    {/each}
   </div>
   <div
     class:enemy-battle-panel--two-column={!selectedMonster.specialResistances.length}
@@ -187,6 +162,15 @@
   >
     <section class="enemy-battle-column enemy-battle-column--stats">
       <h3>{m.enemy_base_stats()}</h3>
+      <div class="stat-level-control">
+        <LevelSlider
+          id={`enemy-level-${detail.id}`}
+          label={m.enemy_level()}
+          min={initialProgression.minLevel}
+          max={initialProgression.maxLevel}
+          bind:value={level}
+        />
+      </div>
       <EnemyStatsPanel progression={selectedProgression} {level} />
     </section>
     <section class="enemy-battle-column enemy-battle-column--attributes">
@@ -204,36 +188,35 @@
       </div>
       {#if selectedMonster.resistances.length}<div class="enemy-resistance-subsection">
           <h4>{m.enemy_resistances()}</h4>
-          <div class="enemy-resistance-table">
-            {#each selectedMonster.resistances as resistance (resistance.element)}<div
-                class="enemy-resistance-row"
+          <StatList spacing="flush">
+            {#each selectedMonster.resistances as resistance (resistance.element)}<StatRow
                 data-enemy-resistance={resistance.element}
+                label={resistance.name}
+                value={formatRatioPercentage(resistance.value)}
               >
-                <SemanticIconLabel
-                  kind="element"
-                  code={resistance.element}
-                  label={resistance.name}
-                  color={getElementColor(resistance.element)}
-                />
-                <strong>{formatRatioPercentage(resistance.value)}</strong>
-              </div>{/each}
-          </div>
+                <svelte:fragment slot="label">
+                  <SemanticIconLabel
+                    kind="element"
+                    code={resistance.element}
+                    label={resistance.name}
+                    color={getElementColor(resistance.element)}
+                  />
+                </svelte:fragment>
+              </StatRow>{/each}
+          </StatList>
         </div>{/if}
     </section>
     {#if selectedMonster.specialResistances.length}<section
         class="enemy-battle-column enemy-battle-column--negative"
       >
         <h3>{m.enemy_negative_effect_resistance()}</h3>
-        <div class="enemy-special-resistance-table">
-          {#each selectedMonster.specialResistances as resistance (resistance.code)}<div
-              class="enemy-special-resistance-item"
+        <StatList spacing="flush">
+          {#each selectedMonster.specialResistances as resistance (resistance.code)}<StatRow
               data-special-resistance={resistance.code}
-            >
-              <span>{resistance.label}</span><strong
-                >{formatRatioPercentage(resistance.value)}</strong
-              >
-            </div>{/each}
-        </div>
+              label={resistance.label}
+              value={formatRatioPercentage(resistance.value)}
+            />{/each}
+        </StatList>
       </section>{/if}
   </div>
 

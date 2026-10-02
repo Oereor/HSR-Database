@@ -110,6 +110,8 @@ test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时�
   const canonical = page.locator('[data-monster-option="1002015"]');
   const quantumVariant = page.locator('[data-monster-option="100201506"]');
   await expect(canonical).toHaveAttribute('aria-checked', 'true');
+  const defaultBadge = canonical.locator('small');
+  await expect(defaultBadge).toBeVisible();
 
   const slider = page.locator('#enemy-level-1002015');
   await expect(slider).toHaveValue('95');
@@ -117,14 +119,21 @@ test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时�
   const canonicalHp = await page.locator('[data-enemy-stat="hp"] strong').textContent();
   await quantumVariant.click();
   await expect(quantumVariant).toHaveAttribute('aria-checked', 'true');
-  await expect(page.locator('.enemy-selected-monster-heading')).toContainText('#100201506');
+  await expect(quantumVariant.locator('strong')).toHaveText('#100201506');
+  await expect(canonical).toHaveAttribute('aria-checked', 'false');
+  await expect(defaultBadge).toBeVisible();
+  await expect(quantumVariant.locator('small')).toHaveCount(0);
   await expect(slider).toHaveValue('60');
   await expect(page.locator('[data-enemy-stat="hp"] strong')).not.toHaveText(canonicalHp ?? '');
 
   const weaknesses = page.locator(
     '.enemy-battle-column--attributes .enemy-weakness-list [data-icon-kind="element"]'
   );
-  expect((await weaknesses.allTextContents()).map((text) => text.trim())).toEqual(['火', '量子']);
+  expect(
+    await weaknesses
+      .locator('img')
+      .evaluateAll((images) => images.map((image) => image.getAttribute('src')))
+  ).toEqual(['/generated-assets/elements/Fire.png', '/generated-assets/elements/Quantum.png']);
 
   await quantumVariant.focus();
   await page.keyboard.press('Home');
@@ -135,14 +144,24 @@ test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时�
   await expect(options.nth(1)).toHaveAttribute('aria-checked', 'true');
 });
 
-test('单 Monster 页面省略 selector，仍展示共享等级与七项实际属性', async ({ page }) => {
+test('单 Monster 页面保留紧凑单项 selector、默认标记与共享实际属性', async ({ page }) => {
   await page.goto('/enemies/1004011/');
-  await expect(page.locator('[data-monster-option]')).toHaveCount(0);
-  await expect(page.locator('.enemy-selected-monster-heading')).toContainText('#1004011');
+  const option = page.locator('[data-monster-option="1004011"]');
+  await expect(page.locator('[data-monster-option]')).toHaveCount(1);
+  await expect(option.locator('strong')).toHaveText('#1004011');
+  await expect(option.locator('small')).toBeVisible();
+  await expect(option).toHaveAttribute('aria-checked', 'true');
+  await option.focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(option).toBeFocused();
+  await expect(option).toHaveAttribute('aria-checked', 'true');
+  await expect(page.locator('.enemy-selected-monster-heading')).toHaveCount(0);
   await expect(page.locator('[data-enemy-stat]')).toHaveCount(7);
   await expect(page.locator('#enemy-level-1004011')).toHaveValue('95');
-  await expect(page.locator('.enemy-stats-panel table')).toHaveCount(0);
-  await expect(page.locator('.enemy-stats-list')).toHaveAttribute('aria-label', /\S/);
+  await expect(page.locator('.enemy-battle-column--stats .hero-stat-list')).toHaveAttribute(
+    'aria-label',
+    /\S/
+  );
 });
 
 test('战斗面板按 selected Monster 的负面抵抗自动切换三栏与两栏', async ({ page }) => {
@@ -156,17 +175,11 @@ test('战斗面板按 selected Monster 的负面抵抗自动切换三栏与两�
   await expect(page.locator('[data-enemy-stat="effect-resistance"]')).toContainText('40%');
   await expect(page.locator('[data-enemy-resistance]')).toHaveCount(3);
   await expect(page.locator('[data-enemy-resistance="Imaginary"]')).toContainText('40%');
-  await expect(page.locator('[data-special-resistance="STAT_CTRL"]')).toContainText('控制抵抗50%');
+  await expect(page.locator('[data-special-resistance="STAT_CTRL"] dd')).toHaveText('50%');
   await page.goto('/enemies/4034013/');
-  await expect(page.locator('[data-special-resistance="STAT_CTRL_Frozen"]')).toContainText(
-    '冻结抵抗75%'
-  );
-  await expect(page.locator('[data-special-resistance="STAT_Confine"]')).toContainText(
-    '禁锢抵抗75%'
-  );
-  await expect(page.locator('[data-special-resistance="STAT_Entangle"]')).toContainText(
-    '纠缠抵抗75%'
-  );
+  for (const code of ['STAT_CTRL_Frozen', 'STAT_Confine', 'STAT_Entangle']) {
+    await expect(page.locator(`[data-special-resistance="${code}"] dd`)).toHaveText('75%');
+  }
 
   await page.goto('/enemies/3002011/');
   const twoColumnPanel = page.locator('.enemy-battle-panel');
@@ -194,7 +207,10 @@ test('召唤单位严格随 selected Monster 切换，并使用解析后的 Temp
   await expect(summon).not.toContainText(/Monster #/);
   await summon.click();
   await expect(page).toHaveURL(/\/enemies\/1002050\/$/);
-  await expect(page.locator('.enemy-selected-monster-heading')).toContainText('#1002050');
+  await expect(page.locator('[data-monster-option="1002050"]')).toHaveAttribute(
+    'aria-checked',
+    'true'
+  );
 });
 
 test('Skill Browser 保留阶段筛选、技能顺序与本地选择状态', async ({ page }) => {

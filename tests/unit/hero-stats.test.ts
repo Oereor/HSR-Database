@@ -52,6 +52,18 @@ describe('Hero stat presentation', () => {
     expect(scaling).toContain('scaling-value');
     expect(normal).not.toContain('scaling-value');
     expect(normal).toContain('&lt;synthetic value>');
+    expect(normal).toContain('synthetic label');
+  });
+
+  it('composes a colored elemental label without repeating its text or announcing its icon', () => {
+    const { body } = render(StatListFixture, { props: { customLabel: true } });
+    expect(body).toContain('data-icon-kind="element"');
+    expect(body).toContain('color: #abcdef');
+    expect(body.match(/synthetic element/g)).toHaveLength(1);
+    expect(body).not.toContain('synthetic numeric label');
+    expect(body).toMatch(/<img[^>]*alt=""/);
+    expect(body).not.toContain('role="img"');
+    expect(body).toContain('1234');
   });
 });
 

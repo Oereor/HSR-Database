@@ -1,4 +1,6 @@
 <script lang="ts">
+  import StatList from '$lib/components/shared/StatList.svelte';
+  import StatRow from '$lib/components/shared/StatRow.svelte';
   import {
     getEnemyStatsAtLevel,
     type EnemyStatCompactValue,
@@ -30,13 +32,8 @@
     : [];
 </script>
 
-<div class="enemy-stats-panel">
-  <dl class="enemy-stats-list" aria-label={m.enemy_actual_stats_aria({ level })}>
-    {#each stats as stat (stat[0])}
-      <div class="enemy-stat-row" data-enemy-stat={stat[0]}>
-        <dt>{stat[1]}</dt>
-        <dd><strong>{stat[2]}</strong></dd>
-      </div>
-    {/each}
-  </dl>
-</div>
+<StatList ariaLabel={m.enemy_actual_stats_aria({ level })}>
+  {#each stats as stat (stat[0])}
+    <StatRow data-enemy-stat={stat[0]} label={stat[1]} value={stat[2]} />
+  {/each}
+</StatList>
