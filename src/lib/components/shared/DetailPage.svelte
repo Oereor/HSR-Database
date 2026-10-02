@@ -305,7 +305,7 @@
     </div>
     <aside
       id="stats"
-      class="detail-profile-hero__inspection section-nav-target"
+      class="detail-profile-hero__inspection section-nav-target hero-basic-data-pane"
       aria-label={m.detail_stats_aria()}
     >
       {#if playerContextState === 'loading'}
@@ -353,7 +353,10 @@
         </div>
       </div>
     </div>
-    <aside class="detail-profile-hero__inspection" aria-label={m.detail_light_cone_stats_aria()}>
+    <aside
+      class="detail-profile-hero__inspection hero-basic-data-pane"
+      aria-label={m.detail_light_cone_stats_aria()}
+    >
       {#key lightConeInitialStateKey}
         <BaseStatsPanel
           progression={detail.baseStats}

@@ -233,6 +233,10 @@
   background: var(--border);
 }
 
+.detail-profile-hero__inspection.hero-basic-data-pane {
+  padding-inline: var(--space-8);
+}
+
 @media (max-width: 1180px) {
   .detail-profile-hero--character {
     grid-template-columns: minmax(0, 1fr);
@@ -244,6 +248,10 @@
 }
 
 @media (max-width: 820px) {
+  .detail-profile-hero__inspection.hero-basic-data-pane {
+    padding-inline: var(--space-6);
+  }
+
   .detail-profile-hero {
     grid-template-columns: minmax(0, 1fr);
   }

@@ -1,5 +1,6 @@
 <script lang="ts">
-  import AssetImage from '$lib/components/shared/AssetImage.svelte';
+  import StatList from './StatList.svelte';
+  import StatRow from './StatRow.svelte';
   import { formatBaseStat, getBaseStatsAtLevel } from '$lib/domain/stats';
   import type { BaseStatProgression, CharacterEnergy } from '$lib/domain/types';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
@@ -19,6 +20,9 @@
   $: defenceIconUrl = getCharacterDetailIconUrl(progression.iconKeys?.defence);
   $: speedIconUrl = getCharacterDetailIconUrl(progression.iconKeys?.speed);
   $: energyIconUrl = getCharacterDetailIconUrl(energy?.iconKey);
+  $: hasIcons = Boolean(
+    hpIconUrl || attackIconUrl || defenceIconUrl || speedIconUrl || energyIconUrl
+  );
 </script>
 
 {#if progression.stages.length}
@@ -32,82 +36,41 @@
         max={progression.maxLevel}
       />
     </div>
-    <dl class="inspection-stat-list">
-      <div class="inspection-stat-row" data-base-stat="hp">
-        <dt>
-          <span class="inspection-stat-label"
-            >{#if hpIconUrl}<AssetImage
-                decorative
-                src={hpIconUrl}
-                alt=""
-                aria-hidden="true"
-              />{/if}<span>{m.common_hp()}</span></span
-          >
-        </dt>
-        <dd><strong class="scaling-value">{formatBaseStat(stats.hp)}</strong></dd>
-      </div>
-      <div class="inspection-stat-row" data-base-stat="attack">
-        <dt>
-          <span class="inspection-stat-label"
-            >{#if attackIconUrl}<AssetImage
-                decorative
-                src={attackIconUrl}
-                alt=""
-                aria-hidden="true"
-              />{/if}<span>{m.common_attack()}</span></span
-          >
-        </dt>
-        <dd><strong class="scaling-value">{formatBaseStat(stats.attack)}</strong></dd>
-      </div>
-      <div class="inspection-stat-row" data-base-stat="defence">
-        <dt>
-          <span class="inspection-stat-label"
-            >{#if defenceIconUrl}<AssetImage
-                decorative
-                src={defenceIconUrl}
-                alt=""
-                aria-hidden="true"
-              />{/if}<span>{m.common_defence()}</span></span
-          >
-        </dt>
-        <dd><strong class="scaling-value">{formatBaseStat(stats.defence)}</strong></dd>
-      </div>
-      {#if progression.fixed?.speed !== undefined}<div
-          class="inspection-stat-row"
+    <StatList {hasIcons}>
+      <StatRow
+        data-base-stat="hp"
+        label={m.common_hp()}
+        value={formatBaseStat(stats.hp)}
+        iconUrl={hpIconUrl}
+        tone="scaling"
+      />
+      <StatRow
+        data-base-stat="attack"
+        label={m.common_attack()}
+        value={formatBaseStat(stats.attack)}
+        iconUrl={attackIconUrl}
+        tone="scaling"
+      />
+      <StatRow
+        data-base-stat="defence"
+        label={m.common_defence()}
+        value={formatBaseStat(stats.defence)}
+        iconUrl={defenceIconUrl}
+        tone="scaling"
+      />
+      {#if progression.fixed?.speed !== undefined}<StatRow
           data-base-stat="speed"
-        >
-          <dt>
-            <span class="inspection-stat-label"
-              >{#if speedIconUrl}<AssetImage
-                  decorative
-                  src={speedIconUrl}
-                  alt=""
-                  aria-hidden="true"
-                />{/if}<span>{m.common_base_speed()}</span></span
-            >
-          </dt>
-          <dd><strong>{formatBaseStat(progression.fixed.speed)}</strong></dd>
-        </div>{/if}
-      {#if energy}<div class="inspection-stat-row" data-base-stat="energy">
-          <dt>
-            <span class="inspection-stat-label"
-              >{#if energyIconUrl}<AssetImage
-                  decorative
-                  src={energyIconUrl}
-                  alt=""
-                  aria-hidden="true"
-                />{/if}<span>{m.common_energy_max()}</span></span
-            >
-          </dt>
-          <dd>
-            <strong
-              >{energy.kind === 'special'
-                ? m.common_special_energy()
-                : formatBaseStat(energy.max)}</strong
-            >
-          </dd>
-        </div>{/if}
-    </dl>
+          label={m.common_base_speed()}
+          value={formatBaseStat(progression.fixed.speed)}
+          iconUrl={speedIconUrl}
+        />{/if}
+      {#if energy}<StatRow
+          data-base-stat="energy"
+          label={m.common_energy_max()}
+          value={energy.kind === 'special' ? m.common_special_energy() : formatBaseStat(energy.max)}
+          iconUrl={energyIconUrl}
+        />{/if}
+    </StatList>
   </div>
 {:else}
   <p class="data-placeholder">{m.base_stats_empty()}</p>

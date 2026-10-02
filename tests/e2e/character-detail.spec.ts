@@ -82,10 +82,12 @@ test('Global Buff 作为正常 Talent Variant 展示且不泄漏配置术语', a
   }
 });
 
-test('角色 Detail Hero 在桌面 3:2 分栏并于 820px 断点纵向堆叠', async ({ page }) => {
+test('角色 Detail Hero 在桌面 3:2 分栏并于 1180px 断点纵向堆叠', async ({ page }) => {
   for (const viewport of [
     { width: 1600, height: 1000 },
     { width: 1280, height: 800 },
+    { width: 1181, height: 800 },
+    { width: 1180, height: 800 },
     { width: 1024, height: 768 },
     { width: 820, height: 900 },
     { width: 390, height: 844 }
@@ -104,7 +106,7 @@ test('角色 Detail Hero 在桌面 3:2 分栏并于 820px 断点纵向堆叠', a
     const inspectionBox = await inspection.boundingBox();
     expect(identityBox).not.toBeNull();
     expect(inspectionBox).not.toBeNull();
-    if (viewport.width <= 820) {
+    if (viewport.width <= 1180) {
       expect(inspectionBox!.y).toBeGreaterThanOrEqual(identityBox!.y + identityBox!.height - 1);
     } else {
       expect(Math.abs(identityBox!.y - inspectionBox!.y)).toBeLessThan(1);
