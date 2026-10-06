@@ -1250,7 +1250,7 @@ export function validateProductProjection(
     const shard = projection.occurrenceShards[target.id];
     if (
       !shard ||
-      shard.schemaVersion !== 2 ||
+      shard.schemaVersion !== 3 ||
       shard.locale !== projection.locale ||
       shard.target.kind !== 'endgame' ||
       shard.target.id !== target.id
@@ -1293,6 +1293,26 @@ export function validateProductProjection(
           { entityId: target.id }
         )
       );
+    for (const { mode, period } of shard.periods) {
+      const group = projection.endgame[mode]?.groups.find(
+        ({ groupId }) => groupId === period.groupId
+      );
+      if (
+        !group ||
+        'status' in period ||
+        period.schedule?.begin !== group.schedule?.begin ||
+        period.schedule?.end !== group.schedule?.end
+      )
+        issues.push(
+          issue(
+            'error',
+            'search',
+            'shard-period-schedule',
+            'shard period must contain static schedule metadata from its source group',
+            { entityId: target.id }
+          )
+        );
+    }
     for (const { locator } of target.occurrences) {
       const key = endgameOccurrenceLocatorKey(locator);
       const occurrence = resolveLocator(projection.endgame, locator);

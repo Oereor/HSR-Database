@@ -6,7 +6,7 @@ import type {
 } from '../../src/lib/domain/endgame.js';
 import {
   buildOccurrenceView,
-  buildPeriodView,
+  buildPeriodMetadata,
   endgameEnemyReferenceKey,
   presentedStageWaves,
   resolveEndgameEnemyReference,
@@ -27,7 +27,6 @@ export interface EndgameOccurrenceShardBuildInput {
   enemies: readonly Enemy[];
   targets: readonly EndgameSearchTargetEntry[];
   presentation: EndgameViewPresentation;
-  now: number;
 }
 
 function groupFor(datasets: EndgameDatasetByMode, locator: EndgameOccurrenceLocator): EndgameGroup {
@@ -108,12 +107,12 @@ export function buildEndgameOccurrenceShards(
           };
         }
         const shard: EndgameOccurrenceShard = {
-          schemaVersion: 2,
+          schemaVersion: 3,
           locale: input.locale,
           target: { kind: 'endgame', id: target.id },
           periods: [...groups.values()].map((group) => ({
             mode: group.mode,
-            period: buildPeriodView(group, input.now, input.presentation)
+            period: buildPeriodMetadata(group, input.presentation)
           })),
           occurrences
         };

@@ -10,6 +10,7 @@ import type {
 import {
   buildGroupView,
   buildModeView,
+  buildPeriodMetadata,
   endgameEnemyReferenceKey,
   ENDGAME_MODES,
   type EndgameEnemyDetailSource,
@@ -161,7 +162,8 @@ export async function getEndgameMode(
 async function buildResolvedGroupView(
   group: EndgameGroup,
   periods: EndgamePeriodView[],
-  locale: SearchLocale
+  locale: SearchLocale,
+  now: number
 ): Promise<EndgameGroupView> {
   const referencedEnemies = new Map<string, { monsterId: number; templateId: number }>();
   for (const encounter of group.encounters)
@@ -188,7 +190,7 @@ async function buildResolvedGroupView(
     )
   );
   return Object.assign(
-    buildGroupView(group, periods, references, getEndgamePeriodPresentation(locale)),
+    buildGroupView(group, periods, references, getEndgamePeriodPresentation(locale), now),
     {
       modeLabel: getEndgameModeCopy(group.mode, locale).label
     }
@@ -207,8 +209,9 @@ export async function getEndgameGroup(
     const group = dataset.groups.find((candidate) => candidate.groupId === groupId);
     if (!group) return undefined;
     const presentation = getEndgamePeriodPresentation(locale);
-    const periods = buildModeView(mode, dataset.groups, presentation).periods;
-    return buildResolvedGroupView(group, periods, locale);
+    const now = Date.now();
+    const periods = buildModeView(mode, dataset.groups, presentation, now).periods;
+    return buildResolvedGroupView(group, periods, locale, now);
   });
   groupViewCache.set(key, pending);
   return pending;
@@ -276,7 +279,7 @@ export async function getEndgameOccurrenceShard(
     });
   if (projected) {
     if (
-      projected.schemaVersion !== 2 ||
+      projected.schemaVersion !== 3 ||
       projected.locale !== locale ||
       projected.target.kind !== 'endgame' ||
       projected.target.id !== entry.id
@@ -320,12 +323,15 @@ export async function getEndgameOccurrenceShard(
     occurrences[item.key] = item;
   }
   return {
-    schemaVersion: 2,
+    schemaVersion: 3,
     locale,
     target: { kind: 'endgame', id: targetId },
     periods: groupKeys.map((key) => {
-      const group = groups.get(key)!;
-      return { mode: group.mode, period: group.period };
+      const group = sourceGroups.get(key)!;
+      return {
+        mode: group.mode,
+        period: buildPeriodMetadata(group, getEndgamePeriodPresentation(locale))
+      };
     }),
     occurrences
   };

@@ -1038,8 +1038,7 @@ async function readLocaleProjection(locale: Locale) {
           datasets: datasets as EndgameDatasetByMode,
           enemies: (details as { enemies: Enemy[] }).enemies,
           targets: localeSearch.endgameTargets,
-          presentation: getLocaleProjectionPolicy(locale).endgameView,
-          now: Date.now()
+          presentation: getLocaleProjectionPolicy(locale).endgameView
         });
   return {
     catalogs,
@@ -1167,7 +1166,7 @@ for (const target of enSearch.endgameTargets) {
     endgameOccurrenceLocatorKey(locator)
   );
   if (
-    shard.schemaVersion !== 2 ||
+    shard.schemaVersion !== 3 ||
     shard.locale !== 'en' ||
     shard.target.kind !== 'endgame' ||
     shard.target.id !== target.id ||

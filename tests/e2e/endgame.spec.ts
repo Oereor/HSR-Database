@@ -1,4 +1,32 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+import {
+  buildModeView,
+  ENDGAME_MODES,
+  groupEndgamePeriods
+} from '../../src/lib/domain/endgame-view';
+import type { EndgameMode, EndgameModeDataset } from '../../src/lib/domain/endgame';
+
+const fixedNow = new Date('2026-09-09T00:00:00+08:00');
+const modeViews = ENDGAME_MODES.map((mode) => {
+  const dataset = JSON.parse(
+    readFileSync(`src/lib/generated/views/zh-CN/endgame/${mode}.json`, 'utf8')
+  ) as EndgameModeDataset;
+  return buildModeView(mode, dataset.groups, undefined, fixedNow.getTime());
+});
+const periodsFor = (mode: EndgameMode) =>
+  groupEndgamePeriods(modeViews.find((view) => view.mode === mode)!.periods);
+
+test.beforeEach(async ({ page }) => {
+  await page.clock.setFixedTime(fixedNow);
+  await page.addInitScript(() => {
+    const date = new Date();
+    localStorage.setItem(
+      'hsrarchive:changelog-dismissed-date',
+      `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+    );
+  });
+});
 
 async function gridColumnCount(locator: Locator) {
   return locator.evaluate((element) => {
@@ -52,15 +80,12 @@ test('Endgame overview 四张模式卡片直达各自展示的推荐赛期', asy
 
   const cards = page.locator('[data-endgame-overview-card]');
   await expect(cards).toHaveCount(4);
-  for (const scenario of [
-    { mode: 'moc', season: '扫除风暴', href: '/endgame/moc/1034/' },
-    { mode: 'pf', season: '构事生意', href: '/endgame/pf/2025/' },
-    { mode: 'as', season: '仙客天狼', href: '/endgame/as/3020/' },
-    { mode: 'aa', season: '军团再临', href: '/endgame/aa/9/' }
-  ] as const) {
-    const card = page.locator(`[data-endgame-overview-card="${scenario.mode}"]`);
-    await expect(card).toContainText(scenario.season);
-    await expect(card).toHaveAttribute('href', scenario.href);
+  for (const view of modeViews) {
+    const period = view.periods.find(({ groupId }) => groupId === view.recommendedGroupId)!;
+    const card = page.locator(`[data-endgame-overview-card="${view.mode}"]`);
+    await expect(card).toContainText(period.name);
+    await expect(card).toContainText(period.dateLabel);
+    await expect(card).toHaveAttribute('href', `/endgame/${view.mode}/${period.groupId}/`);
   }
   await expect(page.locator('[data-endgame-overview-card="moc"]')).toContainText(
     '2026/08/17 – 2026/09/28'
@@ -85,12 +110,18 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
   await expect(mocCurrent).toHaveCount(1);
   await expect(mocCurrent).toContainText('扫除风暴');
   const mocUpcoming = page.locator('[data-endgame-season-card="upcoming"]');
-  await expect(mocUpcoming).toHaveCount(3);
-  await expect(mocUpcoming.locator('h3')).toHaveText(['混沌回忆 ID 1035', '霜痕旧梦', '永冬试炼']);
+  await expect(mocUpcoming).toHaveCount(periodsFor('moc').upcoming.length);
+  for (const [index, period] of periodsFor('moc').upcoming.entries()) {
+    await expect(mocUpcoming.nth(index)).toHaveAttribute('href', `/endgame/moc/${period.groupId}/`);
+  }
   const mocUnknown = page.locator('[data-endgame-season-card="unknown"]');
-  await expect(mocUnknown).toHaveCount(2);
-  await expect(mocUnknown.locator('.endgame-season-card__date')).toHaveText(['-', '-']);
-  await expect(page.locator('[data-endgame-season-card="historical"]')).toHaveCount(50);
+  await expect(mocUnknown).toHaveCount(periodsFor('moc').unknown.length);
+  await expect(mocUnknown.locator('.endgame-season-card__date')).toHaveText(
+    periodsFor('moc').unknown.map(({ dateLabel }) => dateLabel)
+  );
+  await expect(page.locator('[data-endgame-season-card="historical"]')).toHaveCount(
+    periodsFor('moc').historical.length
+  );
   const sweep = page.locator('a[href="/endgame/moc/1034/"]');
   await expect(sweep).toHaveAttribute('href', '/endgame/moc/1034/');
   await expect(sweep.locator('.endgame-season-card__footer > span').first()).toContainText('12');
@@ -102,12 +133,16 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
   await expect(page.locator('#endgame-unknown-periods')).toHaveCount(0);
   const current = page.locator('[data-endgame-season-card="current"]');
   const upcoming = page.locator('[data-endgame-season-card="upcoming"]');
+  const futureCard = upcoming.first();
   const history = page.locator('[data-endgame-season-card="historical"]');
   await expect(current).toHaveCount(1);
   await expect(current).toContainText('构事生意');
-  await expect(upcoming).toHaveCount(1);
-  await expect(upcoming).toContainText('立界开篇');
-  await expect(history).toHaveCount(24);
+  await expect(upcoming).toHaveCount(periodsFor('pf').upcoming.length);
+  await expect(upcoming.first()).toHaveAttribute(
+    'href',
+    `/endgame/pf/${periodsFor('pf').upcoming[0].groupId}/`
+  );
+  await expect(history).toHaveCount(periodsFor('pf').historical.length);
   await expect(current.locator('.endgame-season-card__watermark')).toHaveAttribute(
     'aria-hidden',
     'true'
@@ -117,12 +152,12 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
   await expect(page.locator('.endgame-period-status')).toHaveCount(0);
   const heights = await Promise.all([
     current.evaluate((element) => element.getBoundingClientRect().height),
-    upcoming.evaluate((element) => element.getBoundingClientRect().height),
+    upcoming.first().evaluate((element) => element.getBoundingClientRect().height),
     history.first().evaluate((element) => element.getBoundingClientRect().height)
   ]);
   expect(heights[0]).toBeGreaterThan(heights[1]);
   expect(heights[1]).toBeGreaterThan(heights[2]);
-  const desktopUpcomingSpacing = await upcoming.evaluate((element) => {
+  const desktopUpcomingSpacing = await upcoming.first().evaluate((element) => {
     const style = getComputedStyle(element);
     return {
       paddingTop: style.paddingTop,
@@ -142,7 +177,7 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
   expect(await current.evaluate((element) => getComputedStyle(element).outlineStyle)).toBe('solid');
 
   await page.setViewportSize({ width: 390, height: 900 });
-  const mobileUpcomingSpacing = await upcoming.evaluate((element) => {
+  const mobileUpcomingSpacing = await upcoming.first().evaluate((element) => {
     const style = getComputedStyle(element);
     const cardRect = element.getBoundingClientRect();
     const titleRect = element.querySelector('h3')!.getBoundingClientRect();
@@ -165,7 +200,7 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
   expect(mobileUpcomingSpacing.rightInset).toBeGreaterThan(16);
   for (const width of [320, 375, 390, 430, 520, 521, 768, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
-    for (const card of [current, upcoming, history.first()]) {
+    for (const card of [current, futureCard, history.first()]) {
       const spacing = await card.evaluate((element) => {
         const style = getComputedStyle(element);
         const rect = element.getBoundingClientRect();
@@ -191,7 +226,7 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
       });
       const horizontal = width <= 520 ? 16 : 24;
       const isCurrent = card === current;
-      const isHistory = card !== current && card !== upcoming;
+      const isHistory = card !== current && card !== futureCard;
       const inset = isHistory ? 16 : horizontal;
       const vertical = isCurrent ? inset : 16;
       expect(spacing.padding).toEqual([
@@ -231,14 +266,17 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
   await page.setViewportSize({ width: 1440, height: 1000 });
 
   await page.goto('/endgame/as/');
-  await expect(page.locator('[data-endgame-season-card="current"]')).toHaveCount(1);
-  await expect(page.locator('[data-endgame-season-card="historical"]')).toHaveCount(19);
-  await expect(page.locator('#endgame-upcoming-periods')).toHaveCount(0);
-  await expect(page.locator('#endgame-unknown-periods')).toHaveCount(0);
+  for (const [status, periods] of Object.entries(periodsFor('as'))) {
+    await expect(page.locator(`[data-endgame-season-card="${status}"]`)).toHaveCount(
+      periods.length
+    );
+  }
 
   await page.goto('/endgame/aa/');
   await expect(page.locator('#endgame-unknown-periods')).toBeVisible();
-  await expect(page.locator('[data-endgame-season-card="unknown"]')).toHaveCount(9);
+  await expect(page.locator('[data-endgame-season-card="unknown"]')).toHaveCount(
+    periodsFor('aa').unknown.length
+  );
   await expect(page.locator('[data-endgame-season-card="current"]')).toHaveCount(0);
   await expect(page.locator('[data-endgame-season-card="upcoming"]')).toHaveCount(0);
   await expect(page.locator('[data-endgame-season-card="historical"]')).toHaveCount(0);
@@ -411,10 +449,11 @@ test('AS 节点使用 BossDossier、共享敌方卡、首领特性与中性终�
   await expect(aftertaste.locator('.season-mechanic-card')).toHaveCount(1);
   await expect(page.locator('[data-endgame-mechanics="axiom"]')).toHaveCount(3);
   await expect(page.locator('[data-endgame-mechanics="boss-traits"]')).toHaveCount(3);
-  await expect(page.locator('[data-as-boss-traits] > h4')).toHaveCount(3);
-  await expect(page.locator('[data-as-boss-dossier] > h4')).toHaveCount(3);
   for (const slot of ['1', '2', '3']) {
     const battle = page.locator(`[data-as-battle-slot="${slot}"]`);
+    await expect(battle.locator('[data-as-boss-dossier]')).toBeVisible();
+    await expect(battle.locator('[data-as-boss-roster]')).toBeVisible();
+    await expect(battle.locator('[data-endgame-mechanics="boss-traits"]')).toBeVisible();
     await expect(battle.locator('h3')).toContainText(slot);
     await expect(battle.locator('[data-endgame-enemy-card]')).toHaveCount(1);
     await expect(battle.locator('[data-endgame-enemy-card]')).toHaveAttribute(
@@ -536,7 +575,10 @@ test('AS 多敌人 slot 在固定一卡宽 roster 中纵向排列并保留完整
     await expect(enemy.locator('.endgame-weaknesses')).toBeVisible();
   }
   await expect(slot.locator('[data-as-boss-profile], .as-enemy-profile-card')).toHaveCount(0);
-  await expect(slot.locator('[data-as-boss-dossier] > h4')).toBeVisible();
+  await expect(slot.locator('[data-as-boss-dossier]')).toBeVisible();
+  const roster = slot.locator('[data-as-boss-roster]');
+  await expect(roster).toBeVisible();
+  await expect(roster.locator('[data-endgame-enemy-card]')).toHaveCount(2);
   await expect(slot.locator('[data-endgame-mechanics="axiom"]')).toHaveCount(1);
   await expect(slot.locator('[data-endgame-mechanics="boss-traits"]')).toHaveCount(1);
 });
@@ -1060,9 +1102,9 @@ test('兵锋骑士难度 4 显示玩家侧韧性且不显示机制弹窗', async
   ] as const) {
     const card = page.locator(`[data-monster-id="${monsterId}"]`);
     await expect(card.locator('[data-endgame-toughness]')).toHaveText(toughness);
+    await expect(card.locator('[aria-haspopup="dialog"]')).toHaveCount(0);
   }
   await expect(page.locator('.hp-mechanics, .toughness-mechanics')).toHaveCount(0);
-  await expect(page.locator('[aria-haspopup="dialog"]')).toHaveCount(0);
 });
 
 test('敌人立绘请求失败时保留完整数据并显示中性降级', async ({ page }) => {

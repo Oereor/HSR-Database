@@ -3,7 +3,7 @@ import {
   ENDGAME_MODES,
   presentedStageWaves,
   type EndgameEnemyGridItem,
-  type EndgamePeriodView
+  type EndgamePeriodMetadata
 } from './endgame-view';
 import type { SearchDocumentBundle } from '../search/documents.js';
 export { SEARCH_DOCUMENT_SCHEMA_VERSION as GLOBAL_SEARCH_SCHEMA_VERSION } from '../search/documents.js';
@@ -46,11 +46,11 @@ export interface GlobalSearchIndex extends SearchDocumentBundle {
 
 export interface EndgameOccurrenceShardPeriod {
   mode: EndgameMode;
-  period: EndgamePeriodView;
+  period: EndgamePeriodMetadata;
 }
 
 export interface EndgameOccurrenceShard {
-  schemaVersion: 2;
+  schemaVersion: 3;
   locale: SearchLocale;
   target: { kind: 'endgame'; id: string };
   periods: EndgameOccurrenceShardPeriod[];

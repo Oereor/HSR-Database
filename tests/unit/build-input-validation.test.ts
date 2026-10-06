@@ -152,7 +152,7 @@ async function createFixture(): Promise<Fixture> {
   await writeArtifact(
     'views/en/endgame-occurrences/4',
     {
-      schemaVersion: 2,
+      schemaVersion: 3,
       locale: 'en',
       target: { kind: 'endgame', id: '4' },
       periods: [],
@@ -213,7 +213,7 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 47,
+    schemaVersion: 48,
     sourceCommit: commit,
     sourceVersion,
     gameVersionFull: '4.5.0',
@@ -284,6 +284,23 @@ describe('production build-input validation', () => {
     });
   });
 
+  it('rejects the old generated manifest and occurrence shard schemas', async () => {
+    const manifest = await createFixture();
+    manifest.manifest.schemaVersion = 47 as never;
+    await manifest.writeManifest();
+    await expect(manifest.validate()).rejects.toThrow(/schema/i);
+
+    const shard = await createFixture();
+    await shard.rewrite('views/en/endgame-occurrences/4', {
+      schemaVersion: 2,
+      locale: 'en',
+      target: { kind: 'endgame', id: '4' },
+      periods: [],
+      occurrences: {}
+    });
+    await expect(shard.validate()).rejects.toThrow('shard identity mismatch');
+  });
+
   it('rejects expected commit, prepared source version and TextMap identity drift', async () => {
     const fixture = await createFixture();
     await expect(fixture.validate({ expectedCommit: 'b'.repeat(40) })).rejects.toThrow(
@@ -345,7 +362,7 @@ describe('production build-input validation', () => {
 
     const shard = await createFixture();
     await shard.rewrite('views/en/endgame-occurrences/4', {
-      schemaVersion: 2,
+      schemaVersion: 3,
       locale: 'en',
       target: { kind: 'endgame', id: '5' },
       periods: [],
