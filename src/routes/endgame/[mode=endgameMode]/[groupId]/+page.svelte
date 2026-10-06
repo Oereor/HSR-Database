@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import { createEndgameClock } from '$lib/client/endgame-clock';
   import { afterNavigate } from '$app/navigation';
   import GameText from '$lib/components/shared/GameText.svelte';
   import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
@@ -16,11 +18,17 @@
     buildMocLocalNavigation,
     buildPureFictionLocalNavigation
   } from '$lib/domain/endgame-navigation';
-  import type { EndgameGroupView } from '$lib/domain/endgame-view';
+  import { refreshEndgamePeriod, type EndgameGroupView } from '$lib/domain/endgame-view';
   import { formatDocumentTitle } from '$lib/site';
   import { localizedHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   export let data;
+
+  const clock = createEndgameClock(() => data.group.periods);
+  onMount(clock.mount);
+  afterNavigate(clock.refresh);
+  $: period =
+    $clock === undefined ? data.group.period : refreshEndgamePeriod(data.group.period, $clock);
 
   function buildLocalNavigation(group: EndgameGroupView, selectedId: string) {
     if (group.mode === 'moc') return buildMocLocalNavigation(group.encounters, selectedId);
@@ -67,7 +75,7 @@
 </header>
 
 <EndgameModeNav activeMode={data.group.mode} />
-<EndgameSeasonHero period={data.group.period} />
+<EndgameSeasonHero {period} />
 
 {#if selectedEncounter && localNavigation}
   <div class="endgame-content-layout">

@@ -1,14 +1,21 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import { afterNavigate } from '$app/navigation';
+  import { createEndgameClock } from '$lib/client/endgame-clock';
   import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import EndgameModeNav from '$lib/components/endgame/EndgameModeNav.svelte';
   import EndgameSeasonCard from '$lib/components/endgame/EndgameSeasonCard.svelte';
-  import { groupEndgamePeriods } from '$lib/domain/endgame-view';
+  import { groupEndgamePeriods, refreshEndgameMode } from '$lib/domain/endgame-view';
   import { formatDocumentTitle } from '$lib/site';
   import { localizedHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   export let data;
 
-  $: periodGroups = groupEndgamePeriods(data.mode.periods);
+  const clock = createEndgameClock(() => data.mode.periods);
+  onMount(clock.mount);
+  afterNavigate(clock.refresh);
+  $: mode = $clock === undefined ? data.mode : refreshEndgameMode(data.mode, $clock);
+  $: periodGroups = groupEndgamePeriods(mode.periods);
 </script>
 
 <svelte:head>

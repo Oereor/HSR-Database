@@ -742,7 +742,7 @@ describe('真实数据管线', () => {
     const lightCone = JSON.parse(
       await readFile(path.join(localizedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
-    expect(manifest.schemaVersion).toBe(47);
+    expect(manifest.schemaVersion).toBe(48);
     expect(manifest).toMatchObject(parseGameVersion(manifest.sourceVersion));
     expect(character.name).toBe('三月七·存护');
     expect(character.baseStats.iconKeys).toEqual({

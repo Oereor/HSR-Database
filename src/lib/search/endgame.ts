@@ -2,7 +2,7 @@ import type { EndgameMode } from '../domain/endgame.js';
 import {
   ENDGAME_MODES,
   type EndgameEnemyGridItem,
-  type EndgamePeriodView
+  type EndgamePeriodMetadata
 } from '../domain/endgame-view.js';
 import {
   endgameOccurrenceLocatorKey,
@@ -13,7 +13,7 @@ import {
 } from '../domain/search-index.js';
 
 export interface EndgameSearchSeasonResult {
-  period: EndgamePeriodView;
+  period: EndgamePeriodMetadata;
   enemies: EndgameEnemyGridItem[];
 }
 
@@ -79,7 +79,7 @@ export function createEndgameSearchExpander(
         .then(() => fetchShard(targetId, locale))
         .then((shard) => {
           if (
-            shard.schemaVersion !== 2 ||
+            shard.schemaVersion !== 3 ||
             shard.locale !== locale ||
             shard.target.kind !== 'endgame' ||
             shard.target.id !== targetId
@@ -112,7 +112,7 @@ export function createEndgameSearchExpander(
       string,
       {
         mode: EndgameMode;
-        period: EndgamePeriodView;
+        period: EndgamePeriodMetadata;
         enemies: Array<{ order: EndgameOccurrenceOrder; item: EndgameEnemyGridItem }>;
       }
     >();

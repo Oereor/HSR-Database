@@ -280,7 +280,7 @@ function fixture(): { manifest: DataManifest; projection: ProductProjectionForVa
     ]
   } as unknown as GlobalSearchIndex;
   const shard = {
-    schemaVersion: 2,
+    schemaVersion: 3,
     locale: 'en',
     target: { kind: 'endgame', id: '100' },
     periods: [
@@ -290,7 +290,7 @@ function fixture(): { manifest: DataManifest; projection: ProductProjectionForVa
           groupId: 1,
           name: 'Period',
           dateLabel: '2026/01/01 – 2026/02/01',
-          status: 'historical',
+          schedule: { begin: '2026-01-01 00:00:00', end: '2026-02-01 00:00:00' },
           encounterCount: 1
         }
       }
@@ -315,7 +315,7 @@ function fixture(): { manifest: DataManifest; projection: ProductProjectionForVa
   const routes = { characters: [], 'light-cones': [], relics: [], enemies: ['100'] };
   const inventory = buildGeneratedRouteInventory(routes, endgame);
   const manifest = {
-    schemaVersion: 47,
+    schemaVersion: 48,
     generatedLocales: ['zh-CN', 'en'],
     publicLocale: 'zh-CN',
     publicLocales: ['zh-CN', 'en'],
@@ -630,6 +630,22 @@ describe('focused robustness invariants', () => {
     );
   });
 
+  it('rejects generated temporal state and schedule drift in occurrence shards', () => {
+    const stale = fixture();
+    Object.assign(stale.projection.occurrenceShards['100'].periods[0].period, {
+      status: 'current'
+    });
+    expect(validateProductProjection(stale.manifest, stale.projection).errors).toEqual(
+      expect.arrayContaining([expect.objectContaining({ code: 'shard-period-schedule' })])
+    );
+    const drift = fixture();
+    drift.projection.occurrenceShards['100'].periods[0].period.schedule!.begin =
+      '2026-01-02 00:00:00';
+    expect(validateProductProjection(drift.manifest, drift.projection).errors).toEqual(
+      expect.arrayContaining([expect.objectContaining({ code: 'shard-period-schedule' })])
+    );
+  });
+
   it('rejects invalid numeric states and unsupported reachable discriminants', () => {
     const numeric = fixture();
     const stage = numeric.projection.endgame.moc.groups[0].encounters[0].battles[0].stages[0];
@@ -712,6 +728,7 @@ describe('focused robustness invariants', () => {
   it('rejects malformed or reversed Shanghai schedules without requiring a schedule', () => {
     const absent = fixture();
     delete absent.projection.endgame.moc.groups[0].schedule;
+    delete absent.projection.occurrenceShards['100'].periods[0].period.schedule;
     expect(validateProductProjection(absent.manifest, absent.projection).errors).toEqual([]);
 
     const reversed = fixture();

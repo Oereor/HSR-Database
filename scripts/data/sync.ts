@@ -673,7 +673,6 @@ export async function syncData(): Promise<DataManifest> {
   // Normalize and validate every required relation before replacing the last known-good output.
   const endgameDomain = await buildEndgameDomain(root);
   const maintainedPlayerAliases = await loadPlayerAliases();
-  const shardProjectionTime = Date.now();
 
   const projectLocale = async (runtime: (typeof localeRuntimes)[number]) => {
     const config: LocaleConfig = runtime.config;
@@ -819,8 +818,7 @@ export async function syncData(): Promise<DataManifest> {
       datasets: endgame.datasets,
       enemies,
       targets: globalSearchIndex.endgameTargets,
-      presentation: projectionPolicy.endgameView,
-      now: shardProjectionTime
+      presentation: projectionPolicy.endgameView
     });
     return {
       config,
@@ -1018,7 +1016,7 @@ export async function syncData(): Promise<DataManifest> {
   };
   const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
   const manifestWithoutRevision: Omit<DataManifest, 'dataRevision'> = {
-    schemaVersion: 47,
+    schemaVersion: 48,
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,

@@ -288,7 +288,7 @@ describe('Search V2', () => {
       occurrences: [reference(firstLocator), reference(secondLocator, { stage: 1 })]
     };
     const shard: EndgameOccurrenceShard = {
-      schemaVersion: 2,
+      schemaVersion: 3,
       locale: 'zh-CN',
       target: { kind: 'endgame', id: 'a' },
       periods: [
@@ -298,7 +298,6 @@ describe('Search V2', () => {
             groupId: 1,
             name: '赛期',
             dateLabel: '',
-            status: 'historical',
             encounterCount: 1
           }
         }
@@ -326,6 +325,22 @@ describe('Search V2', () => {
     expect(b.results).toEqual(a.results);
   });
 
+  it('rejects the obsolete temporal shard contract', async () => {
+    const expand = createEndgameSearchExpander(
+      async () =>
+        ({
+          schemaVersion: 2,
+          locale: 'zh-CN',
+          target: { kind: 'endgame', id: 'old' },
+          periods: [],
+          occurrences: {}
+        }) as unknown as EndgameOccurrenceShard
+    );
+    expect((await expand([{ id: 'old', name: 'Fixture', occurrences: [] }])).unavailable).toBe(
+      true
+    );
+  });
+
   it('keeps locator identity independent from display order and browser shard caches locale-scoped', async () => {
     const stable = locator();
     expect(endgameOccurrenceLocatorKey(reference(stable).locator)).toBe(
@@ -333,7 +348,7 @@ describe('Search V2', () => {
     );
     const entry = { id: '2', name: '敌人', occurrences: [] };
     const fetchShard = vi.fn(async (targetId: string, locale: 'zh-CN' | 'en') => ({
-      schemaVersion: 2 as const,
+      schemaVersion: 3 as const,
       locale,
       target: { kind: 'endgame' as const, id: targetId },
       periods: [],
@@ -380,12 +395,11 @@ describe('Search V2', () => {
       groupId,
       name: groupId === 3018 ? '遗忘冽风' : '旧赛期',
       dateLabel: '',
-      status: 'historical' as const,
       encounterCount: 2
     });
     const [oldRef, secondRef, firstRef] = endgameIndex.endgameTargets[0].occurrences;
     const shard: EndgameOccurrenceShard = {
-      schemaVersion: 2,
+      schemaVersion: 3,
       locale: 'zh-CN',
       target: { kind: 'endgame', id: 'boss' },
       periods: [

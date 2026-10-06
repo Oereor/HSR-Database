@@ -1,7 +1,10 @@
 import type { DataManifest, GeneratedArtifactMetadata } from '../../../src/lib/domain/types.js';
 import type { EndgameDatasetByMode, EndgameMode } from '../../../src/lib/domain/endgame.js';
 import { ENDGAME_MODES } from '../../../src/lib/domain/endgame-view.js';
-import { GLOBAL_SEARCH_SCHEMA_VERSION } from '../../../src/lib/domain/search-index.js';
+import {
+  GLOBAL_SEARCH_SCHEMA_VERSION,
+  type EndgameOccurrenceShard
+} from '../../../src/lib/domain/search-index.js';
 import {
   computeDataRevision,
   readDataManifest,
@@ -169,7 +172,7 @@ export async function validateBuildInputs(
     manifest.generatedLocales.map((locale) => [locale, {}])
   ) as Record<Locale, Partial<Record<EndgameMode, EndgameDatasetByMode[EndgameMode]>>>;
   const searchTargets = new Map<Locale, string[]>();
-  const englishShards = new Set<string>();
+  const englishShards = new Map<string, EndgameOccurrenceShard>();
   const playerEquipment = new Map<Locale, { lightCones: string[]; relicSets: string[] }>();
 
   const artifacts = await validateGeneratedArtifacts(
@@ -289,14 +292,25 @@ export async function validateBuildInputs(
           const targetId = shardMatch[1];
           if (
             !isRecord(value) ||
-            value.schemaVersion !== 2 ||
+            value.schemaVersion !== 3 ||
             value.locale !== 'en' ||
             !isRecord(value.target) ||
             value.target.kind !== 'endgame' ||
             value.target.id !== targetId
           )
             throw new Error(`English Endgame occurrence shard identity mismatch: ${targetId}`);
-          englishShards.add(targetId);
+          if (
+            !Array.isArray(value.periods) ||
+            value.periods.some(
+              (entry) =>
+                !isRecord(entry) ||
+                !ENDGAME_MODES.includes(entry.mode as EndgameMode) ||
+                !isRecord(entry.period) ||
+                !Number.isSafeInteger(entry.period.groupId)
+            )
+          )
+            throw new Error(`English Endgame occurrence shard periods are invalid: ${targetId}`);
+          englishShards.set(targetId, value as unknown as EndgameOccurrenceShard);
         }
       }
     }
@@ -351,8 +365,22 @@ export async function validateBuildInputs(
       throw new Error(`${locale} search target inventory does not resolve to enemy routes`);
   }
 
-  if (!exactSet([...englishShards], searchTargets.get('en') ?? []))
+  if (!exactSet([...englishShards.keys()], searchTargets.get('en') ?? []))
     throw new Error('English Endgame occurrence shard inventory does not match search targets');
+
+  for (const [targetId, shard] of englishShards) {
+    for (const { mode, period } of shard.periods) {
+      const group = endgame.en[mode]!.groups.find(({ groupId }) => groupId === period.groupId);
+      if (
+        !group ||
+        'status' in period ||
+        Boolean(period.schedule) !== Boolean(group.schedule) ||
+        period.schedule?.begin !== group.schedule?.begin ||
+        period.schedule?.end !== group.schedule?.end
+      )
+        throw new Error(`English Endgame occurrence shard schedule is invalid: ${targetId}`);
+    }
+  }
 
   console.log(
     `[data:validate:build-inputs] source=${manifest.sourceCommit.slice(0, 12)} artifacts=${artifacts.files} bytes=${artifacts.bytes} routes=${manifest.routePaths.length}`

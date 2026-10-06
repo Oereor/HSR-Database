@@ -1,15 +1,27 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import { afterNavigate } from '$app/navigation';
+  import { createEndgameClock } from '$lib/client/endgame-clock';
   import { m } from '$lib/paraglide/messages.js';
   import OverviewHero from '$lib/components/shared/OverviewHero.svelte';
   import EndgameOverviewCard from '$lib/components/endgame/EndgameOverviewCard.svelte';
   import EndgameOverviewHeroArtwork from '$lib/components/endgame/EndgameOverviewHeroArtwork.svelte';
-  import type { EndgameModeView } from '$lib/domain/endgame-view';
+  import { refreshEndgameMode, type EndgameModeView } from '$lib/domain/endgame-view';
   import { formatDocumentTitle } from '$lib/site';
 
   export let data;
 
-  const regularModes = data.modes.filter((mode: EndgameModeView) => mode.mode !== 'aa');
-  const arbitration = data.modes.find((mode: EndgameModeView) => mode.mode === 'aa');
+  const clock = createEndgameClock(() =>
+    data.modes.flatMap((mode: EndgameModeView) => mode.periods)
+  );
+  onMount(clock.mount);
+  afterNavigate(clock.refresh);
+  $: modes =
+    $clock === undefined
+      ? data.modes
+      : data.modes.map((mode: EndgameModeView) => refreshEndgameMode(mode, $clock!));
+  $: regularModes = modes.filter((mode: EndgameModeView) => mode.mode !== 'aa');
+  $: arbitration = modes.find((mode: EndgameModeView) => mode.mode === 'aa');
 </script>
 
 <svelte:head>
