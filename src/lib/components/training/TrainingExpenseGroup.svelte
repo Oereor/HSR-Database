@@ -10,16 +10,9 @@
     undefined;
 </script>
 
-<div
-  class="training-expense"
-  class:training-exp={kind === 'upgrade'}
-  class:training-total={kind === 'total'}
-  data-training-expense={kind}
->
+<div class="training-expense" data-training-expense={kind}>
   <SectionHeading level={kind === 'total' ? 1 : 2} headingLevel={3}>{title}</SectionHeading>
-  <slot name="summary" />
   <MaterialCostList {cost} {catalog} {onSelectMaterial} />
-  <slot />
 </div>
 
 <style>

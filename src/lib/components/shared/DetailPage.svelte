@@ -87,7 +87,7 @@
   export let equipmentRecommendation: EquipmentRecommendationView | undefined = undefined;
   export let relicProperties: RelicProperty[] = [];
   const trainingLoader = createTrainingLoader();
-  let trainingClientReady = false;
+  let clientReady = false;
   let handledTrainingKey = '';
   let trainingEntityKey = '';
   let trainingRequestVersion = 0;
@@ -97,7 +97,6 @@
   let lightConeTrainingData: LightConeTrainingData | undefined;
   let trainingShared: TrainingSharedData | undefined;
   let materialCatalog: MaterialCatalog | undefined;
-  let selectedItemId: string | undefined;
   let selectedMaterial: MaterialView | undefined;
   let selectedMaterialDetail: MaterialDetail | undefined;
   let materialDetailState: 'loading' | 'ready' | 'error' = 'loading';
@@ -115,7 +114,6 @@
   let specialEffectTrigger: HTMLButtonElement | undefined;
   let specialEffectLevel = 1;
   type PlayerContextState = 'idle' | 'invalid' | 'loading' | 'error' | 'missing' | 'active';
-  let playerClientReady = false;
   let handledPlayerContext: string | null = null;
   let playerRequestVersion = 0;
   let playerContextState: PlayerContextState = 'idle';
@@ -124,8 +122,7 @@
   const emptySearchParams = new URLSearchParams();
 
   onMount(() => {
-    playerClientReady = true;
-    trainingClientReady = true;
+    clientReady = true;
   });
   onDestroy(() => {
     materialDetailRequestVersion += 1;
@@ -202,17 +199,17 @@
     ...(staticTrainingEnabled ? [{ id: 'training', label: m.training_title() }] : [])
   ];
   $: playerQueryState =
-    playerClientReady && category === 'characters'
+    clientReady && category === 'characters'
       ? readPlayerUidQuery($page.url.searchParams)
       : ({ kind: 'idle', input: '' } satisfies PlayerUidQueryState);
   $: playerBuildQueryState =
-    playerClientReady && category === 'characters'
+    clientReady && category === 'characters'
       ? readPlayerBuildQuery($page.url.searchParams)
       : ({ kind: 'absent' } satisfies PlayerBuildQueryState);
-  $: playerContextKey = playerClientReady
+  $: playerContextKey = clientReady
     ? `${category}:${detail.id}:${JSON.stringify($page.url.searchParams.getAll('uid'))}:${JSON.stringify($page.url.searchParams.getAll('build'))}`
     : `${category}:${detail.id}:idle`;
-  $: if (playerClientReady)
+  $: if (clientReady)
     synchronizePlayerContext(playerContextKey, playerQueryState, playerBuildQueryState);
   $: activePlayerCharacter = playerContextState === 'active' ? playerCharacter : null;
 
@@ -220,7 +217,7 @@
     category === 'light-cones' ||
     (category === 'characters' && (!browser || !$page.url.searchParams.has('uid')));
   $: trainingKey = `${category}:${detail.id}:${profileMode}:${getLocale()}:${staticTrainingEnabled}:${category === 'light-cones' ? lightConeInitialStateKey : ''}`;
-  $: if (trainingClientReady) synchronizeTraining(trainingKey);
+  $: if (clientReady) synchronizeTraining(trainingKey);
   $: synchronizeMaterialContext(
     `${$page.url.pathname}:${category}:${detail.id}:${profileMode}:${getLocale()}:${staticTrainingEnabled}`
   );
@@ -307,13 +304,12 @@
     const material = materialCatalog.materials.find((entry) => entry.id === itemId);
     if (!material) return;
     materialDetailTrigger = trigger;
-    selectedItemId = itemId;
     selectedMaterial = material;
     void loadMaterialDetails();
   }
 
   async function loadMaterialDetails(): Promise<void> {
-    const itemId = selectedItemId;
+    const itemId = selectedMaterial?.id;
     const catalog = materialCatalog;
     if (!itemId || !catalog) return;
     const version = ++materialDetailRequestVersion;
@@ -325,7 +321,7 @@
       if (
         version !== materialDetailRequestVersion ||
         context !== materialDetailContext ||
-        selectedItemId !== itemId
+        selectedMaterial?.id !== itemId
       )
         return;
       const material = details.materials.find((entry) => entry.id === itemId);
@@ -336,7 +332,7 @@
       if (
         version === materialDetailRequestVersion &&
         context === materialDetailContext &&
-        selectedItemId === itemId
+        selectedMaterial?.id === itemId
       )
         materialDetailState = 'error';
     }
@@ -344,7 +340,6 @@
 
   function closeMaterialDetails(): void {
     materialDetailRequestVersion += 1;
-    selectedItemId = undefined;
     selectedMaterial = undefined;
     selectedMaterialDetail = undefined;
   }
@@ -354,7 +349,7 @@
     const version = materialDetailRequestVersion;
     materialDetailTrigger = undefined;
     await tick();
-    if (version === materialDetailRequestVersion && !selectedItemId && trigger?.isConnected)
+    if (version === materialDetailRequestVersion && !selectedMaterial && trigger?.isConnected)
       trigger.focus({ preventScroll: true });
   }
 
@@ -395,8 +390,8 @@
         trainingLoader.loadMaterials(locale)
       ]);
       if (version !== trainingRequestVersion || key !== handledTrainingKey) return;
-      if (isCharacter) {
-        const character = data as CharacterTrainingData;
+      if ('avatarId' in data) {
+        const character = data;
         const profile = character.profiles.find((profile) =>
           mode === 'base' ? profile.enhancedId === 0 : profile.enhancedId !== 0
         );
@@ -414,7 +409,7 @@
         }
         characterTrainingData = character;
       } else {
-        const cone = data as LightConeTrainingData;
+        const cone = data;
         // Validate the default factory; query/user edits retain their current level.
         createDefaultLightConeTrainingTarget(cone);
         lightConeTrainingData = cone;

@@ -48,7 +48,7 @@ Use src/lib/i18n/routing.ts for page trailing-slash normalization, canonicalizat
 
 ## Changelog workflow
 
-Changelog metadata uses stable IDs and ISO machine dates in src/lib/content/changelog/entries.ts. Maintainers add or edit matching .svx files under both src/lib/content/changelog/zh-CN and src/lib/content/changelog/en. Validation rejects missing, duplicate, or orphan entries.
+Maintainers add or edit matching .svx files under both src/lib/content/changelog/zh-CN and src/lib/content/changelog/en. The filename supplies the shared stable ID and ISO machine date; YAML frontmatter supplies the localized title. The shared manifest builder discovers sources through import.meta.glob, without a manually maintained index. The existing build plugin compiles and validates both locale directories, rejecting malformed metadata, duplicate IDs, and missing locale counterparts.
 
 ## Required checks
 

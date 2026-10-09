@@ -8,8 +8,9 @@
 
 ## 功能
 
-- 角色：基础属性、技能、行迹、星魂数据，并支持逐等级查看；同时还有光锥和遗器推荐信息。
-- 光锥：基础属性、光锥效果，同样支持逐等级查看。
+- 角色：基础属性、技能、行迹、星魂数据，并支持逐等级查看；同时还有光锥和遗器推荐信息。养成计算可调整等级、技能培养等级与行迹解锁目标，汇总材料及信用点。
+- 光锥：基础属性、光锥效果，同样支持逐等级查看，并可计算升级与晋阶材料及信用点。
+- 养成材料：点击费用清单中的材料，可查看图标、稀有度及文字详情；仅展示当前养成计算涉及的有限材料。
 - 遗器：套装、部件信息与套装效果。
 - 敌方单位：基础属性、弱点、抗性、技能及其他战斗信息。
 - 高难模式：三路深渊（混沌回忆、虚构叙事、末日幻影），以及异相仲裁的赛期、关卡、波次与敌方实例数据。
@@ -96,8 +97,11 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 | `pnpm validate:enemy-assets`   | 离线验证 tracked enemy snapshot             |
 | `pnpm check`                   | Svelte / TypeScript 检查                    |
 | `pnpm lint`                    | Prettier / ESLint 检查                      |
+| `pnpm format`                  | 按现有 ignore 规则格式化全仓                |
 | `pnpm test`                    | 运行 Vitest 测试                            |
 | `pnpm test:e2e`                | 运行 Playwright 测试                        |
+| `pnpm test:e2e:smoke`          | 运行发布门禁浏览器 smoke                    |
+| `pnpm test:components`         | 运行现有组件浏览器测试                      |
 | `pnpm build`                   | 生成静态生产构建                            |
 | `pnpm deploy:build`            | 使用固定 upstream 版本执行 Production 构建 |
 | `pnpm deploy:build:preview`    | 执行轻量 Preview-equivalent 构建            |
@@ -107,6 +111,10 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 | `pnpm upstreams:update`        | 检查并更新 upstream lock                    |
 
 `pnpm test` 和 `pnpm data:validate` 使用 prepared-workspace 模型，不会自行准备全部 generated inputs。clean pinned workspace 应使用自准备的 `pnpm ci:develop`、`pnpm ci:validate` 或 deployment profile；普通 `pnpm build` 继续使用本地 sibling upstream 的既有 `prebuild` 路径。
+
+发布前使用 `pnpm ci:validate` 完成当前 pinned 数据的完整正确性验证和构建，然后设置 `PLAYWRIGHT_REUSE_BUILD=1` 执行 `pnpm test:e2e:smoke`，再按发布范围执行完整 E2E 与组件测试。先停止占用测试端口的旧 Preview，避免复用旧服务器；数据与资源生成失败时，不应使用旧构建作为新改动的验收证据。
+
+`pnpm format` 尊重现有 `.prettierignore` 与 `.gitignore`；Markdown、更新日志 `.svx`、锁文件、生成数据及 Paraglide 文件保持现有排除规则。历史调查报告保留当时结论，当前产品与数据契约以 `AGENTS.md` 和规范性架构文档为准。
 
 `data:validate:build-inputs` 是 Production orchestration 的完整性门禁，只证明 manifest、pinned source、TextMaps、artifact bytes/schema/inventory 与 build-consumer closure 自洽；它不会重新计算搜索、Endgame、角色或敌人业务语义，不能替代日常的 `pnpm data:validate`。
 
@@ -134,7 +142,7 @@ tests/          # Vitest / Playwright 测试
 
 `upstream.lock.json` 锚定 `TurnBasedGameData` 与 `StarRailRes` 的具体 commit SHA。
 
-部署准备只 materialize 当前生成器实际消费的 81 个 TurnBased Excel 表、CHS/EN TextMap 和保守保留的动态 Config 目录；StarRailRes 的 index 与资源目录在一次 sparse checkout 中准备。普通视觉资源在 cache miss 时通过共享的有界 copy/Sharp worker pools 生成到 staging，验证后原子发布；cache hit 和 Production verifier 复用同一次最终文件树观察，但 verifier 仍独立检查 manifest、文件集合和图片 metadata。
+部署准备通过共享 source registry 决定所需 TurnBased Excel 表、CHS/EN TextMap 和保守保留的动态 Config 目录；StarRailRes 的 index 与资源目录在一次 sparse checkout 中准备。普通视觉资源在 cache miss 时通过共享的有界 copy/Sharp worker pools 生成到 staging，验证后原子发布；cache hit 和 Production verifier 复用同一次最终文件树观察，但 verifier 仍独立检查 manifest、文件集合和图片 metadata。
 
 正式部署通过：
 

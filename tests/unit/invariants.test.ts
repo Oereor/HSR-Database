@@ -115,11 +115,21 @@ describe('重构 invariants', () => {
     expect(source).not.toMatch(/多语言|其他语言|language switch/i);
   });
 
-  it('浏览器领域不再暴露物品、材料或敌人掉落入口', async () => {
+  it('有限养成材料详情不扩展为独立物品路由或敌人掉落入口', async () => {
     const files = await sourceFiles(path.join(root, 'src'));
     const sources = await Promise.all(files.map((file) => readFile(file, 'utf8')));
     const combined = sources.join('\n');
-    expect(combined).not.toMatch(/href=["'`]\/items|kind:\s*["']item["']|MaterialCost/);
-    expect(combined).not.toMatch(/detail\.drops|晋阶材料|养成材料|掉落物/);
+    expect(combined).not.toMatch(
+      /href=["'`]\/(?:en\/)?items(?:\/|["'`])|kind:\s*["']item["']|detail\.drops/
+    );
+    const routes = await sourceFiles(path.join(root, 'src', 'routes'));
+    expect(
+      routes.some((file) =>
+        path
+          .relative(path.join(root, 'src', 'routes'), file)
+          .split(path.sep)
+          .includes('items')
+      )
+    ).toBe(false);
   });
 });

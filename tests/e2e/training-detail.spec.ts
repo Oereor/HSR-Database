@@ -101,11 +101,15 @@ for (const prefix of ['', '/en']) {
     await expect(talent.getByRole('slider')).toHaveAttribute('aria-valuemax', '15');
     const talentDescription = await talent.locator('.levelled-description').textContent();
     const assistDescription = await assist.locator('.levelled-description').textContent();
-    const beforePreviewCosts = await page.locator('#training .training-total').textContent();
+    const beforePreviewCosts = await page
+      .locator('#training [data-training-expense="total"]')
+      .textContent();
     await talent.getByRole('slider').fill('11');
     await expect(assist.getByRole('slider')).toHaveAttribute('aria-valuenow', '12');
     await expect(target.getByRole('slider')).toHaveAttribute('aria-valuenow', '10');
-    await expect(page.locator('#training .training-total')).toHaveText(beforePreviewCosts!);
+    await expect(page.locator('#training [data-training-expense="total"]')).toHaveText(
+      beforePreviewCosts!
+    );
     await expect(talent.locator('.levelled-description')).not.toHaveText(talentDescription!);
     await expect(assist.locator('.levelled-description')).not.toHaveText(assistDescription!);
     await expect(skillResult(page, '1510:0:1510004')).toHaveAttribute('data-training-level', '10');
@@ -167,29 +171,27 @@ for (const prefix of ['', '/en']) {
         '#training [data-required-exp], #training [data-supplied-exp], #training [data-overflow-exp], #training .training-strategy'
       )
     ).toHaveCount(0);
-    await expect(page.locator('#training .training-exp [data-material-id="213"]')).toHaveAttribute(
-      'data-material-count',
-      '289'
-    );
-    await expect(page.locator('#training .training-exp [data-material-id="212"]')).toHaveAttribute(
-      'data-material-count',
-      '3'
-    );
-    await expect(page.locator('#training .training-exp [data-material-id="211"]')).toHaveAttribute(
-      'data-material-count',
-      '3'
-    );
+    await expect(
+      page.locator('#training [data-training-expense="upgrade"] [data-material-id="213"]')
+    ).toHaveAttribute('data-material-count', '289');
+    await expect(
+      page.locator('#training [data-training-expense="upgrade"] [data-material-id="212"]')
+    ).toHaveAttribute('data-material-count', '3');
+    await expect(
+      page.locator('#training [data-training-expense="upgrade"] [data-material-id="211"]')
+    ).toHaveAttribute('data-material-count', '3');
     await expect(
       page.locator('#training .training-materials input, #training .training-materials a')
     ).toHaveCount(0);
     expect(
       await page.locator('#training .training-materials button[aria-haspopup="dialog"]').count()
     ).toBe(await page.locator('#training [data-material-id]').count());
-    await expect(page.locator('#training .training-exp [data-material-id="2"]')).toHaveAttribute(
-      'data-material-count',
-      '579800'
-    );
-    await expect(page.locator('#training .training-total [data-material-id="2"]')).toHaveCount(1);
+    await expect(
+      page.locator('#training [data-training-expense="upgrade"] [data-material-id="2"]')
+    ).toHaveAttribute('data-material-count', '579800');
+    await expect(
+      page.locator('#training [data-training-expense="total"] [data-material-id="2"]')
+    ).toHaveCount(1);
     expect(
       await page
         .locator('#training [data-training-expense]')
@@ -245,8 +247,12 @@ for (const prefix of ['', '/en']) {
       const card = (id: string) => page.locator(`[data-trace-id="${id}"]`);
       const toggle = (id: string) => page.locator(`[data-trace-id="${id}"] .trace-toggle`);
       const count = page.locator('[data-training-trace-count]');
-      const credits = page.locator('#training .training-total [data-material-id="2"]');
-      const weeklyMaterial = page.locator('#training .training-total [data-material-id="110501"]');
+      const credits = page.locator(
+        '#training [data-training-expense="total"] [data-material-id="2"]'
+      );
+      const weeklyMaterial = page.locator(
+        '#training [data-training-expense="total"] [data-material-id="110501"]'
+      );
       await expect(page.locator('.trace-toggle[aria-pressed="true"]')).toHaveCount(13);
       await expect(count).toHaveAttribute('data-training-trace-count', '13');
       await expect(
@@ -417,15 +423,14 @@ test('static stats and costs agree at promotion boundaries; cone rank remains in
       .locator('#training [data-training-expense]')
       .evaluateAll((groups) => groups.map((group) => group.getAttribute('data-training-expense')))
   ).toEqual(['upgrade', 'promotion', 'total']);
-  const total = await page.locator('#training .training-total').textContent();
+  const total = await page.locator('#training [data-training-expense="total"]').textContent();
   await page.locator('#superimposition-level-20000').fill('4');
-  await expect(page.locator('#training .training-total')).toHaveText(total!);
+  await expect(page.locator('#training [data-training-expense="total"]')).toHaveText(total!);
   await page.locator('#training-light-cone-level-20000').fill('80');
   await expect(page.locator('#light-cone-level-20000')).toHaveValue('80');
-  await expect(page.locator('#training .training-total [data-material-id="2"]')).toHaveAttribute(
-    'data-material-count',
-    '529750'
-  );
+  await expect(
+    page.locator('#training [data-training-expense="total"] [data-material-id="2"]')
+  ).toHaveAttribute('data-material-count', '529750');
   await page.locator('#light-cone-level-20000').fill('1');
   await expect(page.locator('#training-light-cone-level-20000')).toHaveValue('1');
   await expect(page.locator('#training [data-material-id]')).toHaveCount(0);
