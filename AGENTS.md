@@ -36,9 +36,9 @@ Due to special network environment, all Internet-related operations must go thro
 - Keep raw-data parsing separate from UI components.
 - Use the shared TextMap resolver instead of accessing TextMap records from business code.
 - Never bundle the complete upstream data repository or a complete TextMap into browser code.
-- Materials, ordinary items, upgrade costs, and enemy drops are intentionally outside the website domain; do not reintroduce them without an explicit product decision.
+- Slices A/B/C explicitly permit the finite material set referenced by character/light-cone training costs and EXP item configurations, localized metadata, static cost shards, pure training calculations, static training UI with deterministic greedy EXP costs, and basic material information in the lazy Item Detail Modal. Full Items catalogs, standalone item routes, enemy drop catalogs, inventory planning, synthesis, and acquisition-source browsing remain excluded until separately authorized.
 - Classify and group character skills from structured config fields and SkillTree/servant relations, not Chinese name matching or character-specific ID rules.
-- Character and light-cone level stats use normalized promotion stages; at ascension boundaries select the highest reached promotion stage.
+- Existing character and light-cone level stats use normalized promotion stages; at ascension boundaries select the lowest promotion whose original MaxLevel reaches the target level, consistently with training calculations. Real Player Info continues to use API-provided stats and promotion.
 - Prefer targeted build-time extraction for large upstream JSON files.
 - Write generated data, reports, caches, and temporary analysis files only inside this repository.
 - Configure the game-data source through `HSR_DATA_ROOT`, with `../TurnBasedGameData` as the documented local default.

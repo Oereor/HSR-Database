@@ -1,3 +1,19 @@
+import {
+  assertCharacterTrainingData,
+  assertLightConeTrainingData,
+  assertMaterialCatalog,
+  assertMaterialDetailCatalog,
+  validateMaterialDetails,
+  assertTrainingSharedData,
+  validateTrainingBundle
+} from '../../../src/lib/domain/training/validation.js';
+import type {
+  CharacterTrainingData,
+  LightConeTrainingData,
+  MaterialCatalog,
+  MaterialDetailCatalog,
+  TrainingSharedData
+} from '../../../src/lib/domain/training/types.js';
 import type { DataManifest, GeneratedArtifactMetadata } from '../../../src/lib/domain/types.js';
 import type { EndgameDatasetByMode, EndgameMode } from '../../../src/lib/domain/endgame.js';
 import { ENDGAME_MODES } from '../../../src/lib/domain/endgame-view.js';
@@ -175,11 +191,51 @@ export async function validateBuildInputs(
   const englishShards = new Map<string, EndgameOccurrenceShard>();
   const playerEquipment = new Map<Locale, { lightCones: string[]; relicSets: string[] }>();
 
+  let trainingShared: TrainingSharedData | undefined;
+  const trainingCharacters: CharacterTrainingData[] = [];
+  const trainingLightCones: LightConeTrainingData[] = [];
+  const materials: MaterialCatalog[] = [];
+  const materialDetails: MaterialDetailCatalog[] = [];
   const artifacts = await validateGeneratedArtifacts(
     manifest,
     { generated: generatedRoot, staticGenerated: staticGeneratedRoot },
     {
       onArtifact(logicalPath, value, metadata) {
+        if (logicalPath.startsWith('static/generated/training/')) {
+          if (metadata.locale !== undefined)
+            throw new Error('Training cost artifacts must be locale-neutral');
+          if (logicalPath === 'static/generated/training/shared.json') {
+            assertTrainingSharedData(value);
+            trainingShared = value;
+          } else if (/^static\/generated\/training\/characters\/\d+\.json$/.test(logicalPath)) {
+            assertCharacterTrainingData(value);
+            if (!logicalPath.endsWith(`/${value.avatarId}.json`))
+              throw new Error('Training character artifact identity mismatch');
+            trainingCharacters.push(value);
+          } else if (/^static\/generated\/training\/light-cones\/\d+\.json$/.test(logicalPath)) {
+            assertLightConeTrainingData(value);
+            if (!logicalPath.endsWith(`/${value.equipmentId}.json`))
+              throw new Error('Training light cone artifact identity mismatch');
+            trainingLightCones.push(value);
+          } else throw new Error(`Unknown training artifact: ${logicalPath}`);
+          return;
+        }
+        const materialMatch = logicalPath.match(/^static\/generated\/(zh-CN|en)\/materials\.json$/);
+        if (materialMatch) {
+          assertArtifactLocale(logicalPath, metadata);
+          assertMaterialCatalog(value, materialMatch[1] as Locale);
+          materials.push(value);
+          return;
+        }
+        const detailMatch = logicalPath.match(
+          /^static\/generated\/(zh-CN|en)\/material-details\.json$/
+        );
+        if (detailMatch) {
+          assertArtifactLocale(logicalPath, metadata);
+          assertMaterialDetailCatalog(value, detailMatch[1] as Locale);
+          materialDetails.push(value);
+          return;
+        }
         if (logicalPath === 'runtime/player.json') {
           if (metadata.locale !== undefined)
             throw new Error('Player runtime artifact must be locale-neutral');
@@ -315,6 +371,36 @@ export async function validateBuildInputs(
       }
     }
   );
+
+  if (
+    !trainingShared ||
+    !exactSet(
+      trainingCharacters.map((data) => data.avatarId),
+      manifest.routes.characters
+    ) ||
+    !exactSet(
+      trainingLightCones.map((data) => data.equipmentId),
+      manifest.routes['light-cones']
+    ) ||
+    !exactSet(
+      materials.map((catalog) => catalog.locale),
+      manifest.generatedLocales
+    ) ||
+    !exactSet(
+      materialDetails.map((catalog) => catalog.locale),
+      manifest.generatedLocales
+    )
+  )
+    throw new Error('Training artifact coverage mismatch');
+  validateTrainingBundle(
+    { shared: trainingShared, characters: trainingCharacters, lightCones: trainingLightCones },
+    materials
+  );
+  for (const details of materialDetails)
+    validateMaterialDetails(
+      details,
+      materials.find((catalog) => catalog.locale === details.locale)!
+    );
 
   const routeCountKeys: Record<RouteCategory, keyof DataManifest['counts']> = {
     characters: 'characters',

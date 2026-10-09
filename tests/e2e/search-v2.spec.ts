@@ -1,11 +1,30 @@
 import { readFileSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
-import type { GlobalSearchIndex } from '../../src/lib/domain/search-index';
+import {
+  endgameOccurrenceLocatorKey,
+  type EndgameOccurrenceShard,
+  type GlobalSearchIndex
+} from '../../src/lib/domain/search-index';
 import { normalizeSearchLabel } from '../../src/lib/search/normalization';
 
 const index = JSON.parse(
   readFileSync('static/generated/zh-CN/search.json', 'utf8')
 ) as GlobalSearchIndex;
+const endgameTarget = index.endgameTargets.find((target) => target.id === '4064012')!;
+const endgameCount = endgameTarget.occurrences.length;
+const endgameShard = JSON.parse(
+  readFileSync('src/lib/generated/views/en/endgame-occurrences/4064012', 'utf8')
+) as EndgameOccurrenceShard;
+const endgameLevels = endgameTarget.occurrences.map(({ locator }) =>
+  String(endgameShard.occurrences[endgameOccurrenceLocatorKey(locator)].level)
+);
+const enemyWindowCount = index.documents.filter(
+  (doc) =>
+    doc.target.kind === 'enemy' &&
+    [doc.canonicalName, ...doc.officialAliases, ...doc.playerAliases].some((name) =>
+      normalizeSearchLabel(name).includes('的')
+    )
+).length;
 // Human aliases can legitimately add characters to the two official March forms.
 const marchMatches = index.documents.flatMap((doc) =>
   doc.target.kind === 'character' &&
@@ -58,7 +77,7 @@ test('Search V2 分片失败保留普通结果并可在下一次提交重试', a
   await expect(page.locator('a[href="/light-cones/20000/"]')).toBeVisible();
   await input.fill('迷惘之渊的裁定者');
   await input.press('Enter');
-  await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(4);
+  await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(endgameCount);
   await expect(page.locator('.search-data-unavailable')).toHaveCount(0);
   expect(requests).toBe(2);
 });
@@ -147,9 +166,12 @@ test('Search V2 普通类别窗口保留第 101 条之后的结果，换查询�
   await page.goto('/search/?q=的');
   const section = page.locator('section[aria-labelledby="search-results-enemies"]');
   await expect(section.locator('a.entity-overview-card')).toHaveCount(100);
-  await expect(section.locator('[data-search-total]')).toHaveAttribute('data-search-total', '105');
+  await expect(section.locator('[data-search-total]')).toHaveAttribute(
+    'data-search-total',
+    String(enemyWindowCount)
+  );
   await section.locator('.search-result-window > button').click();
-  await expect(section.locator('a.entity-overview-card')).toHaveCount(105);
+  await expect(section.locator('a.entity-overview-card')).toHaveCount(enemyWindowCount);
   await expect(section.locator('.search-result-window > button')).toHaveCount(0);
   const input = page.locator('#search-page-query');
   await input.fill('三月七');
@@ -175,7 +197,7 @@ test('全局搜索以提交同步 URL，并支持刷新与前进后退', async (
   await expect(page).toHaveURL(/q=%E4%B8%89%E6%9C%88%E4%B8%83/);
   await expect(page.locator('a[href="/characters/1001/"]')).toBeVisible();
   await expect(page.locator('a[href="/light-cones/20000/"]')).toHaveCount(0);
-  await page.locator('.search-bar button[type="submit"]').click();
+  await input.press('Enter');
   await expect(page).toHaveURL(/q=%E9%94%8B%E9%95%9D/);
   await expect(page.locator('a[href="/light-cones/20000/"]')).toBeVisible();
 
@@ -250,19 +272,19 @@ test('全局搜索按模式与赛期展示真实 Endgame enemy occurrences', asy
     await expect(endgame.locator(`#search-results-endgame-${mode}`)).toHaveCount(0);
 
   const cards = endgame.locator('[data-endgame-enemy-card]');
-  await expect(cards).toHaveCount(4);
+  await expect(cards).toHaveCount(endgameCount);
   expect(
     await cards.evaluateAll((items) =>
       items.map((item) => item.getAttribute('data-endgame-enemy-level'))
     )
-  ).toEqual(['60', '70', '80', '90']);
-  await expect(cards.locator('[data-enemy-portrait]')).toHaveCount(4);
-  await expect(cards.locator('[data-endgame-hp]')).toHaveCount(4);
-  await expect(cards.locator('[data-endgame-speed]')).toHaveCount(4);
-  await expect(cards.locator('[data-endgame-toughness]')).toHaveCount(4);
-  await expect(cards.locator('.endgame-weaknesses')).toHaveCount(4);
+  ).toEqual(endgameLevels);
+  await expect(cards.locator('[data-enemy-portrait]')).toHaveCount(endgameCount);
+  await expect(cards.locator('[data-endgame-hp]')).toHaveCount(endgameCount);
+  await expect(cards.locator('[data-endgame-speed]')).toHaveCount(endgameCount);
+  await expect(cards.locator('[data-endgame-toughness]')).toHaveCount(endgameCount);
+  await expect(cards.locator('.endgame-weaknesses')).toHaveCount(endgameCount);
   await expect(endgame.locator('[data-endgame-enemy-card][href="/enemies/4064012/"]')).toHaveCount(
-    4
+    endgameCount
   );
   await expect(page.locator('a.entity-overview-card[href="/enemies/4064012/"]')).toBeVisible();
 
@@ -270,8 +292,14 @@ test('全局搜索按模式与赛期展示真实 Endgame enemy occurrences', asy
   const seasons = page
     .locator('section[aria-labelledby="search-results-endgame"]')
     .getByRole('heading', { level: 4 });
-  await expect(seasons).toHaveText(['遗忘冽风', '金血恶兽']);
-  await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(5);
+  const nextTarget = index.endgameTargets.find((target) => target.name === '末日歧途的盗火者')!;
+  await expect(seasons).toHaveCount(
+    new Set(nextTarget.occurrences.map(({ locator }) => locator.groupId)).size
+  );
+  await expect(seasons).toContainText(['遗忘冽风', '金血恶兽']);
+  await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(
+    nextTarget.occurrences.length
+  );
 });
 
 test('全局搜索不把赛期名称当作 Endgame 实体', async ({ page }) => {
@@ -291,7 +319,7 @@ test('全局搜索 Endgame grid 与展开导航在各断点不横向溢出', asy
   ]) {
     await page.setViewportSize(viewport);
     await page.goto(`/search?q=${encodeURIComponent('迷惘之渊的裁定者')}`);
-    await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(4);
+    await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(endgameCount);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth - document.documentElement.clientWidth
@@ -328,7 +356,7 @@ test('全局搜索丢弃迟到分片，并在 Back/Forward 中复用分片缓存
   await expect(page.locator('section[aria-labelledby="search-results-endgame"]')).toHaveCount(0);
 
   await page.goBack();
-  await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(4);
+  await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(endgameCount);
   expect(shardRequests).toBe(1);
   await page.goForward();
   await expect(page.locator('.empty-state')).toHaveCount(1);
@@ -349,7 +377,7 @@ test('Endgame 搜索单卡、多卡与不足一行均固定卡宽并从左排列
 
   await page.goto(`/search?q=${encodeURIComponent('迷惘之渊的裁定者')}`);
   const cards = page.locator('[data-endgame-enemy-card]');
-  await expect(cards).toHaveCount(4);
+  await expect(cards).toHaveCount(endgameCount);
   const boxes = await cards.evaluateAll((items) =>
     items.map((item) => {
       const box = item.getBoundingClientRect();

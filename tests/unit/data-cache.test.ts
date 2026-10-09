@@ -9,9 +9,9 @@ import {
 } from '../../scripts/data/generated-artifacts';
 import { publishGeneratedDirectories } from '../../scripts/data/sync';
 
-it('accepts the schema-48 dual-locale generated tree and validates every emitted artifact', async () => {
+it('accepts the schema-51 training/detail tree and validates every emitted artifact', async () => {
   const manifest = await readDataManifest();
-  expect(manifest.schemaVersion).toBe(48);
+  expect(manifest.schemaVersion).toBe(51);
   expect(manifest.publicLocales).toEqual(['zh-CN', 'en']);
   expect(manifest.publicLocale).toBe('zh-CN');
   expect(manifest.generatedLocales).toEqual(['zh-CN', 'en']);
@@ -27,7 +27,14 @@ it('accepts the schema-48 dual-locale generated tree and validates every emitted
     'locale'
   );
   expect(manifest.artifacts['runtime/player.json']).not.toHaveProperty('locale');
+  expect(manifest.artifacts).toHaveProperty('static/generated/training/shared.json');
+  for (const id of manifest.routes.characters)
+    expect(manifest.artifacts).toHaveProperty(`static/generated/training/characters/${id}.json`);
+  for (const id of manifest.routes['light-cones'])
+    expect(manifest.artifacts).toHaveProperty(`static/generated/training/light-cones/${id}.json`);
   for (const locale of ['zh-CN', 'en'] as const) {
+    expect(manifest.artifacts).toHaveProperty(`static/generated/${locale}/materials.json`);
+    expect(manifest.artifacts).toHaveProperty(`static/generated/${locale}/material-details.json`);
     const playerEquipment = JSON.parse(
       await readFile(path.join(staticGeneratedRoot, locale, 'player-equipment.json'), 'utf8')
     ) as Record<string, unknown>;
@@ -40,12 +47,15 @@ it('accepts the schema-48 dual-locale generated tree and validates every emitted
   });
 }, 30_000);
 
-it('rejects the previous manifest schema so cached totals cannot be reused', async () => {
-  const manifest = await readDataManifest();
-  expect(() => assertDataManifest({ ...manifest, schemaVersion: 46 })).toThrow(
-    'Unsupported generated data manifest schema'
-  );
-});
+it.each([46, 48, 49, 50])(
+  'rejects manifest schema %i so stale generated caches cannot be reused',
+  async (schemaVersion: number) => {
+    const manifest = await readDataManifest();
+    expect(() => assertDataManifest({ ...manifest, schemaVersion })).toThrow(
+      'Unsupported generated data manifest schema'
+    );
+  }
+);
 
 it('does not publish neutral/source staging or root compatibility outputs', async () => {
   await expect(readFile(path.join(generatedRoot, 'neutral', 'source.json'))).rejects.toMatchObject({

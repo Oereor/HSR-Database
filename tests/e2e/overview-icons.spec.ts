@@ -53,9 +53,9 @@ for (const locale of ['zh-CN', 'en']) {
         const entry = entries.find((item) => item.id === id)!;
         for (const route of [`/${type}`, '/search/']) {
           await page.goto(`${prefix}${route}?q=${encodeURIComponent(entry.name)}`);
-          await checkCard(page.locator(`a[href="${prefix}/${type}/${id}"]`).first(), entry);
+          await checkCard(page.locator(`a[href="${prefix}/${type}/${id}/"]`).first(), entry);
           await page
-            .locator(`a[href="${prefix}/${type}/${id}"]`)
+            .locator(`a[href="${prefix}/${type}/${id}/"]`)
             .first()
             .screenshot({
               path: test
@@ -71,7 +71,7 @@ for (const locale of ['zh-CN', 'en']) {
       ] as const) {
         const card = page.locator(`[data-homepage-recent="${kind}"] a`).first();
         const href = await card.getAttribute('href');
-        const entry = entries.find((item) => href === `${prefix}/${type}/${item.id}`)!;
+        const entry = entries.find((item) => href === `${prefix}/${type}/${item.id}/`)!;
         await checkCard(card, entry);
         await card.screenshot({ path: test.info().outputPath(`home-${kind}.png`) });
       }

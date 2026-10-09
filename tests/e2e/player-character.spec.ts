@@ -342,6 +342,9 @@ test('reuses the Player cache and renders real progression without changing stat
   const level = page.locator('[data-player-stats-panel]').getByRole('slider');
   const levelValue = page.locator('.player-stats-panel .skill-level-control__value');
   const promotionTag = levelValue.locator('.skill-effect-tag');
+  await expect(page.locator('#training')).toHaveCount(0);
+  await expect(page.locator('.section-nav a[href="#training"]')).toHaveCount(0);
+  await expect(page.locator('.trace-toggle')).toHaveCount(0);
   await expect(level).toBeDisabled();
   await expect(level).toHaveValue('80');
   await expect(promotionTag).toHaveText(/\S/);
@@ -368,7 +371,7 @@ test('reuses the Player cache and renders real progression without changing stat
   );
   await expect(page.locator('[data-trace-id="1304103"]')).toHaveAttribute(
     'data-player-state',
-    'unresolved'
+    'inactive'
   );
   await expect(page.locator('#eidolons [data-player-state="active"]')).toHaveCount(3);
   await expect(page.locator('#eidolons [data-player-state="inactive"]')).toHaveCount(3);
@@ -404,6 +407,9 @@ test('reuses the Player cache and renders real progression without changing stat
   );
   await expect(lightConeCard.locator('.player-light-cone__identity > span')).toHaveCount(2);
   await expect(lightConeCard.locator('.player-light-cone__progression > span')).toHaveCount(3);
+  const lightConeImage = lightConeCard.locator('.compact-entity-card__artwork img');
+  await lightConeImage.scrollIntoViewIfNeeded();
+  await lightConeImage.evaluate((image: HTMLImageElement) => image.decode());
   const lightConeArtworkFit = await lightConeCard
     .locator('.compact-entity-card__artwork')
     .evaluate((artwork) => {
@@ -428,7 +434,8 @@ test('reuses the Player cache and renders real progression without changing stat
       lightConeArtworkFit.insetRight,
       lightConeArtworkFit.insetBottom,
       lightConeArtworkFit.insetLeft
-    ].every((inset) => inset >= 3)
+    ].every((inset) => inset >= 3),
+    JSON.stringify(lightConeArtworkFit)
   ).toBe(true);
   await expect(page.locator('[data-player-relic-slot]')).toHaveCount(6);
   await expect(page.locator('[data-player-relic-slot="BODY"]')).toHaveAttribute(
@@ -585,7 +592,7 @@ test('reuses the Player cache and renders real progression without changing stat
   await page.goto('/characters/1304/');
   const staticLevel = page.locator('#character-level-1304');
   await expect(staticLevel).toBeEnabled();
-  await expect(page.locator('.base-stats-panel .skill-effect-tag')).toHaveCount(0);
+  await expect(page.locator('.base-stats-panel .skill-effect-tag')).toHaveCount(1);
   await expect(page.locator('[data-player-stats-panel]')).toHaveCount(0);
   await expect(page.locator('#eidolons [data-player-state]')).toHaveCount(0);
   await expect(page.locator('#equipment-recommendation')).toBeVisible();

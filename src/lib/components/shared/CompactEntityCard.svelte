@@ -79,6 +79,8 @@
 
   .compact-entity-card__artwork {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
     width: 4.6rem;
     height: 4.6rem;
     place-items: center;

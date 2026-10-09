@@ -19,9 +19,9 @@ export function normalizeStatProgression(
 ): BaseStatProgression {
   const ordered = [...rows].sort((a, b) => Number(a.MaxLevel) - Number(b.MaxLevel));
   const stages: PromotionStage[] = ordered.map((row, index) => ({
-    // At an ascension boundary the product intentionally shows the highest reached promotion.
-    fromLevel: index === 0 ? 1 : Number(ordered[index - 1].MaxLevel),
-    toLevel: index === ordered.length - 1 ? Number(row.MaxLevel) : Number(row.MaxLevel) - 1,
+    // Static preview uses the first stage whose original MaxLevel covers the target.
+    fromLevel: index === 0 ? 1 : Number(ordered[index - 1].MaxLevel) + 1,
+    toLevel: Number(row.MaxLevel),
     hp: { base: numberOf(row[fields.hpBase]), perLevel: numberOf(row[fields.hpAdd]) },
     attack: {
       base: numberOf(row[fields.attackBase]),

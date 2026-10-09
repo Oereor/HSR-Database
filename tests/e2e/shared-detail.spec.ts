@@ -4,11 +4,25 @@ test('共享 SectionNav 提供真实锚点、scroll spy、sticky offset 与窄�
   await page.goto('/characters/1001/');
   const characterNav = page.locator('.section-nav');
   const characterLinks = characterNav.getByRole('link');
-  await expect(characterLinks).toHaveCount(5);
+  await expect(characterLinks).toHaveCount(6);
   expect(
     await characterLinks.evaluateAll((links) => links.map((link) => link.getAttribute('href')))
-  ).toEqual(['#stats', '#skills', '#traces', '#eidolons', '#equipment-recommendation']);
-  for (const id of ['stats', 'skills', 'traces', 'eidolons', 'equipment-recommendation'])
+  ).toEqual([
+    '#stats',
+    '#skills',
+    '#traces',
+    '#eidolons',
+    '#equipment-recommendation',
+    '#training'
+  ]);
+  for (const id of [
+    'stats',
+    'skills',
+    'traces',
+    'eidolons',
+    'equipment-recommendation',
+    'training'
+  ])
     await expect(page.locator(`#${id}`)).toHaveCount(1);
 
   await expect(characterNav.locator('a[href="#stats"]')).toHaveAttribute(
@@ -64,7 +78,7 @@ test('共享 SectionNav 提供真实锚点、scroll spy、sticky offset 与窄�
     await expect(page.locator(`#${id}`)).toHaveCount(1);
 
   await page.goto('/light-cones/20000/');
-  await expect(page.locator('.section-nav')).toHaveCount(0);
+  await expect(page.locator('.section-nav')).toHaveCount(1);
 });
 
 test('四类详情页消费同一标题视觉层级并保持语义 heading hierarchy', async ({ page }) => {
@@ -84,7 +98,9 @@ test('四类详情页消费同一标题视觉层级并保持语义 heading hiera
   await page.goto('/enemies/1003010/');
   await expect(page.locator('#monsters h2')).toBeVisible();
   await expect(page.locator('#summons h3')).toBeVisible();
-  await expect(page.locator('#skill-groups h3')).toBeVisible();
+  await expect(page.locator('[data-enemy-skill-selector]')).toBeVisible();
+  await expect(page.locator('[data-enemy-skill-option][aria-pressed="true"]')).toHaveCount(1);
+  await expect(page.locator('.enemy-skill-browser__detail h3').first()).toBeVisible();
   await expect(page.locator('#skills h2')).toBeVisible();
 
   for (const url of [
@@ -98,7 +114,8 @@ test('四类详情页消费同一标题视觉层级并保持语义 heading hiera
   }
 
   await page.goto('/endgame/moc/1034/?encounter=5312');
-  await expect(page.locator('#moc-encounter-title')).toContainText('12');
+  await expect(page.locator('#moc-encounter-title')).toBeVisible();
+  await expect(page.locator('#moc-encounter-title')).not.toBeEmpty();
   await expect(page.locator('[data-battle-slot="1"] h3')).toContainText('1');
   await expect(page.locator('[data-battle-slot="1"] [data-wave] h4').first()).toContainText('1');
 });

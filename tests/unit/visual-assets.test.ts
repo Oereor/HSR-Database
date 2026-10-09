@@ -4,6 +4,7 @@ import path from 'node:path';
 import sharp from 'sharp';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
+  resolveMaterialIconAsset,
   resolveCharacterPreviewAsset,
   resolveCharacterPortraitAsset,
   resolveCharacterDetailIconAsset,
@@ -82,6 +83,7 @@ const manifest = (options?: {
     previews: available(options?.previews ?? []),
     portraits: available(options?.portraits ?? [])
   },
+  materials: { icons: { available: [], missing: [] } },
   playerAvatars: available(options?.playerAvatars ?? []),
   characterDetails: {
     icons: { resolved: options?.characterDetailIcons ?? {}, missing: [] }
@@ -117,6 +119,72 @@ afterEach(async () => {
 });
 
 describe('视觉资源管线', () => {
+  it('generates only requested material icons and resolves missing materials without a URL', async () => {
+    const root = await mkdtemp(path.join(process.cwd(), '.material-assets-'));
+    temporaryDirectories.push(root);
+    const indexDirectory = path.join(root, 'index_new', 'cn');
+    const itemDirectory = path.join(root, 'icon', 'item');
+    await Promise.all([
+      mkdir(indexDirectory, { recursive: true }),
+      mkdir(itemDirectory, { recursive: true })
+    ]);
+    await Promise.all(
+      [
+        'characters',
+        'light_cones',
+        'relic_sets',
+        'relics',
+        'properties',
+        'character_skills',
+        'character_skill_trees',
+        'character_ranks'
+      ].map((name) => writeFile(path.join(indexDirectory, `${name}.json`), '{}'))
+    );
+    await sharp({
+      create: { width: 256, height: 256, channels: 4, background: { r: 1, g: 2, b: 3, alpha: 0.5 } }
+    })
+      .png()
+      .toFile(path.join(itemDirectory, '2.png'));
+    const requirements = {
+      materialIds: ['2', '9999'],
+      characterIds: [],
+      playerAvatars: [],
+      characterDetailIconKeys: [],
+      lightConeIds: [],
+      relicSetIds: [],
+      relicPieces: [],
+      relicPropertyIcons: [],
+      elements: [],
+      paths: [],
+      navigationIcons: [],
+      brandIcons: [],
+      utilityIcons: [],
+      endgameModeIcons: []
+    };
+    const outputRoot = path.join(root, 'output');
+    const assets = await generateVisualAssets(root, requirements, outputRoot);
+    const candidate: VisualAssetManifest = {
+      schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
+      generatedAt: '',
+      ...assets
+    };
+    expect(candidate.materials.icons).toEqual({ available: ['2'], missing: ['9999'] });
+    expect(await readdir(path.join(outputRoot, 'materials', 'icons'))).toEqual(['2.png']);
+    await expect(validateGeneratedAssetFiles(candidate, outputRoot)).resolves.toBeDefined();
+    expect(resolveMaterialIconAsset('2', candidate)).toBe(
+      '/generated-assets/materials/icons/2.png'
+    );
+    expect(resolveMaterialIconAsset('9999', candidate)).toBeUndefined();
+    expect(resolveMaterialIconAsset('../2', candidate)).toBeUndefined();
+    expect(manifestCoversRequirements(candidate, requirements)).toBe(true);
+    expect(
+      manifestCoversRequirements(candidate, { ...requirements, materialIds: ['2', '9999', '3'] })
+    ).toBe(false);
+    expect(assetRequirementsFingerprint(requirements)).not.toBe(
+      assetRequirementsFingerprint({ ...requirements, materialIds: ['2'] })
+    );
+  });
+
   it('HSR_ASSET_ROOT 未设置时解析默认同级资源目录', () => {
     vi.stubEnv('HSR_ASSET_ROOT', undefined);
     expect(resolveAssetRoot()).toBe(path.resolve(process.cwd(), '../StarRailRes'));
@@ -290,6 +358,7 @@ describe('视觉资源管线', () => {
     });
     expect(
       manifestCoversRequirements(source, {
+        materialIds: [],
         characterIds: ['1001'],
         playerAvatars: [{ id: '201001', sourceFileName: '1001.png' }],
         characterDetailIconKeys: [],
@@ -307,6 +376,7 @@ describe('视觉资源管线', () => {
     ).toBe(true);
     expect(
       manifestCoversRequirements(source, {
+        materialIds: [],
         characterIds: ['1001', '1002'],
         playerAvatars: [{ id: '201001', sourceFileName: '1001.png' }],
         characterDetailIconKeys: [],
@@ -326,6 +396,7 @@ describe('视觉资源管线', () => {
 
   it('requirement fingerprint 会使同一 upstream SHA 下的新增需求使缓存失效', () => {
     const requirements = {
+      materialIds: [],
       characterIds: ['1001'],
       playerAvatars: [],
       characterDetailIconKeys: [],
@@ -876,6 +947,7 @@ describe('视觉资源管线', () => {
     const generated = await generateVisualAssets(
       root,
       {
+        materialIds: [],
         characterIds: ['1001', '1002', '1003'],
         playerAvatars: [],
         characterDetailIconKeys: [],
@@ -946,6 +1018,7 @@ describe('视觉资源管线', () => {
     const recovered = await generateVisualAssets(
       root,
       {
+        materialIds: [],
         characterIds: ['1001', '1002', '1003'],
         playerAvatars: [],
         characterDetailIconKeys: [],
@@ -1004,6 +1077,7 @@ describe('视觉资源管线', () => {
       generateVisualAssets(
         root,
         {
+          materialIds: [],
           characterIds: ['1001'],
           playerAvatars: [],
           characterDetailIconKeys: [],

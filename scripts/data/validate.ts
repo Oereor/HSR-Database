@@ -1,3 +1,4 @@
+import { validateTrainingSemantics } from './validation/training.js';
 import { normalizeEnemySkillKind, normalizeEnemySkillTag } from './enemy-skill-policy.js';
 import { createTextResolver } from './localization.js';
 import { parameterized } from './domain/shared.js';
@@ -85,6 +86,7 @@ import { validateBuildInputs } from './validation/build-inputs.js';
 import { buildPlayerRuntimeData, PLAYER_RUNTIME_TABLE_NAMES } from './player-runtime.js';
 
 const { manifest, rawRoot, textMaps: currentTextMaps } = await validateBuildInputs();
+await validateTrainingSemantics(rawRoot, staticGeneratedRoot, currentTextMaps);
 const playerRuntimeTables = Object.fromEntries(
   await Promise.all(
     PLAYER_RUNTIME_TABLE_NAMES.map(async (name) => [name, await readTable(rawRoot, name)] as const)

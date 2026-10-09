@@ -5,7 +5,12 @@
   import * as m from '$lib/paraglide/messages.js';
   import LevelSlider from '$lib/components/shared/LevelSlider.svelte';
 
+  import type { SkillPreviewControl } from '$lib/domain/training/detail-view';
+
+  export let previewControl: SkillPreviewControl | undefined = undefined;
+  export let onPreviewLevelChange: ((level: number) => void) | undefined = undefined;
   export let progression: SkillProgression;
+  export let controlId = `skill-progression-${progression.id}`;
   export let variants: SkillVariant[];
   export let categoryLabel: string;
   export let showGroupLabel = false;
@@ -25,10 +30,21 @@
     const playerIndex = progression.availableLevels.indexOf(resolvedPlayerLevel);
     if (playerIndex >= 0) selectedIndex = playerIndex;
   }
+  $: if (!playerMode && previewControl) {
+    const index = progression.availableLevels.indexOf(previewControl.previewLevel);
+    if (index >= 0) selectedIndex = index;
+  }
+  $: sliderLabel =
+    previewControl?.jointLabel && !playerMode
+      ? m.training_talent_assist_level()
+      : m.skill_level({ category: categoryLabel });
   $: selectedLevel = progression.availableLevels[selectedIndex] ?? progression.defaultLevel;
 </script>
 
-<div class="skill-progression-group">
+<div
+  class="skill-progression-group"
+  data-preview-key={!playerMode ? previewControl?.key : undefined}
+>
   {#if showGroupLabel}<p class="progression-group-label">
       {variants.map((variant) => gameTextToPlain(variant.name)).join(' / ')}
     </p>{/if}
@@ -45,8 +61,15 @@
     </div>
   {:else if progression.availableLevels.length > 1}
     <LevelSlider
-      id={`skill-progression-${progression.id}`}
-      label={m.skill_level({ category: categoryLabel })}
+      id={controlId}
+      label={sliderLabel}
+      leadingTag={!playerMode && previewControl?.requiredPromotion !== undefined
+        ? m.training_skill_promotion_required({ promotion: previewControl.requiredPromotion })
+        : undefined}
+      onValueChange={(index) => {
+        selectedIndex = index;
+        if (!playerMode) onPreviewLevelChange?.(progression.availableLevels[index]);
+      }}
       bind:value={selectedIndex}
       min={0}
       max={progression.availableLevels.length - 1}

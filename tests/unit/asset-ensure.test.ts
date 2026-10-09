@@ -36,6 +36,7 @@ vi.mock('../../scripts/assets/shared', async (original) => {
 });
 
 const requirements: AssetRequirements = {
+  materialIds: [],
   characterIds: [],
   playerAvatars: [],
   characterDetailIconKeys: [],
@@ -52,11 +53,12 @@ const requirements: AssetRequirements = {
 };
 const collection = () => ({ available: [], missing: [] });
 const manifest = (): VisualAssetManifest => ({
-  schemaVersion: 16,
+  schemaVersion: 17,
   generatedAt: 'fixture',
   sourceCommit: 'a'.repeat(40),
   requirementsFingerprint: assetRequirementsFingerprint(requirements),
   characters: { previews: collection(), portraits: collection() },
+  materials: { icons: { available: [], missing: [] } },
   playerAvatars: collection(),
   characterDetails: { icons: { resolved: {}, missing: [] } },
   lightCones: { previews: collection(), portraits: collection() },

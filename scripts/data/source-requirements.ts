@@ -1,6 +1,8 @@
+import { TRAINING_TABLE_NAMES } from './training-sources.js';
 import { characterLdSourceNames } from './character-sources.js';
 
 export const DATA_GENERATION_TABLE_NAMES = [
+  ...TRAINING_TABLE_NAMES,
   'AvatarConfig',
   'AvatarConfigEnhanced',
   'AvatarEnhancedSkill',

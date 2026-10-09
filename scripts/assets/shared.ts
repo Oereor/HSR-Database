@@ -37,6 +37,9 @@ import {
   generatedAssetRoot,
   generatedLightConePortraitRoot
 } from './paths.js';
+import { staticGeneratedRoot } from '../data/paths.js';
+import { assertTrainingSharedData } from '../../src/lib/domain/training/validation.js';
+import { trainingId } from '../../src/lib/domain/training/index.js';
 import { AssetFilesystemObservation, observeAssetFilesystem } from './observation.js';
 import { createBoundedPoolState, runBoundedPool, throwBoundedPoolFailures } from './pool.js';
 import { readCacheJson, type ManifestReadFailure } from '../deployment/cache-diagnostics.js';
@@ -44,7 +47,7 @@ import { readCacheJson, type ManifestReadFailure } from '../deployment/cache-dia
 // Windows may otherwise retain recently inspected files in libvips' cache during rollback cleanup.
 sharp.cache(false);
 
-export const VISUAL_ASSET_SCHEMA_VERSION = 16 as const;
+export const VISUAL_ASSET_SCHEMA_VERSION = 17 as const;
 
 export const ELEMENT_SOURCE_NAMES: Readonly<Record<string, string>> = {
   Physical: 'Physical',
@@ -92,6 +95,7 @@ const PLAYER_STAT_PROPERTY_ICONS = [
 ] as const;
 
 export interface AssetRequirements {
+  materialIds: string[];
   characterIds: string[];
   playerAvatars: PlayerAvatarRequirement[];
   characterDetailIconKeys: CharacterDetailIconKey[];
@@ -116,6 +120,7 @@ export interface AssetOutputPaths {
   root: string;
   previews: string;
   portraits: string;
+  materialIcons: string;
   playerAvatars: string;
   characterDetailIcons: string;
   characterDetailSkillIcons: string;
@@ -165,6 +170,7 @@ export interface AssetFallbackEntry {
 /** Stable cache key for the complete, normalized asset requirement set. */
 export function assetRequirementsFingerprint(requirements: AssetRequirements): string {
   const canonical = {
+    materialIds: [...requirements.materialIds].sort(),
     characterIds: [...requirements.characterIds].sort(),
     playerAvatars: [...requirements.playerAvatars].sort((a, b) => a.id.localeCompare(b.id)),
     characterDetailIconKeys: [...requirements.characterDetailIconKeys].sort(),
@@ -271,7 +277,12 @@ export async function readAssetRequirements(
       cause: error
     });
   }
+  const trainingShared: unknown = JSON.parse(
+    await readFile(path.join(staticGeneratedRoot, 'training', 'shared.json'), 'utf8')
+  );
+  assertTrainingSharedData(trainingShared);
   return {
+    materialIds: trainingShared.materials.map((material) => material.id),
     characterIds: uniqueSorted(characterCatalog.map((entry) => entry.id)),
     playerAvatars: await readPlayerAvatarRequirements(dataRoot),
     characterDetailIconKeys: uniqueSorted(
@@ -353,6 +364,7 @@ export function assetFallbackEntries(manifest: VisualAssetManifest): AssetFallba
     { label: '角色预览图', missing: manifest.characters.previews.missing },
     { label: '角色立绘', missing: manifest.characters.portraits.missing },
     { label: '玩家头像', missing: manifest.playerAvatars.missing },
+    { label: '养成材料图标', missing: manifest.materials.icons.missing },
     { label: '角色详情图标', missing: manifest.characterDetails.icons.missing },
     { label: '光锥预览图', missing: manifest.lightCones.previews.missing },
     { label: '光锥立绘', missing: manifest.lightCones.portraits.missing },
@@ -388,6 +400,7 @@ export function emptyAssetManifest(requirements: AssetRequirements): VisualAsset
       previews: unavailable(requirements.characterIds),
       portraits: unavailable(requirements.characterIds)
     },
+    materials: { icons: unavailable(requirements.materialIds) },
     playerAvatars: unavailable(requirements.playerAvatars.map(({ id }) => id)),
     characterDetails: {
       icons: { resolved: {}, missing: requirements.characterDetailIconKeys }
@@ -439,6 +452,7 @@ export function assetOutputPaths(root = generatedAssetRoot): AssetOutputPaths {
     previews: path.join(root, 'characters', 'preview'),
     portraits: path.join(root, 'characters', 'portrait'),
     playerAvatars: path.join(root, 'player-avatars'),
+    materialIcons: path.join(root, 'materials', 'icons'),
     characterDetailIcons: path.join(root, 'character-details', 'icons'),
     characterDetailSkillIcons: path.join(root, 'character-details', 'icons', 'skill'),
     characterDetailPropertyIcons: path.join(root, 'character-details', 'icons', 'property'),
@@ -460,6 +474,7 @@ async function prepareOutputDirectories(output: AssetOutputPaths): Promise<void>
   await rm(output.root, { recursive: true, force: true, maxRetries: 10, retryDelay: 200 });
   await Promise.all(
     [
+      output.materialIcons,
       output.previews,
       output.portraits,
       output.playerAvatars,
@@ -935,6 +950,10 @@ export async function writePortraitAsset(source: string, output: string): Promis
     .toFile(output);
 }
 
+export async function writeMaterialIconAsset(source: string, output: string): Promise<void> {
+  await sharp(source).resize(128, 128, { fit: 'contain' }).png().toFile(output);
+}
+
 export async function writeSemanticIconAsset(source: string, output: string): Promise<void> {
   await sharp(source).resize(64, 64, { fit: 'contain' }).png().toFile(output);
 }
@@ -986,6 +1005,7 @@ export async function generateVisualAssetsWithStats(
   outputRoot = generatedAssetRoot,
   options: AssetGenerationOptions = {}
 ): Promise<GeneratedVisualAssets> {
+  requirements.materialIds.forEach(trainingId);
   // Validate every index before touching output so malformed upstream data cannot erase a cache.
   const [
     previewSources,
@@ -1006,6 +1026,13 @@ export async function generateVisualAssetsWithStats(
   ]);
   const output = assetOutputPaths(outputRoot);
   await prepareOutputDirectories(output);
+  const materialIcons = planRequested(
+    requirements.materialIds.map(trainingId),
+    (id) => path.join(sourceRoot, 'icon', 'item', `${id}.png`),
+    (id) => path.join(output.materialIcons, `${id}.png`),
+    'sharp',
+    writeMaterialIconAsset
+  );
   const previews = planRequested(
     requirements.characterIds,
     (id) => previewSources.get(id),
@@ -1121,6 +1148,7 @@ export async function generateVisualAssetsWithStats(
     writeEndgameModeIconAsset
   );
   const plans = [
+    materialIcons,
     previews,
     portraits,
     playerAvatars,
@@ -1142,6 +1170,7 @@ export async function generateVisualAssetsWithStats(
     options
   );
   const assets = {
+    materials: { icons: materialIcons.result() },
     characters: { previews: previews.result(), portraits: portraits.result() },
     playerAvatars: playerAvatars.result(),
     characterDetails: { icons: characterDetailIcons.result() },
@@ -1201,6 +1230,7 @@ export function manifestCoversRequirements(
     manifest.schemaVersion === VISUAL_ASSET_SCHEMA_VERSION &&
     (!manifest.requirementsFingerprint ||
       manifest.requirementsFingerprint === assetRequirementsFingerprint(requirements)) &&
+    collectionCovers(manifest.materials.icons, requirements.materialIds) &&
     collectionCovers(manifest.characters.previews, requirements.characterIds) &&
     collectionCovers(manifest.characters.portraits, requirements.characterIds) &&
     collectionCovers(
@@ -1232,6 +1262,7 @@ const expectedFiles = (
   manifest: VisualAssetManifest,
   output = assetOutputPaths()
 ): Array<[string, string[]]> => [
+  [output.materialIcons, manifest.materials.icons.available.map((id) => `${id}.png`)],
   [output.previews, manifest.characters.previews.available.map((id) => `${id}.png`)],
   [output.portraits, manifest.characters.portraits.available.map((id) => `${id}.webp`)],
   [output.playerAvatars, manifest.playerAvatars.available.map((id) => `${id}.png`)],
@@ -1274,6 +1305,7 @@ const expectedFiles = (
 ];
 
 const assetOutputDirectories = (output: AssetOutputPaths): string[] => [
+  output.materialIcons,
   output.previews,
   output.portraits,
   output.playerAvatars,
@@ -1339,6 +1371,12 @@ export async function validateGeneratedAssetFiles(
   const actual = observation ?? (await observeGeneratedAssetFiles(outputRoot));
   if (!(await manifestFilesExist(manifest, outputRoot, actual)))
     throw new Error('视觉资源 manifest 与生成文件不一致。');
+  for (const id of manifest.materials.icons.available) {
+    trainingId(id);
+    const metadata = await actual.metadata(path.join(output.materialIcons, `${id}.png`));
+    if (metadata.format !== 'png' || metadata.width !== 128 || metadata.height !== 128)
+      throw new Error(`养成材料图标格式或尺寸异常：${id}`);
+  }
   for (const id of manifest.characters.previews.available) {
     const metadata = await actual.metadata(path.join(output.previews, `${id}.png`));
     if (metadata.format !== 'png' || !metadata.width || !metadata.height)

@@ -11,6 +11,7 @@ import type { NavigationIconKey } from '$lib/navigation';
 
 const manifest = manifestJson as VisualAssetManifest;
 const sets = {
+  materialIcon: new Set(manifest.materials.icons.available),
   preview: new Set(manifest.characters.previews.available),
   portrait: new Set(manifest.characters.portraits.available),
   playerAvatar: new Set(manifest.playerAvatars.available),
@@ -39,6 +40,20 @@ function resolveAsset(
   return available.has(value)
     ? `/generated-assets/${directory}/${encodeURIComponent(value)}.${extension}`
     : undefined;
+}
+
+export function resolveMaterialIconAsset(
+  itemId: string | undefined,
+  source: VisualAssetManifest = manifest
+): string | undefined {
+  if (!itemId || !/^[1-9]\d*$/.test(itemId)) return undefined;
+  return resolveAsset(
+    itemId,
+    source.materials.icons,
+    'materials/icons',
+    'png',
+    source === manifest ? sets.materialIcon : undefined
+  );
 }
 
 export function resolveCharacterPreviewAsset(

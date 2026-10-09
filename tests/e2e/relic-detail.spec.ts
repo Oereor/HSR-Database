@@ -120,6 +120,7 @@ test('窄屏故事默认收起，四张卡片独立展开', async ({ page }) => 
   for (const width of [820, 390]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/relics/101/');
+    await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
     const pieces = page.locator('[data-relic-piece-id]');
     const first = pieces.nth(0);
     const second = pieces.nth(1);

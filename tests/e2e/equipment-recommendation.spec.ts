@@ -14,7 +14,14 @@ test('角色装备推荐解析真实实体、同权属性与本地资源', async
       .locator('.section-nav')
       .getByRole('link')
       .evaluateAll((links) => links.map((link) => link.getAttribute('href')))
-  ).toEqual(['#stats', '#skills', '#traces', '#eidolons', '#equipment-recommendation']);
+  ).toEqual([
+    '#stats',
+    '#skills',
+    '#traces',
+    '#eidolons',
+    '#equipment-recommendation',
+    '#training'
+  ]);
 
   const lightCones = section.locator('a[href^="/light-cones/"]');
   const relicSets = section.locator('a[href^="/relics/"]');
