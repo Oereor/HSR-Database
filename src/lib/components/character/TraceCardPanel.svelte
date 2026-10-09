@@ -15,6 +15,18 @@
     type PlayerProgressionState
   } from '$lib/player/character';
 
+  import TraceToggle from './TraceToggle.svelte';
+  import type { CharacterTrainingProfile } from '$lib/domain/training/types';
+  export let trainingProfile: CharacterTrainingProfile | undefined = undefined;
+  export let activeTraceIds: string[] | undefined = undefined;
+  export let onToggleTrace: ((id: string) => void) | undefined = undefined;
+
+  const canToggle = (trace: Trace) =>
+    !playerSkillTree &&
+    !!onToggleTrace &&
+    trainingProfile?.nodes.some((node) => node.pointId === trace.id && node.kind === 'trace');
+  const trainingStateOf = (trace: Trace) =>
+    canToggle(trace) ? (activeTraceIds?.includes(trace.id) ? 'active' : 'inactive') : undefined;
   export let traces: Trace[];
   export let playerSkillTree: PlayerCharacter['skillTree'] | undefined = undefined;
 
@@ -37,7 +49,13 @@
           data-trace-id={group.ability.id}
           data-trace-type="ability"
           data-player-state={abilityState}
+          data-training-state={trainingStateOf(group.ability)}
         >
+          {#if canToggle(group.ability)}<TraceToggle
+              name={group.ability.name}
+              active={activeTraceIds?.includes(group.ability.id) ?? false}
+              onToggle={() => onToggleTrace?.(group.ability.id)}
+            />{/if}
           <TraceAbilityHeading trace={group.ability} playerState={abilityState} />
           <p class="trace-card__description">
             <GameText
@@ -56,7 +74,13 @@
             data-trace-type="stat"
             data-trace-owner={group.ability.id}
             data-player-state={statState}
+            data-training-state={trainingStateOf(stat)}
           >
+            {#if canToggle(stat)}<TraceToggle
+                name={stat.name}
+                active={activeTraceIds?.includes(stat.id) ?? false}
+                onToggle={() => onToggleTrace?.(stat.id)}
+              />{/if}
             <div class="trace-card__heading">
               <h3 class:trace-card__title--icon={!!statIconUrl}>
                 {#if statIconUrl}<AssetImage
@@ -98,8 +122,14 @@
           data-trace-id={ability.id}
           data-trace-type="ability"
           data-trace-special
+          data-training-state={trainingStateOf(ability)}
           data-player-state={abilityState}
         >
+          {#if canToggle(ability)}<TraceToggle
+              name={ability.name}
+              active={activeTraceIds?.includes(ability.id) ?? false}
+              onToggle={() => onToggleTrace?.(ability.id)}
+            />{/if}
           <TraceAbilityHeading trace={ability} playerState={abilityState} />
           <p class="trace-card__description">
             <GameText text={ability.description || m.common_localized_description_unavailable()} />
@@ -117,7 +147,13 @@
             data-trace-type="stat"
             data-trace-standalone
             data-player-state={statState}
+            data-training-state={trainingStateOf(stat)}
           >
+            {#if canToggle(stat)}<TraceToggle
+                name={stat.name}
+                active={activeTraceIds?.includes(stat.id) ?? false}
+                onToggle={() => onToggleTrace?.(stat.id)}
+              />{/if}
             <div class="trace-card__heading">
               <h3 class:trace-card__title--icon={!!statIconUrl}>
                 {#if statIconUrl}<AssetImage

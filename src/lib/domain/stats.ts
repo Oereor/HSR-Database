@@ -15,14 +15,28 @@ export function getBaseStatsAtLevel(
     progression.maxLevel,
     Math.max(progression.minLevel, Math.round(requestedLevel))
   );
-  const stage =
-    [...progression.stages].reverse().find((candidate) => level >= candidate.fromLevel) ??
-    progression.stages[0];
+  const stage = progression.stages[getPromotionAtLevel(progression, level)];
   return {
     hp: calculate(stage, 'hp', level),
     attack: calculate(stage, 'attack', level),
     defence: calculate(stage, 'defence', level)
   };
+}
+
+/** Stages are ordered, contiguous, inclusive intervals generated from raw MaxLevel. */
+export function getPromotionAtLevel(
+  progression: BaseStatProgression,
+  requestedLevel: number
+): number {
+  const level = Math.min(
+    progression.maxLevel,
+    Math.max(progression.minLevel, Math.round(requestedLevel))
+  );
+  const promotion = progression.stages.findIndex(
+    (stage) => level >= stage.fromLevel && level <= stage.toLevel
+  );
+  if (promotion < 0) throw new Error(`Missing base stat stage for level ${level}`);
+  return promotion;
 }
 
 function calculate(stage: PromotionStage, key: keyof BaseStats, level: number): number {

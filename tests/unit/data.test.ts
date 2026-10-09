@@ -1427,12 +1427,12 @@ describe('真实数据管线', () => {
     ) as LightCone;
     expect(getBaseStatsAtLevel(march.baseStats, 1).hp).toBe(144);
     expect(getBaseStatsAtLevel(march.baseStats, 19).hp).toBe(273.6);
-    expect(getBaseStatsAtLevel(march.baseStats, 20).hp).toBe(338.4);
+    expect(getBaseStatsAtLevel(march.baseStats, 20).hp).toBe(280.8);
     expect(getBaseStatsAtLevel(march.baseStats, 80).hp).toBe(1058.4);
     expect(getBaseStatsAtLevel(arrows.baseStats, 1).hp).toBe(38.4);
-    expect(getBaseStatsAtLevel(arrows.baseStats, 20).hp).toBe(193.92);
+    expect(getBaseStatsAtLevel(arrows.baseStats, 20).hp).toBe(147.84);
     expect(getBaseStatsAtLevel(arrows.baseStats, 80).hp).toBe(846.72);
-    expect(formatBaseStat(getBaseStatsAtLevel(march.baseStats, 20).hp)).toBe('338');
+    expect(formatBaseStat(getBaseStatsAtLevel(march.baseStats, 20).hp)).toBe('281');
     expect(formatBaseStat(getBaseStatsAtLevel(arrows.baseStats, 80).hp)).toBe('847');
     expect(march.baseStats.defaultLevel).toBe(80);
     expect(arrows.baseStats.defaultLevel).toBe(80);

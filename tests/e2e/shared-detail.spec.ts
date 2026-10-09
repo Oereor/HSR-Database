@@ -4,11 +4,25 @@ test('共享 SectionNav 提供真实锚点、scroll spy、sticky offset 与窄�
   await page.goto('/characters/1001/');
   const characterNav = page.locator('.section-nav');
   const characterLinks = characterNav.getByRole('link');
-  await expect(characterLinks).toHaveCount(5);
+  await expect(characterLinks).toHaveCount(6);
   expect(
     await characterLinks.evaluateAll((links) => links.map((link) => link.getAttribute('href')))
-  ).toEqual(['#stats', '#skills', '#traces', '#eidolons', '#equipment-recommendation']);
-  for (const id of ['stats', 'skills', 'traces', 'eidolons', 'equipment-recommendation'])
+  ).toEqual([
+    '#stats',
+    '#skills',
+    '#traces',
+    '#training',
+    '#eidolons',
+    '#equipment-recommendation'
+  ]);
+  for (const id of [
+    'stats',
+    'skills',
+    'traces',
+    'training',
+    'eidolons',
+    'equipment-recommendation'
+  ])
     await expect(page.locator(`#${id}`)).toHaveCount(1);
 
   await expect(characterNav.locator('a[href="#stats"]')).toHaveAttribute(
@@ -64,7 +78,7 @@ test('共享 SectionNav 提供真实锚点、scroll spy、sticky offset 与窄�
     await expect(page.locator(`#${id}`)).toHaveCount(1);
 
   await page.goto('/light-cones/20000/');
-  await expect(page.locator('.section-nav')).toHaveCount(0);
+  await expect(page.locator('.section-nav')).toHaveCount(1);
 });
 
 test('四类详情页消费同一标题视觉层级并保持语义 heading hierarchy', async ({ page }) => {

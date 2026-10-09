@@ -1,4 +1,6 @@
 export * from './types.js';
+export * from './exp.js';
+import { calculateTrainingExpCosts } from './exp.js';
 import type {
   CharacterTrainingData,
   CharacterTrainingProfile,
@@ -444,25 +446,30 @@ export function reconcileCharacterLevel(
 function costResult(
   exp: readonly number[] | undefined,
   level: number,
-  steps: CostSourceStep[]
+  steps: CostSourceStep[],
+  shared: TrainingSharedData,
+  kind: 'character' | 'light-cone'
 ): TrainingCosts {
   const bySource = (source: CostSourceStep['source']): Cost =>
     mergeCosts(...steps.filter((step) => step.source === source).map((step) => step.cost));
   const promotionCost = bySource('promotion');
   const skillCost = bySource('skill');
   const traceCost = bySource('trace');
+  const expCosts = calculateTrainingExpCosts(kind, shared, requiredExp(exp, level));
+  const totalKnownCost = mergeCosts(promotionCost, skillCost, traceCost);
   return {
-    requiredExp: requiredExp(exp, level),
+    ...expCosts,
     promotionCost,
     skillCost,
     traceCost,
-    totalKnownCost: mergeCosts(promotionCost, skillCost, traceCost),
+    totalKnownCost,
+    totalCost: mergeCosts(totalKnownCost, expCosts.expItemCost, expCosts.expCreditCost),
     steps,
     precision: {
       requiredExp: 'exact-from-configuration',
       knownCosts: 'exact-from-configuration',
-      expItemConsumption: 'unresolved',
-      expCreditCost: 'unresolved'
+      expItemConsumption: 'exact-under-greedy-strategy',
+      expCreditCost: 'exact-under-greedy-strategy'
     }
   };
 }
@@ -497,7 +504,7 @@ export function calculateCharacterTrainingTarget(
     steps.push({ source: 'trace', key: node.key, level: 1, cost: mergeCosts(node.steps[0].cost) });
   }
   return {
-    ...costResult(shared.characterExp[data.expGroup], target.level, steps),
+    ...costResult(shared.characterExp[data.expGroup], target.level, steps, shared, 'character'),
     target: {
       avatarId: target.avatarId,
       enhancedId: target.enhancedId,
@@ -533,7 +540,7 @@ export function calculateLightConeTrainingTarget(
     cost: mergeCosts(stage.cost)
   }));
   return {
-    ...costResult(shared.lightConeExp[data.expGroup], target.level, steps),
+    ...costResult(shared.lightConeExp[data.expGroup], target.level, steps, shared, 'light-cone'),
     target: { equipmentId: target.equipmentId, level: target.level, promotion }
   };
 }

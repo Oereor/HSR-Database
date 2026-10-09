@@ -16,7 +16,8 @@ import {
   trainingInteger,
   TrainingError,
   validatePromotionChain,
-  validateTrainingProfile
+  validateTrainingProfile,
+  TRAINING_CREDIT_ITEM_ID
 } from './index.js';
 
 function record(value: unknown): value is Record<string, unknown> {
@@ -57,7 +58,7 @@ export function assertTrainingSharedData(value: unknown): asserts value is Train
   }
   const materialIds = new Set(data.materials.map((material) => material.id));
   for (const items of [data.characterExpItems, data.lightConeExpItems]) {
-    if (!Array.isArray(items)) throw new TrainingError('invalid-exp-items', 'EXP');
+    if (!Array.isArray(items) || !items.length) throw new TrainingError('invalid-exp-items', 'EXP');
     const seen = new Set<string>();
     for (const item of items) {
       trainingId(item.itemId);
@@ -131,11 +132,12 @@ export function validateTrainingBundle(
 ): void {
   assertTrainingSharedData(bundle.shared);
   const ids = new Set(bundle.shared.materials.map((material) => material.id));
-  const referenced = new Set(
-    [...bundle.shared.characterExpItems, ...bundle.shared.lightConeExpItems].map(
+  const referenced = new Set([
+    TRAINING_CREDIT_ITEM_ID,
+    ...[...bundle.shared.characterExpItems, ...bundle.shared.lightConeExpItems].map(
       (item) => item.itemId
     )
-  );
+  ]);
   const checkCost = (cost: Record<string, number>): void => {
     for (const id of Object.keys(mergeCosts(cost))) {
       if (!ids.has(id)) throw new TrainingError('missing-material-reference', id);
@@ -152,11 +154,12 @@ export function validateTrainingBundle(
     data.promotions.forEach((stage) => checkCost(stage.cost));
     for (const profile of data.profiles) {
       profile.nodes.forEach((node) => node.steps.forEach((step) => checkCost(step.cost)));
-      calculateCharacterTrainingTarget(
+      const result = calculateCharacterTrainingTarget(
         data,
         bundle.shared,
         createDefaultCharacterTrainingTarget(data, profile.enhancedId)
       );
+      checkCost(result.totalCost);
     }
   }
   for (const data of bundle.lightCones) {
@@ -167,7 +170,11 @@ export function validateTrainingBundle(
     data.promotions.forEach((stage) => checkCost(stage.cost));
     const level = data.promotions.at(-1)!.maxLevel;
     derivePromotion(data.promotions, level);
-    calculateLightConeTrainingTarget(data, bundle.shared, { equipmentId: data.equipmentId, level });
+    const result = calculateLightConeTrainingTarget(data, bundle.shared, {
+      equipmentId: data.equipmentId,
+      level
+    });
+    checkCost(result.totalCost);
   }
   if (ids.size !== referenced.size || [...ids].some((id) => !referenced.has(id)))
     throw new TrainingError('unused-material', 'material inventory');

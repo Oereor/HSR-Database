@@ -188,14 +188,21 @@ async function createFixture(): Promise<Fixture> {
     }
   });
 
+  const materials = ['2', '211', '221'].map((id) => ({
+    id,
+    mainType: 'Synthetic',
+    subType: 'Synthetic',
+    rarity: 'Rare',
+    iconKey: id
+  }));
   const promotions = [{ promotion: 0, maxLevel: 2, cost: {} }];
   await writeArtifact('static/generated/training/shared.json', {
     schemaVersion: 1,
     characterExp: { '1': [10] },
     lightConeExp: { '1': [10] },
-    materials: [],
-    characterExpItems: [],
-    lightConeExpItems: [],
+    materials,
+    characterExpItems: [{ itemId: '211', exp: 10 }],
+    lightConeExpItems: [{ itemId: '221', exp: 10, creditCost: 5 }],
     characterExpCreditDivisor: 10
   });
   await writeArtifact('static/generated/training/characters/1.json', {
@@ -233,7 +240,11 @@ async function createFixture(): Promise<Fixture> {
   for (const locale of ['zh-CN', 'en'] as const)
     await writeArtifact(
       `static/generated/${locale}/materials.json`,
-      { schemaVersion: 1, locale, materials: [] },
+      {
+        schemaVersion: 1,
+        locale,
+        materials: materials.map((material) => ({ ...material, name: `synthetic ${material.id}` }))
+      },
       locale
     );
 
@@ -262,7 +273,7 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 49,
+    schemaVersion: 50,
     sourceCommit: commit,
     sourceVersion,
     gameVersionFull: '4.5.0',

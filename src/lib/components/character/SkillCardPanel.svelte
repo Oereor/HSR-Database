@@ -7,6 +7,11 @@
   import type { PlayerCharacter } from '$lib/player/contract';
   import { createPlayerSkillTreeIndex, resolvePlayerSkillLevel } from '$lib/player/character';
 
+  import type { SkillTrainingControl } from '$lib/domain/training/detail-view';
+
+  export let trainingControls: Record<string, SkillTrainingControl> | undefined = undefined;
+  export let onDisplayLevelChange: ((pointId: string, level: number) => void) | undefined =
+    undefined;
   export let card: SkillCard;
   export let specialEffectsAvailable = false;
   export let specialEffectIconUrl: string | undefined = undefined;
@@ -34,6 +39,9 @@
   {#each card.progressions as progression (progression.id)}
     <SkillProgressionPanel
       {progression}
+      controlId={`skill-progression-${card.category}-${progression.id}`}
+      trainingControl={trainingControls?.[progression.id]}
+      onDisplayLevelChange={(level) => onDisplayLevelChange?.(progression.id, level)}
       variants={card.variants.filter((variant) => progression.variantIds.includes(variant.id))}
       categoryLabel={card.displayLabel}
       showGroupLabel={card.progressions.length > 1}

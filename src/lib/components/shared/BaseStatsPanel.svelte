@@ -13,7 +13,9 @@
   export let energy: CharacterEnergy | undefined = undefined;
   export let initialLevel: number | undefined = undefined;
 
-  let level = initialLevel ?? progression.defaultLevel;
+  export let level = initialLevel ?? progression.defaultLevel;
+  export let leadingTag: string | undefined = undefined;
+  export let onLevelChange: ((level: number) => void) | undefined = undefined;
   $: stats = getBaseStatsAtLevel(progression, level);
   $: hpIconUrl = getCharacterDetailIconUrl(progression.iconKeys?.hp);
   $: attackIconUrl = getCharacterDetailIconUrl(progression.iconKeys?.attack);
@@ -32,6 +34,11 @@
         id={controlId}
         label={controlLabel}
         bind:value={level}
+        {leadingTag}
+        onValueChange={(value) => {
+          level = value;
+          onLevelChange?.(value);
+        }}
         min={progression.minLevel}
         max={progression.maxLevel}
       />

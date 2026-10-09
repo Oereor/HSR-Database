@@ -88,8 +88,8 @@ const shared: TrainingSharedData = {
   characterExp: { '1': Array.from({ length: 79 }, () => 10) },
   lightConeExp: {},
   materials: [],
-  characterExpItems: [],
-  lightConeExpItems: [],
+  characterExpItems: [{ itemId: '211', exp: 10 }],
+  lightConeExpItems: [{ itemId: '221', exp: 10, creditCost: 5 }],
   characterExpCreditDivisor: 10
 };
 

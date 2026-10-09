@@ -5,7 +5,7 @@ import type { DataManifest, GeneratedArtifactMetadata } from '../../src/lib/doma
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
 import { readCacheJson, type ManifestReadFailure } from '../deployment/cache-diagnostics.js';
 
-export const DATA_MANIFEST_SCHEMA_VERSION = 49 as const;
+export const DATA_MANIFEST_SCHEMA_VERSION = 50 as const;
 
 export interface GeneratedArtifactValidationSummary {
   files: number;

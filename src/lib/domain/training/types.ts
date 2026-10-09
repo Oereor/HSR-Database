@@ -113,18 +113,31 @@ export interface CostSourceStep {
   cost: Cost;
 }
 
-export interface TrainingCosts {
+export interface ExpConversion {
+  strategy: 'descending-exp-greedy';
   requiredExp: number;
+  suppliedExp: number;
+  overflowExp: number;
+  expItemCost: Cost;
+  expItems: Array<{ itemId: ItemId; exp: number; count: number; suppliedExp: number }>;
+}
+
+export interface TrainingExpCosts extends ExpConversion {
+  expCreditCost: Cost;
+}
+
+export interface TrainingCosts extends TrainingExpCosts {
   promotionCost: Cost;
   skillCost: Cost;
   traceCost: Cost;
   totalKnownCost: Cost;
+  totalCost: Cost;
   steps: CostSourceStep[];
   precision: {
     requiredExp: 'exact-from-configuration';
     knownCosts: 'exact-from-configuration';
-    expItemConsumption: 'unresolved';
-    expCreditCost: 'unresolved';
+    expItemConsumption: 'exact-under-greedy-strategy';
+    expCreditCost: 'exact-under-greedy-strategy';
   };
 }
 

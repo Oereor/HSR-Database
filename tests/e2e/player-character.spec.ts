@@ -342,6 +342,9 @@ test('reuses the Player cache and renders real progression without changing stat
   const level = page.locator('[data-player-stats-panel]').getByRole('slider');
   const levelValue = page.locator('.player-stats-panel .skill-level-control__value');
   const promotionTag = levelValue.locator('.skill-effect-tag');
+  await expect(page.locator('#training')).toHaveCount(0);
+  await expect(page.locator('.section-nav a[href="#training"]')).toHaveCount(0);
+  await expect(page.locator('.trace-toggle')).toHaveCount(0);
   await expect(level).toBeDisabled();
   await expect(level).toHaveValue('80');
   await expect(promotionTag).toHaveText(/\S/);
@@ -585,7 +588,7 @@ test('reuses the Player cache and renders real progression without changing stat
   await page.goto('/characters/1304/');
   const staticLevel = page.locator('#character-level-1304');
   await expect(staticLevel).toBeEnabled();
-  await expect(page.locator('.base-stats-panel .skill-effect-tag')).toHaveCount(0);
+  await expect(page.locator('.base-stats-panel .skill-effect-tag')).toHaveCount(1);
   await expect(page.locator('[data-player-stats-panel]')).toHaveCount(0);
   await expect(page.locator('#eidolons [data-player-state]')).toHaveCount(0);
   await expect(page.locator('#equipment-recommendation')).toBeVisible();

@@ -11,6 +11,7 @@
   export let ariaValueMin = min;
   export let ariaValueMax = max;
   export let interactive = true;
+  export let onValueChange: ((value: number) => void) | undefined = undefined;
   export let leadingTag: string | undefined = undefined;
 
   $: resolvedDisplayValue = displayValue ?? value;
@@ -32,6 +33,7 @@
     {max}
     {step}
     bind:value
+    on:input={(event) => onValueChange?.(Number(event.currentTarget.value))}
     disabled={!interactive}
     aria-valuemin={ariaValueMin}
     aria-valuemax={ariaValueMax}

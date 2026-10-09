@@ -1126,6 +1126,7 @@ footer a {
   align-items: start;
 }
 .trace-card {
+  position: relative;
   min-width: 0;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1181,26 +1182,32 @@ footer a {
   border-style: dashed;
   color: var(--text-muted);
 }
-.trace-card[data-player-state='inactive'] {
+.trace-card:is([data-player-state='inactive'], [data-training-state='inactive']) {
   border-color: var(--border);
   background: rgb(14 20 34 / 74%);
   box-shadow: none;
   filter: grayscale(1);
 }
-.trace-card[data-player-state='inactive']:hover {
+.trace-card:is([data-player-state='inactive'], [data-training-state='inactive']):hover {
   border-color: var(--border);
   box-shadow: none;
 }
-.trace-card[data-player-state='inactive'] .trace-card__heading,
-.trace-card[data-player-state='inactive'] .trace-card__condition,
-.trace-card[data-player-state='inactive'] .trace-card__description,
-.trace-card[data-player-state='inactive'] [data-skill-extra-effects] {
+.trace-card:is([data-player-state='inactive'], [data-training-state='inactive'])
+  .trace-card__heading,
+.trace-card:is([data-player-state='inactive'], [data-training-state='inactive'])
+  .trace-card__condition,
+.trace-card:is([data-player-state='inactive'], [data-training-state='inactive'])
+  .trace-card__description,
+.trace-card:is([data-player-state='inactive'], [data-training-state='inactive'])
+  [data-skill-extra-effects] {
   opacity: 0.72;
 }
-.trace-card[data-player-state='inactive']
+.trace-card:is([data-player-state='inactive'], [data-training-state='inactive'])
   .trace-card__identity
   > :is(img, .trace-card__icon-fallback),
-.trace-card[data-player-state='inactive'] .trace-card__title--icon img {
+.trace-card:is([data-player-state='inactive'], [data-training-state='inactive'])
+  .trace-card__title--icon
+  img {
   opacity: 0.68;
 }
 .trace-card[data-player-state='unresolved'] {
@@ -2364,4 +2371,10 @@ th {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
+}
+
+/* Keep explanation disclosure independent of the full-card training toggle. */
+.trace-card [data-skill-extra-effects] {
+  position: relative;
+  z-index: 2;
 }
