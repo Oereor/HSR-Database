@@ -5,10 +5,10 @@
   import * as m from '$lib/paraglide/messages.js';
   import LevelSlider from '$lib/components/shared/LevelSlider.svelte';
 
-  import type { SkillTrainingControl } from '$lib/domain/training/detail-view';
+  import type { SkillPreviewControl } from '$lib/domain/training/detail-view';
 
-  export let trainingControl: SkillTrainingControl | undefined = undefined;
-  export let onDisplayLevelChange: ((level: number) => void) | undefined = undefined;
+  export let previewControl: SkillPreviewControl | undefined = undefined;
+  export let onPreviewLevelChange: ((level: number) => void) | undefined = undefined;
   export let progression: SkillProgression;
   export let controlId = `skill-progression-${progression.id}`;
   export let variants: SkillVariant[];
@@ -30,12 +30,12 @@
     const playerIndex = progression.availableLevels.indexOf(resolvedPlayerLevel);
     if (playerIndex >= 0) selectedIndex = playerIndex;
   }
-  $: if (!playerMode && trainingControl) {
-    const index = progression.availableLevels.indexOf(trainingControl.displayLevel);
+  $: if (!playerMode && previewControl) {
+    const index = progression.availableLevels.indexOf(previewControl.previewLevel);
     if (index >= 0) selectedIndex = index;
   }
   $: sliderLabel =
-    trainingControl?.jointLabel && !playerMode
+    previewControl?.jointLabel && !playerMode
       ? m.training_talent_assist_level()
       : m.skill_level({ category: categoryLabel });
   $: selectedLevel = progression.availableLevels[selectedIndex] ?? progression.defaultLevel;
@@ -43,7 +43,7 @@
 
 <div
   class="skill-progression-group"
-  data-training-key={!playerMode ? trainingControl?.key : undefined}
+  data-preview-key={!playerMode ? previewControl?.key : undefined}
 >
   {#if showGroupLabel}<p class="progression-group-label">
       {variants.map((variant) => gameTextToPlain(variant.name)).join(' / ')}
@@ -63,12 +63,12 @@
     <LevelSlider
       id={controlId}
       label={sliderLabel}
-      leadingTag={!playerMode && trainingControl?.requiredPromotion !== undefined
-        ? m.training_skill_promotion_required({ promotion: trainingControl.requiredPromotion })
+      leadingTag={!playerMode && previewControl?.requiredPromotion !== undefined
+        ? m.training_skill_promotion_required({ promotion: previewControl.requiredPromotion })
         : undefined}
       onValueChange={(index) => {
         selectedIndex = index;
-        if (!playerMode) onDisplayLevelChange?.(progression.availableLevels[index]);
+        if (!playerMode) onPreviewLevelChange?.(progression.availableLevels[index]);
       }}
       bind:value={selectedIndex}
       min={0}

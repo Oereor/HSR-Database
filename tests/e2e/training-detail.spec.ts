@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import type { CharacterTrainingData } from '../../src/lib/domain/training/types';
 
 const ready = (page: import('@playwright/test').Page) =>
   expect(page.locator('#training')).toHaveAttribute('data-training-state', 'ready');
@@ -48,7 +49,7 @@ for (const prefix of ['', '/en']) {
 }
 
 for (const prefix of ['', '/en']) {
-  test(`shared canonical skills, preview clamps and default materials (${prefix || 'zh-CN'})`, async ({
+  test(`independent shared preview and training goals with default materials (${prefix || 'zh-CN'})`, async ({
     page
   }, testInfo) => {
     const errors: string[] = [];
@@ -77,17 +78,18 @@ for (const prefix of ['', '/en']) {
         .locator('section[id].section-nav-target')
         .evaluateAll((sections) => sections.map((section) => section.id))
     ).toEqual(['skills', 'traces', 'eidolons', 'equipment-recommendation', 'training']);
-    const groups = page.locator('#skills [data-training-key="1510:0:1510004"]');
+    const groups = page.locator('#skills [data-preview-key="1510:0:1510004"]');
     await expect(groups).toHaveCount(2);
     const target = skillResult(page, '1510:0:1510004');
     await expect(target).toHaveCount(1);
     await expect(target.getByRole('slider')).toHaveAttribute('aria-valuenow', '10');
-    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuemax', '15');
+    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuemax', '10');
+    await expect(target.locator('img')).toBeVisible();
     const talent = page.locator(
-      '[data-skill-category="talent"] [data-training-key="1510:0:1510004"]'
+      '[data-skill-category="talent"] [data-preview-key="1510:0:1510004"]'
     );
     const assist = page.locator(
-      '[data-skill-category="assist"] [data-training-key="1510:0:1510004"]'
+      '[data-skill-category="assist"] [data-preview-key="1510:0:1510004"]'
     );
     expect(await talent.locator('label').textContent()).toEqual(
       await assist.locator('label').textContent()
@@ -99,15 +101,19 @@ for (const prefix of ['', '/en']) {
     await expect(talent.getByRole('slider')).toHaveAttribute('aria-valuemax', '15');
     const talentDescription = await talent.locator('.levelled-description').textContent();
     const assistDescription = await assist.locator('.levelled-description').textContent();
+    const beforePreviewCosts = await page.locator('#training .training-total').textContent();
     await talent.getByRole('slider').fill('11');
     await expect(assist.getByRole('slider')).toHaveAttribute('aria-valuenow', '12');
-    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuenow', '12');
+    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuenow', '10');
+    await expect(page.locator('#training .training-total')).toHaveText(beforePreviewCosts!);
     await expect(talent.locator('.levelled-description')).not.toHaveText(talentDescription!);
     await expect(assist.locator('.levelled-description')).not.toHaveText(assistDescription!);
     await expect(skillResult(page, '1510:0:1510004')).toHaveAttribute('data-training-level', '10');
     await page.locator('#character-level-1510').fill('60');
     await expect(page.locator('#training-character-level-1510')).toHaveValue('60');
-    await expect(target.locator('.skill-effect-tag')).toBeVisible();
+    await expect(target.locator('.skill-effect-tag')).toHaveCount(0);
+    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuemax', '6');
+    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuenow', '6');
     await expect(skillResult(page, '1510:0:1510004')).toHaveAttribute('data-training-level', '6');
     await expect(groups.getByRole('slider').first()).toHaveAttribute('aria-valuenow', '12');
     await expect(
@@ -116,9 +122,16 @@ for (const prefix of ['', '/en']) {
     const reducedTraces = await page
       .locator('[data-training-trace-count]')
       .getAttribute('data-training-trace-count');
+    const loweredSkillTraceCost = await page
+      .locator('[data-training-expense="skill-trace"]')
+      .textContent();
     await page.locator('#training-character-level-1510').fill('80');
     await expect(page.locator('#character-level-1510')).toHaveValue('80');
-    await expect(skillResult(page, '1510:0:1510004')).toHaveAttribute('data-training-level', '10');
+    await expect(target).toHaveAttribute('data-training-level', '6');
+    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuemax', '10');
+    await expect(page.locator('[data-training-expense="skill-trace"]')).toHaveText(
+      loweredSkillTraceCost!
+    );
     await expect(
       groups.first().locator('.skill-level-control__value .skill-effect-tag')
     ).toHaveCount(0);
@@ -128,24 +141,32 @@ for (const prefix of ['', '/en']) {
     );
     await assist.getByRole('slider').fill('7');
     await expect(talent.getByRole('slider')).toHaveAttribute('aria-valuenow', '8');
-    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuenow', '8');
+    await expect(target.getByRole('slider')).toHaveAttribute('aria-valuenow', '6');
+    await expect(page.locator('[data-training-expense="skill-trace"]')).toHaveText(
+      loweredSkillTraceCost!
+    );
     const previousTalent = await talent.locator('.levelled-description').textContent();
     const previousAssist = await assist.locator('.levelled-description').textContent();
     await target.getByRole('slider').fill('6');
-    await expect(talent.getByRole('slider')).toHaveAttribute('aria-valuenow', '7');
-    await expect(assist.getByRole('slider')).toHaveAttribute('aria-valuenow', '7');
-    await expect(talent.locator('.levelled-description')).not.toHaveText(previousTalent!);
-    await expect(assist.locator('.levelled-description')).not.toHaveText(previousAssist!);
+    await expect(talent.getByRole('slider')).toHaveAttribute('aria-valuenow', '8');
+    await expect(assist.getByRole('slider')).toHaveAttribute('aria-valuenow', '8');
+    await expect(talent.locator('.levelled-description')).toHaveText(previousTalent!);
+    await expect(assist.locator('.levelled-description')).toHaveText(previousAssist!);
     await expect(target).toHaveAttribute('data-training-level', '7');
+    await expect(page.locator('[data-training-expense="skill-trace"]')).not.toHaveText(
+      loweredSkillTraceCost!
+    );
+    await target.getByRole('slider').focus();
+    await page.keyboard.press('End');
+    await expect(target).toHaveAttribute('data-training-level', '10');
+    await expect(target.getByRole('slider')).toBeFocused();
+    await expect(talent.getByRole('slider')).toHaveAttribute('aria-valuenow', '8');
     await expect(page.locator('[data-skill-id="151025"], [data-skill-id="151026"]')).toHaveCount(0);
-    await expect(page.locator('#training [data-required-exp]')).toHaveAttribute(
-      'data-required-exp',
-      '5797920'
-    );
-    await expect(page.locator('#training [data-exp-credits]')).toHaveAttribute(
-      'data-exp-credits',
-      '579800'
-    );
+    await expect(
+      page.locator(
+        '#training [data-required-exp], #training [data-supplied-exp], #training [data-overflow-exp], #training .training-strategy'
+      )
+    ).toHaveCount(0);
     await expect(page.locator('#training .training-exp [data-material-id="213"]')).toHaveAttribute(
       'data-material-count',
       '289'
@@ -227,6 +248,26 @@ for (const prefix of ['', '/en']) {
       const weeklyMaterial = page.locator('#training .training-total [data-material-id="110501"]');
       await expect(page.locator('.trace-toggle[aria-pressed="true"]')).toHaveCount(13);
       await expect(count).toHaveAttribute('data-training-trace-count', '13');
+      await expect(
+        page.locator('[data-training-trace-group="ability"] [data-training-trace-id]')
+      ).toHaveCount(3);
+      await expect(
+        page.locator('[data-training-trace-group="stat"] [data-training-trace-id]')
+      ).toHaveCount(10);
+      await expect(
+        page.locator('[data-training-trace-group="stat"] [data-training-trace-id="1001201"]')
+      ).toHaveCount(1);
+      const positions = await page.locator('[data-training-trace-group]').evaluateAll((groups) =>
+        groups.map((group) => ({
+          x: group.getBoundingClientRect().x,
+          y: group.getBoundingClientRect().y
+        }))
+      );
+      if (page.viewportSize()!.width < 768) {
+        expect(positions[1].y).toBeGreaterThan(positions[0].y);
+        expect(positions[1].x).toBe(positions[0].x);
+      } else expect(positions[1].x).toBeGreaterThan(positions[0].x);
+
       const initialCredits = Number(await credits.getAttribute('data-material-count'));
       const initialWeeklyMaterial = Number(
         await weeklyMaterial.getAttribute('data-material-count')
@@ -299,8 +340,10 @@ for (const prefix of ['', '/en']) {
       const traces = await page.locator('.trace-toggle[aria-pressed="true"]').count();
       await toggle('1001101').click();
       await expect(toggle('1001101')).toHaveAttribute('aria-pressed', 'false');
-      await expect(page.locator('#traces [role="status"]')).not.toBeEmpty();
+      await expect(page.locator('body > [data-info-toast-region] [data-info-toast]')).toBeVisible();
+      await expect(page.locator('#traces [role="status"]')).toHaveCount(0);
       await page.locator('#character-level-1001').fill('80');
+      await expect(page.locator('[data-info-toast]')).toHaveCount(0);
       await expect(page.locator('.trace-toggle[aria-pressed="true"]')).toHaveCount(traces);
       await expect(count).toHaveAttribute('data-training-trace-count', String(traces));
       await expect(page.locator('[data-training-trace-id]')).toHaveCount(traces);
@@ -378,20 +421,12 @@ test('static stats and costs agree at promotion boundaries; cone rank remains in
   await expect(page.locator('#training .training-total')).toHaveText(total!);
   await page.locator('#training-light-cone-level-20000').fill('80');
   await expect(page.locator('#light-cone-level-20000')).toHaveValue('80');
-  await expect(page.locator('#training [data-exp-credits]')).toHaveAttribute(
-    'data-exp-credits',
-    '298750'
-  );
   await expect(page.locator('#training .training-total [data-material-id="2"]')).toHaveAttribute(
     'data-material-count',
     '529750'
   );
   await page.locator('#light-cone-level-20000').fill('1');
   await expect(page.locator('#training-light-cone-level-20000')).toHaveValue('1');
-  await expect(page.locator('#training [data-required-exp]')).toHaveAttribute(
-    'data-required-exp',
-    '0'
-  );
   await expect(page.locator('#training [data-material-id]')).toHaveCount(0);
 });
 
@@ -416,13 +451,17 @@ test('delayed cost loading preserves edited level and shared skill previews', as
   );
   release();
   await ready(page);
-  await expect(skillResult(page, '1510:0:1510004')).toHaveAttribute('data-display-level', '12');
+  await expect(talent).toHaveAttribute('aria-valuenow', '12');
+  await expect(page.locator('[data-skill-category="assist"] input')).toHaveAttribute(
+    'aria-valuenow',
+    '12'
+  );
   await expect(skillResult(page, '1510:0:1510004')).toHaveAttribute('data-training-level', '6');
   await expect(page.locator('#character-level-1510')).toHaveValue('60');
   await expect(page.locator('#training-character-level-1510')).toHaveValue('60');
   await expect(skillResult(page, '1510:0:1510004').getByRole('slider')).toHaveAttribute(
     'aria-valuenow',
-    '12'
+    '6'
   );
 });
 
@@ -442,7 +481,14 @@ test('load failure exposes retry and retains edits instead of showing zero costs
   await page.locator('[data-skill-category="skill"] input').fill('11');
   await page.locator('#training button').click();
   await ready(page);
-  await expect(skillResult(page, '1001:0:1001002')).toHaveAttribute('data-display-level', '12');
+  await expect(page.locator('[data-skill-category="skill"] input')).toHaveAttribute(
+    'aria-valuenow',
+    '12'
+  );
+  await expect(skillResult(page, '1001:0:1001002').getByRole('slider')).toHaveAttribute(
+    'aria-valuenow',
+    '4'
+  );
   await expect(page.locator('#character-level-1001')).toHaveValue('50');
   await expect(page.locator('#training-character-level-1001')).toHaveValue('50');
   expect(attempts).toBe(2);
@@ -465,11 +511,13 @@ test('Profile switches reset skills and traces while keeping the level and rejec
   await page.locator('.enhancement-switch').click();
   release();
   await ready(page);
-  await expect(page.locator('[data-training-key^="1102:0:"]')).toHaveCount(0);
+  await expect(
+    page.locator('[data-training-key^="1102:0:"], [data-preview-key^="1102:0:"]')
+  ).toHaveCount(0);
   await expect(skillResult(page, '1102:1:11102002')).toHaveCount(1);
   await expect(skillResult(page, '1102:1:11102002').getByRole('slider')).toHaveAttribute(
     'aria-valuenow',
-    '10'
+    '6'
   );
   await expect(page.locator('[data-skill-category="skill"] input')).toHaveAttribute(
     'aria-valuenow',
@@ -484,7 +532,9 @@ test('Profile switches reset skills and traces while keeping the level and rejec
   await page.locator('[data-skill-category="skill"] input').fill('11');
   await page.locator('.enhancement-switch').click();
   await ready(page);
-  await expect(page.locator('[data-training-key^="1102:1:"]')).toHaveCount(0);
+  await expect(
+    page.locator('[data-training-key^="1102:1:"], [data-preview-key^="1102:1:"]')
+  ).toHaveCount(0);
   await expect(page.locator('[data-skill-category="skill"] input')).toHaveAttribute(
     'aria-valuenow',
     '10'
@@ -499,4 +549,248 @@ test('Profile switches reset skills and traces while keeping the level and rejec
   await page.locator('.enhancement-switch').click();
   await ready(page);
   await expect(enhancedTrace).toHaveAttribute('aria-pressed', 'true');
+  await page.locator('#character-level-1102').fill('1');
+  await page.locator('#traces [data-trace-type="ability"] .trace-toggle').first().click();
+  await expect(page.locator('[data-info-toast]')).toHaveCount(1);
+  await page.locator('.enhancement-switch').click();
+  await ready(page);
+  await expect(page.locator('[data-info-toast-region]')).toHaveCount(1);
+  await expect(page.locator('[data-info-toast]')).toHaveCount(0);
 });
+
+for (const prefix of ['', '/en']) {
+  test(`regular preview and training remain independent across keyboard, downgrade and route change (${prefix || 'zh-CN'})`, async ({
+    page
+  }) => {
+    await page.goto(`${prefix}/characters/1001/`);
+    await ready(page);
+    const preview = page.locator('#skills [data-skill-category="skill"] input');
+    const training = skillResult(page, '1001:0:1001002').getByRole('slider');
+    const costs = page.locator('[data-training-expense="skill-trace"]');
+    const initialCost = await costs.textContent();
+    await preview.fill('11');
+    await expect(training).toHaveAttribute('aria-valuenow', '10');
+    await expect(costs).toHaveText(initialCost!);
+    const description = page.locator('#skills [data-skill-category="skill"] .levelled-description');
+    const previewDescription = await description.textContent();
+    await training.focus();
+    await page.keyboard.press('ArrowLeft');
+    await expect(training).toHaveAttribute('aria-valuenow', '9');
+    await expect(preview).toHaveAttribute('aria-valuenow', '12');
+    await expect(description).toHaveText(previewDescription!);
+    await expect(costs).not.toHaveText(initialCost!);
+    await page.locator('#character-level-1001').fill('60');
+    await expect(training).toHaveAttribute('aria-valuenow', '6');
+    await expect(training).toHaveAttribute('aria-valuemax', '6');
+    await training.focus();
+    await page.keyboard.press('End');
+    await expect(training).toHaveAttribute('aria-valuenow', '6');
+    await page.locator('#training-character-level-1001').fill('80');
+    await expect(training).toHaveAttribute('aria-valuenow', '6');
+    await expect(training).toHaveAttribute('aria-valuemax', '10');
+    await expect(preview).toHaveAttribute('aria-valuenow', '12');
+    await expect(description).toHaveText(previewDescription!);
+    const box = await training.boundingBox();
+    expect(box).not.toBeNull();
+    await page.mouse.move(box!.x + box!.width - 1, box!.y + box!.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(box!.x + 1, box!.y + box!.height / 2, { steps: 5 });
+    await page.mouse.up();
+    await expect(training).toHaveAttribute('aria-valuenow', '1');
+    await expect(preview).toHaveAttribute('aria-valuenow', '12');
+    await expect(description).toHaveText(previewDescription!);
+    const skillIcon = skillResult(page, '1001:0:1001002').locator('img');
+    await skillIcon.evaluate((image) => image.dispatchEvent(new Event('error')));
+    await expect(
+      skillResult(page, '1001:0:1001002').locator('[data-image-fallback]')
+    ).toBeVisible();
+    await page.goto(`${prefix}/characters/1213/`);
+    await ready(page);
+    await expect(
+      page.locator('[data-training-key^="1001:"], [data-preview-key^="1001:"]')
+    ).toHaveCount(0);
+    const basic = page.locator('#skills [data-skill-category="basic"]');
+    const sharedKey = await basic.locator('[data-preview-key]').getAttribute('data-preview-key');
+    const basicTarget = skillResult(page, sharedKey!);
+    await expect(basicTarget).toHaveCount(1);
+    const basicCost = await costs.textContent();
+    await basic.getByRole('slider').fill('4');
+    await expect(basicTarget.getByRole('slider')).toHaveAttribute('aria-valuenow', '6');
+    await expect(costs).toHaveText(basicCost!);
+  });
+}
+
+for (const prefix of ['', '/en']) {
+  test(`trace info toast replaces notices without layout or focus changes (${prefix || 'zh-CN'})`, async ({
+    page
+  }) => {
+    await page.goto(`${prefix}/characters/1001/`);
+    await ready(page);
+    const region = page.locator('body > [data-info-toast-region]');
+    const toast = region.locator('[data-info-toast]');
+    await expect(region).toHaveAttribute('role', 'status');
+    await expect(region).toHaveAttribute('aria-live', 'polite');
+    await expect(region).toHaveAttribute('aria-atomic', 'true');
+    await expect(toast).toHaveCount(0);
+    const data: CharacterTrainingData = await (
+      await page.request.get('/generated/training/characters/1001.json')
+    ).json();
+    const required = data.profiles[0].nodes.find((node) => node.pointId === '1001101')!.steps[0]
+      .requiredPromotion;
+    await page.locator('#character-level-1001').fill('1');
+    const blocked = page.locator('[data-trace-id="1001101"] .trace-toggle');
+    await blocked.focus();
+    const layout = () =>
+      page.evaluate(() => ({
+        height: document.documentElement.scrollHeight,
+        scroll: window.scrollY,
+        top: document.querySelector('#traces')!.getBoundingClientRect().top
+      }));
+    const before = await layout();
+    await page.clock.install({ time: new Date('2026-10-09T00:00:00Z') });
+    await page.clock.pauseAt(new Date('2026-10-09T00:00:01Z'));
+    await page.keyboard.press('Enter');
+    await expect(blocked).toHaveAttribute('aria-pressed', 'false');
+    await expect(blocked).toBeFocused();
+    await expect(toast).toHaveCount(1);
+    await expect(toast.locator('strong')).not.toBeEmpty();
+    await expect(toast.locator('p')).toContainText(String(required));
+    expect(await layout()).toEqual(before);
+    await expect(region).toHaveCSS('position', 'fixed');
+    await expect(region).toHaveCSS('pointer-events', 'none');
+    await expect(toast.locator('button, input, [tabindex]')).toHaveCount(0);
+    await expect(page.locator('#traces [role="status"]')).toHaveCount(0);
+    const box = (await region.boundingBox())!;
+    expect(Math.abs(box.x + box.width / 2 - page.viewportSize()!.width / 2)).toBeLessThan(1);
+    expect(box.x).toBeGreaterThanOrEqual(16);
+    expect(box.y).toBeGreaterThanOrEqual(24);
+    await page.evaluate(() => window.scrollBy(0, 30));
+    expect((await region.boundingBox())!.y).toBe(box.y);
+    await blocked.focus();
+    const firstId = await toast.getAttribute('data-info-toast');
+    await page.clock.runFor(3500);
+    await page.keyboard.press('Space');
+    await expect(toast).toHaveCount(1);
+    await expect(toast).not.toHaveAttribute('data-info-toast', firstId!);
+    await expect(blocked).toBeFocused();
+    await page.clock.runFor(500);
+    await expect(toast).not.toHaveClass(/fading/);
+    await page.clock.runFor(3499);
+    await expect(toast).not.toHaveClass(/fading/);
+    await page.clock.runFor(1);
+    await expect(toast).toHaveClass(/fading/);
+    await page.clock.runFor(120);
+    await expect(toast).toHaveCount(0);
+    await expect(region).toHaveCount(1);
+
+    await blocked.click();
+    await expect(toast).toHaveCount(1);
+    await expect(blocked).toBeFocused();
+    const legal = page.locator('[data-trace-id="1001201"] .trace-toggle');
+    await legal.click();
+    await expect(legal).toHaveAttribute('aria-pressed', 'false');
+    await expect(toast).toHaveCount(0);
+    await legal.click();
+    await expect(legal).toHaveAttribute('aria-pressed', 'true');
+    await expect(toast).toHaveCount(0);
+    await blocked.click();
+    await expect(toast).toHaveCount(1);
+    await page.locator('#training-character-level-1001').fill('21');
+    await expect(toast).toHaveCount(0);
+    await page.clock.runFor(5000);
+    await expect(toast).toHaveCount(0);
+
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await blocked.click();
+    await expect(toast).toHaveCount(1);
+    await expect(toast).toHaveCSS('animation-name', 'none');
+    await expect(toast).toHaveCSS('transition-duration', '0s');
+    await page.clock.runFor(4001);
+    await expect(toast).toHaveCount(0);
+    await blocked.click();
+    await expect(toast).toHaveCount(1);
+    const previousMessage = await toast.locator('p').textContent();
+    await page.goto(`${prefix === '' ? '/en' : ''}/characters/1001/`);
+    await ready(page);
+    await expect(page.locator('[data-info-toast]')).toHaveCount(0);
+    await page.locator('#character-level-1001').fill('1');
+    await blocked.click();
+    await expect(toast).toHaveCount(1);
+    await expect(toast.locator('p')).not.toHaveText(previousMessage!);
+    await page.clock.resume();
+    await page.evaluate(() => {
+      document.documentElement.dataset.toastLifecycle = 'active';
+    });
+    const home = page
+      .locator('.navigator-rail__brand:visible, .mobile-header .brand:visible')
+      .first();
+    const homeUrl = new URL((await home.getAttribute('href'))!, page.url()).href;
+    await home.click();
+    await expect(page).toHaveURL(homeUrl);
+    expect(await page.evaluate(() => document.documentElement.dataset.toastLifecycle)).toBe(
+      'active'
+    );
+    await expect(page.locator('[data-info-toast-region]')).toHaveCount(0);
+    await page.goto(`${prefix}/characters/8007/`);
+    await ready(page);
+    await expect(page.locator('[data-info-toast-region]')).toHaveCount(1);
+    await expect(page.locator('[data-info-toast]')).toHaveCount(0);
+    await page.goto(`${prefix}/characters/1001/`);
+    await ready(page);
+    await page.locator('#character-level-1001').fill('1');
+    await blocked.click();
+    await expect(toast).toHaveCount(1);
+    await page.goto(`${prefix}/characters/1001/?uid=invalid`);
+    await expect(page.locator('[data-info-toast-region], #training, .trace-toggle')).toHaveCount(0);
+  });
+
+  test(`training divider cleanup preserves structural borders (${prefix || 'zh-CN'})`, async ({
+    page
+  }) => {
+    for (const [category, id] of [
+      ['characters', '1001'],
+      ['light-cones', '20000']
+    ]) {
+      await page.goto(`${prefix}/${category}/${id}/`);
+      await ready(page);
+      const styles = await page
+        .locator('#training [data-training-expense], #training .skill-level-control')
+        .evaluateAll((nodes) =>
+          nodes.map((node) => {
+            const style = getComputedStyle(node);
+            return [style.borderTopWidth, style.paddingTop, style.marginTop];
+          })
+        );
+      expect(styles.length).toBeGreaterThan(0);
+      for (const style of styles) expect(style).toEqual(['0px', '0px', '0px']);
+      const divider = page.locator('#training .section-heading-shared__divider').first();
+      await expect(divider).toHaveCSS('height', '1px');
+      await expect(divider).not.toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+      await expect(page.locator('#training [data-material-id]').first()).toHaveCSS(
+        'border-top-width',
+        '1px'
+      );
+      await expect(page.locator('.training-result')).toHaveCSS('row-gap', '24px');
+      if (category === 'characters') {
+        await expect(page.locator('#skills .skill-level-control').first()).toHaveCSS(
+          'border-top-width',
+          '1px'
+        );
+        await expect(page.locator('.training-target__skills')).toHaveCSS('row-gap', '16px');
+        await expect(page.locator('.training-target__skills')).toHaveCSS('margin-top', '16px');
+        await expect(page.locator('[data-training-trace-group="stat"]')).toHaveCSS(
+          'border-left-width',
+          page.viewportSize()!.width >= 768 ? '1px' : '0px'
+        );
+      }
+      expect(
+        await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)
+      ).toBe(true);
+      const ids = await page.locator('[id]').evaluateAll((nodes) => nodes.map((node) => node.id));
+      expect(new Set(ids).size).toBe(ids.length);
+      await expect(page.locator('[data-info-toast-region]')).toHaveCount(
+        category === 'characters' ? 1 : 0
+      );
+    }
+  });
+}

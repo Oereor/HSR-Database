@@ -1,9 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import {
-  createSkillTrainingControls,
+  createSkillPreviewControls,
   createTrainingSkillTargets,
   createTrainingTraceSummary,
+  initializeSkillPreviewLevels,
   createTrainingExpenseCosts
 } from '../../src/lib/domain/training/detail-view';
 import {
@@ -13,6 +14,7 @@ import {
   reconcileCharacterLevel,
   deactivateTrace,
   activateTrace,
+  allowedSkillTrainingLevels,
   mergeCosts
 } from '../../src/lib/domain/training/index';
 import type { Character, CatalogEntry } from '../../src/lib/domain/types';
@@ -30,7 +32,7 @@ const view = (id: string, locale = 'zh-CN') =>
 const shared = json<TrainingSharedData>('static/generated/training/shared.json');
 
 describe('receipt training projections', () => {
-  it('projects every paid canonical skill once, with its actual default and full preview range', () => {
+  it('projects each paid canonical target once with actual legal levels, icons and independent preview', () => {
     for (const { id } of json<CatalogEntry[]>(
       'src/lib/generated/views/zh-CN/catalogs/characters.json'
     )) {
@@ -40,76 +42,101 @@ describe('receipt training projections', () => {
         const cards = (
           profile.enhancedId === 0 ? character.profiles.base : character.profiles.enhanced!
         ).skillCards;
-        const target = createDefaultCharacterTrainingTarget(cost, profile.enhancedId);
-        const result = calculateCharacterTrainingTarget(cost, shared, target);
-        const controls = createSkillTrainingControls(
-          cards,
-          profile,
-          target,
-          {},
-          result.target.promotion
-        );
-        const projected = createTrainingSkillTargets(cards, profile, controls, result.skills);
-        expect(projected.map((skill) => skill.key).sort()).toEqual(
-          profile.nodes
-            .filter((node) => node.kind === 'skill')
-            .map((node) => node.key)
-            .sort()
-        );
-        for (const skill of projected) {
-          const node = profile.nodes.find((node) => node.key === skill.key)!;
-          expect(skill.displayLevel).toBe(node.maxLevel);
-          expect(skill.trainingLevel).toBe(node.maxLevel);
-          expect(skill.pointId).toBe(node.pointId);
-          expect(skill.categoryLabel).not.toBe('');
-          for (const card of cards)
-            for (const progression of card.progressions) {
-              if (controls[progression.id].key === skill.key)
-                expect(skill.availableLevels).toEqual(progression.availableLevels);
-            }
+        const initial = createDefaultCharacterTrainingTarget(cost, profile.enhancedId);
+        const preview = initializeSkillPreviewLevels(cards, profile, {});
+        for (const level of [1, 20, 21, 60, 80]) {
+          const target = reconcileCharacterLevel(cost, initial, level);
+          const result = calculateCharacterTrainingTarget(cost, shared, target);
+          const controls = createSkillPreviewControls(
+            cards,
+            profile,
+            preview,
+            {},
+            result.target.promotion
+          );
+          const projected = createTrainingSkillTargets(
+            cards,
+            profile,
+            result.skills,
+            result.target.promotion
+          );
+          expect(projected.map((skill) => skill.key).sort()).toEqual(
+            profile.nodes
+              .filter((node) => node.kind === 'skill')
+              .map((node) => node.key)
+              .sort()
+          );
+          for (const skill of projected) {
+            const node = profile.nodes.find((node) => node.key === skill.key)!;
+            expect(skill.availableLevels).toEqual(
+              allowedSkillTrainingLevels(node, result.target.promotion)
+            );
+            expect(skill.availableLevels).toContain(skill.trainingLevel);
+            expect(skill.trainingLevel).toBe(target.trainingLevels[skill.key]);
+            expect(skill.categoryLabel).not.toBe('');
+            const matchingCard = cards.find(
+              (card) =>
+                card.iconKey &&
+                card.progressions.some((progression) => controls[progression.id].key === skill.key)
+            );
+            expect(skill.iconKey).toBe(matchingCard?.iconKey);
+            for (const card of cards)
+              for (const progression of card.progressions) {
+                if (controls[progression.id].key === skill.key) {
+                  expect(controls[progression.id].previewLevel).toBe(node.maxLevel);
+                  expect(progression.availableLevels).toEqual(node.bindings[0].displayLevels);
+                }
+              }
+          }
+          const groups = createTrainingExpenseCosts(result);
+          expect(mergeCosts(groups.upgrade, groups.promotion, groups.skillTrace!)).toEqual(
+            result.totalCost
+          );
         }
       }
     }
   });
 
-  it('retains the shared display level while projecting promotion clamps and joint labels', () => {
+  it('keeps joint preview edits separate from target transitions and delayed initialization in both locales', () => {
     const cost = data('1510');
     const profile = cost.profiles[0];
     const initial = createDefaultCharacterTrainingTarget(cost, 0);
-    const target = reconcileCharacterLevel(
-      cost,
-      { ...initial, displayLevels: { ...initial.displayLevels, '1510:0:1510004': 12 } },
-      60
-    );
+    const target = reconcileCharacterLevel(cost, initial, 60);
     for (const locale of ['zh-CN', 'en']) {
       const cards = view('1510', locale).profiles.base.skillCards;
-      const result = calculateCharacterTrainingTarget(cost, shared, target);
-      const controls = createSkillTrainingControls(
-        cards,
-        profile,
-        target,
-        {},
-        result.target.promotion
-      );
-      const projected = createTrainingSkillTargets(cards, profile, controls, result.skills);
-      const matches = projected.filter((skill) => skill.key === '1510:0:1510004');
-      expect(matches).toHaveLength(1);
-      expect(matches[0]).toMatchObject({
-        pointId: '1510004',
-        displayLevel: 12,
-        trainingLevel: 6,
+      const pending = { '1510004': 12 };
+      const before = createSkillPreviewControls(cards, undefined, {}, pending, 4);
+      expect(before['1510004'].previewLevel).toBe(12);
+      expect(before['1510004'].jointLabel).toBe(true);
+      const preview = initializeSkillPreviewLevels(cards, profile, pending);
+      const controls = createSkillPreviewControls(cards, profile, preview, {}, 4);
+      expect(controls['1510004']).toMatchObject({
+        previewLevel: 12,
         requiredPromotion: 6,
         jointLabel: true
       });
-      expect(matches[0].availableLevels.at(-1)).toBe(15);
-      expect(
-        createTrainingSkillTargets(
-          cards,
-          cost.profiles.find((p) => p.enhancedId === 1),
-          undefined,
-          result.skills
-        )
-      ).toEqual([]);
+      const result = calculateCharacterTrainingTarget(cost, shared, target);
+      const projected = createTrainingSkillTargets(cards, profile, result.skills, 4);
+      const matches = projected.filter((skill) => skill.key === '1510:0:1510004');
+      expect(matches).toHaveLength(1);
+      expect(matches[0]).toMatchObject({ pointId: '1510004', trainingLevel: 6, jointLabel: true });
+      expect(matches[0].availableLevels.at(-1)).toBe(6);
+      expect(matches[0]).not.toHaveProperty('previewLevel');
+      const raised = reconcileCharacterLevel(cost, target, 80);
+      expect(raised.trainingLevels['1510:0:1510004']).toBe(6);
+      expect(preview['1510:0:1510004']).toBe(12);
+      const changed = {
+        ...raised,
+        trainingLevels: { ...raised.trainingLevels, '1510:0:1510004': 7 }
+      };
+      expect(calculateCharacterTrainingTarget(cost, shared, changed).skillCost).not.toEqual(
+        result.skillCost
+      );
+      expect(preview['1510:0:1510004']).toBe(12);
+      expect(() =>
+        createSkillPreviewControls(cards, profile, { ...preview, '1510:0:1510004': 16 }, {}, 6)
+      ).toThrow();
+      expect(createTrainingSkillTargets(cards, undefined, result.skills, 4)).toEqual([]);
     }
   });
 
@@ -122,16 +149,9 @@ describe('receipt training projections', () => {
         profile.enhancedId === 0 ? character.profiles.base : character.profiles.enhanced!
       ).skillCards;
       const result = calculateCharacterTrainingTarget(cost, shared, target);
-      const controls = createSkillTrainingControls(
-        cards,
-        profile,
-        target,
-        {},
-        result.target.promotion
-      );
       expect(
-        createTrainingSkillTargets(cards, profile, controls, result.skills).every((skill) =>
-          skill.key.startsWith(`1102:${profile.enhancedId}:`)
+        createTrainingSkillTargets(cards, profile, result.skills, result.target.promotion).every(
+          (skill) => skill.key.startsWith(`1102:${profile.enhancedId}:`)
         )
       ).toBe(true);
     }
@@ -215,6 +235,7 @@ describe('receipt training projections', () => {
       }
       expect(createTrainingExpenseCosts(coneResult).skillTrace).toBeUndefined();
       expect(createTrainingExpenseCosts(characterResult).skillTrace).toEqual(
+        allowedSkillTrainingLevels,
         mergeCosts(characterResult.skillCost, characterResult.traceCost)
       );
       if (level === 20) expect(characterResult.promotionCost).toEqual({});

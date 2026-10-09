@@ -15,7 +15,6 @@
   } from '$lib/domain/training/types';
   import type { Trace } from '$lib/domain/types';
   import { m } from '$lib/paraglide/messages.js';
-  import { getLocale } from '$lib/paraglide/runtime.js';
 
   export let result: CharacterTrainingResult | LightConeTrainingResult | undefined = undefined;
   export let catalog: MaterialCatalog | undefined = undefined;
@@ -26,9 +25,8 @@
   export let skillTargets: TrainingSkillTarget[] = [];
   export let activeTraces: Trace[] = [];
   export let onLevelChange: ((level: number) => void) | undefined = undefined;
-  export let onSkillDisplayLevelChange: ((pointId: string, level: number) => void) | undefined =
+  export let onSkillTrainingLevelChange: ((key: string, level: number) => void) | undefined =
     undefined;
-  $: number = new Intl.NumberFormat(catalog?.locale ?? getLocale());
   $: character = result && 'skills' in result ? result : undefined;
   $: expenses = result ? createTrainingExpenseCosts(result) : undefined;
 </script>
@@ -61,7 +59,7 @@
         {levelControl}
         skills={skillTargets}
         {onLevelChange}
-        {onSkillDisplayLevelChange}
+        {onSkillTrainingLevelChange}
       >
         {#if character}<TrainingTraceSummary traces={activeTraces} />{/if}
       </TrainingTargetSummary>
@@ -70,31 +68,7 @@
         title={m.training_upgrade_cost()}
         cost={expenses.upgrade}
         {catalog}
-      >
-        <div
-          slot="summary"
-          data-required-exp={result.requiredExp}
-          data-supplied-exp={result.suppliedExp}
-          data-overflow-exp={result.overflowExp}
-          data-exp-credits={result.expCreditCost['2'] ?? 0}
-        >
-          <dl class="training-exp-summary">
-            <div>
-              <dt>{m.training_required_exp()}</dt>
-              <dd>{number.format(result.requiredExp)}</dd>
-            </div>
-            <div>
-              <dt>{m.training_supplied_exp()}</dt>
-              <dd>{number.format(result.suppliedExp)}</dd>
-            </div>
-            {#if result.overflowExp}<div>
-                <dt>{m.training_overflow_exp()}</dt>
-                <dd>{number.format(result.overflowExp)}</dd>
-              </div>{/if}
-          </dl>
-        </div>
-        <p class="muted training-strategy">{m.training_strategy_note()}</p>
-      </TrainingExpenseGroup>
+      />
       <TrainingExpenseGroup
         kind="promotion"
         title={m.training_promotion_cost()}
@@ -121,31 +95,6 @@
   .training-result {
     display: grid;
     gap: var(--space-6);
-  }
-  .training-exp-summary {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-6);
-    margin: 0 0 var(--space-4);
-  }
-  .training-exp-summary > div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-  }
-  dt {
-    color: var(--text-muted);
-  }
-  dd {
-    margin: 0;
-    font-variant-numeric: tabular-nums;
-  }
-  .training-exp-summary,
-  .training-strategy {
-    font-size: 0.8125rem;
-  }
-  .training-strategy {
-    margin: var(--space-3) 0 0;
   }
   .training-error button {
     padding: var(--space-2) var(--space-4);

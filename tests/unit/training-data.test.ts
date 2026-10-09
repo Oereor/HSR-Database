@@ -108,7 +108,7 @@ describe('pinned training data', () => {
       avatarId: '1001',
       enhancedId: 0,
       level: 80,
-      displayLevels: { [progressionKey('1001', 0, '1001002')]: 10 }
+      trainingLevels: { [progressionKey('1001', 0, '1001002')]: 10 }
     });
     expect(skill.skillCost).toEqual({
       '2': 522000,
@@ -149,18 +149,17 @@ describe('pinned training data', () => {
       avatarId: '1510',
       enhancedId: 0,
       level: 80,
-      displayLevels: { [key]: 12 }
+      trainingLevels: { [key]: 10 }
     });
     expect(result.skillCost['2']).toBe(652500);
     expect(result.skills.find((skill) => skill.key === key)).toMatchObject({
-      displayLevel: 12,
       trainingLevel: 10,
       requiredPromotion: 6
     });
     expect(
       resolveSkillTraining(
         profile.nodes.find((node) => node.key === key)!,
-        12,
+        6,
         4
       ).trainingLevel
     ).toBe(6);
@@ -176,7 +175,7 @@ describe('pinned training data', () => {
       avatarId: '1213',
       enhancedId: 0,
       level: 80,
-      displayLevels: { [keys[0]]: 6 }
+      trainingLevels: { [keys[0]]: 6 }
     });
     expect(result.skillCost['2']).toBe(240000);
     const herta = character('1401').profiles[0];
@@ -199,7 +198,7 @@ describe('pinned training data', () => {
         avatarId: '1102',
         enhancedId: 1,
         level: 80,
-        displayLevels: { [baseKey]: 6 }
+        trainingLevels: { [baseKey]: 6 }
       })
     ).toThrow();
   });
@@ -218,7 +217,7 @@ describe('pinned training data', () => {
         avatarId: id,
         enhancedId: 0,
         level: 80,
-        displayLevels: Object.fromEntries(nodes.map((node) => [node.key, node.maxLevel]))
+        trainingLevels: Object.fromEntries(nodes.map((node) => [node.key, node.maxLevel]))
       });
       expect(result.skillCost['2']).toBe(credits);
     }

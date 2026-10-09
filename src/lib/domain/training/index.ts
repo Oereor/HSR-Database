@@ -209,35 +209,49 @@ export function resolveSkillProgression(
   return node.key;
 }
 
-export function resolveSkillTraining(
-  node: TrainingNode,
-  displayLevel: number,
-  promotion: number
-): ResolvedSkillTraining {
+/** Actual SkillTree levels reachable at this promotion, including the free initial level. */
+export function allowedSkillTrainingLevels(node: TrainingNode, promotion: number): number[] {
   validateNode(node);
   if (node.kind !== 'skill') throw new TrainingError('not-paid-skill', node.key);
-  trainingInteger(displayLevel, `${node.key} displayLevel`, 1);
   trainingInteger(promotion, 'promotion');
-  if (
-    node.bindings.length
-      ? node.bindings.some((binding) => !binding.displayLevels.includes(displayLevel))
-      : displayLevel > node.maxLevel
-  )
-    throw new TrainingError('display-level-out-of-range', node.key);
-  const paidTarget = Math.min(displayLevel, node.maxLevel);
-  const allowed = node.steps.filter((step) => step.requiredPromotion <= promotion).at(-1)?.level;
-  if (!allowed) throw new TrainingError('initial-skill-unreachable', node.key);
-  const trainingLevel = Math.min(paidTarget, allowed);
+  const levels = node.steps
+    .filter((step) => step.requiredPromotion <= promotion)
+    .map((step) => step.level);
+  if (!levels.length) throw new TrainingError('initial-skill-unreachable', node.key);
+  return levels;
+}
+
+/** A transition writes the lower goal back; higher limits never raise an existing goal. */
+export function reconcileSkillTrainingLevel(
+  node: TrainingNode,
+  level: number,
+  promotion: number
+): number {
+  const allowed = allowedSkillTrainingLevels(node, promotion);
+  trainingInteger(level, `${node.key} trainingLevel`, 1);
+  if (!node.steps.some((step) => step.level === level))
+    throw new TrainingError('training-level-out-of-range', node.key);
+  const next = allowed.filter((candidate) => candidate <= level).at(-1);
+  if (next === undefined) throw new TrainingError('initial-skill-unreachable', node.key);
+  return next;
+}
+
+export function resolveSkillTraining(
+  node: TrainingNode,
+  trainingLevel: number,
+  promotion: number
+): ResolvedSkillTraining {
+  const allowed = allowedSkillTrainingLevels(node, promotion);
+  trainingInteger(trainingLevel, `${node.key} trainingLevel`, 1);
+  const step = node.steps.find((candidate) => candidate.level === trainingLevel);
+  if (!step) throw new TrainingError('training-level-out-of-range', node.key);
+  if (!allowed.includes(trainingLevel))
+    throw new TrainingError('skill-promotion-required', node.key);
   return {
     key: node.key,
-    displayLevel,
     paidMaxLevel: node.maxLevel,
-    requiredPromotion: node.steps[paidTarget - 1].requiredPromotion,
-    trainingLevel,
-    reasons: [
-      ...(displayLevel > node.maxLevel ? ['paid-max' as const] : []),
-      ...(trainingLevel < paidTarget ? ['promotion' as const] : [])
-    ]
+    requiredPromotion: step.requiredPromotion,
+    trainingLevel
   };
 }
 
@@ -367,7 +381,7 @@ function normalizeSkills(
   promotion: number
 ): ResolvedSkillTraining[] {
   if (!levels || typeof levels !== 'object' || Array.isArray(levels))
-    throw new TrainingError('invalid-display-target', profile.avatarId);
+    throw new TrainingError('invalid-training-target', profile.avatarId);
   const nodes = profile.nodes.filter((node) => node.kind === 'skill');
   if (Object.keys(levels).some((key) => !nodes.some((node) => node.key === key)))
     throw new TrainingError('unknown-skill-target', Object.keys(levels).join(','));
@@ -383,7 +397,7 @@ export function createInitialCharacterTrainingTarget(
     avatarId: data.avatarId,
     enhancedId,
     level: 1,
-    displayLevels: Object.fromEntries(
+    trainingLevels: Object.fromEntries(
       profile.nodes.filter((node) => node.kind === 'skill').map((node) => [node.key, 1])
     ),
     activeTraceIds: []
@@ -410,7 +424,7 @@ export function createDefaultCharacterTrainingTarget(
     ...target,
     level,
     activeTraceIds,
-    displayLevels: Object.fromEntries(
+    trainingLevels: Object.fromEntries(
       profile.nodes.filter((node) => node.kind === 'skill').map((node) => [node.key, node.maxLevel])
     )
   };
@@ -427,18 +441,27 @@ export function reconcileCharacterLevel(
   const nodes = nodeIndex(profile);
   const active = target.activeTraceIds ?? [];
   assertTraceState(nodes, active, oldPromotion);
-  normalizeSkills(profile, target.displayLevels ?? {}, oldPromotion);
+  normalizeSkills(profile, target.trainingLevels ?? {}, oldPromotion);
   const removed = descendants(
     nodes,
     [...nodes.values()]
       .filter((node) => node.steps[0].requiredPromotion > promotion)
       .map((node) => node.pointId)
   );
-  const skills = normalizeSkills(profile, target.displayLevels ?? {}, promotion);
+  const skills = profile.nodes
+    .filter((node) => node.kind === 'skill')
+    .map((node) => ({
+      key: node.key,
+      trainingLevel: reconcileSkillTrainingLevel(
+        node,
+        target.trainingLevels?.[node.key] ?? 1,
+        promotion
+      )
+    }));
   return {
     ...target,
     level,
-    displayLevels: Object.fromEntries(skills.map((skill) => [skill.key, skill.displayLevel])),
+    trainingLevels: Object.fromEntries(skills.map((skill) => [skill.key, skill.trainingLevel])),
     activeTraceIds: sortedIds(active.filter((id) => !removed.has(id)))
   };
 }
@@ -481,7 +504,7 @@ export function calculateCharacterTrainingTarget(
 ): CharacterTrainingResult {
   const profile = targetProfile(data, target);
   const promotion = derivePromotion(data.promotions, target.level);
-  const skills = normalizeSkills(profile, target.displayLevels ?? {}, promotion);
+  const skills = normalizeSkills(profile, target.trainingLevels ?? {}, promotion);
   const activeTraceIds = target.activeTraceIds ?? [];
   assertTraceState(nodeIndex(profile), activeTraceIds, promotion);
   const steps: CostSourceStep[] = data.promotions.slice(0, promotion).map((stage) => ({
@@ -510,19 +533,10 @@ export function calculateCharacterTrainingTarget(
       enhancedId: target.enhancedId,
       level: target.level,
       promotion,
-      displayLevels: Object.fromEntries(skills.map((skill) => [skill.key, skill.displayLevel])),
+      trainingLevels: Object.fromEntries(skills.map((skill) => [skill.key, skill.trainingLevel])),
       activeTraceIds: sortedIds(activeTraceIds)
     },
-    skills,
-    diagnostics: skills
-      .filter((skill) => skill.displayLevel !== skill.trainingLevel)
-      .map((skill) => ({
-        code: 'display-training-difference',
-        key: skill.key,
-        displayLevel: skill.displayLevel,
-        trainingLevel: skill.trainingLevel,
-        reasons: [...skill.reasons]
-      }))
+    skills
   };
 }
 

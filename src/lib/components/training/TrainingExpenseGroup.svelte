@@ -22,13 +22,6 @@
 
 <style>
   .training-expense {
-    border-top: 1px solid var(--border);
-    padding-top: var(--space-6);
     min-width: 0;
-  }
-  .training-total {
-    border-top: 2px solid var(--border-strong);
-    margin-top: var(--space-3);
-    padding-top: var(--space-6);
   }
 </style>

@@ -2,15 +2,14 @@ import { describe, expect, it, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { render } from 'svelte/server';
 import {
-  createSkillTrainingControls,
+  createSkillPreviewControls,
   createTrainingSkillTargets,
   createTrainingTraceSummary
 } from '../../src/lib/domain/training/detail-view';
 import {
   createDefaultCharacterTrainingTarget,
   calculateCharacterTrainingTarget,
-  calculateLightConeTrainingTarget,
-  reconcileCharacterLevel
+  calculateLightConeTrainingTarget
 } from '../../src/lib/domain/training/index';
 import type { Character, CatalogEntry } from '../../src/lib/domain/types';
 import type {
@@ -24,7 +23,9 @@ import TraceCardPanel from '../../src/lib/components/character/TraceCardPanel.sv
 import TrainingSection from '../../src/lib/components/training/TrainingSection.svelte';
 import MaterialCostList from '../../src/lib/components/training/MaterialCostList.svelte';
 import DetailPage from '../../src/lib/components/shared/DetailPage.svelte';
+import InfoToast from '../../src/lib/components/shared/InfoToast.svelte';
 import TrainingTraceSummary from '../../src/lib/components/training/TrainingTraceSummary.svelte';
+import TrainingTargetSummary from '../../src/lib/components/training/TrainingTargetSummary.svelte';
 
 vi.mock('$app/stores', async () => {
   const { readable } = await import('svelte/store');
@@ -38,6 +39,14 @@ const view = (id: string, locale = 'zh-CN') =>
   json<Character>(`src/lib/generated/views/${locale}/details/characters/${id}.json`);
 
 describe('training presentation contracts', () => {
+  it('prerenders an empty polite status region before any client notification', () => {
+    const html = render(InfoToast).body;
+    expect(html).toContain('data-info-toast-region');
+    expect(html).toContain('role="status"');
+    expect(html).toContain('aria-live="polite"');
+    expect(html).toContain('aria-atomic="true"');
+    expect(html).not.toMatch(/<button|role="alert"|data-info-toast=/);
+  });
   it('places character training and its anchor last when equipment recommendations are absent', () => {
     const html = render(DetailPage, {
       props: { detail: view('1001'), category: 'characters', singular: 'character' }
@@ -62,11 +71,10 @@ describe('training presentation contracts', () => {
         const cards = (
           profile.enhancedId === 0 ? character.profiles.base : character.profiles.enhanced!
         ).skillCards;
-        const target = createDefaultCharacterTrainingTarget(cost, profile.enhancedId);
-        const controls = createSkillTrainingControls(
+        const controls = createSkillPreviewControls(
           cards,
           profile,
-          target,
+          {},
           {},
           cost.promotions.length - 1
         );
@@ -75,7 +83,7 @@ describe('training presentation contracts', () => {
             const node = profile.nodes.find((node) => node.pointId === progression.id)!;
             if (node.kind === 'skill') {
               expect(controls[progression.id].key).toBe(node.key);
-              expect(controls[progression.id].displayLevel).toBe(node.maxLevel);
+              expect(controls[progression.id].previewLevel).toBe(node.maxLevel);
               expect(controls[progression.id].requiredPromotion).toBeUndefined();
             }
           }
@@ -86,38 +94,27 @@ describe('training presentation contracts', () => {
     const cost = data('1510');
     const profile = cost.profiles[0];
     const character = view('1510');
-    const target = reconcileCharacterLevel(
-      cost,
-      {
-        ...createDefaultCharacterTrainingTarget(cost, 0),
-        displayLevels: {
-          ...createDefaultCharacterTrainingTarget(cost, 0).displayLevels,
-          '1510:0:1510004': 12
-        }
-      },
-      60
-    );
-    const controls = createSkillTrainingControls(
+    const controls = createSkillPreviewControls(
       character.profiles.base.skillCards,
       profile,
-      target,
+      { '1510:0:1510004': 12 },
       {},
       4
     );
     expect(controls['1510004']).toMatchObject({
       key: '1510:0:1510004',
-      displayLevel: 12,
+      previewLevel: 12,
       jointLabel: true,
       requiredPromotion: 6
     });
     const labels: string[] = [];
     for (const category of ['talent', 'assist']) {
       const card = character.profiles.base.skillCards.find((card) => card.category === category)!;
-      const html = render(SkillCardPanel, { props: { card, trainingControls: controls } }).body;
+      const html = render(SkillCardPanel, { props: { card, previewControls: controls } }).body;
       expect(html).toContain('aria-valuenow="12"');
       expect(html).toContain('aria-valuemax="15"');
       expect(html).toContain(`id="skill-progression-${category}-1510004"`);
-      expect(html).toContain('data-training-key="1510:0:1510004"');
+      expect(html).toContain('data-preview-key="1510:0:1510004"');
       expect(html).toContain('skill-effect-tag');
       labels.push(html.match(/<label[^>]*>([\s\S]*?)<\/label>/)![1]);
     }
@@ -202,18 +199,11 @@ describe('training presentation contracts', () => {
     const result = calculateCharacterTrainingTarget(cost, shared, target);
     const character = view('1510');
     const cards = character.profiles.base.skillCards;
-    const controls = createSkillTrainingControls(
-      cards,
-      cost.profiles[0],
-      target,
-      {},
-      result.target.promotion
-    );
     const skillTargets = createTrainingSkillTargets(
       cards,
       cost.profiles[0],
-      controls,
-      result.skills
+      result.skills,
+      result.target.promotion
     );
     const html = render(TrainingSection, {
       props: {
@@ -235,7 +225,7 @@ describe('training presentation contracts', () => {
           target.activeTraceIds
         ),
         onLevelChange: () => {},
-        onSkillDisplayLevelChange: () => {},
+        onSkillTrainingLevelChange: () => {},
         onRetry: () => {}
       }
     }).body;
@@ -256,6 +246,17 @@ describe('training presentation contracts', () => {
       .slice(1);
     for (const part of parts) expect(part.match(/data-material-id="2"/g)).toHaveLength(1);
     expect(html).not.toContain('training-credit-breakdown');
+    expect(html).not.toMatch(
+      /data-(?:required|supplied|overflow)-exp|training-strategy|training-exp-summary/
+    );
+    const missingSkill = render(TrainingTargetSummary, {
+      props: { skills: [{ ...skillTargets[0], iconKey: undefined }] }
+    }).body;
+    expect(missingSkill).toContain('training-target__icon-fallback');
+    expect(missingSkill).toContain('data-image-fallback');
+    expect(missingSkill).not.toContain('skill-effect-tag');
+    expect(html).toContain('data-training-trace-group="ability"');
+    expect(html).toContain('data-training-trace-group="stat"');
   });
   it('keeps trace summaries strictly read-only, including empty and missing-icon states', () => {
     const traces = view('1001').profiles.base.traces;
@@ -267,6 +268,9 @@ describe('training presentation contracts', () => {
     expect(html).not.toContain('aria-pressed');
     expect(html).not.toContain('data-trace-id=');
     expect(html).toContain('data-image-fallback');
+    expect(html).toContain('data-training-trace-group="ability"');
+    expect(html).toContain('data-training-trace-group="stat"');
+    expect(html).toContain(`data-training-trace-type="${traces[0].type}"`);
     const empty = render(TrainingTraceSummary, { props: { traces: [] } }).body;
     expect(empty).toContain('data-training-trace-count="0"');
     expect(empty).not.toContain('data-training-trace-id=');

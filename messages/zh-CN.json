@@ -422,7 +422,7 @@
   "training_talent_assist_level": "天赋/助战技等级",
   "training_skill_promotion_required": "需要角色晋阶 {promotion}",
   "training_skill_clamped": "预览 Lv.{display}，材料按 Lv.{training} 计算",
-  "training_trace_count": "已激活付费行迹：{count}",
+  "training_trace_count": "已激活行迹节点：{count}",
   "training_exp_materials": "经验材料",
   "training_required_exp": "所需 EXP",
   "training_supplied_exp": "投入 EXP",
@@ -435,10 +435,14 @@
   "training_trace_credits": "行迹信用点 {count}",
   "training_trace_promotion_required": "无法激活：需要角色晋阶 {promotion}。",
   "training_trace_unavailable": "该行迹的前置条件暂不可用。",
+  "training_trace_notice_title": "暂时无法激活行迹",
   "training_exp_credit_undetermined": "当前配置无法确定整数经验信用点费用，计算暂不可用。",
   "training_upgrade_cost": "升级消耗",
   "training_promotion_cost": "晋阶消耗",
   "training_skill_trace_cost": "技能 / 行迹消耗",
-  "training_trace_summary": "已激活付费行迹",
-  "training_no_traces": "尚无已激活的付费行迹"
+  "training_trace_summary": "激活行迹节点",
+  "training_no_traces": "未选择激活任意行迹节点",
+  "training_trace_abilities": "额外能力",
+  "training_trace_stats": "属性加成",
+  "training_no_trace_group": "暂未激活行迹。"
 }

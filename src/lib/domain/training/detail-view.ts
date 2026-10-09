@@ -3,17 +3,21 @@ import { gameTextToPlain } from '../game-text.js';
 import { groupTracesForDisplay } from '../trace-groups.js';
 import type {
   CharacterTrainingProfile,
-  CharacterTrainingTarget,
   CharacterTrainingResult,
   LightConeTrainingResult,
   ResolvedSkillTraining,
   Cost
 } from './types.js';
-import { mergeCosts, resolveSkillProgression, resolveSkillTraining } from './index.js';
+import {
+  mergeCosts,
+  resolveSkillProgression,
+  allowedSkillTrainingLevels,
+  TrainingError
+} from './index.js';
 
-export interface SkillTrainingControl {
+export interface SkillPreviewControl {
   key?: string;
-  displayLevel: number;
+  previewLevel: number;
   requiredPromotion?: number;
   jointLabel: boolean;
 }
@@ -27,7 +31,9 @@ export interface TrainingLevelControl {
   promotion: number;
 }
 
-export interface TrainingSkillTarget extends SkillTrainingControl {
+export interface TrainingSkillTarget {
+  jointLabel: boolean;
+  iconKey?: SkillCard['iconKey'];
   key: string;
   pointId: string;
   categoryLabel: string;
@@ -47,8 +53,8 @@ export interface TrainingExpenseCosts {
 export function createTrainingSkillTargets(
   cards: SkillCard[],
   profile: CharacterTrainingProfile | undefined,
-  controls: Record<string, SkillTrainingControl> | undefined,
-  skills: ResolvedSkillTraining[]
+  skills: ResolvedSkillTraining[],
+  promotion: number
 ): TrainingSkillTarget[] {
   const paidNodes = new Map(
     profile?.nodes.filter((node) => node.kind === 'skill').map((node) => [node.key, node])
@@ -57,14 +63,15 @@ export function createTrainingSkillTargets(
   const targets = new Map<string, TrainingSkillTarget>();
   for (const card of cards) {
     for (const progression of card.progressions) {
-      const control = controls?.[progression.id];
-      const node = control?.key ? paidNodes.get(control.key) : undefined;
+      const key = skillProgressionKey(card, progression.id, profile);
+      const node = key ? paidNodes.get(key) : undefined;
       const skill = node ? resolved.get(node.key) : undefined;
-      if (!node || !skill || !control) continue;
+      if (!node || !skill) continue;
       const previous = targets.get(node.key);
       if (previous) {
         const labels = new Set([...previous.categoryLabel.split(' / '), card.displayLabel]);
         previous.categoryLabel = [...labels].join(' / ');
+        previous.iconKey ??= card.iconKey;
         continue;
       }
       const variants =
@@ -72,14 +79,15 @@ export function createTrainingSkillTargets(
           ? card.variants.filter((variant) => progression.variantIds.includes(variant.id))
           : [];
       targets.set(node.key, {
-        ...control,
+        jointLabel: hasJointLabel(node),
+        iconKey: card.iconKey,
         key: node.key,
         pointId: node.pointId,
         categoryLabel: card.displayLabel,
         variantLabel: variants.length
           ? [...new Set(variants.map((variant) => gameTextToPlain(variant.name)))].join(' / ')
           : undefined,
-        availableLevels: progression.availableLevels,
+        availableLevels: allowedSkillTrainingLevels(node, promotion),
         trainingLevel: skill.trainingLevel
       });
     }
@@ -117,37 +125,86 @@ export function createTrainingExpenseCosts(
   };
 }
 
-/** UI projections never own another copy of a paid progression target. */
-export function createSkillTrainingControls(
+function skillProgressionKey(
+  card: SkillCard,
+  progressionId: string,
+  profile: CharacterTrainingProfile | undefined
+): string | undefined {
+  const progression = card.progressions.find((candidate) => candidate.id === progressionId);
+  const variant = card.variants.find((candidate) => progression?.variantIds.includes(candidate.id));
+  return profile && variant && variant.source !== 'avatar-global-buff'
+    ? resolveSkillProgression(profile, variant.id, variant.source)
+    : undefined;
+}
+
+function hasJointLabel(node: CharacterTrainingProfile['nodes'][number]): boolean {
+  const categories = new Set(node.bindings.map((binding) => binding.category));
+  return categories.size === 2 && categories.has('talent') && categories.has('assist');
+}
+
+/** Preview is independent of the paid target, before and after its shard arrives. */
+export function createSkillPreviewControls(
   cards: SkillCard[],
   profile: CharacterTrainingProfile | undefined,
-  target: CharacterTrainingTarget | undefined,
+  previewLevels: Record<string, number>,
   pendingLevels: Record<string, number>,
   promotion: number
-): Record<string, SkillTrainingControl> {
-  const controls: Record<string, SkillTrainingControl> = {};
+): Record<string, SkillPreviewControl> {
+  const controls: Record<string, SkillPreviewControl> = {};
   for (const card of cards)
     for (const progression of card.progressions) {
-      const variant = card.variants.find((variant) => progression.variantIds.includes(variant.id));
-      const key =
-        profile && variant && variant.source !== 'avatar-global-buff'
-          ? resolveSkillProgression(profile, variant.id, variant.source)
-          : undefined;
-      const node = profile?.nodes.find((node) => node.key === key && node.kind === 'skill');
-      const displayLevel = node
-        ? (target?.displayLevels?.[node.key] ?? node.maxLevel)
-        : (pendingLevels[progression.id] ?? progression.defaultLevel);
-      const resolved = node ? resolveSkillTraining(node, displayLevel, promotion) : undefined;
-      const categories = new Set(node?.bindings.map((binding) => binding.category));
+      const key = skillProgressionKey(card, progression.id, profile);
+      const node = profile?.nodes.find(
+        (candidate) => candidate.key === key && candidate.kind === 'skill'
+      );
+      const previewLevel =
+        (key ? previewLevels[key] : undefined) ??
+        pendingLevels[progression.id] ??
+        node?.maxLevel ??
+        progression.defaultLevel;
+      if (
+        !progression.availableLevels.includes(previewLevel) ||
+        node?.bindings.some((binding) => !binding.displayLevels.includes(previewLevel))
+      )
+        throw new TrainingError('preview-level-out-of-range', key ?? progression.id);
+      // The tag describes the normal promotion requirement; it never changes preview or cost.
+      const requiredPromotion = node?.steps
+        .filter((step) => step.level <= previewLevel)
+        .at(-1)?.requiredPromotion;
       controls[progression.id] = {
         key: node?.key,
-        displayLevel,
+        previewLevel,
         requiredPromotion:
-          resolved && resolved.requiredPromotion > promotion
-            ? resolved.requiredPromotion
+          requiredPromotion !== undefined && requiredPromotion > promotion
+            ? requiredPromotion
             : undefined,
-        jointLabel: categories.size === 2 && categories.has('talent') && categories.has('assist')
+        jointLabel: node
+          ? hasJointLabel(node)
+          : cards.some(
+              (candidate) =>
+                candidate.category === 'talent' &&
+                candidate.progressions.some((item) => item.id === progression.id)
+            ) &&
+            cards.some(
+              (candidate) =>
+                candidate.category === 'assist' &&
+                candidate.progressions.some((item) => item.id === progression.id)
+            )
       };
     }
   return controls;
+}
+
+/** Resolve pending public progression edits through the current profile's real bindings. */
+export function initializeSkillPreviewLevels(
+  cards: SkillCard[],
+  profile: CharacterTrainingProfile,
+  pendingLevels: Record<string, number>
+): Record<string, number> {
+  const controls = createSkillPreviewControls(cards, profile, {}, pendingLevels, 0);
+  return Object.fromEntries(
+    Object.values(controls)
+      .filter((control) => control.key)
+      .map((control) => [control.key!, control.previewLevel])
+  );
 }

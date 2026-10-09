@@ -422,7 +422,7 @@
   "training_talent_assist_level": "Talent/Assist Skill Level",
   "training_skill_promotion_required": "Requires Character Ascension {promotion}",
   "training_skill_clamped": "Preview Lv.{display}; materials calculated for Lv.{training}",
-  "training_trace_count": "Activated Paid Traces: {count}",
+  "training_trace_count": "Activated Traces: {count}",
   "training_exp_materials": "EXP Materials",
   "training_required_exp": "Required EXP",
   "training_supplied_exp": "Supplied EXP",
@@ -435,10 +435,14 @@
   "training_trace_credits": "Trace Credits {count}",
   "training_trace_promotion_required": "Cannot activate: requires Character Ascension {promotion}.",
   "training_trace_unavailable": "This trace prerequisite is unavailable.",
+  "training_trace_notice_title": "Trace activation unavailable",
   "training_exp_credit_undetermined": "The current configuration does not determine an integer EXP credit charge. Calculation is unavailable.",
   "training_upgrade_cost": "Level-Up Costs",
   "training_promotion_cost": "Ascension Costs",
   "training_skill_trace_cost": "Skill / Trace Costs",
-  "training_trace_summary": "Activated Paid Traces",
-  "training_no_traces": "No paid traces activated"
+  "training_trace_summary": "Activated Traces",
+  "training_no_traces": "No traces activated",
+  "training_trace_abilities": "Bonus Abilities",
+  "training_trace_stats": "Stat Bonuses",
+  "training_no_trace_group": "No activated traces in this group."
 }

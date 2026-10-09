@@ -87,7 +87,7 @@ export interface CharacterTrainingTarget {
   avatarId: string;
   enhancedId: number;
   level: number;
-  displayLevels?: Record<ProgressionKey, number>;
+  trainingLevels?: Record<ProgressionKey, number>;
   activeTraceIds?: string[];
 }
 
@@ -98,11 +98,9 @@ export interface LightConeTrainingTarget {
 
 export interface ResolvedSkillTraining {
   key: ProgressionKey;
-  displayLevel: number;
   paidMaxLevel: number;
   requiredPromotion: number;
   trainingLevel: number;
-  reasons: Array<'paid-max' | 'promotion'>;
 }
 
 export interface CostSourceStep {
@@ -144,13 +142,6 @@ export interface TrainingCosts extends TrainingExpCosts {
 export interface CharacterTrainingResult extends TrainingCosts {
   target: Required<CharacterTrainingTarget> & { promotion: number };
   skills: ResolvedSkillTraining[];
-  diagnostics: Array<{
-    code: 'display-training-difference';
-    key: ProgressionKey;
-    displayLevel: number;
-    trainingLevel: number;
-    reasons: ResolvedSkillTraining['reasons'];
-  }>;
 }
 
 export interface LightConeTrainingResult extends TrainingCosts {

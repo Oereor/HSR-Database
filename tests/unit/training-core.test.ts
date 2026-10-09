@@ -10,6 +10,8 @@ import {
   progressionKey,
   reconcileCharacterLevel,
   resolveSkillTraining,
+  allowedSkillTrainingLevels,
+  reconcileSkillTrainingLevel,
   validateTrainingProfile
 } from '../../src/lib/domain/training/index';
 import type {
@@ -132,31 +134,34 @@ describe('training core', () => {
     ).toThrow();
   });
 
-  it('clamps paid level, preserves preview, and recovers training after promotion increases', () => {
+  it('writes lower goals back and never restores them when promotion increases', () => {
+    expect(allowedSkillTrainingLevels(skill, 4)).toEqual([1, 2, 3, 4, 5, 6]);
     expect(resolveSkillTraining(skill, 5, 6).trainingLevel).toBe(5);
-    expect(resolveSkillTraining(skill, 12, 6)).toMatchObject({
-      displayLevel: 12,
-      paidMaxLevel: 10,
-      trainingLevel: 10,
-      requiredPromotion: 6
-    });
-    expect(resolveSkillTraining(skill, 12, 4).trainingLevel).toBe(6);
     const target = {
       avatarId: '1',
       enhancedId: 0,
       level: 80,
-      displayLevels: { [skill.key]: 12 },
+      trainingLevels: { [skill.key]: 10 },
       activeTraceIds: ['20', '21', '22', '23', '24']
     };
     const lowered = reconcileCharacterLevel(data, target, 60);
-    expect(lowered.displayLevels).toEqual(target.displayLevels);
+    expect(lowered.trainingLevels).toEqual({ [skill.key]: 6 });
     expect(lowered.activeTraceIds).toEqual(['20', '21', '22', '24']);
-    expect(calculateCharacterTrainingTarget(data, shared, lowered).skills[0].trainingLevel).toBe(6);
     const raised = reconcileCharacterLevel(data, lowered, 80);
+    expect(raised.trainingLevels).toEqual(lowered.trainingLevels);
     expect(raised.activeTraceIds).toEqual(lowered.activeTraceIds);
-    expect(calculateCharacterTrainingTarget(data, shared, raised).skills[0].trainingLevel).toBe(10);
+    expect(calculateCharacterTrainingTarget(data, shared, raised).skills[0].trainingLevel).toBe(6);
+    expect(target.trainingLevels[skill.key]).toBe(10);
     expect(target.activeTraceIds).toContain('23');
-    expect(() => resolveSkillTraining(skill, 16, 6)).toThrow();
+    expect(reconcileSkillTrainingLevel(skill, 4, 4)).toBe(4);
+    for (const level of [0, 11, 12, 1.5, NaN, Infinity]) {
+      expect(() => resolveSkillTraining(skill, level, 6)).toThrow();
+      expect(() => reconcileSkillTrainingLevel(skill, level, 4)).toThrow();
+    }
+    expect(() => resolveSkillTraining(skill, 10, 4)).toThrow();
+    expect(() =>
+      calculateCharacterTrainingTarget(data, shared, { ...target, level: 60 })
+    ).toThrow();
   });
 
   it('charges one canonical node for shared public and hidden skills', () => {
@@ -167,7 +172,7 @@ describe('training core', () => {
     );
     expect(result.skillCost).toEqual({ '2': 450 });
     expect(result.skills).toHaveLength(1);
-    expect(result.target.displayLevels).toEqual({ [skill.key]: 10 });
+    expect(result.target.trainingLevels).toEqual({ [skill.key]: 10 });
   });
 
   it('activates ancestors atomically and removes every dependent branch', () => {
@@ -237,7 +242,7 @@ describe('training core', () => {
     for (const target of [
       { avatarId: '2', enhancedId: 0, level: 1 },
       { avatarId: '1', enhancedId: 1, level: 1 },
-      { avatarId: '1', enhancedId: 0, level: 1, displayLevels: { '101': 5 } },
+      { avatarId: '1', enhancedId: 0, level: 1, trainingLevels: { '101': 5 } },
       { avatarId: '1', enhancedId: 0, level: 1, activeTraceIds: ['10'] },
       { avatarId: '1', enhancedId: 0, level: 1, activeTraceIds: ['20', '20'] }
     ])
