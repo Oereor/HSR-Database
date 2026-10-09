@@ -166,7 +166,7 @@ describe('training presentation contracts', () => {
     expect(error).not.toContain('data-material-count');
     expect(loading + error).not.toContain('type="range"');
   });
-  it('renders noninteractive materials in credit/rarity order and tolerates unavailable icons', () => {
+  it('renders material dialog buttons in credit/rarity order and tolerates unavailable icons', () => {
     const catalog: MaterialCatalog = {
       schemaVersion: 1,
       locale: 'en',
@@ -187,7 +187,8 @@ describe('training presentation contracts', () => {
       '999992',
       '999991'
     ]);
-    expect(html).not.toContain('<button');
+    expect([...html.matchAll(/aria-haspopup="dialog"/g)]).toHaveLength(3);
+    expect([...html.matchAll(/<button\b/g)]).toHaveLength(3);
     expect(html).not.toContain('<a ');
     expect(html).not.toContain('/materials/icons/999991');
     expect(html).toContain('Synthetic 999991');

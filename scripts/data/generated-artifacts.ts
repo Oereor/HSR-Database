@@ -5,7 +5,7 @@ import type { DataManifest, GeneratedArtifactMetadata } from '../../src/lib/doma
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
 import { readCacheJson, type ManifestReadFailure } from '../deployment/cache-diagnostics.js';
 
-export const DATA_MANIFEST_SCHEMA_VERSION = 50 as const;
+export const DATA_MANIFEST_SCHEMA_VERSION = 51 as const;
 
 export interface GeneratedArtifactValidationSummary {
   files: number;
@@ -73,6 +73,7 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
     for (const requiredPath of [
       'static/generated/training/shared.json',
       `static/generated/${locale}/materials.json`,
+      `static/generated/${locale}/material-details.json`,
       ...['characters', 'light-cones'].flatMap((category) =>
         (value.routes as Record<string, string[]>)[category].map(
           (id) => `static/generated/training/${category}/${id}.json`

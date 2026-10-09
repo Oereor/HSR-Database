@@ -21,6 +21,8 @@
   export let state: 'loading' | 'ready' | 'error';
   export let errorCode: string | undefined = undefined;
   export let onRetry: () => void;
+  export let onSelectMaterial: (itemId: string, trigger: HTMLButtonElement) => void = () =>
+    undefined;
   export let levelControl: TrainingLevelControl | undefined = undefined;
   export let skillTargets: TrainingSkillTarget[] = [];
   export let activeTraces: Trace[] = [];
@@ -67,24 +69,28 @@
         kind="upgrade"
         title={m.training_upgrade_cost()}
         cost={expenses.upgrade}
+        {onSelectMaterial}
         {catalog}
       />
       <TrainingExpenseGroup
         kind="promotion"
         title={m.training_promotion_cost()}
         cost={expenses.promotion}
+        {onSelectMaterial}
         {catalog}
       />
       {#if character && expenses.skillTrace}<TrainingExpenseGroup
           kind="skill-trace"
           title={m.training_skill_trace_cost()}
           cost={expenses.skillTrace}
+          {onSelectMaterial}
           {catalog}
         />{/if}
       <TrainingExpenseGroup
         kind="total"
         title={m.training_total_materials()}
         cost={expenses.total}
+        {onSelectMaterial}
         {catalog}
       />
     </div>

@@ -2,6 +2,7 @@ import type {
   CharacterTrainingData,
   LightConeTrainingData,
   MaterialCatalog,
+  MaterialDetailCatalog,
   MaterialIdentity,
   TrainingSharedData
 } from './types.js';
@@ -124,6 +125,43 @@ export interface TrainingBundle {
   shared: TrainingSharedData;
   characters: CharacterTrainingData[];
   lightCones: LightConeTrainingData[];
+}
+
+export function assertMaterialDetailCatalog(
+  value: unknown,
+  locale?: 'zh-CN' | 'en'
+): asserts value is MaterialDetailCatalog {
+  schema(value);
+  const data = value as MaterialDetailCatalog;
+  if (!['zh-CN', 'en'].includes(data.locale) || (locale !== undefined && locale !== data.locale))
+    throw new TrainingError('material-locale-mismatch', String(data.locale));
+  if (!Array.isArray(data.materials)) throw new TrainingError('invalid-materials', 'details');
+  const seen = new Set<string>();
+  for (const material of data.materials) {
+    if (!record(material)) throw new TrainingError('invalid-material', 'detail');
+    const id = trainingId(material.id as string);
+    if (seen.has(id)) throw new TrainingError('duplicate-material', id);
+    seen.add(id);
+    for (const field of ['description', 'backgroundDescription'])
+      if (
+        material[field] !== undefined &&
+        (typeof material[field] !== 'string' || !material[field].trim())
+      )
+        throw new TrainingError('invalid-material-description', `${id}.${field}`);
+  }
+}
+
+export function validateMaterialDetails(
+  details: MaterialDetailCatalog,
+  catalog: MaterialCatalog
+): void {
+  assertMaterialDetailCatalog(details, catalog.locale);
+  const ids = new Set(catalog.materials.map((material) => material.id));
+  if (
+    ids.size !== details.materials.length ||
+    details.materials.some((material) => !ids.has(material.id))
+  )
+    throw new TrainingError('material-detail-inventory-mismatch', catalog.locale);
 }
 
 export function validateTrainingBundle(

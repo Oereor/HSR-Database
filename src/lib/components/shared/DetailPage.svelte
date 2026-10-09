@@ -1,7 +1,7 @@
 <script lang="ts">
   import { browser } from '$app/environment';
   import { goto } from '$app/navigation';
-  import { onMount, tick } from 'svelte';
+  import { onDestroy, onMount, tick } from 'svelte';
   import { page } from '$app/stores';
   import BaseStatsPanel from '$lib/components/shared/BaseStatsPanel.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
@@ -45,6 +45,7 @@
     type PlayerUidQueryState
   } from '$lib/player/resolve';
   import TrainingSection from '$lib/components/training/TrainingSection.svelte';
+  import ItemDetailModal from '$lib/components/training/ItemDetailModal.svelte';
   import { createTrainingLoader } from '$lib/data/training';
   import { getPromotionAtLevel } from '$lib/domain/stats';
   import { getLocale } from '$lib/paraglide/runtime.js';
@@ -67,6 +68,8 @@
     LightConeTrainingData,
     TrainingSharedData,
     MaterialCatalog,
+    MaterialView,
+    MaterialDetail,
     CharacterTrainingResult,
     LightConeTrainingResult
   } from '$lib/domain/training/types';
@@ -94,6 +97,13 @@
   let lightConeTrainingData: LightConeTrainingData | undefined;
   let trainingShared: TrainingSharedData | undefined;
   let materialCatalog: MaterialCatalog | undefined;
+  let selectedItemId: string | undefined;
+  let selectedMaterial: MaterialView | undefined;
+  let selectedMaterialDetail: MaterialDetail | undefined;
+  let materialDetailState: 'loading' | 'ready' | 'error' = 'loading';
+  let materialDetailRequestVersion = 0;
+  let materialDetailTrigger: HTMLButtonElement | undefined;
+  let materialDetailContext = '';
   let characterTarget: Required<CharacterTrainingTarget> | undefined;
   let trainingLevel = detail.baseStats?.defaultLevel ?? 1;
   let previewLevels: Record<string, number> = {};
@@ -116,6 +126,10 @@
   onMount(() => {
     playerClientReady = true;
     trainingClientReady = true;
+  });
+  onDestroy(() => {
+    materialDetailRequestVersion += 1;
+    materialDetailTrigger = undefined;
   });
 
   $: plainName = gameTextToPlain(detail.name);
@@ -207,6 +221,9 @@
     (category === 'characters' && (!browser || !$page.url.searchParams.has('uid')));
   $: trainingKey = `${category}:${detail.id}:${profileMode}:${getLocale()}:${staticTrainingEnabled}:${category === 'light-cones' ? lightConeInitialStateKey : ''}`;
   $: if (trainingClientReady) synchronizeTraining(trainingKey);
+  $: synchronizeMaterialContext(
+    `${$page.url.pathname}:${category}:${detail.id}:${profileMode}:${getLocale()}:${staticTrainingEnabled}`
+  );
   $: trainingProfile = characterTrainingData?.profiles.find((profile) =>
     profileMode === 'base' ? profile.enhancedId === 0 : profile.enhancedId !== 0
   );
@@ -276,6 +293,69 @@
   ): Required<CharacterTrainingTarget> {
     const target = createDefaultCharacterTrainingTarget(data, profile.enhancedId);
     return reconcileCharacterLevel(data, target, trainingLevel);
+  }
+
+  function synchronizeMaterialContext(context: string): void {
+    if (materialDetailContext === context) return;
+    materialDetailContext = context;
+    materialDetailTrigger = undefined;
+    closeMaterialDetails();
+  }
+
+  function openMaterialDetails(itemId: string, trigger: HTMLButtonElement): void {
+    if (!staticTrainingEnabled || materialCatalog?.locale !== getLocale()) return;
+    const material = materialCatalog.materials.find((entry) => entry.id === itemId);
+    if (!material) return;
+    materialDetailTrigger = trigger;
+    selectedItemId = itemId;
+    selectedMaterial = material;
+    void loadMaterialDetails();
+  }
+
+  async function loadMaterialDetails(): Promise<void> {
+    const itemId = selectedItemId;
+    const catalog = materialCatalog;
+    if (!itemId || !catalog) return;
+    const version = ++materialDetailRequestVersion;
+    const context = materialDetailContext;
+    selectedMaterialDetail = undefined;
+    materialDetailState = 'loading';
+    try {
+      const details = await trainingLoader.loadMaterialDetails(catalog.locale, catalog);
+      if (
+        version !== materialDetailRequestVersion ||
+        context !== materialDetailContext ||
+        selectedItemId !== itemId
+      )
+        return;
+      const material = details.materials.find((entry) => entry.id === itemId);
+      if (!material) throw new TrainingError('missing-material-detail', itemId);
+      selectedMaterialDetail = material;
+      materialDetailState = 'ready';
+    } catch {
+      if (
+        version === materialDetailRequestVersion &&
+        context === materialDetailContext &&
+        selectedItemId === itemId
+      )
+        materialDetailState = 'error';
+    }
+  }
+
+  function closeMaterialDetails(): void {
+    materialDetailRequestVersion += 1;
+    selectedItemId = undefined;
+    selectedMaterial = undefined;
+    selectedMaterialDetail = undefined;
+  }
+
+  async function handleMaterialDetailsClosed(): Promise<void> {
+    const trigger = materialDetailTrigger;
+    const version = materialDetailRequestVersion;
+    materialDetailTrigger = undefined;
+    await tick();
+    if (version === materialDetailRequestVersion && !selectedItemId && trigger?.isConnected)
+      trigger.focus({ preventScroll: true });
   }
 
   function synchronizeTraining(key: string): void {
@@ -761,6 +841,7 @@
       onLevelChange={handleTrainingLevel}
       onSkillTrainingLevelChange={handleSkillTrainingLevel}
       onRetry={retryTraining}
+      onSelectMaterial={openMaterialDetails}
     />{/if}
   {#if specialEffectsAvailable}<SpecialEffectDialog
       open={specialEffectsOpen}
@@ -781,6 +862,7 @@
     levelControl={trainingLevelControl}
     onLevelChange={handleTrainingLevel}
     onRetry={retryTraining}
+    onSelectMaterial={openMaterialDetails}
   />
   <section id="story" class="detail-section prose section-nav-target">
     <SectionHeading level={1}>{m.detail_story()}</SectionHeading>
@@ -790,4 +872,16 @@
   </section>
 {:else if category === 'enemies'}
   {#key detail.id}<EnemyDetailPage {detail} />{/key}
+{/if}
+
+{#if staticTrainingEnabled}
+  <ItemDetailModal
+    material={selectedMaterial}
+    detail={selectedMaterialDetail}
+    locale={getLocale()}
+    state={materialDetailState}
+    onRequestClose={closeMaterialDetails}
+    onClosed={handleMaterialDetailsClosed}
+    onRetry={loadMaterialDetails}
+  />
 {/if}

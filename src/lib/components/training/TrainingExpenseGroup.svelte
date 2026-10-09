@@ -6,6 +6,8 @@
   export let title: string;
   export let cost: Cost;
   export let catalog: MaterialCatalog;
+  export let onSelectMaterial: (itemId: string, trigger: HTMLButtonElement) => void = () =>
+    undefined;
 </script>
 
 <div
@@ -16,7 +18,7 @@
 >
   <SectionHeading level={kind === 'total' ? 1 : 2} headingLevel={3}>{title}</SectionHeading>
   <slot name="summary" />
-  <MaterialCostList {cost} {catalog} />
+  <MaterialCostList {cost} {catalog} {onSelectMaterial} />
   <slot />
 </div>
 

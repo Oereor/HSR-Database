@@ -2,6 +2,8 @@ import {
   assertCharacterTrainingData,
   assertLightConeTrainingData,
   assertMaterialCatalog,
+  assertMaterialDetailCatalog,
+  validateMaterialDetails,
   assertTrainingSharedData,
   validateTrainingBundle
 } from '../../../src/lib/domain/training/validation.js';
@@ -9,6 +11,7 @@ import type {
   CharacterTrainingData,
   LightConeTrainingData,
   MaterialCatalog,
+  MaterialDetailCatalog,
   TrainingSharedData
 } from '../../../src/lib/domain/training/types.js';
 import type { DataManifest, GeneratedArtifactMetadata } from '../../../src/lib/domain/types.js';
@@ -192,6 +195,7 @@ export async function validateBuildInputs(
   const trainingCharacters: CharacterTrainingData[] = [];
   const trainingLightCones: LightConeTrainingData[] = [];
   const materials: MaterialCatalog[] = [];
+  const materialDetails: MaterialDetailCatalog[] = [];
   const artifacts = await validateGeneratedArtifacts(
     manifest,
     { generated: generatedRoot, staticGenerated: staticGeneratedRoot },
@@ -221,6 +225,15 @@ export async function validateBuildInputs(
           assertArtifactLocale(logicalPath, metadata);
           assertMaterialCatalog(value, materialMatch[1] as Locale);
           materials.push(value);
+          return;
+        }
+        const detailMatch = logicalPath.match(
+          /^static\/generated\/(zh-CN|en)\/material-details\.json$/
+        );
+        if (detailMatch) {
+          assertArtifactLocale(logicalPath, metadata);
+          assertMaterialDetailCatalog(value, detailMatch[1] as Locale);
+          materialDetails.push(value);
           return;
         }
         if (logicalPath === 'runtime/player.json') {
@@ -372,6 +385,10 @@ export async function validateBuildInputs(
     !exactSet(
       materials.map((catalog) => catalog.locale),
       manifest.generatedLocales
+    ) ||
+    !exactSet(
+      materialDetails.map((catalog) => catalog.locale),
+      manifest.generatedLocales
     )
   )
     throw new Error('Training artifact coverage mismatch');
@@ -379,6 +396,11 @@ export async function validateBuildInputs(
     { shared: trainingShared, characters: trainingCharacters, lightCones: trainingLightCones },
     materials
   );
+  for (const details of materialDetails)
+    validateMaterialDetails(
+      details,
+      materials.find((catalog) => catalog.locale === details.locale)!
+    );
 
   const routeCountKeys: Record<RouteCategory, keyof DataManifest['counts']> = {
     characters: 'characters',

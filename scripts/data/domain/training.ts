@@ -20,6 +20,8 @@ export { TRAINING_TABLE_NAMES } from '../training-sources.js';
 
 export interface MaterialDomain extends MaterialIdentity {
   nameSource?: NeutralTextSource;
+  descriptionSource?: NeutralTextSource;
+  backgroundDescriptionSource?: NeutralTextSource;
 }
 
 export interface TrainingDomainBuild {
@@ -232,7 +234,9 @@ export function buildTrainingDomain(
         subType: String(row.ItemSubType),
         rarity: String(row.Rarity),
         iconKey: itemId,
-        nameSource: textSource(row.ItemName)
+        nameSource: textSource(row.ItemName),
+        descriptionSource: textSource(row.ItemDesc),
+        backgroundDescriptionSource: textSource(row.ItemBGDesc)
       };
     })
     .sort(sortIds);

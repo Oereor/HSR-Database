@@ -180,10 +180,11 @@ for (const prefix of ['', '/en']) {
       '3'
     );
     await expect(
-      page.locator(
-        '#training .training-materials input, #training .training-materials a, #training .training-materials button'
-      )
+      page.locator('#training .training-materials input, #training .training-materials a')
     ).toHaveCount(0);
+    expect(
+      await page.locator('#training .training-materials button[aria-haspopup="dialog"]').count()
+    ).toBe(await page.locator('#training [data-material-id]').count());
     await expect(page.locator('#training .training-exp [data-material-id="2"]')).toHaveAttribute(
       'data-material-count',
       '579800'

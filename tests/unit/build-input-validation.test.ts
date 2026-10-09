@@ -237,7 +237,7 @@ async function createFixture(): Promise<Fixture> {
     expGroup: '1',
     promotions
   });
-  for (const locale of ['zh-CN', 'en'] as const)
+  for (const locale of ['zh-CN', 'en'] as const) {
     await writeArtifact(
       `static/generated/${locale}/materials.json`,
       {
@@ -247,6 +247,16 @@ async function createFixture(): Promise<Fixture> {
       },
       locale
     );
+    await writeArtifact(
+      `static/generated/${locale}/material-details.json`,
+      {
+        schemaVersion: 1,
+        locale,
+        materials: materials.map(({ id }) => ({ id }))
+      },
+      locale
+    );
+  }
 
   const localeEntry = (locale: 'zh-CN' | 'en') => {
     const localeArtifacts = Object.values(artifacts).filter((entry) => entry.locale === locale);
@@ -273,7 +283,7 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 50,
+    schemaVersion: 51,
     sourceCommit: commit,
     sourceVersion,
     gameVersionFull: '4.5.0',

@@ -2,6 +2,7 @@ import type {
   CharacterTrainingData,
   LightConeTrainingData,
   MaterialCatalog,
+  MaterialDetailCatalog,
   TrainingSharedData
 } from '../domain/training/types.js';
 import { trainingId, TrainingError } from '../domain/training/index.js';
@@ -9,6 +10,8 @@ import {
   assertCharacterTrainingData,
   assertLightConeTrainingData,
   assertMaterialCatalog,
+  assertMaterialDetailCatalog,
+  validateMaterialDetails,
   assertTrainingSharedData
 } from '../domain/training/validation.js';
 
@@ -52,6 +55,19 @@ export function createTrainingLoader(fetcher: typeof fetch = fetch) {
             throw new TrainingError('equipment-mismatch', equipmentId);
         }
       ),
+    loadMaterialDetails: (locale: 'zh-CN' | 'en', catalog?: MaterialCatalog) => {
+      if (!['zh-CN', 'en'].includes(locale)) throw new TrainingError('invalid-locale', locale);
+      const url = `/generated/${locale}/material-details.json`;
+      return load<MaterialDetailCatalog>(url, (value) => assertMaterialDetailCatalog(value, locale))
+        .then((data) => {
+          if (catalog) validateMaterialDetails(data, catalog);
+          return data;
+        })
+        .catch((error: unknown) => {
+          cache.delete(url);
+          throw error;
+        });
+    },
     loadMaterials: (locale: 'zh-CN' | 'en') => {
       if (!['zh-CN', 'en'].includes(locale)) throw new TrainingError('invalid-locale', locale);
       return load<MaterialCatalog>(`/generated/${locale}/materials.json`, (value) =>

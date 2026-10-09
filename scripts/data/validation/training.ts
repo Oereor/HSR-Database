@@ -5,7 +5,7 @@ import { buildCharacterDomain } from '../domain/character.js';
 import { buildTrainingDomain, TRAINING_TABLE_NAMES } from '../domain/training.js';
 import { loadCharacterDomainTables } from '../character-sources.js';
 import { readTrainingSourceTable } from '../training-sources.js';
-import { projectMaterials } from '../projection/material.js';
+import { projectMaterials, projectMaterialDetails } from '../projection/material.js';
 import { createTextResolver } from '../localization.js';
 import type { TextMap } from '../localization.js';
 import type { Locale } from '../locale-registry.js';
@@ -45,6 +45,10 @@ export async function validateTrainingSemantics(
       await compare(
         `${locale}/materials.json`,
         projectMaterials(build.materials, locale, resolver)
+      );
+      await compare(
+        `${locale}/material-details.json`,
+        projectMaterialDetails(build.materials, locale, resolver)
       );
     })
   ]);

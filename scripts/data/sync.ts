@@ -54,8 +54,11 @@ import { canonicalJsonDigest, readPreparedSourceMetadata } from './source-metada
 import { buildCharacterDomain } from './domain/character.js';
 import { readTrainingSourceTable } from './training-sources.js';
 import { buildTrainingDomain, auditTrainingDomain } from './domain/training.js';
-import { projectMaterials } from './projection/material.js';
-import { validateTrainingBundle } from '../../src/lib/domain/training/validation.js';
+import { projectMaterials, projectMaterialDetails } from './projection/material.js';
+import {
+  validateTrainingBundle,
+  validateMaterialDetails
+} from '../../src/lib/domain/training/validation.js';
 import { buildLightConeDomain } from './domain/light-cone.js';
 import { buildRelicDomain } from './domain/relic.js';
 import { buildPlayerRuntimeData } from './player-runtime.js';
@@ -831,6 +834,7 @@ export async function syncData(): Promise<DataManifest> {
       config,
       runtime,
       materials: projectMaterials(training.materials, config.locale, runtime.text),
+      materialDetails: projectMaterialDetails(training.materials, config.locale, runtime.text),
       catalogs: {
         characters: characterCatalog,
         'light-cones': lightConeCatalog,
@@ -1005,6 +1009,7 @@ export async function syncData(): Promise<DataManifest> {
       `static/generated/training/light-cones/${lightCone.equipmentId}.json`
     );
   for (const projection of projections) {
+    validateMaterialDetails(projection.materialDetails, projection.materials);
     await writeViewArtifacts(projection);
     await writeArtifact(
       nextStaticGeneratedRoot,
@@ -1012,6 +1017,13 @@ export async function syncData(): Promise<DataManifest> {
       projection.materials,
       { locale: projection.config.locale },
       `static/generated/${projection.config.locale}/materials.json`
+    );
+    await writeArtifact(
+      nextStaticGeneratedRoot,
+      `${projection.config.locale}/material-details.json`,
+      projection.materialDetails,
+      { locale: projection.config.locale },
+      `static/generated/${projection.config.locale}/material-details.json`
     );
   }
   const countsOf = (projection: (typeof projections)[number]) => ({
@@ -1060,7 +1072,7 @@ export async function syncData(): Promise<DataManifest> {
   };
   const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
   const manifestWithoutRevision: Omit<DataManifest, 'dataRevision'> = {
-    schemaVersion: 50,
+    schemaVersion: 51,
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,

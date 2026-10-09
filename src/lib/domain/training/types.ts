@@ -73,6 +73,18 @@ export interface MaterialCatalog {
   materials: MaterialView[];
 }
 
+export interface MaterialDetail {
+  id: ItemId;
+  description?: string;
+  backgroundDescription?: string;
+}
+
+export interface MaterialDetailCatalog {
+  schemaVersion: 1;
+  locale: 'zh-CN' | 'en';
+  materials: MaterialDetail[];
+}
+
 export interface TrainingSharedData {
   schemaVersion: 1;
   characterExp: Record<string, number[]>;
