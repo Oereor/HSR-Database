@@ -18,6 +18,23 @@ for (const prefix of ['', '/en']) {
     });
     await page.goto(`${prefix}/characters/1510/`);
     await ready(page);
+    expect(
+      await page
+        .locator('.section-nav a')
+        .evaluateAll((links) => links.map((link) => link.getAttribute('href')))
+    ).toEqual([
+      '#stats',
+      '#skills',
+      '#traces',
+      '#eidolons',
+      '#equipment-recommendation',
+      '#training'
+    ]);
+    expect(
+      await page
+        .locator('section[id].section-nav-target')
+        .evaluateAll((sections) => sections.map((section) => section.id))
+    ).toEqual(['skills', 'traces', 'eidolons', 'equipment-recommendation', 'training']);
     const groups = page.locator('[data-training-key="1510:0:1510004"]');
     await expect(groups).toHaveCount(2);
     const talent = page.locator(
@@ -86,6 +103,11 @@ for (const prefix of ['', '/en']) {
     await expect(page.locator('#training .training-material__icon img').first()).toBeVisible();
     await page.locator('.section-nav a[href="#training"]').click();
     await expect(page).toHaveURL(/#training$/);
+    await expect(page.locator('.section-nav a[href="#training"]')).toHaveAttribute(
+      'aria-current',
+      'location'
+    );
+    await expect(page.locator('#training > .section-heading-shared')).toBeInViewport();
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth - document.documentElement.clientWidth
@@ -98,36 +120,109 @@ for (const prefix of ['', '/en']) {
   });
 }
 
-test('trace toggles follow the DAG and keyboard state, with no level-up restoration', async ({
-  page
-}) => {
-  await page.goto('/characters/1001/');
-  await ready(page);
-  const toggle = (id: string) => page.locator(`[data-trace-id="${id}"] .trace-toggle`);
-  await expect(page.locator('.trace-toggle[aria-pressed="true"]')).toHaveCount(13);
-  await toggle('1001201').click();
-  await expect(toggle('1001101')).toHaveAttribute('aria-pressed', 'false');
-  await expect(toggle('1001102')).toHaveAttribute('aria-pressed', 'false');
-  await expect(toggle('1001103')).toHaveAttribute('aria-pressed', 'true');
-  await toggle('1001102').focus();
-  await page.keyboard.press('Enter');
-  await expect(toggle('1001201')).toHaveAttribute('aria-pressed', 'true');
-  await expect(toggle('1001102')).toHaveAttribute('aria-pressed', 'true');
-  await expect(toggle('1001102')).toBeFocused();
-  await page.keyboard.press('Space');
-  await expect(toggle('1001102')).toHaveAttribute('aria-pressed', 'false');
-  await page.locator('#character-level-1001').fill('1');
-  const traces = await page.locator('.trace-toggle[aria-pressed="true"]').count();
-  await toggle('1001101').click();
-  await expect(toggle('1001101')).toHaveAttribute('aria-pressed', 'false');
-  await expect(page.locator('#traces [role="status"]')).not.toBeEmpty();
-  await page.locator('#character-level-1001').fill('80');
-  await expect(page.locator('.trace-toggle[aria-pressed="true"]')).toHaveCount(traces);
-  await page.goto('/characters/8007/');
-  await ready(page);
-  await expect(page.locator('[data-trace-id="8007501"] .trace-toggle')).toHaveCount(0);
-  await expect(page.locator('[data-trace-id="8007501"]')).toHaveCount(1);
-});
+for (const prefix of ['', '/en']) {
+  test(`delayed trace toggles follow the DAG, costs and keyboard state (${prefix || 'zh-CN'})`, async ({
+    page
+  }) => {
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    await page.route('**/generated/training/characters/1001.json', async (route) => {
+      await gate;
+      await route.continue();
+    });
+    const errors: string[] = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    try {
+      await page.goto(`${prefix}/characters/1001/`);
+      await expect(page.locator('#training')).toHaveAttribute('data-training-state', 'loading');
+      await expect(page.locator('.trace-toggle')).toHaveCount(0);
+      release();
+      await ready(page);
+      const card = (id: string) => page.locator(`[data-trace-id="${id}"]`);
+      const toggle = (id: string) => page.locator(`[data-trace-id="${id}"] .trace-toggle`);
+      const count = page.locator('[data-training-trace-count]');
+      const credits = page.locator('#training .training-total [data-material-id="2"]');
+      const weeklyMaterial = page.locator('#training .training-total [data-material-id="110501"]');
+      await expect(page.locator('.trace-toggle[aria-pressed="true"]')).toHaveCount(13);
+      await expect(count).toHaveAttribute('data-training-trace-count', '13');
+      const initialCredits = Number(await credits.getAttribute('data-material-count'));
+      const initialWeeklyMaterial = Number(
+        await weeklyMaterial.getAttribute('data-material-count')
+      );
+      await toggle('1001201').hover();
+      await expect(toggle('1001201')).toHaveCSS('cursor', 'pointer');
+      await toggle('1001201').click();
+      for (const id of [
+        '1001201',
+        '1001101',
+        '1001202',
+        '1001203',
+        '1001102',
+        '1001205',
+        '1001206'
+      ]) {
+        await expect(toggle(id)).toHaveAttribute('aria-pressed', 'false');
+        await expect(card(id)).toHaveAttribute('data-training-state', 'inactive');
+        await expect(card(id)).toHaveCSS('filter', 'grayscale(1)');
+      }
+      await expect(toggle('1001103')).toHaveAttribute('aria-pressed', 'true');
+      await expect(card('1001103')).toHaveAttribute('data-training-state', 'active');
+      await expect(count).toHaveAttribute('data-training-trace-count', '6');
+      // Sum of the seven removed nodes' real source costs, including both shared branches.
+      await expect(credits).toHaveAttribute('data-material-count', String(initialCredits - 86000));
+      await expect(weeklyMaterial).toHaveAttribute(
+        'data-material-count',
+        String(initialWeeklyMaterial - 2)
+      );
+      const explanation = card('1001101').locator('[data-skill-extra-effects]');
+      await explanation.locator('summary').click();
+      await expect(explanation).toHaveAttribute('open', '');
+      await expect(toggle('1001101')).toHaveAttribute('aria-pressed', 'false');
+      await expect(count).toHaveAttribute('data-training-trace-count', '6');
+      await explanation.locator('summary').focus();
+      await page.keyboard.press('Enter');
+      await expect(explanation).not.toHaveAttribute('open', '');
+      await expect(toggle('1001101')).toHaveAttribute('aria-pressed', 'false');
+      await toggle('1001102').focus();
+      await expect(toggle('1001102')).toHaveCSS('outline-style', 'solid');
+      await page.keyboard.press('Enter');
+      await expect(toggle('1001201')).toHaveAttribute('aria-pressed', 'true');
+      await expect(toggle('1001102')).toHaveAttribute('aria-pressed', 'true');
+      await expect(card('1001102')).toHaveAttribute('data-training-state', 'active');
+      await expect(card('1001102')).toHaveCSS('filter', 'none');
+      await expect(toggle('1001102')).toBeFocused();
+      await expect(count).toHaveAttribute('data-training-trace-count', '8');
+      await expect(credits).toHaveAttribute('data-material-count', String(initialCredits - 68000));
+      await page.keyboard.press('Space');
+      await expect(toggle('1001102')).toHaveAttribute('aria-pressed', 'false');
+      await expect(card('1001102')).toHaveAttribute('data-training-state', 'inactive');
+      await expect(count).toHaveAttribute('data-training-trace-count', '7');
+      await page.locator('#character-level-1001').fill('1');
+      await expect(page.locator('.trace-toggle[aria-pressed="true"]')).toHaveCount(1);
+      const traces = await page.locator('.trace-toggle[aria-pressed="true"]').count();
+      await toggle('1001101').click();
+      await expect(toggle('1001101')).toHaveAttribute('aria-pressed', 'false');
+      await expect(page.locator('#traces [role="status"]')).not.toBeEmpty();
+      await page.locator('#character-level-1001').fill('80');
+      await expect(page.locator('.trace-toggle[aria-pressed="true"]')).toHaveCount(traces);
+      await expect(count).toHaveAttribute('data-training-trace-count', String(traces));
+      await expect(card('1001101')).toHaveAttribute('data-training-state', 'inactive');
+      await page.goto(`${prefix}/characters/8007/`);
+      await ready(page);
+      await expect(page.locator('[data-trace-id="8007501"] .trace-toggle')).toHaveCount(0);
+      await expect(page.locator('[data-trace-id="8007501"]')).toHaveCount(1);
+      await expect(page.locator('[data-trace-id="8007501"]')).not.toHaveAttribute(
+        'data-training-state'
+      );
+      await expect(page.locator('[data-trace-id="8007501"]')).not.toHaveCSS('cursor', 'pointer');
+      expect(errors).toEqual([]);
+    } finally {
+      release();
+    }
+  });
+}
 
 test('static stats and costs agree at promotion boundaries; cone rank remains independent', async ({
   page
@@ -165,6 +260,11 @@ test('static stats and costs agree at promotion boundaries; cone rank remains in
   }
   await page.goto('/en/light-cones/20000/?level=37&rank=3');
   await ready(page);
+  expect(
+    await page
+      .locator('.section-nav a')
+      .evaluateAll((links) => links.map((link) => link.getAttribute('href')))
+  ).toEqual(['#stats', '#training', '#story']);
   await expect(page.locator('[data-training-level]')).toHaveAttribute('data-training-level', '37');
   const total = await page.locator('#training .training-total').textContent();
   await page.locator('#superimposition-level-20000').fill('4');
@@ -255,6 +355,11 @@ test('Profile switches reset skills and traces while keeping the level and rejec
     '10'
   );
   await expect(page.locator('#character-level-1102')).toHaveValue('60');
+  const enhancedTrace = page.locator('[data-trace-id="11102201"] .trace-toggle');
+  await expect(enhancedTrace).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-trace-id="1102201"]')).toHaveCount(0);
+  await enhancedTrace.click();
+  await expect(enhancedTrace).toHaveAttribute('aria-pressed', 'false');
   await page.locator('[data-skill-category="skill"] input').fill('11');
   await page.locator('.enhancement-switch').click();
   await ready(page);
@@ -264,4 +369,12 @@ test('Profile switches reset skills and traces while keeping the level and rejec
     '10'
   );
   await expect(page.locator('#character-level-1102')).toHaveValue('60');
+  await expect(page.locator('[data-trace-id="11102201"]')).toHaveCount(0);
+  const baseTrace = page.locator('[data-trace-id="1102201"] .trace-toggle');
+  await expect(baseTrace).toHaveAttribute('aria-pressed', 'true');
+  await baseTrace.click();
+  await expect(baseTrace).toHaveAttribute('aria-pressed', 'false');
+  await page.locator('.enhancement-switch').click();
+  await ready(page);
+  await expect(enhancedTrace).toHaveAttribute('aria-pressed', 'true');
 });

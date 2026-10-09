@@ -167,7 +167,6 @@
     { id: 'stats', label: m.detail_stats() },
     { id: 'skills', label: m.detail_skills() },
     { id: 'traces', label: m.detail_traces() },
-    ...(staticTrainingEnabled ? [{ id: 'training', label: m.training_title() }] : []),
     { id: 'eidolons', label: m.detail_eidolons() },
     ...(equipmentRecommendation
       ? [
@@ -175,7 +174,8 @@
             ? { id: 'equipment', label: m.player_equipment_title() }
             : { id: 'equipment-recommendation', label: m.detail_equipment_recommendation() }
         ]
-      : [])
+      : []),
+    ...(staticTrainingEnabled ? [{ id: 'training', label: m.training_title() }] : [])
   ];
   $: playerQueryState =
     playerClientReady && category === 'characters'
@@ -658,15 +658,6 @@
         </p>{/if}
       {#if traceFeedback}<p class="data-placeholder" role="status">{traceFeedback}</p>{/if}
     </section>
-    {#if staticTrainingEnabled}<TrainingSection
-        state={trainingSectionState}
-        errorCode={trainingCalculation.error ?? trainingLoadError}
-        result={trainingCalculation.result}
-        catalog={materialCatalog}
-        profile={trainingProfile}
-        cards={activeProfile.skillCards}
-        onRetry={retryTraining}
-      />{/if}
     <section id="eidolons" class="detail-section section-nav-target">
       <SectionHeading level={1}>{m.detail_eidolons()}</SectionHeading>
       {#if activeProfile.eidolons.length}<div class="stack-list">
@@ -688,6 +679,15 @@
   {:else if equipmentRecommendation}
     <EquipmentRecommendationSection recommendation={equipmentRecommendation} />
   {/if}
+  {#if staticTrainingEnabled}<TrainingSection
+      state={trainingSectionState}
+      errorCode={trainingCalculation.error ?? trainingLoadError}
+      result={trainingCalculation.result}
+      catalog={materialCatalog}
+      profile={trainingProfile}
+      cards={activeProfile.skillCards}
+      onRetry={retryTraining}
+    />{/if}
   {#if specialEffectsAvailable}<SpecialEffectDialog
       open={specialEffectsOpen}
       entries={specialEffects}

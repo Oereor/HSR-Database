@@ -11,17 +11,17 @@ test('共享 SectionNav 提供真实锚点、scroll spy、sticky offset 与窄�
     '#stats',
     '#skills',
     '#traces',
-    '#training',
     '#eidolons',
-    '#equipment-recommendation'
+    '#equipment-recommendation',
+    '#training'
   ]);
   for (const id of [
     'stats',
     'skills',
     'traces',
-    'training',
     'eidolons',
-    'equipment-recommendation'
+    'equipment-recommendation',
+    'training'
   ])
     await expect(page.locator(`#${id}`)).toHaveCount(1);
 

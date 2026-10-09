@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { render } from 'svelte/server';
 import { createSkillTrainingControls } from '../../src/lib/domain/training/detail-view';
@@ -12,6 +12,12 @@ import SkillCardPanel from '../../src/lib/components/character/SkillCardPanel.sv
 import TraceCardPanel from '../../src/lib/components/character/TraceCardPanel.svelte';
 import TrainingSection from '../../src/lib/components/training/TrainingSection.svelte';
 import MaterialCostList from '../../src/lib/components/training/MaterialCostList.svelte';
+import DetailPage from '../../src/lib/components/shared/DetailPage.svelte';
+
+vi.mock('$app/stores', async () => {
+  const { readable } = await import('svelte/store');
+  return { page: readable({ url: new URL('http://localhost/characters/1001/') }) };
+});
 
 const json = <T>(path: string): T => JSON.parse(readFileSync(path, 'utf8'));
 const data = (id: string) =>
@@ -20,6 +26,21 @@ const view = (id: string, locale = 'zh-CN') =>
   json<Character>(`src/lib/generated/views/${locale}/details/characters/${id}.json`);
 
 describe('training presentation contracts', () => {
+  it('places character training and its anchor last when equipment recommendations are absent', () => {
+    const html = render(DetailPage, {
+      props: { detail: view('1001'), category: 'characters', singular: 'character' }
+    }).body;
+    const sections = [...html.matchAll(/<section\b[^>]*\bid="([^"]+)"/g)].map((match) => match[1]);
+    expect(sections).toEqual(['skills', 'traces', 'eidolons', 'training']);
+    const nav = html.match(/<nav\b[^>]*class="[^"]*\bsection-nav\b[^"]*"[\s\S]*?<\/nav>/)![0];
+    expect([...nav.matchAll(/href="#([^"]+)"/g)].map((match) => match[1])).toEqual([
+      'stats',
+      'skills',
+      'traces',
+      'eidolons',
+      'training'
+    ]);
+  });
   it('maps every actual public progression to its profile, including paid defaults and shared identity', () => {
     const catalog = json<CatalogEntry[]>('src/lib/generated/views/zh-CN/catalogs/characters.json');
     for (const { id } of catalog) {

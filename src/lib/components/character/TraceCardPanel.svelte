@@ -21,15 +21,16 @@
   export let activeTraceIds: string[] | undefined = undefined;
   export let onToggleTrace: ((id: string) => void) | undefined = undefined;
 
-  const canToggle = (trace: Trace) =>
-    !playerSkillTree &&
-    !!onToggleTrace &&
-    trainingProfile?.nodes.some((node) => node.pointId === trace.id && node.kind === 'trace');
-  const trainingStateOf = (trace: Trace) =>
-    canToggle(trace) ? (activeTraceIds?.includes(trace.id) ? 'active' : 'inactive') : undefined;
   export let traces: Trace[];
   export let playerSkillTree: PlayerCharacter['skillTree'] | undefined = undefined;
 
+  // Legacy templates must read these dependencies directly after async profile/state updates.
+  $: toggleableTraceIds = new Set(
+    !playerSkillTree && onToggleTrace
+      ? trainingProfile?.nodes.filter((node) => node.kind === 'trace').map((node) => node.pointId)
+      : []
+  );
+  $: activeTraceIdSet = new Set(activeTraceIds ?? []);
   $: groups = groupTracesForDisplay(traces);
   $: playerSkillTreeIndex = playerSkillTree
     ? createPlayerSkillTreeIndex(playerSkillTree)
@@ -49,11 +50,15 @@
           data-trace-id={group.ability.id}
           data-trace-type="ability"
           data-player-state={abilityState}
-          data-training-state={trainingStateOf(group.ability)}
+          data-training-state={toggleableTraceIds.has(group.ability.id)
+            ? activeTraceIdSet.has(group.ability.id)
+              ? 'active'
+              : 'inactive'
+            : undefined}
         >
-          {#if canToggle(group.ability)}<TraceToggle
+          {#if toggleableTraceIds.has(group.ability.id)}<TraceToggle
               name={group.ability.name}
-              active={activeTraceIds?.includes(group.ability.id) ?? false}
+              active={activeTraceIdSet.has(group.ability.id)}
               onToggle={() => onToggleTrace?.(group.ability.id)}
             />{/if}
           <TraceAbilityHeading trace={group.ability} playerState={abilityState} />
@@ -74,11 +79,15 @@
             data-trace-type="stat"
             data-trace-owner={group.ability.id}
             data-player-state={statState}
-            data-training-state={trainingStateOf(stat)}
+            data-training-state={toggleableTraceIds.has(stat.id)
+              ? activeTraceIdSet.has(stat.id)
+                ? 'active'
+                : 'inactive'
+              : undefined}
           >
-            {#if canToggle(stat)}<TraceToggle
+            {#if toggleableTraceIds.has(stat.id)}<TraceToggle
                 name={stat.name}
-                active={activeTraceIds?.includes(stat.id) ?? false}
+                active={activeTraceIdSet.has(stat.id)}
                 onToggle={() => onToggleTrace?.(stat.id)}
               />{/if}
             <div class="trace-card__heading">
@@ -122,12 +131,16 @@
           data-trace-id={ability.id}
           data-trace-type="ability"
           data-trace-special
-          data-training-state={trainingStateOf(ability)}
+          data-training-state={toggleableTraceIds.has(ability.id)
+            ? activeTraceIdSet.has(ability.id)
+              ? 'active'
+              : 'inactive'
+            : undefined}
           data-player-state={abilityState}
         >
-          {#if canToggle(ability)}<TraceToggle
+          {#if toggleableTraceIds.has(ability.id)}<TraceToggle
               name={ability.name}
-              active={activeTraceIds?.includes(ability.id) ?? false}
+              active={activeTraceIdSet.has(ability.id)}
               onToggle={() => onToggleTrace?.(ability.id)}
             />{/if}
           <TraceAbilityHeading trace={ability} playerState={abilityState} />
@@ -147,11 +160,15 @@
             data-trace-type="stat"
             data-trace-standalone
             data-player-state={statState}
-            data-training-state={trainingStateOf(stat)}
+            data-training-state={toggleableTraceIds.has(stat.id)
+              ? activeTraceIdSet.has(stat.id)
+                ? 'active'
+                : 'inactive'
+              : undefined}
           >
-            {#if canToggle(stat)}<TraceToggle
+            {#if toggleableTraceIds.has(stat.id)}<TraceToggle
                 name={stat.name}
-                active={activeTraceIds?.includes(stat.id) ?? false}
+                active={activeTraceIdSet.has(stat.id)}
                 onToggle={() => onToggleTrace?.(stat.id)}
               />{/if}
             <div class="trace-card__heading">
