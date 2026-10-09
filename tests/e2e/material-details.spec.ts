@@ -68,6 +68,8 @@ for (const locale of ['zh-CN', 'en'] as const) {
       expect(await modal(page).evaluate((node) => node.contains(document.activeElement))).toBe(
         true
       );
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.locator('.item-detail-modal__close')).toBeFocused();
       await page.keyboard.press('Escape');
       await expect(modal(page)).not.toBeVisible();
       await expect(credits).toBeFocused();

@@ -32,10 +32,9 @@ const view = (id: string, locale = 'zh-CN') =>
 const shared = json<TrainingSharedData>('static/generated/training/shared.json');
 
 describe('receipt training projections', () => {
-  it('projects each paid canonical target once with actual legal levels, icons and independent preview', () => {
-    for (const { id } of json<CatalogEntry[]>(
-      'src/lib/generated/views/zh-CN/catalogs/characters.json'
-    )) {
+  it.each(json<CatalogEntry[]>('src/lib/generated/views/zh-CN/catalogs/characters.json'))(
+    'projects each paid canonical target once with legal levels, icons and independent preview for $id',
+    ({ id }) => {
       const cost = data(id);
       const character = view(id);
       for (const profile of cost.profiles) {
@@ -95,7 +94,7 @@ describe('receipt training projections', () => {
         }
       }
     }
-  });
+  );
 
   it('keeps joint preview edits separate from target transitions and delayed initialization in both locales', () => {
     const cost = data('1510');
@@ -235,7 +234,6 @@ describe('receipt training projections', () => {
       }
       expect(createTrainingExpenseCosts(coneResult).skillTrace).toBeUndefined();
       expect(createTrainingExpenseCosts(characterResult).skillTrace).toEqual(
-        allowedSkillTrainingLevels,
         mergeCosts(characterResult.skillCost, characterResult.traceCost)
       );
       if (level === 20) expect(characterResult.promotionCost).toEqual({});

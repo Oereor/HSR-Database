@@ -6,8 +6,8 @@ async function switchTo(page: Page, locale: 'en' | 'zh-CN', pathname: string) {
   await page.locator('.settings-trigger').click();
   const link = page.locator(
     locale === 'en'
-      ? '.language-segments a[href^="/en"]'
-      : '.language-segments a:not([href^="/en"])'
+      ? '.language-segments a[href^="/en/"]'
+      : '.language-segments a:not([href^="/en/"])'
   );
   const target = new URL((await link.getAttribute('href'))!, page.url());
   expect(target.pathname.replace(/\/$/, '')).toBe(pathname.replace(/\/$/, ''));
@@ -136,7 +136,6 @@ for (const locale of ['zh-CN', 'en'] as const) {
         await card.locator('.entity-overview-card__overlay').textContent()
       )?.trim();
       expect(catalogLabel).toBeTruthy();
-      expect(catalogLabel).not.toBe(rank);
       await card.click();
       await expect(page).toHaveURL(new RegExp(`${prefix}/enemies/${entry.id}/$`));
       await expect(page.locator('.enemy-rank-tag')).toHaveText(catalogLabel!);

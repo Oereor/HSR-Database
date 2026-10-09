@@ -1,4 +1,10 @@
 import { expect, test } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+import type { RelicCatalogEntry } from '../../src/lib/domain/types';
+
+const relicCatalog = JSON.parse(
+  readFileSync('src/lib/generated/views/zh-CN/catalogs/relics.json', 'utf8')
+) as RelicCatalogEntry[];
 
 test('角色目录按 ID 加载 preview 并保留安全缺图降级', async ({ page }) => {
   const failedImages: string[] = [];
@@ -138,14 +144,18 @@ test('遗器类别使用单选语义并保留排序、重置分页', async ({ pa
   await expect(all).toHaveAttribute('aria-pressed', 'false');
   await expect(cavern).toHaveAttribute('aria-pressed', 'true');
   await expect(planar).toHaveAttribute('aria-pressed', 'false');
-  await expect(page.locator('.entity-overview-card')).toHaveCount(32);
+  await expect(page.locator('.entity-overview-card')).toHaveCount(
+    relicCatalog.filter((entry) => entry.category === 'cavern').length
+  );
 
   await planar.click();
   await expect(page).toHaveURL(/type=planar/);
   await expect(page).not.toHaveURL(/type=cavern/);
   await expect(cavern).toHaveAttribute('aria-pressed', 'false');
   await expect(planar).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('.entity-overview-card')).toHaveCount(28);
+  await expect(page.locator('.entity-overview-card')).toHaveCount(
+    relicCatalog.filter((entry) => entry.category === 'planar').length
+  );
 
   await planar.click();
   await expect(planar).toHaveAttribute('aria-pressed', 'true');
@@ -180,7 +190,9 @@ test('遗器搜索与历史 type 参数可组合，清空搜索后保留类别',
   await page.locator('.overview-search button[type="submit"]').click();
   expect(new URL(page.url()).searchParams.get('type')).toBe('planar');
   expect(new URL(page.url()).searchParams.has('q')).toBe(false);
-  await expect(page.locator('.entity-overview-card')).toHaveCount(28);
+  await expect(page.locator('.entity-overview-card')).toHaveCount(
+    relicCatalog.filter((entry) => entry.category === 'planar').length
+  );
 });
 
 test('遗器统一页面外壳与专用 Grid 在各断点不横向溢出', async ({ page }) => {
@@ -320,14 +332,16 @@ test('遗器目录复用 shared compact Overview，并保留可读 typography �
     { width: 390, height: 844, minimumColumns: 1 }
   ]) {
     await page.setViewportSize(viewport);
+    await page.mouse.move(0, 0);
     await page.goto('/relics/?sort=id');
     const cards = page.locator('.entity-overview-card');
-    const firstRow = await cards.evaluateAll((items) => {
-      const boxes = items.slice(0, 8).map((item) => item.getBoundingClientRect());
-      return boxes.filter((box) => Math.abs(box.y - boxes[0].y) < 1).length;
-    });
-    expect(firstRow).toBeGreaterThanOrEqual(viewport.minimumColumns);
-    if (viewport.width === 390) expect(firstRow).toBe(1);
+    const firstRow = () =>
+      cards.evaluateAll((items) => {
+        const boxes = items.slice(0, 8).map((item) => item.getBoundingClientRect());
+        return boxes.filter((box) => Math.abs(box.y - boxes[0].y) < 1).length;
+      });
+    await expect.poll(firstRow).toBeGreaterThanOrEqual(viewport.minimumColumns);
+    if (viewport.width === 390) await expect.poll(firstRow).toBe(1);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth - document.documentElement.clientWidth

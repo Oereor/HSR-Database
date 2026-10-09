@@ -1033,7 +1033,8 @@ test('Endgame 敌方卡保留原生链接的点击、键盘与新标签页行为
   const newPagePromise = context.waitForEvent('page');
   await card.click({ modifiers: ['ControlOrMeta'] });
   const newPage = await newPagePromise;
-  await newPage.waitForLoadState('domcontentloaded');
+  await newPage.bringToFront();
+  await newPage.waitForURL(new URL(href!, page.url()).href, { waitUntil: 'domcontentloaded' });
   await expect(newPage).toHaveURL(new RegExp(`${href}$`));
   await newPage.close();
 });

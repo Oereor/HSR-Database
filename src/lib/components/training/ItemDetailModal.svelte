@@ -59,6 +59,23 @@
     onRequestClose();
   }
 
+  function handleKeydown(event: KeyboardEvent) {
+    if (event.key !== 'Tab') return;
+    const controls = [
+      ...dialog.querySelectorAll<HTMLElement>('button, a[href], [tabindex]')
+    ].filter((control) => control.tabIndex >= 0 && control.getClientRects().length > 0);
+    const first = controls[0];
+    const last = controls.at(-1);
+    if (!first || !last) return;
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
   function handleBackdropClick(event: MouseEvent) {
     if (event.target !== dialog) return;
     const bounds = surface.getBoundingClientRect();
@@ -93,6 +110,7 @@
   data-item-detail-id={material?.id}
   bind:this={dialog}
   on:cancel={handleCancel}
+  on:keydown={handleKeydown}
   on:close={handleClose}
   on:click={handleBackdropClick}
 >

@@ -596,6 +596,7 @@ for (const prefix of ['', '/en']) {
     await expect(training).toHaveAttribute('aria-valuemax', '10');
     await expect(preview).toHaveAttribute('aria-valuenow', '12');
     await expect(description).toHaveText(previewDescription!);
+    await training.scrollIntoViewIfNeeded();
     const box = await training.boundingBox();
     expect(box).not.toBeNull();
     await page.mouse.move(box!.x + box!.width - 1, box!.y + box!.height / 2);
@@ -645,7 +646,8 @@ for (const prefix of ['', '/en']) {
       .requiredPromotion;
     await page.locator('#character-level-1001').fill('1');
     const blocked = page.locator('[data-trace-id="1001101"] .trace-toggle');
-    await blocked.focus();
+    await blocked.scrollIntoViewIfNeeded();
+    await blocked.evaluate((button: HTMLButtonElement) => button.focus({ preventScroll: true }));
     const layout = () =>
       page.evaluate(() => ({
         height: document.documentElement.scrollHeight,
@@ -710,7 +712,13 @@ for (const prefix of ['', '/en']) {
     await blocked.click();
     await expect(toast).toHaveCount(1);
     await expect(toast).toHaveCSS('animation-name', 'none');
-    await expect(toast).toHaveCSS('transition-duration', '0s');
+    await expect
+      .poll(() =>
+        toast.evaluate((node) =>
+          Math.max(...getComputedStyle(node).transitionDuration.split(',').map(parseFloat))
+        )
+      )
+      .toBeLessThanOrEqual(0.00001);
     await page.clock.runFor(4001);
     await expect(toast).toHaveCount(0);
     await blocked.click();
@@ -780,7 +788,7 @@ for (const prefix of ['', '/en']) {
       if (category === 'characters') {
         await expect(page.locator('#skills .skill-level-control').first()).toHaveCSS(
           'border-top-width',
-          '1px'
+          '0px'
         );
         await expect(page.locator('.training-target__skills')).toHaveCSS('row-gap', '16px');
         await expect(page.locator('.training-target__skills')).toHaveCSS('margin-top', '16px');

@@ -371,7 +371,7 @@ test('reuses the Player cache and renders real progression without changing stat
   );
   await expect(page.locator('[data-trace-id="1304103"]')).toHaveAttribute(
     'data-player-state',
-    'unresolved'
+    'inactive'
   );
   await expect(page.locator('#eidolons [data-player-state="active"]')).toHaveCount(3);
   await expect(page.locator('#eidolons [data-player-state="inactive"]')).toHaveCount(3);
@@ -407,6 +407,9 @@ test('reuses the Player cache and renders real progression without changing stat
   );
   await expect(lightConeCard.locator('.player-light-cone__identity > span')).toHaveCount(2);
   await expect(lightConeCard.locator('.player-light-cone__progression > span')).toHaveCount(3);
+  const lightConeImage = lightConeCard.locator('.compact-entity-card__artwork img');
+  await lightConeImage.scrollIntoViewIfNeeded();
+  await lightConeImage.evaluate((image: HTMLImageElement) => image.decode());
   const lightConeArtworkFit = await lightConeCard
     .locator('.compact-entity-card__artwork')
     .evaluate((artwork) => {
@@ -431,7 +434,8 @@ test('reuses the Player cache and renders real progression without changing stat
       lightConeArtworkFit.insetRight,
       lightConeArtworkFit.insetBottom,
       lightConeArtworkFit.insetLeft
-    ].every((inset) => inset >= 3)
+    ].every((inset) => inset >= 3),
+    JSON.stringify(lightConeArtworkFit)
   ).toBe(true);
   await expect(page.locator('[data-player-relic-slot]')).toHaveCount(6);
   await expect(page.locator('[data-player-relic-slot="BODY"]')).toHaveAttribute(

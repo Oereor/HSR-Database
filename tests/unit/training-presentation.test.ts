@@ -51,7 +51,7 @@ describe('training presentation contracts', () => {
     const html = render(DetailPage, {
       props: { detail: view('1001'), category: 'characters', singular: 'character' }
     }).body;
-    const sections = [...html.matchAll(/<section\b[^>]*\bid="([^"]+)"/g)].map((match) => match[1]);
+    const sections = [...html.matchAll(/<section\b[^>]*\sid="([^"]+)"/g)].map((match) => match[1]);
     expect(sections).toEqual(['skills', 'traces', 'eidolons', 'training']);
     const nav = html.match(/<nav\b[^>]*class="[^"]*\bsection-nav\b[^"]*"[\s\S]*?<\/nav>/)![0];
     expect([...nav.matchAll(/href="#([^"]+)"/g)].map((match) => match[1])).toEqual([
@@ -236,7 +236,7 @@ describe('training presentation contracts', () => {
     expect(html.indexOf('data-training-target')).toBeLessThan(
       html.indexOf('data-training-expense')
     );
-    const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+    const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
     expect(new Set(ids).size).toBe(ids.length);
     const labels = [...html.matchAll(/<label[^>]*for="([^"]+)"/g)].map((match) => match[1]);
     expect(labels).toContain('training-skill-1510-0-1510004');

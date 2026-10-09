@@ -1,4 +1,10 @@
 import { expect, test } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+import type { HomepageRecentWarpData } from '../../src/lib/domain/types';
+
+const homepage = JSON.parse(
+  readFileSync('src/lib/generated/views/zh-CN/homepage.json', 'utf8')
+) as HomepageRecentWarpData;
 
 test('首页作为数据库入口展示品牌、分类与最近限定跃迁', async ({ page, isMobile }) => {
   await page.goto('/');
@@ -46,26 +52,12 @@ test('首页作为数据库入口展示品牌、分类与最近限定跃迁', as
     await page
       .locator('[data-homepage-recent="avatar"] .entity-overview-card')
       .evaluateAll((cards) => cards.map((card) => card.getAttribute('href')))
-  ).toEqual([
-    '/characters/1504/',
-    '/characters/1513/',
-    '/characters/1409/',
-    '/characters/1512/',
-    '/characters/1304/',
-    '/characters/1412/'
-  ]);
+  ).toEqual(homepage.avatarUps.map(({ avatarId }) => `/characters/${avatarId}/`));
   expect(
     await page
       .locator('[data-homepage-recent="weapon"] .entity-overview-card')
       .evaluateAll((cards) => cards.map((card) => card.getAttribute('href')))
-  ).toEqual([
-    '/light-cones/23056/',
-    '/light-cones/23064/',
-    '/light-cones/23042/',
-    '/light-cones/23063/',
-    '/light-cones/23023/',
-    '/light-cones/23048/'
-  ]);
+  ).toEqual(homepage.weaponUps.map(({ equipmentId }) => `/light-cones/${equipmentId}/`));
 
   const search = page.getByRole('search').filter({ has: page.locator('#home-search') });
   await search.locator('#home-search').fill('三月七');
