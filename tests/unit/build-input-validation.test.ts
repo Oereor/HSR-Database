@@ -188,6 +188,55 @@ async function createFixture(): Promise<Fixture> {
     }
   });
 
+  const promotions = [{ promotion: 0, maxLevel: 2, cost: {} }];
+  await writeArtifact('static/generated/training/shared.json', {
+    schemaVersion: 1,
+    characterExp: { '1': [10] },
+    lightConeExp: { '1': [10] },
+    materials: [],
+    characterExpItems: [],
+    lightConeExpItems: [],
+    characterExpCreditDivisor: 10
+  });
+  await writeArtifact('static/generated/training/characters/1.json', {
+    schemaVersion: 1,
+    avatarId: '1',
+    expGroup: '1',
+    promotions,
+    profiles: [
+      {
+        avatarId: '1',
+        enhancedId: 0,
+        nodes: [
+          {
+            key: '1:0:10',
+            pointId: '10',
+            pointType: 2,
+            kind: 'default',
+            defaultUnlock: true,
+            maxLevel: 1,
+            prerequisiteIds: [],
+            linkedSkillIds: [],
+            bindings: [],
+            steps: [{ level: 1, requiredPromotion: 0, cost: {} }]
+          }
+        ]
+      }
+    ]
+  });
+  await writeArtifact('static/generated/training/light-cones/2.json', {
+    schemaVersion: 1,
+    equipmentId: '2',
+    expGroup: '1',
+    promotions
+  });
+  for (const locale of ['zh-CN', 'en'] as const)
+    await writeArtifact(
+      `static/generated/${locale}/materials.json`,
+      { schemaVersion: 1, locale, materials: [] },
+      locale
+    );
+
   const localeEntry = (locale: 'zh-CN' | 'en') => {
     const localeArtifacts = Object.values(artifacts).filter((entry) => entry.locale === locale);
     return {
@@ -213,7 +262,7 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 48,
+    schemaVersion: 49,
     sourceCommit: commit,
     sourceVersion,
     gameVersionFull: '4.5.0',

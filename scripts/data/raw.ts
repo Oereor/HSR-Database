@@ -45,6 +45,52 @@ export async function readTable<T = Record<string, unknown>>(
   return readRaw<T[]>(root, `ExcelOutput/${name}.json`);
 }
 
+/** Select top-level object records before strict parsing; unrelated upstream rows are not consumed. */
+export async function readSelectedTable<T = Record<string, unknown>>(
+  root: string,
+  name: string,
+  field: string,
+  selectedValue: string
+): Promise<T[]> {
+  if (!/^[A-Za-z]\w*$/.test(field)) throw new Error('Invalid selected-table field');
+  const text = await readFile(path.join(root, 'ExcelOutput', `${name}.json`), 'utf8');
+  if (!text.trim().startsWith('[')) throw new Error(`${name} must be a JSON array`);
+  const entries: T[] = [];
+  let depth = 0;
+  let start = -1;
+  let quoted = false;
+  let escaped = false;
+  const matcher = new RegExp(`"${field}"\\s*:\\s*("(?:[^"\\\\]|\\\\.)*")`);
+  for (let index = 0; index < text.length; index++) {
+    const char = text[index];
+    if (quoted) {
+      if (escaped) escaped = false;
+      else if (char === '\\') escaped = true;
+      else if (char === '"') quoted = false;
+      continue;
+    }
+    if (char === '"') quoted = true;
+    else if (char === '{' || char === '[') {
+      if (depth === 1 && char === '{') start = index;
+      depth++;
+    } else if (char === '}' || char === ']') {
+      depth--;
+      if (depth < 0) throw new Error(`${name} has invalid JSON nesting`);
+      if (depth === 1 && char === '}' && start >= 0) {
+        const source = text.slice(start, index + 1);
+        const match = matcher.exec(source);
+        if (match && JSON.parse(match[1]) === selectedValue) {
+          const row = materialize(parse(source)) as Record<string, unknown>;
+          if (row[field] === selectedValue) entries.push(row as T);
+        }
+        start = -1;
+      }
+    }
+  }
+  if (depth !== 0 || quoted) throw new Error(`${name} has incomplete JSON`);
+  return entries;
+}
+
 export interface ConfigSource<T> {
   name: string;
   rows: T[];

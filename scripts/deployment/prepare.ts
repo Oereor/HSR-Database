@@ -31,7 +31,8 @@ export const starRailAssetDirectories = [
   'icon/element/',
   'icon/path/',
   'icon/sign/',
-  'icon/avatar/'
+  'icon/avatar/',
+  'icon/item/'
 ];
 
 export const starRailSparsePaths = [...starRailIndexPaths, ...starRailAssetDirectories];

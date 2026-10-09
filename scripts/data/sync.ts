@@ -52,6 +52,10 @@ import { projectEndgame } from './projection/endgame.js';
 import { buildHomepageRecentWarpData } from './homepage.js';
 import { canonicalJsonDigest, readPreparedSourceMetadata } from './source-metadata.js';
 import { buildCharacterDomain } from './domain/character.js';
+import { readTrainingSourceTable } from './training-sources.js';
+import { buildTrainingDomain, auditTrainingDomain } from './domain/training.js';
+import { projectMaterials } from './projection/material.js';
+import { validateTrainingBundle } from '../../src/lib/domain/training/validation.js';
 import { buildLightConeDomain } from './domain/light-cone.js';
 import { buildRelicDomain } from './domain/relic.js';
 import { buildPlayerRuntimeData } from './player-runtime.js';
@@ -297,7 +301,9 @@ export async function syncData(): Promise<DataManifest> {
   }
 
   const tableNames = DATA_GENERATION_TABLE_NAMES;
-  const loaded = await Promise.all(tableNames.map((name) => readTable<Raw>(root, name)));
+  const loaded = await Promise.all(
+    tableNames.map((name) => readTrainingSourceTable<Raw>(root, name))
+  );
   const regularTables = Object.fromEntries(
     tableNames.map((name, index) => [name, loaded[index]])
   ) as Record<(typeof tableNames)[number], Raw[]>;
@@ -626,6 +632,7 @@ export async function syncData(): Promise<DataManifest> {
   ]);
   const characterBuild = buildCharacterDomain({ tables: characterDomainSource });
   const characterDomains = characterBuild.characters;
+  const training = buildTrainingDomain(tables, characterDomains);
   const extraEffectsById = new Map(
     characterBuild.extraEffects.map((effect) => [effect.id, effect])
   );
@@ -823,6 +830,7 @@ export async function syncData(): Promise<DataManifest> {
     return {
       config,
       runtime,
+      materials: projectMaterials(training.materials, config.locale, runtime.text),
       catalogs: {
         characters: characterCatalog,
         'light-cones': lightConeCatalog,
@@ -969,7 +977,43 @@ export async function syncData(): Promise<DataManifest> {
       ])
     )
   );
-  for (const projection of projections) await writeViewArtifacts(projection);
+  validateTrainingBundle(
+    training,
+    projections.map((projection) => projection.materials)
+  );
+  await writeArtifact(
+    nextStaticGeneratedRoot,
+    'training/shared.json',
+    training.shared,
+    {},
+    'static/generated/training/shared.json'
+  );
+  for (const character of training.characters)
+    await writeArtifact(
+      nextStaticGeneratedRoot,
+      `training/characters/${character.avatarId}.json`,
+      character,
+      {},
+      `static/generated/training/characters/${character.avatarId}.json`
+    );
+  for (const lightCone of training.lightCones)
+    await writeArtifact(
+      nextStaticGeneratedRoot,
+      `training/light-cones/${lightCone.equipmentId}.json`,
+      lightCone,
+      {},
+      `static/generated/training/light-cones/${lightCone.equipmentId}.json`
+    );
+  for (const projection of projections) {
+    await writeViewArtifacts(projection);
+    await writeArtifact(
+      nextStaticGeneratedRoot,
+      `${projection.config.locale}/materials.json`,
+      projection.materials,
+      { locale: projection.config.locale },
+      `static/generated/${projection.config.locale}/materials.json`
+    );
+  }
   const countsOf = (projection: (typeof projections)[number]) => ({
     characters: projection.details.characters.length,
     lightCones: projection.details['light-cones'].length,
@@ -1016,7 +1060,7 @@ export async function syncData(): Promise<DataManifest> {
   };
   const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
   const manifestWithoutRevision: Omit<DataManifest, 'dataRevision'> = {
-    schemaVersion: 48,
+    schemaVersion: 49,
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,
@@ -1077,6 +1121,7 @@ export async function syncData(): Promise<DataManifest> {
     ]),
     textDiagnostics: baseRuntime.text.getDiagnostics(),
     descriptionDiagnostics: baseRuntime.descriptionDiagnostics,
+    trainingAudit: auditTrainingDomain(training),
     skillCombatAudit: {
       unknownEffects: [...unknownSkillEffects].sort(),
       unsupportedHiddenDiscriminants: characterBuild.unsupportedHiddenSkillDiscriminants
