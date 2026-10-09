@@ -1,36 +1,36 @@
 <script lang="ts">
   import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
-  import MaterialCostList from './MaterialCostList.svelte';
+  import TrainingTargetSummary from './TrainingTargetSummary.svelte';
+  import TrainingTraceSummary from './TrainingTraceSummary.svelte';
+  import TrainingExpenseGroup from './TrainingExpenseGroup.svelte';
+  import {
+    createTrainingExpenseCosts,
+    type TrainingLevelControl,
+    type TrainingSkillTarget
+  } from '$lib/domain/training/detail-view';
   import type {
     CharacterTrainingResult,
     LightConeTrainingResult,
-    MaterialCatalog,
-    CharacterTrainingProfile
+    MaterialCatalog
   } from '$lib/domain/training/types';
-  import type { SkillCard } from '$lib/domain/types';
+  import type { Trace } from '$lib/domain/types';
   import { m } from '$lib/paraglide/messages.js';
   import { getLocale } from '$lib/paraglide/runtime.js';
+
   export let result: CharacterTrainingResult | LightConeTrainingResult | undefined = undefined;
   export let catalog: MaterialCatalog | undefined = undefined;
   export let state: 'loading' | 'ready' | 'error';
   export let errorCode: string | undefined = undefined;
   export let onRetry: () => void;
-  export let profile: CharacterTrainingProfile | undefined = undefined;
-  export let cards: SkillCard[] = [];
+  export let levelControl: TrainingLevelControl | undefined = undefined;
+  export let skillTargets: TrainingSkillTarget[] = [];
+  export let activeTraces: Trace[] = [];
+  export let onLevelChange: ((level: number) => void) | undefined = undefined;
+  export let onSkillDisplayLevelChange: ((pointId: string, level: number) => void) | undefined =
+    undefined;
   $: number = new Intl.NumberFormat(catalog?.locale ?? getLocale());
   $: character = result && 'skills' in result ? result : undefined;
-  $: skills =
-    character?.skills.map((skill) => {
-      const categories = new Set(
-        profile?.nodes
-          .find((node) => node.key === skill.key)
-          ?.bindings.map((binding) => binding.category)
-      );
-      const labels = cards
-        .filter((card) => categories.has(card.category))
-        .map((card) => card.displayLabel);
-      return { ...skill, label: [...new Set(labels)].join(' / ') };
-    }) ?? [];
+  $: expenses = result ? createTrainingExpenseCosts(result) : undefined;
 </script>
 
 <section
@@ -51,82 +51,68 @@
       </p>
       <button type="button" on:click={onRetry}>{m.training_retry()}</button>
     </div>
-  {:else if result && catalog}
+  {:else if result && catalog && expenses}
     <div
       class="info-card training-result"
       data-training-promotion={result.target.promotion}
       data-training-level={result.target.level}
     >
-      <div class="training-target">
-        <h3>{m.training_target()}</h3>
-        <p>
-          {m.training_target_level({
-            level: result.target.level,
-            promotion: result.target.promotion
-          })}
-        </p>
-        {#if character}<ul class="training-skills">
-            {#each skills as skill (skill.key)}<li
-                data-training-skill={skill.key}
-                data-display-level={skill.displayLevel}
-                data-training-level={skill.trainingLevel}
-              >
-                {skill.label}：{#if skill.displayLevel !== skill.trainingLevel}{m.training_skill_clamped(
-                    { display: skill.displayLevel, training: skill.trainingLevel }
-                  )}{:else}Lv.{skill.trainingLevel}{/if}
-              </li>{/each}
-          </ul>
-          <p data-training-trace-count={character.target.activeTraceIds.length}>
-            {m.training_trace_count({ count: character.target.activeTraceIds.length })}
-          </p>{/if}
-      </div>
-      <div
-        class="training-exp"
-        data-required-exp={result.requiredExp}
-        data-supplied-exp={result.suppliedExp}
-        data-overflow-exp={result.overflowExp}
+      <TrainingTargetSummary
+        {levelControl}
+        skills={skillTargets}
+        {onLevelChange}
+        {onSkillDisplayLevelChange}
       >
-        <h3>{m.training_exp_materials()}</h3>
-        <dl class="training-exp-summary">
-          <div>
-            <dt>{m.training_required_exp()}</dt>
-            <dd>{number.format(result.requiredExp)}</dd>
-          </div>
-          <div>
-            <dt>{m.training_supplied_exp()}</dt>
-            <dd>{number.format(result.suppliedExp)}</dd>
-          </div>
-          {#if result.overflowExp}<div>
-              <dt>{m.training_overflow_exp()}</dt>
-              <dd>{number.format(result.overflowExp)}</dd>
-            </div>{/if}
-          <div>
-            <dt>{m.training_exp_credits()}</dt>
-            <dd data-exp-credits={result.expCreditCost['2'] ?? 0}>
-              {number.format(result.expCreditCost['2'] ?? 0)}
-            </dd>
-          </div>
-        </dl>
-        <MaterialCostList cost={result.expItemCost} {catalog} />
+        {#if character}<TrainingTraceSummary traces={activeTraces} />{/if}
+      </TrainingTargetSummary>
+      <TrainingExpenseGroup
+        kind="upgrade"
+        title={m.training_upgrade_cost()}
+        cost={expenses.upgrade}
+        {catalog}
+      >
+        <div
+          slot="summary"
+          data-required-exp={result.requiredExp}
+          data-supplied-exp={result.suppliedExp}
+          data-overflow-exp={result.overflowExp}
+          data-exp-credits={result.expCreditCost['2'] ?? 0}
+        >
+          <dl class="training-exp-summary">
+            <div>
+              <dt>{m.training_required_exp()}</dt>
+              <dd>{number.format(result.requiredExp)}</dd>
+            </div>
+            <div>
+              <dt>{m.training_supplied_exp()}</dt>
+              <dd>{number.format(result.suppliedExp)}</dd>
+            </div>
+            {#if result.overflowExp}<div>
+                <dt>{m.training_overflow_exp()}</dt>
+                <dd>{number.format(result.overflowExp)}</dd>
+              </div>{/if}
+          </dl>
+        </div>
         <p class="muted training-strategy">{m.training_strategy_note()}</p>
-      </div>
-      <div class="training-total">
-        <h3>{m.training_total_materials()}</h3>
-        <p class="training-credit-breakdown">
-          {m.training_promotion_credits({
-            count: number.format(result.promotionCost['2'] ?? 0)
-          })}{#if character}<span
-              >{m.training_skill_credits({
-                count: number.format(result.skillCost['2'] ?? 0)
-              })}</span
-            ><span
-              >{m.training_trace_credits({
-                count: number.format(result.traceCost['2'] ?? 0)
-              })}</span
-            >{/if}
-        </p>
-        <MaterialCostList cost={result.totalCost} {catalog} />
-      </div>
+      </TrainingExpenseGroup>
+      <TrainingExpenseGroup
+        kind="promotion"
+        title={m.training_promotion_cost()}
+        cost={expenses.promotion}
+        {catalog}
+      />
+      {#if character && expenses.skillTrace}<TrainingExpenseGroup
+          kind="skill-trace"
+          title={m.training_skill_trace_cost()}
+          cost={expenses.skillTrace}
+          {catalog}
+        />{/if}
+      <TrainingExpenseGroup
+        kind="total"
+        title={m.training_total_materials()}
+        cost={expenses.total}
+        {catalog}
+      />
     </div>
   {/if}
 </section>
@@ -136,51 +122,30 @@
     display: grid;
     gap: var(--space-6);
   }
-  .training-result > div + div {
-    border-top: 1px solid var(--border);
-    padding-top: var(--space-6);
-  }
-  h3 {
-    margin: 0 0 var(--space-3);
-  }
-  p {
-    margin: var(--space-3) 0;
-  }
-  .training-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-6);
-    list-style: none;
-    padding: 0;
-    margin: var(--space-3) 0;
-    font-size: 0.875rem;
-  }
   .training-exp-summary {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-3) var(--space-6);
+    gap: var(--space-2) var(--space-6);
     margin: 0 0 var(--space-4);
   }
   .training-exp-summary > div {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--space-2);
   }
-  dt,
-  .training-credit-breakdown {
+  dt {
     color: var(--text-muted);
-    font-size: 0.875rem;
   }
   dd {
     margin: 0;
     font-variant-numeric: tabular-nums;
   }
+  .training-exp-summary,
   .training-strategy {
     font-size: 0.8125rem;
   }
-  .training-credit-breakdown {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
+  .training-strategy {
+    margin: var(--space-3) 0 0;
   }
   .training-error button {
     padding: var(--space-2) var(--space-4);

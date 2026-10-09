@@ -68,7 +68,11 @@
     CharacterTrainingResult,
     LightConeTrainingResult
   } from '$lib/domain/training/types';
-  import { createSkillTrainingControls } from '$lib/domain/training/detail-view';
+  import {
+    createSkillTrainingControls,
+    createTrainingSkillTargets,
+    createTrainingTraceSummary
+  } from '$lib/domain/training/detail-view';
 
   export let detail: any;
   export let category: string;
@@ -224,6 +228,36 @@
   );
   $: trainingSectionState =
     trainingLoadState === 'ready' && trainingCalculation.error ? 'error' : trainingLoadState;
+  $: trainingLevelControl = detail.baseStats
+    ? {
+        id: `training-${category === 'characters' ? 'character' : 'light-cone'}-level-${detail.id}`,
+        label:
+          category === 'characters' ? m.base_stats_character_level() : m.detail_light_cone_level(),
+        value: trainingLevel,
+        min: detail.baseStats.minLevel as number,
+        max: detail.baseStats.maxLevel as number,
+        promotion: staticPromotion
+      }
+    : undefined;
+  $: characterTrainingResult =
+    trainingCalculation.result && 'skills' in trainingCalculation.result
+      ? trainingCalculation.result
+      : undefined;
+  $: trainingSkillTargets = characterTrainingResult
+    ? createTrainingSkillTargets(
+        activeProfile.skillCards,
+        trainingProfile,
+        skillTrainingControls,
+        characterTrainingResult.skills
+      )
+    : [];
+  $: trainingActiveTraces = characterTrainingResult
+    ? createTrainingTraceSummary(
+        activeProfile.traces,
+        trainingProfile,
+        characterTrainingResult.target.activeTraceIds
+      )
+    : [];
   const lightConeSectionNavItems = [
     { id: 'stats', label: m.detail_stats() },
     { id: 'training', label: m.training_title() },
@@ -684,8 +718,11 @@
       errorCode={trainingCalculation.error ?? trainingLoadError}
       result={trainingCalculation.result}
       catalog={materialCatalog}
-      profile={trainingProfile}
-      cards={activeProfile.skillCards}
+      levelControl={trainingLevelControl}
+      skillTargets={trainingSkillTargets}
+      activeTraces={trainingActiveTraces}
+      onLevelChange={handleTrainingLevel}
+      onSkillDisplayLevelChange={handleSkillDisplayLevel}
       onRetry={retryTraining}
     />{/if}
   {#if specialEffectsAvailable}<SpecialEffectDialog
@@ -704,6 +741,8 @@
     errorCode={trainingCalculation.error ?? trainingLoadError}
     result={trainingCalculation.result}
     catalog={materialCatalog}
+    levelControl={trainingLevelControl}
+    onLevelChange={handleTrainingLevel}
     onRetry={retryTraining}
   />
   <section id="story" class="detail-section prose section-nav-target">

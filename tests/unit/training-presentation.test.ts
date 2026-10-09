@@ -1,18 +1,30 @@
 import { describe, expect, it, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { render } from 'svelte/server';
-import { createSkillTrainingControls } from '../../src/lib/domain/training/detail-view';
+import {
+  createSkillTrainingControls,
+  createTrainingSkillTargets,
+  createTrainingTraceSummary
+} from '../../src/lib/domain/training/detail-view';
 import {
   createDefaultCharacterTrainingTarget,
+  calculateCharacterTrainingTarget,
+  calculateLightConeTrainingTarget,
   reconcileCharacterLevel
 } from '../../src/lib/domain/training/index';
 import type { Character, CatalogEntry } from '../../src/lib/domain/types';
-import type { CharacterTrainingData, MaterialCatalog } from '../../src/lib/domain/training/types';
+import type {
+  CharacterTrainingData,
+  LightConeTrainingData,
+  TrainingSharedData,
+  MaterialCatalog
+} from '../../src/lib/domain/training/types';
 import SkillCardPanel from '../../src/lib/components/character/SkillCardPanel.svelte';
 import TraceCardPanel from '../../src/lib/components/character/TraceCardPanel.svelte';
 import TrainingSection from '../../src/lib/components/training/TrainingSection.svelte';
 import MaterialCostList from '../../src/lib/components/training/MaterialCostList.svelte';
 import DetailPage from '../../src/lib/components/shared/DetailPage.svelte';
+import TrainingTraceSummary from '../../src/lib/components/training/TrainingTraceSummary.svelte';
 
 vi.mock('$app/stores', async () => {
   const { readable } = await import('svelte/store');
@@ -182,5 +194,112 @@ describe('training presentation contracts', () => {
     expect(html).not.toContain('<a ');
     expect(html).not.toContain('/materials/icons/999991');
     expect(html).toContain('Synthetic 999991');
+  });
+  it('renders receipt groups, unique target sliders and one credit cell per expense group', () => {
+    const cost = data('1510');
+    const target = createDefaultCharacterTrainingTarget(cost, 0);
+    const shared = json<TrainingSharedData>('static/generated/training/shared.json');
+    const result = calculateCharacterTrainingTarget(cost, shared, target);
+    const character = view('1510');
+    const cards = character.profiles.base.skillCards;
+    const controls = createSkillTrainingControls(
+      cards,
+      cost.profiles[0],
+      target,
+      {},
+      result.target.promotion
+    );
+    const skillTargets = createTrainingSkillTargets(
+      cards,
+      cost.profiles[0],
+      controls,
+      result.skills
+    );
+    const html = render(TrainingSection, {
+      props: {
+        state: 'ready',
+        result,
+        catalog: json<MaterialCatalog>('static/generated/zh-CN/materials.json'),
+        levelControl: {
+          id: 'training-character-level-1510',
+          label: 'Synthetic Level',
+          value: target.level,
+          min: 1,
+          max: 80,
+          promotion: 6
+        },
+        skillTargets,
+        activeTraces: createTrainingTraceSummary(
+          character.profiles.base.traces,
+          cost.profiles[0],
+          target.activeTraceIds
+        ),
+        onLevelChange: () => {},
+        onSkillDisplayLevelChange: () => {},
+        onRetry: () => {}
+      }
+    }).body;
+    expect([...html.matchAll(/data-training-expense="([^"]+)"/g)].map((match) => match[1])).toEqual(
+      ['upgrade', 'promotion', 'skill-trace', 'total']
+    );
+    expect(html.indexOf('data-training-target')).toBeLessThan(
+      html.indexOf('data-training-expense')
+    );
+    const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+    expect(new Set(ids).size).toBe(ids.length);
+    const labels = [...html.matchAll(/<label[^>]*for="([^"]+)"/g)].map((match) => match[1]);
+    expect(labels).toContain('training-skill-1510-0-1510004');
+    expect(labels).toHaveLength(1 + skillTargets.length);
+    expect(html.match(/data-training-skill="1510:0:1510004"/g)).toHaveLength(1);
+    const parts = html
+      .split(/data-training-expense="(?:upgrade|promotion|skill-trace|total)"/)
+      .slice(1);
+    for (const part of parts) expect(part.match(/data-material-id="2"/g)).toHaveLength(1);
+    expect(html).not.toContain('training-credit-breakdown');
+  });
+  it('keeps trace summaries strictly read-only, including empty and missing-icon states', () => {
+    const traces = view('1001').profiles.base.traces;
+    const html = render(TrainingTraceSummary, {
+      props: { traces: [{ ...traces[0], iconKey: undefined }] }
+    }).body;
+    expect(html).toContain(`data-training-trace-id="${traces[0].id}"`);
+    expect(html).not.toMatch(/<(?:button|input|a)\b/);
+    expect(html).not.toContain('aria-pressed');
+    expect(html).not.toContain('data-trace-id=');
+    expect(html).toContain('data-image-fallback');
+    const empty = render(TrainingTraceSummary, { props: { traces: [] } }).body;
+    expect(empty).toContain('data-training-trace-count="0"');
+    expect(empty).not.toContain('data-training-trace-id=');
+  });
+  it('reuses the cone receipt without skills, traces or a second total calculation', () => {
+    const cost = json<LightConeTrainingData>('static/generated/training/light-cones/20000.json');
+    const shared = json<TrainingSharedData>('static/generated/training/shared.json');
+    const result = calculateLightConeTrainingTarget(cost, shared, {
+      equipmentId: '20000',
+      level: 80
+    });
+    const html = render(TrainingSection, {
+      props: {
+        state: 'ready',
+        result,
+        catalog: json<MaterialCatalog>('static/generated/en/materials.json'),
+        levelControl: {
+          id: 'training-light-cone-level-20000',
+          label: 'Synthetic Level',
+          value: 80,
+          min: 1,
+          max: 80,
+          promotion: 6
+        },
+        onLevelChange: () => {},
+        onRetry: () => {}
+      }
+    }).body;
+    expect([...html.matchAll(/data-training-expense="([^"]+)"/g)].map((match) => match[1])).toEqual(
+      ['upgrade', 'promotion', 'total']
+    );
+    expect(html.match(/type="range"/g)).toHaveLength(1);
+    expect(html).not.toContain('data-training-skill');
+    expect(html).not.toContain('data-training-trace-count');
   });
 });
