@@ -55,20 +55,28 @@ for (const [sample, file] of files.entries())
           }, href);
         const summary = page.locator('[data-player-relic-score-summary]');
         await expect(summary).toHaveAttribute('data-player-algorithm-version', '2');
+        await expect(summary).not.toContainText('V2');
+        await expect(page.locator('[data-player-rating-v2-details]')).toHaveCount(0);
         await expect(page.locator('[data-player-relic-slot]')).toHaveCount(6);
         await expect(page.locator('[data-player-stats-panel]')).toBeVisible();
         await expect(page.locator('.player-light-cone')).toBeVisible();
         const score = character.relicScore!;
-        if (score.build.status === 'available')
+        if (score.build.status === 'available') {
           await expect(summary.locator('[data-player-build-score]')).toHaveText(
             score.build.score.toFixed(1)
           );
-        else await expect(summary.locator('[data-player-build-score-unavailable]')).toBeVisible();
+          await expect(summary.locator('[data-player-score-breakdown] dd')).toHaveText([
+            `${Math.round(score.build.statCompletion * 100)}%`,
+            `${Math.round(score.build.setIntegrity * 100)}%`
+          ]);
+        } else await expect(summary.locator('[data-player-build-score-unavailable]')).toBeVisible();
         for (const [slot, piece] of Object.entries(score.pieces))
           if (piece.status === 'available') {
             await expect(
-              page.locator(`[data-player-relic-slot="${slot}"] [data-main-mode]`)
-            ).toHaveAttribute('data-main-mode', piece.mainMode);
+              page.locator(
+                `[data-player-relic-slot="${slot}"] [data-player-relic-piece-score] strong`
+              )
+            ).toHaveText(piece.score.toFixed(1));
             expect(piece.score >= 0 && piece.score <= 100).toBe(true);
           }
         expect(

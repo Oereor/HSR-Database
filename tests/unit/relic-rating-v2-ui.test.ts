@@ -49,22 +49,26 @@ const piece: Extract<PlayerRelicPieceScoreV2, { status: 'available' }> = {
 
 describe('Rating V2 locale presentation', () => {
   for (const locale of ['zh-CN', 'en'] as const) {
-    it(`renders V2-only semantics and review states in ${locale}`, () => {
+    it(`renders concise scores and review states in ${locale}`, () => {
       overwriteGetLocale(() => locale);
       const summary = render(PlayerRelicScoreSummary, { props: { score: build } }).body;
-      expect(summary).toContain('data-player-rating-v2-main');
-      expect(summary).toContain('data-player-rating-v2-sub');
-      expect(summary).not.toMatch(
-        /data-player-soft-target|data-player-hard-breakpoint|data-player-score-details/
-      );
-      const card = render(PlayerRelicCard, { props: { view, score: piece, showScore: true } }).body;
-      expect(card).toContain('data-main-mode="fixed"');
-      expect(card).not.toContain('data-player-main-suitability');
-      expect(card).toContain('data-effective-hit="0"');
-      const exception = render(PlayerRelicCard, {
-        props: { view, score: { ...piece, mainMode: 'explicit-agnostic' }, showScore: true }
-      }).body;
-      expect(exception).toContain('data-main-mode="explicit-agnostic"');
+      expect(summary).toMatch(/data-player-build-score[^>]*>84\.0</);
+      expect(summary).toMatch(/data-player-effective-hits[\s\S]*?<strong[^>]*>2<\/strong>/);
+      expect(summary.match(/<dt\b/g)).toHaveLength(2);
+      expect(summary.match(/<dd\b/g)).toHaveLength(2);
+      expect(summary).toContain('82%');
+      expect(summary).toContain('100%');
+      expect(summary).not.toMatch(/V2|data-player-rating-v2|data-player-rating-algorithm/);
+      for (const mainMode of ['fixed', 'continuous', 'explicit-agnostic'] as const) {
+        const card = render(PlayerRelicCard, {
+          props: { view, score: { ...piece, mainMode }, showScore: true }
+        }).body;
+        expect(card).toContain('data-player-relic-piece-score');
+        expect(card).toMatch(/<strong[^>]*>80\.0<\/strong>/);
+        expect(card).not.toMatch(
+          /data-player-rating-v2|data-player-main-suitability|data-main-mode|data-weight|data-effective-hit/
+        );
+      }
       const unavailable = render(PlayerRelicScoreSummary, {
         props: { score: { status: 'unavailable', reason: 'profile-review-required' } }
       }).body;

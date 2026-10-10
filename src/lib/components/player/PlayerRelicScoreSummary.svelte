@@ -17,7 +17,7 @@
   <div class="player-relic-score-summary__overview">
     <div class="player-relic-score-summary__primary">
       <div class="player-relic-score-summary__score">
-        <span>{m.player_relic_score_build()} <small data-player-rating-algorithm>V2</small></span>
+        <span>{m.player_relic_score_build()}</span>
         <div>
           <strong data-player-build-score
             >{score.status === 'available' ? formatRelicScore(score.score) : '—'}</strong
@@ -39,9 +39,7 @@
       </div>
     </div>
     {#if score.status === 'available'}
-      <!-- Keyboard focus enables horizontal scrolling on narrow screens. -->
-      <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-      <dl class="player-relic-score-summary__breakdown" data-player-score-breakdown tabindex="0">
+      <dl class="player-relic-score-summary__breakdown" data-player-score-breakdown>
         <div>
           <dt>{m.player_relic_score_stat_completion()}</dt>
           <dd>{formatRelicScorePercent(score.statCompletion)}</dd>
@@ -49,14 +47,6 @@
         <div>
           <dt>{m.player_relic_score_set_integrity()}</dt>
           <dd>{formatRelicScorePercent(score.setIntegrity)}</dd>
-        </div>
-        <div data-player-rating-v2-main>
-          <dt>{m.player_relic_rating_v2_main_part()}</dt>
-          <dd>{formatRelicScorePercent(score.mainContribution)}</dd>
-        </div>
-        <div data-player-rating-v2-sub>
-          <dt>{m.player_relic_rating_v2_sub_part()}</dt>
-          <dd>{formatRelicScorePercent(score.subContribution)}</dd>
         </div>
       </dl>
     {/if}
@@ -111,6 +101,11 @@
     white-space: nowrap;
   }
 
+  .player-relic-score-summary__breakdown dt {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
   .player-relic-score-summary__score > span,
   .player-relic-score-summary__hits > span {
     color: var(--text-body);
@@ -154,33 +149,20 @@
   }
 
   .player-relic-score-summary__breakdown {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: max-content;
     max-width: 100%;
     min-width: 0;
     align-items: start;
-    flex-wrap: nowrap;
     justify-self: end;
-    overflow-x: auto;
-    overflow-y: hidden;
     margin: 0;
     padding: var(--space-1) 0;
-    overscroll-behavior-inline: contain;
-    scrollbar-width: none;
-  }
-
-  .player-relic-score-summary__breakdown::-webkit-scrollbar {
-    display: none;
-  }
-
-  .player-relic-score-summary__breakdown:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: -2px;
   }
 
   .player-relic-score-summary__breakdown > div {
     display: grid;
-    flex: 0 0 auto;
+    min-width: 0;
     gap: 0.1rem;
     text-align: left;
   }
