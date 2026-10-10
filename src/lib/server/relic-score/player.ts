@@ -25,7 +25,7 @@ export interface PlayerScoringDependencies {
   score?: typeof scoreProductionBuild;
 }
 
-/** Runs once for the actual character instance, after exact numeric synthesis. */
+/** Production V1 remains active until V2's full source/review/benchmark publication gates pass. */
 export function scorePlayerCharacterBuild(
   normalized: PlayerBuildNormalization,
   characterId: string,

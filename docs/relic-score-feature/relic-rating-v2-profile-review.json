@@ -1,0 +1,5375 @@
+{
+  "anomalies": [
+    {
+      "category": "DamageAddedRatio",
+      "characterId": "1505",
+      "code": "RECOMMENDED_WEIGHT_MISSING",
+      "key": "PhysicalAddedRatio",
+      "slot": "NECK"
+    }
+  ],
+  "blockedCharacters": ["1505"],
+  "changes": {
+    "addedOrChanged": ["1505"],
+    "removed": []
+  },
+  "legacyComparison": {
+    "changedCharacters": 98,
+    "changedSubWeights": 950,
+    "characters": [
+      {
+        "characterId": "1001",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "StatusProbabilityBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.8,
+            "key": "StatusResistanceBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1002",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1003",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1004",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.8,
+            "key": "StatusProbabilityBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1005",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "AttackAddedRatio",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1006",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.35555555555555557,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.8,
+            "key": "StatusProbabilityBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1008",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1009",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.35555555555555557,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "AttackAddedRatio",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.8,
+            "key": "CriticalChanceBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.8,
+            "key": "CriticalDamageBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1013",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1014",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1015",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "SpeedDelta",
+            "previous": 0.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1101",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.8,
+            "key": "StatusResistanceBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1102",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1103",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.4,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1104",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "StatusProbabilityBase",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "StatusResistanceBase",
+            "previous": 0.5
+          }
+        ]
+      },
+      {
+        "characterId": "1105",
+        "weights": [
+          {
+            "current": 0.4444444444444444,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "StatusResistanceBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1106",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.35555555555555557,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "CriticalChanceBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.8,
+            "key": "CriticalDamageBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.8,
+            "key": "StatusProbabilityBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1107",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.6,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1108",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "AttackAddedRatio",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "StatusProbabilityBase",
+            "previous": 1
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1109",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1110",
+        "weights": [
+          {
+            "current": 0.4444444444444444,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "StatusResistanceBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1111",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 0.6,
+            "key": "CriticalChanceBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.6,
+            "key": "CriticalDamageBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.4,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0.25
+          }
+        ]
+      },
+      {
+        "characterId": "1112",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1201",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1202",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.8,
+            "key": "StatusResistanceBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1203",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.8,
+            "key": "StatusResistanceBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1204",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.4,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1205",
+        "weights": [
+          {
+            "current": 0.4444444444444444,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1206",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.6,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 1.25
+          }
+        ]
+      },
+      {
+        "characterId": "1207",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "AttackAddedRatio",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 0.5
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1208",
+        "weights": [
+          {
+            "current": 0.4444444444444444,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.35555555555555557,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "DefenceAddedRatio",
+            "previous": 0.5
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.4,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.4,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "StatusResistanceBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1209",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1210",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "AttackAddedRatio",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "StatusProbabilityBase",
+            "previous": 1
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.4,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1211",
+        "weights": [
+          {
+            "current": 0.4444444444444444,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "StatusResistanceBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1212",
+        "weights": [
+          {
+            "current": 0.4444444444444444,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 0.9,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1213",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1214",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 1.25
+          }
+        ]
+      },
+      {
+        "characterId": "1215",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "StatusResistanceBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.4,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1217",
+        "weights": [
+          {
+            "current": 0.4444444444444444,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "StatusResistanceBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1218",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1220",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1221",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.6,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1222",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.4,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0.75
+          }
+        ]
+      },
+      {
+        "characterId": "1223",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1224",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.4,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1225",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "StatusProbabilityBase",
+            "previous": 0.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1301",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "StatusResistanceBase",
+            "previous": 0.25
+          },
+          {
+            "current": 1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 1.25
+          }
+        ]
+      },
+      {
+        "characterId": "1302",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1303",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.4,
+            "key": "StatusResistanceBase",
+            "previous": 0.25
+          },
+          {
+            "current": 1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 1.25
+          }
+        ]
+      },
+      {
+        "characterId": "1304",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 0.9,
+            "key": "CriticalChanceBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.9,
+            "key": "CriticalDamageBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 0.4,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1305",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1306",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.4,
+            "key": "StatusResistanceBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1307",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "AttackAddedRatio",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1308",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1309",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0.5
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.6,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.4,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1310",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.26666666666666666,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.6,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 1.25
+          }
+        ]
+      },
+      {
+        "characterId": "1312",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1313",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.4,
+            "key": "StatusResistanceBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1314",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1315",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.26666666666666666,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.6,
+            "key": "AttackAddedRatio",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.6,
+            "key": "CriticalChanceBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.6,
+            "key": "CriticalDamageBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 1.25
+          }
+        ]
+      },
+      {
+        "characterId": "1317",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.26666666666666666,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.6,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 1.25
+          }
+        ]
+      },
+      {
+        "characterId": "1321",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 1.25
+          }
+        ]
+      },
+      {
+        "characterId": "1401",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1402",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1403",
+        "weights": [
+          {
+            "current": 0.4444444444444444,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.4,
+            "key": "SpeedDelta",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 0.5
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1404",
+        "weights": [
+          {
+            "current": 0.4444444444444444,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 0.9,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1405",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1406",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.26666666666666666,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.6,
+            "key": "AttackAddedRatio",
+            "previous": 1
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.6,
+            "key": "CriticalChanceBase",
+            "previous": 1
+          },
+          {
+            "current": 0.6,
+            "key": "CriticalDamageBase",
+            "previous": 1
+          },
+          {
+            "current": 0.1,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1407",
+        "weights": [
+          {
+            "current": 0.4444444444444444,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "SpeedDelta",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1408",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "SpeedDelta",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1409",
+        "weights": [
+          {
+            "current": 0.4444444444444444,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "HPAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.6,
+            "key": "CriticalDamageBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.4,
+            "key": "StatusResistanceBase",
+            "previous": 0.25
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1410",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "AttackAddedRatio",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1412",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "CriticalDamageBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1413",
+        "weights": [
+          {
+            "current": 0.4444444444444444,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1414",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1415",
+        "weights": [
+          {
+            "current": 0.35555555555555557,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "HPAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.8,
+            "key": "CriticalChanceBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.8,
+            "key": "CriticalDamageBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1501",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.4,
+            "key": "SpeedDelta",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1502",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.6,
+            "key": "CriticalChanceBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.6,
+            "key": "CriticalDamageBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1503",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 0.2,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.4,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1504",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1505",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.17777777777777778,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.4,
+            "key": "AttackAddedRatio",
+            "previous": 1
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1506",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1507",
+        "weights": [
+          {
+            "current": 0.4444444444444444,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1508",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1509",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1510",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.5
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1512",
+        "weights": [
+          {
+            "current": 0.4444444444444444,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "HPAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 0.5
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 0.5
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "1513",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.17777777777777778,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.4,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "8001",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "8002",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 0.75
+          },
+          {
+            "current": 1,
+            "key": "CriticalChanceBase",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "8003",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.6,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "StatusResistanceBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "8004",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.4444444444444444,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.6,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "StatusResistanceBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "8005",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 0.4,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 1.25
+          }
+        ]
+      },
+      {
+        "characterId": "8006",
+        "weights": [
+          {
+            "current": 0.08888888888888889,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.08888888888888889,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "AttackAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.2,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalChanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "CriticalDamageBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "StatusProbabilityBase",
+            "previous": 0
+          },
+          {
+            "current": 0.4,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 1.25
+          }
+        ]
+      },
+      {
+        "characterId": "8007",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.35555555555555557,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "8008",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.35555555555555557,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 1,
+            "key": "SpeedDelta",
+            "previous": 1.25
+          },
+          {
+            "current": 1,
+            "key": "CriticalDamageBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "8009",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.35555555555555557,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.6,
+            "key": "CriticalChanceBase",
+            "previous": 1
+          },
+          {
+            "current": 0.6,
+            "key": "CriticalDamageBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      },
+      {
+        "characterId": "8010",
+        "weights": [
+          {
+            "current": 0.044444444444444446,
+            "key": "HPDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.35555555555555557,
+            "key": "AttackDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.044444444444444446,
+            "key": "DefenceDelta",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "HPAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.8,
+            "key": "AttackAddedRatio",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "DefenceAddedRatio",
+            "previous": 0
+          },
+          {
+            "current": 0.6,
+            "key": "CriticalChanceBase",
+            "previous": 1
+          },
+          {
+            "current": 0.6,
+            "key": "CriticalDamageBase",
+            "previous": 0.75
+          },
+          {
+            "current": 0.1,
+            "key": "StatusResistanceBase",
+            "previous": 0
+          },
+          {
+            "current": 0.1,
+            "key": "BreakDamageAddedRatioBase",
+            "previous": 0
+          }
+        ]
+      }
+    ]
+  },
+  "readyCharacters": [
+    "1001",
+    "1002",
+    "1003",
+    "1004",
+    "1005",
+    "1006",
+    "1008",
+    "1009",
+    "1013",
+    "1014",
+    "1015",
+    "1101",
+    "1102",
+    "1103",
+    "1104",
+    "1105",
+    "1106",
+    "1107",
+    "1108",
+    "1109",
+    "1110",
+    "1111",
+    "1112",
+    "1201",
+    "1202",
+    "1203",
+    "1204",
+    "1205",
+    "1206",
+    "1207",
+    "1208",
+    "1209",
+    "1210",
+    "1211",
+    "1212",
+    "1213",
+    "1214",
+    "1215",
+    "1217",
+    "1218",
+    "1220",
+    "1221",
+    "1222",
+    "1223",
+    "1224",
+    "1225",
+    "1301",
+    "1302",
+    "1303",
+    "1304",
+    "1305",
+    "1306",
+    "1307",
+    "1308",
+    "1309",
+    "1310",
+    "1312",
+    "1313",
+    "1314",
+    "1315",
+    "1317",
+    "1321",
+    "1401",
+    "1402",
+    "1403",
+    "1404",
+    "1405",
+    "1406",
+    "1407",
+    "1408",
+    "1409",
+    "1410",
+    "1412",
+    "1413",
+    "1414",
+    "1415",
+    "1501",
+    "1502",
+    "1503",
+    "1504",
+    "1506",
+    "1507",
+    "1508",
+    "1509",
+    "1510",
+    "1512",
+    "1513",
+    "8001",
+    "8002",
+    "8003",
+    "8004",
+    "8005",
+    "8006",
+    "8007",
+    "8008",
+    "8009",
+    "8010"
+  ],
+  "semanticDigest": "b276c6ace6cb22f7061aaf728ef9120553cce2825c20072aee8e70ad5e913245",
+  "sourceCommit": "312b4597691e0a29cf9828a15b592757dba86949",
+  "sourceDigests": {
+    "AvatarConfig": "d8f3c9f55078611ad010751f82333735eb7bc732e22df6b8ad235021658e0456",
+    "AvatarConfigLD": "4ad4896dc0384f141419a9989b3893c1ee9a1a090394e5d2f658752cda5bde64",
+    "AvatarRelicRecommend": "b4d28c32ea37ead2370b5ce0068b1dd4f009d9cf7f733c1d4f5ffbb038432e40",
+    "AvatarRelicRecommendLD": "29f9f1b565f4c6c1067defbb102e4899b17e92ab358329082276c69ee9437c6b",
+    "RelicMainAffixAvatarValue": "7519da5b5923d1c96356df078f787016ed06af23cc4e1265a80b84d4bab0141a",
+    "RelicMainAffixBaseValue": "fe6fb747533ada4308df878a82a1e7b67d1e540a3ffa2f817f4c4f3973fd8b14",
+    "RelicSubAffixAvatarValue": "515deee3a0004ec5befc7d2aa23760098c1cbef694dbdb414123a7fa11a539c8",
+    "RelicSubAffixBaseValue": "c0b381240d4ecd6608e6835497a78612dbc38dc5230a6b80078fee4b6ce1314b"
+  },
+  "status": "blocked",
+  "totalCharacters": 98
+}

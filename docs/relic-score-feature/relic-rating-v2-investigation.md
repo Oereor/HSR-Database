@@ -1,5 +1,7 @@
 # 遗器评分 V2：上游权重与评分架构调查
 
+> 历史调查快照。V2 候选实施后的事实与政策见 [实施报告](relic-rating-v2-implementation.md) 和 [V2 规范](relic-rating-v2.md)。本文保留原始证据及当时建议，不作为当前实现规范。
+
 调查日期：2026-10-10（Asia/Shanghai）。网站分支：`develop`。
 
 任务依据：工作区 `Relic-Score-02/Relic-Score-V2-Investigation.md`。本轮只新增本报告，没有实施 V2、修改配置或生成产物、审批 Profile、重新模拟 Benchmark、提交或推送 Git。以下网站代码路径相对于 `HSR-Database/`，`../TurnBasedGameData/` 表示只读的相邻数据仓库。

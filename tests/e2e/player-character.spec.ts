@@ -765,6 +765,78 @@ test('presents relic scores and target details without changing the Player reque
   }
 });
 
+test('renders V2 contributions and distinguishes fixed slots without target UI', async ({
+  page
+}) => {
+  let requests = 0;
+  await page.route('**/api/player/**', async (route) => {
+    requests++;
+    const fixture = playerProfile(new URL(route.request().url()).searchParams.get('uid') ?? '');
+    Object.assign(fixture.characters[0], {
+      relicScore: {
+        version: 3,
+        algorithmVersion: 2,
+        build: {
+          status: 'available',
+          algorithmVersion: 2,
+          score: 84.3,
+          statCompletion: 0.835,
+          mainContribution: 0.28,
+          subContribution: 0.555,
+          setIntegrity: 1,
+          effectiveHits: { status: 'exact', known: 24, total: 24, unknownRecommendedSubstats: 0 }
+        },
+        pieces: Object.fromEntries(
+          ['HEAD', 'HAND', 'BODY', 'FOOT', 'NECK', 'OBJECT'].map((slot, index) => [
+            slot,
+            {
+              status: 'available',
+              algorithmVersion: 2,
+              score: 80,
+              mainMode: index < 2 ? 'fixed' : 'continuous',
+              mainSuitability: index < 2 ? null : 1,
+              mainCompletion: index < 2 ? null : 1,
+              mainContribution: index < 2 ? 0 : 0.35,
+              subContribution: index < 2 ? 0.8 : 0.45,
+              benchmarkPercentile: 0.8,
+              rawSubUtility: 4,
+              effectiveHits: { status: 'exact', known: 4, total: 4, unknownRecommendedSubstats: 0 },
+              substats: [
+                { key: 'DefenceAddedRatio', weight: 1, rollEq: 2, utility: 2, effectiveHit: 2 }
+              ]
+            }
+          ])
+        )
+      }
+    });
+    await route.fulfill({ json: fixture });
+  });
+  await page.goto(
+    '/en/characters/1304/?uid=100000001&build=area%3Ashowcase%3Aposition%3A1%3Aorder%3A0'
+  );
+  const summary = page.locator('[data-player-relic-score-summary]');
+  await expect(summary.locator('[data-player-rating-v2-main]')).toBeVisible();
+  await expect(summary.locator('[data-player-rating-v2-sub]')).toBeVisible();
+  await expect(
+    summary.locator(
+      '[data-player-soft-target], [data-player-hard-breakpoint], [data-player-score-details]'
+    )
+  ).toHaveCount(0);
+  await expect(page.locator('[data-player-rating-v2-details][data-main-mode="fixed"]')).toHaveCount(
+    2
+  );
+  await expect(
+    page.locator('[data-player-relic-slot="HEAD"] [data-player-main-suitability]')
+  ).toHaveCount(0);
+  await expect(
+    page.locator('[data-player-relic-slot="BODY"] [data-player-main-suitability]')
+  ).toBeVisible();
+  await expect(
+    page.locator('[data-player-rating-v2-substat][data-weight="1"][data-effective-hit="2"]')
+  ).toHaveCount(6);
+  await expect.poll(() => requests).toBe(1);
+});
+
 test('keeps piece scores when a five-piece build cannot be scored', async ({ page }) => {
   await page.route('**/api/player/**', async (route) => {
     const uid = new URL(route.request().url()).searchParams.get('uid') ?? '';

@@ -84,8 +84,22 @@ import {
 } from './robustness-invariants.js';
 import { validateBuildInputs } from './validation/build-inputs.js';
 import { buildPlayerRuntimeData, PLAYER_RUNTIME_TABLE_NAMES } from './player-runtime.js';
+import { buildRatingV2Profiles, loadRatingV2Tables } from './relic-rating-v2.js';
+import { stableBenchmarkSerialize } from '../../src/lib/relic-score/benchmark/identity.js';
 
 const { manifest, rawRoot, textMaps: currentTextMaps } = await validateBuildInputs();
+const ratingV2Profiles = JSON.parse(
+  await readFile(path.join(generatedRoot, 'runtime/relic-rating-v2.json'), 'utf8')
+);
+const expectedRatingV2Profiles = await buildRatingV2Profiles(
+  rawRoot,
+  await loadRatingV2Tables(rawRoot),
+  manifest.sourceCommit
+);
+if (
+  stableBenchmarkSerialize(ratingV2Profiles) !== stableBenchmarkSerialize(expectedRatingV2Profiles)
+)
+  throw new Error('Rating V2 profiles differ from pinned raw semantics');
 await validateTrainingSemantics(rawRoot, staticGeneratedRoot, currentTextMaps);
 const playerRuntimeTables = Object.fromEntries(
   await Promise.all(

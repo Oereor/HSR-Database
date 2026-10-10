@@ -27,7 +27,7 @@ function fail(status: Failure['status'], reason: NormalizationReason, detail?: s
   return { status, reason, ...(detail ? { detail } : {}) };
 }
 
-function normalizePiece(
+export function normalizePiece(
   relic: CanonicalPlayerRelic,
   runtime: PlayerRuntimeData
 ): PieceNormalization {

@@ -29,6 +29,8 @@ import {
 } from '../generated-artifacts.js';
 import { assertPlayerRuntimeData } from '../player-runtime.js';
 import { assertRelicScoreRecommendations } from '../../../src/lib/relic-score/recommendations.js';
+import { assertRatingV2Profiles, ratingV2SourceDigests } from '../relic-rating-v2.js';
+import { stableBenchmarkSerialize } from '../../../src/lib/relic-score/benchmark/identity.js';
 import {
   getGeneratedLocales,
   getPublicLocale,
@@ -200,7 +202,7 @@ export async function validateBuildInputs(
     manifest,
     { generated: generatedRoot, staticGenerated: staticGeneratedRoot },
     {
-      onArtifact(logicalPath, value, metadata) {
+      async onArtifact(logicalPath, value, metadata) {
         if (logicalPath.startsWith('static/generated/training/')) {
           if (metadata.locale !== undefined)
             throw new Error('Training cost artifacts must be locale-neutral');
@@ -234,6 +236,17 @@ export async function validateBuildInputs(
           assertArtifactLocale(logicalPath, metadata);
           assertMaterialDetailCatalog(value, detailMatch[1] as Locale);
           materialDetails.push(value);
+          return;
+        }
+        if (logicalPath === 'runtime/relic-rating-v2.json') {
+          if (metadata.locale !== undefined)
+            throw new Error('Rating V2 profiles must be locale-neutral');
+          assertRatingV2Profiles(value, manifest.routes.characters, manifest.sourceCommit);
+          if (
+            stableBenchmarkSerialize(value.sourceDigests) !==
+            stableBenchmarkSerialize(await ratingV2SourceDigests(rawRoot))
+          )
+            throw new Error('Rating V2 source digest mismatch');
           return;
         }
         if (logicalPath === 'runtime/player.json') {

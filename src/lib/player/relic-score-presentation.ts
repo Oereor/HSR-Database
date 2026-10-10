@@ -4,6 +4,7 @@ import { formatPlayerStatTotal } from './character.js';
 import { formatPlayerDisplayNumber } from './display-number.js';
 import { PLAYER_PROPERTY_SEMANTICS } from './property-semantics.js';
 import type { PlayerRelicScoreUnavailableReason } from './relic-score-contract.js';
+import type { RatingV2Reason } from '../relic-score/v2/score.js';
 
 export function formatRelicScore(value: number): string {
   return value.toFixed(1);
@@ -23,8 +24,14 @@ export function formatRelicScorePanelValue(stat: RelicStatKey, value: number): s
   });
 }
 
-export function relicScoreUnavailableMessage(reason: PlayerRelicScoreUnavailableReason): string {
+export function relicScoreUnavailableMessage(
+  reason: PlayerRelicScoreUnavailableReason | RatingV2Reason
+): string {
   switch (reason) {
+    case 'profile-review-required':
+      return m.player_relic_rating_v2_review_required();
+    case 'main-weight-unavailable':
+      return m.player_relic_rating_v2_main_unavailable();
     case 'profile-unavailable':
       return m.player_relic_score_profile_unavailable();
     case 'recommendation-unavailable':

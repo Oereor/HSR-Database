@@ -1,5 +1,7 @@
 # Relic Score Profile 数值维护
 
+> 本文维护仍在生产使用的 V1。V2 候选链路被 1505 上游主权重缺失阻止切换；它使用自动派生、异常审核及独立命令，没有 approve-current 或阈值，见 [V2 规范](relic-rating-v2.md)。下文保留以维护尚未退出的 V1 消费者。
+
 长期人工 source of truth 是 `data/relic-score/profile-overrides.json`，共用默认权重在 `data/relic-score/profile-templates.json`。这两个文件使用普通 JSON；角色 ID 是 `overrides` 的键，同一角色的权重、Soft Target 和 Hard Breakpoint 集中在一个对象中。只填写真正覆盖自动结果的字段。`reviewedInputDigest` 由命令维护，不需要人工计算或复制。
 
 ## 修改角色配置

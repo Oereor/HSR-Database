@@ -7,11 +7,12 @@
   import { m } from '$lib/paraglide/messages.js';
   import type { PlayerRelicSlotView } from '$lib/player/equipment';
   import type { PlayerRelicPieceScore } from '$lib/player/relic-score-contract';
+  import type { PlayerRelicPieceScoreV2 } from '$lib/player/relic-rating-v2-contract';
   import { formatRelicScore } from '$lib/player/relic-score-presentation';
   import PlayerAffixRow from './PlayerAffixRow.svelte';
 
   export let view: PlayerRelicSlotView;
-  export let score: PlayerRelicPieceScore | undefined = undefined;
+  export let score: PlayerRelicPieceScore | PlayerRelicPieceScoreV2 | undefined = undefined;
   export let showScore = false;
 
   $: unresolvedLabel = view.relic
@@ -92,10 +93,60 @@
         <p class="player-relic-card__unknown-main">—</p>
       {/if}
     </div>
+    {#if showScore && score?.status === 'available' && 'mainMode' in score}
+      <div
+        class="player-relic-card__rating-v2"
+        data-player-rating-v2-details
+        data-main-mode={score.mainMode}
+      >
+        {#if score.mainMode === 'continuous'}
+          <p data-player-main-suitability>
+            {m.player_relic_rating_v2_suitability()}: {Math.round(score.mainSuitability! * 100)}% · {m.player_relic_rating_v2_completion()}:
+            {Math.round(score.mainCompletion! * 100)}%
+          </p>
+        {:else}
+          <p>
+            {score.mainMode === 'fixed'
+              ? m.player_relic_rating_v2_fixed()
+              : m.player_relic_rating_v2_agnostic()}
+          </p>
+        {/if}
+        <p>
+          {m.player_relic_rating_v2_percentile()}: {Math.round(score.benchmarkPercentile * 100)}%
+        </p>
+        <p>
+          {m.player_relic_rating_v2_main_part()}: {formatRelicScore(score.mainContribution * 100)} · {m.player_relic_rating_v2_sub_part()}:
+          {formatRelicScore(score.subContribution * 100)}
+        </p>
+        {#each score.substats as sub (sub.key)}
+          <p
+            data-player-rating-v2-substat={sub.key}
+            data-weight={sub.weight}
+            data-effective-hit={sub.effectiveHit}
+          >
+            {view.subAffixes.find((affix) => affix.type === sub.key)?.property?.name ?? sub.key}:
+            {m.player_relic_rating_v2_weight_hits({
+              weight: sub.weight.toFixed(3),
+              count: sub.effectiveHit === null ? '—' : String(sub.effectiveHit)
+            })}
+          </p>
+        {/each}
+      </div>
+    {/if}
   {/if}
 </svelte:element>
 
 <style>
+  .player-relic-card__rating-v2 {
+    border-top: 1px solid var(--border);
+    padding: 0.6rem;
+    color: var(--text-secondary);
+    font-size: var(--font-helper);
+    overflow-wrap: anywhere;
+  }
+  .player-relic-card__rating-v2 p {
+    margin: 0.2rem 0;
+  }
   .player-relic-card {
     min-width: 0;
     overflow: hidden;

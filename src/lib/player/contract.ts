@@ -1,4 +1,5 @@
 import type { PlayerRelicScorePresentation } from './relic-score-contract.js';
+import type { PlayerRelicScorePresentationV2 } from './relic-rating-v2-contract.js';
 
 export interface PlayerProfile {
   uid: string;
@@ -39,7 +40,7 @@ export interface PlayerCharacter {
   lightCone: PlayerLightCone | null;
   relics: PlayerRelic[];
   stats: PlayerStat[];
-  relicScore?: PlayerRelicScorePresentation;
+  relicScore?: PlayerRelicScorePresentation | PlayerRelicScorePresentationV2;
 }
 
 export interface PlayerLightCone {

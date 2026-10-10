@@ -5,7 +5,7 @@ import type { DataManifest, GeneratedArtifactMetadata } from '../../src/lib/doma
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
 import { readCacheJson, type ManifestReadFailure } from '../deployment/cache-diagnostics.js';
 
-export const DATA_MANIFEST_SCHEMA_VERSION = 51 as const;
+export const DATA_MANIFEST_SCHEMA_VERSION = 52 as const;
 
 export interface GeneratedArtifactValidationSummary {
   files: number;
@@ -81,6 +81,7 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
       ),
       'runtime/player.json',
       'runtime/relic-score-recommendations.json',
+      'runtime/relic-rating-v2.json',
       `views/${locale}/catalogs/characters.json`,
       `views/${locale}/catalogs/light-cones.json`,
       `views/${locale}/catalogs/relics.json`,

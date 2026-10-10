@@ -5,6 +5,7 @@
   import { resolvePlayerStatIdentity } from '$lib/player/character';
   import { PLAYER_PROPERTY_SEMANTICS } from '$lib/player/property-semantics';
   import type { PlayerRelicBuildScore } from '$lib/player/relic-score-contract';
+  import type { PlayerRelicBuildScoreV2 } from '$lib/player/relic-rating-v2-contract';
   import {
     formatRelicScore,
     formatRelicScorePanelValue,
@@ -13,14 +14,14 @@
   } from '$lib/player/relic-score-presentation';
   import type { RelicStatKey } from '$lib/relic-score/stat-registry';
 
-  export let score: PlayerRelicBuildScore;
+  export let score: PlayerRelicBuildScore | PlayerRelicBuildScoreV2;
   export let properties: RelicProperty[] = [];
 
   $: propertiesByType = new Map(properties.map((property) => [property.propertyType, property]));
-  $: passedBreakpoints =
-    score.status === 'available'
-      ? score.hardBreakpoint.details.filter((detail) => detail.passed).length
-      : 0;
+  $: legacyScore = score.status === 'available' && 'softTarget' in score ? score : undefined;
+  $: passedBreakpoints = legacyScore
+    ? legacyScore.hardBreakpoint.details.filter((detail) => detail.passed).length
+    : 0;
 
   function statLabel(stat: RelicStatKey): string {
     const field = PLAYER_PROPERTY_SEMANTICS[stat].target;
@@ -72,24 +73,34 @@
           <dt>{m.player_relic_score_set_integrity()}</dt>
           <dd>{formatRelicScorePercent(score.setIntegrity)}</dd>
         </div>
-        {#if score.softTarget.details.length}
-          <div data-player-soft-target>
-            <dt>{m.player_relic_score_soft_target()}</dt>
-            <dd>{formatRelicScorePercent(score.softTarget.progress)}</dd>
+        {#if 'mainContribution' in score}
+          <div data-player-rating-v2-main>
+            <dt>{m.player_relic_rating_v2_main_part()}</dt>
+            <dd>{formatRelicScorePercent(score.mainContribution)}</dd>
+          </div>
+          <div data-player-rating-v2-sub>
+            <dt>{m.player_relic_rating_v2_sub_part()}</dt>
+            <dd>{formatRelicScorePercent(score.subContribution)}</dd>
           </div>
         {/if}
-        {#if score.hardBreakpoint.details.length}
+        {#if legacyScore && legacyScore.softTarget.details.length}
+          <div data-player-soft-target>
+            <dt>{m.player_relic_score_soft_target()}</dt>
+            <dd>{formatRelicScorePercent(legacyScore.softTarget.progress)}</dd>
+          </div>
+        {/if}
+        {#if legacyScore && legacyScore.hardBreakpoint.details.length}
           <div data-player-hard-breakpoint>
             <dt>{m.player_relic_score_hard_breakpoint()}</dt>
             <dd>
-              {#if score.hardBreakpoint.details.length === 1}
-                {score.hardBreakpoint.details[0].passed
+              {#if legacyScore && legacyScore.hardBreakpoint.details.length === 1}
+                {legacyScore.hardBreakpoint.details[0].passed
                   ? m.player_relic_score_passed()
                   : m.player_relic_score_failed()}
               {:else}
                 {m.player_relic_score_passed_count({
                   passed: passedBreakpoints,
-                  total: score.hardBreakpoint.details.length
+                  total: legacyScore.hardBreakpoint.details.length
                 })}
               {/if}
             </dd>
@@ -100,13 +111,13 @@
   </div>
 
   {#if score.status === 'available'}
-    {#if score.softTarget.details.length || score.hardBreakpoint.details.length}
+    {#if legacyScore && (legacyScore.softTarget.details.length || legacyScore.hardBreakpoint.details.length)}
       <Disclosure label={m.player_relic_score_details()} data-player-score-details>
         <div class="player-relic-score-summary__detail-groups">
-          {#if score.softTarget.details.length}
+          {#if legacyScore && legacyScore.softTarget.details.length}
             <section>
               <h4>{m.player_relic_score_soft_target()}</h4>
-              {#each score.softTarget.details as detail (detail.stat)}
+              {#each legacyScore.softTarget.details as detail (detail.stat)}
                 <div class="player-relic-score-summary__detail-row">
                   <span>{statLabel(detail.stat)}</span>
                   <span
@@ -121,10 +132,10 @@
               {/each}
             </section>
           {/if}
-          {#if score.hardBreakpoint.details.length}
+          {#if legacyScore && legacyScore.hardBreakpoint.details.length}
             <section>
               <h4>{m.player_relic_score_hard_breakpoint()}</h4>
-              {#each score.hardBreakpoint.details as detail, index (`${detail.stat}:${index}`)}
+              {#each legacyScore.hardBreakpoint.details as detail, index (`${detail.stat}:${index}`)}
                 <div class="player-relic-score-summary__detail-row">
                   <span>{statLabel(detail.stat)}</span>
                   <span

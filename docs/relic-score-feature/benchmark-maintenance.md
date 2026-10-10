@@ -1,5 +1,7 @@
 # Relic Score 正式 Benchmark 维护
 
+> 本文描述仍在生产使用的 V1 产物。名称中的 main-conditioned-v2 不是评分算法 V2。新评分 V2 使用独立 schema 4 候选及审计，全量生成被 1505 blocker 阻止，见 [V2 规范](relic-rating-v2.md)。不要覆盖旧产物或混合分布。
+
 正式产物是 `src/lib/relic-score/generated/farming-benchmarks.json`，由命令生成并跟踪于 Git。不要手改产物或将 `tests/fixtures/relic-score/benchmark/prototype.json` 用作生产替代。`phase-1e-benchmark-generation-audit.json` 仅记录摘要证据，不参与运行时。
 
 ## V1 契约
