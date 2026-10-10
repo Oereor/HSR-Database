@@ -467,7 +467,9 @@ export interface PublicSiteVersion {
 }
 
 export interface DataManifest {
-  schemaVersion: 52;
+  schemaVersion: 53;
+  ratingV2PolicyInput: { schemaVersion: 1; bytes: number; sha256: string };
+  ratingV2BenchmarkInput: { schemaVersion: 4; bytes: number; sha256: string; auditSha256: string };
   sourceCommit: string;
   sourceVersion: string;
   gameVersionFull: string | null;

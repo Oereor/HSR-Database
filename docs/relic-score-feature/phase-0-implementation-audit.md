@@ -1,5 +1,7 @@
 # Relic Score Phase 0 实施审计
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 > 调查日期：2026-09-22  
 > 目标仓库：`HSR-Database`（`develop`）  
 > 上游数据快照：`TurnBasedGameData@4ce30f69b32dc259ab9a8da3ba57035485103221`  

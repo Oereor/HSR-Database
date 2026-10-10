@@ -7,6 +7,8 @@ import { assertPlayerRuntimeData } from '../../src/lib/player/runtime-data';
 import { buildRelicScoreReferenceData } from '../../src/lib/relic-score/reference';
 import { compileProbabilityModel } from '../../src/lib/relic-score/farming/probability-model';
 import { benchmarkSha256 } from '../../src/lib/relic-score/benchmark/identity';
+import overrideJson from '../../data/relic-score/v2/profile-overrides.json';
+import { assertRatingV2Overrides, exceptionsFor } from '../../src/lib/relic-score/v2/overrides';
 import { assertRelicScoreRecommendations } from '../../src/lib/relic-score/recommendations';
 import {
   deriveRatingV2Profile,
@@ -37,7 +39,7 @@ import { adaptEnkaProfile } from '../../api/_player/enka/adapter';
 import { decodeEnkaResponse } from '../../api/_player/enka/decode';
 import { synthesizePlayerCharacter } from '../../src/lib/player/stat-synthesis';
 import { createRatingV2Scorer } from '../../src/lib/server/relic-score/v2';
-import { resolveRatingV2PlayerProfile } from '../../api/_player/enka/rating-v2-pipeline';
+import { resolveCanonicalPlayerProfile } from '../../api/_player/enka/pipeline';
 import { buildPlayerInput } from '../fixtures/relic-score/builders';
 import type { RatingV2Profiles } from '../../src/lib/relic-score/v2/profile';
 import {
@@ -54,6 +56,11 @@ const fixture = buildPlayerInput();
 const recommendations: unknown = recommendationJson;
 assertRelicScoreRecommendations(recommendations);
 const recommendation = recommendations[fixture.characterId];
+const approvedPolicy = (() => {
+  const value: unknown = overrideJson;
+  assertRatingV2Overrides(value, Object.keys(recommendations), overrideJson.sourceCommit);
+  return value;
+})();
 function profileFor(id = fixture.characterId, element = 'Lightning'): RatingV2Profile {
   const main: PreferenceRow = {
     AvatarID: Number(id),
@@ -86,7 +93,8 @@ function profileFor(id = fixture.characterId, element = 'Lightning'): RatingV2Pr
     element,
     main,
     sub,
-    recommendation: { ...structuredClone(recommendation), avatarId: id }
+    recommendation: { ...structuredClone(recommendation), avatarId: id },
+    exceptions: exceptionsFor(approvedPolicy, id)
   });
 }
 function sourcesFor(profile = profileFor()): RatingV2Sources & { benchmark: RatingV2Benchmark } {
@@ -185,6 +193,58 @@ describe('Rating V2 source and mapping policy', () => {
       }
     ]);
     expect(profile.mainWeights.PhysicalAddedRatio?.state).toBe('missing');
+    const approved = deriveRatingV2Profile({
+      characterId: '1505',
+      element: 'Physical',
+      main,
+      sub: {
+        AvatarID: 1505,
+        Attack: 0.4,
+        HP: 0.1,
+        Defence: 0.1,
+        Speed: 1,
+        CriticalChance: 1,
+        CriticalDamage: 1,
+        StatusResistance: 0.1,
+        BreakDamage: 0.1
+      },
+      recommendation: actual,
+      exceptions: exceptionsFor(approvedPolicy, '1505')
+    });
+    expect(approved.status).toBe('ready');
+    expect(approved.anomalies).toEqual([]);
+    expect(approved.mainWeights.PhysicalAddedRatio).toMatchObject({
+      state: 'override',
+      weight: 0.4,
+      original: { state: 'missing', category: 'DamageAddedRatio' }
+    });
+    expect(approved.slots.NECK.maximum).toBe(0.4);
+    expect(ratingV2SubDigest(approved)).toBe(ratingV2SubDigest(profile));
+    validateRatingV2Profile(approved, exceptionsFor(approvedPolicy, '1505'));
+    expect(() =>
+      deriveRatingV2Profile({
+        characterId: '1505',
+        element: 'Physical',
+        main: { ...main, DamageAddedRatio: 0.4 },
+        sub: { AvatarID: 1505 },
+        recommendation: actual,
+        exceptions: exceptionsFor(approvedPolicy, '1505')
+      })
+    ).toThrow(/Stale\/conflicting/);
+    const withoutOrb = structuredClone(actual);
+    withoutOrb.mainStatOptions.find((option) => option.slot === 'NECK')!.propertyTypes = [
+      'AttackAddedRatio'
+    ];
+    expect(() =>
+      deriveRatingV2Profile({
+        characterId: '1505',
+        element: 'Physical',
+        main,
+        sub: { AvatarID: 1505 },
+        recommendation: withoutOrb,
+        exceptions: exceptionsFor(approvedPolicy, '1505')
+      })
+    ).toThrow(/Stale\/conflicting/);
     expect(scoreRatingV2Piece(fixture.relics[0], '1505', sourcesFor(profile))).toEqual({
       status: 'unavailable',
       reason: 'profile-review-required'
@@ -400,6 +460,7 @@ describe('Rating V2 math and contract', () => {
       algorithmVersion: 2,
       sourceCommit: sources.sourceCommit,
       sourceDigests: {},
+      overrideDigest: benchmarkSha256(approvedPolicy),
       semanticDigest: benchmarkSha256([sources.profile!]),
       mainMappingVersion: MAIN_MAPPING_VERSION,
       subMappingVersion: SUB_MAPPING_VERSION,
@@ -415,9 +476,9 @@ describe('Rating V2 math and contract', () => {
         probabilityJson
       )
     ).toThrow('profile schema');
-    const integrated = resolveRatingV2PlayerProfile(canonical, runtime, scorer);
+    const integrated = resolveCanonicalPlayerProfile(canonical, runtime, undefined, scorer);
     expect(integrated.normalizedBuilds[0].status).toBe('valid');
-    expect(integrated.presentation.characters[0].relicScore.build.status).toBe('available');
+    expect(integrated.presentation.characters[0].relicScore!.build.status).toBe('available');
     build.relics[0].mainAffixId = 999;
     const failure = normalizeRatingV2Build(build, runtime);
     expect(failure.status).toBe('unavailable');

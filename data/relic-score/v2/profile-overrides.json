@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "312b4597691e0a29cf9828a15b592757dba86949",
+  "basis": "Maintainer-approved relic-rating-v2-cutover-codex-prompt.md, 2026-10-10",
+  "mainWeights": [
+    {
+      "characterId": "1505",
+      "slot": "NECK",
+      "key": "PhysicalAddedRatio",
+      "preference": 0.4,
+      "reason": "Upstream recommends Physical DMG orb but omits DamageAddedRatio; maintainer-approved equivalence to ATK% orb (0.4) for Rating V2"
+    }
+  ],
+  "agnosticSlots": [
+    {
+      "characterId": "1506",
+      "slot": "NECK",
+      "reason": "Maintainer-approved existing 1506 main evaluation exemption: orb preference does not determine this character's relic rating"
+    },
+    {
+      "characterId": "1506",
+      "slot": "OBJECT",
+      "reason": "Maintainer-approved existing 1506 main evaluation exemption: rope preference does not determine this character's relic rating"
+    }
+  ]
+}

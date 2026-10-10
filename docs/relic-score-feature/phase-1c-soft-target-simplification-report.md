@@ -1,5 +1,7 @@
 # Relic Score Phase 1C Soft Target 精简与审核应用报告
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 ## 1. Executive Summary
 
 旧 post-target 边际权重模型、贡献归因和 Candidate A/B 已撤销。Character Profile schema 升为 v3：Soft Target 只含 `stat/minimumThreshold/maximumThreshold`，Hard Breakpoint 只含 `stat/threshold`。维护者已在[人工审核表](phase-1c-soft-target-review.md)确认 9 条非暴击候选的完整区间，现均已写入正式配置并重新生成 Profile。Piece Score 与 farming 数值计算保持原样，最终 Build modifier 仍待校准。

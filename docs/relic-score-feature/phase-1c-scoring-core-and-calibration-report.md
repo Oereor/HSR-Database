@@ -1,5 +1,7 @@
 # Relic Score Phase 1C — Scoring Core and Calibration Report
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 > Historical snapshot. The later [Phase 1C Soft Target simplification](phase-1c-soft-target-simplification-report.md) supersedes this report's target context, Candidate A/B, breakpoint component and final-score sections. The old target-study output was removed. N/K/257 findings remain historical observations, not production defaults.
 
 ## 1. Executive summary and Phase 1B decisions

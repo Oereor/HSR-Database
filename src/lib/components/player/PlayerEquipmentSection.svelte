@@ -66,7 +66,7 @@
     <div class="player-equipment__group">
       <SectionHeading level={2}>{m.player_equipment_relics()}</SectionHeading>
       {#if character.relicScore}
-        <PlayerRelicScoreSummary score={character.relicScore.build} properties={relicProperties} />
+        <PlayerRelicScoreSummary score={character.relicScore.build} />
       {/if}
       <div class="player-equipment__relic-grid">
         {#each relicSlots as view (view.slot)}

@@ -1,4 +1,4 @@
-import { empiricalQuantile } from './prototype.js';
+import { empiricalQuantile } from './quantile.js';
 import { lookupDenseCdf } from '../benchmark/cdf.js';
 
 export { QUANTILE_REPRESENTATION_VERSION } from '../benchmark/versions.js';

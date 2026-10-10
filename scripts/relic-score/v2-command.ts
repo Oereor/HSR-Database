@@ -6,11 +6,15 @@ import { readPreparedSourceMetadata } from '../data/source-metadata.js';
 import {
   buildRatingV2Profiles,
   loadRatingV2Tables,
-  assertRatingV2Profiles
+  assertRatingV2Profiles,
+  readRatingV2PolicyInput
 } from '../data/relic-rating-v2.js';
 import { readDataManifest } from '../data/generated-artifacts.js';
 import { readUpstreamLock } from '../deployment/lock.js';
-import { stableBenchmarkSerialize } from '../../src/lib/relic-score/benchmark/identity.js';
+import {
+  stableBenchmarkSerialize,
+  benchmarkSha256
+} from '../../src/lib/relic-score/benchmark/identity.js';
 import {
   assertRatingV2PublicationReady,
   ratingV2ExpectedBenchmark,
@@ -18,7 +22,13 @@ import {
   type RatingV2Benchmark
 } from '../../src/lib/relic-score/v2/benchmark.js';
 import type { RatingV2Profiles } from '../../src/lib/relic-score/v2/profile.js';
-import { generateRatingV2Benchmark } from './v2-benchmark-core.js';
+import {
+  generateRatingV2Benchmark,
+  generateRatingV2Distribution,
+  RatingV2RepresentationError
+} from './v2-benchmark-core.js';
+import { assertRatingV2GenerationAudit } from '../../src/lib/relic-score/v2/audit.js';
+import { execFileSync } from 'node:child_process';
 import { loadFarmingInputs } from './farming-inputs.js';
 import { compareRatingV2Alpha } from './v2-alpha-comparison.js';
 import { normalizeRatingV2Build } from '../../src/lib/relic-score/v2/normalize.js';
@@ -26,6 +36,7 @@ import { scoreRatingV2Build } from '../../src/lib/relic-score/v2/score.js';
 import { presentRatingV2 } from '../../src/lib/relic-score/v2/presentation.js';
 import { buildRelicScoreReferenceData } from '../../src/lib/relic-score/reference.js';
 import type { CanonicalPlayerCharacterBuild } from '../../src/lib/player/canonical.js';
+import { assertRatingV2Overrides } from '../../src/lib/relic-score/v2/overrides.js';
 
 const candidateRoot = path.join(siteRoot, 'data/relic-score/v2');
 const reviewPath = path.join(
@@ -40,6 +51,7 @@ const commands = [
   'validate',
   'benchmarks-generate',
   'benchmarks-validate',
+  'benchmarks-determinism',
   'alpha-compare',
   'inspect',
   'score'
@@ -64,7 +76,9 @@ async function loadPublishedProfiles(lockCommit: string): Promise<RatingV2Profil
   const profiles: unknown = JSON.parse(
     await readFile(path.join(generatedRoot, 'runtime/relic-rating-v2.json'), 'utf8')
   );
-  assertRatingV2Profiles(profiles, manifest.routes.characters, lockCommit);
+  const policy = (await readRatingV2PolicyInput()).value;
+  assertRatingV2Overrides(policy, manifest.routes.characters, lockCommit);
+  assertRatingV2Profiles(profiles, manifest.routes.characters, lockCommit, policy);
   return profiles;
 }
 async function main() {
@@ -114,29 +128,6 @@ async function main() {
           stableBenchmarkSerialize(previousById.get(profile.characterId))
       )
       .map((profile) => profile.characterId);
-    const legacy = JSON.parse(
-      await readFile(
-        path.join(siteRoot, 'src/lib/relic-score/generated/character-profiles.json'),
-        'utf8'
-      )
-    ) as { profiles: Array<{ characterId: string; substatWeights: Record<string, number> }> };
-    const legacyById = new Map(legacy.profiles.map((profile) => [profile.characterId, profile]));
-    const legacyChanges = derived.profiles
-      .map((profile) => ({
-        characterId: profile.characterId,
-        weights: Object.entries(profile.effectiveSubWeights)
-          .filter(
-            ([key, value]) =>
-              Math.abs((legacyById.get(profile.characterId)?.substatWeights[key] ?? 0) - value) >
-              1e-12
-          )
-          .map(([key, value]) => ({
-            key,
-            previous: legacyById.get(profile.characterId)?.substatWeights[key] ?? 0,
-            current: value
-          }))
-      }))
-      .filter((profile) => profile.weights.length);
     const review = {
       sourceCommit: commit,
       sourceDigests: derived.sourceDigests,
@@ -157,11 +148,7 @@ async function main() {
             )
             .map((profile) => profile.characterId) ?? []
       },
-      legacyComparison: {
-        changedCharacters: legacyChanges.length,
-        changedSubWeights: legacyChanges.reduce((sum, profile) => sum + profile.weights.length, 0),
-        characters: legacyChanges
-      },
+      historicalComparison: 'relic-rating-v2-v1-weight-comparison.historical.json',
       anomalies: derived.profiles.flatMap((profile) => profile.anomalies)
     };
     if (command === 'profiles-generate')
@@ -218,6 +205,22 @@ async function main() {
       semanticDigest: profiles.semanticDigest,
       samplingDigest: expected.samplingDigest,
       subProfileDigests: expected.profileDigests,
+      overrideDigest: profiles.overrideDigest,
+      generatorProvenance: {
+        commit: execFileSync('git', ['rev-parse', 'HEAD'], {
+          cwd: siteRoot,
+          encoding: 'utf8',
+          windowsHide: true
+        }).trim(),
+        workingDiffSha256: createHash('sha256')
+          .update(
+            execFileSync('git', ['diff', '--', 'scripts/relic-score', 'src/lib/relic-score'], {
+              cwd: siteRoot,
+              windowsHide: true
+            })
+          )
+          .digest('hex')
+      },
       artifactSha256: createHash('sha256').update(artifactBytes).digest('hex'),
       artifactBytes: artifactBytes.length,
       generationSeconds: (performance.now() - started) / 1000,
@@ -229,10 +232,46 @@ async function main() {
       },
       distributions: result.audit
     };
-    await writeAtomic(benchmarkPath, result.artifact);
-    await writeAtomic(path.join(candidateRoot, 'benchmark-generation-audit.json'), audit);
+    const stagingRoot = path.join(candidateRoot, '.staging');
+    await writeAtomic(path.join(stagingRoot, 'farming-benchmarks.json'), result.artifact);
+    await writeAtomic(path.join(stagingRoot, 'benchmark-generation-audit.json'), audit);
+    const stagedBytes = await readFile(path.join(stagingRoot, 'farming-benchmarks.json'));
+    validateRatingV2Benchmark(JSON.parse(stagedBytes.toString('utf8')), expected, commit, true);
+    if (createHash('sha256').update(stagedBytes).digest('hex') !== audit.artifactSha256)
+      throw new Error('Staged Rating V2 bytes mismatch');
+    assertRatingV2GenerationAudit(audit, result.artifact, expected, {
+      bytes: stagedBytes.length,
+      sha256: audit.artifactSha256
+    });
+    const targets = ['farming-benchmarks.json', 'benchmark-generation-audit.json'];
+    const previous = await Promise.all(
+      targets.map(async (name) => {
+        try {
+          return await readFile(path.join(candidateRoot, name));
+        } catch (error) {
+          if ((error as NodeJS.ErrnoException).code === 'ENOENT') return undefined;
+          throw error;
+        }
+      })
+    );
+    try {
+      for (const name of targets)
+        await rename(path.join(stagingRoot, name), path.join(candidateRoot, name));
+    } catch (error) {
+      for (const [index, name] of targets.entries()) {
+        const old = previous[index];
+        if (old) {
+          const recovery = path.join(stagingRoot, `${name}.recovery`);
+          await writeFile(recovery, old);
+          await rename(recovery, path.join(candidateRoot, name));
+        } else await unlink(path.join(candidateRoot, name)).catch(() => {});
+      }
+      throw error;
+    }
+    if (!(await readFile(benchmarkPath)).equals(stagedBytes))
+      throw new Error('Published Rating V2 bytes mismatch');
     console.log(
-      `[rating-v2] candidate generated/gated; ${result.audit.length} distributions; production remains V1 pending atomic cutover`
+      `[rating-v2] formal artifacts generated/gated; ${result.audit.length} distributions; run data:ensure to refresh manifest binding`
     );
     return;
   }
@@ -240,33 +279,45 @@ async function main() {
   validateRatingV2Benchmark(benchmark, expected, commit, true);
   const audit = JSON.parse(
     await readFile(path.join(candidateRoot, 'benchmark-generation-audit.json'), 'utf8')
-  ) as {
-    status: string;
-    sourceCommit: string;
-    semanticDigest: string;
-    samplingDigest: string;
-    subProfileDigests: Record<string, string>;
-    artifactSha256: string;
-    artifactBytes: number;
-    distributionCount: number;
-    representation: { passCount: number; failCount: number; maxError: number };
-  };
+  ) as unknown;
   const bytes = await readFile(benchmarkPath);
-  if (
-    audit.status !== 'candidate-gated' ||
-    audit.sourceCommit !== benchmark.sourceCommit ||
-    audit.samplingDigest !== expected.samplingDigest ||
-    stableBenchmarkSerialize(audit.subProfileDigests) !==
-      stableBenchmarkSerialize(expected.profileDigests) ||
-    audit.artifactSha256 !== createHash('sha256').update(bytes).digest('hex') ||
-    audit.artifactBytes !== bytes.length ||
-    audit.distributionCount !== expected.cases.length ||
-    audit.representation.passCount !== expected.cases.length ||
-    audit.representation.failCount !== 0 ||
-    !Number.isFinite(audit.representation.maxError) ||
-    audit.representation.maxError > 0.005
-  )
-    throw new Error('Rating V2 generation audit mismatch');
+  const artifactSha256 = createHash('sha256').update(bytes).digest('hex');
+  assertRatingV2GenerationAudit(audit, benchmark, expected, {
+    bytes: bytes.length,
+    sha256: artifactSha256
+  });
+  if (command === 'benchmarks-determinism') {
+    const cases = [
+      ['1001', 'HEAD', 'HPDelta'],
+      ['1505', 'NECK', 'PhysicalAddedRatio'],
+      ['1506', 'OBJECT', 'SPRatioBase']
+    ];
+    const checks = cases.map(([id, slot, key]) => {
+      const item = expected.cases.find(
+        (entry) => entry.characterId === id && entry.slot === slot && entry.mainStatKey === key
+      );
+      if (!item) throw new Error('Missing deterministic representative');
+      const regenerated = generateRatingV2Distribution(
+        model,
+        profiles.profiles.find((profile) => profile.characterId === id)!,
+        item
+      );
+      const original = benchmark.distributions[id]?.[item.slot]?.[item.mainStatKey];
+      if (stableBenchmarkSerialize(regenerated.distribution) !== stableBenchmarkSerialize(original))
+        throw new Error(`Rating V2 deterministic mismatch ${id}:${slot}:${key}`);
+      return {
+        ...item,
+        distributionDigest: benchmarkSha256(regenerated.distribution),
+        maxError: regenerated.error.maxAbsoluteCdfError
+      };
+    });
+    await writeAtomic(path.join(candidateRoot, 'benchmark-determinism.json'), {
+      artifactSha256,
+      experimentCount: 65536,
+      checks,
+      status: 'passed'
+    });
+  }
   if (command === 'alpha-compare') {
     const comparison = compareRatingV2Alpha(profiles, benchmark, runtime, model);
     await writeAtomic(path.join(candidateRoot, 'alpha-comparison.json'), comparison);
@@ -280,12 +331,14 @@ async function main() {
 }
 try {
   await main();
+  await writeAtomic(path.join(candidateRoot, 'last-run.json'), { command, status: 'passed' });
 } catch (error) {
   const message = error instanceof Error ? error.message : String(error);
   await writeAtomic(path.join(candidateRoot, 'last-run.json'), {
     command,
     status: 'failed-or-blocked',
-    reason: message
+    reason: message,
+    ...(error instanceof RatingV2RepresentationError ? { diagnostic: error.diagnostic } : {})
   });
   console.error(`[rating-v2] ${message}`);
   process.exitCode = 1;

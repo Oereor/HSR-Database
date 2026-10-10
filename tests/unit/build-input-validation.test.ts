@@ -10,7 +10,12 @@ import { canonicalJsonDigest } from '../../scripts/data/source-metadata';
 import { assertCrossLocaleStructuralParity } from '../../scripts/data/structural-parity';
 import { validateBuildInputs } from '../../scripts/data/validation/build-inputs';
 import { PLAYER_PROPERTY_SEMANTICS } from '../../src/lib/player/property-semantics';
-import { buildRatingV2Profiles, loadRatingV2Tables } from '../../scripts/data/relic-rating-v2';
+import {
+  buildRatingV2Profiles,
+  loadRatingV2Tables,
+  readRatingV2PolicyInput,
+  readRatingV2BenchmarkInput
+} from '../../scripts/data/relic-rating-v2';
 import { STAT_CATEGORY, WEIGHT_CATEGORIES } from '../../src/lib/relic-score/v2/profile';
 import { relicStatSemantics, type RelicStatKey } from '../../src/lib/relic-score/stat-registry';
 
@@ -152,9 +157,25 @@ async function createFixture(): Promise<Fixture> {
       writeFile(path.join(sourceRoot, 'ExcelOutput', `${name}.json`), JSON.stringify(rows))
     )
   );
+  const ratingV2PolicyFile = path.join(root, 'profile-overrides.json');
+  await writeFile(
+    ratingV2PolicyFile,
+    JSON.stringify({
+      schemaVersion: 1,
+      sourceCommit: commit,
+      basis: 'Synthetic fixture',
+      mainWeights: [],
+      agnosticSlots: []
+    })
+  );
   await writeArtifact(
     'runtime/relic-rating-v2.json',
-    await buildRatingV2Profiles(sourceRoot, await loadRatingV2Tables(sourceRoot), commit)
+    await buildRatingV2Profiles(
+      sourceRoot,
+      await loadRatingV2Tables(sourceRoot),
+      commit,
+      ratingV2PolicyFile
+    )
   );
 
   for (const locale of ['zh-CN', 'en'] as const) {
@@ -343,7 +364,9 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 52,
+    schemaVersion: 53,
+    ratingV2PolicyInput: (await readRatingV2PolicyInput(ratingV2PolicyFile)).metadata,
+    ratingV2BenchmarkInput: await readRatingV2BenchmarkInput(),
     sourceCommit: commit,
     sourceVersion,
     gameVersionFull: '4.5.0',
@@ -388,6 +411,7 @@ async function createFixture(): Promise<Fixture> {
     manifest,
     validate: (overrides = {}) =>
       validateBuildInputs({
+        ratingV2PolicyFile,
         sourceRoot,
         generatedRoot,
         staticGeneratedRoot,
@@ -412,6 +436,13 @@ describe('production build-input validation', () => {
       manifest: { sourceCommit: commit },
       artifacts: { files: Object.keys(fixture.manifest.artifacts).length }
     });
+  });
+
+  it('rejects stale local Rating V2 policy bytes even with intact generated artifacts', async () => {
+    const fixture = await createFixture();
+    fixture.manifest.ratingV2PolicyInput.sha256 = '0'.repeat(64);
+    await fixture.writeManifest();
+    await expect(fixture.validate()).rejects.toThrow('Rating V2 policy input mismatch');
   });
 
   it('rejects the old generated manifest and occurrence shard schemas', async () => {

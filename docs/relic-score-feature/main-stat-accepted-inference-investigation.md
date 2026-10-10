@@ -1,5 +1,7 @@
 # 遗器主词条 accepted 扩充与评分份额调整调查
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 调查日期：2026-10-01（UTC+8）。范围：仅调查，不实施。
 
 依据：工作区 `Relic-Score-Feature/codex-relic-main-stat-inference-investigation.md`。本报告中的代码路径除 `../TurnBasedGameData/` 外均相对于 `HSR-Database/`。数据与结论限定于本地快照，不验证玩家使用率或实战配装收益。

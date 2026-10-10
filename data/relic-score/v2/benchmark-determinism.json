@@ -1,0 +1,31 @@
+{
+  "artifactSha256": "542c3aec09187e5be5e34832a44d2c7a789cadc95798ac469b9d6f1e916857b8",
+  "checks": [
+    {
+      "characterId": "1001",
+      "distributionDigest": "d6c2d0c53c970dc063d695e2baaf205f3f6e53f4b3500cfd016af95b48b9e313",
+      "identityDigest": "48fa6c5ff1769d9066029d24a9da4892e198c5a0442efd77bed08826972a61e8",
+      "mainStatKey": "HPDelta",
+      "maxError": 0.002138274730536628,
+      "slot": "HEAD"
+    },
+    {
+      "characterId": "1505",
+      "distributionDigest": "7a3070a90bab806b12708eea311ccf1786b20a016fe26b9a1c1663c64c10b859",
+      "identityDigest": "e2615607c9a7e99edf7d56dc19858fc5a8e464db3b899bb17f308f6dfe1661ef",
+      "mainStatKey": "PhysicalAddedRatio",
+      "maxError": 0.0021667236224736097,
+      "slot": "NECK"
+    },
+    {
+      "characterId": "1506",
+      "distributionDigest": "3b4f8bc28fbebe3212bca520f161c2a18379509bd8c86c09f29a93e75292699e",
+      "identityDigest": "b737b6cb1b8cc9022e53c9ae551acc2b15b3b714553f0c3d62cb73c3449d11b4",
+      "mainStatKey": "SPRatioBase",
+      "maxError": 0.001998132087519533,
+      "slot": "OBJECT"
+    }
+  ],
+  "experimentCount": 65536,
+  "status": "passed"
+}

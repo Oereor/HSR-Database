@@ -1,6 +1,6 @@
 # 遗器评分 V2 数学与维护契约
 
-本文件是 V2 候选实现的规范。生产目前继续使用 V1；1505 推荐物伤球却缺少主偏好，阻止全量 V2 Benchmark 与生产切换。历史调查中的候选建议不覆盖本规范。
+本文件是生产 V2 规范。98 个 Profile ready、正式 2744 条分布全覆盖，生产唯一使用 V2。1505 经已批准的稀疏 NECK / PhysicalAddedRatio / 0.4 覆盖关闭 blocker，并保留上游 missing 证据。历史调查不覆盖本规范。
 
 ## 来源和映射
 
@@ -55,6 +55,6 @@ pnpm relic-score:v2:benchmarks:validate
 pnpm relic-score:v2:alpha-compare
 ```
 
-候选与运行记录在 data/relic-score/v2/；审核报告在本目录。V2 没有 approve-current 或 skip-gate 参数。score 输入是 canonical build，不是带面板的旧 normalized fixture；缺分布返回 version 3 unavailable，不套用 V1。
+正式产物与运行记录在 data/relic-score/v2/；审核报告在本目录。V2 没有 approve-current 或 skip-gate 参数。score 输入是 canonical build，不是带面板的旧 normalized fixture；缺分布返回 version 3 unavailable，不套用 V1。
 
-维护者须先处理 1505，再生成并校验全量候选、完成 α 比较，然后在同一次可审查迁移中切换生产 loader 和 Enka 管线、发布整套产物、删除仍为 V1 服务的模板／阈值／审批工具与 UI 分支。正式 α 保持 0.35，修改比例需要新的维护者决定。当前不提供自动生产切换、提交或部署命令。
+生产 loader 依据 Manifest schema 53 绑定政策 bytes/hash、正式 Benchmark bytes/hash/audit hash，完整验证后缓存，逐件核对条件。上游补齐覆盖字段、推荐消失或来源变化须人工复核，不自动覆盖或审批。正式 α 保持 0.35，修改比例需要新的维护者决定。没有自动提交或部署命令。

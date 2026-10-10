@@ -1,5 +1,7 @@
 # Relic Score Phase 1E — Production Benchmark Report
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 ## 1. Executive Summary
 
 Phase 1E 已生成正式 Lens B benchmark：97 个 reviewed Profile × 6 个 canonical 槽位，共 582 个分布，全部通过同一样本 257 点表示门槛。正式 JSON、廉价校验器、server-only loader 和内部生产评分入口已建立；Player Info UI 与公开 API 响应未改动。

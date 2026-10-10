@@ -1,5 +1,7 @@
 # Relic Score Phase 2A — Server / API Integration Report
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 ## 1. Executive Summary
 
 正式 V1 评分已在 Player Info 服务端主链路按实际 Build 实例计算，并以精简、typed 的 `character.relicScore` 返回。现有 Player Info 字段及 provider 错误路径保持兼容。五件装备、单件解析失败、评分输入缺失都有显式可用性；未开始 Phase 2B UI。代码与本地验证已就绪。Vercel 项目设置在本地缺失，无法取得该平台生成的 `/api/player` 函数包实测值；见第 18、23 节。

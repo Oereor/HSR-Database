@@ -6,13 +6,12 @@
   import { localizedHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   import type { PlayerRelicSlotView } from '$lib/player/equipment';
-  import type { PlayerRelicPieceScore } from '$lib/player/relic-score-contract';
   import type { PlayerRelicPieceScoreV2 } from '$lib/player/relic-rating-v2-contract';
   import { formatRelicScore } from '$lib/player/relic-score-presentation';
   import PlayerAffixRow from './PlayerAffixRow.svelte';
 
   export let view: PlayerRelicSlotView;
-  export let score: PlayerRelicPieceScore | PlayerRelicPieceScoreV2 | undefined = undefined;
+  export let score: PlayerRelicPieceScoreV2 | undefined = undefined;
   export let showScore = false;
 
   $: unresolvedLabel = view.relic
@@ -93,7 +92,7 @@
         <p class="player-relic-card__unknown-main">—</p>
       {/if}
     </div>
-    {#if showScore && score?.status === 'available' && 'mainMode' in score}
+    {#if showScore && score?.status === 'available'}
       <div
         class="player-relic-card__rating-v2"
         data-player-rating-v2-details

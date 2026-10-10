@@ -5,7 +5,7 @@ import {
   generateFarmingExperiment,
   farmingBudget
 } from '../../src/lib/relic-score/farming/farming-contract.js';
-import { empiricalQuantile } from '../../src/lib/relic-score/farming/prototype.js';
+import { empiricalQuantile } from '../../src/lib/relic-score/farming/quantile.js';
 import { buildRelicScoreReferenceData } from '../../src/lib/relic-score/reference.js';
 import { RELIC_SLOTS } from '../../src/lib/relic-score/scoring-config.js';
 import { scoreRatingV2Build } from '../../src/lib/relic-score/v2/score.js';

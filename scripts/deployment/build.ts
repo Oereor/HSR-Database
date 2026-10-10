@@ -190,7 +190,7 @@ export async function runDeploymentBuild(explicitProfile?: BuildProfile): Promis
     console.log(`[data] HSR_DATA_ROOT=${env.HSR_DATA_ROOT}`);
     await timed('data-ensure', () => runPnpm(['data:ensure'], env));
     await timed('relic-score-benchmarks-validate', () =>
-      runPnpm(['relic-score:benchmarks:validate'], env)
+      runPnpm(['relic-score:v2:benchmarks:validate'], env)
     );
     const manifest = JSON.parse(
       await readFile(path.join(siteRoot, 'src/lib/generated/manifest.json'), 'utf8')

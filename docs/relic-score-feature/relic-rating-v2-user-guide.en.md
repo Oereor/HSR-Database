@@ -1,6 +1,6 @@
 # Relic rating V2
 
-V2 is implemented as a candidate. Production still uses V1 because character 1505 recommends a Physical damage sphere but the pinned source omits its damage preference. Full benchmark generation and activation remain blocked until that discrepancy is reviewed.
+Production uses V2 exclusively. All 98 character profiles and 2744 formal conditional distributions have passed their gates. Character 1505 uses an explicitly approved Physical sphere preference of 0.4, with its original missing source evidence preserved.
 
 For variable slots, V2 combines main stat suitability and enhancement completion with a substat percentile. The highest applicable main preference within each slot has suitability 100%. Lesser preferences reduce only the main contribution. The default split is 35% main and 65% substats for these slots.
 

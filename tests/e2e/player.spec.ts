@@ -45,7 +45,10 @@ test('failed player images preserve profile metadata and character identity', as
   page
 }, testInfo) => {
   await mockPlayerApi(page);
-  await page.route('**/generated-assets/**', (route) => route.abort());
+  await page.route(
+    (url) => url.pathname.startsWith('/generated-assets/'),
+    (route) => route.abort()
+  );
   await page.goto('/player/?uid=100000001');
   await expect(page.getByRole('heading', { name: 'Player 100000001' })).toBeVisible();
   const avatar = page.locator('.player-hero__avatar');
@@ -72,6 +75,7 @@ test('submitting a UID updates the URL before rendering Player Hero and characte
   });
 
   await page.goto('/player/');
+  await expect(page.locator('[data-app-ready]')).toHaveAttribute('data-app-ready', 'true');
   await expect(page.locator('.player-page__heading h1')).toBeVisible();
   await page.locator('#player-uid-input').fill(' 100000001 ');
   await page.locator('.player-uid-form button[type="submit"]').click();

@@ -2,8 +2,9 @@ import type { RelicSlot } from '../../domain/types.js';
 import type { RelicScoreRecommendation } from '../recommendations.js';
 import { RELIC_SLOTS } from '../scoring-config.js';
 import { RELIC_STAT_REGISTRY, relicStatSemantics, type RelicStatKey } from '../stat-registry.js';
+import type { RatingV2Exceptions } from './overrides.js';
 
-export const MAIN_MAPPING_VERSION = 'avatar-main-slot-max-v2' as const;
+export const MAIN_MAPPING_VERSION = 'avatar-main-slot-max-overrides-v2' as const;
 export const SUB_MAPPING_VERSION = 'avatar-sub-flat-4-over-9-v2' as const;
 export const UTILITY_VERSION = 'actual-over-high-roll-effective-weight-v2' as const;
 export const FLAT_DISCOUNT = 4 / 9;
@@ -25,6 +26,14 @@ export type WeightCategory = (typeof WEIGHT_CATEGORIES)[number];
 export type PreferenceRow = Partial<Record<WeightCategory, number>> & { AvatarID: number };
 export type PreferenceState =
   | { state: 'present'; preference: number; weight: number }
+  | {
+      state: 'override';
+      preference: number;
+      weight: number;
+      original: { state: 'missing'; category: WeightCategory };
+      reason: string;
+      slot: RelicSlot;
+    }
   | {
       state: 'missing';
       weight: 0;
@@ -55,12 +64,14 @@ export interface RatingV2Profile {
   >;
   recommendation: RelicScoreRecommendation;
   anomalies: ProfileAnomaly[];
+  exceptions: RatingV2Exceptions;
 }
 export interface RatingV2Profiles {
   schemaVersion: 5;
   algorithmVersion: 2;
   sourceCommit: string;
   sourceDigests: Record<string, string>;
+  overrideDigest: string;
   mainMappingVersion: typeof MAIN_MAPPING_VERSION;
   subMappingVersion: typeof SUB_MAPPING_VERSION;
   utilityVersion: typeof UTILITY_VERSION;
@@ -110,8 +121,17 @@ export function deriveRatingV2Profile(input: {
   main: PreferenceRow;
   sub: PreferenceRow;
   recommendation: RelicScoreRecommendation;
+  exceptions?: RatingV2Exceptions;
 }): RatingV2Profile {
   const { characterId, element, main, sub, recommendation } = input;
+  const exceptions = input.exceptions ?? { mainWeights: [], agnosticSlots: [] };
+  const agnosticSlots = new Map(exceptions.agnosticSlots.map((entry) => [entry.slot, entry]));
+  if (
+    [...exceptions.mainWeights, ...exceptions.agnosticSlots].some(
+      (entry) => entry.characterId !== characterId
+    )
+  )
+    throw new Error('Rating V2 exception identity mismatch');
   if (!Object.hasOwn(ELEMENT_MAIN, element)) throw new Error(`Unknown DamageType ${element}`);
   if (
     String(main.AvatarID) !== characterId ||
@@ -145,11 +165,12 @@ export function deriveRatingV2Profile(input: {
     effectiveSubWeights: {},
     slots: {} as RatingV2Profile['slots'],
     recommendation,
-    anomalies: []
+    anomalies: [],
+    exceptions
   };
   const recommendedMain = new Set(
     recommendation.mainStatOptions
-      .filter((option) => !(characterId === '1506' && ['NECK', 'OBJECT'].includes(option.slot)))
+      .filter((option) => !agnosticSlots.has(option.slot))
       .flatMap((option) => option.propertyTypes)
   );
   const recommendedSub = new Set(recommendation.subStatPropertyTypes);
@@ -181,6 +202,31 @@ export function deriveRatingV2Profile(input: {
       profile.effectiveSubWeights[key] = mapped.weight;
     }
   }
+  for (const entry of exceptions.mainWeights) {
+    const original = profile.mainWeights[entry.key];
+    if (
+      original?.state !== 'missing' ||
+      !Number.isFinite(entry.preference) ||
+      entry.preference < 0 ||
+      entry.preference > 1 ||
+      !entry.reason.trim() ||
+      !relicStatSemantics(entry.key).mainSlots.includes(entry.slot) ||
+      !recommendation.mainStatOptions.some(
+        (option) => option.slot === entry.slot && option.propertyTypes.includes(entry.key)
+      )
+    )
+      throw new Error(
+        `Stale/conflicting Rating V2 override ${characterId}:${entry.slot}:${entry.key}`
+      );
+    profile.mainWeights[entry.key] = {
+      state: 'override',
+      preference: entry.preference,
+      weight: entry.preference,
+      original: { state: 'missing', category: STAT_CATEGORY[entry.key] },
+      reason: entry.reason,
+      slot: entry.slot
+    };
+  }
   const anomaly = (code: ProfileAnomaly['code'], key?: RelicStatKey, slot?: RelicSlot) =>
     profile.anomalies.push({
       characterId,
@@ -199,12 +245,12 @@ export function deriveRatingV2Profile(input: {
       profile.slots[slot] = { mode: 'fixed', maximum: null };
       continue;
     }
-    const agnostic = characterId === '1506' && (slot === 'NECK' || slot === 'OBJECT');
+    const agnostic = agnosticSlots.get(slot);
     profile.slots[slot] = agnostic
       ? {
           mode: 'explicit-agnostic',
           maximum: null,
-          reason: 'Approved 1506 NECK/OBJECT main evaluation exemption'
+          reason: agnostic.reason
         }
       : {
           mode: 'continuous',
@@ -214,7 +260,7 @@ export function deriveRatingV2Profile(input: {
               .filter(
                 ([key, state]) =>
                   relicStatSemantics(key as RelicStatKey).mainSlots.includes(slot) &&
-                  state.state === 'present'
+                  (state.state === 'present' || state.state === 'override')
               )
               .map(([, state]) => state.weight)
           )
@@ -252,7 +298,10 @@ function ordered(value: unknown): unknown {
   return value;
 }
 /** Independently reconstruct the mapping; a digest alone is not a validity check. */
-export function validateRatingV2Profile(profile: RatingV2Profile): void {
+export function validateRatingV2Profile(
+  profile: RatingV2Profile,
+  exceptions = profile.exceptions
+): void {
   if (!/^[1-9]\d*$/.test(profile.characterId))
     throw new Error('Invalid Rating V2 character identity');
   const rows: { main: PreferenceRow; sub: PreferenceRow } = {
@@ -282,7 +331,8 @@ export function validateRatingV2Profile(profile: RatingV2Profile): void {
     element: profile.element,
     main: rows.main,
     sub: rows.sub,
-    recommendation: profile.recommendation
+    recommendation: profile.recommendation,
+    exceptions
   });
   if (JSON.stringify(ordered(profile)) !== JSON.stringify(ordered(expected)))
     throw new Error(`Invalid Rating V2 mapping/normalization ${profile.characterId}`);

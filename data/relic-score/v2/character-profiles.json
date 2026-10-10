@@ -1,6 +1,7 @@
 {
   "algorithmVersion": 2,
-  "mainMappingVersion": "avatar-main-slot-max-v2",
+  "mainMappingVersion": "avatar-main-slot-max-overrides-v2",
+  "overrideDigest": "fce67814c80b31f5d05d689de0b3fb3e8e3dc1096e0906b9b5d058742265bca2",
   "profiles": [
     {
       "anomalies": [],
@@ -20,6 +21,10 @@
         "StatusResistanceBase": 0.8
       },
       "element": "Ice",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -248,6 +253,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Wind",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -476,6 +485,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -704,6 +717,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Imaginary",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -933,6 +950,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Thunder",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -1156,6 +1177,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Quantum",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.8,
@@ -1385,6 +1410,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Thunder",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -1613,6 +1642,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.8,
@@ -1841,6 +1874,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Ice",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -2069,6 +2106,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Wind",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -2297,6 +2338,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Quantum",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -2525,6 +2570,10 @@
         "StatusResistanceBase": 0.8
       },
       "element": "Wind",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -2748,6 +2797,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Quantum",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -2976,6 +3029,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Thunder",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -3204,6 +3261,10 @@
         "StatusResistanceBase": 1
       },
       "element": "Ice",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -3432,6 +3493,10 @@
         "StatusResistanceBase": 1
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -3655,6 +3720,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Ice",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.8,
@@ -3884,6 +3953,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -4112,6 +4185,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Wind",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -4335,6 +4412,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -4563,6 +4644,10 @@
         "StatusResistanceBase": 1
       },
       "element": "Quantum",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -4786,6 +4871,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -5015,6 +5104,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -5243,6 +5336,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Quantum",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -5471,6 +5568,10 @@
         "StatusResistanceBase": 0.8
       },
       "element": "Thunder",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -5694,6 +5795,10 @@
         "StatusResistanceBase": 0.8
       },
       "element": "Imaginary",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -5917,6 +6022,10 @@
         "StatusResistanceBase": 0.4
       },
       "element": "Thunder",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -6145,6 +6254,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Wind",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -6373,6 +6486,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -6602,6 +6719,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Imaginary",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -6830,6 +6951,10 @@
         "StatusResistanceBase": 1
       },
       "element": "Quantum",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -7058,6 +7183,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Ice",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -7286,6 +7415,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -7509,6 +7642,10 @@
         "StatusResistanceBase": 1
       },
       "element": "Thunder",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -7732,6 +7869,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Ice",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -7960,6 +8101,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Imaginary",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -8188,6 +8333,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Quantum",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -8417,6 +8566,10 @@
         "StatusResistanceBase": 0.8
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -8640,6 +8793,10 @@
         "StatusResistanceBase": 1
       },
       "element": "Wind",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -8863,6 +9020,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -9086,6 +9247,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Wind",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -9314,6 +9479,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -9542,6 +9711,10 @@
         "StatusResistanceBase": 0.4
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -9765,6 +9938,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Thunder",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -9993,6 +10170,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Imaginary",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -10221,6 +10402,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -10444,6 +10629,10 @@
         "StatusResistanceBase": 1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -10667,6 +10856,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -10895,6 +11088,10 @@
         "StatusResistanceBase": 0.4
       },
       "element": "Ice",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -11118,6 +11315,10 @@
         "StatusResistanceBase": 0.4
       },
       "element": "Imaginary",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -11346,6 +11547,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Imaginary",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -11574,6 +11779,10 @@
         "StatusResistanceBase": 0.4
       },
       "element": "Quantum",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -11797,6 +12006,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Wind",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -12020,6 +12233,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Thunder",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -12248,6 +12465,10 @@
         "StatusResistanceBase": 0.4
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -12471,6 +12692,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.6,
@@ -12694,6 +12919,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Ice",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -12922,6 +13151,10 @@
         "StatusResistanceBase": 0.4
       },
       "element": "Imaginary",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -13145,6 +13378,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Quantum",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -13373,6 +13610,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.6,
@@ -13602,6 +13843,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Imaginary",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.6,
@@ -13825,6 +14070,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -14048,6 +14297,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Ice",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -14276,6 +14529,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Thunder",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -14504,6 +14761,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Quantum",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -14727,6 +14988,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Imaginary",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -14955,6 +15220,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Wind",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -15183,6 +15452,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Quantum",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.6,
@@ -15411,6 +15684,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Quantum",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -15634,6 +15911,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -15857,6 +16138,10 @@
         "StatusResistanceBase": 0.4
       },
       "element": "Wind",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -16085,6 +16370,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -16308,6 +16597,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Wind",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -16531,6 +16824,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Ice",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -16759,6 +17056,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -16982,6 +17283,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Ice",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -17210,6 +17515,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.8,
@@ -17433,6 +17742,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -17656,6 +17969,10 @@
         "StatusResistanceBase": 0.4
       },
       "element": "Ice",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -17879,6 +18196,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Thunder",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -18090,15 +18411,7 @@
       }
     },
     {
-      "anomalies": [
-        {
-          "category": "DamageAddedRatio",
-          "characterId": "1505",
-          "code": "RECOMMENDED_WEIGHT_MISSING",
-          "key": "PhysicalAddedRatio",
-          "slot": "NECK"
-        }
-      ],
+      "anomalies": [],
       "characterId": "1505",
       "effectiveSubWeights": {
         "AttackAddedRatio": 0.4,
@@ -18115,6 +18428,18 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": [
+          {
+            "characterId": "1505",
+            "key": "PhysicalAddedRatio",
+            "preference": 0.4,
+            "reason": "Upstream recommends Physical DMG orb but omits DamageAddedRatio; maintainer-approved equivalence to ATK% orb (0.4) for Rating V2",
+            "slot": "NECK"
+          }
+        ]
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.4,
@@ -18174,9 +18499,15 @@
           "weight": 0
         },
         "PhysicalAddedRatio": {
-          "policy": "blocked-recommended-missing-v2",
-          "state": "missing",
-          "weight": 0
+          "original": {
+            "category": "DamageAddedRatio",
+            "state": "missing"
+          },
+          "preference": 0.4,
+          "reason": "Upstream recommends Physical DMG orb but omits DamageAddedRatio; maintainer-approved equivalence to ATK% orb (0.4) for Rating V2",
+          "slot": "NECK",
+          "state": "override",
+          "weight": 0.4
         },
         "QuantumAddedRatio": {
           "state": "inapplicable",
@@ -18261,7 +18592,7 @@
           "mode": "continuous"
         }
       },
-      "status": "needs-review",
+      "status": "ready",
       "subWeights": {
         "AttackAddedRatio": {
           "preference": 0.4,
@@ -18343,6 +18674,21 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Imaginary",
+      "exceptions": {
+        "agnosticSlots": [
+          {
+            "characterId": "1506",
+            "reason": "Maintainer-approved existing 1506 main evaluation exemption: orb preference does not determine this character's relic rating",
+            "slot": "NECK"
+          },
+          {
+            "characterId": "1506",
+            "reason": "Maintainer-approved existing 1506 main evaluation exemption: rope preference does not determine this character's relic rating",
+            "slot": "OBJECT"
+          }
+        ],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -18478,12 +18824,12 @@
         "NECK": {
           "maximum": null,
           "mode": "explicit-agnostic",
-          "reason": "Approved 1506 NECK/OBJECT main evaluation exemption"
+          "reason": "Maintainer-approved existing 1506 main evaluation exemption: orb preference does not determine this character's relic rating"
         },
         "OBJECT": {
           "maximum": null,
           "mode": "explicit-agnostic",
-          "reason": "Approved 1506 NECK/OBJECT main evaluation exemption"
+          "reason": "Maintainer-approved existing 1506 main evaluation exemption: rope preference does not determine this character's relic rating"
         }
       },
       "status": "ready",
@@ -18568,6 +18914,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -18796,6 +19146,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Quantum",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -19024,6 +19378,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Thunder",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -19252,6 +19610,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -19480,6 +19842,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Wind",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "policy": "nonrecommended-missing-zero-v2",
@@ -19708,6 +20074,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Quantum",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.4,
@@ -19931,6 +20301,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -20159,6 +20533,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Physical",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 1,
@@ -20387,6 +20765,10 @@
         "StatusResistanceBase": 1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -20610,6 +20992,10 @@
         "StatusResistanceBase": 1
       },
       "element": "Fire",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -20833,6 +21219,10 @@
         "StatusResistanceBase": 0.4
       },
       "element": "Imaginary",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -21056,6 +21446,10 @@
         "StatusResistanceBase": 0.4
       },
       "element": "Imaginary",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.1,
@@ -21279,6 +21673,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Ice",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.8,
@@ -21502,6 +21900,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Ice",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.8,
@@ -21725,6 +22127,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Thunder",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.8,
@@ -21953,6 +22359,10 @@
         "StatusResistanceBase": 0.1
       },
       "element": "Thunder",
+      "exceptions": {
+        "agnosticSlots": [],
+        "mainWeights": []
+      },
       "mainWeights": {
         "AttackAddedRatio": {
           "preference": 0.8,
@@ -22165,7 +22575,7 @@
     }
   ],
   "schemaVersion": 5,
-  "semanticDigest": "b276c6ace6cb22f7061aaf728ef9120553cce2825c20072aee8e70ad5e913245",
+  "semanticDigest": "0af49aa7158d8ebb32fae1e3e7c438992678cf43a7ba6a0d69f197cf2ae7be39",
   "sourceCommit": "312b4597691e0a29cf9828a15b592757dba86949",
   "sourceDigests": {
     "AvatarConfig": "d8f3c9f55078611ad010751f82333735eb7bc732e22df6b8ad235021658e0456",

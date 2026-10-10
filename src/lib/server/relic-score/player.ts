@@ -1,44 +1,38 @@
-import recommendationsJson from '../../generated/runtime/relic-score-recommendations.json' with { type: 'json' };
-import type { PlayerRelicScorePresentation } from '../../player/relic-score-contract.js';
-import { presentRelicScoreResult, unavailableRelicScore } from '../../relic-score/presentation.js';
+import runtimeJson from '../../generated/runtime/player.json' with { type: 'json' };
+import type { CanonicalPlayerCharacterBuild } from '../../player/canonical.js';
+import { assertPlayerRuntimeData, type PlayerRuntimeData } from '../../player/runtime-data.js';
 import {
-  assertRelicScoreRecommendations,
-  type RelicScoreRecommendationIndex
-} from '../../relic-score/recommendations.js';
-import type { BuildScoreResult } from '../../relic-score/score.js';
-import type { PlayerBuildInput, PlayerBuildNormalization } from '../../relic-score/types.js';
-import { scoreProductionBuild } from './score.js';
+  normalizeRatingV2Build,
+  type RatingV2Normalization
+} from '../../relic-score/v2/normalize.js';
+import { presentRatingV2 } from '../../relic-score/v2/presentation.js';
+import type { PlayerRelicScorePresentationV2 } from '../../player/relic-rating-v2-contract.js';
+import { getProductionRatingV2Scorer } from './benchmark-loader.js';
 
-const rawRecommendations: unknown = recommendationsJson;
-let recommendationIndex: RelicScoreRecommendationIndex | undefined;
-
-function productionRecommendations(): RelicScoreRecommendationIndex {
-  if (!recommendationIndex) {
-    assertRelicScoreRecommendations(rawRecommendations);
-    recommendationIndex = rawRecommendations;
-  }
-  return recommendationIndex;
+assertPlayerRuntimeData(runtimeJson);
+export interface PlayerScoringResult {
+  normalized: RatingV2Normalization;
+  score: PlayerRelicScorePresentationV2;
+  diagnostic?: string;
 }
 
-export interface PlayerScoringDependencies {
-  recommendations?: RelicScoreRecommendationIndex;
-  score?: typeof scoreProductionBuild;
-}
-
-/** Production V1 remains active until V2's full source/review/benchmark publication gates pass. */
+/** The sole production scoring entry accepts canonical relics independently of panel synthesis. */
 export function scorePlayerCharacterBuild(
-  normalized: PlayerBuildNormalization,
-  characterId: string,
-  dependencies: PlayerScoringDependencies = {}
-): PlayerRelicScorePresentation {
-  const input: PlayerBuildInput | undefined =
-    normalized.status === 'valid' ? normalized.input : normalized.partialInput;
-  if (!input) return unavailableRelicScore('score-unavailable');
-  const recommendations = dependencies.recommendations ?? productionRecommendations();
-  const recommendation = recommendations[characterId];
-  const score: BuildScoreResult = (dependencies.score ?? scoreProductionBuild)(
-    input,
-    recommendation
-  );
-  return presentRelicScoreResult(normalized, score);
+  build: CanonicalPlayerCharacterBuild,
+  runtime: PlayerRuntimeData = runtimeJson as PlayerRuntimeData
+): PlayerScoringResult {
+  try {
+    return getProductionRatingV2Scorer(runtime)(build);
+  } catch {
+    const normalized = normalizeRatingV2Build(build, runtime);
+    const input = normalized.status === 'valid' ? normalized.input : normalized.partialInput;
+    return {
+      normalized,
+      score: presentRatingV2(normalized, {
+        build: { status: 'unavailable', reason: 'benchmark-unavailable' },
+        pieces: input.relics.map(() => ({ status: 'unavailable', reason: 'benchmark-unavailable' }))
+      }),
+      diagnostic: 'BENCHMARK_MISSING_OR_STALE'
+    };
+  }
 }

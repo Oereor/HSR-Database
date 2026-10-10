@@ -1,5 +1,7 @@
 # Relic Score Phase 1A Profile Review Application Report
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 ## 1. Executive Summary
 
 已把 34 个逐项人工审核决定和 63 个批量批准决定应用到 source config，并由 generator 重新生成 Character Profile。最终 97 个角色全部为 `reviewed`；本轮未实现 Phase 1B scorer、benchmark 或 UI。

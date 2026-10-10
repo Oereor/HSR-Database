@@ -20,8 +20,11 @@ import {
 import { normalizeRatingV2Build } from '../../relic-score/v2/normalize.js';
 import { scoreRatingV2Build } from '../../relic-score/v2/score.js';
 import { presentRatingV2 } from '../../relic-score/v2/presentation.js';
+import policyJson from '../../../../data/relic-score/v2/profile-overrides.json' with { type: 'json' };
+import { assertRatingV2Overrides, exceptionsFor } from '../../relic-score/v2/overrides.js';
+import { validateScoringConfig } from '../../relic-score/scoring-config.js';
 
-/** Explicit candidate entry. Never loads a V1 benchmark or falls back to V1. */
+/** Shared V2 factory; production requires complete formal artifacts. */
 export function createRatingV2Scorer(
   profiles: RatingV2Profiles,
   benchmark: RatingV2Benchmark,
@@ -30,6 +33,7 @@ export function createRatingV2Scorer(
   mode: 'candidate' | 'production' = 'candidate'
 ) {
   assertPlayerRuntimeData(runtime);
+  validateScoringConfig();
   if (
     profiles.schemaVersion !== 5 ||
     profiles.algorithmVersion !== 2 ||
@@ -42,7 +46,19 @@ export function createRatingV2Scorer(
       profiles.profiles.length
   )
     throw new Error('Invalid Rating V2 profile schema');
-  profiles.profiles.forEach(validateRatingV2Profile);
+  if (mode === 'production') {
+    const policy: unknown = policyJson;
+    assertRatingV2Overrides(
+      policy,
+      profiles.profiles.map((profile) => profile.characterId),
+      profiles.sourceCommit
+    );
+    if (profiles.overrideDigest !== benchmarkSha256(policy))
+      throw new Error('Rating V2 policy digest mismatch');
+    profiles.profiles.forEach((profile) =>
+      validateRatingV2Profile(profile, exceptionsFor(policy, profile.characterId))
+    );
+  } else profiles.profiles.forEach((profile) => validateRatingV2Profile(profile));
   if (mode === 'production') {
     assertRatingV2PublicationReady(profiles, profiles.sourceCommit);
     if (

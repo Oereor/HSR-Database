@@ -1,5 +1,7 @@
 # Phase 1C Soft Target 人工审核表
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 本表记录从旧配置移出的 9 条非暴击 target 的人工审核决定。旧 `value` 曾作为新 `maximumThreshold` 的候选；维护者现已逐条决定保留，并填写、确认最终面板单位下的 min/max。**9 条完整区间已应用到正式配置；minimumThreshold 均来自本表的人工填写。**
 
 已删除 6 条角色级 Crit Rate target；另外 55 条全局默认 Crit Rate target 不进入本表。生成结果原有 Crit Rate target 合计 61 条。

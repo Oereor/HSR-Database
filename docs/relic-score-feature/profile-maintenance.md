@@ -1,73 +1,15 @@
-# Relic Score Profile 数值维护
+# V2 Profile 维护
 
-> 本文维护仍在生产使用的 V1。V2 候选链路被 1505 上游主权重缺失阻止切换；它使用自动派生、异常审核及独立命令，没有 approve-current 或阈值，见 [V2 规范](relic-rating-v2.md)。下文保留以维护尚未退出的 V1 消费者。
+生产唯一算法为 V2。Profile schema 5、主映射 avatar-main-slot-max-overrides-v2、副映射与 U 版本见生成产物。完整规则见 [规范](relic-rating-v2.md)。
 
-长期人工 source of truth 是 `data/relic-score/profile-overrides.json`，共用默认权重在 `data/relic-score/profile-templates.json`。这两个文件使用普通 JSON；角色 ID 是 `overrides` 的键，同一角色的权重、Soft Target 和 Hard Breakpoint 集中在一个对象中。只填写真正覆盖自动结果的字段。`reviewedInputDigest` 由命令维护，不需要人工计算或复制。
+唯一人工政策输入是 data/relic-score/v2/profile-overrides.json，schema 1，锁定真实来源 SHA。1505 仅 NECK / PhysicalAddedRatio / 0.4，保存上游 missing；1506 仅 NECK、OBJECT agnostic。配置必须带审批依据和完整原因。未知字段、重复、角色/槽/key 越界、非推荐/异元素、非有限或超范围值被拒绝。上游已有对应字段、推荐移除或来源变化均要求重新人工复核，禁止自动补造或自动审批。
 
-## 修改角色配置
+维护流程：
 
-1. 编辑 `data/relic-score/profile-overrides.json`。新角色仅需新增其实际需要的 override；没有 override 时 generator 自动使用模板。
-2. 运行 `pnpm relic-score:profiles:generate`。配置变动后的 Profile 会标记 `needs-review`。
-3. 检查 source 与 generated diff，确认角色、权重、阈值和单位。
-4. 运行 `pnpm relic-score:profiles:review --character=1303` 查看当前评分输入与 digest；核对后运行 `pnpm relic-score:profiles:review --character=1303 --approve-current`。后者只批准指定角色，并重新生成和校验。
-5. 运行 `pnpm relic-score:validate`。若还有其他 stale Profile，逐个检查并批准。
+1. 准备锁定上游，修改有明确批准依据的稀疏配置。
+2. 运行 pnpm data:sync、pnpm relic-score:v2:profiles:generate、pnpm relic-score:v2:review。
+3. 检查逐角色异常、原始 missing 与 override 证据；pnpm relic-score:v2:validate 必须 98 ready、0 blocker。
+4. 比较最终副权重 digest。仅主偏好改变不使副分布失效，但产物 provenance 和 manifest 仍必须一致。
+5. 副映射或采样 identity 变动时运行正式 Benchmark 生成；通过所有门禁后运行 data:ensure 绑定新产物，再完成检查和构建。
 
-不要直接编辑 `src/lib/relic-score/generated/character-profiles.json`。该文件只由 generator 写入。
-
-## 主词条政策（schema / generator v4）
-
-主词条 accepted 集合为上游推荐、有效副词条同名推导和显式 `addAccepted` 的并集。推导要求该词条属于上游推荐副词条、最终权重大于零、canonical registry 允许作为副词条且允许作为当前槽主词条。flat 属性不映射成百分比；ERR、治疗量和属性伤害不能通过副词条推导。上游推荐始终保留。
-
-同一角色的稀疏例外写入现有 override，例如：
-
-```json
-"mainStatOverrides": {
-  "addAccepted": { "OBJECT": ["SPRatioBase"] },
-  "agnosticSlots": ["NECK"]
-}
-```
-
-只允许 BODY、FOOT、NECK、OBJECT。HEAD/HAND 采用合法固定主词条。拒绝重复、空字段、非法 stat/slot、已被上游或最终权重自然接受的冗余增补，以及在同一 agnostic 槽再写 `addAccepted`。`addAccepted` 不要求属于推荐副词条。没有 `removeAccepted`。
-
-accepted 保留 `Q=clamp(actualMainValue / fiveStarAt15MainValue,0,1)`，单件归一分为 `0.35×Q+0.65×P`；mismatch 为 `0.65×P`；agnostic 为 `P`，mainCompletion 为 null。所有状态的 P 都查询实际主词条的 Lens B 条件分布。Build 按原槽权重聚合单件已计算的主副贡献，不重复乘份额。UI 推荐高亮仍表示上游推荐。
-
-新增字段参与输入 digest，集合稳定排序；note 不参与。`pnpm relic-score:profiles:review --all` 只读展示全部角色的状态、配置和 resolved policy 证据；不支持全量批准。逐角色审批命令保留原用法，批准后报告剩余待审核角色，不因其他角色 stale 而错误宣称审批失败；正式 `relic-score:validate` 和 runtime 门禁仍严格。
-
-v3→v4 是全局 schema/generator 迁移，当前 98 个旧审批全部失效。生成操作不会更新旧 `reviewedInputDigest`。审核完成前正式评分、benchmark 校验及其依赖测试可能不可用，不能自动填充审批 digest。当前迁移差异见 [实施报告](main-stat-policy-implementation.md) 和 [审核摘要](main-stat-policy-review.json)。
-
-## Soft Target
-
-在角色 override 中写完整对象，例如：
-
-```json
-"softTargets": [
-  {
-    "stat": "BreakDamageAddedRatioBase",
-    "minimumThreshold": 1.2,
-    "maximumThreshold": 1.8
-  }
-]
-```
-
-仅依据最终 OOC Build 面板值计算 `clamp((panel − minimumThreshold) / (maximumThreshold − minimumThreshold), 0, 1)`。下限奖励进度为 0，上限及以上为 1。必须 `maximumThreshold > minimumThreshold`；不能重复同一 stat，也不能将 `CriticalChanceBase` 加入 Soft Target。多个目标取平均；无目标时进度为 0。现有 9 条目标的 min/max 已由维护者在人工审核表中确认并写入正式配置；以后新增目标仍需先由维护者确定完整区间。
-
-## Hard Breakpoint
-
-写 `{"stat":"SpeedDelta","threshold":160}`。最终面板值大于或等于 threshold 时达标；低于 threshold 时失败。多个 breakpoint 的失败比例为失败数除以总数；无 breakpoint 时为 0。不能重复完全相同的 stat 和 threshold。
-
-## 单位和评分边界
-
-阈值使用内部最终面板单位。比例属性 `1.0 = 100%`，例如击破特攻 `1.8 = 180%`；SPD、ATK、DEF 使用最终面板数值。`AttackAddedRatio`、`DefenceAddedRatio` 等 stat 是 canonical 属性键，阈值仍对应映射后的最终面板 ATK、DEF 数值。
-
-Soft Target 进度和 Hard Breakpoint 失败比例只在 Build 层参与评分，权重位于 `src/lib/relic-score/scoring-config.ts` 的集中配置，不在 Character Profile 中设置。Piece Score 和 farming benchmark 只使用基础副词条权重。
-
-当前 Build Score 先计算归一化属性完成度，再按属性 95%、套装 5% 聚合。令 `S` 为原 Stat Completion、`T` 为 Set Integrity、`P` 为 Soft Target Progress、`F` 为 Hard Breakpoint Failure Ratio；`Is` 和 `Ih` 分别表示 Profile 是否存在 Soft Target 和 Hard Breakpoint（有则为 1，否则为 0）：
-
-```text
-N = (95×S + 8×Is×P + 5×Ih×(1−F)) / (95 + 8×Is + 5×Ih)
-FinalBuildScore = 100×(0.95×N + 0.05×T)
-```
-
-Soft Target 权重为 8，Hard Breakpoint 权重为 5。没有两类 modifier 时 `N=S`；有 modifier 时，它们只在 `N` 中应用一次。旧版 `CoreBuildScore + soft bonus − hard penalty` 已废弃，不能再用来计算当前分数。Phase 1D 报告记录历史校准结果，不代表当前评分规则。
-
-正式 benchmark 的过期规则和独立再生成步骤见 [Benchmark 维护](benchmark-maintenance.md)。
+没有 approve-current、阈值或旧模板入口。历史报告保留作调查证据，不是当前维护规范。

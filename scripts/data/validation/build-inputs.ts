@@ -29,7 +29,13 @@ import {
 } from '../generated-artifacts.js';
 import { assertPlayerRuntimeData } from '../player-runtime.js';
 import { assertRelicScoreRecommendations } from '../../../src/lib/relic-score/recommendations.js';
-import { assertRatingV2Profiles, ratingV2SourceDigests } from '../relic-rating-v2.js';
+import {
+  assertRatingV2Profiles,
+  ratingV2SourceDigests,
+  readRatingV2PolicyInput,
+  readRatingV2BenchmarkInput
+} from '../relic-rating-v2.js';
+import { assertRatingV2Overrides } from '../../../src/lib/relic-score/v2/overrides.js';
 import { stableBenchmarkSerialize } from '../../../src/lib/relic-score/benchmark/identity.js';
 import {
   getGeneratedLocales,
@@ -60,6 +66,7 @@ export interface BuildInputValidationOptions {
   sourceRoot?: string;
   sourceMetadata?: PreparedSourceMetadata;
   expectedCommit?: string;
+  ratingV2PolicyFile?: string;
 }
 
 export interface BuildInputValidationContext {
@@ -241,7 +248,20 @@ export async function validateBuildInputs(
         if (logicalPath === 'runtime/relic-rating-v2.json') {
           if (metadata.locale !== undefined)
             throw new Error('Rating V2 profiles must be locale-neutral');
-          assertRatingV2Profiles(value, manifest.routes.characters, manifest.sourceCommit);
+          const policyInput = await readRatingV2PolicyInput(options.ratingV2PolicyFile);
+          const policy = policyInput.value;
+          assertRatingV2Overrides(policy, manifest.routes.characters, manifest.sourceCommit);
+          if (
+            stableBenchmarkSerialize(policyInput.metadata) !==
+            stableBenchmarkSerialize(manifest.ratingV2PolicyInput)
+          )
+            throw new Error('Rating V2 policy input mismatch');
+          if (
+            stableBenchmarkSerialize(await readRatingV2BenchmarkInput()) !==
+            stableBenchmarkSerialize(manifest.ratingV2BenchmarkInput)
+          )
+            throw new Error('Rating V2 benchmark input mismatch');
+          assertRatingV2Profiles(value, manifest.routes.characters, manifest.sourceCommit, policy);
           if (
             stableBenchmarkSerialize(value.sourceDigests) !==
             stableBenchmarkSerialize(await ratingV2SourceDigests(rawRoot))

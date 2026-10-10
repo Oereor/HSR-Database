@@ -1,32 +1,15 @@
-import type { RelicSlot } from '../domain/types.js';
-import type { CanonicalPlayerRelic, SynthesizedPlayerCharacterBuild } from '../player/canonical.js';
-import { PLAYER_PROPERTY_SEMANTICS, type PlayerStatTarget } from '../player/property-semantics.js';
-import {
-  playerMainAffixValue,
-  playerRuntimeKey,
-  playerSubAffixValue,
-  type PlayerRuntimeData
-} from '../player/runtime-data.js';
+import type { CanonicalPlayerRelic } from '../player/canonical.js';
+import { playerMainAffixValue, playerSubAffixValue } from '../player/runtime-data.js';
+import { playerRuntimeKey, type PlayerRuntimeData } from '../player/runtime-data.js';
+import { isRelicStatKey, relicStatSemantics } from './stat-registry.js';
 import { relicSlotFromNumber } from './reference.js';
-import { relicStatSemantics, isRelicStatKey } from './stat-registry.js';
-import type {
-  NormalizedRelicPiece,
-  NormalizationReason,
-  PlayerBuildNormalization,
-  PlayerBuildInput
-} from './types.js';
+import type { NormalizationReason, NormalizedRelicPiece } from './types.js';
 
-const EXPECTED_SLOTS = ['HEAD', 'HAND', 'BODY', 'FOOT', 'NECK', 'OBJECT'] as const;
-const PANEL_TARGETS = new Set<PlayerStatTarget>(
-  Object.values(PLAYER_PROPERTY_SEMANTICS).map(({ target }) => target)
-);
-type Failure = Extract<PlayerBuildNormalization, { status: 'unavailable' | 'invalid' }>;
+type Failure = { status: 'unavailable' | 'invalid'; reason: NormalizationReason; detail?: string };
 type PieceNormalization = { status: 'valid'; piece: NormalizedRelicPiece } | Failure;
-
 function fail(status: Failure['status'], reason: NormalizationReason, detail?: string): Failure {
   return { status, reason, ...(detail ? { detail } : {}) };
 }
-
 export function normalizePiece(
   relic: CanonicalPlayerRelic,
   runtime: PlayerRuntimeData
@@ -88,68 +71,4 @@ export function normalizePiece(
       substats
     }
   };
-}
-
-export function normalizePlayerBuildInput(
-  synthesized: SynthesizedPlayerCharacterBuild,
-  runtime: PlayerRuntimeData
-): PlayerBuildNormalization {
-  const { build, values, diagnostics } = synthesized;
-  let buildFailure: Failure | undefined;
-  if (synthesized.status !== 'complete') {
-    const diagnostic = diagnostics[0];
-    const reason =
-      diagnostic?.code === 'UNKNOWN_RELIC'
-        ? 'UNKNOWN_RELIC'
-        : diagnostic?.code === 'UNKNOWN_AFFIX'
-          ? 'UNKNOWN_AFFIX'
-          : 'SYNTHESIS_FAILED';
-    buildFailure = fail('unavailable', reason, diagnostic?.sourceId);
-  }
-  const panel: PlayerBuildInput['panel'] = {};
-  if (synthesized.status === 'complete') {
-    for (const [target, value] of Object.entries(values)) {
-      if (!PANEL_TARGETS.has(target as PlayerStatTarget) || !Number.isFinite(value)) {
-        buildFailure ??= fail('unavailable', 'NONFINITE_VALUE', target);
-        continue;
-      }
-      panel[target as PlayerStatTarget] = value;
-    }
-    for (const target of ['hp', 'atk', 'def', 'spd', 'crit_rate', 'crit_dmg'] as const)
-      if (panel[target] === undefined)
-        buildFailure ??= fail('unavailable', 'MISSING_PANEL_STAT', target);
-  }
-
-  const seenSlots = new Set<RelicSlot>();
-  const normalized: NormalizedRelicPiece[] = [];
-  const pieceFailures: NonNullable<Failure['pieceFailures']> = {};
-  for (const relic of build.relics) {
-    const slot = relicSlotFromNumber(relic.type);
-    if (slot && seenSlots.has(slot)) {
-      const failure = fail('invalid', 'DUPLICATE_SLOT', slot);
-      buildFailure ??= failure;
-      pieceFailures[slot] = { status: failure.status, reason: failure.reason };
-      continue;
-    }
-    if (slot) seenSlots.add(slot);
-    const result = normalizePiece(relic, runtime);
-    if (result.status === 'valid') normalized.push(result.piece);
-    else {
-      buildFailure ??= result;
-      if (slot) pieceFailures[slot] = { status: result.status, reason: result.reason };
-    }
-  }
-  if (EXPECTED_SLOTS.some((slot) => !seenSlots.has(slot)))
-    buildFailure ??= fail('unavailable', 'MISSING_SLOT');
-  normalized.sort(
-    (left, right) => EXPECTED_SLOTS.indexOf(left.slot) - EXPECTED_SLOTS.indexOf(right.slot)
-  );
-  const input: PlayerBuildInput = { characterId: build.avatarId, panel, relics: normalized };
-  return buildFailure
-    ? {
-        ...buildFailure,
-        partialInput: input,
-        ...(Object.keys(pieceFailures).length ? { pieceFailures } : {})
-      }
-    : { status: 'valid', input };
 }

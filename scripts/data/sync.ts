@@ -38,7 +38,11 @@ import {
 } from './avatar-special-skills.js';
 import { characterLdSourceNames, characterLdSourceSpecs } from './character-sources.js';
 import { DATA_GENERATION_TABLE_NAMES } from './source-requirements.js';
-import { buildRatingV2Profiles } from './relic-rating-v2.js';
+import {
+  buildRatingV2Profiles,
+  readRatingV2PolicyInput,
+  readRatingV2BenchmarkInput
+} from './relic-rating-v2.js';
 import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
 import { buildPlayerEquipmentCatalog } from '../../src/lib/player/equipment.js';
 import { collectEndgameSearchTargets } from '../../src/lib/domain/search-index.js';
@@ -1075,7 +1079,9 @@ export async function syncData(): Promise<DataManifest> {
   };
   const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
   const manifestWithoutRevision: Omit<DataManifest, 'dataRevision'> = {
-    schemaVersion: 52,
+    schemaVersion: 53,
+    ratingV2PolicyInput: (await readRatingV2PolicyInput()).metadata,
+    ratingV2BenchmarkInput: await readRatingV2BenchmarkInput(),
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,

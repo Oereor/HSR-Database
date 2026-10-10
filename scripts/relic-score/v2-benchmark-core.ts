@@ -8,7 +8,7 @@ import {
   encodeDenseQuantiles,
   measureQuantileError
 } from '../../src/lib/relic-score/farming/dense-quantile.js';
-import { empiricalQuantile } from '../../src/lib/relic-score/farming/prototype.js';
+import { empiricalQuantile } from '../../src/lib/relic-score/farming/quantile.js';
 import { ratingV2RawSubUtility } from '../../src/lib/relic-score/v2/utility.js';
 import {
   RATING_V2_BENCHMARK_CONFIG,
@@ -17,6 +17,26 @@ import {
   type RatingV2Benchmark
 } from '../../src/lib/relic-score/v2/benchmark.js';
 import type { RatingV2Profile, RatingV2Profiles } from '../../src/lib/relic-score/v2/profile.js';
+
+export class RatingV2RepresentationError extends Error {
+  constructor(
+    readonly diagnostic: {
+      characterId: string;
+      slot: string;
+      mainStatKey: string;
+      experimentCount: number;
+      quantilePoints: 257;
+      maxAbsoluteCdfError: number;
+      meanAbsoluteCdfError: number;
+      maxSampleRankError: number;
+      queryCount: number;
+    }
+  ) {
+    super(
+      `257-point gate failed ${diagnostic.characterId}:${diagnostic.slot}:${diagnostic.mainStatKey} max=${diagnostic.maxAbsoluteCdfError}; candidate unchanged`
+    );
+  }
+}
 
 export function generateRatingV2Distribution(
   model: CompiledProbabilityModel,
@@ -47,9 +67,14 @@ export function generateRatingV2Distribution(
   const quantiles = encodeDenseQuantiles(samples, 257);
   const error = measureQuantileError(samples, quantiles);
   if (error.maxAbsoluteCdfError > config.maxRepresentationError)
-    throw new Error(
-      `257-point gate failed ${item.characterId}:${item.slot}:${item.mainStatKey} max=${error.maxAbsoluteCdfError}; candidate unchanged`
-    );
+    throw new RatingV2RepresentationError({
+      characterId: item.characterId,
+      slot: item.slot,
+      mainStatKey: item.mainStatKey,
+      experimentCount,
+      quantilePoints: 257,
+      ...error
+    });
   return {
     distribution: {
       identityDigest: item.identityDigest,

@@ -20,6 +20,7 @@ import { getGeneratedLocales } from './locale-registry.js';
 import { syncData } from './sync.js';
 import { withProcessTelemetry } from '../deployment/telemetry.js';
 import { readTextMapWithDigest } from './source-metadata.js';
+import { readRatingV2PolicyInput, readRatingV2BenchmarkInput } from './relic-rating-v2.js';
 
 export interface DataEnsureSource {
   root: string;
@@ -41,6 +42,13 @@ export interface DataEnsureDependencies {
 async function cacheValid(candidate: DataManifest | undefined): Promise<boolean> {
   if (!candidate) return false;
   try {
+    if (candidate.ratingV2PolicyInput.sha256 !== (await readRatingV2PolicyInput()).metadata.sha256)
+      return false;
+    if (
+      JSON.stringify(candidate.ratingV2BenchmarkInput) !==
+      JSON.stringify(await readRatingV2BenchmarkInput())
+    )
+      return false;
     await validateGeneratedArtifacts(candidate);
     for (const { locale } of getGeneratedLocales()) {
       const productRoot = path.join(generatedRoot, 'views', locale);
@@ -90,6 +98,7 @@ async function cacheMatchesAvailableSource(
   );
   return (
     manifest.sourceCommit === source.commit &&
+    manifest.ratingV2PolicyInput.sha256 === (await readRatingV2PolicyInput()).metadata.sha256 &&
     !getGeneratedLocales().some(
       ({ locale }) => manifest.locales[locale].textMapDigest !== currentTextMapDigests[locale]
     )

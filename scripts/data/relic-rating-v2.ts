@@ -22,6 +22,41 @@ import {
 } from '../../src/lib/relic-score/v2/profile.js';
 import { isRelicStatKey } from '../../src/lib/relic-score/stat-registry.js';
 import { mergeConfigSources, readTable } from './raw.js';
+import {
+  assertRatingV2Overrides,
+  exceptionsFor,
+  type RatingV2Overrides
+} from '../../src/lib/relic-score/v2/overrides.js';
+
+export const ratingV2PolicyFile = path.resolve(
+  import.meta.dirname,
+  '../../data/relic-score/v2/profile-overrides.json'
+);
+export async function readRatingV2PolicyInput(file = ratingV2PolicyFile) {
+  const bytes = await readFile(file);
+  return {
+    value: JSON.parse(bytes.toString('utf8')) as unknown,
+    metadata: {
+      schemaVersion: 1 as const,
+      bytes: bytes.length,
+      sha256: createHash('sha256').update(bytes).digest('hex')
+    }
+  };
+}
+
+export async function readRatingV2BenchmarkInput() {
+  const root = path.resolve(import.meta.dirname, '../../data/relic-score/v2');
+  const [benchmark, audit] = await Promise.all([
+    readFile(path.join(root, 'farming-benchmarks.json')),
+    readFile(path.join(root, 'benchmark-generation-audit.json'))
+  ]);
+  return {
+    schemaVersion: 4 as const,
+    bytes: benchmark.length,
+    sha256: createHash('sha256').update(benchmark).digest('hex'),
+    auditSha256: createHash('sha256').update(audit).digest('hex')
+  };
+}
 
 export const RATING_V2_TABLE_NAMES = [
   'RelicMainAffixAvatarValue',
@@ -141,7 +176,8 @@ function rawRecommendation(id: string, row: Raw): RelicScoreRecommendation {
 export async function buildRatingV2Profiles(
   root: string,
   tables: Record<string, unknown[]>,
-  sourceCommit: string
+  sourceCommit: string,
+  policyFile = ratingV2PolicyFile
 ): Promise<RatingV2Profiles> {
   const sourceFiles = await readdir(path.join(root, 'ExcelOutput'));
   if (sourceFiles.some((file) => /^Relic(?:Main|Sub)AffixAvatarValue.+\.json$/.test(file)))
@@ -153,6 +189,9 @@ export async function buildRatingV2Profiles(
   const avatars = unique(tables.AvatarConfig, 'AvatarID', 'AvatarConfig');
   const recommendations = unique(tables.AvatarRelicRecommend, 'AvatarID', 'AvatarRelicRecommend');
   const ids = [...avatars.keys()].sort();
+  const policyInput = await readRatingV2PolicyInput(policyFile);
+  const policy = policyInput.value;
+  assertRatingV2Overrides(policy, ids, sourceCommit);
   for (const [label, index] of [
     ['main', main],
     ['sub', sub],
@@ -170,7 +209,8 @@ export async function buildRatingV2Profiles(
       element,
       main: main.get(id)!,
       sub: sub.get(id)!,
-      recommendation
+      recommendation,
+      exceptions: exceptionsFor(policy, id)
     });
   });
   const sourceDigests = await ratingV2SourceDigests(root);
@@ -179,6 +219,7 @@ export async function buildRatingV2Profiles(
     algorithmVersion: 2,
     sourceCommit,
     sourceDigests,
+    overrideDigest: benchmarkSha256(policy),
     mainMappingVersion: MAIN_MAPPING_VERSION,
     subMappingVersion: SUB_MAPPING_VERSION,
     utilityVersion: UTILITY_VERSION,
@@ -221,7 +262,8 @@ export async function loadRatingV2Tables(root: string): Promise<Record<string, u
 export function assertRatingV2Profiles(
   value: unknown,
   expectedIds: readonly string[],
-  sourceCommit: string
+  sourceCommit: string,
+  policy: RatingV2Overrides
 ): asserts value is RatingV2Profiles {
   const artifact = record(value);
   if (
@@ -231,11 +273,13 @@ export function assertRatingV2Profiles(
     artifact.mainMappingVersion !== MAIN_MAPPING_VERSION ||
     artifact.subMappingVersion !== SUB_MAPPING_VERSION ||
     artifact.utilityVersion !== UTILITY_VERSION ||
+    artifact.overrideDigest !== benchmarkSha256(policy) ||
     !Array.isArray(artifact.profiles) ||
     benchmarkSha256(artifact.profiles) !== artifact.semanticDigest
   )
     throw new Error('Invalid/stale Rating V2 profile artifact');
   const profiles = artifact.profiles as RatingV2Profiles['profiles'];
+  assertRatingV2Overrides(policy, expectedIds, sourceCommit);
   if (
     stableBenchmarkSerialize(profiles.map((profile) => profile.characterId).sort()) !==
     stableBenchmarkSerialize([...expectedIds].sort())
@@ -250,7 +294,7 @@ export function assertRatingV2Profiles(
   )
     throw new Error('Invalid Rating V2 source digests');
   for (const profile of profiles) {
-    validateRatingV2Profile(profile);
+    validateRatingV2Profile(profile, exceptionsFor(policy, profile.characterId));
     if (
       !['ready', 'needs-review'].includes(profile.status) ||
       !Array.isArray(profile.anomalies) ||

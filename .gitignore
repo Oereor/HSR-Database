@@ -38,6 +38,7 @@ Desktop.ini
 .vercel/
 .netlify/
 .upstream/
+data/relic-score/v2/.staging/
 
 # Build-time generated game data and audit output
 src/lib/generated/*
@@ -59,3 +60,8 @@ static/.generated-enemy-assets.previous-*/
 
 /src/lib/paraglide/
 /project.inlang/cache/
+*-Enka.json
+data/private-player-acceptance/
+
+# Generated Relic Rating calibration data
+/data/relic-score/v2/alpha-comparison.json

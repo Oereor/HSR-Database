@@ -5,7 +5,7 @@ import type { DataManifest, GeneratedArtifactMetadata } from '../../src/lib/doma
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
 import { readCacheJson, type ManifestReadFailure } from '../deployment/cache-diagnostics.js';
 
-export const DATA_MANIFEST_SCHEMA_VERSION = 52 as const;
+export const DATA_MANIFEST_SCHEMA_VERSION = 53 as const;
 
 export interface GeneratedArtifactValidationSummary {
   files: number;
@@ -29,6 +29,20 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
     throw new Error('Unsupported generated data manifest schema');
   if (
     typeof value.sourceCommit !== 'string' ||
+    !isRecord(value.ratingV2PolicyInput) ||
+    value.ratingV2PolicyInput.schemaVersion !== 1 ||
+    !Number.isSafeInteger(value.ratingV2PolicyInput.bytes) ||
+    Number(value.ratingV2PolicyInput.bytes) <= 0 ||
+    typeof value.ratingV2PolicyInput.sha256 !== 'string' ||
+    !/^[a-f0-9]{64}$/.test(value.ratingV2PolicyInput.sha256) ||
+    !isRecord(value.ratingV2BenchmarkInput) ||
+    value.ratingV2BenchmarkInput.schemaVersion !== 4 ||
+    !Number.isSafeInteger(value.ratingV2BenchmarkInput.bytes) ||
+    Number(value.ratingV2BenchmarkInput.bytes) <= 0 ||
+    typeof value.ratingV2BenchmarkInput.sha256 !== 'string' ||
+    !/^[a-f0-9]{64}$/.test(value.ratingV2BenchmarkInput.sha256) ||
+    typeof value.ratingV2BenchmarkInput.auditSha256 !== 'string' ||
+    !/^[a-f0-9]{64}$/.test(value.ratingV2BenchmarkInput.auditSha256) ||
     value.publicLocale !== 'zh-CN' ||
     JSON.stringify(value.generatedLocales) !== '["zh-CN","en"]' ||
     JSON.stringify(value.publicLocales) !== '["zh-CN","en"]' ||

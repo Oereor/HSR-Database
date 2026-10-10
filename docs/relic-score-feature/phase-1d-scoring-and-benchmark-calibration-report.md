@@ -1,5 +1,7 @@
 # Relic Score Phase 1D — Scoring and Benchmark Calibration
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 ## 1. Executive Summary
 
 Phase 1D 的代表性 Lens B 训练分布全部通过 257 点同样本表示误差门槛。V1 推荐并已写入集中配置：`N=3`、`K=65536`、Main/Sub `0.35/0.65`、Core Stat/Set `0.95/0.05`、`maxSoftTargetBonus=4`、`maxBreakpointPenalty=8`。当前 Set Integrity partial credit 可冻结为 V1。没有生成正式 97 × 6 benchmark；Phase 1E 可按此契约显式生成。

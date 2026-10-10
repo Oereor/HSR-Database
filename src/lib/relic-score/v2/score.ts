@@ -7,7 +7,7 @@ import {
   evaluateSetIntegrity,
   type EffectiveHits,
   type SetIntegrity
-} from '../score.js';
+} from '../metrics.js';
 import { isRelicStatKey, relicStatSemantics } from '../stat-registry.js';
 import type { NormalizedRelicPiece } from '../types.js';
 import { subUtilityTerm, ratingV2RawSubUtility } from './utility.js';

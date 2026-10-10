@@ -42,7 +42,7 @@ export function normalizeRatingV2Build(
     }
     if (seen.has(slot)) {
       const duplicate = { status: 'invalid' as const, reason: 'DUPLICATE_SLOT' as const };
-      failure = duplicate;
+      failure ??= duplicate;
       pieceFailures[slot] = duplicate;
       continue;
     }
@@ -53,7 +53,12 @@ export function normalizeRatingV2Build(
       relic.subAffixes.some((sub) => {
         const affix =
           runtime.relicSubAffixes[playerRuntimeKey(identity.subAffixGroup, sub.affixId)];
-        return affix?.stepNum !== undefined && (sub.step ?? 0) > sub.cnt * affix.stepNum;
+        return (
+          Number.isSafeInteger(sub.cnt) &&
+          sub.cnt >= 0 &&
+          affix?.stepNum !== undefined &&
+          (sub.step ?? 0) > sub.cnt * affix.stepNum
+        );
       });
     if (illegalStep) {
       const invalid = { status: 'invalid' as const, reason: 'INVALID_STEP' as const };
