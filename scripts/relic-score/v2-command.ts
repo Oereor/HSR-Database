@@ -16,6 +16,7 @@ import {
   benchmarkSha256
 } from '../../src/lib/relic-score/benchmark/identity.js';
 import {
+  RATING_V2_BENCHMARK_CONFIG,
   assertRatingV2PublicationReady,
   ratingV2ExpectedBenchmark,
   validateRatingV2Benchmark,
@@ -236,14 +237,24 @@ async function main() {
     await writeAtomic(path.join(stagingRoot, 'farming-benchmarks.json'), result.artifact);
     await writeAtomic(path.join(stagingRoot, 'benchmark-generation-audit.json'), audit);
     const stagedBytes = await readFile(path.join(stagingRoot, 'farming-benchmarks.json'));
-    validateRatingV2Benchmark(JSON.parse(stagedBytes.toString('utf8')), expected, commit, true);
+    const stagedAuditBytes = await readFile(
+      path.join(stagingRoot, 'benchmark-generation-audit.json')
+    );
+    const stagedArtifact = JSON.parse(stagedBytes.toString('utf8')) as RatingV2Benchmark;
+    validateRatingV2Benchmark(stagedArtifact, expected, commit, true);
     if (createHash('sha256').update(stagedBytes).digest('hex') !== audit.artifactSha256)
       throw new Error('Staged Rating V2 bytes mismatch');
-    assertRatingV2GenerationAudit(audit, result.artifact, expected, {
-      bytes: stagedBytes.length,
-      sha256: audit.artifactSha256
-    });
+    assertRatingV2GenerationAudit(
+      JSON.parse(stagedAuditBytes.toString('utf8')),
+      stagedArtifact,
+      expected,
+      {
+        bytes: stagedBytes.length,
+        sha256: audit.artifactSha256
+      }
+    );
     const targets = ['farming-benchmarks.json', 'benchmark-generation-audit.json'];
+    const candidates = [stagedBytes, stagedAuditBytes];
     const previous = await Promise.all(
       targets.map(async (name) => {
         try {
@@ -257,6 +268,9 @@ async function main() {
     try {
       for (const name of targets)
         await rename(path.join(stagingRoot, name), path.join(candidateRoot, name));
+      for (const [index, name] of targets.entries())
+        if (!(await readFile(path.join(candidateRoot, name))).equals(candidates[index]))
+          throw new Error(`Published Rating V2 bytes mismatch: ${name}`);
     } catch (error) {
       for (const [index, name] of targets.entries()) {
         const old = previous[index];
@@ -266,10 +280,10 @@ async function main() {
           await rename(recovery, path.join(candidateRoot, name));
         } else await unlink(path.join(candidateRoot, name)).catch(() => {});
       }
+      for (const [index, name] of targets.entries())
+        await writeFile(path.join(stagingRoot, `${name}.failed`), candidates[index]);
       throw error;
     }
-    if (!(await readFile(benchmarkPath)).equals(stagedBytes))
-      throw new Error('Published Rating V2 bytes mismatch');
     console.log(
       `[rating-v2] formal artifacts generated/gated; ${result.audit.length} distributions; run data:ensure to refresh manifest binding`
     );
@@ -288,6 +302,7 @@ async function main() {
   });
   if (command === 'benchmarks-determinism') {
     const cases = [
+      ['1413', 'OBJECT', 'SPRatioBase'],
       ['1001', 'HEAD', 'HPDelta'],
       ['1505', 'NECK', 'PhysicalAddedRatio'],
       ['1506', 'OBJECT', 'SPRatioBase']
@@ -313,7 +328,7 @@ async function main() {
     });
     await writeAtomic(path.join(candidateRoot, 'benchmark-determinism.json'), {
       artifactSha256,
-      experimentCount: 65536,
+      experimentCount: RATING_V2_BENCHMARK_CONFIG.experimentCount,
       checks,
       status: 'passed'
     });

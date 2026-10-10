@@ -8,7 +8,9 @@ Head and hands use the substat percentile alone. Character 1506's sphere and rop
 
 Flat HP, ATK and DEF use 4/9 of the corresponding category preference. This is our rating policy, not a claim to reproduce an official formula. Positive weights can contribute utility even when the stat is not recommended. Effective occurrences count only recommended substats with reliable occurrence evidence.
 
-The percentile compares the piece with the best of three natural, fully enhanced pieces having the same slot and actual main stat. It is not a percentage of the theoretical maximum or a farming cost estimate. A wrong main stat retains its own substat distribution.
+The substat percentile is the probability that one random natural five-star +15 piece, conditioned on the same character, slot and actual main stat, has no greater substat utility. Production uses N=1, with 65,536 experiments and 257 quantile points. It is not a percentage of the theoretical maximum or a farming cost estimate. A wrong main stat retains its own substat distribution.
+
+The previous N=3 benchmark compared against the best of three conditioned pieces. Changing to N=1 changes the meaning of the quality baseline and therefore the scores; it does not fix a CDF error or change the main/substat combination. Old N=3 artifacts are rejected, rather than converted into N=1 percentiles.
 
 Build ratings retain existing slot weights and set integrity. The ordinary six-slot main/sub split is effectively 28/72 before the 95/5 stat/set combination. V2 does not use panel targets or breakpoints; panel synthesis failures do not invalidate readable relics.
 

@@ -4,6 +4,7 @@ import type {
   RatingV2Benchmark,
   RatingV2ExpectedBenchmark
 } from '../../src/lib/relic-score/v2/benchmark';
+import { RATING_V2_BENCHMARK_CONFIG } from '../../src/lib/relic-score/v2/benchmark';
 
 const condition = {
   characterId: '1',
@@ -24,10 +25,10 @@ const artifact: RatingV2Benchmark = {
   sourceCommit: 'd'.repeat(40),
   metadata: {
     prototype: false,
-    budgetN: 3,
-    experimentCount: 65536,
-    seed: 123456789,
-    quantilePoints: 257,
+    budgetN: RATING_V2_BENCHMARK_CONFIG.budgetN,
+    experimentCount: RATING_V2_BENCHMARK_CONFIG.experimentCount,
+    seed: RATING_V2_BENCHMARK_CONFIG.seed,
+    quantilePoints: RATING_V2_BENCHMARK_CONFIG.quantilePoints,
     samplingDigest: expected.samplingDigest,
     profileDigests: expected.profileDigests
   },

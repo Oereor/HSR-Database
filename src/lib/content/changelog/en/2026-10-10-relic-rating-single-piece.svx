@@ -1,0 +1,5 @@
+---
+title: Relic ratings use a single-piece quality baseline
+---
+
+Relic ratings now compare substat quality with one random five-star +15 relic conditioned on the same character, slot and main stat, replacing the previous best-of-three baseline. Scores change accordingly, while main/substat combination, set integrity and effective occurrence rules remain unchanged. This changes the meaning of the comparison baseline; it does not fix a percentile lookup error or estimate farming stamina costs.

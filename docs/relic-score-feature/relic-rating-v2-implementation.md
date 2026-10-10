@@ -1,5 +1,7 @@
 # 遗器评分 V2 正式迁移报告
 
+> 历史 V2 迁移记录，本文 N=3 产物、耗时与验收结论属于当时基线。后续 N=1 迁移见 [新报告](farming-benchmark-n1-migration.md)，当前政策以 [数学契约](relic-rating-v2.md) 为准。
+
 日期：2026-10-10，Asia/Shanghai。起始网站 develop / 4b052ed。本轮未提交、推送、合并或部署；仅修改 HSR-Database。此前候选实施见 Git 历史；当前生产入口统一使用 V2。
 
 ## 正式来源与批准覆盖

@@ -4,7 +4,7 @@
 
 ## 来源和映射
 
-输入来自 upstream.lock.json 锁定的 TurnBasedGameData，经共享 source registry、lossless raw adapter 和 locale-neutral 派生，进入 Manifest schema 52 的 runtime/relic-rating-v2.json。Profile schema 5 记录实际 source SHA、八份来源的字节 SHA-256、主／副映射版本、U 版本与语义 digest。生产不读取相邻仓库。
+输入来自 upstream.lock.json 锁定的 TurnBasedGameData，经共享 source registry、lossless raw adapter 和 locale-neutral 派生，进入 Manifest schema 53 的 runtime/relic-rating-v2.json。Profile schema 5 记录实际 source SHA、八份来源的字节 SHA-256、主／副映射版本、U 版本与语义 digest。生产不读取相邻仓库。
 
 两份 AvatarValue 提供独立主、副类别偏好；两份 BaseValue 只校验类别到 canonical key 的完整映射，不作为额外乘数。regular/LD 与推荐表必须闭包一致；未知额外 LD 权重源、重复身份、未知字段、非法数值或元素枚举使生成失败。
 
@@ -35,7 +35,9 @@ V2 normalization 只接收 canonical character build 与可信 runtime affixes�
 
 presentation 为 version:3、algorithmVersion:2。单件包含 mainMode、mainSuitability、可选 mainCompletion、主／副贡献、U、P、hits 与真实副权重解释；Build 包含 statCompletion、加权主／副贡献、Set Integrity 和 hits。没有 accepted/mismatch、Soft/Hard 或 panel-unavailable 字段。
 
-Benchmark schema 4 保留实际主词条条件、Lens B、N=3、K=65536、seed=123456789、mulberry32-v1、逐分布重置 seed、原自然强化生成器和右连续线性 257 点表示，误差门槛 0.005。副权重、Flat／副映射／U 语义、概率和 reference、随机算法、采样参数及表示契约进入分布 identity；主合成、主映射、α、套装和展示不进入副分布 identity。
+Benchmark schema 4 保留实际主词条条件、Lens B、N=1、K=65536、seed=123456789、mulberry32-v1、逐分布重置 seed、原自然强化生成器和右连续线性 257 点表示，误差门槛 0.005。每轮直接生成一件同条件自然五星 +15 遗器并计算 U，不进行多件择优。selectionMode 为 single-base-raw-sub-utility。副权重、Flat／副映射／U 语义、概率和 reference、随机算法、采样参数及表示契约进入分布 identity；主合成、主映射、α、套装和展示不进入副分布 identity。
+
+正式副百分位表示：同角色、同部位、同主词条的一件随机五星 +15 遗器，其副效用不超过当前遗器的概率。N=3 是历史择优政策；改为 N=1 属于评价基准的产品语义变化，不是修复 CDF 错误。主副合成不变，评分数值变化是预期结果。旧 N=3 产物被新 identity 拒绝，不执行开立方转换或 fallback，也不表示真实副本次数或体力成本。
 
 全量候选生成先通过来源与人工异常门禁，再通过覆盖、identity、数值、单调性和 representation gate。失败不改生产产物，不切换 513 点，不混用 V1/V2。审计校验要求实际候选 bytes/hash、分布生成来源、sampling digest、副权重 digest、覆盖数和 gate 结果一致。完整 Profile semantic digest 保留为生成时的 provenance，不用于主偏好变化后的副分布消费门禁。来源 SHA 变化本身也不代替实际输入 identity。运行时完整验证后复用缓存，并逐件核对副权重和条件 identity。
 

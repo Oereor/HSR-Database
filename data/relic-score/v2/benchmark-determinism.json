@@ -1,28 +1,36 @@
 {
-  "artifactSha256": "542c3aec09187e5be5e34832a44d2c7a789cadc95798ac469b9d6f1e916857b8",
+  "artifactSha256": "3b19258d43c017d4a1e3948273ce6741edd31f4e9eade05229a6189bb4f91bd3",
   "checks": [
     {
+      "characterId": "1413",
+      "distributionDigest": "eafd4a96b056c5aedec8259c61a880095274998f1906842184ac08fc77792cba",
+      "identityDigest": "ea45cd91c8e4a5c2518a4c0e9a6b433950bebcf24af49094a74520a3cbc1c23d",
+      "mainStatKey": "SPRatioBase",
+      "maxError": 0.0034637267709708985,
+      "slot": "OBJECT"
+    },
+    {
       "characterId": "1001",
-      "distributionDigest": "d6c2d0c53c970dc063d695e2baaf205f3f6e53f4b3500cfd016af95b48b9e313",
-      "identityDigest": "48fa6c5ff1769d9066029d24a9da4892e198c5a0442efd77bed08826972a61e8",
+      "distributionDigest": "cbf6efc32c01b452b7db510e1ac03b1314958ee3981910be8783a4270df6cc73",
+      "identityDigest": "e6517204678b87dc22ad7dfd83add16dd8dfd1de79ff232e87b49b77d60d7ff1",
       "mainStatKey": "HPDelta",
-      "maxError": 0.002138274730536628,
+      "maxError": 0.0019073367198176316,
       "slot": "HEAD"
     },
     {
       "characterId": "1505",
-      "distributionDigest": "7a3070a90bab806b12708eea311ccf1786b20a016fe26b9a1c1663c64c10b859",
-      "identityDigest": "e2615607c9a7e99edf7d56dc19858fc5a8e464db3b899bb17f308f6dfe1661ef",
+      "distributionDigest": "6ed0a7b85599c73bddf91aa5a21966890b395f656e8bb910063193c844670924",
+      "identityDigest": "d37c4ea9cc7b5c61e6d1d8c5d867db9b57fd95761ea7faae1e4c600e0beae6a5",
       "mainStatKey": "PhysicalAddedRatio",
-      "maxError": 0.0021667236224736097,
+      "maxError": 0.0018375254255326157,
       "slot": "NECK"
     },
     {
       "characterId": "1506",
-      "distributionDigest": "3b4f8bc28fbebe3212bca520f161c2a18379509bd8c86c09f29a93e75292699e",
-      "identityDigest": "b737b6cb1b8cc9022e53c9ae551acc2b15b3b714553f0c3d62cb73c3449d11b4",
+      "distributionDigest": "9eb197fc8529c1e855f329c74fa61368753b0b3fbb06c26bf9dc38f5ef94edd8",
+      "identityDigest": "38f08d689734acf9e976faffed1d5309b8c96f527236f01afe83d7cf350a56be",
       "mainStatKey": "SPRatioBase",
-      "maxError": 0.001998132087519533,
+      "maxError": 0.002792345588148226,
       "slot": "OBJECT"
     }
   ],

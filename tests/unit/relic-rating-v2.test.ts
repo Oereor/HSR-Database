@@ -18,7 +18,11 @@ import {
   type RatingV2Profile
 } from '../../src/lib/relic-score/v2/profile';
 import { generateRatingV2Distribution } from '../../scripts/relic-score/v2-benchmark-core';
+import { generateNaturalRelic } from '../../src/lib/relic-score/farming/generate-natural-relic';
+import { createSeededRng } from '../../src/lib/relic-score/farming/prng';
+import { encodeDenseQuantiles } from '../../src/lib/relic-score/farming/dense-quantile';
 import {
+  RATING_V2_BENCHMARK_CONFIG,
   ratingV2ExpectedBenchmark,
   ratingV2SubDigest,
   validateRatingV2Benchmark,
@@ -105,10 +109,10 @@ function sourcesFor(profile = profileFor()): RatingV2Sources & { benchmark: Rati
     sourceCommit: 'a'.repeat(40),
     metadata: {
       prototype: true,
-      budgetN: 3,
-      experimentCount: 65_536,
-      seed: 123_456_789,
-      quantilePoints: 257,
+      budgetN: RATING_V2_BENCHMARK_CONFIG.budgetN,
+      experimentCount: RATING_V2_BENCHMARK_CONFIG.experimentCount,
+      seed: RATING_V2_BENCHMARK_CONFIG.seed,
+      quantilePoints: RATING_V2_BENCHMARK_CONFIG.quantilePoints,
       samplingDigest: expected.samplingDigest,
       profileDigests: expected.profileDigests
     },
@@ -292,6 +296,30 @@ describe('Rating V2 source and mapping policy', () => {
     );
   });
 
+  it('samples one natural conditioned piece per experiment without best-of-three selection', () => {
+    const profile = profileFor();
+    const item = ratingV2ExpectedBenchmark(model, [profile]).cases.find(
+      (entry) => entry.slot === 'OBJECT' && entry.mainStatKey === 'SPRatioBase'
+    )!;
+    const rng = createSeededRng(RATING_V2_BENCHMARK_CONFIG.seed);
+    const samples = Array.from({ length: 4096 }, () => {
+      const piece = generateNaturalRelic(item.slot, model, rng, item.mainStatKey);
+      expect(piece.mainStat.key).toBe(item.mainStatKey);
+      return ratingV2RawSubUtility(
+        piece.substats,
+        profile.effectiveSubWeights,
+        (key) => model.subByKey[key]!.highRoll
+      );
+    }).sort((a, b) => a - b);
+    const result = generateRatingV2Distribution(model, profile, item, samples.length);
+    expect(result.distribution.quantiles).toEqual(
+      encodeDenseQuantiles(samples, RATING_V2_BENCHMARK_CONFIG.quantilePoints)
+    );
+    expect(result.distribution.summary.mean).toBe(
+      samples.reduce((a, b) => a + b, 0) / samples.length
+    );
+  });
+
   it('rejects tampered derived weights and preserves the 257-point representation gate', () => {
     const profile = profileFor();
     expect(() => validateRatingV2Profile(profile)).not.toThrow();
@@ -407,6 +435,16 @@ describe('Rating V2 math and contract', () => {
         sources.sourceCommit
       )
     ).toThrow();
+    const oldBudget = structuredClone(sources.benchmark);
+    oldBudget.metadata.budgetN = 3;
+    expect(() =>
+      validateRatingV2Benchmark(oldBudget, sources.expected, sources.sourceCommit)
+    ).toThrow(/stale/);
+    oldBudget.metadata.budgetN = RATING_V2_BENCHMARK_CONFIG.budgetN;
+    oldBudget.metadata.samplingDigest = 'b'.repeat(64);
+    expect(() =>
+      validateRatingV2Benchmark(oldBudget, sources.expected, sources.sourceCommit)
+    ).toThrow(/stale/);
     const wrong = structuredClone(fixture.relics[0]);
     wrong.substats[0].key = wrong.mainStat.key;
     expect(scoreRatingV2Piece(wrong, fixture.characterId, sources)).toMatchObject({

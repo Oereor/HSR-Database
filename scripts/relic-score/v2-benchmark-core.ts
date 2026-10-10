@@ -1,8 +1,5 @@
 import type { CompiledProbabilityModel } from '../../src/lib/relic-score/farming/probability-model.js';
-import {
-  farmingBudget,
-  generateFarmingExperiment
-} from '../../src/lib/relic-score/farming/farming-contract.js';
+import { generateNaturalRelic } from '../../src/lib/relic-score/farming/generate-natural-relic.js';
 import { createSeededRng } from '../../src/lib/relic-score/farming/prng.js';
 import {
   encodeDenseQuantiles,
@@ -25,7 +22,7 @@ export class RatingV2RepresentationError extends Error {
       slot: string;
       mainStatKey: string;
       experimentCount: number;
-      quantilePoints: 257;
+      quantilePoints: typeof RATING_V2_BENCHMARK_CONFIG.quantilePoints;
       maxAbsoluteCdfError: number;
       meanAbsoluteCdfError: number;
       maxSampleRankError: number;
@@ -33,7 +30,7 @@ export class RatingV2RepresentationError extends Error {
     }
   ) {
     super(
-      `257-point gate failed ${diagnostic.characterId}:${diagnostic.slot}:${diagnostic.mainStatKey} max=${diagnostic.maxAbsoluteCdfError}; candidate unchanged`
+      `${diagnostic.quantilePoints}-point gate failed ${diagnostic.characterId}:${diagnostic.slot}:${diagnostic.mainStatKey} max=${diagnostic.maxAbsoluteCdfError}; candidate unchanged`
     );
   }
 }
@@ -46,25 +43,18 @@ export function generateRatingV2Distribution(
 ) {
   if (profile.status !== 'ready') throw new Error(`Review blocker ${profile.characterId}`);
   const config = RATING_V2_BENCHMARK_CONFIG;
+  if (config.budgetN !== 1 || config.selectionMode !== 'single-base-raw-sub-utility')
+    throw new Error('Rating V2 generator requires the single-piece sampling contract');
   const rng = createSeededRng(config.seed);
-  const samples = Array.from({ length: experimentCount }, () =>
-    Math.max(
-      ...generateFarmingExperiment(
-        item.slot,
-        farmingBudget(config.budgetN),
-        model,
-        rng,
-        item.mainStatKey
-      ).map((piece) =>
-        ratingV2RawSubUtility(
-          piece.substats,
-          profile.effectiveSubWeights,
-          (key) => model.subByKey[key]!.highRoll
-        )
-      )
-    )
-  ).sort((a, b) => a - b);
-  const quantiles = encodeDenseQuantiles(samples, 257);
+  const samples = Array.from({ length: experimentCount }, () => {
+    const piece = generateNaturalRelic(item.slot, model, rng, item.mainStatKey);
+    return ratingV2RawSubUtility(
+      piece.substats,
+      profile.effectiveSubWeights,
+      (key) => model.subByKey[key]!.highRoll
+    );
+  }).sort((a, b) => a - b);
+  const quantiles = encodeDenseQuantiles(samples, config.quantilePoints);
   const error = measureQuantileError(samples, quantiles);
   if (error.maxAbsoluteCdfError > config.maxRepresentationError)
     throw new RatingV2RepresentationError({
@@ -72,7 +62,7 @@ export function generateRatingV2Distribution(
       slot: item.slot,
       mainStatKey: item.mainStatKey,
       experimentCount,
-      quantilePoints: 257,
+      quantilePoints: config.quantilePoints,
       ...error
     });
   return {
@@ -96,6 +86,7 @@ export function generateRatingV2Benchmark(
   model: CompiledProbabilityModel,
   profiles: RatingV2Profiles
 ) {
+  const config = RATING_V2_BENCHMARK_CONFIG;
   const expected = ratingV2ExpectedBenchmark(model, profiles.profiles);
   const artifact: RatingV2Benchmark = {
     schemaVersion: 4,
@@ -103,10 +94,10 @@ export function generateRatingV2Benchmark(
     sourceCommit: profiles.sourceCommit,
     metadata: {
       prototype: false,
-      budgetN: 3,
-      experimentCount: 65_536,
-      seed: 123_456_789,
-      quantilePoints: 257,
+      budgetN: config.budgetN,
+      experimentCount: config.experimentCount,
+      seed: config.seed,
+      quantilePoints: config.quantilePoints,
       samplingDigest: expected.samplingDigest,
       profileDigests: expected.profileDigests
     },

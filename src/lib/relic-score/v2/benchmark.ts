@@ -22,11 +22,11 @@ import {
 import type { RelicStatKey } from '../stat-registry.js';
 
 export const RATING_V2_BENCHMARK_CONFIG = {
-  budgetN: 3,
+  budgetN: 1,
   experimentCount: 65_536,
   seed: 123_456_789,
   quantilePoints: 257,
-  selectionMode: 'best-base-raw-sub-utility',
+  selectionMode: 'single-base-raw-sub-utility',
   maxRepresentationError: 0.005,
   seedContract: 'same-seed-reset-per-distribution-v1'
 } as const;
@@ -127,7 +127,7 @@ export function validateRatingV2Benchmark(
     artifact.metadata.budgetN !== config.budgetN ||
     artifact.metadata.experimentCount !== config.experimentCount ||
     artifact.metadata.seed !== config.seed ||
-    artifact.metadata.quantilePoints !== 257 ||
+    artifact.metadata.quantilePoints !== config.quantilePoints ||
     artifact.metadata.samplingDigest !== expected.samplingDigest ||
     stableBenchmarkSerialize(artifact.metadata.profileDigests) !==
       stableBenchmarkSerialize(expected.profileDigests)
@@ -150,7 +150,7 @@ export function validateRatingV2Benchmark(
     if (
       !distribution ||
       distribution.identityDigest !== item.identityDigest ||
-      distribution.quantiles.length !== 257 ||
+      distribution.quantiles.length !== config.quantilePoints ||
       distribution.quantiles.some(
         (value, index, values) =>
           !Number.isFinite(value) || value < 0 || (index > 0 && value < values[index - 1])
