@@ -1,5 +1,7 @@
 # 主词条政策迁移：审批与验证收尾
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 日期：2026-10-01（UTC+8）。分支：develop。依据工作区 `Relic-Score-Feature/codex-relic-profile-approval-validation.md`，本阶段仅完成已获人工授权的 profile 审批及本地验证。
 
 ## 1. Approval Summary

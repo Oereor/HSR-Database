@@ -1,119 +1,79 @@
-import benchmarkJson from '../../relic-score/generated/farming-benchmarks.json' with { type: 'json' };
-import profilesJson from '../../relic-score/generated/character-profiles.json' with { type: 'json' };
-import playerRuntimeJson from '../../generated/runtime/player.json' with { type: 'json' };
+import benchmarkJson from '../../../../data/relic-score/v2/farming-benchmarks.json' with { type: 'json' };
+import auditJson from '../../../../data/relic-score/v2/benchmark-generation-audit.json' with { type: 'json' };
+import profilesJson from '../../generated/runtime/relic-rating-v2.json' with { type: 'json' };
+import manifest from '../../generated/manifest.json' with { type: 'json' };
 import probabilityJson from '../../../../data/relic-score/probability-model.json' with { type: 'json' };
-import type { RelicSlot } from '../../domain/types.js';
-import type { RelicStatKey } from '../../relic-score/stat-registry.js';
-import { assertPlayerRuntimeData } from '../../player/runtime-data.js';
-import { buildExpectedBenchmarkIdentity } from '../../relic-score/benchmark/identity.js';
-import type {
-  BenchmarkArtifact,
-  BenchmarkDistribution
-} from '../../relic-score/benchmark/types.js';
+import { createHash } from 'node:crypto';
+import type { PlayerRuntimeData } from '../../player/runtime-data.js';
+import type { RatingV2Profiles } from '../../relic-score/v2/profile.js';
 import {
-  validateBenchmarkArtifact,
-  type BenchmarkExpectedIdentity
-} from '../../relic-score/benchmark/validate.js';
+  ratingV2ExpectedBenchmark,
+  type RatingV2Benchmark
+} from '../../relic-score/v2/benchmark.js';
+import { assertRatingV2GenerationAudit } from '../../relic-score/v2/audit.js';
+import { stableBenchmarkSerialize } from '../../relic-score/benchmark/identity.js';
 import { compileProbabilityModel } from '../../relic-score/farming/probability-model.js';
-import type { CharacterProfileArtifact } from '../../relic-score/profile-types.js';
-import { buildRelicScoreReferenceData } from '../../relic-score/reference.js';
-import {
-  RELIC_SCORE_CONFIG,
-  RELIC_SLOTS,
-  validateScoringConfig
-} from '../../relic-score/scoring-config.js';
+import { createRatingV2Scorer } from './v2.js';
 
-export type BenchmarkLookupResult =
-  | { status: 'available'; distribution: BenchmarkDistribution }
-  | { status: 'unavailable'; reason: 'BENCHMARK_MISSING' | 'BENCHMARK_STALE' };
+type Scorer = ReturnType<typeof createRatingV2Scorer>;
+const cache = new WeakMap<PlayerRuntimeData, Scorer | Error>();
 
-/** Validate once per server instance; no fixture, network access, or simulation. */
-export function createBenchmarkLoader(
-  artifact: BenchmarkArtifact | undefined,
-  expected: BenchmarkExpectedIdentity
-) {
-  let validation: 'unchecked' | 'valid' | 'stale' = 'unchecked';
-  const valid = () => {
-    if (validation === 'unchecked') {
-      try {
-        if (!artifact) throw new Error('missing artifact');
-        validateBenchmarkArtifact(artifact, expected);
-        validation = 'valid';
-      } catch {
-        validation = 'stale';
-      }
-    }
-    return validation === 'valid';
-  };
-  return {
-    get(characterId: string, slot: RelicSlot, mainStatKey: RelicStatKey): BenchmarkLookupResult {
-      if (!artifact) return { status: 'unavailable', reason: 'BENCHMARK_MISSING' };
-      if (!valid()) return { status: 'unavailable', reason: 'BENCHMARK_STALE' };
-      const distribution = artifact!.distributions[characterId]?.[slot]?.[mainStatKey];
-      return distribution
-        ? { status: 'available', distribution }
-        : { status: 'unavailable', reason: 'BENCHMARK_MISSING' };
-    },
-    context():
-      | { status: 'available'; artifact: BenchmarkArtifact; expected: BenchmarkExpectedIdentity }
-      | { status: 'unavailable'; reason: 'BENCHMARK_MISSING' | 'BENCHMARK_STALE' } {
-      if (!artifact) return { status: 'unavailable', reason: 'BENCHMARK_MISSING' };
-      return valid()
-        ? { status: 'available', artifact: artifact!, expected }
-        : { status: 'unavailable', reason: 'BENCHMARK_STALE' };
-    }
-  };
-}
-
-const profiles = profilesJson as CharacterProfileArtifact;
-const runtime: unknown = playerRuntimeJson;
-let production:
-  | {
-      loader: ReturnType<typeof createBenchmarkLoader>;
-      profiles: CharacterProfileArtifact;
-      reference: ReturnType<typeof buildRelicScoreReferenceData>;
-    }
-  | undefined;
-
-function productionState() {
-  if (production) return production;
-  validateScoringConfig();
-  assertPlayerRuntimeData(runtime);
-  const model = compileProbabilityModel(probabilityJson, runtime);
-  const ids = profiles.profiles.map((profile) => profile.characterId).sort();
-  const expectedIds = Object.keys(runtime.avatarPromotions).sort();
-  if (ids.length !== new Set(ids).size || ids.join(',') !== expectedIds.join(','))
-    throw new Error('[relic-score/benchmark] production profile coverage');
-  const cases = ids.flatMap((characterId) =>
-    RELIC_SLOTS.flatMap((slot) =>
-      model.mainBySlot[slot].map(({ key: mainStatKey }) => ({ characterId, slot, mainStatKey }))
-    )
-  );
-  const expected = buildExpectedBenchmarkIdentity(
-    { model, profiles: profiles.profiles },
-    {
-      N: RELIC_SCORE_CONFIG.benchmark.budgetN,
-      K: RELIC_SCORE_CONFIG.benchmark.experimentCount,
-      seed: RELIC_SCORE_CONFIG.benchmark.seed,
-      cases,
-      lens: RELIC_SCORE_CONFIG.benchmark.selectionMode,
-      quantilePoints: RELIC_SCORE_CONFIG.benchmark.quantilePoints,
-      requireCompleteCoverage: true
-    }
-  );
-  production = {
-    loader: createBenchmarkLoader(benchmarkJson as unknown as BenchmarkArtifact, expected),
-    profiles,
-    reference: buildRelicScoreReferenceData(runtime)
-  };
-  return production;
-}
-
-export function getProductionBenchmarkContext() {
+/** One formal scorer per runtime. No filesystem, network, simulation or alternate algorithm. */
+export function getProductionRatingV2Scorer(runtime: PlayerRuntimeData): Scorer {
+  const existing = cache.get(runtime);
+  if (existing instanceof Error) throw existing;
+  if (existing) return existing;
   try {
-    const state = productionState();
-    return { ...state.loader.context(), profiles: state.profiles, reference: state.reference };
+    const profiles = profilesJson as unknown as RatingV2Profiles;
+    const benchmark = benchmarkJson as unknown as RatingV2Benchmark;
+    const declared = manifest.ratingV2BenchmarkInput;
+    if (
+      manifest.schemaVersion !== 53 ||
+      profiles.sourceCommit !== manifest.sourceCommit ||
+      !declared
+    )
+      throw new Error('Rating V2 manifest mismatch');
+    const profileBytes = Buffer.from(JSON.stringify(profilesJson) + '\n');
+    const profileMetadata = manifest.artifacts['runtime/relic-rating-v2.json'];
+    if (
+      profileMetadata.schemaVersion !== 5 ||
+      profileBytes.length !== profileMetadata.bytes ||
+      createHash('sha256').update(profileBytes).digest('hex') !== profileMetadata.sha256
+    )
+      throw new Error('Rating V2 profile manifest bytes mismatch');
+    const expected = ratingV2ExpectedBenchmark(
+      compileProbabilityModel(probabilityJson, runtime),
+      profiles.profiles
+    );
+    // Prebuild independently verifies the generator's canonical bytes against the file on disk.
+    const bytes = Buffer.from(
+      JSON.stringify(JSON.parse(stableBenchmarkSerialize(benchmark)), null, 2) + '\n'
+    );
+    const auditBytes = Buffer.from(
+      JSON.stringify(JSON.parse(stableBenchmarkSerialize(auditJson)), null, 2) + '\n'
+    );
+    if (
+      bytes.length !== declared.bytes ||
+      createHash('sha256').update(bytes).digest('hex') !== declared.sha256 ||
+      createHash('sha256').update(auditBytes).digest('hex') !== declared.auditSha256
+    )
+      throw new Error('Rating V2 manifest bytes mismatch');
+    assertRatingV2GenerationAudit(auditJson, benchmark, expected, {
+      bytes: bytes.length,
+      sha256: createHash('sha256').update(bytes).digest('hex')
+    });
+    const scorer = createRatingV2Scorer(
+      profiles,
+      benchmark,
+      runtime,
+      probabilityJson,
+      'production'
+    );
+    cache.set(runtime, scorer);
+    return scorer;
   } catch {
-    return { status: 'unavailable' as const, reason: 'BENCHMARK_STALE' as const };
+    const failure = new Error('Rating V2 formal artifacts unavailable or stale');
+    cache.set(runtime, failure);
+    throw failure;
   }
 }

@@ -1,6 +1,6 @@
-# HISTORICAL / NON-NORMATIVE — see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md) for the current system.
-
 # R2 Character i18n/l10n Domain Simplification
+
+> 历史资料：本文保留原阶段的调查与实施结论，不是当前规范；当前系统以[权威架构](../architecture/localization-and-data-generation.md)为准。
 
 ## 1. Outcome
 
@@ -64,5 +64,3 @@ The first sandbox attempt at Vite/Vitest startup hit the known esbuild directory
 ## 7. Protected boundaries
 
 Enemy, Endgame, English production, `/en` routing, Search ranking behavior, Homepage behavior, upstream locks, aliases, and protected baseline fixtures were not changed. The generated Character absence assertions and Enemy/Endgame compatibility coverage remain in place.
-
-> HISTORICAL / NON-NORMATIVE — for the current architecture, see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md).

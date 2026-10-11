@@ -101,7 +101,7 @@ export interface PlayerFetchResult<T = CanonicalPlayerProfile> {
 /** Internal Enka pipeline result. Only presentation is returned by /api/player. */
 export interface EnkaPlayerPipelineResult {
   canonical: ResolvedCanonicalPlayerProfile;
-  normalizedBuilds: import('../relic-score/types.js').PlayerBuildNormalization[];
+  normalizedBuilds: import('../relic-score/v2/normalize.js').RatingV2Normalization[];
   presentation: PlayerProfile;
   scoringFailures: Array<{ buildId: string; diagnostic: string }>;
   metadata?: PlayerFetchMetadata;

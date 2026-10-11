@@ -1,5 +1,7 @@
 # Relic Score Phase 1B — Farming Model and Contract Report
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 ## 1. Executive summary
 
 Phase 1B implemented a self-contained, seeded 5★ Natural Relic model and a target-slot, enhance-all-to-+15 experiment. The probability table, generator, validator, prototype CLI, benchmark identity digest, candidate lenses, and dense quantile prototype are present. No formal 97 × 6 benchmark, scorer, UI, or production N was created. The 97 reviewed Profiles and the Phase 1A normalization path remain unchanged.

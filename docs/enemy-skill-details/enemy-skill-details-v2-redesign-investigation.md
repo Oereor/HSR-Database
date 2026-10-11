@@ -1,5 +1,7 @@
 # Enemy Skill Details V2：精简模型与伤害总倍率调查
 
+> 历史阶段记录：本文保留实施当时的模型、结论与验收，不是现行规范。当前契约以[权威架构](../architecture/localization-and-data-generation.md#ownership-rules)为准；后续倍率候选、UI 与清理报告是历史证据，见[专题入口](README.md#设计演进与实施证据)。
+
 调查日期：2026-09-29。网站 `develop`、上游 `TurnBasedGameData` `6b2bc17ebf`。本报告只设计 V2，不改变 V1 解析、生成数据或页面。下文的倍率是 `DamageByAttackProperty.AttackProperty.DamagePercentage` 的 ATK 缩放输入，不是最终实战伤害。先前调查与 Phase 1/2A/2B/2C 报告已核对；以当前代码和本地数据为准。
 
 ## 1. Executive Summary

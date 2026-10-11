@@ -129,7 +129,8 @@ describe('Enka player Function handler', () => {
       stats: expect.any(Array)
     });
     expect(body.characters[0].relicScore).toMatchObject({
-      version: 2,
+      version: 3,
+      algorithmVersion: 2,
       build: { status: 'available', score: expect.any(Number) },
       pieces: { HEAD: { status: 'available', score: expect.any(Number) } }
     });
@@ -284,17 +285,17 @@ describe('Enka player Function handler', () => {
     expect(response.status).toBe(200);
     expect(body.characters[0].relicScore.build).toEqual({
       status: 'unavailable',
-      reason: 'score-unavailable'
+      reason: 'piece-unavailable'
     });
     expect(body.characters[0].relicScore.pieces.HEAD).toEqual({
       status: 'unavailable',
-      reason: 'score-unavailable'
+      reason: 'piece-unavailable'
     });
     expect(JSON.stringify(body)).not.toContain('private scoring diagnostic');
     expect(log).toHaveBeenCalledWith(
       expect.objectContaining({
         event: 'scoring_failure',
-        diagnostic: 'private scoring diagnostic'
+        diagnostic: 'SCORING_FAILED'
       })
     );
   });

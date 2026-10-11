@@ -1,5 +1,7 @@
 # Relic Score Phase 2B — Player Info UI Implementation
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 ## 1. Executive Summary
 
 Player Info 已接入 `character.relicScore` 的 Build 与单件遗器展示。实现只做展示格式化；评分算法、Profile、Benchmark、推荐数据和 API 数学没有修改。组件、双语消息、相关测试及生产构建均已完成。浏览器预览服务器在当前环境被 `listen EPERM` 阻止，因此 desktop/mobile 实际截图与交互运行仍待补验，V1 完成 gate 尚未全部关闭。

@@ -1,5 +1,7 @@
 # Relic Score Phase 1A 实施报告
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 ## 1. Executive Summary
 
 Phase 1A 已完成。当前 `develop` 的 97 个角色均有可追踪、可校验的 Character Profile 候选；5★ 主词条 +15 与副词条 high-roll 参考值从现有 Player runtime 数据推导；脱敏 Enka fixture 的 6 个 Build 均可在服务端转换为精确数值输入。未实现评分公式、benchmark 或 UI。

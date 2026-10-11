@@ -1,6 +1,6 @@
-# HISTORICAL / NON-NORMATIVE — see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md) for the current system.
-
 # Locale-Neutral Domain Model / TextRef Boundary Audit
+
+> 历史资料：本文保留原阶段的调查与实施结论，不是当前规范；当前系统以[权威架构](../architecture/localization-and-data-generation.md)为准。
 
 调查日期：2026-09-05。本文是只读架构调查，不是英文实现、schema 迁移或 UI 改动。
 
@@ -699,5 +699,3 @@ preserve IDs/relations/source hashes
 
 这条路线可以在不复制数据库、不把游戏文本导入 Paraglide、不修改本轮 Site Messages
 的前提下，让第三种语言成为新增 resolver/view/cache，而不是新增一套业务模型。
-
-> HISTORICAL / NON-NORMATIVE — for the current architecture, see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md).

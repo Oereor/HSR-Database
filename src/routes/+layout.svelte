@@ -12,8 +12,9 @@
   import ChangelogModal from '$lib/components/layout/ChangelogModal.svelte';
   import SettingsPopover from '$lib/components/layout/SettingsPopover.svelte';
   import { onMount } from 'svelte';
+  import { dev } from '$app/environment';
 
-  injectAnalytics();
+  if (!dev) injectAnalytics();
 
   export let data;
   const faviconUrl = getBrandIconUrl('train-party');

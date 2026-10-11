@@ -10,6 +10,14 @@ import { canonicalJsonDigest } from '../../scripts/data/source-metadata';
 import { assertCrossLocaleStructuralParity } from '../../scripts/data/structural-parity';
 import { validateBuildInputs } from '../../scripts/data/validation/build-inputs';
 import { PLAYER_PROPERTY_SEMANTICS } from '../../src/lib/player/property-semantics';
+import {
+  buildRatingV2Profiles,
+  loadRatingV2Tables,
+  readRatingV2PolicyInput,
+  readRatingV2BenchmarkInput
+} from '../../scripts/data/relic-rating-v2';
+import { STAT_CATEGORY, WEIGHT_CATEGORIES } from '../../src/lib/relic-score/v2/profile';
+import { relicStatSemantics, type RelicStatKey } from '../../src/lib/relic-score/stat-registry';
 
 const temporaryRoots: string[] = [];
 const commit = 'a'.repeat(40);
@@ -96,6 +104,79 @@ async function createFixture(): Promise<Fixture> {
     await writeFile(file, serialized(value));
     artifacts[logicalPath] = metadata(value, locale);
   };
+
+  const v2Source = {
+    AvatarConfig: [{ AvatarID: 1, DamageType: 'Fire' }],
+    AvatarConfigLD: [],
+    AvatarRelicRecommendLD: [],
+    AvatarRelicRecommend: [
+      {
+        AvatarID: 1,
+        Set4IDList: [3],
+        Set2IDList: [3],
+        PropertyList3: ['HPAddedRatio'],
+        PropertyList4: ['SpeedDelta'],
+        PropertyList5: ['FireAddedRatio'],
+        PropertyList6: ['SPRatioBase'],
+        SubAffixPropertyList: ['HPAddedRatio']
+      }
+    ],
+    RelicMainAffixAvatarValue: [
+      {
+        AvatarID: 1,
+        ...Object.fromEntries(
+          WEIGHT_CATEGORIES.filter((key) => key !== 'StatusResistance').map((key) => [key, 1])
+        )
+      }
+    ],
+    RelicSubAffixAvatarValue: [
+      {
+        AvatarID: 1,
+        ...Object.fromEntries(
+          WEIGHT_CATEGORIES.filter(
+            (key) => !['DamageAddedRatio', 'SPRatio', 'HealRatio'].includes(key)
+          ).map((key) => [key, 1])
+        )
+      }
+    ],
+    RelicMainAffixBaseValue: Object.entries(STAT_CATEGORY)
+      .filter(([, category]) => category !== 'StatusResistance')
+      .map(([key, category]) => ({
+        RelicMainAffix: key,
+        Type: category,
+        BaseValue: 1,
+        ValuePerLevel: 1
+      })),
+    RelicSubAffixBaseValue: Object.entries(STAT_CATEGORY)
+      .filter(([key]) => relicStatSemantics(key as RelicStatKey).canBeSubstat)
+      .map(([key, category]) => ({ RelicSubAffix: key, Type: category, BaseValue: 1 }))
+  };
+  await mkdir(path.join(sourceRoot, 'ExcelOutput'), { recursive: true });
+  await Promise.all(
+    Object.entries(v2Source).map(([name, rows]) =>
+      writeFile(path.join(sourceRoot, 'ExcelOutput', `${name}.json`), JSON.stringify(rows))
+    )
+  );
+  const ratingV2PolicyFile = path.join(root, 'profile-overrides.json');
+  await writeFile(
+    ratingV2PolicyFile,
+    JSON.stringify({
+      schemaVersion: 1,
+      sourceCommit: commit,
+      basis: 'Synthetic fixture',
+      mainWeights: [],
+      agnosticSlots: []
+    })
+  );
+  await writeArtifact(
+    'runtime/relic-rating-v2.json',
+    await buildRatingV2Profiles(
+      sourceRoot,
+      await loadRatingV2Tables(sourceRoot),
+      commit,
+      ratingV2PolicyFile
+    )
+  );
 
   for (const locale of ['zh-CN', 'en'] as const) {
     for (const [category, id] of [
@@ -283,7 +364,9 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 51,
+    schemaVersion: 53,
+    ratingV2PolicyInput: (await readRatingV2PolicyInput(ratingV2PolicyFile)).metadata,
+    ratingV2BenchmarkInput: await readRatingV2BenchmarkInput(),
     sourceCommit: commit,
     sourceVersion,
     gameVersionFull: '4.5.0',
@@ -328,6 +411,7 @@ async function createFixture(): Promise<Fixture> {
     manifest,
     validate: (overrides = {}) =>
       validateBuildInputs({
+        ratingV2PolicyFile,
         sourceRoot,
         generatedRoot,
         staticGeneratedRoot,
@@ -352,6 +436,13 @@ describe('production build-input validation', () => {
       manifest: { sourceCommit: commit },
       artifacts: { files: Object.keys(fixture.manifest.artifacts).length }
     });
+  });
+
+  it('rejects stale local Rating V2 policy bytes even with intact generated artifacts', async () => {
+    const fixture = await createFixture();
+    fixture.manifest.ratingV2PolicyInput.sha256 = '0'.repeat(64);
+    await fixture.writeManifest();
+    await expect(fixture.validate()).rejects.toThrow('Rating V2 policy input mismatch');
   });
 
   it('rejects the old generated manifest and occurrence shard schemas', async () => {

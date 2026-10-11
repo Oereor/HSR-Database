@@ -1,5 +1,7 @@
 # Enemy Skill Details — Pre-Production Deep Cleanup
 
+> 历史阶段记录：本文保留实施当时的模型、结论与验收，不是现行规范。当前契约以[权威架构](../architecture/localization-and-data-generation.md#ownership-rules)为准；后续倍率候选、UI 与清理报告是历史证据，见[专题入口](README.md#设计演进与实施证据)。
+
 实施日期：2026-09-30。网站分支 `develop`；Node 24.21.0、pnpm 11.9.0；只读游戏数据版本 `6b2bc17ebf46`。实施前网站及两个上游仓库均干净。
 
 ## Summary

@@ -1,5 +1,5 @@
 import type { RelicSlot } from '../domain/types.js';
-import type { PlayerStatTarget } from '../player/property-semantics.js';
+
 import type { RelicStatKey } from './stat-registry.js';
 
 export type RollCountEvidence =
@@ -31,19 +31,11 @@ export interface NormalizedRelicPiece {
   substats: NormalizedSubstat[];
 }
 
-export interface PlayerBuildInput {
-  characterId: string;
-  panel: Partial<Record<PlayerStatTarget, number>>;
-  relics: NormalizedRelicPiece[];
-}
-
 export type NormalizationReason =
-  | 'SYNTHESIS_FAILED'
   | 'MISSING_SLOT'
   | 'UNKNOWN_RELIC'
   | 'UNKNOWN_AFFIX'
   | 'UNKNOWN_RARITY'
-  | 'MISSING_PANEL_STAT'
   | 'DUPLICATE_SLOT'
   | 'SLOT_MISMATCH'
   | 'INVALID_LEVEL'
@@ -54,24 +46,3 @@ export type NormalizationReason =
   | 'INVALID_ROLL_COUNT'
   | 'INVALID_STEP'
   | 'NONFINITE_VALUE';
-
-export type PlayerBuildNormalization =
-  | { status: 'valid'; input: PlayerBuildInput }
-  | {
-      status: 'unavailable';
-      reason: NormalizationReason;
-      detail?: string;
-      partialInput?: PlayerBuildInput;
-      pieceFailures?: Partial<
-        Record<RelicSlot, { status: 'unavailable' | 'invalid'; reason: NormalizationReason }>
-      >;
-    }
-  | {
-      status: 'invalid';
-      reason: NormalizationReason;
-      detail?: string;
-      partialInput?: PlayerBuildInput;
-      pieceFailures?: Partial<
-        Record<RelicSlot, { status: 'unavailable' | 'invalid'; reason: NormalizationReason }>
-      >;
-    };

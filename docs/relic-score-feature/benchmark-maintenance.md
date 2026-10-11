@@ -1,28 +1,13 @@
-# Relic Score 正式 Benchmark 维护
+# V2 Benchmark 维护
 
-正式产物是 `src/lib/relic-score/generated/farming-benchmarks.json`，由命令生成并跟踪于 Git。不要手改产物或将 `tests/fixtures/relic-score/benchmark/prototype.json` 用作生产替代。`phase-1e-benchmark-generation-audit.json` 仅记录摘要证据，不参与运行时。
+唯一正式文件位于 data/relic-score/v2/farming-benchmarks.json，审计位于同目录 benchmark-generation-audit.json。schema 4；Lens B 条件包含角色、实际槽与实际主词条。N=1，K=65536，seed=123456789，既有 mulberry32、自然五星 +15 和 257 点 CDF 不变，最大表示误差必须 ≤0.005。每轮直接计算单件 U，selectionMode=single-base-raw-sub-utility；不取多件最大值，也不从旧 N=3 CDF 开立方。
 
-## V1 契约
+pnpm relic-score:v2:benchmarks:generate 在 .staging 隔离目录生成并校验，覆盖集合由当前 Profile 和合法条件实际推导，当前为 2744 条。全部通过后才发布两份产物；发布后 bytes 校验也在回滚保护内，异常恢复原文件并保留诊断。禁止手工编辑 JSON、降门槛、513 点替换或借用旧算法。pnpm relic-score:v2:benchmarks:validate 独立验证 identity、覆盖、有限值、单调性、逐分布审计、汇总与真实 bytes/hash。pnpm relic-score:v2:benchmarks:determinism 对 1413 OBJECT/SPRatioBase、1001 HEAD/HPDelta、1505 NECK/PhysicalAddedRatio、1506 OBJECT/SPRatioBase 全 K 复算。
 
-`src/lib/relic-score/scoring-config.ts` 是 N、K、seed、Lens B、257 点和评分份额的唯一配置入口。每个角色／槽位／合法主词条从相同 seed `123456789` 重新初始化 `mulberry32-v1`，生成三件**主词条固定且相同**的同槽 5★ 遗器并全部强化至 +15，取基础副词条 RawSubUtility 的最大值；重复 65,536 次。主词条与同名副词条按 canonical stat key 互斥。角色、槽位和主词条按稳定顺序处理，正式产物不保存样本。
+Manifest schema 53 绑定政策 bytes/hash 及正式 Benchmark bytes/hash/audit hash。生成后运行 pnpm data:ensure；旧缓存自动失效。prebuild 和部署流水线只验证 V2。服务端完整验证一次并缓存，逐件核对条件，缺失/过期时返回明确 unavailable。
 
-Lens B 仍比较三件中的最高副词条质量，且不按角色推荐主词条筛选。错误主词条也有自己的条件分布；推荐与否只由 MainCompletion 评价。这个 benchmark 以已经取得三件同槽且同主词条遗器为前提，不计主词条掉率或体力成本。运行时以实际主词条查询静态产物；缺项或过期时评分不可用，不使用旧槽位混合分布。
+政策迁移时，先冻结来源、记录旧产物和配置并在忽略目录保存回滚备份；生成期间不要并行启动构建或消费正式产物的开发服务。候选失败不得发布；若产物发布后 Manifest 更新失败，应恢复旧正式产物、活动配置及绑定后停止。备份只用于本轮恢复，不纳入 Git 或活动 loader。必要网络操作仍遵守系统代理；生成本身只读锁定本地输入。
 
-主词条政策 v4 中，accepted 来源还包括有效副词条同名推导和显式 `addAccepted`；agnostic 退出主词条直接评价，但依然使用实际主词条 CDF。`mainStatOverrides` 不参与 `profileScoringDigest` 或正式 Lens B identity，因此不会要求重新模拟。Profile schema/generator 迁移产生的 stale review 仍会阻止正式校验入口：这属于人工审核门禁，不代表分布 identity 已改变。不得以放宽该门禁或重新生成 benchmark 来解决审批问题。
+N=3 的历史基线见 [调查报告](farming-benchmark-n-comparison.md)。不需要在活动目录复制旧大型产物。N、K、seed、选择模式或表示契约变化必须更新 sampling identity 并直接重新生成全量分布；旧产物不能作为新的正式评分输入。
 
-## 何时重新生成
-
-需要重新生成：已审核 Profile 的基础副词条权重、实际采样概率、5★ 主／副词条参考、N、K、seed、PRNG、Lens、量化契约或生成器行为发生变化。若修改生成器行为，应先提升 benchmark generator version，再生成并检查差异。角色增删也需要维护者明确审核覆盖契约。
-
-不需要重新生成：Soft Target 区间、Hard Breakpoint 阈值、推荐套装和主词条、Main/Sub 份额、Build Stat/Set 份额、Build modifier 归一化权重、Set Integrity、UI、本地化、Profile review note 或概率模型的文字来源说明。当前 Build modifier 使用 `95×S + 8×Is×P + 5×Ih×(1−F)` 的归一化属性完成度，再按 Stat/Set `0.95/0.05` 聚合；完整公式见 [Profile 维护](profile-maintenance.md)。旧版最终分数外加 bonus、扣除 penalty 的公式已废弃。Profile 自身可能仍需按 [Profile 维护流程](profile-maintenance.md)重新审核；这与 benchmark 是否过期是两个独立判断。
-
-## 操作步骤
-
-1. 如修改 Profile，先完成逐角色审核，并运行 `pnpm relic-score:validate`。
-2. 运行 `pnpm relic-score:farming:validate`。
-3. 运行 `pnpm relic-score:benchmarks:generate`，确认全部角色、槽位和合法主词条分布均显示 `generated` 与 `gate passed`。任一分布超过 `0.005` 时，命令会输出角色／槽位／主词条和 513 点诊断，并保持正式产物不变；需人工调查，不自动改格式。
-4. 运行 `pnpm relic-score:benchmarks:validate`，检查正式 JSON 与当前输入、配置及完整覆盖一致。
-5. 检查正式 JSON、审计摘要和配置的 Git diff；再运行相关单测、`pnpm check`、`pnpm lint`、`pnpm data:validate:build-inputs` 与 `pnpm build`。
-6. 提交产物、审计和必要的源代码。普通 build／CI 只做廉价校验，绝不执行 Monte Carlo 生成。
-
-若需证明可重复性，连续两次运行完整生成命令并比较两次输出的 SHA-256；审计中的运行时间和内存测量允许不同，但正式 JSON 必须逐字节一致。
+分布 identity 包含最终副权重、副映射/Flat/U、reference、概率和随机生成表示契约；主权重、α、Set Integrity 与 UI 不使副分布失效。完整 Profile digest 和源码生成 provenance 另作审计。α 比较复用同一正式 Benchmark，仅生成报告，正式 α 保持 0.35。

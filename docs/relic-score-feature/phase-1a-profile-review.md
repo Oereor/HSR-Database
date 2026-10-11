@@ -1,5 +1,7 @@
 # Relic Score Phase 1A Character Profile 人工审核
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 ## 审核说明
 
 - 本文记录 Phase 1A 人工审核；逐角色 [x] 回答与 Weight 表中的修改后数值是最终维护者决定。候选 Profile 和 review reasons 为 application 前快照；决定已应用至 source config。

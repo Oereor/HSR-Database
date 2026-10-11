@@ -1,5 +1,7 @@
 # 遗器主词条政策实施报告
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 日期：2026-10-01（UTC+8）。网站分支：develop。依据工作区 `Relic-Score-Feature/codex-relic-main-stat-policy-implementation.md`，以本轮正式语义覆盖历史报告的 25/75 与 binary 主词条建议。
 
 ## 1. Executive Summary

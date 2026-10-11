@@ -2,7 +2,8 @@ node_modules
 .svelte-kit
 build
 src/lib/generated
-src/lib/relic-score/generated/farming-benchmarks.json
+data/relic-score/v2/farming-benchmarks.json
+data/relic-score/v2/benchmark-generation-audit.json
 static/generated
 pnpm-lock.yaml
 src/lib/content/changelog/**/*.svx

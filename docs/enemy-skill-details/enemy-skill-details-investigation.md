@@ -1,5 +1,7 @@
 # 敌方技能详情：代表性数据第二轮调查
 
+> 历史阶段记录：本文保留实施当时的模型、结论与验收，不是现行规范。当前契约以[权威架构](../architecture/localization-and-data-generation.md#ownership-rules)为准；后续倍率候选、UI 与清理报告是历史证据，见[专题入口](README.md#设计演进与实施证据)。
+
 调查日期：2026-09-29。主证据为本地 `TurnBasedGameData` 的 `8b178dd486`；网站仓库为 `fa291a045c`。本文中的百分比是 **Ability 的伤害倍率或配置的基础概率输入**，不是对具体角色的最终伤害或最终命中率。报告只研究静态敌人详情；[前次审计](../combat-simulation/combat-simulation-feasibility-audit.md)的模拟器路线已经搁置。置信度“高”表示配置中的引用与任务可直接闭合，“中”表示需解释表达式或条件，“低”表示仅有文案或部分引用。
 
 证据路径均相对于 `TurnBasedGameData/`：`ExcelOutput/MonsterConfig.json` 简写为 MC，`MonsterTemplateConfig.json` 为 MT，`MonsterSkillConfig.json` 为 MS，`MonsterStatusConfig.json` 为 ST；CC 是 MT 的 `JsonConfig` 所指 `Config/ConfigCharacter/Monster/*_Config*.json`，AB 是同怪物前缀的 `Config/ConfigAbility/Monster/*_Ability*.json`。所有 ID、哈希均按十进制字符串记录。UI 示例中的“ATK”只表示 `DamageByAttackProperty.AttackProperty.DamagePercentage` 的攻击属性倍率输入，不包含防御、抗性或暴击计算。

@@ -6,12 +6,12 @@
   import { localizedHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   import type { PlayerRelicSlotView } from '$lib/player/equipment';
-  import type { PlayerRelicPieceScore } from '$lib/player/relic-score-contract';
+  import type { PlayerRelicPieceScoreV2 } from '$lib/player/relic-rating-v2-contract';
   import { formatRelicScore } from '$lib/player/relic-score-presentation';
   import PlayerAffixRow from './PlayerAffixRow.svelte';
 
   export let view: PlayerRelicSlotView;
-  export let score: PlayerRelicPieceScore | undefined = undefined;
+  export let score: PlayerRelicPieceScoreV2 | undefined = undefined;
   export let showScore = false;
 
   $: unresolvedLabel = view.relic

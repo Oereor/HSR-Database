@@ -1,37 +1,19 @@
 <script lang="ts">
-  import Disclosure from '$lib/components/shared/Disclosure.svelte';
-  import type { RelicProperty } from '$lib/domain/types';
   import { m } from '$lib/paraglide/messages.js';
-  import { resolvePlayerStatIdentity } from '$lib/player/character';
-  import { PLAYER_PROPERTY_SEMANTICS } from '$lib/player/property-semantics';
-  import type { PlayerRelicBuildScore } from '$lib/player/relic-score-contract';
+  import type { PlayerRelicBuildScoreV2 } from '$lib/player/relic-rating-v2-contract';
   import {
     formatRelicScore,
-    formatRelicScorePanelValue,
     formatRelicScorePercent,
     relicScoreUnavailableMessage
   } from '$lib/player/relic-score-presentation';
-  import type { RelicStatKey } from '$lib/relic-score/stat-registry';
-
-  export let score: PlayerRelicBuildScore;
-  export let properties: RelicProperty[] = [];
-
-  $: propertiesByType = new Map(properties.map((property) => [property.propertyType, property]));
-  $: passedBreakpoints =
-    score.status === 'available'
-      ? score.hardBreakpoint.details.filter((detail) => detail.passed).length
-      : 0;
-
-  function statLabel(stat: RelicStatKey): string {
-    const field = PLAYER_PROPERTY_SEMANTICS[stat].target;
-    const label = resolvePlayerStatIdentity(field, propertiesByType, {
-      elation_dmg: m.player_character_stat_elation()
-    }).label;
-    return label === field ? m.player_relic_score_stat_unknown() : label;
-  }
+  export let score: PlayerRelicBuildScoreV2;
 </script>
 
-<div class="player-relic-score-summary" data-player-relic-score-summary>
+<div
+  class="player-relic-score-summary"
+  data-player-relic-score-summary
+  data-player-algorithm-version="2"
+>
   <div class="player-relic-score-summary__overview">
     <div class="player-relic-score-summary__primary">
       <div class="player-relic-score-summary__score">
@@ -42,11 +24,10 @@
           >
           {#if score.status === 'available'}<small>/ 100</small>{/if}
         </div>
-        {#if score.status === 'unavailable'}
-          <p data-player-build-score-unavailable>{relicScoreUnavailableMessage(score.reason)}</p>
-        {/if}
+        {#if score.status === 'unavailable'}<p data-player-build-score-unavailable>
+            {relicScoreUnavailableMessage(score.reason)}
+          </p>{/if}
       </div>
-
       <div class="player-relic-score-summary__hits" data-player-effective-hits>
         <span>{m.player_relic_score_effective_hits()}</span>
         {#if score.status === 'available' && score.effectiveHits.status === 'exact' && score.effectiveHits.total !== null}
@@ -54,16 +35,11 @@
         {:else if score.status === 'available' && score.effectiveHits.status === 'partial'}
           <strong>{m.player_relic_score_at_least({ count: score.effectiveHits.known })}</strong>
           <small>{m.player_relic_score_hits_partial()}</small>
-        {:else}
-          <strong aria-label={m.player_relic_score_unavailable()}>—</strong>
-        {/if}
+        {:else}<strong aria-label={m.player_relic_score_unavailable()}>—</strong>{/if}
       </div>
     </div>
-
     {#if score.status === 'available'}
-      <!-- Keyboard focus allows horizontal scrolling on narrow screens. -->
-      <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-      <dl class="player-relic-score-summary__breakdown" data-player-score-breakdown tabindex="0">
+      <dl class="player-relic-score-summary__breakdown" data-player-score-breakdown>
         <div>
           <dt>{m.player_relic_score_stat_completion()}</dt>
           <dd>{formatRelicScorePercent(score.statCompletion)}</dd>
@@ -72,80 +48,9 @@
           <dt>{m.player_relic_score_set_integrity()}</dt>
           <dd>{formatRelicScorePercent(score.setIntegrity)}</dd>
         </div>
-        {#if score.softTarget.details.length}
-          <div data-player-soft-target>
-            <dt>{m.player_relic_score_soft_target()}</dt>
-            <dd>{formatRelicScorePercent(score.softTarget.progress)}</dd>
-          </div>
-        {/if}
-        {#if score.hardBreakpoint.details.length}
-          <div data-player-hard-breakpoint>
-            <dt>{m.player_relic_score_hard_breakpoint()}</dt>
-            <dd>
-              {#if score.hardBreakpoint.details.length === 1}
-                {score.hardBreakpoint.details[0].passed
-                  ? m.player_relic_score_passed()
-                  : m.player_relic_score_failed()}
-              {:else}
-                {m.player_relic_score_passed_count({
-                  passed: passedBreakpoints,
-                  total: score.hardBreakpoint.details.length
-                })}
-              {/if}
-            </dd>
-          </div>
-        {/if}
       </dl>
     {/if}
   </div>
-
-  {#if score.status === 'available'}
-    {#if score.softTarget.details.length || score.hardBreakpoint.details.length}
-      <Disclosure label={m.player_relic_score_details()} data-player-score-details>
-        <div class="player-relic-score-summary__detail-groups">
-          {#if score.softTarget.details.length}
-            <section>
-              <h4>{m.player_relic_score_soft_target()}</h4>
-              {#each score.softTarget.details as detail (detail.stat)}
-                <div class="player-relic-score-summary__detail-row">
-                  <span>{statLabel(detail.stat)}</span>
-                  <span
-                    >{m.player_relic_score_target_detail({
-                      current: formatRelicScorePanelValue(detail.stat, detail.currentValue),
-                      minimum: formatRelicScorePanelValue(detail.stat, detail.minimumThreshold),
-                      maximum: formatRelicScorePanelValue(detail.stat, detail.maximumThreshold)
-                    })}</span
-                  >
-                  <strong>{formatRelicScorePercent(detail.progress)}</strong>
-                </div>
-              {/each}
-            </section>
-          {/if}
-          {#if score.hardBreakpoint.details.length}
-            <section>
-              <h4>{m.player_relic_score_hard_breakpoint()}</h4>
-              {#each score.hardBreakpoint.details as detail, index (`${detail.stat}:${index}`)}
-                <div class="player-relic-score-summary__detail-row">
-                  <span>{statLabel(detail.stat)}</span>
-                  <span
-                    >{m.player_relic_score_breakpoint_detail({
-                      current: formatRelicScorePanelValue(detail.stat, detail.currentValue),
-                      threshold: formatRelicScorePanelValue(detail.stat, detail.threshold)
-                    })}</span
-                  >
-                  <strong
-                    >{detail.passed
-                      ? m.player_relic_score_passed()
-                      : m.player_relic_score_failed()}</strong
-                  >
-                </div>
-              {/each}
-            </section>
-          {/if}
-        </div>
-      </Disclosure>
-    {/if}
-  {/if}
 </div>
 
 <style>
@@ -196,6 +101,11 @@
     white-space: nowrap;
   }
 
+  .player-relic-score-summary__breakdown dt {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
   .player-relic-score-summary__score > span,
   .player-relic-score-summary__hits > span {
     color: var(--text-body);
@@ -239,33 +149,20 @@
   }
 
   .player-relic-score-summary__breakdown {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: max-content;
     max-width: 100%;
     min-width: 0;
     align-items: start;
-    flex-wrap: nowrap;
     justify-self: end;
-    overflow-x: auto;
-    overflow-y: hidden;
     margin: 0;
     padding: var(--space-1) 0;
-    overscroll-behavior-inline: contain;
-    scrollbar-width: none;
-  }
-
-  .player-relic-score-summary__breakdown::-webkit-scrollbar {
-    display: none;
-  }
-
-  .player-relic-score-summary__breakdown:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: -2px;
   }
 
   .player-relic-score-summary__breakdown > div {
     display: grid;
-    flex: 0 0 auto;
+    min-width: 0;
     gap: 0.1rem;
     text-align: left;
   }
@@ -283,44 +180,6 @@
     font-weight: 650;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
-  }
-
-  .player-relic-score-summary__detail-groups {
-    display: grid;
-    gap: var(--space-3);
-    margin-top: var(--space-3);
-  }
-
-  .player-relic-score-summary__detail-groups h4 {
-    margin: 0 0 var(--space-2);
-    color: var(--text-body);
-    font-size: var(--font-meta-key);
-    font-weight: 650;
-  }
-
-  .player-relic-score-summary__detail-row {
-    display: grid;
-    min-width: 0;
-    grid-template-columns: minmax(7rem, 20%) minmax(0, 1fr) max-content;
-    gap: var(--space-4);
-    padding: 0.25rem 0;
-  }
-
-  .player-relic-score-summary__detail-row > * {
-    min-width: 0;
-    overflow-wrap: anywhere;
-  }
-
-  .player-relic-score-summary__detail-row strong {
-    color: var(--text-primary);
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-    text-align: right;
-  }
-
-  .player-relic-score-summary__detail-row > :first-child {
-    color: var(--text-body);
-    font-weight: 400;
   }
 
   @container (max-width: 48rem) {
@@ -356,16 +215,6 @@
     .player-relic-score-summary__breakdown > div + div {
       margin-inline-start: var(--space-3);
       padding-inline-start: var(--space-3);
-    }
-
-    .player-relic-score-summary__detail-row {
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: var(--space-1) var(--space-2);
-    }
-
-    .player-relic-score-summary__detail-row > :nth-child(2) {
-      grid-column: 1 / -1;
-      grid-row: 2;
     }
   }
 </style>

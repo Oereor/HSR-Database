@@ -1,6 +1,6 @@
-# HISTORICAL / NON-NORMATIVE — see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md) for the current system.
-
 # i18n/l10n Architecture Rebaseline Audit
+
+> 历史资料：本文保留原阶段的调查与实施结论，不是当前规范；当前系统以[权威架构](../architecture/localization-and-data-generation.md)为准。
 
 **Audit date:** 2026-09-06
 

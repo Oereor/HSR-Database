@@ -5,9 +5,20 @@ import { paraglideVitePlugin } from '@inlang/paraglide-js';
 import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
+import { localPlayerMock, playerMockEnabled } from './scripts/dev/player-mock.js';
 
-export default defineConfig({
+export default defineConfig(({ command, mode, isPreview }) => ({
   plugins: [
+    ...(!isPreview && playerMockEnabled(command, mode, process.env)
+      ? [
+          localPlayerMock(
+            process.env.PLAYER_MOCK_DIR ??
+              (() => {
+                throw new Error('PLAYER_MOCK_DIR required');
+              })()
+          )
+        ]
+      : []),
     {
       name: 'changelog-content-contract',
       async buildStart() {
@@ -43,4 +54,4 @@ export default defineConfig({
     include: ['tests/unit/**/*.test.ts'],
     environment: 'node'
   }
-});
+}));

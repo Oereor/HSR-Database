@@ -38,6 +38,11 @@ import {
 } from './avatar-special-skills.js';
 import { characterLdSourceNames, characterLdSourceSpecs } from './character-sources.js';
 import { DATA_GENERATION_TABLE_NAMES } from './source-requirements.js';
+import {
+  buildRatingV2Profiles,
+  readRatingV2PolicyInput,
+  readRatingV2BenchmarkInput
+} from './relic-rating-v2.js';
 import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
 import { buildPlayerEquipmentCatalog } from '../../src/lib/player/equipment.js';
 import { collectEndgameSearchTargets } from '../../src/lib/domain/search-index.js';
@@ -635,6 +640,7 @@ export async function syncData(): Promise<DataManifest> {
   ]);
   const characterBuild = buildCharacterDomain({ tables: characterDomainSource });
   const characterDomains = characterBuild.characters;
+  const ratingV2Profiles = await buildRatingV2Profiles(root, tables, commit);
   const training = buildTrainingDomain(tables, characterDomains);
   const extraEffectsById = new Map(
     characterBuild.extraEffects.map((effect) => [effect.id, effect])
@@ -965,6 +971,7 @@ export async function syncData(): Promise<DataManifest> {
         );
   };
   await writeArtifact(nextGeneratedRoot, 'runtime/player.json', playerRuntimeData);
+  await writeArtifact(nextGeneratedRoot, 'runtime/relic-rating-v2.json', ratingV2Profiles);
   await writeArtifact(
     nextGeneratedRoot,
     'runtime/relic-score-recommendations.json',
@@ -1072,7 +1079,9 @@ export async function syncData(): Promise<DataManifest> {
   };
   const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
   const manifestWithoutRevision: Omit<DataManifest, 'dataRevision'> = {
-    schemaVersion: 51,
+    schemaVersion: 53,
+    ratingV2PolicyInput: (await readRatingV2PolicyInput()).metadata,
+    ratingV2BenchmarkInput: await readRatingV2BenchmarkInput(),
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,

@@ -1,184 +1,110 @@
-# Vercel Deployment Foundation
+# 部署与 CI 维护
 
-## Architecture
+本指南描述仓库当前构建与发布流程。架构契约见[权威架构](architecture/localization-and-data-generation.md)，环境与普通本地开发见[开发指南](development.md)。
+以下远端设置是维护者需要核对的条件；本轮文档整理没有重新查询云端项目、运行 workflow 或部署。
+早期测量与 Maintenance-06 记录保留在[部署基础历史](investigations/vercel-deployment-foundation-history.md)。
 
-```text
-source-controlled upstream.lock.json
-        ↓
-pinned sparse checkouts in .upstream/
-        ↓
-shared generation + asset preparation
-        ↓
-Preview core ⊂ Production integrity ⊂ full Correctness CI
-        ↓
-static SvelteKit build/
+## 构建输入与运行边界
+
+[upstream.lock.json](../upstream.lock.json)记录两个公开上游的完整 commit SHA。
+[scripts/deployment/build.ts](../scripts/deployment/build.ts)在网站内部 `.upstream/` 准备 shallow pinned sparse checkout，不切换或写入相邻仓库。
+TurnBased 的输入由共享 source registry 决定，包含需要的 Excel 表、CHS/EN TextMap 及动态 Config 目录；StarRailRes 的 index 与资源目录一次准备。
+具体表和文件数量随源码/pin 变化，不采用旧测量中的固定数量。
+
+所有 profile 准备消息、游戏数据、正式 V2 Benchmark 校验、普通资源与离线 enemy snapshot，随后调用 Vite 构建并检查基础输出。
+普通资源经过 staging 验证和原子发布；完整 profile 额外独立验证资源、引用与路由闭包。
+
+资料站由 adapter-static 输出到 `build/`，运行时不需要 sibling checkout、Git 或完整 TextMap。
+玩家信息另外使用 [api/player.ts](../api/player.ts)提供 Vercel 原生 `/api/player/` Function，运行时请求 Enka.Network，并使用服务端 runtime 数据与评分分布。
+`build/` 的静态 preview 与本地 Vite 开发服务不等于远端 Function；可选私有本地验收见[Enka mock 步骤](investigations/player-local-enka-mock.md#入口与安全)。
+
+## 构建 profile
+
+以下命令在本地生成、校验产物，不创建远端 deployment：
+
+| 命令                           | 额外验证职责                                                                        |
+| ------------------------------ | ----------------------------------------------------------------------------------- |
+| `pnpm deploy:build:preview`    | 轻量 Preview：准备输入、producer 检查、评分分布与离线 enemy 校验、Vite 和输出 smoke |
+| `pnpm deploy:build:production` | Preview 基础加 build-input integrity、普通资源 integrity、最终引用与 route closure  |
+| `pnpm ci:develop`              | Preview 基础加官方名称、type、lint 与 unit checks，提供轻量开发反馈                 |
+| `pnpm ci:validate`             | 完整输入与业务语义审计、repository checks、Production 等价资源与输出验证            |
+
+`pnpm deploy:build` 的选择由环境决定：未设置 `VERCEL_ENV` 或值为 `production` 时使用 Production；`preview` / `development` 时使用 Preview；未知值失败。
+显式 `--profile` 优先于环境。脚本直接调用 Vite，避免递归触发普通 `build` 的 prebuild。
+
+`data:validate:build-inputs` 独立重读落盘来源、TextMaps、manifest 与产物，检查身份、bytes/hash、schema、inventory 和消费者闭包。
+`data:validate:full` 在此基础上验证业务语义、跨语言结构与英文 CJK；`data:validate` 是完整 validator 的 alias。
+Production 信任受保护发布流程已通过完整 correctness，完整语义验证由 main PR 的 CI 承担；Preview/Development 不运行这两层数据 validator，保留 producer 检查。
+
+## 分支与 GitHub CI
+
+所有编辑在 `develop`，不得直接修改 `main`。[ci.yml](../.github/workflows/ci.yml)按事件分流：
+
+- develop push 或目标为 develop 的 PR：运行 `pnpm ci:develop`，check 名为 `Development`。
+- 目标为 main 的 PR：运行 `pnpm ci:validate`，check 名为 `Correctness`；安装 Chromium 后复用 build 运行 `test:e2e:smoke`。
+
+项目策略允许 develop 直接 push；Development 是非 required 反馈，`develop → main` 应以 Correctness 验证新 merge candidate 后由人工审核。
+分支保护的 required-check 设置属于 GitHub 远端状态，workflow 只能证明 check 名称与运行条件，维护者应在仓库设置核对。
+
+## 手动 Preview 与 Production
+
+[vercel.json](../vercel.json)仅允许 main 的 Git 自动部署；develop push 不自动触发 Vercel Preview。
+需要远端页面/Function 验收时，在 GitHub **Actions → Vercel Preview Deployment → Run workflow** 选择分支。
+[Preview workflow](../.github/workflows/vercel-preview.yml) checkout 所选 commit，使用 Node 24 与固定 Vercel CLI 59.16.0，运行 `vercel deploy --yes --target=preview` 上传源码，由 Vercel 远端构建；它不是本地 prebuilt 上传。
+workflow summary 提供 ref、commit 与 Preview URL。
+
+维护者在 Actions secrets 配置 `VERCEL_TOKEN`、`VERCEL_ORG_ID`、`VERCEL_PROJECT_ID`。
+两个 ID 可从现有项目设置或本地链接后的 `.vercel/project.json` 获取；token 与本机状态不提交。
+手动 workflow 需要存在于默认分支，Actions 才提供入口。
+
+Vercel 项目应设置 Node 24.x、冻结锁文件安装、build command `pnpm deploy:build`、output `build`，并为 Production / Preview 配置匹配的 `PUBLIC_SITE_URL`。
+同时核对 Git Integration 的 Production branch 为 main、Player Function 产物和所需运行设置；仓库文件不证明这些远端配置当前已生效。
+历史工具链核对见[2026-09-27 报告](investigations/runtime-toolchain-alignment-2026-09-27.md)。
+合并或 push 到 main 按项目发布流程触发 Git Integration Production；Production 操作需要明确批准。
+不要为自动验收修改 Deployment Protection；环境或认证阻断时记录未验证项，交由维护者完成受阻检查。
+
+## 上游与 enemy snapshot 维护
+
+维护产物包括 lock、tracked enemy snapshot、官方名称快照及人工 alias skeleton。更新操作遵守[代理约束](../AGENTS.md#internet-connectivity)。
+手工流程只修改网站仓库：
+
+```bash
+pnpm upstreams:update
+pnpm update:enemy-assets
+pnpm data:search-names:update
+pnpm data:player-aliases:sync
+pnpm data:search-names:check
 ```
 
-`deploy:build` 在 build time 准备两个固定 SHA 的 shallow Git checkout。构建完成后，`build/` 只包含静态站点和生成数据/资源。
+`upstreams:update` 查询远端 HEAD 并更新 lock；需要指定版本时填写经过核对的完整 SHA，禁止 branch/tag/HEAD/latest 作为 lock 值。
+enemy 与名称更新使用该 pin；alias sync 只为新合法 ID 补空数组，保留已有人工内容，不替维护者填写别名。
+审阅实际 diff 后运行完整 correctness；评分政策或来源变动还需遵守[Profile 维护](relic-score-feature/profile-maintenance.md)，不能自动审批覆盖。
 
-当前工具链为 Node 24.x、pnpm 11.9.0、Vite 8.3.1、`@types/node` 24.19.0；CI、updater、Preview workflow 与 Vercel 项目 Node 设置保持一致。SvelteKit 2.70.3、Svelte 5.57.0 与 Svelte plugin 7.3.0 保持原锁定版本。Vite 使用默认浏览器目标，兼容性与验收见 [2026-09-27 工具链报告](investigations/runtime-toolchain-alignment-2026-09-27.md)。下方测量保留其原始环境，不能视为当前工具链测量。
+[update-upstreams.yml](../.github/workflows/update-upstreams.yml)每天及手动从 develop 准备维护更新：消息编译 → lock → enemy → 官方名称 → alias skeleton → 名称 check。
+只有维护产物出现实际 diff 时提交到 `automation/update-upstreams`，并创建/更新目标为 develop 的 PR；不自动审核、合并或部署。
+权限为 `contents: write`、`pull-requests: write`。其 PR 获得 Development 检查，完整 correctness 在后续 main PR 承担。
 
-## Files
+Enemy 图片目录 [static/generated-enemy-assets/](../static/generated-enemy-assets/README.md)在维护时更新并提交，Production、Preview、CI 只离线验证与消费，不请求 Nanoka。
+`pnpm assets:sync:enemies` 是 update alias，`pnpm assets:ensure:enemies` 是离线 validate alias；旧回归报告中的联网 ensure 不再适用。
+更新阶段允许明确的单资源缺图并记录 unavailable，网络/解析/内容类型/图片校验等失败会中止更新；无效或过期快照会阻断构建，须显式更新并审阅。
+不手改 manifest 或图片，不因为仓库 MIT License 就宣称 Nanoka 再分发许可已确认。
 
-- `upstream.lock.json`：两个公开 upstream 的 schema 1、repository URL 和完整 commit SHA。
-- `.upstream/`：本地 deployment-only checkout，已加入 `.gitignore`，不会进入 source 或 output。
-- `scripts/deployment/lock.ts`：lock 读取与验证。
-- `scripts/deployment/git.ts`：跨平台 Git 执行、SHA/remote/path 验证、临时目录替换和复用。
-- `scripts/deployment/prepare.ts`：TurnBasedGameData 精确 Excel/TextMap 加保守 Config sparse checkout，以及 StarRailRes 单阶段 sparse checkout。
-- `scripts/deployment/build.ts`：deployment 编排入口。
-- `scripts/assets/enemies/validate.ts`：离线验证 Git 跟踪的 enemy snapshot；部署不访问 Nanoka。
-- `scripts/assets/enemies/sync.ts`：由显式 `update:enemy-assets` 或 upstream updater 增量更新快照；代理环境使用现有 curl transport。
+## 本地验证与清理
 
-## Local Development
+新克隆或发布边界使用自准备的 `pnpm ci:validate`，不要重复其完整子门禁。
+本地浏览器 smoke 可复用同一 build：
 
-普通 `pnpm dev`、`pnpm build`、`pnpm data:sync` 和 `pnpm assets:sync` 的 sibling 默认路径保持不变：`../TurnBasedGameData` 与 `../StarRailRes`。本地开发不需要联网准备 `.upstream/`。
-
-## Deployment Build
-
-正式 deployment build command：
-
-```text
-pnpm deploy:build
+```powershell
+$env:PLAYWRIGHT_REUSE_BUILD = '1'
+pnpm test:e2e:smoke
+Remove-Item Env:PLAYWRIGHT_REUSE_BUILD
 ```
 
-本地未设置 `VERCEL_ENV` 时该命令明确使用 Production profile。也可使用：
+先停止旧 preview，避免测试连接旧服务器；仅在浏览器测试环境已准备时执行。其他 E2E/组件测试按实际风险选择。
 
-```text
-pnpm deploy:build:production
-pnpm deploy:build:preview
-pnpm ci:develop
-pnpm ci:validate
-```
+`pnpm deploy:build:clean` 清理固定白名单后执行 deployment build，会重新准备上游与生成产物，不是日常检查。
+执行前停止同仓库 dev/preview，确认代理与所选 profile；它使用与 `deploy:build` 相同的环境选择。
+清理脚本保护 tracked 文件和 `.gitkeep`、拒绝 symlink/junction，不接受自定义删除路径，不清理依赖或相邻仓库；tracked enemy snapshot 和维护 metadata 保留。
 
-所有 profile 共用 lock、pinned checkout、messages、data ensure、离线 enemy snapshot validation、StarRailRes asset ensure、Vite build 和轻量 output smoke。Production 在此基础上增加 build-input 与 asset integrity、最终资源引用和 route closure；full CI 使用完整 semantic validation 并增加 repository checks。Development CI 是 Preview path 加 type/lint/unit/search checks 的非阻塞反馈，不等价于完整 Correctness。
-
-TurnBased preparation 从共享 source registry materialize 81 个实际消费的 Excel 表、两个 TextMap 和三个动态 Config 目录；当前工作树由 4,676 files / 472,882,878 bytes 降为 2,572 files / 267,724,085 bytes。StarRailRes index 与资源目录在初始 checkout 中一次指定，不再执行无消费者的第二次 sparse-set。
-
-General asset cache miss 使用 copy=1、Sharp=2 的独立有界队列，并按 copy 后 Sharp 的顺序执行；该选择来自 Phase 3 的 1/2/4/8 与 1/2/4 benchmark。生成仍经过 staging validation 和 atomic publication。发布后的 filesystem observation 只在当前 build invocation 内共享，使 ensure、输出 telemetry 和 verifier 不再重复 readdir/stat 或对同一物理 icon 重复读取 metadata；verifier仍从 requirements/manifest 独立推导预期 contract。
-
-`VERCEL_ENV=production` 选择 Production，`preview`/`development` 选择 Preview；未知值直接失败。构建脚本不调用 `pnpm build`，因此不会递归触发自身；原有 `build`/`prebuild` 保持不变。
-
-Enemy snapshot 使用 schema 3，以 `monsters + unavailable` 精确覆盖当前 enemy catalog。部署只验证 tracked manifest、pinned source 与图片完整性，不刷新快照、不访问 Nanoka。明确的单资源 404 或缺少 `image_path` 在更新阶段记录为 unavailable，保留 UI fallback；网络、解析、内容类型、图片签名或系统性覆盖失败会终止 updater。无效或过期快照会使离线部署校验失败，必须经显式更新与审阅后修复。
-
-## Updating Upstreams
-
-1. 获取新的 upstream 完整 commit SHA。
-2. 修改 `upstream.lock.json`。
-3. 运行 `pnpm update:enemy-assets`、`pnpm data:search-names:update`、`pnpm data:player-aliases:sync`，再运行 `pnpm data:search-names:check`。
-4. 审阅 lock、enemy snapshot、官方名称与人工 alias 的实际 diff；运行 `pnpm ci:validate`，必要时补充本地 Production profile 验证。
-5. 通过审核后提交这些维护产物。部署本身不改写 tracked 快照或 metadata。
-
-禁止将 branch、tag、`HEAD` 或 `latest` 写入 lock。
-
-## Cold / Warm Build Measurements
-
-实测环境为 Windows、Node.js 22、pnpm 11，并通过 `http://127.0.0.1:7890` 代理访问 GitHub。
-
-Clean cold build（删除 `.upstream/` 与生成/缓存输出后）：
-
-- TurnBasedGameData preparation：36.860s
-- data generation：7.705s
-- StarRailRes preparation：138.184s
-- asset generation：43.323s
-- SvelteKit build：27.528s
-- deployment script overall：253.604s
-- 外部计时总耗时：254.436s
-
-Warm build（保留 `.upstream/` 与 ensure cache）：
-
-- TurnBasedGameData reuse：0.091s
-- data ensure：0.783s
-- StarRailRes reuse：0.411s
-- asset ensure：0.723s
-- SvelteKit build：25.986s
-- deployment script overall：27.995s
-- 外部计时总耗时：28.794s
-
-产物与 checkout 测量：
-
-- `build/`：424,899,833 bytes，3,420 files
-- TurnBasedGameData sparse worktree：414,827,197 bytes，4,675 files；Git metadata：66,337,620 bytes
-- StarRailRes sparse worktree：755,259,994 bytes，826 files；Git metadata：755,063,418 bytes
-
-Warm build 日志确认两个 checkout 均被复用，没有重新完整 clone；data/assets ensure 也复用了现有 cache 语义。
-
-Phase 03 enemy regression clean build（保留 `.upstream/`，删除 enemy cache）：
-
-- Nanoka version：4.5.52
-- enemy ensure：101.343s
-- deployment overall：129.604s；外部计时 130.305s
-- 628 个模板：605 条可用映射、23 条合法 `missing-image-path`
-- 210 张 WebP：16,088,650 bytes
-- `static/generated-enemy-assets/` 与 `build/generated-enemy-assets/` 数量和字节完全一致
-
-Warm enemy ensure 仅验证 Nanoka version 与本地 cache，完整 warm deployment 中实测 1.122s；210 张图片全部复用，没有重新下载。该次 deployment script overall 为 34.262s，外部计时为 34.939s。
-
-## Build Independence
-
-`build/` 中没有 `.upstream/`、upstream `.git` 或原始 checkout 路径。构建产物保留了必要的 upstream 来源署名和 StarRailRes AGPL-3.0 许可证文件，但不包含原始 repository 内容。
-
-将 `.upstream/` 临时重命名后，以未设置 `HSR_DATA_ROOT`/`HSR_ASSET_ROOT` 的环境启动静态 preview，首页请求返回 HTTP 200；随后已恢复 `.upstream/`。因此运行时不需要 upstream checkout、Git 或 GitHub。
-
-## Search V2 Upstream Metadata Automation
-
-当前 `.github/workflows/update-upstreams.yml` 先刷新并校验维护产物，再仅在这些产物存在实际 diff 时提交与创建或更新 PR：
-
-```text
-upstreams:update → update:enemy-assets → data:search-names:update → data:player-aliases:sync
-→ data:search-names:check
-→ commit → automation/update-upstreams → PR to develop → 人工审核
-```
-
-官方名称刷新命令内部准备并验证 pinned checkout；随后的 skeleton sync 只读取该 tracked 快照，为新 AvatarID 插入空 `playerAliases: []`，保留已有人工内容、数组顺序及原始 JSON 字节。无新 ID 时不写入。stale/非法 ID 或 aliases 在写入前报错，由维护者处理，不自动删除或迁移。
-
-自动 commit 的显式文件集合为 `upstream.lock.json`、`data/search/character-official-names.generated.json`、`data/search/character-player-aliases.json`，只产生实际变化的 diff。权限维持 `contents: write` 和 `pull-requests: write`；只更新 automation 分支并创建/更新至 develop 的 PR，不直接推 main/develop，不自动审核或合并。
-
-updater 不再复制完整 deployment pipeline；其 PR 获得非 required 的 Development CI，完整语义和 Production correctness 由 `develop → main` PR 的 `Correctness` gate 验证。普通 `deploy:build` 不运行 skeleton sync、不修改 tracked 输入。维护者只编辑 alias 时，运行 `pnpm data:ensure`、`pnpm test`、`pnpm data:validate`；metadata digest 会触发搜索产物增量重建。手工更新 upstream 时先刷新官方名称、显式同步 skeleton、审阅 diff，再运行 `pnpm deploy:build:production`。详情见 [Search V2 维护文档](search-v2.md)。
-
-## Clean deployment 与脚本类型门禁
-
-- 日常开发：`pnpm dev`。`predev` 执行 `data:ensure`，有效的 manifest、Endgame、首页和 naming cache 可使其跳过完整 `syncData()`。
-- 静态检查：`pnpm check` 包含 Svelte 检查和 `pnpm check:scripts`。后者使用独立 `tsconfig.scripts.json`，strict / noEmit，覆盖全部脚本及其导入依赖，无需先生成 `.svelte-kit` 或领域数据。
-- Development 验证：`pnpm ci:develop`。执行 Preview-equivalent build，并增加 type、lint、unit 和 search metadata checks。
-- 普通部署验证：`pnpm deploy:build` 或 `pnpm deploy:build:production`。Production 假设 commit 已通过可信 CI，运行 `data:validate:build-inputs` 验证 prepared source、TextMaps、manifest、artifact bytes/schema/inventory 与 build-consumer closure，不重复昂贵 semantic audit。
-- 完整 PR gate：`pnpm ci:validate`。执行 `data:validate:full`（包含共享 build-input gate 与全部 semantic audits）、Production-equivalent asset/output checks及 repository checks；GitHub workflow 复用其 build 运行浏览器 smoke。
-- Preview/Development：不运行上述两层数据 validator；`data:ensure` 的 producer postconditions保持不变。`pnpm data:validate`仍是完整语义验证 alias，不能用轻量 Production gate替代。
-- Fresh-clone 验证：`pnpm deploy:build:clean`。清理后复用同一个部署编排，成本包含上游下载与完整数据、图片生成；不放入普通 Vitest，也不与开发服务器或其他构建并发运行。
-
-Clean 白名单为 `src/lib/generated/`、`src/lib/paraglide/`、`project.inlang/cache/`、`static/generated/`、`src/lib/generated-assets/`、`static/generated-assets/`、`build/`、`.svelte-kit/`、`.vite/`、`.upstream/`。Phase 1 的 tracked `static/generated-enemy-assets/`不在清理范围。清理前完整检查目标及父目录，拒绝 symlink/junction，保留 tracked `.gitkeep`，若发现其他 tracked 文件则在删除前失败。不接受自定义删除路径，不清理依赖或 sibling repositories。
-
-清理 `.upstream` 是为了实际重新执行 lock 指定的 sparse pinned checkout。官方名称、人工 aliases 和 lock 不在清理范围，命令在构建成功或失败后均比较这三份文件的 SHA-256。普通构建不自动刷新官方快照或同步人工 aliases。
-
-Maintenance-06 根因为 `dce6fff` 移除旧搜索代码时删除通用 `defined` helper，遗漏 Character 技能图标生成中的调用。恢复原 type guard 即可修复运行时错误。旧 SvelteKit include 不直接覆盖 scripts；ESLint 的 TypeScript 推荐配置关闭 `no-undef`，且未配置 typed project，因此不能代替 compiler gate。本轮新门禁同时暴露并修正审计、调试、验证和生成脚本的类型推断问题，不改变 Search V2 或数据生成规则。
-
-回归测试通过 compiler host 在内存中删除真实 `defined` 声明，断言正式 scripts project 报告 `Cannot find name 'defined'`，不会修改源码。清理测试覆盖全部白名单、tracked 保护、链接拒绝、失败不构建和 metadata 保留。完整数据生成和 clean deployment 必须另外实际执行，已有缓存下的 dev/build 成功不能替代这一验收。
-
-### Maintenance-06 验收记录（2026-09-04）
-
-环境为 Windows / Node 22.19.0；未修改 Vercel Node 版本，也未声称已验证 Node 24。恢复 helper 后，直接 `pnpm data:sync` 完整生成 97 个角色、169 个光锥、60 个遗器套装、21 个遗器属性项和 628 个敌人。原先 standalone compiler 探测的 19 条诊断全部解决；检查范围内未发现其他未定义标识符。额外修改仅为脚本类型标注、narrowing 和审计对象访问，不改变搜索或图标选择算法。
-
-`pnpm data:validate`、`pnpm lint`、`pnpm check:scripts`、`pnpm check`（应用 0 errors / 0 warnings）、`pnpm test`（32 files / 384 tests）、`git diff --check` 通过。compiler 负向测试使用真实 scripts 配置和真实 sync 源码，移除 helper 后捕获 `Cannot find name 'defined'`，源码未落盘改动。
-
-普通 `pnpm deploy:build` 成功，约 84.6 秒。第一次 clean 尝试在 Windows 图片目录发布时遇到 `EPERM rename`；当时仍有本项目的 Vite dev watcher 运行，metadata 摘要仍全部一致。停止该服务后重新执行完整 clean，而非从残留缓存继续：数据和资源 upstream 均重新准备，210 张敌人图片全部下载、复用数为零，1,547 个角色详情图标引用缺失数为零。第二次 clean 成功，部署阶段约 382.9 秒；最终资源引用闭包扫描 2,215 个文本文件。保持现有 23 条合法敌人图片缺失及 TextMap 审计诊断，不修改图片发布 pipeline。由此确认执行 clean 命令前需要停止同仓库的开发服务。
-
-浏览器直接使用 clean build 产物执行 `pnpm test:e2e --workers=2 --reporter=line`：桌面与移动合计 229 项通过、3 项原有条件跳过。首次回归暴露两个仍假设“三月七只有两张卡”的过期测试；当前人工 aliases 合法增加第三个角色，故测试改为按生成 metadata 验证完整结果，同时继续断言 cards 展示正式名称而非 alias。未修改搜索实现或人工文件。
-
-三份 tracked metadata 的构建前后 SHA-256 相同：
-
-| 文件                                      | SHA-256                                                            |
-| ----------------------------------------- | ------------------------------------------------------------------ |
-| `upstream.lock.json`                      | `b504e90d8b2b7f604f6ba742a29feb1e6207140384cd206d617584e1b77ad5a8` |
-| `character-official-names.generated.json` | `0c87ab39ee417f57b97fb9b288ad105356a5fc6fd6945f8fa8dfd49027bdc4c2` |
-| `character-player-aliases.json`           | `ee1ffadbaeb27604079dcbfb88d304d8994ce6e235e0ac8f13fa8577d13787cc` |
-
-人工 metadata 仍为 97 个角色、300 条别名，未重新排序或格式化。两个相邻 upstream 仓库保持干净且 HEAD 不变，分别为 `8cdb905dc2f8e6fffa9be4eb07af3e34435d6091` 与 `d226befe3db13f2ec15f4161d5f34b1b607643fe`。新增文件仅为 scripts tsconfig、clean 脚本和两个回归测试；其余 diff 为必要脚本类型修正、部署编排门禁、package 命令及文档。不包含 generated/cache/build 产物，无 commit、push 或线上部署。
-
-## Remaining Work（初次部署基础阶段的历史范围）
-
-以下内容不属于本阶段：
-
-- Vercel Project configuration
-- GitHub integration
-- upstream watcher / automatic PR
-- Preview deployment validation
-- 外部对象存储、CDN 或逐文件 HTTP downloader 优化
+旧冷暖耗时、资源体积、联网复现及初次待办见[部署基础历史](investigations/vercel-deployment-foundation-history.md)与[构建管线阶段记录](investigations/)。
+这些报告提供当时证据，不能替代当前 pin 的验证结果。

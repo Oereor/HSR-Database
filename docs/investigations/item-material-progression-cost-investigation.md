@@ -1,5 +1,7 @@
 # Item Domain 与角色养成成本计算可行性调查
 
+> 文档现址说明：正文保留调查时路径；`docs/refactor-status.md` 现为[重构历史](refactor-status.md)，`docs/data-audit.md` 现为[数据审计](../audits/data-audit.md)。
+
 调查日期：2026-10-08（UTC+8）。基于当前锁定数据与网站源码，中文报告。
 
 证据标签：**FACT** = 原始配置或源码直接证明；**DERIVED** = 可复现求和或统计；**INFERENCE** = 有依据但尚未证明的语义；**UNKNOWN** = 缺少证据。费用标签：`Exact from configuration`、`Exact under stated assumptions`、`Partially resolved`、`Unavailable`。这些标签区分静态成本与游戏运行时扣费，不把理论资源组合称为实机结果。

@@ -87,6 +87,8 @@ Due to special network environment, all Internet-related operations must go thro
 
 Current architecture source of truth: [docs/architecture/localization-and-data-generation.md](docs/architecture/localization-and-data-generation.md). Phase and audit reports are historical/non-normative.
 
+Documentation navigation: [docs/README.md](docs/README.md). Current operating steps: [docs/development.md](docs/development.md) and [deployment / CI](docs/vercel-deployment-foundation.md). Keep README focused on project introduction; update the relevant current guide when a workflow changes, and preserve investigation reports in their historical context.
+
 Choose checks according to the surface changed; "applicable" does not mean "run every command below on every task."
 
 - For changed source files, run targeted formatting/linting and the relevant TypeScript/Svelte checks.

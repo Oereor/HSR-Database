@@ -1,14 +1,14 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { buildEnkaPlayerProfile, playerRuntimeData } from '../../api/_player/enka/pipeline';
-import { normalizePlayerBuildInput } from '../../src/lib/relic-score/normalize';
+import { normalizeRatingV2Build } from '../../src/lib/relic-score/v2/normalize';
 import {
   assertPlayerRuntimeData,
   playerMainAffixValue,
   playerRuntimeKey,
   playerSubAffixValue
 } from '../../src/lib/player/runtime-data';
-import { synthesizePlayerCharacter } from '../../src/lib/player/stat-synthesis';
+
 import type { CanonicalPlayerCharacterBuild } from '../../src/lib/player/canonical';
 import { buildPlayerInput } from '../fixtures/relic-score/builders';
 
@@ -26,14 +26,11 @@ interface FixtureRelic {
 function withBuild(update: (build: CanonicalPlayerCharacterBuild) => void) {
   const source = structuredClone(buildEnkaPlayerProfile(raw).canonical.characters[0].build);
   update(source);
-  return normalizePlayerBuildInput(
-    synthesizePlayerCharacter(source, playerRuntimeData),
-    playerRuntimeData
-  );
+  return normalizeRatingV2Build(source, playerRuntimeData);
 }
 
 describe('relic score player input normalization', () => {
-  it('preserves numeric panel, relic identity and exact Enka roll evidence', () => {
+  it('preserves canonical relic identity and exact Enka roll evidence', () => {
     const pipeline = buildEnkaPlayerProfile(raw);
     expect(pipeline.normalizedBuilds).toHaveLength(6);
     const first = pipeline.normalizedBuilds[0];
@@ -54,7 +51,7 @@ describe('relic score player input normalization', () => {
       cumulativeStep: 1,
       rollCount: { status: 'exact', count: 1, source: 'provider' }
     });
-    expect(first.input.panel.spd).toBeCloseTo(pipeline.canonical.characters[0].values.spd!, 8);
+    expect(first.input).not.toHaveProperty('panel');
     expect(first.input.relics[0].mainStat.value).toBeGreaterThan(0);
     expect(JSON.stringify(first.input)).not.toMatch(/uid|nickname|display|%/i);
   });
@@ -112,21 +109,16 @@ describe('relic score player input normalization', () => {
       status: 'invalid',
       reason: 'MAIN_SUB_CONFLICT'
     });
-    expect(withBuild((build) => (build.avatarId = 'unknown'))).toMatchObject({
-      status: 'unavailable',
-      reason: 'SYNTHESIS_FAILED'
-    });
+    expect(withBuild((build) => (build.avatarId = 'unknown'))).toMatchObject({ status: 'valid' });
     const runtime = structuredClone(playerRuntimeData);
     const head = buildEnkaPlayerProfile(raw).canonical.characters[0].build.relics[0];
     const identity = runtime.relics[head.tid];
     const key = playerRuntimeKey(identity.subAffixGroup, head.subAffixes[0].affixId);
     (runtime.relicSubAffixes[key] as { propertyType: string }).propertyType = 'UnknownProperty';
     const build = structuredClone(buildEnkaPlayerProfile(raw).canonical.characters[0].build);
-    expect(
-      normalizePlayerBuildInput(synthesizePlayerCharacter(build, runtime), runtime)
-    ).toMatchObject({
-      status: 'unavailable',
-      reason: 'SYNTHESIS_FAILED'
+    expect(normalizeRatingV2Build(build, runtime)).toMatchObject({
+      status: 'invalid',
+      reason: 'INVALID_SUBSTAT'
     });
   });
 
@@ -169,31 +161,20 @@ describe('relic score player input normalization', () => {
     }
   });
 
-  it('accepts structurally parseable 5-star data without reconstructing enhancement history', () => {
-    for (const update of [
-      (build: CanonicalPlayerCharacterBuild) => (build.relics[0].subAffixes[0].cnt = 3),
-      (build: CanonicalPlayerCharacterBuild) => {
-        build.relics[0].subAffixes[0].cnt = 10;
-        build.relics[0].subAffixes[0].step = 100;
-      }
-    ]) {
-      const result = withBuild(update);
-      expect(result.status).toBe('valid');
-      if (result.status !== 'valid') continue;
+  it('retains exact counts and rejects steps outside the affix range', () => {
+    const result = withBuild((build) => (build.relics[0].subAffixes[0].cnt = 3));
+    expect(result.status).toBe('valid');
+    if (result.status === 'valid')
       expect(result.input.relics[0].substats[0].rollCount).toEqual({
         status: 'exact',
-        count: result.input.relics[0].substats[0].occurrenceCount,
+        count: 3,
         source: 'provider'
       });
-    }
-  });
-
-  it('does not turn missing synthesized panel values into zero', () => {
-    const character = structuredClone(buildEnkaPlayerProfile(raw).canonical.characters[0]);
-    delete character.values.spd;
-    expect(normalizePlayerBuildInput(character, playerRuntimeData)).toMatchObject({
-      status: 'unavailable',
-      reason: 'MISSING_PANEL_STAT'
-    });
+    expect(
+      withBuild((build) => {
+        build.relics[0].subAffixes[0].cnt = 10;
+        build.relics[0].subAffixes[0].step = 100;
+      })
+    ).toMatchObject({ status: 'invalid', reason: 'INVALID_STEP' });
   });
 });

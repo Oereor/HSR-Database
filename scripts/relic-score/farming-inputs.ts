@@ -6,11 +6,7 @@ import {
   compileProbabilityModel,
   type CompiledProbabilityModel
 } from '../../src/lib/relic-score/farming/probability-model.js';
-export {
-  benchmarkIdentityDigest,
-  probabilityModelDigest
-} from '../../src/lib/relic-score/benchmark/identity.js';
-export type { BenchmarkIdentityInput } from '../../src/lib/relic-score/benchmark/identity.js';
+export { probabilityModelDigest } from '../../src/lib/relic-score/benchmark/identity.js';
 import { generatedRoot, siteRoot } from '../data/paths.js';
 
 const modelPath = path.join(siteRoot, 'data/relic-score/probability-model.json');

@@ -1,5 +1,7 @@
 # Relic Score Phase 1A 归一化精简修复报告
 
+> 历史报告：V1 已退出生产；文中的旧命令、审批、阈值和产物仅作历史证据。当前规范与维护流程见 [V2 规范](relic-rating-v2.md)。
+
 > 日期：2026-09-23  
 > 分支：`develop`  
 > 范围：真实 Enka 遗器的 Production Player Input 归一化
