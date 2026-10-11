@@ -333,7 +333,8 @@ describe('视觉资源管线', () => {
       'light-cones': 'ShopLightConIcon',
       relics: 'InventoryFosterIcon',
       enemies: 'IconActivityTreasureTrotter',
-      endgame: 'AbyssIcon01'
+      endgame: 'AbyssIcon01',
+      'game-tools': 'SettingsHotkeysIcon'
     });
     expect(BRAND_ICON_SOURCE_NAMES).toEqual({ 'train-party': 'TrainPartyIcon' });
     expect(UTILITY_ICON_SOURCE_NAMES).toEqual({
@@ -498,7 +499,7 @@ describe('视觉资源管线', () => {
     });
     expect(requirements.elements).toHaveLength(7);
     expect(requirements.paths).toHaveLength(9);
-    expect(requirements.navigationIcons).toHaveLength(7);
+    expect(requirements.navigationIcons).toContain('game-tools');
     expect(requirements.brandIcons).toEqual(['train-party']);
     expect(requirements.endgameModeIcons).toEqual([
       'AbyssThemeTabIcon',

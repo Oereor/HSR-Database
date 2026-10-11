@@ -18,6 +18,7 @@ import { assertDataRoot, generatedRoot, resolveDataRoot, sourceCommit } from './
 import { ensureSearchDocuments, searchArtifactPaths } from './search-documents.js';
 import { getGeneratedLocales } from './locale-registry.js';
 import { syncData } from './sync.js';
+import { GAME_TOOL_ROUTES } from './routes.js';
 import { withProcessTelemetry } from '../deployment/telemetry.js';
 import { readTextMapWithDigest } from './source-metadata.js';
 import { readRatingV2PolicyInput, readRatingV2BenchmarkInput } from './relic-rating-v2.js';
@@ -40,7 +41,8 @@ export interface DataEnsureDependencies {
 }
 
 async function cacheValid(candidate: DataManifest | undefined): Promise<boolean> {
-  if (!candidate) return false;
+  if (!candidate || GAME_TOOL_ROUTES.some((route) => !candidate.routePaths.includes(route)))
+    return false;
   try {
     if (candidate.ratingV2PolicyInput.sha256 !== (await readRatingV2PolicyInput()).metadata.sha256)
       return false;

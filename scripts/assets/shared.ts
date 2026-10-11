@@ -78,7 +78,8 @@ export const NAVIGATION_ICON_SOURCE_NAMES: Readonly<Record<NavigationIconKey, st
   'light-cones': 'ShopLightConIcon',
   relics: 'InventoryFosterIcon',
   enemies: 'IconActivityTreasureTrotter',
-  endgame: 'AbyssIcon01'
+  endgame: 'AbyssIcon01',
+  'game-tools': 'SettingsHotkeysIcon'
 };
 
 export const BRAND_ICON_SOURCE_NAMES: Readonly<Record<BrandIconKey, string>> = {

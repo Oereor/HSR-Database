@@ -9,7 +9,8 @@ export const NAVIGATION_ICON_KEYS = [
   'light-cones',
   'relics',
   'enemies',
-  'endgame'
+  'endgame',
+  'game-tools'
 ] as const;
 export type NavigationIconKey = (typeof NAVIGATION_ICON_KEYS)[number];
 
@@ -56,6 +57,12 @@ export function getNavigationItems(locale?: Locale) {
       href: '/endgame',
       label: m.navigation_endgame({}, { locale }),
       iconKey: 'endgame'
+    },
+    {
+      id: 'game-tools',
+      href: '/game-tools',
+      label: m.navigation_game_tools({}, { locale }),
+      iconKey: 'game-tools'
     }
   ] as const;
 }

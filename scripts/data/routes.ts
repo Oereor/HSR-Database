@@ -3,6 +3,7 @@ import type { EndgameDatasetByMode } from '../../src/lib/domain/endgame.js';
 import { ENDGAME_MODES } from '../../src/lib/domain/endgame-view.js';
 
 export type GeneratedRoutes = DataManifest['routes'];
+export const GAME_TOOL_ROUTES = ['/game-tools', '/game-tools/action-planner'] as const;
 
 export interface GeneratedRouteInventory {
   routes: GeneratedRoutes;
@@ -20,6 +21,7 @@ export function buildGeneratedRouteInventory(
       '/',
       '/search',
       '/player',
+      ...GAME_TOOL_ROUTES,
       ...Object.entries(routes).flatMap(([category, ids]) => [
         `/${category}`,
         ...ids.map((id) => `/${category}/${id}`)

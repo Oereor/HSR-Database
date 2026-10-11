@@ -16,7 +16,8 @@ const requiredRoutes = {
   'light-cones': '/light-cones/',
   relics: '/relics/',
   enemies: '/enemies/',
-  endgame: '/endgame/'
+  endgame: '/endgame/',
+  'game-tools': '/game-tools/'
 } as const satisfies Partial<Record<NavigationId, string>>;
 
 describe('全局导航配置', () => {
@@ -57,5 +58,6 @@ describe('全局导航配置', () => {
     expect(isNavigationItemActive('/characters-extra/', item('characters'))).toBe(false);
     expect(isNavigationItemActive('/endgame/moc/1001', item('endgame'))).toBe(true);
     expect(isNavigationItemActive('/search', item('characters'))).toBe(false);
+    expect(isNavigationItemActive('/en/game-tools/action-planner/', item('game-tools'))).toBe(true);
   });
 });
