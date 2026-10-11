@@ -1,5 +1,7 @@
 # Enemy Skill Details V2 Phase 4：倍率候选迁移与技术债清理
 
+> 历史阶段记录：本文保留实施当时的模型、结论与验收，不是现行规范。当前契约以[权威架构](../architecture/localization-and-data-generation.md#ownership-rules)为准；后续倍率候选、UI 与清理报告是历史证据，见[专题入口](README.md#设计演进与实施证据)。
+
 实施日期：2026-09-30。网站 `develop`，实施前 HEAD `106c8f3`；只读上游 `TurnBasedGameData` `6b2bc17ebf46`。使用 Node 24.19.0、pnpm 11.9.0。历史 redesign、Phase 1–3、Phase 4A 报告均保留，Phase 4A 原有未跟踪文件未修改。
 
 ## 1. Summary

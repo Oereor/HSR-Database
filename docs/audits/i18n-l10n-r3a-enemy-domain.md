@@ -1,6 +1,6 @@
-# HISTORICAL / NON-NORMATIVE — see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md) for the current system.
-
 # R3A Enemy Semantic Domain + Locale Projection
+
+> 历史资料：本文保留原阶段的调查与实施结论，不是当前规范；当前系统以[权威架构](../architecture/localization-and-data-generation.md)为准。
 
 ## 1. Executive Summary
 
@@ -143,5 +143,3 @@ Enemy is now a stable locale-projection consumer for Endgame. R3B can migrate En
 ## 18. Recommendation for R3B
 
 Migrate Endgame structure and Search identity while keeping the current Enemy view and stable template/monster IDs as the join boundary.
-
-> HISTORICAL / NON-NORMATIVE — for the current architecture, see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md).

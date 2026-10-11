@@ -1,5 +1,7 @@
 # Apocalyptic Shadow Boss Traits Configuration Investigation
 
+> 历史资料：本文保留原阶段的结论、数据与验收记录，不是现行规范或待办清单。当前规范见[权威架构](../architecture/localization-and-data-generation.md)，操作入口见[开发指南](../development.md)。原路径：`docs/as-boss-traits-config-investigation.md`。
+
 ## Summary
 
 Apocalyptic Shadow's localized boss guidance is an encounter-slot relation. The

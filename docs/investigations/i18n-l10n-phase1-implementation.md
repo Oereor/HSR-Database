@@ -1,6 +1,6 @@
-# HISTORICAL / NON-NORMATIVE — see [Localization and Data Generation Architecture](architecture/localization-and-data-generation.md) for the current system.
-
 # i18n/l10n 第一阶段实施报告
+
+> 历史资料：本文保留原阶段的结论、数据与验收记录，不是现行规范或待办清单。当前规范见[权威架构](../architecture/localization-and-data-generation.md)，操作入口见[开发指南](../development.md)。原路径：`docs/i18n-l10n-phase1-implementation.md`。
 
 实施日期：2026-09-05。网站仓库 `develop`，基线 commit `3e713d1a096134374c80271f9c36b3258a1c9fa0`。
 
@@ -14,7 +14,7 @@
 
 游戏名称、技能、描述、游戏定义术语继续使用 TextMap。领域详情、多数全局搜索／Endgame 页面文案、页脚归属说明和日志正文留给后续。没有英文数据、语言切换、locale store、路由本地化、Endgame identity migration 或 core/overlay 拆分。
 
-维护流程见 [Site UI Messages](site-ui-messages.md)。原 UI inventory 增加迁移状态／说明列；其历史字面量计数和行号保持审计原貌，不表示当前重新扫描计数。AGENTS.md 同步了本阶段仅允许中文消息编译的边界。
+维护流程见 [Site UI Messages](../site-ui-messages.md)。原 UI inventory 增加迁移状态／说明列；其历史字面量计数和行号保持审计原貌，不表示当前重新扫描计数。AGENTS.md 同步了本阶段仅允许中文消息编译的边界。
 
 ## 中文契约
 
@@ -103,5 +103,3 @@ contract 仍为 968 artifacts、173 buckets、8,167 locators。未发现 hydrati
 - `data/search/character-player-aliases.json`：`09f600fa13d6108b4c95628d5c13fb0a3f62a8bf9492d7b82d630bec533b51e7`
 
 TurnBasedGameData pin：`8cdb905dc2f8e6fffa9be4eb07af3e34435d6091`；StarRailRes pin：`d226befe3db13f2ec15f4161d5f34b1b607643fe`。最终状态复核后记录在此。
-
-> HISTORICAL / NON-NORMATIVE — for the current architecture, see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md).

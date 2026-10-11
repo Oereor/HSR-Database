@@ -130,7 +130,9 @@ FinalBuildScore = 100 × (0.95×N + 0.05×SetIntegrity)
 
 ### 3.1 文件、schema、loader 与合并顺序
 
-真实配置是 [profile-overrides.json](../../data/relic-score/profile-overrides.json)，不是记忆中的 `character-profile-override.json`。与 [profile-templates.json](../../data/relic-score/profile-templates.json) 共同使用，没有额外的角色继承树。
+真实配置是 `data/relic-score/profile-overrides.json`，不是记忆中的 `character-profile-override.json`。与 `data/relic-score/profile-templates.json` 共同使用，没有额外的角色继承树。
+
+> 历史路径说明：以上两份 V1 配置已在 V2 切换中删除，保留路径以记录本次调查证据；当前输入见 [V2 Profile 维护](profile-maintenance.md)，不能将 V1 模板视为 V2 配置。
 
 类型在 `scripts/relic-score/profiles.ts`：
 

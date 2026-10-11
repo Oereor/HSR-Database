@@ -1,5 +1,7 @@
 # Vercel Deployment Dependency Audit
 
+> 历史资料：本文保留原阶段的结论、数据与验收记录，不是现行规范或待办清单。当前规范见[权威架构](../architecture/localization-and-data-generation.md)，操作入口见[开发指南](../development.md)。原路径：`docs/vercel-deployment-dependency-audit.md`。
+
 调查日期：2026-09-02（本地 checkout）  
 范围：只读调查 `HSR-Database`、`TurnBasedGameData`、`StarRailRes`；未修改业务代码、package.json、pipeline 或上游仓库。
 

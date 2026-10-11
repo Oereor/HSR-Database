@@ -1,5 +1,7 @@
 # Enemy 数据模型审计报告
 
+> 历史资料：本文保留原阶段的结论、数据与验收记录，不是现行规范或待办清单。当前规范见[权威架构](../architecture/localization-and-data-generation.md)，操作入口见[开发指南](../development.md)。原路径：`docs/enemy-data-model-audit.md`。
+
 审计对象：`MonsterTemplateConfig` / `MonsterConfig` / Enemy Detail 生成链
 
 上游数据提交：`648b08fbdb2e49739ebbf1210c9a189fcfc5e2d7`（简体中文）

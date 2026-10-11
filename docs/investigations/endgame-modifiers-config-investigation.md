@@ -1,5 +1,7 @@
 # Endgame Buff / Debuff / Modifier Config Investigation
 
+> 历史资料：本文保留原阶段的结论、数据与验收记录，不是现行规范或待办清单。当前规范见[权威架构](../architecture/localization-and-data-generation.md)，操作入口见[开发指南](../development.md)。原路径：`docs/endgame-modifiers-config-investigation.md`。
+
 - 调查日期：2026-08-22
 - 网站仓库提交：`4b4be93a0e6e287b8be71e7708b886fa2e2dfd49`
 - 权威结构化数据：`../TurnBasedGameData`，提交 `648b08fbdb2e49739ebbf1210c9a189fcfc5e2d7`

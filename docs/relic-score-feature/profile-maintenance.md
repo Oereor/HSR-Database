@@ -8,7 +8,7 @@
 
 1. 准备锁定上游，修改有明确批准依据的稀疏配置。
 2. 运行 pnpm data:sync、pnpm relic-score:v2:profiles:generate、pnpm relic-score:v2:review。
-3. 检查逐角色异常、原始 missing 与 override 证据；pnpm relic-score:v2:validate 必须 98 ready、0 blocker。
+3. 检查逐角色异常、原始 missing 与 override 证据；pnpm relic-score:v2:validate 后核对当前来源的全部 Profile ready、0 blocker。98 是现有 pin 的数量，不是未来上游更新的固定门槛。
 4. 比较最终副权重 digest。仅主偏好改变不使副分布失效，但产物 provenance 和 manifest 仍必须一致。
 5. 副映射或采样 identity 变动时运行正式 Benchmark 生成；通过所有门禁后运行 data:ensure 绑定新产物，再完成检查和构建。
 

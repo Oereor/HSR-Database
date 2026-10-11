@@ -1,5 +1,7 @@
 # TurnBasedGameData 数据与视觉资源审计
 
+> 历史资料：本文保留原阶段的结论、数据与验收记录，不是现行规范或待办清单。当前规范见[权威架构](../architecture/localization-and-data-generation.md)，操作入口见[开发指南](../development.md)。原路径：`docs/data-audit.md`。
+
 ## 来源与边界
 
 - 上游路径通过 `HSR_DATA_ROOT` 配置，默认 `../TurnBasedGameData`；脚本只读，不创建、克隆或修改上游。

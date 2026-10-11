@@ -1,5 +1,7 @@
 # Avatar equipment recommendation config investigation
 
+> 历史资料：本文保留原阶段的结论、数据与验收记录，不是现行规范或待办清单。当前规范见[权威架构](../architecture/localization-and-data-generation.md)，操作入口见[开发指南](../development.md)。原路径：`docs/avatar-equipment-recommendation-config-investigation.md`。
+
 调查日期：2026-08-24  
 权威数据源：`../TurnBasedGameData`  
 上游提交：`648b08fbdb2e49739ebbf1210c9a189fcfc5e2d7`  

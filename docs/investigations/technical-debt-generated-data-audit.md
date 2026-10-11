@@ -1,5 +1,7 @@
 # Technical Debt / Generated Data Audit
 
+> 文档现址说明：正文中的 `docs/refactor-status.md` 是调查时路径，现移至[重构历史](refactor-status.md)。
+
 ## 1. Executive Summary
 
 2026-09-04，按 `Maintenance/Maintenance-08-Cleanup.md` 执行。范围为网站仓库，未实现 i18n、未改搜索语义、未修改两个 sibling upstream、未提交或部署线上版本。

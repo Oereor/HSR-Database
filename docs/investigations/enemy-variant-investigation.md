@@ -1,5 +1,7 @@
 # Enemy Variant Investigation
 
+> 历史资料：本文保留原阶段的结论、数据与验收记录，不是现行规范或待办清单。当前规范见[权威架构](../architecture/localization-and-data-generation.md)，操作入口见[开发指南](../development.md)。原路径：`docs/enemy-variant-investigation.md`。
+
 ## 1. Goal
 
 本调查回答一个尚未进入 production 实现的问题：两个具体 enemy record 是否属于同一个面向用户的 Enemy Family / Variant。调查不创建 `EnemyFamily`，不修改 URL、搜索、总览、Endgame 映射、avatar 或代表选择。

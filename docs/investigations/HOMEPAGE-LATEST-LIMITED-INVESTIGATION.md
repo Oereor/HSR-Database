@@ -1,5 +1,7 @@
 # Homepage Latest Limited Investigation
 
+> 历史资料：本文保留原阶段的结论、数据与验收记录，不是现行规范或待办清单。当前规范见[权威架构](../architecture/localization-and-data-generation.md)，操作入口见[开发指南](../development.md)。原路径：`docs/HOMEPAGE-LATEST-LIMITED-INVESTIGATION.md`。
+
 本调查仅分析本地配置关系，不修改 production code。调查基线：
 
 - `TurnBasedGameData`: `014e33e2404f8cd668bf06fc2ea6db53b6bc3992`

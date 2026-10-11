@@ -1,6 +1,6 @@
-# HISTORICAL / NON-NORMATIVE — see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md) for the current system.
-
 # R1 Target Architecture Spine
+
+> 历史资料：本文保留原阶段的调查与实施结论，不是当前规范；当前系统以[权威架构](../architecture/localization-and-data-generation.md)为准。
 
 ## 1. Executive Summary
 
@@ -99,5 +99,3 @@ The generated root tree no longer contains Light Cone/Relic duplicate product fi
 ## 14. Recommendation for R2
 
 Keep Character semantically frozen and use the R0 baseline while simplifying its domain graph and persisted artifact authority. Do not enable English or begin Enemy/Endgame migration until the next identity and compatibility contracts are separately ratified.
-
-> HISTORICAL / NON-NORMATIVE — for the current architecture, see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md).

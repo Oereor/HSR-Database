@@ -1,5 +1,7 @@
 # Vercel Enemy Asset Regression
 
+> 历史资料：本文保留原阶段的结论、数据与验收记录，不是现行规范或待办清单。当前规范见[权威架构](../architecture/localization-and-data-generation.md)，操作入口见[开发指南](../development.md)。原路径：`docs/vercel-enemy-assets-regression.md`。
+
 ## Root Cause
 
 Nanoka enemy downloader 的唯一入口是 `pnpm assets:sync:enemies`。普通 `predev` / `prebuild`、StarRailRes `assets:ensure` 和 Phase 02 的 `deploy:build` 都不会调用它。
