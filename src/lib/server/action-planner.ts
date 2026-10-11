@@ -1,9 +1,11 @@
-import { getCatalog, getDetail } from './generated';
+import { getCatalog, getDetail, getCharacterSearch } from './generated';
+import type { SearchDocumentBundle } from '$lib/search/documents';
 import type { CatalogEntry } from '$lib/domain/types';
 import type { SearchLocale } from '$lib/domain/search-index';
 import type { PlannerCharacterOption } from '$lib/action-planner/types';
 
 interface PlannerSource {
+  search?(locale: SearchLocale): Promise<SearchDocumentBundle>;
   catalog(
     locale: SearchLocale,
     category: 'characters' | 'relics' | 'light-cones'
@@ -18,13 +20,19 @@ interface PlannerSource {
 /** Server-only projection: no raw detail or full equipment catalog enters page data. */
 export async function loadPlannerData(
   locale: SearchLocale,
-  source: PlannerSource = { catalog: getCatalog, detail: getDetail }
+  source: PlannerSource = { catalog: getCatalog, detail: getDetail, search: getCharacterSearch }
 ) {
-  const [catalog, relics, lightCones] = await Promise.all([
+  const [catalog, relics, lightCones, search] = await Promise.all([
     source.catalog(locale, 'characters'),
     source.catalog(locale, 'relics'),
-    source.catalog(locale, 'light-cones')
+    source.catalog(locale, 'light-cones'),
+    source.search?.(locale)
   ]);
+  const names = new Map(
+    search?.documents
+      .filter((doc) => doc.target.kind === 'character')
+      .map((doc) => [doc.target.id, doc])
+  );
   const characters: PlannerCharacterOption[] = await Promise.all(
     catalog.map(async (entry) => {
       let baseSpeed: number | undefined;
@@ -40,6 +48,8 @@ export async function loadPlannerData(
         id: entry.id,
         name: entry.name,
         avatarId: entry.id,
+        officialAliases: names.get(entry.id)?.officialAliases ?? [],
+        playerAliases: names.get(entry.id)?.playerAliases ?? [],
         ...(baseSpeed === undefined ? {} : { baseSpeed })
       };
     })

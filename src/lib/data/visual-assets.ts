@@ -11,6 +11,7 @@ import type { NavigationIconKey } from '$lib/navigation';
 
 const manifest = manifestJson as VisualAssetManifest;
 const sets = {
+  characterIcon: new Set(manifest.characters.icons.available),
   materialIcon: new Set(manifest.materials.icons.available),
   preview: new Set(manifest.characters.previews.available),
   portrait: new Set(manifest.characters.portraits.available),
@@ -55,6 +56,23 @@ export function resolveMaterialIconAsset(
     source === manifest ? sets.materialIcon : undefined
   );
 }
+
+export function resolveCharacterIconAsset(
+  characterId: string,
+  source: VisualAssetManifest = manifest
+): string | undefined {
+  if (!/^[1-9]\d*$/.test(characterId)) return undefined;
+  return resolveAsset(
+    characterId,
+    source.characters.icons,
+    'characters/icons',
+    'png',
+    source === manifest ? sets.characterIcon : undefined
+  );
+}
+
+export const getCharacterIconUrl = (id: string): string | undefined =>
+  resolveCharacterIconAsset(id);
 
 export function resolveCharacterPreviewAsset(
   characterId: string,

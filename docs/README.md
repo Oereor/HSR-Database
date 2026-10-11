@@ -28,6 +28,10 @@
 
 [排轴模拟器 Phase 1](investigations/action-planner-phase1-2026-10-11.md) 记录单波次工具的数据投影、排序与 Buff 模型、交互和本地验收结果。
 
+[角色选择器优化](investigations/action-planner-character-selector-2026-10-11.md) 记录独立槽位、头像 Grid、轻量角色搜索、速度初始化规则及后续 UI 验收。
+
+[行动序列卡片优化](investigations/action-planner-action-cards-2026-10-11.md) 记录共享卡片、两种 AV 展示语义、稳定锚点交互及本地验收。
+
 搜索和部署的旧测量分别汇集于[搜索实施历史](investigations/search-v2-implementation-history.md)与[部署基础历史](investigations/vercel-deployment-foundation-history.md)。
 遗器评分与敌人技能历史留在各自专题目录；[战斗模拟可行性](combat-simulation/)和[贪饕机制调查](voracity-effect/)保留独立主题，不代表完整模拟器已实现。
 

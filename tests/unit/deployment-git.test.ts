@@ -9,6 +9,11 @@ import {
   type GitCommandRunner
 } from '../../scripts/deployment/git';
 import { readRaw } from '../../scripts/data/raw';
+import { starRailSparsePaths } from '../../scripts/deployment/prepare';
+
+it('prepares square character icons for deployment builds', () => {
+  expect(starRailSparsePaths).toContain('icon/character/');
+});
 
 const pin = {
   repository: 'https://github.com/DimbreathBot/TurnBasedGameData.git',

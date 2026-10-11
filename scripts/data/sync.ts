@@ -49,6 +49,7 @@ import { collectEndgameSearchTargets } from '../../src/lib/domain/search-index.j
 import { deriveCharacterNames } from './character-names.js';
 import {
   buildSearchDocuments,
+  characterSearchDocuments,
   loadPlayerAliases,
   type SearchBuildInputs
 } from './search-documents.js';
@@ -949,6 +950,12 @@ export async function syncData(): Promise<DataManifest> {
       projection.globalSearchIndex,
       { locale: projectedLocale },
       `static/generated/${projectedLocale}/search.json`
+    );
+    await writeArtifact(
+      nextGeneratedRoot,
+      `views/${projectedLocale}/character-search.json`,
+      characterSearchDocuments(projection.globalSearchIndex),
+      { locale: projectedLocale }
     );
     await writeArtifact(
       nextStaticGeneratedRoot,

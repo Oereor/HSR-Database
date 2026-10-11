@@ -18,6 +18,8 @@
 中文与英文分别构建各自名称及 search bundle，使用匹配语言的 TextMap；人工 player aliases 仅用于 `zh-CN`。
 同名不同 ID 不合并；别名只参与检索，卡片展示正式名称。实体数量随 pin 变化，不写入维护规则。
 
+行动序列模拟器使用独立的 `views/{locale}/character-search.json`，由同一 SearchDocument builder 投影角色文档。页面只接收角色名称及别名，不加载全局索引或高难分片；选择器直接复用名称规范化、匹配证据和排序函数。`data:ensure` 同时维护全局与角色搜索产物，人工别名变化不需要重建领域数据。缺少角色搜索产物的旧缓存会重新生成。
+
 Endgame 搜索目标以稳定 `MonsterTemplateID` 标识，同一目标关联具体 mode、赛期、关卡、波次与 Monster occurrence locators。
 目标显示名称由本语言 Enemy 投影提供，身份不依赖文本 hash 或名称桶；缺少必要名称会报错，不悄悄删除出场记录。
 

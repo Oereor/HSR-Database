@@ -107,4 +107,6 @@ export interface PlannerCharacterOption {
   name: string;
   baseSpeed?: number;
   avatarId: string;
+  officialAliases: string[];
+  playerAliases: string[];
 }

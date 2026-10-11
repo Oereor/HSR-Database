@@ -115,7 +115,24 @@ export async function ensureData(dependencies: DataEnsureDependencies = {}): Pro
   const resolveSource = dependencies.resolveSource ?? resolveAvailableSource;
   const cacheMatchesSource = dependencies.cacheMatchesSource ?? cacheMatchesAvailableSource;
   const sync = dependencies.sync ?? syncData;
-  const ensureSearch = dependencies.ensureSearch ?? ensureSearchDocuments;
+  const ensureSearch =
+    dependencies.ensureSearch ??
+    (async (commit: string) => {
+      let changed = false;
+      for (const { locale } of getGeneratedLocales()) {
+        const paths = searchArtifactPaths(locale);
+        const updated = await ensureSearchDocuments(
+          commit,
+          {
+            ...paths,
+            aliases: path.resolve('data/search/character-player-aliases.json')
+          },
+          locale
+        );
+        changed = updated || changed;
+      }
+      return changed;
+    });
   const refreshMetadata = dependencies.refreshMetadata ?? refreshArtifactMetadata;
   const validateArtifacts = dependencies.validateArtifacts ?? validateGeneratedArtifacts;
 
@@ -167,7 +184,10 @@ export async function ensureData(dependencies: DataEnsureDependencies = {}): Pro
 
   if (!manifest) throw new Error('生成数据不可用');
   if (await ensureSearch(manifest.sourceCommit)) {
-    manifest = await refreshMetadata(manifest, 'static/generated/zh-CN/search.json');
+    for (const { locale } of getGeneratedLocales()) {
+      manifest = await refreshMetadata(manifest, `static/generated/${locale}/search.json`);
+      manifest = await refreshMetadata(manifest, `views/${locale}/character-search.json`);
+    }
     validated = false;
     cacheResult = 'miss';
     cacheReason = `${cacheReason}+search-artifact-refreshed`;

@@ -1,36 +1,43 @@
 <script lang="ts">
-  import AssetImage from '$lib/components/shared/AssetImage.svelte';
+  import { tick } from 'svelte';
+  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
+  import CharacterSlot from './CharacterSlot.svelte';
+  import CharacterSelector from './CharacterSelector.svelte';
+  import {
+    configuredAllies,
+    selectSlotCharacter,
+    type CharacterSlotDraft
+  } from '$lib/action-planner/character-selection';
+  import ActionCard from './ActionCard.svelte';
+  import { futureActionCard, queueActionCard } from '$lib/action-planner/presentation';
   import EffectEditor from './EffectEditor.svelte';
   import { m } from '$lib/paraglide/messages.js';
   import type { Locale } from '$lib/paraglide/runtime.js';
   import { localizedHref } from '$lib/i18n/routing';
-  import { resolveCharacterPreviewAsset } from '$lib/data/visual-assets';
+  import { getCharacterIconUrl } from '$lib/data/visual-assets';
   import { anchorKey, DEFAULT_LIMITS, HARD_LIMITS, simulatePlan } from '$lib/action-planner/engine';
   import type {
     DiagnosticCode,
     EffectOperation,
     EventAnchor,
     PlanEvent,
-    PlannerCharacterOption,
-    UnitConfig
+    PlannerCharacterOption
   } from '$lib/action-planner/types';
 
   export let locale: Locale;
   export let characters: PlannerCharacterOption[];
   export let presets: { vonwacq?: string; eagle?: string; dance?: string };
 
-  interface UnitDraft {
-    id: string;
-    characterId: string;
-    name: string;
-    baseSpeed?: number;
-    panelSpeed?: number;
-  }
   let serial = 0;
   const nextId = () => `planner-${++serial}`;
-  const emptySlot = (): UnitDraft => ({ id: nextId(), characterId: '', name: '' });
-  let allies: UnitDraft[] = Array.from({ length: 4 }, emptySlot);
-  let enemies: UnitDraft[] = [];
+  const emptySlot = (): CharacterSlotDraft => ({ id: nextId(), characterId: '', name: '' });
+  let allies: CharacterSlotDraft[] = Array.from({ length: 4 }, emptySlot);
+  let selectorSlot: number | undefined;
+  let focusSlot = 0;
+  let slotComponents: CharacterSlot[] = [];
+  $: occupiedIds = allies
+    .filter((_, index) => index !== selectorSlot)
+    .map((slot) => slot.characterId);
   let events: PlanEvent[] = [];
   let maxActions: number | undefined = DEFAULT_LIMITS.maxActions;
   let maxAV: number | undefined = DEFAULT_LIMITS.maxAV;
@@ -38,7 +45,7 @@
   let queueStep = 0;
   let selectedAnchor: EventAnchor = { kind: 'start' };
 
-  $: units = configuredUnits(allies, enemies);
+  $: units = configuredAllies(allies);
   $: result = simulatePlan({ units, events, maxActions: maxActions ?? NaN, maxAV: maxAV ?? NaN });
   $: selectedKey = anchorKey(selectedAnchor);
   $: selectedOperations =
@@ -55,40 +62,22 @@
       !result.records.some((record) => anchorKey(record.anchor) === anchorKey(event.anchor))
   );
 
-  function configuredUnits(allyDrafts: UnitDraft[], enemyDrafts: UnitDraft[]): UnitConfig[] {
-    return [
-      ...allyDrafts.flatMap((draft, position) =>
-        draft.characterId
-          ? [
-              {
-                id: draft.id,
-                name: draft.name || m.planner_manual({}, { locale }),
-                camp: 'ally' as const,
-                position,
-                baseSpeed: draft.baseSpeed ?? NaN,
-                panelSpeed: draft.panelSpeed ?? NaN
-              }
-            ]
-          : []
-      ),
-      ...enemyDrafts.map((draft, position) => ({
-        id: draft.id,
-        name: draft.name || m.planner_enemies({}, { locale }),
-        camp: 'enemy' as const,
-        position,
-        baseSpeed: draft.panelSpeed ?? NaN,
-        panelSpeed: draft.panelSpeed ?? NaN
-      }))
-    ];
-  }
-  function selectCharacter(index: number) {
-    const draft = allies[index];
-    const option = characters.find((character) => character.id === draft.characterId);
-    allies = allies.map((old, i) =>
-      i === index
-        ? { ...old, id: nextId(), name: option?.name ?? '', baseSpeed: option?.baseSpeed }
-        : old
+  function selectCharacter(character: PlannerCharacterOption) {
+    if (selectorSlot === undefined || occupiedIds.includes(character.id)) return;
+    const index = selectorSlot;
+    allies = allies.map((slot, i) =>
+      i === index ? selectSlotCharacter(slot, character, nextId) : slot
     );
+    selectorSlot = undefined;
+  }
+  async function restoreSlotFocus() {
+    await tick();
+    slotComponents[focusSlot]?.focusTrigger();
+  }
+  async function removeCharacter(index: number) {
+    allies = allies.map((slot, i) => (i === index ? emptySlot() : slot));
+    focusSlot = index;
+    await restoreSlotFocus();
   }
   function unitName(id: string) {
     return units.find((unit) => unit.id === id)?.name ?? m.planner_unknown_unit({ id }, { locale });
@@ -101,7 +90,10 @@
   function avatar(id: string) {
     const draft = allies.find((unit) => unit.id === id);
     const character = characters.find((option) => option.id === draft?.characterId);
-    return character ? resolveCharacterPreviewAsset(character.avatarId) : undefined;
+    return character ? getCharacterIconUrl(character.avatarId) : undefined;
+  }
+  function operationsAt(anchor: EventAnchor, source: PlanEvent[]) {
+    return source.find((event) => anchorKey(event.anchor) === anchorKey(anchor))?.operations ?? [];
   }
   function updateOperations(operations: EffectOperation[]) {
     const old = events.find((event) => anchorKey(event.anchor) === selectedKey);
@@ -115,14 +107,9 @@
     queueStep = index;
     selectedAnchor = index > 0 ? result.records[index - 1].anchor : { kind: 'start' };
   }
-  function moveEnemy(index: number, delta: number) {
-    const next = [...enemies];
-    [next[index], next[index + delta]] = [next[index + delta], next[index]];
-    enemies = next;
-  }
   function reset() {
     allies = Array.from({ length: 4 }, emptySlot);
-    enemies = [];
+    selectorSlot = undefined;
     events = [];
     maxActions = DEFAULT_LIMITS.maxActions;
     maxAV = DEFAULT_LIMITS.maxAV;
@@ -155,6 +142,19 @@
   }
 </script>
 
+<CharacterSelector
+  {locale}
+  {characters}
+  open={selectorSlot !== undefined}
+  selectedId={selectorSlot === undefined ? '' : allies[selectorSlot].characterId}
+  {occupiedIds}
+  onSelect={selectCharacter}
+  onRequestClose={() => {
+    selectorSlot = undefined;
+  }}
+  onClosed={restoreSlotFocus}
+/>
+
 <div class="planner" data-testid="action-planner">
   <header class="planner-heading">
     <div>
@@ -170,121 +170,25 @@
   </header>
   <div class="workspace">
     <aside class="configuration" aria-label={m.planner_allies({}, { locale })}>
-      <section class="config-section">
-        <h2>{m.planner_allies({}, { locale })}</h2>
+      <section class="team-section">
+        <SectionHeading level={2}>{m.planner_allies({}, { locale })}</SectionHeading>
+        <div class="team-slots">
+          {#each allies as unit, index (index)}
+            <CharacterSlot
+              bind:this={slotComponents[index]}
+              bind:slot={allies[index]}
+              {locale}
+              position={index}
+              character={characters.find((character) => character.id === unit.characterId)}
+              onOpen={() => {
+                focusSlot = index;
+                selectorSlot = index;
+              }}
+              onRemove={() => removeCharacter(index)}
+            />
+          {/each}
+        </div>
         <p class="helper">{m.planner_speed_note({}, { locale })}</p>
-        {#each allies as unit, index}
-          <div class="unit-row" data-testid="ally-slot" data-unit-id={unit.id}>
-            <div class="unit-heading">
-              <span class="slot-number">0{index + 1}</span>
-              <div class="avatar">
-                <AssetImage
-                  src={avatar(unit.id)}
-                  alt={unit.name || m.planner_slot({ position: index + 1 }, { locale })}
-                />
-              </div>
-              <label
-                >{m.planner_character({}, { locale })}<select
-                  bind:value={unit.characterId}
-                  on:change={() => selectCharacter(index)}
-                  data-testid="character-select"
-                >
-                  <option value="">{m.planner_empty_slot({}, { locale })}</option><option
-                    value="manual">{m.planner_manual({}, { locale })}</option
-                  >
-                  {#each characters as character}<option value={character.id}
-                      >{character.name}</option
-                    >{/each}
-                </select></label
-              >
-            </div>
-            {#if unit.characterId}
-              {#if unit.characterId === 'manual'}<label
-                  >{m.planner_name({}, { locale })}<input
-                    bind:value={unit.name}
-                    data-testid="unit-name"
-                  /></label
-                >{/if}
-              <div class="speed-fields">
-                <label
-                  >{m.planner_base_speed({}, { locale })}<input
-                    type="number"
-                    min="0"
-                    step="any"
-                    bind:value={unit.baseSpeed}
-                    data-testid="base-speed"
-                  /></label
-                >
-                <label
-                  >{m.planner_panel_speed({}, { locale })}<input
-                    type="number"
-                    min="0"
-                    step="any"
-                    bind:value={unit.panelSpeed}
-                    data-testid="panel-speed"
-                  /></label
-                >
-              </div>
-              {#if unit.characterId !== 'manual' && !characters.find((character) => character.id === unit.characterId)?.baseSpeed}<p
-                  class="helper"
-                >
-                  {m.planner_missing_speed({}, { locale })}
-                </p>{/if}
-            {/if}
-          </div>
-        {/each}
-      </section>
-      <section class="config-section">
-        <h2>{m.planner_enemies({}, { locale })}</h2>
-        {#each enemies as unit, index (unit.id)}
-          <div class="unit-row" data-testid="enemy-slot">
-            <div class="speed-fields">
-              <label
-                >{m.planner_name({}, { locale })}<input
-                  bind:value={unit.name}
-                  data-testid="enemy-name"
-                /></label
-              >
-              <label
-                >{m.planner_speed({}, { locale })}<input
-                  type="number"
-                  min="0"
-                  step="any"
-                  bind:value={unit.panelSpeed}
-                  data-testid="enemy-speed"
-                /></label
-              >
-            </div>
-            <div class="button-row">
-              <button
-                type="button"
-                disabled={index === 0}
-                aria-label={m.planner_up({}, { locale })}
-                on:click={() => moveEnemy(index, -1)}>↑</button
-              >
-              <button
-                type="button"
-                disabled={index === enemies.length - 1}
-                aria-label={m.planner_down({}, { locale })}
-                on:click={() => moveEnemy(index, 1)}>↓</button
-              >
-              <button
-                type="button"
-                on:click={() => {
-                  enemies = enemies.filter((old) => old.id !== unit.id);
-                }}>{m.planner_remove({}, { locale })}</button
-              >
-            </div>
-          </div>
-        {/each}
-        <button
-          type="button"
-          data-testid="add-enemy"
-          disabled={enemies.length >= 4}
-          on:click={() => {
-            enemies = [...enemies, { ...emptySlot(), characterId: 'manual' }];
-          }}>{m.planner_add_enemy({}, { locale })}</button
-        >
       </section>
       <section class="config-section">
         <h2>{m.planner_limits({}, { locale })}</h2>
@@ -363,70 +267,31 @@
         <div class="sequence">
           {#if view === 'predict'}
             <div class="action-list" data-testid="action-list">
-              <button
-                type="button"
-                class="action-row system-row"
-                class:selected={selectedKey === 'start'}
-                data-testid="start-node"
-                on:click={() => {
+              <ActionCard
+                {locale}
+                card={{
+                  kind: 'system',
+                  anchor: { kind: 'start' },
+                  name: m.planner_start({}, { locale }),
+                  elapsedAV: 0
+                }}
+                operations={operationsAt({ kind: 'start' }, events)}
+                selected={selectedKey === 'start'}
+                onSelect={() => {
                   selectedAnchor = { kind: 'start' };
                 }}
-              >
-                <span class="slot-number">0</span><span class="system-icon" aria-hidden="true"
-                  >✦</span
-                ><span class="action-name"
-                  ><strong>{m.planner_start({}, { locale })}</strong><small
-                    >{m.planner_effect_count(
-                      {
-                        count:
-                          events.find((event) => event.anchor.kind === 'start')?.operations
-                            .length ?? 0
-                      },
-                      { locale }
-                    )}</small
-                  ></span
-                ><span class="av-value">0<small>AV</small></span>
-              </button>
-              {#each result.records as record, index (anchorKey(record.anchor))}
-                <button
-                  type="button"
-                  class="action-row"
-                  class:selected={selectedKey === anchorKey(record.anchor)}
-                  data-testid="action-node"
-                  data-unit-id={record.anchor.unitId}
-                  data-turn={record.anchor.turn}
-                  data-total-av={record.elapsedAV}
-                  data-delta-av={record.deltaAV}
-                  on:click={() => {
+              />
+              {#each result.records as record (anchorKey(record.anchor))}
+                <ActionCard
+                  {locale}
+                  card={futureActionCard(record, unitName(record.anchor.unitId))}
+                  avatar={avatar(record.anchor.unitId)}
+                  operations={operationsAt(record.anchor, events)}
+                  selected={selectedKey === anchorKey(record.anchor)}
+                  onSelect={() => {
                     selectedAnchor = record.anchor;
                   }}
-                >
-                  <span class="slot-number">{index + 1}</span><span class="avatar"
-                    ><AssetImage src={avatar(record.anchor.unitId)} alt="" /></span
-                  >
-                  <span class="action-name"
-                    ><strong>{unitName(record.anchor.unitId)}</strong><small
-                      >{m.planner_turn({ turn: record.anchor.turn }, { locale })} · {format(
-                        record.effectiveSpeed
-                      )} SPD</small
-                    ><small
-                      >{m.planner_effect_count(
-                        {
-                          count:
-                            events.find(
-                              (event) => anchorKey(event.anchor) === anchorKey(record.anchor)
-                            )?.operations.length ?? 0
-                        },
-                        { locale }
-                      )}</small
-                    ></span
-                  >
-                  <span class="av-value"
-                    >{format(record.elapsedAV)}<small>{m.planner_total_av({}, { locale })}</small
-                    ><small>+{format(record.deltaAV)} {m.planner_delta_av({}, { locale })}</small
-                    ></span
-                  >
-                </button>
+                />
               {/each}
             </div>
           {:else}
@@ -456,44 +321,18 @@
                 )} AV
               </p>
               <div class="queue-list" data-testid="queue-list">
-                {#each snapshot.queue as entry, index (entry.unitId)}
-                  <div
-                    class="queue-row"
-                    data-testid="queue-unit"
-                    data-unit-id={entry.unitId}
-                    data-remaining-av={entry.remainingAV}
-                  >
-                    <span class="slot-number">{index + 1}</span><span class="avatar"
-                      ><AssetImage src={avatar(entry.unitId)} alt="" /></span
-                    >
-                    <div class="action-name">
-                      <strong>{entry.name}</strong><small
-                        >{m.planner_turn({ turn: entry.turn }, { locale })} · {format(
-                          entry.effectiveSpeed
-                        )} SPD</small
-                      >
-                      {#if entry.modifiers.length}<details>
-                          <summary
-                            >{m.planner_effect_count(
-                              { count: entry.modifiers.length },
-                              { locale }
-                            )}</summary
-                          >{#each entry.modifiers as buff}<small
-                              >{buff.amount > 0 ? '+' : ''}{buff.amount}{buff.mode === 'percent'
-                                ? '%'
-                                : ' SPD'} · {m.planner_remaining_turns(
-                                { turns: buff.remainingTurns },
-                                { locale }
-                              )}<br />{buff.id}</small
-                            >{/each}
-                        </details>{/if}
-                    </div>
-                    <span class="av-value"
-                      >{format(entry.remainingAV)}<small
-                        >{m.planner_remaining_av({}, { locale })}</small
-                      ></span
-                    >
-                  </div>
+                {#each snapshot.queue as entry (entry.unitId)}
+                  {@const card = queueActionCard(entry)}
+                  <ActionCard
+                    {locale}
+                    {card}
+                    avatar={avatar(entry.unitId)}
+                    operations={operationsAt(card.anchor, events)}
+                    selected={selectedKey === anchorKey(card.anchor)}
+                    onSelect={() => {
+                      selectedAnchor = card.anchor;
+                    }}
+                  />
                 {/each}
               </div>
             {/if}
@@ -581,17 +420,14 @@
   .sequence {
     min-width: 0;
   }
-  .configuration {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card);
-    background: var(--surface);
-    padding: var(--space-4);
+  .team-slots {
+    display: grid;
+    gap: var(--space-3);
   }
-  .config-section + .config-section {
+  .configuration .config-section {
     margin-top: var(--space-6);
-    padding-top: var(--space-4);
-    border-top: 1px solid var(--border);
   }
+
   h2 {
     font-size: var(--font-major-title);
     margin: 0 0 var(--space-3);
@@ -607,7 +443,6 @@
     min-width: 0;
   }
   input,
-  select,
   button {
     border: 1px solid var(--border);
     border-radius: var(--radius-control);
@@ -616,8 +451,7 @@
     background: var(--surface-2);
     min-width: 0;
   }
-  input,
-  select {
+  input {
     width: 100%;
   }
   button {
@@ -639,43 +473,12 @@
     font-size: var(--font-helper);
     line-height: 1.65;
   }
-  .unit-row {
-    padding: var(--space-4) 0;
-    border-top: 1px solid var(--border);
-  }
-  .unit-heading {
-    display: grid;
-    grid-template-columns: 1.25rem 2.25rem minmax(0, 1fr);
-    align-items: center;
-    gap: var(--space-2);
-    margin-bottom: var(--space-3);
-  }
-  .slot-number {
-    color: var(--text-muted);
-    font-size: var(--font-helper);
-  }
-  .avatar {
-    width: 2.25rem;
-    height: 2.25rem;
-    border-radius: 50%;
-    overflow: hidden;
-    background: var(--surface-3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .avatar :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
   .speed-fields {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-3);
     margin-top: var(--space-3);
   }
-  .button-row,
   .queue-controls {
     display: flex;
     gap: var(--space-2);
@@ -707,60 +510,11 @@
   }
   .action-list,
   .queue-list {
-    max-height: 48rem;
-    overflow-y: auto;
-  }
-  .action-row,
-  .queue-row {
     display: grid;
-    grid-template-columns: 1.25rem 2.25rem minmax(0, 1fr) auto;
-    align-items: center;
     gap: var(--space-2);
-    width: 100%;
-    padding: var(--space-3) var(--space-2);
-    border-radius: 0;
-    border: 0;
-    border-bottom: 1px solid var(--border);
-    background: transparent;
-    text-align: left;
-  }
-  .action-row.selected {
-    background: var(--surface-2);
-    box-shadow: inset 2px 0 var(--gold);
-  }
-  .action-row:hover {
-    background: var(--surface);
-  }
-  .system-icon {
-    width: 2.25rem;
-    text-align: center;
-    color: var(--gold);
-    font-size: 1.5rem;
-  }
-  .action-name {
-    min-width: 0;
-    overflow-wrap: anywhere;
-  }
-  .action-name strong {
-    font-size: var(--font-meta-value);
-  }
-  .action-name small,
-  .av-value small {
-    display: block;
-    color: var(--text-secondary);
-    font-size: 0.7rem;
-    line-height: 1.7;
-    font-weight: normal;
-  }
-  .av-value {
-    text-align: right;
-    color: var(--gold-soft);
-    font-variant-numeric: tabular-nums;
-    font-size: var(--font-meta-value);
-  }
-  .action-name details {
-    font-size: var(--font-helper);
-    color: var(--text-secondary);
+    max-height: 48rem;
+    padding: 2px;
+    overflow-y: auto;
   }
   .editor-panel {
     border-left: 1px solid var(--border);

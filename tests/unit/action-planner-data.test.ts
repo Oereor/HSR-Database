@@ -9,7 +9,14 @@ describe('action planner projection', () => {
       zh.characters.map(({ id, baseSpeed, avatarId }) => ({ id, baseSpeed, avatarId }))
     ).toEqual(en.characters.map(({ id, baseSpeed, avatarId }) => ({ id, baseSpeed, avatarId })));
     for (const character of [...zh.characters, ...en.characters]) {
-      expect(Object.keys(character).sort()).toEqual(['avatarId', 'baseSpeed', 'id', 'name']);
+      expect(Object.keys(character).sort()).toEqual([
+        'avatarId',
+        'baseSpeed',
+        'id',
+        'name',
+        'officialAliases',
+        'playerAliases'
+      ]);
       expect(character.baseSpeed).toBeGreaterThan(0);
     }
     expect(zh.presets).not.toEqual(en.presets);
@@ -34,7 +41,7 @@ describe('action planner projection', () => {
       }
     });
     expect(result.characters.map((entry) => Object.keys(entry).sort())).toEqual(
-      Array(3).fill(['avatarId', 'id', 'name'])
+      Array(3).fill(['avatarId', 'id', 'name', 'officialAliases', 'playerAliases'])
     );
     expect(requested.every((locale) => locale === 'en')).toBe(true);
     expect(Object.values(result.presets).every((value) => value === undefined)).toBe(true);

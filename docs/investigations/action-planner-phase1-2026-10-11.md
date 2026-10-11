@@ -2,6 +2,8 @@
 
 日期：2026-10-11。本文记录本轮本地实现及其验收结果，后续维护以实际代码和现行架构规范为准。
 
+后续[角色选择器优化](action-planner-character-selector-2026-10-11.md)已替换本报告中的编队 UI：移除手动友方／敌人配置入口，并调整为选择角色时初始化两项速度。以下仍保留 Phase 1 原始交付语境。
+
 ## 交付范围与访问
 
 已实现「游戏工具 / Game Tools」导航、工具目录和排轴模拟器。中文路由为 `/game-tools/`、`/game-tools/action-planner/`；英文对应 `/en/game-tools/`、`/en/game-tools/action-planner/`，均遵循尾斜杠约定。
