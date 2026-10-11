@@ -35,8 +35,9 @@
 <div class="homepage">
   <section class="home-hero" aria-labelledby="home-title">
     <div class="home-hero__identity">
-      <h1 id="home-title">{name}</h1>
-      <p>{m.home_tagline()}</p>
+      <p class="home-hero__eyebrow">{m.home_hero_eyebrow()}</p>
+      <h1 id="home-title" class="home-hero__title">{m.home_hero_title()}</h1>
+      <p class="home-hero__tagline">{m.home_tagline()}</p>
     </div>
 
     <div class="home-hero__collage" aria-hidden="true">
@@ -152,25 +153,44 @@
   .home-hero__identity {
     position: relative;
     z-index: 5;
-    width: 100%;
+    display: grid;
+    width: min(45%, 36rem);
+    gap: 0.625rem;
     padding: var(--space-12) 0;
   }
 
-  .home-hero h1 {
+  .home-hero__eyebrow,
+  .home-hero__title,
+  .home-hero__tagline {
     margin: 0;
-    font-size: var(--font-hero-home-title);
-    font-weight: var(--font-hero-title-weight);
-    line-height: 1.08;
-    letter-spacing: -0.05em;
-    white-space: nowrap;
   }
 
-  .home-hero__identity p {
-    margin: var(--space-4) 0 0;
+  .home-hero__eyebrow {
     color: var(--gold);
-    font-size: clamp(0.72rem, 1.2vw, 0.92rem);
-    font-weight: 750;
-    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.14em;
+  }
+
+  .home-hero__title {
+    color: var(--text-primary);
+    font-size: var(--font-hero-home-title);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: normal;
+  }
+
+  .home-hero__title:lang(en) {
+    letter-spacing: -0.02em;
+  }
+
+  .home-hero__tagline {
+    color: var(--text-secondary);
+    font-size: clamp(0.875rem, 1.1vw, 0.9375rem);
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: normal;
   }
 
   .home-hero__collage {
@@ -349,11 +369,9 @@
     }
 
     .home-hero__identity {
+      width: 100%;
+      max-width: 36rem;
       padding: var(--space-8) 0 var(--space-4);
-    }
-
-    .home-hero h1 {
-      white-space: normal;
     }
 
     .home-hero__collage {
@@ -381,12 +399,8 @@
   }
 
   @media (max-width: 520px) {
-    .home-hero h1 {
+    .home-hero__title {
       font-size: var(--font-hero-home-title-mobile);
-    }
-
-    .home-hero__identity p {
-      letter-spacing: 0.13em;
     }
 
     .home-hero__collage {
