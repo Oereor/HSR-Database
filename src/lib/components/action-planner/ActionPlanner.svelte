@@ -10,7 +10,7 @@
   } from '$lib/action-planner/character-selection';
   import ActionCard from './ActionCard.svelte';
   import { futureActionCard, queueActionCard } from '$lib/action-planner/presentation';
-  import EffectEditor from './EffectEditor.svelte';
+  import Inspector from './Inspector.svelte';
   import { m } from '$lib/paraglide/messages.js';
   import type { Locale } from '$lib/paraglide/runtime.js';
   import { localizedHref } from '$lib/i18n/routing';
@@ -89,7 +89,7 @@
   function unitName(id: string) {
     return (
       result.participants.find((participant) => participant.id === id)?.name ??
-      m.planner_unknown_unit({ id }, { locale })
+      m.planner_removed_unit({}, { locale })
     );
   }
   function anchorName(anchor: EventAnchor) {
@@ -380,19 +380,14 @@
           aria-label={anchorName(selectedAnchor)}
         >
           <h2>{anchorName(selectedAnchor)}</h2>
-          <p class="helper">
-            {m.planner_effect_count({ count: selectedOperations.length }, { locale })}
-          </p>
           {#if selectedRecord}<p class="helper">
               {format(selectedRecord.elapsedAV)}
               {m.planner_total_av({}, { locale })}
             </p>{/if}
-          {#key selectedKey}<EffectEditor
+          {#key selectedKey}<Inspector
               {locale}
               anchor={selectedAnchor}
               operations={selectedOperations}
-              participants={selectedRecord?.beforeEffects.participants ??
-                (selectedAnchor.kind === 'start' ? actors : (snapshot?.queue ?? actors))}
               catalog={result.participants}
               context={selectedRecord?.beforeEffects ??
                 (selectedAnchor.kind === 'start' ? result.startState : undefined)}

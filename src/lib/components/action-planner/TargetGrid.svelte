@@ -1,5 +1,5 @@
 <script lang="ts">
-  import AssetImage from '$lib/components/shared/AssetImage.svelte';
+  import ParticipantIcon from './ParticipantIcon.svelte';
   import type { ParticipantInfo } from '$lib/action-planner/types';
   export let participants: ParticipantInfo[];
   export let disabledIds: string[] = [];
@@ -21,7 +21,12 @@
       data-unit-id={unit.id}
       on:click={() => onToggle(unit.id)}
     >
-      <span class="avatar"><AssetImage src={unit.iconUrl ?? avatar(unit.id)} alt="" /></span>
+      <span class="avatar"
+        ><ParticipantIcon
+          src={unit.iconUrl ?? avatar(unit.id)}
+          event={unit.kind === 'scheduledEvent'}
+        /></span
+      >
       <span class="name">{unit.name}</span>
     </button>
   {/each}

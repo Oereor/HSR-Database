@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render } from 'svelte/server';
 import CompactEntityCard from '../../src/lib/components/shared/CompactEntityCard.svelte';
-import EffectEditor from '../../src/lib/components/action-planner/EffectEditor.svelte';
+import PresetSection from '../../src/lib/components/action-planner/PresetSection.svelte';
 import EquipmentRecommendationSection from '../../src/lib/components/character/EquipmentRecommendationSection.svelte';
 
 // Synthetic site copy verifies locale routing without pinning mutable production text.
@@ -90,18 +90,17 @@ describe('preset panel projection', () => {
   ];
   const props = {
     anchor: { kind: 'start' as const },
-    operations: [],
     participants: units,
     avatar: () => undefined,
     presets: { vonwacq: 'synthetic vonwacq', eagle: 'synthetic eagle', dance: 'synthetic dance' },
-    onChange: vi.fn(),
-    nextId: () => 'new'
+    selectedPreset: undefined,
+    onSelect: vi.fn()
   };
 
   it.each(['zh-CN', 'en'] as const)(
     'renders two-level preset buttons and explicit %s copy',
     (locale) => {
-      const body = render(EffectEditor, { props: { ...props, locale } }).body;
+      const body = render(PresetSection, { props: { ...props, locale } }).body;
       const expected = {
         vonwacq: '/generated-assets/relics/icons/308.png',
         eagle: '/generated-assets/relics/icons/110.png',
@@ -119,16 +118,16 @@ describe('preset panel projection', () => {
         expect(card).not.toMatch(/disabled|rarity-stars|__tertiary|__arrow|href=/);
       }
       expect(body).not.toContain('preset-superimposition');
-      expect(props.onChange).not.toHaveBeenCalled();
+      expect(props.onSelect).not.toHaveBeenCalled();
     }
   );
 
   it('retains the start-node restriction and disables presets without targets', () => {
-    const action = render(EffectEditor, {
+    const action = render(PresetSection, {
       props: { ...props, locale: 'en', anchor: { kind: 'action', participantId: 'unit', turn: 1 } }
     }).body;
     expect(action).toMatch(/<button[^>]*data-testid="preset-vonwacq"[^>]*disabled/);
-    const empty = render(EffectEditor, {
+    const empty = render(PresetSection, {
       props: { ...props, locale: 'en', participants: [] }
     }).body;
     for (const kind of ['vonwacq', 'eagle', 'dance'])

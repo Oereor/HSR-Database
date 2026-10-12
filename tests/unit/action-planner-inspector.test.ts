@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render } from 'svelte/server';
-import EffectEditor from '../../src/lib/components/action-planner/EffectEditor.svelte';
+import Inspector from '../../src/lib/components/action-planner/Inspector.svelte';
 import ActionCard from '../../src/lib/components/action-planner/ActionCard.svelte';
 import { anchorKey, simulatePlan, spawnedParticipantId } from '../../src/lib/action-planner/engine';
 import { futureActionCard } from '../../src/lib/action-planner/presentation';
@@ -14,7 +14,7 @@ const callbacks = {
 };
 
 describe('dynamic participant Inspector projections', () => {
-  it('renders a selectable trigger and one operation window, with creation configuration read-only', () => {
+  it('renders a selectable trigger and one operation window, with editable creation configuration', () => {
     const id = spawnedParticipantId('timer');
     const plan: SimulationPlan = {
       actors: [],
@@ -60,20 +60,21 @@ describe('dynamic participant Inspector projections', () => {
     expect(card).toContain(`data-anchor="${anchorKey(record.anchor)}"`);
     expect(card).not.toContain('data-turn=');
     expect(card).toContain('Synthetic timer');
-    const editor = render(EffectEditor, {
+    const editor = render(Inspector, {
       props: {
         ...callbacks,
         anchor: record.anchor,
         operations: plan.events[1].operations,
         context: record.beforeEffects,
-        participants: record.beforeEffects.participants,
         catalog: result.participants
       }
     }).body;
     expect(editor).toContain('data-phase-group="system"');
     expect(editor).not.toContain('data-phase-group="preAction"');
     expect(editor).not.toContain('data-phase-group="postAction"');
-    expect(editor).toMatch(/<button[^>]*data-testid="edit-effect"[^>]*disabled/);
+    expect(editor).not.toMatch(/<button[^>]*data-testid="edit-effect"[^>]*disabled/);
+    expect(editor).toContain('role="tablist"');
+    expect(editor).toContain('aria-controls="inspector-participant-panel"');
     expect(editor).toContain('data-testid="move-effect-up"');
     expect(editor).toContain('data-testid="delete-effect"');
     expect(callbacks.onChange).not.toHaveBeenCalled();
@@ -116,12 +117,11 @@ describe('dynamic participant Inspector projections', () => {
       ]
     };
     const result = simulatePlan(plan);
-    const body = render(EffectEditor, {
+    const body = render(Inspector, {
       props: {
         ...callbacks,
         anchor: { kind: 'start' },
         operations: plan.events[0].operations,
-        participants: plan.actors,
         context: result.startState,
         catalog: result.participants
       }
@@ -134,5 +134,26 @@ describe('dynamic participant Inspector projections', () => {
     expect(before).not.toContain('title="Synthetic created"');
     expect(after).toContain('title="Synthetic existing"');
     expect(after).toContain('title="Synthetic created"');
+  });
+  it('keeps unavailable anchors editable without inventing runtime targets from the catalog', () => {
+    const operation = {
+      id: 'orphan-effect',
+      type: 'advance' as const,
+      target: { kind: 'allies' as const },
+      percent: 50,
+      phase: 'preAction' as const
+    };
+    const body = render(Inspector, {
+      props: {
+        ...callbacks,
+        anchor: { kind: 'action', participantId: 'removed', turn: 2 },
+        operations: [operation],
+        catalog: [{ id: 'future', kind: 'actor', name: 'Synthetic future', camp: 'ally' }]
+      }
+    }).body;
+    expect(body).not.toContain('data-testid="preset-target"');
+    expect(body).not.toContain('title="Synthetic future"');
+    expect(body).toContain('data-operation-id="orphan-effect"');
+    expect(callbacks.onChange).not.toHaveBeenCalled();
   });
 });

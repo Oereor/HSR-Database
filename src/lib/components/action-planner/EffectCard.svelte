@@ -1,5 +1,5 @@
 <script lang="ts">
-  import AssetImage from '$lib/components/shared/AssetImage.svelte';
+  import ParticipantIcon from './ParticipantIcon.svelte';
   import { m } from '$lib/paraglide/messages.js';
   import type { Locale } from '$lib/paraglide/runtime.js';
   import type { EffectOperation, ParticipantInfo } from '$lib/action-planner/types';
@@ -21,16 +21,16 @@
     operation.type === 'spawnParticipant'
       ? [spawnedParticipantId(operation.id)]
       : targetIds(operation.target, participants);
-  $: editable =
-    operation.type !== 'spawnParticipant' &&
-    !(operation.type === 'addSpeedModifier' && operation.duration.kind === 'countdown');
+  $: editable = !(operation.type === 'addSpeedModifier' && operation.duration.kind === 'countdown');
   function format(value: number) {
     return new Intl.NumberFormat(locale, { maximumFractionDigits: 3 }).format(value);
   }
   function operationTitle(op: EffectOperation) {
     switch (op.type) {
       case 'spawnParticipant':
-        return m.planner_spawn_participant({}, { locale });
+        return op.participant.kind === 'actor'
+          ? m.planner_create_actor({}, { locale })
+          : m.planner_create_event({}, { locale });
       case 'advance':
         return m.planner_advance({}, { locale });
       case 'delay':
@@ -45,7 +45,7 @@
   }
   function operationParameter(op: EffectOperation) {
     if (op.type === 'spawnParticipant')
-      return `${op.participant.name} · ${format(op.participant.kind === 'actor' ? op.participant.panelSpeed : op.participant.speed)} SPD`;
+      return `${op.participant.name} · ${format(op.participant.kind === 'actor' ? op.participant.panelSpeed : op.participant.speed)} SPD · ${op.participant.kind === 'scheduledEvent' ? m.planner_once({}, { locale }) : op.participant.actionLimit == null ? m.planner_unlimited_actions({}, { locale }) : m.planner_action_limit_summary({ count: op.participant.actionLimit }, { locale })}`;
     if (op.type === 'advance' || op.type === 'delay')
       return m.planner_gauge_summary({ percent: format(op.percent) }, { locale });
     if (op.type === 'immediatelyAct') return m.planner_card_immediate({}, { locale });
@@ -88,13 +88,16 @@
         {#each ids as id (id)}
           <span
             class="avatar"
+            role="img"
+            aria-label={catalog.find((unit) => unit.id === id)?.name ??
+              m.planner_missing_target({}, { locale })}
             title={catalog.find((unit) => unit.id === id)?.name ??
               m.planner_missing_target({}, { locale })}
           >
-            <AssetImage
+            <ParticipantIcon
               src={catalog.find((participant) => participant.id === id)?.iconUrl ?? avatar(id)}
-              alt={catalog.find((unit) => unit.id === id)?.name ??
-                m.planner_missing_target({}, { locale })}
+              event={catalog.find((participant) => participant.id === id)?.kind ===
+                'scheduledEvent'}
             />
           </span>
         {/each}

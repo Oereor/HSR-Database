@@ -1,5 +1,5 @@
 <script lang="ts">
-  import AssetImage from '$lib/components/shared/AssetImage.svelte';
+  import ParticipantIcon from './ParticipantIcon.svelte';
   import { summarizeEffects, type ActionCardData } from '$lib/action-planner/presentation';
   import { anchorKey } from '$lib/action-planner/engine';
   import type { EffectOperation } from '$lib/action-planner/types';
@@ -30,7 +30,12 @@
   }
 </script>
 
-<div class="action-card" class:selected class:system={card.kind === 'system'}>
+<div
+  class="action-card"
+  class:selected
+  class:system={card.kind === 'system'}
+  class:scheduled={card.anchor.kind === 'trigger'}
+>
   <button
     type="button"
     class="card-main"
@@ -51,7 +56,12 @@
     {#if card.kind === 'system'}
       <span class="system-icon" aria-hidden="true">✦</span>
     {:else}
-      <span class="avatar" aria-hidden="true"><AssetImage src={avatar} alt="" /></span>
+      <span class="avatar" aria-hidden="true"
+        ><ParticipantIcon
+          src={card.iconUrl ?? avatar}
+          event={card.anchor.kind === 'trigger'}
+        /></span
+      >
     {/if}
     <span class="identity">
       <strong>{card.name}</strong>
@@ -120,7 +130,6 @@
                     { locale }
                   )}</span
           >
-          <small>{buff.id}</small>
         </div>
       {/each}
     </details>
@@ -135,6 +144,9 @@
     background: var(--surface);
     overflow: clip;
     container-type: inline-size;
+  }
+  .action-card.scheduled {
+    border-style: dashed;
   }
   .action-card.selected {
     border-color: var(--gold);

@@ -24,6 +24,7 @@ async function configure(page: Page, path = '/game-tools/action-planner/') {
 
 async function chooseType(page: Page, value: string) {
   const editor = page.getByTestId('event-editor');
+  await editor.getByTestId('inspector-tab-effect').click();
   if (!(await editor.getByTestId('effect-form').isVisible()))
     await editor.getByTestId('add-effect').click();
   await editor.locator(`[data-testid="effect-type"][data-value="${value}"]`).click();
@@ -248,7 +249,7 @@ test('missing square icons remain selectable without loading global search', asy
   await option.click();
   await expect(page.getByTestId('action-node').first()).toBeVisible();
   await expect(
-    page.getByTestId('action-node').first().locator('[data-image-fallback]')
+    page.getByTestId('action-node').first().getByTestId('participant-icon-fallback')
   ).toBeVisible();
   await expect(
     page.getByTestId('ally-slot').first().locator('[data-image-fallback]')
@@ -393,8 +394,17 @@ test('queue anchors beyond the budget remain editable without fabricated preview
   const editor = page.getByTestId('event-editor');
   if (!(await editor.getByTestId('effect-form').isVisible()))
     await editor.getByTestId('add-effect').click();
+  await expect(editor.getByTestId('effect-target')).toHaveCount(0);
   await editor.getByTestId('targets-all').click();
   await editor.getByTestId('submit-effect').click();
+  await expect(editor.locator('#effect-target-error')).toBeVisible();
+  await expect(editor.locator('[data-operation-id]')).toHaveCount(0);
+  // Increasing the budget supplies a real before-effects state for this same anchor.
+  await page.getByTestId('max-actions').fill('2');
+  await expect(editor.getByTestId('effect-target')).toHaveCount(2);
+  await editor.getByTestId('targets-all').click();
+  await editor.getByTestId('submit-effect').click();
+  await page.getByTestId('max-actions').fill('1');
   await expect(page.getByTestId('unreached-events')).toBeVisible();
   await expect(page.locator(`[data-testid="queue-unit"][data-anchor="${anchor}"]`)).toHaveAttribute(
     'aria-pressed',
@@ -604,3 +614,151 @@ for (const locale of ['zh-CN', 'en'] as const) {
     expect(errors).toEqual([]);
   });
 }
+
+async function createParticipant(
+  page: Page,
+  name: string,
+  kind: 'actor' | 'scheduledEvent' = 'actor',
+  speed = '60'
+) {
+  const editor = page.getByTestId('event-editor');
+  await editor.getByTestId('inspector-tab-participant').click();
+  if (!(await editor.getByTestId('participant-form').isVisible()))
+    await editor.getByTestId('add-participant').click();
+  await editor.locator(`[data-testid="participant-kind"][data-value="${kind}"]`).click();
+  await editor.getByTestId('participant-name').fill(name);
+  if (kind === 'actor') {
+    await editor.getByTestId('participant-base-speed').fill(speed);
+    await editor.getByTestId('participant-panel-speed').fill(speed);
+    await editor.locator('[data-testid="participant-category"][data-value="summon"]').click();
+  } else await editor.getByTestId('participant-speed').fill(speed);
+  await editor.getByTestId('submit-participant').click();
+  return editor.locator('[data-operation-id]').last().getAttribute('data-operation-id');
+}
+
+test('custom actor editing preserves anchors, finite actions and unreachable follow-up configuration', async ({
+  page
+}) => {
+  await configure(page);
+  const editor = page.getByTestId('event-editor');
+  const operationId = await createParticipant(page, 'Synthetic summon');
+  const createdNode = page
+    .getByTestId('action-node')
+    .filter({ hasText: 'Synthetic summon' })
+    .first();
+  const participantId = await createdNode.getAttribute('data-unit-id');
+  await createdNode.click();
+  await chooseType(page, 'advance');
+  await editor.getByTestId('targets-clear').click();
+  await editor.locator(`[data-testid="effect-target"][data-unit-id="${participantId}"]`).click();
+  await editor.locator('[data-testid="effect-phase"][data-value="postAction"]').click();
+  await editor.getByTestId('effect-percent').fill('50');
+  await editor.getByTestId('submit-effect').click();
+  await page.getByTestId('start-node').click();
+  const creation = editor.locator(`[data-operation-id="${operationId}"]`);
+  await creation.getByTestId('edit-effect').click();
+  for (const kind of await editor.getByTestId('participant-kind').all())
+    await expect(kind).toBeDisabled();
+  await editor.getByTestId('participant-panel-speed').fill('80');
+  await expect(editor.getByTestId('participant-base-speed')).toHaveValue('60');
+  await editor.getByTestId('participant-action-limit').fill('3');
+  await editor.getByTestId('submit-participant').click();
+  const nodes = page.locator(`[data-testid="action-node"][data-unit-id="${participantId}"]`);
+  await expect(nodes).toHaveCount(3);
+  await expect(nodes.first()).toHaveAttribute('data-total-av', '125');
+  await expect(page.getByTestId('unreached-events')).toHaveCount(0);
+  await nodes.first().click();
+  await expect(editor.locator('[data-operation-id]')).toHaveCount(1);
+  await page.getByTestId('start-node').click();
+  await creation.getByTestId('edit-effect').click();
+  await editor.getByTestId('participant-panel-speed').fill('200');
+  await editor.getByTestId('cancel-participant').click();
+  await expect(nodes.first()).toHaveAttribute('data-total-av', '125');
+  await creation.getByTestId('delete-effect').click();
+  await expect(nodes).toHaveCount(0);
+  await expect(page.getByTestId('unreached-events')).toBeVisible();
+  await page.getByTestId('unreached-events').locator('.text-button').click();
+  await expect(editor.locator('[data-operation-id]')).toHaveCount(1);
+  await editor.getByTestId('edit-effect').click();
+  await expect(editor.getByTestId('effect-target')).toHaveCount(0);
+});
+
+test('scheduled event triggers once and can make an existing actor act immediately in either view', async ({
+  page
+}) => {
+  await configure(page, '/en/game-tools/action-planner/');
+  const editor = page.getByTestId('event-editor');
+  const actorId = await page.getByTestId('action-node').first().getAttribute('data-unit-id');
+  await createParticipant(page, 'Synthetic countdown', 'scheduledEvent', '90');
+  const trigger = page.getByTestId('action-node').filter({ hasText: 'Synthetic countdown' });
+  await expect(trigger).toHaveCount(1);
+  await expect(trigger).not.toHaveAttribute('data-turn');
+  expect(Number(await trigger.getAttribute('data-total-av'))).toBeCloseTo(10000 / 90);
+  await trigger.click();
+  const eventId = await trigger.getAttribute('data-unit-id');
+  await chooseType(page, 'immediatelyAct');
+  await expect(editor.getByTestId('effect-phase')).toHaveCount(0);
+  await editor.getByTestId('targets-clear').click();
+  await expect(
+    editor.locator(`[data-testid="effect-target"][data-unit-id="${eventId}"]`)
+  ).toHaveCount(0);
+  await editor.locator(`[data-testid="effect-target"][data-unit-id="${actorId}"]`).click();
+  await editor.getByTestId('submit-effect').click();
+  const following = trigger
+    .locator(
+      'xpath=ancestor::div[contains(@class,"action-card")]/following-sibling::div[contains(@class,"action-card")]'
+    )
+    .first()
+    .getByTestId('action-node');
+  await expect(following).toHaveAttribute('data-unit-id', actorId!);
+  await expect(following).toHaveAttribute('data-delta-av', '0');
+  await page.getByTestId('view-queue').click();
+  const pending = page.getByTestId('queue-unit').filter({ hasText: 'Synthetic countdown' });
+  await pending.click();
+  await expect(editor.locator('[data-operation-id]')).toHaveCount(1);
+  await expect(editor.getByTestId('effect-phase')).toHaveCount(0);
+});
+
+test('tabs retain separate drafts, validate participants and expose only targets created before the effect', async ({
+  page
+}) => {
+  await configure(page);
+  const editor = page.getByTestId('event-editor');
+  await chooseType(page, 'advance');
+  await editor.getByTestId('effect-percent').fill('37');
+  await editor.getByTestId('inspector-tab-effect').focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(editor.getByTestId('inspector-tab-participant')).toBeFocused();
+  await editor.getByTestId('participant-name').fill('Synthetic draft');
+  await editor.getByTestId('participant-panel-speed').fill('0');
+  await editor.getByTestId('submit-participant').click();
+  await expect(editor.getByTestId('participant-panel-speed')).toHaveAttribute(
+    'aria-invalid',
+    'true'
+  );
+  await expect(editor.locator('[data-operation-id]')).toHaveCount(0);
+  await editor.getByTestId('inspector-tab-participant').focus();
+  await page.keyboard.press('Home');
+  await expect(editor.getByTestId('effect-percent')).toHaveValue('37');
+  await page.keyboard.press('End');
+  await expect(editor.getByTestId('participant-name')).toHaveValue('Synthetic draft');
+  await editor.getByTestId('participant-panel-speed').fill('100');
+  await editor.getByTestId('submit-participant').click();
+  const node = page.getByTestId('action-node').filter({ hasText: 'Synthetic draft' }).first();
+  const id = await node.getAttribute('data-unit-id');
+  await editor.getByTestId('inspector-tab-effect').click();
+  await editor.getByTestId('targets-clear').click();
+  await editor.locator(`[data-testid="effect-target"][data-unit-id="${id}"]`).click();
+  await editor.getByTestId('submit-effect').click();
+  const effectId = await editor
+    .locator('[data-operation-id]')
+    .last()
+    .getAttribute('data-operation-id');
+  const effect = editor.locator(`[data-operation-id="${effectId}"]`);
+  await effect.getByTestId('move-effect-up').click();
+  await effect.getByTestId('edit-effect').click();
+  await expect(editor.locator(`[data-testid="effect-target"][data-unit-id="${id}"]`)).toHaveCount(
+    0
+  );
+  await expect(page.locator('[data-code="missing-target"]')).toBeVisible();
+});

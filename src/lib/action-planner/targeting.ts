@@ -1,4 +1,4 @@
-import type { ParticipantInfo, Target, TargetedOperation } from './types';
+import type { ParticipantInfo, SimulationState, Target, TargetedOperation } from './types';
 
 export function targetIds(target: Target, participants: readonly ParticipantInfo[]): string[] {
   return target.kind === 'participants'
@@ -34,5 +34,14 @@ export function selectableTargets(
       ),
       candidate
     ])
+  );
+}
+
+/** A triggering event remains in state for diagnostics, but has left the targetable queue. */
+export function operationTargets(state: SimulationState | undefined): ParticipantInfo[] {
+  return (
+    state?.participants.filter(
+      (participant) => participant.kind === 'actor' || participant.id !== state.activeParticipantId
+    ) ?? []
   );
 }

@@ -34,6 +34,8 @@
 
 [动态参与者架构与基础重构](investigations/action-planner-dynamic-participants-architecture.md) 记录统一队列、动态实例与生命周期、速度倒计时、测试清理和 Inspector 迁移边界。
 
+[Inspector 与动态参与者创建](investigations/action-planner-inspector-participant-creation.md) 记录 Phase 3A 的双 Tab、统一操作列表、创建与编辑闭环、目标时点、文案清理和本地验证边界。
+
 搜索和部署的旧测量分别汇集于[搜索实施历史](investigations/search-v2-implementation-history.md)与[部署基础历史](investigations/vercel-deployment-foundation-history.md)。
 遗器评分与敌人技能历史留在各自专题目录；[战斗模拟可行性](combat-simulation/)和[贪饕机制调查](voracity-effect/)保留独立主题，不代表完整模拟器已实现。
 
