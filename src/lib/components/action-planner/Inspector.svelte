@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { ParticipantLabels } from '$lib/action-planner/presentation';
   import { tick } from 'svelte';
   import { m } from '$lib/paraglide/messages.js';
   import type { Locale } from '$lib/paraglide/runtime.js';
@@ -12,6 +13,7 @@
   import OperationList from './OperationList.svelte';
   import EffectForm from './EffectForm.svelte';
   import ParticipantForm from './ParticipantForm.svelte';
+  export let labels: ParticipantLabels = new Map();
   export let locale: Locale;
   export let anchor: EventAnchor;
   export let operations: EffectOperation[];
@@ -60,6 +62,7 @@
 <div class="inspector">
   <OperationList
     {locale}
+    {labels}
     {anchor}
     {operations}
     {catalog}
@@ -110,6 +113,7 @@
     <EffectForm
       bind:this={effectForm}
       {locale}
+      {labels}
       {anchor}
       {operations}
       {context}

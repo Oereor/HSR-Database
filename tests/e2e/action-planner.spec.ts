@@ -762,3 +762,183 @@ test('tabs retain separate drafts, validate participants and expose only targets
   );
   await expect(page.locator('[data-code="missing-target"]')).toBeVisible();
 });
+
+async function countdownSpeedEffect(page: Page, name: string, speed = '70', amount = '60') {
+  await chooseType(page, 'addSpeedModifier');
+  const editor = page.getByTestId('event-editor');
+  await editor.locator('[data-testid="speed-mode"][data-value="flat"]').click();
+  await editor.getByTestId('effect-amount').fill(amount);
+  await editor.locator('[data-testid="speed-duration-mode"][data-value="countdown"]').focus();
+  await page.keyboard.press('Space');
+  await expect(editor.getByTestId('effect-turns')).toHaveCount(0);
+  await editor.getByTestId('effect-countdown-name').fill(name);
+  await editor.getByTestId('effect-countdown-speed').fill(speed);
+}
+
+test('countdown speed draft validation, expiry delay and stable trigger edits', async ({
+  page
+}) => {
+  const slots = await configure(page);
+  await slots.nth(0).getByTestId('panel-speed').fill('100');
+  const actorId = await slots.nth(0).getAttribute('data-unit-id');
+  const editor = page.getByTestId('event-editor');
+  await countdownSpeedEffect(page, 'Synthetic combustion');
+  await editor.getByTestId('targets-clear').click();
+  await editor.locator(`[data-testid="effect-target"][data-unit-id="${actorId}"]`).click();
+  await editor.getByTestId('effect-countdown-name').fill(' ');
+  await editor.getByTestId('effect-countdown-speed').fill('0');
+  await editor.getByTestId('submit-effect').click();
+  await expect(editor.getByTestId('effect-countdown-name')).toHaveAttribute('aria-invalid', 'true');
+  await expect(editor.getByTestId('effect-countdown-speed')).toHaveAttribute(
+    'aria-invalid',
+    'true'
+  );
+  await expect(editor.locator('[data-operation-id]')).toHaveCount(0);
+  await editor.getByTestId('effect-countdown-name').fill('Synthetic combustion');
+  await editor.getByTestId('effect-countdown-speed').fill('70');
+  await editor.locator('[data-testid="speed-duration-mode"][data-value="turns"]').click();
+  await editor.getByTestId('effect-turns').fill('3');
+  await editor.locator('[data-testid="speed-duration-mode"][data-value="countdown"]').click();
+  await expect(editor.getByTestId('effect-countdown-name')).toHaveValue('Synthetic combustion');
+  await editor.getByTestId('submit-effect').click();
+  const sourceId = await editor
+    .locator('[data-operation-id]')
+    .last()
+    .getAttribute('data-operation-id');
+  const countdown = page.getByTestId('action-node').filter({ hasText: 'Synthetic combustion' });
+  const countdownId = await countdown.getAttribute('data-unit-id');
+  const baseline = Number(await countdown.getAttribute('data-total-av'));
+  await expect(countdown).toHaveCount(1);
+  await chooseType(page, 'advance');
+  await editor.getByTestId('targets-clear').click();
+  await editor.locator(`[data-testid="effect-target"][data-unit-id="${actorId}"]`).click();
+  await editor.getByTestId('effect-percent').fill('100');
+  await editor.getByTestId('submit-effect').click();
+  await page.locator(`[data-testid="action-node"][data-unit-id="${actorId}"]`).first().click();
+  await chooseType(page, 'delay');
+  await editor.getByTestId('targets-clear').click();
+  await editor.locator(`[data-testid="effect-target"][data-unit-id="${countdownId}"]`).click();
+  await editor.getByTestId('effect-percent').fill('10');
+  await editor.getByTestId('submit-effect').click();
+  expect(Number(await countdown.getAttribute('data-total-av')) - baseline).toBeCloseTo(1000 / 70);
+  await countdown.click();
+  await chooseType(page, 'immediatelyAct');
+  await editor.getByTestId('targets-clear').click();
+  await editor.locator(`[data-testid="effect-target"][data-unit-id="${actorId}"]`).click();
+  await editor.getByTestId('submit-effect').click();
+  await page.getByTestId('start-node').click();
+  const source = editor.locator(`[data-operation-id="${sourceId}"]`);
+  await source.getByTestId('edit-effect').click();
+  await expect(editor.getByTestId('effect-countdown-speed')).toHaveValue('70');
+  await expect(editor.getByTestId('effect-amount')).toHaveValue('60');
+  await editor.getByTestId('effect-countdown-name').fill('Synthetic renamed');
+  await editor.getByTestId('effect-countdown-speed').fill('90');
+  await editor.getByTestId('cancel-effect').click();
+  await expect(countdown).toHaveCount(1);
+  await source.getByTestId('edit-effect').click();
+  await editor.getByTestId('effect-countdown-name').fill('Synthetic renamed');
+  await editor.getByTestId('effect-countdown-speed').fill('90');
+  await editor.getByTestId('submit-effect').click();
+  const renamed = page.locator(`[data-testid="action-node"][data-unit-id="${countdownId}"]`);
+  await expect(renamed).toContainText('Synthetic renamed');
+  await renamed.click();
+  await expect(editor.locator('[data-operation-id]')).toHaveCount(1);
+  await expect(editor.getByTestId('effect-phase')).toHaveCount(0);
+  await page.getByTestId('start-node').click();
+  await source.getByTestId('edit-effect').click();
+  await editor.locator('[data-testid="speed-duration-mode"][data-value="turns"]').click();
+  await editor.getByTestId('effect-turns').fill('2');
+  await editor.getByTestId('submit-effect').click();
+  await expect(renamed).toHaveCount(0);
+  await expect(page.getByTestId('unreached-events')).toBeVisible();
+  await source.getByTestId('edit-effect').click();
+  await editor.getByTestId('effect-turns').fill('');
+  await editor.getByTestId('submit-effect').click();
+  await source.getByTestId('delete-effect').click();
+  await expect(renamed).toHaveCount(0);
+});
+
+test('shared countdown expiry removes both speed states and keeps one scheduled node', async ({
+  page
+}) => {
+  const slots = await configure(page, '/en/game-tools/action-planner/');
+  await slots.nth(0).getByTestId('panel-speed').fill('100');
+  await slots.nth(1).getByTestId('panel-speed').fill('100');
+  await countdownSpeedEffect(page, 'Synthetic shared expiry', '90', '20');
+  const editor = page.getByTestId('event-editor');
+  await editor.getByTestId('targets-all').click();
+  await editor.getByTestId('submit-effect').click();
+  const trigger = page.getByTestId('action-node').filter({ hasText: 'Synthetic shared expiry' });
+  await expect(trigger).toHaveCount(1);
+  const id = await trigger.getAttribute('data-unit-id');
+  const index = await page
+    .getByTestId('action-node')
+    .evaluateAll(
+      (nodes, participantId) =>
+        nodes.findIndex((node) => node.getAttribute('data-unit-id') === participantId),
+      id
+    );
+  await page.getByTestId('view-queue').click();
+  await expect(page.getByTestId('queue-speed-states')).toHaveCount(2);
+  await page.getByTestId('queue-speed-states').first().locator('summary').click();
+  await expect(page.getByTestId('queue-speed-states').first()).toContainText(
+    'Synthetic shared expiry'
+  );
+  for (let step = 0; step <= index; step++) await page.getByTestId('queue-next').click();
+  await expect(page.getByTestId('queue-speed-states')).toHaveCount(0);
+  await expect(page.locator(`[data-testid="queue-unit"][data-unit-id="${id}"]`)).toHaveCount(0);
+});
+
+test('same-name participant labels stay consistent and target selection uses the chosen identity', async ({
+  page
+}) => {
+  await configure(page);
+  await createParticipant(page, 'Synthetic twin', 'actor', '60');
+  await createParticipant(page, 'Synthetic twin', 'actor', '80');
+  const editor = page.getByTestId('event-editor');
+  await chooseType(page, 'addSpeedModifier');
+  const targets = editor.getByTestId('effect-target').filter({ hasText: 'Synthetic twin' });
+  await expect(targets).toHaveCount(2);
+  const firstId = await targets.first().getAttribute('data-unit-id');
+  const secondId = await targets.last().getAttribute('data-unit-id');
+  const firstLabel = await targets.first().getAttribute('aria-label');
+  const secondLabel = await targets.last().getAttribute('aria-label');
+  expect(firstLabel).not.toBe(secondLabel);
+  await expect(
+    page.locator(`[data-testid="action-node"][data-unit-id="${firstId}"]`).first()
+  ).toContainText(firstLabel!);
+  await expect(
+    page.locator(`[data-testid="action-node"][data-unit-id="${secondId}"]`).first()
+  ).toContainText(secondLabel!);
+  await editor.getByTestId('targets-clear').click();
+  await targets.first().click();
+  await editor.getByTestId('effect-amount').fill('100');
+  await editor.getByTestId('submit-effect').click();
+  await expect(
+    page.locator(`[data-testid="action-node"][data-unit-id="${firstId}"]`).first()
+  ).toContainText(firstLabel!);
+  expect(
+    parseFloat(
+      await page
+        .locator(`[data-testid="action-node"][data-unit-id="${firstId}"]`)
+        .first()
+        .locator('.metadata span')
+        .last()
+        .innerText()
+    )
+  ).toBe(160);
+  expect(
+    parseFloat(
+      await page
+        .locator(`[data-testid="action-node"][data-unit-id="${secondId}"]`)
+        .first()
+        .locator('.metadata span')
+        .last()
+        .innerText()
+    )
+  ).toBe(80);
+  await page.getByTestId('view-queue').click();
+  await expect(
+    page.locator(`[data-testid="queue-unit"][data-unit-id="${secondId}"]`)
+  ).toContainText(secondLabel!);
+});

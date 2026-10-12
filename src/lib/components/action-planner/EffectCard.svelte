@@ -1,10 +1,12 @@
 <script lang="ts">
+  import type { ParticipantLabels } from '$lib/action-planner/presentation';
   import ParticipantIcon from './ParticipantIcon.svelte';
   import { m } from '$lib/paraglide/messages.js';
   import type { Locale } from '$lib/paraglide/runtime.js';
   import type { EffectOperation, ParticipantInfo } from '$lib/action-planner/types';
   import { effectPhase, targetIds } from '$lib/action-planner/effect-config';
-  import { spawnedParticipantId } from '$lib/action-planner/engine';
+  import { countdownParticipantId, spawnedParticipantId } from '$lib/action-planner/engine';
+  export let labels: ParticipantLabels = new Map();
   export let locale: Locale;
   export let operation: EffectOperation;
   export let participants: ParticipantInfo[];
@@ -21,7 +23,6 @@
     operation.type === 'spawnParticipant'
       ? [spawnedParticipantId(operation.id)]
       : targetIds(operation.target, participants);
-  $: editable = !(operation.type === 'addSpeedModifier' && operation.duration.kind === 'countdown');
   function format(value: number) {
     return new Intl.NumberFormat(locale, { maximumFractionDigits: 3 }).format(value);
   }
@@ -43,22 +44,22 @@
           : m.planner_speed_down({}, { locale });
     }
   }
-  function operationParameter(op: EffectOperation) {
+  function operationParameter(op: EffectOperation, names: ParticipantLabels) {
     if (op.type === 'spawnParticipant')
-      return `${op.participant.name} · ${format(op.participant.kind === 'actor' ? op.participant.panelSpeed : op.participant.speed)} SPD · ${op.participant.kind === 'scheduledEvent' ? m.planner_once({}, { locale }) : op.participant.actionLimit == null ? m.planner_unlimited_actions({}, { locale }) : m.planner_action_limit_summary({ count: op.participant.actionLimit }, { locale })}`;
+      return `${names.get(spawnedParticipantId(op.id)) ?? op.participant.name} · ${format(op.participant.kind === 'actor' ? op.participant.panelSpeed : op.participant.speed)} SPD · ${op.participant.kind === 'scheduledEvent' ? m.planner_once({}, { locale }) : op.participant.actionLimit == null ? m.planner_unlimited_actions({}, { locale }) : m.planner_action_limit_summary({ count: op.participant.actionLimit }, { locale })}`;
     if (op.type === 'advance' || op.type === 'delay')
       return m.planner_gauge_summary({ percent: format(op.percent) }, { locale });
     if (op.type === 'immediatelyAct') return m.planner_card_immediate({}, { locale });
     const duration =
       op.duration.kind === 'countdown'
-        ? `${op.duration.name} · ${m.planner_until_countdown({}, { locale })}`
+        ? `${m.planner_until_named_countdown({ name: names.get(countdownParticipantId(op.id)) ?? op.duration.name }, { locale })} · ${format(op.duration.speed)} SPD`
         : op.duration.turns === null
           ? m.planner_infinite({}, { locale })
           : m.planner_duration_summary({ turns: op.duration.turns }, { locale });
     return `${op.mode === 'percent' ? m.planner_base_percent({}, { locale }) : m.planner_flat({}, { locale })} ${op.amount >= 0 ? '+' : ''}${format(op.amount)}${op.mode === 'percent' ? '%' : ''} · ${duration}`;
   }
   $: title = operationTitle(operation);
-  $: parameter = operationParameter(operation);
+  $: parameter = operationParameter(operation, labels);
 </script>
 
 <div
@@ -72,8 +73,6 @@
     type="button"
     data-testid="edit-effect"
     aria-pressed={selected}
-    disabled={!editable}
-    title={editable ? undefined : m.planner_configuration_readonly({}, { locale })}
     on:click={onEdit}
   >
     <span class="heading"
@@ -89,9 +88,11 @@
           <span
             class="avatar"
             role="img"
-            aria-label={catalog.find((unit) => unit.id === id)?.name ??
+            aria-label={labels.get(id) ??
+              catalog.find((unit) => unit.id === id)?.name ??
               m.planner_missing_target({}, { locale })}
-            title={catalog.find((unit) => unit.id === id)?.name ??
+            title={labels.get(id) ??
+              catalog.find((unit) => unit.id === id)?.name ??
               m.planner_missing_target({}, { locale })}
           >
             <ParticipantIcon

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { ParticipantLabels } from '$lib/action-planner/presentation';
   import { m } from '$lib/paraglide/messages.js';
   import type { Locale } from '$lib/paraglide/runtime.js';
   import { previewOperationState } from '$lib/action-planner/engine';
@@ -11,6 +12,7 @@
   } from '$lib/action-planner/types';
   import EffectCard from './EffectCard.svelte';
   import { operationTargets } from '$lib/action-planner/targeting';
+  export let labels: ParticipantLabels = new Map();
   export let locale: Locale;
   export let anchor: EventAnchor;
   export let operations: EffectOperation[];
@@ -55,6 +57,7 @@
       {#each group.operations as operation, index (operation.id)}
         <EffectCard
           {locale}
+          {labels}
           {operation}
           participants={participantsBefore(operation)}
           {catalog}

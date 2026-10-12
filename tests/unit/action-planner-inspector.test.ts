@@ -1,6 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render } from 'svelte/server';
 import Inspector from '../../src/lib/components/action-planner/Inspector.svelte';
+import EffectCard from '../../src/lib/components/action-planner/EffectCard.svelte';
+import TargetGrid from '../../src/lib/components/action-planner/TargetGrid.svelte';
 import ActionCard from '../../src/lib/components/action-planner/ActionCard.svelte';
 import { anchorKey, simulatePlan, spawnedParticipantId } from '../../src/lib/action-planner/engine';
 import { futureActionCard } from '../../src/lib/action-planner/presentation';
@@ -155,5 +157,51 @@ describe('dynamic participant Inspector projections', () => {
     expect(body).not.toContain('title="Synthetic future"');
     expect(body).toContain('data-operation-id="orphan-effect"');
     expect(callbacks.onChange).not.toHaveBeenCalled();
+  });
+  it('renders editable countdown speed cards and identity-based labels without adding catalog targets', () => {
+    const participants = [
+      { id: 'a', kind: 'actor' as const, camp: 'ally' as const, name: 'Synthetic shared' },
+      { id: 'b', kind: 'actor' as const, camp: 'ally' as const, name: 'Synthetic shared' }
+    ];
+    const labels = new Map([
+      ['a', 'Synthetic first'],
+      ['b', 'Synthetic second']
+    ]);
+    const grid = render(TargetGrid, {
+      props: {
+        participants,
+        labels,
+        selectedIds: ['b'],
+        avatar: callbacks.avatar,
+        onToggle: vi.fn()
+      }
+    }).body;
+    expect(grid).toContain('aria-label="Synthetic first"');
+    expect(grid).toContain('aria-label="Synthetic second"');
+    expect(grid).toMatch(/aria-pressed="true"[^>]*data-unit-id="b"/);
+    const card = render(EffectCard, {
+      props: {
+        locale: 'en',
+        labels,
+        operation: {
+          id: 'clock',
+          type: 'addSpeedModifier',
+          target: { kind: 'participants', participantIds: ['b'] },
+          mode: 'flat',
+          amount: 60,
+          duration: { kind: 'countdown', name: 'Synthetic clock', speed: 70 }
+        },
+        participants,
+        catalog: participants,
+        avatar: callbacks.avatar,
+        onEdit: vi.fn(),
+        onMove: vi.fn(),
+        onDelete: vi.fn()
+      }
+    }).body;
+    expect(card).not.toMatch(/<button[^>]*data-testid="edit-effect"[^>]*disabled/);
+    expect(card).toContain('Synthetic clock');
+    expect(card).toContain('aria-label="Synthetic second"');
+    expect(card).not.toContain('readonly');
   });
 });

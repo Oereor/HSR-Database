@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { ParticipantLabels } from '$lib/action-planner/presentation';
   import { m } from '$lib/paraglide/messages.js';
   import type { Locale } from '$lib/paraglide/runtime.js';
   import type { EventAnchor, ParticipantInfo } from '$lib/action-planner/types';
@@ -7,6 +8,7 @@
   import GameText from '$lib/components/shared/GameText.svelte';
   import { getLightConePreviewUrl, getRelicSetIconUrl } from '$lib/data/visual-assets';
   import TargetGrid from './TargetGrid.svelte';
+  export let labels: ParticipantLabels = new Map();
   export let locale: Locale;
   export let anchor: EventAnchor;
   export let participants: ParticipantInfo[];
@@ -32,6 +34,7 @@
     <legend>{m.planner_target({}, { locale })}</legend>
     <TargetGrid
       participants={actorTargets}
+      {labels}
       selectedIds={[presetTarget]}
       {avatar}
       testId="preset-target"

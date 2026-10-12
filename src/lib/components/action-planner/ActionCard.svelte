@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { ParticipantLabels } from '$lib/action-planner/presentation';
   import ParticipantIcon from './ParticipantIcon.svelte';
   import { summarizeEffects, type ActionCardData } from '$lib/action-planner/presentation';
   import { anchorKey } from '$lib/action-planner/engine';
@@ -6,6 +7,7 @@
   import { m } from '$lib/paraglide/messages.js';
   import type { Locale } from '$lib/paraglide/runtime.js';
 
+  export let labels: ParticipantLabels = new Map();
   export let locale: Locale;
   export let card: ActionCardData;
   export let avatar: string | undefined = undefined;
@@ -64,7 +66,11 @@
       >
     {/if}
     <span class="identity">
-      <strong>{card.name}</strong>
+      <strong
+        >{card.anchor.kind === 'start'
+          ? card.name
+          : (labels.get(card.anchor.participantId) ?? card.name)}</strong
+      >
       {#if card.kind !== 'system'}
         <span class="metadata">
           <span
@@ -122,7 +128,12 @@
             >{buff.amount > 0 ? '+' : ''}{format(buff.amount)}{buff.mode === 'percent'
               ? '%'
               : ' SPD'} · {buff.lifetime.kind === 'countdown'
-              ? m.planner_until_countdown({}, { locale })
+              ? labels.has(buff.lifetime.participantId)
+                ? m.planner_until_named_countdown(
+                    { name: labels.get(buff.lifetime.participantId)! },
+                    { locale }
+                  )
+                : m.planner_until_countdown({}, { locale })
               : buff.lifetime.remainingTurns === null
                 ? m.planner_infinite({}, { locale })
                 : m.planner_remaining_turns(

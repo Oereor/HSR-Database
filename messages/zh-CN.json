@@ -534,7 +534,6 @@
   "planner_spawn_participant": "创建单位",
   "planner_scheduled_event": "战斗事件",
   "planner_until_countdown": "持续至倒计时触发",
-  "planner_configuration_readonly": "暂不支持编辑倒计时速度效果。",
   "planner_diagnostic_invalid_target": "倒计时仅支持显式单目标行动提前或延后，不能与其他目标混选。",
   "planner_diagnostic_duplicate_participant": "队列实例身份冲突，推演已停止。",
   "planner_add_participant": "添加行动单位",
@@ -562,5 +561,12 @@
   "planner_name_invalid": "请输入名称。",
   "planner_speed_invalid": "速度必须为正数。",
   "planner_action_limit_invalid": "行动次数必须为正整数，或留空。",
-  "planner_removed_unit": "已移除单位"
+  "planner_removed_unit": "已移除单位",
+  "planner_duration_mode": "持续方式",
+  "planner_by_turns": "按回合数",
+  "planner_by_countdown": "按倒计时",
+  "planner_countdown_name": "倒计时名称",
+  "planner_countdown_speed": "倒计时速度",
+  "planner_until_named_countdown": "至{name}",
+  "planner_instance_name": "{name} · {index}"
 }

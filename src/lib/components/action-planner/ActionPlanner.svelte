@@ -9,7 +9,11 @@
     type CharacterSlotDraft
   } from '$lib/action-planner/character-selection';
   import ActionCard from './ActionCard.svelte';
-  import { futureActionCard, queueActionCard } from '$lib/action-planner/presentation';
+  import {
+    futureActionCard,
+    queueActionCard,
+    participantLabels
+  } from '$lib/action-planner/presentation';
   import Inspector from './Inspector.svelte';
   import { m } from '$lib/paraglide/messages.js';
   import type { Locale } from '$lib/paraglide/runtime.js';
@@ -48,6 +52,9 @@
 
   $: actors = configuredAllies(allies).map((actor) => ({ ...actor, iconUrl: avatar(actor.id) }));
   $: result = simulatePlan({ actors, events, maxNodes: maxNodes ?? NaN, maxAV: maxAV ?? NaN });
+  $: labels = participantLabels(result.participants, (name, index) =>
+    m.planner_instance_name({ name, index }, { locale })
+  );
   $: selectedKey = anchorKey(selectedAnchor);
   $: selectedOperations =
     events.find((event) => anchorKey(event.anchor) === selectedKey)?.operations ?? [];
@@ -86,16 +93,17 @@
     focusSlot = index;
     await restoreSlotFocus();
   }
-  function unitName(id: string) {
+  function unitName(id: string, names = labels) {
     return (
+      names.get(id) ??
       result.participants.find((participant) => participant.id === id)?.name ??
       m.planner_removed_unit({}, { locale })
     );
   }
-  function anchorName(anchor: EventAnchor) {
+  function anchorName(anchor: EventAnchor, names = labels) {
     return anchor.kind === 'start'
       ? m.planner_start({}, { locale })
-      : `${unitName(anchor.participantId)} · ${anchor.kind === 'action' ? m.planner_turn({ turn: anchor.turn }, { locale }) : m.planner_scheduled_event({}, { locale })}`;
+      : `${unitName(anchor.participantId, names)} · ${anchor.kind === 'action' ? m.planner_turn({ turn: anchor.turn }, { locale }) : m.planner_scheduled_event({}, { locale })}`;
   }
   function avatar(id: string) {
     const draft = allies.find((unit) => unit.id === id);
@@ -267,7 +275,7 @@
                   class="text-button"
                   on:click={() => {
                     selectedAnchor = diagnostic.anchor!;
-                  }}>{anchorName(diagnostic.anchor)}</button
+                  }}>{anchorName(diagnostic.anchor, labels)}</button
                 > ·
               {/if}
               {diagnosticText(diagnostic.code)}
@@ -281,6 +289,7 @@
             <div class="action-list" data-testid="action-list">
               <ActionCard
                 {locale}
+                {labels}
                 card={{
                   kind: 'system',
                   anchor: { kind: 'start' },
@@ -296,6 +305,7 @@
               {#each result.records as record (anchorKey(record.anchor))}
                 <ActionCard
                   {locale}
+                  {labels}
                   card={futureActionCard(record)}
                   avatar={record.iconUrl ?? avatar(record.anchor.participantId)}
                   operations={operationsAt(record.anchor, events)}
@@ -337,6 +347,7 @@
                   {@const card = queueActionCard(entry)}
                   <ActionCard
                     {locale}
+                    {labels}
                     {card}
                     avatar={avatar(entry.id)}
                     operations={operationsAt(card.anchor, events)}
@@ -366,7 +377,7 @@
                     class="text-button"
                     on:click={() => {
                       selectedAnchor = event.anchor;
-                    }}>{anchorName(event.anchor)}</button
+                    }}>{anchorName(event.anchor, labels)}</button
                   ><button type="button" on:click={() => deleteEvent(event.anchor)}
                     >{m.planner_delete_event({}, { locale })}</button
                   >
@@ -377,15 +388,16 @@
         <aside
           class="editor-panel"
           data-testid="event-editor"
-          aria-label={anchorName(selectedAnchor)}
+          aria-label={anchorName(selectedAnchor, labels)}
         >
-          <h2>{anchorName(selectedAnchor)}</h2>
+          <h2>{anchorName(selectedAnchor, labels)}</h2>
           {#if selectedRecord}<p class="helper">
               {format(selectedRecord.elapsedAV)}
               {m.planner_total_av({}, { locale })}
             </p>{/if}
           {#key selectedKey}<Inspector
               {locale}
+              {labels}
               anchor={selectedAnchor}
               operations={selectedOperations}
               catalog={result.participants}

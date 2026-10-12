@@ -12,6 +12,11 @@
     SimulationState,
     TargetedOperation
   } from '$lib/action-planner/types';
+  import {
+    speedDurationDraft,
+    parseSpeedDuration
+  } from '$lib/action-planner/speed-duration-config';
+  import type { ParticipantLabels } from '$lib/action-planner/presentation';
   import PresetSection from './PresetSection.svelte';
   import TargetGrid from './TargetGrid.svelte';
   import {
@@ -21,6 +26,7 @@
   } from '$lib/action-planner/targeting';
 
   export let locale: Locale;
+  export let labels: ParticipantLabels = new Map();
   export let anchor: EventAnchor;
   export let operations: EffectOperation[];
   export let context: SimulationState | undefined = undefined;
@@ -36,10 +42,15 @@
   let selectedIds: string[] = [];
   let percent: number | undefined = 50;
   let amount: number | undefined = 10;
-  let turns = '2';
+  let durationDraft = speedDurationDraft();
   let mode: 'flat' | 'percent' = 'flat';
   let selectedPreset: PresetKind | undefined;
-  let errors: Partial<Record<'target' | 'percent' | 'amount' | 'turns' | 'form', string>> = {};
+  let errors: Partial<
+    Record<
+      'target' | 'percent' | 'amount' | 'turns' | 'countdownName' | 'countdownSpeed' | 'form',
+      string
+    >
+  > = {};
   let formHeading: HTMLHeadingElement;
   let addButton: HTMLButtonElement;
 
@@ -77,7 +88,7 @@
     selectedIds = units[0] ? [units[0].id] : [];
     percent = 50;
     amount = 10;
-    turns = '2';
+    durationDraft = speedDurationDraft();
     mode = 'flat';
     errors = {};
   }
@@ -93,11 +104,7 @@
     addButton?.focus();
   }
   export function edit(op: EffectOperation) {
-    if (
-      op.type === 'spawnParticipant' ||
-      (op.type === 'addSpeedModifier' && op.duration.kind === 'countdown')
-    )
-      return;
+    if (op.type === 'spawnParticipant') return;
     selectedPreset = undefined;
     editingId = op.id;
     type = op.type;
@@ -108,12 +115,7 @@
     selectedIds = targetIds(op.target, operationTargets(before));
     percent = op.type === 'advance' || op.type === 'delay' ? op.percent : 50;
     amount = op.type === 'addSpeedModifier' ? op.amount : 10;
-    turns =
-      op.type === 'addSpeedModifier' && op.duration.kind === 'turns'
-        ? op.duration.turns === null
-          ? ''
-          : String(op.duration.turns)
-        : '2';
+    durationDraft = speedDurationDraft(op.type === 'addSpeedModifier' ? op.duration : undefined);
     mode = op.type === 'addSpeedModifier' ? op.mode : 'flat';
     errors = {};
     opened = true;
@@ -144,13 +146,15 @@
       errors.percent = m.planner_percent_invalid({}, { locale });
     if (type === 'addSpeedModifier' && (amount === undefined || !Number.isFinite(amount)))
       errors.amount = m.planner_amount_invalid({}, { locale });
-    const duration = turns.trim() === '' ? null : Number(turns);
-    if (
-      type === 'addSpeedModifier' &&
-      duration !== null &&
-      (!/^\d+$/.test(turns.trim()) || !Number.isSafeInteger(duration) || duration < 1)
-    )
-      errors.turns = m.planner_turns_invalid({}, { locale });
+    const parsedDuration =
+      type === 'addSpeedModifier' ? parseSpeedDuration(durationDraft) : undefined;
+    for (const field of parsedDuration?.invalid ?? [])
+      errors[field] =
+        field === 'turns'
+          ? m.planner_turns_invalid({}, { locale })
+          : field === 'countdownName'
+            ? m.planner_name_invalid({}, { locale })
+            : m.planner_speed_invalid({}, { locale });
     if (Object.values(errors).some(Boolean)) return;
     const base = {
       id: editingId ?? nextId(),
@@ -161,7 +165,7 @@
       type === 'immediatelyAct'
         ? { ...base, type }
         : type === 'addSpeedModifier'
-          ? { ...base, type, mode, amount: amount!, duration: { kind: 'turns', turns: duration } }
+          ? { ...base, type, mode, amount: amount!, duration: parsedDuration!.duration! }
           : { ...base, type, percent: percent! };
     if (validateOperations([op], anchor).length) {
       errors.form = m.planner_form_invalid({}, { locale });
@@ -264,6 +268,7 @@
       {#if !preview}<p class="helper">{m.planner_targets_unavailable({}, { locale })}</p>{/if}
       <TargetGrid
         participants={units}
+        {labels}
         {selectedIds}
         {disabledIds}
         {avatar}
@@ -313,7 +318,27 @@
           {/each}
         </div>
       </fieldset>
-      <div class="form-pair">
+      <fieldset>
+        <legend>{m.planner_duration_mode({}, { locale })}</legend>
+        <div class="pills segmented">
+          {#each ['turns', 'countdown'] as kind}
+            <button
+              type="button"
+              data-testid="speed-duration-mode"
+              data-value={kind}
+              aria-pressed={durationDraft.kind === kind}
+              on:click={() => {
+                durationDraft.kind = kind as typeof durationDraft.kind;
+                errors = {};
+              }}
+              >{kind === 'turns'
+                ? m.planner_by_turns({}, { locale })
+                : m.planner_by_countdown({}, { locale })}</button
+            >
+          {/each}
+        </div>
+      </fieldset>
+      <div class="form-pair" class:countdown-amount={durationDraft.kind === 'countdown'}>
         <div>
           <label
             >{m.planner_amount({}, { locale })}<input
@@ -328,23 +353,69 @@
               {errors.amount}
             </p>{/if}
         </div>
-        <div>
-          <label
-            >{m.planner_duration({}, { locale })}<input
-              type="text"
-              inputmode="numeric"
-              bind:value={turns}
-              placeholder="∞"
-              data-testid="effect-turns"
-              aria-invalid={!!errors.turns}
-              aria-describedby={errors.turns ? 'effect-turns-error' : undefined}
-            /></label
-          >
-          {#if errors.turns}<p class="error" role="alert" id="effect-turns-error">
-              {errors.turns}
-            </p>{/if}
-        </div>
+        {#if durationDraft.kind === 'turns'}
+          <div>
+            <label
+              >{m.planner_duration({}, { locale })}<input
+                type="text"
+                inputmode="numeric"
+                bind:value={durationDraft.turns}
+                placeholder="∞"
+                data-testid="effect-turns"
+                aria-invalid={!!errors.turns}
+                aria-describedby={errors.turns ? 'effect-turns-error' : undefined}
+              /></label
+            >
+            {#if errors.turns}<p class="error" role="alert" id="effect-turns-error">
+                {errors.turns}
+              </p>{/if}
+          </div>
+        {/if}
       </div>
+      {#if durationDraft.kind === 'countdown'}
+        <div class="form-pair">
+          <div>
+            <label
+              >{m.planner_countdown_name({}, { locale })}<input
+                type="text"
+                bind:value={durationDraft.countdownName}
+                data-testid="effect-countdown-name"
+                aria-invalid={!!errors.countdownName}
+                aria-describedby={errors.countdownName ? 'effect-countdown-name-error' : undefined}
+              /></label
+            >
+            {#if errors.countdownName}<p
+                class="error"
+                role="alert"
+                id="effect-countdown-name-error"
+              >
+                {errors.countdownName}
+              </p>{/if}
+          </div>
+          <div>
+            <label
+              >{m.planner_countdown_speed({}, { locale })}<input
+                type="number"
+                min="0"
+                step="any"
+                bind:value={durationDraft.countdownSpeed}
+                data-testid="effect-countdown-speed"
+                aria-invalid={!!errors.countdownSpeed}
+                aria-describedby={errors.countdownSpeed
+                  ? 'effect-countdown-speed-error'
+                  : undefined}
+              /></label
+            >
+            {#if errors.countdownSpeed}<p
+                class="error"
+                role="alert"
+                id="effect-countdown-speed-error"
+              >
+                {errors.countdownSpeed}
+              </p>{/if}
+          </div>
+        </div>
+      {/if}
     {/if}
     {#if errors.form}<p class="error" role="alert">{errors.form}</p>{/if}
     <div class="actions">
@@ -364,6 +435,7 @@
   {locale}
   {anchor}
   participants={units}
+  {labels}
   {avatar}
   {presets}
   {selectedPreset}
@@ -480,6 +552,9 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-3);
+  }
+  .countdown-amount {
+    grid-template-columns: 1fr;
   }
   .error {
     color: #ffb4b4;

@@ -534,7 +534,6 @@
   "planner_spawn_participant": "Create participant",
   "planner_scheduled_event": "Battle Event",
   "planner_until_countdown": "Until countdown triggers",
-  "planner_configuration_readonly": "Countdown speed effects cannot be edited yet.",
   "planner_diagnostic_invalid_target": "Countdowns support explicit single-target advance or delay only and cannot be mixed with other targets.",
   "planner_diagnostic_duplicate_participant": "Queue participant identities conflict. Simulation stopped.",
   "planner_add_participant": "Add Participant",
@@ -562,5 +561,12 @@
   "planner_name_invalid": "Enter a name.",
   "planner_speed_invalid": "Speed must be a positive number.",
   "planner_action_limit_invalid": "Enter a positive whole action count, or leave blank.",
-  "planner_removed_unit": "Removed participant"
+  "planner_removed_unit": "Removed participant",
+  "planner_duration_mode": "Duration mode",
+  "planner_by_turns": "By Turns",
+  "planner_by_countdown": "By Countdown",
+  "planner_countdown_name": "Countdown name",
+  "planner_countdown_speed": "Countdown speed",
+  "planner_until_named_countdown": "Until {name}",
+  "planner_instance_name": "{name} · {index}"
 }

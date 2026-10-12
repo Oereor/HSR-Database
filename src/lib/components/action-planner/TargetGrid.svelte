@@ -1,6 +1,8 @@
 <script lang="ts">
+  import type { ParticipantLabels } from '$lib/action-planner/presentation';
   import ParticipantIcon from './ParticipantIcon.svelte';
   import type { ParticipantInfo } from '$lib/action-planner/types';
+  export let labels: ParticipantLabels = new Map();
   export let participants: ParticipantInfo[];
   export let disabledIds: string[] = [];
   export let selectedIds: string[];
@@ -13,8 +15,8 @@
   {#each participants as unit (unit.id)}
     <button
       type="button"
-      title={unit.name}
-      aria-label={unit.name}
+      title={labels.get(unit.id) ?? unit.name}
+      aria-label={labels.get(unit.id) ?? unit.name}
       aria-pressed={selectedIds.includes(unit.id)}
       disabled={disabledIds.includes(unit.id) && !selectedIds.includes(unit.id)}
       data-testid={testId}
@@ -27,7 +29,7 @@
           event={unit.kind === 'scheduledEvent'}
         /></span
       >
-      <span class="name">{unit.name}</span>
+      <span class="name">{labels.get(unit.id) ?? unit.name}</span>
     </button>
   {/each}
 </div>

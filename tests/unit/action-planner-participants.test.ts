@@ -429,4 +429,60 @@ describe('dynamic queue participant contracts', () => {
         ).stopReason
       ).toBe('error');
   });
+  it('delays a shared countdown by 10% and keeps its linked speeds until the new expiry', () => {
+    const id = countdownParticipantId('timed');
+    const speed: EffectOperation = {
+      ...timedSpeed,
+      amount: 60,
+      duration: { kind: 'countdown', name: 'Synthetic expiry', speed: 70 }
+    };
+    const pull: EffectOperation = {
+      id: 'pull',
+      type: 'advance',
+      target: target('a'),
+      percent: 100
+    };
+    const input = plan([speed, pull]);
+    const ordinary: EffectOperation = {
+      id: 'ordinary',
+      type: 'addSpeedModifier',
+      target: target('b'),
+      mode: 'flat',
+      amount: 5,
+      duration: { kind: 'turns', turns: null }
+    };
+    input.events[0].operations.unshift(ordinary);
+    input.events.push({
+      anchor: action('a'),
+      operations: [
+        { id: 'delay-clock', type: 'delay', phase: 'preAction', target: target(id), percent: 10 }
+      ]
+    });
+    const result = simulatePlan(input);
+    const baseline = simulatePlan({ ...input, events: [input.events[0]] });
+    const event = result.records.find((record) => record.id === id)!;
+    expect(event.elapsedAV).toBeCloseTo(11000 / 70);
+    expect(
+      event.elapsedAV - baseline.records.find((record) => record.id === id)!.elapsedAV
+    ).toBeCloseTo(1000 / 70);
+    expect(result.records.filter((record) => record.id === id)).toHaveLength(1);
+    const linked = result.snapshots.slice(0, result.records.indexOf(event) + 1);
+    expect(
+      linked.every((snapshot) =>
+        snapshot.queue
+          .filter((entry) => entry.kind === 'actor')
+          .every((entry) => entry.modifiers.some((buff) => buff.operationId === 'timed'))
+      )
+    ).toBe(true);
+    const states = event.beforeEffects.participants.filter(
+      (participant) => participant.kind === 'actor'
+    );
+    expect(states.map(effectiveSpeed)).toEqual([100, 105]);
+    expect(states[1].modifiers.map((buff) => buff.operationId)).toEqual(['ordinary']);
+    const beforeTrigger = result.snapshots[result.records.indexOf(event)].queue.find(
+      (entry) => entry.id === 'a'
+    )!;
+    const actorAtExpiry = states.find((participant) => participant.id === 'a')!;
+    expect(actorAtExpiry.remainingAG).toBeCloseTo(beforeTrigger.remainingAG - 160 * event.deltaAV);
+  });
 });

@@ -3,6 +3,7 @@ import type {
   EventAnchor,
   NodeAnchor,
   NodeRecord,
+  ParticipantInfo,
   QueueEntry,
   SpeedModifierInstance
 } from './types';
@@ -59,4 +60,26 @@ export function queueActionCard(entry: QueueEntry): ActionCardData {
     remainingAV: entry.remainingAV,
     modifiers: entry.modifiers
   };
+}
+
+export type ParticipantLabels = ReadonlyMap<string, string>;
+/** Labels use the complete catalog, never current queue positions or targeting eligibility. */
+export function participantLabels(
+  catalog: readonly ParticipantInfo[],
+  duplicate: (name: string, index: number) => string
+): ParticipantLabels {
+  const groups = new Map<string, ParticipantInfo[]>();
+  for (const participant of catalog) {
+    const group = groups.get(participant.name) ?? [];
+    group.push(participant);
+    groups.set(participant.name, group);
+  }
+  const labels = new Map<string, string>();
+  for (const [name, group] of groups) {
+    group.sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+    group.forEach((participant, index) =>
+      labels.set(participant.id, group.length > 1 ? duplicate(name, index + 1) : name)
+    );
+  }
+  return labels;
 }

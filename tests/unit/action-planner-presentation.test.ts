@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   futureActionCard,
+  participantLabels,
   queueActionCard,
   summarizeEffects
 } from '../../src/lib/action-planner/presentation';
@@ -103,5 +104,31 @@ describe('action card presentation', () => {
     expect(card).not.toHaveProperty('deltaAV');
     expect(card).toHaveProperty('modifiers', entry.modifiers);
     expect(entry).toEqual(original);
+  });
+  it('disambiguates same-name instances by stable identity without depending on queue order', () => {
+    const catalog = Object.freeze([
+      Object.freeze({
+        id: 'b',
+        kind: 'actor' as const,
+        name: 'Synthetic shared',
+        camp: 'enemy' as const
+      }),
+      Object.freeze({
+        id: 'a',
+        kind: 'actor' as const,
+        name: 'Synthetic shared',
+        camp: 'ally' as const
+      }),
+      Object.freeze({ id: 'c', kind: 'scheduledEvent' as const, name: 'Synthetic unique' })
+    ]);
+    const format = (name: string, index: number) => `synthetic-label:${name}:${index}`;
+    const labels = participantLabels(catalog, format);
+    expect(labels.get('a')).toBe('synthetic-label:Synthetic shared:1');
+    expect(labels.get('b')).toBe('synthetic-label:Synthetic shared:2');
+    expect(labels.get('c')).toBe('Synthetic unique');
+    const reversed = participantLabels([...catalog].reverse(), format);
+    for (const participant of catalog)
+      expect(reversed.get(participant.id)).toBe(labels.get(participant.id));
+    expect(catalog.map((item) => item.id)).toEqual(['b', 'a', 'c']);
   });
 });
