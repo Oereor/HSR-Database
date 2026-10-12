@@ -487,9 +487,6 @@
   "planner_cancel": "取消",
   "planner_presets": "效果预设",
   "planner_preset_fallback": "预设 {index}",
-  "planner_superimposition": "叠影等级",
-  "planner_preset_note": "预设仅填入普通效果表单，确认添加后才生效；装备与技能触发由你判断。",
-  "planner_vonwacq_note": "翁瓦克预设仅在战斗开始且所选目标面板速度 ≥120 时可用。",
   "planner_form_invalid": "请检查目标、数值和持续回合数。",
   "planner_unreached": "未触发的已配置节点",
   "planner_delete_event": "删除节点效果",
@@ -535,5 +532,8 @@
   "planner_gauge_summary": "{percent}%",
   "planner_speed_up": "速度提高",
   "planner_speed_down": "速度降低",
-  "planner_diagnostic_legacy_operation": "旧配置包含已停用的解除速度效果操作，推演已停止。请编辑或删除原添加配置后重新推演。"
+  "planner_diagnostic_legacy_operation": "旧配置包含已停用的解除速度效果操作，推演已停止。请编辑或删除原添加配置后重新推演。",
+  "planner_preset_dance_effect": "我方全体行动提前 24%",
+  "planner_preset_vonwacq_effect": "目标行动提前 40%",
+  "planner_preset_eagle_effect": "目标行动提前 25%"
 }

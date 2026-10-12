@@ -17,6 +17,9 @@
     EventAnchor,
     UnitConfig
   } from '$lib/action-planner/types';
+  import CompactEntityCard from '$lib/components/shared/CompactEntityCard.svelte';
+  import GameText from '$lib/components/shared/GameText.svelte';
+  import { getLightConePreviewUrl, getRelicSetIconUrl } from '$lib/data/visual-assets';
   import EffectCard from './EffectCard.svelte';
   import TargetGrid from './TargetGrid.svelte';
 
@@ -39,7 +42,7 @@
   let turns = '2';
   let mode: 'flat' | 'percent' = 'flat';
   let presetTarget = units[0]?.id ?? '';
-  let superimposition = 1;
+  let selectedPreset: PresetKind | undefined;
   let errors: Partial<Record<'target' | 'percent' | 'amount' | 'turns' | 'form', string>> = {};
   let formHeading: HTMLHeadingElement;
   let addButton: HTMLButtonElement;
@@ -53,7 +56,7 @@
         }));
   $: if (!units.some((unit) => unit.id === presetTarget)) presetTarget = units[0]?.id ?? '';
   $: selectedPresetUnit = units.find((unit) => unit.id === presetTarget);
-  $: vonwacqAvailable = canUseVonwacq(anchor, selectedPresetUnit?.panelSpeed);
+  $: vonwacqAvailable = canUseVonwacq(anchor);
   $: missingIds = selectedIds.filter((id) => !units.some((unit) => unit.id === id));
 
   function effectLabel(value: EffectOperation['type']) {
@@ -70,6 +73,7 @@
     formHeading?.focus();
   }
   function resetDraft() {
+    selectedPreset = undefined;
     editingId = undefined;
     type = 'advance';
     phase = 'preAction';
@@ -92,6 +96,7 @@
     addButton?.focus();
   }
   function edit(op: EffectOperation) {
+    selectedPreset = undefined;
     editingId = op.id;
     type = op.type;
     phase = effectPhase(op);
@@ -156,9 +161,10 @@
   function fillPreset(kind: PresetKind) {
     if (kind === 'vonwacq' && !vonwacqAvailable) return;
     const currentPhase = opened ? phase : 'preAction';
-    edit(presetOperation(kind, '', presetTarget, superimposition));
+    edit(presetOperation(kind, '', presetTarget));
     editingId = undefined;
     phase = currentPhase;
+    selectedPreset = kind;
   }
 </script>
 
@@ -379,45 +385,62 @@
         }}
       />
     </fieldset>
-    <fieldset>
-      <legend>{m.planner_superimposition({}, { locale })}</legend>
-      <div class="pills">
-        {#each [1, 2, 3, 4, 5] as value}<button
-            type="button"
-            data-testid="preset-superimposition"
-            data-value={value}
-            aria-pressed={superimposition === value}
-            on:click={() => {
-              superimposition = value;
-            }}>{value}</button
-          >{/each}
-      </div>
-    </fieldset>
-    <div class="actions">
-      <button
-        type="button"
+    <div class="compact-entity-grid">
+      <CompactEntityCard
+        asButton
+        wrapTitle
+        selected={selectedPreset === 'vonwacq'}
+        imageUrl={getRelicSetIconUrl('308')}
         data-testid="preset-vonwacq"
-        disabled={!vonwacqAvailable}
+        disabled={!vonwacqAvailable || !selectedPresetUnit}
         on:click={() => fillPreset('vonwacq')}
-        >{presets.vonwacq ?? m.planner_preset_fallback({ index: 1 }, { locale })}</button
       >
-      <button
-        type="button"
+        <svelte:fragment slot="title"
+          ><GameText
+            text={presets.vonwacq ?? m.planner_preset_fallback({ index: 1 }, { locale })}
+          /></svelte:fragment
+        >
+        <svelte:fragment slot="secondary"
+          >{m.planner_preset_vonwacq_effect({}, { locale })}</svelte:fragment
+        >
+      </CompactEntityCard>
+      <CompactEntityCard
+        asButton
+        wrapTitle
+        selected={selectedPreset === 'eagle'}
+        imageUrl={getRelicSetIconUrl('110')}
         data-testid="preset-eagle"
         disabled={!selectedPresetUnit}
         on:click={() => fillPreset('eagle')}
-        >{presets.eagle ?? m.planner_preset_fallback({ index: 2 }, { locale })}</button
       >
-      <button
-        type="button"
+        <svelte:fragment slot="title"
+          ><GameText
+            text={presets.eagle ?? m.planner_preset_fallback({ index: 2 }, { locale })}
+          /></svelte:fragment
+        >
+        <svelte:fragment slot="secondary"
+          >{m.planner_preset_eagle_effect({}, { locale })}</svelte:fragment
+        >
+      </CompactEntityCard>
+      <CompactEntityCard
+        asButton
+        wrapTitle
+        selected={selectedPreset === 'dance'}
+        imageUrl={getLightConePreviewUrl('21018')}
         data-testid="preset-dance"
         disabled={!units.some((unit) => unit.camp === 'ally')}
         on:click={() => fillPreset('dance')}
-        >{presets.dance ?? m.planner_preset_fallback({ index: 3 }, { locale })}</button
       >
+        <svelte:fragment slot="title"
+          ><GameText
+            text={presets.dance ?? m.planner_preset_fallback({ index: 3 }, { locale })}
+          /></svelte:fragment
+        >
+        <svelte:fragment slot="secondary"
+          >{m.planner_preset_dance_effect({}, { locale })}</svelte:fragment
+        >
+      </CompactEntityCard>
     </div>
-    <p class="helper">{m.planner_vonwacq_note({}, { locale })}</p>
-    <p class="helper">{m.planner_preset_note({}, { locale })}</p>
   </details>
 </div>
 
@@ -596,7 +619,7 @@
     font-size: var(--font-helper);
   }
   .presets fieldset,
-  .presets .actions {
+  .presets .compact-entity-grid {
     margin-top: var(--space-3);
   }
   @media (max-width: 379px) {

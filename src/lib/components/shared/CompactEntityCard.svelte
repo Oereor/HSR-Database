@@ -1,19 +1,31 @@
 <script lang="ts">
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
+  export let asButton = false;
+  export let selected = false;
+  export let disabled = false;
+  export let wrapTitle = false;
   export let href: string | undefined = undefined;
   export let imageUrl: string | undefined = undefined;
   export let imageAlt = '';
   export let artworkFit: 'contain' | 'cover' | 'scale-down' = 'contain';
 
   let imageMissing = !imageUrl?.trim();
-  $: elementProps = href ? { href } : {};
+  $: elementProps = asButton
+    ? { type: 'button' as const, disabled, 'aria-pressed': selected }
+    : href
+      ? { href }
+      : {};
 </script>
 
 <svelte:element
-  this={href ? 'a' : 'article'}
-  {...elementProps}
+  this={asButton ? 'button' : href ? 'a' : 'article'}
   {...$$restProps}
-  class:compact-entity-card--link={!!href}
+  {...elementProps}
+  on:click
+  class:compact-entity-card--link={!asButton && !!href}
+  class:compact-entity-card--button={asButton}
+  class:compact-entity-card--selected={asButton && selected}
+  class:compact-entity-card--wrap={wrapTitle}
   class:compact-entity-card--missing={imageMissing}
   class:compact-entity-card--split={!!$$slots.aside}
   class="compact-entity-card"
@@ -37,7 +49,7 @@
       >{/if}
   </span>
   {#if $$slots.aside}<span class="compact-entity-card__aside"><slot name="aside" /></span>{/if}
-  {#if href}<span class="compact-entity-card__arrow" aria-hidden="true">→</span>{/if}
+  {#if href && !asButton}<span class="compact-entity-card__arrow" aria-hidden="true">→</span>{/if}
 </svelte:element>
 
 <style>
@@ -62,15 +74,45 @@
       transform var(--motion);
   }
 
-  .compact-entity-card--link:hover {
+  .compact-entity-card--link:hover,
+  .compact-entity-card--button:hover:not(:disabled) {
     border-color: var(--border-strong);
     background: rgb(20 28 46 / 78%);
     transform: translateY(-1px);
   }
 
-  .compact-entity-card--link:focus-visible {
+  .compact-entity-card--link:focus-visible,
+  .compact-entity-card--button:focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 3px;
+  }
+
+  .compact-entity-card--button {
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .compact-entity-card--button:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+
+  .compact-entity-card--selected,
+  .compact-entity-card--selected:hover:not(:disabled) {
+    border-color: var(--gold);
+    box-shadow: inset 2px 0 var(--gold);
+  }
+
+  .compact-entity-card--wrap .compact-entity-card__title {
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+  }
+
+  .compact-entity-card--wrap .compact-entity-card__secondary {
+    overflow-wrap: anywhere;
   }
 
   .compact-entity-card--split {

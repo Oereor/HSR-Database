@@ -71,7 +71,6 @@ test('real characters, independent speeds, presets, ordered editing and queue st
   await expect(page.getByTestId('action-node').first()).toHaveAttribute('data-total-av', '37.5');
   await editor.getByTestId('preset-eagle').click();
   await editor.getByTestId('submit-effect').click();
-  await editor.locator('[data-testid="preset-superimposition"][data-value="5"]').click();
   await editor.getByTestId('preset-dance').click();
   await expect(editor.getByTestId('effect-percent')).toHaveValue('24');
   await expect(editor.locator('[data-testid="effect-target"][aria-pressed="true"]')).toHaveCount(2);
@@ -509,5 +508,118 @@ for (const locale of ['zh-CN', 'en'] as const) {
       scroll: document.documentElement.scrollWidth
     }));
     expect(dimensions.scroll).toBeLessThanOrEqual(dimensions.width + 1);
+  });
+}
+
+for (const locale of ['zh-CN', 'en'] as const) {
+  test(`preset cards preserve draft-only selection and responsive equipment layout (${locale})`, async ({
+    page
+  }, testInfo) => {
+    const errors: string[] = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    const slots = await configure(
+      page,
+      locale === 'en' ? '/en/game-tools/action-planner/' : '/game-tools/action-planner/'
+    );
+    await slots.nth(0).getByTestId('panel-speed').fill('100');
+    const firstId = await slots.nth(0).getAttribute('data-unit-id');
+    const secondId = await slots.nth(1).getAttribute('data-unit-id');
+    const editor = page.getByTestId('event-editor');
+    const panel = editor.locator('.presets');
+    await panel.locator('summary').click();
+    const cards = panel.locator('.compact-entity-card');
+    await expect(cards).toHaveCount(3);
+    await expect(
+      panel.locator('a, .compact-entity-card__tertiary, .compact-entity-card__arrow, .rarity-stars')
+    ).toHaveCount(0);
+    await expect(panel.getByTestId('preset-superimposition')).toHaveCount(0);
+    await expect(panel.locator('.helper')).toHaveCount(0);
+
+    for (const [kind, src] of [
+      ['vonwacq', '/generated-assets/relics/icons/308.png'],
+      ['eagle', '/generated-assets/relics/icons/110.png'],
+      ['dance', '/generated-assets/light-cones/preview/21018.png']
+    ]) {
+      const card = panel.getByTestId(`preset-${kind}`);
+      expect(await card.evaluate((element) => element.tagName)).toBe('BUTTON');
+      await expect(card).toHaveAttribute('type', 'button');
+      await expect(card).toHaveAttribute('aria-pressed', 'false');
+      await expect(card.locator('img')).toHaveAttribute('src', src);
+      await expect(card.locator('.compact-entity-card__title')).not.toHaveText('');
+      await expect(card.locator('.compact-entity-card__secondary')).not.toHaveText('');
+      const titleFits = await card
+        .locator('.compact-entity-card__title')
+        .evaluate((element) => element.scrollHeight <= element.clientHeight + 1);
+      expect(titleFits).toBe(true);
+    }
+    const before = await page.getByTestId('action-node').first().getAttribute('data-total-av');
+
+    // Selecting a preset target remains independent of the ordinary target multi-select.
+    await panel.locator(`[data-testid="preset-target"][data-unit-id="${firstId}"]`).click();
+    const vonwacq = panel.getByTestId('preset-vonwacq');
+    await expect(vonwacq).toBeEnabled();
+    await vonwacq.focus();
+    await page.keyboard.press('Enter');
+    await expect(vonwacq).toHaveAttribute('aria-pressed', 'true');
+    await expect(editor.getByTestId('effect-percent')).toHaveValue('40');
+    await expect(
+      editor.locator(`[data-testid="effect-target"][data-unit-id="${firstId}"]`)
+    ).toHaveAttribute('aria-pressed', 'true');
+    await expect(editor.locator('[data-operation-id]')).toHaveCount(0);
+    await expect(page.getByTestId('action-node').first()).toHaveAttribute('data-total-av', before!);
+    await editor.getByTestId('cancel-effect').click();
+    await expect(vonwacq).toHaveAttribute('aria-pressed', 'false');
+
+    await panel.locator(`[data-testid="preset-target"][data-unit-id="${secondId}"]`).click();
+    const eagle = panel.getByTestId('preset-eagle');
+    await eagle.click();
+    await expect(eagle).toHaveAttribute('aria-pressed', 'true');
+    await expect(editor.getByTestId('effect-percent')).toHaveValue('25');
+    await expect(
+      editor.locator(`[data-testid="effect-target"][data-unit-id="${secondId}"]`)
+    ).toHaveAttribute('aria-pressed', 'true');
+    await editor.getByTestId('cancel-effect').click();
+
+    const dance = panel.getByTestId('preset-dance');
+    await dance.focus();
+    await page.keyboard.press('Space');
+    await expect(dance).toHaveAttribute('aria-pressed', 'true');
+    await expect(editor.getByTestId('effect-percent')).toHaveValue('24');
+    await expect(editor.locator('[data-testid="effect-target"][aria-pressed="true"]')).toHaveCount(
+      2
+    );
+    await expect(editor.locator('[data-operation-id]')).toHaveCount(0);
+    // Editing the filled draft must still allow arbitrary ordinary advance values.
+    await editor.getByTestId('effect-percent').fill('18');
+    await editor.getByTestId('submit-effect').click();
+    await expect(dance).toHaveAttribute('aria-pressed', 'false');
+    await expect(editor.locator('[data-operation-id]')).toHaveCount(1);
+    await editor.getByTestId('edit-effect').click();
+    await expect(editor.getByTestId('effect-percent')).toHaveValue('18');
+    await expect(dance).toHaveAttribute('aria-pressed', 'false');
+    await editor.getByTestId('cancel-effect').click();
+    await dance.click();
+    await expect(editor.getByTestId('effect-percent')).toHaveValue('24');
+    await expect(editor.locator('[data-operation-id]')).toHaveCount(1);
+    await editor.getByTestId('cancel-effect').click();
+
+    // Icon failures keep both information levels and button semantics.
+    await dance.locator('img').evaluate((image) => image.dispatchEvent(new Event('error')));
+    await expect(dance.locator('[data-image-fallback]')).toBeVisible();
+    await expect(dance).toBeEnabled();
+    await expect(dance.locator('.compact-entity-card__title')).toBeVisible();
+    const fits = await panel.evaluate((element) => element.scrollWidth <= element.clientWidth + 1);
+    expect(fits).toBe(true);
+    await page.screenshot({
+      path: testInfo.outputPath(`preset-cards-${locale}.png`),
+      fullPage: true
+    });
+
+    await page.getByTestId('action-node').first().click();
+    await editor.locator('.presets summary').click();
+    await expect(editor.getByTestId('preset-vonwacq')).toBeDisabled();
+    await expect(editor.getByTestId('preset-eagle')).toBeEnabled();
+    await expect(editor.getByTestId('preset-dance')).toBeEnabled();
+    expect(errors).toEqual([]);
   });
 }

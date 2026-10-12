@@ -487,9 +487,6 @@
   "planner_cancel": "Cancel",
   "planner_presets": "Effect presets",
   "planner_preset_fallback": "Preset {index}",
-  "planner_superimposition": "Superimposition",
-  "planner_preset_note": "Presets fill a normal effect form. Add it to apply; you decide equipment and skill triggers.",
-  "planner_vonwacq_note": "The Vonwacq preset requires battle start and selected target panel SPD ≥120.",
   "planner_form_invalid": "Check targets, numeric values, and duration.",
   "planner_unreached": "Configured nodes not reached",
   "planner_delete_event": "Delete node effects",
@@ -535,5 +532,8 @@
   "planner_gauge_summary": "{percent}%",
   "planner_speed_up": "Speed increase",
   "planner_speed_down": "Speed decrease",
-  "planner_diagnostic_legacy_operation": "This legacy plan contains a retired speed removal operation. Simulation stopped. Edit or delete the original speed effect configuration before replaying."
+  "planner_diagnostic_legacy_operation": "This legacy plan contains a retired speed removal operation. Simulation stopped. Edit or delete the original speed effect configuration before replaying.",
+  "planner_preset_dance_effect": "Advances all allies' actions by 24%",
+  "planner_preset_vonwacq_effect": "Advances the target's action by 40%",
+  "planner_preset_eagle_effect": "Advances the target's action by 25%"
 }
