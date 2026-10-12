@@ -33,9 +33,7 @@ export function summarizeEffects(
 ): EffectSummary | undefined {
   if (!operations.length) return undefined;
   const family = (operation: EffectOperation): Exclude<EffectSummary['kind'], 'mixed'> =>
-    operation.type === 'addSpeedModifier' || operation.type === 'removeSpeedModifier'
-      ? 'speed'
-      : operation.type;
+    operation.type === 'addSpeedModifier' ? 'speed' : operation.type;
   const first = family(operations[0]);
   return {
     kind: operations.every((operation) => family(operation) === first) ? first : 'mixed',

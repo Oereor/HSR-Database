@@ -22,6 +22,13 @@ async function configure(page: Page, path = '/game-tools/action-planner/') {
   return slots;
 }
 
+async function chooseType(page: Page, value: string) {
+  const editor = page.getByTestId('event-editor');
+  if (!(await editor.getByTestId('effect-form').isVisible()))
+    await editor.getByTestId('add-effect').click();
+  await editor.locator(`[data-testid="effect-type"][data-value="${value}"]`).click();
+}
+
 test('real characters, independent speeds, presets, ordered editing and queue stepping', async ({
   page
 }, testInfo) => {
@@ -56,7 +63,7 @@ test('real characters, independent speeds, presets, ordered editing and queue st
 
   const editor = page.getByTestId('event-editor');
   await editor.locator('.presets summary').click();
-  await editor.getByTestId('preset-target').selectOption(firstUnitId!);
+  await editor.locator(`[data-testid="preset-target"][data-unit-id="${firstUnitId}"]`).click();
   await editor.getByTestId('preset-vonwacq').click();
   await expect(editor.getByTestId('effect-percent')).toHaveValue('40');
   await expect(editor.locator('[data-operation-id]')).toHaveCount(0);
@@ -64,10 +71,10 @@ test('real characters, independent speeds, presets, ordered editing and queue st
   await expect(page.getByTestId('action-node').first()).toHaveAttribute('data-total-av', '37.5');
   await editor.getByTestId('preset-eagle').click();
   await editor.getByTestId('submit-effect').click();
-  await editor.getByTestId('preset-superimposition').selectOption('5');
+  await editor.locator('[data-testid="preset-superimposition"][data-value="5"]').click();
   await editor.getByTestId('preset-dance').click();
   await expect(editor.getByTestId('effect-percent')).toHaveValue('24');
-  await expect(editor.getByTestId('target-kind')).toHaveValue('allies');
+  await expect(editor.locator('[data-testid="effect-target"][aria-pressed="true"]')).toHaveCount(2);
   await editor.getByTestId('submit-effect').click();
   const ops = editor.locator('[data-operation-id]');
   await expect(ops).toHaveCount(3);
@@ -83,26 +90,42 @@ test('real characters, independent speeds, presets, ordered editing and queue st
   await page.screenshot({ path: testInfo.outputPath('action-planner.png'), fullPage: true });
 });
 
-test('same-node speed removal, explicit multi-targets, orphaned anchors and input errors', async ({
+test('infinite group speed effects, draft validation, cancellation and orphaned anchors', async ({
   page
 }) => {
   const slots = await configure(page);
   const editor = page.getByTestId('event-editor');
-  await editor.getByTestId('effect-type').selectOption('addSpeedModifier');
-  await editor.getByTestId('target-kind').selectOption('multiple');
-  await editor.locator('fieldset input[type="checkbox"]').nth(0).check();
-  await editor.locator('fieldset input[type="checkbox"]').nth(1).check();
-  await editor.getByTestId('speed-mode').selectOption('percent');
+  await chooseType(page, 'addSpeedModifier');
+  await expect(editor.getByTestId('effect-type')).toHaveCount(4);
+  await expect(editor.getByTestId('effect-phase')).toHaveCount(0);
+  await expect(editor.locator('select')).toHaveCount(0);
+  await editor.getByTestId('targets-all').click();
+  await editor.locator('[data-testid="speed-mode"][data-value="percent"]').click();
   await editor.getByTestId('effect-amount').fill('20');
+  for (const value of ['0', '-1', '1.5', 'invalid']) {
+    await editor.getByTestId('effect-turns').fill(value);
+    await editor.getByTestId('submit-effect').click();
+    await expect(editor.getByTestId('effect-turns')).toHaveAttribute('aria-invalid', 'true');
+    await expect(editor.locator('[data-operation-id]')).toHaveCount(0);
+  }
+  await editor.getByTestId('effect-turns').fill('');
   await editor.getByTestId('submit-effect').click();
-  await editor.getByTestId('effect-type').selectOption('removeSpeedModifier');
-  await expect(editor.getByTestId('buff-instance')).toHaveCount(2);
-  await editor.getByTestId('buff-instance').first().check();
-  await editor.getByTestId('submit-effect').click();
-  await expect(editor.locator('[data-operation-id]')).toHaveCount(2);
+  await expect(editor.locator('[data-operation-id]')).toHaveCount(1);
+  await expect(editor.locator('[data-operation-id] .targets .avatar')).toHaveCount(2);
+  await editor.getByTestId('edit-effect').click();
+  await expect(editor.getByTestId('effect-turns')).toHaveValue('');
+  await editor.getByTestId('effect-amount').fill('-20');
+  const before = await page.getByTestId('action-node').first().getAttribute('data-total-av');
+  await editor.getByTestId('cancel-effect').click();
+  await expect(page.getByTestId('action-node').first()).toHaveAttribute('data-total-av', before!);
+  await editor.getByTestId('edit-effect').click();
+  await expect(editor.getByTestId('effect-amount')).toHaveValue('20');
+  await editor.getByTestId('cancel-effect').click();
+  await editor.getByTestId('delete-effect').click();
+  await expect(page.getByTestId('action-node').first()).toHaveAttribute('data-total-av', '62.5');
   await page.getByTestId('action-node').first().click();
-  await editor.getByTestId('effect-type').selectOption('advance');
-  await editor.getByTestId('target-kind').selectOption('allies');
+  await chooseType(page, 'advance');
+  await editor.getByTestId('targets-all').click();
   await editor.getByTestId('submit-effect').click();
   await selectCharacter(page, 0, '1003');
   await expect(page.getByTestId('unreached-events')).toBeVisible();
@@ -276,13 +299,15 @@ for (const locale of ['zh-CN', 'en'] as const) {
     await page.keyboard.press('Space');
     await expect(first).toHaveAttribute('aria-pressed', 'true');
     const editor = page.getByTestId('event-editor');
-    await editor.getByTestId('target-kind').selectOption('allies');
+    if (!(await editor.getByTestId('effect-form').isVisible()))
+      await editor.getByTestId('add-effect').click();
+    await editor.getByTestId('targets-all').click();
     await editor.getByTestId('effect-percent').fill('25');
     await editor.getByTestId('submit-effect').click();
     const selected = page.locator(`[data-testid="action-node"][data-anchor="${anchor}"]`);
     await expect(selected.getByTestId('effect-summary')).toHaveAttribute('data-kind', 'advance');
     await expect(selected.getByTestId('effect-summary')).toHaveAttribute('data-count', '1');
-    await editor.getByTestId('effect-type').selectOption('delay');
+    await chooseType(page, 'delay');
     await editor.getByTestId('submit-effect').click();
     await expect(selected.getByTestId('effect-summary')).toHaveAttribute('data-kind', 'mixed');
     await expect(selected.getByTestId('effect-summary')).toHaveAttribute('data-count', '2');
@@ -313,8 +338,10 @@ test('queue cards distinguish speed states, select next anchors and preserve ste
 }, testInfo) => {
   await configure(page);
   const editor = page.getByTestId('event-editor');
-  await editor.getByTestId('effect-type').selectOption('addSpeedModifier');
-  await editor.getByTestId('target-kind').selectOption('allies');
+  await chooseType(page, 'addSpeedModifier');
+  if (!(await editor.getByTestId('effect-form').isVisible()))
+    await editor.getByTestId('add-effect').click();
+  await editor.getByTestId('targets-all').click();
   await editor.getByTestId('effect-amount').fill('20');
   await editor.getByTestId('effect-turns').fill('2');
   await editor.getByTestId('submit-effect').click();
@@ -357,8 +384,10 @@ test('queue cards distinguish speed states, select next anchors and preserve ste
   await expect(page.getByTestId('queue-status')).toHaveAttribute('data-step', '0');
   await page.getByTestId('view-predict').click();
   await page.getByTestId('start-node').click();
-  await editor.getByTestId('effect-type').selectOption('immediatelyAct');
-  await editor.getByTestId('target-kind').selectOption('allies');
+  await chooseType(page, 'immediatelyAct');
+  if (!(await editor.getByTestId('effect-form').isVisible()))
+    await editor.getByTestId('add-effect').click();
+  await editor.getByTestId('targets-all').click();
   await editor.getByTestId('submit-effect').click();
   await expect(page.getByTestId('action-node').first()).toHaveAttribute('data-delta-av', '0');
   await expect(page.getByTestId('action-node').first().getByTestId('card-delta-av')).toContainText(
@@ -376,7 +405,9 @@ test('queue anchors beyond the budget remain editable without fabricated preview
   await page.getByTestId('queue-unit').nth(1).click();
   const anchor = await page.getByTestId('queue-unit').nth(1).getAttribute('data-anchor');
   const editor = page.getByTestId('event-editor');
-  await editor.getByTestId('target-kind').selectOption('allies');
+  if (!(await editor.getByTestId('effect-form').isVisible()))
+    await editor.getByTestId('add-effect').click();
+  await editor.getByTestId('targets-all').click();
   await editor.getByTestId('submit-effect').click();
   await expect(page.getByTestId('unreached-events')).toBeVisible();
   await expect(page.locator(`[data-testid="queue-unit"][data-anchor="${anchor}"]`)).toHaveAttribute(
@@ -384,6 +415,99 @@ test('queue anchors beyond the budget remain editable without fabricated preview
     'true'
   );
   await expect(editor.locator('[data-operation-id]')).toHaveCount(1);
-  await editor.getByTestId('effect-type').selectOption('removeSpeedModifier');
-  await expect(editor.getByTestId('buff-instance')).toHaveCount(0);
+  await editor.getByTestId('edit-effect').click();
+  await expect(
+    editor.locator('[data-testid="effect-type"][data-value="removeSpeedModifier"]')
+  ).toHaveCount(0);
+  await expect(editor.getByTestId('effect-phase')).toHaveCount(2);
 });
+
+for (const locale of ['zh-CN', 'en'] as const) {
+  test(`Inspector windows, keyboard targets, stage sorting and stable queue replay (${locale})`, async ({
+    page
+  }, testInfo) => {
+    const slots = await configure(
+      page,
+      locale === 'en' ? '/en/game-tools/action-planner/' : '/game-tools/action-planner/'
+    );
+    await selectCharacter(page, 0, '1306');
+    await slots.nth(0).getByTestId('panel-speed').fill('160');
+    const firstId = await slots.nth(0).getAttribute('data-unit-id');
+    const firstAnchor = await page.getByTestId('action-node').first().getAttribute('data-anchor');
+    const second = page.locator(
+      `[data-testid="action-node"][data-unit-id="${firstId}"][data-turn="2"]`
+    );
+    await page.getByTestId('action-node').first().click();
+    const editor = page.getByTestId('event-editor');
+    await chooseType(page, 'advance');
+    // Direct avatar multi-select, including keyboard activation, creates one group card.
+    const target = editor.getByTestId('effect-target').nth(1);
+    await target.focus();
+    await page.keyboard.press('Space');
+    await expect(target).toHaveAttribute('aria-pressed', 'true');
+    await editor.getByTestId('effect-percent').fill('24');
+    await editor.getByTestId('submit-effect').click();
+    await expect(editor.locator('[data-operation-id]')).toHaveCount(1);
+    await expect(editor.locator('[data-operation-id] .avatar')).toHaveCount(2);
+    await expect(second).toHaveAttribute('data-total-av', '125');
+    await editor.getByTestId('edit-effect').click();
+    await editor.locator('[data-testid="effect-phase"][data-value="postAction"]').click();
+    await expect(second).toHaveAttribute('data-total-av', '125');
+    await editor.getByTestId('cancel-effect').click();
+    await expect(editor.locator('[data-phase-group="preAction"] [data-operation-id]')).toHaveCount(
+      1
+    );
+    await editor.getByTestId('edit-effect').click();
+    await editor.locator('[data-testid="effect-phase"][data-value="postAction"]').click();
+    await editor.getByTestId('submit-effect').click();
+    await expect(editor.locator('[data-phase-group="postAction"] [data-operation-id]')).toHaveCount(
+      1
+    );
+    await expect(second).toHaveAttribute('data-total-av', '110');
+    await expect(
+      page.locator(`[data-testid="action-node"][data-anchor="${firstAnchor}"]`)
+    ).toHaveAttribute('aria-pressed', 'true');
+
+    await chooseType(page, 'delay');
+    await editor.locator('[data-testid="effect-phase"][data-value="postAction"]').click();
+    await editor.getByTestId('effect-percent').fill('10');
+    await editor.getByTestId('submit-effect').click();
+    await expect(second).toHaveAttribute('data-total-av', '116.25');
+    const post = editor.locator('[data-phase-group="postAction"] [data-operation-id]');
+    const id = await post.first().getAttribute('data-operation-id');
+    await post.last().getByTestId('move-effect-up').click();
+    await expect(post.last()).toHaveAttribute('data-operation-id', id!);
+    await expect(post.first().getByTestId('move-effect-up')).toBeDisabled();
+    await post.first().getByTestId('delete-effect').click();
+    await expect(second).toHaveAttribute('data-total-av', '110');
+
+    await page.getByTestId('view-queue').click();
+    await page.getByTestId('queue-next').click();
+    await page.getByTestId('queue-next').click();
+    await expect(page.getByTestId('queue-status')).toHaveAttribute('data-step', '2');
+    // b's pre-action effect modifies Sparkle's next gauge without creating another unit.
+    await chooseType(page, 'advance');
+    await editor.getByTestId('effect-percent').fill('100');
+    await editor.locator('[data-testid="effect-phase"][data-value="preAction"]').click();
+    await editor.getByTestId('submit-effect').click();
+    await expect(page.getByTestId('queue-unit')).toHaveCount(2);
+    await expect(page.getByTestId('queue-status')).toHaveAttribute('data-step', '2');
+    await editor.getByTestId('edit-effect').click();
+    await expect(editor.getByTestId('effect-form')).toHaveAttribute('data-mode', 'edit');
+    await expect(editor.getByTestId('effect-target').first()).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    );
+    await slots.nth(1).getByTestId('panel-speed').fill('200');
+    // The completed b:1 cursor follows its anchor when it becomes the first action.
+    await expect(page.getByTestId('queue-status')).toHaveAttribute('data-step', '1');
+    await expect(editor.getByTestId('effect-form')).toHaveAttribute('data-mode', 'edit');
+    await expect(page.getByTestId('queue-unit')).toHaveCount(2);
+    await page.screenshot({ path: testInfo.outputPath(`inspector-${locale}.png`), fullPage: true });
+    const dimensions = await page.evaluate(() => ({
+      width: document.documentElement.clientWidth,
+      scroll: document.documentElement.scrollWidth
+    }));
+    expect(dimensions.scroll).toBeLessThanOrEqual(dimensions.width + 1);
+  });
+}

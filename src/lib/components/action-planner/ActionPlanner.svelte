@@ -43,6 +43,7 @@
   let maxAV: number | undefined = DEFAULT_LIMITS.maxAV;
   let view: 'predict' | 'queue' = 'predict';
   let queueStep = 0;
+  let queueAnchor: EventAnchor = { kind: 'start' };
   let selectedAnchor: EventAnchor = { kind: 'start' };
 
   $: units = configuredAllies(allies);
@@ -51,9 +52,15 @@
   $: selectedOperations =
     events.find((event) => anchorKey(event.anchor) === selectedKey)?.operations ?? [];
   $: selectedRecord = result.records.find((record) => anchorKey(record.anchor) === selectedKey);
-  $: beforeEffects =
-    selectedAnchor.kind === 'start' ? result.startState : selectedRecord?.beforeEffects;
-  $: safeStep = Math.min(queueStep, Math.max(0, result.snapshots.length - 1));
+  $: replayStep =
+    queueAnchor.kind === 'action'
+      ? result.records.findIndex((record) => anchorKey(record.anchor) === anchorKey(queueAnchor)) +
+        1
+      : 0;
+  $: safeStep =
+    view === 'queue' && replayStep > 0
+      ? replayStep
+      : Math.min(queueStep, Math.max(0, result.snapshots.length - 1));
   $: snapshot = result.snapshots[safeStep];
   $: unreachedEvents = events.filter(
     (event) =>
@@ -105,7 +112,8 @@
   }
   function stepTo(index: number) {
     queueStep = index;
-    selectedAnchor = index > 0 ? result.records[index - 1].anchor : { kind: 'start' };
+    queueAnchor = index > 0 ? result.records[index - 1].anchor : { kind: 'start' };
+    selectedAnchor = queueAnchor;
   }
   function reset() {
     allies = Array.from({ length: 4 }, emptySlot);
@@ -114,6 +122,7 @@
     maxActions = DEFAULT_LIMITS.maxActions;
     maxAV = DEFAULT_LIMITS.maxAV;
     queueStep = 0;
+    queueAnchor = { kind: 'start' };
     selectedAnchor = { kind: 'start' };
     view = 'predict';
   }
@@ -130,8 +139,8 @@
         return m.planner_diagnostic_non_finite({}, { locale });
       case 'missing-target':
         return m.planner_diagnostic_missing_target({}, { locale });
-      case 'missing-modifier':
-        return m.planner_diagnostic_missing_modifier({}, { locale });
+      case 'unsupported-legacy-operation':
+        return m.planner_diagnostic_legacy_operation({}, { locale });
       case 'active-target':
         return m.planner_diagnostic_active_target({}, { locale });
       case 'unreached-anchor':
@@ -256,9 +265,7 @@
                   }}>{anchorName(diagnostic.anchor)}</button
                 > ·
               {/if}
-              {#if diagnostic.operationId}<small
-                  >{diagnostic.operationId} ·
-                </small>{/if}{diagnosticText(diagnostic.code)}
+              {diagnosticText(diagnostic.code)}
             </li>
           {/each}
         </ul>
@@ -366,6 +373,9 @@
           aria-label={anchorName(selectedAnchor)}
         >
           <h2>{anchorName(selectedAnchor)}</h2>
+          <p class="helper">
+            {m.planner_effect_count({ count: selectedOperations.length }, { locale })}
+          </p>
           {#if selectedRecord}<p class="helper">
               {format(selectedRecord.elapsedAV)}
               {m.planner_total_av({}, { locale })}
@@ -375,7 +385,7 @@
               anchor={selectedAnchor}
               operations={selectedOperations}
               {units}
-              {beforeEffects}
+              {avatar}
               {presets}
               onChange={updateOperations}
               {nextId}

@@ -105,10 +105,9 @@
           <span
             >{buff.amount > 0 ? '+' : ''}{format(buff.amount)}{buff.mode === 'percent'
               ? '%'
-              : ' SPD'} · {m.planner_remaining_turns(
-              { turns: buff.remainingTurns },
-              { locale }
-            )}</span
+              : ' SPD'} · {buff.remainingTurns === null
+              ? m.planner_infinite({}, { locale })
+              : m.planner_remaining_turns({ turns: buff.remainingTurns }, { locale })}</span
           >
           <small>{buff.id}</small>
         </div>

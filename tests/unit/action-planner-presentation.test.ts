@@ -20,12 +20,6 @@ const add: EffectOperation = {
   amount: 20,
   turns: 2
 };
-const remove: EffectOperation = {
-  id: 'remove',
-  type: 'removeSpeedModifier',
-  instanceIds: ['missing']
-};
-
 describe('action card presentation', () => {
   it('omits empty summaries and groups configured operations without changing their order', () => {
     expect(summarizeEffects([])).toBeUndefined();
@@ -36,10 +30,13 @@ describe('action card presentation', () => {
     ]) {
       expect(summarizeEffects([operation])).toEqual({ kind: operation.type, count: 1 });
     }
-    const operations = Object.freeze([Object.freeze(add), Object.freeze(remove)]);
+    const operations = Object.freeze([
+      Object.freeze(add),
+      Object.freeze({ ...add, id: 'second', turns: null })
+    ]);
     expect(summarizeEffects(operations)).toEqual({ kind: 'speed', count: 2 });
-    expect(operations.map(({ id }) => id)).toEqual(['add', 'remove']);
-    expect(summarizeEffects([advance, add, remove])).toEqual({ kind: 'mixed', count: 3 });
+    expect(operations.map(({ id }) => id)).toEqual(['add', 'second']);
+    expect(summarizeEffects([advance, add])).toEqual({ kind: 'mixed', count: 2 });
   });
 
   it('preserves natural-action anchors, exact numbers and input record order', () => {

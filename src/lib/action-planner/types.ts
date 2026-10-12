@@ -12,7 +12,8 @@ export interface UnitConfig {
 export type EventAnchor = { kind: 'start' } | { kind: 'action'; unitId: string; turn: number };
 export type Target =
   { kind: 'units'; unitIds: string[] } | { kind: 'allies' } | { kind: 'enemies' };
-export type EffectOperation =
+export type EffectPhase = 'preAction' | 'postAction';
+export type EffectOperation = { phase?: EffectPhase } & (
   | { id: string; type: 'advance'; target: Target; percent: number }
   | { id: string; type: 'delay'; target: Target; percent: number }
   | { id: string; type: 'immediatelyAct'; target: Target }
@@ -22,9 +23,9 @@ export type EffectOperation =
       target: Target;
       mode: 'flat' | 'percent';
       amount: number;
-      turns: number;
+      turns: number | null;
     }
-  | { id: string; type: 'removeSpeedModifier'; instanceIds: string[] };
+);
 
 export interface PlanEvent {
   anchor: EventAnchor;
@@ -41,7 +42,7 @@ export interface SpeedModifierInstance {
   operationId: string;
   mode: 'flat' | 'percent';
   amount: number;
-  remainingTurns: number;
+  remainingTurns: number | null;
 }
 export interface UnitState extends UnitConfig {
   remainingAG: number;
@@ -62,7 +63,7 @@ export type DiagnosticCode =
   | 'invalid-speed'
   | 'non-finite'
   | 'missing-target'
-  | 'missing-modifier'
+  | 'unsupported-legacy-operation'
   | 'active-target'
   | 'unreached-anchor'
   | 'no-units';

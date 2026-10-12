@@ -1,3 +1,4 @@
+import { phaseOperations } from './effect-config';
 import type {
   ActionRecord,
   Diagnostic,
@@ -133,17 +134,24 @@ export function validatePlan(plan: SimulationPlan): Diagnostic[] {
     for (const op of event.operations) {
       if (!op.id || operationIds.has(op.id)) return invalid();
       operationIds.add(op.id);
-      if (op.type === 'removeSpeedModifier') {
-        if (
-          !op.instanceIds.length ||
-          op.instanceIds.some((id) => !id) ||
-          new Set(op.instanceIds).size !== op.instanceIds.length
-        )
-          return invalid();
-        continue;
-      }
+      // Runtime callers may still supply JSON created with the original engine.
+      if ((op as { type: string }).type === 'removeSpeedModifier')
+        return [
+          {
+            code: 'unsupported-legacy-operation',
+            severity: 'error',
+            anchor: event.anchor,
+            operationId: op.id
+          }
+        ];
+      if (
+        (op.phase !== undefined && !['preAction', 'postAction'].includes(op.phase)) ||
+        (event.anchor.kind === 'start' && op.phase !== undefined)
+      )
+        return invalid();
       if (
         !['advance', 'delay', 'immediatelyAct', 'addSpeedModifier'].includes(op.type) ||
+        !op.target ||
         !['units', 'allies', 'enemies'].includes(op.target.kind) ||
         (op.target.kind === 'units' &&
           (!op.target.unitIds.length ||
@@ -160,8 +168,7 @@ export function validatePlan(plan: SimulationPlan): Diagnostic[] {
         op.type === 'addSpeedModifier' &&
         (!['flat', 'percent'].includes(op.mode) ||
           !Number.isFinite(op.amount) ||
-          !Number.isSafeInteger(op.turns) ||
-          op.turns < 1)
+          (op.turns !== null && (!Number.isSafeInteger(op.turns) || op.turns < 1)))
       )
         return invalid();
     }
@@ -193,7 +200,7 @@ function resolveTargets(state: SimulationState, target: Target): UnitState[] | u
   return state.units.filter((unit) => unit.camp === (target.kind === 'allies' ? 'ally' : 'enemy'));
 }
 
-/** Shared by simulation and editor previews. Each operation commits atomically to a cloned state. */
+/** Each operation commits atomically to a cloned state. */
 export function applyOperations(
   input: SimulationState,
   operations: EffectOperation[],
@@ -206,60 +213,50 @@ export function applyOperations(
     const warning = (code: DiagnosticCode, unitId?: string) =>
       diagnostics.push({ code, severity: 'warning', anchor, operationId: op.id, unitId });
     try {
-      if (op.type === 'removeSpeedModifier') {
-        const existing = new Set(
-          next.units.flatMap((unit) => unit.modifiers.map((buff) => buff.id))
-        );
-        if (op.instanceIds.some((id) => !existing.has(id))) {
-          warning('missing-modifier');
-          continue;
-        }
-        for (const unit of next.units)
-          unit.modifiers = unit.modifiers.filter((buff) => !op.instanceIds.includes(buff.id));
+      if ((op as { type: string }).type === 'removeSpeedModifier')
+        fail('unsupported-legacy-operation');
+      const targets = resolveTargets(next, op.target);
+      if (!targets?.length) {
+        warning('missing-target');
+        continue;
+      }
+      if (op.type === 'addSpeedModifier') {
+        for (const unit of targets)
+          unit.modifiers.push({
+            id: modifierId(op.id, unit.id),
+            operationId: op.id,
+            mode: op.mode,
+            amount: op.amount,
+            remainingTurns: op.turns
+          });
       } else {
-        const targets = resolveTargets(next, op.target);
-        if (!targets?.length) {
-          warning('missing-target');
-          continue;
-        }
-        if (op.type === 'addSpeedModifier') {
-          for (const unit of targets)
-            unit.modifiers.push({
-              id: modifierId(op.id, unit.id),
-              operationId: op.id,
-              mode: op.mode,
-              amount: op.amount,
-              remainingTurns: op.turns
-            });
-        } else {
-          const targetIds = new Set(targets.map((unit) => unit.id));
-          const group = orderedUnits(next).filter((unit) => targetIds.has(unit.id));
-          if (targetIds.has(next.activeUnitId ?? '')) warning('active-target', next.activeUnitId);
-          for (const unit of group) {
-            unit.remainingAG =
-              op.type === 'immediatelyAct'
-                ? 0
-                : Math.max(
-                    0,
-                    finite(
-                      unit.remainingAG +
-                        ((op.type === 'advance' ? -1 : 1) * FULL_AG * op.percent) / 100
-                    )
-                  );
-            if (unit.remainingAG > 0) {
-              unit.zeroBatch = 0;
-              unit.zeroOrder = 0;
-            }
+        const targetIds = new Set(targets.map((unit) => unit.id));
+        const group = orderedUnits(next).filter((unit) => targetIds.has(unit.id));
+        if (targetIds.has(next.activeUnitId ?? '')) warning('active-target', next.activeUnitId);
+        for (const unit of group) {
+          unit.remainingAG =
+            op.type === 'immediatelyAct'
+              ? 0
+              : Math.max(
+                  0,
+                  finite(
+                    unit.remainingAG +
+                      ((op.type === 'advance' ? -1 : 1) * FULL_AG * op.percent) / 100
+                  )
+                );
+          if (unit.remainingAG > 0) {
+            unit.zeroBatch = 0;
+            unit.zeroOrder = 0;
           }
-          if (op.type === 'immediatelyAct' || (op.type === 'advance' && op.percent > 0)) {
-            const zeros = group.filter((unit) => unit.remainingAG === 0);
-            if (zeros.length) {
-              next.batch++;
-              zeros.forEach((unit, i) => {
-                unit.zeroBatch = next.batch;
-                unit.zeroOrder = i;
-              });
-            }
+        }
+        if (op.type === 'immediatelyAct' || (op.type === 'advance' && op.percent > 0)) {
+          const zeros = group.filter((unit) => unit.remainingAG === 0);
+          if (zeros.length) {
+            next.batch++;
+            zeros.forEach((unit, i) => {
+              unit.zeroBatch = next.batch;
+              unit.zeroOrder = i;
+            });
           }
         }
       }
@@ -313,27 +310,33 @@ export function stepSimulation(
     effectiveSpeed: speed,
     beforeEffects: cloneState(state)
   };
-  const applied = applyOperations(state, operations, anchor);
-  state = applied.state;
+  // Missing phases preserve the original engine's pre-reset behavior.
+  const before = applyOperations(state, phaseOperations(operations, 'preAction'), anchor);
+  state = before.state;
+  const reset = state.units.find((unit) => unit.id === active.id)!;
+  reset.turns++;
+  reset.remainingAG = FULL_AG;
+  reset.zeroBatch = 0;
+  reset.zeroOrder = 0;
+  delete state.activeUnitId;
+  const after = applyOperations(state, phaseOperations(operations, 'postAction'), anchor);
+  state = after.state;
   const finished = state.units.find((unit) => unit.id === active.id)!;
   finished.modifiers = finished.modifiers.filter((buff) => {
+    if (buff.remainingTurns === null) return true;
     if (durationSnapshot.has(buff.id)) buff.remainingTurns--;
     return buff.remainingTurns > 0;
   });
-  finished.turns++;
-  finished.remainingAG = FULL_AG;
   try {
-    finite(FULL_AG / effectiveSpeed(finished));
+    // Expiry changes speed, never the gauge or zero-queue priority set by post-action effects.
+    finite(finished.remainingAG / effectiveSpeed(finished));
   } catch (error) {
     if (error instanceof SimulationError)
       throw new SimulationError({ ...error.diagnostic, anchor });
     throw error;
   }
-  finished.zeroBatch = 0;
-  finished.zeroOrder = 0;
-  delete state.activeUnitId;
   state.completedActions++;
-  return { state, record, diagnostics: applied.diagnostics };
+  return { state, record, diagnostics: [...before.diagnostics, ...after.diagnostics] };
 }
 
 export function simulatePlan(plan: SimulationPlan): SimulationResult {
