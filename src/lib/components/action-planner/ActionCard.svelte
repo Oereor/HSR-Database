@@ -1,7 +1,12 @@
 <script lang="ts">
   import type { ParticipantLabels } from '$lib/action-planner/presentation';
   import ParticipantIcon from './ParticipantIcon.svelte';
-  import { summarizeEffects, type ActionCardData } from '$lib/action-planner/presentation';
+  import {
+    formatAV,
+    orderedCardOperations,
+    operationTitle,
+    type ActionCardData
+  } from '$lib/action-planner/presentation';
   import { anchorKey } from '$lib/action-planner/engine';
   import type { EffectOperation } from '$lib/action-planner/types';
   import { m } from '$lib/paraglide/messages.js';
@@ -15,17 +20,11 @@
   export let selected = false;
   export let onSelect: () => void;
 
-  $: summary = summarizeEffects(operations);
-  $: summaryName =
-    summary?.kind === 'advance'
-      ? m.planner_advance({}, { locale })
-      : summary?.kind === 'delay'
-        ? m.planner_delay({}, { locale })
-        : summary?.kind === 'immediatelyAct'
-          ? m.planner_card_immediate({}, { locale })
-          : summary?.kind === 'spawnParticipant'
-            ? m.planner_spawn_participant({}, { locale })
-            : m.planner_card_speed_changes({}, { locale });
+  $: configured = orderedCardOperations(operations, card.anchor);
+  $: changes =
+    card.kind === 'system'
+      ? []
+      : card.actionChanges.filter((change) => change.deltaAV !== 0 || change.zeroAVInsertion);
 
   function format(value: number) {
     return new Intl.NumberFormat(locale, { maximumFractionDigits: 3 }).format(value);
@@ -81,21 +80,6 @@
           <span>{format(card.effectiveSpeed)} SPD</span>
         </span>
       {/if}
-      {#if summary}
-        <span
-          class="effect-summary"
-          data-testid="effect-summary"
-          data-kind={summary.kind}
-          data-count={summary.count}
-        >
-          {summary.kind === 'mixed'
-            ? m.planner_effect_count({ count: summary.count }, { locale })
-            : m.planner_card_effect_summary(
-                { name: summaryName, count: summary.count },
-                { locale }
-              )}
-        </span>
-      {/if}
     </span>
     <span class="av-value">
       <span class="primary" data-testid="card-primary-av">
@@ -105,12 +89,12 @@
             : m.planner_total_av({}, { locale })}
         </span>
         <span data-testid="card-av-number"
-          >{format(card.kind === 'queue' ? card.remainingAV : card.elapsedAV)}</span
+          >{formatAV(card.kind === 'queue' ? card.remainingAV : card.elapsedAV, locale)}</span
         >
       </span>
       {#if card.kind === 'future'}
         <span class="secondary" data-testid="card-delta-av"
-          >+{format(card.deltaAV)} {m.planner_delta_av({}, { locale })}</span
+          >+{formatAV(card.deltaAV, locale)} {m.planner_delta_av({}, { locale })}</span
         >
       {:else if card.kind === 'queue'}
         <span class="secondary" data-testid="card-remaining-label"
@@ -118,6 +102,57 @@
         >
       {/if}
     </span>
+    {#if changes.length || configured.length}
+      <span class="card-explanation">
+        {#if changes.length}
+          <span class="change-markers" aria-label={m.planner_received_changes({}, { locale })}>
+            {#each changes as change, index (`${change.operationId}:${index}`)}
+              <span
+                class="change-marker"
+                class:delay={change.type === 'delay'}
+                data-testid="action-change"
+                data-operation-id={change.operationId}
+                data-kind={change.type}
+                data-delta-av={change.deltaAV}
+                data-insertion={change.zeroAVInsertion}
+                title={change.type === 'advance'
+                  ? m.planner_advance({}, { locale })
+                  : m.planner_delay({}, { locale })}
+              >
+                <span aria-hidden="true">{change.type === 'advance' ? '↑' : '↓'}</span>
+                <span class="visually-hidden"
+                  >{change.type === 'advance'
+                    ? m.planner_advance({}, { locale })
+                    : m.planner_delay({}, { locale })}</span
+                >
+                {change.zeroAVInsertion
+                  ? m.planner_queue_insertion({}, { locale })
+                  : `${formatAV(change.deltaAV, locale, true)} AV`}
+              </span>
+            {/each}
+          </span>
+        {/if}
+        {#if configured.length}
+          <span class="operation-tags" aria-label={m.planner_configured_effects({}, { locale })}>
+            {#each configured as operation (operation.id)}
+              <span
+                class="operation-tag"
+                data-testid="operation-tag"
+                data-kind={operation.type}
+                data-operation-id={operation.id}
+                title={operation.phase === 'preAction'
+                  ? m.planner_pre_action({}, { locale })
+                  : operation.phase === 'postAction'
+                    ? m.planner_post_action({}, { locale })
+                    : undefined}
+              >
+                {operationTitle(operation, locale)}
+              </span>
+            {/each}
+          </span>
+        {/if}
+      </span>
+    {/if}
   </button>
   {#if card.kind === 'queue' && card.modifiers.length}
     <details class="speed-states" data-testid="queue-speed-states">
@@ -150,7 +185,7 @@
 <style>
   .action-card {
     min-width: 0;
-    border: 1px solid var(--border);
+    border: 1px solid color-mix(in srgb, var(--border) 65%, transparent);
     border-radius: var(--radius-control);
     background: var(--surface);
     overflow: clip;
@@ -228,12 +263,38 @@
   .metadata span {
     white-space: nowrap;
   }
-  .effect-summary {
-    display: block;
-    margin-top: var(--space-1);
+  .card-explanation {
+    grid-column: 2 / -1;
+    display: grid;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+  .operation-tags,
+  .change-markers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-2);
+  }
+  .operation-tag {
+    padding: 1px var(--space-2);
+    border-radius: var(--radius-control);
+    background: var(--surface-2);
+    color: var(--text-secondary);
+    font-size: var(--font-helper);
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+  .change-marker {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-1);
     color: var(--gold-soft);
     font-size: var(--font-helper);
-    line-height: 1.4;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .change-marker.delay {
+    color: var(--text-primary);
   }
   .av-value {
     display: grid;

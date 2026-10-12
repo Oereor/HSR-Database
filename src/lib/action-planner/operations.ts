@@ -2,10 +2,12 @@ import {
   assertState,
   cloneState,
   countdownParticipantId,
+  effectiveSpeed,
   fail,
   finite,
   FULL_AG,
   modifierId,
+  nextAnchor,
   orderedParticipants,
   SimulationError,
   spawnedParticipantId
@@ -14,6 +16,7 @@ import { targetIds, validTargetSelection } from './targeting';
 import { validateOperations } from './validation';
 import type {
   Diagnostic,
+  ActionChangeTrace,
   EffectOperation,
   EventAnchor,
   ParticipantDefinition,
@@ -33,7 +36,8 @@ export function spawnParticipant(
     remainingAG: definition.initialAG ?? FULL_AG,
     order: state.nextOrder++,
     zeroBatch: 0,
-    zeroOrder: 0
+    zeroOrder: 0,
+    pendingActionChanges: [] as ActionChangeTrace[]
   };
   state.participants.push(
     definition.kind === 'actor'
@@ -99,9 +103,24 @@ export function applyOperations(
               speed: op.duration.speed
             });
         } else {
-          const group = orderedParticipants(next).filter((participant) =>
-            ids.includes(participant.id)
-          );
+          const originalOrder = orderedParticipants(next);
+          const group = originalOrder.filter((participant) => ids.includes(participant.id));
+          const changes: ActionChangeTrace[] =
+            op.type === 'immediatelyAct'
+              ? []
+              : group.map((participant) => ({
+                  operationId: op.id,
+                  sourceAnchor: { ...anchor },
+                  phase: op.phase,
+                  targetAnchor: nextAnchor(participant),
+                  elapsedAV: next.elapsedAV,
+                  type: op.type as 'advance' | 'delay',
+                  beforeAG: participant.remainingAG,
+                  afterAG: participant.remainingAG,
+                  effectiveSpeed: effectiveSpeed(participant),
+                  deltaAV: 0,
+                  zeroAVInsertion: false
+                }));
           if (ids.includes(next.activeParticipantId ?? ''))
             diagnostics.push({
               code: 'active-target',
@@ -135,6 +154,22 @@ export function applyOperations(
                 participant.zeroOrder = index;
               });
             }
+          }
+          // Trace the same candidate state that will commit, without changing queue mathematics.
+          const committedOrder = changes.length ? orderedParticipants(next) : [];
+          for (const change of changes) {
+            const participant = group.find(
+              (entry) => entry.id === change.targetAnchor.participantId
+            )!;
+            change.afterAG = participant.remainingAG;
+            change.deltaAV = (change.afterAG - change.beforeAG) / change.effectiveSpeed;
+            change.zeroAVInsertion =
+              op.type === 'advance' &&
+              op.percent > 0 &&
+              change.beforeAG === 0 &&
+              change.afterAG === 0 &&
+              committedOrder.indexOf(participant) < originalOrder.indexOf(participant);
+            participant.pendingActionChanges.push(change);
           }
         }
       }

@@ -191,7 +191,7 @@
   <button
     bind:this={addButton}
     type="button"
-    class="accent"
+    class="add-trigger"
     data-testid="add-effect"
     on:click={beginAdd}>+ {m.planner_add_effect({}, { locale })}</button
   >
@@ -460,7 +460,7 @@
     margin-top: var(--space-3);
   }
   form h3 {
-    color: var(--gold-soft);
+    color: var(--text-secondary);
   }
   fieldset {
     min-width: 0;
@@ -510,8 +510,7 @@
     outline: 2px solid var(--gold);
     outline-offset: 2px;
   }
-  .accent,
-  .pills button[aria-pressed='true'] {
+  .accent {
     border-color: var(--gold);
     color: var(--gold-soft);
   }
@@ -522,6 +521,38 @@
   }
   .pills button {
     border-radius: 999px;
+    background: transparent;
+  }
+  .pills button[aria-pressed='true'] {
+    color: var(--text-primary);
+    border-color: var(--text-secondary);
+    background: var(--surface-2);
+  }
+  .segmented {
+    padding: 3px;
+    gap: 2px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-control);
+    background: var(--surface);
+  }
+  .segmented button {
+    border: 0;
+    border-radius: var(--radius-control);
+    padding: var(--space-1) var(--space-2);
+    color: var(--text-secondary);
+  }
+  .segmented button[aria-pressed='true'] {
+    color: var(--text-primary);
+    background: var(--surface-2);
+  }
+  .add-trigger {
+    background: transparent;
+    padding: var(--space-1) var(--space-3);
+  }
+  .types button[aria-pressed='true'] {
+    border-color: var(--gold);
+    color: var(--gold-soft);
+    background: var(--surface-2);
   }
   .types {
     display: grid;

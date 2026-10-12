@@ -13,6 +13,7 @@
   import OperationList from './OperationList.svelte';
   import EffectForm from './EffectForm.svelte';
   import ParticipantForm from './ParticipantForm.svelte';
+  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   export let labels: ParticipantLabels = new Map();
   export let locale: Locale;
   export let anchor: EventAnchor;
@@ -73,6 +74,9 @@
     {onChange}
     onDelete={remove}
   />
+  <div class="creation-heading">
+    <SectionHeading level={3}>{m.planner_add_operation({}, { locale })}</SectionHeading>
+  </div>
   <div class="tabs" role="tablist" aria-label={m.planner_operation_editor({}, { locale })}>
     <button
       bind:this={effectTab}
@@ -86,7 +90,7 @@
       on:keydown={navigateTabs}
       on:click={() => {
         tab = 'effect';
-      }}>{m.planner_add_effect({}, { locale })}</button
+      }}>{m.planner_effect_tab({}, { locale })}</button
     >
     <button
       bind:this={participantTab}
@@ -100,7 +104,7 @@
       on:keydown={navigateTabs}
       on:click={() => {
         tab = 'participant';
-      }}>{m.planner_add_participant({}, { locale })}</button
+      }}>{m.planner_participant_tab({}, { locale })}</button
     >
   </div>
   <div
@@ -149,17 +153,18 @@
   .tabs {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-2);
-    border-top: 1px solid var(--border);
-    margin-top: var(--space-4);
-    padding-top: var(--space-3);
+    gap: 2px;
+    padding: 3px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-control);
+    background: var(--surface);
   }
   .tabs button {
     min-width: 0;
     padding: var(--space-2);
-    border: 1px solid var(--border);
+    border: 0;
     border-radius: var(--radius-control);
-    background: var(--surface);
+    background: transparent;
     color: var(--text-secondary);
     font: inherit;
     font-size: var(--font-helper);
@@ -167,9 +172,8 @@
   }
   .tabs button[aria-selected='true'] {
     color: var(--gold-soft);
-    border-color: var(--gold);
     background: var(--surface-2);
-    box-shadow: inset 0 -2px var(--gold);
+    box-shadow: inset 0 -2px color-mix(in srgb, var(--gold) 65%, transparent);
   }
   .tabs button:focus-visible {
     outline: 2px solid var(--gold);
@@ -177,5 +181,8 @@
   }
   .tab-panel {
     margin-top: var(--space-3);
+  }
+  .creation-heading {
+    margin-top: var(--space-6);
   }
 </style>

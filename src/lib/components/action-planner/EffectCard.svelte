@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { ParticipantLabels } from '$lib/action-planner/presentation';
+  import { operationTitle } from '$lib/action-planner/presentation';
   import ParticipantIcon from './ParticipantIcon.svelte';
   import { m } from '$lib/paraglide/messages.js';
   import type { Locale } from '$lib/paraglide/runtime.js';
@@ -26,24 +27,6 @@
   function format(value: number) {
     return new Intl.NumberFormat(locale, { maximumFractionDigits: 3 }).format(value);
   }
-  function operationTitle(op: EffectOperation) {
-    switch (op.type) {
-      case 'spawnParticipant':
-        return op.participant.kind === 'actor'
-          ? m.planner_create_actor({}, { locale })
-          : m.planner_create_event({}, { locale });
-      case 'advance':
-        return m.planner_advance({}, { locale });
-      case 'delay':
-        return m.planner_delay({}, { locale });
-      case 'immediatelyAct':
-        return m.planner_card_immediate({}, { locale });
-      case 'addSpeedModifier':
-        return op.amount >= 0
-          ? m.planner_speed_up({}, { locale })
-          : m.planner_speed_down({}, { locale });
-    }
-  }
   function operationParameter(op: EffectOperation, names: ParticipantLabels) {
     if (op.type === 'spawnParticipant')
       return `${names.get(spawnedParticipantId(op.id)) ?? op.participant.name} · ${format(op.participant.kind === 'actor' ? op.participant.panelSpeed : op.participant.speed)} SPD · ${op.participant.kind === 'scheduledEvent' ? m.planner_once({}, { locale }) : op.participant.actionLimit == null ? m.planner_unlimited_actions({}, { locale }) : m.planner_action_limit_summary({ count: op.participant.actionLimit }, { locale })}`;
@@ -58,7 +41,7 @@
           : m.planner_duration_summary({ turns: op.duration.turns }, { locale });
     return `${op.mode === 'percent' ? m.planner_base_percent({}, { locale }) : m.planner_flat({}, { locale })} ${op.amount >= 0 ? '+' : ''}${format(op.amount)}${op.mode === 'percent' ? '%' : ''} · ${duration}`;
   }
-  $: title = operationTitle(operation);
+  $: title = operationTitle(operation, locale);
   $: parameter = operationParameter(operation, labels);
 </script>
 
@@ -133,7 +116,7 @@
   .effect-card {
     display: flex;
     min-width: 0;
-    border: 1px solid var(--border);
+    border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
     border-radius: var(--radius-control);
     background: var(--surface);
     overflow: hidden;
@@ -151,7 +134,7 @@
   .card-main {
     flex: 1;
     min-width: 0;
-    min-height: 4.5rem;
+    min-height: 4rem;
     border: 0;
     background: transparent;
     padding: var(--space-2) var(--space-3);
@@ -179,10 +162,8 @@
     font-weight: 650;
   }
   .phase {
-    color: var(--gold-soft);
+    color: var(--text-secondary);
     font-size: var(--font-helper);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-control);
     padding: 0 var(--space-1);
   }
   .detail {
@@ -190,6 +171,8 @@
     font-size: var(--font-helper);
   }
   .parameter {
+    color: var(--text-primary);
+    font-weight: 500;
     overflow-wrap: anywhere;
   }
   .targets {

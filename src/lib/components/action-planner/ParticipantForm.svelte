@@ -92,7 +92,7 @@
   <button
     bind:this={addButton}
     type="button"
-    class="accent"
+    class="add-trigger"
     data-testid="add-participant"
     on:click={beginAdd}>+ {m.planner_add_participant({}, { locale })}</button
   >
@@ -106,7 +106,7 @@
     <h3 tabindex="-1" bind:this={heading}>
       {editingId
         ? m.planner_edit_participant({}, { locale })
-        : m.planner_add_participant({}, { locale })}
+        : m.planner_new_operation({}, { locale })}
     </h3>
     <fieldset>
       <legend>{m.planner_participant_type({}, { locale })}</legend>
@@ -284,7 +284,7 @@
     margin: 0;
     font-size: var(--font-body);
     font-weight: 650;
-    color: var(--gold-soft);
+    color: var(--text-secondary);
   }
   fieldset {
     min-width: 0;
@@ -334,8 +334,7 @@
     outline: 2px solid var(--gold);
     outline-offset: 2px;
   }
-  .accent,
-  .pills button[aria-pressed='true'] {
+  .accent {
     border-color: var(--gold);
     color: var(--gold-soft);
   }
@@ -347,8 +346,36 @@
   }
   .pills button {
     border-radius: 999px;
+    background: transparent;
   }
-  .segmented,
+  .pills button[aria-pressed='true'] {
+    color: var(--text-primary);
+    border-color: var(--text-secondary);
+    background: var(--surface-2);
+  }
+  .segmented {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 3px;
+    gap: 2px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-control);
+    background: var(--surface);
+  }
+  .segmented button {
+    border: 0;
+    border-radius: var(--radius-control);
+    padding: var(--space-1) var(--space-2);
+    color: var(--text-secondary);
+  }
+  .segmented button[aria-pressed='true'] {
+    color: var(--text-primary);
+    background: var(--surface-2);
+  }
+  .add-trigger {
+    background: transparent;
+    padding: var(--space-1) var(--space-3);
+  }
   .form-pair {
     display: grid;
     grid-template-columns: 1fr 1fr;

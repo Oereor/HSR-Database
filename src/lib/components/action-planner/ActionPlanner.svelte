@@ -12,7 +12,8 @@
   import {
     futureActionCard,
     queueActionCard,
-    participantLabels
+    participantLabels,
+    formatAV
   } from '$lib/action-planner/presentation';
   import Inspector from './Inspector.svelte';
   import { m } from '$lib/paraglide/messages.js';
@@ -137,9 +138,6 @@
     selectedAnchor = { kind: 'start' };
     view = 'predict';
   }
-  function format(value: number) {
-    return new Intl.NumberFormat(locale, { maximumFractionDigits: 3 }).format(value);
-  }
   function diagnosticText(code: DiagnosticCode) {
     switch (code) {
       case 'invalid-input':
@@ -210,10 +208,9 @@
             />
           {/each}
         </div>
-        <p class="helper">{m.planner_speed_note({}, { locale })}</p>
       </section>
       <section class="config-section">
-        <h2>{m.planner_limits({}, { locale })}</h2>
+        <SectionHeading level={2}>{m.planner_limits({}, { locale })}</SectionHeading>
         <div class="speed-fields">
           <label
             >{m.planner_max_actions({}, { locale })}<input
@@ -239,30 +236,11 @@
       </section>
       <details class="instructions">
         <summary>{m.planner_help({}, { locale })}</summary>
-        <p>{m.planner_help_text({}, { locale })}</p>
         <p>{m.planner_limitations({}, { locale })}</p>
       </details>
     </aside>
 
     <section class="results" aria-label={m.planner_title({}, { locale })}>
-      <div class="view-controls" role="group" aria-label={m.planner_title({}, { locale })}>
-        <button
-          type="button"
-          aria-pressed={view === 'predict'}
-          data-testid="view-predict"
-          on:click={() => {
-            view = 'predict';
-          }}>{m.planner_predict({}, { locale })}</button
-        >
-        <button
-          type="button"
-          aria-pressed={view === 'queue'}
-          data-testid="view-queue"
-          on:click={() => {
-            view = 'queue';
-          }}>{m.planner_queue({}, { locale })}</button
-        >
-      </div>
       {#if result.stopReason === 'error'}<p class="error" role="alert">
           {m.planner_prefix({}, { locale })}
         </p>{/if}
@@ -285,6 +263,29 @@
       {/if}
       <div class="result-layout">
         <div class="sequence">
+          <SectionHeading level={2}>{m.planner_action_order({}, { locale })}</SectionHeading>
+          <div
+            class="view-controls"
+            role="group"
+            aria-label={m.planner_action_order({}, { locale })}
+          >
+            <button
+              type="button"
+              aria-pressed={view === 'predict'}
+              data-testid="view-predict"
+              on:click={() => {
+                view = 'predict';
+              }}>{m.planner_predict({}, { locale })}</button
+            >
+            <button
+              type="button"
+              aria-pressed={view === 'queue'}
+              data-testid="view-queue"
+              on:click={() => {
+                view = 'queue';
+              }}>{m.planner_queue({}, { locale })}</button
+            >
+          </div>
           {#if view === 'predict'}
             <div class="action-list" data-testid="action-list">
               <ActionCard
@@ -338,8 +339,9 @@
                 data-step={safeStep}
                 data-total-av={snapshot.elapsedAV}
               >
-                {m.planner_completed({ count: snapshot.completedNodes }, { locale })} · {format(
-                  snapshot.elapsedAV
+                {m.planner_completed({ count: snapshot.completedNodes }, { locale })} · {formatAV(
+                  snapshot.elapsedAV,
+                  locale
                 )} AV
               </p>
               <div class="queue-list" data-testid="queue-list">
@@ -390,11 +392,24 @@
           data-testid="event-editor"
           aria-label={anchorName(selectedAnchor, labels)}
         >
-          <h2>{anchorName(selectedAnchor, labels)}</h2>
-          {#if selectedRecord}<p class="helper">
-              {format(selectedRecord.elapsedAV)}
-              {m.planner_total_av({}, { locale })}
-            </p>{/if}
+          <div class="node-heading">
+            <h2 title={anchorName(selectedAnchor, labels)}>
+              <span class="node-name"
+                >{selectedAnchor.kind === 'start'
+                  ? m.planner_start({}, { locale })
+                  : unitName(selectedAnchor.participantId, labels)}</span
+              >
+              {#if selectedAnchor.kind === 'action'}<span class="node-turn">
+                  · {m.planner_turn({ turn: selectedAnchor.turn }, { locale })}</span
+                >{/if}
+            </h2>
+            {#if selectedAnchor.kind === 'start' || selectedRecord}<span
+                class="node-av"
+                data-testid="inspector-av"
+              >
+                {formatAV(selectedRecord?.elapsedAV ?? 0, locale)} <small>AV</small>
+              </span>{/if}
+          </div>
           {#key selectedKey}<Inspector
               {locale}
               {labels}
@@ -522,13 +537,27 @@
     cursor: pointer;
   }
   .view-controls {
-    display: flex;
-    gap: var(--space-2);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px;
+    padding: 3px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-control);
+    background: var(--surface);
     margin-bottom: var(--space-4);
   }
+  .view-controls button {
+    border: 0;
+    background: transparent;
+  }
   .view-controls button[aria-pressed='true'] {
-    border-color: var(--gold);
     color: var(--gold-soft);
+    background: var(--surface-2);
+    box-shadow: inset 0 -2px color-mix(in srgb, var(--gold) 65%, transparent);
+  }
+  .view-controls button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: -2px;
   }
   .result-layout {
     display: grid;
@@ -549,8 +578,60 @@
     padding-left: var(--space-4);
     min-width: 0;
   }
-  .editor-panel h2 {
-    overflow-wrap: anywhere;
+  .editor-panel {
+    container-type: inline-size;
+  }
+  .node-heading {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    justify-content: space-between;
+    min-width: 0;
+    margin-bottom: var(--space-6);
+  }
+  .node-heading h2 {
+    display: flex;
+    align-items: baseline;
+    min-width: 0;
+    margin: 0;
+    font-size: var(--font-body);
+  }
+  .node-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .node-turn {
+    flex-shrink: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-helper);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .node-av {
+    flex-shrink: 0;
+    color: var(--gold-soft);
+    font-size: var(--font-major-title);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .node-av small {
+    color: var(--text-secondary);
+    font-size: var(--font-helper);
+    font-weight: 400;
+  }
+  @container (max-width: 18rem) {
+    .node-heading {
+      flex-wrap: wrap;
+    }
+    .node-heading h2 {
+      flex-wrap: wrap;
+    }
+    .node-name {
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
   }
   .diagnostics {
     margin: 0 0 var(--space-4);
@@ -571,6 +652,7 @@
   .queue-status {
     color: var(--text-secondary);
     font-size: var(--font-helper);
+    font-variant-numeric: tabular-nums;
   }
   .unreached {
     margin-top: var(--space-4);

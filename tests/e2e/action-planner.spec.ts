@@ -258,7 +258,61 @@ test('missing square icons remain selectable without loading global search', asy
 });
 
 for (const locale of ['zh-CN', 'en'] as const) {
-  test(`action cards preserve AV, icons, stable selection and summaries (${locale})`, async ({
+  test(`action changes belong to the target cycle in both views, including zero-AV insertion (${locale})`, async ({
+    page
+  }) => {
+    const slots = await configure(
+      page,
+      locale === 'en' ? '/en/game-tools/action-planner/' : '/game-tools/action-planner/'
+    );
+    const secondId = await slots.nth(1).getAttribute('data-unit-id');
+    const editor = page.getByTestId('event-editor');
+    await chooseType(page, 'advance');
+    await editor.getByTestId('targets-all').click();
+    await editor.getByTestId('effect-percent').fill('25');
+    await editor.getByTestId('submit-effect').click();
+    await expect(page.getByTestId('start-node').getByTestId('operation-tag')).toHaveCount(1);
+    await expect(page.getByTestId('start-node').getByTestId('action-change')).toHaveCount(0);
+    const first = page.getByTestId('action-node').first();
+    await expect(first.getByTestId('action-change')).toHaveAttribute('data-delta-av', '-15.625');
+    await expect(first.getByTestId('operation-tag')).toHaveCount(0);
+    await page.getByTestId('view-queue').click();
+    await expect(
+      page.getByTestId('queue-unit').first().getByTestId('action-change')
+    ).toHaveAttribute('data-delta-av', '-15.625');
+    await page.getByTestId('queue-next').click();
+    await expect(
+      page.locator('[data-testid="queue-unit"][data-turn="2"]').getByTestId('action-change')
+    ).toHaveCount(0);
+    await page.getByTestId('view-predict').click();
+    await page.getByTestId('start-node').click();
+    await editor.getByTestId('edit-effect').click();
+    await editor.getByTestId('effect-percent').fill('100');
+    await editor.getByTestId('submit-effect').click();
+    await chooseType(page, 'advance');
+    await editor.getByTestId('targets-clear').click();
+    await editor.locator(`[data-testid="effect-target"][data-unit-id="${secondId}"]`).click();
+    await editor.getByTestId('effect-percent').fill('100');
+    await editor.getByTestId('submit-effect').click();
+    const inserted = page.getByTestId('action-node').first();
+    await expect(inserted).toHaveAttribute('data-unit-id', secondId!);
+    await expect(inserted.getByTestId('action-change')).toHaveCount(2);
+    await expect(
+      inserted.locator('[data-testid="action-change"][data-insertion="true"]')
+    ).toHaveAttribute('data-delta-av', '0');
+    await expect(inserted.getByTestId('card-av-number')).toHaveText('0.00');
+    await inserted.click();
+    await expect(editor.getByTestId('inspector-av')).toContainText('0.00');
+    await page.keyboard.press('Tab');
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1
+    );
+    expect(overflow).toBe(false);
+  });
+}
+
+for (const locale of ['zh-CN', 'en'] as const) {
+  test(`action cards preserve AV, icons, stable selection and individual operation tags (${locale})`, async ({
     page
   }, testInfo) => {
     const slots = await configure(
@@ -275,13 +329,13 @@ for (const locale of ['zh-CN', 'en'] as const) {
         .evaluateAll((nodes) => nodes.slice(0, 4).map((node) => node.getAttribute('data-unit-id')))
     ).toEqual([firstId, secondId, firstId, secondId]);
     await expect(first).toHaveAttribute('data-delta-av', '62.5');
-    await expect(first.getByTestId('card-av-number')).toHaveText('62.5');
-    await expect(first.getByTestId('card-delta-av')).toContainText('+62.5');
+    await expect(first.getByTestId('card-av-number')).toHaveText('62.50');
+    await expect(first.getByTestId('card-delta-av')).toContainText('+62.50');
     await expect(first.locator('img')).toHaveAttribute(
       'src',
       '/generated-assets/characters/icons/1001.png'
     );
-    await expect(page.getByTestId('effect-summary')).toHaveCount(0);
+    await expect(page.getByTestId('operation-tag')).toHaveCount(0);
     await first.focus();
     await page.keyboard.press('Space');
     await expect(first).toHaveAttribute('aria-pressed', 'true');
@@ -292,12 +346,16 @@ for (const locale of ['zh-CN', 'en'] as const) {
     await editor.getByTestId('effect-percent').fill('25');
     await editor.getByTestId('submit-effect').click();
     const selected = page.locator(`[data-testid="action-node"][data-anchor="${anchor}"]`);
-    await expect(selected.getByTestId('effect-summary')).toHaveAttribute('data-kind', 'advance');
-    await expect(selected.getByTestId('effect-summary')).toHaveAttribute('data-count', '1');
+    await expect(selected.getByTestId('operation-tag')).toHaveAttribute('data-kind', 'advance');
+    await expect(selected.getByTestId('operation-tag')).toHaveCount(1);
     await chooseType(page, 'delay');
     await editor.getByTestId('submit-effect').click();
-    await expect(selected.getByTestId('effect-summary')).toHaveAttribute('data-kind', 'mixed');
-    await expect(selected.getByTestId('effect-summary')).toHaveAttribute('data-count', '2');
+    await expect(selected.getByTestId('operation-tag')).toHaveCount(2);
+    expect(
+      await selected
+        .getByTestId('operation-tag')
+        .evaluateAll((nodes) => nodes.map((node) => node.getAttribute('data-kind')))
+    ).toEqual(['advance', 'delay']);
     await slots.nth(1).getByTestId('panel-speed').fill('200');
     await expect(page.getByTestId('action-node').first()).toHaveAttribute(
       'data-unit-id',
@@ -306,9 +364,9 @@ for (const locale of ['zh-CN', 'en'] as const) {
     await expect(selected).toHaveAttribute('aria-pressed', 'true');
     await expect(editor.locator('[data-operation-id]')).toHaveCount(2);
     await editor.locator('[data-operation-id]').first().getByTestId('delete-effect').click();
-    await expect(selected.getByTestId('effect-summary')).toHaveAttribute('data-kind', 'delay');
+    await expect(selected.getByTestId('operation-tag')).toHaveAttribute('data-kind', 'delay');
     await editor.locator('[data-operation-id]').first().getByTestId('delete-effect').click();
-    await expect(selected.getByTestId('effect-summary')).toHaveCount(0);
+    await expect(selected.getByTestId('operation-tag')).toHaveCount(0);
     const overflow = await page
       .locator('.sequence')
       .evaluate((node) => node.scrollWidth > node.clientWidth + 1);
@@ -332,9 +390,9 @@ test('queue cards distinguish speed states, select next anchors and preserve ste
   await editor.getByTestId('effect-amount').fill('20');
   await editor.getByTestId('effect-turns').fill('2');
   await editor.getByTestId('submit-effect').click();
-  await expect(page.getByTestId('start-node').getByTestId('effect-summary')).toHaveAttribute(
+  await expect(page.getByTestId('start-node').getByTestId('operation-tag')).toHaveAttribute(
     'data-kind',
-    'speed'
+    'addSpeedModifier'
   );
   const futureAnchor = await page.getByTestId('action-node').first().getAttribute('data-anchor');
   const nextAV = await page.getByTestId('action-node').first().getAttribute('data-total-av');
@@ -344,11 +402,13 @@ test('queue cards distinguish speed states, select next anchors and preserve ste
   await expect(first).toHaveAttribute('data-remaining-av', nextAV!);
   expect(await first.getAttribute('data-total-av')).toBeNull();
   await expect(first.getByTestId('card-av-number')).toHaveText(
-    new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 3 }).format(Number(nextAV))
+    new Intl.NumberFormat('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(
+      Number(nextAV)
+    )
   );
   await expect(first.getByTestId('card-remaining-label')).toBeVisible();
   await expect(first.getByTestId('card-delta-av')).toHaveCount(0);
-  await expect(first.getByTestId('effect-summary')).toHaveCount(0);
+  await expect(first.getByTestId('operation-tag')).toHaveCount(0);
   const states = page.getByTestId('queue-speed-states').first();
   await states.locator('summary').focus();
   await page.keyboard.press('Enter');

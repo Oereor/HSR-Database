@@ -11,6 +11,7 @@
     SimulationState
   } from '$lib/action-planner/types';
   import EffectCard from './EffectCard.svelte';
+  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import { operationTargets } from '$lib/action-planner/targeting';
   export let labels: ParticipantLabels = new Map();
   export let locale: Locale;
@@ -23,13 +24,14 @@
   export let onEdit: (operation: EffectOperation) => void;
   export let onChange: (operations: EffectOperation[]) => void;
   export let onDelete: (id: string) => void;
-  $: groups =
+  $: groups = (
     anchor.kind !== 'action'
       ? [{ phase: undefined, operations }]
       : (['preAction', 'postAction'] as const).map((phase) => ({
           phase,
           operations: phaseOperations(operations, phase)
-        }));
+        }))
+  ).filter((group) => group.operations.length);
   function participantsBefore(operation: EffectOperation): ParticipantInfo[] {
     return operationTargets(
       context
@@ -46,13 +48,13 @@
 </script>
 
 <div class="operations" data-testid="planner-operations">
-  <h3>{m.planner_configured_effects({}, { locale })}</h3>
+  <SectionHeading level={3}>{m.planner_configured_effects({}, { locale })}</SectionHeading>
   {#each groups as group}
     <section class="effect-group" data-phase-group={group.phase ?? 'system'}>
-      {#if group.phase}<h4>
+      {#if group.phase && groups.length > 1}<h4>
           {group.phase === 'preAction'
             ? m.planner_pre_action({}, { locale })
-            : m.planner_post_action({}, { locale })}<span>{group.operations.length}</span>
+            : m.planner_post_action({}, { locale })}
         </h4>{/if}
       {#each group.operations as operation, index (operation.id)}
         <EffectCard
@@ -85,11 +87,6 @@
   .operations {
     gap: var(--space-3);
   }
-  h3 {
-    margin: 0;
-    font-size: var(--font-body);
-    font-weight: 650;
-  }
   h4 {
     margin: 0;
     display: flex;
@@ -97,8 +94,5 @@
     font-size: var(--font-helper);
     font-weight: 500;
     color: var(--text-secondary);
-  }
-  h4 span {
-    color: var(--gold-soft);
   }
 </style>

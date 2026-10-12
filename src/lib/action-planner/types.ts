@@ -29,6 +29,20 @@ export type EventAnchor = { kind: 'start' } | NodeAnchor;
 export type Target =
   { kind: 'participants'; participantIds: string[] } | { kind: 'allies' } | { kind: 'enemies' };
 export type EffectPhase = 'preAction' | 'postAction';
+/** Runtime explanation for one committed gauge operation; never part of a plan. */
+export interface ActionChangeTrace {
+  operationId: string;
+  sourceAnchor: EventAnchor;
+  phase?: EffectPhase;
+  targetAnchor: NodeAnchor;
+  elapsedAV: number;
+  type: 'advance' | 'delay';
+  beforeAG: number;
+  afterAG: number;
+  effectiveSpeed: number;
+  deltaAV: number;
+  zeroAVInsertion: boolean;
+}
 export type SpeedDuration =
   { kind: 'turns'; turns: number | null } | { kind: 'countdown'; name: string; speed: number };
 export type EffectOperation = { id: string; phase?: EffectPhase } & (
@@ -69,6 +83,7 @@ interface QueueState {
   order: number;
   zeroBatch: number;
   zeroOrder: number;
+  pendingActionChanges: ActionChangeTrace[];
 }
 export interface ActorState extends ActorDefinition, QueueState {
   turns: number;
@@ -116,6 +131,7 @@ export interface QueueEntry extends ParticipantInfo {
   remainingAV: number;
   effectiveSpeed: number;
   modifiers: SpeedModifierInstance[];
+  actionChanges: ActionChangeTrace[];
 }
 export interface QueueSnapshot {
   elapsedAV: number;
@@ -129,6 +145,7 @@ export interface NodeRecord extends ParticipantInfo {
   deltaAV: number;
   effectiveSpeed: number;
   beforeEffects: SimulationState;
+  actionChanges: ActionChangeTrace[];
 }
 export interface SimulationResult {
   records: NodeRecord[];

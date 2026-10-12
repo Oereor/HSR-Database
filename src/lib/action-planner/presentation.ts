@@ -1,4 +1,5 @@
 import type {
+  ActionChangeTrace,
   EffectOperation,
   EventAnchor,
   NodeAnchor,
@@ -7,12 +8,58 @@ import type {
   QueueEntry,
   SpeedModifierInstance
 } from './types';
+import { phaseOperations } from './effect-config';
+import { m } from '$lib/paraglide/messages.js';
+import type { Locale } from '$lib/paraglide/runtime.js';
+
+/** Round only for display; suppress the sign when Intl rounds a value to zero. */
+export function formatAV(value: number, locale: Locale, signed = false): string {
+  const options: Intl.NumberFormatOptions = { minimumFractionDigits: 2, maximumFractionDigits: 2 };
+  const plain = new Intl.NumberFormat(locale, options);
+  const displayed = plain.formatToParts(Math.abs(value));
+  const roundsToZero = displayed
+    .filter((part) => part.type === 'integer' || part.type === 'fraction')
+    .every((part) => /^0+$/.test(part.value));
+  return new Intl.NumberFormat(locale, {
+    ...options,
+    signDisplay: signed ? 'exceptZero' : 'auto'
+  }).format(roundsToZero ? 0 : value);
+}
+
+export function orderedCardOperations(
+  operations: readonly EffectOperation[],
+  anchor: EventAnchor
+): EffectOperation[] {
+  return anchor.kind === 'action'
+    ? [...phaseOperations(operations, 'preAction'), ...phaseOperations(operations, 'postAction')]
+    : [...operations];
+}
+
+export function operationTitle(operation: EffectOperation, locale: Locale): string {
+  switch (operation.type) {
+    case 'advance':
+      return m.planner_advance({}, { locale });
+    case 'delay':
+      return m.planner_delay({}, { locale });
+    case 'immediatelyAct':
+      return m.planner_card_immediate({}, { locale });
+    case 'addSpeedModifier':
+      return operation.amount >= 0
+        ? m.planner_speed_up({}, { locale })
+        : m.planner_speed_down({}, { locale });
+    case 'spawnParticipant':
+      return operation.participant.kind === 'actor'
+        ? m.planner_create_actor({}, { locale })
+        : m.planner_create_event({}, { locale });
+  }
+}
 
 type ParticipantCard = {
   anchor: NodeAnchor;
   name: string;
   iconUrl?: string;
   effectiveSpeed: number;
+  actionChanges: ActionChangeTrace[];
 };
 export type ActionCardData =
   | (ParticipantCard & { kind: 'future'; elapsedAV: number; deltaAV: number })
@@ -23,22 +70,6 @@ export type ActionCardData =
       name: string;
       elapsedAV: number;
     };
-export type EffectSummary = {
-  kind: 'advance' | 'delay' | 'immediatelyAct' | 'speed' | 'spawnParticipant' | 'mixed';
-  count: number;
-};
-export function summarizeEffects(
-  operations: readonly EffectOperation[]
-): EffectSummary | undefined {
-  if (!operations.length) return undefined;
-  const family = (operation: EffectOperation): Exclude<EffectSummary['kind'], 'mixed'> =>
-    operation.type === 'addSpeedModifier' ? 'speed' : operation.type;
-  const first = family(operations[0]);
-  return {
-    kind: operations.every((operation) => family(operation) === first) ? first : 'mixed',
-    count: operations.length
-  };
-}
 export function futureActionCard(record: NodeRecord): ActionCardData {
   return {
     kind: 'future',
@@ -46,6 +77,7 @@ export function futureActionCard(record: NodeRecord): ActionCardData {
     name: record.name,
     iconUrl: record.iconUrl,
     effectiveSpeed: record.effectiveSpeed,
+    actionChanges: record.actionChanges,
     elapsedAV: record.elapsedAV,
     deltaAV: record.deltaAV
   };
@@ -57,6 +89,7 @@ export function queueActionCard(entry: QueueEntry): ActionCardData {
     name: entry.name,
     iconUrl: entry.iconUrl,
     effectiveSpeed: entry.effectiveSpeed,
+    actionChanges: entry.actionChanges,
     remainingAV: entry.remainingAV,
     modifiers: entry.modifiers
   };

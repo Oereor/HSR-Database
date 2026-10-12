@@ -4,6 +4,7 @@ import {
   advanceTime,
   assertState,
   cloneState,
+  cloneActionChanges,
   effectiveSpeed,
   fail,
   finite,
@@ -104,6 +105,8 @@ export function stepSimulation(
   const oldModifiers = new Set(
     active.kind === 'actor' ? active.modifiers.map((buff) => buff.id) : []
   );
+  const actionChanges = cloneActionChanges(active.pendingActionChanges);
+  active.pendingActionChanges = [];
   advanceTime(state, deltaAV);
   active.remainingAG = 0;
   state.activeParticipantId = active.id;
@@ -119,6 +122,7 @@ export function stepSimulation(
       elapsedAV: state.elapsedAV,
       deltaAV,
       effectiveSpeed: speed,
+      actionChanges,
       beforeEffects: cloneState(state)
     };
     let diagnostics: Diagnostic[];

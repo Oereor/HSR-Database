@@ -1,4 +1,5 @@
 import type {
+  ActionChangeTrace,
   Diagnostic,
   DiagnosticCode,
   EventAnchor,
@@ -63,14 +64,25 @@ export function cloneState(state: SimulationState): SimulationState {
       participant.kind === 'actor'
         ? {
             ...participant,
+            pendingActionChanges: cloneActionChanges(participant.pendingActionChanges),
             modifiers: participant.modifiers.map((buff) => ({
               ...buff,
               lifetime: { ...buff.lifetime }
             }))
           }
-        : { ...participant }
+        : {
+            ...participant,
+            pendingActionChanges: cloneActionChanges(participant.pendingActionChanges)
+          }
     )
   };
+}
+export function cloneActionChanges(changes: readonly ActionChangeTrace[]): ActionChangeTrace[] {
+  return changes.map((change) => ({
+    ...change,
+    sourceAnchor: { ...change.sourceAnchor },
+    targetAnchor: { ...change.targetAnchor }
+  }));
 }
 export function orderedParticipants(state: SimulationState): ParticipantState[] {
   return state.participants
@@ -105,6 +117,7 @@ export function queueSnapshot(state: SimulationState): QueueSnapshot {
       remainingAG: participant.remainingAG,
       remainingAV: finite(participant.remainingAG / effectiveSpeed(participant)),
       effectiveSpeed: effectiveSpeed(participant),
+      actionChanges: cloneActionChanges(participant.pendingActionChanges),
       modifiers:
         participant.kind === 'actor'
           ? participant.modifiers.map((buff) => ({ ...buff, lifetime: { ...buff.lifetime } }))

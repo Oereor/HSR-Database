@@ -4,6 +4,7 @@ import Inspector from '../../src/lib/components/action-planner/Inspector.svelte'
 import EffectCard from '../../src/lib/components/action-planner/EffectCard.svelte';
 import TargetGrid from '../../src/lib/components/action-planner/TargetGrid.svelte';
 import ActionCard from '../../src/lib/components/action-planner/ActionCard.svelte';
+import OperationList from '../../src/lib/components/action-planner/OperationList.svelte';
 import { anchorKey, simulatePlan, spawnedParticipantId } from '../../src/lib/action-planner/engine';
 import { futureActionCard } from '../../src/lib/action-planner/presentation';
 import type { SimulationPlan } from '../../src/lib/action-planner/types';
@@ -16,6 +17,92 @@ const callbacks = {
 };
 
 describe('dynamic participant Inspector projections', () => {
+  it('omits empty phase groups and keeps movement boundaries within the nonempty group', () => {
+    const operation = {
+      id: 'synthetic-operation',
+      type: 'advance' as const,
+      target: { kind: 'allies' as const },
+      percent: 20,
+      phase: 'postAction' as const
+    };
+    const props = {
+      ...callbacks,
+      anchor: { kind: 'action' as const, participantId: 'a', turn: 1 },
+      operations: [operation],
+      catalog: [],
+      context: undefined,
+      editingId: undefined,
+      onEdit: vi.fn(),
+      onDelete: vi.fn()
+    };
+    const body = render(OperationList, { props }).body;
+    expect(body).not.toContain('data-phase-group="preAction"');
+    expect(body).toContain('data-phase-group="postAction"');
+    expect(body.slice(body.indexOf('data-phase-group="postAction"'))).not.toContain('<h4');
+    expect(body).toMatch(/data-testid="move-effect-up"[^>]*disabled/);
+    const twoGroups = render(OperationList, {
+      props: {
+        ...props,
+        operations: [{ ...operation, id: 'before', phase: 'preAction' }, operation]
+      }
+    }).body;
+    expect(twoGroups.slice(twoGroups.indexOf('data-phase-group=')).match(/<h4/g)).toHaveLength(2);
+    const empty = render(OperationList, { props: { ...props, operations: [] } }).body;
+    expect(empty).not.toContain('data-phase-group=');
+  });
+
+  it('renders configured operations separately from received changes, with raw AV preserved', () => {
+    const plan: SimulationPlan = {
+      actors: [
+        {
+          id: 'a',
+          kind: 'actor',
+          name: 'Synthetic',
+          camp: 'ally',
+          position: 0,
+          baseSpeed: 100,
+          panelSpeed: 100
+        }
+      ],
+      maxNodes: 2,
+      maxAV: 200,
+      events: [
+        {
+          anchor: { kind: 'start' },
+          operations: [{ id: 'pull', type: 'advance', target: { kind: 'allies' }, percent: 25 }]
+        }
+      ]
+    };
+    const record = simulatePlan(plan).records[0];
+    const operations = [
+      {
+        id: 'post',
+        type: 'delay' as const,
+        target: { kind: 'allies' as const },
+        percent: 10,
+        phase: 'postAction' as const
+      },
+      {
+        id: 'pre',
+        type: 'advance' as const,
+        target: { kind: 'allies' as const },
+        percent: 10,
+        phase: 'preAction' as const
+      }
+    ];
+    const body = render(ActionCard, {
+      props: { locale: 'en', card: futureActionCard(record), operations, onSelect: vi.fn() }
+    }).body;
+    expect(body.match(/data-testid="operation-tag"/g)).toHaveLength(2);
+    expect(body.indexOf('data-operation-id="pre"')).toBeLessThan(
+      body.indexOf('data-operation-id="post"')
+    );
+    expect(body).toContain('data-testid="action-change"');
+    expect(body).toContain('data-delta-av="-25"');
+    expect(body).toContain('75.00');
+    expect(body).toContain('data-total-av="75"');
+    expect(body).not.toContain('effect-summary');
+  });
   it('renders a selectable trigger and one operation window, with editable creation configuration', () => {
     const id = spawnedParticipantId('timer');
     const plan: SimulationPlan = {
