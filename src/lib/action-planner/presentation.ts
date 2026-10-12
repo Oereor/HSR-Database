@@ -1,33 +1,31 @@
 import type {
-  ActionRecord,
   EffectOperation,
   EventAnchor,
+  NodeAnchor,
+  NodeRecord,
   QueueEntry,
   SpeedModifierInstance
 } from './types';
 
-type ActionAnchor = Extract<EventAnchor, { kind: 'action' }>;
-type UnitCard = { anchor: ActionAnchor; name: string; effectiveSpeed: number };
-
+type ParticipantCard = {
+  anchor: NodeAnchor;
+  name: string;
+  iconUrl?: string;
+  effectiveSpeed: number;
+};
 export type ActionCardData =
-  | (UnitCard & { kind: 'future'; elapsedAV: number; deltaAV: number })
-  | (UnitCard & {
-      kind: 'queue';
-      remainingAV: number;
-      modifiers: SpeedModifierInstance[];
-    })
+  | (ParticipantCard & { kind: 'future'; elapsedAV: number; deltaAV: number })
+  | (ParticipantCard & { kind: 'queue'; remainingAV: number; modifiers: SpeedModifierInstance[] })
   | {
       kind: 'system';
       anchor: Extract<EventAnchor, { kind: 'start' }>;
       name: string;
       elapsedAV: number;
     };
-
 export type EffectSummary = {
-  kind: 'advance' | 'delay' | 'immediatelyAct' | 'speed' | 'mixed';
+  kind: 'advance' | 'delay' | 'immediatelyAct' | 'speed' | 'spawnParticipant' | 'mixed';
   count: number;
 };
-
 export function summarizeEffects(
   operations: readonly EffectOperation[]
 ): EffectSummary | undefined {
@@ -40,23 +38,23 @@ export function summarizeEffects(
     count: operations.length
   };
 }
-
-export function futureActionCard(record: ActionRecord, name: string): ActionCardData {
+export function futureActionCard(record: NodeRecord): ActionCardData {
   return {
     kind: 'future',
     anchor: record.anchor,
-    name,
+    name: record.name,
+    iconUrl: record.iconUrl,
     effectiveSpeed: record.effectiveSpeed,
     elapsedAV: record.elapsedAV,
     deltaAV: record.deltaAV
   };
 }
-
 export function queueActionCard(entry: QueueEntry): ActionCardData {
   return {
     kind: 'queue',
-    anchor: { kind: 'action', unitId: entry.unitId, turn: entry.turn },
+    anchor: entry.anchor,
     name: entry.name,
+    iconUrl: entry.iconUrl,
     effectiveSpeed: entry.effectiveSpeed,
     remainingAV: entry.remainingAV,
     modifiers: entry.modifiers

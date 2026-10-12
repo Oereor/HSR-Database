@@ -2,7 +2,7 @@
   import { tick } from 'svelte';
   import { m } from '$lib/paraglide/messages.js';
   import type { Locale } from '$lib/paraglide/runtime.js';
-  import { DEFAULT_LIMITS, validatePlan } from '$lib/action-planner/engine';
+  import { previewOperationState, validateOperations } from '$lib/action-planner/engine';
   import {
     effectPhase,
     moveOperation,
@@ -15,18 +15,23 @@
     EffectOperation,
     EffectPhase,
     EventAnchor,
-    UnitConfig
+    ParticipantInfo,
+    SimulationState,
+    TargetedOperation
   } from '$lib/action-planner/types';
   import CompactEntityCard from '$lib/components/shared/CompactEntityCard.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
   import { getLightConePreviewUrl, getRelicSetIconUrl } from '$lib/data/visual-assets';
   import EffectCard from './EffectCard.svelte';
   import TargetGrid from './TargetGrid.svelte';
+  import { selectableTargets, validTargetSelection } from '$lib/action-planner/targeting';
 
   export let locale: Locale;
   export let anchor: EventAnchor;
   export let operations: EffectOperation[];
-  export let units: UnitConfig[];
+  export let participants: ParticipantInfo[];
+  export let catalog: ParticipantInfo[] = participants;
+  export let context: SimulationState | undefined = undefined;
   export let avatar: (id: string) => string | undefined;
   export let presets: { vonwacq?: string; eagle?: string; dance?: string };
   export let onChange: (operations: EffectOperation[]) => void;
@@ -34,32 +39,55 @@
 
   let opened = false;
   let editingId: string | undefined;
-  let type: EffectOperation['type'] = 'advance';
+  let type: TargetedOperation['type'] = 'advance';
   let phase: EffectPhase = 'preAction';
   let selectedIds: string[] = [];
   let percent: number | undefined = 50;
   let amount: number | undefined = 10;
   let turns = '2';
   let mode: 'flat' | 'percent' = 'flat';
-  let presetTarget = units[0]?.id ?? '';
+  let presetTarget = participants.find((participant) => participant.kind === 'actor')?.id ?? '';
   let selectedPreset: PresetKind | undefined;
   let errors: Partial<Record<'target' | 'percent' | 'amount' | 'turns' | 'form', string>> = {};
   let formHeading: HTMLHeadingElement;
   let addButton: HTMLButtonElement;
 
   $: groups =
-    anchor.kind === 'start'
+    anchor.kind !== 'action'
       ? [{ phase: undefined, operations }]
       : (['preAction', 'postAction'] as const).map((value) => ({
           phase: value,
           operations: phaseOperations(operations, value)
         }));
-  $: if (!units.some((unit) => unit.id === presetTarget)) presetTarget = units[0]?.id ?? '';
-  $: selectedPresetUnit = units.find((unit) => unit.id === presetTarget);
+  $: preview = context
+    ? previewOperationState(context, operations, anchor, phase, editingId)
+    : undefined;
+  $: units = preview?.participants ?? participants;
+  $: actorTargets = units.filter((participant) => participant.kind === 'actor');
+  $: eligibleIds = new Set(
+    selectableTargets(type, units, selectedIds).map((participant) => participant.id)
+  );
+  $: disabledIds = units
+    .filter((participant) => !eligibleIds.has(participant.id))
+    .map((participant) => participant.id);
+  $: if (!actorTargets.some((unit) => unit.id === presetTarget))
+    presetTarget = actorTargets[0]?.id ?? '';
+  $: selectedPresetUnit = actorTargets.find((unit) => unit.id === presetTarget);
   $: vonwacqAvailable = canUseVonwacq(anchor);
   $: missingIds = selectedIds.filter((id) => !units.some((unit) => unit.id === id));
 
-  function effectLabel(value: EffectOperation['type']) {
+  function participantsBefore(operation: EffectOperation): ParticipantInfo[] {
+    return context
+      ? (previewOperationState(
+          context,
+          operations,
+          anchor,
+          operation.phase ?? 'preAction',
+          operation.id
+        )?.participants ?? participants)
+      : participants;
+  }
+  function effectLabel(value: TargetedOperation['type']) {
     return value === 'advance'
       ? m.planner_advance({}, { locale })
       : value === 'delay'
@@ -96,20 +124,31 @@
     addButton?.focus();
   }
   function edit(op: EffectOperation) {
+    if (
+      op.type === 'spawnParticipant' ||
+      (op.type === 'addSpeedModifier' && op.duration.kind === 'countdown')
+    )
+      return;
     selectedPreset = undefined;
     editingId = op.id;
     type = op.type;
-    phase = effectPhase(op);
-    selectedIds = targetIds(op.target, units);
+    phase = effectPhase(op) ?? 'preAction';
+    selectedIds = targetIds(op.target, actorTargets);
     percent = op.type === 'advance' || op.type === 'delay' ? op.percent : 50;
     amount = op.type === 'addSpeedModifier' ? op.amount : 10;
-    turns = op.type === 'addSpeedModifier' ? (op.turns === null ? '' : String(op.turns)) : '2';
+    turns =
+      op.type === 'addSpeedModifier' && op.duration.kind === 'turns'
+        ? op.duration.turns === null
+          ? ''
+          : String(op.duration.turns)
+        : '2';
     mode = op.type === 'addSpeedModifier' ? op.mode : 'flat';
     errors = {};
     opened = true;
     void focusForm();
   }
   function toggleTarget(id: string) {
+    if (!selectedIds.includes(id) && !eligibleIds.has(id)) return;
     selectedIds = selectedIds.includes(id)
       ? selectedIds.filter((value) => value !== id)
       : [...selectedIds, id];
@@ -117,7 +156,14 @@
   }
   async function submit() {
     errors = {};
-    if (!selectedIds.length || missingIds.length)
+    if (
+      !selectedIds.length ||
+      missingIds.length ||
+      !validTargetSelection(
+        type,
+        units.filter((participant) => selectedIds.includes(participant.id))
+      )
+    )
       errors.target = m.planner_target_invalid({}, { locale });
     if (
       (type === 'advance' || type === 'delay') &&
@@ -136,18 +182,16 @@
     if (Object.values(errors).some(Boolean)) return;
     const base = {
       id: editingId ?? nextId(),
-      target: { kind: 'units' as const, unitIds: [...selectedIds] },
+      target: { kind: 'participants' as const, participantIds: [...selectedIds] },
       ...(anchor.kind === 'action' ? { phase } : {})
     };
     const op: EffectOperation =
       type === 'immediatelyAct'
         ? { ...base, type }
         : type === 'addSpeedModifier'
-          ? { ...base, type, mode, amount: amount!, turns: duration }
+          ? { ...base, type, mode, amount: amount!, duration: { kind: 'turns', turns: duration } }
           : { ...base, type, percent: percent! };
-    if (
-      validatePlan({ units: [], events: [{ anchor, operations: [op] }], ...DEFAULT_LIMITS }).length
-    ) {
+    if (validateOperations([op], anchor).length) {
       errors.form = m.planner_form_invalid({}, { locale });
       return;
     }
@@ -194,9 +238,10 @@
           <EffectCard
             {locale}
             operation={op}
-            {units}
+            participants={participantsBefore(op)}
+            {catalog}
             {avatar}
-            system={anchor.kind === 'start'}
+            system={anchor.kind !== 'action'}
             selected={editingId === op.id}
             first={index === 0}
             last={index === group.operations.length - 1}
@@ -231,9 +276,9 @@
               data-value={value}
               aria-pressed={type === value}
               on:click={() => {
-                type = value as EffectOperation['type'];
+                type = value as TargetedOperation['type'];
                 errors = {};
-              }}>{effectLabel(value as EffectOperation['type'])}</button
+              }}>{effectLabel(value as TargetedOperation['type'])}</button
             >
           {/each}
         </div>
@@ -266,7 +311,7 @@
             type="button"
             data-testid="targets-all"
             on:click={() => {
-              selectedIds = units.map((unit) => unit.id);
+              selectedIds = actorTargets.map((unit) => unit.id);
               errors = { ...errors, target: undefined };
             }}>{m.planner_select_all({}, { locale })}</button
           >
@@ -278,7 +323,13 @@
             }}>{m.planner_clear_targets({}, { locale })}</button
           >
         </div>
-        <TargetGrid {units} {selectedIds} {avatar} onToggle={toggleTarget} />
+        <TargetGrid
+          participants={units}
+          {selectedIds}
+          {disabledIds}
+          {avatar}
+          onToggle={toggleTarget}
+        />
         {#each missingIds as id}<button
             type="button"
             class="missing-target"
@@ -376,7 +427,7 @@
     <fieldset>
       <legend>{m.planner_target({}, { locale })}</legend>
       <TargetGrid
-        {units}
+        participants={actorTargets}
         selectedIds={[presetTarget]}
         {avatar}
         testId="preset-target"
@@ -428,7 +479,7 @@
         selected={selectedPreset === 'dance'}
         imageUrl={getLightConePreviewUrl('21018')}
         data-testid="preset-dance"
-        disabled={!units.some((unit) => unit.camp === 'ally')}
+        disabled={!units.some((unit) => unit.kind === 'actor' && unit.camp === 'ally')}
         on:click={() => fillPreset('dance')}
       >
         <svelte:fragment slot="title"

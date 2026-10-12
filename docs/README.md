@@ -32,6 +32,8 @@
 
 [行动序列卡片优化](investigations/action-planner-action-cards-2026-10-11.md) 记录共享卡片、两种 AV 展示语义、稳定锚点交互及本地验收。
 
+[动态参与者架构与基础重构](investigations/action-planner-dynamic-participants-architecture.md) 记录统一队列、动态实例与生命周期、速度倒计时、测试清理和 Inspector 迁移边界。
+
 搜索和部署的旧测量分别汇集于[搜索实施历史](investigations/search-v2-implementation-history.md)与[部署基础历史](investigations/vercel-deployment-foundation-history.md)。
 遗器评分与敌人技能历史留在各自专题目录；[战斗模拟可行性](combat-simulation/)和[贪饕机制调查](voracity-effect/)保留独立主题，不代表完整模拟器已实现。
 

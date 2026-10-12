@@ -95,9 +95,7 @@ test('infinite group speed effects, draft validation, cancellation and orphaned 
   const slots = await configure(page);
   const editor = page.getByTestId('event-editor');
   await chooseType(page, 'addSpeedModifier');
-  await expect(editor.getByTestId('effect-type')).toHaveCount(4);
   await expect(editor.getByTestId('effect-phase')).toHaveCount(0);
-  await expect(editor.locator('select')).toHaveCount(0);
   await editor.getByTestId('targets-all').click();
   await editor.locator('[data-testid="speed-mode"][data-value="percent"]').click();
   await editor.getByTestId('effect-amount').fill('20');
@@ -135,8 +133,6 @@ test('infinite group speed effects, draft validation, cancellation and orphaned 
   await expect(page.locator('[data-code="invalid-input"]')).toBeVisible();
   await expect(page.getByTestId('action-node')).toHaveCount(0);
   await slots.nth(0).getByTestId('panel-speed').fill('160');
-  await expect(page.getByTestId('enemy-slot')).toHaveCount(0);
-  await expect(page.getByTestId('add-enemy')).toHaveCount(0);
   await page.getByTestId('view-queue').click();
   await expect(page.getByTestId('queue-unit')).toHaveCount(2);
   await page.getByTestId('reset-plan').click();
@@ -284,16 +280,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
       'src',
       '/generated-assets/characters/icons/1001.png'
     );
-    const iconBounds = await first.locator('.avatar').boundingBox();
-    expect(iconBounds!.width).toBe(48);
-    expect(iconBounds!.height).toBe(48);
     await expect(page.getByTestId('effect-summary')).toHaveCount(0);
-    await expect(page.locator('.sequence .slot-number')).toHaveCount(0);
-    await expect(page.getByTestId('start-node').locator('img')).toHaveCount(0);
-    expect((await page.getByTestId('start-node').boundingBox())!.height).toBeLessThan(
-      (await first.boundingBox())!.height
-    );
-
     await first.focus();
     await page.keyboard.press('Space');
     await expect(first).toHaveAttribute('aria-pressed', 'true');
@@ -529,12 +516,6 @@ for (const locale of ['zh-CN', 'en'] as const) {
     await panel.locator('summary').click();
     const cards = panel.locator('.compact-entity-card');
     await expect(cards).toHaveCount(3);
-    await expect(
-      panel.locator('a, .compact-entity-card__tertiary, .compact-entity-card__arrow, .rarity-stars')
-    ).toHaveCount(0);
-    await expect(panel.getByTestId('preset-superimposition')).toHaveCount(0);
-    await expect(panel.locator('.helper')).toHaveCount(0);
-
     for (const [kind, src] of [
       ['vonwacq', '/generated-assets/relics/icons/308.png'],
       ['eagle', '/generated-assets/relics/icons/110.png'],

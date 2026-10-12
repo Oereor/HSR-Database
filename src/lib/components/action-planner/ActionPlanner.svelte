@@ -39,21 +39,21 @@
     .filter((_, index) => index !== selectorSlot)
     .map((slot) => slot.characterId);
   let events: PlanEvent[] = [];
-  let maxActions: number | undefined = DEFAULT_LIMITS.maxActions;
+  let maxNodes: number | undefined = DEFAULT_LIMITS.maxNodes;
   let maxAV: number | undefined = DEFAULT_LIMITS.maxAV;
   let view: 'predict' | 'queue' = 'predict';
   let queueStep = 0;
   let queueAnchor: EventAnchor = { kind: 'start' };
   let selectedAnchor: EventAnchor = { kind: 'start' };
 
-  $: units = configuredAllies(allies);
-  $: result = simulatePlan({ units, events, maxActions: maxActions ?? NaN, maxAV: maxAV ?? NaN });
+  $: actors = configuredAllies(allies).map((actor) => ({ ...actor, iconUrl: avatar(actor.id) }));
+  $: result = simulatePlan({ actors, events, maxNodes: maxNodes ?? NaN, maxAV: maxAV ?? NaN });
   $: selectedKey = anchorKey(selectedAnchor);
   $: selectedOperations =
     events.find((event) => anchorKey(event.anchor) === selectedKey)?.operations ?? [];
   $: selectedRecord = result.records.find((record) => anchorKey(record.anchor) === selectedKey);
   $: replayStep =
-    queueAnchor.kind === 'action'
+    queueAnchor.kind !== 'start'
       ? result.records.findIndex((record) => anchorKey(record.anchor) === anchorKey(queueAnchor)) +
         1
       : 0;
@@ -87,12 +87,15 @@
     await restoreSlotFocus();
   }
   function unitName(id: string) {
-    return units.find((unit) => unit.id === id)?.name ?? m.planner_unknown_unit({ id }, { locale });
+    return (
+      result.participants.find((participant) => participant.id === id)?.name ??
+      m.planner_unknown_unit({ id }, { locale })
+    );
   }
   function anchorName(anchor: EventAnchor) {
     return anchor.kind === 'start'
       ? m.planner_start({}, { locale })
-      : `${unitName(anchor.unitId)} · ${m.planner_turn({ turn: anchor.turn }, { locale })}`;
+      : `${unitName(anchor.participantId)} · ${anchor.kind === 'action' ? m.planner_turn({ turn: anchor.turn }, { locale }) : m.planner_scheduled_event({}, { locale })}`;
   }
   function avatar(id: string) {
     const draft = allies.find((unit) => unit.id === id);
@@ -119,7 +122,7 @@
     allies = Array.from({ length: 4 }, emptySlot);
     selectorSlot = undefined;
     events = [];
-    maxActions = DEFAULT_LIMITS.maxActions;
+    maxNodes = DEFAULT_LIMITS.maxNodes;
     maxAV = DEFAULT_LIMITS.maxAV;
     queueStep = 0;
     queueAnchor = { kind: 'start' };
@@ -139,13 +142,15 @@
         return m.planner_diagnostic_non_finite({}, { locale });
       case 'missing-target':
         return m.planner_diagnostic_missing_target({}, { locale });
-      case 'unsupported-legacy-operation':
-        return m.planner_diagnostic_legacy_operation({}, { locale });
+      case 'invalid-target':
+        return m.planner_diagnostic_invalid_target({}, { locale });
+      case 'duplicate-participant':
+        return m.planner_diagnostic_duplicate_participant({}, { locale });
       case 'active-target':
         return m.planner_diagnostic_active_target({}, { locale });
       case 'unreached-anchor':
         return m.planner_diagnostic_unreached_anchor({}, { locale });
-      case 'no-units':
+      case 'no-participants':
         return m.planner_diagnostic_no_units({}, { locale });
     }
   }
@@ -206,9 +211,9 @@
             >{m.planner_max_actions({}, { locale })}<input
               type="number"
               min="1"
-              max={HARD_LIMITS.maxActions}
+              max={HARD_LIMITS.maxNodes}
               step="1"
-              bind:value={maxActions}
+              bind:value={maxNodes}
               data-testid="max-actions"
             /></label
           >
@@ -291,8 +296,8 @@
               {#each result.records as record (anchorKey(record.anchor))}
                 <ActionCard
                   {locale}
-                  card={futureActionCard(record, unitName(record.anchor.unitId))}
-                  avatar={avatar(record.anchor.unitId)}
+                  card={futureActionCard(record)}
+                  avatar={record.iconUrl ?? avatar(record.anchor.participantId)}
                   operations={operationsAt(record.anchor, events)}
                   selected={selectedKey === anchorKey(record.anchor)}
                   onSelect={() => {
@@ -323,17 +328,17 @@
                 data-step={safeStep}
                 data-total-av={snapshot.elapsedAV}
               >
-                {m.planner_completed({ count: snapshot.completedActions }, { locale })} · {format(
+                {m.planner_completed({ count: snapshot.completedNodes }, { locale })} · {format(
                   snapshot.elapsedAV
                 )} AV
               </p>
               <div class="queue-list" data-testid="queue-list">
-                {#each snapshot.queue as entry (entry.unitId)}
+                {#each snapshot.queue as entry (entry.id)}
                   {@const card = queueActionCard(entry)}
                   <ActionCard
                     {locale}
                     {card}
-                    avatar={avatar(entry.unitId)}
+                    avatar={avatar(entry.id)}
                     operations={operationsAt(card.anchor, events)}
                     selected={selectedKey === anchorKey(card.anchor)}
                     onSelect={() => {
@@ -344,8 +349,10 @@
               </div>
             {/if}
           {/if}
-          {#if !units.length}<p class="empty">{m.planner_empty({}, { locale })}</p>{/if}
-          {#if result.stopReason === 'actions'}<p class="helper">
+          {#if !actors.length && !snapshot?.queue.length}<p class="empty">
+              {m.planner_empty({}, { locale })}
+            </p>{/if}
+          {#if result.stopReason === 'nodes'}<p class="helper">
               {m.planner_stop_actions({}, { locale })}
             </p>{:else if result.stopReason === 'av'}<p class="helper">
               {m.planner_stop_av({}, { locale })}
@@ -384,7 +391,11 @@
               {locale}
               anchor={selectedAnchor}
               operations={selectedOperations}
-              {units}
+              participants={selectedRecord?.beforeEffects.participants ??
+                (selectedAnchor.kind === 'start' ? actors : (snapshot?.queue ?? actors))}
+              catalog={result.participants}
+              context={selectedRecord?.beforeEffects ??
+                (selectedAnchor.kind === 'start' ? result.startState : undefined)}
               {avatar}
               {presets}
               onChange={updateOperations}

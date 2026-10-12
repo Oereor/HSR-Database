@@ -1,40 +1,58 @@
 export type Camp = 'ally' | 'enemy';
 
-export interface UnitConfig {
-  id: string;
+interface ParticipantDefinitionBase {
   name: string;
+  iconUrl?: string;
+  initialAG?: number;
+}
+export interface ActorDefinition extends ParticipantDefinitionBase {
+  kind: 'actor';
+  category?: 'character' | 'enemy' | 'summon' | 'memosprite' | 'custom';
   camp: Camp;
-  position: number;
   baseSpeed: number;
   panelSpeed: number;
+  actionLimit?: number | null;
 }
-
-export type EventAnchor = { kind: 'start' } | { kind: 'action'; unitId: string; turn: number };
+export interface ScheduledEventDefinition extends ParticipantDefinitionBase {
+  kind: 'scheduledEvent';
+  speed: number;
+}
+export type ParticipantDefinition = ActorDefinition | ScheduledEventDefinition;
+export interface ActorConfig extends ActorDefinition {
+  id: string;
+  position: number;
+}
+export type NodeAnchor =
+  | { kind: 'action'; participantId: string; turn: number }
+  | { kind: 'trigger'; participantId: string };
+export type EventAnchor = { kind: 'start' } | NodeAnchor;
 export type Target =
-  { kind: 'units'; unitIds: string[] } | { kind: 'allies' } | { kind: 'enemies' };
+  { kind: 'participants'; participantIds: string[] } | { kind: 'allies' } | { kind: 'enemies' };
 export type EffectPhase = 'preAction' | 'postAction';
-export type EffectOperation = { phase?: EffectPhase } & (
-  | { id: string; type: 'advance'; target: Target; percent: number }
-  | { id: string; type: 'delay'; target: Target; percent: number }
-  | { id: string; type: 'immediatelyAct'; target: Target }
+export type SpeedDuration =
+  { kind: 'turns'; turns: number | null } | { kind: 'countdown'; name: string; speed: number };
+export type EffectOperation = { id: string; phase?: EffectPhase } & (
+  | { type: 'advance'; target: Target; percent: number }
+  | { type: 'delay'; target: Target; percent: number }
+  | { type: 'immediatelyAct'; target: Target }
   | {
-      id: string;
       type: 'addSpeedModifier';
       target: Target;
       mode: 'flat' | 'percent';
       amount: number;
-      turns: number | null;
+      duration: SpeedDuration;
     }
+  | { type: 'spawnParticipant'; participant: ParticipantDefinition }
 );
-
+export type TargetedOperation = Exclude<EffectOperation, { type: 'spawnParticipant' }>;
 export interface PlanEvent {
   anchor: EventAnchor;
   operations: EffectOperation[];
 }
 export interface SimulationPlan {
-  units: UnitConfig[];
+  actors: ActorConfig[];
   events: PlanEvent[];
-  maxActions: number;
+  maxNodes: number;
   maxAV: number;
 }
 export interface SpeedModifierInstance {
@@ -42,43 +60,58 @@ export interface SpeedModifierInstance {
   operationId: string;
   mode: 'flat' | 'percent';
   amount: number;
-  remainingTurns: number | null;
+  lifetime:
+    { kind: 'turns'; remainingTurns: number | null } | { kind: 'countdown'; participantId: string };
 }
-export interface UnitState extends UnitConfig {
+interface QueueState {
+  id: string;
   remainingAG: number;
-  turns: number;
-  modifiers: SpeedModifierInstance[];
+  order: number;
   zeroBatch: number;
   zeroOrder: number;
 }
+export interface ActorState extends ActorDefinition, QueueState {
+  turns: number;
+  modifiers: SpeedModifierInstance[];
+}
+export interface ScheduledEventState extends ScheduledEventDefinition, QueueState {}
+export type ParticipantState = ActorState | ScheduledEventState;
+export interface ParticipantInfo {
+  id: string;
+  kind: ParticipantDefinition['kind'];
+  name: string;
+  iconUrl?: string;
+  camp?: Camp;
+}
 export interface SimulationState {
-  units: UnitState[];
+  participants: ParticipantState[];
   elapsedAV: number;
+  completedNodes: number;
   completedActions: number;
   batch: number;
-  activeUnitId?: string;
+  nextOrder: number;
+  issuedParticipantIds: Set<string>;
+  activeParticipantId?: string;
 }
 export type DiagnosticCode =
   | 'invalid-input'
+  | 'invalid-target'
+  | 'duplicate-participant'
   | 'invalid-speed'
   | 'non-finite'
   | 'missing-target'
-  | 'unsupported-legacy-operation'
   | 'active-target'
   | 'unreached-anchor'
-  | 'no-units';
+  | 'no-participants';
 export interface Diagnostic {
   code: DiagnosticCode;
   severity: 'error' | 'warning' | 'info';
   anchor?: EventAnchor;
   operationId?: string;
-  unitId?: string;
+  participantId?: string;
 }
-export interface QueueEntry {
-  unitId: string;
-  name: string;
-  camp: Camp;
-  turn: number;
+export interface QueueEntry extends ParticipantInfo {
+  anchor: NodeAnchor;
   remainingAG: number;
   remainingAV: number;
   effectiveSpeed: number;
@@ -86,22 +119,24 @@ export interface QueueEntry {
 }
 export interface QueueSnapshot {
   elapsedAV: number;
+  completedNodes: number;
   completedActions: number;
   queue: QueueEntry[];
 }
-export interface ActionRecord {
-  anchor: Extract<EventAnchor, { kind: 'action' }>;
+export interface NodeRecord extends ParticipantInfo {
+  anchor: NodeAnchor;
   elapsedAV: number;
   deltaAV: number;
   effectiveSpeed: number;
   beforeEffects: SimulationState;
 }
 export interface SimulationResult {
-  records: ActionRecord[];
+  records: NodeRecord[];
   snapshots: QueueSnapshot[];
   startState?: SimulationState;
+  participants: ParticipantInfo[];
   diagnostics: Diagnostic[];
-  stopReason: 'actions' | 'av' | 'error' | 'empty';
+  stopReason: 'nodes' | 'av' | 'error' | 'empty';
 }
 export interface PlannerCharacterOption {
   id: string;

@@ -44,10 +44,11 @@ describe('planner character selection', () => {
     expect(units[0]).toMatchObject({ position: 1, camp: 'ally' });
     const events = [
       {
-        anchor: { kind: 'action' as const, unitId: 'a', turn: 1 },
+        anchor: { kind: 'action' as const, participantId: 'a', turn: 1 },
         operations: [
           {
             id: 'op',
+            phase: 'preAction' as const,
             type: 'advance' as const,
             target: { kind: 'allies' as const },
             percent: 10
@@ -57,18 +58,18 @@ describe('planner character selection', () => {
     ];
     const result = simulatePlan({
       ...DEFAULT_LIMITS,
-      units: configuredAllies([{ ...a, panelSpeed: 160.75 }]),
+      actors: configuredAllies([{ ...a, panelSpeed: 160.75 }]),
       events
     });
     expect(result.records[0].deltaAV).toBe(10000 / 160.75);
     const replacement = selectSlotCharacter(a, character('2', 'B'), () => 'b');
     const replay = simulatePlan({
       ...DEFAULT_LIMITS,
-      units: configuredAllies([replacement]),
+      actors: configuredAllies([replacement]),
       events
     });
     expect(replay.diagnostics.some(({ code }) => code === 'unreached-anchor')).toBe(true);
-    expect(replay.records.every(({ anchor }) => anchor.unitId === 'b')).toBe(true);
+    expect(replay.records.every(({ anchor }) => anchor.participantId === 'b')).toBe(true);
     expect(configuredAllies([empty])).toEqual([]);
   });
   it('shares normalized exact/prefix/contains and canonical/official/player ranking', () => {

@@ -4,7 +4,7 @@ import {
   queueActionCard,
   summarizeEffects
 } from '../../src/lib/action-planner/presentation';
-import type { ActionRecord, EffectOperation, QueueEntry } from '../../src/lib/action-planner/types';
+import type { NodeRecord, EffectOperation, QueueEntry } from '../../src/lib/action-planner/types';
 
 const advance: EffectOperation = {
   id: 'advance',
@@ -18,7 +18,7 @@ const add: EffectOperation = {
   target: { kind: 'allies' },
   mode: 'flat',
   amount: 20,
-  turns: 2
+  duration: { kind: 'turns', turns: 2 }
 };
 describe('action card presentation', () => {
   it('omits empty summaries and groups configured operations without changing their order', () => {
@@ -32,7 +32,7 @@ describe('action card presentation', () => {
     }
     const operations = Object.freeze([
       Object.freeze(add),
-      Object.freeze({ ...add, id: 'second', turns: null })
+      Object.freeze({ ...add, id: 'second', duration: { kind: 'turns' as const, turns: null } })
     ]);
     expect(summarizeEffects(operations)).toEqual({ kind: 'speed', count: 2 });
     expect(operations.map(({ id }) => id)).toEqual(['add', 'second']);
@@ -40,16 +40,27 @@ describe('action card presentation', () => {
   });
 
   it('preserves natural-action anchors, exact numbers and input record order', () => {
-    const record: ActionRecord = {
-      anchor: { kind: 'action', unitId: 'unit', turn: 3 },
+    const record: NodeRecord = {
+      id: 'unit',
+      kind: 'actor',
+      name: 'Synthetic',
+      anchor: { kind: 'action', participantId: 'unit', turn: 3 },
       elapsedAV: 10000 / 134,
       deltaAV: 10000 / 217,
       effectiveSpeed: 217.12345,
-      beforeEffects: { units: [], elapsedAV: 0, completedActions: 0, batch: 0 }
+      beforeEffects: {
+        participants: [],
+        elapsedAV: 0,
+        completedActions: 0,
+        completedNodes: 0,
+        batch: 0,
+        nextOrder: 0,
+        issuedParticipantIds: new Set()
+      }
     };
     Object.freeze(record);
     const records = [record, { ...record, anchor: { ...record.anchor, turn: 4 }, deltaAV: 0 }];
-    const cards = records.map((item) => futureActionCard(item, 'Synthetic'));
+    const cards = records.map((item) => futureActionCard(item));
     expect(cards.map(({ anchor }) => anchor)).toEqual(records.map(({ anchor }) => anchor));
     expect(cards[0]).toMatchObject({
       kind: 'future',
@@ -57,28 +68,35 @@ describe('action card presentation', () => {
       deltaAV: record.deltaAV,
       effectiveSpeed: record.effectiveSpeed
     });
-    expect(cards[0].anchor).toBe(record.anchor);
+    expect(cards[0].anchor).toEqual(record.anchor);
     expect(cards[1]).toHaveProperty('deltaAV', 0);
   });
 
   it('maps a pending entry to its next stable anchor and remaining AV without inventing elapsed AV', () => {
     const entry: QueueEntry = {
-      unitId: 'pending',
+      id: 'pending',
+      kind: 'actor',
       name: 'Synthetic',
       camp: 'ally',
-      turn: 7,
+      anchor: { kind: 'action', participantId: 'pending', turn: 7 },
       remainingAG: 4321.98765,
       remainingAV: 4321.98765 / 134,
       effectiveSpeed: 134,
       modifiers: [
-        { id: 'op:pending', operationId: 'op', mode: 'percent', amount: 10.125, remainingTurns: 2 }
+        {
+          id: 'op:pending',
+          operationId: 'op',
+          mode: 'percent',
+          amount: 10.125,
+          lifetime: { kind: 'turns', remainingTurns: 2 }
+        }
       ]
     };
     const original = structuredClone(entry);
     const card = queueActionCard(entry);
     expect(card).toMatchObject({
       kind: 'queue',
-      anchor: { kind: 'action', unitId: entry.unitId, turn: 7 },
+      anchor: { kind: 'action', participantId: entry.id, turn: 7 },
       remainingAV: entry.remainingAV
     });
     expect(card).not.toHaveProperty('elapsedAV');

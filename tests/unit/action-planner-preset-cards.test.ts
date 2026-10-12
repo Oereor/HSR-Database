@@ -81,6 +81,7 @@ describe('preset panel projection', () => {
     {
       id: 'unit',
       name: 'synthetic unit',
+      kind: 'actor' as const,
       camp: 'ally' as const,
       position: 0,
       baseSpeed: 100,
@@ -90,7 +91,7 @@ describe('preset panel projection', () => {
   const props = {
     anchor: { kind: 'start' as const },
     operations: [],
-    units,
+    participants: units,
     avatar: () => undefined,
     presets: { vonwacq: 'synthetic vonwacq', eagle: 'synthetic eagle', dance: 'synthetic dance' },
     onChange: vi.fn(),
@@ -124,10 +125,12 @@ describe('preset panel projection', () => {
 
   it('retains the start-node restriction and disables presets without targets', () => {
     const action = render(EffectEditor, {
-      props: { ...props, locale: 'en', anchor: { kind: 'action', unitId: 'unit', turn: 1 } }
+      props: { ...props, locale: 'en', anchor: { kind: 'action', participantId: 'unit', turn: 1 } }
     }).body;
     expect(action).toMatch(/<button[^>]*data-testid="preset-vonwacq"[^>]*disabled/);
-    const empty = render(EffectEditor, { props: { ...props, locale: 'en', units: [] } }).body;
+    const empty = render(EffectEditor, {
+      props: { ...props, locale: 'en', participants: [] }
+    }).body;
     for (const kind of ['vonwacq', 'eagle', 'dance'])
       expect(empty).toMatch(new RegExp(`<button[^>]*data-testid="preset-${kind}"[^>]*disabled`));
   });

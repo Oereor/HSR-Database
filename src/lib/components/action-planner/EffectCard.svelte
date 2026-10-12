@@ -2,11 +2,13 @@
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import { m } from '$lib/paraglide/messages.js';
   import type { Locale } from '$lib/paraglide/runtime.js';
-  import type { EffectOperation, UnitConfig } from '$lib/action-planner/types';
+  import type { EffectOperation, ParticipantInfo } from '$lib/action-planner/types';
   import { effectPhase, targetIds } from '$lib/action-planner/effect-config';
+  import { spawnedParticipantId } from '$lib/action-planner/engine';
   export let locale: Locale;
   export let operation: EffectOperation;
-  export let units: UnitConfig[];
+  export let participants: ParticipantInfo[];
+  export let catalog: ParticipantInfo[] = participants;
   export let avatar: (id: string) => string | undefined;
   export let system = false;
   export let selected = false;
@@ -15,26 +17,48 @@
   export let onEdit: () => void;
   export let onMove: (delta: -1 | 1) => void;
   export let onDelete: () => void;
-  $: ids = targetIds(operation.target, units);
-  $: title =
-    operation.type === 'advance'
-      ? m.planner_advance({}, { locale })
-      : operation.type === 'delay'
-        ? m.planner_delay({}, { locale })
-        : operation.type === 'immediatelyAct'
-          ? m.planner_card_immediate({}, { locale })
-          : operation.amount >= 0
-            ? m.planner_speed_up({}, { locale })
-            : m.planner_speed_down({}, { locale });
+  $: ids =
+    operation.type === 'spawnParticipant'
+      ? [spawnedParticipantId(operation.id)]
+      : targetIds(operation.target, participants);
+  $: editable =
+    operation.type !== 'spawnParticipant' &&
+    !(operation.type === 'addSpeedModifier' && operation.duration.kind === 'countdown');
   function format(value: number) {
     return new Intl.NumberFormat(locale, { maximumFractionDigits: 3 }).format(value);
   }
-  $: parameter =
-    operation.type === 'advance' || operation.type === 'delay'
-      ? m.planner_gauge_summary({ percent: format(operation.percent) }, { locale })
-      : operation.type === 'immediatelyAct'
-        ? m.planner_card_immediate({}, { locale })
-        : `${operation.mode === 'percent' ? m.planner_base_percent({}, { locale }) : m.planner_flat({}, { locale })} ${operation.amount >= 0 ? '+' : ''}${format(operation.amount)}${operation.mode === 'percent' ? '%' : ''} · ${operation.turns === null ? m.planner_infinite({}, { locale }) : m.planner_duration_summary({ turns: operation.turns }, { locale })}`;
+  function operationTitle(op: EffectOperation) {
+    switch (op.type) {
+      case 'spawnParticipant':
+        return m.planner_spawn_participant({}, { locale });
+      case 'advance':
+        return m.planner_advance({}, { locale });
+      case 'delay':
+        return m.planner_delay({}, { locale });
+      case 'immediatelyAct':
+        return m.planner_card_immediate({}, { locale });
+      case 'addSpeedModifier':
+        return op.amount >= 0
+          ? m.planner_speed_up({}, { locale })
+          : m.planner_speed_down({}, { locale });
+    }
+  }
+  function operationParameter(op: EffectOperation) {
+    if (op.type === 'spawnParticipant')
+      return `${op.participant.name} · ${format(op.participant.kind === 'actor' ? op.participant.panelSpeed : op.participant.speed)} SPD`;
+    if (op.type === 'advance' || op.type === 'delay')
+      return m.planner_gauge_summary({ percent: format(op.percent) }, { locale });
+    if (op.type === 'immediatelyAct') return m.planner_card_immediate({}, { locale });
+    const duration =
+      op.duration.kind === 'countdown'
+        ? `${op.duration.name} · ${m.planner_until_countdown({}, { locale })}`
+        : op.duration.turns === null
+          ? m.planner_infinite({}, { locale })
+          : m.planner_duration_summary({ turns: op.duration.turns }, { locale });
+    return `${op.mode === 'percent' ? m.planner_base_percent({}, { locale }) : m.planner_flat({}, { locale })} ${op.amount >= 0 ? '+' : ''}${format(op.amount)}${op.mode === 'percent' ? '%' : ''} · ${duration}`;
+  }
+  $: title = operationTitle(operation);
+  $: parameter = operationParameter(operation);
 </script>
 
 <div
@@ -48,6 +72,8 @@
     type="button"
     data-testid="edit-effect"
     aria-pressed={selected}
+    disabled={!editable}
+    title={editable ? undefined : m.planner_configuration_readonly({}, { locale })}
     on:click={onEdit}
   >
     <span class="heading"
@@ -62,12 +88,12 @@
         {#each ids as id (id)}
           <span
             class="avatar"
-            title={units.find((unit) => unit.id === id)?.name ??
+            title={catalog.find((unit) => unit.id === id)?.name ??
               m.planner_missing_target({}, { locale })}
           >
             <AssetImage
-              src={avatar(id)}
-              alt={units.find((unit) => unit.id === id)?.name ??
+              src={catalog.find((participant) => participant.id === id)?.iconUrl ?? avatar(id)}
+              alt={catalog.find((unit) => unit.id === id)?.name ??
                 m.planner_missing_target({}, { locale })}
             />
           </span>

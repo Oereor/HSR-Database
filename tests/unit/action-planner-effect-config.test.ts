@@ -11,45 +11,53 @@ import type {
   SimulationPlan
 } from '../../src/lib/action-planner/types';
 
-const anchor: EventAnchor = { kind: 'action', unitId: 'a', turn: 1 };
+const anchor: EventAnchor = { kind: 'action', participantId: 'a', turn: 1 };
 const operations: EffectOperation[] = [
   {
     id: 'b',
     type: 'advance',
-    target: { kind: 'units', unitIds: ['b'] },
+    target: { kind: 'participants', participantIds: ['b'] },
     percent: 100,
     phase: 'preAction'
   },
   {
     id: 'post',
     type: 'advance',
-    target: { kind: 'units', unitIds: ['a'] },
+    target: { kind: 'participants', participantIds: ['a'] },
     percent: 24,
     phase: 'postAction'
   },
-  { id: 'c', type: 'advance', target: { kind: 'units', unitIds: ['c'] }, percent: 100 }
+  {
+    id: 'c',
+    phase: 'preAction',
+    type: 'advance',
+    target: { kind: 'participants', participantIds: ['c'] },
+    percent: 100
+  }
 ];
 const plan: SimulationPlan = {
-  units: ['a', 'b', 'c'].map((id, position) => ({
+  actors: ['a', 'b', 'c'].map((id, position) => ({
     id,
     name: id,
+    kind: 'actor',
     camp: 'ally',
     position,
     baseSpeed: 100,
     panelSpeed: 160 - position * 20
   })),
   events: [{ anchor, operations }],
-  maxActions: 4,
+  maxNodes: 4,
   maxAV: 600
 };
 
 describe('effect configuration replay', () => {
   it('reorders inside a window and changes actual zero-queue priority', () => {
-    expect(simulatePlan(plan).records[1].anchor.unitId).toBe('c');
+    expect(simulatePlan(plan).records[1].anchor.participantId).toBe('c');
     const moved = moveOperation(operations, 'c', -1, anchor);
     expect(moved.map((operation) => operation.id)).toEqual(['c', 'post', 'b']);
     expect(
-      simulatePlan({ ...plan, events: [{ anchor, operations: moved }] }).records[1].anchor.unitId
+      simulatePlan({ ...plan, events: [{ anchor, operations: moved }] }).records[1].anchor
+        .participantId
     ).toBe('b');
     expect(moveOperation(operations, 'b', -1, anchor)).toEqual(operations);
     expect(moveOperation(operations, 'post', 1, anchor)).toEqual(operations);
@@ -57,7 +65,12 @@ describe('effect configuration replay', () => {
   it('edits in place, appends on phase change and replays deletion of original speed additions', () => {
     const changed = saveOperation(
       operations,
-      { ...operations[0], type: 'advance', percent: 25 },
+      {
+        ...operations[0],
+        type: 'advance',
+        target: { kind: 'participants', participantIds: ['b'] },
+        percent: 25
+      },
       anchor
     );
     expect(changed.map((operation) => operation.id)).toEqual(['b', 'post', 'c']);
@@ -66,10 +79,10 @@ describe('effect configuration replay', () => {
     const speed: EffectOperation = {
       id: 'speed',
       type: 'addSpeedModifier',
-      target: { kind: 'units', unitIds: ['a'] },
+      target: { kind: 'participants', participantIds: ['a'] },
       mode: 'flat',
       amount: 40,
-      turns: null
+      duration: { kind: 'turns', turns: null }
     };
     const added = saveOperation([], speed, { kind: 'start' });
     const withSpeed = {
@@ -81,14 +94,18 @@ describe('effect configuration replay', () => {
     expect(operations[0]).toMatchObject({ percent: 100 });
   });
   it('expands old camp targets into stable explicit instance IDs without splitting operations', () => {
-    expect(targetIds({ kind: 'allies' }, plan.units)).toEqual(['a', 'b', 'c']);
-    expect(targetIds({ kind: 'units', unitIds: ['c', 'b'] }, plan.units)).toEqual(['c', 'b']);
+    expect(targetIds({ kind: 'allies' }, plan.actors)).toEqual(['a', 'b', 'c']);
+    expect(targetIds({ kind: 'participants', participantIds: ['c', 'b'] }, plan.actors)).toEqual([
+      'c',
+      'b'
+    ]);
     const group = saveOperation(
       [],
       {
         id: 'group',
+        phase: 'preAction',
         type: 'advance',
-        target: { kind: 'units', unitIds: ['c', 'b'] },
+        target: { kind: 'participants', participantIds: ['c', 'b'] },
         percent: 100
       },
       anchor
@@ -97,7 +114,7 @@ describe('effect configuration replay', () => {
     expect(
       simulatePlan({ ...plan, events: [{ anchor, operations: group }] })
         .records.slice(1, 3)
-        .map((record) => record.anchor.unitId)
+        .map((record) => record.anchor.participantId)
     ).toEqual(['b', 'c']);
   });
 });

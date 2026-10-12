@@ -21,7 +21,9 @@
         ? m.planner_delay({}, { locale })
         : summary?.kind === 'immediatelyAct'
           ? m.planner_card_immediate({}, { locale })
-          : m.planner_card_speed_changes({}, { locale });
+          : summary?.kind === 'spawnParticipant'
+            ? m.planner_spawn_participant({}, { locale })
+            : m.planner_card_speed_changes({}, { locale });
 
   function format(value: number) {
     return new Intl.NumberFormat(locale, { maximumFractionDigits: 3 }).format(value);
@@ -39,7 +41,7 @@
         ? 'action-node'
         : 'queue-unit'}
     data-anchor={anchorKey(card.anchor)}
-    data-unit-id={card.anchor.kind === 'action' ? card.anchor.unitId : undefined}
+    data-unit-id={card.anchor.kind !== 'start' ? card.anchor.participantId : undefined}
     data-turn={card.anchor.kind === 'action' ? card.anchor.turn : undefined}
     data-total-av={card.kind !== 'queue' ? card.elapsedAV : undefined}
     data-delta-av={card.kind === 'future' ? card.deltaAV : undefined}
@@ -55,7 +57,11 @@
       <strong>{card.name}</strong>
       {#if card.kind !== 'system'}
         <span class="metadata">
-          <span>{m.planner_card_turn({ turn: card.anchor.turn }, { locale })}</span>
+          <span
+            >{card.anchor.kind === 'action'
+              ? m.planner_card_turn({ turn: card.anchor.turn }, { locale })
+              : m.planner_scheduled_event({}, { locale })}</span
+          >
           <span>{format(card.effectiveSpeed)} SPD</span>
         </span>
       {/if}
@@ -105,9 +111,14 @@
           <span
             >{buff.amount > 0 ? '+' : ''}{format(buff.amount)}{buff.mode === 'percent'
               ? '%'
-              : ' SPD'} · {buff.remainingTurns === null
-              ? m.planner_infinite({}, { locale })
-              : m.planner_remaining_turns({ turns: buff.remainingTurns }, { locale })}</span
+              : ' SPD'} · {buff.lifetime.kind === 'countdown'
+              ? m.planner_until_countdown({}, { locale })
+              : buff.lifetime.remainingTurns === null
+                ? m.planner_infinite({}, { locale })
+                : m.planner_remaining_turns(
+                    { turns: buff.lifetime.remainingTurns },
+                    { locale }
+                  )}</span
           >
           <small>{buff.id}</small>
         </div>

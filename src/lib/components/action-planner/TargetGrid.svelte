@@ -1,7 +1,8 @@
 <script lang="ts">
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
-  import type { UnitConfig } from '$lib/action-planner/types';
-  export let units: UnitConfig[];
+  import type { ParticipantInfo } from '$lib/action-planner/types';
+  export let participants: ParticipantInfo[];
+  export let disabledIds: string[] = [];
   export let selectedIds: string[];
   export let avatar: (id: string) => string | undefined;
   export let onToggle: (id: string) => void;
@@ -9,17 +10,18 @@
 </script>
 
 <div class="target-grid">
-  {#each units as unit (unit.id)}
+  {#each participants as unit (unit.id)}
     <button
       type="button"
       title={unit.name}
       aria-label={unit.name}
       aria-pressed={selectedIds.includes(unit.id)}
+      disabled={disabledIds.includes(unit.id) && !selectedIds.includes(unit.id)}
       data-testid={testId}
       data-unit-id={unit.id}
       on:click={() => onToggle(unit.id)}
     >
-      <span class="avatar"><AssetImage src={avatar(unit.id)} alt="" /></span>
+      <span class="avatar"><AssetImage src={unit.iconUrl ?? avatar(unit.id)} alt="" /></span>
       <span class="name">{unit.name}</span>
     </button>
   {/each}
@@ -43,7 +45,11 @@
     color: var(--text-secondary);
     cursor: pointer;
   }
-  button:hover {
+  button:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+  button:hover:not(:disabled) {
     border-color: var(--gold);
   }
   button[aria-pressed='true'] {

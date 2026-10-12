@@ -1,4 +1,4 @@
-import type { PlannerCharacterOption, UnitConfig } from './types';
+import type { PlannerCharacterOption, ActorConfig } from './types';
 import { normalizeSearchDocument } from '../search/documents';
 import { normalizeSearch } from '../search/normalization';
 import { bestSearchEvidence, compareSearchMatches } from '../search/ranking';
@@ -26,13 +26,15 @@ export function selectSlotCharacter(
   };
 }
 
-export function configuredAllies(slots: CharacterSlotDraft[]): UnitConfig[] {
+export function configuredAllies(slots: CharacterSlotDraft[]): ActorConfig[] {
   return slots.flatMap((slot, position) =>
     slot.characterId
       ? [
           {
             id: slot.id,
             name: slot.name,
+            kind: 'actor' as const,
+            category: 'character' as const,
             camp: 'ally' as const,
             position,
             baseSpeed: slot.baseSpeed ?? NaN,
