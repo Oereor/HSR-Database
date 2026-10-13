@@ -206,26 +206,6 @@ async function createFixture(): Promise<Fixture> {
     );
     await writeArtifact(`views/${locale}/search-inputs.json`, { catalogs: {} }, locale);
     await writeArtifact(
-      `views/${locale}/character-search.json`,
-      {
-        schemaVersion: 3,
-        normalizationVersion: 1,
-        namingPolicyVersion: 1,
-        sourceCommit: commit,
-        metadataDigest: 'synthetic',
-        documents: [
-          {
-            key: 'character:1',
-            target: { kind: 'character', id: '1' },
-            canonicalName: 'Synthetic',
-            officialAliases: [],
-            playerAliases: []
-          }
-        ]
-      },
-      locale
-    );
-    await writeArtifact(
       `static/generated/${locale}/search.json`,
       {
         schemaVersion: 3,
@@ -456,32 +436,6 @@ describe('production build-input validation', () => {
       manifest: { sourceCommit: commit },
       artifacts: { files: Object.keys(fixture.manifest.artifacts).length }
     });
-  });
-
-  it('rejects old caches without character search and rejects non-character documents', async () => {
-    const fixture = await createFixture();
-    const original = fixture.manifest.artifacts['views/en/character-search.json'];
-    delete fixture.manifest.artifacts['views/en/character-search.json'];
-    await fixture.writeManifest();
-    await expect(fixture.validate()).rejects.toThrow('character-search.json');
-    fixture.manifest.artifacts['views/en/character-search.json'] = original;
-    await fixture.rewrite('views/en/character-search.json', {
-      schemaVersion: 3,
-      normalizationVersion: 1,
-      namingPolicyVersion: 1,
-      sourceCommit: commit,
-      documents: [
-        {
-          key: 'enemy:1',
-          target: { kind: 'enemy', id: '1' },
-          canonicalName: 'Synthetic',
-          officialAliases: [],
-          playerAliases: []
-        }
-      ]
-    });
-    await fixture.writeManifest();
-    await expect(fixture.validate()).rejects.toThrow('Character search document');
   });
 
   it('rejects stale local Rating V2 policy bytes even with intact generated artifacts', async () => {

@@ -102,7 +102,6 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
       `views/${locale}/catalogs/enemies.json`,
       `views/${locale}/homepage.json`,
       `views/${locale}/search-inputs.json`,
-      `views/${locale}/character-search.json`,
       `static/generated/${locale}/search.json`,
       `static/generated/${locale}/player-equipment.json`
     ])

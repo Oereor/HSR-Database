@@ -1,11 +1,10 @@
-import { copyFile, mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   resolveMaterialIconAsset,
-  resolveCharacterIconAsset,
   resolveCharacterPreviewAsset,
   resolveCharacterPortraitAsset,
   resolveCharacterDetailIconAsset,
@@ -62,7 +61,6 @@ sharp.cache(false);
 const temporaryDirectories: string[] = [];
 const available = (values: string[]): AssetAvailability => ({ available: values, missing: [] });
 const manifest = (options?: {
-  characterIcons?: string[];
   previews?: string[];
   portraits?: string[];
   playerAvatars?: string[];
@@ -82,7 +80,6 @@ const manifest = (options?: {
   schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
   generatedAt: '2026-01-01T00:00:00.000Z',
   characters: {
-    icons: available(options?.characterIcons ?? []),
     previews: available(options?.previews ?? []),
     portraits: available(options?.portraits ?? [])
   },
@@ -244,7 +241,6 @@ describe('视觉资源管线', () => {
 
   it('按稳定 ID 和语义 code 解析 URL，缺图不产生请求路径', () => {
     const source = manifest({
-      characterIcons: ['1001'],
       previews: ['1001'],
       portraits: ['1001'],
       playerAvatars: ['201001'],
@@ -337,8 +333,7 @@ describe('视觉资源管线', () => {
       'light-cones': 'ShopLightConIcon',
       relics: 'InventoryFosterIcon',
       enemies: 'IconActivityTreasureTrotter',
-      endgame: 'AbyssIcon01',
-      'game-tools': 'SettingsHotkeysIcon'
+      endgame: 'AbyssIcon01'
     });
     expect(BRAND_ICON_SOURCE_NAMES).toEqual({ 'train-party': 'TrainPartyIcon' });
     expect(UTILITY_ICON_SOURCE_NAMES).toEqual({
@@ -349,7 +344,6 @@ describe('视觉资源管线', () => {
 
   it('manifest 必须覆盖角色、属性与命途的完整需求集合', () => {
     const source = manifest({
-      characterIcons: ['1001'],
       previews: ['1001'],
       portraits: ['1001'],
       playerAvatars: ['201001'],
@@ -417,7 +411,7 @@ describe('视觉资源管线', () => {
       utilityIcons: [],
       endgameModeIcons: []
     };
-    const source = manifest({ characterIcons: ['1001'], previews: ['1001'], portraits: ['1001'] });
+    const source = manifest({ previews: ['1001'], portraits: ['1001'] });
     source.requirementsFingerprint = assetRequirementsFingerprint(requirements);
     expect(manifestCoversRequirements(source, requirements)).toBe(true);
     expect(
@@ -504,7 +498,7 @@ describe('视觉资源管线', () => {
     });
     expect(requirements.elements).toHaveLength(7);
     expect(requirements.paths).toHaveLength(9);
-    expect(requirements.navigationIcons).toContain('game-tools');
+    expect(requirements.navigationIcons).toHaveLength(7);
     expect(requirements.brandIcons).toEqual(['train-party']);
     expect(requirements.endgameModeIcons).toEqual([
       'AbyssThemeTabIcon',
@@ -950,15 +944,6 @@ describe('视觉资源管线', () => {
         .toFile(path.join(portraitDirectory, '1001.png'))
     ]);
 
-    await mkdir(path.join(root, 'icon', 'character'), { recursive: true });
-    await copyFile(
-      path.join(previewDirectory, '1001.png'),
-      path.join(root, 'icon', 'character', '1001.png')
-    );
-    await copyFile(
-      path.join(previewDirectory, '1001.png'),
-      path.join(root, 'icon', 'character', '999999.png')
-    );
     const generated = await generateVisualAssets(
       root,
       {
@@ -989,22 +974,15 @@ describe('视觉资源管线', () => {
       available: ['1001'],
       missing: ['1002', '1003']
     });
-    expect(candidate.characters.icons).toEqual({ available: ['1001'], missing: ['1002', '1003'] });
-    expect(resolveCharacterIconAsset('1001', candidate)).toBe(
-      '/generated-assets/characters/icons/1001.png'
-    );
-    expect(resolveCharacterIconAsset('1002', candidate)).toBeUndefined();
-    expect(resolveCharacterIconAsset('../1001', candidate)).toBeUndefined();
-    expect(await readdir(path.join(outputRoot, 'characters', 'icons'))).toEqual(['1001.png']);
     expect(candidate.characters.portraits).toEqual({
       available: ['1001'],
       missing: ['1002', '1003']
     });
     const observation = await validateGeneratedAssetFiles(candidate, outputRoot);
-    expect(observation.summary).toEqual({ files: 3, bytes: expect.any(Number) });
-    expect(observation.metadataInspections).toBe(3);
+    expect(observation.summary).toEqual({ files: 2, bytes: expect.any(Number) });
+    expect(observation.metadataInspections).toBe(2);
     await validateGeneratedAssetFiles(candidate, outputRoot, observation);
-    expect(observation.metadataInspections).toBe(3);
+    expect(observation.metadataInspections).toBe(2);
     expect(await readdir(path.join(outputRoot, 'characters', 'preview'))).toEqual(['1001.png']);
 
     await Promise.all([

@@ -26,20 +26,6 @@
 [investigations/](investigations/) 保存配置调查、功能实施、性能测量及修复验收；[audits/](audits/) 保存审计与阶段收敛记录。
 目录中未单独标为维护指南的报告均描述其原阶段；其中“当前”“已通过”“待办”、数量与版本不代表今日状态。
 
-[排轴模拟器 Phase 1](investigations/action-planner-phase1-2026-10-11.md) 记录单波次工具的数据投影、排序与 Buff 模型、交互和本地验收结果。
-
-[角色选择器优化](investigations/action-planner-character-selector-2026-10-11.md) 记录独立槽位、头像 Grid、轻量角色搜索、速度初始化规则及后续 UI 验收。
-
-[行动序列卡片优化](investigations/action-planner-action-cards-2026-10-11.md) 记录共享卡片、两种 AV 展示语义、稳定锚点交互及本地验收。
-
-[动态参与者架构与基础重构](investigations/action-planner-dynamic-participants-architecture.md) 记录统一队列、动态实例与生命周期、速度倒计时、测试清理和 Inspector 迁移边界。
-
-[Inspector 与动态参与者创建](investigations/action-planner-inspector-participant-creation.md) 记录 Phase 3A 的双 Tab、统一操作列表、创建与编辑闭环、目标时点、文案清理和本地验证边界。
-
-[速度效果关联倒计时 UI](investigations/action-planner-countdown-duration-ui.md) 记录 Phase 3B 的持续方式、稳定编辑身份、共享倒计时、同名实例标识及验证边界。
-
-[排轴模拟器 UI 打磨第一轮](investigations/action-planner-ui-polish-round1.md) 记录三栏信息层级、统一 AV 格式、逐项操作标签、行动变化 Trace 及实际浏览器验收。
-
 搜索和部署的旧测量分别汇集于[搜索实施历史](investigations/search-v2-implementation-history.md)与[部署基础历史](investigations/vercel-deployment-foundation-history.md)。
 遗器评分与敌人技能历史留在各自专题目录；[战斗模拟可行性](combat-simulation/)和[贪饕机制调查](voracity-effect/)保留独立主题，不代表完整模拟器已实现。
 

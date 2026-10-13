@@ -36,24 +36,11 @@ export interface SearchBuildInputs {
 }
 export type SearchAliasSource = { kind: 'maintained'; value: unknown } | { kind: 'none' };
 export const searchArtifactPaths = (locale: Locale) => ({
-  characters: path.join(generatedRoot, 'views', locale, 'character-search.json'),
   inputs: path.join(generatedRoot, 'views', locale, 'search-inputs.json'),
   bundle: path.join(staticGeneratedRoot, locale, 'search.json')
 });
 export const searchInputsPath = searchArtifactPaths('zh-CN').inputs;
 export const searchBundlePath = searchArtifactPaths('zh-CN').bundle;
-
-/** A server-readable character-only projection, without global catalogs or endgame targets. */
-export function characterSearchDocuments(index: GlobalSearchIndex) {
-  return {
-    schemaVersion: index.schemaVersion,
-    normalizationVersion: index.normalizationVersion,
-    namingPolicyVersion: index.namingPolicyVersion,
-    sourceCommit: index.sourceCommit,
-    metadataDigest: index.metadataDigest,
-    documents: index.documents.filter((document) => document.target.kind === 'character')
-  };
-}
 
 export function buildSearchDocuments(
   inputs: SearchBuildInputs,
@@ -184,12 +171,7 @@ export async function loadPlayerAliases(file = playerAliasesPath): Promise<unkno
 /** Alias-only edits rebuild search artifacts, never full domain data or tracked snapshots. */
 export async function ensureSearchDocuments(
   expectedSourceCommit: string,
-  files: { inputs: string; bundle: string; aliases: string; characters?: string } = {
-    inputs: searchInputsPath,
-    bundle: searchBundlePath,
-    aliases: playerAliasesPath,
-    characters: searchArtifactPaths('zh-CN').characters
-  },
+  files = { inputs: searchInputsPath, bundle: searchBundlePath, aliases: playerAliasesPath },
   locale: Locale = 'zh-CN'
 ): Promise<boolean> {
   const inputs = JSON.parse(await readFile(files.inputs, 'utf8')) as SearchBuildInputs;
@@ -200,28 +182,14 @@ export async function ensureSearchDocuments(
     inputs.official.namingPolicyVersion !== CHARACTER_NAMING_POLICY_VERSION
   )
     throw new Error('名称生成缓存已过期；请运行 pnpm data:sync');
-  const next = buildSearchDocuments(
-    inputs,
-    locale,
-    locale === 'zh-CN'
-      ? {
-          kind: 'maintained',
-          value: await loadPlayerAliases(files.aliases)
-        }
-      : { kind: 'none' }
-  );
-  let changed = false;
-  for (const [file, value] of [
-    [files.bundle, next],
-    ...(files.characters ? [[files.characters, characterSearchDocuments(next)] as const] : [])
-  ] as const) {
-    const serialized = `${JSON.stringify(value)}\n`;
-    if ((await readFile(file, 'utf8').catch(() => '')) === serialized) continue;
-    await mkdir(path.dirname(file), { recursive: true });
-    await writeFile(file, serialized, 'utf8');
-    changed = true;
-  }
-  if (!changed) return false;
+  const next = buildSearchDocuments(inputs, locale, {
+    kind: 'maintained',
+    value: await loadPlayerAliases(files.aliases)
+  });
+  const serialized = `${JSON.stringify(next)}\n`;
+  if ((await readFile(files.bundle, 'utf8').catch(() => '')) === serialized) return false;
+  await mkdir(path.dirname(files.bundle), { recursive: true });
+  await writeFile(files.bundle, serialized, 'utf8');
   console.log(
     `搜索数据已更新：${next.documents.length} documents，metadata ${next.metadataDigest.slice(0, 12)}`
   );

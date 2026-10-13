@@ -8,8 +8,7 @@ const requiredIcons = [
   'light-cones',
   'relics',
   'enemies',
-  'endgame',
-  'game-tools'
+  'endgame'
 ];
 const dataRevision = (
   JSON.parse(readFileSync('src/lib/generated/manifest.json', 'utf8')) as { dataRevision: string }

@@ -28,9 +28,6 @@ import {
   type GeneratedArtifactValidationSummary
 } from '../generated-artifacts.js';
 import { assertPlayerRuntimeData } from '../player-runtime.js';
-import { SEARCH_DOCUMENT_SCHEMA_VERSION } from '../../../src/lib/search/documents.js';
-import { SEARCH_NORMALIZATION_VERSION } from '../../../src/lib/search/normalization.js';
-import { CHARACTER_NAMING_POLICY_VERSION } from '../../../src/lib/search/name-metadata.js';
 import { assertRelicScoreRecommendations } from '../../../src/lib/relic-score/recommendations.js';
 import {
   assertRatingV2Profiles,
@@ -287,41 +284,6 @@ export async function validateBuildInputs(
           return;
         }
         assertArtifactLocale(logicalPath, metadata);
-        const characterSearchMatch = logicalPath.match(
-          /^views\/(zh-CN|en)\/character-search\.json$/
-        );
-        if (characterSearchMatch) {
-          if (
-            !isRecord(value) ||
-            value.schemaVersion !== SEARCH_DOCUMENT_SCHEMA_VERSION ||
-            value.normalizationVersion !== SEARCH_NORMALIZATION_VERSION ||
-            value.namingPolicyVersion !== CHARACTER_NAMING_POLICY_VERSION ||
-            value.sourceCommit !== manifest.sourceCommit ||
-            !Array.isArray(value.documents) ||
-            'endgameTargets' in value
-          )
-            throw new Error('Character search build input identity is invalid');
-          const ids = value.documents.map((doc) => {
-            if (
-              !isRecord(doc) ||
-              !isRecord(doc.target) ||
-              doc.target.kind !== 'character' ||
-              typeof doc.target.id !== 'string' ||
-              doc.key !== `character:${doc.target.id}` ||
-              typeof doc.canonicalName !== 'string' ||
-              !Array.isArray(doc.officialAliases) ||
-              !Array.isArray(doc.playerAliases) ||
-              [...doc.officialAliases, ...doc.playerAliases].some(
-                (alias) => typeof alias !== 'string'
-              )
-            )
-              throw new Error('Character search document is invalid');
-            return doc.target.id;
-          });
-          if (!exactSet(ids, manifest.routes.characters))
-            throw new Error('Character search coverage mismatch');
-          return;
-        }
         const catalogMatch = logicalPath.match(
           /^views\/(zh-CN|en)\/catalogs\/(characters|light-cones|relics|enemies)\.json$/
         );

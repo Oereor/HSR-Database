@@ -21,7 +21,6 @@ export const starRailIndexPaths = [
 ];
 
 export const starRailAssetDirectories = [
-  'icon/character/',
   'image/character_preview/',
   'image/character_portrait/',
   'image/light_cone_preview/',

@@ -88,12 +88,13 @@ describe('重构 invariants', () => {
     expect(source).not.toMatch(/subtitle|__fade|slot name="tags"/);
   });
 
-  it('Compact Entity Card 保持领域无关的展示 slots 与语义化交互', async () => {
+  it('Compact Entity Card 仅提供展示 slots 与语义化链接', async () => {
     const source = await readFile(
       path.join(root, 'src', 'lib', 'components', 'shared', 'CompactEntityCard.svelte'),
       'utf8'
     );
     expect(source).not.toMatch(/LightCone|RelicSet|Enemy|weakness|rarity|rank/i);
+    expect(source).toContain("this={href ? 'a' : 'article'}");
     expect(source).toContain('<slot name="title" />');
     expect(source).toContain('<slot name="secondary" />');
     expect(source).toContain('<slot name="tertiary" />');

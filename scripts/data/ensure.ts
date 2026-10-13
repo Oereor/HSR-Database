@@ -18,7 +18,6 @@ import { assertDataRoot, generatedRoot, resolveDataRoot, sourceCommit } from './
 import { ensureSearchDocuments, searchArtifactPaths } from './search-documents.js';
 import { getGeneratedLocales } from './locale-registry.js';
 import { syncData } from './sync.js';
-import { GAME_TOOL_ROUTES } from './routes.js';
 import { withProcessTelemetry } from '../deployment/telemetry.js';
 import { readTextMapWithDigest } from './source-metadata.js';
 import { readRatingV2PolicyInput, readRatingV2BenchmarkInput } from './relic-rating-v2.js';
@@ -41,8 +40,7 @@ export interface DataEnsureDependencies {
 }
 
 async function cacheValid(candidate: DataManifest | undefined): Promise<boolean> {
-  if (!candidate || GAME_TOOL_ROUTES.some((route) => !candidate.routePaths.includes(route)))
-    return false;
+  if (!candidate) return false;
   try {
     if (candidate.ratingV2PolicyInput.sha256 !== (await readRatingV2PolicyInput()).metadata.sha256)
       return false;
@@ -115,24 +113,7 @@ export async function ensureData(dependencies: DataEnsureDependencies = {}): Pro
   const resolveSource = dependencies.resolveSource ?? resolveAvailableSource;
   const cacheMatchesSource = dependencies.cacheMatchesSource ?? cacheMatchesAvailableSource;
   const sync = dependencies.sync ?? syncData;
-  const ensureSearch =
-    dependencies.ensureSearch ??
-    (async (commit: string) => {
-      let changed = false;
-      for (const { locale } of getGeneratedLocales()) {
-        const paths = searchArtifactPaths(locale);
-        const updated = await ensureSearchDocuments(
-          commit,
-          {
-            ...paths,
-            aliases: path.resolve('data/search/character-player-aliases.json')
-          },
-          locale
-        );
-        changed = updated || changed;
-      }
-      return changed;
-    });
+  const ensureSearch = dependencies.ensureSearch ?? ensureSearchDocuments;
   const refreshMetadata = dependencies.refreshMetadata ?? refreshArtifactMetadata;
   const validateArtifacts = dependencies.validateArtifacts ?? validateGeneratedArtifacts;
 
@@ -184,10 +165,7 @@ export async function ensureData(dependencies: DataEnsureDependencies = {}): Pro
 
   if (!manifest) throw new Error('生成数据不可用');
   if (await ensureSearch(manifest.sourceCommit)) {
-    for (const { locale } of getGeneratedLocales()) {
-      manifest = await refreshMetadata(manifest, `static/generated/${locale}/search.json`);
-      manifest = await refreshMetadata(manifest, `views/${locale}/character-search.json`);
-    }
+    manifest = await refreshMetadata(manifest, 'static/generated/zh-CN/search.json');
     validated = false;
     cacheResult = 'miss';
     cacheReason = `${cacheReason}+search-artifact-refreshed`;

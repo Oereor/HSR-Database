@@ -11,7 +11,6 @@ import type {
 } from '$lib/domain/types';
 import type { GlobalSearchIndex, SearchLocale } from '$lib/domain/search-index';
 import type { CategorySlug } from '$lib/domain/constants';
-import type { SearchDocumentBundle } from '$lib/search/documents';
 
 const root = path.resolve('src', 'lib', 'generated');
 const staticGeneratedRoot = path.resolve('static', 'generated');
@@ -42,8 +41,6 @@ export const getRelicProperties = (locale: SearchLocale) =>
   readJson<RelicProperty[]>(locale, 'catalogs', 'relic-properties.json');
 export const getDetail = (locale: SearchLocale, category: CategorySlug, id: string) =>
   readJson<Record<string, unknown>>(locale, 'details', category, `${id}.json`);
-export const getCharacterSearch = (locale: SearchLocale) =>
-  readJson<SearchDocumentBundle>(locale, 'character-search.json');
 export const getSearchIndex = (locale: SearchLocale) => {
   let cached = searchIndexCache.get(locale);
   if (!cached) {

@@ -172,7 +172,6 @@ describe('Character search metadata', () => {
       const files = {
         inputs: path.join(dir, 'inputs.json'),
         bundle: path.join(dir, 'search.json'),
-        characters: path.join(dir, 'character-search.json'),
         aliases: path.join(dir, 'aliases.json')
       };
       const originalInputs = JSON.stringify(inputs);
@@ -180,13 +179,6 @@ describe('Character search metadata', () => {
       await writeFile(files.aliases, JSON.stringify(completeManual()));
       expect(await ensureSearchDocuments(snapshot.sourceCommit, files)).toBe(true);
       const first = JSON.parse(await readFile(files.bundle, 'utf8'));
-      const characterOnly = JSON.parse(await readFile(files.characters, 'utf8'));
-      expect(
-        characterOnly.documents.every(
-          (doc: { target: { kind: string } }) => doc.target.kind === 'character'
-        )
-      ).toBe(true);
-      expect(characterOnly).not.toHaveProperty('endgameTargets');
       expect(await ensureSearchDocuments(snapshot.sourceCommit, files)).toBe(false);
       await writeFile(
         files.aliases,
@@ -194,11 +186,6 @@ describe('Character search metadata', () => {
       );
       expect(await ensureSearchDocuments(snapshot.sourceCommit, files)).toBe(true);
       const next = JSON.parse(await readFile(files.bundle, 'utf8'));
-      const characterNext = JSON.parse(await readFile(files.characters, 'utf8'));
-      expect(
-        characterNext.documents.find((doc: { key: string }) => doc.key === 'character:1001')
-          .playerAliases
-      ).toEqual(['测试新增别名']);
       expect(next.sourceCommit).toBe(first.sourceCommit);
       expect(next.metadataDigest).not.toBe(first.metadataDigest);
       expect(
