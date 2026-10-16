@@ -716,9 +716,7 @@
           energy={activeProfile.energy}
           level={trainingLevel}
           onLevelChange={handleTrainingLevel}
-          leadingTag={staticTrainingEnabled
-            ? m.player_character_promotion({ promotion: staticPromotion })
-            : undefined}
+          showPromotion={staticTrainingEnabled}
           controlId={`character-level-${detail.id}`}
         />
       {/if}
@@ -759,6 +757,7 @@
           progression={detail.baseStats}
           controlId={`light-cone-level-${detail.id}`}
           controlLabel={m.detail_light_cone_level()}
+          showPromotion
           level={trainingLevel}
           onLevelChange={handleTrainingLevel}
         />

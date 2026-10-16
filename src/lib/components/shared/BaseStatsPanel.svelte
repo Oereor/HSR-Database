@@ -1,7 +1,7 @@
 <script lang="ts">
   import StatList from './StatList.svelte';
   import StatRow from './StatRow.svelte';
-  import { formatBaseStat, getBaseStatsAtLevel } from '$lib/domain/stats';
+  import { formatBaseStat, getBaseStatsAtLevel, getPromotionAtLevel } from '$lib/domain/stats';
   import type { BaseStatProgression, CharacterEnergy } from '$lib/domain/types';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import { m } from '$lib/paraglide/messages.js';
@@ -11,12 +11,14 @@
   export let controlId: string;
   export let controlLabel = m.base_stats_character_level();
   export let energy: CharacterEnergy | undefined = undefined;
-  export let initialLevel: number | undefined = undefined;
-
-  export let level = initialLevel ?? progression.defaultLevel;
-  export let leadingTag: string | undefined = undefined;
+  export let level = progression.defaultLevel;
+  export let showPromotion = false;
   export let onLevelChange: ((level: number) => void) | undefined = undefined;
   $: stats = getBaseStatsAtLevel(progression, level);
+  $: leadingTag =
+    showPromotion && progression.stages.length
+      ? m.player_character_promotion({ promotion: getPromotionAtLevel(progression, level) })
+      : undefined;
   $: hpIconUrl = getCharacterDetailIconUrl(progression.iconKeys?.hp);
   $: attackIconUrl = getCharacterDetailIconUrl(progression.iconKeys?.attack);
   $: defenceIconUrl = getCharacterDetailIconUrl(progression.iconKeys?.defence);

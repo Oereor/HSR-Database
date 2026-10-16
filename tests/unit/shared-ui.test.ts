@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { render } from 'svelte/server';
 import SearchBar from '../../src/lib/components/search/SearchBar.svelte';
 import SectionNav from '../../src/lib/components/shared/SectionNav.svelte';
@@ -8,6 +8,90 @@ import SkillCardPanel from '../../src/lib/components/character/SkillCardPanel.sv
 import TraceAbilityHeading from '../../src/lib/components/character/TraceAbilityHeading.svelte';
 import EidolonCard from '../../src/lib/components/character/EidolonCard.svelte';
 import type { BaseStatProgression, Eidolon, SkillCard, Trace } from '../../src/lib/domain/types';
+import { m } from '../../src/lib/paraglide/messages.js';
+
+vi.mock('../../src/lib/paraglide/messages.js', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('../../src/lib/paraglide/messages.js')>();
+  return {
+    ...actual,
+    m: {
+      ...actual.m,
+      player_character_promotion: vi.fn(
+        ({ promotion }: { promotion: number }) => `synthetic promotion ${promotion}`
+      )
+    }
+  };
+});
+
+afterEach(() => vi.clearAllMocks());
+
+describe('BaseStatsPanel promotion tag', () => {
+  const maxima = [20, 30, 40, 50, 60, 70, 80];
+  const progression: BaseStatProgression = {
+    minLevel: 1,
+    maxLevel: 80,
+    defaultLevel: 80,
+    stages: maxima.map((toLevel, index) => ({
+      fromLevel: index === 0 ? 1 : maxima[index - 1] + 1,
+      toLevel,
+      hp: { base: 100, perLevel: 1 },
+      attack: { base: 50, perLevel: 1 },
+      defence: { base: 40, perLevel: 1 }
+    }))
+  };
+
+  it.each([
+    [undefined, 80, 6],
+    [20, 20, 0],
+    [21, 21, 1],
+    [37, 37, 2]
+  ])(
+    'derives the tag at level %s and places it before the level output',
+    (level, displayed, promotion) => {
+      const { body } = render(BaseStatsPanel, {
+        props: {
+          progression,
+          controlId: 'synthetic-level',
+          showPromotion: true,
+          ...(level === undefined ? {} : { level })
+        }
+      });
+      expect(m.player_character_promotion).toHaveBeenCalledWith({ promotion });
+      expect(body.match(/class="skill-effect-tag"/g)).toHaveLength(1);
+      expect(body).toMatch(
+        new RegExp(
+          `<small class="skill-effect-tag">synthetic promotion ${promotion}</small>[\\s\\S]*?<output[^>]*>Lv\\.${displayed}</output>`
+        )
+      );
+    }
+  );
+
+  it.each([undefined, false])('hides promotion unless enabled (%s)', (showPromotion) => {
+    const { body } = render(BaseStatsPanel, {
+      props: {
+        progression,
+        controlId: 'synthetic-level',
+        ...(showPromotion === undefined ? {} : { showPromotion })
+      }
+    });
+    expect(body).not.toContain('skill-effect-tag');
+    expect(m.player_character_promotion).not.toHaveBeenCalled();
+  });
+
+  it('keeps the empty state without computing a promotion for missing stages', () => {
+    const { body } = render(BaseStatsPanel, {
+      props: {
+        progression: { ...progression, stages: [] },
+        controlId: 'synthetic-level',
+        showPromotion: true
+      }
+    });
+    expect(body).toContain('data-placeholder');
+    expect(body).not.toContain('skill-effect-tag');
+    expect(body).not.toContain('type="range"');
+    expect(m.player_character_promotion).not.toHaveBeenCalled();
+  });
+});
 
 describe('SectionHeading', () => {
   it.each([

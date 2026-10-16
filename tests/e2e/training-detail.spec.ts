@@ -372,69 +372,104 @@ for (const prefix of ['', '/en']) {
   });
 }
 
-test('static stats and costs agree at promotion boundaries; cone rank remains independent', async ({
-  page
-}) => {
-  for (const [category, id] of [
-    ['characters', '1001'],
-    ['light-cones', '20000']
-  ]) {
-    await page.goto(`/${category}/${id}/`);
-    await ready(page);
-    const slider = page.locator(
-      category === 'characters' ? '#character-level-1001' : '#light-cone-level-20000'
-    );
-    for (const [boundary, promotion] of [
-      [20, 0],
-      [30, 1],
-      [40, 2],
-      [50, 3],
-      [60, 4],
-      [70, 5]
+for (const prefix of ['', '/en']) {
+  test(`static stats and costs agree at promotion boundaries; cone rank remains independent (${prefix || 'zh-CN'})`, async ({
+    page
+  }) => {
+    for (const [category, id] of [
+      ['characters', '1001'],
+      ['light-cones', '20000']
     ]) {
-      await slider.fill(String(boundary));
-      await expect(page.locator('[data-training-promotion]')).toHaveAttribute(
-        'data-training-promotion',
-        String(promotion)
+      await page.goto(`${prefix}/${category}/${id}/`);
+      await ready(page);
+      const slider = page.locator(
+        category === 'characters' ? '#character-level-1001' : '#light-cone-level-20000'
       );
-      const hp = await page.locator('[data-base-stat="hp"] dd').textContent();
-      await slider.fill(String(boundary + 1));
-      await expect(page.locator('[data-training-promotion]')).toHaveAttribute(
-        'data-training-promotion',
-        String(promotion + 1)
+      const target = page.locator(
+        category === 'characters'
+          ? '#training-character-level-1001'
+          : '#training-light-cone-level-20000'
       );
-      await expect(page.locator('[data-base-stat="hp"] dd')).not.toHaveText(hp!);
+      const heroTag = page.locator(
+        '.base-stats-panel .skill-level-control__value .skill-effect-tag'
+      );
+      const targetTag = page.locator(
+        '[data-training-target] > .skill-level-control .skill-effect-tag'
+      );
+      await expect(slider).toHaveValue('80');
+      await expect(heroTag).toBeVisible();
+      await expect(heroTag).toHaveText(await targetTag.innerText());
+      for (const [boundary, promotion] of [
+        [20, 0],
+        [30, 1],
+        [40, 2],
+        [50, 3],
+        [60, 4],
+        [70, 5]
+      ]) {
+        await slider.fill(String(boundary));
+        await expect(page.locator('[data-training-promotion]')).toHaveAttribute(
+          'data-training-promotion',
+          String(promotion)
+        );
+        await expect(target).toHaveValue(String(boundary));
+        await expect(heroTag).toHaveText(await targetTag.innerText());
+        const tagAtBoundary = await heroTag.innerText();
+        const hp = await page.locator('[data-base-stat="hp"] dd').textContent();
+        await slider.focus();
+        await page.keyboard.press('ArrowRight');
+        await expect(slider).toHaveValue(String(boundary + 1));
+        await expect(target).toHaveValue(String(boundary + 1));
+        await expect(page.locator('[data-training-promotion]')).toHaveAttribute(
+          'data-training-promotion',
+          String(promotion + 1)
+        );
+        await expect(heroTag).not.toHaveText(tagAtBoundary);
+        await expect(heroTag).toHaveText(await targetTag.innerText());
+        await expect(slider).toBeFocused();
+        await expect(page.locator('[data-base-stat="hp"] dd')).not.toHaveText(hp!);
+      }
+      await target.focus();
+      await page.keyboard.press('Home');
+      await expect(slider).toHaveValue('1');
+      await expect(heroTag).toHaveText(await targetTag.innerText());
+      await page.keyboard.press('End');
+      await expect(slider).toHaveValue('80');
+      await expect(heroTag).toHaveText(await targetTag.innerText());
     }
-  }
-  await page.goto('/en/light-cones/20000/?level=37&rank=3');
-  await ready(page);
-  expect(
-    await page
-      .locator('.section-nav a')
-      .evaluateAll((links) => links.map((link) => link.getAttribute('href')))
-  ).toEqual(['#stats', '#training', '#story']);
-  await expect(page.locator('[data-training-level]')).toHaveAttribute('data-training-level', '37');
-  await expect(page.locator('#training-light-cone-level-20000')).toHaveValue('37');
-  await expect(
-    page.locator('#training [data-training-skill], #training .training-traces')
-  ).toHaveCount(0);
-  expect(
-    await page
-      .locator('#training [data-training-expense]')
-      .evaluateAll((groups) => groups.map((group) => group.getAttribute('data-training-expense')))
-  ).toEqual(['upgrade', 'promotion', 'total']);
-  const total = await page.locator('#training [data-training-expense="total"]').textContent();
-  await page.locator('#superimposition-level-20000').fill('4');
-  await expect(page.locator('#training [data-training-expense="total"]')).toHaveText(total!);
-  await page.locator('#training-light-cone-level-20000').fill('80');
-  await expect(page.locator('#light-cone-level-20000')).toHaveValue('80');
-  await expect(
-    page.locator('#training [data-training-expense="total"] [data-material-id="2"]')
-  ).toHaveAttribute('data-material-count', '529750');
-  await page.locator('#light-cone-level-20000').fill('1');
-  await expect(page.locator('#training-light-cone-level-20000')).toHaveValue('1');
-  await expect(page.locator('#training [data-material-id]')).toHaveCount(0);
-});
+    await page.goto(`${prefix}/light-cones/20000/?level=37&rank=3`);
+    await ready(page);
+    expect(
+      await page
+        .locator('.section-nav a')
+        .evaluateAll((links) => links.map((link) => link.getAttribute('href')))
+    ).toEqual(['#stats', '#training', '#story']);
+    await expect(page.locator('[data-training-level]')).toHaveAttribute(
+      'data-training-level',
+      '37'
+    );
+    await expect(page.locator('#training-light-cone-level-20000')).toHaveValue('37');
+    await expect(
+      page.locator('#training [data-training-skill], #training .training-traces')
+    ).toHaveCount(0);
+    expect(
+      await page
+        .locator('#training [data-training-expense]')
+        .evaluateAll((groups) => groups.map((group) => group.getAttribute('data-training-expense')))
+    ).toEqual(['upgrade', 'promotion', 'total']);
+    const total = await page.locator('#training [data-training-expense="total"]').textContent();
+    await page.locator('#superimposition-level-20000').fill('4');
+    await expect(page.locator('#training [data-training-expense="total"]')).toHaveText(total!);
+    await page.locator('#training-light-cone-level-20000').fill('80');
+    await expect(page.locator('#light-cone-level-20000')).toHaveValue('80');
+    await expect(
+      page.locator('#training [data-training-expense="total"] [data-material-id="2"]')
+    ).toHaveAttribute('data-material-count', '529750');
+    await page.locator('#light-cone-level-20000').fill('1');
+    await expect(page.locator('#training-light-cone-level-20000')).toHaveValue('1');
+    await expect(page.locator('#training [data-material-id]')).toHaveCount(0);
+  });
+}
 
 test('delayed cost loading preserves edited level and shared skill previews', async ({ page }) => {
   let release!: () => void;
