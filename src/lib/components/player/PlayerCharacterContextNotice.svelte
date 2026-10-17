@@ -1,6 +1,5 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
-  import { playerPageHref } from '$lib/player/resolve';
 
   export let state: 'invalid' | 'loading' | 'error' | 'missing' | 'active';
   export let uid: string | undefined = undefined;
@@ -26,7 +25,4 @@
     <strong>{message}</strong>
     {#if uid}<span>{m.player_uid()} {uid}</span>{/if}
   </div>
-  {#if state === 'active' && uid}
-    <a href={playerPageHref(uid)}>{m.player_character_back_to_player()}</a>
-  {/if}
 </aside>
