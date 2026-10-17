@@ -50,6 +50,24 @@ export function playerPageHref(uid: string, locale?: Locale): string {
   return locale ? localizedHref(href, locale) : localizedHref(href);
 }
 
+export function resolveDetailBackTarget(
+  category: string,
+  searchParams: URLSearchParams,
+  locale: Locale
+): { kind: 'player' | 'list'; href: string } {
+  const sources = searchParams.getAll('from');
+  const player = readPlayerUidQuery(searchParams);
+  if (
+    category === 'characters' &&
+    sources.length === 1 &&
+    sources[0] === 'player' &&
+    player.kind === 'valid'
+  ) {
+    return { kind: 'player', href: playerPageHref(player.uid, locale) };
+  }
+  return { kind: 'list', href: localizedHref(`/${category}`, locale) };
+}
+
 export function playerCharacterHref(
   characterId: string,
   uid: string,
@@ -58,6 +76,7 @@ export function playerCharacterHref(
 ): string {
   const params = new URLSearchParams({ uid });
   if (buildId) params.set('build', buildId);
+  params.set('from', 'player');
   const href = `/characters/${encodeURIComponent(characterId)}/?${params}`;
   return locale ? localizedHref(href, locale) : localizedHref(href);
 }

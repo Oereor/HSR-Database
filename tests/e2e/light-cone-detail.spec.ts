@@ -98,23 +98,42 @@ test('光锥等级与叠影滑块独立、控件先于效果且动态参数更�
   await expect(superimposition.locator('.scaling-value')).toHaveText('24%');
 });
 
-test('光锥详情只用 query 初始化等级与叠影并安全处理非法值', async ({ page }) => {
-  await page.goto('/light-cones/20000/?level=37&rank=3');
-  const level = page.locator('#light-cone-level-20000');
-  const rank = page.locator('#superimposition-level-20000');
+for (const prefix of ['', '/en']) {
+  test(`光锥详情只用 query 初始化等级与叠影并安全处理非法值 (${prefix || 'zh-CN'})`, async ({
+    page
+  }) => {
+    await page.goto(`${prefix}/light-cones/20000/?level=37&rank=3`);
+    const level = page.locator('#light-cone-level-20000');
+    const rank = page.locator('#superimposition-level-20000');
+    const tag = page.locator('.base-stats-panel .skill-level-control__value .skill-effect-tag');
 
-  await expect(level).toHaveValue('37');
-  await expect(rank).toHaveAttribute('aria-valuenow', '3');
-  await level.fill('42');
-  await rank.fill('4');
-  await expect(level).toHaveValue('42');
-  await expect(rank).toHaveAttribute('aria-valuenow', '5');
+    await expect(level).toHaveValue('37');
+    await expect(rank).toHaveAttribute('aria-valuenow', '3');
+    await expect(tag).toBeVisible();
+    const tagAt37 = await tag.innerText();
+    await level.fill('42');
+    await expect(tag).not.toHaveText(tagAt37);
+    const tagAt42 = await tag.innerText();
+    await rank.fill('4');
+    await expect(level).toHaveValue('42');
+    await expect(rank).toHaveAttribute('aria-valuenow', '5');
+    await expect(tag).toHaveText(tagAt42);
 
-  await page.goto('/light-cones/20000/?level=invalid&rank=invalid');
-  await expect(page.locator('#light-cone-level-20000')).toHaveValue('80');
-  await expect(page.locator('#superimposition-level-20000')).toHaveAttribute('aria-valuenow', '1');
+    await page.goto(`${prefix}/light-cones/20000/?level=invalid&rank=invalid`);
+    await expect(page.locator('#light-cone-level-20000')).toHaveValue('80');
+    await expect(page.locator('#superimposition-level-20000')).toHaveAttribute(
+      'aria-valuenow',
+      '1'
+    );
+    await expect(tag).toBeVisible();
+    const tagAt80 = await tag.innerText();
 
-  await page.goto('/light-cones/20000/?level=0&rank=99');
-  await expect(page.locator('#light-cone-level-20000')).toHaveValue('1');
-  await expect(page.locator('#superimposition-level-20000')).toHaveAttribute('aria-valuenow', '5');
-});
+    await page.goto(`${prefix}/light-cones/20000/?level=0&rank=99`);
+    await expect(page.locator('#light-cone-level-20000')).toHaveValue('1');
+    await expect(page.locator('#superimposition-level-20000')).toHaveAttribute(
+      'aria-valuenow',
+      '5'
+    );
+    await expect(tag).not.toHaveText(tagAt80);
+  });
+}

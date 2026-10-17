@@ -122,7 +122,7 @@ test('submitting a UID updates the URL before rendering Player Hero and characte
   expect(heroStyles.valueWeight).toBeLessThan(800);
   await expect(page.getByRole('link', { name: /三月七/ }).first()).toHaveAttribute(
     'href',
-    '/characters/1001/?uid=100000001&build=area%3Aassist%3Aposition%3A1%3Aorder%3A0'
+    '/characters/1001/?uid=100000001&build=area%3Aassist%3Aposition%3A1%3Aorder%3A0&from=player'
   );
 
   if (!isMobile) await page.setViewportSize({ width: 768, height: 900 });
@@ -160,7 +160,7 @@ test('preserves locale and reuses the SPA cache across browser history', async (
   await expect(page.locator('.player-characters__empty')).toHaveCount(0);
   await expect(page.getByRole('link', { name: /March 7th/ }).first()).toHaveAttribute(
     'href',
-    '/en/characters/1001/?uid=100000001&build=area%3Aassist%3Aposition%3A1%3Aorder%3A0'
+    '/en/characters/1001/?uid=100000001&build=area%3Aassist%3Aposition%3A1%3Aorder%3A0&from=player'
   );
 
   await page.locator('#player-uid-input').fill('100000002');

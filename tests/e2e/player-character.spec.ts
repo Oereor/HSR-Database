@@ -122,6 +122,130 @@ const heroProfile = (uid: string, stats = heroStats) => {
 };
 
 for (const prefix of ['', '/en']) {
+  test(`detail back navigation: catalog and direct entry ${prefix || 'zh-CN'}`, async ({
+    page
+  }) => {
+    await page.route('**/api/player/**', (route) =>
+      route.fulfill({ json: playerProfile('100000001') })
+    );
+    for (const category of ['characters', 'light-cones']) {
+      const catalogHref = `${prefix}/${category}/`;
+      await page.goto(catalogHref);
+      await expect(page.locator('[data-app-ready]')).toHaveAttribute('data-app-ready', 'true');
+      const card = page.locator('a.entity-overview-card').first();
+      await expect(card).toBeVisible();
+      const detailHref = (await card.getAttribute('href'))!;
+      await card.click();
+      await expect(page).toHaveURL(detailHref);
+      const back = page.locator('.back-link');
+      await expect(back).toHaveAttribute('href', catalogHref);
+      await back.focus();
+      await expect(back).toBeFocused();
+      await page.keyboard.press('Enter');
+      await expect(page).toHaveURL(catalogHref);
+
+      if (category === 'characters') {
+        // A catalog link carrying player data still has no Player navigation source.
+        await page
+          .locator(`a[href="${detailHref}"]`)
+          .first()
+          .evaluate((link) => {
+            link.setAttribute('href', `${link.getAttribute('href')}?uid=100000001`);
+          });
+        await page.locator(`a[href="${detailHref}?uid=100000001"]`).click();
+        await expect(page).toHaveURL(`${detailHref}?uid=100000001`);
+        await expect(back).toHaveAttribute('href', catalogHref);
+        await expect(page.locator('.player-context-notice')).toContainText('100000001');
+        await expect(page.locator('.player-context-notice a')).toHaveCount(0);
+      }
+
+      await page.goto(detailHref);
+      await expect(page.locator('[data-app-ready]')).toHaveAttribute('data-app-ready', 'true');
+      await expect(back).toHaveAttribute('href', catalogHref);
+      await page.reload();
+      await expect(page.locator('[data-app-ready]')).toHaveAttribute('data-app-ready', 'true');
+      await expect(back).toHaveAttribute('href', catalogHref);
+    }
+  });
+
+  test(`detail back navigation: Player source survives reload and history ${prefix || 'zh-CN'}`, async ({
+    page,
+    isMobile
+  }) => {
+    await page.route('**/api/player/**', (route) =>
+      route.fulfill({
+        json: playerProfile(new URL(route.request().url()).searchParams.get('uid')!)
+      })
+    );
+    const build = 'area:showcase:position:1:order:0';
+    const back = page.locator('.back-link');
+    await page.goto(`${prefix}/player/?uid=100000001`);
+
+    for (const uid of ['100000001', '100000002']) {
+      if (uid === '100000002') {
+        await page.locator('#player-uid-input').fill(uid);
+        await page.locator('.player-uid-form button[type="submit"]').click();
+      }
+      const playerHref = `${prefix}/player/?uid=${uid}`;
+      const characterHref = `${prefix}/characters/1304/?uid=${uid}&build=${encodeURIComponent(build)}&from=player`;
+      await page.locator(`a[href="${characterHref}"]`).click();
+      await expect(back).toHaveAttribute('href', playerHref);
+      await expect(page.locator('[data-player-stats-panel]')).toBeVisible();
+      await expect(page.locator('.player-context-notice')).toContainText(uid);
+      await expect(page.locator('.player-context-notice a')).toHaveCount(0);
+      await page.reload();
+      await expect(back).toHaveAttribute('href', playerHref);
+      await page.goBack();
+      await expect(page).toHaveURL(playerHref);
+      await page.goForward();
+      await expect(page).toHaveURL(characterHref);
+      await expect(back).toHaveAttribute('href', playerHref);
+      await back.click();
+      await expect(page).toHaveURL(playerHref);
+    }
+
+    // A different character entered from the catalog must not reuse either player's source.
+    if (isMobile) await page.locator('.mobile-header .navigator-toggle').click();
+    await page.locator(`a[href="${prefix}/characters/"]:visible`).first().click();
+    await expect(page).toHaveURL(`${prefix}/characters/`);
+    const ordinaryCard = page
+      .locator(`a.entity-overview-card:not([href*="?"]):not([href="${prefix}/characters/1304/"])`)
+      .first();
+    await expect(ordinaryCard).toBeVisible();
+    const ordinaryHref = (await ordinaryCard.getAttribute('href'))!;
+    await ordinaryCard.click();
+    await expect(page).toHaveURL(ordinaryHref);
+    await expect(back).toHaveAttribute('href', `${prefix}/characters/`);
+    await page.goBack();
+    await expect(page).toHaveURL(`${prefix}/characters/`);
+    await page.goForward();
+    await expect(page).toHaveURL(ordinaryHref);
+    await expect(back).toHaveAttribute('href', `${prefix}/characters/`);
+  });
+}
+
+test('detail back navigation: language switch preserves the Player source and build', async ({
+  page
+}) => {
+  await page.route('**/api/player/**', (route) =>
+    route.fulfill({ json: playerProfile('100000001') })
+  );
+  await page.goto('/player/?uid=100000001');
+  const query = '?uid=100000001&build=area%3Ashowcase%3Aposition%3A1%3Aorder%3A0&from=player';
+  await page.locator(`a[href="/characters/1304/${query}"]`).click();
+  for (const prefix of ['/en', '']) {
+    await page.locator('.settings-trigger').click();
+    await page.locator(`.language-segments a[href="${prefix}/characters/1304/${query}"]`).click();
+    await expect(page).toHaveURL(`${prefix}/characters/1304/${query}`);
+    await expect(page.locator('.back-link')).toHaveAttribute(
+      'href',
+      `${prefix}/player/?uid=100000001`
+    );
+    await expect(page.locator('[data-player-stats-panel]')).toBeVisible();
+  }
+});
+
+for (const prefix of ['', '/en']) {
   test(`Player Hero stats reflow by available width in ${prefix ? 'en' : 'zh-CN'}`, async ({
     page
   }, testInfo) => {
@@ -301,10 +425,12 @@ test('Player Hero stats keep pane padding stable while loading and falling back'
       json: { error: { code: 'UPSTREAM_UNAVAILABLE', retryable: true } }
     });
   });
-  await page.goto('/characters/1304/?uid=100000503');
+  await page.goto('/characters/1304/?uid=100000503&from=player');
   const pane = page.locator('.hero-basic-data-pane');
   try {
     await expect(pane.locator(':scope > .data-placeholder')).toBeVisible();
+    await expect(page.locator('.back-link')).toHaveAttribute('href', '/player/?uid=100000503');
+    await expect(page.locator('.player-context-notice a')).toHaveCount(0);
     const padding = await pane.evaluate((element) => getComputedStyle(element).paddingLeft);
     finishResponse();
     await expect(pane.locator('.base-stats-panel')).toBeVisible();
@@ -331,12 +457,13 @@ test('reuses the Player cache and renders real progression without changing stat
   await page.getByRole('link', { name: /砂金/ }).click();
 
   await expect(page).toHaveURL(
-    /\/characters\/1304\/\?uid=100000001&build=area%3Ashowcase%3Aposition%3A1%3Aorder%3A0$/
+    /\/characters\/1304\/\?uid=100000001&build=area%3Ashowcase%3Aposition%3A1%3Aorder%3A0&from=player$/
   );
   const playerContext = page.locator('.player-context-notice');
   await expect(playerContext).toBeVisible();
   await expect(playerContext).toContainText('100000001');
-  await expect(playerContext.locator('a')).toHaveAttribute('href', '/player/?uid=100000001');
+  await expect(playerContext.locator('a')).toHaveCount(0);
+  await expect(page.locator('.back-link')).toHaveAttribute('href', '/player/?uid=100000001');
   expect(requestCount).toBe(1);
 
   const level = page.locator('[data-player-stats-panel]').getByRole('slider');
@@ -565,6 +692,7 @@ test('reuses the Player cache and renders real progression without changing stat
 
   await lightConeCard.getByRole('link').click();
   await expect(page).toHaveURL(/\/light-cones\/23023\/\?level=70&rank=2$/);
+  await expect(page.locator('.back-link')).toHaveAttribute('href', '/light-cones/');
   const lightConeLevel = page.locator('#light-cone-level-23023');
   await expect(lightConeLevel).toBeEnabled();
   await expect(lightConeLevel).toHaveValue('70');
@@ -771,19 +899,24 @@ test('keeps static detail available for invalid, missing and failed Player conte
     await route.fulfill({ json: playerProfile(uid, false) });
   });
 
-  await page.goto('/characters/1304/?uid=abc');
+  await page.goto('/characters/1304/?uid=abc&from=player');
   await expect(page.locator('.player-context-notice--fallback')).toBeVisible();
+  await expect(page.locator('.back-link')).toHaveAttribute('href', '/characters/');
   await expect(page.locator('#character-level-1304')).toBeEnabled();
   await expect(page.locator('#equipment-recommendation')).toBeVisible();
   expect(requestCount).toBe(0);
 
-  await page.goto('/characters/1304/?uid=100000002');
+  await page.goto('/characters/1304/?uid=100000002&from=player');
   await expect(page.locator('.player-context-notice--fallback')).toBeVisible();
+  await expect(page.locator('.back-link')).toHaveAttribute('href', '/player/?uid=100000002');
+  await expect(page.locator('.player-context-notice a')).toHaveCount(0);
   await expect(page.locator('#character-level-1304')).toBeEnabled();
   await expect(page.locator('#equipment-recommendation')).toBeVisible();
 
-  await page.goto('/characters/1304/?uid=100000503');
+  await page.goto('/characters/1304/?uid=100000503&from=player');
   await expect(page.locator('.player-context-notice--fallback')).toBeVisible();
+  await expect(page.locator('.back-link')).toHaveAttribute('href', '/player/?uid=100000503');
+  await expect(page.locator('.player-context-notice a')).toHaveCount(0);
   await expect(page.locator('#character-level-1304')).toBeEnabled();
   await expect(page.locator('#equipment-recommendation')).toBeVisible();
   expect(requestCount).toBe(2);

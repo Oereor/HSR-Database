@@ -473,7 +473,7 @@ describe('Light Cone detail initial state', () => {
 
   it('initializes both existing controls without making them read-only', () => {
     const statsBody = render(BaseStatsPanel, {
-      props: { progression, controlId: 'light-cone-level', initialLevel: 37 }
+      props: { progression, controlId: 'light-cone-level', level: 37 }
     }).body;
     const superimpositionBody = render(SuperimpositionPanel, {
       props: {

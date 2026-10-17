@@ -33,7 +33,7 @@
   import type { CatalogEntry, RelicProperty } from '$lib/domain/types';
   import type { EquipmentRecommendationView } from '$lib/domain/equipment-recommendation-view';
   import { formatDocumentTitle } from '$lib/site';
-  import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
+  import { trailingSlashHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   import { fetchPlayerProfile } from '$lib/player/client';
   import type { PlayerCharacter } from '$lib/player/contract';
@@ -41,6 +41,7 @@
   import {
     readPlayerBuildQuery,
     readPlayerUidQuery,
+    resolveDetailBackTarget,
     type PlayerBuildQueryState,
     type PlayerUidQueryState
   } from '$lib/player/resolve';
@@ -212,6 +213,11 @@
   $: if (clientReady)
     synchronizePlayerContext(playerContextKey, playerQueryState, playerBuildQueryState);
   $: activePlayerCharacter = playerContextState === 'active' ? playerCharacter : null;
+  $: backTarget = resolveDetailBackTarget(
+    category,
+    clientReady ? $page.url.searchParams : emptySearchParams,
+    getLocale()
+  );
 
   $: staticTrainingEnabled =
     category === 'light-cones' ||
@@ -622,8 +628,10 @@
   <meta name="description" content={metaDescription} />
 </svelte:head>
 
-<a class="back-link" href={localizedHref(`/${category}`)}
-  >← {m.detail_back_to_list({ category: singular })}</a
+<a class="back-link" href={backTarget.href}
+  >← {backTarget.kind === 'player'
+    ? m.player_character_back_to_player()
+    : m.detail_back_to_list({ category: singular })}</a
 >
 {#if category === 'characters'}
   <header class="detail-profile-hero detail-profile-hero--character">
@@ -716,9 +724,7 @@
           energy={activeProfile.energy}
           level={trainingLevel}
           onLevelChange={handleTrainingLevel}
-          leadingTag={staticTrainingEnabled
-            ? m.player_character_promotion({ promotion: staticPromotion })
-            : undefined}
+          showPromotion={staticTrainingEnabled}
           controlId={`character-level-${detail.id}`}
         />
       {/if}
@@ -759,6 +765,7 @@
           progression={detail.baseStats}
           controlId={`light-cone-level-${detail.id}`}
           controlLabel={m.detail_light_cone_level()}
+          showPromotion
           level={trainingLevel}
           onLevelChange={handleTrainingLevel}
         />
