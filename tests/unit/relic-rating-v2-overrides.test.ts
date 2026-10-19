@@ -5,13 +5,24 @@ import { assertRatingV2Overrides } from '../../src/lib/relic-score/v2/overrides'
 const ids = ['1505', '1506'];
 describe('Rating V2 explicit policy', () => {
   it('accepts only a traceable, scoped policy with known identities', () => {
-    expect(() => assertRatingV2Overrides(policyJson, ids, policyJson.sourceCommit)).not.toThrow();
-    expect(() => assertRatingV2Overrides(policyJson, ['1506'], policyJson.sourceCommit)).toThrow(
+    expect(() =>
+      assertRatingV2Overrides(
+        { ...policyJson, sourceCommit: 'a'.repeat(40) },
+        ids,
+        policyJson.sourceDigests
+      )
+    ).not.toThrow();
+    expect(() => assertRatingV2Overrides(policyJson, ['1506'], policyJson.sourceDigests)).toThrow(
       /Unknown/
     );
-    expect(() => assertRatingV2Overrides(policyJson, ids, 'a'.repeat(40))).toThrow(/stale/);
     expect(() =>
-      assertRatingV2Overrides({ ...policyJson, unexpected: true }, ids, policyJson.sourceCommit)
+      assertRatingV2Overrides(policyJson, ids, {
+        ...policyJson.sourceDigests,
+        RelicMainAffixAvatarValue: 'a'.repeat(64)
+      })
+    ).toThrow(/[Ss]tale/);
+    expect(() =>
+      assertRatingV2Overrides({ ...policyJson, unexpected: true }, ids, policyJson.sourceDigests)
     ).toThrow(/fields/);
   });
   it('rejects ambiguous, unreasoned and invalid overrides', () => {
@@ -28,11 +39,11 @@ describe('Rating V2 explicit policy', () => {
     ]) {
       const policy = structuredClone(policyJson);
       Object.assign(policy.mainWeights[0], patch);
-      expect(() => assertRatingV2Overrides(policy, ids, policy.sourceCommit)).toThrow();
+      expect(() => assertRatingV2Overrides(policy, ids, policy.sourceDigests)).toThrow();
     }
     const duplicate = structuredClone(policyJson);
     duplicate.mainWeights.push(duplicate.mainWeights[0]);
-    expect(() => assertRatingV2Overrides(duplicate, ids, duplicate.sourceCommit)).toThrow(
+    expect(() => assertRatingV2Overrides(duplicate, ids, duplicate.sourceDigests)).toThrow(
       /Duplicate/
     );
     const conflict = structuredClone(policyJson);
@@ -41,7 +52,7 @@ describe('Rating V2 explicit policy', () => {
       slot: 'NECK',
       reason: 'Synthetic conflict'
     });
-    expect(() => assertRatingV2Overrides(conflict, ids, conflict.sourceCommit)).toThrow(
+    expect(() => assertRatingV2Overrides(conflict, ids, conflict.sourceDigests)).toThrow(
       /conflicting/
     );
   });

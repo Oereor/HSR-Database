@@ -3,6 +3,7 @@ import type { RelicScoreRecommendation } from '../recommendations.js';
 import { RELIC_SLOTS } from '../scoring-config.js';
 import { RELIC_STAT_REGISTRY, relicStatSemantics, type RelicStatKey } from '../stat-registry.js';
 import type { RatingV2Exceptions } from './overrides.js';
+import type { RatingV2SourceDigests } from './source-identity.js';
 
 export const MAIN_MAPPING_VERSION = 'avatar-main-slot-max-overrides-v2' as const;
 export const SUB_MAPPING_VERSION = 'avatar-sub-flat-4-over-9-v2' as const;
@@ -67,10 +68,10 @@ export interface RatingV2Profile {
   exceptions: RatingV2Exceptions;
 }
 export interface RatingV2Profiles {
-  schemaVersion: 5;
+  schemaVersion: 6;
   algorithmVersion: 2;
   sourceCommit: string;
-  sourceDigests: Record<string, string>;
+  sourceDigests: RatingV2SourceDigests;
   overrideDigest: string;
   mainMappingVersion: typeof MAIN_MAPPING_VERSION;
   subMappingVersion: typeof SUB_MAPPING_VERSION;

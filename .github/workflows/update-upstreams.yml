@@ -67,6 +67,9 @@ jobs:
       - name: Refresh enemy snapshot
         run: pnpm update:enemy-assets
 
+      - name: Validate Rating V2 publication artifacts
+        run: pnpm relic-score:v2:benchmarks:validate
+
       - name: Refresh official character names
         run: pnpm data:search-names:update
 
@@ -146,6 +149,7 @@ jobs:
             echo '- `pnpm data:player-aliases:sync`'
             echo '- `pnpm data:search-names:check`'
             echo '- `pnpm update:enemy-assets`'
+            echo '- `pnpm relic-score:v2:benchmarks:validate`'
             echo 'EOF'
           } >> "$GITHUB_OUTPUT"
 

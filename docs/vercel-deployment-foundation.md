@@ -71,6 +71,7 @@ Vercel 项目应设置 Node 24.x、冻结锁文件安装、build command `pnpm d
 ```bash
 pnpm upstreams:update
 pnpm update:enemy-assets
+pnpm relic-score:v2:benchmarks:validate
 pnpm data:search-names:update
 pnpm data:player-aliases:sync
 pnpm data:search-names:check
@@ -80,7 +81,8 @@ pnpm data:search-names:check
 enemy 与名称更新使用该 pin；alias sync 只为新合法 ID 补空数组，保留已有人工内容，不替维护者填写别名。
 审阅实际 diff 后运行完整 correctness；评分政策或来源变动还需遵守[Profile 维护](relic-score-feature/profile-maintenance.md)，不能自动审批覆盖。
 
-[update-upstreams.yml](../.github/workflows/update-upstreams.yml)每天及手动从 develop 准备维护更新：消息编译 → lock → enemy → 官方名称 → alias skeleton → 名称 check。
+[update-upstreams.yml](../.github/workflows/update-upstreams.yml)每天及手动从 develop 准备维护更新：消息编译 → lock → enemy（包含完整 data:ensure）→ V2 正式 Benchmark/audit 验证 → 官方名称 → alias skeleton → 名称 check。
+V2 审批按经过审核的八份来源内容校验，无关 commit 变化不会要求再次审批；内容变化时明确失败，不更新审批 digest。Benchmark 的副权重、概率/reference、采样或覆盖身份变化也会阻断自动提交；必须按现行维护规则完成复核及必要生成。保留完整数据准备，使敌方目录与目标 pin 一致，不通过绕开评分门禁解除跨子系统依赖。
 只有维护产物出现实际 diff 时提交到 `automation/update-upstreams`，并创建/更新目标为 develop 的 PR；不自动审核、合并或部署。
 权限为 `contents: write`、`pull-requests: write`。其 PR 获得 Development 检查，完整 correctness 在后续 main PR 承担。
 

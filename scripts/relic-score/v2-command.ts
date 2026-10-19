@@ -38,6 +38,7 @@ import { presentRatingV2 } from '../../src/lib/relic-score/v2/presentation.js';
 import { buildRelicScoreReferenceData } from '../../src/lib/relic-score/reference.js';
 import type { CanonicalPlayerCharacterBuild } from '../../src/lib/player/canonical.js';
 import { assertRatingV2Overrides } from '../../src/lib/relic-score/v2/overrides.js';
+import type { RatingV2SourceDigests } from '../../src/lib/relic-score/v2/source-identity.js';
 
 const candidateRoot = path.join(siteRoot, 'data/relic-score/v2');
 const reviewPath = path.join(
@@ -70,7 +71,10 @@ async function writeAtomic(file: string, value: unknown) {
   if ((await readFile(file, 'utf8')) !== bytes)
     throw new Error('Candidate write verification failed');
 }
-async function loadPublishedProfiles(lockCommit: string): Promise<RatingV2Profiles> {
+async function loadPublishedProfiles(
+  lockCommit: string,
+  sourceDigests: RatingV2SourceDigests
+): Promise<RatingV2Profiles> {
   const manifest = await readDataManifest();
   if (manifest.sourceCommit !== lockCommit)
     throw new Error('Generated manifest is not pinned; run data:sync against prepared source');
@@ -78,7 +82,7 @@ async function loadPublishedProfiles(lockCommit: string): Promise<RatingV2Profil
     await readFile(path.join(generatedRoot, 'runtime/relic-rating-v2.json'), 'utf8')
   );
   const policy = (await readRatingV2PolicyInput()).value;
-  assertRatingV2Overrides(policy, manifest.routes.characters, lockCommit);
+  assertRatingV2Overrides(policy, manifest.routes.characters, sourceDigests);
   assertRatingV2Profiles(profiles, manifest.routes.characters, lockCommit, policy);
   return profiles;
 }
@@ -156,7 +160,7 @@ async function main() {
       await writeAtomic(path.join(candidateRoot, 'character-profiles.json'), derived);
     if (command !== 'validate') await writeAtomic(reviewPath, review);
     if (command === 'validate') {
-      const published = await loadPublishedProfiles(commit);
+      const published = await loadPublishedProfiles(commit, derived.sourceDigests);
       if (stableBenchmarkSerialize(published) !== stableBenchmarkSerialize(derived))
         throw new Error('Published Rating V2 profiles differ from pinned raw sources');
     }
@@ -165,7 +169,7 @@ async function main() {
     );
     return;
   }
-  const profiles = await loadPublishedProfiles(commit);
+  const profiles = await loadPublishedProfiles(commit, derived.sourceDigests);
   if (command === 'score') {
     const { runtime, model } = await loadFarmingInputs();
     const build = JSON.parse(

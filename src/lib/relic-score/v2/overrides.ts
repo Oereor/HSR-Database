@@ -1,5 +1,10 @@
 import type { RelicSlot } from '../../domain/types.js';
 import { isRelicStatKey, relicStatSemantics, type RelicStatKey } from '../stat-registry.js';
+import {
+  assertRatingV2SourceDigests,
+  RATING_V2_SOURCE_NAMES,
+  type RatingV2SourceDigests
+} from './source-identity.js';
 
 export interface MainWeightOverride {
   characterId: string;
@@ -18,8 +23,10 @@ export interface RatingV2Exceptions {
   agnosticSlots: AgnosticSlotOverride[];
 }
 export interface RatingV2Overrides extends RatingV2Exceptions {
-  schemaVersion: 1;
+  schemaVersion: 2;
+  /** Original approval provenance; deliberately independent of the current upstream commit. */
   sourceCommit: string;
+  sourceDigests: RatingV2SourceDigests;
   basis: string;
 }
 function exact(value: unknown, fields: string[]): asserts value is Record<string, unknown> {
@@ -34,19 +41,40 @@ function exact(value: unknown, fields: string[]): asserts value is Record<string
 export function assertRatingV2Overrides(
   value: unknown,
   characterIds: readonly string[],
-  sourceCommit: string
+  sourceDigests: RatingV2SourceDigests
 ): asserts value is RatingV2Overrides {
-  exact(value, ['schemaVersion', 'sourceCommit', 'basis', 'mainWeights', 'agnosticSlots']);
+  exact(value, [
+    'schemaVersion',
+    'sourceCommit',
+    'sourceDigests',
+    'basis',
+    'mainWeights',
+    'agnosticSlots'
+  ]);
   if (
-    value.schemaVersion !== 1 ||
-    value.sourceCommit !== sourceCommit ||
-    !/^[a-f0-9]{40}$/.test(sourceCommit) ||
+    value.schemaVersion !== 2 ||
+    typeof value.sourceCommit !== 'string' ||
+    !/^[a-f0-9]{40}$/.test(value.sourceCommit) ||
     typeof value.basis !== 'string' ||
     !value.basis.trim() ||
     !Array.isArray(value.mainWeights) ||
     !Array.isArray(value.agnosticSlots)
   )
     throw new Error('Invalid/stale Rating V2 override policy');
+  assertRatingV2SourceDigests(value.sourceDigests);
+  assertRatingV2SourceDigests(sourceDigests);
+  const approvedDigests = value.sourceDigests;
+  const changed = RATING_V2_SOURCE_NAMES.filter(
+    (name) => approvedDigests[name] !== sourceDigests[name]
+  );
+  if (changed.length)
+    throw new Error(
+      `Stale Rating V2 override policy: ${changed
+        .map((name) => `${name} approved=${approvedDigests[name]} current=${sourceDigests[name]}`)
+        .join(
+          '; '
+        )}. Review the changed inputs and overrides, then manually update the policy with maintainer approval; generation never approves new digests.`
+    );
   const ids = new Set(characterIds);
   const seen = new Set<string>();
   for (const [kind, entries] of [

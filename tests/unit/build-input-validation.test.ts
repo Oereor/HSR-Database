@@ -13,6 +13,7 @@ import { PLAYER_PROPERTY_SEMANTICS } from '../../src/lib/player/property-semanti
 import {
   buildRatingV2Profiles,
   loadRatingV2Tables,
+  ratingV2SourceDigests,
   readRatingV2PolicyInput,
   readRatingV2BenchmarkInput
 } from '../../scripts/data/relic-rating-v2';
@@ -161,8 +162,9 @@ async function createFixture(): Promise<Fixture> {
   await writeFile(
     ratingV2PolicyFile,
     JSON.stringify({
-      schemaVersion: 1,
+      schemaVersion: 2,
       sourceCommit: commit,
+      sourceDigests: await ratingV2SourceDigests(sourceRoot),
       basis: 'Synthetic fixture',
       mainWeights: [],
       agnosticSlots: []
@@ -364,7 +366,7 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 53,
+    schemaVersion: 54,
     ratingV2PolicyInput: (await readRatingV2PolicyInput(ratingV2PolicyFile)).metadata,
     ratingV2BenchmarkInput: await readRatingV2BenchmarkInput(),
     sourceCommit: commit,

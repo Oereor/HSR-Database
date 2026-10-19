@@ -14,7 +14,9 @@ Deployment preparation derives its TurnBased sparse checkout from the same sourc
 
 ## Artifact contract
 
-Manifest schema 53 binds the locale-neutral runtime/relic-rating-v2.json Profile, local override policy bytes/hash, and formal V2 Benchmark bytes/hash/audit hash. Production consumes V2 exclusively; build-input checks reject stale bindings and prebuild independently validates all formal distributions. Schema 51 introduced localized material detail artifacts.
+Manifest schema 54 binds the locale-neutral schema 6 runtime/relic-rating-v2.json Profile, schema 2 local override policy bytes/hash, and formal V2 Benchmark bytes/hash/audit hash. Policy approval binds all eight losslessly parsed, stably serialized source tables independently before regular/LD merging; its sourceCommit retains approval history. Profile sourceCommit still records the actual prepared pin and must match the manifest. Identical reviewed content can cross commits and checkout line endings without renewed approval; changed content fails closed for manual review. Production consumes V2 exclusively; build-input checks reject stale bindings and prebuild independently validates all formal distributions. Schema 51 introduced localized material detail artifacts.
+
+Benchmark compatibility uses sampling, sub-profile and condition identities plus exact coverage, representation audit and byte bindings. Its generation commit must match its own audit, not the current Profile commit. Historical full Profile/policy digests in the audit remain generation provenance. Unrelated upstream changes do not require regenerating or relabeling the Benchmark.
 
 The active V2 benchmark uses N=1: each experiment generates one natural five-star +15 relic conditioned on character, slot and actual main stat. K=65,536, seed=123456789, 257 quantile points and the 0.005 representation gate remain fixed. The sampling digest distinguishes the historical N=3 selection policy; runtime validation rejects that artifact without remapping or fallback. Regeneration must complete and pass its gates before publication, followed by `data:ensure` to refresh the manifest binding.
 

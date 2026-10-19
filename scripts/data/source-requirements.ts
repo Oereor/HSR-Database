@@ -1,6 +1,6 @@
 import { TRAINING_TABLE_NAMES } from './training-sources.js';
 import { characterLdSourceNames } from './character-sources.js';
-import { RATING_V2_TABLE_NAMES } from './relic-rating-v2.js';
+import { RATING_V2_TABLE_NAMES } from '../../src/lib/relic-score/v2/source-identity.js';
 
 export const DATA_GENERATION_TABLE_NAMES = [
   ...RATING_V2_TABLE_NAMES,

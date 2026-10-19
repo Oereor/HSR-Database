@@ -27,6 +27,10 @@ import {
   exceptionsFor,
   type RatingV2Overrides
 } from '../../src/lib/relic-score/v2/overrides.js';
+import {
+  RATING_V2_SOURCE_NAMES,
+  type RatingV2SourceDigests
+} from '../../src/lib/relic-score/v2/source-identity.js';
 
 export const ratingV2PolicyFile = path.resolve(
   import.meta.dirname,
@@ -37,7 +41,7 @@ export async function readRatingV2PolicyInput(file = ratingV2PolicyFile) {
   return {
     value: JSON.parse(bytes.toString('utf8')) as unknown,
     metadata: {
-      schemaVersion: 1 as const,
+      schemaVersion: 2 as const,
       bytes: bytes.length,
       sha256: createHash('sha256').update(bytes).digest('hex')
     }
@@ -58,19 +62,6 @@ export async function readRatingV2BenchmarkInput() {
   };
 }
 
-export const RATING_V2_TABLE_NAMES = [
-  'RelicMainAffixAvatarValue',
-  'RelicSubAffixAvatarValue',
-  'RelicMainAffixBaseValue',
-  'RelicSubAffixBaseValue'
-] as const;
-export const RATING_V2_SOURCE_NAMES = [
-  ...RATING_V2_TABLE_NAMES,
-  'AvatarConfig',
-  'AvatarConfigLD',
-  'AvatarRelicRecommend',
-  'AvatarRelicRecommendLD'
-] as const;
 type Raw = Record<string, unknown>;
 function record(value: unknown): Raw {
   if (!value || typeof value !== 'object' || Array.isArray(value))
@@ -179,6 +170,7 @@ export async function buildRatingV2Profiles(
   sourceCommit: string,
   policyFile = ratingV2PolicyFile
 ): Promise<RatingV2Profiles> {
+  if (!/^[a-f0-9]{40}$/.test(sourceCommit)) throw new Error('Invalid Rating V2 source commit');
   const sourceFiles = await readdir(path.join(root, 'ExcelOutput'));
   if (sourceFiles.some((file) => /^Relic(?:Main|Sub)AffixAvatarValue.+\.json$/.test(file)))
     throw new Error('Unknown additional AvatarValue source; explicit LD source review required');
@@ -191,7 +183,8 @@ export async function buildRatingV2Profiles(
   const ids = [...avatars.keys()].sort();
   const policyInput = await readRatingV2PolicyInput(policyFile);
   const policy = policyInput.value;
-  assertRatingV2Overrides(policy, ids, sourceCommit);
+  const sourceDigests = await ratingV2SourceDigests(root);
+  assertRatingV2Overrides(policy, ids, sourceDigests);
   for (const [label, index] of [
     ['main', main],
     ['sub', sub],
@@ -213,9 +206,8 @@ export async function buildRatingV2Profiles(
       exceptions: exceptionsFor(policy, id)
     });
   });
-  const sourceDigests = await ratingV2SourceDigests(root);
   return {
-    schemaVersion: 5,
+    schemaVersion: 6,
     algorithmVersion: 2,
     sourceCommit,
     sourceDigests,
@@ -227,20 +219,14 @@ export async function buildRatingV2Profiles(
     profiles
   };
 }
-export async function ratingV2SourceDigests(root: string): Promise<Record<string, string>> {
+export async function ratingV2SourceDigests(root: string): Promise<RatingV2SourceDigests> {
   return Object.fromEntries(
     await Promise.all(
       RATING_V2_SOURCE_NAMES.map(
-        async (name) =>
-          [
-            name,
-            createHash('sha256')
-              .update(await readFile(path.join(root, 'ExcelOutput', `${name}.json`)))
-              .digest('hex')
-          ] as const
+        async (name) => [name, benchmarkSha256(await readTable(root, name))] as const
       )
     )
-  );
+  ) as RatingV2SourceDigests;
 }
 export async function loadRatingV2Tables(root: string): Promise<Record<string, unknown[]>> {
   const tables: Record<string, unknown[]> = Object.fromEntries(
@@ -267,8 +253,9 @@ export function assertRatingV2Profiles(
 ): asserts value is RatingV2Profiles {
   const artifact = record(value);
   if (
-    artifact.schemaVersion !== 5 ||
+    artifact.schemaVersion !== 6 ||
     artifact.algorithmVersion !== 2 ||
+    !/^[a-f0-9]{40}$/.test(sourceCommit) ||
     artifact.sourceCommit !== sourceCommit ||
     artifact.mainMappingVersion !== MAIN_MAPPING_VERSION ||
     artifact.subMappingVersion !== SUB_MAPPING_VERSION ||
@@ -279,20 +266,12 @@ export function assertRatingV2Profiles(
   )
     throw new Error('Invalid/stale Rating V2 profile artifact');
   const profiles = artifact.profiles as RatingV2Profiles['profiles'];
-  assertRatingV2Overrides(policy, expectedIds, sourceCommit);
+  assertRatingV2Overrides(policy, expectedIds, artifact.sourceDigests as RatingV2SourceDigests);
   if (
     stableBenchmarkSerialize(profiles.map((profile) => profile.characterId).sort()) !==
     stableBenchmarkSerialize([...expectedIds].sort())
   )
     throw new Error('Rating V2 profile closure mismatch');
-  const digests = record(artifact.sourceDigests);
-  if (
-    Object.keys(digests).sort().join() !== [...RATING_V2_SOURCE_NAMES].sort().join() ||
-    Object.values(digests).some(
-      (digest) => typeof digest !== 'string' || !/^[a-f0-9]{64}$/.test(digest)
-    )
-  )
-    throw new Error('Invalid Rating V2 source digests');
   for (const profile of profiles) {
     validateRatingV2Profile(profile, exceptionsFor(policy, profile.characterId));
     if (
