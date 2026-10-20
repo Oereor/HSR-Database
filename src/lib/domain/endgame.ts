@@ -12,10 +12,13 @@ export interface ResolvedMazeBuff {
   id: number;
   nameSource?: NeutralTextSource;
   descriptionSource?: NeutralTextSource;
+  simpleDescriptionSource?: NeutralTextSource;
   name?: string;
   nameHash?: string;
   description?: string;
   descriptionHash?: string;
+  simpleDescription?: string;
+  simpleDescriptionHash?: string;
   params: DecimalString[];
   upstreamIconPath?: string;
   bindingKey?: string;
@@ -418,7 +421,7 @@ export type EndgameGroup =
   MocGroup | PureFictionGroup | ApocalypticShadowGroup | AnomalyArbitrationGroup;
 
 interface EndgameModeDatasetBase<TMode extends EndgameMode, TGroup extends EndgameGroup> {
-  schemaVersion: 24;
+  schemaVersion: 25;
   mode: TMode;
   groups: TGroup[];
 }

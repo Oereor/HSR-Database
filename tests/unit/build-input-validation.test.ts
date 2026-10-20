@@ -88,10 +88,10 @@ async function createFixture(): Promise<Fixture> {
     enemies: ['4']
   };
   const datasets = {
-    moc: { schemaVersion: 24, mode: 'moc', groups: [{ groupId: 10 }] },
-    pf: { schemaVersion: 24, mode: 'pf', groups: [{ groupId: 20 }] },
-    as: { schemaVersion: 24, mode: 'as', groups: [{ groupId: 30 }] },
-    aa: { schemaVersion: 24, mode: 'aa', groups: [{ groupId: 40 }] }
+    moc: { schemaVersion: 25, mode: 'moc', groups: [{ groupId: 10 }] },
+    pf: { schemaVersion: 25, mode: 'pf', groups: [{ groupId: 20 }] },
+    as: { schemaVersion: 25, mode: 'as', groups: [{ groupId: 30 }] },
+    aa: { schemaVersion: 25, mode: 'aa', groups: [{ groupId: 40 }] }
   } as unknown as EndgameDatasetByMode;
   const artifacts: DataManifest['artifacts'] = {};
 
@@ -366,7 +366,7 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 54,
+    schemaVersion: 55,
     ratingV2PolicyInput: (await readRatingV2PolicyInput(ratingV2PolicyFile)).metadata,
     ratingV2BenchmarkInput: await readRatingV2BenchmarkInput(),
     sourceCommit: commit,

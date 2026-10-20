@@ -314,7 +314,7 @@ export async function validateBuildInputs(
           const [, locale, mode] = endgameMatch as [string, Locale, EndgameMode];
           if (
             !isRecord(value) ||
-            value.schemaVersion !== 24 ||
+            value.schemaVersion !== 25 ||
             value.mode !== mode ||
             !Array.isArray(value.groups)
           )

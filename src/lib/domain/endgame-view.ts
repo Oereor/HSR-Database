@@ -223,6 +223,7 @@ export interface EndgameMechanicView {
 
 export interface EndgameOrderedMechanicView extends EndgameMechanicView {
   order: number;
+  simpleDescription?: string;
 }
 
 interface EndgameEncounterViewBase<
@@ -720,7 +721,17 @@ export function buildGroupView(
     const fixedIdentities = new Set(fixedMechanics.map(mechanicIdentity));
     const cacophonyOptions = (group.cacophony?.options ?? []).flatMap((option) => {
       const mechanic = buildMechanicView(option.buff);
-      return mechanic ? [{ ...mechanic, order: option.order }] : [];
+      return mechanic
+        ? [
+            {
+              ...mechanic,
+              order: option.order,
+              ...(option.buff.simpleDescription?.trim()
+                ? { simpleDescription: option.buff.simpleDescription }
+                : {})
+            }
+          ]
+        : [];
     });
     return {
       ...buildGroupViewBase(group.mode, group, periods, presentation, now),

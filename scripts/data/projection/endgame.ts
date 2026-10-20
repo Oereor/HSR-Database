@@ -114,7 +114,8 @@ function projectBuff(
   buff: ResolvedMazeBuff,
   context: EndgameProjectionContext,
   audit: EndgameProjectionAuditState,
-  required: true
+  required: true,
+  includeSimpleDescription?: boolean
 ): ResolvedMazeBuff;
 function projectBuff(
   buff: ResolvedMazeBuff,
@@ -126,7 +127,8 @@ function projectBuff(
   buff: ResolvedMazeBuff,
   context: EndgameProjectionContext,
   audit: EndgameProjectionAuditState,
-  required: boolean
+  required: boolean,
+  includeSimpleDescription = false
 ): ResolvedMazeBuff | undefined {
   const diagnosticDisposition: TextDiagnosticDisposition = required
     ? disposition(true)
@@ -143,30 +145,56 @@ function projectBuff(
     required,
     diagnosticDisposition
   );
+  const usedParameterIndexes = new Set<number>();
+  const inspect = (projection: GameTextProjection) => {
+    if (projection.diagnostics.length) audit.mazeMalformed.add(buff.id);
+    for (const index of projection.usedParameterIndexes) usedParameterIndexes.add(index);
+  };
   const description = projectGameText(
     context.resolver,
     buff.descriptionSource,
     provenance('MazeBuff', buff.id, 'BuffDesc'),
     required,
     diagnosticDisposition,
-    (projection) => {
-      if (projection.diagnostics.length) audit.mazeMalformed.add(buff.id);
-      const used = new Set(projection.usedParameterIndexes);
-      if (buff.params.some((_, index) => !used.has(index))) audit.mazeUnusedParams.add(buff.id);
-    }
+    inspect
   );
+  const simpleDescription =
+    includeSimpleDescription && buff.simpleDescriptionSource
+      ? projectGameText(
+          context.resolver,
+          buff.simpleDescriptionSource,
+          provenance('MazeBuff', buff.id, 'BuffSimpleDesc'),
+          false,
+          {
+            requirement: 'optional',
+            visibility: 'hidden',
+            fallbackUsed: false,
+            productRouteReachability: 'reachable'
+          },
+          inspect
+        )
+      : undefined;
+  if (buff.params.some((_, index) => !usedParameterIndexes.has(index)))
+    audit.mazeUnusedParams.add(buff.id);
   if (!name || !description) {
     audit.mazeMissingLocalization.add(buff.id);
     return undefined;
   }
   audit.mazeDisplayReady.add(buff.id);
-  const { nameSource: _nameSource, descriptionSource: _descriptionSource, ...stable } = buff;
+  const {
+    nameSource: _nameSource,
+    descriptionSource: _descriptionSource,
+    simpleDescriptionSource: _simpleDescriptionSource,
+    ...stable
+  } = buff;
   void _nameSource;
   void _descriptionSource;
+  void _simpleDescriptionSource;
   return {
     ...stable,
     name,
-    description
+    description,
+    ...(gameTextToPlain(simpleDescription).trim() ? { simpleDescription } : {})
   };
 }
 
@@ -331,7 +359,7 @@ function projectGroup<T extends EndgameGroup>(
     if (localized.cacophony)
       localized.cacophony.options = localized.cacophony.options.map((option) => ({
         ...option,
-        buff: projectBuff(option.buff, context, audit, true)
+        buff: projectBuff(option.buff, context, audit, true, true)
       }));
     for (const encounter of localized.encounters)
       if (encounter.baseMechanic?.display) {

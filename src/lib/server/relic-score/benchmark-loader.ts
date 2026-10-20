@@ -28,7 +28,7 @@ export function getProductionRatingV2Scorer(runtime: PlayerRuntimeData): Scorer 
     const benchmark = benchmarkJson as unknown as RatingV2Benchmark;
     const declared = manifest.ratingV2BenchmarkInput;
     if (
-      manifest.schemaVersion !== 54 ||
+      manifest.schemaVersion !== 55 ||
       profiles.sourceCommit !== manifest.sourceCommit ||
       !declared
     )
