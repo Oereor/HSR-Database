@@ -35,7 +35,7 @@ export function createRatingV2Scorer(
   assertPlayerRuntimeData(runtime);
   validateScoringConfig();
   if (
-    profiles.schemaVersion !== 5 ||
+    profiles.schemaVersion !== 6 ||
     profiles.algorithmVersion !== 2 ||
     !/^[a-f0-9]{40}$/.test(profiles.sourceCommit) ||
     profiles.mainMappingVersion !== MAIN_MAPPING_VERSION ||
@@ -51,7 +51,7 @@ export function createRatingV2Scorer(
     assertRatingV2Overrides(
       policy,
       profiles.profiles.map((profile) => profile.characterId),
-      profiles.sourceCommit
+      profiles.sourceDigests
     );
     if (profiles.overrideDigest !== benchmarkSha256(policy))
       throw new Error('Rating V2 policy digest mismatch');

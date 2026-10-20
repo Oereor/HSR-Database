@@ -1,6 +1,16 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "sourceCommit": "312b4597691e0a29cf9828a15b592757dba86949",
+  "sourceDigests": {
+    "RelicMainAffixAvatarValue": "63c393006d4d851235cb88db4893f918aa3c5a62be0dd136e4b962b13d7b6572",
+    "RelicSubAffixAvatarValue": "2395bddddc901650013dc6d4d6008fd58e0be7c6a2bafcd759a682b1e28aefa8",
+    "RelicMainAffixBaseValue": "074e97ccdfcf200d26f10b6e88900bd01ad9b1dff5018e2a6d5cffabdca54f92",
+    "RelicSubAffixBaseValue": "db9d9705a986a8dff0d6cc6cb9a777bc1952fd75e9d95f66d23674b2c2981c57",
+    "AvatarConfig": "9cde7154abfc6a67583e67b21d57874f8445645b43f8a713d75edb5652a6095a",
+    "AvatarConfigLD": "4e37252f6dc6b5d45cf91b6604407104f834160f2864d02c5161c888e0abd6a0",
+    "AvatarRelicRecommend": "7718463823f94b2548164987d211886d08ff380863f9567f79209546ed378f18",
+    "AvatarRelicRecommendLD": "8d0631250f8bb40d233ce0900dfaeee917dcea10f6bb432f3474ac497c1a8d96"
+  },
   "basis": "Maintainer-approved relic-rating-v2-cutover-codex-prompt.md, 2026-10-10",
   "mainWeights": [
     {

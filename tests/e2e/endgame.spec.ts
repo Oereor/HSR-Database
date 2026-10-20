@@ -41,6 +41,65 @@ async function selectLocalNode(page: Page, encounter: string) {
   await page.locator(`a[href="?encounter=${encodeURIComponent(encounter)}"]:visible`).click();
 }
 
+for (const locale of ['zh-CN', 'en'] as const) {
+  test(`荒腔走板补充说明保留卡内排版与 locale 缺失行为 ${locale}`, async ({ page }, testInfo) => {
+    const data = JSON.parse(
+      readFileSync(`src/lib/generated/views/${locale}/endgame/pf.json`, 'utf8')
+    ) as EndgameModeDataset;
+    if (data.mode !== 'pf') throw new Error('Expected PF dataset');
+    const prefix = locale === 'en' ? '/en' : '';
+    const current = data.groups.find((group) => group.groupId === 2025)!;
+    const missingLocale = data.groups.find((group) =>
+      group.cacophony?.options.some(({ buff }) => buff.id === 3031350)
+    )!;
+    const noField = data.groups.find((group) =>
+      group.cacophony?.options.some(({ buff }) => !buff.simpleDescriptionHash)
+    )!;
+    for (const group of [current, missingLocale, noField]) {
+      await page.goto(`${prefix}/endgame/pf/${group.groupId}/`);
+      const section = page.locator('[data-endgame-mechanics="cacophony"]');
+      const tiles = section.locator('[data-buff-option-tile]');
+      await expect(tiles).toHaveCount(group.cacophony!.options.length);
+      for (const [index, option] of group.cacophony!.options.entries()) {
+        const tile = tiles.nth(index);
+        const supplement = tile.locator('[data-buff-option-supplement]');
+        await expect(supplement).toHaveCount(option.buff.simpleDescription ? 1 : 0);
+        if (!option.buff.simpleDescription) continue;
+        await expect(supplement).toBeVisible();
+        const layout = await tile.evaluate((element) => {
+          const body = element.querySelector('p')!;
+          const supplement = element.querySelector('[data-buff-option-supplement]')!;
+          return {
+            last: element.lastElementChild === supplement,
+            smaller:
+              parseFloat(getComputedStyle(supplement).fontSize) <
+              parseFloat(getComputedStyle(body).fontSize),
+            spacing: parseFloat(getComputedStyle(supplement).marginTop),
+            whiteSpace: getComputedStyle(supplement).whiteSpace,
+            overflow: supplement.scrollWidth - supplement.clientWidth
+          };
+        });
+        expect(layout).toMatchObject({ last: true, smaller: true });
+        expect(['normal', 'pre-line', 'pre-wrap']).toContain(layout.whiteSpace);
+        expect(layout.spacing).toBeGreaterThan(0);
+        expect(layout.overflow).toBeLessThanOrEqual(1);
+        await expect(supplement).not.toContainText(/#\d+\[/);
+        await expect(supplement.locator('span[style*="color"]').first()).toBeVisible();
+      }
+      if (group === current)
+        await section.screenshot({ path: testInfo.outputPath(`cacophony-${locale}.png`) });
+      expect(
+        await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
+      ).toBeLessThanOrEqual(1);
+    }
+    for (const route of ['as/3020', 'aa/8']) {
+      await page.goto(`${prefix}/endgame/${route}/`);
+      await expect(page.locator('[data-buff-option-tile]').first()).toBeVisible();
+      await expect(page.locator('[data-buff-option-supplement]')).toHaveCount(0);
+    }
+  });
+}
+
 test('Endgame 首页、模式和赛期可以直接访问', async ({ page }) => {
   await page.goto('/endgame/');
   await expect(page.locator('[data-endgame-overview-card]')).toHaveCount(4);

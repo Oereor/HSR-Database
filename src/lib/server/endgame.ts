@@ -51,7 +51,7 @@ export function getEndgameDataset<TMode extends EndgameMode>(
   if (cached) return cached as Promise<EndgameDatasetByMode[TMode]>;
   const pending = readJson<EndgameModeDataset>(locale, 'endgame', `${mode}.json`).then(
     (dataset) => {
-      if (dataset.schemaVersion !== 24 || dataset.mode !== mode)
+      if (dataset.schemaVersion !== 25 || dataset.mode !== mode)
         throw new Error(`${mode} Endgame 数据 schema 或模式不匹配`);
       return dataset;
     }

@@ -1,13 +1,14 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { describe, expect, it } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 import type {
   EndgameDatasetByMode,
   EndgameBattleSlot,
   EndgameGroup,
   EndgameMode,
   EndgameStage,
-  EnemyOccurrence
+  EnemyOccurrence,
+  ResolvedMazeBuff
 } from '../../src/lib/domain/endgame';
 import {
   buildEndgameDomain,
@@ -15,6 +16,11 @@ import {
   resolveEndgameSchedule,
   resolveStageInfiniteGroupId
 } from '../../scripts/data/endgame';
+import type { EndgameDomain } from '../../scripts/data/endgame';
+import { projectEndgame } from '../../scripts/data/projection/endgame';
+import { createTextResolver, type TextMap } from '../../scripts/data/localization';
+import { getLocaleConfig, type Locale } from '../../scripts/data/locale-registry';
+import { buildGroupView } from '../../src/lib/domain/endgame-view';
 import { createMazeBuffResolver, type MazeBuffRow } from '../../scripts/data/maze-buffs';
 import { createAsBossGuideResolver } from '../../scripts/data/as-boss-guides';
 import { gameTextToPlain } from '../../src/lib/domain/game-text';
@@ -133,6 +139,7 @@ describe('MazeBuff 共享配置解析', () => {
         Lv: 1,
         BuffName: { Hash: '11' },
         BuffDesc: { Hash: '12' },
+        BuffSimpleDesc: { Hash: '13' },
         ParamList: [{ Value: '0.8' }, { Value: '1' }, { Value: '7' }],
         BuffIcon: 'SpriteOutput/BuffIcon/Test.png',
         InBattleBindingKey: 'Fixture_Binding'
@@ -149,6 +156,12 @@ describe('MazeBuff 共享配置解析', () => {
         params: ['0.8', '1', '7']
       },
       descriptionHash: '12',
+      simpleDescriptionSource: {
+        kind: 'parameterized',
+        ref: { kind: 'hash', hash: '13' },
+        params: ['0.8', '1', '7']
+      },
+      simpleDescriptionHash: '13',
       params: ['0.8', '1', '7'],
       upstreamIconPath: 'SpriteOutput/BuffIcon/Test.png',
       bindingKey: 'Fixture_Binding'
@@ -200,6 +213,161 @@ describe('MazeBuff 共享配置解析', () => {
     expect(() =>
       missingParam.resolve(3, { requireDisplay: true, context: { mode: 'aa' } })
     ).toThrow(/invalid-maze-buff-param/);
+  });
+});
+
+describe('荒腔走板可选补充说明投影', () => {
+  let neutral: EndgameDomain;
+  beforeAll(async () => {
+    neutral = await buildEndgameDomain(
+      path.resolve(process.env.HSR_DATA_ROOT ?? '../TurnBasedGameData')
+    );
+  });
+
+  function buff(simple = true): ResolvedMazeBuff {
+    return createMazeBuffResolver(
+      [
+        {
+          ID: 1,
+          BuffName: { Hash: '11' },
+          BuffDesc: { Hash: '12' },
+          ...(simple ? { BuffSimpleDesc: { Hash: '13' } } : {}),
+          ParamList: [{ Value: '0.6' }, { Value: '0.2' }, { Value: '5' }],
+          BuffIcon: 'fixture.png'
+        }
+      ],
+      {
+        fail(code): never {
+          throw new Error(code);
+        },
+        warn() {}
+      }
+    ).resolve(1, { requireDisplay: true, context: { mode: 'pf' } });
+  }
+
+  async function project(textMap: TextMap, source = buff(), locale: Locale = 'en') {
+    const resolver = await createTextResolver(getLocaleConfig(locale), textMap);
+    const result = projectEndgame(
+      {
+        ...neutral,
+        datasets: {
+          moc: { ...neutral.datasets.moc, groups: [] },
+          as: { ...neutral.datasets.as, groups: [] },
+          aa: { ...neutral.datasets.aa, groups: [] },
+          pf: {
+            ...neutral.datasets.pf,
+            groups: [
+              {
+                mode: 'pf',
+                groupId: 1,
+                encounters: [],
+                battleWillMechanics: [],
+                cacophony: {
+                  key: 'fixture',
+                  selectCount: 1,
+                  provenance: { table: 'ChallengeStoryGroupExtra', ownerId: 1, field: 'BuffList' },
+                  options: [
+                    {
+                      order: 1,
+                      buff: source,
+                      provenance: {
+                        table: 'ChallengeStoryGroupExtra',
+                        ownerId: 1,
+                        field: 'BuffList',
+                        arrayIndex: 0
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      },
+      { resolver, enemyNamesByTemplateId: new Map(), extraEffectsById: new Map() }
+    );
+    return { ...result, resolver, buff: result.datasets.pf.groups[0].cacophony!.options[0].buff };
+  }
+
+  const baseText = { '11': 'Fixture name', '12': 'Effect #1[i]% / #2[i]%' };
+
+  it('保留原效果、第三参数和颜色，并合并两条描述的参数使用审计', async () => {
+    const result = await project({ ...baseText, '13': 'Extra <color=#f29e38ff>#3[i]</color>' });
+    expect(result.buff.description).toBe('Effect 60% / 20%');
+    expect(result.buff.simpleDescription).toBe('Extra <color=#f29e38ff>5</color>');
+    expect(result.buff.simpleDescriptionHash).toBe('13');
+    expect(result.buff).not.toHaveProperty('simpleDescriptionSource');
+    expect(result.audit.mazeBuffs.unusedParams).toBe(0);
+    const view = buildGroupView(result.datasets.pf.groups[0], [], new Map());
+    expect(view.mode === 'pf' && view.cacophony?.options[0].simpleDescription).toBe(
+      result.buff.simpleDescription
+    );
+  });
+
+  it('没有上游字段时不查询或推导补充文本', async () => {
+    const result = await project({ ...baseText, '13': 'Extra #3[i]' }, buff(false));
+    expect(result.buff).not.toHaveProperty('simpleDescription');
+    expect(result.buff).not.toHaveProperty('simpleDescriptionHash');
+    expect(
+      result.resolver
+        .getLocalizationHealth()
+        .entries.some(({ source }) => source.field === 'BuffSimpleDesc')
+    ).toBe(false);
+  });
+
+  it.each([undefined, '', '   ', '<color=#f29e38ff> </color>'])(
+    '当前 locale 无可显示文本 %j 时保留原选项',
+    async (text) => {
+      const result = await project({ ...baseText, ...(text === undefined ? {} : { '13': text }) });
+      expect(result.buff.name).toBe('Fixture name');
+      expect(result.buff.description).toBe('Effect 60% / 20%');
+      expect(result.buff).not.toHaveProperty('simpleDescription');
+      expect(result.audit.mazeBuffs.unusedParams).toBe(1);
+      if (text === undefined || text === '') {
+        expect(result.resolver.getLocalizationHealth().entries).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              locale: 'en',
+              textMapCode: 'EN',
+              status: text === undefined ? 'missing' : 'empty',
+              source: { entity: 'MazeBuff', id: '1', field: 'BuffSimpleDesc' },
+              disposition: {
+                requirement: 'optional',
+                visibility: 'hidden',
+                fallbackUsed: false,
+                productRouteReachability: 'reachable'
+              }
+            })
+          ])
+        );
+      }
+    }
+  );
+
+  it('逐 locale 投影且不回退到另一语言', async () => {
+    const english = await project({ ...baseText, '13': 'Extra #3[i]' });
+    const chinese = await project(baseText, buff(), 'zh-CN');
+    expect(english.buff.simpleDescription).toBe('Extra 5');
+    expect(chinese.buff).not.toHaveProperty('simpleDescription');
+    expect(chinese.datasets.pf.groups[0].cacophony!.options).toHaveLength(1);
+  });
+
+  it('补充说明的缺参数诊断沿用可选 GameText 规则', async () => {
+    const result = await project({ ...baseText, '13': 'Extra #4[i]' });
+    expect(result.buff).not.toHaveProperty('simpleDescription');
+    expect(result.audit.mazeBuffs.missingDescriptionParams).toBe(1);
+  });
+
+  it('补充说明的非法参数仍然报错', async () => {
+    const source = buff();
+    source.simpleDescriptionSource = {
+      ...source.simpleDescriptionSource!,
+      kind: 'parameterized',
+      params: ['invalid' as ResolvedMazeBuff['params'][number]]
+    };
+    await expect(project({ ...baseText, '13': 'Extra #1[i]' }, source)).rejects.toThrow(
+      /BuffSimpleDesc.*unsupported/
+    );
   });
 });
 
@@ -701,9 +869,9 @@ describe('Endgame 真实数据管线', () => {
     }
   });
 
-  it('四个模式保留 schema 24 且 fixed/spawn 模型分离', async () => {
+  it('四个模式保留 schema 25 且 fixed/spawn 模型分离', async () => {
     const all = await Promise.all(modes.map(dataset));
-    expect(all.every((item) => item.schemaVersion === 24)).toBe(true);
+    expect(all.every((item) => item.schemaVersion === 25)).toBe(true);
     expect((await fixture('moc', 1034, 5312, 30124121, 3024020)).stage.waveModel.kind).toBe(
       'fixed'
     );
@@ -853,6 +1021,34 @@ describe('Endgame 真实数据管线', () => {
       [2, 3033068],
       [3, 3033067]
     ]);
+  });
+
+  it('锁定源的第三参数分别显示 5 和 3，裂帛仅英文具有补充说明', async () => {
+    for (const locale of ['zh-CN', 'en'] as const) {
+      const data = JSON.parse(
+        await readFile(path.join(generatedRoot, 'views', locale, 'endgame', 'pf.json'), 'utf8')
+      ) as EndgameDatasetByMode['pf'];
+      const options = data.groups.flatMap((group) => group.cacophony?.options ?? []);
+      for (const [id, value] of [
+        [3031364, '5'],
+        [3031365, '3']
+      ] as const) {
+        const buff = options.find((option) => option.buff.id === id)!.buff;
+        expect(buff.params[2]).toBe(value);
+        expect(gameTextToPlain(buff.simpleDescription)).toContain(value);
+        expect(buff.simpleDescription).not.toMatch(/#\d+\[/);
+      }
+      const torn = options.find((option) => option.buff.id === 3031350)!.buff;
+      expect(torn.description).toBeTruthy();
+      expect(torn.simpleDescriptionHash).toBeTruthy();
+      if (locale === 'en') expect(gameTextToPlain(torn.simpleDescription)).toContain('5');
+      else expect(torn).not.toHaveProperty('simpleDescription');
+      expect(
+        options
+          .filter((option) => !option.buff.simpleDescriptionHash)
+          .every((option) => !option.buff.simpleDescription)
+      ).toBe(true);
+    }
   });
 
   it.each([

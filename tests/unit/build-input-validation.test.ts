@@ -13,6 +13,7 @@ import { PLAYER_PROPERTY_SEMANTICS } from '../../src/lib/player/property-semanti
 import {
   buildRatingV2Profiles,
   loadRatingV2Tables,
+  ratingV2SourceDigests,
   readRatingV2PolicyInput,
   readRatingV2BenchmarkInput
 } from '../../scripts/data/relic-rating-v2';
@@ -87,10 +88,10 @@ async function createFixture(): Promise<Fixture> {
     enemies: ['4']
   };
   const datasets = {
-    moc: { schemaVersion: 24, mode: 'moc', groups: [{ groupId: 10 }] },
-    pf: { schemaVersion: 24, mode: 'pf', groups: [{ groupId: 20 }] },
-    as: { schemaVersion: 24, mode: 'as', groups: [{ groupId: 30 }] },
-    aa: { schemaVersion: 24, mode: 'aa', groups: [{ groupId: 40 }] }
+    moc: { schemaVersion: 25, mode: 'moc', groups: [{ groupId: 10 }] },
+    pf: { schemaVersion: 25, mode: 'pf', groups: [{ groupId: 20 }] },
+    as: { schemaVersion: 25, mode: 'as', groups: [{ groupId: 30 }] },
+    aa: { schemaVersion: 25, mode: 'aa', groups: [{ groupId: 40 }] }
   } as unknown as EndgameDatasetByMode;
   const artifacts: DataManifest['artifacts'] = {};
 
@@ -161,8 +162,9 @@ async function createFixture(): Promise<Fixture> {
   await writeFile(
     ratingV2PolicyFile,
     JSON.stringify({
-      schemaVersion: 1,
+      schemaVersion: 2,
       sourceCommit: commit,
+      sourceDigests: await ratingV2SourceDigests(sourceRoot),
       basis: 'Synthetic fixture',
       mainWeights: [],
       agnosticSlots: []
@@ -364,7 +366,7 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 53,
+    schemaVersion: 55,
     ratingV2PolicyInput: (await readRatingV2PolicyInput(ratingV2PolicyFile)).metadata,
     ratingV2BenchmarkInput: await readRatingV2BenchmarkInput(),
     sourceCommit: commit,

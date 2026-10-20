@@ -28,7 +28,7 @@ export function getProductionRatingV2Scorer(runtime: PlayerRuntimeData): Scorer 
     const benchmark = benchmarkJson as unknown as RatingV2Benchmark;
     const declared = manifest.ratingV2BenchmarkInput;
     if (
-      manifest.schemaVersion !== 53 ||
+      manifest.schemaVersion !== 55 ||
       profiles.sourceCommit !== manifest.sourceCommit ||
       !declared
     )
@@ -36,7 +36,7 @@ export function getProductionRatingV2Scorer(runtime: PlayerRuntimeData): Scorer 
     const profileBytes = Buffer.from(JSON.stringify(profilesJson) + '\n');
     const profileMetadata = manifest.artifacts['runtime/relic-rating-v2.json'];
     if (
-      profileMetadata.schemaVersion !== 5 ||
+      profileMetadata.schemaVersion !== 6 ||
       profileBytes.length !== profileMetadata.bytes ||
       createHash('sha256').update(profileBytes).digest('hex') !== profileMetadata.sha256
     )

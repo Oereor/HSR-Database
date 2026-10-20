@@ -428,8 +428,8 @@ function validateEndgame(
   const positive = (value: unknown) => Number.isSafeInteger(value) && Number(value) > 0;
   for (const mode of ENDGAME_MODES) {
     const dataset = projection.endgame[mode];
-    if (!dataset || dataset.schemaVersion !== 24 || dataset.mode !== mode) {
-      issues.push(issue('error', 'endgame', 'dataset-schema', `mode=${mode} must use schema=24`));
+    if (!dataset || dataset.schemaVersion !== 25 || dataset.mode !== mode) {
+      issues.push(issue('error', 'endgame', 'dataset-schema', `mode=${mode} must use schema=25`));
       continue;
     }
     const groupIds = new Set<number>();

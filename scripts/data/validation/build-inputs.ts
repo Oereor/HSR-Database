@@ -250,7 +250,8 @@ export async function validateBuildInputs(
             throw new Error('Rating V2 profiles must be locale-neutral');
           const policyInput = await readRatingV2PolicyInput(options.ratingV2PolicyFile);
           const policy = policyInput.value;
-          assertRatingV2Overrides(policy, manifest.routes.characters, manifest.sourceCommit);
+          const sourceDigests = await ratingV2SourceDigests(rawRoot);
+          assertRatingV2Overrides(policy, manifest.routes.characters, sourceDigests);
           if (
             stableBenchmarkSerialize(policyInput.metadata) !==
             stableBenchmarkSerialize(manifest.ratingV2PolicyInput)
@@ -264,7 +265,7 @@ export async function validateBuildInputs(
           assertRatingV2Profiles(value, manifest.routes.characters, manifest.sourceCommit, policy);
           if (
             stableBenchmarkSerialize(value.sourceDigests) !==
-            stableBenchmarkSerialize(await ratingV2SourceDigests(rawRoot))
+            stableBenchmarkSerialize(sourceDigests)
           )
             throw new Error('Rating V2 source digest mismatch');
           return;
@@ -313,7 +314,7 @@ export async function validateBuildInputs(
           const [, locale, mode] = endgameMatch as [string, Locale, EndgameMode];
           if (
             !isRecord(value) ||
-            value.schemaVersion !== 24 ||
+            value.schemaVersion !== 25 ||
             value.mode !== mode ||
             !Array.isArray(value.groups)
           )

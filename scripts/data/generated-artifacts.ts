@@ -5,7 +5,7 @@ import type { DataManifest, GeneratedArtifactMetadata } from '../../src/lib/doma
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
 import { readCacheJson, type ManifestReadFailure } from '../deployment/cache-diagnostics.js';
 
-export const DATA_MANIFEST_SCHEMA_VERSION = 53 as const;
+export const DATA_MANIFEST_SCHEMA_VERSION = 55 as const;
 
 export interface GeneratedArtifactValidationSummary {
   files: number;
@@ -30,7 +30,7 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
   if (
     typeof value.sourceCommit !== 'string' ||
     !isRecord(value.ratingV2PolicyInput) ||
-    value.ratingV2PolicyInput.schemaVersion !== 1 ||
+    value.ratingV2PolicyInput.schemaVersion !== 2 ||
     !Number.isSafeInteger(value.ratingV2PolicyInput.bytes) ||
     Number(value.ratingV2PolicyInput.bytes) <= 0 ||
     typeof value.ratingV2PolicyInput.sha256 !== 'string' ||

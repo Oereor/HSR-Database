@@ -4,7 +4,9 @@
 
 ## 来源和映射
 
-输入来自 upstream.lock.json 锁定的 TurnBasedGameData，经共享 source registry、lossless raw adapter 和 locale-neutral 派生，进入 Manifest schema 53 的 runtime/relic-rating-v2.json。Profile schema 5 记录实际 source SHA、八份来源的字节 SHA-256、主／副映射版本、U 版本与语义 digest。生产不读取相邻仓库。
+输入来自 upstream.lock.json 锁定的 TurnBasedGameData，经共享 source registry、lossless raw adapter 和 locale-neutral 派生，进入 Manifest schema 54 的 runtime/relic-rating-v2.json。Profile schema 6 记录实际 source SHA、八份来源经无损解析及稳定序列化后的内容 SHA-256、主／副映射版本、U 版本与语义 digest。生产不读取相邻仓库。
+
+人工 policy schema 2 的 sourceDigests 绑定已审核的八份输入内容；sourceCommit 保留批准历史。来源内容未变时允许跨 commit 复用审批；来源内容改变时必须人工复核，生成器不更新审批 digest。该审批身份不同于 Profile semanticDigest 和 Benchmark 分布 identity，具体操作见 [Profile 维护](profile-maintenance.md)。
 
 两份 AvatarValue 提供独立主、副类别偏好；两份 BaseValue 只校验类别到 canonical key 的完整映射，不作为额外乘数。regular/LD 与推荐表必须闭包一致；未知额外 LD 权重源、重复身份、未知字段、非法数值或元素枚举使生成失败。
 
@@ -59,4 +61,4 @@ pnpm relic-score:v2:alpha-compare
 
 正式产物与运行记录在 data/relic-score/v2/；审核报告在本目录。V2 没有 approve-current 或 skip-gate 参数。score 输入是 canonical build，不是带面板的旧 normalized fixture；缺分布返回 version 3 unavailable，不套用 V1。
 
-生产 loader 依据 Manifest schema 53 绑定政策 bytes/hash、正式 Benchmark bytes/hash/audit hash，完整验证后缓存，逐件核对条件。上游补齐覆盖字段、推荐消失或来源变化须人工复核，不自动覆盖或审批。正式 α 保持 0.35，修改比例需要新的维护者决定。没有自动提交或部署命令。
+生产 loader 依据 Manifest schema 54 绑定政策 bytes/hash、正式 Benchmark bytes/hash/audit hash，完整验证后缓存，逐件核对条件。上游补齐覆盖字段、推荐消失或评分来源内容变化须人工复核，不自动覆盖或审批。正式 α 保持 0.35，修改比例需要新的维护者决定。没有自动提交或部署命令。

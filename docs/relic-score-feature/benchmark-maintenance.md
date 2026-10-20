@@ -4,7 +4,9 @@
 
 pnpm relic-score:v2:benchmarks:generate 在 .staging 隔离目录生成并校验，覆盖集合由当前 Profile 和合法条件实际推导，当前为 2744 条。全部通过后才发布两份产物；发布后 bytes 校验也在回滚保护内，异常恢复原文件并保留诊断。禁止手工编辑 JSON、降门槛、513 点替换或借用旧算法。pnpm relic-score:v2:benchmarks:validate 独立验证 identity、覆盖、有限值、单调性、逐分布审计、汇总与真实 bytes/hash。pnpm relic-score:v2:benchmarks:determinism 对 1413 OBJECT/SPRatioBase、1001 HEAD/HPDelta、1505 NECK/PhysicalAddedRatio、1506 OBJECT/SPRatioBase 全 K 复算。
 
-Manifest schema 53 绑定政策 bytes/hash 及正式 Benchmark bytes/hash/audit hash。生成后运行 pnpm data:ensure；旧缓存自动失效。prebuild 和部署流水线只验证 V2。服务端完整验证一次并缓存，逐件核对条件，缺失/过期时返回明确 unavailable。
+Manifest schema 54 绑定 schema 2 政策 bytes/hash 及正式 Benchmark bytes/hash/audit hash。生成后运行 pnpm data:ensure；旧缓存自动失效。prebuild、自动上游更新和部署流水线验证正式 V2 分布及 audit。服务端完整验证一次并缓存，逐件核对条件，缺失/过期时返回明确 unavailable。
+
+无关上游更新后 Profile 写实际 sourceCommit 和当前来源内容 digest；Benchmark 与 audit 的 sourceCommit 保留生成时的 commit，二者必须相等，但不要求等于当前 Profile commit。audit 的完整 semanticDigest、overrideDigest 是当时的生成历史，不与当前审批 metadata 强行比较。复用仍须通过 sampling、副权重、精确覆盖集合、每条分布 identity、representation gate 与原 bytes/hash/audit 校验，禁止仅改 SHA 或重写历史 audit 来伪造兼容性。身份不变时无需运行 benchmarks:generate。
 
 政策迁移时，先冻结来源、记录旧产物和配置并在忽略目录保存回滚备份；生成期间不要并行启动构建或消费正式产物的开发服务。候选失败不得发布；若产物发布后 Manifest 更新失败，应恢复旧正式产物、活动配置及绑定后停止。备份只用于本轮恢复，不纳入 Git 或活动 loader。必要网络操作仍遵守系统代理；生成本身只读锁定本地输入。
 

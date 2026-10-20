@@ -59,7 +59,7 @@ const occurrence = (): EnemyOccurrence =>
 
 function datasets(): EndgameDatasetByMode {
   const moc = {
-    schemaVersion: 24 as const,
+    schemaVersion: 25 as const,
     mode: 'moc' as const,
     groups: [
       {
@@ -97,9 +97,9 @@ function datasets(): EndgameDatasetByMode {
   };
   return {
     moc,
-    pf: { schemaVersion: 24, mode: 'pf', groups: [] },
-    as: { schemaVersion: 24, mode: 'as', groups: [] },
-    aa: { schemaVersion: 24, mode: 'aa', groups: [] }
+    pf: { schemaVersion: 25, mode: 'pf', groups: [] },
+    as: { schemaVersion: 25, mode: 'as', groups: [] },
+    aa: { schemaVersion: 25, mode: 'aa', groups: [] }
   };
 }
 
@@ -315,7 +315,7 @@ function fixture(): { manifest: DataManifest; projection: ProductProjectionForVa
   const routes = { characters: [], 'light-cones': [], relics: [], enemies: ['100'] };
   const inventory = buildGeneratedRouteInventory(routes, endgame);
   const manifest = {
-    schemaVersion: 53,
+    schemaVersion: 55,
     generatedLocales: ['zh-CN', 'en'],
     publicLocale: 'zh-CN',
     publicLocales: ['zh-CN', 'en'],

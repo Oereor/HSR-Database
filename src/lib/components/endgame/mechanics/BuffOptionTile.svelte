@@ -11,6 +11,11 @@
 <article class="buff-option-tile" data-buff-option-tile>
   <svelte:element this={headingTag}><GameText text={option.name} /></svelte:element>
   <p><GameText text={option.description} /></p>
+  {#if option.simpleDescription}
+    <p class="buff-option-tile__supplement" data-buff-option-supplement>
+      <GameText text={option.simpleDescription} />
+    </p>
+  {/if}
 </article>
 
 <style>
@@ -37,5 +42,11 @@
     color: var(--text-body);
     font-size: var(--font-body);
     line-height: 1.7;
+  }
+
+  .buff-option-tile .buff-option-tile__supplement {
+    margin-top: var(--space-2);
+    color: var(--text-secondary);
+    font-size: var(--font-meta-key);
   }
 </style>

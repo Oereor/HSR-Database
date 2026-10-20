@@ -8,6 +8,7 @@ export interface MazeBuffRow {
   Lv?: number;
   BuffName?: unknown;
   BuffDesc?: unknown;
+  BuffSimpleDesc?: unknown;
   ParamList?: unknown[];
   BuffIcon?: string;
   InBattleBindingKey?: string;
@@ -93,6 +94,7 @@ export function createMazeBuffResolver(
     });
     const nameSource = textSource(row.BuffName);
     const descriptionSource = parameterized(row.BuffDesc, row.ParamList);
+    const simpleDescriptionSource = parameterized(row.BuffSimpleDesc, row.ParamList);
     if (!nameSource || !descriptionSource) {
       missingLocalizationIds.add(id);
       issues.warn('missing-maze-buff-text-reference', 'MazeBuff 缺少可解析的名称或描述 TextRef', {
@@ -109,12 +111,15 @@ export function createMazeBuffResolver(
     }
     const nameHash = hashOf(row.BuffName);
     const descriptionHash = hashOf(row.BuffDesc);
+    const simpleDescriptionHash = hashOf(row.BuffSimpleDesc);
     const result: ResolvedMazeBuff = {
       id,
       ...(nameSource ? { nameSource } : {}),
       ...(descriptionSource ? { descriptionSource } : {}),
+      ...(simpleDescriptionSource ? { simpleDescriptionSource } : {}),
       ...(nameHash ? { nameHash } : {}),
       ...(descriptionHash ? { descriptionHash } : {}),
+      ...(simpleDescriptionHash ? { simpleDescriptionHash } : {}),
       params,
       ...(row.BuffIcon ? { upstreamIconPath: row.BuffIcon } : {}),
       ...(row.InBattleBindingKey ? { bindingKey: row.InBattleBindingKey } : {})

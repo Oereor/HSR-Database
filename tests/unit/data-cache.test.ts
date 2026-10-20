@@ -9,9 +9,9 @@ import {
 } from '../../scripts/data/generated-artifacts';
 import { publishGeneratedDirectories } from '../../scripts/data/sync';
 
-it('accepts the schema-53 training/detail tree and validates every emitted artifact', async () => {
+it('accepts the schema-55 training/detail tree and validates every emitted artifact', async () => {
   const manifest = await readDataManifest();
-  expect(manifest.schemaVersion).toBe(53);
+  expect(manifest.schemaVersion).toBe(55);
   expect(manifest.publicLocales).toEqual(['zh-CN', 'en']);
   expect(manifest.publicLocale).toBe('zh-CN');
   expect(manifest.generatedLocales).toEqual(['zh-CN', 'en']);

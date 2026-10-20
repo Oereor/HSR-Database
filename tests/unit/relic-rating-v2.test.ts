@@ -62,7 +62,7 @@ assertRelicScoreRecommendations(recommendations);
 const recommendation = recommendations[fixture.characterId];
 const approvedPolicy = (() => {
   const value: unknown = overrideJson;
-  assertRatingV2Overrides(value, Object.keys(recommendations), overrideJson.sourceCommit);
+  assertRatingV2Overrides(value, Object.keys(recommendations), overrideJson.sourceDigests);
   return value;
 })();
 function profileFor(id = fixture.characterId, element = 'Lightning'): RatingV2Profile {
@@ -494,10 +494,10 @@ describe('Rating V2 math and contract', () => {
     canonical.characters = [build];
     const sources = sourcesFor();
     const profiles: RatingV2Profiles = {
-      schemaVersion: 5,
+      schemaVersion: 6,
       algorithmVersion: 2,
       sourceCommit: sources.sourceCommit,
-      sourceDigests: {},
+      sourceDigests: approvedPolicy.sourceDigests,
       overrideDigest: benchmarkSha256(approvedPolicy),
       semanticDigest: benchmarkSha256([sources.profile!]),
       mainMappingVersion: MAIN_MAPPING_VERSION,
