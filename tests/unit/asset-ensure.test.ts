@@ -53,11 +53,11 @@ const requirements: AssetRequirements = {
 };
 const collection = () => ({ available: [], missing: [] });
 const manifest = (): VisualAssetManifest => ({
-  schemaVersion: 17,
+  schemaVersion: 18,
   generatedAt: 'fixture',
   sourceCommit: 'a'.repeat(40),
   requirementsFingerprint: assetRequirementsFingerprint(requirements),
-  characters: { previews: collection(), portraits: collection() },
+  characters: { icons: collection(), previews: collection(), portraits: collection() },
   materials: { icons: { available: [], missing: [] } },
   playerAvatars: collection(),
   characterDetails: { icons: { resolved: {}, missing: [] } },

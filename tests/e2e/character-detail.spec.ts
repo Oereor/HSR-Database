@@ -522,6 +522,10 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   await expect(cyreneSourceLevel).toHaveValue('5');
   const trigger = page.locator('.special-effect-trigger').first();
   await expect(trigger).toBeVisible();
+  await expect(trigger.locator('img')).toHaveAttribute(
+    'src',
+    '/generated-assets/characters/icons/1415.png'
+  );
   await expect(trigger.locator('[data-game-icon="AvatarCyrene"]')).toBeVisible();
   await expect(trigger.locator('u')).toHaveCount(2);
   expect(
@@ -551,7 +555,7 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   await expect(cyreneTrailblazer).toHaveAttribute('data-display-avatar-id', '8008');
   await expect(cyreneTrailblazer.locator('img')).toHaveAttribute(
     'src',
-    /generated-assets\/characters\/preview\/8008\.png/
+    /generated-assets\/characters\/icons\/8008\.png/
   );
   await expect(cyreneTrailblazer.locator('strong')).toHaveText('开拓者·记忆');
   expect(
@@ -591,6 +595,10 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   );
   await expect(himekoSourceLevel).toHaveValue('9');
   const himekoTrigger = page.locator('.special-effect-trigger').first();
+  await expect(himekoTrigger.locator('img')).toHaveAttribute(
+    'src',
+    '/generated-assets/characters/icons/1510.png'
+  );
   await expect(page.locator('.special-effect-trigger')).toHaveCount(2);
   await himekoTrigger.click();
   const himekoDialog = page.locator('.special-effect-dialog');
@@ -605,7 +613,7 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   await expect(himekoTrailblazer).toHaveAttribute('data-display-avatar-id', '8002');
   await expect(himekoTrailblazer.locator('img')).toHaveAttribute(
     'src',
-    /generated-assets\/characters\/preview\/8002\.png/
+    /generated-assets\/characters\/icons\/8002\.png/
   );
   await expect(himekoTrailblazer.locator('strong')).toHaveText('开拓者');
   await expect(himekoDialog.locator('[data-linked-avatar-id="1001"] strong')).toHaveText('三月七');

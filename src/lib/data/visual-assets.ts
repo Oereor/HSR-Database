@@ -12,6 +12,7 @@ import type { NavigationIconKey } from '$lib/navigation';
 const manifest = manifestJson as VisualAssetManifest;
 const sets = {
   materialIcon: new Set(manifest.materials.icons.available),
+  characterIcon: new Set(manifest.characters.icons.available),
   preview: new Set(manifest.characters.previews.available),
   portrait: new Set(manifest.characters.portraits.available),
   playerAvatar: new Set(manifest.playerAvatars.available),
@@ -53,6 +54,19 @@ export function resolveMaterialIconAsset(
     'materials/icons',
     'png',
     source === manifest ? sets.materialIcon : undefined
+  );
+}
+
+export function resolveCharacterIconAsset(
+  characterId: string,
+  source: VisualAssetManifest = manifest
+): string | undefined {
+  return resolveAsset(
+    characterId,
+    source.characters.icons,
+    'characters/icons',
+    'png',
+    source === manifest ? sets.characterIcon : undefined
   );
 }
 
@@ -252,6 +266,8 @@ export function resolveEndgameModeIconAsset(
   );
 }
 
+export const getCharacterIconUrl = (id: string): string | undefined =>
+  resolveCharacterIconAsset(id);
 export const getCharacterPreviewUrl = (id: string): string | undefined =>
   resolveCharacterPreviewAsset(id);
 export const getCharacterPortraitUrl = (id: string): string | undefined =>
