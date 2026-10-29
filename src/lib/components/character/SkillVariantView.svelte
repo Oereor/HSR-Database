@@ -28,7 +28,9 @@
     <h4><GameText text={variant.name} /></h4>
     <div class="skill-variant__heading-meta">
       <SkillEffectTag effect={variant.combatMeta.effect} />
-      {#if showLevel}<span>Lv.{selected?.level ?? selectedLevel}</span>{/if}
+      {#if variant.source === 'avatar-global-buff'}
+        <span class="skill-effect-tag">{m.skill_exclusive()}</span>
+      {:else if showLevel}<span>Lv.{selected?.level ?? selectedLevel}</span>{/if}
     </div>
   </div>
   <SkillCombatMeta meta={variant.combatMeta} />

@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { readFileSync } from 'node:fs';
 
 test('角色目录与详情接入属性、命途图标和优化立绘', async ({ page }) => {
   const failedImages: string[] = [];
@@ -63,6 +64,10 @@ test('四名 LD 角色进入 Character Overview、Search、Detail 与本地资�
 });
 
 test('Global Buff 作为正常 Talent Variant 展示且不泄漏配置术语', async ({ page }) => {
+  const messages = JSON.parse(readFileSync('messages/zh-CN.json', 'utf8')) as Record<
+    string,
+    string
+  >;
   for (const [id, originalId, globalId, originalName, globalName, description] of [
     ['1407', '140704', '140704:global-buff:1', '掌心淌过的荒芜', '月茧之庇', '月茧'],
     ['1506', '150604', '150604:global-buff:1', '有我在，把把都是顺风局', '999安全卫士', '防火墙']
@@ -75,7 +80,10 @@ test('Global Buff 作为正常 Talent Variant 展示且不泄漏配置术语', a
     const globalVariant = talentCard.locator(`[data-skill-id="${globalId}"]`);
     await expect(globalVariant).toContainText(globalName);
     await expect(globalVariant).toContainText(description);
-    await expect(globalVariant).toContainText('Lv.1');
+    await expect(
+      globalVariant.locator('.skill-variant__heading-meta .skill-effect-tag')
+    ).toHaveText(messages.skill_exclusive);
+    await expect(globalVariant.locator('.skill-variant__heading-meta')).not.toContainText('Lv.1');
     await expect(page.locator('[data-skill-category="global-buff"]')).toHaveCount(0);
     await expect(page.locator('body')).not.toContainText('仓库技');
     await expect(page.locator('body')).not.toContainText('Global Buff');
