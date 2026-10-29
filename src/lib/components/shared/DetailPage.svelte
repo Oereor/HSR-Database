@@ -27,7 +27,7 @@
   import { gameTextToPlain } from '$lib/domain/game-text';
   import {
     getCharacterPortraitUrl,
-    getCharacterPreviewUrl,
+    getCharacterIconUrl,
     getLightConePortraitUrl
   } from '$lib/data/visual-assets';
   import type { CatalogEntry, RelicProperty } from '$lib/domain/types';
@@ -148,8 +148,7 @@
       : undefined;
   $: specialEffects = activeProfile?.specialEffects ?? [];
   $: specialEffectsAvailable = specialEffects.length > 0;
-  $: specialEffectIconUrl =
-    category === 'characters' ? getCharacterPreviewUrl(detail.id) : undefined;
+  $: specialEffectIconUrl = category === 'characters' ? getCharacterIconUrl(detail.id) : undefined;
   $: characterPortraitSource =
     category === 'characters' ? getCharacterPortraitUrl(detail.id) : undefined;
   $: lightConePortraitSource =

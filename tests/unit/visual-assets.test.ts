@@ -5,6 +5,7 @@ import sharp from 'sharp';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   resolveMaterialIconAsset,
+  resolveCharacterIconAsset,
   resolveCharacterPreviewAsset,
   resolveCharacterPortraitAsset,
   resolveCharacterDetailIconAsset,
@@ -54,6 +55,7 @@ import {
   writeSemanticIconAsset,
   writeNavigationIconAsset
 } from '../../scripts/assets/shared';
+import { starRailSparsePaths } from '../../scripts/deployment/prepare';
 import { publishGeneratedAssets } from '../../scripts/assets/sync';
 
 sharp.cache(false);
@@ -61,6 +63,7 @@ sharp.cache(false);
 const temporaryDirectories: string[] = [];
 const available = (values: string[]): AssetAvailability => ({ available: values, missing: [] });
 const manifest = (options?: {
+  characterIcons?: string[];
   previews?: string[];
   portraits?: string[];
   playerAvatars?: string[];
@@ -80,6 +83,7 @@ const manifest = (options?: {
   schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
   generatedAt: '2026-01-01T00:00:00.000Z',
   characters: {
+    icons: available(options?.characterIcons ?? []),
     previews: available(options?.previews ?? []),
     portraits: available(options?.portraits ?? [])
   },
@@ -119,14 +123,16 @@ afterEach(async () => {
 });
 
 describe('视觉资源管线', () => {
-  it('generates only requested material icons and resolves missing materials without a URL', async () => {
+  it('generates only requested material and character icons with missing-asset fallback', async () => {
     const root = await mkdtemp(path.join(process.cwd(), '.material-assets-'));
     temporaryDirectories.push(root);
     const indexDirectory = path.join(root, 'index_new', 'cn');
     const itemDirectory = path.join(root, 'icon', 'item');
+    const characterDirectory = path.join(root, 'icon', 'character');
     await Promise.all([
       mkdir(indexDirectory, { recursive: true }),
-      mkdir(itemDirectory, { recursive: true })
+      mkdir(itemDirectory, { recursive: true }),
+      mkdir(characterDirectory, { recursive: true })
     ]);
     await Promise.all(
       [
@@ -145,9 +151,15 @@ describe('视觉资源管线', () => {
     })
       .png()
       .toFile(path.join(itemDirectory, '2.png'));
+    for (const id of ['1001', '1002']) {
+      await writeFile(
+        path.join(characterDirectory, `${id}.png`),
+        await readFile(path.join(itemDirectory, '2.png'))
+      );
+    }
     const requirements = {
       materialIds: ['2', '9999'],
-      characterIds: [],
+      characterIds: ['1001', '9999'],
       playerAvatars: [],
       characterDetailIconKeys: [],
       lightConeIds: [],
@@ -168,6 +180,16 @@ describe('视觉资源管线', () => {
       generatedAt: '',
       ...assets
     };
+    expect(starRailSparsePaths).toContain('icon/character/');
+    expect(candidate.characters.icons).toEqual({ available: ['1001'], missing: ['9999'] });
+    expect(await readdir(path.join(outputRoot, 'characters', 'icons'))).toEqual(['1001.png']);
+    expect(await readFile(path.join(outputRoot, 'characters', 'icons', '1001.png'))).toEqual(
+      await readFile(path.join(characterDirectory, '1001.png'))
+    );
+    expect(resolveCharacterIconAsset('1001', candidate)).toBe(
+      '/generated-assets/characters/icons/1001.png'
+    );
+    expect(resolveCharacterIconAsset('9999', candidate)).toBeUndefined();
     expect(candidate.materials.icons).toEqual({ available: ['2'], missing: ['9999'] });
     expect(await readdir(path.join(outputRoot, 'materials', 'icons'))).toEqual(['2.png']);
     await expect(validateGeneratedAssetFiles(candidate, outputRoot)).resolves.toBeDefined();
@@ -177,6 +199,20 @@ describe('视觉资源管线', () => {
     expect(resolveMaterialIconAsset('9999', candidate)).toBeUndefined();
     expect(resolveMaterialIconAsset('../2', candidate)).toBeUndefined();
     expect(manifestCoversRequirements(candidate, requirements)).toBe(true);
+    expect(
+      manifestCoversRequirements(
+        { ...candidate, schemaVersion: 17 } as unknown as VisualAssetManifest,
+        requirements
+      )
+    ).toBe(false);
+    expect(
+      manifestCoversRequirements(
+        { ...candidate, characters: { ...candidate.characters, icons: available([]) } },
+        requirements
+      )
+    ).toBe(false);
+    await rm(path.join(outputRoot, 'characters', 'icons', '1001.png'));
+    await expect(validateGeneratedAssetFiles(candidate, outputRoot)).rejects.toThrow(/manifest/);
     expect(
       manifestCoversRequirements(candidate, { ...requirements, materialIds: ['2', '9999', '3'] })
     ).toBe(false);
@@ -200,7 +236,7 @@ describe('视觉资源管线', () => {
     expect(resolveAssetRoot('../StarRailRes')).toBe(path.resolve(process.cwd(), '../StarRailRes'));
   });
 
-  it('只接受具有 Git 标记、角色 index 和四类源目录的资源仓库', async () => {
+  it('只接受具有 Git 标记、必需 index 和源目录的资源仓库', async () => {
     const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-assets-'));
     temporaryDirectories.push(root);
     await mkdir(path.join(root, '.git'));
@@ -215,7 +251,8 @@ describe('视觉资源管线', () => {
       'icon/element',
       'icon/path',
       'icon/sign',
-      'icon/avatar'
+      'icon/avatar',
+      'icon/character'
     ]) {
       await mkdir(path.join(root, relative), { recursive: true });
     }
@@ -241,6 +278,7 @@ describe('视觉资源管线', () => {
 
   it('按稳定 ID 和语义 code 解析 URL，缺图不产生请求路径', () => {
     const source = manifest({
+      characterIcons: ['1001'],
       previews: ['1001'],
       portraits: ['1001'],
       playerAvatars: ['201001'],
@@ -258,6 +296,11 @@ describe('视觉资源管线', () => {
         'skill-tree--1407002': '/generated-assets/character-details/icons/skill/1407_skill.png'
       }
     });
+    expect(resolveCharacterIconAsset('1001', source)).toBe(
+      '/generated-assets/characters/icons/1001.png'
+    );
+    expect(resolveCharacterIconAsset('1002', source)).toBeUndefined();
+    expect(resolveCharacterIconAsset('../1001', source)).toBeUndefined();
     expect(resolveCharacterPreviewAsset('1001', source)).toBe(
       '/generated-assets/characters/preview/1001.png'
     );
@@ -344,6 +387,7 @@ describe('视觉资源管线', () => {
 
   it('manifest 必须覆盖角色、属性与命途的完整需求集合', () => {
     const source = manifest({
+      characterIcons: ['1001'],
       previews: ['1001'],
       portraits: ['1001'],
       playerAvatars: ['201001'],
@@ -411,7 +455,7 @@ describe('视觉资源管线', () => {
       utilityIcons: [],
       endgameModeIcons: []
     };
-    const source = manifest({ previews: ['1001'], portraits: ['1001'] });
+    const source = manifest({ characterIcons: ['1001'], previews: ['1001'], portraits: ['1001'] });
     source.requirementsFingerprint = assetRequirementsFingerprint(requirements);
     expect(manifestCoversRequirements(source, requirements)).toBe(true);
     expect(
@@ -638,6 +682,7 @@ describe('视觉资源管线', () => {
     const empty = manifest();
     await writeFile(file, JSON.stringify(empty));
     const parsed = JSON.parse(await readFile(file, 'utf8')) as VisualAssetManifest;
+    expect(resolveCharacterIconAsset('1001', parsed)).toBeUndefined();
     expect(resolveCharacterPreviewAsset('1001', parsed)).toBeUndefined();
     expect(resolveCharacterPortraitAsset('1001', parsed)).toBeUndefined();
     expect(resolvePlayerAvatarAsset('201001', parsed)).toBeUndefined();

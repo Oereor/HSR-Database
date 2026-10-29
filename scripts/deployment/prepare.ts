@@ -32,6 +32,7 @@ export const starRailAssetDirectories = [
   'icon/path/',
   'icon/sign/',
   'icon/avatar/',
+  'icon/character/',
   'icon/item/'
 ];
 

@@ -157,6 +157,9 @@ export async function syncAssets(options: SyncAssetsOptions = {}): Promise<SyncA
   const observation = await observeGeneratedAssetFiles();
   console.log(`视觉资源同步完成（StarRailRes ${sourceCommit.slice(0, 12)}）：`);
   console.log(
+    `  角色头像 ${manifest.characters.icons.available.length}，缺失 ${manifest.characters.icons.missing.length}`
+  );
+  console.log(
     `  角色预览图 ${manifest.characters.previews.available.length}，缺失 ${manifest.characters.previews.missing.length}`
   );
   console.log(

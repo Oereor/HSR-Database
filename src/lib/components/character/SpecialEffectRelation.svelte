@@ -1,6 +1,6 @@
 <script lang="ts">
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
-  import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
+  import { getCharacterIconUrl } from '$lib/data/visual-assets';
   import { resolveSpecialEffectLinkedAvatarPresentation } from '$lib/domain/special-effects-presentation';
   import type { CatalogEntry, CharacterSpecialEffectEntry } from '$lib/domain/types';
   import * as m from '$lib/paraglide/messages.js';
@@ -31,7 +31,7 @@
       data-display-avatar-id={presentation.displayAvatarId}
     >
       <AssetImage
-        src={getCharacterPreviewUrl(presentation.displayAvatarId)}
+        src={getCharacterIconUrl(presentation.displayAvatarId)}
         alt=""
         width="48"
         height="48"
@@ -60,7 +60,7 @@
           data-display-avatar-id={presentation.displayAvatarId}
         >
           <AssetImage
-            src={getCharacterPreviewUrl(presentation.displayAvatarId)}
+            src={getCharacterIconUrl(presentation.displayAvatarId)}
             alt=""
             width="40"
             height="40"
