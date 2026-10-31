@@ -58,13 +58,27 @@
 
 ### 设置 Popover
 
-设置面板改用标准 Popover，复用已有 Bits UI；保留设置素材、原语言链接、query / hash 和整页重载行为。同语言点击不导航。删除全局 click / Esc 监听、手写定位及旧面板 CSS，改用既有 Button 和主题令牌。格式 / ESLint、完整类型检查通过；增加键盘打开、Esc 焦点恢复和外部点击关闭回归，双语历史往返在最终生产构建统一验收。
+设置面板改用标准 Popover，复用已有 Bits UI；保留设置素材、原语言链接、query / hash 和整页重载行为。同语言点击不导航。删除全局 click / Esc 监听、手写定位及旧面板 CSS，改用既有 Button 和主题令牌。格式 / ESLint、完整类型检查通过；增加键盘打开、Esc 焦点恢复和外部点击关闭回归，最终生产预览中，双语历史往返、query / hash 保留、Popover 键盘及现有导航冒烟共 23 项检查通过。
+
+### Sonner 与选项控件
+
+根布局只挂载一个深色 Sonner，放在站点 Grid 外，避免空 live region 占据网格行。通知保留原标题、正文、触发点、4 秒时长和替换语义；等级、Profile、实体切换及卸载时 dismiss。删除 InfoToast 及手写 portal、动画、计时器；不引入 mode-watcher 或主题切换。
+
+目录筛选复用 Toggle / Toggle Group，仍交由原筛选函数更新 URL；遗器显式单选，其他目录保持多选，“全部”操作保留清空及分页语义。敌人技能使用原生单选组，强化使用 Switch；radio / aria-checked 和方向键由标准组件提供。保留素材图标、元素色及原有文本。删除 FilterChip 和旧强化 / 技能选项样式，保留原有 Tabs、敌方单位 radio 和整卡 TraceToggle。
+
+为现行组件样式补充 Bits UI 状态到 Tailwind 的映射（open / closed、checked / unchecked、horizontal / vertical），使弹层动效、Switch 位移和纵向技能列表正确生效。四级 Breadcrumb 为当前项保留最小宽度，320px 下仍能看到当前页面；回归只约束可见性，不固定视觉像素基线。
+
+### 最终验收
+
+完整类型检查为 0 errors / 0 warnings，生产预渲染构建、变更文件格式 / ESLint 及相关单元测试通过。生产浏览器验收分批通过：导航 / 语言 23 项、控制与通知 16 项、单选及窄屏 Breadcrumb 10 项、弹窗 28 项（另有 2 项按视口跳过）、本地 mock 玩家上下文返回 10 项。Sonner 移出 Grid 后，首页首屏及通知生命周期额外复查 9 项通过。已更新旧容器、Toast 与单选属性断言，未加入全页面像素基线。
+
+1280px / 390px 截图及 320px 四级路径检查无横向溢出、无运行时异常；长弹层、技能纵向列表、Switch 状态位移及 reduced-motion 生效。截图和报告保留为忽略的本地验收产物，不入库。原有依赖版本未升级，仅新增标准组件所需依赖；初始化、数据处理、业务计算及素材管线均未改动。真实玩家远程 API 和远程部署未验证；本地 Analytics 脚本 404 为既有环境限制，不影响验收。
 
 ## 后续阶段边界
 
-- Phase 2：使用 shadcn Breadcrumb 实现全局 Sticky 导航，按路由层级生成而非浏览历史，支持中英文、动态实体名及 Endgame 多级路由；统一 Sticky Offset，协调 SectionNav / EndgameLocalNav。
-- Phase 3：优先迁移 Dialog、Popover、Toast 和筛选控件，再处理其他基础 UI 与业务页面视觉。
-- 已完成 Phase 0–2；后续仅实施已授权的 Phase 3，完成后停止；保留数据处理、游戏计算、素材解析、路由和国际化架构，不进行无关 Runes 迁移。
+- Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。
+- Phase 3 完成本阶段共享交互迁移；业务卡片、现有 Tabs、敌方单位 radio 与整卡行迹切换保留。
+- 停在 Phase 3，不实施 Phase 4。数据处理、游戏计算、素材解析、路由和国际化架构保持不变，无无关 Runes 迁移。
 
 ### 参考文献
 

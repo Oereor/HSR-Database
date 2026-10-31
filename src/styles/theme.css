@@ -1,5 +1,12 @@
 /* Dark by default on the server. A future light theme can override semantic colors. */
 @custom-variant dark (&:is(.dark *));
+/* Current shadcn styles name the states emitted by the installed Bits UI. */
+@custom-variant data-open (&[data-state='open']);
+@custom-variant data-closed (&[data-state='closed']);
+@custom-variant data-checked (&[data-state='checked']);
+@custom-variant data-unchecked (&[data-state='unchecked']);
+@custom-variant data-horizontal (&[data-orientation='horizontal']);
+@custom-variant data-vertical (&[data-orientation='vertical']);
 
 :root {
   --background: var(--bg);

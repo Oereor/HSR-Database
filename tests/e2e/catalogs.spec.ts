@@ -142,8 +142,8 @@ test('遗器类别使用单选语义并保留排序、重置分页', async ({ pa
   await expect(page).toHaveURL(/sort=id/);
   await expect(page).not.toHaveURL(/page=/);
   await expect(all).toHaveAttribute('aria-pressed', 'false');
-  await expect(cavern).toHaveAttribute('aria-pressed', 'true');
-  await expect(planar).toHaveAttribute('aria-pressed', 'false');
+  await expect(cavern).toHaveAttribute('aria-checked', 'true');
+  await expect(planar).toHaveAttribute('aria-checked', 'false');
   await expect(page.locator('.entity-overview-card')).toHaveCount(
     relicCatalog.filter((entry) => entry.category === 'cavern').length
   );
@@ -151,14 +151,14 @@ test('遗器类别使用单选语义并保留排序、重置分页', async ({ pa
   await planar.click();
   await expect(page).toHaveURL(/type=planar/);
   await expect(page).not.toHaveURL(/type=cavern/);
-  await expect(cavern).toHaveAttribute('aria-pressed', 'false');
-  await expect(planar).toHaveAttribute('aria-pressed', 'true');
+  await expect(cavern).toHaveAttribute('aria-checked', 'false');
+  await expect(planar).toHaveAttribute('aria-checked', 'true');
   await expect(page.locator('.entity-overview-card')).toHaveCount(
     relicCatalog.filter((entry) => entry.category === 'planar').length
   );
 
   await planar.click();
-  await expect(planar).toHaveAttribute('aria-pressed', 'true');
+  await expect(planar).toHaveAttribute('aria-checked', 'true');
   await all.click();
   await expect(page).not.toHaveURL(/type=/);
   await expect(page).toHaveURL(/sort=id/);
@@ -174,7 +174,7 @@ test('遗器搜索与历史 type 参数可组合，清空搜索后保留类别',
   ] as const) {
     await page.goto(`/relics/?type=${type}&sort=name`);
     await expect(page.locator(`[data-filter-value="${type}"]`)).toHaveAttribute(
-      'aria-pressed',
+      'aria-checked',
       'true'
     );
     const input = page.locator('.overview-search input');

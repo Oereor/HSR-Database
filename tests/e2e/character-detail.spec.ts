@@ -419,10 +419,11 @@ test('特殊能量使用结构化标记且旧版银狼保持普通能量', async
 
 test('角色加强开关只渲染当前 Profile 并保持 URL 状态', async ({ page }) => {
   await page.goto('/characters/1212/');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   const enhancement = page.locator('.enhancement-switch');
   await expect(enhancement).toBeVisible();
   await expect(enhancement).toHaveAttribute('aria-checked', 'true');
-  await expect(enhancement.locator('strong')).not.toHaveText('');
+  await expect(page.locator('.enhancement-control strong')).not.toHaveText('');
   await expect(page.locator('[data-skill-id="1121202"]')).toContainText('150%生命上限');
   await expect(page.locator('[data-skill-id="121202"]')).toHaveCount(0);
   await expect(page.locator('[data-trace-id="11212101"]')).toContainText('终结技伤害提高20%');
@@ -433,7 +434,7 @@ test('角色加强开关只渲染当前 Profile 并保持 URL 状态', async ({ 
   await enhancement.click();
   await expect(page).toHaveURL(/\/characters\/1212\/\?enhanced=0$/);
   await expect(enhancement).toHaveAttribute('aria-checked', 'false');
-  await expect(enhancement.locator('strong')).not.toHaveText('');
+  await expect(page.locator('.enhancement-control strong')).not.toHaveText('');
   await expect(page.locator('[data-skill-id="121202"]')).toContainText('200%攻击力');
   await expect(page.locator('[data-skill-id="1121202"]')).toHaveCount(0);
   await expect(page.locator('[data-trace-id="1212101"]')).toBeVisible();
@@ -449,6 +450,7 @@ test('角色加强开关只渲染当前 Profile 并保持 URL 状态', async ({ 
   await expect(page.locator('[data-skill-id="1121202"]')).toBeVisible();
 
   await page.goto('/characters/1001/');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   await expect(page.locator('.enhancement-switch')).toHaveCount(0);
 });
 

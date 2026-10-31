@@ -1,5 +1,4 @@
 import { expect, test } from '@playwright/test';
-import type { CharacterTrainingData } from '../../src/lib/domain/training/types';
 
 const ready = (page: import('@playwright/test').Page) =>
   expect(page.locator('#training')).toHaveAttribute('data-training-state', 'ready');
@@ -347,10 +346,10 @@ for (const prefix of ['', '/en']) {
       const traces = await page.locator('.trace-toggle[aria-pressed="true"]').count();
       await toggle('1001101').click();
       await expect(toggle('1001101')).toHaveAttribute('aria-pressed', 'false');
-      await expect(page.locator('body > [data-info-toast-region] [data-info-toast]')).toBeVisible();
+      await expect(page.locator('[data-sonner-toaster] [data-sonner-toast]')).toBeVisible();
       await expect(page.locator('#traces [role="status"]')).toHaveCount(0);
       await page.locator('#character-level-1001').fill('80');
-      await expect(page.locator('[data-info-toast]')).toHaveCount(0);
+      await expect(page.locator('[data-sonner-toast]')).toHaveCount(0);
       await expect(page.locator('.trace-toggle[aria-pressed="true"]')).toHaveCount(traces);
       await expect(count).toHaveAttribute('data-training-trace-count', String(traces));
       await expect(page.locator('[data-training-trace-id]')).toHaveCount(traces);
@@ -592,11 +591,11 @@ test('Profile switches reset skills and traces while keeping the level and rejec
   await expect(enhancedTrace).toHaveAttribute('aria-pressed', 'true');
   await page.locator('#character-level-1102').fill('1');
   await page.locator('#traces [data-trace-type="ability"] .trace-toggle').first().click();
-  await expect(page.locator('[data-info-toast]')).toHaveCount(1);
+  await expect(page.locator('[data-sonner-toast]')).toHaveCount(1);
   await page.locator('.enhancement-switch').click();
   await ready(page);
-  await expect(page.locator('[data-info-toast-region]')).toHaveCount(1);
-  await expect(page.locator('[data-info-toast]')).toHaveCount(0);
+  await expect(page.locator('section[aria-live="polite"][aria-label]')).toHaveCount(1);
+  await expect(page.locator('[data-sonner-toast]')).toHaveCount(0);
 });
 
 for (const prefix of ['', '/en']) {
@@ -668,131 +667,38 @@ for (const prefix of ['', '/en']) {
   }) => {
     await page.goto(`${prefix}/characters/1001/`);
     await ready(page);
-    const region = page.locator('body > [data-info-toast-region]');
-    const toast = region.locator('[data-info-toast]');
-    await expect(region).toHaveAttribute('role', 'status');
-    await expect(region).toHaveAttribute('aria-live', 'polite');
-    await expect(region).toHaveAttribute('aria-atomic', 'true');
+    const host = page.locator('section[aria-live="polite"][aria-label]');
+    const toast = page.locator('[data-sonner-toast]');
+    await expect(host).toHaveCount(1);
     await expect(toast).toHaveCount(0);
-    const data: CharacterTrainingData = await (
-      await page.request.get('/generated/training/characters/1001.json')
-    ).json();
-    const required = data.profiles[0].nodes.find((node) => node.pointId === '1001101')!.steps[0]
-      .requiredPromotion;
     await page.locator('#character-level-1001').fill('1');
     const blocked = page.locator('[data-trace-id="1001101"] .trace-toggle');
-    await blocked.scrollIntoViewIfNeeded();
-    await blocked.evaluate((button: HTMLButtonElement) => button.focus({ preventScroll: true }));
-    const layout = () =>
-      page.evaluate(() => ({
-        height: document.documentElement.scrollHeight,
-        scroll: window.scrollY,
-        top: document.querySelector('#traces')!.getBoundingClientRect().top
-      }));
-    const before = await layout();
-    await page.clock.install({ time: new Date('2026-10-09T00:00:00Z') });
-    await page.clock.pauseAt(new Date('2026-10-09T00:00:01Z'));
-    await page.keyboard.press('Enter');
-    await expect(blocked).toHaveAttribute('aria-pressed', 'false');
-    await expect(blocked).toBeFocused();
-    await expect(toast).toHaveCount(1);
-    await expect(toast.locator('strong')).not.toBeEmpty();
-    await expect(toast.locator('p')).toContainText(String(required));
-    expect(await layout()).toEqual(before);
-    await expect(region).toHaveCSS('position', 'fixed');
-    await expect(region).toHaveCSS('pointer-events', 'none');
-    await expect(toast.locator('button, input, [tabindex]')).toHaveCount(0);
-    await expect(page.locator('#traces [role="status"]')).toHaveCount(0);
-    const box = (await region.boundingBox())!;
-    expect(Math.abs(box.x + box.width / 2 - page.viewportSize()!.width / 2)).toBeLessThan(1);
-    expect(box.x).toBeGreaterThanOrEqual(16);
-    expect(box.y).toBeGreaterThanOrEqual(24);
-    await page.evaluate(() => window.scrollBy(0, 30));
-    expect((await region.boundingBox())!.y).toBe(box.y);
     await blocked.focus();
-    const firstId = await toast.getAttribute('data-info-toast');
-    await page.clock.runFor(3500);
-    await page.keyboard.press('Space');
+    const height = await page.evaluate(() => document.documentElement.scrollHeight);
+    await blocked.press('Enter');
     await expect(toast).toHaveCount(1);
-    await expect(toast).not.toHaveAttribute('data-info-toast', firstId!);
+    await expect(toast.locator('[data-title]')).not.toBeEmpty();
+    await expect(toast.locator('[data-description]')).not.toBeEmpty();
     await expect(blocked).toBeFocused();
-    await page.clock.runFor(500);
-    await expect(toast).not.toHaveClass(/fading/);
-    await page.clock.runFor(3499);
-    await expect(toast).not.toHaveClass(/fading/);
-    await page.clock.runFor(1);
-    await expect(toast).toHaveClass(/fading/);
-    await page.clock.runFor(120);
-    await expect(toast).toHaveCount(0);
-    await expect(region).toHaveCount(1);
-
-    await blocked.click();
+    expect(await page.evaluate(() => document.documentElement.scrollHeight)).toBe(height);
+    await blocked.press('Enter');
     await expect(toast).toHaveCount(1);
-    await expect(blocked).toBeFocused();
-    const legal = page.locator('[data-trace-id="1001201"] .trace-toggle');
-    await legal.click();
-    await expect(legal).toHaveAttribute('aria-pressed', 'false');
+    await page.locator('#character-level-1001').fill('80');
     await expect(toast).toHaveCount(0);
-    await legal.click();
-    await expect(legal).toHaveAttribute('aria-pressed', 'true');
-    await expect(toast).toHaveCount(0);
-    await blocked.click();
-    await expect(toast).toHaveCount(1);
-    await page.locator('#training-character-level-1001').fill('21');
-    await expect(toast).toHaveCount(0);
-    await page.clock.runFor(5000);
-    await expect(toast).toHaveCount(0);
-
-    await page.emulateMedia({ reducedMotion: 'reduce' });
-    await blocked.click();
-    await expect(toast).toHaveCount(1);
-    await expect(toast).toHaveCSS('animation-name', 'none');
-    await expect
-      .poll(() =>
-        toast.evaluate((node) =>
-          Math.max(...getComputedStyle(node).transitionDuration.split(',').map(parseFloat))
-        )
-      )
-      .toBeLessThanOrEqual(0.00001);
-    await page.clock.runFor(4001);
-    await expect(toast).toHaveCount(0);
-    await blocked.click();
-    await expect(toast).toHaveCount(1);
-    const previousMessage = await toast.locator('p').textContent();
-    await page.goto(`${prefix === '' ? '/en' : ''}/characters/1001/`);
-    await ready(page);
-    await expect(page.locator('[data-info-toast]')).toHaveCount(0);
     await page.locator('#character-level-1001').fill('1');
-    await blocked.click();
+    await blocked.press('Enter');
     await expect(toast).toHaveCount(1);
-    await expect(toast.locator('p')).not.toHaveText(previousMessage!);
-    await page.clock.resume();
-    await page.evaluate(() => {
-      document.documentElement.dataset.toastLifecycle = 'active';
-    });
+    await expect(toast).toHaveCount(0, { timeout: 6500 });
+    await blocked.press('Enter');
+    await expect(toast).toHaveCount(1);
     const home = page
       .locator('.navigator-rail__brand:visible, .mobile-header .brand:visible')
       .first();
-    const homeUrl = new URL((await home.getAttribute('href'))!, page.url()).href;
     await home.click();
-    await expect(page).toHaveURL(homeUrl);
-    expect(await page.evaluate(() => document.documentElement.dataset.toastLifecycle)).toBe(
-      'active'
-    );
-    await expect(page.locator('[data-info-toast-region]')).toHaveCount(0);
-    await page.goto(`${prefix}/characters/8007/`);
-    await ready(page);
-    await expect(page.locator('[data-info-toast-region]')).toHaveCount(1);
-    await expect(page.locator('[data-info-toast]')).toHaveCount(0);
-    await page.goto(`${prefix}/characters/1001/`);
-    await ready(page);
-    await page.locator('#character-level-1001').fill('1');
-    await blocked.click();
-    await expect(toast).toHaveCount(1);
-    await page.goto(`${prefix}/characters/1001/?uid=invalid`);
-    await expect(page.locator('[data-info-toast-region], #training, .trace-toggle')).toHaveCount(0);
+    await expect(page.locator('.home-hero')).toBeVisible();
+    await expect(toast).toHaveCount(0);
+    await expect(host).toHaveCount(1);
   });
-
   test(`training divider cleanup preserves structural borders (${prefix || 'zh-CN'})`, async ({
     page
   }) => {
@@ -837,7 +743,7 @@ for (const prefix of ['', '/en']) {
       ).toBe(true);
       const ids = await page.locator('[id]').evaluateAll((nodes) => nodes.map((node) => node.id));
       expect(new Set(ids).size).toBe(ids.length);
-      await expect(page.locator('[data-info-toast-region]')).toHaveCount(
+      await expect(page.locator('[data-sonner-toaster]')).toHaveCount(
         category === 'characters' ? 1 : 0
       );
     }

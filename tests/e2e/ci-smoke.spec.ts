@@ -7,7 +7,7 @@ async function expectAppReady(page: Page) {
 test('homepage and client navigation remain usable', async ({ page }) => {
   await page.goto('/');
   await expectAppReady(page);
-  await expect(page.locator('.home-hero h1')).toBeVisible();
+  await expect(page.locator('.home-hero h1')).toBeInViewport();
   await page.locator('.home-directory-row[href="/characters/"]').click();
   await expect(page).toHaveURL(/\/characters\/$/);
   await expect(page.locator('.entity-overview-card').first()).toBeVisible();

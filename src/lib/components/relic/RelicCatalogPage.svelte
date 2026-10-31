@@ -155,6 +155,7 @@
   <div class="overview-filters">
     <FilterGroup
       id="relic-category"
+      multiple={false}
       label={m.filter_relic_category()}
       options={relicCategoryOptions}
       selected={selectedCategories}

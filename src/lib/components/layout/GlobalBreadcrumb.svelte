@@ -10,7 +10,7 @@
     <Breadcrumb.List class="flex-nowrap overflow-hidden text-xs sm:text-sm">
       {#each items as item, index}
         {#if index}<Breadcrumb.Separator />{/if}
-        <Breadcrumb.Item class={index === items.length - 1 ? 'min-w-0 flex-1' : 'min-w-0 shrink'}>
+        <Breadcrumb.Item class={index === items.length - 1 ? 'min-w-16 flex-1' : 'min-w-0 shrink'}>
           {#if item.href}
             <Breadcrumb.Link
               href={item.href}

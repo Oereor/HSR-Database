@@ -10,6 +10,7 @@
   import { m } from '$lib/paraglide/messages.js';
   import { siteName } from '$lib/site';
   import ChangelogModal from '$lib/components/layout/ChangelogModal.svelte';
+  import { Toaster } from '$lib/components/ui/sonner';
   import SettingsPopover from '$lib/components/layout/SettingsPopover.svelte';
   import GlobalBreadcrumb from '$lib/components/layout/GlobalBreadcrumb.svelte';
   import { resolveBreadcrumbs, type BreadcrumbData } from '$lib/breadcrumbs';
@@ -77,3 +78,13 @@
     </footer>
   </main>
 </div>
+
+<Toaster
+  theme="dark"
+  position="top-center"
+  duration={4000}
+  visibleToasts={1}
+  offset="calc(var(--global-sticky-top) + var(--space-6))"
+  mobileOffset="calc(var(--global-sticky-top) + var(--space-4))"
+  containerAriaLabel={m.training_trace_notice_title({}, { locale: data.locale })}
+/>

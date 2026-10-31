@@ -1,6 +1,19 @@
 import { expect, test } from '@playwright/test';
 
 for (const prefix of ['', '/en']) {
+  test(`four-level breadcrumbs keep the current page visible on narrow screens (${prefix || 'zh-CN'})`, async ({
+    page
+  }) => {
+    await page.setViewportSize({ width: 320, height: 720 });
+    await page.goto(`${prefix}/endgame/moc/1034/?encounter=5312`);
+    const breadcrumb = page.locator('[data-slot="breadcrumb"]');
+    const current = breadcrumb.locator('[aria-current="page"]');
+    await expect(current).toBeVisible();
+    await expect(breadcrumb.locator('a')).toHaveCount(3);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true
+    );
+  });
   test(`breadcrumb follows the route and leaves anchors visible (${prefix || 'zh-CN'})`, async ({
     page,
     request

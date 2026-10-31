@@ -137,7 +137,7 @@ for (const prefix of ['', '/en']) {
       const detailHref = (await card.getAttribute('href'))!;
       await card.click();
       await expect(page).toHaveURL(detailHref);
-      const back = page.locator('.back-link');
+      const back = page.locator('.global-breadcrumb a').last();
       await expect(back).toHaveAttribute('href', catalogHref);
       await back.focus();
       await expect(back).toBeFocused();
@@ -215,12 +215,18 @@ for (const prefix of ['', '/en']) {
     const ordinaryHref = (await ordinaryCard.getAttribute('href'))!;
     await ordinaryCard.click();
     await expect(page).toHaveURL(ordinaryHref);
-    await expect(back).toHaveAttribute('href', `${prefix}/characters/`);
+    await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute(
+      'href',
+      `${prefix}/characters/`
+    );
     await page.goBack();
     await expect(page).toHaveURL(`${prefix}/characters/`);
     await page.goForward();
     await expect(page).toHaveURL(ordinaryHref);
-    await expect(back).toHaveAttribute('href', `${prefix}/characters/`);
+    await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute(
+      'href',
+      `${prefix}/characters/`
+    );
   });
 }
 

@@ -5,7 +5,8 @@
   import { page } from '$app/stores';
   import BaseStatsPanel from '$lib/components/shared/BaseStatsPanel.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
-  import InfoToast, { type InfoToastNotice } from '$lib/components/shared/InfoToast.svelte';
+  import { toast } from 'svelte-sonner';
+  import { Switch } from '$lib/components/ui/switch';
   import SkillCardPanel from '$lib/components/character/SkillCardPanel.svelte';
   import SpecialEffectDialog from '$lib/components/character/SpecialEffectDialog.svelte';
   import SuperimpositionPanel from '$lib/components/light-cone/SuperimpositionPanel.svelte';
@@ -109,8 +110,7 @@
   let previewLevels: Record<string, number> = {};
   let pendingPreviewLevels: Record<string, number> = {};
   let trainingScopeKey = '';
-  let traceNotice: InfoToastNotice | undefined;
-  let traceNoticeId = 0;
+  const traceNoticeId = 'training-trace-notice';
   let specialEffectsOpen = false;
   let specialEffectTrigger: HTMLButtonElement | undefined;
   let specialEffectLevel = 1;
@@ -126,6 +126,7 @@
     clientReady = true;
   });
   onDestroy(() => {
+    toast.dismiss(traceNoticeId);
     materialDetailRequestVersion += 1;
     materialDetailTrigger = undefined;
   });
@@ -374,7 +375,7 @@
       previewLevels = {};
       pendingPreviewLevels = {};
     }
-    traceNotice = undefined;
+    toast.dismiss(traceNoticeId);
     if (entityChanged || category === 'light-cones')
       trainingLevel = lightConeInitialLevel ?? detail.baseStats?.defaultLevel ?? 1;
     trainingLoadState = 'loading';
@@ -440,7 +441,7 @@
     if (characterTarget && characterTrainingData)
       characterTarget = reconcileCharacterLevel(characterTrainingData, characterTarget, level);
     trainingLevel = level;
-    traceNotice = undefined;
+    toast.dismiss(traceNoticeId);
   }
 
   function handleSkillPreviewLevel(progressionId: string, level: number): void {
@@ -477,7 +478,7 @@
 
   function handleTraceToggle(pointId: string): void {
     if (!characterTarget || !characterTrainingData || !trainingProfile) return;
-    traceNotice = undefined;
+    toast.dismiss(traceNoticeId);
     if (characterTarget.activeTraceIds.includes(pointId)) {
       characterTarget = {
         ...characterTarget,
@@ -506,7 +507,11 @@
               )
             })
           : m.training_trace_unavailable();
-      traceNotice = { id: ++traceNoticeId, title: m.training_trace_notice_title(), message };
+      toast.info(m.training_trace_notice_title(), {
+        id: traceNoticeId,
+        description: message,
+        duration: 4000
+      });
     }
   }
 
@@ -671,21 +676,17 @@
           </div>
           {#if hasEnhancedProfile}<div class="enhancement-control">
               <span>{m.detail_enhancement()}</span>
-              <button
+              <Switch
                 class="enhancement-switch"
-                type="button"
-                role="switch"
+                checked={enhancedEnabled}
+                onCheckedChange={() => {
+                  void toggleEnhanced();
+                }}
                 aria-label={m.detail_enhancement()}
-                aria-checked={enhancedEnabled}
-                on:click={toggleEnhanced}
+              />
+              <strong
+                >{enhancedEnabled ? m.detail_enhanced_after() : m.detail_enhanced_before()}</strong
               >
-                <span class="enhancement-switch__track" aria-hidden="true"><span></span></span>
-                <strong
-                  >{enhancedEnabled
-                    ? m.detail_enhanced_after()
-                    : m.detail_enhanced_before()}</strong
-                >
-              </button>
             </div>{/if}
           <div class="hero-description">
             {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
@@ -827,7 +828,7 @@
   {:else if equipmentRecommendation}
     <EquipmentRecommendationSection recommendation={equipmentRecommendation} />
   {/if}
-  {#if staticTrainingEnabled}<InfoToast notice={traceNotice} /><TrainingSection
+  {#if staticTrainingEnabled}<TrainingSection
       state={trainingSectionState}
       errorCode={trainingCalculation.error ?? trainingLoadError}
       result={trainingCalculation.result}

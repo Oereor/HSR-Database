@@ -572,54 +572,6 @@ footer a {
   color: var(--text-body);
   font-size: 0.72rem;
 }
-.enhancement-switch {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  border: 0;
-  background: transparent;
-  padding: 0.15rem;
-  color: var(--text);
-  cursor: pointer;
-}
-.enhancement-switch strong {
-  min-width: 3em;
-  color: var(--gold-soft);
-  font-size: 0.75rem;
-  text-align: left;
-}
-.enhancement-switch__track {
-  position: relative;
-  width: 2.25rem;
-  height: 1.2rem;
-  flex: 0 0 auto;
-  border: 1px solid var(--border-strong);
-  border-radius: 999px;
-  background: rgb(255 255 255 / 6%);
-  transition:
-    border-color var(--motion),
-    background var(--motion);
-}
-.enhancement-switch__track > span {
-  position: absolute;
-  top: 0.16rem;
-  left: 0.16rem;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 50%;
-  background: var(--text-body);
-  transition:
-    transform var(--motion),
-    background var(--motion);
-}
-.enhancement-switch[aria-checked='true'] .enhancement-switch__track {
-  border-color: var(--gold);
-  background: rgb(215 181 109 / 18%);
-}
-.enhancement-switch[aria-checked='true'] .enhancement-switch__track > span {
-  background: var(--gold);
-  transform: translateX(1.05rem);
-}
 .detail-section {
   scroll-margin-top: var(--anchor-offset);
   border-bottom: 1px solid var(--border);

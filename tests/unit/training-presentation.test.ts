@@ -23,7 +23,6 @@ import TraceCardPanel from '../../src/lib/components/character/TraceCardPanel.sv
 import TrainingSection from '../../src/lib/components/training/TrainingSection.svelte';
 import MaterialCostList from '../../src/lib/components/training/MaterialCostList.svelte';
 import DetailPage from '../../src/lib/components/shared/DetailPage.svelte';
-import InfoToast from '../../src/lib/components/shared/InfoToast.svelte';
 import TrainingTraceSummary from '../../src/lib/components/training/TrainingTraceSummary.svelte';
 import TrainingTargetSummary from '../../src/lib/components/training/TrainingTargetSummary.svelte';
 
@@ -39,14 +38,6 @@ const view = (id: string, locale = 'zh-CN') =>
   json<Character>(`src/lib/generated/views/${locale}/details/characters/${id}.json`);
 
 describe('training presentation contracts', () => {
-  it('prerenders an empty polite status region before any client notification', () => {
-    const html = render(InfoToast).body;
-    expect(html).toContain('data-info-toast-region');
-    expect(html).toContain('role="status"');
-    expect(html).toContain('aria-live="polite"');
-    expect(html).toContain('aria-atomic="true"');
-    expect(html).not.toMatch(/<button|role="alert"|data-info-toast=/);
-  });
   it('places character training and its anchor last when equipment recommendations are absent', () => {
     const html = render(DetailPage, {
       props: { detail: view('1001'), category: 'characters', singular: 'character' }

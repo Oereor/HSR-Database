@@ -1,33 +1,93 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
-  import FilterChip from './FilterChip.svelte';
+  import * as ToggleGroup from '$lib/components/ui/toggle-group';
+  import { Toggle } from '$lib/components/ui/toggle';
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
+  import { getElementColor } from '$lib/domain/elements';
+  import { getElementIconUrl, getPathIconUrl } from '$lib/data/visual-assets';
 
   export let id: string;
   export let label: string;
   export let iconKind: 'path' | 'element' | undefined = undefined;
   export let options: Array<{ value: string; label: string }> = [];
   export let selected: Set<string> = new Set();
+  export let multiple = true;
   export let onToggle: (value: string | undefined) => void;
+  $: values = [...selected];
+  function updateSelection(next: string[]) {
+    const changed =
+      next.find((value) => !selected.has(value)) ??
+      [...selected].find((value) => !next.includes(value));
+    if (changed !== undefined) onToggle(changed);
+  }
 </script>
 
 <section class="filter-group" aria-labelledby={`filter-group-${id}`}>
   <h2 id={`filter-group-${id}`}>{label}</h2>
-  <div class="filter-group__chips">
-    <FilterChip
-      label={m.filter_all()}
-      value="all"
-      selected={selected.size === 0}
-      on:click={() => onToggle(undefined)}
-    />
-    {#each options as option (option.value)}
-      <FilterChip
-        label={option.label}
-        value={option.value}
-        {iconKind}
-        selected={selected.has(option.value)}
-        on:click={() => onToggle(option.value)}
-      />
-    {/each}
+  <div class="flex flex-wrap items-start gap-2">
+    <Toggle
+      variant="outline"
+      size="sm"
+      pressed={selected.size === 0}
+      data-filter-value="all"
+      onclick={(event) => {
+        if (selected.size === 0) event.preventDefault();
+        onToggle(undefined);
+      }}>{m.filter_all()}</Toggle
+    >
+    {#snippet optionsList()}
+      {#each options as option (option.value)}
+        {@const icon =
+          iconKind === 'path'
+            ? getPathIconUrl(option.value)
+            : iconKind === 'element'
+              ? getElementIconUrl(option.value)
+              : undefined}
+        <ToggleGroup.Item
+          onclick={(event) => {
+            if (!multiple && selected.has(option.value)) event.preventDefault();
+          }}
+          value={option.value}
+          data-filter-value={option.value}
+          style={iconKind === 'element' ? `color: ${getElementColor(option.value)}` : undefined}
+        >
+          {#if icon}<AssetImage
+              decorative
+              src={icon}
+              alt=""
+              aria-hidden="true"
+              width="18"
+              height="18"
+            />{/if}
+          <span>{option.label}</span>
+        </ToggleGroup.Item>
+      {/each}
+    {/snippet}
+    {#if multiple}
+      <ToggleGroup.Root
+        type="multiple"
+        value={values}
+        onValueChange={updateSelection}
+        variant="outline"
+        size="sm"
+        spacing={2}
+        class="flex-wrap justify-start"
+        aria-labelledby={`filter-group-${id}`}>{@render optionsList()}</ToggleGroup.Root
+      >
+    {:else}
+      <ToggleGroup.Root
+        type="single"
+        value={values[0] ?? ''}
+        onValueChange={(value) => {
+          if (value) onToggle(value);
+        }}
+        variant="outline"
+        size="sm"
+        spacing={2}
+        class="flex-wrap justify-start"
+        aria-labelledby={`filter-group-${id}`}>{@render optionsList()}</ToggleGroup.Root
+      >
+    {/if}
   </div>
 </section>
 
@@ -42,11 +102,5 @@
     color: var(--text-secondary);
     font-size: var(--font-helper);
     font-weight: 700;
-  }
-
-  .filter-group__chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
   }
 </style>
