@@ -41,7 +41,7 @@
     justify-content: center;
     gap: 1rem;
     margin: 2.5rem 0;
-    color: var(--muted);
+    color: var(--text-body);
     font-size: 0.8rem;
   }
 

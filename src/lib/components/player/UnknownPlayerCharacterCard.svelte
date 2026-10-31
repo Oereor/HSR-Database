@@ -20,7 +20,7 @@
     grid-template-rows: minmax(110px, 1fr) auto;
     overflow: hidden;
     border: 1px dashed var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-panel);
     background: var(--surface-2);
   }
 
@@ -44,7 +44,7 @@
 
   p {
     margin-top: var(--space-1);
-    color: var(--muted);
+    color: var(--text-body);
     font-size: 0.72rem;
   }
 </style>

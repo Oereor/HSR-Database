@@ -107,7 +107,7 @@
     width: 24px;
     height: 24px;
     flex: 0 0 24px;
-    color: var(--muted);
+    color: var(--text-body);
   }
   .info-toast__content {
     min-width: 0;
@@ -115,7 +115,7 @@
   }
   .info-toast p {
     margin: var(--space-1) 0 0;
-    color: var(--muted);
+    color: var(--text-body);
     font-size: 0.875rem;
   }
   .info-toast.fading {

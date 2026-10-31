@@ -172,7 +172,7 @@
     margin: auto;
     overflow: hidden;
     border: 1px solid var(--border-strong);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-panel);
     background: var(--surface);
     color: var(--text);
     box-shadow: 0 24px 80px rgb(0 0 0 / 42%);

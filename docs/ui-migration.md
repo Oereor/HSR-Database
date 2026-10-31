@@ -6,12 +6,12 @@
 
 全局入口是 `src/styles/app.css`，由根 layout 导入，另有 detail-hero / detail-inspection 展示样式及组件内 CSS。Tailwind 已通过 Vite 插件接入；站点默认深蓝黑背景、金色强调，沿用中英文字体栈、语义字号及 `--space-*` 间距。业务组件、Paraglide 消息和素材加载各有独立边界。
 
-| 分类 | 后续处理 |
-| --- | --- |
-| Dialog | 替换 ChangelogModal、SpecialEffectDialog、ItemDetailModal 的交互外壳，保留数据与业务编排 |
-| Popover / Toast | 迁移 SettingsPopover、InfoToast，保留状态来源及消息调用 |
+| 分类            | 后续处理                                                                                     |
+| --------------- | -------------------------------------------------------------------------------------------- |
+| Dialog          | 替换 ChangelogModal、SpecialEffectDialog、ItemDetailModal 的交互外壳，保留数据与业务编排     |
+| Popover / Toast | 迁移 SettingsPopover、InfoToast，保留状态来源及消息调用                                      |
 | 筛选 / 基础交互 | 逐步迁移 FilterGroup / FilterChip、Button、LevelSlider、Tabs、Disclosure，保留筛选和计算语义 |
-| 业务展示 | 保留角色、光锥、遗器、敌人、养成、玩家及 Endgame 组件，通过组合基础组件逐步迁移 |
+| 业务展示        | 保留角色、光锥、遗器、敌人、养成、玩家及 Endgame 组件，通过组合基础组件逐步迁移              |
 
 ### CSS 兼容风险
 
@@ -26,6 +26,20 @@
 
 验收：变更文件格式与 lint、完整类型检查和生产构建；复用共享 UI 单元测试及 ci-smoke，补充少量双语错误页链接和键盘回归；检查桌面与移动端代表页面的颜色、圆角、布局及溢出。联网使用已核实的项目代理，不升级无关依赖。
 
+### 基础接入约定
+
+- `components.json` 保留 new-york 标识；官方 Tailwind 4 schema 已将 style 标记为兼容字段，新组件采用当前标准样式。Button 从官方文档源码引入，仅按仓库格式整理，入口为 `$lib/components/ui/button`。工具函数使用官方推荐的 `cn`，仅新增精确版本 `cn@0.5.1`、`tailwind-variants@4.0.0`、`tw-animate-css@1.4.0`，其他依赖保持原锁定版本。
+- `src/styles/theme.css` 集中管理语义颜色及 Tailwind 映射；深蓝黑背景、金色 Primary / Ring、分层 Surface 及前景色复用现有色板。字体族独立为 `--font-family-sans`，映射 `font-sans`；字号复用现有语义尺度，间距沿用 Tailwind 默认 0.25rem 基准及现有 `--space-*`，不另建重复尺度。
+- 根 HTML 固定 `dark`，首屏无需主题脚本。未来浅色主题应覆盖语义颜色与兼容的旧颜色令牌，再实现切换；该阶段不提供浅色配色或切换入口。
+- 原 `app.css` 页面规则保留，仅将元素基础规则放入 `base` 层。旧 `--muted` 引用统一改为 `--text-body`；旧 `--radius-lg` 改为 `--radius-panel: 22px`，`--radius-card` / `--radius-control` 保持原值。仍在使用的 `.button`、弹窗、筛选等组件和样式继续保留。
+- 后续添加组件时沿用 `$lib` 别名，审查依赖及 CSS diff。不要对现有 `app.css` 执行 CLI `init`；依赖安装后检查锁文件，防止项目已有 `latest` 声明刷新无关版本。
+
+### Phase 1 验证结果
+
+2026-10-31 完成基础接入。变更源码的 Prettier / ESLint、`pnpm check`（0 errors / 0 warnings）、`pnpm build` 均通过；共享 UI 单元测试 14 项、ci-smoke 与双语错误页桌面 / 移动端浏览器测试共 9 项通过。错误页确认返回链接语义、当前语言目标、Tab 焦点、Enter 激活、金色主题及 reduced-motion 生效。
+
+首页、中英文首页、角色目录、角色详情、敌人详情、玩家入口及 Endgame 入口共 7 个路由，在 1280px / 390px 下的 14 张首屏截图与迁移前逐像素一致，采样元素的颜色、字号、圆角及位置一致，均无横向溢出。错误页桌面和移动布局已检查。此对比为阶段性人工验收，不加入阻塞 CI 的全页面基线。验证不包含玩家远程 API 和生产部署；本地 Vercel Analytics 脚本返回 404，不影响 UI 验证。
+
 ## 后续阶段边界
 
 - Phase 2：使用 shadcn Breadcrumb 实现全局 Sticky 导航，按路由层级生成而非浏览历史，支持中英文、动态实体名及 Endgame 多级路由；统一 Sticky Offset，协调 SectionNav / EndgameLocalNav。
@@ -35,4 +49,5 @@
 ### 参考文献
 
 [^manual]: shadcn-svelte. Manual Installation. [官方文档](https://shadcn-svelte.com/docs/installation/manual).
+
 [^tailwind-v4]: shadcn-svelte. Tailwind v4. [官方文档](https://shadcn-svelte.com/docs/migration/tailwind-v4).

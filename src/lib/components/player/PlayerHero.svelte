@@ -66,7 +66,7 @@
     gap: var(--space-8);
     margin-bottom: var(--space-8);
     border: 1px solid var(--border-strong);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-panel);
     background: linear-gradient(135deg, rgb(215 181 109 / 8%), transparent 42%), var(--surface-2);
     padding: var(--space-6);
   }
@@ -131,7 +131,7 @@
   }
 
   dt {
-    color: var(--muted);
+    color: var(--text-body);
     font-size: var(--font-internal);
   }
 

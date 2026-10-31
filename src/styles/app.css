@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
+@import './theme.css';
 
 :root {
   color-scheme: dark;
@@ -11,7 +13,6 @@
   --text-secondary: #aab6ca;
   --text-muted: #7f8da5;
   --text: var(--text-primary);
-  --muted: var(--text-body);
   --faint: var(--text-secondary);
   --gold: #d7b56d;
   --gold-soft: #f1dca2;
@@ -24,7 +25,7 @@
   --radius-card: 14px;
   --radius-control: 10px;
   --radius: var(--radius-card);
-  --radius-lg: 22px;
+  --radius-panel: 22px;
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -53,109 +54,108 @@
   --navigator-pane-width: 304px;
   --site-header-height: 0px;
   --section-nav-height: 3.25rem;
-  font-family:
-    Inter,
-    ui-sans-serif,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    'PingFang SC',
-    'Microsoft YaHei',
-    sans-serif;
+  --font-family-sans:
+    Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Microsoft YaHei', sans-serif;
+  font-family: var(--font-family-sans);
   background: var(--bg);
   color: var(--text);
 }
 
-* {
-  box-sizing: border-box;
+/* Element defaults yield to shadcn utilities; legacy classes retain their order. */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    background: var(--bg);
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    min-width: 0;
+    background:
+      radial-gradient(circle at 72% 12%, rgb(47 72 128 / 17%), transparent 34rem),
+      radial-gradient(circle at 10% 85%, rgb(126 88 36 / 8%), transparent 35rem), var(--bg);
+    color: var(--text);
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.25;
+    background-image: radial-gradient(circle, rgb(255 255 255 / 55%) 0 1px, transparent 1.5px);
+    background-size: 79px 79px;
+    mask-image: linear-gradient(to bottom, black, transparent 75%);
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  button,
+  input,
+  select {
+    font: inherit;
+  }
+  button,
+  select {
+    cursor: pointer;
+  }
+  button,
+  input,
+  select {
+    color: var(--text);
+  }
+  input,
+  select {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-control);
+    background: rgb(7 10 18 / 74%);
+    padding: 0.72rem 0.85rem;
+    outline: none;
+    transition:
+      border-color var(--motion),
+      box-shadow var(--motion);
+  }
+  input:focus,
+  select:focus,
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+  select option {
+    background: var(--surface);
+  }
+  h1,
+  h2,
+  h3,
+  p {
+    margin-top: 0;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 4.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.055em;
+  }
+  h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    letter-spacing: -0.025em;
+  }
+  h3 {
+    letter-spacing: -0.015em;
+  }
+  p {
+    color: var(--text-body);
+    line-height: 1.72;
+  }
+  small {
+    color: var(--faint);
+  }
 }
-html {
-  background: var(--bg);
-  scroll-behavior: smooth;
-}
-body {
-  margin: 0;
-  min-width: 0;
-  background:
-    radial-gradient(circle at 72% 12%, rgb(47 72 128 / 17%), transparent 34rem),
-    radial-gradient(circle at 10% 85%, rgb(126 88 36 / 8%), transparent 35rem), var(--bg);
-  color: var(--text);
-}
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.25;
-  background-image: radial-gradient(circle, rgb(255 255 255 / 55%) 0 1px, transparent 1.5px);
-  background-size: 79px 79px;
-  mask-image: linear-gradient(to bottom, black, transparent 75%);
-}
-a {
-  color: inherit;
-  text-decoration: none;
-}
-button,
-input,
-select {
-  font: inherit;
-}
-button,
-select {
-  cursor: pointer;
-}
-button,
-input,
-select {
-  color: var(--text);
-}
-input,
-select {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-control);
-  background: rgb(7 10 18 / 74%);
-  padding: 0.72rem 0.85rem;
-  outline: none;
-  transition:
-    border-color var(--motion),
-    box-shadow var(--motion);
-}
-input:focus,
-select:focus,
-button:focus-visible,
-a:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
-}
-select option {
-  background: var(--surface);
-}
-h1,
-h2,
-h3,
-p {
-  margin-top: 0;
-}
-h1 {
-  font-size: clamp(2.2rem, 5vw, 4.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.055em;
-}
-h2 {
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  letter-spacing: -0.025em;
-}
-h3 {
-  letter-spacing: -0.015em;
-}
-p {
-  color: var(--muted);
-  line-height: 1.72;
-}
-small {
-  color: var(--faint);
-}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -329,7 +329,7 @@ small {
   border: 1px solid transparent;
   border-radius: 10px;
   padding: 0.58rem 0.68rem;
-  color: var(--muted);
+  color: var(--text-body);
   font-size: 0.86rem;
   transition:
     color var(--motion),
@@ -568,7 +568,7 @@ footer a {
   align-self: end;
   border-color: var(--border);
   background: var(--surface-2);
-  color: var(--muted);
+  color: var(--text-body);
   font-size: 0.76rem;
 }
 .entity-grid {
@@ -579,7 +579,7 @@ footer a {
 .empty-state {
   margin: 3rem auto;
   border: 1px dashed var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-panel);
   padding: 4rem 2rem;
   text-align: center;
 }
@@ -608,7 +608,7 @@ footer a {
   padding: 0.55rem 0.65rem 0.55rem 0.8rem;
 }
 .enhancement-control > span {
-  color: var(--muted);
+  color: var(--text-body);
   font-size: 0.72rem;
 }
 .enhancement-switch {
@@ -646,7 +646,7 @@ footer a {
   width: 0.75rem;
   height: 0.75rem;
   border-radius: 50%;
-  background: var(--muted);
+  background: var(--text-body);
   transition:
     transform var(--motion),
     background var(--motion);
@@ -996,7 +996,7 @@ footer a {
   grid-template-rows: auto minmax(0, 1fr);
   overflow: hidden;
   border: 1px solid var(--border-strong);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-panel);
   background:
     radial-gradient(circle at 90% 0%, rgb(215 181 109 / 10%), transparent 32%), var(--surface);
   box-shadow: 0 28px 90px rgb(0 0 0 / 55%);
@@ -1487,7 +1487,7 @@ footer a {
   max-height: min(76dvh, 620px);
   overflow-y: auto;
   border: 1px solid var(--surface-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-panel);
   background: var(--surface);
   color: var(--text-primary);
   padding: var(--space-4);
@@ -2307,7 +2307,7 @@ th {
     max-width: none;
     max-height: 78dvh;
     margin: auto 0 0;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    border-radius: var(--radius-panel) var(--radius-panel) 0 0;
     padding-right: max(var(--space-4), env(safe-area-inset-right));
     padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));
     padding-left: max(var(--space-4), env(safe-area-inset-left));

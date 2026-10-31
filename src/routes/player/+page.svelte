@@ -252,7 +252,7 @@
 
   .player-page__data-source {
     margin: calc(var(--space-3) * -1) 0 var(--space-6);
-    color: var(--muted);
+    color: var(--text-body);
     font-size: var(--font-internal);
   }
 
@@ -263,7 +263,7 @@
     justify-content: center;
     gap: var(--space-3);
     border: 1px dashed var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-panel);
     color: var(--text-secondary);
     text-align: center;
   }
@@ -298,9 +298,9 @@
   .player-characters__empty {
     margin: var(--space-4) 0 0;
     border: 1px dashed var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-panel);
     padding: var(--space-4);
-    color: var(--muted);
+    color: var(--text-body);
     text-align: center;
   }
 
