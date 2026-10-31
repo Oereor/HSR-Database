@@ -18,6 +18,7 @@ test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', a
   test.skip(isMobile, '仅桌面项目执行');
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
 
   const rail = page.locator('.navigator-rail');
   await expect(rail).toBeVisible();
@@ -73,12 +74,15 @@ test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', a
   await page.keyboard.press('Escape');
   await expect(dialog).not.toBeVisible();
   await rail.locator('.navigator-toggle').click();
-  await dialog.click({ position: { x: 1000, y: 120 } });
+  await page.mouse.click(1000, 120);
   await expect(dialog).not.toBeVisible();
 
   await rail.locator('.navigator-toggle').click();
   await dialog.locator('#global-search').fill('三月七');
-  await dialog.locator('.search-bar button[type="submit"]').click();
+  await Promise.all([
+    page.waitForURL(/\/search\/\?q=%E4%B8%89%E6%9C%88%E4%B8%83$/),
+    dialog.locator('.search-bar button[type="submit"]').click()
+  ]);
   await expect(page).toHaveURL(/\/search\/\?q=%E4%B8%89%E6%9C%88%E4%B8%83$/);
 });
 
@@ -86,6 +90,7 @@ test('移动端仅保留顶部触发器并使用完整抽屉', async ({ page, is
   test.skip(!isMobile, '仅移动项目执行');
   await page.setViewportSize({ width: 320, height: 720 });
   await page.goto('/endgame/');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   await expect(page.locator('.navigator-rail')).toBeHidden();
   await expect(page.locator('.mobile-header')).toBeVisible();
 
@@ -112,12 +117,12 @@ test('移动端仅保留顶部触发器并使用完整抽屉', async ({ page, is
   await expect(dialog.locator('a[href="/endgame/"]')).toHaveAttribute('aria-current', 'page');
   await expect(dialog.locator('#global-search')).toBeVisible();
   await expect(dialog.locator('.navigator-pane__snapshot strong')).not.toHaveText('');
-  expect((await dialog.locator('.navigator-pane__surface').boundingBox())?.width).toBeLessThan(321);
-  await expect(page.locator('body')).toHaveClass(/navigator-open/);
+  expect((await dialog.boundingBox())?.width).toBeLessThan(321);
+  await expect(page.locator('body')).toHaveCSS('overflow', 'hidden');
 
   await dialog.locator('.navigator-toggle').click();
   await expect(dialog).not.toBeVisible();
-  await expect(page.locator('body')).not.toHaveClass(/navigator-open/);
+  await expect(page.locator('body')).not.toHaveCSS('overflow', 'hidden');
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth - document.documentElement.clientWidth
   );

@@ -1204,6 +1204,7 @@ test('AA 王棋普通和绝境使用实际 spawned occurrence', async ({ page })
 test('Endgame 移动端折叠 local rail，dialog 支持 ESC、焦点返回与节点导航', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/endgame/moc/1034/?encounter=5312');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   const modeNav = page.locator('.endgame-mode-switcher__island');
   const modeNavLayout = await modeNav.evaluate((element) => ({
     display: getComputedStyle(element).display,
@@ -1235,7 +1236,7 @@ test('Endgame 移动端折叠 local rail，dialog 支持 ESC、焦点返回与�
   await menu.locator('a[href="?encounter=5311"]').click();
   await expect(page).toHaveURL(/encounter=5311/);
   await expect(page.locator('.endgame-local-nav-trigger')).toBeVisible();
-  await expect(page.locator('.endgame-local-menu a[aria-current="page"]')).toHaveAttribute(
+  await expect(page.locator('.endgame-local-nav a[aria-current="page"]')).toHaveAttribute(
     'href',
     '?encounter=5311'
   );

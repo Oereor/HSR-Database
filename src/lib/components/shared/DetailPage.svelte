@@ -1,7 +1,7 @@
 <script lang="ts">
   import { browser } from '$app/environment';
   import { goto } from '$app/navigation';
-  import { onDestroy, onMount, tick } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
   import { page } from '$app/stores';
   import BaseStatsPanel from '$lib/components/shared/BaseStatsPanel.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
@@ -349,11 +349,10 @@
     selectedMaterialDetail = undefined;
   }
 
-  async function handleMaterialDetailsClosed(): Promise<void> {
+  function handleMaterialDetailsClosed(): void {
     const trigger = materialDetailTrigger;
     const version = materialDetailRequestVersion;
     materialDetailTrigger = undefined;
-    await tick();
     if (version === materialDetailRequestVersion && !selectedMaterial && trigger?.isConnected)
       trigger.focus({ preventScroll: true });
   }
@@ -552,8 +551,7 @@
     specialEffectsOpen = false;
   }
 
-  async function handleSpecialEffectsClosed() {
-    await tick();
+  function handleSpecialEffectsClosed() {
     if (specialEffectTrigger?.isConnected) specialEffectTrigger.focus();
     specialEffectTrigger = undefined;
   }

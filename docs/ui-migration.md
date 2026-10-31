@@ -48,6 +48,14 @@
 
 验证：路由及现有导航单元测试 31 项通过，变更源码格式 / ESLint、完整类型检查（0 errors / 0 warnings）、生产预渲染构建通过。双语桌面 / 移动端 Breadcrumb 与既有 ci-smoke 共 9 项浏览器测试通过。
 
+## Phase 3：共享交互
+
+### Dialog / Sheet
+
+特殊效果、物品详情、更新日志使用标准 Dialog；主导航和 Endgame 手机菜单分别使用左侧、底部 Sheet。保留原内容与业务请求失效处理，焦点恢复通过组件生命周期衔接真实触发元素。删除全部原生 dialog 开关、手写 Tab trap、背景坐标判断、滚动锁及旧外壳样式，未保留平行实现。新增 bits-ui 及其日期 peer dependency，原依赖版本保持不变。
+
+格式 / ESLint、完整类型检查（0 errors / 0 warnings）通过；相关既有单元测试 141 项，桌面 / 移动端交互测试 28 项通过（另有两项按视口跳过）。测试改用语义 heading，并等待水合、导航和库管理的滚动锁释放，不固定旧 DOM 容器。
+
 ## 后续阶段边界
 
 - Phase 2：使用 shadcn Breadcrumb 实现全局 Sticky 导航，按路由层级生成而非浏览历史，支持中英文、动态实体名及 Endgame 多级路由；统一 Sticky Offset，协调 SectionNav / EndgameLocalNav。

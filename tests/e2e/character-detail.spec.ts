@@ -523,6 +523,7 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   isMobile
 }) => {
   await page.goto('/characters/1415/');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   const initialBodyOverflow = await page.evaluate(() => document.body.style.overflow);
   const cyreneSourceLevel = page
     .locator('[data-skill-category="memosprite-skill"]')
@@ -598,6 +599,7 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   }
 
   await page.goto('/characters/1510/');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   const himekoSourceLevel = page.locator(
     '[data-skill-category="assist"] .skill-level-control input[type="range"]'
   );
@@ -629,11 +631,14 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   await himekoDialog.locator('.special-effect-dialog__close').click();
 
   await page.goto('/characters/8007/');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('开拓者·记忆');
   await page.goto('/characters/1001/');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('三月七·存护');
 
   await page.goto('/characters/1509/');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   await expect(page.locator('.special-effect-trigger')).toHaveCount(0);
   await expect(page.locator('[data-skill-id="150909"]')).toHaveCount(0);
 });
