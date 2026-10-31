@@ -23,6 +23,6 @@
 <style>
   .endgame-node-section {
     min-width: 0;
-    scroll-margin-top: 80px;
+    scroll-margin-top: var(--anchor-offset);
   }
 </style>

@@ -692,7 +692,10 @@ test('reuses the Player cache and renders real progression without changing stat
 
   await lightConeCard.getByRole('link').click();
   await expect(page).toHaveURL(/\/light-cones\/23023\/\?level=70&rank=2$/);
-  await expect(page.locator('.back-link')).toHaveAttribute('href', '/light-cones/');
+  await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute(
+    'href',
+    '/light-cones/'
+  );
   const lightConeLevel = page.locator('#light-cone-level-23023');
   await expect(lightConeLevel).toBeEnabled();
   await expect(lightConeLevel).toHaveValue('70');
@@ -901,7 +904,7 @@ test('keeps static detail available for invalid, missing and failed Player conte
 
   await page.goto('/characters/1304/?uid=abc&from=player');
   await expect(page.locator('.player-context-notice--fallback')).toBeVisible();
-  await expect(page.locator('.back-link')).toHaveAttribute('href', '/characters/');
+  await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute('href', '/characters/');
   await expect(page.locator('#character-level-1304')).toBeEnabled();
   await expect(page.locator('#equipment-recommendation')).toBeVisible();
   expect(requestCount).toBe(0);

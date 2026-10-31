@@ -11,6 +11,8 @@
   import { siteName } from '$lib/site';
   import ChangelogModal from '$lib/components/layout/ChangelogModal.svelte';
   import SettingsPopover from '$lib/components/layout/SettingsPopover.svelte';
+  import GlobalBreadcrumb from '$lib/components/layout/GlobalBreadcrumb.svelte';
+  import { resolveBreadcrumbs, type BreadcrumbData } from '$lib/breadcrumbs';
   import { onMount } from 'svelte';
   import { dev } from '$app/environment';
 
@@ -26,6 +28,22 @@
   $: canonicalPath = trailingSlashHref($page.url.pathname);
   $: chinesePath = localeCounterpartHref(canonicalPath, 'zh-CN');
   $: englishPath = localeCounterpartHref(canonicalPath, 'en');
+  $: breadcrumbs = resolveBreadcrumbs({
+    routeId: $page.route.id,
+    params: $page.params,
+    locale: data.locale,
+    data: $page.data as BreadcrumbData,
+    status: $page.status
+  });
+  $: pageNavHeight =
+    $page.status >= 400
+      ? '0px'
+      : $page.route.id?.startsWith('/endgame/')
+        ? 'var(--endgame-mode-nav-height)'
+        : $page.route.id?.endsWith('/[id]') &&
+            ['characters', 'light-cones', 'enemies'].includes($page.params.category ?? '')
+          ? 'var(--section-nav-height)'
+          : '0px';
 </script>
 
 <svelte:head>
@@ -38,12 +56,13 @@
   {#if faviconUrl}<link rel="icon" type="image/png" href={faviconUrl} />{/if}
 </svelte:head>
 
-<div class="site-shell" data-app-ready={appReady}>
+<div class="site-shell" data-app-ready={appReady} style:--page-nav-height={pageNavHeight}>
   <Navigator siteVersion={data.siteVersion} onOpenChangelog={() => changelogModal?.open()} />
   <ChangelogModal locale={data.locale} bind:this={changelogModal} />
   <SettingsPopover locale={data.locale} />
 
   <main>
+    <GlobalBreadcrumb items={breadcrumbs} />
     <div class="content"><slot /></div>
     <footer>
       <p>{m.footer_disclaimer()}</p>

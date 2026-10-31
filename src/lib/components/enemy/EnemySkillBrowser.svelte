@@ -130,7 +130,7 @@
   @media (min-width: 821px) {
     .enemy-skill-browser__detail {
       position: sticky;
-      top: calc(var(--site-header-height) + var(--section-nav-height) + var(--space-4));
+      top: var(--anchor-offset);
     }
   }
   @media (max-width: 820px) {

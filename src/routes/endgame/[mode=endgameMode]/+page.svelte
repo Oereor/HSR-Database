@@ -7,7 +7,6 @@
   import EndgameSeasonCard from '$lib/components/endgame/EndgameSeasonCard.svelte';
   import { groupEndgamePeriods, refreshEndgameMode } from '$lib/domain/endgame-view';
   import { formatDocumentTitle } from '$lib/site';
-  import { localizedHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   export let data;
 
@@ -22,12 +21,6 @@
   <title>{formatDocumentTitle(m.endgame_archive_title({ mode: data.mode.label }))}</title>
   <meta name="description" content={m.endgame_archive_description({ mode: data.mode.label })} />
 </svelte:head>
-
-<header class="endgame-page-header">
-  <a class="back-link endgame-breadcrumb" href={localizedHref('/endgame')}
-    >← {m.endgame_overview_back()}</a
-  >
-</header>
 
 <EndgameModeNav activeMode={data.mode.mode} />
 

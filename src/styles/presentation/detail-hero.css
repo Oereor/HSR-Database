@@ -223,7 +223,7 @@
 }
 
 .detail-profile-hero__inspection {
-  scroll-margin-top: 70px;
+  scroll-margin-top: var(--anchor-offset);
   padding: clamp(1.5rem, 3vw, 2.5rem);
 }
 

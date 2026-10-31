@@ -54,6 +54,9 @@
   --navigator-pane-width: 304px;
   --site-header-height: 0px;
   --section-nav-height: 3.25rem;
+  --breadcrumb-height: 2.75rem;
+  --endgame-mode-nav-height: 3.5rem;
+  --global-sticky-top: calc(var(--site-header-height) + var(--breadcrumb-height));
   --font-family-sans:
     Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
     'Microsoft YaHei', sans-serif;
@@ -180,6 +183,8 @@
 }
 
 .site-shell {
+  --page-nav-height: 0px;
+  --anchor-offset: calc(var(--global-sticky-top) + var(--page-nav-height) + var(--space-4));
   display: grid;
   grid-template-columns: var(--navigator-rail-width) minmax(0, 1fr);
   min-height: 100vh;
@@ -660,7 +665,7 @@ footer a {
   transform: translateX(1.05rem);
 }
 .detail-section {
-  scroll-margin-top: 70px;
+  scroll-margin-top: var(--anchor-offset);
   border-bottom: 1px solid var(--border);
   padding: 3.25rem 0;
 }
@@ -1364,15 +1369,6 @@ footer a {
 }
 
 /* Endgame */
-.endgame-page-header {
-  padding-top: var(--space-2);
-}
-.endgame-breadcrumb {
-  display: inline-flex;
-  margin-bottom: var(--space-3);
-  color: var(--text-secondary);
-  font-size: var(--font-helper);
-}
 .endgame-inline-status {
   display: inline-flex;
   border: 1px solid var(--surface-border);
@@ -1406,8 +1402,8 @@ footer a {
 }
 .endgame-local-nav {
   position: sticky;
-  top: var(--space-6);
-  max-height: calc(100vh - var(--space-12));
+  top: var(--anchor-offset);
+  max-height: calc(100dvh - var(--anchor-offset) - var(--space-4));
   overflow-y: auto;
   border-right: 1px solid var(--surface-border);
   padding-right: var(--space-4);
@@ -1966,7 +1962,7 @@ th {
   font-size: var(--font-helper);
 }
 .enemy-owned-section {
-  scroll-margin-top: 70px;
+  scroll-margin-top: var(--anchor-offset);
   margin-top: var(--space-12);
 }
 .enemy-summon-list {
@@ -2295,12 +2291,6 @@ th {
   }
   .stage-list {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .endgame-page-header {
-    padding-top: 0;
-  }
-  .endgame-breadcrumb {
-    margin-bottom: var(--space-2);
   }
   .endgame-local-menu {
     width: 100%;

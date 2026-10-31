@@ -627,11 +627,9 @@
   <meta name="description" content={metaDescription} />
 </svelte:head>
 
-<a class="back-link" href={backTarget.href}
-  >← {backTarget.kind === 'player'
-    ? m.player_character_back_to_player()
-    : m.detail_back_to_list({ category: singular })}</a
->
+{#if backTarget.kind === 'player'}
+  <a class="back-link" href={backTarget.href}>← {m.player_character_back_to_player()}</a>
+{/if}
 {#if category === 'characters'}
   <header class="detail-profile-hero detail-profile-hero--character">
     <div class="detail-profile-hero__identity">

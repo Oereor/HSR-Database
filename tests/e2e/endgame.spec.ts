@@ -106,7 +106,7 @@ test('Endgame 首页、模式和赛期可以直接访问', async ({ page }) => {
 
   for (const mode of ['moc', 'pf', 'as', 'aa']) {
     await page.goto(`/endgame/${mode}/`);
-    await expect(page.locator('.endgame-breadcrumb')).toHaveAttribute('href', '/endgame/');
+    await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute('href', '/endgame/');
   }
 
   await page.goto('/endgame/moc/');
@@ -114,7 +114,10 @@ test('Endgame 首页、模式和赛期可以直接访问', async ({ page }) => {
   await expect(page.locator('a[href="/endgame/moc/1034/"]')).toBeVisible();
 
   await page.goto('/endgame/moc/1034/?encounter=5312');
-  await expect(page.locator('.endgame-breadcrumb')).toHaveAttribute('href', '/endgame/moc/');
+  await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute(
+    'href',
+    '/endgame/moc/'
+  );
   await expect(page.locator('.endgame-season-hero h1')).toHaveText('扫除风暴');
   await expect(page.locator('[data-battle-slot]')).toHaveCount(3);
 

@@ -20,7 +20,6 @@
   } from '$lib/domain/endgame-navigation';
   import { refreshEndgamePeriod, type EndgameGroupView } from '$lib/domain/endgame-view';
   import { formatDocumentTitle } from '$lib/site';
-  import { localizedHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
   export let data;
 
@@ -67,12 +66,6 @@
     })}
   />
 </svelte:head>
-
-<header class="endgame-page-header">
-  <a class="back-link endgame-breadcrumb" href={localizedHref(`/endgame/${data.group.mode}`)}
-    >← {m.endgame_group_back({ mode: data.group.modeLabel })}</a
-  >
-</header>
 
 <EndgameModeNav activeMode={data.group.mode} />
 <EndgameSeasonHero {period} />

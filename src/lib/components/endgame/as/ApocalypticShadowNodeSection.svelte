@@ -33,7 +33,7 @@
 <style>
   .as-node-section {
     min-width: 0;
-    scroll-margin-top: 80px;
+    scroll-margin-top: var(--anchor-offset);
   }
 
   .as-node-section__axiom {

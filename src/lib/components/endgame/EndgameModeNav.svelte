@@ -41,7 +41,9 @@
   .endgame-mode-switcher {
     position: sticky;
     z-index: 10;
-    top: var(--space-3);
+    top: var(--global-sticky-top);
+    height: var(--endgame-mode-nav-height);
+    align-items: center;
     display: flex;
     min-width: 0;
     justify-content: center;

@@ -105,7 +105,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
         await page.goBack();
         await expect(page).toHaveURL(seasonUrl);
       }
-      await page.locator('.endgame-breadcrumb').click();
+      await page.locator('.global-breadcrumb a').last().click();
       await expect(page).toHaveURL(new RegExp(`${prefix}/endgame/${mode}/$`));
       const season = page.locator('a.endgame-season-card').first();
       await expect(season).toHaveAttribute('href', new RegExp(`^${prefix}/endgame/${mode}/`));
