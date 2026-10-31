@@ -56,6 +56,10 @@
 
 格式 / ESLint、完整类型检查（0 errors / 0 warnings）通过；相关既有单元测试 141 项，桌面 / 移动端交互测试 28 项通过（另有两项按视口跳过）。测试改用语义 heading，并等待水合、导航和库管理的滚动锁释放，不固定旧 DOM 容器。
 
+### 设置 Popover
+
+设置面板改用标准 Popover，复用已有 Bits UI；保留设置素材、原语言链接、query / hash 和整页重载行为。同语言点击不导航。删除全局 click / Esc 监听、手写定位及旧面板 CSS，改用既有 Button 和主题令牌。格式 / ESLint、完整类型检查通过；增加键盘打开、Esc 焦点恢复和外部点击关闭回归，双语历史往返在最终生产构建统一验收。
+
 ## 后续阶段边界
 
 - Phase 2：使用 shadcn Breadcrumb 实现全局 Sticky 导航，按路由层级生成而非浏览历史，支持中英文、动态实体名及 Endgame 多级路由；统一 Sticky Offset，协调 SectionNav / EndgameLocalNav。

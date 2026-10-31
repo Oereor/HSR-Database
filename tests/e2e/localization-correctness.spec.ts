@@ -1,6 +1,26 @@
 import { readFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 
+test('settings popover supports Escape, focus return and outside dismissal', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
+  const trigger = page.locator('.settings-trigger');
+  await trigger.focus();
+  await page.keyboard.press('Enter');
+  const panel = page.locator('#site-settings-panel');
+  await expect(panel).toBeVisible();
+  const box = await panel.boundingBox();
+  expect(box!.x).toBeGreaterThanOrEqual(0);
+  expect(box!.x + box!.width).toBeLessThanOrEqual(page.viewportSize()!.width);
+  await page.keyboard.press('Escape');
+  await expect(panel).toBeHidden();
+  await expect(trigger).toBeFocused();
+  await trigger.click();
+  await expect(panel).toBeVisible();
+  await page.locator('.home-hero h1').click();
+  await expect(panel).toBeHidden();
+});
+
 async function switchTo(page: Page, locale: 'en' | 'zh-CN', pathname: string) {
   await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   await page.locator('.settings-trigger').click();
