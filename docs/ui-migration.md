@@ -338,6 +338,20 @@ PlayerHero 使用单层紧凑 Card，继续用 AssetImage 保留游戏头像、�
 
 - Phase 6C 完成玩家 UID 查询、状态、名片、角色列表及未知角色降级标准化；保留请求与玩家上下文行为，停止在本阶段。
 
+## Phase 7A：技术债审计
+
+清理基线为 `79949a0`，分支为 `refactor/shadcn-foundation`；网站、TurnBasedGameData 与 StarRailRes 工作区均干净。Node.js 24.21.0、pnpm 11.9.0。
+
+- 删除候选：旧 `.button` / `.button--quiet`、`.entity-grid`、`.table-wrap`、`.split-section`、`.stage-list`、`.dialog-heading` 及关联断点规则；无引用的 `--glow`、`--font-page-title`、`--font-hero-overview-title`、`--font-card-title`。逐项核对动态 class、Slots、状态及模板后再删除，不能把 `.compact-entity-grid` 当作 `.entity-grid` 的使用方。
+- 兼容迁移：`.info-card` 仍服务培养结果，`.empty-state` 仍服务搜索与错误页；复用现有 Card / Empty，保留 section、live region 和视觉。普通按钮只有在兼容成本合理时才改用 Button。
+- 所有 shadcn 目录均有实际使用方；Breadcrumb Ellipsis、Dialog 的 Close / Description / Footer / Header / Trigger、Popover 的 Close / Description / Header / Title、Sheet 的 Close / Description / Footer / Trigger 为待删除子组件。Content 内部使用的 Overlay / Portal 和 primitive Close 继续保留；Sidebar 内部使用 Sheet Header。
+- 直接依赖均需检查源码、脚本和配置；`@internationalized/date` 是 Bits UI 的 peer dependency，保留。不预设必须删除依赖，不更新无关锁定版本。
+- 全局 input / select 视觉规则和 table 规则需要核对实际 DOM 与库生成元素；全站焦点、字体与 reduced-motion 规则保留。主题语义映射、Tailwind token 与 Bits UI 状态变体属于有效基础设施，不按文本引用次数删除。
+- 动态 class 核验涵盖 OverviewHero 的位置分支、组件 variants、响应式网格及运行时状态。现有完整工具类字面量可被扫描，动态语义标记不等于动态 Tailwind 类。
+- 测试重点是移除旧 DOM 耦合与重复矩阵，保留真实网格列数驱动分页、焦点、键盘、路由和业务状态；不重建视觉快照基础设施。
+
+统计限定生产组件 `src/lib/components/**/*.svelte`、相关辅助 TypeScript 与 `src/styles/**/*.css`，组件内 style 另列；排除路由、测试、文档、生成代码与构建产物。基线为 189 个组件（其中 UI 80 个）、11,170 行组件源码、29 个辅助 TypeScript 文件 / 463 行、共享 CSS 1,601 行、组件内 CSS 1,624 行；直接依赖 37 个，Vitest / E2E / component 测试文件分别为 87 / 32 / 2。构建 CSS 字节数另列，不与源码统计混合。
+
 ### 参考文献
 
 [^manual]: shadcn-svelte. Manual Installation. [官方文档](https://shadcn-svelte.com/docs/installation/manual).
