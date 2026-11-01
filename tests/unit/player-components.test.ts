@@ -1,5 +1,7 @@
 import { render } from 'svelte/server';
 import { describe, expect, it } from 'vitest';
+import { Root as Alert } from '../../src/lib/components/ui/alert';
+import { Spinner } from '../../src/lib/components/ui/spinner';
 import PlayerHero from '../../src/lib/components/player/PlayerHero.svelte';
 import PlayerUidForm from '../../src/lib/components/player/PlayerUidForm.svelte';
 import UnknownPlayerCharacterCard from '../../src/lib/components/player/UnknownPlayerCharacterCard.svelte';
@@ -19,6 +21,18 @@ const profile: PlayerProfile = {
 };
 
 describe('Player presentation components', () => {
+  it('allows existing live regions to own announcements without nested status roles', () => {
+    const alert = render(Alert, { props: { role: undefined, 'aria-live': 'assertive' } }).body;
+    expect(alert).toContain('aria-live="assertive"');
+    expect(alert).not.toContain('role="alert"');
+    const spinner = render(Spinner, {
+      props: { 'aria-hidden': 'true', role: undefined, 'aria-label': undefined }
+    }).body;
+    expect(spinner).toContain('aria-hidden="true"');
+    expect(spinner).not.toContain('role="status"');
+    expect(spinner).not.toContain('aria-label=');
+  });
+
   it('renders all Hero metadata and distinguishes null counts from zero', () => {
     const body = render(PlayerHero, { props: { profile, avatarUrl: null } }).body;
     expect(body).toContain('Synthetic Player');

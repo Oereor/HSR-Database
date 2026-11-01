@@ -272,6 +272,14 @@ EnemyGrid、WaveLayout、NodeSection 与 HP 的普通布局迁移到工具类，
 
 仓库缺少 .crossnote/scripts/check-pseudocode.cjs；文档未增加伪代码，按仓库手工维护约定使用 git diff --check 校验空白。完成 Phase 6B 后停止，不进入 Phase 6C，不推送或部署。
 
+## Phase 6C：玩家信息页面
+
+### UID 查询与状态
+
+UID 表单使用 Label 与一体式 InputGroup / Button，手机继续使用同一结构；保留原 ID、text / numeric 输入提示、绑定、onSubmit / onInput、Enter、错误关联与 aria-busy。加载期间只禁用查询按钮，输入仍可编辑；不新增长度限制、自动查询或业务 guard。idle / loading 使用最小标准 Empty，loading 使用装饰性 Spinner，请求错误使用 Alert；显式覆盖组件默认 role，保留表单 alert、polite / status 与 assertive 的原有通知职责。删除旧输入、焦点、按钮和状态容器 CSS，来源说明保留原文及 Enka.Network 链接。
+
+首批格式 / ESLint、完整 pnpm check（Svelte 0 errors / 0 warnings）通过；组件与客户端相关单元测试共 12 项不同用例通过，包含默认 role 可覆盖及装饰性 Spinner 不重复宣告。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。
