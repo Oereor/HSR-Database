@@ -21,7 +21,6 @@
   --surface-border-strong: rgb(215 181 109 / 42%);
   --border: var(--surface-border);
   --border-strong: var(--surface-border-strong);
-  --glow: rgb(91 130 210 / 16%);
   --radius-card: 14px;
   --radius-control: 10px;
   --radius: var(--radius-card);
@@ -34,16 +33,13 @@
   --space-8: 2rem;
   --space-12: 3rem;
   --space-16: 4rem;
-  --font-page-title: clamp(2.5rem, 4.5vw, 3rem);
   --font-hero-home-title: clamp(2rem, 3.4vw, 3.25rem);
   --font-hero-home-title-mobile: clamp(1.875rem, 8vw, 2.25rem);
-  --font-hero-overview-title: clamp(2rem, 4.6vw, 3rem);
   --font-hero-detail-title: clamp(2.05rem, 3.7vw, 3.15rem);
   --font-hero-title-weight: 750;
   --font-section-title: 1.5rem;
   --font-card-category: 1.375rem;
   --font-major-title: 1.125rem;
-  --font-card-title: 1.125rem;
   --font-body: 1rem;
   --font-meta-key: 0.875rem;
   --font-meta-value: 0.9375rem;
@@ -65,7 +61,7 @@
   color: var(--text);
 }
 
-/* Element defaults yield to shadcn utilities; legacy classes retain their order. */
+/* Base typography and focus yield to component utilities. */
 @layer base {
   * {
     box-sizing: border-box;
@@ -111,26 +107,12 @@
   select {
     color: var(--text);
   }
-  input,
-  select {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-control);
-    background: rgb(7 10 18 / 74%);
-    padding: 0.72rem 0.85rem;
-    outline: none;
-    transition:
-      border-color var(--motion),
-      box-shadow var(--motion);
-  }
   input:focus,
   select:focus,
   button:focus-visible,
   a:focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 3px;
-  }
-  select option {
-    background: var(--surface);
   }
   h1,
   h2,
@@ -227,26 +209,6 @@ main {
   color: var(--primary);
 }
 
-.button {
-  border: 1px solid rgb(255 255 255 / 8%);
-  border-radius: 9px;
-  background: linear-gradient(135deg, #c7a55e, #806431);
-  padding: 0.75rem 1rem;
-  color: #0b0d12;
-  font-weight: 800;
-}
-.button--quiet {
-  align-self: end;
-  border-color: var(--border);
-  background: var(--surface-2);
-  color: var(--text-body);
-  font-size: 0.76rem;
-}
-.entity-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.85rem;
-}
 .empty-state {
   margin: 3rem auto;
   border: 1px dashed var(--border);
@@ -290,17 +252,12 @@ main {
   font-size: var(--font-section-title);
   line-height: 1.25;
   letter-spacing: -0.012em;
-}
-.detail-section > h2 {
   margin-bottom: 1.75rem;
 }
 .stack-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.8rem;
-}
-.stack-list.compact {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .info-card {
   min-width: 0;
@@ -727,52 +684,6 @@ main {
   font-size: 0.78rem;
 }
 
-.table-wrap {
-  overflow-x: auto;
-}
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  font-size: 0.78rem;
-}
-th,
-td {
-  border-bottom: 1px solid var(--border);
-  padding: 0.8rem;
-  text-align: left;
-  white-space: nowrap;
-}
-th {
-  color: var(--gold);
-  font-size: 0.68rem;
-}
-.split-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-.stage-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-  max-height: 480px;
-  overflow: auto;
-}
-.stage-list > span {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  background: var(--surface);
-  padding: 0.6rem;
-  font-size: 0.75rem;
-}
-.stage-list small {
-  margin-top: 0.25rem;
-}
-
 .enemy-monster-selector {
   display: flex;
   width: 100%;
@@ -980,16 +891,6 @@ th {
 .stance-display span {
   white-space: nowrap;
 }
-.dialog-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.dialog-heading button {
-  border: 0;
-  background: transparent;
-  font-size: 1.5rem;
-}
 .error-state {
   margin-top: 15vh;
 }
@@ -1084,12 +985,6 @@ th {
   font-weight: 500;
 }
 
-@media (max-width: 1180px) {
-  .entity-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 1080px) {
   .skill-card-grid {
     grid-template-columns: 1fr;
@@ -1120,26 +1015,18 @@ th {
   .special-effect-target-list {
     gap: var(--space-2) var(--space-3);
   }
-  .entity-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
   .detail-section {
     padding: 1.5rem 0;
   }
   .detail-section > h2 {
     margin-bottom: 1.35rem;
   }
-  .stack-list,
-  .stack-list.compact {
+  .stack-list {
     grid-template-columns: 1fr;
   }
   .trace-ability-groups,
   .trace-independent-grid {
     grid-template-columns: 1fr;
-  }
-
-  .stage-list {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -1156,11 +1043,6 @@ th {
 }
 
 @media (max-width: 520px) {
-  .entity-grid,
-  .stage-list {
-    grid-template-columns: 1fr;
-  }
-
   .enemy-battle-column {
     padding: var(--space-4);
   }
@@ -1177,9 +1059,6 @@ th {
   .recommendation-main-stat,
   .recommendation-substats {
     padding: var(--space-4);
-  }
-  .split-section {
-    grid-template-columns: 1fr;
   }
   .enhancement-control {
     width: 100%;
