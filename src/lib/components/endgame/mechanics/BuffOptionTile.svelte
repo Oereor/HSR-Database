@@ -1,4 +1,5 @@
 <script lang="ts">
+  import * as Card from '$lib/components/ui/card';
   import GameText from '$lib/components/shared/GameText.svelte';
   import type { EndgameOrderedMechanicView } from '$lib/domain/endgame-view';
 
@@ -8,45 +9,23 @@
   $: headingTag = `h${headingLevel}` as const;
 </script>
 
-<article class="buff-option-tile" data-buff-option-tile>
-  <svelte:element this={headingTag}><GameText text={option.name} /></svelte:element>
-  <p><GameText text={option.description} /></p>
-  {#if option.simpleDescription}
-    <p class="buff-option-tile__supplement" data-buff-option-supplement>
-      <GameText text={option.simpleDescription} />
+<Card.Root size="sm" role="article" class="buff-option-tile h-full gap-2" data-buff-option-tile>
+  <Card.Header>
+    <svelte:element this={headingTag} class="m-0 text-lg leading-snug font-semibold wrap-anywhere"
+      ><GameText text={option.name} /></svelte:element
+    >
+  </Card.Header>
+  <Card.Content class="grid gap-2">
+    <p class="text-secondary-foreground m-0 text-sm leading-relaxed wrap-anywhere">
+      <GameText text={option.description} />
     </p>
-  {/if}
-</article>
-
-<style>
-  .buff-option-tile {
-    min-width: 0;
-    border: 1px solid var(--surface-border);
-    border-radius: var(--radius-card);
-    background: rgb(14 20 34 / 64%);
-    padding: var(--space-4);
-  }
-
-  .buff-option-tile h3,
-  .buff-option-tile h4,
-  .buff-option-tile h5 {
-    margin: 0 0 var(--space-2);
-    color: var(--text-primary);
-    font-size: var(--font-major-title);
-    font-weight: 650;
-    line-height: 1.35;
-  }
-
-  .buff-option-tile p {
-    margin: 0;
-    color: var(--text-body);
-    font-size: var(--font-body);
-    line-height: 1.7;
-  }
-
-  .buff-option-tile .buff-option-tile__supplement {
-    margin-top: var(--space-2);
-    color: var(--text-secondary);
-    font-size: var(--font-meta-key);
-  }
-</style>
+    {#if option.simpleDescription}
+      <p
+        class="buff-option-tile__supplement text-muted-foreground m-0 text-xs leading-relaxed wrap-anywhere"
+        data-buff-option-supplement
+      >
+        <GameText text={option.simpleDescription} />
+      </p>
+    {/if}
+  </Card.Content>
+</Card.Root>

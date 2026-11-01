@@ -240,6 +240,12 @@ SectionHeading 保留 level、headingLevel、tone、id 和 meta slot，采用主
 
 依赖和锁文件未改动，两个只读上游保持初始干净状态。仓库缺少 .crossnote/scripts/check-pseudocode.cjs，文档未新增伪代码，按手工维护约定使用 git diff --check 校验空白。停止在 Phase 6A，不推送或部署。
 
+## Phase 6B：Endgame 赛期详情
+
+### 共享机制
+
+MechanicSectionCard 与 BuffOptionTile 使用单层紧凑 Card / Header / Content，保留标题层级、完整 GameText、buff 金色与 debuff 红色、分段及补充说明。机制保留 600 / 840px 容器断点及第三项跨行；选项保留 endgame-main 的 620 / 860px 断点。MechanicEntry 继续作为文本条目保留插槽，避免特性列表重复套 Card。删除重复外壳和普通布局 CSS，复杂分段边界仍使用主题分隔规则，不新增折叠或选择交互。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。

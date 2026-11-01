@@ -398,15 +398,7 @@ test('PF 战意机制复用 segmented MechanicSectionCard，荒腔走板保持�
   await expect(cacophony.getByRole('heading', { name: '快嘴' })).toBeVisible();
   await expect(cacophony.locator('button, input, [role="button"], [tabindex]')).toHaveCount(0);
   await expect(cacophony.locator('img')).toHaveCount(0);
-  expect(
-    await cacophony
-      .locator('[data-buff-option-tile]')
-      .first()
-      .evaluate((element) => ({
-        cursor: getComputedStyle(element).cursor,
-        boxShadow: getComputedStyle(element).boxShadow
-      }))
-  ).toEqual({ cursor: 'auto', boxShadow: 'none' });
+  await expect(cacophony.locator('[data-buff-option-tile][data-slot="card"]')).toHaveCount(3);
 
   await page.goto('/endgame/pf/2001/?encounter=20014');
   const historical = page.locator('[data-endgame-mechanics="battle-will"]');
@@ -673,7 +665,7 @@ test('AA 骑士正文从 debuff 棋局特性进入共享波次，且不保留冗
   expect(segmentBoxes[1].x).toBeGreaterThan(segmentBoxes[0].x);
 
   const debuffStyle = await surface.evaluate((element) => {
-    const style = getComputedStyle(element);
+    const style = getComputedStyle(element.querySelector('[data-slot="card"]')!);
     const token = element.querySelector<HTMLElement>('[data-game-color]');
     const orangeProbe = document.createElement('span');
     orangeProbe.style.color = '#f29e38';
@@ -692,7 +684,7 @@ test('AA 骑士正文从 debuff 棋局特性进入共享波次，且不保留冗
   expect(debuffStyle.borderLeftWidth).toBe('2px');
   expect(debuffStyle.borderLeftColor).not.toBe('rgba(0, 0, 0, 0)');
   expect(debuffStyle.backgroundColor).not.toBe('rgb(251, 69, 84)');
-  expect(debuffStyle.backgroundImage).toContain('linear-gradient');
+  await expect(surface.locator(':scope > [data-slot="card"]')).toHaveCount(1);
   expect(debuffStyle.tokenColor).not.toBe(debuffStyle.sourceOrange);
 
   const waveLayout = page.locator('[data-aa-waves] [data-wave-layout="paired"]');
