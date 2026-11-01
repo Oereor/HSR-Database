@@ -182,6 +182,12 @@ SectionHeading 保留 level、headingLevel、tone、id 和 meta slot，采用主
 
 共享组件与遗器变更的格式 / ESLint、Svelte 检查通过（0 errors / 0 warnings），浏览器布局在最终构建后验证。
 
+### 技能卡
+
+技能卡使用单层 Card / Header / Content 和 Separator，保留语义类别、progression / variant 结构及全部信息、预览和特殊效果回调。保留普通网格及卡片 h-full：1080px 以上两列同行等高，1080px 及以下单列。效果标签复用 Badge，新增 variants 保留原默认 secondary 外观，不改变目录卡片。只删除已替换的技能外壳、标题及图标 CSS；info-card 仍由培养结果使用，保留其规则。
+
+变更格式 / ESLint、Svelte 检查（0 errors / 0 warnings）及相关玩家组件、培养展示与行迹分组单元测试 28 项通过。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。

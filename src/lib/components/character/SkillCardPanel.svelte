@@ -1,4 +1,6 @@
 <script lang="ts">
+  import * as Card from '$lib/components/ui/card';
+  import { Separator } from '$lib/components/ui/separator';
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import SkillProgressionPanel from '$lib/components/character/SkillProgressionPanel.svelte';
   import SkillVariantView from '$lib/components/character/SkillVariantView.svelte';
@@ -28,44 +30,52 @@
     : undefined;
 </script>
 
-<article class="info-card skill-card" data-skill-category={card.category}>
-  <div class="info-card__heading skill-card__heading">
-    <h3 class="skill-card__title--icon">
-      <AssetImage src={iconUrl} alt="" fallbackClass="skill-card__icon-fallback" /><span
-        >{card.displayLabel}</span
+<Card.Root role="article" class="skill-card h-full gap-0" data-skill-category={card.category}>
+  <Card.Header class="skill-card__heading pb-3">
+    <Card.Title class="skill-card__title--icon flex items-center gap-2 text-xl">
+      <AssetImage
+        src={iconUrl}
+        alt=""
+        class="size-7 shrink-0 object-contain"
+        fallbackClass="skill-card__icon-fallback size-7 shrink-0"
+      /><span>{card.displayLabel}</span>
+    </Card.Title>
+  </Card.Header>
+  <Separator class="mx-6 w-auto data-horizontal:w-auto" />
+  <Card.Content
+    class="text-secondary-foreground pt-4 [&_p]:text-base [&_p]:leading-relaxed [&>.skill-progression-group:first-child_.skill-level-control]:border-t-0 [&>.skill-progression-group:first-child_.skill-level-control]:pt-0"
+  >
+    {#each card.progressions as progression (progression.id)}
+      <SkillProgressionPanel
+        {progression}
+        controlId={`skill-progression-${card.category}-${progression.id}`}
+        previewControl={previewControls?.[progression.id]}
+        onPreviewLevelChange={(level) => onPreviewLevelChange?.(progression.id, level)}
+        variants={card.variants.filter((variant) => progression.variantIds.includes(variant.id))}
+        categoryLabel={card.displayLabel}
+        showGroupLabel={card.progressions.length > 1}
+        {specialEffectsAvailable}
+        {specialEffectIconUrl}
+        {onOpenSpecialEffects}
+        playerLevel={playerSkillTreeIndex
+          ? resolvePlayerSkillLevel(progression, playerSkillTreeIndex)
+          : undefined}
+      />
+    {/each}
+    {#if fixedVariants.length}<div
+        class:fixed-variant-list--separated={fixedVariantsNeedDivider}
+        class="skill-variant-list fixed-variant-list"
       >
-    </h3>
-  </div>
-  {#each card.progressions as progression (progression.id)}
-    <SkillProgressionPanel
-      {progression}
-      controlId={`skill-progression-${card.category}-${progression.id}`}
-      previewControl={previewControls?.[progression.id]}
-      onPreviewLevelChange={(level) => onPreviewLevelChange?.(progression.id, level)}
-      variants={card.variants.filter((variant) => progression.variantIds.includes(variant.id))}
-      categoryLabel={card.displayLabel}
-      showGroupLabel={card.progressions.length > 1}
-      {specialEffectsAvailable}
-      {specialEffectIconUrl}
-      {onOpenSpecialEffects}
-      playerLevel={playerSkillTreeIndex
-        ? resolvePlayerSkillLevel(progression, playerSkillTreeIndex)
-        : undefined}
-    />
-  {/each}
-  {#if fixedVariants.length}<div
-      class:fixed-variant-list--separated={fixedVariantsNeedDivider}
-      class="skill-variant-list fixed-variant-list"
-    >
-      {#each fixedVariants as variant (variant.id)}
-        <SkillVariantView
-          {variant}
-          selectedLevel={fixedLevel(variant)?.level ?? 1}
-          showLevel={card.category !== 'technique'}
-          {specialEffectsAvailable}
-          {specialEffectIconUrl}
-          {onOpenSpecialEffects}
-        />
-      {/each}
-    </div>{/if}
-</article>
+        {#each fixedVariants as variant (variant.id)}
+          <SkillVariantView
+            {variant}
+            selectedLevel={fixedLevel(variant)?.level ?? 1}
+            showLevel={card.category !== 'technique'}
+            {specialEffectsAvailable}
+            {specialEffectIconUrl}
+            {onOpenSpecialEffects}
+          />
+        {/each}
+      </div>{/if}
+  </Card.Content>
+</Card.Root>

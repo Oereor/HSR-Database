@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Badge } from '$lib/components/ui/badge';
   import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
   import SkillCombatMeta from '$lib/components/character/SkillCombatMeta.svelte';
@@ -29,7 +30,7 @@
     <div class="skill-variant__heading-meta">
       <SkillEffectTag effect={variant.combatMeta.effect} />
       {#if variant.source === 'avatar-global-buff'}
-        <span class="skill-effect-tag">{m.skill_exclusive()}</span>
+        <Badge variant="outline" class="skill-effect-tag text-primary">{m.skill_exclusive()}</Badge>
       {:else if showLevel}<span>Lv.{selected?.level ?? selectedLevel}</span>{/if}
     </div>
   </div>

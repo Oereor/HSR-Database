@@ -1,13 +1,27 @@
 <script lang="ts">
   import { cn } from '$lib/utils.js';
   import type { HTMLAttributes } from 'svelte/elements';
-  let { class: className, children, ...restProps }: HTMLAttributes<HTMLSpanElement> = $props();
+  let {
+    class: className,
+    children,
+    variant = 'secondary',
+    ...restProps
+  }: HTMLAttributes<HTMLSpanElement> & {
+    variant?: 'default' | 'secondary' | 'outline' | 'destructive';
+  } = $props();
 </script>
 
 <span
   data-slot="badge"
   class={cn(
-    'border-border bg-secondary text-secondary-foreground inline-flex w-fit shrink-0 items-center justify-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium',
+    'inline-flex w-fit shrink-0 items-center justify-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium',
+    variant === 'outline'
+      ? 'border-border text-foreground bg-transparent'
+      : variant === 'default'
+        ? 'bg-primary text-primary-foreground border-transparent'
+        : variant === 'destructive'
+          ? 'bg-destructive/10 text-destructive border-transparent'
+          : 'border-border bg-secondary text-secondary-foreground',
     className
   )}
   {...restProps}>{@render children?.()}</span
