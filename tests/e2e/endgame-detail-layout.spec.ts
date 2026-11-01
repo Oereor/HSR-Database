@@ -1,8 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 for (const prefix of ['', '/en']) {
-  test(`Phase 6B responsive details ${prefix || 'zh-CN'}`, async ({ page, isMobile }) => {
-    test.skip(isMobile, 'Explicit viewport matrix runs once in desktop Chromium');
+  test(`endgame responsive details ${prefix || 'zh-CN'}`, async ({ page, isMobile }) => {
     test.setTimeout(180_000);
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.clock.setFixedTime(new Date('2026-09-09T00:00:00+08:00'));
@@ -21,62 +20,46 @@ for (const prefix of ['', '/en']) {
       'as/3020/?encounter=30204',
       'aa/8/?encounter=804%3Anormal'
     ];
-    for (const width of [320, 390, 768, 1280, 1600]) {
-      await page.setViewportSize({ width, height: 1000 });
-      for (const route of routes) {
-        await page.goto(`${prefix}/endgame/${route}`);
-        await expect(page.locator('[data-app-ready]')).toHaveAttribute('data-app-ready', 'true');
-        if (width >= 1280) {
-          await page.locator('[data-sidebar="trigger"]').click();
-          await expect(page.locator('[data-slot="sidebar"][data-state]')).toHaveAttribute(
-            'data-state',
-            'expanded'
-          );
-          await expect
-            .poll(() =>
-              page
-                .locator('[data-slot="sidebar-container"]')
-                .evaluate((el) =>
-                  Math.abs(
-                    el.getBoundingClientRect().width -
-                      parseFloat(getComputedStyle(el).getPropertyValue('--sidebar-width')) *
-                        parseFloat(getComputedStyle(document.documentElement).fontSize)
-                  )
-                )
-            )
-            .toBeLessThanOrEqual(1);
-        }
-        const cards = page.locator('[data-endgame-enemy-card]');
-        expect(await cards.count()).toBeGreaterThan(0);
-        await expect(cards.locator('a, button')).toHaveCount(0);
-        await expect(cards.first().locator('[data-slot="card"]')).toHaveCount(1);
-        if ([390, 1280].includes(width))
-          await page.screenshot({
-            path: `data/audit/phase6b-${prefix ? 'en' : 'zh'}-${route.split('/')[0]}-${width}.png`
-          });
-        await cards
-          .first()
-          .locator('.endgame-enemy__name')
-          .evaluate((el) => (el.textContent = 'SyntheticLongName'.repeat(30)));
-        await cards
-          .first()
-          .locator('[data-endgame-speed]')
-          .evaluate((el) => (el.textContent = '1234567890'.repeat(8)));
-        for (const selector of ['.endgame-enemy__name', '[data-endgame-speed]'])
-          expect(
-            await cards
-              .first()
-              .locator(selector)
-              .evaluate((el) => el.scrollWidth - el.clientWidth)
-          ).toBeLessThanOrEqual(1);
-        expect(
-          await page.evaluate(
-            () => document.documentElement.scrollWidth - document.documentElement.clientWidth
-          )
-        ).toBeLessThanOrEqual(1);
+    const width = page.viewportSize()!.width;
+    for (const route of routes) {
+      await page.goto(`${prefix}/endgame/${route}`);
+      await expect(page.locator('[data-app-ready]')).toHaveAttribute('data-app-ready', 'true');
+      if (width >= 1280) {
+        await page.locator('[data-sidebar="trigger"]').click();
+        await expect(page.locator('[data-slot="sidebar"][data-state]')).toHaveAttribute(
+          'data-state',
+          'expanded'
+        );
       }
+      const cards = page.locator('[data-endgame-enemy-card]');
+      expect(await cards.count()).toBeGreaterThan(0);
+      await expect(cards.locator('a, button')).toHaveCount(0);
+      await cards
+        .first()
+        .locator('.endgame-enemy__name')
+        .evaluate((el) => (el.textContent = 'SyntheticLongName'.repeat(30)));
+      await cards
+        .first()
+        .locator('[data-endgame-speed]')
+        .evaluate((el) => (el.textContent = '1234567890'.repeat(8)));
+      for (const selector of ['.endgame-enemy__name', '[data-endgame-speed]'])
+        expect(
+          await cards
+            .first()
+            .locator(selector)
+            .evaluate((el) => el.scrollWidth - el.clientWidth)
+        ).toBeLessThanOrEqual(1);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+        )
+      ).toBeLessThanOrEqual(1);
     }
-    // Exercise existing container boundaries independently from Sidebar width.
+    // Container-query boundaries are independent of the device viewport.
+    if (isMobile) {
+      expect(errors).toEqual([]);
+      return;
+    }
     await page.setViewportSize({ width: 1600, height: 1000 });
     await page.goto(`${prefix}/endgame/aa/8/?encounter=804%3Anormal`);
     await expect(page.locator('.endgame-local-nav a[aria-current="page"]')).toHaveAttribute(

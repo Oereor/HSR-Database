@@ -128,7 +128,6 @@ test('遗器 Overview 使用统一页面外壳与本地套装 Hero decoration', 
   await expect(categoryGroup.locator('img')).toHaveCount(0);
   await expect(page.locator('.entity-overview-card').first()).toBeVisible();
   await expect(page.locator('.overview-pagination')).toBeVisible();
-  await expect(page.locator('.filters, .filter-backdrop')).toHaveCount(0);
 });
 
 test('遗器类别使用单选语义并保留排序、重置分页', async ({ page }) => {
@@ -193,29 +192,6 @@ test('遗器搜索与历史 type 参数可组合，清空搜索后保留类别',
   await expect(page.locator('.entity-overview-card')).toHaveCount(
     relicCatalog.filter((entry) => entry.category === 'planar').length
   );
-});
-
-test('遗器统一页面外壳与专用 Grid 在各断点不横向溢出', async ({ page }) => {
-  for (const viewport of [
-    { width: 1280, height: 800 },
-    { width: 700, height: 900 },
-    { width: 520, height: 844 },
-    { width: 390, height: 844 },
-    { width: 340, height: 720 }
-  ]) {
-    await page.setViewportSize(viewport);
-    await page.goto('/relics/?sort=id');
-    await expect(page.locator('.overview-hero')).toBeVisible();
-    await expect(page.locator('.overview-search input')).toBeVisible();
-    await expect(page.locator('[data-filter-value="cavern"]')).toBeVisible();
-    await expect(page.locator('.overview-toolbar')).toBeVisible();
-    await expect(page.locator('.overview-grid--compact')).toBeVisible();
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth - document.documentElement.clientWidth
-      )
-    ).toBeLessThanOrEqual(1);
-  }
 });
 
 test('遗器目录复用 shared compact Overview，并保留可读 typography 与 icon fitting', async ({

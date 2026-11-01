@@ -1,369 +1,97 @@
-# UI 迁移计划
-
-## Phase 0：审计与基线
-
-基线为 `develop` 的 `0fd5921`，重构分支为 `refactor/shadcn-foundation`。环境：Node.js 24.21.0、pnpm 11.9.0、Svelte 5.57.0、Tailwind CSS 4.3.3。`pnpm check`、`pnpm build` 已通过；首次类型检查遇到旧素材清单缺少 `characters.icons`，由现有构建流程刷新生成缓存后消失，无源码修复。网站与两个只读上游仓库均无工作区变更。
-
-全局入口是 `src/styles/app.css`，由根 layout 导入，另有 detail-hero / detail-inspection 展示样式及组件内 CSS。Tailwind 已通过 Vite 插件接入；站点默认深蓝黑背景、金色强调，沿用中英文字体栈、语义字号及 `--space-*` 间距。业务组件、Paraglide 消息和素材加载各有独立边界。
-
-| 分类            | 后续处理                                                                                     |
-| --------------- | -------------------------------------------------------------------------------------------- |
-| Dialog          | 替换 ChangelogModal、SpecialEffectDialog、ItemDetailModal 的交互外壳，保留数据与业务编排     |
-| Popover / Toast | 迁移 SettingsPopover、InfoToast，保留状态来源及消息调用                                      |
-| 筛选 / 基础交互 | 逐步迁移 FilterGroup / FilterChip、Button、LevelSlider、Tabs、Disclosure，保留筛选和计算语义 |
-| 业务展示        | 保留角色、光锥、遗器、敌人、养成、玩家及 Endgame 组件，通过组合基础组件逐步迁移              |
-
-### CSS 兼容风险
-
-- 旧 `--muted` 是正文色 `--text-body`，shadcn 的同名变量是背景色；必须迁移所有旧引用，包括作为背景使用的位置。
-- 旧 `--radius-lg` 为 22px，与 Tailwind / shadcn 的圆角尺度冲突；应改为业务面板变量并保持值不变。`--border` 语义一致，可复用现值。
-- 未分层的 `a`、`button`、`p` 等元素规则可能覆盖工具类；接入时处理基础规则层级，保留业务 class 的既有覆盖顺序。
-- `.button`、局部 `.button-primary`、筛选 chip、标签及卡片的边框、圆角、焦点样式分散；`.enemy-summon-list` 等存在后置覆盖。先标记，迁移对应使用方后再删除，不把有意覆盖当作废弃代码。
-
-## Phase 1：基础接入
-
-采用官方手动安装流程[^manual]，使用 Svelte 5 / Tailwind 4 的 new-york 基础组件[^tailwind-v4]。手动合并主题，禁止在原 CSS 上运行初始化覆盖。默认保持深色，建立可覆盖的语义 token，预留浅色扩展而不增加主题切换。仅在错误页返回链接验证标准 Button，不创建演示页。
-
-验收：变更文件格式与 lint、完整类型检查和生产构建；复用共享 UI 单元测试及 ci-smoke，补充少量双语错误页链接和键盘回归；检查桌面与移动端代表页面的颜色、圆角、布局及溢出。联网使用已核实的项目代理，不升级无关依赖。
-
-### 基础接入约定
-
-- `components.json` 保留 new-york 标识；官方 Tailwind 4 schema 已将 style 标记为兼容字段，新组件采用当前标准样式。Button 从官方文档源码引入，仅按仓库格式整理，入口为 `$lib/components/ui/button`。工具函数使用官方推荐的 `cn`，仅新增精确版本 `cn@0.5.1`、`tailwind-variants@4.0.0`、`tw-animate-css@1.4.0`，其他依赖保持原锁定版本。
-- `src/styles/theme.css` 集中管理语义颜色及 Tailwind 映射；深蓝黑背景、金色 Primary / Ring、分层 Surface 及前景色复用现有色板。字体族独立为 `--font-family-sans`，映射 `font-sans`；字号复用现有语义尺度，间距沿用 Tailwind 默认 0.25rem 基准及现有 `--space-*`，不另建重复尺度。
-- 根 HTML 固定 `dark`，首屏无需主题脚本。未来浅色主题应覆盖语义颜色与兼容的旧颜色令牌，再实现切换；该阶段不提供浅色配色或切换入口。
-- 原 `app.css` 页面规则保留，仅将元素基础规则放入 `base` 层。旧 `--muted` 引用统一改为 `--text-body`；旧 `--radius-lg` 改为 `--radius-panel: 22px`，`--radius-card` / `--radius-control` 保持原值。仍在使用的 `.button`、弹窗、筛选等组件和样式继续保留。
-- 后续添加组件时沿用 `$lib` 别名，审查依赖及 CSS diff。不要对现有 `app.css` 执行 CLI `init`；依赖安装后检查锁文件，防止项目已有 `latest` 声明刷新无关版本。
-
-### Phase 1 验证结果
-
-2026-10-31 完成基础接入。变更源码的 Prettier / ESLint、`pnpm check`（0 errors / 0 warnings）、`pnpm build` 均通过；共享 UI 单元测试 14 项、ci-smoke 与双语错误页桌面 / 移动端浏览器测试共 9 项通过。错误页确认返回链接语义、当前语言目标、Tab 焦点、Enter 激活、金色主题及 reduced-motion 生效。
-
-首页、中英文首页、角色目录、角色详情、敌人详情、玩家入口及 Endgame 入口共 7 个路由，在 1280px / 390px 下的 14 张首屏截图与迁移前逐像素一致，采样元素的颜色、字号、圆角及位置一致，均无横向溢出。错误页桌面和移动布局已检查。此对比为阶段性人工验收，不加入阻塞 CI 的全页面基线。验证不包含玩家远程 API 和生产部署；本地 Vercel Analytics 脚本返回 404，不影响 UI 验证。
-
-## Phase 2：全局导航
-
-根布局统一渲染路由 Breadcrumb，复用既有双语标签和页面数据；实体及赛期名称不新增请求。查询参数不增加层级，当前项无跳转链接，移动端单行截断保留完整可访问名称。删除重复的列表及 Endgame 父级返回导航，保留玩家上下文返回。站点栏、Breadcrumb、局部导航及锚点偏移统一使用 CSS 变量。
-
-官方 CLI 1.7.2 已不再识别 new-york，并提示使用当前默认 nova；保留原配置、主题和 Button，不运行初始化。新增标准 Breadcrumb 和精确版本 @lucide/svelte，未更新已有依赖。
-
-验证：路由及现有导航单元测试 31 项通过，变更源码格式 / ESLint、完整类型检查（0 errors / 0 warnings）、生产预渲染构建通过。双语桌面 / 移动端 Breadcrumb 与既有 ci-smoke 共 9 项浏览器测试通过。
-
-## Phase 3：共享交互
-
-### Dialog / Sheet
-
-特殊效果、物品详情、更新日志使用标准 Dialog；主导航和 Endgame 手机菜单分别使用左侧、底部 Sheet。保留原内容与业务请求失效处理，焦点恢复通过组件生命周期衔接真实触发元素。删除全部原生 dialog 开关、手写 Tab trap、背景坐标判断、滚动锁及旧外壳样式，未保留平行实现。新增 bits-ui 及其日期 peer dependency，原依赖版本保持不变。
-
-格式 / ESLint、完整类型检查（0 errors / 0 warnings）通过；相关既有单元测试 141 项，桌面 / 移动端交互测试 28 项通过（另有两项按视口跳过）。测试改用语义 heading，并等待水合、导航和库管理的滚动锁释放，不固定旧 DOM 容器。
-
-### 设置 Popover
-
-设置面板改用标准 Popover，复用已有 Bits UI；保留设置素材、原语言链接、query / hash 和整页重载行为。同语言点击不导航。删除全局 click / Esc 监听、手写定位及旧面板 CSS，改用既有 Button 和主题令牌。格式 / ESLint、完整类型检查通过；增加键盘打开、Esc 焦点恢复和外部点击关闭回归，最终生产预览中，双语历史往返、query / hash 保留、Popover 键盘及现有导航冒烟共 23 项检查通过。
-
-### Sonner 与选项控件
-
-根布局只挂载一个深色 Sonner，放在站点 Grid 外，避免空 live region 占据网格行。通知保留原标题、正文、触发点、4 秒时长和替换语义；等级、Profile、实体切换及卸载时 dismiss。删除 InfoToast 及手写 portal、动画、计时器；不引入 mode-watcher 或主题切换。
-
-目录筛选复用 Toggle / Toggle Group，仍交由原筛选函数更新 URL；遗器显式单选，其他目录保持多选，“全部”操作保留清空及分页语义。敌人技能使用原生单选组，强化使用 Switch；radio / aria-checked 和方向键由标准组件提供。保留素材图标、元素色及原有文本。删除 FilterChip 和旧强化 / 技能选项样式，保留原有 Tabs、敌方单位 radio 和整卡 TraceToggle。
-
-为现行组件样式补充 Bits UI 状态到 Tailwind 的映射（open / closed、checked / unchecked、horizontal / vertical），使弹层动效、Switch 位移和纵向技能列表正确生效。四级 Breadcrumb 为当前项保留最小宽度，320px 下仍能看到当前页面；回归只约束可见性，不固定视觉像素基线。
-
-### 最终验收
-
-完整类型检查为 0 errors / 0 warnings，生产预渲染构建、变更文件格式 / ESLint 及相关单元测试通过。生产浏览器验收分批通过：导航 / 语言 23 项、控制与通知 16 项、单选及窄屏 Breadcrumb 10 项、弹窗 28 项（另有 2 项按视口跳过）、本地 mock 玩家上下文返回 10 项。Sonner 移出 Grid 后，首页首屏及通知生命周期额外复查 9 项通过。已更新旧容器、Toast 与单选属性断言，未加入全页面像素基线。
-
-1280px / 390px 截图及 320px 四级路径检查无横向溢出、无运行时异常；长弹层、技能纵向列表、Switch 状态位移及 reduced-motion 生效。截图和报告保留为忽略的本地验收产物，不入库。原有依赖版本未升级，仅新增标准组件所需依赖；初始化、数据处理、业务计算及素材管线均未改动。真实玩家远程 API 和远程部署未验证；本地 Analytics 脚本 404 为既有环境限制，不影响验收。
-
-## Phase 4：全局布局、导航与搜索
-
-### 可折叠导航
-
-使用官方 Sidebar 源码[^sidebar]，桌面采用 icon 折叠模式，Sidebar 修整后的展开 / 折叠宽度为 19rem / 4rem。默认折叠，状态仅在根布局生命周期内保持，不写 cookie 或 localStorage，不注册默认全局快捷键。新增标准 Tooltip，复用已有 Sheet、Button、Bits UI 和游戏图标，无新增依赖或锁文件变更。
-
-导航入口继续由同一份本地化数据提供；移动端由 Sidebar 内部单一 Sheet 管理遮罩、滚动锁和焦点。保留站点标识、全部入口、更新日志及版本信息；Sidebar 修整按授权删除短标语，折叠搜索入口展开后聚焦原搜索框。设置 Popover 保持原位置和语言路由行为。删除旧窄侧栏、独立抽屉及手写 Tooltip CSS；导航断点统一为 48rem，业务断点保留。短视口导航与页脚区域可滚动。
-
-导航 / Breadcrumb 单元测试 28 项及完整类型检查通过（0 errors / 0 warnings），变更源码格式和 ESLint 通过。导航浏览器回归 6 项通过（4 项按视口跳过），覆盖双语状态保持 / 刷新重置、搜索聚焦及提交、移动端 Esc / 外部点击 / 焦点恢复 / 路由关闭和短视口。旧桌面遮罩及固定宽度断言已更新为 Sidebar 状态与行为断言。展开态与移动端禁用 Tooltip，避免隐藏提示拦截 Escape。
-
-### 搜索控件
-
-新增官方 Input 源码，SearchBar 使用同一组 Input / Button 与 Lucide 搜索图标，保留原 props、绑定、原生 GET 表单及页面 onSubmit 行为。导航采用紧凑图标按钮，首页与搜索页保留已有搜索文字；删除两套控件的自定义边框、渐变、焦点和响应式 CSS。搜索页面仅用工具类统一结果分组间距，不改业务卡片、分类、排序、分页、异步状态或搜索服务。
-
-变更源码格式 / ESLint 和 Svelte 检查通过（0 errors / 0 warnings）；搜索及 FlexSearch 合约单元测试 18 项通过。搜索结果 / 素材 / URL 相关桌面和移动端浏览器测试 44 项通过，覆盖双语素材与回退、长结果 / 加载更多、异常 / 重试、请求竞态、query / hash 以及前进后退。
-
-### 全局布局与偏移
-
-根布局改为随 Sidebar 重排的 Flex 布局，内容、Breadcrumb 和 Footer 共用 90rem 最大宽度与 1.5rem / 1rem 桌面 / 移动边距。导航以 48rem 为断点；Sidebar 修整后移除独立移动站点栏，统一 Trigger / Breadcrumb 顶栏基础高 2.75rem，并计入顶部安全区；继续沿用累计 Sticky Offset 与锚点间距，保留详情 SectionNav、Endgame 导航以及 Footer 全部信息和链接。抽屉适配动态视口高度与安全区，根布局外仍只挂载一个 Toaster。
-
-删除旧 Grid 定位、独立移动容器宽度、旧侧栏宽度变量以及废弃导航 / 搜索规则；仍被业务卡片和页面使用的样式保持。更新旧测试选择器，为容器对齐与 Endgame 锚点补充小型视口矩阵；导航稳定后再访问明确的 Breadcrumb 父链接，避免历史返回后的旧路由 DOM 竞态。折叠态操作标签隐藏，移动抽屉中的更新日志保留底层 Sheet，使关闭日志后可恢复原触发焦点。
-
-### Phase 4 验收结果
-
-2026-11-01 完成。变更文件 Prettier / ESLint、完整 `pnpm check`（0 errors / 0 warnings）和生产预渲染构建通过；日志焦点与折叠标签修正后再次完成 Svelte 检查与生产构建。相关单元测试共 46 项通过。生产导航 / 布局 / 语言回归分批通过 50 项；首页双语视口、共享 Hero、Endgame 移动菜单和训练 / 通知的额外 22 项回归通过，按视口跳过重复矩阵及不适用场景。前述搜索 / 素材 / URL 的 44 项浏览器测试在开发服务器通过。
-
-320px、390px、767px、768px、1280px 和 1920px 的容器与锚点矩阵通过；生产截图检查涵盖折叠 / 展开导航、移动抽屉、双语搜索与 Endgame，未出现横向溢出或页面运行时错误。修正了折叠标签裁切和移动更新日志关闭后的焦点丢失，Footer 四个既有链接均保留。未引入视觉快照基线，截图 / 报告 / 下载源码仅作为忽略的本地验收产物。
-
-依赖和锁文件保持不变，两个只读上游仓库状态保持不变。真实玩家远程 API、远程部署及非 Chromium 浏览器未验证；本地 Analytics 脚本 404 为既有环境限制。完成 Phase 4 后停止。
-
-### Sidebar 修整
-
-采用 Sidebar-07[^sidebar-07] 的内容区 Trigger 布局，桌面和移动端共用唯一的 Trigger / Breadcrumb 顶栏；保留原移动 Sheet，关闭后恢复外部 Trigger 焦点。顶部品牌区域固定 56px，仅保留 Logo 与单行本地化标题；搜索槽位固定 44px，菜单按钮高 44px、游戏图标 24px。展开 / 折叠宽度为 304px / 64px，移动 Sheet 宽度为 min(304px, 90vw)。删除旧移动站点栏、副标题、内部展开按钮和相应 CSS，不改变导航数据、路由或业务内容。
-
-品牌标题收起时立即隐藏，展开时等待容器自身 width transitionend；宽度与占位使用同一过渡参数。布局后的动画状态检查处理无过渡和取消，reduced-motion 直接完成，不使用固定计时器。标题与搜索容器明确禁用显隐过渡，避免全局 reduced-motion 的极短过渡影响显隐。搜索聚焦仅在展开完成且输入框实际可见时执行，按渲染帧检查可见性，关闭 / 卸载时取消。
-
-侧边与 Footer 分隔线显式使用 sidebar-border；导航选中项采用深蓝背景与柔和金色 1px 描边，非选中项无金色描边。清理 MenuButton 强制尺寸覆盖，保留键盘焦点反馈。版本区域改为 role=status 的普通节点，不产生无操作按钮或额外 Tab 停留点。展开态与移动端继续禁用导航 Tooltip，避免隐藏提示干扰 Esc。
-
-搜索统一采用官方 InputGroup[^input-group] 的 Root / Input / Addon / Button，单一边框内嵌右侧搜索操作，复用原 Input / Button，无新增依赖或锁文件变更。保留隐藏 label、GET 表单、Enter 提交、页面 onSubmit、语言路径和 query / hash；首页与搜索页继续显示原有搜索按钮文字。
-
-中英文打开 / 关闭的人工中间帧采样中，半程宽度为 184px，品牌高度为 56px，首个导航项纵向位移为 0px；320px 短视口 Sheet 宽度为 288px、无横向溢出。仅新增一项动画行为回归，覆盖逐帧位置、标题时机、快速反向切换及 reduced-motion 聚焦；更新既有 Trigger / 品牌选择器，未新增视觉快照基线。生产浏览器回归 29 项通过（7 项按视口跳过），覆盖导航、动画、Sticky 锚点、搜索按钮 / Enter 提交、query / hash / 前进后退、语言切换及 Sheet 焦点恢复。半程 Sidebar 与内容占位宽度同为 184px；生产截图未见异常亮边，页面无运行时错误。
-
-变更文件 Prettier / ESLint 和生产预渲染构建通过。完整 pnpm check 中消息校验与 Svelte 检查通过（0 errors / 0 warnings）；随后脚本类型检查进程以 Windows 原生退出码 3221225477 结束，没有类型诊断。直接用 Node 执行 tsconfig.scripts.json 与 tsconfig.api.json 两项 TypeScript 检查均通过，未重复运行无关测试。两个只读上游仓库保持原状态。非 Chromium 浏览器、真实玩家远程 API 和远程部署未验证；本地 Analytics 脚本 404 为既有环境限制。
-
-## Phase 5A：四类实体目录
-
-### 共享控件与布局
-
-采用均衡紧凑布局，OverviewHero 保留标题、说明、总数、装饰素材和 Endgame artwork slot；搜索使用现有 InputGroup，删除重复 Enter 处理。工具栏采用 Button 与 Bits UI Select，结果数量与操作分列，排序继续交由页面回调写入 URL。分页采用标准导航、列表和 Button variants 的链接组合，保留全部页码与现有 URL 构造函数，不引入第二份分页状态。Select 的接口和样式参考官方组件[^select]，分页按原生 URL 导航适配官方展示结构[^pagination]。
-
-Grid 使用容器内自适应列，360px 起双列、640px 起最小 12rem，删除负边距及旧列宽规则。删除五个共享组件的旧 CSS；共享 props 和 variant 保持兼容。变更源码 ESLint 与 Svelte 检查通过（0 errors / 0 warnings）；已更新分页结构选择器，并增加双语排序键盘及历史回归，浏览器验证留待最终批次。
-
-### 实体卡片
-
-EntityOverviewCard 改用主题 Card 表面和工具类，删除原 199 行组件 CSS、固定行高、标题裁切及渐变／位移动效。角色与光锥为 4:5、敌人为 4:3 图片区，遗器为方形居中图标区；原素材、fit、position、scale、fallback 和整卡链接保留。新增 artworkAspect 可选 prop，默认 portrait，敌人显式使用 landscape；现有 props 与插槽兼容。Badge 仅用于非交互元信息，名称完整换行，信息区自然增长。首页、搜索和玩家继续复用同一实现，未改其业务数据或专用样式。
-
-### 目录页面与验收
-
-四类目录统一为 Hero、搜索、展开筛选、结果工具栏、网格和分页；空状态使用主题容器和 Button。FilterGroup 的标签与布局改用工具类，保留原 Toggle Group。页面业务脚本仅新增 Button import，搜索匹配、领域筛选、排序比较、分页大小、URL 读写及导航函数均未修改。重复参数、历史类别参数、query / hash、分页重置和清除筛选保留搜索的语义均保留。六个共享组件、四个目录和 FilterGroup 共删除 502 行旧 CSS 内容；未修改全局 CSS 或详情、Endgame、玩家专用样式。
-
-2026-11-01 完成静态验证：变更文件 Prettier / ESLint、完整 pnpm check（0 errors / 0 warnings）、相关筛选单元测试 22 项、生产预渲染构建通过。仓库没有 .crossnote/scripts/check-pseudocode.cjs，文档未添加伪代码，使用 git diff --check 检查空白。依赖与锁文件保持不变。
-
-生产浏览器回归共 85 项不同用例通过、1 项按视口跳过；另有 6 项强化键盘断言复查通过，全部复用同一生产构建。覆盖双语排序键盘 / 历史、目录筛选 / 分页 / 草稿提交、缺图、图标语义，以及首页、搜索加载更多、Endgame Hero 和本地 mock 玩家上下文链接。更新旧工具栏单按钮、空状态类名和分页直接子链接选择器；保留原业务断言，移除旧固定高度 / 遗器单列 / 标题裁切断言，不建立视觉快照基线。
-
-中英文四类目录在 320px / 390px / 768px / 1280px 下及桌面 Sidebar 展开时共 40 组布局采样通过：横向溢出为 0，标题未裁切，卡片无嵌套链接或按钮，页面无运行时异常。人工检查移动角色 / 遗器、桌面光锥 / 敌人和 Endgame 插槽截图；验收图片及日志留在忽略目录 data/audit，不入库。
-
-本地测试曾受沙箱端口、浏览器路径和临时目录权限限制，取得正常本机执行权限后验证通过。开发服务与构建并发导致的加载失败不计入验收；最终全部复用同一生产构建。临时预览端口同步更新测试的日志弹窗关闭状态后运行回归。两个只读上游工作区保持原状态；非 Chromium 浏览器、真实玩家远程 API 和远程部署未验证。本地 Analytics 脚本 404 为既有环境限制。
-
-## Phase 5B：详情 Hero 与基础信息
-
-### 最终设计与边界
-
-按用户后续指正保留原先一体化 Hero：同一 Card 外壳内保留原 header、左侧立绘、渐变、偏左下方的文字与 metadata，右侧仍为原 aside，没有独立 Card、圆角或边框。恢复原角色 1180px、其他类型 820px 的堆叠断点，以及各类图片尺寸、比例、定位和展示空间；左侧将通用内边距从 clamp(1.5rem, 3vw, 2.5rem) 小幅收至 clamp(1.25rem, 2.5vw, 2rem)，并为长名称补充宽度约束和自动换行。DetailArtwork 和 RelicIcon 最终与 Phase 5A 基线一致。玩家上下文、强化开关、名称、副标题、说明和元信息全部保留。
-
-属性区沿用主题表面、手机 1rem / 其他宽度 1.25rem 内边距，保持与左侧连续的表面和分界。光锥等级、晋阶与叠影仍处于同一区域；遗器效果保留全部件数条件和完整说明。页面业务脚本与 Phase 5A 基线逐字比较，仅新增展示组件 import，没有改动计算、数据处理、状态、回调或 keyed 生命周期。
-
-### 共享展示与 CSS
-
-新增实际使用的 Card Root 和 Bits UI Separator，不修改依赖及锁文件。StatList / StatRow 保留 dl / dt / dd、标签插槽、图标列、数值颜色和字段标记；属性行基础高度收至 2.5rem，长标签和数值自然增高，数值右对齐。装饰性 Separator 放在 dt 内，首行隐藏并限制在行边界内，替代原伪元素。列表间距缩至 1rem；PlayerStatsPanel 继续按容器宽度分栏，内部不套 Card。LevelSlider 和叠影内部交互未改动。
-
-SectionHeading 保留 level、headingLevel、tone、id 和 meta slot，采用主题字号、工具类及窄屏换行，删除长装饰线。详情 Section 缩为桌面 2rem、手机 1.5rem，删除底边和敌人额外间距覆盖。SectionNav 的 DOM 顺序、ID、观察器、选中状态与 Sticky Offset 保持原样；共享标题使用方包括首页、搜索、玩家和 Endgame。
-
-删除 detail-inspection.css 及入口导入，将等级控件无顶部分隔线规则合并至现有 stat-level-control 规则。保留用户要求的原 Hero 构图样式，清理其被标准组件替代的外壳与面板规则。变更涉及的 CSS 净减少 289 行；Phase 5A 卡片及目录布局、技能卡内容、Disclosure 状态逻辑均未修改。
-
-### 验证结果
-
-最终一体化版本的变更文件 Prettier / ESLint、完整 pnpm check 通过（Svelte 0 errors / 0 warnings），生产预渲染构建通过。相关属性与玩家合约单元测试共 58 项在共享组件迁移后通过；后续一体化调整未改动这些计算及合约。8 个中英文生成页面的 HTML 检查确认同一 Card 外壳包围原 header、属性区为 aside、内部无独立 Card，并保留各类 Hero 字段数量及唯一 h1。
-
-生产浏览器回归分批 104 项通过：详情展示 / 属性 / 缺图 / SectionNav 58 项，角色等级与强化、光锥叠影、敌人切换、mock 玩家 loading / 成功 / 失败及上下文返回、养成状态、首页 / 搜索 / Endgame 共享标题 46 项。保留原业务断言，更新伪元素分隔线、旧 padding、光锥分隔节点、旧技能 aria-pressed 及属性区独立 Card 断言，不增加全页面视觉快照。
-
-中间版本曾将左右拆开，已按用户指正撤回，其截图不作为最终交付证据。极端无空格长名称暴露原 Hero 的横向裁切，增加标题宽度约束与自动换行；修正后生产构建通过，8 项标题 / Hero 布局复查通过。最终中英文四类详情在 320px / 390px / 768px / 1280px、Sidebar 展开及极长名称 / 描述下共 48 组采样通过，无实际文字裁切、横向溢出或页面运行时异常。人工查看角色、光锥、遗器及敌人的代表截图，确认原叠图与一体化边界。
-
-验证曾因自动审批服务额度暂时无法执行，提示的恢复时间过后服务恢复，随后完成上述浏览器回归。构建与预览串行执行，每次重新构建后重启预览，避免缓存旧产物清单。验收图片、临时配置及日志保留在忽略目录 data/audit，不入库。仓库没有 .crossnote/scripts/check-pseudocode.cjs，文档未添加伪代码，使用 git diff --check 检查空白。
-
-另有遗器 Disclosure 的“窄屏关闭后切回宽屏故事仍隐藏”用例在桌面 / 手机项目各失败 1 项。Disclosure 和 RelicPieceCard 均与 Phase 5A 基线一致；未修改其状态逻辑或放宽断言，后续批次排除此已记录失败，未将其计入通过数，需单独确认该行为。真实玩家远程 API、非 Chromium 浏览器和远程部署未验证。
-
-未推送或部署，停止在 Phase 5B，不进入 Phase 5C。
-
-## Phase 5B 补充与 Phase 5C
-
-### 遗器部件
-
-部件卡改用 size=sm 的 Card / Header / Title / Content，图标为 64px，保留名称、部位、完整简介及缺图降级。Card 默认外观兼容现有 Hero。部件网格采用容器查询：36rem 起两列，四件套在 64rem 起四列，两件套最多两列，窄屏一列。
-
-按明确授权移除部件故事及其 Disclosure；全仓引用检查后删除唯一使用方已消失的 Disclosure.svelte。删除故事可见性、展开与宽屏恢复 UI 测试，保留上游故事数据解析和本地化合约，并断言包含故事的数据也不渲染故事。此前记录的遗器故事宽屏恢复问题因该 UI 被移除而结束，不修改上游数据。
-
-共享组件与遗器变更的格式 / ESLint、Svelte 检查通过（0 errors / 0 warnings），浏览器布局在最终构建后验证。
-
-### 技能卡
-
-技能卡使用单层 Card / Header / Content 和 Separator，保留语义类别、progression / variant 结构及全部信息、预览和特殊效果回调。保留普通网格及卡片 h-full：1080px 以上两列同行等高，1080px 及以下单列。效果标签复用 Badge，新增 variants 保留原默认 secondary 外观，不改变目录卡片。只删除已替换的技能外壳、标题及图标 CSS；info-card 仍由培养结果使用，保留其规则。
-
-变更格式 / ESLint、Svelte 检查（0 errors / 0 warnings）及相关玩家组件、培养展示与行迹分组单元测试 28 项通过。
-
-### 行迹与星魂
-
-行迹和星魂替换为单层 Card，标签采用 Badge；保留原能力组、独立节点、三列 / 两列及窄屏单列布局，保留所有文本、图标和玩家状态。TraceToggle 改用已安装的标准 Toggle，继续覆盖整卡并使用原名称、pressed 和回调；额外效果说明保持原 z-index，独立于整卡操作。删除旧卡片背景、边框和标题外壳规则，保留游戏状态颜色和分组布局，不新增 Tabs 或 Accordion。
-
-### 等级控件
-
-引入复用 Bits UI 的单滑块 Slider 和 Label，LevelSlider 保留标量 value、原 props / ID / 标签关联、范围、步长、等级输出及即时回调。内部索引与实际等级继续分离，ARIA 宣告实际等级；外部同步和初始化不触发业务回调，同值通知去重。光锥叠影保留 selectedIndex、等级映射、固定等级分支及原 keyed 生命周期；预览和培养状态来源未合并，玩家实际等级继续禁用。
-
-标准 Toggle 使用受控 getter / setter，避免培养规则拒绝激活后内部 pressed 状态残留。原业务校验、提示、DAG 联动、整卡点击和额外效果操作保留；焦点采用标准 ring。未改动一体化 Hero、目录卡片、数据处理、计算、国际化及路由。
-
-删除原生 range、进度计算、浏览器轨道 / 滑块 CSS，以及无使用方的技能标题、卡片、标签与叠影控件规则；分组分隔改用 Separator。生产组件和样式共净减少 287 行 CSS，保留培养结果仍使用的 info-card，以及游戏素材、状态颜色和必要分组布局。新增测试夹具 7 行 CSS 单独计入后，整体净减少 280 行；未更改依赖或锁文件。
-
-### 本阶段验收
-
-变更文件 Prettier / ESLint、完整 pnpm check 通过（Svelte 0 errors / 0 warnings）；相关 SSR / 业务单元测试 53 项分批通过。Slider 三项浏览器组件回归通过，覆盖非默认步长、实际等级与索引 ARIA、外部同步、禁用状态、键盘、鼠标和触摸拖动及单次回调。旧原生 range / fill、元素包装、outline 和长分隔线断言改为角色、ARIA、焦点 ring 与实际业务结果；保留数值和状态断言。
-
-最终生产预渲染构建通过，新的生产预览上两批回归分别通过 71 项与 62 项，合计 129 项不同用例及 4 项重复复查，另 1 项按视口跳过。覆盖技能等级预览、倍率及特殊资源、特殊效果弹层与焦点恢复、行迹整卡和额外效果、培养 DAG / 等级 / 晋阶边界、叠影独立状态、敌人共享等级与单位切换，以及本地 mock 玩家 loading / 成功 / 失败、实际技能 / 行迹 / 星魂状态、缓存与上下文返回。遗器容器额外检查 575 / 576px 和 1023 / 1024px；此前发现的 Toggle 拒绝激活状态问题已修复并由双语桌面 / 手机回归通过确认。
-
-中英文在 320 / 390 / 768 / 1080 / 1081 / 1280 / 1600px 及桌面 Sidebar 展开时采样，技能保持指定列数且逐行等高；遗器四件套为 1 / 2 / 4 列，两件套最多两列。36rem / 64rem 两侧的容器查询由现有遗器浏览器测试覆盖。人工检查双语技能、行迹、星魂和遗器代表截图，简介与说明完整换行，无横向溢出；采样页面无运行时异常，不建立视觉快照基线。
-
-构建与预览串行执行，最终构建后启动新的预览进程。验收日志、临时配置和截图保留在忽略目录 data/audit，不入库。仓库没有 .crossnote/scripts/check-pseudocode.cjs，文档未新增伪代码，使用 Prettier 与 git diff --check 校验 Markdown。真实玩家远程 API、非 Chromium 浏览器及远程部署未验证；玩家回归使用本地 mock，本地 Analytics 脚本 404 为既有环境限制。
-
-## Phase 6A：Endgame 总览、赛期目录与模式导航
-
-### 总览
-
-总览卡使用外层单一链接与单层紧凑 Card，Header / Content 和 Separator 组织原有信息。保留四模式强调色、图标与水印；AA 继续独立整行并保留较大的水印。常规模式以内容容器为准，48rem 起三列，否则单列，间距为 1rem，适应 Sidebar 展开。删除旧卡片外壳、渐变 Hover、固定最小高度、大段留白与名称截断，名称完整换行。推荐赛期、日期、数量、空赛期降级与链接计算保持原样。
-
-总览变更的 Prettier / ESLint 及相关 SSR 单元测试 34 项通过，包含四模式链接、长名称、无图标和空赛期。
-
-### 赛期目录
-
-赛期卡采用单一链接包裹紧凑 Card / Header / Title / Content，分隔使用 Separator。当前赛期保留模式色边框、大标题与水印，即将继续独立宽卡；未知与历史使用最小 14rem 的自适应网格。删除旧固定高度、重复渐变外壳和视口列数 CSS，组间距收至 2rem，名称完整换行。分类、顺序、条件渲染、日期、关卡数量、ARIA 名称、链接及客户端时钟逻辑保持原样。旧测试的精确 Padding、最小高度和严格三级高度断言改为内容、单层 Card、分隔线、焦点与溢出检查。
-
-赛期卡、时间状态、Clock 与导航单元回归共 23 项通过；赛期源码及测试 Prettier / ESLint 通过。
-
-### 模式导航与 CSS
-
-模式导航的原生链接使用现有 Button ghost variant，保留 aria-current、四模式图标与强调色。继续使用原有两层容器，主题 Card 表面替代硬编码背景，删除重复阴影与全部组件 CSS。Sticky top、56px 高度契约、横向滚动和挂载时当前模式定位保持原样；详情页共享该导航，局部导航与锚点实现未修改。无新增 Tabs、业务功能、依赖或锁文件变更。
-
-五个展示文件的组件 CSS 从 508 行收至 6 行，净删除 502 行，剩余仅为两种水印的 mask-image。普通布局、颜色、间距、Hover 与焦点使用主题 Token 和 Tailwind。两个页面的 script 与迁移前逐字一致，数据、赛期推荐、分类、时钟、路由和国际化实现均未修改。
-
-### 验收结果
-
-2026-11-01 完成变更文件 Prettier / ESLint、完整 pnpm check（Svelte 0 errors / 0 warnings）和生产预渲染构建。相关单元测试两批共 52 项不同用例通过，覆盖展示、空赛期、无图标、长名称、赛期时间状态、Clock 与导航；其中 5 项重复执行。
-
-新生产预览的浏览器回归 32 项不同用例通过，2 项按视口跳过；另 4 项强化 Sidebar 展开检查通过。中英文覆盖 320 / 390 / 768 / 1280 / 1600px、四模式、四类赛期、正确链接、长名称、整卡焦点、当前导航可见性、历史前进后退、同页时间边界更新及 Sticky 锚点避让。模式目录每次整页加载后显式展开 Sidebar，并等待实际宽度稳定后在同一帧测量导航边界，避免动画中分次采样造成竞态。人工查看双语桌面 / 手机及 Sidebar 展开代表截图，名称完整换行，无横向溢出或页面运行时异常；不建立视觉快照基线。
-
-首次沙箱单元测试受临时目录重命名权限限制，获批本机执行后通过。浏览器首轮复用了旧预览，入口 JS 返回 404；停止该轮，改用独立端口新预览后完成上述验收，旧轮结果不计入通过数。Sidebar 补充脚本中的动画采样及 rem 单位换算问题均已修正。日志、临时配置和截图留在忽略目录 data/audit，不入库。本地 Analytics 脚本 404 为既有环境限制；非 Chromium 浏览器和远程部署未验证。
-
-依赖和锁文件未改动，两个只读上游保持初始干净状态。仓库缺少 .crossnote/scripts/check-pseudocode.cjs，文档未新增伪代码，按手工维护约定使用 git diff --check 校验空白。停止在 Phase 6A，不推送或部署。
-
-## Phase 6B：Endgame 赛期详情
-
-### 共享机制
-
-MechanicSectionCard 与 BuffOptionTile 使用单层紧凑 Card / Header / Content，保留标题层级、完整 GameText、buff 金色与 debuff 红色、分段及补充说明。机制保留 600 / 840px 容器断点及第三项跨行；选项保留 endgame-main 的 620 / 860px 断点。MechanicEntry 继续作为文本条目保留插槽，避免特性列表重复套 Card。删除重复外壳和普通布局 CSS，复杂分段边界仍使用主题分隔规则，不新增折叠或选择交互。
-
-### 敌人、波次与关卡
-
-敌人使用原生链接或非交互 article 包裹单层 Card，等级、数量与贪饕层数使用 Badge。保留 260px 最大宽度、standard / compact 的 190 / 170px 立绘区、素材定位与缺图降级、数量 ARIA、全部属性与多阶段倍率。弱点继续使用既有可访问图标；名称与数值完整换行，非链接卡片不增加操作。
-
-EnemyGrid、WaveLayout、NodeSection 与 HP 的普通布局迁移到工具类，保留波次数量决定的组宽、容器断点及并排波次分隔；presentation.ts 未修改，不为关卡、波次增加额外 Card。删除 app.css 中被替代的敌人卡外壳、标签、属性与窄屏重复规则。展示与导航单元回归 34 项通过，新增空机制 / 选项覆盖；长名称、长数值与空波次用例已纳入全阶段验收。
-
-### 局部导航与四模式整合
-
-局部导航继续使用桌面 136px 侧栏和 1080px 及以下的既有 Sheet，链接复用 Button variants，移动触发器使用标准 Button。保留当前项、query href、afterNavigate 关闭、打开时聚焦当前项及关闭后焦点恢复，分隔线使用 Separator。共享赛期 Hero 仅迁移 Badge、Separator 和工具类，日期与客户端状态逻辑保持原样。
-
-四模式普通容器与间距迁移到工具类，保留 MoC / AA 并排波次、PF compact 堆叠波次、AS 单卡宽首领列及 700px 对照布局、额外效果与终焉公理。AS 特性列表使用 Separator，保留文本分组与额外效果的原生 details 行为。清除 app.css 的 Endgame 专属旧卡片、导航及相关响应式覆盖，保留共享 Sticky Tokens。Phase 6A 总览、目录与模式导航视觉未修改。类型检查暴露前阶段 Playwright test.use 的 reducedMotion 类型不兼容，改为 page.emulateMedia；不改变页面实现。
-
-### 本阶段验收
-
-2026-11-01 完成变更文件 Prettier / ESLint、完整 pnpm check（Svelte 0 errors / 0 warnings）与相关单元回归 46 项。覆盖机制与选项 0 / 1 / 2 / 3 项、debuff 语义、完整文本、无链接与缺图降级、长名称 / 数值、空波次、阶段来源、贪饕、导航与时钟。Button 引用绑定修正后再次通过 Svelte 检查及生产预渲染构建。
-
-新生产预览上，两批浏览器回归分别通过 90 项与 6 项，合计 94 项不同用例及 2 项强化复查，另 4 项按视口跳过。覆盖中英文、四模式及 AA 骑士 / 普通 / 绝境、机制条件与补充说明、额外效果、战斗字段和倍率、波次顺序与数量、原生链接 / 键盘 / 新标签页、缺图、贪饕、Sheet 开关 / Esc / 遮罩 / 焦点恢复、query 切换、前进后退与同页时间状态更新。Sticky 锚点与容器对齐沿用既有双语矩阵，未放宽业务断言。
-
-双语详情矩阵覆盖 320 / 390 / 768 / 1280 / 1600px，桌面每次整页加载后展开 Sidebar 并等待宽度稳定。机制、选项与 AS 对照布局另覆盖 599 / 600、619 / 620、839 / 840、859 / 860、699 / 700px 容器边界。人工查看 MoC、PF、AS、AA 的双语桌面 / 手机截图，保留构图与阅读分组，名称与数值完整换行，无横向溢出或页面运行时异常；不建立视觉快照基线。
-
-迁移初轮浏览器检查发现移动触发器 ref 未初始化引发 props_invalid_value，已显式初始化为 null，并由最终水合及 Sheet 回归验证。断点测试等待容器重排，贪饕红色检查先转换为像素通道，兼容主题 Token 的 OKLCH 表达；原颜色与布局语义要求保留。失败和中断轮次不计入最终通过数。构建与预览串行执行，最终构建后启动独立端口的新预览；日志、临时配置和截图保留在忽略目录 data/audit。本地 Analytics 脚本 404 为既有环境限制；非 Chromium 浏览器及远程部署未验证。
-
-组件 style 块与 app.css 共净减少 728 行 CSS，其中 app.css 删除 416 行旧 Endgame 规则；仅保留机制响应式分段、波次复杂宽度 / 分隔、AS 对照网格及游戏颜色等必要规则，立绘背景继续使用原渐变。七个模式组件与详情页业务 script 与迁移前逐字一致，presentation.ts、数据模型 / 计算 / 时钟 / 路由 / 国际化及 Phase 6A 视觉实现均未改动。依赖与锁文件未变，两个只读上游保持初始干净状态。
-
-仓库缺少 .crossnote/scripts/check-pseudocode.cjs；文档未增加伪代码，按仓库手工维护约定使用 git diff --check 校验空白。完成 Phase 6B 后停止，不进入 Phase 6C，不推送或部署。
-
-## Phase 6C：玩家信息页面
-
-### UID 查询与状态
-
-UID 表单使用 Label 与一体式 InputGroup / Button，手机继续使用同一结构；保留原 ID、text / numeric 输入提示、绑定、onSubmit / onInput、Enter、错误关联与 aria-busy。加载期间只禁用查询按钮，输入仍可编辑；不新增长度限制、自动查询或业务 guard。idle / loading 使用最小标准 Empty，loading 使用装饰性 Spinner，请求错误使用 Alert；显式覆盖组件默认 role，保留表单 alert、polite / status 与 assertive 的原有通知职责。删除旧输入、焦点、按钮和状态容器 CSS，来源说明保留原文及 Enka.Network 链接。
-
-首批格式 / ESLint、完整 pnpm check（Svelte 0 errors / 0 warnings）通过；组件与客户端相关单元测试共 12 项不同用例通过，包含默认 role 可覆盖及装饰性 Spinner 不重复宣告。
-
-### 玩家名片
-
-PlayerHero 使用单层紧凑 Card，继续用 AssetImage 保留游戏头像、错误及空图降级和昵称对应的可访问名称。手机头像 64px，宽屏 80px；以名片容器 48rem 为断点，在身份 / 统计并排与统计下置间切换。保留 dl / dt / dd、全部元信息、签名换行、等宽 UID 和 tabular-nums 统计。displayCount 未修改，null 继续为 -、零继续为 0。删除旧渐变外壳、固定尺寸及名片 CSS，测试改为单层 Card、空值和数值对齐语义，不再固定字号及旧对齐方式。名片格式 / ESLint 和 5 项组件单元测试通过，包含长昵称与多行签名。
-
-### 角色列表与 CSS
-
-助战和展示角色分别使用原有 SectionHeading 与同一 OverviewGrid，保留原循环、key、分组、顺序和 playerCharacterHref 的 UID / build / 来源参数。未知角色使用单层 Card 与 ImageFallback，图片区与角色目录保持 4:5；原始 ID 与缺失提示完整换行，不创建链接或补造角色信息。两组空状态复用 Empty，仅显示原提示。删除旧助战列数规则和玩家页剩余 CSS，不修改共享目录默认样式及玩家装备 / 技能 / 行迹 / 星魂实现。
-
-### 本阶段验收
-
-2026-11-01 完成变更文件 Prettier / ESLint、完整 pnpm check（Svelte 0 errors / 0 warnings）、相关玩家组件 / 客户端 / resolver / 角色组件单元测试 76 项，以及生产预渲染构建。旧测试中固定字号、对齐方式与外壳选择器改为信息、null 与零、单层 Card、可访问错误关联和 tabular-nums 断言；保留原业务数值与跳转断言。
-
-新生产预览的针对性浏览器回归 28 项通过，2 项按视口跳过。全部使用现有合成 mock，不调用真实第三方 API。覆盖中英文、无 UID、无效输入 / URL、Enter 与空白处理、loading / success、404、限流含 retry-after 分支、超时、上游不可用和无效响应。验证加载时仅按钮禁用、输入仍可编辑且不自动查询、错误关联与通知区域、原始错误正文不泄漏、失败后同 UID 再提交、成功后同 UID 缓存复用、SPA 历史前进后退，以及延迟旧响应不能覆盖恢复后的当前玩家。
-
-双语布局覆盖 320 / 390 / 768 / 1280 / 1600px 与桌面 Sidebar 展开，另检查名片容器 767 / 768px 两侧。覆盖无头像、头像 / 角色图片失败、长昵称、多行及无空格长签名、统计 null 与零、长未知 ID、两组分类 / 数量 / 网格与空状态。人工查看中英文桌面 / 手机代表截图，无横向溢出或页面运行时异常；不建立视觉快照基线。现有 mock 玩家上下文回归验证装备、实际技能等级、行迹 / 星魂状态、UID / build / from 参数、语言切换与返回玩家页，未修改这些实现。
-
-四个迁移文件删除全部 320 行旧 CSS，改用标准组件、主题 Tokens、容器查询与工具类；未修改共享 Card / CharacterOverviewCard / OverviewGrid 默认样式或其他已完成页面。玩家页 script 除新增三个展示 import 外与迁移前逐字一致，四个文件的原消息调用全部保留；请求管理、解析、匹配、缓存、装备映射、URL 和国际化均未改动。依赖和锁文件未变化，两个只读上游保持初始干净状态。
-
-构建后在独立端口启动新的生产预览，截图、日志及临时配置保留在忽略目录 data/audit。仓库缺少 .crossnote/scripts/check-pseudocode.cjs，文档未新增伪代码，按手工维护约定使用 git diff --check 校验空白。非 Chromium 浏览器和真实第三方 API 未验证；本地 Analytics 脚本 404 为既有环境限制。无未解决的本阶段回归；停止在 Phase 6C，不进入 Phase 7，不推送或部署。
-
-## Catalog 与 Detail 细节修复
-
-### 展示细节
-
-敌方技能列表为属性图标保留固定宽度的空槽，攻击与非攻击技能名称保持对齐。分页移除下方重复页数说明，保留页码链接和前后页。遗器 Hero 类型与条件版本使用标准 Badge，保持原 metadata 的深色胶囊语义及全部信息。角色、光锥稀有度筛选复用 RarityStars 和游戏稀有度颜色，按钮提供本地化可访问名称；筛选值与 ToggleGroup 交互保持原样。
-
-展示细节已通过变更文件 Prettier / ESLint、完整 pnpm check（Svelte 0 errors / 0 warnings）与技能渲染、稀有度单元测试 17 项。首次单元测试启动受沙箱临时目录重命名权限限制，本机运行相同测试后通过；浏览器交互与视觉检查随自适应分页统一验收。
-
-### 自适应分页
-
-四类目录共用独立的分页状态实例。OverviewGrid 挂载后读取浏览器解析的 grid-template-columns，以 ResizeObserver 监听实际容器宽度，并在窗口 resize 时补充读取；动画帧合并测量，仅报告有效且变化后的列数。未启用回调的搜索、玩家等 Grid 不安装监听，原卡片最小宽度、间距及响应式 CSS 保持不变。
-
-角色、光锥、遗器以 36、敌方以 48 为目标容量，选择最接近目标的正整数列数倍数，距离相同时取较大值。SSR 与首次水合使用固定容量，首次客户端测量按响应式容量解释 URL 页码；后续宽度变化保留原页首实体所在页，连续列数变化沿用同一位置。页数、实体切片和分页控件来自同一状态，末页自然截断，空结果恢复后重新测量。
-
-布局引发的页码更新使用 SvelteKit goto 的 replaceState、noScroll 与 keepFocus，保留语言路径、查询参数（含重复参数）及 hash，不新增历史记录。未指定的第一页继续省略 page；非法或越界页码在客户端规范到合法页码。用户导航期间延后应用尺寸变化，较新的 URL 导航覆盖尚未发出的布局更新；搜索、筛选和排序仍沿用原有重置规则。
-
-### 验收结果
-
-2026-11-01 完成两批变更文件的 Prettier / ESLint、完整 pnpm check（Svelte 0 errors / 0 warnings）、相关单元测试 49 项不同用例，以及一次生产预渲染构建。第二批单元覆盖容量取整与平局、单列与超宽列数、非法页码与末页夹紧、SSR 固定容量、首次响应式解释、连续缩放位置保留、重复参数及导航竞争；原筛选和排序回归保持通过。
-
-构建完成后在独立端口 4187 启动新生产预览，32 项不同的 Chromium 浏览器回归通过；其中 20 项补充空结果恢复、水合控制台消息与技能区域截图后再次通过。覆盖四类目录、中英文、桌面与移动端、320 / 390 / 639 / 640 / 768 / 1150 / 1280 / 1600 / 1920px、Sidebar 折叠与展开、非末页完整行、实际列数对应容量、页数与切片一致、SSR 卡片数量、直接访问 / 非法 / 越界页码、重复参数、搜索草稿与提交、筛选、排序键盘操作及历史前进后退。缩放保留原页首实体且不增加历史记录，空结果清除后 Grid 正常恢复。
-
-详情与筛选检查验证技能名称左边界（含无属性技能）、原 ToggleGroup 键盘选择、遗器类型 / 版本 Badge、长 metadata 换行、星数、金 / 紫 / 蓝色、可访问名称及键盘筛选；人工查看中英文桌面与手机代表截图。无页面运行时异常、水合消息或横向溢出。不建立视觉快照基线，截图与临时配置保留在忽略目录 data/audit。
-
-首次单元测试因沙箱临时目录重命名 EPERM 未启动，获准本机执行后通过；该失败不计入通过数。本地 Analytics 脚本 404 为既有预览限制，非 Chromium 浏览器未验证。仓库缺少 .crossnote/scripts/check-pseudocode.cjs，文档未新增伪代码，使用 git diff --check 校验空白。依赖、锁文件、领域数据与计算保持不变，两个只读上游仍为初始干净状态。完成限定五项修复后停止，不进入 Phase 7，不推送或部署。
-
-## 后续阶段边界
-
-- Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。
-- Phase 3 完成共享交互迁移；Phase 5C 将整卡行迹切换接入标准 Toggle，现有 Tabs 与敌方单位 radio 保留。
-- Phase 4 完成全局导航、搜索和布局；Phase 5A 完成四类实体目录与共享卡片，Phase 5B 保留一体化 Hero，统一属性与 Section 展示；Phase 5C 完成遗器部件、技能、行迹、星魂及等级控件标准化。不进入 Endgame 或玩家信息的全面改造，不推送或部署。数据处理、游戏计算、素材解析、路由和国际化架构保持不变，无无关 Runes 迁移。
-
-- Phase 6A 完成 Endgame 总览、赛期目录和模式导航迁移；停止在此阶段，机制卡、波次、敌人、局部导航与玩家信息留待后续授权。
-
-- Phase 6B 完成四模式赛期详情的机制、敌人、波次、局部导航与 Hero 标准化；保留模式差异与数据行为，后续阶段另行授权。
-
-- Phase 6C 完成玩家 UID 查询、状态、名片、角色列表及未知角色降级标准化；保留请求与玩家上下文行为，停止在本阶段。
-
-## Phase 7A：技术债审计
-
-清理基线为 `79949a0`，分支为 `refactor/shadcn-foundation`；网站、TurnBasedGameData 与 StarRailRes 工作区均干净。Node.js 24.21.0、pnpm 11.9.0。
-
-- 删除候选：旧 `.button` / `.button--quiet`、`.entity-grid`、`.table-wrap`、`.split-section`、`.stage-list`、`.dialog-heading` 及关联断点规则；无引用的 `--glow`、`--font-page-title`、`--font-hero-overview-title`、`--font-card-title`。逐项核对动态 class、Slots、状态及模板后再删除，不能把 `.compact-entity-grid` 当作 `.entity-grid` 的使用方。
-- 兼容迁移：`.info-card` 仍服务培养结果，`.empty-state` 仍服务搜索与错误页；复用现有 Card / Empty，保留 section、live region 和视觉。普通按钮只有在兼容成本合理时才改用 Button。
-- 所有 shadcn 目录均有实际使用方；Breadcrumb Ellipsis、Dialog 的 Close / Description / Footer / Header / Trigger、Popover 的 Close / Description / Header / Title、Sheet 的 Close / Description / Footer / Trigger 为待删除子组件。Content 内部使用的 Overlay / Portal 和 primitive Close 继续保留；Sidebar 内部使用 Sheet Header。
-- 直接依赖均需检查源码、脚本和配置；`@internationalized/date` 是 Bits UI 的 peer dependency，保留。不预设必须删除依赖，不更新无关锁定版本。
-- 全局 input / select 视觉规则和 table 规则需要核对实际 DOM 与库生成元素；全站焦点、字体与 reduced-motion 规则保留。主题语义映射、Tailwind token 与 Bits UI 状态变体属于有效基础设施，不按文本引用次数删除。
-- 动态 class 核验涵盖 OverviewHero 的位置分支、组件 variants、响应式网格及运行时状态。现有完整工具类字面量可被扫描，动态语义标记不等于动态 Tailwind 类。
-- 测试重点是移除旧 DOM 耦合与重复矩阵，保留真实网格列数驱动分页、焦点、键盘、路由和业务状态；不重建视觉快照基础设施。
-
-统计限定生产组件 `src/lib/components/**/*.svelte`、相关辅助 TypeScript 与 `src/styles/**/*.css`，组件内 style 另列；排除路由、测试、文档、生成代码与构建产物。基线为 189 个组件（其中 UI 80 个）、11,170 行组件源码、29 个辅助 TypeScript 文件 / 463 行、共享 CSS 1,601 行、组件内 CSS 1,624 行；直接依赖 37 个，Vitest / E2E / component 测试文件分别为 87 / 32 / 2。构建 CSS 字节数另列，不与源码统计混合。
+# UI 基础与迁移验收
+
+shadcn-svelte 是网站统一 UI 基础。迁移分支为 `refactor/shadcn-foundation`，初始基线为 `0fd5921`；Phase 7 清理基线为 `79949a0`。游戏数据、计算、国际化、路由和素材解析沿用原架构，当前架构约定见 [本地化与数据生成](architecture/localization-and-data-generation.md)。
+
+## 阶段状态
+
+| 阶段 | 状态 | 交付内容 |
+| --- | --- | --- |
+| Phase 0 | 完成 | UI 审计、主题与验证基线 |
+| Phase 1 | 完成 | 手动接入标准组件、Design Tokens 与 Tailwind 4 |
+| Phase 2 | 完成 | 全局 Breadcrumb 与累计 Sticky Offset |
+| Phase 3 | 完成 | Dialog、Sheet、Popover、Sonner、共享选项控件 |
+| Phase 4 | 完成 | Sidebar、统一 InputGroup 搜索、响应式页面外壳 |
+| Phase 5A | 完成 | 四类实体目录、筛选、排序与卡片 |
+| Phase 5B–5C | 完成 | 详情 Hero、属性、遗器、技能、行迹、星魂及等级控件 |
+| Phase 6A–6B | 完成 | Endgame 总览、赛期目录、机制、敌人与局部导航 |
+| Phase 6C | 完成 | 玩家查询、请求状态、名片与角色列表 |
+| 细节修复 | 完成 | 技能名称对齐、metadata、稀有度筛选及自适应分页 |
+| Phase 7A–7C | 完成 | 技术债审计、CSS / 组件清理、测试与文档整理 |
+
+## 当前维护约定
+
+### 基础组件与主题
+
+- 手动维护 `$lib/components/ui/` 中的标准组件[^manual]，不执行 CLI overwrite 或重新初始化。`components.json` 保留 new-york 标识；后续 CLI 已使用新的默认风格，不能据此覆盖现有实现。
+- `app.css` 保留业务色板、排版、布局与专用状态；`theme.css` 将既有深蓝黑 / 金色映射到 shadcn 语义变量与 Tailwind。原 `--muted` 正文引用已迁到 `--text-body`，`--radius-panel` 与标准圆角尺度分开；不为统一命名批量改写业务引用。
+- 根 HTML 默认 dark，无主题探测脚本或浅色切换。保留 Bits UI 的 open / closed、checked / unchecked、horizontal / vertical 等状态变体及 Tailwind token 映射。
+- 全局基础层保留字体、文字色、光标、键盘焦点与 reduced-motion；表单边框、背景、padding 和过渡由标准控件负责。无实际使用方的 table / select option 视觉规则已删除。
+- 动态布局使用完整工具类字面量或显式分支；OverviewHero 的动态编号仅为语义标记，位置工具类均是完整字面量。不要通过拼接片段构造 Tailwind 工具类。
+
+### 导航、弹层与搜索
+
+- Sidebar 采用内容区唯一 Trigger / Breadcrumb 顶栏[^sidebar]，展开 / 折叠宽度为 19rem / 4rem，移动端为单一 Sheet。默认折叠，状态仅在根布局生命周期内保持；不持久化、不注册默认全局快捷键。导航断点为 48rem，业务断点独立保留。
+- Sidebar 标题显隐跟随宽度过渡完成事件，搜索聚焦等待实际可见，不用固定计时器。展开态和移动端禁用 Tooltip，避免拦截 Escape。版本信息使用 status，不产生无操作按钮。
+- Breadcrumb、内容与 Footer 共用最大宽度和边距；锚点使用累计 Sticky Offset，保留安全区、详情 SectionNav 与 Endgame 局部导航。
+- Dialog / Sheet / Popover 复用 Bits UI 的定位、滚动锁和焦点管理。特殊效果、材料与更新日志保留真实触发元素及焦点恢复；删除的独立 Close 包装组件不影响 Content 内部的 primitive Close。
+- 根布局外仅挂载一个深色 Sonner，保留原通知替换、4 秒时长与切换 / 卸载时 dismiss 行为，避免 live region 占据页面布局。
+- 搜索统一使用 InputGroup[^input-group]，保留 GET、Enter、显式 label、语言路径及 query / hash。语言切换仍由 URL 决定，不增加可变 locale 状态。
+
+### 业务展示与分页
+
+- 目录与玩家列表复用 OverviewGrid；Card、Badge、Separator、Toggle / ToggleGroup、Switch、Select[^select]、Slider 和 Pagination[^pagination] 负责通用展示及交互。角色每个语义技能类别仍只有一张卡，变体和独立进度留在卡内。
+- 详情保留一体化 Hero、角色立绘构图、图片遮罩、属性 / 稀有度颜色及缺图降级。等级、叠影、Profile、培养与玩家实际状态保持独立语义；预览不能修改培养目标或远程玩家状态。
+- 培养结果使用 Card；搜索与错误空状态使用 Empty。Empty 新增可选 `tag: 'div' | 'section'`，默认仍为 div，避免迁移时丢失原 section、标题和 live region。
+- Endgame 保留四模式差异、机制容器查询、波次宽度 / 分隔、AS 对照网格和水印遮罩；不以通用网格替代这些游戏布局。玩家保留全部元信息、null 与零的区别、请求竞态、缓存及未知角色降级。
+- OverviewGrid 挂载后测量实际列数，通过 ResizeObserver 与动画帧合并报告；无回调的搜索 / 玩家 Grid 不安装观察。角色 / 光锥 / 遗器以 36、敌人以 48 为目标容量，取最接近目标的正整数列数倍数，平局取较大值。
+- SSR 与首轮水合使用固定容量；首次测量按响应式容量解释 URL 页码，后续缩放保留原页首实体。布局更新使用 replaceState / noScroll / keepFocus，保留重复查询参数与 hash，不增加历史项；用户导航优先，筛选 / 搜索 / 排序沿用原重置规则。
+
+## Phase 7 审计与清理
+
+审计结合模板、动态 class、Slots / Snippets、组件状态、内部依赖、Portal 和构建输出，静态搜索仅用于生成候选。所有 shadcn 目录都有使用方，按子组件粒度清理。
+
+- 删除：旧 `.button` / `.button--quiet`、`.entity-grid`、`.table-wrap`、`.split-section`、`.stage-list`、`.dialog-heading`、无使用方的 `.stack-list.compact` 及关联响应式规则；删除 `--glow`、`--font-page-title`、`--font-hero-overview-title`、`--font-card-title`，合并重复的详情标题规则。
+- 删除 14 个 shadcn 子组件及对应导出：Breadcrumb Ellipsis；Dialog Close / Description / Footer / Header / Trigger；Popover Close / Description / Header / Title；Sheet Close / Description / Footer / Trigger。Overlay / Portal、Sidebar 使用的 Sheet Header 与现有双命名导出保留。删除无引用的 `WithoutChildren` 辅助类型。
+- 迁移：培养结果从 `.info-card` 接入 Card；搜索与错误页从 `.empty-state` 接入 Empty，删除这两组共享样式。培养结果的必要后代排版收归培养组件，旧色值、尺寸与间距保持一致，没有新增业务组件。
+- 保留：材料整卡触发器、搜索加载更多、培养重试、正文内联触发器、敌人 radio / Tabs 及原生 disclosure。强行套用通用 Button 需要重置尺寸、换行、hover / active / focus 等更多默认值，维护成本高于现有短实现；后续仅在能减少重复且证明兼容时处理。
+- 依赖：37 个直接依赖均保留；源码、脚本、配置和 peer dependency 未证明存在可删除项。`@internationalized/date` 是 Bits UI peer dependency；cn、tailwind-variants、tw-animate-css 与 svelte-sonner 均在使用。package.json 与 lockfile 未变。
+- 测试：删除重复的遗器视口矩阵和纯属性行样式一致性测试，移除旧空 DOM 与固定 padding 断言。Endgame 改用项目桌面 / 移动视口各跑一次，移除重复截图与 Sidebar 宽度测量，保留独立容器查询边界、四模式导航及长文本溢出检查。自适应分页列数、URL、业务状态及键盘 / 焦点验证保留。
+
+### 规模对比
+
+以下只统计 Git 跟踪的生产组件 `src/lib/components/**/*.svelte`、组件目录 / hooks / utils 的相关 TypeScript，以及 `src/styles/**/*.css`。排除路由模板、测试、文档、生成数据与构建产物。组件源码行数包含 style；组件内 CSS 是单独拆出的明细，不能再次加到组件源码总量。
+
+| 指标 | 清理前 `79949a0` | 清理后 |
+| --- | ---: | ---: |
+| 生产 Svelte 组件 | 189 | 175 |
+| 其中 shadcn UI 组件 | 80 | 66 |
+| 生产组件源码行数 | 11,170 | 10,954 |
+| 相关 TypeScript 文件 / 行数 | 29 / 463 | 29 / 419 |
+| 共享 CSS 行数 | 1,601 | 1,443 |
+| 组件内 CSS 行数 | 1,624 | 1,636 |
+| 直接依赖 | 37 | 37 |
+| Vitest / E2E / component 测试文件 | 87 / 32 / 2 | 87 / 32 / 2 |
+| Playwright E2E 展开用例（含项目） | 577 | 573 |
+
+14 个组件为删除；Card / Empty 是既有组件的兼容迁移；Empty 的可选语义标签是新增接口。组件内 CSS 增加 12 行，来自培养专用排版迁入与旧布局规则移除；共享与组件内 CSS 合计减少 146 行，不将迁移计作全部删除。未新增生产组件或依赖。
+
+构建产物另计：清理前已有生产输出的全部 CSS 合计 170,568 字节，清理后 168,076 字节；各文件分别 gzip 后合计 32,769 → 32,299 字节。两侧使用相同文件集合规则；产物字节数不与源码行数混用。验证日志、统计脚本、临时配置及截图仅保留在忽略目录 `data/audit/`。
+
+## 最终验证与剩余债务
+
+2026-11-01：变更文件 Prettier / ESLint、`git diff --check`、完整 `pnpm check`（Svelte 0 errors / 0 warnings）和一次 `pnpm build` 生产预渲染构建通过。
+
+- 相关 Vitest 9 个文件、209 项通过，覆盖共享 UI、搜索、培养展示、玩家组件、Endgame 卡片和分页；未修改或删除业务单元测试。
+- 新生产预览上的 50 项 Chromium 回归全部通过，无跳过、失败或 flaky。覆盖中英文、桌面 / 移动 Sidebar 与焦点恢复、Breadcrumb、目录筛选 / 排序 / 分页及历史、四类详情、四模式 Endgame、确定性玩家错误 / 重试、培养等级键盘与失败恢复、材料弹窗焦点 / 缓存，以及搜索空结果 / 加载更多。
+- 迁移前后 12 个双语桌面 / 手机状态的尺寸、边框、颜色、字体与间距一致；Empty 的 gap 在 block 布局下不参与排版。11 张截图逐像素一致，另 1 张仅 Sidebar 图标区域有 47 像素差异；迁移内容区域一致，并人工查看代表截图。不建立视觉快照基线。
+- 沙箱缺少 Chromium，Vitest 临时目录 rename 曾遇到 EPERM；本机执行相同检查后通过，未启动的测试不计通过数。文档无伪代码；仓库缺少 `.crossnote/scripts/check-pseudocode.cjs`，Markdown 依 `.prettierignore` 手工维护并通过空白检查。
+
+剩余维护项是上述有意保留的专用原生交互，以及现有的语义 / 业务 token 兼容层；没有证据支持在此阶段强制迁移。未来调整需继续验证焦点、状态和级联兼容。真实第三方玩家 API、非 Chromium 浏览器和远程部署未验证；本地 Analytics 404 是既有预览限制。两个只读上游状态保持不变。Phase 7 完成后停止，不增加功能、不推送或部署。
 
 ### 参考文献
 
 [^manual]: shadcn-svelte. Manual Installation. [官方文档](https://shadcn-svelte.com/docs/installation/manual).
-
-[^tailwind-v4]: shadcn-svelte. Tailwind v4. [官方文档](https://shadcn-svelte.com/docs/migration/tailwind-v4).
-
 [^sidebar]: shadcn-svelte. Sidebar. [官方文档](https://www.shadcn-svelte.com/docs/components/sidebar).
-
 [^input-group]: shadcn-svelte. Input Group. [官方文档](https://www.shadcn-svelte.com/docs/components/input-group).
-
-[^sidebar-07]: shadcn-svelte. Sidebar-07. [官方示例](https://www.shadcn-svelte.com/blocks/sidebar).
-
 [^select]: shadcn-svelte. Select. [官方文档](https://www.shadcn-svelte.com/docs/components/select).
-
 [^pagination]: shadcn-svelte. Pagination. [官方文档](https://www.shadcn-svelte.com/docs/components/pagination).
