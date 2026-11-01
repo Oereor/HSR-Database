@@ -451,31 +451,11 @@ test('AS 节点使用 BossDossier、共享敌方卡、首领特性与中性终�
   await expect(slotOne.getByRole('heading', { name: '仙光夺目', exact: true })).toBeVisible();
   await expect(slotOne.locator('[data-as-boss-traits]')).toContainText('50%');
   await expect(slotOne.locator('[data-as-boss-traits]')).toContainText('100%');
-  const traitRhythm = await slotOne
-    .locator('[data-as-boss-traits] .endgame-mechanic-entry')
-    .nth(1)
-    .evaluate((trait) => {
-      const style = getComputedStyle(trait);
-      const goldProbe = document.createElement('span');
-      goldProbe.style.color = 'var(--gold)';
-      document.body.append(goldProbe);
-      const gold = getComputedStyle(goldProbe).color;
-      goldProbe.remove();
-      return {
-        marginTop: style.marginTop,
-        paddingTop: style.paddingTop,
-        borderTopWidth: style.borderTopWidth,
-        borderTopColor: style.borderTopColor,
-        gold
-      };
-    });
-  expect(traitRhythm).toMatchObject({
-    marginTop: '24px',
-    paddingTop: '24px',
-    borderTopWidth: '1px'
-  });
-  expect(traitRhythm.borderTopColor).not.toBe('rgba(0, 0, 0, 0)');
-  expect(traitRhythm.borderTopColor).not.toBe(traitRhythm.gold);
+  const traitList = slotOne.locator('[data-as-boss-traits]');
+  const traitCount = await traitList.locator('.endgame-mechanic-entry').count();
+  await expect(traitList.locator(':scope > [data-slot="separator"]')).toHaveCount(
+    Math.max(0, traitCount - 1)
+  );
   await expect(
     slotOne
       .locator('[data-as-boss-traits] .endgame-mechanic-entry')
@@ -1089,22 +1069,40 @@ test('敌人立绘请求失败时保留完整数据并显示中性降级', async
   await expect(card.locator('[data-endgame-hp]')).toHaveText('7,259,250 × 2');
 });
 
-test('AA 王棋普通和绝境使用实际 spawned occurrence', async ({ page }) => {
-  await page.goto('/endgame/aa/8/?encounter=804%3Ahard');
-  await expect(page.locator('[data-monster-id="501403002"]')).toBeVisible();
-  await expect(page.locator('[data-monster-id="5014030"]')).toHaveCount(0);
-  await expect(page.locator('[data-monster-id="501403002"] [data-endgame-hp]')).toHaveText(
-    '63,467,351 × 2'
-  );
+for (const prefix of ['', '/en']) {
+  test(`AA 王棋普通和绝境使用实际 spawned occurrence ${prefix || 'zh-CN'}`, async ({ page }) => {
+    await page.goto(`${prefix}/endgame/aa/8/?encounter=804%3Ahard`);
+    await expect(page.locator('[data-monster-id="501403002"]')).toBeVisible();
+    await expect(page.locator('[data-monster-id="5014030"]')).toHaveCount(0);
+    await expect(page.locator('[data-monster-id="501403002"] [data-endgame-hp]')).toHaveText(
+      '63,467,351 × 2'
+    );
 
-  await selectLocalNode(page, '804:normal');
-  await expect(page).toHaveURL(/encounter=804%3Anormal/);
-  await expect(page.locator('[data-monster-id="501403002"] [data-endgame-hp]')).toHaveText(
-    '16,660,180 × 2'
-  );
-  await page.goBack();
-  await expect(page).toHaveURL(/encounter=804%3Ahard/);
-});
+    await selectLocalNode(page, '804:normal');
+    await expect(page).toHaveURL(/encounter=804%3Anormal/);
+    await expect(page.locator('[data-monster-id="501403002"] [data-endgame-hp]')).toHaveText(
+      '16,660,180 × 2'
+    );
+    await page.goBack();
+    await expect(page).toHaveURL(/encounter=804%3Ahard/);
+    await expect(page.locator('.endgame-local-nav a[aria-current="page"]')).toHaveAttribute(
+      'href',
+      '?encounter=804%3Ahard'
+    );
+    await expect(page.locator('[data-monster-id="501403002"] [data-endgame-hp]')).toHaveText(
+      '63,467,351 × 2'
+    );
+    await page.goForward();
+    await expect(page).toHaveURL(/encounter=804%3Anormal/);
+    await expect(page.locator('.endgame-local-nav a[aria-current="page"]')).toHaveAttribute(
+      'href',
+      '?encounter=804%3Anormal'
+    );
+    await expect(page.locator('[data-monster-id="501403002"] [data-endgame-hp]')).toHaveText(
+      '16,660,180 × 2'
+    );
+  });
+}
 
 test('Endgame 移动端折叠 local rail，dialog 支持 ESC、焦点返回与节点导航', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });

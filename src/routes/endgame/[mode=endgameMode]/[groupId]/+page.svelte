@@ -71,9 +71,11 @@
 <EndgameSeasonHero {period} />
 
 {#if selectedEncounter && localNavigation}
-  <div class="endgame-content-layout">
+  <div
+    class="endgame-content-layout grid grid-cols-[136px_minmax(0,1fr)] items-start gap-6 [@media(max-width:1080px)]:grid-cols-1 [@media(max-width:1080px)]:gap-4"
+  >
     <EndgameLocalNav navigation={localNavigation} />
-    <div class="endgame-main-content">
+    <div class="endgame-main-content @container/endgame-main min-w-0">
       {#if data.group.mode === 'aa' && selectedEncounter.mode === 'aa'}
         <AnomalyArbitrationDetailContent encounter={selectedEncounter} {judgmentQuadrant} />
       {:else if data.group.mode === 'pf' && selectedEncounter.mode === 'pf'}
@@ -82,12 +84,12 @@
         <ApocalypticShadowDetailContent encounter={selectedEncounter} />
       {:else if data.group.mode === 'moc' && selectedEncounter.mode === 'moc'}
         {#if data.group.mode === 'moc' && data.group.memoryTurbulence}
-          <div class="endgame-group-mechanics">
+          <div class="endgame-group-mechanics mb-8 [&>.endgame-mechanics-section:last-child]:mb-0">
             <MocMechanicsSection mechanic={data.group.memoryTurbulence} />
           </div>
         {/if}
 
-        <section class="moc-encounter-heading" aria-labelledby="moc-encounter-title">
+        <section class="moc-encounter-heading min-w-0" aria-labelledby="moc-encounter-title">
           <SectionHeading level={1} id="moc-encounter-title">
             <GameText text={selectedEncounter.label} />
           </SectionHeading>
@@ -97,7 +99,7 @@
           <MocMechanicsSection mechanic={selectedEncounter.memoryTurbulence} />
         {/if}
 
-        <div class="moc-node-list">
+        <div class="moc-node-list grid min-w-0 gap-8 min-[521px]:gap-12">
           {#each selectedEncounter.battles as battle (battle.slot)}
             <EndgameNodeSection {battle} waveLayout="paired" enemyVariant="standard" />
           {/each}
@@ -108,21 +110,3 @@
 {:else}
   <p class="data-placeholder">{m.endgame_group_empty()}</p>
 {/if}
-
-<style>
-  .moc-encounter-heading {
-    min-width: 0;
-  }
-
-  .moc-node-list {
-    display: grid;
-    min-width: 0;
-    gap: var(--space-12);
-  }
-
-  @media (max-width: 520px) {
-    .moc-node-list {
-      gap: var(--space-8);
-    }
-  }
-</style>

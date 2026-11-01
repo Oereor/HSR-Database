@@ -38,6 +38,7 @@
   >
     <div
       class={`endgame-enemy__artwork border-border pointer-events-none relative grid w-full shrink-0 items-end justify-items-center overflow-hidden border-b ${variant === 'compact' ? 'h-[170px]' : 'h-[190px]'}`}
+      style="background: radial-gradient(circle at 50% 78%, rgb(215 181 109 / 12%), transparent 52%), linear-gradient(180deg, rgb(255 255 255 / 3%), transparent);"
       aria-hidden="true"
     >
       <AssetImage

@@ -94,7 +94,11 @@ for (const locale of ['zh-CN', 'en']) {
       const artworkRect = artwork.getBoundingClientRect();
       const tagStyle = getComputedStyle(tag);
       const levelStyle = getComputedStyle(level);
-      const [red, green, blue] = tagStyle.color.match(/\d+/g)!.map(Number);
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d')!;
+      context.fillStyle = tagStyle.color;
+      context.fillRect(0, 0, 1, 1);
+      const [red, green, blue] = context.getImageData(0, 0, 1, 1).data;
       return {
         text: tag.textContent?.trim(),
         contained: tagRect.left >= artworkRect.left && levelRect.right <= artworkRect.right,

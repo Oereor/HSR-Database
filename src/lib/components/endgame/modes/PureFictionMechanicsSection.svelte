@@ -19,7 +19,7 @@
 
 {#if fixedMechanics.length}
   <section
-    class="endgame-mechanics-section endgame-mechanics-section--fixed"
+    class="endgame-mechanics-section endgame-mechanics-section--fixed mb-6 min-w-0"
     data-endgame-mechanics="battle-will"
   >
     <MechanicSectionCard

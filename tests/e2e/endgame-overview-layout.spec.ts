@@ -1,10 +1,9 @@
 import { expect, test } from '@playwright/test';
 
-test.use({ reducedMotion: 'reduce' });
-
 for (const prefix of ['', '/en']) {
   test(`Phase 6A layout and navigation ${prefix || 'zh-CN'}`, async ({ page }, testInfo) => {
     test.setTimeout(180_000);
+    await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.clock.setFixedTime(new Date('2026-09-09T00:00:00+08:00'));
     await page.addInitScript(() => {
       const date = new Date();
