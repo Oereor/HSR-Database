@@ -121,6 +121,20 @@ test('角色 Detail Hero 在桌面 3:2 分栏并于 1180px 断点纵向堆叠', 
       expect(identityBox!.width / inspectionBox!.width).toBeGreaterThan(1.4);
       expect(identityBox!.width / inspectionBox!.width).toBeLessThan(1.6);
     }
+    const title = identity.getByRole('heading', { level: 1 });
+    await title.evaluate((element) => {
+      element.textContent = 'Synthetic localized name ABCDEFGHIJKLMNOPQRSTUVWXYZ '.repeat(3);
+    });
+    expect(
+      await title.evaluate((element) => {
+        const range = document.createRange();
+        range.selectNodeContents(element);
+        const bounds = element.getBoundingClientRect();
+        return [...range.getClientRects()].every(
+          (rect) => rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1
+        );
+      })
+    ).toBe(true);
   }
 });
 
@@ -291,27 +305,11 @@ test('角色 Detail Hero 展示完整 identity、放大标签与不截断传记'
       'src',
       `/generated-assets/characters/portrait/${id}.webp`
     );
-    const gradientMetrics = await hero
-      .locator('.detail-profile-hero__gradient')
-      .evaluate((layer) => {
-        const backgroundImage = getComputedStyle(layer).backgroundImage;
-        const angle = Number.parseFloat(
-          backgroundImage.match(/linear-gradient\(([-\d.]+)deg/)?.[1] ?? 'NaN'
-        );
-        const alphas = [...backgroundImage.matchAll(/rgba\([^)]*,\s*([\d.]+)\)/g)].map((match) =>
-          Number.parseFloat(match[1])
-        );
-        return {
-          angle,
-          firstAlpha: alphas[0] ?? Number.NaN,
-          lastAlpha: alphas.at(-1) ?? Number.NaN
-        };
-      });
-    expect(gradientMetrics.angle).toBeGreaterThanOrEqual(80);
-    expect(gradientMetrics.angle).toBeLessThanOrEqual(100);
-    expect(gradientMetrics.firstAlpha).toBeGreaterThan(0.85);
-    expect(gradientMetrics.lastAlpha).toBeLessThan(0.15);
-    expect(gradientMetrics.firstAlpha - gradientMetrics.lastAlpha).toBeGreaterThan(0.7);
+    await expect(hero.locator('.detail-profile-hero__gradient')).toHaveCount(1);
+    await expect(hero.locator('.detail-profile-hero__gradient')).toHaveCSS(
+      'pointer-events',
+      'none'
+    );
     await expect(hero.locator('.hero-identity-metadata [data-icon-kind="path"]')).toHaveAttribute(
       'data-label-size',
       'hero'

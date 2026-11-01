@@ -97,7 +97,8 @@ test('宽屏部件为单列长卡，故事直接可读且 Hero 仅在遗器页�
 
   const hero = page.locator('[data-relic-detail-hero]');
   await expect(hero).toHaveClass(/detail-profile-hero--relic-compact/);
-  await expect(hero.locator('.detail-profile-hero__identity')).toHaveCSS('min-height', '390px');
+  await expect(hero.locator('.relic-effects-panel')).toHaveJSProperty('tagName', 'ASIDE');
+  await expect(hero.locator('[data-slot=card]')).toHaveCount(0);
   const pieces = page.locator('[data-relic-piece-id]');
   const first = pieces.first();
   await expect(first.locator('[data-relic-lore]')).toBeVisible();

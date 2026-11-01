@@ -144,23 +144,39 @@ EntityOverviewCard 改用主题 Card 表面和工具类，删除原 199 行组�
 
 ## Phase 5B：详情 Hero 与基础信息
 
-### 共享展示组件
+### 最终设计与边界
 
-新增按现有主题适配的标准 Card Root 与 Bits UI Separator，仅引入使用的组件，不修改依赖。DetailArtwork 保留 source / width / height / fit、图片状态与透传属性，使用工具类处理舞台和缺图占位。StatList / StatRow 保留 dl / dt / dd、标签插槽、图标列、数值颜色及数据标记；单行基础高度为 2.5rem，长标签与数值自然增高。分隔线放在 dt 内，首行隐藏，替代原伪元素；列表间距缩至 1rem。等级 wrapper 保留现有控件布局兼容规则，PlayerStatsPanel 继续按容器宽度分栏，不修改数据或交互生命周期。
+按用户后续指正保留原先一体化 Hero：同一 Card 外壳内保留原 header、左侧立绘、渐变、偏左下方的文字与 metadata，右侧仍为原 aside，没有独立 Card、圆角或边框。恢复原角色 1180px、其他类型 820px 的堆叠断点，以及各类图片尺寸、比例、定位和展示空间；左侧将通用内边距从 clamp(1.5rem, 3vw, 2.5rem) 小幅收至 clamp(1.25rem, 2.5vw, 2rem)，并为长名称补充宽度约束和自动换行。DetailArtwork 和 RelicIcon 最终与 Phase 5A 基线一致。玩家上下文、强化开关、名称、副标题、说明和元信息全部保留。
 
-共享组件变更的 Prettier / ESLint、Svelte 检查（0 errors / 0 warnings）和相关 SSR 单元测试 22 项通过。浏览器布局验收在四类页面接入后执行。
+属性区沿用主题表面、手机 1rem / 其他宽度 1.25rem 内边距，保持与左侧连续的表面和分界。光锥等级、晋阶与叠影仍处于同一区域；遗器效果保留全部件数条件和完整说明。页面业务脚本与 Phase 5A 基线逐字比较，仅新增展示组件 import，没有改动计算、数据处理、状态、回调或 keyed 生命周期。
 
-### 四类 Hero 与面板
+### 共享展示与 CSS
 
-详情 Hero 改为 1280px 起约 3:2、顶部对齐的身份区与属性区，较窄视口上下排列。取消原 520–680px 高度下限、连续边框与边框色背景分栏；角色与敌人保留叠图和单层渐变，光锥使用 contain，遗器图标仅调整 hero variant，其他图标展示方式不变。说明文字移除独立边框容器，长文本自然撑高；玩家上下文、强化、等级、晋阶和叠影仍由原状态与回调管理。基础信息使用单层 Card，保持 complementary landmark、原 ID 与标签，遗器套装效果和光锥属性使用 Separator 分隔。删除 detail-inspection.css 及入口导入。
+新增实际使用的 Card Root 和 Bits UI Separator，不修改依赖及锁文件。StatList / StatRow 保留 dl / dt / dd、标签插槽、图标列、数值颜色和字段标记；属性行基础高度收至 2.5rem，长标签和数值自然增高，数值右对齐。装饰性 Separator 放在 dt 内，首行隐藏并限制在行边界内，替代原伪元素。列表间距缩至 1rem；PlayerStatsPanel 继续按容器宽度分栏，内部不套 Card。LevelSlider 和叠影内部交互未改动。
 
-四类页面接入的 Svelte 检查通过（0 errors / 0 warnings）；玩家属性测试改为检查 Card 与容器分栏，保留全部属性和状态断言。
+SectionHeading 保留 level、headingLevel、tone、id 和 meta slot，采用主题字号、工具类及窄屏换行，删除长装饰线。详情 Section 缩为桌面 2rem、手机 1.5rem，删除底边和敌人额外间距覆盖。SectionNav 的 DOM 顺序、ID、观察器、选中状态与 Sticky Offset 保持原样；共享标题使用方包括首页、搜索、玩家和 Endgame。
+
+删除 detail-inspection.css 及入口导入，将等级控件无顶部分隔线规则合并至现有 stat-level-control 规则。保留用户要求的原 Hero 构图样式，清理其被标准组件替代的外壳与面板规则。变更涉及的 CSS 净减少 289 行；Phase 5A 卡片及目录布局、技能卡内容、Disclosure 状态逻辑均未修改。
+
+### 验证结果
+
+最终一体化版本的变更文件 Prettier / ESLint、完整 pnpm check 通过（Svelte 0 errors / 0 warnings），生产预渲染构建通过。相关属性与玩家合约单元测试共 58 项在共享组件迁移后通过；后续一体化调整未改动这些计算及合约。8 个中英文生成页面的 HTML 检查确认同一 Card 外壳包围原 header、属性区为 aside、内部无独立 Card，并保留各类 Hero 字段数量及唯一 h1。
+
+生产浏览器回归分批 104 项通过：详情展示 / 属性 / 缺图 / SectionNav 58 项，角色等级与强化、光锥叠影、敌人切换、mock 玩家 loading / 成功 / 失败及上下文返回、养成状态、首页 / 搜索 / Endgame 共享标题 46 项。保留原业务断言，更新伪元素分隔线、旧 padding、光锥分隔节点、旧技能 aria-pressed 及属性区独立 Card 断言，不增加全页面视觉快照。
+
+中间版本曾将左右拆开，已按用户指正撤回，其截图不作为最终交付证据。极端无空格长名称暴露原 Hero 的横向裁切，增加标题宽度约束与自动换行；修正后生产构建通过，8 项标题 / Hero 布局复查通过。最终中英文四类详情在 320px / 390px / 768px / 1280px、Sidebar 展开及极长名称 / 描述下共 48 组采样通过，无实际文字裁切、横向溢出或页面运行时异常。人工查看角色、光锥、遗器及敌人的代表截图，确认原叠图与一体化边界。
+
+验证曾因自动审批服务额度暂时无法执行，提示的恢复时间过后服务恢复，随后完成上述浏览器回归。构建与预览串行执行，每次重新构建后重启预览，避免缓存旧产物清单。验收图片、临时配置及日志保留在忽略目录 data/audit，不入库。仓库没有 .crossnote/scripts/check-pseudocode.cjs，文档未添加伪代码，使用 git diff --check 检查空白。
+
+另有遗器 Disclosure 的“窄屏关闭后切回宽屏故事仍隐藏”用例在桌面 / 手机项目各失败 1 项。Disclosure 和 RelicPieceCard 均与 Phase 5A 基线一致；未修改其状态逻辑或放宽断言，后续批次排除此已记录失败，未将其计入通过数，需单独确认该行为。真实玩家远程 API、非 Chromium 浏览器和远程部署未验证。
+
+未推送或部署，停止在 Phase 5B，不进入 Phase 5C。
 
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。
 - Phase 3 完成本阶段共享交互迁移；业务卡片、现有 Tabs、敌方单位 radio 与整卡行迹切换保留。
-- Phase 4 完成全局导航、搜索和布局；Phase 5A 完成四类实体目录与共享卡片，停在 Phase 5A，不进入详情页改造。数据处理、游戏计算、素材解析、路由和国际化架构保持不变，无无关 Runes 迁移。
+- Phase 4 完成全局导航、搜索和布局；Phase 5A 完成四类实体目录与共享卡片，Phase 5B 保留一体化 Hero，统一属性与 Section 展示；不进入 Phase 5C。数据处理、游戏计算、素材解析、路由和国际化架构保持不变，无无关 Runes 迁移。
 
 ### 参考文献
 

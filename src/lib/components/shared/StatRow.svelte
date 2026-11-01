@@ -15,7 +15,7 @@
 >
   <dt class="text-muted-foreground min-w-0 text-sm wrap-anywhere">
     <Separator
-      class="bg-border/60 absolute top-0 right-0 left-(--stat-divider-inset) w-auto group-first/stat-row:hidden"
+      class="bg-border/60 absolute top-0 right-0 left-(--stat-divider-inset) group-first/stat-row:hidden data-horizontal:w-auto"
     />
     <span
       class="inspection-stat-label grid grid-cols-(--stat-label-columns) items-center gap-(--stat-label-gap)"

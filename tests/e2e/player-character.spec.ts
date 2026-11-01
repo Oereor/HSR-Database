@@ -295,7 +295,7 @@ for (const prefix of ['', '/en']) {
         .toBe(expectedColumns);
       await expect(grid).toHaveCSS('gap', '16px');
       await expect(grid).toHaveCSS('margin-top', '16px');
-      await expect(pane).toHaveAttribute('data-slot', 'card');
+      await expect(pane).toHaveJSProperty('tagName', 'ASIDE');
       for (const group of await groups.all()) {
         await expect(group).toHaveCSS('margin-top', '0px');
         await expect(group).toHaveCSS('border-top-width', '0px');

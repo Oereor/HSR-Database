@@ -55,12 +55,12 @@ test('光锥等级与叠影滑块独立、控件先于效果且动态参数更�
     await inspection.evaluate((panel) =>
       [
         ...panel.querySelectorAll(
-          '.stat-level-control, [data-base-stat], :scope > .detail-inspection-divider, .superimposition-control, .superimposition-effect > h3, .superimposition-effect > .levelled-description'
+          '.stat-level-control, [data-base-stat], :scope > [data-slot="separator"], .superimposition-control, .superimposition-effect > h3, .superimposition-effect > .levelled-description'
         )
       ].map((element) => {
         if (element.classList.contains('stat-level-control')) return 'level';
         if (element.hasAttribute('data-base-stat')) return element.getAttribute('data-base-stat');
-        if (element.classList.contains('detail-inspection-divider')) return 'divider';
+        if (element.getAttribute('data-slot') === 'separator') return 'divider';
         if (element.classList.contains('superimposition-control')) return 'superimposition';
         if (element.matches('h3')) return 'passive';
         return 'effect';
@@ -79,12 +79,28 @@ test('光锥等级与叠影滑块独立、控件先于效果且动态参数更�
   expect(
     await inspection
       .locator(':scope > *')
-      .evaluateAll((children) => children.map((child) => child.className))
-  ).toEqual(['base-stats-panel', 'detail-inspection-divider', 'superimposition-panel']);
+      .evaluateAll((children) =>
+        children.map((child) =>
+          child.getAttribute('data-slot') === 'separator'
+            ? 'separator'
+            : child.classList.contains('base-stats-panel')
+              ? 'base-stats-panel'
+              : child.className
+        )
+      )
+  ).toEqual(['base-stats-panel', 'separator', 'superimposition-panel']);
   expect(
     await superimposition
       .locator(':scope > *')
-      .evaluateAll((children) => children.map((child) => child.className))
+      .evaluateAll((children) =>
+        children.map((child) =>
+          child.getAttribute('data-slot') === 'separator'
+            ? 'separator'
+            : child.classList.contains('base-stats-panel')
+              ? 'base-stats-panel'
+              : child.className
+        )
+      )
   ).toEqual(['skill-level-control superimposition-control', 'superimposition-effect']);
   expect(
     await superimposition.evaluate((panel) => {

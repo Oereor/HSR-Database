@@ -31,9 +31,7 @@
 
 {#if progression.stages.length}
   <div class="base-stats-panel min-w-0">
-    <div
-      class="stat-level-control [&>.skill-level-control]:mt-0 [&>.skill-level-control]:border-t-0 [&>.skill-level-control]:pt-0"
-    >
+    <div class="stat-level-control">
       <LevelSlider
         id={controlId}
         label={controlLabel}

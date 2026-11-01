@@ -636,32 +636,116 @@
   <a class="back-link" href={backTarget.href}>← {m.player_character_back_to_player()}</a>
 {/if}
 {#if category === 'characters'}
-  <header
-    class="detail-profile-hero detail-profile-hero--character grid min-w-0 items-start gap-4 min-[1280px]:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] sm:gap-6"
-  >
-    <div
-      class="detail-profile-hero__identity bg-card relative isolate min-w-0 overflow-hidden rounded-xl"
-    >
-      <DetailArtwork
-        source={characterPortraitSource}
-        width={960}
-        height={960}
-        fit="cover"
-        data-character-portrait={detail.id}
-      />
-      <div class="detail-profile-hero__gradient" aria-hidden="true"></div>
-      <div class="detail-profile-hero__character-content">
-        {#if playerContextState !== 'idle'}
-          <div class="detail-profile-hero__player-context">
-            <PlayerCharacterContextNotice state={playerContextState} uid={playerUid} />
+  <Card.Root class="gap-0 overflow-hidden p-0 shadow-none">
+    <header class="detail-profile-hero detail-profile-hero--character">
+      <div class="detail-profile-hero__identity">
+        <DetailArtwork
+          source={characterPortraitSource}
+          width={960}
+          height={960}
+          fit="cover"
+          data-character-portrait={detail.id}
+        />
+        <div class="detail-profile-hero__gradient" aria-hidden="true"></div>
+        <div class="detail-profile-hero__character-content">
+          {#if playerContextState !== 'idle'}
+            <div class="detail-profile-hero__player-context">
+              <PlayerCharacterContextNotice state={playerContextState} uid={playerUid} />
+            </div>
+          {/if}
+          <div class="hero-identity-copy">
+            <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
+            <h1><GameText text={detail.name} /></h1>
+            {#if detail.fullName && detail.fullName !== detail.name}<p class="detail-subtitle">
+                <GameText text={detail.fullName} />
+              </p>{/if}
+            <div class="hero-identity-metadata">
+              {#if detail.rarity}<RarityStars rarity={detail.rarity} size="hero" />{/if}
+              {#if detail.pathName}<SemanticIconLabel
+                  kind="path"
+                  code={detail.path}
+                  label={detail.pathName}
+                  size="hero"
+                  presentation="path-identity"
+                />{/if}
+              {#if detail.elementName}<SemanticIconLabel
+                  kind="element"
+                  code={detail.element}
+                  label={detail.elementName}
+                  color={getElementColor(detail.element)}
+                  size="hero"
+                  presentation="character-element-identity"
+                />{/if}
+            </div>
+            {#if hasEnhancedProfile}<div class="enhancement-control">
+                <span>{m.detail_enhancement()}</span>
+                <Switch
+                  class="enhancement-switch"
+                  checked={enhancedEnabled}
+                  onCheckedChange={() => {
+                    void toggleEnhanced();
+                  }}
+                  aria-label={m.detail_enhancement()}
+                />
+                <strong
+                  >{enhancedEnabled
+                    ? m.detail_enhanced_after()
+                    : m.detail_enhanced_before()}</strong
+                >
+              </div>{/if}
+            <div class="hero-description">
+              {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
+                  class="muted"
+                >
+                  {m.detail_intro_unavailable()}
+                </p>{/if}
+            </div>
           </div>
+        </div>
+      </div>
+      <aside
+        id="stats"
+        class="detail-profile-hero__inspection section-nav-target hero-basic-data-pane"
+        aria-label={m.detail_stats_aria()}
+      >
+        {#if playerContextState === 'loading'}
+          <p class="data-placeholder" aria-live="polite">{m.player_character_loading()}</p>
+        {:else if activePlayerCharacter}
+          <PlayerStatsPanel
+            stats={activePlayerCharacter.stats}
+            properties={relicProperties}
+            progression={detail.baseStats}
+            level={activePlayerCharacter.progression.level}
+            promotion={activePlayerCharacter.progression.promotion}
+            controlId={`character-level-${detail.id}`}
+          />
+        {:else}
+          <BaseStatsPanel
+            progression={detail.baseStats}
+            energy={activeProfile.energy}
+            level={trainingLevel}
+            onLevelChange={handleTrainingLevel}
+            showPromotion={staticTrainingEnabled}
+            controlId={`character-level-${detail.id}`}
+          />
         {/if}
+      </aside>
+    </header>
+  </Card.Root>
+{:else if category === 'light-cones'}
+  <Card.Root class="gap-0 overflow-hidden p-0 shadow-none">
+    <header class="detail-profile-hero detail-profile-hero--light-cone">
+      <div class="detail-profile-hero__identity">
+        <DetailArtwork
+          source={lightConePortraitSource}
+          width={689}
+          height={960}
+          fit="contain"
+          data-light-cone-portrait={detail.id}
+        />
         <div class="hero-identity-copy">
           <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
           <h1><GameText text={detail.name} /></h1>
-          {#if detail.fullName && detail.fullName !== detail.name}<p class="detail-subtitle">
-              <GameText text={detail.fullName} />
-            </p>{/if}
           <div class="hero-identity-metadata">
             {#if detail.rarity}<RarityStars rarity={detail.rarity} size="hero" />{/if}
             {#if detail.pathName}<SemanticIconLabel
@@ -671,121 +755,33 @@
                 size="hero"
                 presentation="path-identity"
               />{/if}
-            {#if detail.elementName}<SemanticIconLabel
-                kind="element"
-                code={detail.element}
-                label={detail.elementName}
-                color={getElementColor(detail.element)}
-                size="hero"
-                presentation="character-element-identity"
-              />{/if}
-          </div>
-          {#if hasEnhancedProfile}<div class="enhancement-control">
-              <span>{m.detail_enhancement()}</span>
-              <Switch
-                class="enhancement-switch"
-                checked={enhancedEnabled}
-                onCheckedChange={() => {
-                  void toggleEnhanced();
-                }}
-                aria-label={m.detail_enhancement()}
-              />
-              <strong
-                >{enhancedEnabled ? m.detail_enhanced_after() : m.detail_enhanced_before()}</strong
-              >
-            </div>{/if}
-          <div class="hero-description">
-            {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
-                class="muted"
-              >
-                {m.detail_intro_unavailable()}
-              </p>{/if}
           </div>
         </div>
       </div>
-    </div>
-    <Card.Root
-      role="complementary"
-      id="stats"
-      class="detail-profile-hero__inspection section-nav-target hero-basic-data-pane gap-0 p-4 sm:p-5"
-      aria-label={m.detail_stats_aria()}
-    >
-      {#if playerContextState === 'loading'}
-        <p class="data-placeholder" aria-live="polite">{m.player_character_loading()}</p>
-      {:else if activePlayerCharacter}
-        <PlayerStatsPanel
-          stats={activePlayerCharacter.stats}
-          properties={relicProperties}
-          progression={detail.baseStats}
-          level={activePlayerCharacter.progression.level}
-          promotion={activePlayerCharacter.progression.promotion}
-          controlId={`character-level-${detail.id}`}
-        />
-      {:else}
-        <BaseStatsPanel
-          progression={detail.baseStats}
-          energy={activeProfile.energy}
-          level={trainingLevel}
-          onLevelChange={handleTrainingLevel}
-          showPromotion={staticTrainingEnabled}
-          controlId={`character-level-${detail.id}`}
-        />
-      {/if}
-    </Card.Root>
-  </header>
-{:else if category === 'light-cones'}
-  <header
-    class="detail-profile-hero detail-profile-hero--light-cone grid min-w-0 items-start gap-4 min-[1280px]:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] sm:gap-6"
-  >
-    <div
-      class="detail-profile-hero__identity bg-card relative isolate min-w-0 overflow-hidden rounded-xl"
-    >
-      <DetailArtwork
-        source={lightConePortraitSource}
-        width={689}
-        height={960}
-        fit="contain"
-        data-light-cone-portrait={detail.id}
-      />
-      <div class="hero-identity-copy">
-        <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
-        <h1><GameText text={detail.name} /></h1>
-        <div class="hero-identity-metadata">
-          {#if detail.rarity}<RarityStars rarity={detail.rarity} size="hero" />{/if}
-          {#if detail.pathName}<SemanticIconLabel
-              kind="path"
-              code={detail.path}
-              label={detail.pathName}
-              size="hero"
-              presentation="path-identity"
-            />{/if}
-        </div>
-      </div>
-    </div>
-    <Card.Root
-      role="complementary"
-      id="stats"
-      class="detail-profile-hero__inspection hero-basic-data-pane section-nav-target gap-0 p-4 sm:p-5"
-      aria-label={m.detail_light_cone_stats_aria()}
-    >
-      {#key lightConeInitialStateKey}
-        <BaseStatsPanel
-          progression={detail.baseStats}
-          controlId={`light-cone-level-${detail.id}`}
-          controlLabel={m.detail_light_cone_level()}
-          showPromotion
-          level={trainingLevel}
-          onLevelChange={handleTrainingLevel}
-        />
-        <Separator class="my-4" />
-        {#if detail.passive.superimposition.levels.length}<SuperimpositionPanel
-            passive={detail.passive}
-            lightConeId={detail.id}
-            initialRank={lightConeInitialRank}
-          />{:else}<p class="data-placeholder">{m.detail_superimposition_unavailable()}</p>{/if}
-      {/key}
-    </Card.Root>
-  </header>
+      <aside
+        id="stats"
+        class="detail-profile-hero__inspection hero-basic-data-pane section-nav-target"
+        aria-label={m.detail_light_cone_stats_aria()}
+      >
+        {#key lightConeInitialStateKey}
+          <BaseStatsPanel
+            progression={detail.baseStats}
+            controlId={`light-cone-level-${detail.id}`}
+            controlLabel={m.detail_light_cone_level()}
+            showPromotion
+            level={trainingLevel}
+            onLevelChange={handleTrainingLevel}
+          />
+          <Separator class="my-4" />
+          {#if detail.passive.superimposition.levels.length}<SuperimpositionPanel
+              passive={detail.passive}
+              lightConeId={detail.id}
+              initialRank={lightConeInitialRank}
+            />{:else}<p class="data-placeholder">{m.detail_superimposition_unavailable()}</p>{/if}
+        {/key}
+      </aside>
+    </header>
+  </Card.Root>
 {:else if category === 'relics'}
   <RelicDetailPage {detail} {singular} />
 {/if}

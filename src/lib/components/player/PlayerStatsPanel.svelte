@@ -34,9 +34,7 @@
 </script>
 
 <div class="player-stats-panel" data-player-stats-panel>
-  <div
-    class="stat-level-control [&>.skill-level-control]:mt-0 [&>.skill-level-control]:border-t-0 [&>.skill-level-control]:pt-0"
-  >
+  <div class="stat-level-control">
     <LevelSlider
       id={controlId}
       label={m.base_stats_character_level()}

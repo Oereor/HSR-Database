@@ -99,7 +99,7 @@ test('四类详情页消费同一标题视觉层级并保持语义 heading hiera
   await expect(page.locator('#monsters h2')).toBeVisible();
   await expect(page.locator('#summons h3')).toBeVisible();
   await expect(page.locator('[data-enemy-skill-selector]')).toBeVisible();
-  await expect(page.locator('[data-enemy-skill-option][aria-pressed="true"]')).toHaveCount(1);
+  await expect(page.locator('[data-enemy-skill-option][aria-checked="true"]')).toHaveCount(1);
   await expect(page.locator('.enemy-skill-browser__detail h3').first()).toBeVisible();
   await expect(page.locator('#skills h2')).toBeVisible();
 

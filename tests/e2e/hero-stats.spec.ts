@@ -19,7 +19,8 @@ for (const width of [1440, 1024, 390]) {
         const pane = page.locator('.hero-basic-data-pane');
         const list = pane.locator('.hero-stat-list');
         await expect(list.locator('.hero-stat-row')).toHaveCount(entity.rows);
-        await expect(pane).toHaveAttribute('data-slot', 'card');
+        await expect(pane).toHaveJSProperty('tagName', 'ASIDE');
+        await expect(pane.locator('[data-slot=card]')).toHaveCount(0);
         await expect(list).toHaveCSS('border-top-width', '0px');
         await expect(list).toHaveCSS('margin-top', '16px');
         await expect(pane.locator('.info-card')).toHaveCount(0);
@@ -39,9 +40,10 @@ for (const width of [1440, 1024, 390]) {
         }
 
         const hero = pane.locator('..');
+        await expect(hero.locator('..')).toHaveAttribute('data-slot', 'card');
         const identityBox = await hero.locator('.detail-profile-hero__identity').boundingBox();
         const paneBox = await pane.boundingBox();
-        const stacked = width < 1280;
+        const stacked = width <= (entity.category === 'characters' ? 1180 : 820);
         if (stacked)
           expect(paneBox!.y).toBeGreaterThanOrEqual(identityBox!.y + identityBox!.height - 1);
         else expect(paneBox!.y).toBeCloseTo(identityBox!.y, 0);
