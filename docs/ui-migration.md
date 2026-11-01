@@ -78,7 +78,7 @@
 
 ### 可折叠导航
 
-使用官方 Sidebar 源码，桌面采用 icon 折叠模式，展开 / 折叠宽度为 16rem / 4.5rem。默认折叠，状态仅在根布局生命周期内保持，不写 cookie 或 localStorage，不注册默认全局快捷键。新增标准 Tooltip，复用已有 Sheet、Button、Bits UI 和游戏图标，无新增依赖或锁文件变更。
+使用官方 Sidebar 源码[^sidebar]，桌面采用 icon 折叠模式，展开 / 折叠宽度为 16rem / 4.5rem。默认折叠，状态仅在根布局生命周期内保持，不写 cookie 或 localStorage，不注册默认全局快捷键。新增标准 Tooltip，复用已有 Sheet、Button、Bits UI 和游戏图标，无新增依赖或锁文件变更。
 
 导航入口继续由同一份本地化数据提供；移动端由 Sidebar 内部单一 Sheet 管理遮罩、滚动锁和焦点。保留站点标识、短标语、全部入口、更新日志及版本信息；折叠搜索入口展开后聚焦原搜索框。设置 Popover 保持原位置和语言路由行为。删除旧窄侧栏、独立抽屉及手写 Tooltip CSS；导航断点统一为 48rem，业务断点保留。短视口导航与页脚区域可滚动。
 
@@ -90,14 +90,30 @@
 
 变更源码格式 / ESLint 和 Svelte 检查通过（0 errors / 0 warnings）；搜索及 FlexSearch 合约单元测试 18 项通过。搜索结果 / 素材 / URL 相关桌面和移动端浏览器测试 44 项通过，覆盖双语素材与回退、长结果 / 加载更多、异常 / 重试、请求竞态、query / hash 以及前进后退。
 
+### 全局布局与偏移
+
+根布局改为随 Sidebar 重排的 Flex 布局，内容、Breadcrumb 和 Footer 共用 90rem 最大宽度与 1.5rem / 1rem 桌面 / 移动边距。导航以 48rem 为断点，移动站点栏高 3.5rem，Breadcrumb 高 2.75rem；继续沿用累计 Sticky Offset 与锚点间距，保留详情 SectionNav、Endgame 导航以及 Footer 全部信息和链接。抽屉适配动态视口高度与安全区，根布局外仍只挂载一个 Toaster。
+
+删除旧 Grid 定位、独立移动容器宽度、旧侧栏宽度变量以及废弃导航 / 搜索规则；仍被业务卡片和页面使用的样式保持。更新旧测试选择器，为容器对齐与 Endgame 锚点补充小型视口矩阵；导航稳定后再访问明确的 Breadcrumb 父链接，避免历史返回后的旧路由 DOM 竞态。折叠态操作标签隐藏，移动抽屉中的更新日志保留底层 Sheet，使关闭日志后可恢复原触发焦点。
+
+### Phase 4 验收结果
+
+2026-11-01 完成。变更文件 Prettier / ESLint、完整 `pnpm check`（0 errors / 0 warnings）和生产预渲染构建通过；日志焦点与折叠标签修正后再次完成 Svelte 检查与生产构建。相关单元测试共 46 项通过。生产导航 / 布局 / 语言回归分批通过 50 项；首页双语视口、共享 Hero、Endgame 移动菜单和训练 / 通知的额外 22 项回归通过，按视口跳过重复矩阵及不适用场景。前述搜索 / 素材 / URL 的 44 项浏览器测试在开发服务器通过。
+
+320px、390px、767px、768px、1280px 和 1920px 的容器与锚点矩阵通过；生产截图检查涵盖折叠 / 展开导航、移动抽屉、双语搜索与 Endgame，未出现横向溢出或页面运行时错误。修正了折叠标签裁切和移动更新日志关闭后的焦点丢失，Footer 四个既有链接均保留。未引入视觉快照基线，截图 / 报告 / 下载源码仅作为忽略的本地验收产物。
+
+依赖和锁文件保持不变，两个只读上游仓库状态保持不变。真实玩家远程 API、远程部署及非 Chromium 浏览器未验证；本地 Analytics 脚本 404 为既有环境限制。完成 Phase 4 后停止。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。
 - Phase 3 完成本阶段共享交互迁移；业务卡片、现有 Tabs、敌方单位 radio 与整卡行迹切换保留。
-- Phase 4 正在实施全局导航、搜索和布局；完成后停止，不进入 Phase 5。数据处理、游戏计算、素材解析、路由和国际化架构保持不变，无无关 Runes 迁移。
+- Phase 4 完成全局导航、搜索和布局；停在 Phase 4，不进入 Phase 5。数据处理、游戏计算、素材解析、路由和国际化架构保持不变，无无关 Runes 迁移。
 
 ### 参考文献
 
 [^manual]: shadcn-svelte. Manual Installation. [官方文档](https://shadcn-svelte.com/docs/installation/manual).
 
 [^tailwind-v4]: shadcn-svelte. Tailwind v4. [官方文档](https://shadcn-svelte.com/docs/migration/tailwind-v4).
+
+[^sidebar]: shadcn-svelte. Sidebar. [官方文档](https://www.shadcn-svelte.com/docs/components/sidebar).

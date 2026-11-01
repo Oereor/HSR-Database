@@ -69,17 +69,19 @@
 
   <main>
     <GlobalBreadcrumb items={breadcrumbs} />
-    <div class="content"><slot /></div>
-    <footer>
-      <p>{m.footer_disclaimer()}</p>
-      <p>
-        {m.footer_data_source()}<a href="https://github.com/DimbreathBot/TurnBasedGameData"
-          >TurnBasedGameData</a
-        >{m.footer_asset_source()}<a href="https://github.com/Mar-7th/StarRailRes">StarRailRes</a>
-        (<a href="/licenses/StarRailRes-AGPL-3.0.txt">{m.footer_license()}</a
-        >){m.footer_player_data_source()}<a href="https://enka.network/">Enka.Network</a
-        >{m.footer_scope_note()}
-      </p>
+    <div class="content site-container"><slot /></div>
+    <footer class="site-footer">
+      <div class="site-container">
+        <p>{m.footer_disclaimer()}</p>
+        <p>
+          {m.footer_data_source()}<a href="https://github.com/DimbreathBot/TurnBasedGameData"
+            >TurnBasedGameData</a
+          >{m.footer_asset_source()}<a href="https://github.com/Mar-7th/StarRailRes">StarRailRes</a>
+          (<a href="/licenses/StarRailRes-AGPL-3.0.txt">{m.footer_license()}</a
+          >){m.footer_player_data_source()}<a href="https://enka.network/">Enka.Network</a
+          >{m.footer_scope_note()}
+        </p>
+      </div>
     </footer>
   </main>
 </Sidebar.Provider>

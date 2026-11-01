@@ -52,7 +52,7 @@
       data-slot="sidebar"
       data-mobile="true"
       class={cn(
-        'bg-sidebar text-sidebar-foreground w-(--sidebar-width) p-0 [&>button]:hidden',
+        'bg-sidebar text-sidebar-foreground h-dvh! w-(--sidebar-width) p-0 [&>button]:hidden',
         className
       )}
       style="--sidebar-width: {SIDEBAR_WIDTH_MOBILE};"
@@ -61,7 +61,9 @@
       <Sheet.Header class="sr-only">
         <Sheet.Title>{m.navigation_full_aria()}</Sheet.Title>
       </Sheet.Header>
-      <div class="flex h-full w-full flex-col overflow-y-auto">
+      <div
+        class="flex h-full w-full flex-col overflow-y-auto pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]"
+      >
         {@render children?.()}
       </div>
     </Sheet.Content>

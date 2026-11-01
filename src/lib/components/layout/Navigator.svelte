@@ -108,7 +108,7 @@
           onclick={toggle}
         >
           {#if sidebar.isMobile}<XIcon />{:else}<PanelLeftIcon />{/if}
-          <span
+          <span class="group-data-[collapsible=icon]:hidden"
             >{sidebar.isMobile || sidebar.open ? m.navigation_close() : m.navigation_open()}</span
           >
         </Sidebar.MenuButton>
@@ -120,7 +120,9 @@
             tooltipContent={m.navigation_search_label()}
             aria-label={m.navigation_search_label()}
             onclick={openSearch}
-            ><SearchIcon /><span>{m.navigation_search_label()}</span></Sidebar.MenuButton
+            ><SearchIcon /><span class="group-data-[collapsible=icon]:hidden"
+              >{m.navigation_search_label()}</span
+            ></Sidebar.MenuButton
           ></Sidebar.MenuItem
         >
       {/if}
@@ -147,10 +149,7 @@
           class="changelog-trigger h-11"
           tooltipContent={m.navigation_changelog()}
           aria-label={m.navigation_changelog()}
-          onclick={() => {
-            sidebar.setOpenMobile(false);
-            onOpenChangelog();
-          }}
+          onclick={onOpenChangelog}
         >
           <span class="size-7 shrink-0 [&_.utility-image-fallback]:size-full [&_img]:size-full"
             ><AssetImage
@@ -158,7 +157,7 @@
               alt=""
               fallbackClass="utility-image-fallback"
             /></span
-          ><span>{m.navigation_changelog()}</span>
+          ><span class="group-data-[collapsible=icon]:hidden">{m.navigation_changelog()}</span>
         </Sidebar.MenuButton></Sidebar.MenuItem
       >
       <Sidebar.MenuItem

@@ -50,3 +50,56 @@ for (const prefix of ['', '/en']) {
     );
   });
 }
+
+for (const prefix of ['', '/en']) {
+  test(`shell containers align and Endgame anchors clear sticky navigation (${prefix || 'zh-CN'})`, async ({
+    page,
+    isMobile
+  }) => {
+    test.skip(isMobile, 'The explicit viewport matrix runs once in desktop Chromium');
+    for (const width of [320, 390, 767, 768, 1280, 1920]) {
+      await page.setViewportSize({ width, height: 800 });
+      await page.goto(`${prefix}/endgame/moc/1034/?encounter=5312`);
+      await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
+      if (width >= 768)
+        await page.locator('[data-slot="sidebar-container"] .navigator-toggle').click();
+      const bounds = await page.evaluate(() =>
+        [
+          'main > .content',
+          '.global-breadcrumb > .site-container',
+          '.site-footer > .site-container'
+        ].map((selector) => {
+          const rect = document.querySelector(selector)!.getBoundingClientRect();
+          return { x: rect.x, width: rect.width };
+        })
+      );
+      expect(Math.abs(bounds[0].x - bounds[1].x)).toBeLessThanOrEqual(1);
+      expect(Math.abs(bounds[0].x - bounds[2].x)).toBeLessThanOrEqual(1);
+      expect(Math.abs(bounds[0].width - bounds[1].width)).toBeLessThanOrEqual(1);
+      const heading = page.locator('.endgame-node-section[id]').first();
+      await expect(heading).toBeVisible();
+      await page.evaluate(
+        (id) => {
+          location.hash = id!;
+        },
+        await heading.getAttribute('id')
+      );
+      await expect
+        .poll(async () =>
+          page.evaluate(() => {
+            const top = document
+              .querySelector('.endgame-node-section[id]')!
+              .getBoundingClientRect().top;
+            const modeBottom = document
+              .querySelector('.endgame-mode-switcher')!
+              .getBoundingClientRect().bottom;
+            return top >= modeBottom - 1 && top < innerHeight / 2;
+          })
+        )
+        .toBe(true);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+        true
+      );
+    }
+  });
+}

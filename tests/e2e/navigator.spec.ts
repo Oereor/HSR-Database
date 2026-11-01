@@ -85,6 +85,12 @@ for (const prefix of ['', '/en']) {
     await expect(dialog).toBeHidden();
     await expect(trigger).toBeFocused();
     await trigger.click();
+    const changelog = dialog.locator('.changelog-trigger');
+    await changelog.click();
+    await expect(page.locator('.changelog-dialog')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(page.locator('.changelog-dialog')).toBeHidden();
+    await expect(changelog).toBeFocused();
     await dialog.locator(`a[href="${prefix}/enemies/"]`).click();
     await expect(page).toHaveURL(new RegExp(`${prefix}/enemies/$`));
     await expect(dialog).toBeHidden();

@@ -692,7 +692,7 @@ for (const prefix of ['', '/en']) {
     await blocked.press('Enter');
     await expect(toast).toHaveCount(1);
     const home = page
-      .locator('.navigator-rail__brand:visible, .mobile-header .brand:visible')
+      .locator('.navigator-pane__brand:visible, .mobile-header .brand:visible')
       .first();
     await home.click();
     await expect(page.locator('.home-hero')).toBeVisible();
