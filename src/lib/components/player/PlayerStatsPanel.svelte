@@ -34,7 +34,9 @@
 </script>
 
 <div class="player-stats-panel" data-player-stats-panel>
-  <div class="stat-level-control">
+  <div
+    class="stat-level-control [&>.skill-level-control]:mt-0 [&>.skill-level-control]:border-t-0 [&>.skill-level-control]:pt-0"
+  >
     <LevelSlider
       id={controlId}
       label={m.base_stats_character_level()}
@@ -83,8 +85,8 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
-    gap: var(--space-6);
-    margin-top: var(--space-6);
+    gap: var(--space-4);
+    margin-top: var(--space-4);
   }
 
   @container player-hero-stats (min-width: 28rem) {

@@ -142,6 +142,14 @@ EntityOverviewCard 改用主题 Card 表面和工具类，删除原 199 行组�
 
 本地测试曾受沙箱端口、浏览器路径和临时目录权限限制，取得正常本机执行权限后验证通过。开发服务与构建并发导致的加载失败不计入验收；最终全部复用同一生产构建。临时预览端口同步更新测试的日志弹窗关闭状态后运行回归。两个只读上游工作区保持原状态；非 Chromium 浏览器、真实玩家远程 API 和远程部署未验证。本地 Analytics 脚本 404 为既有环境限制。
 
+## Phase 5B：详情 Hero 与基础信息
+
+### 共享展示组件
+
+新增按现有主题适配的标准 Card Root 与 Bits UI Separator，仅引入使用的组件，不修改依赖。DetailArtwork 保留 source / width / height / fit、图片状态与透传属性，使用工具类处理舞台和缺图占位。StatList / StatRow 保留 dl / dt / dd、标签插槽、图标列、数值颜色及数据标记；单行基础高度为 2.5rem，长标签与数值自然增高。分隔线放在 dt 内，首行隐藏，替代原伪元素；列表间距缩至 1rem。等级 wrapper 保留现有控件布局兼容规则，PlayerStatsPanel 继续按容器宽度分栏，不修改数据或交互生命周期。
+
+共享组件变更的 Prettier / ESLint、Svelte 检查（0 errors / 0 warnings）和相关 SSR 单元测试 22 项通过。浏览器布局验收在四类页面接入后执行。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。

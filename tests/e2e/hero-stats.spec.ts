@@ -19,9 +19,9 @@ for (const width of [1440, 1024, 390]) {
         const pane = page.locator('.hero-basic-data-pane');
         const list = pane.locator('.hero-stat-list');
         await expect(list.locator('.hero-stat-row')).toHaveCount(entity.rows);
-        await expect(pane).toHaveCSS('padding-left', width <= 820 ? '24px' : '32px');
+        await expect(pane).toHaveAttribute('data-slot', 'card');
         await expect(list).toHaveCSS('border-top-width', '0px');
-        await expect(list).toHaveCSS('margin-top', '24px');
+        await expect(list).toHaveCSS('margin-top', '16px');
         await expect(pane.locator('.info-card')).toHaveCount(0);
         if (entity.category !== 'enemies') {
           await expect(pane.locator('.stat-level-control > .skill-level-control')).toHaveCSS(
@@ -41,7 +41,7 @@ for (const width of [1440, 1024, 390]) {
         const hero = pane.locator('..');
         const identityBox = await hero.locator('.detail-profile-hero__identity').boundingBox();
         const paneBox = await pane.boundingBox();
-        const stacked = width <= (entity.category === 'characters' ? 1180 : 820);
+        const stacked = width < 1280;
         if (stacked)
           expect(paneBox!.y).toBeGreaterThanOrEqual(identityBox!.y + identityBox!.height - 1);
         else expect(paneBox!.y).toBeCloseTo(identityBox!.y, 0);
@@ -51,7 +51,8 @@ for (const width of [1440, 1024, 390]) {
         await expect(row).toHaveCSS('border-top-width', '0px');
         await expect(row.locator('dd strong')).toHaveCSS('font-variant-numeric', 'tabular-nums');
         const divider = await row.evaluate((element) => {
-          const style = getComputedStyle(element, '::before');
+          const separator = element.querySelector('[data-slot=separator]')!;
+          const style = getComputedStyle(separator);
           const label = element.querySelector('.hero-stat-label-text')!.getBoundingClientRect();
           return {
             inset: parseFloat(style.left),
