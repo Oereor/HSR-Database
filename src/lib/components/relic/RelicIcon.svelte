@@ -52,15 +52,15 @@
   }
 
   .relic-icon-stage--piece {
-    width: 96px;
-    height: 96px;
+    width: 64px;
+    height: 64px;
     border-radius: var(--radius-control);
     background: radial-gradient(circle, rgb(215 181 109 / 11%), transparent 70%);
   }
 
   .relic-icon-stage.relic-icon-stage--piece :global(img) {
-    width: 88px;
-    height: 88px;
+    width: 56px;
+    height: 56px;
   }
 
   .relic-icon-stage.relic-icon-stage--piece :global(.relic-icon-stage__fallback) {

@@ -10,7 +10,6 @@ import { readTable } from '../../scripts/data/raw';
 import type { RelicSetDomain } from '../../src/lib/domain/neutral';
 import type { RelicSet } from '../../src/lib/domain/types';
 import { getLocale, overwriteGetLocale } from '../../src/lib/paraglide/runtime.js';
-import { m } from '../../src/lib/paraglide/messages.js';
 
 const originalGetLocale = getLocale;
 afterEach(() => overwriteGetLocale(originalGetLocale));
@@ -75,29 +74,19 @@ describe('relic piece lore', () => {
     expect(body).not.toContain('<details');
   });
 
-  it('renders one story region and an initially collapsed disclosure for each real piece', async () => {
-    const pieces = (await projectSet(await domainForSet101(), 'zh-CN')).pieces;
-    const bodies = pieces
-      .slice(0, 2)
-      .map((piece) => render(RelicPieceCard, { props: { piece } }).body);
-    for (const body of bodies) {
-      expect(body).toMatch(/<details[^>]*data-relic-story-section/);
-      expect(body).not.toMatch(/<details[^>]*\sopen(?:\s|=|>)/);
-      expect(body).toContain('<summary');
-      expect(body).not.toContain('<button');
-      expect(body.match(/data-relic-lore/g)).toHaveLength(1);
-    }
-  });
-
-  it('selects the story disclosure label from the active site locale', async () => {
-    const piece = (await projectSet(await domainForSet101(), 'zh-CN')).pieces[0];
-    const labels: string[] = [];
-    for (const locale of ['zh-CN', 'en'] as const) {
-      overwriteGetLocale(() => locale);
-      const label = m.relic_view_story();
-      labels.push(label);
-      expect(render(RelicPieceCard, { props: { piece } }).body).toContain(label);
-    }
-    expect(labels[0]).not.toBe(labels[1]);
+  it('keeps summary information and never renders supplied story content', () => {
+    const piece = {
+      id: 'synthetic-piece',
+      name: 'Synthetic name',
+      slot: 'HEAD',
+      description: 'Synthetic summary',
+      lore: 'Synthetic hidden story'
+    } as RelicSet['pieces'][number];
+    const { body } = render(RelicPieceCard, { props: { piece } });
+    expect(body).toContain(piece.name);
+    expect(body).toContain(piece.description);
+    expect(body).not.toContain(piece.lore);
+    expect(body).not.toContain('<details');
+    expect(body).not.toContain('data-relic-lore');
   });
 });

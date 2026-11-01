@@ -5,15 +5,18 @@
     ref = $bindable(null),
     class: className,
     children,
+    size = 'default',
     ...restProps
-  }: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
+  }: WithElementRef<HTMLAttributes<HTMLDivElement>> & { size?: 'default' | 'sm' } = $props();
 </script>
 
 <div
   bind:this={ref}
   data-slot="card"
+  data-size={size}
   class={cn(
-    'bg-card text-card-foreground border-border flex min-w-0 flex-col gap-6 rounded-xl border py-6 shadow-xs',
+    'group/card bg-card text-card-foreground border-border flex min-w-0 flex-col rounded-xl border shadow-xs',
+    size === 'sm' ? 'gap-4 py-4' : 'gap-6 py-6',
     className
   )}
   {...restProps}

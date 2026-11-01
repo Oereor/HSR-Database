@@ -73,10 +73,15 @@
   </header>
 </Card.Root>
 
-<section class="detail-section relic-piece-section" data-relic-piece-count={detail.pieces.length}>
+<section
+  class="detail-section relic-piece-section @container/relic-pieces"
+  data-relic-piece-count={detail.pieces.length}
+>
   <SectionHeading level={1}>{m.relic_pieces()}</SectionHeading>
   {#if detail.pieces.length}
-    <div class="relic-piece-list grid min-w-0 grid-cols-1 gap-4">
+    <div
+      class={`relic-piece-list grid min-w-0 grid-cols-1 gap-4 @min-[36rem]/relic-pieces:grid-cols-2 ${detail.pieces.length === 4 ? '@min-[64rem]/relic-pieces:grid-cols-4' : ''}`}
+    >
       {#each detail.pieces as piece (piece.id)}
         <RelicPieceCard {piece} />
       {/each}

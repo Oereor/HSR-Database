@@ -172,6 +172,16 @@ SectionHeading 保留 level、headingLevel、tone、id 和 meta slot，采用主
 
 未推送或部署，停止在 Phase 5B，不进入 Phase 5C。
 
+## Phase 5B 补充与 Phase 5C
+
+### 遗器部件
+
+部件卡改用 size=sm 的 Card / Header / Title / Content，图标为 64px，保留名称、部位、完整简介及缺图降级。Card 默认外观兼容现有 Hero。部件网格采用容器查询：36rem 起两列，四件套在 64rem 起四列，两件套最多两列，窄屏一列。
+
+按明确授权移除部件故事及其 Disclosure；全仓引用检查后删除唯一使用方已消失的 Disclosure.svelte。删除故事可见性、展开与宽屏恢复 UI 测试，保留上游故事数据解析和本地化合约，并断言包含故事的数据也不渲染故事。此前记录的遗器故事宽屏恢复问题因该 UI 被移除而结束，不修改上游数据。
+
+共享组件与遗器变更的格式 / ESLint、Svelte 检查通过（0 errors / 0 warnings），浏览器布局在最终构建后验证。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。
