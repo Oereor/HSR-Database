@@ -31,7 +31,10 @@
         if (skill.id === selectedSkillId) event.preventDefault();
       }}
     >
-      <span class="enemy-skill-selector__icon" aria-hidden="true">
+      <span
+        class="enemy-skill-selector__icon grid w-[1.15rem] shrink-0 place-items-center [--semantic-icon-image-size:1.15rem]"
+        aria-hidden="true"
+      >
         {#if skill.damageType}<SemanticIconLabel
             kind="element"
             code={skill.damageType.element}
@@ -44,11 +47,3 @@
     </ToggleGroup.Item>
   {/each}
 </ToggleGroup.Root>
-
-<style>
-  .enemy-skill-selector__icon {
-    --semantic-icon-image-size: 1.15rem;
-    display: grid;
-    place-items: center;
-  }
-</style>

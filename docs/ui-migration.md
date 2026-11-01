@@ -300,6 +300,14 @@ PlayerHero 使用单层紧凑 Card，继续用 AssetImage 保留游戏头像、�
 
 构建后在独立端口启动新的生产预览，截图、日志及临时配置保留在忽略目录 data/audit。仓库缺少 .crossnote/scripts/check-pseudocode.cjs，文档未新增伪代码，按手工维护约定使用 git diff --check 校验空白。非 Chromium 浏览器和真实第三方 API 未验证；本地 Analytics 脚本 404 为既有环境限制。无未解决的本阶段回归；停止在 Phase 6C，不进入 Phase 7，不推送或部署。
 
+## Catalog 与 Detail 细节修复
+
+### 展示细节
+
+敌方技能列表为属性图标保留固定宽度的空槽，攻击与非攻击技能名称保持对齐。分页移除下方重复页数说明，保留页码链接和前后页。遗器 Hero 类型与条件版本使用标准 Badge，保持原 metadata 的深色胶囊语义及全部信息。角色、光锥稀有度筛选复用 RarityStars 和游戏稀有度颜色，按钮提供本地化可访问名称；筛选值与 ToggleGroup 交互保持原样。
+
+展示细节已通过变更文件 Prettier / ESLint、完整 pnpm check（Svelte 0 errors / 0 warnings）与技能渲染、稀有度单元测试 17 项。首次单元测试启动受沙箱临时目录重命名权限限制，本机运行相同测试后通过；浏览器交互与视觉检查随自适应分页统一验收。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。

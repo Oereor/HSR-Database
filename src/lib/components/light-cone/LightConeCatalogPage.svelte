@@ -156,7 +156,8 @@
     <FilterGroup
       id="light-cone-rarity"
       label={m.filter_rarity()}
-      options={options('rarity').map((option) => ({ ...option, label: `${option.label}★` }))}
+      presentation="rarity"
+      options={options('rarity')}
       selected={filterState.rarities}
       onToggle={(value) => toggleFilter('rarities', value)}
     />

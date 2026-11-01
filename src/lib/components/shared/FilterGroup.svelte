@@ -2,6 +2,7 @@
   import { m } from '$lib/paraglide/messages.js';
   import * as ToggleGroup from '$lib/components/ui/toggle-group';
   import { Toggle } from '$lib/components/ui/toggle';
+  import RarityStars from './RarityStars.svelte';
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import { getElementColor } from '$lib/domain/elements';
   import { getElementIconUrl, getPathIconUrl } from '$lib/data/visual-assets';
@@ -12,6 +13,7 @@
   export let options: Array<{ value: string; label: string }> = [];
   export let selected: Set<string> = new Set();
   export let multiple = true;
+  export let presentation: 'default' | 'rarity' = 'default';
   export let onToggle: (value: string | undefined) => void;
   $: values = [...selected];
   function updateSelection(next: string[]) {
@@ -47,6 +49,9 @@
           onclick={(event) => {
             if (!multiple && selected.has(option.value)) event.preventDefault();
           }}
+          aria-label={presentation === 'rarity'
+            ? m.rarity_aria({ rarity: Number(option.value) })
+            : undefined}
           value={option.value}
           data-filter-value={option.value}
           style={iconKind === 'element' ? `color: ${getElementColor(option.value)}` : undefined}
@@ -59,7 +64,13 @@
               width="18"
               height="18"
             />{/if}
-          <span>{option.label}</span>
+          {#if presentation === 'rarity'}
+            <span aria-hidden="true"
+              ><RarityStars rarity={Number(option.value)} size="compact" /></span
+            >
+          {:else}
+            <span>{option.label}</span>
+          {/if}
         </ToggleGroup.Item>
       {/each}
     {/snippet}

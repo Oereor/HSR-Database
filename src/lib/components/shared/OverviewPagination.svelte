@@ -15,10 +15,7 @@
 </script>
 
 {#if pages > 1}
-  <Pagination.Root
-    class="overview-pagination my-8 flex-col items-center gap-3"
-    aria-label={m.pagination_aria()}
-  >
+  <Pagination.Root class="overview-pagination my-8" aria-label={m.pagination_aria()}>
     <Pagination.Content>
       {#if currentPage > 1}<Pagination.Item
           ><Pagination.Link href={pageUrl(queryString, currentPage - 1)} size="default" rel="prev"
@@ -39,8 +36,5 @@
           ></Pagination.Item
         >{/if}
     </Pagination.Content>
-    <span class="text-muted-foreground text-sm"
-      >{m.overview_page_count({ currentPage, pages })}</span
-    >
   </Pagination.Root>
 {/if}

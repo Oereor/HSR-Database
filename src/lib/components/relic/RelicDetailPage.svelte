@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Badge } from '$lib/components/ui/badge';
   import * as Card from '$lib/components/ui/card';
   import { Separator } from '$lib/components/ui/separator';
   import GameText from '$lib/components/shared/GameText.svelte';
@@ -33,11 +34,17 @@
         <p class="kicker">{singular} / ID {detail.id}</p>
         <h1><GameText text={detail.name} /></h1>
         <div
-          class="relic-identity-tags text-primary mt-1 flex flex-wrap gap-2 text-sm"
+          class="relic-identity-tags mt-1 flex flex-wrap gap-2"
           aria-label={m.relic_identity_aria()}
         >
-          <span>{detail.typeName}</span>
-          {#if detail.version}<span>{m.relic_version({ version: detail.version })}</span>{/if}
+          <Badge
+            class="shrink border-[var(--border-strong)] bg-[rgb(7_10_18/72%)] wrap-anywhere whitespace-normal text-[var(--gold-soft)]"
+            >{detail.typeName}</Badge
+          >
+          {#if detail.version}<Badge
+              class="shrink border-[var(--border-strong)] bg-[rgb(7_10_18/72%)] wrap-anywhere whitespace-normal text-[var(--gold-soft)]"
+              >{m.relic_version({ version: detail.version })}</Badge
+            >{/if}
         </div>
       </div>
     </div>
