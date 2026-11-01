@@ -3,6 +3,7 @@
   import '../styles/presentation/detail-hero.css';
   import '../styles/presentation/detail-inspection.css';
   import { page } from '$app/stores';
+  import * as Sidebar from '$lib/components/ui/sidebar';
   import Navigator from '$lib/components/layout/Navigator.svelte';
   import { injectAnalytics } from '@vercel/analytics/sveltekit';
   import { getBrandIconUrl } from '$lib/data/visual-assets';
@@ -57,7 +58,11 @@
   {#if faviconUrl}<link rel="icon" type="image/png" href={faviconUrl} />{/if}
 </svelte:head>
 
-<div class="site-shell" data-app-ready={appReady} style:--page-nav-height={pageNavHeight}>
+<Sidebar.Provider
+  class="site-shell"
+  data-app-ready={appReady}
+  style={`--page-nav-height: ${pageNavHeight};`}
+>
   <Navigator siteVersion={data.siteVersion} onOpenChangelog={() => changelogModal?.open()} />
   <ChangelogModal locale={data.locale} bind:this={changelogModal} />
   <SettingsPopover locale={data.locale} />
@@ -77,7 +82,7 @@
       </p>
     </footer>
   </main>
-</div>
+</Sidebar.Provider>
 
 <Toaster
   theme="dark"

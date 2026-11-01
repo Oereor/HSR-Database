@@ -1,9 +1,14 @@
 <script lang="ts">
-  import AssetImage from '$lib/components/shared/AssetImage.svelte';
-  import { m } from '$lib/paraglide/messages.js';
+  import { tick } from 'svelte';
   import { afterNavigate } from '$app/navigation';
   import { page } from '$app/stores';
-  import * as Sheet from '$lib/components/ui/sheet';
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
+  import { Button } from '$lib/components/ui/button';
+  import * as Sidebar from '$lib/components/ui/sidebar';
+  import PanelLeftIcon from '@lucide/svelte/icons/panel-left';
+  import SearchIcon from '@lucide/svelte/icons/search';
+  import XIcon from '@lucide/svelte/icons/x';
+  import { m } from '$lib/paraglide/messages.js';
   import { getBrandIconUrl, getUtilityIconUrl } from '$lib/data/visual-assets';
   import type { PublicSiteVersion } from '$lib/domain/types';
   import { localizedHref } from '$lib/i18n/routing';
@@ -11,141 +16,165 @@
   import PrimaryNavigation from './PrimaryNavigation.svelte';
   import SearchBar from '../search/SearchBar.svelte';
 
-  export let siteVersion: PublicSiteVersion;
-  export let onOpenChangelog: () => void = () => undefined;
-
-  let returnFocus: HTMLButtonElement | undefined;
-  let expanded = false;
+  let {
+    siteVersion,
+    onOpenChangelog = () => undefined
+  }: {
+    siteVersion: PublicSiteVersion;
+    onOpenChangelog?: () => void;
+  } = $props();
+  const sidebar = Sidebar.useSidebar();
+  let returnFocus = $state<HTMLButtonElement>();
   const trainPartyIconUrl = getBrandIconUrl('train-party');
   const changelogIconUrl = getUtilityIconUrl('changelog');
   const homeHref = localizedHref('/');
   const name = siteName();
+  const revision = $derived(siteVersion.dataRevision);
+  const versionLabel = $derived(
+    siteVersion.gameVersion
+      ? m.navigation_data_version({ version: siteVersion.gameVersion })
+      : m.navigation_unknown_version()
+  );
+  const snapshotLabel = $derived(m.navigation_snapshot({ versionLabel, revision }));
 
-  $: revision = siteVersion.dataRevision;
-  $: versionLabel = siteVersion.gameVersion
-    ? m.navigation_data_version({ version: siteVersion.gameVersion })
-    : m.navigation_unknown_version();
-  $: snapshotLabel = m.navigation_snapshot({ versionLabel, revision });
-
-  function openNavigator(event: MouseEvent) {
+  function toggle(event: MouseEvent) {
     returnFocus = event.currentTarget as HTMLButtonElement;
-    expanded = !expanded;
+    sidebar.toggle();
   }
-  function closeNavigator() {
-    expanded = false;
+  async function openSearch() {
+    sidebar.setOpen(true);
+    await tick();
+    document.getElementById('global-search')?.focus({ preventScroll: true });
   }
-  afterNavigate(closeNavigator);
+  afterNavigate(() => sidebar.setOpenMobile(false));
+  $effect(() => {
+    // Close a mobile sheet before its trigger disappears at the desktop breakpoint.
+    if (!sidebar.isMobile) sidebar.setOpenMobile(false);
+  });
 </script>
 
-<Sheet.Root bind:open={expanded}>
-  <aside class="navigator-rail" aria-label={m.navigation_compact_aria()}>
+<header class="mobile-header">
+  <a class="brand min-w-0" href={homeHref}>
+    <span class="brand-icon" aria-hidden="true">
+      <AssetImage src={trainPartyIconUrl} alt="" fallbackClass="brand-image-fallback" />
+    </span><strong class="truncate">{name}</strong>
+  </a>
+  <div class="mobile-header__actions">
+    <Button
+      variant="ghost"
+      size="icon"
+      class="changelog-trigger"
+      aria-label={m.navigation_changelog()}
+      onclick={onOpenChangelog}
+    >
+      <span class="size-7 [&_.utility-image-fallback]:size-full [&_img]:size-full"
+        ><AssetImage src={changelogIconUrl} alt="" fallbackClass="utility-image-fallback" /></span
+      >
+    </Button>
+    <Button
+      variant="ghost"
+      size="icon"
+      class="navigator-toggle"
+      aria-label={m.navigation_open()}
+      aria-expanded={sidebar.openMobile}
+      aria-controls="primary-navigator-pane"
+      onclick={toggle}><PanelLeftIcon /></Button
+    >
+  </div>
+</header>
+
+<Sidebar.Root collapsible="icon" {returnFocus} class="navigator-panel">
+  <Sidebar.Header class="gap-3 p-3">
     <a
-      class="brand navigator-rail__brand"
+      class="brand navigator-pane__brand"
       href={homeHref}
       aria-label={m.navigation_home_aria({ siteName: name })}
+      onclick={() => sidebar.setOpenMobile(false)}
     >
-      <span class="brand-icon" aria-hidden="true">
-        <AssetImage src={trainPartyIconUrl} alt="" fallbackClass="brand-image-fallback" />
-      </span>
+      <span class="brand-icon size-12!" aria-hidden="true"
+        ><AssetImage src={trainPartyIconUrl} alt="" fallbackClass="brand-image-fallback" /></span
+      >
+      <span class="min-w-0 group-data-[collapsible=icon]:hidden"
+        ><strong>{name}</strong><small>{m.site_short_tagline()}</small></span
+      >
     </a>
-    <button
-      class="navigator-toggle"
-      type="button"
-      aria-label={m.navigation_open()}
-      aria-expanded={expanded}
-      aria-controls="primary-navigator-pane"
-      on:click={openNavigator}
-    >
-      <span aria-hidden="true"><i></i><i></i><i></i></span>
-    </button>
-    <button
-      class="changelog-trigger"
-      type="button"
-      aria-label={m.navigation_changelog()}
-      on:click={onOpenChangelog}
-    >
-      <AssetImage src={changelogIconUrl} alt="" fallbackClass="utility-image-fallback" />
-      <span class="changelog-trigger__tooltip" role="tooltip">{m.navigation_changelog()}</span>
-    </button>
-    <PrimaryNavigation pathname={$page.url.pathname} compact />
-    <div class="navigator-rail__snapshot" role="status" aria-label={snapshotLabel}>
-      <span class="snapshot-dot" aria-hidden="true"></span>
-      <span class="navigator-rail__tooltip" role="tooltip">{snapshotLabel}</span>
-    </div>
-  </aside>
-
-  <header class="mobile-header">
-    <a class="brand" href={homeHref}>
-      <span class="brand-icon" aria-hidden="true">
-        <AssetImage src={trainPartyIconUrl} alt="" fallbackClass="brand-image-fallback" />
-      </span><strong>{name}</strong>
-    </a>
-    <div class="mobile-header__actions">
-      <button
-        class="changelog-trigger mobile-header__changelog"
-        type="button"
-        aria-label={m.navigation_changelog()}
-        on:click={onOpenChangelog}
-      >
-        <AssetImage src={changelogIconUrl} alt="" fallbackClass="utility-image-fallback" />
-        <span class="changelog-trigger__tooltip" role="tooltip">{m.navigation_changelog()}</span>
-      </button>
-      <button
-        class="navigator-toggle"
-        type="button"
-        aria-label={m.navigation_open()}
-        aria-expanded={expanded}
-        aria-controls="primary-navigator-pane"
-        on:click={openNavigator}
-      >
-        <span aria-hidden="true"><i></i><i></i><i></i></span>
-      </button>
-    </div>
-  </header>
-
-  <Sheet.Content
-    id="primary-navigator-pane"
-    side="left"
-    showCloseButton={false}
-    aria-describedby={undefined}
-    class="navigator-pane w-[min(88vw,320px)]! gap-6 overflow-y-auto p-4"
-    onCloseAutoFocus={(event) => {
-      event.preventDefault();
-      if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
-    }}
-  >
-    <Sheet.Title class="sr-only">{m.navigation_full_aria()}</Sheet.Title>
-    <div class="navigator-pane__heading">
-      <a class="brand navigator-pane__brand" href={homeHref} on:click={closeNavigator}>
-        <span class="brand-icon" aria-hidden="true">
-          <AssetImage src={trainPartyIconUrl} alt="" fallbackClass="brand-image-fallback" />
-        </span>
-        <span><strong>{name}</strong><small>{m.site_short_tagline()}</small></span>
-      </a>
-      <button
-        class="navigator-toggle"
-        type="button"
-        aria-label={m.navigation_close()}
-        aria-expanded={expanded}
-        aria-controls="primary-navigator-pane"
-        on:click={closeNavigator}
-      >
-        <span aria-hidden="true"><i></i><i></i><i></i></span>
-      </button>
-    </div>
-
-    <SearchBar
-      id="global-search"
-      label={m.navigation_search_label()}
-      placeholder={m.navigation_search_placeholder()}
-      variant="sidebar"
+    <Sidebar.Menu>
+      <Sidebar.MenuItem>
+        <Sidebar.MenuButton
+          class="navigator-toggle h-11"
+          tooltipContent={sidebar.open ? m.navigation_close() : m.navigation_open()}
+          aria-label={sidebar.isMobile || sidebar.open ? m.navigation_close() : m.navigation_open()}
+          aria-expanded={sidebar.isMobile ? sidebar.openMobile : sidebar.open}
+          onclick={toggle}
+        >
+          {#if sidebar.isMobile}<XIcon />{:else}<PanelLeftIcon />{/if}
+          <span
+            >{sidebar.isMobile || sidebar.open ? m.navigation_close() : m.navigation_open()}</span
+          >
+        </Sidebar.MenuButton>
+      </Sidebar.MenuItem>
+      {#if !sidebar.isMobile && !sidebar.open}
+        <Sidebar.MenuItem
+          ><Sidebar.MenuButton
+            class="h-11"
+            tooltipContent={m.navigation_search_label()}
+            aria-label={m.navigation_search_label()}
+            onclick={openSearch}
+            ><SearchIcon /><span>{m.navigation_search_label()}</span></Sidebar.MenuButton
+          ></Sidebar.MenuItem
+        >
+      {/if}
+    </Sidebar.Menu>
+    {#if sidebar.isMobile || sidebar.open}
+      <SearchBar
+        id="global-search"
+        label={m.navigation_search_label()}
+        placeholder={m.navigation_search_placeholder()}
+        variant="sidebar"
+      />
+    {/if}
+  </Sidebar.Header>
+  <Sidebar.Content class="px-3">
+    <PrimaryNavigation
+      pathname={$page.url.pathname}
+      onSelect={() => sidebar.setOpenMobile(false)}
     />
-
-    <PrimaryNavigation pathname={$page.url.pathname} onSelect={closeNavigator} />
-
-    <div class="navigator-pane__snapshot" aria-label={snapshotLabel}>
-      <span class="snapshot-dot" aria-hidden="true"></span>
-      <div><strong>{versionLabel}</strong><small>{revision}</small></div>
-    </div>
-  </Sheet.Content>
-</Sheet.Root>
+  </Sidebar.Content>
+  <Sidebar.Footer class="gap-3 border-t p-3">
+    <Sidebar.Menu>
+      <Sidebar.MenuItem
+        ><Sidebar.MenuButton
+          class="changelog-trigger h-11"
+          tooltipContent={m.navigation_changelog()}
+          aria-label={m.navigation_changelog()}
+          onclick={() => {
+            sidebar.setOpenMobile(false);
+            onOpenChangelog();
+          }}
+        >
+          <span class="size-7 shrink-0 [&_.utility-image-fallback]:size-full [&_img]:size-full"
+            ><AssetImage
+              src={changelogIconUrl}
+              alt=""
+              fallbackClass="utility-image-fallback"
+            /></span
+          ><span>{m.navigation_changelog()}</span>
+        </Sidebar.MenuButton></Sidebar.MenuItem
+      >
+      <Sidebar.MenuItem
+        ><Sidebar.MenuButton
+          class="navigator-snapshot h-auto min-h-11"
+          tooltipContent={snapshotLabel}
+          aria-label={snapshotLabel}
+        >
+          <span role="status" class="flex min-w-0 items-center gap-2">
+            <span class="snapshot-dot shrink-0" aria-hidden="true"></span><span
+              class="navigator-pane__snapshot min-w-0 group-data-[collapsible=icon]:hidden"
+              ><strong>{versionLabel}</strong><small class="block truncate">{revision}</small></span
+            >
+          </span>
+        </Sidebar.MenuButton></Sidebar.MenuItem
+      >
+    </Sidebar.Menu>
+  </Sidebar.Footer>
+</Sidebar.Root>
