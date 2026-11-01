@@ -95,31 +95,14 @@ test('submitting a UID updates the URL before rendering Player Hero and characte
   await expect(page.locator('#player-companion-characters')).toBeVisible();
   await expect(page.locator('[aria-labelledby="player-support-characters"] a')).toHaveCount(1);
   await expect(page.locator('[aria-labelledby="player-companion-characters"] a')).toHaveCount(1);
-  const heroStyles = await page.locator('.player-hero').evaluate((hero) => {
-    const details = hero.querySelector<HTMLElement>('.player-hero__details')!;
-    const avatar = hero.querySelector<HTMLElement>('.player-hero__avatar')!;
-    const metadataRow = hero.querySelector<HTMLElement>('.player-hero__metadata > div')!;
-    const countLabel = hero.querySelector<HTMLElement>('.player-hero__counts dt')!;
-    const countValue = hero.querySelector<HTMLElement>('.player-hero__counts dd')!;
-    return {
-      detailsJustify: getComputedStyle(details).justifyContent,
-      avatarAlign: getComputedStyle(avatar).alignSelf,
-      metadataAlign: getComputedStyle(metadataRow).alignItems,
-      labelSize: Number.parseFloat(getComputedStyle(countLabel).fontSize),
-      labelWeight: Number.parseInt(getComputedStyle(countLabel).fontWeight, 10),
-      valueSize: Number.parseFloat(getComputedStyle(countValue).fontSize),
-      valueWeight: Number.parseInt(getComputedStyle(countValue).fontWeight, 10)
-    };
-  });
-  expect(heroStyles.detailsJustify).toBe('center');
-  expect(heroStyles.avatarAlign).toBe('center');
-  expect(heroStyles.metadataAlign).toBe('center');
-  expect(heroStyles.labelSize).toBeGreaterThanOrEqual(13);
-  expect(heroStyles.labelWeight).toBeGreaterThanOrEqual(600);
-  expect(heroStyles.valueSize).toBeGreaterThanOrEqual(30);
-  expect(heroStyles.valueSize).toBeGreaterThan(heroStyles.labelSize);
-  expect(heroStyles.valueWeight).toBeGreaterThanOrEqual(700);
-  expect(heroStyles.valueWeight).toBeLessThan(800);
+  await expect(page.locator('.player-hero [data-slot="card"]')).toHaveCount(1);
+  await expect(page.locator('.player-hero__counts dd')).toHaveText(['-', '0', '-']);
+  expect(
+    await page
+      .locator('.player-hero__counts dd')
+      .first()
+      .evaluate((element) => getComputedStyle(element).fontVariantNumeric)
+  ).toContain('tabular-nums');
   await expect(page.getByRole('link', { name: /三月七/ }).first()).toHaveAttribute(
     'href',
     '/characters/1001/?uid=100000001&build=area%3Aassist%3Aposition%3A1%3Aorder%3A0&from=player'

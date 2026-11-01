@@ -46,6 +46,18 @@ describe('Player presentation components', () => {
     expect(values).toContain('0');
   });
 
+  it('preserves long profile text and missing counts in one Card', () => {
+    const nickname = 'SyntheticLongName'.repeat(30);
+    const signature = 'First line\n' + 'Unbroken'.repeat(60);
+    const body = render(PlayerHero, {
+      props: { profile: { ...profile, nickname, signature } }
+    }).body;
+    expect(body).toContain(nickname);
+    expect(body).toContain(signature);
+    expect(body.match(/data-slot="card"/g)).toHaveLength(1);
+    expect(body).toContain('whitespace-pre-wrap');
+  });
+
   it('links an accessible validation error and disables submission while busy', () => {
     const body = render(PlayerUidForm, {
       props: { value: 'abc', busy: true, errorMessage: 'synthetic validation error' }

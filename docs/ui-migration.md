@@ -280,6 +280,10 @@ UID 表单使用 Label 与一体式 InputGroup / Button，手机继续使用同�
 
 首批格式 / ESLint、完整 pnpm check（Svelte 0 errors / 0 warnings）通过；组件与客户端相关单元测试共 12 项不同用例通过，包含默认 role 可覆盖及装饰性 Spinner 不重复宣告。
 
+### 玩家名片
+
+PlayerHero 使用单层紧凑 Card，继续用 AssetImage 保留游戏头像、错误及空图降级和昵称对应的可访问名称。手机头像 64px，宽屏 80px；以名片容器 48rem 为断点，在身份 / 统计并排与统计下置间切换。保留 dl / dt / dd、全部元信息、签名换行、等宽 UID 和 tabular-nums 统计。displayCount 未修改，null 继续为 -、零继续为 0。删除旧渐变外壳、固定尺寸及名片 CSS，测试改为单层 Card、空值和数值对齐语义，不再固定字号及旧对齐方式。名片格式 / ESLint 和 5 项组件单元测试通过，包含长昵称与多行签名。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。
