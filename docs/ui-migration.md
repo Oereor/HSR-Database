@@ -210,6 +210,14 @@ SectionHeading 保留 level、headingLevel、tone、id 和 meta slot，采用主
 
 构建与预览串行执行，最终构建后启动新的预览进程。验收日志、临时配置和截图保留在忽略目录 data/audit，不入库。仓库没有 .crossnote/scripts/check-pseudocode.cjs，文档未新增伪代码，使用 Prettier 与 git diff --check 校验 Markdown。真实玩家远程 API、非 Chromium 浏览器及远程部署未验证；玩家回归使用本地 mock，本地 Analytics 脚本 404 为既有环境限制。
 
+## Phase 6A：Endgame 总览、赛期目录与模式导航
+
+### 总览
+
+总览卡使用外层单一链接与单层紧凑 Card，Header / Content 和 Separator 组织原有信息。保留四模式强调色、图标与水印；AA 继续独立整行并保留较大的水印。常规模式以内容容器为准，48rem 起三列，否则单列，间距为 1rem，适应 Sidebar 展开。删除旧卡片外壳、渐变 Hover、固定最小高度、大段留白与名称截断，名称完整换行。推荐赛期、日期、数量、空赛期降级与链接计算保持原样。
+
+总览变更的 Prettier / ESLint 及相关 SSR 单元测试 34 项通过，包含四模式链接、长名称、无图标和空赛期。浏览器验收留待最终构建。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。
