@@ -126,6 +126,10 @@
 
 Grid 使用容器内自适应列，360px 起双列、640px 起最小 12rem，删除负边距及旧列宽规则。删除五个共享组件的旧 CSS；共享 props 和 variant 保持兼容。变更源码 ESLint 与 Svelte 检查通过（0 errors / 0 warnings）；已更新分页结构选择器，并增加双语排序键盘及历史回归，浏览器验证留待最终批次。
 
+### 实体卡片
+
+EntityOverviewCard 改用主题 Card 表面和工具类，删除原 250 行组件 CSS、固定行高、标题裁切及渐变／位移动效。角色与光锥为 4:5、敌人为 4:3 图片区，遗器为方形居中图标区；原素材、fit、position、scale、fallback 和整卡链接保留。新增 artworkAspect 可选 prop，默认 portrait，敌人显式使用 landscape；现有 props 与插槽兼容。Badge 仅用于非交互元信息，名称完整换行，信息区自然增长。首页、搜索和玩家继续复用同一实现，未改其业务数据或专用样式。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。
