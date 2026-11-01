@@ -122,7 +122,7 @@ test('敌方单位 Overview 支持类型多选、弱点 OR 与相关性优先排
     '/enemies/?q=%E8%9A%95%E9%A3%9F%E8%80%85%E4%B9%8B%E5%BD%B1&weakness=Physical&weakness=Ice&weakness=Imaginary'
   );
   await expect(page.locator('.entity-overview-card')).toHaveCount(0);
-  await expect(page.locator('.empty-state')).toBeVisible();
+  await expect(page.locator('.overview-controls + section')).toBeVisible();
 });
 
 test('敌人缺图 Template 使用共享 fallback 且不发起远程请求', async ({ page }) => {

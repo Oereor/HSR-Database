@@ -22,8 +22,8 @@
   }
 </script>
 
-<section class="filter-group" aria-labelledby={`filter-group-${id}`}>
-  <h2 id={`filter-group-${id}`}>{label}</h2>
+<section class="filter-group grid min-w-0 gap-2" aria-labelledby={`filter-group-${id}`}>
+  <h2 class="text-muted-foreground m-0 text-sm font-medium" id={`filter-group-${id}`}>{label}</h2>
   <div class="flex flex-wrap items-start gap-2">
     <Toggle
       variant="outline"
@@ -90,17 +90,3 @@
     {/if}
   </div>
 </section>
-
-<style>
-  .filter-group {
-    display: grid;
-    gap: 0.65rem;
-  }
-
-  .filter-group h2 {
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: var(--font-helper);
-    font-weight: 700;
-  }
-</style>

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Button } from '$lib/components/ui/button';
   import { m } from '$lib/paraglide/messages.js';
   import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
   import { goto } from '$app/navigation';
@@ -135,7 +136,7 @@
   artwork={heroArtwork}
 />
 
-<section class="overview-controls" aria-label={m.light_cones_controls_aria()}>
+<section class="overview-controls mb-6 grid gap-5" aria-label={m.light_cones_controls_aria()}>
   <OverviewSearch
     id="light-cone-search-input"
     bind:value={draftQuery}
@@ -143,7 +144,7 @@
     onSubmit={submitQuery}
   />
 
-  <div class="overview-filters">
+  <div class="overview-filters grid gap-4">
     <FilterGroup
       id="light-cone-path"
       label={m.filter_path()}
@@ -187,24 +188,11 @@
   </OverviewGrid>
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
-  <section class="empty-state">
-    <h2>{m.overview_empty_title()}</h2>
-    <p>{m.overview_empty_description()}</p>
-    <button class="button" type="button" on:click={clearSearchAndFilters}
-      >{m.overview_clear_filters()}</button
-    >
+  <section
+    class="border-border bg-card text-card-foreground grid justify-items-center gap-3 rounded-xl border px-4 py-10 text-center"
+  >
+    <h2 class="m-0 text-xl font-semibold">{m.overview_empty_title()}</h2>
+    <p class="text-muted-foreground m-0 text-sm">{m.overview_empty_description()}</p>
+    <Button onclick={clearSearchAndFilters}>{m.overview_clear_filters()}</Button>
   </section>
 {/if}
-
-<style>
-  .overview-controls {
-    display: grid;
-    gap: 1.4rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .overview-filters {
-    display: grid;
-    gap: 1.25rem;
-  }
-</style>

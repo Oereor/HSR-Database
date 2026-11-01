@@ -102,7 +102,7 @@ test('光锥 Overview 支持命途与稀有度多选，并在清除筛选时保�
   await expect(page).toHaveURL(/rarity=4/);
   await expect(page.locator('[data-filter-value="Mage"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('[data-filter-value="4"]')).toHaveAttribute('aria-pressed', 'true');
-  await page.locator('.overview-toolbar button').click();
+  await page.locator('.overview-toolbar [data-slot="button"]').click();
   await expect(page).toHaveURL(/q=%E9%93%B6%E6%B2%B3/);
   await expect(page).not.toHaveURL(/path=|rarity=/);
 });
@@ -315,7 +315,8 @@ test('遗器目录复用 shared compact Overview，并保留可读 typography �
   }
 
   const navigableCard = page.locator('a[href="/relics/314/"]');
-  await navigableCard.click();
+  await navigableCard.focus();
+  await navigableCard.press('Enter');
   await expect(page).toHaveURL(/\/relics\/314\/$/);
   await expect(page.getByRole('heading', { level: 1, name: '出云显世与高天神国' })).toBeVisible();
 
@@ -554,7 +555,7 @@ test('角色目录支持同类多选与跨类组合筛选', async ({ page }) => 
   await page.locator('[data-filter-value="Lightning"]').click();
   await expect(page).toHaveURL(/element=Fire/);
   await expect(page).toHaveURL(/element=Lightning/);
-  await page.locator('.overview-toolbar button').click();
+  await page.locator('.overview-toolbar [data-slot="button"]').click();
   await expect(page).toHaveURL('/characters/');
   await expect(page.locator('[data-filter-value="Rogue"]')).toHaveAttribute(
     'aria-pressed',
@@ -586,12 +587,18 @@ for (const prefix of ['', '/en']) {
       await expect(page).toHaveURL(/page=2/);
       await expect(page).not.toHaveURL(/sort=/);
       await sort.click();
-      await expect(page.getByRole('option', { selected: true })).toHaveCount(1);
+      await expect(page.getByRole('option', { selected: true })).toHaveAttribute(
+        'data-value',
+        'rarity'
+      );
       await page.keyboard.press('Escape');
       await page.goForward();
       await expect(page).toHaveURL(/sort=id/);
       await sort.click();
-      await expect(page.getByRole('option', { selected: true })).toHaveCount(1);
+      await expect(page.getByRole('option', { selected: true })).toHaveAttribute(
+        'data-value',
+        'id'
+      );
       await page.keyboard.press('Escape');
     }
   });
