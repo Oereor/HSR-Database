@@ -7,3 +7,4 @@ export { default as Menu } from './sidebar-menu.svelte';
 export { default as MenuItem } from './sidebar-menu-item.svelte';
 export { default as MenuButton } from './sidebar-menu-button.svelte';
 export { useSidebar } from './context.svelte.js';
+export { default as Trigger } from './sidebar-trigger.svelte';

@@ -14,7 +14,7 @@
   bind:this={ref}
   data-slot="sidebar-header"
   data-sidebar="header"
-  class={cn('flex shrink-0 flex-col gap-2 p-2', className)}
+  class={cn('flex shrink-0 flex-col gap-2 px-2.5 pt-0 pb-2', className)}
   {...restProps}
 >
   {@render children?.()}

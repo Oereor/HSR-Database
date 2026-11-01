@@ -205,7 +205,7 @@ for (const prefix of ['', '/en']) {
     }
 
     // A different character entered from the catalog must not reuse either player's source.
-    if (isMobile) await page.locator('.mobile-header .navigator-toggle').click();
+    if (isMobile) await page.locator('[data-slot="sidebar-trigger"]').click();
     await page.locator(`a[href="${prefix}/characters/"]:visible`).first().click();
     await expect(page).toHaveURL(`${prefix}/characters/`);
     const ordinaryCard = page

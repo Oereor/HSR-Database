@@ -23,12 +23,17 @@ class SidebarState {
   readonly props: SidebarStateProps;
   open = $derived.by(() => this.props.open());
   openMobile = $state(false);
+  expandedReady = $state(false);
+  trigger: HTMLButtonElement | null = $state(null);
   setOpen: SidebarStateProps['setOpen'];
   #isMobile: MediaQuery;
   state = $derived.by(() => (this.open ? 'expanded' : 'collapsed'));
 
   constructor(props: SidebarStateProps) {
-    this.setOpen = props.setOpen;
+    this.setOpen = (value) => {
+      this.expandedReady = false;
+      props.setOpen(value);
+    };
     this.#isMobile = new MediaQuery('(width < 48rem)');
     this.props = props;
   }

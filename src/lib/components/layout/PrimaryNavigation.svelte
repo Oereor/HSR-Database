@@ -14,7 +14,12 @@
     {#each navigationItems as item}
       {@const active = isNavigationItemActive(pathname, item)}
       <Sidebar.MenuItem>
-        <Sidebar.MenuButton size="lg" isActive={active} tooltipContent={item.label}>
+        <Sidebar.MenuButton
+          size="lg"
+          isActive={active}
+          tooltipContent={item.label}
+          class="data-active:border-primary/35 data-active:bg-sidebar-accent border border-transparent"
+        >
           {#snippet child({ props })}
             <a
               {...props}
@@ -24,7 +29,7 @@
               onclick={() => onSelect?.()}
             >
               <span
-                class="primary-navigation__icon size-7 shrink-0 [&_.navigation-image-fallback]:size-full [&_img]:size-full [&_img]:object-contain"
+                class="primary-navigation__icon size-6 shrink-0 [&_.navigation-image-fallback]:size-full [&_img]:size-full [&_img]:object-contain"
                 aria-hidden="true"
                 ><AssetImage
                   src={getNavigationIconUrl(item.iconKey)}

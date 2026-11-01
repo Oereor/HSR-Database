@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { MediaQuery } from 'svelte/reactivity';
   import * as Sheet from '$lib/components/ui/sheet/index.js';
   import { cn, type WithElementRef } from '$lib/utils.js';
   import { SIDEBAR_WIDTH_MOBILE } from './constants.js';
@@ -13,16 +14,43 @@
     collapsible = 'offcanvas',
     class: className,
     children,
-    returnFocus,
     ...restProps
   }: WithElementRef<HTMLAttributes<HTMLDivElement>> & {
-    returnFocus?: HTMLButtonElement;
     side?: 'left' | 'right';
     variant?: 'sidebar' | 'floating' | 'inset';
     collapsible?: 'offcanvas' | 'icon' | 'none';
   } = $props();
 
   const sidebar = useSidebar();
+  const reducedMotion = new MediaQuery('(prefers-reduced-motion: reduce)');
+  let panel = $state<HTMLDivElement | null>(null);
+
+  function settleIfIdle() {
+    if (!sidebar.open || sidebar.isMobile || !panel) return;
+    const transitioning = panel
+      .getAnimations()
+      .some(
+        (animation) =>
+          animation instanceof CSSTransition &&
+          animation.transitionProperty === 'width' &&
+          animation.playState !== 'finished'
+      );
+    if (!transitioning) sidebar.expandedReady = true;
+  }
+  $effect(() => {
+    sidebar.expandedReady = false;
+    if (sidebar.isMobile || collapsible === 'none' || (sidebar.open && reducedMotion.current)) {
+      sidebar.expandedReady = true;
+      return;
+    }
+    if (!sidebar.open || !panel) return;
+    // Inspect the actual transition after layout; no timer assumes how long it takes.
+    const frame = requestAnimationFrame(settleIfIdle);
+    return () => cancelAnimationFrame(frame);
+  });
+  function handleTransitionEnd(event: TransitionEvent) {
+    if (event.target === event.currentTarget && event.propertyName === 'width') settleIfIdle();
+  }
 </script>
 
 {#if collapsible === 'none'}
@@ -45,17 +73,15 @@
       aria-describedby={undefined}
       onCloseAutoFocus={(event) => {
         event.preventDefault();
-        if (returnFocus?.isConnected && returnFocus.getClientRects().length)
-          returnFocus.focus({ preventScroll: true });
+        const trigger = sidebar.trigger;
+        if (trigger?.isConnected && trigger.getClientRects().length)
+          trigger.focus({ preventScroll: true });
       }}
       data-sidebar="sidebar"
       data-slot="sidebar"
       data-mobile="true"
-      class={cn(
-        'bg-sidebar text-sidebar-foreground h-dvh! w-(--sidebar-width) p-0 [&>button]:hidden',
-        className
-      )}
-      style="--sidebar-width: {SIDEBAR_WIDTH_MOBILE};"
+      class={cn('bg-sidebar text-sidebar-foreground border-sidebar-border p-0', className)}
+      style="--sidebar-width: {SIDEBAR_WIDTH_MOBILE}; width: var(--sidebar-width); height: 100dvh;"
       {side}
     >
       <Sheet.Header class="sr-only">
@@ -91,10 +117,14 @@
       )}
     ></div>
     <div
+      bind:this={panel}
+      id="primary-navigator-pane"
+      ontransitionend={handleTransitionEnd}
+      ontransitioncancel={handleTransitionEnd}
       data-slot="sidebar-container"
       data-side={side}
       class={cn(
-        'fixed inset-y-0 z-10 hidden h-dvh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear data-[side=left]:start-0 data-[side=left]:group-data-[collapsible=offcanvas]:start-[calc(var(--sidebar-width)_*_-1)] data-[side=right]:end-0 data-[side=right]:group-data-[collapsible=offcanvas]:end-[calc(var(--sidebar-width)_*_-1)] md:flex',
+        'border-sidebar-border fixed inset-y-0 z-10 hidden h-dvh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear data-[side=left]:start-0 data-[side=left]:group-data-[collapsible=offcanvas]:start-[calc(var(--sidebar-width)_*_-1)] data-[side=right]:end-0 data-[side=right]:group-data-[collapsible=offcanvas]:end-[calc(var(--sidebar-width)_*_-1)] md:flex',
         // Adjust the padding for floating and inset variants.
         variant === 'floating' || variant === 'inset'
           ? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_(--spacing(4))_+_2px)]'

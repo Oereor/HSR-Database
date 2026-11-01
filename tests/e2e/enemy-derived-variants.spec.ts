@@ -78,7 +78,7 @@ for (const width of [1440, 1100, 1080, 900, 390, 320]) {
           await page.locator('#monsters').screenshot({
             path: testInfo.outputPath(`derived-${id}-${width}.png`),
             // Keep fixed site chrome from obscuring this section in full-height captures.
-            style: '.mobile-header, .section-nav, .settings-control { visibility: hidden; }'
+            style: '.global-breadcrumb, .section-nav, .settings-control { visibility: hidden; }'
           });
 
         // Exercise real label compositions, including the elemental icon slot, without fixing translated copy.

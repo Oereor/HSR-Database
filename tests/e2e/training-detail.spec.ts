@@ -691,9 +691,7 @@ for (const prefix of ['', '/en']) {
     await expect(toast).toHaveCount(0, { timeout: 6500 });
     await blocked.press('Enter');
     await expect(toast).toHaveCount(1);
-    const home = page
-      .locator('.navigator-pane__brand:visible, .mobile-header .brand:visible')
-      .first();
+    const home = page.locator('.global-breadcrumb a:first-child').first();
     await home.click();
     await expect(page.locator('.home-hero')).toBeVisible();
     await expect(toast).toHaveCount(0);

@@ -68,7 +68,7 @@ test('mobile navigation reaches a representative route', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   await expectAppReady(page);
-  await page.locator('.mobile-header .navigator-toggle').click();
+  await page.locator('[data-slot="sidebar-trigger"]').click();
   const dialog = page.locator('#primary-navigator-pane');
   await expect(dialog).toBeVisible();
   await dialog.locator('a[href="/enemies/"]').click();

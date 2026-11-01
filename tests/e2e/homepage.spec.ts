@@ -39,7 +39,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
           messages.site_name
         );
       }
-      await expect(page.locator('.brand:visible')).not.toHaveCount(0);
+      await expect(page.locator('.global-breadcrumb [aria-current="page"]')).not.toHaveCount(0);
 
       const layout = await hero.evaluate((element) => {
         const identity = element.querySelector<HTMLElement>('.home-hero__identity')!;

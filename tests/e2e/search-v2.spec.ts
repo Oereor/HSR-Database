@@ -326,7 +326,7 @@ test('全局搜索 Endgame grid 与展开导航在各断点不横向溢出', asy
       )
     ).toBeLessThanOrEqual(1);
 
-    await page.locator('.navigator-toggle:visible').click();
+    await page.locator('[data-slot="sidebar-trigger"]').click();
     const navigator = page.locator(
       viewport.width < 768 ? '#primary-navigator-pane' : '[data-slot="sidebar-container"]'
     );
@@ -335,7 +335,8 @@ test('全局搜索 Endgame grid 与展开导航在各断点不横向溢出', asy
     expect(
       await navigator.evaluate((dialog) => dialog.scrollWidth - dialog.clientWidth)
     ).toBeLessThanOrEqual(1);
-    await navigator.locator('.navigator-toggle').click();
+    if (viewport.width < 768) await navigator.locator('.navigator-close').click();
+    else await page.locator('[data-slot="sidebar-trigger"]').click();
   }
 });
 

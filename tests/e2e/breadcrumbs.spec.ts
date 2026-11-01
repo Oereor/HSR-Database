@@ -61,8 +61,7 @@ for (const prefix of ['', '/en']) {
       await page.setViewportSize({ width, height: 800 });
       await page.goto(`${prefix}/endgame/moc/1034/?encounter=5312`);
       await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
-      if (width >= 768)
-        await page.locator('[data-slot="sidebar-container"] .navigator-toggle').click();
+      if (width >= 768) await page.locator('[data-slot="sidebar-trigger"]').click();
       const bounds = await page.evaluate(() =>
         [
           'main > .content',

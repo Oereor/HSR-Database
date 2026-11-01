@@ -78,9 +78,9 @@
 
 ### 可折叠导航
 
-使用官方 Sidebar 源码[^sidebar]，桌面采用 icon 折叠模式，展开 / 折叠宽度为 16rem / 4.5rem。默认折叠，状态仅在根布局生命周期内保持，不写 cookie 或 localStorage，不注册默认全局快捷键。新增标准 Tooltip，复用已有 Sheet、Button、Bits UI 和游戏图标，无新增依赖或锁文件变更。
+使用官方 Sidebar 源码[^sidebar]，桌面采用 icon 折叠模式，Sidebar 修整后的展开 / 折叠宽度为 19rem / 4rem。默认折叠，状态仅在根布局生命周期内保持，不写 cookie 或 localStorage，不注册默认全局快捷键。新增标准 Tooltip，复用已有 Sheet、Button、Bits UI 和游戏图标，无新增依赖或锁文件变更。
 
-导航入口继续由同一份本地化数据提供；移动端由 Sidebar 内部单一 Sheet 管理遮罩、滚动锁和焦点。保留站点标识、短标语、全部入口、更新日志及版本信息；折叠搜索入口展开后聚焦原搜索框。设置 Popover 保持原位置和语言路由行为。删除旧窄侧栏、独立抽屉及手写 Tooltip CSS；导航断点统一为 48rem，业务断点保留。短视口导航与页脚区域可滚动。
+导航入口继续由同一份本地化数据提供；移动端由 Sidebar 内部单一 Sheet 管理遮罩、滚动锁和焦点。保留站点标识、全部入口、更新日志及版本信息；Sidebar 修整按授权删除短标语，折叠搜索入口展开后聚焦原搜索框。设置 Popover 保持原位置和语言路由行为。删除旧窄侧栏、独立抽屉及手写 Tooltip CSS；导航断点统一为 48rem，业务断点保留。短视口导航与页脚区域可滚动。
 
 导航 / Breadcrumb 单元测试 28 项及完整类型检查通过（0 errors / 0 warnings），变更源码格式和 ESLint 通过。导航浏览器回归 6 项通过（4 项按视口跳过），覆盖双语状态保持 / 刷新重置、搜索聚焦及提交、移动端 Esc / 外部点击 / 焦点恢复 / 路由关闭和短视口。旧桌面遮罩及固定宽度断言已更新为 Sidebar 状态与行为断言。展开态与移动端禁用 Tooltip，避免隐藏提示拦截 Escape。
 
@@ -92,7 +92,7 @@
 
 ### 全局布局与偏移
 
-根布局改为随 Sidebar 重排的 Flex 布局，内容、Breadcrumb 和 Footer 共用 90rem 最大宽度与 1.5rem / 1rem 桌面 / 移动边距。导航以 48rem 为断点，移动站点栏高 3.5rem，Breadcrumb 高 2.75rem；继续沿用累计 Sticky Offset 与锚点间距，保留详情 SectionNav、Endgame 导航以及 Footer 全部信息和链接。抽屉适配动态视口高度与安全区，根布局外仍只挂载一个 Toaster。
+根布局改为随 Sidebar 重排的 Flex 布局，内容、Breadcrumb 和 Footer 共用 90rem 最大宽度与 1.5rem / 1rem 桌面 / 移动边距。导航以 48rem 为断点；Sidebar 修整后移除独立移动站点栏，统一 Trigger / Breadcrumb 顶栏基础高 2.75rem，并计入顶部安全区；继续沿用累计 Sticky Offset 与锚点间距，保留详情 SectionNav、Endgame 导航以及 Footer 全部信息和链接。抽屉适配动态视口高度与安全区，根布局外仍只挂载一个 Toaster。
 
 删除旧 Grid 定位、独立移动容器宽度、旧侧栏宽度变量以及废弃导航 / 搜索规则；仍被业务卡片和页面使用的样式保持。更新旧测试选择器，为容器对齐与 Endgame 锚点补充小型视口矩阵；导航稳定后再访问明确的 Breadcrumb 父链接，避免历史返回后的旧路由 DOM 竞态。折叠态操作标签隐藏，移动抽屉中的更新日志保留底层 Sheet，使关闭日志后可恢复原触发焦点。
 
@@ -103,6 +103,20 @@
 320px、390px、767px、768px、1280px 和 1920px 的容器与锚点矩阵通过；生产截图检查涵盖折叠 / 展开导航、移动抽屉、双语搜索与 Endgame，未出现横向溢出或页面运行时错误。修正了折叠标签裁切和移动更新日志关闭后的焦点丢失，Footer 四个既有链接均保留。未引入视觉快照基线，截图 / 报告 / 下载源码仅作为忽略的本地验收产物。
 
 依赖和锁文件保持不变，两个只读上游仓库状态保持不变。真实玩家远程 API、远程部署及非 Chromium 浏览器未验证；本地 Analytics 脚本 404 为既有环境限制。完成 Phase 4 后停止。
+
+### Sidebar 修整
+
+采用 Sidebar-07[^sidebar-07] 的内容区 Trigger 布局，桌面和移动端共用唯一的 Trigger / Breadcrumb 顶栏；保留原移动 Sheet，关闭后恢复外部 Trigger 焦点。顶部品牌区域固定 56px，仅保留 Logo 与单行本地化标题；搜索槽位固定 44px，菜单按钮高 44px、游戏图标 24px。展开 / 折叠宽度为 304px / 64px，移动 Sheet 宽度为 min(304px, 90vw)。删除旧移动站点栏、副标题、内部展开按钮和相应 CSS，不改变导航数据、路由或业务内容。
+
+品牌标题收起时立即隐藏，展开时等待容器自身 width transitionend；宽度与占位使用同一过渡参数。布局后的动画状态检查处理无过渡和取消，reduced-motion 直接完成，不使用固定计时器。标题与搜索容器明确禁用显隐过渡，避免全局 reduced-motion 的极短过渡影响显隐。搜索聚焦仅在展开完成且输入框实际可见时执行，按渲染帧检查可见性，关闭 / 卸载时取消。
+
+侧边与 Footer 分隔线显式使用 sidebar-border；导航选中项采用深蓝背景与柔和金色 1px 描边，非选中项无金色描边。清理 MenuButton 强制尺寸覆盖，保留键盘焦点反馈。版本区域改为 role=status 的普通节点，不产生无操作按钮或额外 Tab 停留点。展开态与移动端继续禁用导航 Tooltip，避免隐藏提示干扰 Esc。
+
+搜索统一采用官方 InputGroup[^input-group] 的 Root / Input / Addon / Button，单一边框内嵌右侧搜索操作，复用原 Input / Button，无新增依赖或锁文件变更。保留隐藏 label、GET 表单、Enter 提交、页面 onSubmit、语言路径和 query / hash；首页与搜索页继续显示原有搜索按钮文字。
+
+中英文打开 / 关闭的人工中间帧采样中，半程宽度为 184px，品牌高度为 56px，首个导航项纵向位移为 0px；320px 短视口 Sheet 宽度为 288px、无横向溢出。仅新增一项动画行为回归，覆盖逐帧位置、标题时机、快速反向切换及 reduced-motion 聚焦；更新既有 Trigger / 品牌选择器，未新增视觉快照基线。生产浏览器回归 29 项通过（7 项按视口跳过），覆盖导航、动画、Sticky 锚点、搜索按钮 / Enter 提交、query / hash / 前进后退、语言切换及 Sheet 焦点恢复。半程 Sidebar 与内容占位宽度同为 184px；生产截图未见异常亮边，页面无运行时错误。
+
+变更文件 Prettier / ESLint 和生产预渲染构建通过。完整 pnpm check 中消息校验与 Svelte 检查通过（0 errors / 0 warnings）；随后脚本类型检查进程以 Windows 原生退出码 3221225477 结束，没有类型诊断。直接用 Node 执行 tsconfig.scripts.json 与 tsconfig.api.json 两项 TypeScript 检查均通过，未重复运行无关测试。两个只读上游仓库保持原状态。非 Chromium 浏览器、真实玩家远程 API 和远程部署未验证；本地 Analytics 脚本 404 为既有环境限制。
 
 ## 后续阶段边界
 
@@ -117,3 +131,7 @@
 [^tailwind-v4]: shadcn-svelte. Tailwind v4. [官方文档](https://shadcn-svelte.com/docs/migration/tailwind-v4).
 
 [^sidebar]: shadcn-svelte. Sidebar. [官方文档](https://www.shadcn-svelte.com/docs/components/sidebar).
+
+[^input-group]: shadcn-svelte. Input Group. [官方文档](https://www.shadcn-svelte.com/docs/components/input-group).
+
+[^sidebar-07]: shadcn-svelte. Sidebar-07. [官方示例](https://www.shadcn-svelte.com/blocks/sidebar).
