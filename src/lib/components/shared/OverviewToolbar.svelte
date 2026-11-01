@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { Button } from '$lib/components/ui/button';
+  import * as Select from '$lib/components/ui/select';
   import { m } from '$lib/paraglide/messages.js';
   export let resultCount = 0;
   export let hasFilters = false;
@@ -12,52 +14,34 @@
   export let onSortChange: (value: string) => void | Promise<void>;
 </script>
 
-<div class="overview-toolbar">
+<div
+  class="overview-toolbar border-border text-muted-foreground flex min-w-0 flex-wrap items-center justify-between gap-3 border-t pt-4 text-sm"
+>
   <span>{m.overview_result_count({ count: resultCount })}</span>
-  {#if hasFilters}
-    <button type="button" class="button button--quiet" on:click={onClearFilters}
-      >{m.overview_clear_active_filters()}</button
-    >
-  {/if}
-  <label class="overview-toolbar__sort">
-    <span>{m.overview_sort()}</span>
-    <select
-      value={sort}
-      aria-label={m.overview_sort()}
-      on:change={(event) => onSortChange((event.currentTarget as HTMLSelectElement).value)}
-    >
-      {#each sortOptions as option (option.value)}
-        <option value={option.value}>{option.label}</option>
-      {/each}
-    </select>
-  </label>
+  <div class="flex min-w-0 flex-wrap items-center gap-3">
+    {#if hasFilters}<Button variant="ghost" size="sm" onclick={onClearFilters}
+        >{m.overview_clear_active_filters()}</Button
+      >{/if}
+    <div class="overview-toolbar__sort flex items-center gap-2">
+      <span class="text-sm font-medium">{m.overview_sort()}</span>
+      <Select.Root
+        type="single"
+        value={sort}
+        items={sortOptions}
+        onValueChange={(value) => {
+          if (value && value !== sort) void onSortChange(value);
+        }}
+      >
+        <Select.Trigger aria-label={m.overview_sort()} class="min-w-28">
+          <Select.Value />
+        </Select.Trigger>
+        <Select.Content>
+          {#each sortOptions as option (option.value)}<Select.Item
+              value={option.value}
+              label={option.label}>{option.label}</Select.Item
+            >{/each}
+        </Select.Content>
+      </Select.Root>
+    </div>
+  </div>
 </div>
-
-<style>
-  .overview-toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: 0.75rem 1rem;
-    color: var(--text-muted);
-    font-size: var(--font-helper);
-  }
-
-  .overview-toolbar__sort {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .overview-toolbar__sort > span {
-    color: var(--text-secondary);
-    font-size: var(--font-helper);
-    font-weight: 700;
-  }
-
-  .overview-toolbar__sort select {
-    padding: 0.42rem 0.55rem;
-    font-size: var(--font-helper);
-  }
-</style>

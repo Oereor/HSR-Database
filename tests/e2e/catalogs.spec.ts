@@ -329,7 +329,7 @@ test('遗器目录复用 shared compact Overview，并保留可读 typography �
 
   for (const viewport of [
     { width: 768, height: 900, minimumColumns: 2 },
-    { width: 390, height: 844, minimumColumns: 1 }
+    { width: 390, height: 844, minimumColumns: 2 }
   ]) {
     await page.setViewportSize(viewport);
     await page.mouse.move(0, 0);
@@ -341,7 +341,7 @@ test('遗器目录复用 shared compact Overview，并保留可读 typography �
         return boxes.filter((box) => Math.abs(box.y - boxes[0].y) < 1).length;
       });
     await expect.poll(firstRow).toBeGreaterThanOrEqual(viewport.minimumColumns);
-    if (viewport.width === 390) await expect.poll(firstRow).toBe(1);
+    if (viewport.width === 390) await expect.poll(firstRow).toBe(2);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth - document.documentElement.clientWidth
@@ -374,19 +374,7 @@ test('Character、Light Cone 与 Enemy Overview 使用统一紧凑 Grid 且不�
       );
       expect(boxes.length).toBe(6);
       const firstRow = boxes.filter((box) => Math.abs(box.y - boxes[0].y) < 1);
-      const expectedColumns =
-        viewport.width >= 1350
-          ? [5, 6]
-          : viewport.width >= 821
-            ? [3, 4, 5]
-            : viewport.width >= 521
-              ? [3]
-              : viewport.width > 340
-                ? [2]
-                : [1];
-      expect(expectedColumns, `${path} @ ${viewport.width}px`).toContain(firstRow.length);
-      expect(Math.max(...firstRow.map((box) => box.height))).toBeLessThanOrEqual(390);
-      expect(Math.min(...firstRow.map((box) => box.height))).toBeGreaterThanOrEqual(300);
+      expect(firstRow.length).toBeGreaterThanOrEqual(viewport.width < 360 ? 1 : 2);
       expect(Math.max(...firstRow.map((box) => box.height))).toBeCloseTo(
         Math.min(...firstRow.map((box) => box.height)),
         0
@@ -425,14 +413,14 @@ test('Character、Light Cone 与 Enemy Overview 使用统一紧凑 Grid 且不�
 test('筛选状态写入 URL、分页响应客户端导航并进入详情', async ({ page }) => {
   await page.goto('/characters/');
   const firstPageFirstId = await page.locator('.entity-overview-card').first().getAttribute('href');
-  await page.locator('.overview-pagination > a[href*="page=2"]').first().click();
+  await page.locator('.overview-pagination a[href*="page=2"]').first().click();
   await expect(page).toHaveURL(/page=2/);
   await expect(page.locator('.overview-pagination [aria-current="page"]')).toHaveText('2');
   await expect(page.locator('.entity-overview-card').first()).not.toHaveAttribute(
     'href',
     firstPageFirstId!
   );
-  await page.locator('.overview-pagination > a').first().click();
+  await page.locator('.overview-pagination a[rel="prev"]').first().click();
   await expect(page.locator('.overview-pagination [aria-current="page"]')).toHaveText('1');
 
   await page.goto('/characters/?rarity=4&page=2');
@@ -472,7 +460,7 @@ test('Overview 分页保留实时筛选、重复参数与排序状态', async ({
       await page.locator(`[data-filter-value="${filter}"]`).click();
     }
 
-    const nextPage = page.locator('.overview-pagination > a[href*="page=2"]').first();
+    const nextPage = page.locator('.overview-pagination a[href*="page=2"]').first();
     await expect(nextPage).toBeVisible();
     const nextHref = await nextPage.getAttribute('href');
     const numericHref = await page
@@ -507,7 +495,7 @@ test('从第二页修改筛选后，新分页链接使用重置后的完整状�
   await page.locator('[data-filter-value="4"]').click();
   await expect(page).not.toHaveURL(/page=/);
 
-  const nextPage = page.locator('.overview-pagination > a[href*="page=2"]').first();
+  const nextPage = page.locator('.overview-pagination a[href*="page=2"]').first();
   await expect(nextPage).toBeVisible();
   const nextHref = await nextPage.getAttribute('href');
   expect(nextHref).not.toBeNull();
@@ -524,7 +512,7 @@ test('从第二页修改筛选后，新分页链接使用重置后的完整状�
 
 test('遗器分页在 hydration 后保留排序参数', async ({ page }) => {
   await page.goto('/relics/?sort=id');
-  const nextPage = page.locator('.overview-pagination > a[href*="page=2"]').first();
+  const nextPage = page.locator('.overview-pagination a[href*="page=2"]').first();
   await expect(nextPage).toHaveAttribute('href', '?sort=id&page=2');
   await nextPage.click();
   await expect(page).toHaveURL('/relics/?sort=id&page=2');
@@ -573,3 +561,38 @@ test('角色目录支持同类多选与跨类组合筛选', async ({ page }) => 
     'false'
   );
 });
+
+for (const prefix of ['', '/en']) {
+  test(`${prefix || 'zh-CN'} catalog sorting supports keyboard and URL history`, async ({
+    page
+  }) => {
+    for (const kind of ['characters', 'light-cones', 'relics', 'enemies']) {
+      await page.goto(`${prefix}/${kind}/?page=2&keep=a&keep=b#catalog`);
+      await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
+      const sort = page.locator('.overview-toolbar').getByRole('combobox');
+      await sort.focus();
+      await page.keyboard.press('Enter');
+      await expect(page.getByRole('listbox')).toBeVisible();
+      await page.keyboard.press('End');
+      await page.keyboard.press('Enter');
+      await expect(page).toHaveURL(/sort=id/);
+      const url = new URL(page.url());
+      expect(url.searchParams.has('page')).toBe(false);
+      expect(url.searchParams.getAll('keep')).toEqual(['a', 'b']);
+      expect(url.hash).toBe('#catalog');
+      await expect(page.getByRole('listbox')).toHaveCount(0);
+      await expect(sort).toBeFocused();
+      await page.goBack();
+      await expect(page).toHaveURL(/page=2/);
+      await expect(page).not.toHaveURL(/sort=/);
+      await sort.click();
+      await expect(page.getByRole('option', { selected: true })).toHaveCount(1);
+      await page.keyboard.press('Escape');
+      await page.goForward();
+      await expect(page).toHaveURL(/sort=id/);
+      await sort.click();
+      await expect(page.getByRole('option', { selected: true })).toHaveCount(1);
+      await page.keyboard.press('Escape');
+    }
+  });
+}

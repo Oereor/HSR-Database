@@ -118,6 +118,14 @@
 
 变更文件 Prettier / ESLint 和生产预渲染构建通过。完整 pnpm check 中消息校验与 Svelte 检查通过（0 errors / 0 warnings）；随后脚本类型检查进程以 Windows 原生退出码 3221225477 结束，没有类型诊断。直接用 Node 执行 tsconfig.scripts.json 与 tsconfig.api.json 两项 TypeScript 检查均通过，未重复运行无关测试。两个只读上游仓库保持原状态。非 Chromium 浏览器、真实玩家远程 API 和远程部署未验证；本地 Analytics 脚本 404 为既有环境限制。
 
+## Phase 5A：四类实体目录
+
+### 共享控件与布局
+
+采用均衡紧凑布局，OverviewHero 保留标题、说明、总数、装饰素材和 Endgame artwork slot；搜索使用现有 InputGroup，删除重复 Enter 处理。工具栏采用 Button 与 Bits UI Select，结果数量与操作分列，排序继续交由页面回调写入 URL。分页采用标准导航、列表和 Button variants 的链接组合，保留全部页码与现有 URL 构造函数，不引入第二份分页状态。Select 的接口和样式参考官方组件[^select]，分页按原生 URL 导航适配官方展示结构[^pagination]。
+
+Grid 使用容器内自适应列，360px 起双列、640px 起最小 12rem，删除负边距及旧列宽规则。删除五个共享组件的旧 CSS；共享 props 和 variant 保持兼容。变更源码 ESLint 与 Svelte 检查通过（0 errors / 0 warnings）；已更新分页结构选择器，并增加双语排序键盘及历史回归，浏览器验证留待最终批次。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。
@@ -135,3 +143,7 @@
 [^input-group]: shadcn-svelte. Input Group. [官方文档](https://www.shadcn-svelte.com/docs/components/input-group).
 
 [^sidebar-07]: shadcn-svelte. Sidebar-07. [官方示例](https://www.shadcn-svelte.com/blocks/sidebar).
+
+[^select]: shadcn-svelte. Select. [官方文档](https://www.shadcn-svelte.com/docs/components/select).
+
+[^pagination]: shadcn-svelte. Pagination. [官方文档](https://www.shadcn-svelte.com/docs/components/pagination).
