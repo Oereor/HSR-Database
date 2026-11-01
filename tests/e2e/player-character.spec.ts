@@ -293,9 +293,9 @@ for (const prefix of ['', '/en']) {
           )
         )
         .toBe(expectedColumns);
-      await expect(grid).toHaveCSS('gap', '24px');
-      await expect(grid).toHaveCSS('margin-top', '24px');
-      await expect(pane).toHaveCSS('padding-left', width <= 820 ? '24px' : '32px');
+      await expect(grid).toHaveCSS('gap', '16px');
+      await expect(grid).toHaveCSS('margin-top', '16px');
+      await expect(pane).toHaveAttribute('data-slot', 'card');
       for (const group of await groups.all()) {
         await expect(group).toHaveCSS('margin-top', '0px');
         await expect(group).toHaveCSS('border-top-width', '0px');
@@ -309,9 +309,9 @@ for (const prefix of ['', '/en']) {
       if (expectedColumns === 2) {
         expect(groupBoxes[0].width).toBeCloseTo(groupBoxes[1].width, 0);
         expect(groupBoxes[0].y).toBeCloseTo(groupBoxes[1].y, 0);
-        expect(groupBoxes[1].x - groupBoxes[0].x - groupBoxes[0].width).toBeCloseTo(24, 0);
+        expect(groupBoxes[1].x - groupBoxes[0].x - groupBoxes[0].width).toBeCloseTo(16, 0);
       } else {
-        expect(groupBoxes[1].y - groupBoxes[0].bottom).toBeCloseTo(24, 0);
+        expect(groupBoxes[1].y - groupBoxes[0].bottom).toBeCloseTo(16, 0);
         const labelPositions = await panel
           .locator('.hero-stat-label-text')
           .evaluateAll((elements) =>

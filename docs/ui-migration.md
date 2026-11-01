@@ -150,6 +150,12 @@ EntityOverviewCard 改用主题 Card 表面和工具类，删除原 199 行组�
 
 共享组件变更的 Prettier / ESLint、Svelte 检查（0 errors / 0 warnings）和相关 SSR 单元测试 22 项通过。浏览器布局验收在四类页面接入后执行。
 
+### 四类 Hero 与面板
+
+详情 Hero 改为 1280px 起约 3:2、顶部对齐的身份区与属性区，较窄视口上下排列。取消原 520–680px 高度下限、连续边框与边框色背景分栏；角色与敌人保留叠图和单层渐变，光锥使用 contain，遗器图标仅调整 hero variant，其他图标展示方式不变。说明文字移除独立边框容器，长文本自然撑高；玩家上下文、强化、等级、晋阶和叠影仍由原状态与回调管理。基础信息使用单层 Card，保持 complementary landmark、原 ID 与标签，遗器套装效果和光锥属性使用 Separator 分隔。删除 detail-inspection.css 及入口导入。
+
+四类页面接入的 Svelte 检查通过（0 errors / 0 warnings）；玩家属性测试改为检查 Card 与容器分栏，保留全部属性和状态断言。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import * as Card from '$lib/components/ui/card';
   import EnemySkillBrowser from './EnemySkillBrowser.svelte';
   import EnemyStatsPanel from './EnemyStatsPanel.svelte';
   import EnemyTemplateBaseStatsPanel from './EnemyTemplateBaseStatsPanel.svelte';
@@ -84,8 +85,13 @@
   ] as const;
 </script>
 
-<header class="detail-profile-hero detail-profile-hero--enemy" data-enemy-hero>
-  <div class="detail-profile-hero__identity">
+<header
+  class="detail-profile-hero detail-profile-hero--enemy grid min-w-0 items-start gap-4 min-[1280px]:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] sm:gap-6"
+  data-enemy-hero
+>
+  <div
+    class="detail-profile-hero__identity bg-card relative isolate min-w-0 overflow-hidden rounded-xl"
+  >
     <DetailArtwork
       source={detail.portraitUrl}
       width={376}
@@ -109,13 +115,14 @@
       </div>
     </div>
   </div>
-  <aside
+  <Card.Root
+    role="complementary"
     id="stats"
-    class="detail-profile-hero__inspection section-nav-target hero-basic-data-pane"
+    class="detail-profile-hero__inspection section-nav-target hero-basic-data-pane gap-0 p-4 sm:p-5"
     aria-label={m.enemy_template_stats_aria()}
   >
     <EnemyTemplateBaseStatsPanel baseStats={detail.template.baseStats} />
-  </aside>
+  </Card.Root>
 </header>
 
 <SectionNav items={sectionNavItems} />
@@ -162,7 +169,9 @@
   >
     <section class="enemy-battle-column enemy-battle-column--stats">
       <h3>{m.enemy_base_stats()}</h3>
-      <div class="stat-level-control">
+      <div
+        class="stat-level-control [&>.skill-level-control]:mt-0 [&>.skill-level-control]:border-t-0 [&>.skill-level-control]:pt-0"
+      >
         <LevelSlider
           id={`enemy-level-${detail.id}`}
           label={m.enemy_level()}

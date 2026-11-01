@@ -1,7 +1,6 @@
 <script lang="ts">
   import '../styles/app.css';
   import '../styles/presentation/detail-hero.css';
-  import '../styles/presentation/detail-inspection.css';
   import { page } from '$app/stores';
   import * as Sidebar from '$lib/components/ui/sidebar';
   import Navigator from '$lib/components/layout/Navigator.svelte';

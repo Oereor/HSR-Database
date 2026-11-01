@@ -1,4 +1,6 @@
 <script lang="ts">
+  import * as Card from '$lib/components/ui/card';
+  import { Separator } from '$lib/components/ui/separator';
   import { browser } from '$app/environment';
   import { goto } from '$app/navigation';
   import { onDestroy, onMount } from 'svelte';
@@ -634,8 +636,12 @@
   <a class="back-link" href={backTarget.href}>← {m.player_character_back_to_player()}</a>
 {/if}
 {#if category === 'characters'}
-  <header class="detail-profile-hero detail-profile-hero--character">
-    <div class="detail-profile-hero__identity">
+  <header
+    class="detail-profile-hero detail-profile-hero--character grid min-w-0 items-start gap-4 min-[1280px]:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] sm:gap-6"
+  >
+    <div
+      class="detail-profile-hero__identity bg-card relative isolate min-w-0 overflow-hidden rounded-xl"
+    >
       <DetailArtwork
         source={characterPortraitSource}
         width={960}
@@ -698,9 +704,10 @@
         </div>
       </div>
     </div>
-    <aside
+    <Card.Root
+      role="complementary"
       id="stats"
-      class="detail-profile-hero__inspection section-nav-target hero-basic-data-pane"
+      class="detail-profile-hero__inspection section-nav-target hero-basic-data-pane gap-0 p-4 sm:p-5"
       aria-label={m.detail_stats_aria()}
     >
       {#if playerContextState === 'loading'}
@@ -724,11 +731,15 @@
           controlId={`character-level-${detail.id}`}
         />
       {/if}
-    </aside>
+    </Card.Root>
   </header>
 {:else if category === 'light-cones'}
-  <header class="detail-profile-hero detail-profile-hero--light-cone">
-    <div class="detail-profile-hero__identity">
+  <header
+    class="detail-profile-hero detail-profile-hero--light-cone grid min-w-0 items-start gap-4 min-[1280px]:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] sm:gap-6"
+  >
+    <div
+      class="detail-profile-hero__identity bg-card relative isolate min-w-0 overflow-hidden rounded-xl"
+    >
       <DetailArtwork
         source={lightConePortraitSource}
         width={689}
@@ -751,9 +762,10 @@
         </div>
       </div>
     </div>
-    <aside
+    <Card.Root
+      role="complementary"
       id="stats"
-      class="detail-profile-hero__inspection hero-basic-data-pane section-nav-target"
+      class="detail-profile-hero__inspection hero-basic-data-pane section-nav-target gap-0 p-4 sm:p-5"
       aria-label={m.detail_light_cone_stats_aria()}
     >
       {#key lightConeInitialStateKey}
@@ -765,14 +777,14 @@
           level={trainingLevel}
           onLevelChange={handleTrainingLevel}
         />
-        <div class="detail-inspection-divider" aria-hidden="true"></div>
+        <Separator class="my-4" />
         {#if detail.passive.superimposition.levels.length}<SuperimpositionPanel
             passive={detail.passive}
             lightConeId={detail.id}
             initialRank={lightConeInitialRank}
           />{:else}<p class="data-placeholder">{m.detail_superimposition_unavailable()}</p>{/if}
       {/key}
-    </aside>
+    </Card.Root>
   </header>
 {:else if category === 'relics'}
   <RelicDetailPage {detail} {singular} />

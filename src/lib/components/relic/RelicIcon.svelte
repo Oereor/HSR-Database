@@ -35,12 +35,9 @@
 
   .relic-icon-stage--hero {
     position: absolute;
-    z-index: 0;
-    inset: 0;
-    background:
-      radial-gradient(circle at 58% 42%, rgb(215 181 109 / 13%), transparent 22%),
-      linear-gradient(145deg, rgb(255 255 255 / 3%), transparent 55%);
-    padding: 2rem 2rem 9rem;
+    inset: 0 0 auto 45%;
+    height: 14rem;
+    padding: 1rem;
   }
 
   .relic-icon-stage--card {
@@ -83,11 +80,6 @@
     object-fit: contain;
   }
 
-  .relic-icon-stage.relic-icon-stage--hero :global(img) {
-    transform: translate(18%, -12%);
-    filter: drop-shadow(0 1rem 1.25rem rgb(0 0 0 / 34%));
-  }
-
   .relic-icon-stage.relic-icon-stage--header :global(img) {
     width: 100%;
     height: 100%;
@@ -106,16 +98,6 @@
     border-radius: 50%;
     background: rgb(7 10 18 / 58%);
     --image-fallback-font-size: 2rem;
-  }
-
-  @media (max-width: 520px) {
-    .relic-icon-stage--hero {
-      padding: 1.5rem 1.5rem 10rem;
-    }
-
-    .relic-icon-stage.relic-icon-stage--hero :global(img) {
-      transform: translate(12%, -10%);
-    }
   }
 
   @media (max-width: 820px) {
