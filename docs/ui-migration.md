@@ -218,6 +218,12 @@ SectionHeading 保留 level、headingLevel、tone、id 和 meta slot，采用主
 
 总览变更的 Prettier / ESLint 及相关 SSR 单元测试 34 项通过，包含四模式链接、长名称、无图标和空赛期。浏览器验收留待最终构建。
 
+### 赛期目录
+
+赛期卡采用单一链接包裹紧凑 Card / Header / Title / Content，分隔使用 Separator。当前赛期保留模式色边框、大标题与水印，即将继续独立宽卡；未知与历史使用最小 14rem 的自适应网格。删除旧固定高度、重复渐变外壳和视口列数 CSS，组间距收至 2rem，名称完整换行。分类、顺序、条件渲染、日期、关卡数量、ARIA 名称、链接及客户端时钟逻辑保持原样。旧测试的精确 Padding、最小高度和严格三级高度断言改为内容、单层 Card、分隔线、焦点与溢出检查。
+
+赛期卡、时间状态、Clock 与导航单元回归共 23 项通过；赛期源码及测试 Prettier / ESLint 通过。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。

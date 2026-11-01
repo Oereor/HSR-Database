@@ -212,107 +212,22 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
   await expect(upcoming.locator('.endgame-season-card__watermark')).toHaveCount(0);
   await expect(history.locator('.endgame-season-card__watermark')).toHaveCount(0);
   await expect(page.locator('.endgame-period-status')).toHaveCount(0);
-  const heights = await Promise.all([
-    current.evaluate((element) => element.getBoundingClientRect().height),
-    upcoming.first().evaluate((element) => element.getBoundingClientRect().height),
-    history.first().evaluate((element) => element.getBoundingClientRect().height)
-  ]);
-  expect(heights[0]).toBeGreaterThan(heights[1]);
-  expect(heights[1]).toBeGreaterThan(heights[2]);
-  const desktopUpcomingSpacing = await upcoming.first().evaluate((element) => {
-    const style = getComputedStyle(element);
-    return {
-      paddingTop: style.paddingTop,
-      paddingRight: style.paddingRight,
-      paddingBottom: style.paddingBottom,
-      paddingLeft: style.paddingLeft
-    };
-  });
-  expect(desktopUpcomingSpacing).toEqual({
-    paddingTop: '16px',
-    paddingRight: '24px',
-    paddingBottom: '16px',
-    paddingLeft: '24px'
-  });
   await current.focus();
   await expect(current).toBeFocused();
-  expect(await current.evaluate((element) => getComputedStyle(element).outlineStyle)).toBe('solid');
-
-  await page.setViewportSize({ width: 390, height: 900 });
-  const mobileUpcomingSpacing = await upcoming.first().evaluate((element) => {
-    const style = getComputedStyle(element);
-    const cardRect = element.getBoundingClientRect();
-    const titleRect = element.querySelector('h3')!.getBoundingClientRect();
-    const footerRect = element
-      .querySelector('.endgame-season-card__footer')!
-      .getBoundingClientRect();
-    const arrowRect = element.querySelector('.endgame-season-card__arrow')!.getBoundingClientRect();
-    return {
-      padding: style.padding,
-      topInset: titleRect.top - cardRect.top,
-      leftInset: titleRect.left - cardRect.left,
-      bottomInset: cardRect.bottom - footerRect.bottom,
-      rightInset: cardRect.right - arrowRect.right
-    };
-  });
-  expect(mobileUpcomingSpacing.padding).toBe('16px');
-  expect(mobileUpcomingSpacing.topInset).toBeGreaterThan(16);
-  expect(mobileUpcomingSpacing.leftInset).toBeGreaterThan(16);
-  expect(mobileUpcomingSpacing.bottomInset).toBeGreaterThan(16);
-  expect(mobileUpcomingSpacing.rightInset).toBeGreaterThan(16);
-  for (const width of [320, 375, 390, 430, 520, 521, 768, 1440]) {
+  expect(await current.evaluate((element) => getComputedStyle(element).boxShadow)).not.toBe('none');
+  for (const width of [320, 390, 768, 1280, 1600]) {
     await page.setViewportSize({ width, height: 1000 });
     for (const card of [current, futureCard, history.first()]) {
-      const spacing = await card.evaluate((element) => {
-        const style = getComputedStyle(element);
-        const rect = element.getBoundingClientRect();
-        const title = element.querySelector('h3')!.getBoundingClientRect();
-        const date = element.querySelector('.endgame-season-card__date')!.getBoundingClientRect();
-        const footer = element.querySelector('.endgame-season-card__footer')!;
-        const footerRect = footer.getBoundingClientRect();
-        const count = footer.firstElementChild!.getBoundingClientRect();
-        const arrow = footer.lastElementChild!.getBoundingClientRect();
-        return {
-          padding: [style.paddingTop, style.paddingRight, style.paddingBottom, style.paddingLeft],
-          minHeight: style.minHeight,
-          topInset: title.top - rect.top,
-          leftInset: title.left - rect.left,
-          dateLeftInset: date.left - rect.left,
-          dateGap: date.top - title.bottom,
-          countLeftInset: count.left - rect.left,
-          arrowRightInset: rect.right - arrow.right,
-          footerLeftInset: footerRect.left - rect.left,
-          footerRightInset: rect.right - footerRect.right,
-          divider: getComputedStyle(footer).borderTopWidth
-        };
-      });
-      const horizontal = width <= 520 ? 16 : 24;
-      const isCurrent = card === current;
-      const isHistory = card !== current && card !== futureCard;
-      const inset = isHistory ? 16 : horizontal;
-      const vertical = isCurrent ? inset : 16;
-      expect(spacing.padding).toEqual([
-        `${vertical}px`,
-        `${inset}px`,
-        `${vertical}px`,
-        `${inset}px`
-      ]);
-      expect(spacing.minHeight).toBe(
-        isCurrent ? (width <= 520 ? '190px' : '210px') : isHistory ? '124px' : '156px'
-      );
-      expect(spacing.topInset).toBeCloseTo(vertical + 1, 0);
-      for (const measured of [
-        spacing.leftInset,
-        spacing.dateLeftInset,
-        spacing.countLeftInset,
-        spacing.arrowRightInset,
-        spacing.footerLeftInset,
-        spacing.footerRightInset
-      ]) {
-        expect(measured).toBeCloseTo(inset + 1, 0);
-      }
-      expect(spacing.dateGap).toBeCloseTo(8, 0);
-      expect(spacing.divider).toBe('1px');
+      await expect(card.locator('[data-slot="card"]')).toHaveCount(1);
+      await expect(card.locator('[data-slot="separator"]')).toHaveCount(1);
+      await expect(card.locator('a, button')).toHaveCount(0);
+      const layout = await card.locator('h3').evaluate((title) => ({
+        client: title.clientWidth,
+        scroll: title.scrollWidth,
+        whitespace: getComputedStyle(title).whiteSpace
+      }));
+      expect(layout.scroll).toBeLessThanOrEqual(layout.client + 1);
+      expect(layout.whitespace).not.toBe('nowrap');
     }
     expect(
       await page.evaluate(
@@ -320,11 +235,6 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
       )
     ).toBeLessThanOrEqual(1);
   }
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
-    )
-  ).toBeLessThanOrEqual(1);
   await page.setViewportSize({ width: 1440, height: 1000 });
 
   await page.goto('/endgame/as/');
@@ -383,7 +293,10 @@ test('Endgame floating switcher 使用模式 accent 并在长页面滚动时吸�
   await page.evaluate(() => window.scrollTo(0, 1200));
   await page.waitForTimeout(500);
   expect(await switcher.evaluate((element) => getComputedStyle(element).position)).toBe('sticky');
-  expect((await switcher.boundingBox())!.y).toBeLessThanOrEqual(14);
+  const stickyTop = await switcher.evaluate((element) =>
+    Number.parseFloat(getComputedStyle(element).top)
+  );
+  expect((await switcher.boundingBox())!.y).toBeCloseTo(stickyTop, 0);
 });
 
 test('Endgame desktop local rail 保持窄栏、active ownership 与原 query href', async ({ page }) => {

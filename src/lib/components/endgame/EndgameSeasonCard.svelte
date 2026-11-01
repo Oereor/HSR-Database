@@ -1,4 +1,6 @@
 <script lang="ts">
+  import * as Card from '$lib/components/ui/card';
+  import { Separator } from '$lib/components/ui/separator';
   import type { EndgameMode } from '$lib/domain/endgame';
   import {
     ENDGAME_MODE_META,
@@ -17,205 +19,54 @@
 </script>
 
 <a
-  class={`endgame-season-card endgame-season-card--${variant}`}
+  class="endgame-season-card group focus-visible:ring-ring/50 block min-w-0 rounded-xl outline-none focus-visible:ring-3"
   href={localizedHref(`/endgame/${mode}/${period.groupId}`)}
   aria-label={m.endgame_period_detail_aria({ period: period.name })}
   style={`--endgame-accent: ${metadata.accent};`}
   data-endgame-season-card={variant}
 >
-  {#if variant === 'current'}
-    <span class="endgame-season-card__watermark" aria-hidden="true">
-      <EndgameModeIcon {mode} />
-    </span>
-  {/if}
-
-  <div class="endgame-season-card__content">
-    <h3>{period.name}</h3>
-    <span class="endgame-season-card__date">{period.dateLabel}</span>
-  </div>
-
-  <span class="endgame-season-card__footer">
-    <span>{m.endgame_encounter_count({ count: period.encounterCount })}</span>
-    <span class="endgame-season-card__arrow" aria-hidden="true">→</span>
-  </span>
+  <Card.Root
+    size="sm"
+    class={`group-focus-visible:border-ring relative isolate h-full overflow-hidden transition-colors group-hover:border-[var(--endgame-accent)] ${variant === 'current' ? 'border-[color-mix(in_srgb,var(--endgame-accent)_40%,var(--border))] sm:gap-5 sm:py-5' : ''}`}
+  >
+    {#if variant === 'current'}
+      <span
+        class="endgame-season-card__watermark pointer-events-none absolute -right-10 -bottom-16 -z-10 grid -rotate-7 text-[14rem] opacity-[0.065]"
+        aria-hidden="true"
+      >
+        <EndgameModeIcon {mode} />
+      </span>
+    {/if}
+    <Card.Header class="gap-2">
+      <Card.Title
+        class={variant === 'current'
+          ? 'text-2xl sm:text-3xl'
+          : variant === 'upcoming'
+            ? 'text-xl'
+            : 'text-base'}>{period.name}</Card.Title
+      >
+      <span
+        class="endgame-season-card__date text-muted-foreground text-sm wrap-anywhere tabular-nums"
+        >{period.dateLabel}</span
+      >
+    </Card.Header>
+    <Card.Content class="mt-auto grid gap-3">
+      <Separator />
+      <div
+        class={`endgame-season-card__footer flex items-center justify-between gap-3 text-sm ${variant === 'current' || variant === 'upcoming' ? 'text-[var(--endgame-accent)]' : 'text-muted-foreground'}`}
+      >
+        <span>{m.endgame_encounter_count({ count: period.encounterCount })}</span>
+        <span
+          class="endgame-season-card__arrow shrink-0 text-[var(--endgame-accent)]"
+          aria-hidden="true">→</span
+        >
+      </div>
+    </Card.Content>
+  </Card.Root>
 </a>
 
 <style>
-  .endgame-season-card {
-    position: relative;
-    display: flex;
-    min-width: 0;
-    min-height: 124px;
-    flex-direction: column;
-    overflow: hidden;
-    border: 1px solid var(--surface-border);
-    border-radius: var(--radius-card);
-    background: linear-gradient(155deg, rgb(255 255 255 / 3%), transparent 48%), var(--surface);
-    padding: var(--space-4);
-    isolation: isolate;
-    transition:
-      border-color var(--motion),
-      background var(--motion),
-      box-shadow var(--motion);
-  }
-
-  .endgame-season-card--current {
-    min-height: 210px;
-    border-color: color-mix(in srgb, var(--endgame-accent) 28%, var(--border));
-    background:
-      linear-gradient(
-        145deg,
-        color-mix(in srgb, var(--endgame-accent) 7%, transparent),
-        transparent 54%
-      ),
-      linear-gradient(155deg, rgb(255 255 255 / 4%), transparent 48%), var(--surface);
-    padding: var(--space-6);
-  }
-
-  .endgame-season-card--upcoming {
-    min-height: 156px;
-    border-color: color-mix(in srgb, var(--endgame-accent) 17%, var(--border));
-    background:
-      linear-gradient(
-        145deg,
-        color-mix(in srgb, var(--endgame-accent) 3%, transparent),
-        transparent 55%
-      ),
-      linear-gradient(155deg, rgb(255 255 255 / 3%), transparent 48%), var(--surface);
-    padding: var(--space-4) var(--space-6);
-  }
-
-  .endgame-season-card:hover {
-    border-color: color-mix(in srgb, var(--endgame-accent) 34%, var(--border));
-    background:
-      linear-gradient(
-        145deg,
-        color-mix(in srgb, var(--endgame-accent) 5%, transparent),
-        transparent 55%
-      ),
-      linear-gradient(155deg, rgb(255 255 255 / 4%), transparent 48%), var(--surface);
-  }
-
-  .endgame-season-card--current:hover {
-    border-color: color-mix(in srgb, var(--endgame-accent) 52%, var(--border));
-    background:
-      linear-gradient(
-        145deg,
-        color-mix(in srgb, var(--endgame-accent) 10%, transparent),
-        transparent 58%
-      ),
-      linear-gradient(155deg, rgb(255 255 255 / 5%), transparent 48%), var(--surface);
-    box-shadow: 0 14px 34px rgb(0 0 0 / 20%);
-  }
-
-  .endgame-season-card:focus-visible {
-    outline-color: var(--endgame-accent);
-  }
-
   .endgame-season-card__watermark {
-    position: absolute;
-    z-index: -1;
-    right: -2.5rem;
-    bottom: -5rem;
-    display: grid;
-    font-size: 18rem;
-    opacity: 0.065;
-    pointer-events: none;
-    transform: rotate(-7deg);
     mask-image: linear-gradient(90deg, transparent 0%, black 42%);
-    transition: opacity var(--motion);
-  }
-
-  .endgame-season-card--current:hover .endgame-season-card__watermark {
-    opacity: 0.09;
-  }
-
-  .endgame-season-card__content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    min-width: 0;
-    flex: 1 1 auto;
-    flex-direction: column;
-  }
-
-  .endgame-season-card h3 {
-    max-width: min(100%, 38rem);
-    margin: 0;
-    overflow-wrap: anywhere;
-    color: var(--text-primary);
-    font-size: var(--font-major-title);
-    line-height: 1.3;
-  }
-
-  .endgame-season-card--current h3 {
-    font-size: clamp(1.55rem, 3vw, 2.15rem);
-  }
-
-  .endgame-season-card--upcoming h3 {
-    font-size: var(--font-card-category);
-  }
-
-  .endgame-season-card__date {
-    margin-top: var(--space-2);
-    color: var(--text-secondary);
-    font-size: var(--font-helper);
-    font-variant-numeric: tabular-nums;
-    line-height: 1.5;
-  }
-
-  .endgame-season-card--current .endgame-season-card__date,
-  .endgame-season-card--upcoming .endgame-season-card__date {
-    font-size: var(--font-meta-value);
-  }
-
-  .endgame-season-card__footer {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-3);
-    border-top: 1px solid var(--border);
-    margin-top: var(--space-4);
-    padding-top: var(--space-3);
-    color: var(--text-secondary);
-    font-size: var(--font-helper);
-    font-weight: 700;
-  }
-
-  .endgame-season-card--current .endgame-season-card__footer,
-  .endgame-season-card--upcoming .endgame-season-card__footer {
-    color: var(--endgame-accent);
-    font-size: var(--font-meta-value);
-  }
-
-  .endgame-season-card__arrow {
-    flex: 0 0 auto;
-    color: var(--endgame-accent);
-    font-size: 1.2rem;
-    transition: transform var(--motion);
-  }
-
-  .endgame-season-card:hover .endgame-season-card__arrow {
-    transform: translateX(3px);
-  }
-
-  @media (max-width: 520px) {
-    .endgame-season-card--current {
-      min-height: 190px;
-      padding: var(--space-4);
-    }
-
-    .endgame-season-card--upcoming {
-      min-height: 156px;
-      padding: var(--space-4);
-    }
-
-    .endgame-season-card__watermark {
-      right: -4rem;
-      bottom: -3rem;
-      font-size: 13rem;
-    }
   }
 </style>

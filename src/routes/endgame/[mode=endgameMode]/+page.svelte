@@ -26,13 +26,13 @@
 
 <h1 class="sr-only">{m.endgame_archive_title({ mode: data.mode.label })}</h1>
 
-<div class="endgame-archive">
+<div class="endgame-archive grid min-w-0 gap-8">
   {#if periodGroups.current.length}
-    <section class="endgame-archive-section" aria-labelledby="endgame-current-periods">
+    <section class="endgame-archive-section min-w-0" aria-labelledby="endgame-current-periods">
       <SectionHeading level={2} headingLevel={2} tone="muted" id="endgame-current-periods"
         >{m.endgame_period_current()}</SectionHeading
       >
-      <div class="endgame-archive-featured-list">
+      <div class="endgame-archive-featured-list grid min-w-0 gap-4">
         {#each periodGroups.current as period (period.groupId)}
           <EndgameSeasonCard mode={data.mode.mode} {period} variant="current" />
         {/each}
@@ -41,11 +41,11 @@
   {/if}
 
   {#if periodGroups.upcoming.length}
-    <section class="endgame-archive-section" aria-labelledby="endgame-upcoming-periods">
+    <section class="endgame-archive-section min-w-0" aria-labelledby="endgame-upcoming-periods">
       <SectionHeading level={2} headingLevel={2} tone="muted" id="endgame-upcoming-periods"
         >{m.endgame_period_upcoming()}</SectionHeading
       >
-      <div class="endgame-archive-featured-list">
+      <div class="endgame-archive-featured-list grid min-w-0 gap-4">
         {#each periodGroups.upcoming as period (period.groupId)}
           <EndgameSeasonCard mode={data.mode.mode} {period} variant="upcoming" />
         {/each}
@@ -54,11 +54,13 @@
   {/if}
 
   {#if periodGroups.unknown.length}
-    <section class="endgame-archive-section" aria-labelledby="endgame-unknown-periods">
+    <section class="endgame-archive-section min-w-0" aria-labelledby="endgame-unknown-periods">
       <SectionHeading level={2} headingLevel={2} tone="muted" id="endgame-unknown-periods"
         >{m.endgame_period_unknown()}</SectionHeading
       >
-      <div class="endgame-archive-grid">
+      <div
+        class="endgame-archive-grid grid min-w-0 grid-cols-[repeat(auto-fit,minmax(min(100%,14rem),1fr))] gap-3"
+      >
         {#each periodGroups.unknown as period (period.groupId)}
           <EndgameSeasonCard mode={data.mode.mode} {period} variant="unknown" />
         {/each}
@@ -67,11 +69,13 @@
   {/if}
 
   {#if periodGroups.historical.length}
-    <section class="endgame-archive-section" aria-labelledby="endgame-historical-periods">
+    <section class="endgame-archive-section min-w-0" aria-labelledby="endgame-historical-periods">
       <SectionHeading level={2} headingLevel={2} tone="muted" id="endgame-historical-periods"
         >{m.endgame_period_historical()}</SectionHeading
       >
-      <div class="endgame-archive-grid">
+      <div
+        class="endgame-archive-grid grid min-w-0 grid-cols-[repeat(auto-fit,minmax(min(100%,14rem),1fr))] gap-3"
+      >
         {#each periodGroups.historical as period (period.groupId)}
           <EndgameSeasonCard mode={data.mode.mode} {period} variant="historical" />
         {/each}
@@ -79,51 +83,3 @@
     </section>
   {/if}
 </div>
-
-<style>
-  .endgame-archive {
-    display: grid;
-    gap: var(--space-12);
-  }
-
-  .endgame-archive-section {
-    min-width: 0;
-  }
-
-  .endgame-archive-featured-list {
-    display: grid;
-    gap: var(--space-4);
-  }
-
-  .endgame-archive-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--space-3);
-  }
-
-  @media (max-width: 1180px) {
-    .endgame-archive-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 820px) {
-    .endgame-archive {
-      gap: var(--space-10);
-    }
-
-    .endgame-archive-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 520px) {
-    .endgame-archive {
-      gap: var(--space-8);
-    }
-
-    .endgame-archive-grid {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
-</style>
