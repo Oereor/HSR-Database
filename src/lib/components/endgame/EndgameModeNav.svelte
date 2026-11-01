@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { buttonVariants } from '$lib/components/ui/button';
+  import { cn } from '$lib/utils.js';
   import { onMount } from 'svelte';
   import { ENDGAME_MODES, ENDGAME_MODE_META } from '$lib/domain/endgame-view';
   import type { EndgameMode } from '$lib/domain/endgame';
@@ -18,124 +20,30 @@
   });
 </script>
 
-<div class="endgame-mode-switcher">
+<div
+  class="endgame-mode-switcher pointer-events-none sticky top-[var(--global-sticky-top)] z-10 mt-1 mb-6 flex h-[var(--endgame-mode-nav-height)] min-w-0 items-center justify-center sm:mb-8"
+>
   <nav
-    class="endgame-mode-switcher__island"
+    class="endgame-mode-switcher__island bg-card/95 border-border pointer-events-auto flex w-full max-w-full min-w-0 [scrollbar-width:none] gap-1 overflow-x-auto overscroll-x-contain rounded-lg border p-1 backdrop-blur-sm sm:w-max [&::-webkit-scrollbar]:hidden"
     aria-label={m.endgame_mode_switcher_aria()}
     bind:this={navigation}
   >
     {#each ENDGAME_MODES as mode}
       <a
+        class={cn(
+          buttonVariants({ variant: 'ghost', size: 'lg' }),
+          'group/mode aria-[current=page]:text-foreground gap-2 px-3 hover:border-[color-mix(in_srgb,var(--endgame-accent)_26%,transparent)] aria-[current=page]:border-[color-mix(in_srgb,var(--endgame-accent)_42%,transparent)] aria-[current=page]:bg-[color-mix(in_srgb,var(--endgame-accent)_13%,transparent)]'
+        )}
         href={localizedHref(`/endgame/${mode}`)}
         aria-current={activeMode === mode ? 'page' : undefined}
         style={`--endgame-accent: ${ENDGAME_MODE_META[mode].accent};`}
       >
-        <span class="endgame-mode-switcher__icon"><EndgameModeIcon {mode} /></span>
-        <strong>{getEndgameModeCopy(mode).label}</strong>
+        <span
+          class="endgame-mode-switcher__icon grid shrink-0 text-2xl opacity-60 group-hover/mode:opacity-100 group-aria-[current=page]/mode:opacity-100"
+          ><EndgameModeIcon {mode} /></span
+        >
+        <strong class="text-sm leading-tight font-medium">{getEndgameModeCopy(mode).label}</strong>
       </a>
     {/each}
   </nav>
 </div>
-
-<style>
-  .endgame-mode-switcher {
-    position: sticky;
-    z-index: 10;
-    top: var(--global-sticky-top);
-    height: var(--endgame-mode-nav-height);
-    align-items: center;
-    display: flex;
-    min-width: 0;
-    justify-content: center;
-    margin: var(--space-1) 0 var(--space-8);
-    pointer-events: none;
-  }
-
-  .endgame-mode-switcher__island {
-    display: flex;
-    width: max-content;
-    max-width: 100%;
-    min-width: 0;
-    gap: var(--space-1);
-    overflow-x: auto;
-    border: 1px solid var(--border);
-    border-radius: calc(var(--radius-control) + 4px);
-    background: rgb(10 15 25 / 88%);
-    padding: var(--space-1);
-    backdrop-filter: blur(16px);
-    box-shadow: 0 12px 30px rgb(0 0 0 / 24%);
-    pointer-events: auto;
-    scrollbar-width: none;
-    overscroll-behavior-inline: contain;
-  }
-
-  .endgame-mode-switcher__island::-webkit-scrollbar {
-    display: none;
-  }
-
-  .endgame-mode-switcher a {
-    display: flex;
-    min-width: max-content;
-    align-items: center;
-    gap: var(--space-2);
-    border: 1px solid transparent;
-    border-radius: var(--radius-control);
-    padding: 0.68rem 0.9rem;
-    color: var(--text-secondary);
-    transition:
-      border-color var(--motion),
-      background var(--motion),
-      color var(--motion);
-  }
-
-  .endgame-mode-switcher a:hover {
-    border-color: color-mix(in srgb, var(--endgame-accent) 26%, transparent);
-    background: color-mix(in srgb, var(--endgame-accent) 7%, transparent);
-    color: var(--text-primary);
-  }
-
-  .endgame-mode-switcher a[aria-current='page'] {
-    border-color: color-mix(in srgb, var(--endgame-accent) 42%, transparent);
-    background: color-mix(in srgb, var(--endgame-accent) 13%, transparent);
-    color: var(--text-primary);
-  }
-
-  .endgame-mode-switcher a:focus-visible {
-    outline-color: var(--endgame-accent);
-  }
-
-  .endgame-mode-switcher__icon {
-    display: grid;
-    place-items: center;
-    font-size: 1.55rem;
-    opacity: 0.58;
-    transition: opacity var(--motion);
-  }
-
-  .endgame-mode-switcher a:hover .endgame-mode-switcher__icon,
-  .endgame-mode-switcher a[aria-current='page'] .endgame-mode-switcher__icon {
-    opacity: 1;
-  }
-
-  .endgame-mode-switcher strong {
-    font-size: var(--font-meta-value);
-    font-weight: 700;
-    line-height: 1.2;
-    white-space: nowrap;
-  }
-
-  @media (max-width: 700px) {
-    .endgame-mode-switcher {
-      justify-content: stretch;
-      margin-bottom: var(--space-6);
-    }
-
-    .endgame-mode-switcher__island {
-      width: 100%;
-    }
-
-    .endgame-mode-switcher a {
-      padding: 0.6rem 0.78rem;
-    }
-  }
-</style>
