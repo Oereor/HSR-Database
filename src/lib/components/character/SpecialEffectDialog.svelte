@@ -1,5 +1,6 @@
 <script lang="ts">
   import * as Dialog from '$lib/components/ui/dialog';
+  import { Badge } from '$lib/components/ui/badge';
   import { Button } from '$lib/components/ui/button';
   import { afterNavigate } from '$app/navigation';
   import SkillVariantView from '$lib/components/character/SkillVariantView.svelte';
@@ -42,7 +43,11 @@
           <Dialog.Title id="special-effect-dialog-title" class="text-xl"
             >{m.special_effect_title()}</Dialog.Title
           >
-          <span class="skill-effect-tag special-effect-dialog__level">Lv.{selectedLevel}</span>
+          <Badge
+            variant="outline"
+            class="skill-effect-tag special-effect-dialog__level text-primary"
+            >Lv.{selectedLevel}</Badge
+          >
         </div>
       </div>
       <Button

@@ -1,3 +1,4 @@
+import { setSliderValue } from '../helpers/slider';
 import { expect, test } from '@playwright/test';
 
 const entities = [
@@ -109,10 +110,10 @@ test('Hero level controls keep keyboard behavior and mixed missing icons keep la
   await page.goto('/characters/1001/');
   const pane = page.locator('.hero-basic-data-pane');
   const slider = pane.getByRole('slider');
-  await slider.fill('79');
+  await setSliderValue(slider, '79');
   await slider.focus();
   await page.keyboard.press('ArrowRight');
-  await expect(slider).toHaveValue('80');
+  await expect(slider).toHaveAttribute('data-value', '80');
   await expect(slider).toHaveAttribute('aria-valuenow', '80');
   await expect(slider).toBeFocused();
 

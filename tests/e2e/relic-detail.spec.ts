@@ -103,15 +103,38 @@ for (const prefix of ['', '/en']) {
           )
           .toBe(columns);
         if (width >= 1280) {
-          await page.locator('[data-slot="sidebar-trigger"]').click();
+          if (
+            (await page.locator('[data-slot="sidebar"]').getAttribute('data-state')) !== 'expanded'
+          )
+            await page.locator('[data-slot="sidebar-trigger"]').click();
           await expect(page.locator('[data-slot="sidebar"]')).toHaveAttribute(
             'data-state',
             'expanded'
           );
+          await expect
+            .poll(() =>
+              grid.evaluate((e, count) => {
+                const width = e.getBoundingClientRect().width;
+                const actual = getComputedStyle(e).gridTemplateColumns.split(' ').length;
+                return actual === (width >= 1024 && count === 4 ? 4 : width >= 576 ? 2 : 1);
+              }, count)
+            )
+            .toBe(true);
         }
         expect(
           await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)
         ).toBeLessThanOrEqual(1);
+      }
+      const grid = page.locator('.relic-piece-list');
+      for (const available of [575, 576, 1023, 1024]) {
+        await grid.locator('..').evaluate((container, width) => {
+          container.style.width = `${width}px`;
+        }, available);
+        await expect
+          .poll(() =>
+            grid.evaluate((e) => getComputedStyle(e).gridTemplateColumns.split(' ').length)
+          )
+          .toBe(available >= 1024 && count === 4 ? 4 : available >= 576 ? 2 : 1);
       }
     }
   });

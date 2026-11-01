@@ -1,10 +1,11 @@
+import { setSliderValue } from '../helpers/slider';
 import { expect, test } from '@playwright/test';
 
 test('Enemy Detail 中英文直达均恢复 compact stats', async ({ page }) => {
   for (const detailPath of ['/enemies/8034010/', '/en/enemies/8034010/'] as const) {
     await page.goto(detailPath);
     await expect(page).toHaveURL(new RegExp(`${detailPath}$`));
-    await expect(page.getByRole('slider')).toHaveValue('95');
+    await expect(page.getByRole('slider')).toHaveAttribute('data-value', '95');
     await expect(page.locator('[data-enemy-stat]')).toHaveCount(7);
     await expect(page.locator('[data-enemy-stat="hp"]')).toContainText('657,149');
   }
@@ -114,8 +115,8 @@ test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时�
   await expect(defaultBadge).toBeVisible();
 
   const slider = page.locator('#enemy-level-1002015');
-  await expect(slider).toHaveValue('95');
-  await slider.fill('60');
+  await expect(slider).toHaveAttribute('data-value', '95');
+  await setSliderValue(slider, '60');
   const canonicalHp = await page.locator('[data-enemy-stat="hp"] strong').textContent();
   await quantumVariant.click();
   await expect(quantumVariant).toHaveAttribute('aria-checked', 'true');
@@ -123,7 +124,7 @@ test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时�
   await expect(canonical).toHaveAttribute('aria-checked', 'false');
   await expect(defaultBadge).toBeVisible();
   await expect(quantumVariant.locator('small')).toHaveCount(0);
-  await expect(slider).toHaveValue('60');
+  await expect(slider).toHaveAttribute('data-value', '60');
   await expect(page.locator('[data-enemy-stat="hp"] strong')).not.toHaveText(canonicalHp ?? '');
 
   const weaknesses = page.locator(
@@ -157,7 +158,7 @@ test('单 Monster 页面保留紧凑单项 selector、默认标记与共享实�
   await expect(option).toHaveAttribute('aria-checked', 'true');
   await expect(page.locator('.enemy-selected-monster-heading')).toHaveCount(0);
   await expect(page.locator('[data-enemy-stat]')).toHaveCount(7);
-  await expect(page.locator('#enemy-level-1004011')).toHaveValue('95');
+  await expect(page.locator('#enemy-level-1004011')).toHaveAttribute('data-value', '95');
   await expect(page.locator('.enemy-battle-column--stats .hero-stat-list')).toHaveAttribute(
     'aria-label',
     /\S/

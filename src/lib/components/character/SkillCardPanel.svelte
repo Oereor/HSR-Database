@@ -42,10 +42,9 @@
     </Card.Title>
   </Card.Header>
   <Separator class="mx-6 w-auto data-horizontal:w-auto" />
-  <Card.Content
-    class="text-secondary-foreground pt-4 [&_p]:text-base [&_p]:leading-relaxed [&>.skill-progression-group:first-child_.skill-level-control]:border-t-0 [&>.skill-progression-group:first-child_.skill-level-control]:pt-0"
-  >
-    {#each card.progressions as progression (progression.id)}
+  <Card.Content class="text-secondary-foreground pt-4 [&_p]:text-base [&_p]:leading-relaxed">
+    {#each card.progressions as progression, index (progression.id)}
+      {#if index > 0}<Separator class="my-4" />{/if}
       <SkillProgressionPanel
         {progression}
         controlId={`skill-progression-${card.category}-${progression.id}`}
@@ -62,10 +61,9 @@
           : undefined}
       />
     {/each}
-    {#if fixedVariants.length}<div
-        class:fixed-variant-list--separated={fixedVariantsNeedDivider}
-        class="skill-variant-list fixed-variant-list"
-      >
+    {#if fixedVariants.length}
+      {#if fixedVariantsNeedDivider}<Separator class="my-4" />{/if}
+      <div class="skill-variant-list fixed-variant-list mt-4 pt-4">
         {#each fixedVariants as variant (variant.id)}
           <SkillVariantView
             {variant}

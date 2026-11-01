@@ -7,9 +7,8 @@
 </script>
 
 <Toggle
-  class="trace-toggle absolute inset-0 z-1 size-full rounded-[inherit] border-0 bg-transparent p-0 hover:bg-transparent aria-pressed:bg-transparent"
+  class="trace-toggle absolute inset-0 z-1 size-full rounded-[inherit] border-0 bg-transparent p-0 hover:bg-transparent aria-pressed:bg-transparent data-[state=on]:bg-transparent"
   type="button"
   aria-label={gameTextToPlain(name)}
-  pressed={active}
-  onPressedChange={onToggle}
+  bind:pressed={() => active, () => onToggle()}
 ></Toggle>

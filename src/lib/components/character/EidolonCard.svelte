@@ -30,7 +30,7 @@
       >
       {#if playerState}<Badge
           variant="outline"
-          class="player-progression-state"
+          class="player-progression-state text-primary"
           data-player-state-label={playerState}
           >{playerState === 'active'
             ? m.player_character_active()

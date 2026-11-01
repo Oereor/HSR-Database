@@ -29,7 +29,7 @@
     <Badge variant="outline" class="skill-effect-tag text-primary">{m.trace_extra_ability()}</Badge>
     {#if playerState === 'unresolved'}<Badge
         variant="outline"
-        class="player-progression-state"
+        class="player-progression-state text-primary"
         data-player-state-label={playerState}>{m.player_character_status_unknown()}</Badge
       >{/if}
   </div>

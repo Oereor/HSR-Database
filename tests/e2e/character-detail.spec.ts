@@ -1,3 +1,4 @@
+import { setSliderValue } from '../helpers/slider';
 import { expect, test } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 
@@ -151,7 +152,7 @@ test('技能卡按语义类别合并变体并使用真实默认等级', async ({
   await expect(basicCard).toHaveCount(1);
   await expect(basicCard.locator('.skill-variant')).toHaveCount(4);
   await expect(basicCard.locator('output')).toHaveText('Lv.6');
-  await basicCard.locator('input[type="range"]').fill('0');
+  await setSliderValue(basicCard.locator('[role="slider"]'), '0');
   await expect(basicCard.locator('output')).toHaveText('Lv.1');
 
   const skillCard = page.locator('[data-skill-category="skill"]');
@@ -171,13 +172,13 @@ test('技能类别标题与正文之间只保留一条 divider，秘技隐藏固
   for (const category of ['basic', 'skill', 'ultimate', 'talent', 'technique']) {
     const card = page.locator(`[data-skill-category="${category}"]`);
     const dividerWidths = await card.evaluate((element) => {
-      const heading = element.querySelector<HTMLElement>('.skill-card__heading')!;
+      const heading = element.querySelector<HTMLElement>(':scope > [data-slot=separator]')!;
       const firstBody = element.querySelector<HTMLElement>(
         '.skill-progression-group, .fixed-variant-list'
       )!;
       const firstLevelControl = element.querySelector<HTMLElement>('.skill-level-control');
       return {
-        heading: getComputedStyle(heading).borderBottomWidth,
+        heading: getComputedStyle(heading).height,
         firstBody: getComputedStyle(firstBody).borderTopWidth,
         firstLevelControl: firstLevelControl
           ? getComputedStyle(firstLevelControl).borderTopWidth
@@ -215,7 +216,7 @@ test('每个 Skill Variant 独立展示技能类型与战斗元数据', async ({
     await expect(variant.locator('[data-combat-meta="energy-gain"]')).toContainText(energy);
     await expect(variant.locator('[data-combat-meta="toughness-damage"]')).toContainText(toughness);
   }
-  await expect(page.locator('[data-skill-category="basic"] input[type="range"]')).toHaveCount(1);
+  await expect(page.locator('[data-skill-category="basic"] [role="slider"]')).toHaveCount(1);
 });
 
 test('特殊资源可与战技点同时显示且忆灵元数据不回归', async ({ page }) => {
@@ -367,7 +368,7 @@ test('角色 Detail Hero 展示完整 identity、放大标签与不截断传记'
 test('角色等级属性默认 Lv.80、使用突破后边界并严格按语义行排序', async ({ page }) => {
   await page.goto('/characters/1001/');
   const panel = page.locator('.base-stats-panel');
-  const slider = panel.locator('input[type="range"]');
+  const slider = panel.locator('[role="slider"]');
   await expect(panel.locator('output')).toHaveText('Lv.80');
   await expect(
     page.locator('.detail-profile-hero__inspection#stats .base-stats-panel')
@@ -392,7 +393,7 @@ test('角色等级属性默认 Lv.80、使用突破后边界并严格按语义�
   expect(directOrder[0]).toContain('stat-level-control');
   expect(directOrder[1]).toContain('inspection-stat-list');
   await expect(panel.locator('.skill-effect-tag')).toHaveCount(1);
-  await slider.fill('20');
+  await setSliderValue(slider, '20');
   await expect(panel.locator('output')).toHaveText('Lv.20');
   await expect(slider).toHaveAttribute('aria-valuenow', '20');
   await expect(panel.locator('.inspection-stat-list .scaling-value').first()).toHaveText('281');
@@ -462,8 +463,8 @@ test('HideInUI 技能在玩家侧管线统一隐藏且公开技能保持可用',
   );
   await expect(remembranceBasic.locator('[data-skill-id="800701"]')).toContainText('100%');
   await expect(remembranceBasic.locator('[data-skill-id="800708"]')).toContainText('120%');
-  await expect(remembranceBasic.locator('input[type="range"]')).toHaveCount(1);
-  await remembranceBasic.locator('input[type="range"]').fill('7');
+  await expect(remembranceBasic.locator('[role="slider"]')).toHaveCount(1);
+  await setSliderValue(remembranceBasic.locator('[role="slider"]'), '7');
   await expect(remembranceBasic.locator('output')).toHaveText('Lv.8');
   await expect(remembranceBasic.locator('[data-skill-id="800701"]')).toContainText('120%');
   await expect(remembranceBasic.locator('[data-skill-id="800708"]')).toContainText('144%');
@@ -476,7 +477,7 @@ test('HideInUI 技能在玩家侧管线统一隐藏且公开技能保持可用',
   await expect(remembranceBasicFemale.locator('[data-skill-id="800808"]')).toContainText(
     '明天，一同写下'
   );
-  await expect(remembranceBasicFemale.locator('input[type="range"]')).toHaveCount(1);
+  await expect(remembranceBasicFemale.locator('[role="slider"]')).toHaveCount(1);
   await expect(page.locator('[data-skill-id="800809"]')).toHaveCount(0);
 
   await page.goto('/characters/1407/');
@@ -485,11 +486,11 @@ test('HideInUI 技能在玩家侧管线统一隐藏且公开技能保持可用',
   await expect(memospriteSkill.locator('[data-skill-id="1140710"]')).toHaveCount(0);
   await expect(memospriteSkill.locator('[data-skill-id="1140711"]')).toHaveCount(0);
   await expect(memospriteSkill.locator('[data-skill-id="1140712"]')).toHaveCount(0);
-  await expect(memospriteSkill.locator('input[type="range"]')).toHaveCount(1);
-  await expect(memospriteSkill.locator('input[type="range"]').first()).toBeVisible();
+  await expect(memospriteSkill.locator('[role="slider"]')).toHaveCount(1);
+  await expect(memospriteSkill.locator('[role="slider"]').first()).toBeVisible();
   const memospriteTalent = page.locator('[data-skill-category="memosprite-talent"]');
   await expect(memospriteTalent.locator('[data-skill-id="1140706"]')).toBeVisible();
-  await expect(memospriteTalent.locator('input[type="range"]')).toHaveCount(1);
+  await expect(memospriteTalent.locator('[role="slider"]')).toHaveCount(1);
 
   await page.goto('/characters/1507/');
   await expect(page.locator('[data-skill-id="150709"]')).toHaveCount(0);
@@ -527,8 +528,8 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   const initialBodyOverflow = await page.evaluate(() => document.body.style.overflow);
   const cyreneSourceLevel = page
     .locator('[data-skill-category="memosprite-skill"]')
-    .locator('input[type="range"]');
-  await expect(cyreneSourceLevel).toHaveValue('5');
+    .locator('[role="slider"]');
+  await expect(cyreneSourceLevel).toHaveAttribute('data-value', '5');
   const trigger = page.locator('.special-effect-trigger').first();
   await expect(trigger).toBeVisible();
   await expect(trigger.locator('img')).toHaveAttribute(
@@ -581,8 +582,8 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
     .poll(() => page.evaluate(() => document.body.style.overflow))
     .toBe(initialBodyOverflow);
 
-  await cyreneSourceLevel.fill('7');
-  await expect(cyreneSourceLevel).toHaveValue('7');
+  await setSliderValue(cyreneSourceLevel, '7');
+  await expect(cyreneSourceLevel).toHaveAttribute('data-value', '7');
   await trigger.click();
   await expect(dialog.locator('.special-effect-dialog__level')).toHaveText('Lv.8');
   await expect(dialog.locator('[data-skill-id="1141526"]')).toContainText('72%');
@@ -601,9 +602,9 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   await page.goto('/characters/1510/');
   await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   const himekoSourceLevel = page.locator(
-    '[data-skill-category="assist"] .skill-level-control input[type="range"]'
+    '[data-skill-category="assist"] .skill-level-control [role="slider"]'
   );
-  await expect(himekoSourceLevel).toHaveValue('9');
+  await expect(himekoSourceLevel).toHaveAttribute('data-value', '9');
   const himekoTrigger = page.locator('.special-effect-trigger').first();
   await expect(himekoTrigger.locator('img')).toHaveAttribute(
     'src',
@@ -657,7 +658,7 @@ test('行迹使用三列能力分组与紧凑属性卡直接展示完整内容',
   await expect(purity).toContainText('解除指定我方单体的1个负面效果');
   await expect(ice.locator('.skill-effect-tag')).not.toHaveText('');
   await expect(ice.locator('.trace-card__condition')).toHaveCount(0);
-  await expect(ice).toHaveAttribute('data-trace-standalone', '');
+  await expect(ice).toHaveAttribute('data-trace-standalone');
   await expect(traces.getByText('Lv.1', { exact: true })).toHaveCount(0);
   await expect(traces.locator('svg, .trace-tree-viewport, .trace-detail')).toHaveCount(0);
   await expect(traces.locator('button[data-trace-id]')).toHaveCount(0);
@@ -693,7 +694,7 @@ test('记忆开拓者按真实前置链归组并将第四项能力独占底部�
     await expect(traces.locator('[data-trace-type="ability"]')).toHaveCount(4);
     await expect(traces.getByRole('heading', { name: '未完的尾声', exact: true })).toHaveCount(1);
     const special = traces.locator(`[data-trace-id="${id}501"]`);
-    await expect(special).toHaveAttribute('data-trace-special', '');
+    await expect(special).toHaveAttribute('data-trace-special');
     await expect(special.locator('.trace-card__condition')).toHaveCount(0);
     await expect(groups.nth(0).locator('[data-trace-type="stat"]')).toHaveCount(2);
     await expect(groups.nth(1).locator('[data-trace-type="stat"]')).toHaveCount(2);
@@ -789,4 +790,41 @@ test('角色详情 icon 增强保持 canonical 技能、紧凑卡片与无破图
   await expect(
     page.locator('[data-skill-category="assist"] .skill-card__heading img')
   ).toHaveAttribute('src', '/generated-assets/character-details/icons/skill/1510_assist01.png');
+});
+
+test('character card grids preserve columns and equal row heights', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'This test owns its viewport matrix');
+  for (const prefix of ['', '/en'])
+    for (const width of [320, 390, 768, 1080, 1081, 1280, 1600]) {
+      await page.setViewportSize({ width, height: 1000 });
+      await page.goto(`${prefix}/characters/1001/`);
+      await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
+      for (const [selector, columns] of [
+        ['#skills [data-skill-category]', width > 1080 ? 2 : 1],
+        ['#eidolons [data-eidolon-id]', width > 820 ? 2 : 1]
+      ] as const) {
+        const rows = await page.locator(selector).evaluateAll((nodes) => {
+          const rows: Array<Array<{ y: number; height: number }>> = [];
+          for (const node of nodes) {
+            const box = node.getBoundingClientRect();
+            let row = rows.find((row) => Math.abs(row[0].y - box.y) < 1);
+            if (!row) {
+              row = [];
+              rows.push(row);
+            }
+            row.push({ y: box.y, height: box.height });
+          }
+          return rows;
+        });
+        expect(rows[0].length).toBe(columns);
+        for (const row of rows)
+          expect(
+            Math.max(...row.map((item) => item.height)) -
+              Math.min(...row.map((item) => item.height))
+          ).toBeLessThanOrEqual(1);
+      }
+      expect(
+        await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)
+      ).toBeLessThanOrEqual(1);
+    }
 });

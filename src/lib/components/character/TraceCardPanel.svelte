@@ -111,7 +111,7 @@
                 >
                 {#if statState === 'unresolved'}<Badge
                     variant="outline"
-                    class="player-progression-state"
+                    class="player-progression-state text-primary"
                     data-player-state-label={statState}>{m.player_character_status_unknown()}</Badge
                   >{/if}
               </div>
@@ -199,7 +199,7 @@
                 >
                 {#if statState === 'unresolved'}<Badge
                     variant="outline"
-                    class="player-progression-state"
+                    class="player-progression-state text-primary"
                     data-player-state-label={statState}>{m.player_character_status_unknown()}</Badge
                   >{/if}
               </div>

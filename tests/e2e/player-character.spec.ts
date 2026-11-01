@@ -1,3 +1,4 @@
+import { setSliderValue } from '../helpers/slider';
 import { expect, test } from '@playwright/test';
 
 const playerProfile = (uid: string, includeCharacter = true) => ({
@@ -479,7 +480,7 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(page.locator('.section-nav a[href="#training"]')).toHaveCount(0);
   await expect(page.locator('.trace-toggle')).toHaveCount(0);
   await expect(level).toBeDisabled();
-  await expect(level).toHaveValue('80');
+  await expect(level).toHaveAttribute('data-value', '80');
   await expect(promotionTag).toHaveText(/\S/);
   await expect(levelValue.locator('output')).not.toHaveText('');
   expect(
@@ -490,7 +491,7 @@ test('reuses the Player cache and renders real progression without changing stat
     })
   ).toBe(true);
 
-  const basicLevel = page.locator('[data-skill-category="basic"] input[type="range"]');
+  const basicLevel = page.locator('[data-skill-category="basic"] [role="slider"]');
   await expect(basicLevel).toBeDisabled();
   await expect(basicLevel).toHaveAttribute('aria-valuenow', '6');
 
@@ -704,13 +705,13 @@ test('reuses the Player cache and renders real progression without changing stat
   );
   const lightConeLevel = page.locator('#light-cone-level-23023');
   await expect(lightConeLevel).toBeEnabled();
-  await expect(lightConeLevel).toHaveValue('70');
+  await expect(lightConeLevel).toHaveAttribute('data-value', '70');
   const rank = page.locator('#superimposition-level-23023');
   await expect(rank).toBeEnabled();
   await expect(rank).toHaveAttribute('aria-valuenow', '2');
-  await lightConeLevel.fill('42');
-  await rank.fill('3');
-  await expect(lightConeLevel).toHaveValue('42');
+  await setSliderValue(lightConeLevel, '42');
+  await setSliderValue(rank, '3');
+  await expect(lightConeLevel).toHaveAttribute('data-value', '42');
   await expect(rank).toHaveAttribute('aria-valuenow', '4');
 
   await page.goto('/en/characters/1304/?uid=100000001');
