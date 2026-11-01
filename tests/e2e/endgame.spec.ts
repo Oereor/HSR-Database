@@ -70,11 +70,11 @@ for (const locale of ['zh-CN', 'en'] as const) {
           const body = element.querySelector('p')!;
           const supplement = element.querySelector('[data-buff-option-supplement]')!;
           return {
-            last: element.lastElementChild === supplement,
+            last: supplement.parentElement!.lastElementChild === supplement,
             smaller:
               parseFloat(getComputedStyle(supplement).fontSize) <
               parseFloat(getComputedStyle(body).fontSize),
-            spacing: parseFloat(getComputedStyle(supplement).marginTop),
+            spacing: supplement.getBoundingClientRect().top - body.getBoundingClientRect().bottom,
             whiteSpace: getComputedStyle(supplement).whiteSpace,
             overflow: supplement.scrollWidth - supplement.clientWidth
           };
@@ -986,7 +986,7 @@ test('Endgame 敌方卡保留原生链接的点击、键盘与新标签页行为
 
   await card.focus();
   await expect(card).toBeFocused();
-  expect(await card.evaluate((element) => getComputedStyle(element).outlineStyle)).not.toBe('none');
+  expect(await card.evaluate((element) => getComputedStyle(element).boxShadow)).not.toBe('none');
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(new RegExp(`${href}$`));
 

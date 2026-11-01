@@ -246,6 +246,12 @@ SectionHeading 保留 level、headingLevel、tone、id 和 meta slot，采用主
 
 MechanicSectionCard 与 BuffOptionTile 使用单层紧凑 Card / Header / Content，保留标题层级、完整 GameText、buff 金色与 debuff 红色、分段及补充说明。机制保留 600 / 840px 容器断点及第三项跨行；选项保留 endgame-main 的 620 / 860px 断点。MechanicEntry 继续作为文本条目保留插槽，避免特性列表重复套 Card。删除重复外壳和普通布局 CSS，复杂分段边界仍使用主题分隔规则，不新增折叠或选择交互。
 
+### 敌人、波次与关卡
+
+敌人使用原生链接或非交互 article 包裹单层 Card，等级、数量与贪饕层数使用 Badge。保留 260px 最大宽度、standard / compact 的 190 / 170px 立绘区、素材定位与缺图降级、数量 ARIA、全部属性与多阶段倍率。弱点继续使用既有可访问图标；名称与数值完整换行，非链接卡片不增加操作。
+
+EnemyGrid、WaveLayout、NodeSection 与 HP 的普通布局迁移到工具类，保留波次数量决定的组宽、容器断点及并排波次分隔；presentation.ts 未修改，不为关卡、波次增加额外 Card。删除 app.css 中被替代的敌人卡外壳、标签、属性与窄屏重复规则。展示与导航单元回归 34 项通过，新增空机制 / 选项覆盖；最终长名称、长数值与空波次用例随全阶段验收执行。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。

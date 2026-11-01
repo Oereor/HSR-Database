@@ -15,14 +15,11 @@
   $: groups = buildEndgameWaveGroups(battle);
 </script>
 
-<section class="endgame-node-section" id={`battle-${battle.slot}`} data-battle-slot={battle.slot}>
+<section
+  class="endgame-node-section min-w-0 scroll-mt-[var(--anchor-offset)]"
+  id={`battle-${battle.slot}`}
+  data-battle-slot={battle.slot}
+>
   <EndgameNodeHeading slot={battle.slot} />
   <EndgameWaveLayout {groups} policy={waveLayout} {enemyVariant} />
 </section>
-
-<style>
-  .endgame-node-section {
-    min-width: 0;
-    scroll-margin-top: var(--anchor-offset);
-  }
-</style>
