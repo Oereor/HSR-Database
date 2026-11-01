@@ -196,13 +196,13 @@
 {:else if profile}
   <PlayerHero {profile} {avatarUrl} />
 
-  <section class="player-characters" aria-labelledby="player-support-characters">
+  <section class="player-characters mt-8 min-w-0" aria-labelledby="player-support-characters">
     <SectionHeading level={1} id="player-support-characters">
       {m.player_support_characters()}
     </SectionHeading>
 
     {#if supportCharacters.length}
-      <div class="player-characters__support-grid">
+      <OverviewGrid variant="character">
         {#each supportCharacters as item (item.character.buildId)}
           {#if item.entry}
             <CharacterOverviewCard
@@ -219,13 +219,15 @@
             <UnknownPlayerCharacterCard characterId={item.character.characterId} />
           {/if}
         {/each}
-      </div>
+      </OverviewGrid>
     {:else}
-      <p class="player-characters__empty">{m.player_support_characters_empty()}</p>
+      <Empty.Root class="player-characters__empty border p-4 md:p-4"
+        ><Empty.Description>{m.player_support_characters_empty()}</Empty.Description></Empty.Root
+      >
     {/if}
   </section>
 
-  <section class="player-characters" aria-labelledby="player-companion-characters">
+  <section class="player-characters mt-8 min-w-0" aria-labelledby="player-companion-characters">
     <SectionHeading level={1} id="player-companion-characters">
       {m.player_companion_characters()}
     </SectionHeading>
@@ -250,34 +252,9 @@
         {/each}
       </OverviewGrid>
     {:else}
-      <p class="player-characters__empty">{m.player_companion_characters_empty()}</p>
+      <Empty.Root class="player-characters__empty border p-4 md:p-4"
+        ><Empty.Description>{m.player_companion_characters_empty()}</Empty.Description></Empty.Root
+      >
     {/if}
   </section>
 {/if}
-
-<style>
-  .player-characters {
-    margin-top: var(--space-8);
-  }
-
-  .player-characters__support-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.85rem;
-  }
-
-  .player-characters__empty {
-    margin: var(--space-4) 0 0;
-    border: 1px dashed var(--border);
-    border-radius: var(--radius-panel);
-    padding: var(--space-4);
-    color: var(--text-body);
-    text-align: center;
-  }
-
-  @media (min-width: 821px) {
-    .player-characters__support-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-</style>
