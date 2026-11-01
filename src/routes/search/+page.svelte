@@ -114,7 +114,7 @@
   description={m.search_hero_description()}
 />
 
-<div class="search-page-control">
+<div class="search-page-control mb-10">
   <SearchBar
     id="search-page-query"
     label={m.search_input_label()}
@@ -125,7 +125,7 @@
 </div>
 
 {#if appliedQuery && (resultCount || endgameUnavailable || searchUnavailable)}
-  <div class="search-result-groups" aria-live="polite">
+  <div class="search-result-groups grid gap-12" aria-live="polite">
     {#if results.characters.length}
       <section class="search-result-section" aria-labelledby="search-results-characters">
         <SectionHeading level={1} id="search-results-characters"
@@ -220,19 +220,19 @@
         <SectionHeading level={1} id="search-results-endgame"
           >{m.search_results_endgame()}</SectionHeading
         >
-        <div class="search-endgame-modes">
+        <div class="search-endgame-modes grid min-w-0 gap-10">
           {#each endgameModes as mode (mode.mode)}
             <section
-              class="search-endgame-mode"
+              class="search-endgame-mode min-w-0"
               aria-labelledby={`search-results-endgame-${mode.mode}`}
             >
               <SectionHeading level={2} id={`search-results-endgame-${mode.mode}`}>
                 {mode.label}
               </SectionHeading>
-              <div class="search-endgame-seasons">
+              <div class="search-endgame-seasons grid min-w-0 gap-8">
                 {#each mode.seasons as season (season.period.groupId)}
                   <section
-                    class="search-endgame-season"
+                    class="search-endgame-season min-w-0"
                     aria-labelledby={`search-results-endgame-${mode.mode}-${season.period.groupId}`}
                   >
                     <SectionHeading
@@ -256,10 +256,12 @@
       </section>
     {/if}
     {#if searchUnavailable}
-      <p class="search-data-unavailable" role="status">{m.search_data_unavailable()}</p>
+      <p class="search-data-unavailable text-muted-foreground m-0 text-center" role="status">
+        {m.search_data_unavailable()}
+      </p>
     {/if}
     {#if endgameUnavailable}
-      <p class="search-data-unavailable" role="status">
+      <p class="search-data-unavailable text-muted-foreground m-0 text-center" role="status">
         {m.search_endgame_unavailable()}
       </p>
     {/if}
@@ -270,53 +272,8 @@
     <p>{m.search_empty_description()}</p>
   </section>
 {:else}
-  <section class="search-start">
+  <section class="search-start py-12 text-center [&_p]:mb-0">
     <h2>{m.search_start_title()}</h2>
     <p>{m.search_start_description()}</p>
   </section>
 {/if}
-
-<style>
-  .search-page-control {
-    margin-bottom: var(--space-12);
-  }
-
-  .search-result-groups {
-    display: grid;
-    gap: var(--space-16);
-  }
-
-  .search-endgame-modes,
-  .search-endgame-seasons {
-    display: grid;
-    min-width: 0;
-  }
-
-  .search-endgame-modes {
-    gap: var(--space-12);
-  }
-
-  .search-endgame-seasons {
-    gap: var(--space-8);
-  }
-
-  .search-endgame-mode,
-  .search-endgame-season {
-    min-width: 0;
-  }
-
-  .search-start {
-    padding: var(--space-16) 0;
-    text-align: center;
-  }
-
-  .search-start p {
-    margin-bottom: 0;
-  }
-
-  .search-data-unavailable {
-    margin: 0;
-    color: var(--text-muted);
-    text-align: center;
-  }
-</style>
