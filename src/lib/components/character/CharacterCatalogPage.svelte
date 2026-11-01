@@ -2,11 +2,12 @@
   import { Button } from '$lib/components/ui/button';
   import { m } from '$lib/paraglide/messages.js';
   import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
-  import { page } from '$app/stores';
+  import { page, navigating } from '$app/stores';
   import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
   import CharacterOverviewCard from './CharacterOverviewCard.svelte';
   import FilterGroup from '../shared/FilterGroup.svelte';
+  import { createOverviewPagination } from '../shared/overview-pagination';
   import OverviewGrid from '../shared/OverviewGrid.svelte';
   import OverviewHero from '../shared/OverviewHero.svelte';
   import OverviewPagination from '../shared/OverviewPagination.svelte';
@@ -38,7 +39,6 @@
   $: synchronizeDraft(appliedQuery);
   $: filterState = readCharacterFilterState(params);
   $: sort = params.get('sort') ?? 'rarity';
-  $: requestedPage = Number(params.get('page') ?? 1);
   $: heroArtwork = entries
     .slice(0, 3)
     .map((entry) => ({ id: entry.id, url: getCharacterPreviewUrl(entry.id) }))
@@ -59,10 +59,15 @@
       if (sort === 'id') return Number(a.id) - Number(b.id);
       return (b.rarity ?? 0) - (a.rarity ?? 0) || a.name.localeCompare(b.name, 'zh-CN');
     });
-  const pageSize = 36;
-  $: pages = Math.max(1, Math.ceil(filtered.length / pageSize));
-  $: currentPage =
-    Number.isInteger(requestedPage) && requestedPage > 0 ? Math.min(requestedPage, pages) : 1;
+  const pagination = createOverviewPagination(36, (url) =>
+    goto(url, { replaceState: true, noScroll: true, keepFocus: true })
+  );
+  $: pagination.synchronize(
+    clientReady ? $page.url : undefined,
+    filtered.length,
+    $navigating !== null
+  );
+  $: ({ pageSize, pages, currentPage } = $pagination);
   $: visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   const options = (key: 'path' | 'element' | 'rarity', labelKey?: 'pathName' | 'elementName') =>
@@ -193,7 +198,7 @@
 </section>
 
 {#if visible.length}
-  <OverviewGrid variant="character">
+  <OverviewGrid variant="character" onColumnsChange={pagination.setColumns}>
     {#each visible as entry (entry.id)}
       <CharacterOverviewCard
         {entry}

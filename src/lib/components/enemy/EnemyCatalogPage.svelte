@@ -3,7 +3,7 @@
   import { m } from '$lib/paraglide/messages.js';
   import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
   import { goto } from '$app/navigation';
-  import { page } from '$app/stores';
+  import { page, navigating } from '$app/stores';
   import { onMount } from 'svelte';
   import {
     ENEMY_RANK_CATEGORIES,
@@ -20,6 +20,7 @@
   import { formatDocumentTitle } from '$lib/site';
   import EnemyOverviewCard from './EnemyOverviewCard.svelte';
   import FilterGroup from '../shared/FilterGroup.svelte';
+  import { createOverviewPagination } from '../shared/overview-pagination';
   import OverviewGrid from '../shared/OverviewGrid.svelte';
   import OverviewHero from '../shared/OverviewHero.svelte';
   import OverviewPagination from '../shared/OverviewPagination.svelte';
@@ -44,7 +45,6 @@
   $: synchronizeDraft(appliedQuery);
   $: filterState = readEnemyOverviewFilterState(params);
   $: sort = params.get('sort') ?? 'rarity';
-  $: requestedPage = Number(params.get('page') ?? 1);
   $: heroArtwork = heroEnemyIds.flatMap((id) =>
     enemyPortraits[id] ? [{ id, url: enemyPortraits[id] }] : []
   );
@@ -60,10 +60,15 @@
       );
     })
     .sort((a, b) => compareEnemyOverviewEntries(a, b, sort, filterState.weaknesses));
-  const pageSize = 48;
-  $: pages = Math.max(1, Math.ceil(filtered.length / pageSize));
-  $: currentPage =
-    Number.isInteger(requestedPage) && requestedPage > 0 ? Math.min(requestedPage, pages) : 1;
+  const pagination = createOverviewPagination(48, (url) =>
+    goto(url, { replaceState: true, noScroll: true, keepFocus: true })
+  );
+  $: pagination.synchronize(
+    clientReady ? $page.url : undefined,
+    filtered.length,
+    $navigating !== null
+  );
+  $: ({ pageSize, pages, currentPage } = $pagination);
   $: visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
   $: weaknessOptions = [
     ...new Map(
@@ -191,7 +196,7 @@
 </section>
 
 {#if visible.length}
-  <OverviewGrid>
+  <OverviewGrid onColumnsChange={pagination.setColumns}>
     {#each visible as entry (entry.id)}
       <EnemyOverviewCard
         {entry}

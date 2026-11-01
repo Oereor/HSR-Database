@@ -3,7 +3,7 @@
   import { m } from '$lib/paraglide/messages.js';
   import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
   import { goto } from '$app/navigation';
-  import { page } from '$app/stores';
+  import { page, navigating } from '$app/stores';
   import { onMount } from 'svelte';
   import { getRelicSetIconUrl } from '$lib/data/visual-assets';
   import { gameTextToPlain } from '$lib/domain/game-text';
@@ -17,6 +17,7 @@
   import type { CatalogEntry, RelicCatalogEntry, RelicSetCategory } from '$lib/domain/types';
   import { formatDocumentTitle } from '$lib/site';
   import FilterGroup from '../shared/FilterGroup.svelte';
+  import { createOverviewPagination } from '../shared/overview-pagination';
   import OverviewGrid from '../shared/OverviewGrid.svelte';
   import OverviewHero from '../shared/OverviewHero.svelte';
   import OverviewPagination from '../shared/OverviewPagination.svelte';
@@ -41,7 +42,6 @@
   $: filterState = readRelicFilterState(params);
   $: selectedCategories = new Set<string>(filterState.category ? [filterState.category] : []);
   $: sort = params.get('sort') ?? 'rarity';
-  $: requestedPage = Number(params.get('page') ?? 1);
   $: heroArtwork = resolveHeroArtwork(relics);
   $: filtered = relics
     .filter((entry) => {
@@ -59,10 +59,15 @@
       if (sort === 'id') return Number(a.id) - Number(b.id);
       return (b.rarity ?? 0) - (a.rarity ?? 0) || a.name.localeCompare(b.name, 'zh-CN');
     });
-  const pageSize = 36;
-  $: pages = Math.max(1, Math.ceil(filtered.length / pageSize));
-  $: currentPage =
-    Number.isInteger(requestedPage) && requestedPage > 0 ? Math.min(requestedPage, pages) : 1;
+  const pagination = createOverviewPagination(36, (url) =>
+    goto(url, { replaceState: true, noScroll: true, keepFocus: true })
+  );
+  $: pagination.synchronize(
+    clientReady ? $page.url : undefined,
+    filtered.length,
+    $navigating !== null
+  );
+  $: ({ pageSize, pages, currentPage } = $pagination);
   $: visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   const relicCategoryOptions: Array<{ value: RelicSetCategory; label: string }> = [
@@ -179,7 +184,7 @@
 </section>
 
 {#if visible.length}
-  <OverviewGrid variant="compact">
+  <OverviewGrid variant="compact" onColumnsChange={pagination.setColumns}>
     {#each visible as relic (relic.id)}
       <RelicOverviewCard
         entry={relic}
