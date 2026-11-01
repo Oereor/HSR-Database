@@ -627,31 +627,6 @@ main {
   gap: 1rem;
   align-items: start;
 }
-.trace-card {
-  position: relative;
-  min-width: 0;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: rgb(14 20 34 / 96%);
-  padding: var(--space-3) var(--space-4);
-  transition:
-    border-color 180ms ease,
-    box-shadow 180ms ease;
-}
-.trace-card:hover {
-  border-color: var(--gold-dim);
-  box-shadow: 0 8px 24px rgb(0 0 0 / 22%);
-}
-.trace-card--ability {
-  min-height: 176px;
-  border-color: var(--border-strong);
-  background:
-    radial-gradient(circle at 12% 15%, rgb(215 181 109 / 10%), transparent 58%), rgb(19 24 37 / 98%);
-  padding: var(--space-6);
-}
-.trace-card--stat {
-  min-height: 68px;
-}
 .trace-card__heading {
   display: flex;
   align-items: flex-start;
@@ -814,13 +789,6 @@ main {
   font-weight: 500;
   line-height: 1.6;
 }
-.rank-card {
-  display: flex;
-  gap: 0.9rem;
-  border-color: var(--border-strong);
-  background:
-    radial-gradient(circle at 8% 20%, rgb(215 181 109 / 9%), transparent 44%), rgb(14 20 34 / 88%);
-}
 .rank-card__content {
   flex: 1 1 auto;
   min-width: 0;
@@ -844,13 +812,6 @@ main {
   height: 3.25rem;
   flex: 0 0 auto;
   object-fit: contain;
-}
-.info-card .rank-label {
-  display: block;
-  margin: 0 0 0.2rem;
-  color: var(--text-secondary);
-  font-size: var(--font-helper);
-  font-weight: 400;
 }
 .rank-label + h3 {
   margin-top: 0;

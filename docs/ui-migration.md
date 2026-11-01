@@ -188,6 +188,10 @@ SectionHeading 保留 level、headingLevel、tone、id 和 meta slot，采用主
 
 变更格式 / ESLint、Svelte 检查（0 errors / 0 warnings）及相关玩家组件、培养展示与行迹分组单元测试 28 项通过。
 
+### 行迹与星魂
+
+行迹和星魂替换为单层 Card，标签采用 Badge；保留原能力组、独立节点、三列 / 两列及窄屏单列布局，保留所有文本、图标和玩家状态。TraceToggle 改用已安装的标准 Toggle，继续覆盖整卡并使用原名称、pressed 和回调；额外效果说明保持原 z-index，独立于整卡操作。删除旧卡片背景、边框和标题外壳规则，保留游戏状态颜色和分组布局，不新增 Tabs 或 Accordion。
+
 ## 后续阶段边界
 
 - Phase 2 已完成：全局路由 Breadcrumb 与 Sticky Offset；复用现有数据和 locale 工具。
