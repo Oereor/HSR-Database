@@ -1,4 +1,5 @@
 <script lang="ts">
+  import * as Empty from '$lib/components/ui/empty';
   import { m } from '$lib/paraglide/messages.js';
   import { afterNavigate, goto } from '$app/navigation';
   import { page } from '$app/stores';
@@ -267,10 +268,14 @@
     {/if}
   </div>
 {:else if appliedQuery && !endgamePending}
-  <section class="empty-state" aria-live="polite">
+  <Empty.Root
+    tag="section"
+    class="search-empty border-border mx-auto my-12 block flex-none rounded-[var(--radius-panel)] border px-8 py-16 text-wrap md:px-8 md:py-16 [&_p]:mx-auto [&_p]:mt-0 [&_p]:mb-6"
+    aria-live="polite"
+  >
     <h2>{m.search_empty_title({ query: appliedQuery })}</h2>
     <p>{m.search_empty_description()}</p>
-  </section>
+  </Empty.Root>
 {:else}
   <section class="search-start py-12 text-center [&_p]:mb-0">
     <h2>{m.search_start_title()}</h2>

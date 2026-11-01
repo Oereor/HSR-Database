@@ -1,4 +1,5 @@
 <script lang="ts">
+  import * as Card from '$lib/components/ui/card';
   import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import TrainingTargetSummary from './TrainingTargetSummary.svelte';
   import TrainingTraceSummary from './TrainingTraceSummary.svelte';
@@ -52,8 +53,8 @@
       <button type="button" on:click={onRetry}>{m.training_retry()}</button>
     </div>
   {:else if result && catalog && expenses}
-    <div
-      class="info-card training-result"
+    <Card.Root
+      class="training-result grid gap-6 rounded-[var(--radius-card)] bg-[rgb(14_20_34_/_80%)] p-4 shadow-none"
       data-training-promotion={result.target.promotion}
       data-training-level={result.target.level}
     >
@@ -93,14 +94,26 @@
         {onSelectMaterial}
         {catalog}
       />
-    </div>
+    </Card.Root>
   {/if}
 </section>
 
 <style>
-  .training-result {
-    display: grid;
-    gap: var(--space-6);
+  :global(.training-result h3) {
+    margin-bottom: 0.6rem;
+    font-size: var(--font-major-title);
+    font-weight: 700;
+  }
+  :global(.training-result small) {
+    color: var(--gold);
+    font-size: var(--font-helper);
+  }
+  :global(.training-result p) {
+    margin-bottom: 0.5rem;
+    color: var(--text-body);
+    font-size: var(--font-body);
+    line-height: 1.7;
+    white-space: pre-line;
   }
   .training-error button {
     padding: var(--space-2) var(--space-4);

@@ -3,13 +3,17 @@
   import type { HTMLAttributes } from 'svelte/elements';
   let {
     ref = $bindable(null),
+    tag = 'div',
     class: className,
     children,
     ...restProps
-  }: WithElementRef<HTMLAttributes<HTMLDivElement>> = $props();
+  }: WithElementRef<HTMLAttributes<HTMLElement>, HTMLElement> & {
+    tag?: 'div' | 'section';
+  } = $props();
 </script>
 
-<div
+<svelte:element
+  this={tag}
   bind:this={ref}
   data-slot="empty"
   class={cn(
@@ -19,4 +23,4 @@
   {...restProps}
 >
   {@render children?.()}
-</div>
+</svelte:element>
