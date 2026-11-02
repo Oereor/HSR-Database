@@ -8,6 +8,7 @@ import type {
 } from '../../src/lib/player/relic-rating-v2-contract';
 import type { PlayerRelicSlotView } from '../../src/lib/player/equipment';
 import { getLocale, overwriteGetLocale } from '../../src/lib/paraglide/runtime.js';
+import { m } from '../../src/lib/paraglide/messages.js';
 import { relicScoreUnavailableMessage } from '../../src/lib/player/relic-score-presentation';
 
 const originalGetLocale = getLocale;
@@ -69,10 +70,41 @@ describe('Rating V2 locale presentation', () => {
           /data-player-rating-v2|data-player-main-suitability|data-main-mode|data-weight|data-effective-hit/
         );
       }
+      const partial = render(PlayerRelicScoreSummary, {
+        props: {
+          score: {
+            ...build,
+            effectiveHits: {
+              status: 'partial',
+              known: 2,
+              total: null,
+              unknownRecommendedSubstats: 1
+            }
+          }
+        }
+      }).body;
+      expect(partial).toContain(m.player_relic_score_at_least({ count: 2 }));
+      expect(partial).toMatch(/data-player-effective-hits[\s\S]*?<small[^>]*>[^<]+<\/small>/);
+      const unavailablePiece = render(PlayerRelicCard, {
+        props: {
+          view,
+          score: { status: 'unavailable', reason: 'profile-review-required' },
+          showScore: true
+        }
+      }).body;
+      expect(unavailablePiece).toMatch(
+        /data-player-relic-piece-score[\s\S]*?<strong[^>]*>—<\/strong>/
+      );
+      expect(render(PlayerRelicCard, { props: { view, score: piece } }).body).not.toContain(
+        'data-player-relic-piece-score'
+      );
       const unavailable = render(PlayerRelicScoreSummary, {
         props: { score: { status: 'unavailable', reason: 'profile-review-required' } }
       }).body;
       expect(unavailable).toContain('data-player-build-score-unavailable');
+      expect(unavailable).not.toContain('data-player-score-breakdown');
+      expect(unavailable).not.toContain('/ 100');
+      expect(unavailable).toMatch(/data-player-effective-hits[\s\S]*?<strong[^>]*>—<\/strong>/);
       expect(relicScoreUnavailableMessage('profile-review-required').length).toBeGreaterThan(0);
       expect(relicScoreUnavailableMessage('main-weight-unavailable').length).toBeGreaterThan(0);
     });

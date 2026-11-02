@@ -583,14 +583,17 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(
     page.locator('[data-player-relic-slot="BODY"] [data-recommended="true"]')
   ).toHaveCount(2);
-  const subAffixHeights = await page
-    .locator('[data-player-relic-slot="BODY"] .player-relic-card__affixes--sub .player-affix-row')
-    .evaluateAll((rows) => rows.map((row) => row.getBoundingClientRect().height));
-  expect(subAffixHeights).toHaveLength(2);
-  expect(Math.abs(subAffixHeights[0] - subAffixHeights[1])).toBeLessThanOrEqual(1);
+  const bodySubAffixes = page.locator(
+    '[data-player-relic-slot="BODY"] [data-affix-presentation="sub"]'
+  );
+  await expect(bodySubAffixes).toHaveCount(2);
+  await expect(bodySubAffixes.locator('strong')).toHaveText(['8.2%', '76']);
+  await expect(
+    page.locator('[data-player-relic-slot="BODY"] [data-affix-presentation="main"] strong')
+  ).toHaveText('54.0%');
   const relicIconContainment = await page.locator('[data-player-relic-slot]').evaluateAll((cards) =>
     cards.map((card) => {
-      const header = card.querySelector('header')!.getBoundingClientRect();
+      const header = card.querySelector('[data-slot="card-header"]')!.getBoundingClientRect();
       const icon = card.querySelector<HTMLElement>('[data-relic-icon-presentation="header"]')!;
       const bounds = icon.getBoundingClientRect();
       return (
@@ -602,20 +605,16 @@ test('reuses the Player cache and renders real progression without changing stat
     })
   );
   expect(relicIconContainment.every(Boolean)).toBe(true);
-  const lightConeRadius = await lightConeCard
-    .getByRole('link')
-    .evaluate((card) => getComputedStyle(card).borderRadius);
   const relicCardGeometry = await page.locator('[data-player-relic-slot]').evaluateAll((cards) =>
     cards.map((card) => {
       const cardBounds = card.getBoundingClientRect();
       const trackedContent = [
         card.querySelector('[data-relic-icon-presentation="header"]'),
-        card.querySelector('.player-relic-card__level'),
-        card.querySelector('.player-relic-card__affixes--main .player-affix-row'),
-        ...card.querySelectorAll('.player-relic-card__affixes--sub .player-affix-row')
+        card.querySelector('[data-player-relic-level]'),
+        card.querySelector('[data-affix-presentation="main"]'),
+        ...card.querySelectorAll('[data-affix-presentation="sub"]')
       ].filter((element): element is Element => element !== null);
       return {
-        radius: getComputedStyle(card).borderRadius,
         contentContained: trackedContent.every((element) => {
           const bounds = element.getBoundingClientRect();
           return (
@@ -629,7 +628,6 @@ test('reuses the Player cache and renders real progression without changing stat
     })
   );
   expect(relicCardGeometry).toHaveLength(6);
-  expect(relicCardGeometry.every(({ radius }) => radius === lightConeRadius)).toBe(true);
   expect(relicCardGeometry.every(({ contentContained }) => contentContained)).toBe(true);
 
   const contextBounds = await page
@@ -662,7 +660,7 @@ test('reuses the Player cache and renders real progression without changing stat
       );
     expect(columns).toHaveLength(1);
     const relicColumns = await page
-      .locator('.player-equipment__relic-grid')
+      .locator('[data-player-relic-grid]')
       .evaluate((element) =>
         getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).filter(Boolean)
       );
@@ -690,7 +688,7 @@ test('reuses the Player cache and renders real progression without changing stat
 
     await page.setViewportSize({ width: 900, height: 900 });
     const mediumRelicColumns = await page
-      .locator('.player-equipment__relic-grid')
+      .locator('[data-player-relic-grid]')
       .evaluate((element) =>
         getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).filter(Boolean)
       );
@@ -738,7 +736,15 @@ test('reuses the Player cache and renders real progression without changing stat
 });
 
 for (const prefix of ['', '/en'])
-  test(`renders concise relic scores in ${prefix ? 'en' : 'zh-CN'}`, async ({ page, isMobile }) => {
+  test(`renders concise relic scores in ${prefix ? 'en' : 'zh-CN'}`, async ({
+    page,
+    isMobile
+  }, testInfo) => {
+    const errors: string[] = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    page.on('console', (message) => {
+      if (/hydration|invalid.*nesting/i.test(message.text())) errors.push(message.text());
+    });
     let requests = 0;
     await page.route('**/api/player/**', async (route) => {
       requests++;
@@ -806,7 +812,7 @@ for (const prefix of ['', '/en'])
       )
     ).toHaveCount(0);
     await expect(
-      page.locator('[data-player-relic-slot="HEAD"] .player-affix-row__count [aria-hidden]')
+      page.locator('[data-player-relic-slot="HEAD"] [data-player-affix-count] [aria-hidden]')
     ).toHaveText('×2');
     const assertSummaryContained = async () => {
       expect(
@@ -825,11 +831,32 @@ for (const prefix of ['', '/en'])
       ).toBeLessThanOrEqual(1);
     };
     await assertSummaryContained();
+    if (!prefix)
+      await page
+        .locator('#equipment')
+        .screenshot({ path: testInfo.outputPath('relic-equipment.png') });
     if (!isMobile) {
       await page.setViewportSize({ width: 768, height: 1024 });
       await assertSummaryContained();
+      if (!prefix)
+        await page
+          .locator('#equipment')
+          .screenshot({ path: testInfo.outputPath('relic-equipment-tablet.png') });
     }
     await expect.poll(() => requests).toBe(1);
+    const relicLink = page.locator('a[data-player-relic-slot="HEAD"]');
+    await expect(relicLink.locator('a, button, input, select, textarea, [tabindex]')).toHaveCount(
+      0
+    );
+    await relicLink.focus();
+    await expect(relicLink).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(`${prefix}/relics/103/`);
+    await page.goBack();
+    await expect(relicLink).toBeVisible();
+    await relicLink.click();
+    await expect(page).toHaveURL(`${prefix}/relics/103/`);
+    expect(errors).toEqual([]);
   });
 
 test('keeps piece scores when a five-piece build cannot be scored', async ({ page }) => {

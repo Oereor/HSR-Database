@@ -52,23 +52,26 @@
   });
 </script>
 
-<section id="equipment" class="detail-section player-equipment section-nav-target">
+<section id="equipment" class="detail-section section-nav-target grid min-w-0 gap-4">
   <SectionHeading level={1}>{m.player_equipment_title()}</SectionHeading>
 
   {#if !catalogIndex}
     <p class="data-placeholder" aria-live="polite">{m.player_equipment_loading()}</p>
   {:else}
-    <div class="player-equipment__group">
+    <div class="grid min-w-0 gap-4">
       <SectionHeading level={2}>{m.player_equipment_light_cone()}</SectionHeading>
       <PlayerLightConeCard view={lightCone!} />
     </div>
 
-    <div class="player-equipment__group">
+    <div class="mt-3 grid min-w-0 gap-4">
       <SectionHeading level={2}>{m.player_equipment_relics()}</SectionHeading>
       {#if character.relicScore}
         <PlayerRelicScoreSummary score={character.relicScore.build} />
       {/if}
-      <div class="player-equipment__relic-grid">
+      <div
+        class="grid min-w-0 grid-cols-3 gap-3 max-[1080px]:grid-cols-2 max-[680px]:grid-cols-1"
+        data-player-relic-grid
+      >
         {#each relicSlots as view (view.slot)}
           <PlayerRelicCard
             {view}
@@ -80,35 +83,3 @@
     </div>
   {/if}
 </section>
-
-<style>
-  .player-equipment,
-  .player-equipment__group {
-    display: grid;
-    min-width: 0;
-    gap: var(--space-4);
-  }
-
-  .player-equipment__group + .player-equipment__group {
-    margin-top: var(--space-3);
-  }
-
-  .player-equipment__relic-grid {
-    display: grid;
-    min-width: 0;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-3);
-  }
-
-  @media (max-width: 1080px) {
-    .player-equipment__relic-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 680px) {
-    .player-equipment__relic-grid {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
-</style>

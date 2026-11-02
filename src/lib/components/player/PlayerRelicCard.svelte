@@ -1,4 +1,8 @@
 <script lang="ts">
+  import { cn } from '$lib/utils.js';
+  import * as Card from '$lib/components/ui/card';
+  import { Badge } from '$lib/components/ui/badge';
+  import { Separator } from '$lib/components/ui/separator';
   import RelicIcon from '$lib/components/relic/RelicIcon.svelte';
   import { getRelicPieceIconUrl } from '$lib/data/visual-assets';
   import { getRarityColor } from '$lib/domain/rarity';
@@ -24,189 +28,91 @@
 <svelte:element
   this={href ? 'a' : 'article'}
   {...elementProps}
-  class:player-relic-card--empty={!view.relic}
-  class:player-relic-card--link={!!href}
-  class="player-relic-card"
+  class="group/relic text-foreground focus-visible:ring-ring/50 block min-w-0 rounded-xl no-underline outline-none focus-visible:ring-3"
   data-player-relic-slot={view.slot}
   data-player-relic-state={view.relic ? (view.set && view.piece ? 'known' : 'unknown') : 'empty'}
 >
-  <header>
-    <div class="player-relic-card__artwork">
-      <RelicIcon
-        source={view.piece ? getRelicPieceIconUrl(view.piece.id) : undefined}
-        alt={view.piece?.name ?? ''}
-        presentation="header"
-      />
-    </div>
-    <div class="player-relic-card__identity">
-      <span>{relicSlotLabel(view.slot)}</span>
-      {#if view.relic}
-        <h3>{view.set?.name ?? unresolvedLabel}</h3>
-        <p>{view.piece?.name ?? unresolvedLabel}</p>
-      {:else}
-        <h3>{m.player_equipment_unequipped()}</h3>
-      {/if}
-    </div>
-    {#if view.relic}
-      <div class="player-relic-card__meta">
-        <strong
-          class="player-relic-card__level"
-          style:color={getRarityColor(view.relic.rarity) ?? 'var(--gold)'}
-          >+{view.relic.level}</strong
+  <Card.Root
+    size="sm"
+    class={cn(
+      'h-full gap-0 overflow-hidden transition-colors',
+      href && 'group-hover/relic:border-primary/40'
+    )}
+  >
+    <Card.Header class="grid-cols-[3.5rem_minmax(0,1fr)] items-center gap-3">
+      <div class="size-14">
+        <RelicIcon
+          source={view.piece ? getRelicPieceIconUrl(view.piece.id) : undefined}
+          alt={view.piece?.name ?? ''}
+          presentation="header"
+        />
+      </div>
+      <div class="grid min-w-0 gap-1">
+        <div class="flex items-baseline justify-between gap-2">
+          <span class="text-muted-foreground text-xs">{relicSlotLabel(view.slot)}</span>
+          {#if view.relic}
+            <strong
+              class="shrink-0 text-sm tabular-nums"
+              data-player-relic-level
+              style:color={getRarityColor(view.relic.rarity) ?? 'var(--gold)'}
+              >+{view.relic.level}</strong
+            >
+          {/if}
+        </div>
+        <Card.Title class="text-sm"
+          >{view.relic
+            ? (view.set?.name ?? unresolvedLabel)
+            : m.player_equipment_unequipped()}</Card.Title
         >
-        {#if showScore}
-          <span
-            class="player-relic-card__score"
-            data-player-relic-piece-score
-            aria-label={m.player_relic_score_piece_value({
-              value:
-                score?.status === 'available'
-                  ? formatRelicScore(score.score)
-                  : m.player_relic_score_unavailable()
-            })}
-            >{m.player_relic_score_piece()}
-            <strong>{score?.status === 'available' ? formatRelicScore(score.score) : '—'}</strong
-            ></span
-          >
+        {#if view.relic}
+          <p class="text-muted-foreground m-0 text-xs wrap-anywhere">
+            {view.piece?.name ?? unresolvedLabel}
+          </p>
         {/if}
       </div>
-    {/if}
-  </header>
-
-  {#if view.relic}
-    <div class="player-relic-card__affixes player-relic-card__affixes--main">
-      {#if view.mainAffix}
-        <PlayerAffixRow affix={view.mainAffix} presentation="main" />
-      {:else}
-        <p class="player-relic-card__unknown-main">— {m.player_equipment_main_affix_unknown()}</p>
+      {#if view.relic && showScore}
+        <Badge
+          variant="secondary"
+          class="col-span-2 justify-self-end"
+          data-player-relic-piece-score
+          aria-label={m.player_relic_score_piece_value({
+            value:
+              score?.status === 'available'
+                ? formatRelicScore(score.score)
+                : m.player_relic_score_unavailable()
+          })}
+        >
+          {m.player_relic_score_piece()}
+          <strong class="tabular-nums"
+            >{score?.status === 'available' ? formatRelicScore(score.score) : '—'}</strong
+          >
+        </Badge>
       {/if}
-    </div>
-    <div class="player-relic-card__affixes player-relic-card__affixes--sub">
-      {#if view.subAffixes.length}
-        <div class="player-relic-card__affix-list">
+    </Card.Header>
+    {#if view.relic}
+      <Separator class="mt-3" />
+      <Card.Content class="py-2" data-player-relic-affixes="main">
+        {#if view.mainAffix}
+          <PlayerAffixRow affix={view.mainAffix} presentation="main" />
+        {:else}
+          <p
+            class="text-muted-foreground m-0 px-2 py-1.5 text-xs"
+            data-player-relic-main-unavailable
+          >
+            — {m.player_equipment_main_affix_unknown()}
+          </p>
+        {/if}
+      </Card.Content>
+      <Separator />
+      <Card.Content class="grid pt-2" data-player-relic-affixes="sub">
+        {#if view.subAffixes.length}
           {#each view.subAffixes as affix, index (`${affix.type}:${index}`)}
             <PlayerAffixRow {affix} />
           {/each}
-        </div>
-      {:else}
-        <p class="player-relic-card__unknown-main">—</p>
-      {/if}
-    </div>
-  {/if}
+        {:else}
+          <p class="text-muted-foreground m-0 px-2 py-1.5 text-xs">—</p>
+        {/if}
+      </Card.Content>
+    {/if}
+  </Card.Root>
 </svelte:element>
-
-<style>
-  .player-relic-card {
-    min-width: 0;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-control);
-    background: linear-gradient(145deg, rgb(21 28 44 / 88%), rgb(11 16 28 / 88%));
-    color: inherit;
-    text-decoration: none;
-    transition:
-      border-color var(--motion),
-      background var(--motion),
-      transform var(--motion);
-  }
-
-  .player-relic-card--link:hover {
-    border-color: var(--border-strong);
-    background: linear-gradient(145deg, rgb(25 34 53 / 92%), rgb(13 19 32 / 92%));
-    transform: translateY(-1px);
-  }
-
-  .player-relic-card--link:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 3px;
-  }
-
-  .player-relic-card > header {
-    display: grid;
-    min-width: 0;
-    grid-template-columns: 4.1rem minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 0.7rem;
-    padding: 0.7rem;
-  }
-
-  .player-relic-card__artwork {
-    width: 4.1rem;
-    height: 4.1rem;
-  }
-
-  .player-relic-card__identity {
-    display: grid;
-    min-width: 0;
-    gap: 0.12rem;
-  }
-
-  .player-relic-card__identity > span,
-  .player-relic-card__identity p {
-    color: var(--faint);
-    font-size: var(--font-internal);
-  }
-
-  .player-relic-card__identity h3,
-  .player-relic-card__identity p {
-    margin: 0;
-    overflow-wrap: anywhere;
-  }
-
-  .player-relic-card__identity h3 {
-    color: var(--text-primary);
-    font-size: var(--font-meta-value);
-    line-height: 1.3;
-  }
-
-  .player-relic-card__meta {
-    display: grid;
-    min-width: 0;
-    justify-items: end;
-    align-self: start;
-    gap: 0.2rem;
-  }
-
-  .player-relic-card__level {
-    align-self: start;
-    color: var(--gold);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .player-relic-card__score {
-    color: var(--text-secondary);
-    font-size: var(--font-helper);
-    line-height: 1.3;
-    white-space: nowrap;
-  }
-
-  .player-relic-card__score strong {
-    color: var(--text-primary);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .player-relic-card__affixes {
-    border-top: 1px solid var(--border);
-    padding: 0.58rem 0.65rem;
-  }
-
-  .player-relic-card__affixes--main {
-    padding-block: 0.68rem;
-  }
-
-  .player-relic-card__affix-list {
-    display: grid;
-  }
-
-  .player-relic-card__unknown-main {
-    margin: 0;
-    padding: 0.38rem 0.5rem;
-    color: var(--faint);
-    font-size: var(--font-internal);
-  }
-
-  .player-relic-card--empty {
-    min-height: 5.5rem;
-    background: rgb(11 16 28 / 58%);
-  }
-</style>

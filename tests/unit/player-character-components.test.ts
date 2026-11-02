@@ -157,16 +157,13 @@ describe('Player Character presentation', () => {
     expect(body).toContain('data-player-light-cone="999999"');
     expect(body.match(/data-player-relic-slot=/g)).toHaveLength(6);
     expect(body).toContain('data-player-relic-state="unknown"');
-    expect(body).toMatch(
-      /player-relic-card__level[^>]*style="color: var\(--gold\)[^"]*"[^>]*>\+15/
-    );
+    expect(body).toMatch(/data-player-relic-level[^>]*style="color: var\(--gold\)[^"]*"[^>]*>\+15/);
     expect(body).not.toContain('href="/relics/999998/"');
-    expect(body).toContain('player-relic-card__unknown-main');
+    expect(body).toContain('data-player-relic-main-unavailable');
     expect(body).toContain('synthetic recommended stat');
-    expect(body).toMatch(/player-affix-row__count[\s\S]*×3/);
-    expect(body).toContain('player-affix-row--recommended');
+    expect(body).toMatch(/data-player-affix-count[\s\S]*×3/);
     expect(body).toContain('data-recommended="true"');
-    expect(body.match(/player-affix-row__count/g)).toHaveLength(1);
+    expect(body.match(/data-player-affix-count/g)).toHaveLength(1);
   });
 
   it('links known equipment to localized static details with only initial Light Cone state', () => {
@@ -217,8 +214,8 @@ describe('Player Character presentation', () => {
     expect(body).toContain('href="/en/relics/103/"');
     expect(body).toContain('compact-entity-card__aside');
     expect(body).toContain('data-relic-icon-presentation="header"');
-    expect(body).toMatch(/player-relic-card__level[^>]*style="color: #c77dff[^"]*"[^>]*>\+15/);
-    expect(body).toContain('player-affix-row--main');
+    expect(body).toMatch(/data-player-relic-level[^>]*style="color: #c77dff[^"]*"[^>]*>\+15/);
+    expect(body).toContain('data-affix-presentation="main"');
   });
 
   it('renders explicit empty equipment states without collapsing relic slots', () => {
