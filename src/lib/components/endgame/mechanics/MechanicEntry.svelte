@@ -8,10 +8,15 @@
   $: headingTag = `h${headingLevel}` as const;
 </script>
 
-<article class="endgame-mechanic-entry">
-  <svelte:element this={headingTag} class="endgame-mechanic-entry__title">
+<article class="endgame-mechanic-entry min-w-0">
+  <svelte:element
+    this={headingTag}
+    class="endgame-mechanic-entry__title text-foreground m-0 mb-2 text-lg leading-snug font-semibold wrap-anywhere"
+  >
     <GameText text={mechanic.name} />
   </svelte:element>
-  <p><GameText text={mechanic.description} /></p>
+  <p class="text-secondary-foreground m-0 text-sm leading-relaxed wrap-anywhere">
+    <GameText text={mechanic.description} />
+  </p>
   <slot />
 </article>

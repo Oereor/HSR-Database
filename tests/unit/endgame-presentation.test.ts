@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { render } from 'svelte/server';
 import { m } from '../../src/lib/paraglide/messages.js';
 import AsBossDossier from '../../src/lib/components/endgame/as/AsBossDossier.svelte';
+import EndgameWaveLayout from '../../src/lib/components/endgame/EndgameWaveLayout.svelte';
 import EndgameEnemyCard from '../../src/lib/components/endgame/EndgameEnemyCard.svelte';
 import EndgameOverviewCard from '../../src/lib/components/endgame/EndgameOverviewCard.svelte';
 import BuffOptionGroup from '../../src/lib/components/endgame/mechanics/BuffOptionGroup.svelte';
@@ -156,7 +157,7 @@ describe('Endgame presentation', () => {
 });
 
 describe('MechanicSectionCard', () => {
-  it.each([1, 2, 3])('renders %i real segments without empty slots', (count) => {
+  it.each([0, 1, 2, 3])('renders %i real segments without empty slots', (count) => {
     const items = Array.from({ length: count }, (_, index) => ({
       key: index + 1,
       title: `机制 ${index + 1}`,
@@ -200,6 +201,25 @@ describe('MechanicSectionCard', () => {
 });
 
 describe('Endgame shared detail primitives', () => {
+  it('keeps long data in an unlinked card and renders no invented empty waves', () => {
+    const name = 'SyntheticLongName'.repeat(25);
+    const longValue = '123456789012345678901234567890';
+    const occurrence = {
+      ...enemy('long', name, 10),
+      hp: { roundedPerBar: longValue },
+      speed: { rounded: longValue }
+    };
+    const { body } = render(EndgameEnemyCard, { props: { occurrence } });
+    expect(body).toContain(name);
+    expect(body).toContain(longValue);
+    expect(body).toContain('<article');
+    expect(body).not.toContain('href=');
+    expect(body.match(/data-slot="card"/g)).toHaveLength(1);
+    expect(
+      render(EndgameWaveLayout, { props: { groups: [], policy: 'paired' } }).body
+    ).not.toContain('data-endgame-wave-group');
+  });
+
   it('uses the locale-neutral placeholder for missing card metadata', () => {
     const { body } = render(EndgameEnemyCard, {
       props: { occurrence: enemy('missing', '缺失数据敌人', 10) }
@@ -207,7 +227,7 @@ describe('Endgame shared detail primitives', () => {
 
     expect(body).toContain('data-endgame-toughness');
     expect(body).toMatch(/data-endgame-toughness="">60(?:<!--.*?-->)?<\/strong>/);
-    expect(body).toContain('class="endgame-enemy__missing">-</span>');
+    expect(body).toMatch(/class="endgame-enemy__missing[^"]*">-<\/span>/);
   });
 
   it('keeps the existing weakness icon UI when weakness data exists', () => {
@@ -215,9 +235,9 @@ describe('Endgame shared detail primitives', () => {
     withWeaknesses.weaknesses = [{ element: 'Fire', name: '火' }];
     const { body } = render(EndgameEnemyCard, { props: { occurrence: withWeaknesses } });
 
-    expect(body).toContain('class="endgame-weaknesses"');
+    expect(body).toContain('endgame-weaknesses');
     expect(body).toContain('data-icon-kind="element"');
-    expect(body).not.toContain('class="endgame-enemy__missing">-</span>');
+    expect(body).not.toContain('endgame-enemy__missing');
   });
 
   it('keeps the mode overview href when no recommended period exists', () => {
@@ -236,7 +256,7 @@ describe('Endgame shared detail primitives', () => {
     expect(body).toMatch(/endgame-overview-card__season[\s\S]*<strong[^>]*>[^<]+<\/strong>/);
   });
 
-  it.each([1, 2, 3])('renders %i informational buff tiles without empty slots', (count) => {
+  it.each([0, 1, 2, 3])('renders %i informational buff tiles without empty slots', (count) => {
     const options = Array.from({ length: count }, (_, index) => ({
       id: index + 1,
       order: index + 1,
@@ -375,10 +395,10 @@ describe('Voracity card tags', () => {
         m.endgame_enemy_voracity({ level: pollutionLevel }, { locale: 'zh-CN' })
       );
       expect(body.indexOf('data-voracity-level')).toBeLessThan(
-        body.indexOf('class="endgame-enemy__level"')
+        body.indexOf('endgame-enemy__level ')
       );
-      expect(body.indexOf('class="endgame-enemy__level"')).toBeLessThan(
-        body.indexOf('class="endgame-enemy__count"')
+      expect(body.indexOf('endgame-enemy__level ')).toBeLessThan(
+        body.indexOf('endgame-enemy__count ')
       );
       expect(body).toContain('Lv.85');
     }
@@ -394,7 +414,7 @@ describe('Voracity card tags', () => {
       props: { occurrence: { ...occurrence, voracityLevel: 1 } }
     }).body;
     expect(pollutionOnly).toContain('data-voracity-level="1"');
-    expect(pollutionOnly).not.toContain('class="endgame-enemy__level"');
+    expect(pollutionOnly).not.toContain('endgame-enemy__level ');
   });
 
   it('resolves both locale messages and interpolates levels without raw keys', () => {

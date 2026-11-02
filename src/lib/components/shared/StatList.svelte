@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { cn } from '$lib/utils.js';
   import type { HTMLAttributes } from 'svelte/elements';
 
   // Svelte uses this interface to type forwarded HTML attributes.
@@ -19,25 +20,16 @@
 
 <dl
   {...$$restProps}
-  class={`inspection-stat-list hero-stat-list ${className}`.trim()}
+  class={cn(
+    'inspection-stat-list hero-stat-list m-0 min-w-0 border-0 p-0',
+    spacing === 'section' && 'mt-4',
+    className
+  )}
   class:hero-stat-list--flush={spacing === 'flush'}
   aria-label={ariaLabel ?? $$restProps['aria-label']}
-  style:--stat-label-columns={hasIcons ? '20px minmax(0, 1fr)' : 'minmax(0, 1fr)'}
+  style:--stat-label-columns={hasIcons ? '24px minmax(0, 1fr)' : 'minmax(0, 1fr)'}
   style:--stat-label-gap={hasIcons ? 'var(--space-2)' : '0px'}
-  style:--stat-divider-inset={hasIcons ? 'calc(20px + var(--space-2))' : '0px'}
+  style:--stat-divider-inset={hasIcons ? 'calc(24px + var(--space-2))' : '0px'}
 >
   <slot />
 </dl>
-
-<style>
-  .hero-stat-list {
-    min-width: 0;
-    margin: var(--space-6) 0 0;
-    border: 0;
-    padding: 0;
-  }
-
-  .hero-stat-list--flush {
-    margin-top: 0;
-  }
-</style>

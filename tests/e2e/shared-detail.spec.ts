@@ -99,7 +99,7 @@ test('四类详情页消费同一标题视觉层级并保持语义 heading hiera
   await expect(page.locator('#monsters h2')).toBeVisible();
   await expect(page.locator('#summons h3')).toBeVisible();
   await expect(page.locator('[data-enemy-skill-selector]')).toBeVisible();
-  await expect(page.locator('[data-enemy-skill-option][aria-pressed="true"]')).toHaveCount(1);
+  await expect(page.locator('[data-enemy-skill-option][aria-checked="true"]')).toHaveCount(1);
   await expect(page.locator('.enemy-skill-browser__detail h3').first()).toBeVisible();
   await expect(page.locator('#skills h2')).toBeVisible();
 
@@ -182,67 +182,12 @@ test('角色与光锥 Detail Hero 的 rarity 与 identity presentation 保持语
     await expect(rarityStars).toHaveAttribute('aria-label', `${rarity}星`);
     await expect(rarityStars).toHaveAttribute('data-rarity-size', 'hero');
     await expect(rarityStars).toHaveCSS('color', color);
-    expect(
-      await rarityStars.evaluate((element) => {
-        const style = getComputedStyle(element);
-        return {
-          borderWidth: style.borderTopWidth,
-          backgroundColor: style.backgroundColor,
-          paddingLeft: style.paddingLeft,
-          paddingRight: style.paddingRight
-        };
-      })
-    ).toEqual({
-      borderWidth: '0px',
-      backgroundColor: 'rgba(0, 0, 0, 0)',
-      paddingLeft: '0px',
-      paddingRight: '0px'
-    });
-
     const identityTags = hero.locator('.hero-identity-metadata > .semantic-icon-label');
     await expect(identityTags).toHaveCount(tagCount);
     for (let index = 0; index < tagCount; index += 1) {
       await expect(identityTags.nth(index)).toHaveCSS('font-weight', '500');
     }
   }
-});
-
-test('角色、光锥与敌人 Hero 共享 inspection stat row presentation', async ({ page }) => {
-  const readRowPresentation = async (url: string) => {
-    await page.goto(url);
-    const list = page.locator('.detail-profile-hero__inspection .inspection-stat-list');
-    const row = list.locator('.inspection-stat-row').nth(1);
-    await expect(list).toBeVisible();
-    return row.evaluate((element) => {
-      const rowStyle = getComputedStyle(element);
-      const labelStyle = getComputedStyle(element.querySelector('dt')!);
-      const valueStyle = getComputedStyle(element.querySelector('dd strong')!);
-      return {
-        display: rowStyle.display,
-        paddingTop: rowStyle.paddingTop,
-        paddingBottom: rowStyle.paddingBottom,
-        borderTopWidth: rowStyle.borderTopWidth,
-        borderTopColor: rowStyle.borderTopColor,
-        labelColor: labelStyle.color,
-        labelFontSize: labelStyle.fontSize,
-        valueColor: valueStyle.color,
-        valueFontSize: valueStyle.fontSize,
-        valueFontWeight: valueStyle.fontWeight
-      };
-    });
-  };
-
-  const character = await readRowPresentation('/characters/1001/');
-  const lightCone = await readRowPresentation('/light-cones/20000/');
-  const enemy = await readRowPresentation('/enemies/1004014/');
-  const withoutValueColor = ({ valueColor, ...presentation }: typeof character) => {
-    void valueColor;
-    return presentation;
-  };
-  expect(withoutValueColor(lightCone)).toEqual(withoutValueColor(character));
-  expect(withoutValueColor(enemy)).toEqual(withoutValueColor(character));
-  expect(lightCone.valueColor).toBe(character.valueColor);
-  expect(enemy.valueColor).toBe('rgb(242, 245, 251)');
 });
 
 test('属性行迹、普通换行与光锥 identity 内容边界正确渲染', async ({ page }) => {

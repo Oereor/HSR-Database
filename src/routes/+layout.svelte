@@ -1,8 +1,8 @@
 <script lang="ts">
   import '../styles/app.css';
   import '../styles/presentation/detail-hero.css';
-  import '../styles/presentation/detail-inspection.css';
   import { page } from '$app/stores';
+  import * as Sidebar from '$lib/components/ui/sidebar';
   import Navigator from '$lib/components/layout/Navigator.svelte';
   import { injectAnalytics } from '@vercel/analytics/sveltekit';
   import { getBrandIconUrl } from '$lib/data/visual-assets';
@@ -10,7 +10,10 @@
   import { m } from '$lib/paraglide/messages.js';
   import { siteName } from '$lib/site';
   import ChangelogModal from '$lib/components/layout/ChangelogModal.svelte';
+  import { Toaster } from '$lib/components/ui/sonner';
   import SettingsPopover from '$lib/components/layout/SettingsPopover.svelte';
+  import GlobalBreadcrumb from '$lib/components/layout/GlobalBreadcrumb.svelte';
+  import { resolveBreadcrumbs, type BreadcrumbData } from '$lib/breadcrumbs';
   import { onMount } from 'svelte';
   import { dev } from '$app/environment';
 
@@ -26,6 +29,22 @@
   $: canonicalPath = trailingSlashHref($page.url.pathname);
   $: chinesePath = localeCounterpartHref(canonicalPath, 'zh-CN');
   $: englishPath = localeCounterpartHref(canonicalPath, 'en');
+  $: breadcrumbs = resolveBreadcrumbs({
+    routeId: $page.route.id,
+    params: $page.params,
+    locale: data.locale,
+    data: $page.data as BreadcrumbData,
+    status: $page.status
+  });
+  $: pageNavHeight =
+    $page.status >= 400
+      ? '0px'
+      : $page.route.id?.startsWith('/endgame/')
+        ? 'var(--endgame-mode-nav-height)'
+        : $page.route.id?.endsWith('/[id]') &&
+            ['characters', 'light-cones', 'enemies'].includes($page.params.category ?? '')
+          ? 'var(--section-nav-height)'
+          : '0px';
 </script>
 
 <svelte:head>
@@ -38,23 +57,40 @@
   {#if faviconUrl}<link rel="icon" type="image/png" href={faviconUrl} />{/if}
 </svelte:head>
 
-<div class="site-shell" data-app-ready={appReady}>
+<Sidebar.Provider
+  class="site-shell"
+  data-app-ready={appReady}
+  style={`--page-nav-height: ${pageNavHeight};`}
+>
   <Navigator siteVersion={data.siteVersion} onOpenChangelog={() => changelogModal?.open()} />
   <ChangelogModal locale={data.locale} bind:this={changelogModal} />
   <SettingsPopover locale={data.locale} />
 
   <main>
-    <div class="content"><slot /></div>
-    <footer>
-      <p>{m.footer_disclaimer()}</p>
-      <p>
-        {m.footer_data_source()}<a href="https://github.com/DimbreathBot/TurnBasedGameData"
-          >TurnBasedGameData</a
-        >{m.footer_asset_source()}<a href="https://github.com/Mar-7th/StarRailRes">StarRailRes</a>
-        (<a href="/licenses/StarRailRes-AGPL-3.0.txt">{m.footer_license()}</a
-        >){m.footer_player_data_source()}<a href="https://enka.network/">Enka.Network</a
-        >{m.footer_scope_note()}
-      </p>
+    <GlobalBreadcrumb items={breadcrumbs} />
+    <div class="content site-container"><slot /></div>
+    <footer class="site-footer">
+      <div class="site-container">
+        <p>{m.footer_disclaimer()}</p>
+        <p>
+          {m.footer_data_source()}<a href="https://github.com/DimbreathBot/TurnBasedGameData"
+            >TurnBasedGameData</a
+          >{m.footer_asset_source()}<a href="https://github.com/Mar-7th/StarRailRes">StarRailRes</a>
+          (<a href="/licenses/StarRailRes-AGPL-3.0.txt">{m.footer_license()}</a
+          >){m.footer_player_data_source()}<a href="https://enka.network/">Enka.Network</a
+          >{m.footer_scope_note()}
+        </p>
+      </div>
     </footer>
   </main>
-</div>
+</Sidebar.Provider>
+
+<Toaster
+  theme="dark"
+  position="top-center"
+  duration={4000}
+  visibleToasts={1}
+  offset="calc(var(--global-sticky-top) + var(--space-6))"
+  mobileOffset="calc(var(--global-sticky-top) + var(--space-4))"
+  containerAriaLabel={m.training_trace_notice_title({}, { locale: data.locale })}
+/>

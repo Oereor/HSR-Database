@@ -1,3 +1,4 @@
+import { setSliderValue } from '../helpers/slider';
 import { expect, test } from '@playwright/test';
 
 const entities = [
@@ -6,7 +7,7 @@ const entities = [
   { category: 'enemies', id: '1004014', rows: 8 }
 ] as const;
 
-for (const width of [1440, 1024, 390]) {
+for (const width of [1440, 900, 390, 320]) {
   test(`Hero basic data stays aligned at ${width}px in both locales`, async ({
     page
   }, testInfo) => {
@@ -19,9 +20,10 @@ for (const width of [1440, 1024, 390]) {
         const pane = page.locator('.hero-basic-data-pane');
         const list = pane.locator('.hero-stat-list');
         await expect(list.locator('.hero-stat-row')).toHaveCount(entity.rows);
-        await expect(pane).toHaveCSS('padding-left', width <= 820 ? '24px' : '32px');
+        await expect(pane).toHaveJSProperty('tagName', 'ASIDE');
+        await expect(pane.locator('[data-slot=card]')).toHaveCount(0);
         await expect(list).toHaveCSS('border-top-width', '0px');
-        await expect(list).toHaveCSS('margin-top', '24px');
+        await expect(list).toHaveCSS('margin-top', '16px');
         await expect(pane.locator('.info-card')).toHaveCount(0);
         if (entity.category !== 'enemies') {
           await expect(pane.locator('.stat-level-control > .skill-level-control')).toHaveCSS(
@@ -39,6 +41,7 @@ for (const width of [1440, 1024, 390]) {
         }
 
         const hero = pane.locator('..');
+        await expect(hero.locator('..')).toHaveAttribute('data-slot', 'card');
         const identityBox = await hero.locator('.detail-profile-hero__identity').boundingBox();
         const paneBox = await pane.boundingBox();
         const stacked = width <= (entity.category === 'characters' ? 1180 : 820);
@@ -51,7 +54,8 @@ for (const width of [1440, 1024, 390]) {
         await expect(row).toHaveCSS('border-top-width', '0px');
         await expect(row.locator('dd strong')).toHaveCSS('font-variant-numeric', 'tabular-nums');
         const divider = await row.evaluate((element) => {
-          const style = getComputedStyle(element, '::before');
+          const separator = element.querySelector('[data-slot=separator]')!;
+          const style = getComputedStyle(separator);
           const label = element.querySelector('.hero-stat-label-text')!.getBoundingClientRect();
           return {
             inset: parseFloat(style.left),
@@ -104,12 +108,13 @@ test('Hero level controls keep keyboard behavior and mixed missing icons keep la
   page
 }) => {
   await page.goto('/characters/1001/');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   const pane = page.locator('.hero-basic-data-pane');
   const slider = pane.getByRole('slider');
-  await slider.fill('79');
+  await setSliderValue(slider, '79');
   await slider.focus();
   await page.keyboard.press('ArrowRight');
-  await expect(slider).toHaveValue('80');
+  await expect(slider).toHaveAttribute('data-value', '80');
   await expect(slider).toHaveAttribute('aria-valuenow', '80');
   await expect(slider).toBeFocused();
 

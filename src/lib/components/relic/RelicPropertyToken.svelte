@@ -10,6 +10,13 @@
 </script>
 
 <span class:relic-property-token--chip={chip} class="relic-property-token">
-  <AssetImage decorative src={imageUrl} alt="" loading="lazy" decoding="async" />
-  <span>{property.name}</span>
+  <AssetImage
+    class="size-5.5 shrink-0 object-contain"
+    decorative
+    src={imageUrl}
+    alt=""
+    loading="lazy"
+    decoding="async"
+  />
+  <span class="min-w-0 wrap-anywhere">{property.name}</span>
 </span>

@@ -176,9 +176,9 @@ describe('enemy skill selector and header', () => {
       expect(button[0]).toContain('type="button"');
       expect(button[1]).toMatch(/class="enemy-skill-selector__icon[^"]*" aria-hidden="true"/);
     }
-    expect(buttons[0][0]).toContain('aria-pressed="true"');
+    expect(buttons[0][0]).toContain('aria-checked="true"');
     expect(buttons[0][1]).toContain('data-icon-kind="element"');
-    expect(buttons[1][0]).toContain('aria-pressed="false"');
+    expect(buttons[1][0]).toContain('aria-checked="false"');
     expect(buttons[1][1]).not.toContain('data-icon-kind');
   });
 

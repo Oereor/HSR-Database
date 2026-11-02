@@ -1,11 +1,13 @@
 <script lang="ts">
+  import { Button } from '$lib/components/ui/button';
   import { m } from '$lib/paraglide/messages.js';
   import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
-  import { page } from '$app/stores';
+  import { page, navigating } from '$app/stores';
   import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
   import CharacterOverviewCard from './CharacterOverviewCard.svelte';
   import FilterGroup from '../shared/FilterGroup.svelte';
+  import { createOverviewPagination } from '../shared/overview-pagination';
   import OverviewGrid from '../shared/OverviewGrid.svelte';
   import OverviewHero from '../shared/OverviewHero.svelte';
   import OverviewPagination from '../shared/OverviewPagination.svelte';
@@ -37,7 +39,6 @@
   $: synchronizeDraft(appliedQuery);
   $: filterState = readCharacterFilterState(params);
   $: sort = params.get('sort') ?? 'rarity';
-  $: requestedPage = Number(params.get('page') ?? 1);
   $: heroArtwork = entries
     .slice(0, 3)
     .map((entry) => ({ id: entry.id, url: getCharacterPreviewUrl(entry.id) }))
@@ -58,10 +59,15 @@
       if (sort === 'id') return Number(a.id) - Number(b.id);
       return (b.rarity ?? 0) - (a.rarity ?? 0) || a.name.localeCompare(b.name, 'zh-CN');
     });
-  const pageSize = 36;
-  $: pages = Math.max(1, Math.ceil(filtered.length / pageSize));
-  $: currentPage =
-    Number.isInteger(requestedPage) && requestedPage > 0 ? Math.min(requestedPage, pages) : 1;
+  const pagination = createOverviewPagination(36, (url) =>
+    goto(url, { replaceState: true, noScroll: true, keepFocus: true })
+  );
+  $: pagination.synchronize(
+    clientReady ? $page.url : undefined,
+    filtered.length,
+    $navigating !== null
+  );
+  $: ({ pageSize, pages, currentPage } = $pagination);
   $: visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   const options = (key: 'path' | 'element' | 'rarity', labelKey?: 'pathName' | 'elementName') =>
@@ -142,7 +148,7 @@
   artwork={heroArtwork}
 />
 
-<section class="overview-controls" aria-label={m.characters_controls_aria()}>
+<section class="overview-controls mb-6 grid gap-5" aria-label={m.characters_controls_aria()}>
   <OverviewSearch
     id="character-search-input"
     bind:value={draftQuery}
@@ -150,7 +156,7 @@
     onSubmit={submitQuery}
   />
 
-  <div class="overview-filters">
+  <div class="overview-filters grid gap-4">
     <FilterGroup
       id="character-path"
       label={m.filter_path()}
@@ -170,7 +176,8 @@
     <FilterGroup
       id="character-rarity"
       label={m.filter_rarity()}
-      options={options('rarity').map((option) => ({ ...option, label: `${option.label}★` }))}
+      presentation="rarity"
+      options={options('rarity')}
       selected={filterState.rarities}
       onToggle={(value) => toggleFilter('rarities', value)}
     />
@@ -191,7 +198,7 @@
 </section>
 
 {#if visible.length}
-  <OverviewGrid variant="character">
+  <OverviewGrid variant="character" onColumnsChange={pagination.setColumns}>
     {#each visible as entry (entry.id)}
       <CharacterOverviewCard
         {entry}
@@ -203,24 +210,11 @@
   </OverviewGrid>
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
-  <section class="empty-state">
-    <h2>{m.overview_empty_title()}</h2>
-    <p>{m.overview_empty_description()}</p>
-    <button class="button" type="button" on:click={clearSearchAndFilters}
-      >{m.overview_clear_filters()}</button
-    >
+  <section
+    class="border-border bg-card text-card-foreground grid justify-items-center gap-3 rounded-xl border px-4 py-10 text-center"
+  >
+    <h2 class="m-0 text-xl font-semibold">{m.overview_empty_title()}</h2>
+    <p class="text-muted-foreground m-0 text-sm">{m.overview_empty_description()}</p>
+    <Button onclick={clearSearchAndFilters}>{m.overview_clear_filters()}</Button>
   </section>
 {/if}
-
-<style>
-  .overview-controls {
-    display: grid;
-    gap: 1.4rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .overview-filters {
-    display: grid;
-    gap: 1.25rem;
-  }
-</style>

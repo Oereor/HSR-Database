@@ -10,6 +10,7 @@
 </script>
 
 <script lang="ts">
+  import * as Card from '$lib/components/ui/card';
   import GameText from '$lib/components/shared/GameText.svelte';
 
   export let title: string;
@@ -22,36 +23,44 @@
 </script>
 
 <article
-  class:mechanic-section-card--debuff={tone === 'debuff'}
-  class="mechanic-section-card season-mechanic-card"
+  class={`mechanic-section-card season-mechanic-card min-w-0 ${tone === 'debuff' ? 'mechanic-section-card--debuff' : ''}`}
   data-mechanic-tone={tone}
 >
-  <svelte:element
-    this={headingTag}
-    class="mechanic-section-card__title season-mechanic-card__title"
+  <Card.Root
+    size="sm"
+    class="border-l-2 border-l-[color-mix(in_srgb,var(--mechanic-accent)_72%,transparent)]"
   >
-    <GameText text={title} />
-  </svelte:element>
-  {#if content.kind === 'description'}
-    <p><GameText text={content.description} /></p>
-  {:else}
-    <div
-      class:mechanic-section-card__segments--two={content.items.length === 2}
-      class:mechanic-section-card__segments--three={content.items.length >= 3}
-      class:season-mechanic-card__segments--two={content.items.length === 2}
-      class:season-mechanic-card__segments--three={content.items.length >= 3}
-      class="mechanic-section-card__segments season-mechanic-card__segments"
-      data-mechanic-section-segments={content.items.length}
-      data-season-mechanic-segments={content.items.length}
-    >
-      {#each content.items as item (item.key)}
-        <article class="mechanic-section-card__segment season-mechanic-card__segment">
-          <svelte:element this={itemHeadingTag}><GameText text={item.title} /></svelte:element>
-          <p><GameText text={item.description} /></p>
-        </article>
-      {/each}
-    </div>
-  {/if}
+    <Card.Header>
+      <svelte:element
+        this={headingTag}
+        class="mechanic-section-card__title season-mechanic-card__title m-0 text-lg leading-snug font-semibold wrap-anywhere"
+      >
+        <GameText text={title} />
+      </svelte:element>
+    </Card.Header>
+    <Card.Content>
+      {#if content.kind === 'description'}
+        <p><GameText text={content.description} /></p>
+      {:else}
+        <div
+          class:mechanic-section-card__segments--two={content.items.length === 2}
+          class:mechanic-section-card__segments--three={content.items.length >= 3}
+          class:season-mechanic-card__segments--two={content.items.length === 2}
+          class:season-mechanic-card__segments--three={content.items.length >= 3}
+          class="mechanic-section-card__segments season-mechanic-card__segments"
+          data-mechanic-section-segments={content.items.length}
+          data-season-mechanic-segments={content.items.length}
+        >
+          {#each content.items as item (item.key)}
+            <article class="mechanic-section-card__segment season-mechanic-card__segment">
+              <svelte:element this={itemHeadingTag}><GameText text={item.title} /></svelte:element>
+              <p><GameText text={item.description} /></p>
+            </article>
+          {/each}
+        </div>
+      {/if}
+    </Card.Content>
+  </Card.Root>
 </article>
 
 <style>
@@ -59,15 +68,7 @@
     --mechanic-accent: #d7b56d;
     --mechanic-title-color: var(--gold-soft);
 
-    min-width: 0;
-    container-type: inline-size;
-    border-left: 2px solid color-mix(in srgb, var(--mechanic-accent) 72%, transparent);
-    background: linear-gradient(
-      105deg,
-      color-mix(in srgb, var(--mechanic-accent) 9%, transparent),
-      rgb(14 20 34 / 54%) 48%
-    );
-    padding: var(--space-4) var(--space-6);
+    container: mechanic / inline-size;
   }
 
   .mechanic-section-card--debuff {
@@ -76,19 +77,15 @@
   }
 
   .mechanic-section-card__title {
-    margin: 0 0 var(--space-3);
     color: var(--mechanic-title-color);
-    font-size: var(--font-major-title);
-    font-weight: 700;
-    line-height: 1.35;
   }
 
-  .mechanic-section-card > p,
-  .mechanic-section-card__segment p {
+  .mechanic-section-card :global(p) {
     margin: 0;
     color: var(--text-body);
     font-size: var(--font-body);
     line-height: 1.7;
+    overflow-wrap: anywhere;
   }
 
   .mechanic-section-card__segments {
@@ -120,7 +117,7 @@
     color: color-mix(in srgb, var(--mechanic-accent) 84%, var(--text-primary)) !important;
   }
 
-  @container (min-width: 600px) {
+  @container mechanic (min-width: 600px) {
     .mechanic-section-card__segments--two,
     .mechanic-section-card__segments--three {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -150,7 +147,7 @@
     }
   }
 
-  @container (min-width: 840px) {
+  @container mechanic (min-width: 840px) {
     .mechanic-section-card__segments--three {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -177,12 +174,6 @@
 
     .mechanic-section-card__segments--three .mechanic-section-card__segment:last-child {
       padding-right: 0;
-    }
-  }
-
-  @media (max-width: 520px) {
-    .mechanic-section-card {
-      padding: var(--space-4);
     }
   }
 </style>

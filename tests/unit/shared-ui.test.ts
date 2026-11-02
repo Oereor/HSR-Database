@@ -57,11 +57,10 @@ describe('BaseStatsPanel promotion tag', () => {
         }
       });
       expect(m.player_character_promotion).toHaveBeenCalledWith({ promotion });
-      expect(body.match(/class="skill-effect-tag"/g)).toHaveLength(1);
-      expect(body).toMatch(
-        new RegExp(
-          `<small class="skill-effect-tag">synthetic promotion ${promotion}</small>[\\s\\S]*?<output[^>]*>Lv\\.${displayed}</output>`
-        )
+      expect(body.match(/class="[^"]*\bskill-effect-tag\b/g)).toHaveLength(1);
+      expect(body).toContain(`synthetic promotion ${promotion}`);
+      expect(body.indexOf(`synthetic promotion ${promotion}`)).toBeLessThan(
+        body.indexOf(`Lv.${displayed}`)
       );
     }
   );
@@ -143,7 +142,9 @@ describe('SearchBar', () => {
     expect(body).toMatch(/<label[^>]*for="global-search"[^>]*>synthetic search label<\/label>/);
     expect(body).toContain('id="global-search"');
     expect(body).toContain('name="q"');
-    expect(body).toMatch(/<button[^>]*type="submit"[^>]*aria-label="[^"]+"/);
+    const submit = body.slice(body.indexOf('<button'), body.indexOf('</button>'));
+    expect(submit).toContain('type="submit"');
+    expect(submit).toMatch(/aria-label="[^"]+"/);
   });
 });
 

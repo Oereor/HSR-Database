@@ -23,7 +23,6 @@ import TraceCardPanel from '../../src/lib/components/character/TraceCardPanel.sv
 import TrainingSection from '../../src/lib/components/training/TrainingSection.svelte';
 import MaterialCostList from '../../src/lib/components/training/MaterialCostList.svelte';
 import DetailPage from '../../src/lib/components/shared/DetailPage.svelte';
-import InfoToast from '../../src/lib/components/shared/InfoToast.svelte';
 import TrainingTraceSummary from '../../src/lib/components/training/TrainingTraceSummary.svelte';
 import TrainingTargetSummary from '../../src/lib/components/training/TrainingTargetSummary.svelte';
 
@@ -39,14 +38,6 @@ const view = (id: string, locale = 'zh-CN') =>
   json<Character>(`src/lib/generated/views/${locale}/details/characters/${id}.json`);
 
 describe('training presentation contracts', () => {
-  it('prerenders an empty polite status region before any client notification', () => {
-    const html = render(InfoToast).body;
-    expect(html).toContain('data-info-toast-region');
-    expect(html).toContain('role="status"');
-    expect(html).toContain('aria-live="polite"');
-    expect(html).toContain('aria-atomic="true"');
-    expect(html).not.toMatch(/<button|role="alert"|data-info-toast=/);
-  });
   it('places character training and its anchor last when equipment recommendations are absent', () => {
     const html = render(DetailPage, {
       props: { detail: view('1001'), category: 'characters', singular: 'character' }
@@ -132,7 +123,7 @@ describe('training presentation contracts', () => {
       onToggleTrace: () => {}
     };
     const html = render(TraceCardPanel, { props }).body;
-    expect(html.match(/class="trace-toggle/g)).toHaveLength(13);
+    expect(html.match(/class="[^"]*\btrace-toggle\b/g)).toHaveLength(13);
     expect(html.match(/aria-pressed="true"/g)).toHaveLength(13);
     const inactive = render(TraceCardPanel, { props: { ...props, activeTraceIds: [] } }).body;
     expect(inactive.match(/aria-pressed="false"/g)).toHaveLength(13);
@@ -142,7 +133,7 @@ describe('training presentation contracts', () => {
     const player = render(TraceCardPanel, {
       props: { ...props, playerSkillTree: [{ id: '1001101', level: 1 }] }
     }).body;
-    expect(player).not.toContain('class="trace-toggle');
+    expect(player).not.toContain('trace-toggle');
     const memory = data('8007');
     const memoryHtml = render(TraceCardPanel, {
       props: {
@@ -152,7 +143,7 @@ describe('training presentation contracts', () => {
         onToggleTrace: () => {}
       }
     }).body;
-    const fixed = memoryHtml.match(/<article[^>]*data-trace-id="8007501"[\s\S]*?<\/article>/)![0];
+    const fixed = memoryHtml.match(/<div[^>]*data-trace-id="8007501"[\s\S]*?<\/div>/)![0];
     expect(fixed).not.toContain('trace-toggle');
   });
   it('distinguishes loading and retry from cost output, with no duplicate controls', () => {
@@ -164,7 +155,7 @@ describe('training presentation contracts', () => {
     expect(loading).not.toContain('data-material-id');
     expect(error).toContain('<button');
     expect(error).not.toContain('data-material-count');
-    expect(loading + error).not.toContain('type="range"');
+    expect(loading + error).not.toContain('role="slider"');
   });
   it('renders material dialog buttons in credit/rarity order and tolerates unavailable icons', () => {
     const catalog: MaterialCatalog = {
@@ -303,7 +294,7 @@ describe('training presentation contracts', () => {
     expect([...html.matchAll(/data-training-expense="([^"]+)"/g)].map((match) => match[1])).toEqual(
       ['upgrade', 'promotion', 'total']
     );
-    expect(html.match(/type="range"/g)).toHaveLength(1);
+    expect(html.match(/role="slider"/g)).toHaveLength(1);
     expect(html).not.toContain('data-training-skill');
     expect(html).not.toContain('data-training-trace-count');
   });

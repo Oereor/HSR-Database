@@ -1,4 +1,5 @@
 <script lang="ts">
+  import * as Card from '$lib/components/ui/card';
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import { m } from '$lib/paraglide/messages.js';
   import type { PlayerProfile } from '$lib/player/contract';
@@ -9,205 +10,74 @@
   const displayCount = (value: number | null) => (value === null ? '-' : String(value));
 </script>
 
-<section class="player-hero" aria-labelledby="player-profile-name">
-  <div class="player-hero__identity">
-    <div class="player-hero__avatar">
-      <AssetImage
-        src={avatarUrl}
-        alt={m.player_avatar_alt({ nickname: profile.nickname })}
-        fallbackClass="player-hero__avatar-fallback"
-      />
-    </div>
+<section
+  class="player-hero @container/player-profile mb-6 min-w-0"
+  aria-labelledby="player-profile-name"
+>
+  <Card.Root size="sm">
+    <Card.Content
+      class="player-hero__layout grid min-w-0 items-center gap-4 @min-[48rem]/player-profile:grid-cols-[minmax(0,1fr)_minmax(14rem,0.6fr)]"
+    >
+      <div
+        class="player-hero__identity grid min-w-0 grid-cols-[4rem_minmax(0,1fr)] items-center gap-3 sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-4"
+      >
+        <div
+          class="player-hero__avatar bg-muted border-border grid size-16 place-items-center self-center overflow-hidden rounded-full border sm:size-20"
+        >
+          <AssetImage
+            class="size-full object-cover"
+            src={avatarUrl}
+            alt={m.player_avatar_alt({ nickname: profile.nickname })}
+            fallbackClass="player-hero__avatar-fallback size-full text-2xl"
+          />
+        </div>
 
-    <div class="player-hero__details">
-      <h2 id="player-profile-name">{profile.nickname}</h2>
-      <dl class="player-hero__metadata">
+        <div class="player-hero__details flex min-w-0 flex-col justify-center">
+          <h2
+            id="player-profile-name"
+            class="text-foreground m-0 mb-3 text-xl leading-snug font-semibold wrap-anywhere sm:text-2xl"
+          >
+            {profile.nickname}
+          </h2>
+          <dl
+            class="player-hero__metadata [&_dt]:text-muted-foreground m-0 flex min-w-0 flex-wrap gap-x-4 gap-y-2 [&_dd]:m-0 [&_dd]:min-w-0 [&_dd]:text-sm [&_dd]:font-medium [&_dd]:wrap-anywhere [&_dd]:tabular-nums [&_dt]:text-xs [&>div]:flex [&>div]:min-w-0 [&>div]:flex-wrap [&>div]:items-baseline [&>div]:gap-2"
+          >
+            <div>
+              <dt>{m.player_trailblaze_level()}</dt>
+              <dd>{profile.level}</dd>
+            </div>
+            <div>
+              <dt>{m.player_equilibrium_level()}</dt>
+              <dd>{profile.worldLevel}</dd>
+            </div>
+            <div class="player-hero__signature w-full">
+              <dt>{m.player_signature()}</dt>
+              <dd class="flex-1 whitespace-pre-wrap">{profile.signature || '-'}</dd>
+            </div>
+            <div>
+              <dt>{m.player_uid()}</dt>
+              <dd class="player-hero__uid font-mono">{profile.uid}</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <dl
+        class="player-hero__counts [&_dt]:text-muted-foreground [&_dd]:text-primary m-0 grid min-w-0 grid-cols-3 gap-3 [&_dd]:m-0 [&_dd]:mt-1 [&_dd]:text-2xl [&_dd]:leading-tight [&_dd]:font-bold [&_dd]:wrap-anywhere [&_dd]:tabular-nums [&_dt]:text-xs [&_dt]:leading-snug [&_dt]:font-medium [&_dt]:wrap-anywhere [&>div]:min-w-0 [&>div]:text-center"
+      >
         <div>
-          <dt>{m.player_trailblaze_level()}</dt>
-          <dd>{profile.level}</dd>
+          <dt>{m.player_characters()}</dt>
+          <dd>{displayCount(profile.characterCount)}</dd>
         </div>
         <div>
-          <dt>{m.player_equilibrium_level()}</dt>
-          <dd>{profile.worldLevel}</dd>
-        </div>
-        <div class="player-hero__signature">
-          <dt>{m.player_signature()}</dt>
-          <dd>{profile.signature || '-'}</dd>
+          <dt>{m.player_light_cones()}</dt>
+          <dd>{displayCount(profile.lightConeCount)}</dd>
         </div>
         <div>
-          <dt>{m.player_uid()}</dt>
-          <dd class="player-hero__uid">{profile.uid}</dd>
+          <dt>{m.player_achievements()}</dt>
+          <dd>{displayCount(profile.achievementCount)}</dd>
         </div>
       </dl>
-    </div>
-  </div>
-
-  <dl class="player-hero__counts">
-    <div>
-      <dt>{m.player_characters()}</dt>
-      <dd>{displayCount(profile.characterCount)}</dd>
-    </div>
-    <div>
-      <dt>{m.player_light_cones()}</dt>
-      <dd>{displayCount(profile.lightConeCount)}</dd>
-    </div>
-    <div>
-      <dt>{m.player_achievements()}</dt>
-      <dd>{displayCount(profile.achievementCount)}</dd>
-    </div>
-  </dl>
+    </Card.Content>
+  </Card.Root>
 </section>
-
-<style>
-  .player-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(300px, 34%);
-    align-items: center;
-    gap: var(--space-8);
-    margin-bottom: var(--space-8);
-    border: 1px solid var(--border-strong);
-    border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, rgb(215 181 109 / 8%), transparent 42%), var(--surface-2);
-    padding: var(--space-6);
-  }
-
-  .player-hero__identity {
-    display: grid;
-    grid-template-columns: 112px minmax(0, 1fr);
-    align-items: stretch;
-    gap: var(--space-6);
-    min-width: 0;
-  }
-
-  .player-hero__details {
-    display: flex;
-    min-width: 0;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .player-hero__avatar {
-    display: grid;
-    align-self: center;
-    width: 112px;
-    height: 112px;
-    place-items: center;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    background: var(--surface-3);
-    color: var(--faint);
-    font-size: 2rem;
-  }
-
-  .player-hero__avatar :global(img) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  h2 {
-    margin: 0 0 var(--space-3);
-    overflow-wrap: anywhere;
-    font-size: clamp(1.45rem, 3vw, 2rem);
-  }
-
-  dl,
-  dt,
-  dd {
-    margin: 0;
-  }
-
-  .player-hero__metadata {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3) var(--space-6);
-  }
-
-  .player-hero__metadata > div {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-  }
-
-  dt {
-    color: var(--muted);
-    font-size: var(--font-internal);
-  }
-
-  dd {
-    color: var(--text);
-    font-weight: 700;
-  }
-
-  .player-hero__signature {
-    width: 100%;
-  }
-
-  .player-hero__signature dd {
-    min-width: 0;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-  }
-
-  .player-hero__uid {
-    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-  }
-
-  .player-hero__counts {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-3);
-  }
-
-  .player-hero__counts > div {
-    min-width: 0;
-    text-align: center;
-  }
-
-  .player-hero__counts dt {
-    min-height: 2.7em;
-    font-size: var(--font-meta-key);
-    font-weight: 600;
-    line-height: 1.35;
-  }
-
-  .player-hero__counts dd {
-    margin-top: var(--space-1);
-    color: var(--gold-soft);
-    font-size: clamp(1.9rem, 4vw, 2.55rem);
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  @media (max-width: 820px) {
-    .player-hero {
-      grid-template-columns: 1fr;
-      gap: var(--space-6);
-    }
-  }
-
-  @media (max-width: 520px) {
-    .player-hero {
-      padding: var(--space-4);
-    }
-
-    .player-hero__identity {
-      grid-template-columns: 76px minmax(0, 1fr);
-      gap: var(--space-4);
-    }
-
-    .player-hero__avatar {
-      width: 76px;
-      height: 76px;
-    }
-
-    .player-hero__counts {
-      gap: var(--space-2);
-    }
-
-    .player-hero__counts dt {
-      font-size: var(--font-helper);
-    }
-  }
-</style>

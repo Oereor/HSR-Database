@@ -1,4 +1,6 @@
 <script lang="ts">
+  import * as InputGroup from '$lib/components/ui/input-group';
+  import { Label } from '$lib/components/ui/label';
   import { m } from '$lib/paraglide/messages.js';
 
   export let value = '';
@@ -11,10 +13,14 @@
   const errorId = 'player-uid-error';
 </script>
 
-<form class="player-uid-form" aria-busy={busy} on:submit|preventDefault={() => onSubmit(value)}>
-  <label for={inputId}>{m.player_uid_label()}</label>
-  <div class="player-uid-form__controls">
-    <input
+<form
+  class="player-uid-form mb-4 grid min-w-0 gap-2"
+  aria-busy={busy}
+  on:submit|preventDefault={() => onSubmit(value)}
+>
+  <Label for={inputId}>{m.player_uid_label()}</Label>
+  <InputGroup.Root class="player-uid-form__controls">
+    <InputGroup.Input
       id={inputId}
       name="uid"
       type="text"
@@ -24,76 +30,21 @@
       bind:value
       aria-invalid={errorMessage ? 'true' : undefined}
       aria-describedby={errorMessage ? errorId : undefined}
-      on:input={onInput}
+      oninput={onInput}
     />
-    <button class="button" type="submit" disabled={busy}>{m.player_query()}</button>
-  </div>
+    <InputGroup.Addon align="inline-end">
+      <InputGroup.Button variant="default" size="sm" type="submit" disabled={busy}
+        >{m.player_query()}</InputGroup.Button
+      >
+    </InputGroup.Addon>
+  </InputGroup.Root>
   {#if errorMessage}
-    <p id={errorId} class="player-uid-form__error" role="alert">{errorMessage}</p>
+    <p
+      id={errorId}
+      class="player-uid-form__error text-destructive m-0 text-xs leading-relaxed wrap-anywhere"
+      role="alert"
+    >
+      {errorMessage}
+    </p>
   {/if}
 </form>
-
-<style>
-  .player-uid-form {
-    display: grid;
-    gap: var(--space-2);
-    margin-bottom: var(--space-6);
-  }
-
-  label {
-    color: var(--text-secondary);
-    font-size: var(--font-internal);
-    font-weight: 700;
-  }
-
-  .player-uid-form__controls {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: var(--space-3);
-  }
-
-  input {
-    width: 100%;
-    min-height: 46px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-control);
-    background: var(--surface-2);
-    padding: 0.75rem 0.9rem;
-    color: var(--text);
-  }
-
-  input:focus-visible {
-    border-color: var(--gold);
-    outline: 2px solid rgb(215 181 109 / 24%);
-    outline-offset: 2px;
-  }
-
-  input[aria-invalid='true'] {
-    border-color: rgb(239 137 137 / 72%);
-  }
-
-  button {
-    min-width: 92px;
-  }
-
-  button:disabled {
-    cursor: wait;
-    opacity: 0.62;
-  }
-
-  .player-uid-form__error {
-    margin: 0;
-    color: #f0a3a3;
-    font-size: var(--font-internal);
-  }
-
-  @media (max-width: 520px) {
-    .player-uid-form__controls {
-      grid-template-columns: 1fr;
-    }
-
-    button {
-      width: 100%;
-    }
-  }
-</style>

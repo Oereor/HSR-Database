@@ -14,6 +14,7 @@
 ## 开发与维护
 
 - [开发指南](development.md)：环境、三仓库布局、常用命令、验证策略与双语 changelog。
+- [UI 迁移计划](ui-migration.md)：shadcn-svelte 基础接入、CSS 兼容与分阶段迁移边界。
 - [部署与 CI](vercel-deployment-foundation.md)：构建 profile、分支流程、手动 Preview、Production 与上游更新。
 - [站点消息](site-ui-messages.md)：维护中英文 UI 消息、参数契约和 locale 调用。
 - [搜索维护](search-v2.md)：名称来源、人工别名、稳定目标与分片加载。

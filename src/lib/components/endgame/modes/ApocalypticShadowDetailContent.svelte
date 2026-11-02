@@ -7,27 +7,13 @@
 </script>
 
 {#if encounter.aftertaste}
-  <div class="endgame-group-mechanics">
+  <div class="endgame-group-mechanics mb-8 [&>.endgame-mechanics-section:last-child]:mb-0">
     <ApocalypticShadowMechanicsSection mechanic={encounter.aftertaste} />
   </div>
 {/if}
 
-<div class="as-node-list">
+<div class="as-node-list grid min-w-0 gap-8 min-[521px]:gap-12">
   {#each encounter.battles as battle (battle.slot)}
     <ApocalypticShadowNodeSection {battle} />
   {/each}
 </div>
-
-<style>
-  .as-node-list {
-    display: grid;
-    min-width: 0;
-    gap: var(--space-12);
-  }
-
-  @media (max-width: 520px) {
-    .as-node-list {
-      gap: var(--space-8);
-    }
-  }
-</style>

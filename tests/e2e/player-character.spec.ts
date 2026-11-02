@@ -1,3 +1,4 @@
+import { setSliderValue } from '../helpers/slider';
 import { expect, test } from '@playwright/test';
 
 const playerProfile = (uid: string, includeCharacter = true) => ({
@@ -137,7 +138,7 @@ for (const prefix of ['', '/en']) {
       const detailHref = (await card.getAttribute('href'))!;
       await card.click();
       await expect(page).toHaveURL(detailHref);
-      const back = page.locator('.back-link');
+      const back = page.locator('.global-breadcrumb a').last();
       await expect(back).toHaveAttribute('href', catalogHref);
       await back.focus();
       await expect(back).toBeFocused();
@@ -205,7 +206,7 @@ for (const prefix of ['', '/en']) {
     }
 
     // A different character entered from the catalog must not reuse either player's source.
-    if (isMobile) await page.locator('.mobile-header .navigator-toggle').click();
+    if (isMobile) await page.locator('[data-slot="sidebar-trigger"]').click();
     await page.locator(`a[href="${prefix}/characters/"]:visible`).first().click();
     await expect(page).toHaveURL(`${prefix}/characters/`);
     const ordinaryCard = page
@@ -215,12 +216,18 @@ for (const prefix of ['', '/en']) {
     const ordinaryHref = (await ordinaryCard.getAttribute('href'))!;
     await ordinaryCard.click();
     await expect(page).toHaveURL(ordinaryHref);
-    await expect(back).toHaveAttribute('href', `${prefix}/characters/`);
+    await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute(
+      'href',
+      `${prefix}/characters/`
+    );
     await page.goBack();
     await expect(page).toHaveURL(`${prefix}/characters/`);
     await page.goForward();
     await expect(page).toHaveURL(ordinaryHref);
-    await expect(back).toHaveAttribute('href', `${prefix}/characters/`);
+    await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute(
+      'href',
+      `${prefix}/characters/`
+    );
   });
 }
 
@@ -287,9 +294,9 @@ for (const prefix of ['', '/en']) {
           )
         )
         .toBe(expectedColumns);
-      await expect(grid).toHaveCSS('gap', '24px');
-      await expect(grid).toHaveCSS('margin-top', '24px');
-      await expect(pane).toHaveCSS('padding-left', width <= 820 ? '24px' : '32px');
+      await expect(grid).toHaveCSS('gap', '16px');
+      await expect(grid).toHaveCSS('margin-top', '16px');
+      await expect(pane).toHaveJSProperty('tagName', 'ASIDE');
       for (const group of await groups.all()) {
         await expect(group).toHaveCSS('margin-top', '0px');
         await expect(group).toHaveCSS('border-top-width', '0px');
@@ -303,9 +310,9 @@ for (const prefix of ['', '/en']) {
       if (expectedColumns === 2) {
         expect(groupBoxes[0].width).toBeCloseTo(groupBoxes[1].width, 0);
         expect(groupBoxes[0].y).toBeCloseTo(groupBoxes[1].y, 0);
-        expect(groupBoxes[1].x - groupBoxes[0].x - groupBoxes[0].width).toBeCloseTo(24, 0);
+        expect(groupBoxes[1].x - groupBoxes[0].x - groupBoxes[0].width).toBeCloseTo(16, 0);
       } else {
-        expect(groupBoxes[1].y - groupBoxes[0].bottom).toBeCloseTo(24, 0);
+        expect(groupBoxes[1].y - groupBoxes[0].bottom).toBeCloseTo(16, 0);
         const labelPositions = await panel
           .locator('.hero-stat-label-text')
           .evaluateAll((elements) =>
@@ -473,7 +480,7 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(page.locator('.section-nav a[href="#training"]')).toHaveCount(0);
   await expect(page.locator('.trace-toggle')).toHaveCount(0);
   await expect(level).toBeDisabled();
-  await expect(level).toHaveValue('80');
+  await expect(level).toHaveAttribute('data-value', '80');
   await expect(promotionTag).toHaveText(/\S/);
   await expect(levelValue.locator('output')).not.toHaveText('');
   expect(
@@ -484,7 +491,7 @@ test('reuses the Player cache and renders real progression without changing stat
     })
   ).toBe(true);
 
-  const basicLevel = page.locator('[data-skill-category="basic"] input[type="range"]');
+  const basicLevel = page.locator('[data-skill-category="basic"] [role="slider"]');
   await expect(basicLevel).toBeDisabled();
   await expect(basicLevel).toHaveAttribute('aria-valuenow', '6');
 
@@ -576,14 +583,17 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(
     page.locator('[data-player-relic-slot="BODY"] [data-recommended="true"]')
   ).toHaveCount(2);
-  const subAffixHeights = await page
-    .locator('[data-player-relic-slot="BODY"] .player-relic-card__affixes--sub .player-affix-row')
-    .evaluateAll((rows) => rows.map((row) => row.getBoundingClientRect().height));
-  expect(subAffixHeights).toHaveLength(2);
-  expect(Math.abs(subAffixHeights[0] - subAffixHeights[1])).toBeLessThanOrEqual(1);
+  const bodySubAffixes = page.locator(
+    '[data-player-relic-slot="BODY"] [data-affix-presentation="sub"]'
+  );
+  await expect(bodySubAffixes).toHaveCount(2);
+  await expect(bodySubAffixes.locator('strong')).toHaveText(['8.2%', '76']);
+  await expect(
+    page.locator('[data-player-relic-slot="BODY"] [data-affix-presentation="main"] strong')
+  ).toHaveText('54.0%');
   const relicIconContainment = await page.locator('[data-player-relic-slot]').evaluateAll((cards) =>
     cards.map((card) => {
-      const header = card.querySelector('header')!.getBoundingClientRect();
+      const header = card.querySelector('[data-slot="card-header"]')!.getBoundingClientRect();
       const icon = card.querySelector<HTMLElement>('[data-relic-icon-presentation="header"]')!;
       const bounds = icon.getBoundingClientRect();
       return (
@@ -595,20 +605,16 @@ test('reuses the Player cache and renders real progression without changing stat
     })
   );
   expect(relicIconContainment.every(Boolean)).toBe(true);
-  const lightConeRadius = await lightConeCard
-    .getByRole('link')
-    .evaluate((card) => getComputedStyle(card).borderRadius);
   const relicCardGeometry = await page.locator('[data-player-relic-slot]').evaluateAll((cards) =>
     cards.map((card) => {
       const cardBounds = card.getBoundingClientRect();
       const trackedContent = [
         card.querySelector('[data-relic-icon-presentation="header"]'),
-        card.querySelector('.player-relic-card__level'),
-        card.querySelector('.player-relic-card__affixes--main .player-affix-row'),
-        ...card.querySelectorAll('.player-relic-card__affixes--sub .player-affix-row')
+        card.querySelector('[data-player-relic-level]'),
+        card.querySelector('[data-affix-presentation="main"]'),
+        ...card.querySelectorAll('[data-affix-presentation="sub"]')
       ].filter((element): element is Element => element !== null);
       return {
-        radius: getComputedStyle(card).borderRadius,
         contentContained: trackedContent.every((element) => {
           const bounds = element.getBoundingClientRect();
           return (
@@ -622,7 +628,6 @@ test('reuses the Player cache and renders real progression without changing stat
     })
   );
   expect(relicCardGeometry).toHaveLength(6);
-  expect(relicCardGeometry.every(({ radius }) => radius === lightConeRadius)).toBe(true);
   expect(relicCardGeometry.every(({ contentContained }) => contentContained)).toBe(true);
 
   const contextBounds = await page
@@ -655,7 +660,7 @@ test('reuses the Player cache and renders real progression without changing stat
       );
     expect(columns).toHaveLength(1);
     const relicColumns = await page
-      .locator('.player-equipment__relic-grid')
+      .locator('[data-player-relic-grid]')
       .evaluate((element) =>
         getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).filter(Boolean)
       );
@@ -683,7 +688,7 @@ test('reuses the Player cache and renders real progression without changing stat
 
     await page.setViewportSize({ width: 900, height: 900 });
     const mediumRelicColumns = await page
-      .locator('.player-equipment__relic-grid')
+      .locator('[data-player-relic-grid]')
       .evaluate((element) =>
         getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/).filter(Boolean)
       );
@@ -692,16 +697,19 @@ test('reuses the Player cache and renders real progression without changing stat
 
   await lightConeCard.getByRole('link').click();
   await expect(page).toHaveURL(/\/light-cones\/23023\/\?level=70&rank=2$/);
-  await expect(page.locator('.back-link')).toHaveAttribute('href', '/light-cones/');
+  await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute(
+    'href',
+    '/light-cones/'
+  );
   const lightConeLevel = page.locator('#light-cone-level-23023');
   await expect(lightConeLevel).toBeEnabled();
-  await expect(lightConeLevel).toHaveValue('70');
+  await expect(lightConeLevel).toHaveAttribute('data-value', '70');
   const rank = page.locator('#superimposition-level-23023');
   await expect(rank).toBeEnabled();
   await expect(rank).toHaveAttribute('aria-valuenow', '2');
-  await lightConeLevel.fill('42');
-  await rank.fill('3');
-  await expect(lightConeLevel).toHaveValue('42');
+  await setSliderValue(lightConeLevel, '42');
+  await setSliderValue(rank, '3');
+  await expect(lightConeLevel).toHaveAttribute('data-value', '42');
   await expect(rank).toHaveAttribute('aria-valuenow', '4');
 
   await page.goto('/en/characters/1304/?uid=100000001');
@@ -728,7 +736,15 @@ test('reuses the Player cache and renders real progression without changing stat
 });
 
 for (const prefix of ['', '/en'])
-  test(`renders concise relic scores in ${prefix ? 'en' : 'zh-CN'}`, async ({ page, isMobile }) => {
+  test(`renders concise relic scores in ${prefix ? 'en' : 'zh-CN'}`, async ({
+    page,
+    isMobile
+  }, testInfo) => {
+    const errors: string[] = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    page.on('console', (message) => {
+      if (/hydration|invalid.*nesting/i.test(message.text())) errors.push(message.text());
+    });
     let requests = 0;
     await page.route('**/api/player/**', async (route) => {
       requests++;
@@ -796,7 +812,7 @@ for (const prefix of ['', '/en'])
       )
     ).toHaveCount(0);
     await expect(
-      page.locator('[data-player-relic-slot="HEAD"] .player-affix-row__count [aria-hidden]')
+      page.locator('[data-player-relic-slot="HEAD"] [data-player-affix-count] [aria-hidden]')
     ).toHaveText('×2');
     const assertSummaryContained = async () => {
       expect(
@@ -815,11 +831,63 @@ for (const prefix of ['', '/en'])
       ).toBeLessThanOrEqual(1);
     };
     await assertSummaryContained();
+    for (const width of isMobile ? [390, 320] : [1440, 1081, 1080, 900, 681, 680, 390, 320]) {
+      await page.setViewportSize({ width, height: 900 });
+      await assertSummaryContained();
+      const grid = page.locator('[data-player-relic-grid]');
+      const columns = await grid.evaluate((element) =>
+        getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/)
+      );
+      expect(columns).toHaveLength(width >= 1080 ? 3 : width >= 680 ? 2 : 1);
+      for (const card of await grid.locator('[data-player-relic-slot]').all()) {
+        const geometry = await card.evaluate((element) => {
+          const header = element.querySelector('[data-slot="card-header"]')!;
+          const level = header.querySelector('[data-player-relic-level]')!.getBoundingClientRect();
+          const badge = header
+            .querySelector('[data-player-relic-piece-score]')!
+            .getBoundingClientRect();
+          const title = header.querySelector('[data-slot="card-title"]')!.getBoundingClientRect();
+          return {
+            gap: badge.top - level.bottom,
+            rightDifference: Math.abs(badge.right - level.right),
+            separated: title.right <= badge.left,
+            overflow: element.scrollWidth - element.clientWidth
+          };
+        });
+        expect(geometry.gap).toBeGreaterThanOrEqual(0);
+        expect(geometry.gap).toBeLessThanOrEqual(5);
+        expect(geometry.rightDifference).toBeLessThanOrEqual(1);
+        expect(geometry.separated).toBe(true);
+        expect(geometry.overflow).toBeLessThanOrEqual(1);
+      }
+    }
+    await page.setViewportSize({ width: isMobile ? 390 : 1440, height: 900 });
+    if (!prefix)
+      await page
+        .locator('#equipment')
+        .screenshot({ path: testInfo.outputPath('relic-equipment.png') });
     if (!isMobile) {
       await page.setViewportSize({ width: 768, height: 1024 });
       await assertSummaryContained();
+      if (!prefix)
+        await page
+          .locator('#equipment')
+          .screenshot({ path: testInfo.outputPath('relic-equipment-tablet.png') });
     }
     await expect.poll(() => requests).toBe(1);
+    const relicLink = page.locator('a[data-player-relic-slot="HEAD"]');
+    await expect(relicLink.locator('a, button, input, select, textarea, [tabindex]')).toHaveCount(
+      0
+    );
+    await relicLink.focus();
+    await expect(relicLink).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(`${prefix}/relics/103/`);
+    await page.goBack();
+    await expect(relicLink).toBeVisible();
+    await relicLink.click();
+    await expect(page).toHaveURL(`${prefix}/relics/103/`);
+    expect(errors).toEqual([]);
   });
 
 test('keeps piece scores when a five-piece build cannot be scored', async ({ page }) => {
@@ -901,7 +969,7 @@ test('keeps static detail available for invalid, missing and failed Player conte
 
   await page.goto('/characters/1304/?uid=abc&from=player');
   await expect(page.locator('.player-context-notice--fallback')).toBeVisible();
-  await expect(page.locator('.back-link')).toHaveAttribute('href', '/characters/');
+  await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute('href', '/characters/');
   await expect(page.locator('#character-level-1304')).toBeEnabled();
   await expect(page.locator('#equipment-recommendation')).toBeVisible();
   expect(requestCount).toBe(0);

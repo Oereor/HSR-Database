@@ -22,7 +22,7 @@
   };
 </script>
 
-<div class="aa-detail" data-aa-stage-detail>
+<div class="aa-detail grid min-w-0 gap-6 min-[521px]:gap-8" data-aa-stage-detail>
   {#if encounter.traits.length}
     <section class="aa-detail__traits" data-endgame-mechanics="chess-traits">
       <MechanicSectionCard
@@ -44,7 +44,7 @@
     </section>
   {/if}
 
-  <div class="aa-detail__waves" data-aa-waves>
+  <div class="aa-detail__waves grid min-w-0 gap-8 min-[521px]:gap-12" data-aa-waves>
     {#each encounter.battles as battle (battle.slot)}
       <EndgameWaveLayout
         groups={buildEndgameWaveGroups(battle)}
@@ -54,29 +54,3 @@
     {/each}
   </div>
 </div>
-
-<style>
-  .aa-detail,
-  .aa-detail__waves {
-    display: grid;
-    min-width: 0;
-  }
-
-  .aa-detail {
-    gap: var(--space-8);
-  }
-
-  .aa-detail__waves {
-    gap: var(--space-12);
-  }
-
-  @media (max-width: 520px) {
-    .aa-detail {
-      gap: var(--space-6);
-    }
-
-    .aa-detail__waves {
-      gap: var(--space-8);
-    }
-  }
-</style>

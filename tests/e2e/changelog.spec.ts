@@ -9,10 +9,12 @@ const localDate = () => {
 
 test('更新日志首次自动打开、今日关闭与手动打开', async ({ page, isMobile }) => {
   await page.goto('/');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   await page.evaluate(() => localStorage.clear());
   await page.reload();
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
 
-  const dialog = page.locator('dialog.changelog-dialog');
+  const dialog = page.getByRole('dialog').filter({ has: page.locator('#changelog-dialog-title') });
   await expect(dialog).toBeVisible();
   await expect(dialog.locator('#changelog-dialog-title')).toBeVisible();
   const entries = dialog.locator('.changelog-entry');
@@ -30,6 +32,7 @@ test('更新日志首次自动打开、今日关闭与手动打开', async ({ pa
   ).toBeNull();
 
   await page.reload();
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   await expect(dialog).toBeVisible();
   await dialog.locator('.changelog-dialog__today').click();
   await expect(dialog).not.toBeVisible();
@@ -38,6 +41,7 @@ test('更新日志首次自动打开、今日关闭与手动打开', async ({ pa
   ).toBe(localDate());
 
   await page.reload();
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   await expect(dialog).not.toBeVisible();
   await page.locator('.changelog-trigger:visible').first().click();
   await expect(dialog).toBeVisible();
@@ -50,8 +54,11 @@ test('中文与英文页面加载同一组本地化更新日志', async ({ page 
 
   for (const path of ['/', '/en']) {
     await page.goto(path);
+    await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
     await page.locator('.changelog-trigger:visible').first().click();
-    const dialog = page.locator('dialog.changelog-dialog');
+    const dialog = page
+      .getByRole('dialog')
+      .filter({ has: page.locator('#changelog-dialog-title') });
     await expect(dialog).toBeVisible();
     const entries = dialog.locator('.changelog-entry');
     expect(await entries.count()).toBeGreaterThan(0);

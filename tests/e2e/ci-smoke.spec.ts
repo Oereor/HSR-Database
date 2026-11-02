@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { setSliderValue } from '../helpers/slider';
 
 async function expectAppReady(page: Page) {
   await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
@@ -7,7 +8,7 @@ async function expectAppReady(page: Page) {
 test('homepage and client navigation remain usable', async ({ page }) => {
   await page.goto('/');
   await expectAppReady(page);
-  await expect(page.locator('.home-hero h1')).toBeVisible();
+  await expect(page.locator('.home-hero h1')).toBeInViewport();
   await page.locator('.home-directory-row[href="/characters/"]').click();
   await expect(page).toHaveURL(/\/characters\/$/);
   await expect(page.locator('.entity-overview-card').first()).toBeVisible();
@@ -38,12 +39,12 @@ test('enemy direct navigation and core interaction remain functional', async ({ 
   await page.goto('/enemies/1002015/');
   await expectAppReady(page);
   const slider = page.locator('#enemy-level-1002015');
-  await expect(slider).toHaveValue('95');
-  await slider.fill('60');
+  await expect(slider).toHaveAttribute('aria-valuenow', '95');
+  await setSliderValue(slider, 60);
   const variant = page.locator('[data-monster-option="100201506"]');
   await variant.click();
   await expect(variant).toHaveAttribute('aria-checked', 'true');
-  await expect(slider).toHaveValue('60');
+  await expect(slider).toHaveAttribute('aria-valuenow', '60');
 });
 
 test('asset request failures expose the accessible local fallback', async ({ page }) => {
@@ -68,7 +69,7 @@ test('mobile navigation reaches a representative route', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   await expectAppReady(page);
-  await page.locator('.mobile-header .navigator-toggle').click();
+  await page.locator('[data-slot="sidebar-trigger"]').click();
   const dialog = page.locator('#primary-navigator-pane');
   await expect(dialog).toBeVisible();
   await dialog.locator('a[href="/enemies/"]').click();

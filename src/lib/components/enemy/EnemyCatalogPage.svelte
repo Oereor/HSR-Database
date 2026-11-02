@@ -1,8 +1,9 @@
 <script lang="ts">
+  import { Button } from '$lib/components/ui/button';
   import { m } from '$lib/paraglide/messages.js';
   import { localizedHref, trailingSlashHref } from '$lib/i18n/routing';
   import { goto } from '$app/navigation';
-  import { page } from '$app/stores';
+  import { page, navigating } from '$app/stores';
   import { onMount } from 'svelte';
   import {
     ENEMY_RANK_CATEGORIES,
@@ -19,6 +20,7 @@
   import { formatDocumentTitle } from '$lib/site';
   import EnemyOverviewCard from './EnemyOverviewCard.svelte';
   import FilterGroup from '../shared/FilterGroup.svelte';
+  import { createOverviewPagination } from '../shared/overview-pagination';
   import OverviewGrid from '../shared/OverviewGrid.svelte';
   import OverviewHero from '../shared/OverviewHero.svelte';
   import OverviewPagination from '../shared/OverviewPagination.svelte';
@@ -43,7 +45,6 @@
   $: synchronizeDraft(appliedQuery);
   $: filterState = readEnemyOverviewFilterState(params);
   $: sort = params.get('sort') ?? 'rarity';
-  $: requestedPage = Number(params.get('page') ?? 1);
   $: heroArtwork = heroEnemyIds.flatMap((id) =>
     enemyPortraits[id] ? [{ id, url: enemyPortraits[id] }] : []
   );
@@ -59,10 +60,15 @@
       );
     })
     .sort((a, b) => compareEnemyOverviewEntries(a, b, sort, filterState.weaknesses));
-  const pageSize = 48;
-  $: pages = Math.max(1, Math.ceil(filtered.length / pageSize));
-  $: currentPage =
-    Number.isInteger(requestedPage) && requestedPage > 0 ? Math.min(requestedPage, pages) : 1;
+  const pagination = createOverviewPagination(48, (url) =>
+    goto(url, { replaceState: true, noScroll: true, keepFocus: true })
+  );
+  $: pagination.synchronize(
+    clientReady ? $page.url : undefined,
+    filtered.length,
+    $navigating !== null
+  );
+  $: ({ pageSize, pages, currentPage } = $pagination);
   $: visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
   $: weaknessOptions = [
     ...new Map(
@@ -141,7 +147,7 @@
   artwork={heroArtwork}
 />
 
-<section class="overview-controls" aria-label={m.enemies_controls_aria()}>
+<section class="overview-controls mb-6 grid gap-5" aria-label={m.enemies_controls_aria()}>
   <OverviewSearch
     id="enemy-search-input"
     bind:value={draftQuery}
@@ -149,7 +155,7 @@
     onSubmit={submitQuery}
   />
 
-  <div class="overview-filters">
+  <div class="overview-filters grid gap-4">
     <FilterGroup
       id="enemy-type"
       label={m.filter_enemy_type()}
@@ -190,7 +196,7 @@
 </section>
 
 {#if visible.length}
-  <OverviewGrid>
+  <OverviewGrid onColumnsChange={pagination.setColumns}>
     {#each visible as entry (entry.id)}
       <EnemyOverviewCard
         {entry}
@@ -201,24 +207,11 @@
   </OverviewGrid>
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
-  <section class="empty-state">
-    <h2>{m.overview_empty_title()}</h2>
-    <p>{m.overview_empty_description()}</p>
-    <button class="button" type="button" on:click={clearSearchAndFilters}
-      >{m.overview_clear_filters()}</button
-    >
+  <section
+    class="border-border bg-card text-card-foreground grid justify-items-center gap-3 rounded-xl border px-4 py-10 text-center"
+  >
+    <h2 class="m-0 text-xl font-semibold">{m.overview_empty_title()}</h2>
+    <p class="text-muted-foreground m-0 text-sm">{m.overview_empty_description()}</p>
+    <Button onclick={clearSearchAndFilters}>{m.overview_clear_filters()}</Button>
   </section>
 {/if}
-
-<style>
-  .overview-controls {
-    display: grid;
-    gap: 1.4rem;
-    margin-bottom: 1.8rem;
-  }
-
-  .overview-filters {
-    display: grid;
-    gap: 1.25rem;
-  }
-</style>

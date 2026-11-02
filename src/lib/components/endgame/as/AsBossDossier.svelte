@@ -11,15 +11,23 @@
   $: hasTraits = Boolean(bossGuide?.traits.length);
 </script>
 
-<div class:as-boss-dossier--with-traits={hasTraits} class="as-boss-dossier" data-as-boss-dossier>
-  <section class="as-boss-roster" data-as-boss-roster>
-    <h4>{m.endgame_boss_illusion()}</h4>
-    <div class="as-boss-roster__groups">
+<div
+  class:as-boss-dossier--with-traits={hasTraits}
+  class="as-boss-dossier grid min-w-0 grid-cols-1 items-start gap-6 min-[521px]:gap-8"
+  data-as-boss-dossier
+>
+  <section class="as-boss-roster w-[min(260px,100%)] min-w-0" data-as-boss-roster>
+    <h4 class="text-foreground m-0 mb-4 text-lg leading-snug font-semibold">
+      {m.endgame_boss_illusion()}
+    </h4>
+    <div class="as-boss-roster__groups grid min-w-0 gap-5">
       {#each stages as stage (stage.key)}
         {#each stage.waves as wave (wave.key)}
-          <div class="as-boss-roster__group" data-as-boss-source-group>
+          <div class="as-boss-roster__group min-w-0" data-as-boss-source-group>
             {#if sourceGroupCount > 1}
-              <p>{m.endgame_stage_wave({ stage: stage.index, wave: wave.label })}</p>
+              <p class="text-muted-foreground m-0 mb-3 text-xs">
+                {m.endgame_stage_wave({ stage: stage.index, wave: wave.label })}
+              </p>
             {/if}
             <EndgameEnemyGrid enemies={wave.enemies} variant="standard" level={stage.level} />
           </div>
@@ -34,58 +42,13 @@
 </div>
 
 <style>
-  .as-boss-dossier {
-    display: grid;
-    min-width: 0;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-8);
-    align-items: start;
-  }
-
-  .as-boss-roster {
-    width: min(260px, 100%);
-    min-width: 0;
-  }
-
-  .as-boss-roster > h4 {
-    margin: 0 0 var(--space-4);
-    color: var(--text-primary);
-    font-size: var(--font-major-title);
-    font-weight: 700;
-    line-height: 1.3;
-    letter-spacing: -0.015em;
-  }
-
-  .as-boss-roster__groups {
-    display: grid;
-    min-width: 0;
-    gap: var(--space-5);
-  }
-
-  .as-boss-roster__group {
-    min-width: 0;
-  }
-
-  .as-boss-roster__group > p {
-    margin: 0 0 var(--space-3);
-    color: var(--text-muted);
-    font-size: var(--font-helper);
-  }
-
   .as-boss-roster :global(.endgame-enemy-grid) {
     grid-template-columns: minmax(0, min(260px, 100%));
     justify-content: start;
   }
-
   @container endgame-main (min-width: 700px) {
     .as-boss-dossier--with-traits {
       grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
-    }
-  }
-
-  @media (max-width: 520px) {
-    .as-boss-dossier {
-      gap: var(--space-6);
     }
   }
 </style>

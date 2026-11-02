@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { Badge } from '$lib/components/ui/badge';
+  import { cn } from '$lib/utils.js';
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
   export let href: string;
   export let imageUrl: string | undefined = undefined;
@@ -11,244 +13,64 @@
   export let mediaPresentation: 'artwork' | 'icon' = 'artwork';
   export let metadataLayout: 'default' | 'icons' = 'default';
 
+  export let artworkAspect: 'portrait' | 'landscape' = 'portrait';
+
   let imageMissing = !imageUrl?.trim();
 </script>
 
 <a
-  class="entity-overview-card"
-  class:entity-overview-card--missing={imageMissing}
-  class:entity-overview-card--compact={size === 'compact'}
-  class:entity-overview-card--dense={density === 'compact'}
-  class:entity-overview-card--icon-media={mediaPresentation === 'icon'}
+  class="entity-overview-card bg-card text-card-foreground border-border focus-visible:border-ring focus-visible:ring-ring/50 hover:border-primary/40 relative flex min-w-0 flex-col overflow-hidden rounded-xl border shadow-xs transition-[border-color,box-shadow] outline-none hover:shadow-md focus-visible:ring-3"
   data-image-missing={imageMissing}
   data-card-size={size}
   data-card-density={density}
   data-media-presentation={mediaPresentation}
   {href}
 >
-  <span class="entity-overview-card__artwork" aria-hidden={!imageAlt}>
+  <span
+    class={cn(
+      'entity-overview-card__artwork bg-muted/40 border-border relative grid w-full shrink-0 place-items-center overflow-hidden border-b',
+      mediaPresentation === 'icon'
+        ? 'aspect-square'
+        : artworkAspect === 'landscape'
+          ? 'aspect-4/3'
+          : 'aspect-4/5'
+    )}
+    aria-hidden={!imageAlt}
+  >
     <AssetImage
       src={imageUrl}
       alt={imageAlt}
-      style={`object-fit: ${artworkFit}; object-position: ${artworkPosition}; transform: scale(${artworkScale});`}
+      class={cn(
+        'absolute inset-0 m-auto block',
+        mediaPresentation === 'icon' ? 'size-[70%] max-h-28 max-w-28' : 'size-full'
+      )}
+      style={`object-fit: ${artworkFit}; object-position: ${artworkPosition}; transform: scale(${artworkScale}); transform-origin: ${mediaPresentation === 'icon' ? 'center' : 'center bottom'};`}
       loading="lazy"
       decoding="async"
       bind:missing={imageMissing}
-      fallbackClass="entity-overview-card__fallback"
+      fallbackClass="entity-overview-card__fallback bg-muted border-border size-20 rounded-full border text-2xl"
     />
+    {#if $$slots.overlay}<span
+        class="entity-overview-card__overlay absolute inset-x-2 top-2 flex justify-end"
+        ><Badge
+          class="bg-background/85 h-auto max-w-full py-1 text-center whitespace-normal backdrop-blur-sm"
+          ><slot name="overlay" /></Badge
+        ></span
+      >{/if}
   </span>
-  <span class="entity-overview-card__overlay"><slot name="overlay" /></span>
   <span
-    class="entity-overview-card__content"
-    class:entity-overview-card__content--title-only={!$$slots.metadata}
+    class="entity-overview-card__content flex min-w-0 flex-1 flex-col items-center gap-3 p-3 text-center sm:p-4"
   >
-    <h3 class="entity-overview-card__title"><slot name="title" /></h3>
+    <h3
+      class="entity-overview-card__title m-0 min-h-[2.6em] w-full text-sm leading-snug font-semibold wrap-anywhere"
+    >
+      <slot name="title" />
+    </h3>
     {#if $$slots.metadata}<span
-        class="entity-overview-card__metadata"
-        class:entity-overview-card__metadata--icons={metadataLayout === 'icons'}
-        ><slot name="metadata" /></span
+        class={cn(
+          'entity-overview-card__metadata mt-auto flex min-h-10 w-full min-w-0 items-center justify-center gap-2',
+          metadataLayout === 'icons' ? 'flex-nowrap' : 'flex-wrap'
+        )}><slot name="metadata" /></span
       >{/if}
   </span>
 </a>
-
-<style>
-  .entity-overview-card {
-    position: relative;
-    display: grid;
-    grid-template-rows: clamp(300px, 23vw, 336px) 128px;
-    min-width: 0;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card);
-    background: linear-gradient(155deg, rgb(255 255 255 / 4%), transparent 46%), var(--surface);
-    isolation: isolate;
-    transition:
-      transform var(--motion),
-      border-color var(--motion),
-      box-shadow var(--motion),
-      background var(--motion);
-  }
-
-  .entity-overview-card.entity-overview-card--compact {
-    grid-template-rows: 176px auto;
-  }
-
-  .entity-overview-card.entity-overview-card--dense {
-    grid-template-rows: 236px 122px;
-  }
-
-  .entity-overview-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--border-strong);
-    background: linear-gradient(155deg, rgb(255 255 255 / 6%), transparent 46%), var(--surface);
-    box-shadow: 0 14px 34px rgb(0 0 0 / 24%);
-  }
-
-  .entity-overview-card__artwork {
-    position: relative;
-    z-index: 0;
-    display: grid;
-    width: 100%;
-    height: 100%;
-    min-width: 0;
-    overflow: hidden;
-    place-items: end center;
-    border-bottom: 1px solid rgb(255 255 255 / 5%);
-    background:
-      radial-gradient(circle at 50% 78%, rgb(215 181 109 / 11%), transparent 48%),
-      linear-gradient(180deg, rgb(255 255 255 / 2%), rgb(255 255 255 / 0%));
-    pointer-events: none;
-  }
-
-  .entity-overview-card__artwork :global(img) {
-    position: absolute;
-    inset: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    flex: 0 0 auto;
-    transform-origin: center bottom;
-  }
-
-  .entity-overview-card--icon-media .entity-overview-card__artwork {
-    place-items: center;
-  }
-
-  .entity-overview-card--icon-media .entity-overview-card__artwork :global(img) {
-    width: calc(100% - 2 * var(--space-6));
-    height: calc(100% - 2 * var(--space-6));
-    max-width: 8rem;
-    max-height: 8rem;
-    margin: auto;
-    transform-origin: center;
-  }
-
-  .entity-overview-card__overlay {
-    position: absolute;
-    z-index: 2;
-    top: var(--space-3);
-    right: var(--space-3);
-    display: inline-flex;
-    max-width: calc(100% - 2 * var(--space-3));
-    min-height: 1.8rem;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border: 1px solid rgb(255 255 255 / 13%);
-    border-radius: 999px;
-    background: rgb(7 10 18 / 72%);
-    padding: 0.38rem 0.68rem;
-    color: var(--text-secondary);
-    backdrop-filter: blur(8px);
-    font-size: 0.76rem;
-    font-weight: 650;
-    line-height: 1.2;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    pointer-events: none;
-    box-shadow: 0 6px 18px rgb(0 0 0 / 18%);
-  }
-
-  .entity-overview-card__content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    min-width: 0;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: var(--space-3) var(--space-3) var(--space-4);
-    text-align: center;
-  }
-
-  .entity-overview-card--compact .entity-overview-card__content {
-    height: auto;
-    padding: var(--space-4);
-  }
-
-  .entity-overview-card--dense .entity-overview-card__content {
-    padding: var(--space-3) var(--space-3) var(--space-4);
-  }
-
-  .entity-overview-card--dense .entity-overview-card__metadata {
-    min-height: 2.5rem;
-    gap: 0.35rem;
-  }
-
-  .entity-overview-card__content--title-only {
-    justify-content: center;
-  }
-
-  .entity-overview-card--compact
-    .entity-overview-card__content--title-only
-    .entity-overview-card__title {
-    min-height: 0;
-  }
-
-  .entity-overview-card__title {
-    display: -webkit-box;
-    min-height: 2.6em;
-    margin: 0;
-    overflow: hidden;
-    color: var(--text-primary);
-    font-size: var(--font-card-title);
-    font-weight: 750;
-    line-height: 1.3;
-    overflow-wrap: anywhere;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-  }
-
-  .entity-overview-card__metadata {
-    container: overview-metadata / inline-size;
-    display: flex;
-    width: 100%;
-    min-width: 0;
-    min-height: 2.35rem;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-  }
-
-  .entity-overview-card .entity-overview-card__metadata--icons {
-    min-height: calc(var(--space-8) + var(--space-2));
-    flex-wrap: nowrap;
-    gap: var(--space-2);
-  }
-
-  .entity-overview-card__artwork :global(.entity-overview-card__fallback) {
-    width: 9rem;
-    height: 9rem;
-    place-self: center;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    background:
-      radial-gradient(circle at 50% 45%, rgb(215 181 109 / 18%), transparent 56%), var(--surface-2);
-    --image-fallback-font-size: 2rem;
-  }
-
-  .entity-overview-card.entity-overview-card--compact :global(.entity-overview-card__fallback) {
-    width: 7rem;
-    height: 7rem;
-    margin-bottom: 0;
-  }
-
-  .entity-overview-card--missing .entity-overview-card__artwork {
-    opacity: 0.72;
-  }
-
-  @media (max-width: 520px) {
-    .entity-overview-card {
-      grid-template-rows: 284px 124px;
-    }
-
-    .entity-overview-card.entity-overview-card--dense {
-      grid-template-rows: 190px 122px;
-    }
-  }
-</style>

@@ -1,3 +1,4 @@
+import { setSliderValue } from '../helpers/slider';
 import { expect, test } from '@playwright/test';
 
 test('光锥 Detail Hero 使用完整 contain portrait、单一 Hero 命途标签与稳定降级', async ({
@@ -55,13 +56,14 @@ test('光锥等级与叠影滑块独立、控件先于效果且动态参数更�
     await inspection.evaluate((panel) =>
       [
         ...panel.querySelectorAll(
-          '.stat-level-control, [data-base-stat], :scope > .detail-inspection-divider, .superimposition-control, .superimposition-effect > h3, .superimposition-effect > .levelled-description'
+          '.stat-level-control, [data-base-stat], :scope > [data-slot="separator"], .superimposition-panel > .skill-level-control, .superimposition-effect > h3, .superimposition-effect > .levelled-description'
         )
       ].map((element) => {
         if (element.classList.contains('stat-level-control')) return 'level';
         if (element.hasAttribute('data-base-stat')) return element.getAttribute('data-base-stat');
-        if (element.classList.contains('detail-inspection-divider')) return 'divider';
-        if (element.classList.contains('superimposition-control')) return 'superimposition';
+        if (element.getAttribute('data-slot') === 'separator') return 'divider';
+        if (element.matches('.superimposition-panel > .skill-level-control'))
+          return 'superimposition';
         if (element.matches('h3')) return 'passive';
         return 'effect';
       })
@@ -79,22 +81,38 @@ test('光锥等级与叠影滑块独立、控件先于效果且动态参数更�
   expect(
     await inspection
       .locator(':scope > *')
-      .evaluateAll((children) => children.map((child) => child.className))
-  ).toEqual(['base-stats-panel', 'detail-inspection-divider', 'superimposition-panel']);
+      .evaluateAll((children) =>
+        children.map((child) =>
+          child.getAttribute('data-slot') === 'separator'
+            ? 'separator'
+            : child.classList.contains('base-stats-panel')
+              ? 'base-stats-panel'
+              : child.className
+        )
+      )
+  ).toEqual(['base-stats-panel', 'separator', 'superimposition-panel']);
   expect(
     await superimposition
       .locator(':scope > *')
-      .evaluateAll((children) => children.map((child) => child.className))
-  ).toEqual(['skill-level-control superimposition-control', 'superimposition-effect']);
+      .evaluateAll((children) =>
+        children.map((child) =>
+          child.getAttribute('data-slot') === 'separator'
+            ? 'separator'
+            : child.classList.contains('base-stats-panel')
+              ? 'base-stats-panel'
+              : child.className
+        )
+      )
+  ).toEqual(['skill-level-control', 'superimposition-effect']);
   expect(
     await superimposition.evaluate((panel) => {
-      const slider = panel.querySelector('input[type="range"]')!;
+      const slider = panel.querySelector('[role="slider"]')!;
       const heading = panel.querySelector('h3')!;
       return Boolean(slider.compareDocumentPosition(heading) & Node.DOCUMENT_POSITION_FOLLOWING);
     })
   ).toBe(true);
-  await stats.locator('input[type="range"]').fill('1');
-  await superimposition.locator('input[type="range"]').fill('4');
+  await setSliderValue(stats.locator('[role="slider"]'), '1');
+  await setSliderValue(superimposition.locator('[role="slider"]'), '4');
   await expect(superimposition.locator('.scaling-value')).toHaveText('24%');
 });
 
@@ -107,20 +125,20 @@ for (const prefix of ['', '/en']) {
     const rank = page.locator('#superimposition-level-20000');
     const tag = page.locator('.base-stats-panel .skill-level-control__value .skill-effect-tag');
 
-    await expect(level).toHaveValue('37');
+    await expect(level).toHaveAttribute('data-value', '37');
     await expect(rank).toHaveAttribute('aria-valuenow', '3');
     await expect(tag).toBeVisible();
     const tagAt37 = await tag.innerText();
-    await level.fill('42');
+    await setSliderValue(level, '42');
     await expect(tag).not.toHaveText(tagAt37);
     const tagAt42 = await tag.innerText();
-    await rank.fill('4');
-    await expect(level).toHaveValue('42');
+    await setSliderValue(rank, '4');
+    await expect(level).toHaveAttribute('data-value', '42');
     await expect(rank).toHaveAttribute('aria-valuenow', '5');
     await expect(tag).toHaveText(tagAt42);
 
     await page.goto(`${prefix}/light-cones/20000/?level=invalid&rank=invalid`);
-    await expect(page.locator('#light-cone-level-20000')).toHaveValue('80');
+    await expect(page.locator('#light-cone-level-20000')).toHaveAttribute('data-value', '80');
     await expect(page.locator('#superimposition-level-20000')).toHaveAttribute(
       'aria-valuenow',
       '1'
@@ -129,7 +147,7 @@ for (const prefix of ['', '/en']) {
     const tagAt80 = await tag.innerText();
 
     await page.goto(`${prefix}/light-cones/20000/?level=0&rank=99`);
-    await expect(page.locator('#light-cone-level-20000')).toHaveValue('1');
+    await expect(page.locator('#light-cone-level-20000')).toHaveAttribute('data-value', '1');
     await expect(page.locator('#superimposition-level-20000')).toHaveAttribute(
       'aria-valuenow',
       '5'

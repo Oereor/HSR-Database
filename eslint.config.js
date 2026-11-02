@@ -32,6 +32,10 @@ export default ts.config(
     rules: { '@typescript-eslint/no-explicit-any': 'off' }
   },
   {
+    files: ['**/*.svelte.ts'],
+    languageOptions: { parser: ts.parser, globals: { $state: 'readonly', $derived: 'readonly' } }
+  },
+  {
     files: ['**/*.svelte'],
     languageOptions: {
       parserOptions: { parser: ts.parser, extraFileExtensions: ['.svelte'] }

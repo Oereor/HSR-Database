@@ -9,7 +9,7 @@
 </script>
 
 <section
-  class="as-node-section"
+  class="as-node-section min-w-0 scroll-mt-[var(--anchor-offset)]"
   id={`battle-${battle.slot}`}
   data-as-battle-slot={battle.slot}
   data-battle-slot={battle.slot}
@@ -19,7 +19,10 @@
   <AsBossDossier stages={battle.stages} bossGuide={battle.bossGuide} />
 
   {#if battle.axiomSet?.options.length}
-    <section class="as-node-section__axiom" data-endgame-mechanics="axiom">
+    <section
+      class="as-node-section__axiom mt-6 min-w-0 min-[521px]:mt-8"
+      data-endgame-mechanics="axiom"
+    >
       <BuffOptionGroup
         title={m.endgame_terminal_axiom()}
         options={battle.axiomSet.options}
@@ -29,21 +32,3 @@
     </section>
   {/if}
 </section>
-
-<style>
-  .as-node-section {
-    min-width: 0;
-    scroll-margin-top: 80px;
-  }
-
-  .as-node-section__axiom {
-    min-width: 0;
-    margin-top: var(--space-8);
-  }
-
-  @media (max-width: 520px) {
-    .as-node-section__axiom {
-      margin-top: var(--space-6);
-    }
-  }
-</style>

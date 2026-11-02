@@ -55,13 +55,11 @@ describe('Player Character controls', () => {
       }
     }).body;
 
-    expect(staticBody).not.toMatch(/<input[^>]*disabled/);
+    expect(staticBody).not.toMatch(/<span(?=[^>]*role="slider")(?=[^>]*aria-disabled="true")/);
     expect(staticBody).not.toContain('skill-effect-tag');
-    expect(playerBody).toMatch(/<input[^>]*disabled/);
+    expect(playerBody).toMatch(/<span(?=[^>]*role="slider")(?=[^>]*aria-disabled="true")/);
     expect(playerBody).toContain('Lv.70');
-    expect(playerBody).toContain(
-      '<small class="skill-effect-tag">synthetic progression marker</small>'
-    );
+    expect(playerBody).toContain('synthetic progression marker');
     expect(playerBody.indexOf('synthetic progression marker')).toBeLessThan(
       playerBody.indexOf('Lv.70')
     );
@@ -93,7 +91,7 @@ describe('Player Character controls', () => {
     }).body;
 
     expect(resolved).toContain('Lv.4');
-    expect(resolved).toMatch(/<input[^>]*disabled/);
+    expect(resolved).toMatch(/<span(?=[^>]*role="slider")(?=[^>]*aria-disabled="true")/);
     expect(unresolved).toContain('data-player-skill-state="unresolved"');
     expect(unresolved).toMatch(/data-player-skill-state="unresolved"[\s\S]*<p>[^<]+<\/p>/);
     expect(unresolved).not.toContain('<input');
@@ -159,16 +157,13 @@ describe('Player Character presentation', () => {
     expect(body).toContain('data-player-light-cone="999999"');
     expect(body.match(/data-player-relic-slot=/g)).toHaveLength(6);
     expect(body).toContain('data-player-relic-state="unknown"');
-    expect(body).toMatch(
-      /player-relic-card__level[^>]*style="color: var\(--gold\)[^"]*"[^>]*>\+15/
-    );
+    expect(body).toMatch(/data-player-relic-level[^>]*style="color: var\(--gold\)[^"]*"[^>]*>\+15/);
     expect(body).not.toContain('href="/relics/999998/"');
-    expect(body).toContain('player-relic-card__unknown-main');
+    expect(body).toContain('data-player-relic-main-unavailable');
     expect(body).toContain('synthetic recommended stat');
-    expect(body).toMatch(/player-affix-row__count[\s\S]*×3/);
-    expect(body).toContain('player-affix-row--recommended');
+    expect(body).toMatch(/data-player-affix-count[\s\S]*×3/);
     expect(body).toContain('data-recommended="true"');
-    expect(body.match(/player-affix-row__count/g)).toHaveLength(1);
+    expect(body.match(/data-player-affix-count/g)).toHaveLength(1);
   });
 
   it('links known equipment to localized static details with only initial Light Cone state', () => {
@@ -219,8 +214,8 @@ describe('Player Character presentation', () => {
     expect(body).toContain('href="/en/relics/103/"');
     expect(body).toContain('compact-entity-card__aside');
     expect(body).toContain('data-relic-icon-presentation="header"');
-    expect(body).toMatch(/player-relic-card__level[^>]*style="color: #c77dff[^"]*"[^>]*>\+15/);
-    expect(body).toContain('player-affix-row--main');
+    expect(body).toMatch(/data-player-relic-level[^>]*style="color: #c77dff[^"]*"[^>]*>\+15/);
+    expect(body).toContain('data-affix-presentation="main"');
   });
 
   it('renders explicit empty equipment states without collapsing relic slots', () => {
@@ -291,7 +286,7 @@ describe('Player Character presentation', () => {
     const body = render(PlayerStatsPanel, { props }).body;
 
     expect(body).not.toContain('aria-pressed=');
-    expect(body).toMatch(/<small class="skill-effect-tag">[^<]+<\/small>/);
+    expect(body).toMatch(/<span[^>]*class="[^"]*skill-effect-tag[^"]*"[^>]*>/);
     expect(body.indexOf('skill-effect-tag')).toBeLessThan(body.indexOf('Lv.80'));
     expect(body).not.toContain('elation_dmg</span>');
     expect(body).toContain('124.4%');
@@ -303,7 +298,7 @@ describe('Player Character presentation', () => {
 
     overwriteGetLocale(() => 'en');
     const englishBody = render(PlayerStatsPanel, { props }).body;
-    expect(englishBody).toMatch(/<small class="skill-effect-tag">[^<]+<\/small>/);
+    expect(englishBody).toMatch(/<span[^>]*class="[^"]*skill-effect-tag[^"]*"[^>]*>/);
     expect(englishBody).toContain('data-player-stat="elation_dmg"');
     expect(englishBody).not.toContain('elation_dmg</span>');
   });
@@ -449,7 +444,7 @@ describe('Player Hero stat composition', () => {
     expect(body).toContain('data-player-stats-panel');
     expect(body).not.toContain('data-player-stat-column');
     expect(body).not.toContain('data-player-stat=');
-    expect(body).toMatch(/<input[^>]*disabled/);
+    expect(body).toMatch(/<span(?=[^>]*role="slider")(?=[^>]*aria-disabled="true")/);
     expect(body).toMatch(/<label[^>]*for="synthetic-player-level"/);
     expect(body.indexOf('skill-effect-tag')).toBeLessThan(body.indexOf('Lv.70'));
     expect(body).toContain('data-placeholder');
@@ -495,8 +490,10 @@ describe('Light Cone detail initial state', () => {
     }).body;
 
     expect(statsBody).toContain('Lv.37');
-    expect(statsBody).not.toMatch(/<input[^>]*disabled/);
+    expect(statsBody).not.toMatch(/<span(?=[^>]*role="slider")(?=[^>]*aria-disabled="true")/);
     expect(superimpositionBody).toContain('Lv.3');
-    expect(superimpositionBody).not.toMatch(/<input[^>]*disabled/);
+    expect(superimpositionBody).not.toMatch(
+      /<span(?=[^>]*role="slider")(?=[^>]*aria-disabled="true")/
+    );
   });
 });

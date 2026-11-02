@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Badge } from '$lib/components/ui/badge';
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
@@ -25,10 +26,11 @@
     </div>
   </div>
   <div class="trace-card__tags">
-    <span class="skill-effect-tag">{m.trace_extra_ability()}</span>
-    {#if playerState === 'unresolved'}<span
-        class="player-progression-state"
-        data-player-state-label={playerState}>{m.player_character_status_unknown()}</span
+    <Badge variant="outline" class="skill-effect-tag text-primary">{m.trace_extra_ability()}</Badge>
+    {#if playerState === 'unresolved'}<Badge
+        variant="outline"
+        class="player-progression-state text-primary"
+        data-player-state-label={playerState}>{m.player_character_status_unknown()}</Badge
       >{/if}
   </div>
 </div>

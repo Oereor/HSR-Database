@@ -52,7 +52,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
       await expect(page.locator('.item-detail-modal')).toHaveCount(1);
       const catalog = fixture<MaterialCatalog>(locale, 'materials');
       const details = fixture<MaterialDetailCatalog>(locale, 'material-details');
-      await expect(modal(page).locator('h2')).toHaveText(
+      await expect(modal(page).getByRole('heading', { level: 2 })).toHaveText(
         plain(catalog.materials.find((item) => item.id === '2')!.name)
       );
       await expect(modal(page).locator('.item-detail-modal__description')).toHaveText(
@@ -74,7 +74,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
       await expect(modal(page)).not.toBeVisible();
       await expect(credits).toBeFocused();
       expect(await page.evaluate(() => window.scrollY)).toBe(scrollY);
-      expect(await page.evaluate(() => document.body.style.overflow)).not.toBe('hidden');
+      await expect.poll(() => page.evaluate(() => document.body.style.overflow)).not.toBe('hidden');
 
       await cell(page, 'upgrade').click();
       await expect(modal(page)).toHaveAttribute('data-item-detail-id', '2');
@@ -89,7 +89,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
       await other.locator('button .training-material__name').click();
       await expect(modal(page)).toHaveAttribute('data-item-detail-id', id);
       await expect(modal(page)).toHaveAttribute('data-item-detail-state', 'ready');
-      await expect(modal(page).locator('h2')).toHaveText(
+      await expect(modal(page).getByRole('heading', { level: 2 })).toHaveText(
         plain(catalog.materials.find((item) => item.id === id)!.name)
       );
       await expect(modal(page).locator('.item-detail-modal__background')).toHaveText(
@@ -100,11 +100,7 @@ for (const locale of ['zh-CN', 'en'] as const) {
       if (testInfo.project.name === 'mobile-chromium')
         expect(text!.y).toBeGreaterThan(visual!.y + visual!.height);
       else expect(text!.x).toBeGreaterThan(visual!.x + visual!.width);
-      expect(
-        await modal(page)
-          .locator('.item-detail-modal__surface')
-          .evaluate((node) => node.scrollWidth <= node.clientWidth)
-      ).toBe(true);
+      expect(await modal(page).evaluate((node) => node.scrollWidth <= node.clientWidth)).toBe(true);
       await modal(page).screenshot({ path: testInfo.outputPath(`material-detail-${locale}.png`) });
       await page.mouse.click(2, 2);
       await expect(modal(page)).not.toBeVisible();
@@ -127,7 +123,7 @@ test('a failed detail request remains distinct from empty metadata and retries w
   const before = await trainingSnapshot(page);
   await cell(page).click();
   await expect(modal(page)).toHaveAttribute('data-item-detail-state', 'error');
-  await expect(modal(page).locator('h2')).toBeVisible();
+  await expect(modal(page).getByRole('heading', { level: 2 })).toBeVisible();
   await modal(page).locator('.item-detail-modal__retry').click();
   await expect(modal(page)).toHaveAttribute('data-item-detail-state', 'ready');
   expect(attempts).toBe(2);
@@ -160,7 +156,7 @@ test('closing before a response and selecting another material never reopens or 
   release();
   await expect(modal(page)).toHaveAttribute('data-item-detail-state', 'ready');
   const catalog = fixture<MaterialCatalog>('zh-CN', 'materials');
-  await expect(modal(page).locator('h2')).toHaveText(
+  await expect(modal(page).getByRole('heading', { level: 2 })).toHaveText(
     plain(catalog.materials.find((item) => item.id === id)!.name)
   );
   await page.keyboard.press('Escape');
@@ -216,7 +212,7 @@ test('navigation and locale changes discard open item state and keep the request
   await response;
   await expect(modal(page)).toHaveAttribute('data-item-detail-state', 'ready');
   const en = fixture<MaterialCatalog>('en', 'materials');
-  await expect(modal(page).locator('h2')).toHaveText(
+  await expect(modal(page).getByRole('heading', { level: 2 })).toHaveText(
     plain(en.materials.find((item) => item.id === '2')!.name)
   );
 });

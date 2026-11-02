@@ -1,4 +1,7 @@
 <script lang="ts">
+  import * as Empty from '$lib/components/ui/empty';
+  import * as Alert from '$lib/components/ui/alert';
+  import { Spinner } from '$lib/components/ui/spinner';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import CharacterOverviewCard from '$lib/components/character/CharacterOverviewCard.svelte';
@@ -140,10 +143,14 @@
   <meta name="description" content={m.player_meta_description()} />
 </svelte:head>
 
-<header class="player-page__heading">
+<header class="player-page__heading mb-6 max-w-[760px]">
   <p class="kicker">{m.player_eyebrow()}</p>
-  <h1>{m.player_title()}</h1>
-  <p>{m.player_description()}</p>
+  <h1
+    class="text-foreground m-0 mb-3 text-[clamp(1.75rem,4vw,2.5rem)] leading-tight font-semibold wrap-anywhere"
+  >
+    {m.player_title()}
+  </h1>
+  <p class="text-muted-foreground m-0 text-sm leading-relaxed">{m.player_description()}</p>
 </header>
 
 <PlayerUidForm
@@ -154,34 +161,48 @@
   onInput={() => (localError = null)}
 />
 
-<p class="player-page__data-source">
+<p class="player-page__data-source text-muted-foreground m-0 mb-6 text-xs leading-relaxed">
   {m.player_data_source_prefix()}<a href="https://enka.network/">Enka.Network</a
   >{m.player_data_source_suffix()}
 </p>
 
 {#if state === 'idle'}
-  <section class="player-query-state" aria-live="polite">
-    <p>{m.player_idle()}</p>
-  </section>
+  <Empty.Root class="player-query-state min-h-24 border p-4 md:p-4" aria-live="polite">
+    <Empty.Description>{m.player_idle()}</Empty.Description>
+  </Empty.Root>
 {:else if state === 'loading'}
-  <section class="player-query-state" role="status" aria-live="polite">
-    <span class="player-query-state__indicator" aria-hidden="true"></span>
-    <p>{m.player_loading()}</p>
-  </section>
+  <Empty.Root
+    class="player-query-state min-h-24 flex-row gap-3 border p-4 md:p-4"
+    role="status"
+    aria-live="polite"
+  >
+    <Spinner
+      class="text-primary shrink-0"
+      aria-hidden="true"
+      role={undefined}
+      aria-label={undefined}
+    />
+    <Empty.Description>{m.player_loading()}</Empty.Description>
+  </Empty.Root>
 {:else if state === 'error'}
-  <section class="player-query-state player-query-state--error" aria-live="assertive">
-    <p>{requestErrorMessage}</p>
-  </section>
+  <Alert.Root
+    class="player-query-state player-query-state--error"
+    variant="destructive"
+    role={undefined}
+    aria-live="assertive"
+  >
+    <Alert.Description>{requestErrorMessage}</Alert.Description>
+  </Alert.Root>
 {:else if profile}
   <PlayerHero {profile} {avatarUrl} />
 
-  <section class="player-characters" aria-labelledby="player-support-characters">
+  <section class="player-characters mt-8 min-w-0" aria-labelledby="player-support-characters">
     <SectionHeading level={1} id="player-support-characters">
       {m.player_support_characters()}
     </SectionHeading>
 
     {#if supportCharacters.length}
-      <div class="player-characters__support-grid">
+      <OverviewGrid variant="character">
         {#each supportCharacters as item (item.character.buildId)}
           {#if item.entry}
             <CharacterOverviewCard
@@ -198,13 +219,15 @@
             <UnknownPlayerCharacterCard characterId={item.character.characterId} />
           {/if}
         {/each}
-      </div>
+      </OverviewGrid>
     {:else}
-      <p class="player-characters__empty">{m.player_support_characters_empty()}</p>
+      <Empty.Root class="player-characters__empty border p-4 md:p-4"
+        ><Empty.Description>{m.player_support_characters_empty()}</Empty.Description></Empty.Root
+      >
     {/if}
   </section>
 
-  <section class="player-characters" aria-labelledby="player-companion-characters">
+  <section class="player-characters mt-8 min-w-0" aria-labelledby="player-companion-characters">
     <SectionHeading level={1} id="player-companion-characters">
       {m.player_companion_characters()}
     </SectionHeading>
@@ -229,84 +252,9 @@
         {/each}
       </OverviewGrid>
     {:else}
-      <p class="player-characters__empty">{m.player_companion_characters_empty()}</p>
+      <Empty.Root class="player-characters__empty border p-4 md:p-4"
+        ><Empty.Description>{m.player_companion_characters_empty()}</Empty.Description></Empty.Root
+      >
     {/if}
   </section>
 {/if}
-
-<style>
-  .player-page__heading {
-    max-width: 760px;
-    margin-bottom: var(--space-8);
-  }
-
-  .player-page__heading h1 {
-    margin: 0 0 var(--space-3);
-    font-size: clamp(2rem, 5vw, 3.4rem);
-  }
-
-  .player-page__heading > p:last-child {
-    margin: 0;
-    color: var(--text-secondary);
-  }
-
-  .player-page__data-source {
-    margin: calc(var(--space-3) * -1) 0 var(--space-6);
-    color: var(--muted);
-    font-size: var(--font-internal);
-  }
-
-  .player-query-state {
-    display: flex;
-    min-height: 120px;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-3);
-    border: 1px dashed var(--border);
-    border-radius: var(--radius-lg);
-    color: var(--text-secondary);
-    text-align: center;
-  }
-
-  .player-query-state p {
-    margin: 0;
-  }
-
-  .player-query-state--error {
-    border-color: rgb(239 137 137 / 36%);
-    padding: var(--space-4);
-  }
-
-  .player-query-state__indicator {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--gold);
-    box-shadow: 0 0 0 6px rgb(215 181 109 / 12%);
-  }
-
-  .player-characters {
-    margin-top: var(--space-8);
-  }
-
-  .player-characters__support-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.85rem;
-  }
-
-  .player-characters__empty {
-    margin: var(--space-4) 0 0;
-    border: 1px dashed var(--border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-4);
-    color: var(--muted);
-    text-align: center;
-  }
-
-  @media (min-width: 821px) {
-    .player-characters__support-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-</style>

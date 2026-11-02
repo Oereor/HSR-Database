@@ -18,7 +18,7 @@
 <section
   class:endgame-wave-group--full-row={fullRow}
   class:endgame-wave-group--separated={separated}
-  class="endgame-wave-group"
+  class="endgame-wave-group relative min-w-0 shrink-0 grow-0"
   style={`--endgame-wave-enemy-count: ${enemyCount}`}
   data-wave={wave.key}
   data-endgame-wave-group
@@ -32,7 +32,6 @@
 
 <style>
   .endgame-wave-group {
-    position: relative;
     width: min(
       100%,
       calc(
@@ -40,8 +39,6 @@
           var(--space-3)
       )
     );
-    min-width: 0;
-    flex: 0 0 auto;
   }
 
   .endgame-wave-group--full-row {

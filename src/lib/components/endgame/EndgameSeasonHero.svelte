@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { Badge } from '$lib/components/ui/badge';
+  import { Separator } from '$lib/components/ui/separator';
   import GameText from '$lib/components/shared/GameText.svelte';
   import type { EndgamePeriodView } from '$lib/domain/endgame-view';
   import { m } from '$lib/paraglide/messages.js';
@@ -6,66 +8,36 @@
   export let period: EndgamePeriodView;
 </script>
 
-<section class="endgame-season-hero" aria-labelledby="endgame-season-title">
-  <p class="endgame-season-hero__eyebrow">{m.endgame_season_id({ id: period.groupId })}</p>
-  <h1 id="endgame-season-title"><GameText text={period.name} /></h1>
-  <p class="endgame-season-hero__meta">
+<section
+  class="endgame-season-hero mb-4 min-w-0 min-[821px]:mb-8"
+  aria-labelledby="endgame-season-title"
+>
+  <p
+    class="endgame-season-hero__eyebrow text-primary m-0 mb-2 text-xs font-semibold tracking-widest"
+  >
+    {m.endgame_season_id({ id: period.groupId })}
+  </p>
+  <h1
+    id="endgame-season-title"
+    class="text-foreground m-0 mb-2 text-xl leading-tight font-bold tracking-tight wrap-anywhere min-[821px]:text-[length:var(--font-section-title)]"
+  >
+    <GameText text={period.name} />
+  </h1>
+  <div
+    class="endgame-season-hero__meta text-muted-foreground flex min-w-0 flex-wrap items-center gap-2 text-sm leading-relaxed wrap-anywhere"
+  >
     <span>{period.dateLabel}</span>
     {#if period.status === 'current'}
-      <span class="endgame-inline-status">{m.endgame_period_current()}</span>
+      <Badge variant="outline" class="endgame-inline-status text-primary border-primary/30"
+        >{m.endgame_period_current()}</Badge
+      >
     {:else if period.status === 'upcoming'}
-      <span class="endgame-inline-status endgame-inline-status--upcoming"
-        >{m.endgame_period_upcoming()}</span
+      <Badge
+        variant="outline"
+        class="endgame-inline-status endgame-inline-status--upcoming text-[#9fc4ff]"
+        >{m.endgame_period_upcoming()}</Badge
       >
     {/if}
-  </p>
+  </div>
+  <Separator class="mt-4 min-[821px]:mt-6" />
 </section>
-
-<style>
-  .endgame-season-hero {
-    min-width: 0;
-    margin-bottom: var(--space-8);
-    border-bottom: 1px solid var(--surface-border);
-    padding: 0 0 var(--space-6);
-  }
-
-  .endgame-season-hero__eyebrow {
-    margin: 0 0 var(--space-2);
-    color: var(--gold);
-    font-size: var(--font-internal);
-    font-weight: 750;
-    letter-spacing: 0.08em;
-  }
-
-  .endgame-season-hero h1 {
-    margin: 0 0 var(--space-2);
-    color: var(--text-primary);
-    font-size: var(--font-section-title);
-    font-weight: 800;
-    letter-spacing: -0.025em;
-    line-height: 1.2;
-    overflow-wrap: anywhere;
-  }
-
-  .endgame-season-hero__meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--space-2);
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: var(--font-body);
-    line-height: 1.5;
-  }
-
-  @media (max-width: 820px) {
-    .endgame-season-hero {
-      margin-bottom: var(--space-4);
-      padding-bottom: var(--space-4);
-    }
-
-    .endgame-season-hero h1 {
-      font-size: var(--font-card-category);
-    }
-  }
-</style>

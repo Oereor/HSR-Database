@@ -1,10 +1,11 @@
+import { setSliderValue } from '../helpers/slider';
 import { expect, test } from '@playwright/test';
 
 test('Enemy Detail 中英文直达均恢复 compact stats', async ({ page }) => {
   for (const detailPath of ['/enemies/8034010/', '/en/enemies/8034010/'] as const) {
     await page.goto(detailPath);
     await expect(page).toHaveURL(new RegExp(`${detailPath}$`));
-    await expect(page.getByRole('slider')).toHaveValue('95');
+    await expect(page.getByRole('slider')).toHaveAttribute('data-value', '95');
     await expect(page.locator('[data-enemy-stat]')).toHaveCount(7);
     await expect(page.locator('[data-enemy-stat="hp"]')).toContainText('657,149');
   }
@@ -114,8 +115,8 @@ test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时�
   await expect(defaultBadge).toBeVisible();
 
   const slider = page.locator('#enemy-level-1002015');
-  await expect(slider).toHaveValue('95');
-  await slider.fill('60');
+  await expect(slider).toHaveAttribute('data-value', '95');
+  await setSliderValue(slider, '60');
   const canonicalHp = await page.locator('[data-enemy-stat="hp"] strong').textContent();
   await quantumVariant.click();
   await expect(quantumVariant).toHaveAttribute('aria-checked', 'true');
@@ -123,7 +124,7 @@ test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时�
   await expect(canonical).toHaveAttribute('aria-checked', 'false');
   await expect(defaultBadge).toBeVisible();
   await expect(quantumVariant.locator('small')).toHaveCount(0);
-  await expect(slider).toHaveValue('60');
+  await expect(slider).toHaveAttribute('data-value', '60');
   await expect(page.locator('[data-enemy-stat="hp"] strong')).not.toHaveText(canonicalHp ?? '');
 
   const weaknesses = page.locator(
@@ -157,7 +158,7 @@ test('单 Monster 页面保留紧凑单项 selector、默认标记与共享实�
   await expect(option).toHaveAttribute('aria-checked', 'true');
   await expect(page.locator('.enemy-selected-monster-heading')).toHaveCount(0);
   await expect(page.locator('[data-enemy-stat]')).toHaveCount(7);
-  await expect(page.locator('#enemy-level-1004011')).toHaveValue('95');
+  await expect(page.locator('#enemy-level-1004011')).toHaveAttribute('data-value', '95');
   await expect(page.locator('.enemy-battle-column--stats .hero-stat-list')).toHaveAttribute(
     'aria-label',
     /\S/
@@ -232,18 +233,18 @@ test('Skill Browser 保留阶段筛选、技能顺序与本地选择状态', asy
   const scrollBeforeSelection = await page.evaluate(() => window.scrollY);
   await sharedOption.click();
   expect(await page.evaluate(() => window.scrollY)).toBe(scrollBeforeSelection);
-  await expect(sharedOption).toHaveAttribute('aria-pressed', 'true');
+  await expect(sharedOption).toHaveAttribute('aria-checked', 'true');
   await expect(page.locator('[data-enemy-skill-detail="803401002"]')).toBeVisible();
   await expect(page).not.toHaveURL(/#enemy-skill-/);
   await expect(sharedOption).toBeFocused();
-  await page.keyboard.press('Tab');
+  await page.keyboard.press('ArrowDown');
   const nextOption = selector.locator('[data-enemy-skill-option="803401003"]');
   await expect(nextOption).toBeFocused();
   await page.keyboard.press('Enter');
-  await expect(nextOption).toHaveAttribute('aria-pressed', 'true');
+  await expect(nextOption).toHaveAttribute('aria-checked', 'true');
   await sharedOption.click();
   await phase2.click();
-  await expect(sharedOption).toHaveAttribute('aria-pressed', 'true');
+  await expect(sharedOption).toHaveAttribute('aria-checked', 'true');
   await expect(page.locator('[data-enemy-skill-detail="803401002"]')).toBeVisible();
   await expect(selector.locator('[data-enemy-skill-option="803401004"]')).toHaveCount(0);
   await phase1.click();
@@ -252,7 +253,7 @@ test('Skill Browser 保留阶段筛选、技能顺序与本地选择状态', asy
   await page.keyboard.press('ArrowRight');
   await expect(phase2).toBeFocused();
   await expect(selector.locator('[data-enemy-skill-option="803401001"]')).toHaveAttribute(
-    'aria-pressed',
+    'aria-checked',
     'true'
   );
 
@@ -269,7 +270,7 @@ test('同一技能跨 Monster 保持选择并更新有效倍率', async ({ page 
   await expect(selected.locator('[data-damage-target="primary"]')).toContainText('450%');
   await page.locator('[data-monster-option="403501001"]').click();
   await expect(page.locator('[data-enemy-skill-option="403501001"]')).toHaveAttribute(
-    'aria-pressed',
+    'aria-checked',
     'true'
   );
   await expect(selected.locator('[data-damage-target="primary"]')).toContainText('400%');
@@ -372,7 +373,7 @@ test('Skill Browser 紧凑数值列、图标槽和长文本在双语不同宽度
       const chanceOption = selector.locator('[data-enemy-skill-option="200401004"]');
       await chanceOption.focus();
       await page.keyboard.press('Enter');
-      await expect(chanceOption).toHaveAttribute('aria-pressed', 'true');
+      await expect(chanceOption).toHaveAttribute('aria-checked', 'true');
       await expect(chanceOption).toBeFocused();
 
       await selector.locator('[data-enemy-skill-option="200401002"]').click();

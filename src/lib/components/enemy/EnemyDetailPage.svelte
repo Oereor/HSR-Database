@@ -1,4 +1,5 @@
 <script lang="ts">
+  import * as Card from '$lib/components/ui/card';
   import EnemySkillBrowser from './EnemySkillBrowser.svelte';
   import EnemyStatsPanel from './EnemyStatsPanel.svelte';
   import EnemyTemplateBaseStatsPanel from './EnemyTemplateBaseStatsPanel.svelte';
@@ -84,39 +85,41 @@
   ] as const;
 </script>
 
-<header class="detail-profile-hero detail-profile-hero--enemy" data-enemy-hero>
-  <div class="detail-profile-hero__identity">
-    <DetailArtwork
-      source={detail.portraitUrl}
-      width={376}
-      height={512}
-      fit="contain"
-      data-enemy-portrait={detail.template.monsterTemplateId}
-    />
-    <div class="detail-profile-hero__gradient" aria-hidden="true"></div>
-    <div class="hero-identity-copy">
-      <p class="kicker">{m.enemy_kicker({ id: detail.template.monsterTemplateId })}</p>
-      <h1><GameText text={detail.template.name} /></h1>
-      <div class="hero-identity-metadata">
-        <EnemyRankTag label={getEnemyRankLabel(detail.template.rank)} />
-      </div>
-      <div class="hero-description">
-        {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
-            class="muted"
-          >
-            {m.detail_intro_unavailable()}
-          </p>{/if}
+<Card.Root class="gap-0 overflow-hidden p-0 shadow-none">
+  <header class="detail-profile-hero detail-profile-hero--enemy" data-enemy-hero>
+    <div class="detail-profile-hero__identity">
+      <DetailArtwork
+        source={detail.portraitUrl}
+        width={376}
+        height={512}
+        fit="contain"
+        data-enemy-portrait={detail.template.monsterTemplateId}
+      />
+      <div class="detail-profile-hero__gradient" aria-hidden="true"></div>
+      <div class="hero-identity-copy">
+        <p class="kicker">{m.enemy_kicker({ id: detail.template.monsterTemplateId })}</p>
+        <h1><GameText text={detail.template.name} /></h1>
+        <div class="hero-identity-metadata">
+          <EnemyRankTag label={getEnemyRankLabel(detail.template.rank)} />
+        </div>
+        <div class="hero-description">
+          {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
+              class="muted"
+            >
+              {m.detail_intro_unavailable()}
+            </p>{/if}
+        </div>
       </div>
     </div>
-  </div>
-  <aside
-    id="stats"
-    class="detail-profile-hero__inspection section-nav-target hero-basic-data-pane"
-    aria-label={m.enemy_template_stats_aria()}
-  >
-    <EnemyTemplateBaseStatsPanel baseStats={detail.template.baseStats} />
-  </aside>
-</header>
+    <aside
+      id="stats"
+      class="detail-profile-hero__inspection section-nav-target hero-basic-data-pane"
+      aria-label={m.enemy_template_stats_aria()}
+    >
+      <EnemyTemplateBaseStatsPanel baseStats={detail.template.baseStats} />
+    </aside>
+  </header>
+</Card.Root>
 
 <SectionNav items={sectionNavItems} />
 

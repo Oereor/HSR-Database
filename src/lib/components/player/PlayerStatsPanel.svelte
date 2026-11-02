@@ -83,8 +83,8 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
-    gap: var(--space-6);
-    margin-top: var(--space-6);
+    gap: var(--space-4);
+    margin-top: var(--space-4);
   }
 
   @container player-hero-stats (min-width: 28rem) {
