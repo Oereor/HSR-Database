@@ -1,6 +1,9 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
-  import { onDestroy, onMount, tick } from 'svelte';
+  import { onMount } from 'svelte';
+  import { afterNavigate } from '$app/navigation';
+  import * as Dialog from '$lib/components/ui/dialog';
+  import { Button } from '$lib/components/ui/button';
   import {
     formatChangelogDate,
     loadChangelogEntries,
@@ -19,33 +22,13 @@
   let changelogEntries: ChangelogEntry[] = [];
   let loadedLocale: Locale | undefined;
 
-  let dialog: HTMLDialogElement;
-  let closeButton: HTMLButtonElement;
-  let surface: HTMLElement;
-  let scrollLocked = false;
-  let previousBodyOverflow = '';
-  let previousRootOverflow = '';
-
-  function lockScroll() {
-    if (scrollLocked) return;
-    previousBodyOverflow = document.body.style.overflow;
-    previousRootOverflow = document.documentElement.style.overflow;
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-    scrollLocked = true;
-  }
-
-  function unlockScroll() {
-    if (!scrollLocked) return;
-    document.body.style.overflow = previousBodyOverflow;
-    document.documentElement.style.overflow = previousRootOverflow;
-    scrollLocked = false;
-  }
-
-  async function focusCloseButton() {
-    await tick();
-    closeButton?.focus();
-  }
+  let isOpen = false;
+  let returnFocus: HTMLElement | undefined;
+  let requestVersion = 0;
+  afterNavigate(() => {
+    requestVersion++;
+    isOpen = false;
+  });
 
   async function ensureEntries() {
     const requestedLocale = locale;
@@ -56,15 +39,15 @@
   }
 
   export async function open() {
+    const version = requestVersion;
+    const active = document.activeElement;
     if (loadedLocale !== locale) await ensureEntries();
-    if (dialog?.open) return;
-    lockScroll();
-    dialog.showModal();
-    void focusCloseButton();
+    if (version !== requestVersion || isOpen) return;
+    returnFocus = active instanceof HTMLElement ? active : undefined;
+    isOpen = true;
   }
-
   function close() {
-    if (dialog?.open) dialog.close();
+    isOpen = false;
   }
 
   function dismissToday() {
@@ -73,27 +56,6 @@
       localDateKey()
     );
     close();
-  }
-
-  function handleCancel(event: Event) {
-    event.preventDefault();
-    close();
-  }
-
-  function handleBackdropClick(event: MouseEvent) {
-    if (event.target !== dialog) return;
-    const bounds = surface.getBoundingClientRect();
-    if (
-      event.clientX < bounds.left ||
-      event.clientX > bounds.right ||
-      event.clientY < bounds.top ||
-      event.clientY > bounds.bottom
-    )
-      close();
-  }
-
-  function handleClose() {
-    unlockScroll();
   }
 
   onMount(() => {
@@ -110,34 +72,39 @@
     }
     if (shouldAutoOpenChangelog(changelogEntries.length, dismissedDate)) await open();
   }
-
-  onDestroy(unlockScroll);
 </script>
 
-<dialog
-  class="changelog-dialog"
-  aria-labelledby="changelog-dialog-title"
-  bind:this={dialog}
-  on:cancel={handleCancel}
-  on:close={handleClose}
-  on:click={handleBackdropClick}
->
-  <section class="changelog-dialog__surface" bind:this={surface}>
-    <header class="changelog-dialog__header">
+<Dialog.Root bind:open={isOpen}>
+  <Dialog.Content
+    showCloseButton={false}
+    aria-describedby={undefined}
+    class="changelog-dialog flex max-h-[calc(100dvh-2rem)] flex-col gap-0 overflow-hidden p-0 sm:max-w-3xl"
+    onCloseAutoFocus={(event) => {
+      if (returnFocus?.isConnected) {
+        event.preventDefault();
+        returnFocus.focus({ preventScroll: true });
+      }
+      returnFocus = undefined;
+    }}
+  >
+    <header
+      class="border-border flex shrink-0 items-start justify-between gap-4 border-b p-4 sm:p-6"
+    >
       <div>
         <p class="kicker">{m.changelog_eyebrow()}</p>
-        <h2 id="changelog-dialog-title">{m.changelog_title()}</h2>
+        <Dialog.Title id="changelog-dialog-title" class="text-xl"
+          >{m.changelog_title()}</Dialog.Title
+        >
       </div>
-      <button
+      <Button
+        variant="ghost"
+        size="icon"
         class="changelog-dialog__close"
-        type="button"
         aria-label={m.changelog_close_aria()}
-        bind:this={closeButton}
-        on:click={close}>×</button
+        onclick={close}>×</Button
       >
     </header>
-
-    <div class="changelog-dialog__content">
+    <div class="changelog-dialog__content min-h-0 overflow-y-auto overscroll-contain p-4 sm:p-6">
       {#if changelogEntries.length}
         {#each changelogEntries as entry (entry.id)}
           <article class="changelog-entry">
@@ -155,185 +122,48 @@
       {/if}
     </div>
 
-    <footer class="changelog-dialog__footer">
-      <button type="button" class="changelog-dialog__today" on:click={dismissToday}
-        >{m.changelog_dismiss_today()}</button
+    <div class="border-border flex shrink-0 flex-wrap justify-end gap-2 border-t p-4">
+      <Button variant="outline" class="changelog-dialog__today" onclick={dismissToday}
+        >{m.changelog_dismiss_today()}</Button
       >
-      <button type="button" class="button-primary" on:click={close}>{m.common_close()}</button>
-    </footer>
-  </section>
-</dialog>
+      <Button class="button-primary" onclick={close}>{m.common_close()}</Button>
+    </div>
+  </Dialog.Content>
+</Dialog.Root>
 
 <style>
-  .changelog-dialog {
-    width: min(44rem, calc(100vw - 2rem));
-    max-width: none;
-    max-height: min(44rem, calc(100vh - 2rem));
-    margin: auto;
-    overflow: hidden;
-    border: 1px solid var(--border-strong);
-    border-radius: var(--radius-lg);
-    background: var(--surface);
-    color: var(--text);
-    box-shadow: 0 24px 80px rgb(0 0 0 / 42%);
-    padding: 0;
-  }
-
-  .changelog-dialog::backdrop {
-    background: rgb(3 5 10 / 72%);
-    backdrop-filter: blur(6px);
-  }
-
-  .changelog-dialog__surface {
-    display: grid;
-    max-height: min(44rem, calc(100vh - 2rem));
-    grid-template-rows: auto minmax(0, 1fr) auto;
-  }
-
-  .changelog-dialog__header,
-  .changelog-dialog__footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    background: rgb(14 20 34 / 96%);
-    padding: 1.25rem 1.4rem;
-  }
-
-  .changelog-dialog__header {
-    border-bottom: 1px solid var(--border);
-  }
-
-  .changelog-dialog__header h2 {
-    margin: 0;
-    font-size: 1.55rem;
-  }
-
-  .changelog-dialog__header .kicker {
-    margin-bottom: 0.25rem;
-  }
-
-  .changelog-dialog__close {
-    display: grid;
-    width: 2.5rem;
-    height: 2.5rem;
-    place-items: center;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: transparent;
-    color: var(--text-secondary);
-    font-size: 1.5rem;
-    line-height: 1;
-  }
-
-  .changelog-dialog__close:hover {
-    border-color: var(--border-strong);
-    color: var(--gold-soft);
-  }
-
-  .changelog-dialog__content {
-    min-height: 0;
-    overflow-y: auto;
-    padding: 0.35rem 1.4rem;
-  }
-
-  .changelog-entry {
-    padding: 1.15rem 0;
-  }
-
   .changelog-entry + .changelog-entry {
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
     border-top: 1px solid var(--border);
   }
-
   .changelog-entry__heading {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
-    gap: 1rem;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
   }
-
   .changelog-entry__heading h3 {
     margin: 0;
-    font-size: 1.22rem;
-    font-weight: 750;
+    font-size: var(--font-major-title);
   }
-
   .changelog-entry__heading time {
-    flex: 0 0 auto;
-    color: var(--text-muted);
-    font-size: 0.78rem;
+    color: var(--text-secondary);
+    font-size: var(--font-helper);
   }
-
   .changelog-entry__body :global(p),
+  .changelog-entry__body :global(li) {
+    color: var(--text-body);
+    line-height: 1.7;
+  }
   .changelog-entry__body :global(ul),
   .changelog-entry__body :global(ol) {
-    margin: 0.7rem 0 0;
+    padding-left: 1.5rem;
   }
-
-  .changelog-entry__body {
-    font-size: 0.9rem;
-  }
-
-  .changelog-entry__body :global(ul),
-  .changelog-entry__body :global(ol) {
-    padding-left: 1.3rem;
-  }
-
   .changelog-entry__body :global(a) {
     color: var(--gold-soft);
     text-decoration: underline;
-    text-underline-offset: 0.16em;
-  }
-
-  .changelog-dialog__empty {
-    margin: 1.5rem 0;
-  }
-
-  .changelog-dialog__footer {
-    justify-content: flex-end;
-    border-top: 1px solid var(--border);
-  }
-
-  .changelog-dialog__today,
-  .button-primary {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-control);
-    padding: 0.65rem 0.9rem;
-  }
-
-  .changelog-dialog__today {
-    background: transparent;
-    color: var(--text-secondary);
-  }
-
-  .button-primary {
-    border-color: var(--gold);
-    background: var(--gold);
-    color: #15120b;
-    font-weight: 700;
-  }
-
-  @media (max-width: 560px) {
-    .changelog-dialog {
-      width: calc(100vw - 1rem);
-      max-height: calc(100vh - 1rem);
-    }
-
-    .changelog-dialog__surface {
-      max-height: calc(100vh - 1rem);
-    }
-
-    .changelog-dialog__header,
-    .changelog-dialog__footer,
-    .changelog-dialog__content {
-      padding-right: 1rem;
-      padding-left: 1rem;
-    }
-
-    .changelog-entry__heading {
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
   }
 </style>

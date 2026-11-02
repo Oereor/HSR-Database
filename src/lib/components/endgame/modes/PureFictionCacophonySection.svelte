@@ -6,12 +6,9 @@
   export let cacophony: PureFictionCacophonyView;
 </script>
 
-<section class="endgame-mechanics-section pf-cacophony" data-endgame-mechanics="cacophony">
+<section
+  class="endgame-mechanics-section pf-cacophony mb-6 min-w-0"
+  data-endgame-mechanics="cacophony"
+>
   <BuffOptionGroup title={m.endgame_cacophony()} options={cacophony.options} headingLevel={2} />
 </section>
-
-<style>
-  .pf-cacophony {
-    min-width: 0;
-  }
-</style>

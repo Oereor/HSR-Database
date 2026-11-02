@@ -38,8 +38,10 @@
   <svelte:fragment slot="artwork"><EndgameOverviewHeroArtwork /></svelte:fragment>
 </OverviewHero>
 
-<div class="endgame-overview-sections">
-  <div class="endgame-overview-grid">
+<div class="endgame-overview-sections @container/endgame grid min-w-0 gap-4">
+  <div
+    class="endgame-overview-grid grid min-w-0 grid-cols-1 gap-4 @min-[48rem]/endgame:grid-cols-3"
+  >
     {#each regularModes as mode (mode.mode)}
       <EndgameOverviewCard {mode} />
     {/each}
@@ -51,22 +53,3 @@
     </div>
   {/if}
 </div>
-
-<style>
-  .endgame-overview-sections {
-    display: grid;
-    gap: var(--space-6);
-  }
-
-  .endgame-overview-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--space-4);
-  }
-
-  @media (max-width: 959px) {
-    .endgame-overview-grid {
-      grid-template-columns: minmax(0, 1fr);
-    }
-  }
-</style>

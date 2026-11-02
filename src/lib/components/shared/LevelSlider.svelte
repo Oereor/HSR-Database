@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { Label } from '$lib/components/ui/label';
+  import { Slider } from '$lib/components/ui/slider';
+  import { Badge } from '$lib/components/ui/badge';
   import { m } from '$lib/paraglide/messages.js';
 
   export let id: string;
@@ -15,31 +18,44 @@
   export let leadingTag: string | undefined = undefined;
 
   $: resolvedDisplayValue = displayValue ?? value;
-  $: progress = max > min ? Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100)) : 100;
 </script>
 
 <div class:skill-level-control--readonly={!interactive} class="skill-level-control">
   <div>
-    <label for={id}>{label}</label>
+    <Label id={`${id}-label`} for={id} onclick={() => document.getElementById(id)?.focus()}
+      >{label}</Label
+    >
     <span class="skill-level-control__value">
-      {#if leadingTag}<small class="skill-effect-tag">{leadingTag}</small>{/if}
+      {#if leadingTag}<Badge variant="outline" class="skill-effect-tag text-primary"
+          >{leadingTag}</Badge
+        >{/if}
       <output for={id}>Lv.{resolvedDisplayValue}</output>
     </span>
   </div>
-  <input
-    {id}
-    type="range"
+  <Slider
+    type="single"
+    class="my-3"
+    bind:value
     {min}
     {max}
     {step}
-    bind:value
-    on:input={(event) => onValueChange?.(Number(event.currentTarget.value))}
     disabled={!interactive}
-    aria-valuemin={ariaValueMin}
-    aria-valuemax={ariaValueMax}
-    aria-valuenow={resolvedDisplayValue}
-    aria-valuetext={m.common_level({ level: resolvedDisplayValue })}
-    style={`--level-progress: ${progress}%`}
+    onValueChange={(next) => {
+      value = next;
+      onValueChange?.(next);
+    }}
+    thumbProps={{
+      id,
+      'aria-labelledby': `${id}-label`,
+      'aria-valuemin': ariaValueMin,
+      'aria-valuemax': ariaValueMax,
+      'aria-valuenow': resolvedDisplayValue,
+      'aria-valuetext': m.common_level({ level: resolvedDisplayValue }),
+      'data-value': value,
+      'data-slider-min': min,
+      'data-slider-max': max,
+      'data-slider-step': step
+    }}
   />
   <div class="skill-level-range" aria-hidden="true">
     <span>Lv.{ariaValueMin}</span><span>Lv.{ariaValueMax}</span>

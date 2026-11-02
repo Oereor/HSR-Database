@@ -7,6 +7,6 @@
   $: content = { kind: 'description' as const, description: mechanic.description };
 </script>
 
-<section class="endgame-mechanics-section" data-endgame-mechanics="aftertaste">
+<section class="endgame-mechanics-section mb-6 min-w-0" data-endgame-mechanics="aftertaste">
   <MechanicSectionCard title={mechanic.name} {content} headingLevel={2} />
 </section>

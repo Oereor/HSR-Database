@@ -1,32 +1,14 @@
 <script lang="ts">
+  import { Toggle } from '$lib/components/ui/toggle';
   import { gameTextToPlain } from '$lib/domain/game-text';
   export let name: string;
   export let active: boolean;
   export let onToggle: () => void;
 </script>
 
-<button
-  class="trace-toggle"
+<Toggle
+  class="trace-toggle absolute inset-0 z-1 size-full rounded-[inherit] border-0 bg-transparent p-0 hover:bg-transparent aria-pressed:bg-transparent data-[state=on]:bg-transparent"
   type="button"
   aria-label={gameTextToPlain(name)}
-  aria-pressed={active}
-  on:click={onToggle}
-></button>
-
-<style>
-  .trace-toggle {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    border: 0;
-    border-radius: inherit;
-    background: transparent;
-    cursor: pointer;
-  }
-  .trace-toggle:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: 3px;
-  }
-</style>
+  bind:pressed={() => active, () => onToggle()}
+></Toggle>

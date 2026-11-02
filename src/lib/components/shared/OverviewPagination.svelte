@@ -1,4 +1,7 @@
 <script lang="ts">
+  import * as Pagination from '$lib/components/ui/pagination';
+  import ChevronLeftIcon from '@lucide/svelte/icons/chevron-left';
+  import ChevronRightIcon from '@lucide/svelte/icons/chevron-right';
   import { m } from '$lib/paraglide/messages.js';
   export let currentPage = 1;
   export let pages = 1;
@@ -12,60 +15,26 @@
 </script>
 
 {#if pages > 1}
-  <nav class="overview-pagination" aria-label={m.pagination_aria()}>
-    {#if currentPage > 1}<a href={pageUrl(queryString, currentPage - 1)}
-        >{m.pagination_previous()}</a
-      >{/if}
-    <div class="overview-pagination__pages">
+  <Pagination.Root class="overview-pagination my-8" aria-label={m.pagination_aria()}>
+    <Pagination.Content>
+      {#if currentPage > 1}<Pagination.Item
+          ><Pagination.Link href={pageUrl(queryString, currentPage - 1)} size="default" rel="prev"
+            ><ChevronLeftIcon aria-hidden="true" />{m.pagination_previous()}</Pagination.Link
+          ></Pagination.Item
+        >{/if}
       {#each [...Array(pages).keys()] as pageIndex}
-        <a
-          href={pageUrl(queryString, pageIndex + 1)}
-          aria-current={currentPage === pageIndex + 1 ? 'page' : undefined}
+        <Pagination.Item
+          ><Pagination.Link
+            href={pageUrl(queryString, pageIndex + 1)}
+            isActive={currentPage === pageIndex + 1}>{pageIndex + 1}</Pagination.Link
+          ></Pagination.Item
         >
-          {pageIndex + 1}
-        </a>
       {/each}
-    </div>
-    <span>{m.overview_page_count({ currentPage, pages })}</span>
-    {#if currentPage < pages}<a href={pageUrl(queryString, currentPage + 1)}
-        >{m.pagination_next()}</a
-      >{/if}
-  </nav>
+      {#if currentPage < pages}<Pagination.Item
+          ><Pagination.Link href={pageUrl(queryString, currentPage + 1)} size="default" rel="next"
+            >{m.pagination_next()}<ChevronRightIcon aria-hidden="true" /></Pagination.Link
+          ></Pagination.Item
+        >{/if}
+    </Pagination.Content>
+  </Pagination.Root>
 {/if}
-
-<style>
-  .overview-pagination {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    margin: 2.5rem 0;
-    color: var(--muted);
-    font-size: 0.8rem;
-  }
-
-  .overview-pagination a {
-    color: var(--gold);
-  }
-
-  .overview-pagination__pages {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.35rem;
-  }
-
-  .overview-pagination__pages a {
-    min-width: 1.8rem;
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    padding: 0.25rem 0.4rem;
-    text-align: center;
-  }
-
-  .overview-pagination__pages a[aria-current='page'] {
-    border-color: var(--gold);
-    background: rgb(215 181 109 / 10%);
-  }
-</style>

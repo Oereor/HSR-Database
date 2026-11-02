@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { Separator } from '$lib/components/ui/separator';
+  import { cn } from '$lib/utils.js';
   import AssetImage from './AssetImage.svelte';
 
   export let label: string;
@@ -7,109 +9,39 @@
   export let tone: 'default' | 'scaling' | 'unavailable' = 'default';
 </script>
 
-<div {...$$restProps} class="inspection-stat-row hero-stat-row">
-  <dt>
-    <span class="inspection-stat-label">
+<div
+  {...$$restProps}
+  class="inspection-stat-row hero-stat-row group/stat-row relative grid min-h-10 grid-cols-[minmax(0,1fr)_fit-content(50%)] items-center gap-4 py-2"
+>
+  <dt class="text-muted-foreground min-w-0 text-sm wrap-anywhere">
+    <Separator
+      class="bg-border/60 absolute top-0 right-0 left-(--stat-divider-inset) group-first/stat-row:hidden data-horizontal:w-auto"
+    />
+    <span
+      class="inspection-stat-label grid grid-cols-(--stat-label-columns) items-center gap-(--stat-label-gap)"
+    >
       {#if iconUrl}
-        <span class="hero-stat-icon" aria-hidden="true">
-          <AssetImage decorative src={iconUrl} alt="" />
+        <span class="hero-stat-icon flex w-5 items-center justify-center" aria-hidden="true">
+          <AssetImage class="size-4 shrink-0 object-contain" decorative src={iconUrl} alt="" />
         </span>
       {/if}
-      <span class="hero-stat-label-text"><slot name="label">{label}</slot></span>
+      <span class="hero-stat-label-text col-start-[-2] min-w-0"
+        ><slot name="label">{label}</slot></span
+      >
     </span>
   </dt>
-  <dd>
+  <dd class="m-0 min-w-0 text-right wrap-anywhere">
     <strong
+      class={cn(
+        'text-base tabular-nums',
+        tone === 'scaling'
+          ? 'text-(--skill-scaling-value-color)'
+          : tone === 'unavailable'
+            ? 'font-normal text-(--text-muted)'
+            : 'text-foreground'
+      )}
       class:scaling-value={tone === 'scaling'}
       class:stat-value--unavailable={tone === 'unavailable'}>{value}</strong
     >
   </dd>
 </div>
-
-<style>
-  .hero-stat-row {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) fit-content(50%);
-    min-height: 52px;
-    align-items: center;
-    gap: var(--space-4);
-    border: 0;
-    padding: var(--space-3) 0;
-  }
-
-  :global(.hero-stat-row) + .hero-stat-row::before {
-    position: absolute;
-    inset: 0 0 auto var(--stat-divider-inset, 0px);
-    height: 1px;
-    background: color-mix(in srgb, var(--border) 50%, transparent);
-    content: '';
-  }
-
-  :global(.hero-stat-row) + .hero-stat-row {
-    border-top: 0;
-  }
-
-  .hero-stat-row dt,
-  .hero-stat-row dd {
-    min-width: 0;
-    overflow-wrap: anywhere;
-  }
-
-  .hero-stat-row dt {
-    color: var(--text-secondary);
-    font-size: var(--font-meta-key);
-  }
-
-  .hero-stat-row dd {
-    margin: 0;
-    text-align: right;
-  }
-
-  .hero-stat-row dd strong {
-    color: var(--text-primary);
-    font-size: 1.08rem;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .hero-stat-row dd .scaling-value {
-    color: var(--skill-scaling-value-color);
-  }
-
-  .hero-stat-row .inspection-stat-label {
-    display: grid;
-    grid-template-columns: var(--stat-label-columns, minmax(0, 1fr));
-    align-items: center;
-    gap: var(--stat-label-gap, 0px);
-  }
-
-  .hero-stat-label-text {
-    grid-column: -2 / -1;
-    min-width: 0;
-  }
-
-  .hero-stat-icon {
-    display: flex;
-    width: 20px;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero-stat-icon :global(img) {
-    width: 1.05rem;
-    height: 1.05rem;
-    flex: 0 0 auto;
-    object-fit: contain;
-  }
-
-  .hero-stat-row dd .stat-value--unavailable {
-    color: var(--text-muted);
-    font-weight: 400;
-  }
-
-  @media (max-width: 820px) {
-    .hero-stat-row {
-      padding-block: 10px;
-    }
-  }
-</style>

@@ -11,37 +11,14 @@
   $: optionHeadingLevel = Math.min(headingLevel + 1, 5) as 3 | 4 | 5;
 </script>
 
-<div class="buff-option-group" data-buff-option-group>
+<div class="buff-option-group min-w-0" data-buff-option-group>
   <SectionHeading {level} {headingLevel}>{title}</SectionHeading>
-  <div class="buff-option-group__grid" data-buff-option-grid>
+  <div
+    class="buff-option-group__grid grid min-w-0 grid-cols-1 items-stretch gap-3 @min-[620px]/endgame-main:grid-cols-2 @min-[860px]/endgame-main:grid-cols-3"
+    data-buff-option-grid
+  >
     {#each options as option (option.order)}
       <BuffOptionTile {option} headingLevel={optionHeadingLevel} />
     {/each}
   </div>
 </div>
-
-<style>
-  .buff-option-group {
-    min-width: 0;
-  }
-
-  .buff-option-group__grid {
-    display: grid;
-    min-width: 0;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-3);
-    align-items: stretch;
-  }
-
-  @container endgame-main (min-width: 620px) {
-    .buff-option-group__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @container endgame-main (min-width: 860px) {
-    .buff-option-group__grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-</style>

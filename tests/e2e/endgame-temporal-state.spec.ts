@@ -92,7 +92,7 @@ for (const prefix of ['', '/en']) {
     await page.clock.runFor(1_000);
     await expect(page.locator('.endgame-season-hero .endgame-inline-status')).toHaveCount(0);
     await page.clock.resume();
-    await page.locator('.endgame-breadcrumb').click();
+    await page.locator('.global-breadcrumb a').last().click();
     await expect(page.locator(`a[href="${prefix}/endgame/as/3021/"]`)).toHaveAttribute(
       'data-endgame-season-card',
       'current'

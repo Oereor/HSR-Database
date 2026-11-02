@@ -1,55 +1,42 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  export let onColumnsChange: ((columns: number) => void) | undefined = undefined;
+  let grid: HTMLDivElement;
+
+  onMount(() => {
+    if (!onColumnsChange) return;
+    let frame = 0;
+    let previous = 0;
+    const measure = () => {
+      frame = 0;
+      if (!grid.getClientRects().length || grid.clientWidth === 0) return;
+      const tracks = getComputedStyle(grid).gridTemplateColumns.trim().split(/\s+/);
+      if (!tracks.length || !tracks.every((track) => /^\d+(?:\.\d+)?px$/.test(track))) return;
+      if (tracks.length === previous) return;
+      previous = tracks.length;
+      onColumnsChange?.(previous);
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(measure);
+    };
+    const observer = new ResizeObserver(schedule);
+    observer.observe(grid);
+    window.addEventListener('resize', schedule);
+    schedule();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', schedule);
+      cancelAnimationFrame(frame);
+    };
+  });
   export let variant: 'default' | 'compact' | 'character' = 'default';
 </script>
 
 <div
+  bind:this={grid}
+  class="overview-grid grid min-w-0 grid-cols-1 gap-3 min-[360px]:grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(min(100%,12rem),1fr))] sm:gap-4"
   class:overview-grid--compact={variant === 'compact'}
   class:overview-grid--character={variant === 'character'}
-  class="overview-grid"
 >
   <slot />
 </div>
-
-<style>
-  .overview-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 218px), 1fr));
-    justify-content: stretch;
-    gap: 0.85rem;
-  }
-
-  .overview-grid--compact {
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 220px));
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  @media (min-width: 1350px) {
-    .overview-grid {
-      grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
-    }
-  }
-
-  @media (max-width: 520px) {
-    .overview-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.65rem;
-    }
-
-    .overview-grid--compact {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .overview-grid--character {
-      width: calc(100% + 1rem);
-      margin-inline: -0.5rem;
-    }
-  }
-
-  @media (max-width: 340px) {
-    .overview-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

@@ -121,7 +121,7 @@
   .section-nav {
     position: sticky;
     z-index: 8;
-    top: var(--site-header-height);
+    top: var(--global-sticky-top);
     height: var(--section-nav-height);
     overflow-x: auto;
     border-bottom: 1px solid var(--border);
@@ -177,6 +177,6 @@
   }
 
   :global(.section-nav-target) {
-    scroll-margin-top: calc(var(--site-header-height) + var(--section-nav-height) + var(--space-4));
+    scroll-margin-top: var(--anchor-offset);
   }
 </style>

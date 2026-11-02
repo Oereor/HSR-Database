@@ -30,7 +30,7 @@
 </script>
 
 {#if progression.stages.length}
-  <div class="base-stats-panel">
+  <div class="base-stats-panel min-w-0">
     <div class="stat-level-control">
       <LevelSlider
         id={controlId}

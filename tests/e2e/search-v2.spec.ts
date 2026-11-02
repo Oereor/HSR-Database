@@ -255,8 +255,9 @@ test('全局搜索复用四类 Overview cards，并隐藏空类别', async ({ pa
   await expect(page.locator('section[aria-labelledby="search-results-endgame"]')).toBeVisible();
 
   await page.goto('/search/?q=完全不存在的词');
-  await expect(page.locator('.empty-state')).toHaveCount(1);
-  await expect(page.locator('.empty-state')).toBeVisible();
+  const empty = page.locator('main section[aria-live="polite"]');
+  await expect(empty).toBeVisible();
+  await expect(empty.getByRole('heading', { level: 2 })).not.toBeEmpty();
   await expect(page.locator('.search-result-section')).toHaveCount(0);
 });
 
@@ -326,14 +327,17 @@ test('全局搜索 Endgame grid 与展开导航在各断点不横向溢出', asy
       )
     ).toBeLessThanOrEqual(1);
 
-    await page.locator('.navigator-toggle:visible').click();
-    const navigator = page.locator('#primary-navigator-pane');
+    await page.locator('[data-slot="sidebar-trigger"]').click();
+    const navigator = page.locator(
+      viewport.width < 768 ? '#primary-navigator-pane' : '[data-slot="sidebar-container"]'
+    );
     await expect(navigator).toBeVisible();
     await expect(navigator.locator('#global-search')).toBeVisible();
     expect(
       await navigator.evaluate((dialog) => dialog.scrollWidth - dialog.clientWidth)
     ).toBeLessThanOrEqual(1);
-    await navigator.locator('.navigator-toggle').click();
+    if (viewport.width < 768) await navigator.locator('.navigator-close').click();
+    else await page.locator('[data-slot="sidebar-trigger"]').click();
   }
 });
 

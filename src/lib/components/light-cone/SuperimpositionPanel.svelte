@@ -1,4 +1,5 @@
 <script lang="ts">
+  import LevelSlider from '$lib/components/shared/LevelSlider.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
   import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
   import type { LightConePassiveSkill } from '$lib/domain/types';
@@ -20,28 +21,17 @@
 
 <div class="superimposition-panel">
   {#if selected}
-    {#if effect.levels.length > 1}<div class="skill-level-control superimposition-control">
-        <div>
-          <label for={`superimposition-level-${lightConeId}`}>{m.superimposition_level()}</label>
-          <output for={`superimposition-level-${lightConeId}`}>Lv.{selected.level}</output>
-        </div>
-        <input
-          id={`superimposition-level-${lightConeId}`}
-          type="range"
-          min="0"
-          max={maxIndex}
-          step="1"
-          bind:value={selectedIndex}
-          aria-valuemin={effect.levels[0].level}
-          aria-valuemax={effect.levels[maxIndex].level}
-          aria-valuenow={selected.level}
-          aria-valuetext={m.common_level({ level: selected.level })}
-        />
-        <div class="skill-level-range" aria-hidden="true">
-          <span>Lv.{effect.levels[0].level}</span>
-          <span>Lv.{effect.levels[maxIndex].level}</span>
-        </div>
-      </div>{:else}<small>{m.superimposition_fixed_level({ level: selected.level })}</small>{/if}
+    {#if effect.levels.length > 1}<LevelSlider
+        id={`superimposition-level-${lightConeId}`}
+        label={m.superimposition_level()}
+        bind:value={selectedIndex}
+        min={0}
+        max={maxIndex}
+        step={1}
+        displayValue={selected.level}
+        ariaValueMin={effect.levels[0].level}
+        ariaValueMax={effect.levels[maxIndex].level}
+      />{:else}<small>{m.superimposition_fixed_level({ level: selected.level })}</small>{/if}
     <div class="superimposition-effect">
       <h3 class="superimposition-effect__name"><GameText text={passive.name} /></h3>
       {#if selected.descriptionTokens.length}<p class="levelled-description">

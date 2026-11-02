@@ -13,7 +13,8 @@ import { createTrainingLoader } from '../../src/lib/data/training';
 import { rarityFromCode } from '../../src/lib/domain/constants';
 import { getRarityColor } from '../../src/lib/domain/rarity';
 import RarityStars from '../../src/lib/components/shared/RarityStars.svelte';
-import ItemDetailModal from '../../src/lib/components/training/ItemDetailModal.svelte';
+import GameText from '../../src/lib/components/shared/GameText.svelte';
+import AssetImage from '../../src/lib/components/shared/AssetImage.svelte';
 
 const source = (hash: string) => ({
   kind: 'direct' as const,
@@ -78,23 +79,17 @@ describe('material detail metadata and presentation', () => {
         backgroundDescription: `${prefix}\n\n<i>quote</i> {NICKNAME}`
       });
       validateMaterialDetails(detail, base);
-      const html = render(ItemDetailModal, {
-        props: {
-          material: base.materials[0],
-          detail: detail.materials[0],
-          locale,
-          state: 'ready',
-          onRequestClose: () => undefined,
-          onClosed: () => undefined,
-          onRetry: () => undefined
-        }
-      }).body;
-      expect(html).toContain('<em>quote</em>');
-      expect(html).toContain('{NICKNAME}');
-      expect(html).toContain('data-game-color="#f29e38ff"');
-      expect(html).not.toContain('role="status"');
     }
   );
+
+  it('renders italic text, placeholders and color markers through GameText', () => {
+    const html = render(GameText, {
+      props: { text: '<i>quote</i> {NICKNAME} <color=#f29e38ff>value</color>' }
+    }).body;
+    expect(html).toContain('<em>quote</em>');
+    expect(html).toContain('{NICKNAME}');
+    expect(html).toContain('data-game-color="#f29e38ff"');
+  });
 
   it('omits absent, unresolved, empty and whitespace-only optional fields without locale fallback', async () => {
     const resolver = await createTextResolver(
@@ -155,26 +150,16 @@ describe('material detail metadata and presentation', () => {
     expect(html).toContain(getRarityColor(rarity));
   });
 
-  it('keeps unknown rarity neutral and missing icons on the shared fallback', () => {
-    const html = render(ItemDetailModal, {
-      props: {
-        material: {
-          ...catalog('en').materials[0],
-          id: '99999999',
-          iconKey: '99999999',
-          rarity: 'unknown'
-        },
-        detail: { id: '99999999' },
-        locale: 'en',
-        state: 'ready',
-        onRequestClose: () => undefined,
-        onClosed: () => undefined,
-        onRetry: () => undefined
-      }
-    }).body;
+  it('keeps unknown rarity neutral', () => {
+    const rarity = rarityFromCode('unknown');
+    expect(rarity).toBeUndefined();
+    expect(getRarityColor(rarity)).toBeUndefined();
+  });
+
+  it('renders missing icons through the shared image fallback', () => {
+    const html = render(AssetImage, { props: { src: undefined, alt: '' } }).body;
     expect(html).toContain('data-image-fallback');
-    expect(html).not.toContain('rarity-stars');
-    expect(html).not.toContain('role="status"');
+    expect(html).not.toContain('<img');
   });
 });
 

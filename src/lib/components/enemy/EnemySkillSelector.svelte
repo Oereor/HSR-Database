@@ -1,4 +1,5 @@
 <script lang="ts">
+  import * as ToggleGroup from '$lib/components/ui/toggle-group';
   import GameText from '$lib/components/shared/GameText.svelte';
   import SemanticIconLabel from '$lib/components/shared/SemanticIconLabel.svelte';
   import { getElementColor } from '$lib/domain/elements';
@@ -9,17 +10,31 @@
   export let onSelect: (skillId: string) => void;
 </script>
 
-<div class="enemy-skill-selector" data-enemy-skill-selector>
+<ToggleGroup.Root
+  type="single"
+  value={selectedSkillId ?? ''}
+  onValueChange={(value) => {
+    if (value) onSelect(value);
+  }}
+  orientation="vertical"
+  variant="outline"
+  spacing={1}
+  class="enemy-skill-selector w-full items-stretch"
+  data-enemy-skill-selector
+>
   {#each skills as skill (skill.id)}
-    <button
-      type="button"
-      class="enemy-skill-selector__option"
-      class:enemy-skill-selector__option--selected={skill.id === selectedSkillId}
-      aria-pressed={skill.id === selectedSkillId}
+    <ToggleGroup.Item
+      value={skill.id}
       data-enemy-skill-option={skill.id}
-      on:click={() => onSelect(skill.id)}
+      class="h-auto min-w-0 justify-start gap-3 px-3 py-3 text-left whitespace-normal"
+      onclick={(event) => {
+        if (skill.id === selectedSkillId) event.preventDefault();
+      }}
     >
-      <span class="enemy-skill-selector__icon" aria-hidden="true">
+      <span
+        class="enemy-skill-selector__icon grid w-[1.15rem] shrink-0 place-items-center [--semantic-icon-image-size:1.15rem]"
+        aria-hidden="true"
+      >
         {#if skill.damageType}<SemanticIconLabel
             kind="element"
             code={skill.damageType.element}
@@ -29,61 +44,6 @@
           />{/if}
       </span>
       <strong><GameText text={skill.name} /></strong>
-    </button>
+    </ToggleGroup.Item>
   {/each}
-</div>
-
-<style>
-  .enemy-skill-selector {
-    min-width: 0;
-    align-self: start;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-card);
-    overflow: hidden;
-    background: rgb(14 20 34 / 48%);
-  }
-  .enemy-skill-selector__option {
-    display: grid;
-    grid-template-columns: 1.3rem minmax(0, 1fr);
-    width: 100%;
-    min-width: 0;
-    align-items: center;
-    gap: var(--space-3);
-    border: 0;
-    border-bottom: 1px solid var(--border);
-    border-left: 3px solid transparent;
-    background: transparent;
-    padding: 0.8rem 0.9rem;
-    color: var(--text-body);
-    font: inherit;
-    text-align: left;
-    cursor: pointer;
-  }
-  .enemy-skill-selector__option:last-child {
-    border-bottom: 0;
-  }
-  .enemy-skill-selector__option:hover {
-    background: rgb(215 181 109 / 7%);
-    color: var(--text-primary);
-  }
-  .enemy-skill-selector__option--selected,
-  .enemy-skill-selector__option--selected:hover {
-    border-left-color: var(--gold);
-    background: rgb(215 181 109 / 12%);
-    color: var(--text-primary);
-  }
-  .enemy-skill-selector__option:focus-visible {
-    outline: 2px solid var(--gold);
-    outline-offset: -4px;
-  }
-  .enemy-skill-selector__option strong {
-    min-width: 0;
-    font-size: var(--font-meta-value);
-    overflow-wrap: anywhere;
-  }
-  .enemy-skill-selector__icon {
-    --semantic-icon-image-size: 1.15rem;
-    display: grid;
-    place-items: center;
-  }
-</style>
+</ToggleGroup.Root>

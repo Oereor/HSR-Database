@@ -10,7 +10,7 @@
 </script>
 
 {#if group.fixedMechanics.length || group.cacophony}
-  <div class="endgame-group-mechanics">
+  <div class="endgame-group-mechanics mb-8 [&>.endgame-mechanics-section:last-child]:mb-0">
     <PureFictionMechanicsSection
       fixedMechanics={group.fixedMechanics}
       cacophony={group.cacophony}
@@ -18,42 +18,20 @@
   </div>
 {/if}
 
-<section class="pf-encounter-heading" aria-labelledby="pf-encounter-title">
+<section class="pf-encounter-heading min-w-0" aria-labelledby="pf-encounter-title">
   <SectionHeading level={1} id="pf-encounter-title">
     <GameText text={encounter.label} />
   </SectionHeading>
 </section>
 
 {#if encounter.baseMechanic}
-  <div class="pf-encounter-mechanic">
+  <div class="pf-encounter-mechanic mb-6">
     <PureFictionMechanicsSection fixedMechanics={[encounter.baseMechanic]} />
   </div>
 {/if}
 
-<div class="pf-node-list">
+<div class="pf-node-list grid min-w-0 gap-8 min-[521px]:gap-12">
   {#each encounter.battles as battle (battle.slot)}
     <EndgameNodeSection {battle} waveLayout="stacked" enemyVariant="compact" />
   {/each}
 </div>
-
-<style>
-  .pf-encounter-heading {
-    min-width: 0;
-  }
-
-  .pf-encounter-mechanic {
-    margin-bottom: var(--space-6);
-  }
-
-  .pf-node-list {
-    display: grid;
-    min-width: 0;
-    gap: var(--space-12);
-  }
-
-  @media (max-width: 520px) {
-    .pf-node-list {
-      gap: var(--space-8);
-    }
-  }
-</style>

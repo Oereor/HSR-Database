@@ -14,9 +14,12 @@
   $: rows = buildEndgameWaveRows(groups, policy);
 </script>
 
-<div class="endgame-wave-layout" data-wave-layout={policy}>
+<div
+  class="endgame-wave-layout grid min-w-0 gap-6 @min-[521px]/endgame-main:gap-8"
+  data-wave-layout={policy}
+>
   {#each rows as row (row.key)}
-    <div class="endgame-wave-row" data-endgame-wave-row>
+    <div class="endgame-wave-row flex min-w-0 flex-wrap items-start gap-8" data-endgame-wave-row>
       {#each row.groups as group, index (group.key)}
         <EndgameWaveGroup
           wave={group.wave}
@@ -30,25 +33,3 @@
     </div>
   {/each}
 </div>
-
-<style>
-  .endgame-wave-layout {
-    display: grid;
-    min-width: 0;
-    gap: var(--space-8);
-  }
-
-  .endgame-wave-row {
-    display: flex;
-    min-width: 0;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: var(--space-8);
-  }
-
-  @container endgame-main (max-width: 520px) {
-    .endgame-wave-layout {
-      gap: var(--space-6);
-    }
-  }
-</style>

@@ -1,5 +1,7 @@
 import { render } from 'svelte/server';
 import { describe, expect, it } from 'vitest';
+import { Root as Alert } from '../../src/lib/components/ui/alert';
+import { Spinner } from '../../src/lib/components/ui/spinner';
 import PlayerHero from '../../src/lib/components/player/PlayerHero.svelte';
 import PlayerUidForm from '../../src/lib/components/player/PlayerUidForm.svelte';
 import UnknownPlayerCharacterCard from '../../src/lib/components/player/UnknownPlayerCharacterCard.svelte';
@@ -19,6 +21,18 @@ const profile: PlayerProfile = {
 };
 
 describe('Player presentation components', () => {
+  it('allows existing live regions to own announcements without nested status roles', () => {
+    const alert = render(Alert, { props: { role: undefined, 'aria-live': 'assertive' } }).body;
+    expect(alert).toContain('aria-live="assertive"');
+    expect(alert).not.toContain('role="alert"');
+    const spinner = render(Spinner, {
+      props: { 'aria-hidden': 'true', role: undefined, 'aria-label': undefined }
+    }).body;
+    expect(spinner).toContain('aria-hidden="true"');
+    expect(spinner).not.toContain('role="status"');
+    expect(spinner).not.toContain('aria-label=');
+  });
+
   it('renders all Hero metadata and distinguishes null counts from zero', () => {
     const body = render(PlayerHero, { props: { profile, avatarUrl: null } }).body;
     expect(body).toContain('Synthetic Player');
@@ -32,6 +46,18 @@ describe('Player presentation components', () => {
     expect(values).toContain('0');
   });
 
+  it('preserves long profile text and missing counts in one Card', () => {
+    const nickname = 'SyntheticLongName'.repeat(30);
+    const signature = 'First line\n' + 'Unbroken'.repeat(60);
+    const body = render(PlayerHero, {
+      props: { profile: { ...profile, nickname, signature } }
+    }).body;
+    expect(body).toContain(nickname);
+    expect(body).toContain(signature);
+    expect(body.match(/data-slot="card"/g)).toHaveLength(1);
+    expect(body).toContain('whitespace-pre-wrap');
+  });
+
   it('links an accessible validation error and disables submission while busy', () => {
     const body = render(PlayerUidForm, {
       props: { value: 'abc', busy: true, errorMessage: 'synthetic validation error' }
@@ -43,10 +69,13 @@ describe('Player presentation components', () => {
   });
 
   it('renders unknown characters as non-linking cards with their upstream id', () => {
-    const body = render(UnknownPlayerCharacterCard, { props: { characterId: '1999' } }).body;
-    expect(body).toMatch(/class="unknown-character(?:\s|")/);
+    const body = render(UnknownPlayerCharacterCard, {
+      props: { characterId: '9'.repeat(48) }
+    }).body;
+    expect(body).toMatch(/class="[^"]*unknown-character(?:\s|")/);
     expect(body).toMatch(/<h3[^>]*>[^<]+<\/h3>/);
-    expect(body).toContain('1999');
+    expect(body).toContain('9'.repeat(48));
+    expect(body.match(/data-slot="card"/g)).toHaveLength(1);
     expect(body).not.toContain('<a ');
   });
 });

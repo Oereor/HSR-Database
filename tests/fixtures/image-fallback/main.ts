@@ -4,7 +4,11 @@ import ImageFixture from './ImageFixture.svelte';
 
 const target = document.getElementById('app')!;
 const hydrateButton = document.getElementById('hydrate');
-if (hydrateButton) {
+if (location.pathname === '/slider') {
+  void import('./SliderFixture.svelte').then(({ default: SliderFixture }) =>
+    mount(SliderFixture, { target })
+  );
+} else if (hydrateButton) {
   hydrateButton.addEventListener(
     'click',
     () => {

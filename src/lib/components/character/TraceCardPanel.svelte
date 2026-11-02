@@ -1,4 +1,6 @@
 <script lang="ts">
+  import * as Card from '$lib/components/ui/card';
+  import { Badge } from '$lib/components/ui/badge';
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
   import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
@@ -45,8 +47,10 @@
     {#each groups.abilityGroups as group (group.ability.id)}
       {@const abilityState = playerStateOf(group.ability)}
       <section class="trace-ability-group" data-trace-group={group.ability.id}>
-        <article
-          class="trace-card trace-card--ability"
+        <Card.Root
+          size="sm"
+          role="article"
+          class="trace-card trace-card--ability relative min-h-44 gap-3 p-6"
           data-trace-id={group.ability.id}
           data-trace-type="ability"
           data-player-state={abilityState}
@@ -68,13 +72,15 @@
             />
           </p>
           <SkillExtraEffects effects={group.ability.extraEffects ?? []} />
-        </article>
+        </Card.Root>
 
         {#each group.stats as stat (stat.id)}
           {@const statIconUrl = getCharacterDetailIconUrl(stat.iconKey)}
           {@const statState = playerStateOf(stat)}
-          <article
-            class="trace-card trace-card--stat"
+          <Card.Root
+            size="sm"
+            role="article"
+            class="trace-card trace-card--stat relative min-h-17 gap-1 p-4"
             data-trace-id={stat.id}
             data-trace-type="stat"
             data-trace-owner={group.ability.id}
@@ -100,10 +106,13 @@
                   />{/if}<span><GameText text={stat.name} /></span>
               </h3>
               <div class="trace-card__tags">
-                <span class="skill-effect-tag">{m.trace_stat_bonus()}</span>
-                {#if statState === 'unresolved'}<span
-                    class="player-progression-state"
-                    data-player-state-label={statState}>{m.player_character_status_unknown()}</span
+                <Badge variant="outline" class="skill-effect-tag text-primary"
+                  >{m.trace_stat_bonus()}</Badge
+                >
+                {#if statState === 'unresolved'}<Badge
+                    variant="outline"
+                    class="player-progression-state text-primary"
+                    data-player-state-label={statState}>{m.player_character_status_unknown()}</Badge
                   >{/if}
               </div>
             </div>
@@ -111,7 +120,7 @@
               <GameText text={stat.description || m.common_localized_description_unavailable()} />
             </p>
             <SkillExtraEffects effects={stat.extraEffects ?? []} />
-          </article>
+          </Card.Root>
         {/each}
       </section>
     {/each}
@@ -126,8 +135,10 @@
       >
       {#each groups.specialAbilities as ability (ability.id)}
         {@const abilityState = playerStateOf(ability)}
-        <article
-          class="trace-card trace-card--ability trace-card--special"
+        <Card.Root
+          size="sm"
+          role="article"
+          class="trace-card trace-card--ability trace-card--special relative min-h-44 gap-3 p-6"
           data-trace-id={ability.id}
           data-trace-type="ability"
           data-trace-special
@@ -148,14 +159,16 @@
             <GameText text={ability.description || m.common_localized_description_unavailable()} />
           </p>
           <SkillExtraEffects effects={ability.extraEffects ?? []} />
-        </article>
+        </Card.Root>
       {/each}
       <div class="trace-independent-grid">
         {#each groups.standaloneStats as stat (stat.id)}
           {@const statIconUrl = getCharacterDetailIconUrl(stat.iconKey)}
           {@const statState = playerStateOf(stat)}
-          <article
-            class="trace-card trace-card--stat"
+          <Card.Root
+            size="sm"
+            role="article"
+            class="trace-card trace-card--stat relative min-h-17 gap-1 p-4"
             data-trace-id={stat.id}
             data-trace-type="stat"
             data-trace-standalone
@@ -181,10 +194,13 @@
                   />{/if}<span><GameText text={stat.name} /></span>
               </h3>
               <div class="trace-card__tags">
-                <span class="skill-effect-tag">{m.trace_stat_bonus()}</span>
-                {#if statState === 'unresolved'}<span
-                    class="player-progression-state"
-                    data-player-state-label={statState}>{m.player_character_status_unknown()}</span
+                <Badge variant="outline" class="skill-effect-tag text-primary"
+                  >{m.trace_stat_bonus()}</Badge
+                >
+                {#if statState === 'unresolved'}<Badge
+                    variant="outline"
+                    class="player-progression-state text-primary"
+                    data-player-state-label={statState}>{m.player_character_status_unknown()}</Badge
                   >{/if}
               </div>
             </div>
@@ -192,7 +208,7 @@
               <GameText text={stat.description || m.common_localized_description_unavailable()} />
             </p>
             <SkillExtraEffects effects={stat.extraEffects ?? []} />
-          </article>
+          </Card.Root>
         {/each}
       </div>
     </section>

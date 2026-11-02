@@ -1,3 +1,4 @@
+import { setSliderValue } from '../helpers/slider';
 import { expect, test } from '@playwright/test';
 
 const playerProfile = (uid: string, includeCharacter = true) => ({
@@ -137,7 +138,7 @@ for (const prefix of ['', '/en']) {
       const detailHref = (await card.getAttribute('href'))!;
       await card.click();
       await expect(page).toHaveURL(detailHref);
-      const back = page.locator('.back-link');
+      const back = page.locator('.global-breadcrumb a').last();
       await expect(back).toHaveAttribute('href', catalogHref);
       await back.focus();
       await expect(back).toBeFocused();
@@ -205,7 +206,7 @@ for (const prefix of ['', '/en']) {
     }
 
     // A different character entered from the catalog must not reuse either player's source.
-    if (isMobile) await page.locator('.mobile-header .navigator-toggle').click();
+    if (isMobile) await page.locator('[data-slot="sidebar-trigger"]').click();
     await page.locator(`a[href="${prefix}/characters/"]:visible`).first().click();
     await expect(page).toHaveURL(`${prefix}/characters/`);
     const ordinaryCard = page
@@ -215,12 +216,18 @@ for (const prefix of ['', '/en']) {
     const ordinaryHref = (await ordinaryCard.getAttribute('href'))!;
     await ordinaryCard.click();
     await expect(page).toHaveURL(ordinaryHref);
-    await expect(back).toHaveAttribute('href', `${prefix}/characters/`);
+    await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute(
+      'href',
+      `${prefix}/characters/`
+    );
     await page.goBack();
     await expect(page).toHaveURL(`${prefix}/characters/`);
     await page.goForward();
     await expect(page).toHaveURL(ordinaryHref);
-    await expect(back).toHaveAttribute('href', `${prefix}/characters/`);
+    await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute(
+      'href',
+      `${prefix}/characters/`
+    );
   });
 }
 
@@ -287,9 +294,9 @@ for (const prefix of ['', '/en']) {
           )
         )
         .toBe(expectedColumns);
-      await expect(grid).toHaveCSS('gap', '24px');
-      await expect(grid).toHaveCSS('margin-top', '24px');
-      await expect(pane).toHaveCSS('padding-left', width <= 820 ? '24px' : '32px');
+      await expect(grid).toHaveCSS('gap', '16px');
+      await expect(grid).toHaveCSS('margin-top', '16px');
+      await expect(pane).toHaveJSProperty('tagName', 'ASIDE');
       for (const group of await groups.all()) {
         await expect(group).toHaveCSS('margin-top', '0px');
         await expect(group).toHaveCSS('border-top-width', '0px');
@@ -303,9 +310,9 @@ for (const prefix of ['', '/en']) {
       if (expectedColumns === 2) {
         expect(groupBoxes[0].width).toBeCloseTo(groupBoxes[1].width, 0);
         expect(groupBoxes[0].y).toBeCloseTo(groupBoxes[1].y, 0);
-        expect(groupBoxes[1].x - groupBoxes[0].x - groupBoxes[0].width).toBeCloseTo(24, 0);
+        expect(groupBoxes[1].x - groupBoxes[0].x - groupBoxes[0].width).toBeCloseTo(16, 0);
       } else {
-        expect(groupBoxes[1].y - groupBoxes[0].bottom).toBeCloseTo(24, 0);
+        expect(groupBoxes[1].y - groupBoxes[0].bottom).toBeCloseTo(16, 0);
         const labelPositions = await panel
           .locator('.hero-stat-label-text')
           .evaluateAll((elements) =>
@@ -473,7 +480,7 @@ test('reuses the Player cache and renders real progression without changing stat
   await expect(page.locator('.section-nav a[href="#training"]')).toHaveCount(0);
   await expect(page.locator('.trace-toggle')).toHaveCount(0);
   await expect(level).toBeDisabled();
-  await expect(level).toHaveValue('80');
+  await expect(level).toHaveAttribute('data-value', '80');
   await expect(promotionTag).toHaveText(/\S/);
   await expect(levelValue.locator('output')).not.toHaveText('');
   expect(
@@ -484,7 +491,7 @@ test('reuses the Player cache and renders real progression without changing stat
     })
   ).toBe(true);
 
-  const basicLevel = page.locator('[data-skill-category="basic"] input[type="range"]');
+  const basicLevel = page.locator('[data-skill-category="basic"] [role="slider"]');
   await expect(basicLevel).toBeDisabled();
   await expect(basicLevel).toHaveAttribute('aria-valuenow', '6');
 
@@ -692,16 +699,19 @@ test('reuses the Player cache and renders real progression without changing stat
 
   await lightConeCard.getByRole('link').click();
   await expect(page).toHaveURL(/\/light-cones\/23023\/\?level=70&rank=2$/);
-  await expect(page.locator('.back-link')).toHaveAttribute('href', '/light-cones/');
+  await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute(
+    'href',
+    '/light-cones/'
+  );
   const lightConeLevel = page.locator('#light-cone-level-23023');
   await expect(lightConeLevel).toBeEnabled();
-  await expect(lightConeLevel).toHaveValue('70');
+  await expect(lightConeLevel).toHaveAttribute('data-value', '70');
   const rank = page.locator('#superimposition-level-23023');
   await expect(rank).toBeEnabled();
   await expect(rank).toHaveAttribute('aria-valuenow', '2');
-  await lightConeLevel.fill('42');
-  await rank.fill('3');
-  await expect(lightConeLevel).toHaveValue('42');
+  await setSliderValue(lightConeLevel, '42');
+  await setSliderValue(rank, '3');
+  await expect(lightConeLevel).toHaveAttribute('data-value', '42');
   await expect(rank).toHaveAttribute('aria-valuenow', '4');
 
   await page.goto('/en/characters/1304/?uid=100000001');
@@ -901,7 +911,7 @@ test('keeps static detail available for invalid, missing and failed Player conte
 
   await page.goto('/characters/1304/?uid=abc&from=player');
   await expect(page.locator('.player-context-notice--fallback')).toBeVisible();
-  await expect(page.locator('.back-link')).toHaveAttribute('href', '/characters/');
+  await expect(page.locator('.global-breadcrumb a').last()).toHaveAttribute('href', '/characters/');
   await expect(page.locator('#character-level-1304')).toBeEnabled();
   await expect(page.locator('#equipment-recommendation')).toBeVisible();
   expect(requestCount).toBe(0);
