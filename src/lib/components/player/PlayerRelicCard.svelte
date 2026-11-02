@@ -35,12 +35,12 @@
   <Card.Root
     size="sm"
     class={cn(
-      'h-full gap-0 overflow-hidden transition-colors',
+      'h-full gap-0 overflow-hidden py-3 transition-colors',
       href && 'group-hover/relic:border-primary/40'
     )}
   >
-    <Card.Header class="grid-cols-[3.5rem_minmax(0,1fr)] items-center gap-3">
-      <div class="size-14">
+    <Card.Header class="grid-cols-[4rem_minmax(0,1fr)_auto] items-center gap-2">
+      <div class="size-16">
         <RelicIcon
           source={view.piece ? getRelicPieceIconUrl(view.piece.id) : undefined}
           alt={view.piece?.name ?? ''}
@@ -48,18 +48,8 @@
         />
       </div>
       <div class="grid min-w-0 gap-1">
-        <div class="flex items-baseline justify-between gap-2">
-          <span class="text-muted-foreground text-xs">{relicSlotLabel(view.slot)}</span>
-          {#if view.relic}
-            <strong
-              class="shrink-0 text-sm tabular-nums"
-              data-player-relic-level
-              style:color={getRarityColor(view.relic.rarity) ?? 'var(--gold)'}
-              >+{view.relic.level}</strong
-            >
-          {/if}
-        </div>
-        <Card.Title class="text-sm"
+        <span class="text-muted-foreground text-xs">{relicSlotLabel(view.slot)}</span>
+        <Card.Title class="text-sm leading-snug font-semibold wrap-anywhere"
           >{view.relic
             ? (view.set?.name ?? unresolvedLabel)
             : m.player_equipment_unequipped()}</Card.Title
@@ -70,27 +60,36 @@
           </p>
         {/if}
       </div>
-      {#if view.relic && showScore}
-        <Badge
-          variant="secondary"
-          class="col-span-2 justify-self-end"
-          data-player-relic-piece-score
-          aria-label={m.player_relic_score_piece_value({
-            value:
-              score?.status === 'available'
-                ? formatRelicScore(score.score)
-                : m.player_relic_score_unavailable()
-          })}
-        >
-          {m.player_relic_score_piece()}
-          <strong class="tabular-nums"
-            >{score?.status === 'available' ? formatRelicScore(score.score) : '—'}</strong
+      <div class="flex flex-col items-end gap-1 self-start">
+        {#if view.relic}
+          <strong
+            class="shrink-0 text-sm tabular-nums"
+            data-player-relic-level
+            style:color={getRarityColor(view.relic.rarity) ?? 'var(--gold)'}
+            >+{view.relic.level}</strong
           >
-        </Badge>
-      {/if}
+        {/if}
+        {#if view.relic && showScore}
+          <Badge
+            variant="secondary"
+            data-player-relic-piece-score
+            aria-label={m.player_relic_score_piece_value({
+              value:
+                score?.status === 'available'
+                  ? formatRelicScore(score.score)
+                  : m.player_relic_score_unavailable()
+            })}
+          >
+            {m.player_relic_score_piece()}
+            <strong class="tabular-nums"
+              >{score?.status === 'available' ? formatRelicScore(score.score) : '—'}</strong
+            >
+          </Badge>
+        {/if}
+      </div>
     </Card.Header>
     {#if view.relic}
-      <Separator class="mt-3" />
+      <Separator class="mt-2" />
       <Card.Content class="py-2" data-player-relic-affixes="main">
         {#if view.mainAffix}
           <PlayerAffixRow affix={view.mainAffix} presentation="main" />

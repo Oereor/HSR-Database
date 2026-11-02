@@ -99,6 +99,7 @@
             <div class="trace-card__heading">
               <h3 class:trace-card__title--icon={!!statIconUrl}>
                 {#if statIconUrl}<AssetImage
+                    class="size-6 shrink-0 object-contain"
                     decorative
                     src={statIconUrl}
                     alt=""
@@ -187,6 +188,7 @@
             <div class="trace-card__heading">
               <h3 class:trace-card__title--icon={!!statIconUrl}>
                 {#if statIconUrl}<AssetImage
+                    class="size-6 shrink-0 object-contain"
                     decorative
                     src={statIconUrl}
                     alt=""

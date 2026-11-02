@@ -39,7 +39,7 @@ describe('Hero stat presentation', () => {
     expect(body).toMatch(/<span[^>]*hero-stat-icon[^>]*aria-hidden="true"/);
     expect(body).toMatch(/<img[^>]*alt=""/);
     expect(body.match(/hero-stat-label-text/g)).toHaveLength(2);
-    expect(body).toContain('20px minmax(0, 1fr)');
+    expect(body).toContain('24px minmax(0, 1fr)');
   });
 
   it('keeps scaling emphasis opt-in and escapes arbitrary text values', () => {

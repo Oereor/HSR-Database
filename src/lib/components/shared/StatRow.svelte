@@ -21,8 +21,8 @@
       class="inspection-stat-label grid grid-cols-(--stat-label-columns) items-center gap-(--stat-label-gap)"
     >
       {#if iconUrl}
-        <span class="hero-stat-icon flex w-5 items-center justify-center" aria-hidden="true">
-          <AssetImage class="size-4 shrink-0 object-contain" decorative src={iconUrl} alt="" />
+        <span class="hero-stat-icon flex w-6 items-center justify-center" aria-hidden="true">
+          <AssetImage class="size-5 shrink-0 object-contain" decorative src={iconUrl} alt="" />
         </span>
       {/if}
       <span class="hero-stat-label-text col-start-[-2] min-w-0"

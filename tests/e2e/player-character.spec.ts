@@ -831,6 +831,37 @@ for (const prefix of ['', '/en'])
       ).toBeLessThanOrEqual(1);
     };
     await assertSummaryContained();
+    for (const width of isMobile ? [390, 320] : [1440, 1081, 1080, 900, 681, 680, 390, 320]) {
+      await page.setViewportSize({ width, height: 900 });
+      await assertSummaryContained();
+      const grid = page.locator('[data-player-relic-grid]');
+      const columns = await grid.evaluate((element) =>
+        getComputedStyle(element).gridTemplateColumns.trim().split(/\s+/)
+      );
+      expect(columns).toHaveLength(width >= 1080 ? 3 : width >= 680 ? 2 : 1);
+      for (const card of await grid.locator('[data-player-relic-slot]').all()) {
+        const geometry = await card.evaluate((element) => {
+          const header = element.querySelector('[data-slot="card-header"]')!;
+          const level = header.querySelector('[data-player-relic-level]')!.getBoundingClientRect();
+          const badge = header
+            .querySelector('[data-player-relic-piece-score]')!
+            .getBoundingClientRect();
+          const title = header.querySelector('[data-slot="card-title"]')!.getBoundingClientRect();
+          return {
+            gap: badge.top - level.bottom,
+            rightDifference: Math.abs(badge.right - level.right),
+            separated: title.right <= badge.left,
+            overflow: element.scrollWidth - element.clientWidth
+          };
+        });
+        expect(geometry.gap).toBeGreaterThanOrEqual(0);
+        expect(geometry.gap).toBeLessThanOrEqual(5);
+        expect(geometry.rightDifference).toBeLessThanOrEqual(1);
+        expect(geometry.separated).toBe(true);
+        expect(geometry.overflow).toBeLessThanOrEqual(1);
+      }
+    }
+    await page.setViewportSize({ width: isMobile ? 390 : 1440, height: 900 });
     if (!prefix)
       await page
         .locator('#equipment')

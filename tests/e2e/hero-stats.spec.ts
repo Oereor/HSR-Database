@@ -7,7 +7,7 @@ const entities = [
   { category: 'enemies', id: '1004014', rows: 8 }
 ] as const;
 
-for (const width of [1440, 1024, 390]) {
+for (const width of [1440, 900, 390, 320]) {
   test(`Hero basic data stays aligned at ${width}px in both locales`, async ({
     page
   }, testInfo) => {
@@ -108,6 +108,7 @@ test('Hero level controls keep keyboard behavior and mixed missing icons keep la
   page
 }) => {
   await page.goto('/characters/1001/');
+  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
   const pane = page.locator('.hero-basic-data-pane');
   const slider = pane.getByRole('slider');
   await setSliderValue(slider, '79');

@@ -27,9 +27,9 @@
   )}
   class:hero-stat-list--flush={spacing === 'flush'}
   aria-label={ariaLabel ?? $$restProps['aria-label']}
-  style:--stat-label-columns={hasIcons ? '20px minmax(0, 1fr)' : 'minmax(0, 1fr)'}
+  style:--stat-label-columns={hasIcons ? '24px minmax(0, 1fr)' : 'minmax(0, 1fr)'}
   style:--stat-label-gap={hasIcons ? 'var(--space-2)' : '0px'}
-  style:--stat-divider-inset={hasIcons ? 'calc(20px + var(--space-2))' : '0px'}
+  style:--stat-divider-inset={hasIcons ? 'calc(24px + var(--space-2))' : '0px'}
 >
   <slot />
 </dl>
