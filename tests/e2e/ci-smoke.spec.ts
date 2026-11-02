@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { setSliderValue } from '../helpers/slider';
 
 async function expectAppReady(page: Page) {
   await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
@@ -38,12 +39,12 @@ test('enemy direct navigation and core interaction remain functional', async ({ 
   await page.goto('/enemies/1002015/');
   await expectAppReady(page);
   const slider = page.locator('#enemy-level-1002015');
-  await expect(slider).toHaveValue('95');
-  await slider.fill('60');
+  await expect(slider).toHaveAttribute('aria-valuenow', '95');
+  await setSliderValue(slider, 60);
   const variant = page.locator('[data-monster-option="100201506"]');
   await variant.click();
   await expect(variant).toHaveAttribute('aria-checked', 'true');
-  await expect(slider).toHaveValue('60');
+  await expect(slider).toHaveAttribute('aria-valuenow', '60');
 });
 
 test('asset request failures expose the accessible local fallback', async ({ page }) => {

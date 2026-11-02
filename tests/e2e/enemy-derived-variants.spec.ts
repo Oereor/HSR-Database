@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { setSliderValue } from '../helpers/slider';
 
 for (const width of [1440, 1100, 1080, 900, 390, 320]) {
   test(`派生详情在 ${width}px 下保持等宽或顺序堆叠，双语长文本不溢出`, async ({
@@ -123,27 +124,27 @@ for (const width of [1440, 1100, 1080, 900, 390, 320]) {
 test('派生属性等级控件保留双语标签、范围、键盘操作和数值更新', async ({ page }) => {
   for (const prefix of ['', '/en']) {
     await page.goto(`${prefix}/enemies/8034010/`);
+    await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
     const stats = page.locator('.enemy-battle-column--stats');
     const slider = stats.getByRole('slider');
     await expect(slider).toHaveAccessibleName(/\S/);
-    await expect(slider).toHaveValue('95');
-    const minimum = (await slider.getAttribute('min'))!;
-    const maximum = (await slider.getAttribute('max'))!;
+    await expect(slider).toHaveAttribute('aria-valuenow', '95');
+    const minimum = (await slider.getAttribute('aria-valuemin'))!;
+    const maximum = (await slider.getAttribute('aria-valuemax'))!;
     await expect(stats.locator('.skill-level-range span').first()).toHaveText(`Lv.${minimum}`);
     await expect(stats.locator('.skill-level-range span').last()).toHaveText(`Lv.${maximum}`);
     const hp = stats.locator('[data-enemy-stat="hp"] dd');
     const initialHp = await hp.textContent();
-    await slider.fill('60');
+    await setSliderValue(slider, 60);
     await expect(hp).not.toHaveText(initialHp!);
     await slider.focus();
     await page.keyboard.press('ArrowRight');
-    await expect(slider).toHaveValue('61');
     await expect(slider).toHaveAttribute('aria-valuenow', '61');
     await expect(stats.locator('output')).toHaveText('Lv.61');
     await expect(slider).toBeFocused();
     await page.keyboard.press('Home');
-    await expect(slider).toHaveValue(minimum);
+    await expect(slider).toHaveAttribute('aria-valuenow', minimum);
     await page.keyboard.press('End');
-    await expect(slider).toHaveValue(maximum);
+    await expect(slider).toHaveAttribute('aria-valuenow', maximum);
   }
 });
