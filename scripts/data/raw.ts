@@ -24,6 +24,10 @@ function materialize(value: unknown, key = ''): unknown {
   return value;
 }
 
+export function parseRawJson<T = unknown>(text: string): T {
+  return materialize(parse(text)) as T;
+}
+
 export async function readRaw<T = unknown>(root: string, relativePath: string): Promise<T> {
   let text: string;
   try {
@@ -35,7 +39,7 @@ export async function readRaw<T = unknown>(root: string, relativePath: string): 
       });
     throw error;
   }
-  return materialize(parse(text)) as T;
+  return parseRawJson<T>(text);
 }
 
 export async function readTable<T = Record<string, unknown>>(

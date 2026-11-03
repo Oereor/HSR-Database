@@ -1,37 +1,41 @@
-import type { CatalogEntry } from '$lib/domain/types';
-import { getCatalog, getHomepageRecentWarps } from '$lib/server/generated';
+import {
+  getCatalog,
+  getRelicCatalog,
+  getEnemyCatalog,
+  getHomepageVersionData
+} from '$lib/server/generated';
+import { getEnemyPortraitUrl } from '$lib/server/enemy-assets';
 
-function resolveEntries(
-  records: Array<{ id: string; gachaId: number }>,
-  catalog: CatalogEntry[],
-  label: string
-): CatalogEntry[] {
-  const entries = new Map(catalog.map((entry) => [entry.id, entry]));
-  return records.map((record) => {
-    const entry = entries.get(record.id);
-    if (!entry)
-      throw new Error(`Homepage ${label}跃迁 ${record.gachaId} 无法连接目录实体 ${record.id}`);
+function resolve<T extends { id: string }>(ids: string[], catalog: T[]): T[] {
+  const byId = new Map(catalog.map((entry) => [entry.id, entry]));
+  return ids.map((id) => {
+    const entry = byId.get(id);
+    if (!entry) throw new Error(`Homepage references missing catalog entity ${id}`);
     return entry;
   });
 }
-
 export async function load({ locals }) {
   const locale = locals.locale;
-  const [homepage, characters, lightCones] = await Promise.all([
-    getHomepageRecentWarps(locale),
+  const [homepage, characters, lightCones, relics, enemies] = await Promise.all([
+    getHomepageVersionData(locale),
     getCatalog(locale, 'characters'),
-    getCatalog(locale, 'light-cones')
+    getCatalog(locale, 'light-cones'),
+    getRelicCatalog(locale),
+    getEnemyCatalog(locale)
   ]);
+  const newEnemies = resolve(homepage.additions.enemies, enemies);
   return {
-    recentCharacters: resolveEntries(
-      homepage.avatarUps.map((record) => ({ id: record.avatarId, gachaId: record.gachaId })),
-      characters,
-      '角色'
-    ),
-    recentLightCones: resolveEntries(
-      homepage.weaponUps.map((record) => ({ id: record.equipmentId, gachaId: record.gachaId })),
-      lightCones,
-      '光锥'
+    homepage,
+    newCharacters: resolve(homepage.additions.characters, characters),
+    newLightCones: resolve(homepage.additions['light-cones'], lightCones),
+    newRelics: resolve(homepage.additions.relics, relics),
+    newEnemies: newEnemies.slice(0, 6),
+    enemyPortraits: Object.fromEntries(
+      await Promise.all(
+        newEnemies
+          .slice(0, 6)
+          .map(async (entry) => [entry.id, await getEnemyPortraitUrl(Number(entry.id))])
+      )
     )
   };
 }

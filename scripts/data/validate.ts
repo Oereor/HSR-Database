@@ -17,7 +17,7 @@ import type {
   Character,
   CharacterProfile,
   Enemy,
-  HomepageRecentWarpData,
+  HomepageVersionData,
   LightCone
 } from '../../src/lib/domain/types.js';
 import {
@@ -69,10 +69,13 @@ import type { Locale } from './locale-registry.js';
 import { assertCrossLocaleStructuralParity } from './structural-parity.js';
 import { assertEnglishCjkReport, auditEnglishCjk } from './english-cjk.js';
 import {
-  assertHomepageRecentWarpData,
-  buildHomepageRecentWarpData,
-  type HomepageGachaRow
+  assertHomepageVersionData,
+  buildHomepageVersionData,
+  loadHomepageBaseline,
+  extractHomepageIds,
+  homepageCategories
 } from './homepage.js';
+import { identityTables } from './homepage-history.js';
 import { buildEndgameOccurrenceShards } from './endgame-occurrence-shards.js';
 import { getLocaleProjectionPolicy } from './projection/policy.js';
 import {
@@ -109,28 +112,34 @@ const playerRuntimeTables = Object.fromEntries(
 );
 buildPlayerRuntimeData(playerRuntimeTables);
 const productRoot = path.join(generatedRoot, 'views', 'zh-CN');
-const [homepage, homepageCharacterCatalog, homepageLightConeCatalog, homepageGachaRows] =
-  await Promise.all([
-    readFile(path.join(productRoot, 'homepage.json'), 'utf8').then(
-      (value) => JSON.parse(value) as HomepageRecentWarpData
-    ),
-    readFile(
-      path.join(generatedRoot, 'views', 'zh-CN', 'catalogs', 'characters.json'),
-      'utf8'
-    ).then((value) => JSON.parse(value) as CatalogEntry[]),
-    readFile(path.join(productRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
-      (value) => JSON.parse(value) as CatalogEntry[]
-    ),
-    readTable<HomepageGachaRow>(rawRoot, 'GachaBasicInfo')
-  ]);
-assertHomepageRecentWarpData(homepage, homepageCharacterCatalog, homepageLightConeCatalog);
-const expectedHomepage = buildHomepageRecentWarpData(
-  homepageGachaRows,
-  homepageCharacterCatalog,
-  homepageLightConeCatalog
+const homepage: HomepageVersionData = JSON.parse(
+  await readFile(path.join(productRoot, 'homepage.json'), 'utf8')
+);
+const homepageCatalogs = Object.fromEntries(
+  await Promise.all(
+    homepageCategories.map(async (category) => [
+      category,
+      JSON.parse(await readFile(path.join(productRoot, 'catalogs', `${category}.json`), 'utf8'))
+    ])
+  )
+) as Record<(typeof homepageCategories)[number], CatalogEntry[]>;
+assertHomepageVersionData(homepage, homepageCatalogs);
+const homepageBaseline = await loadHomepageBaseline(manifest.sourceCommit);
+const homepageTables = Object.fromEntries(
+  await Promise.all(
+    identityTables.map(async (name) => [
+      name,
+      await readTable<Record<string, unknown>>(rawRoot, name)
+    ])
+  )
+);
+const expectedHomepage = buildHomepageVersionData(
+  homepageBaseline,
+  extractHomepageIds(homepageTables),
+  manifest.gameVersion
 );
 if (JSON.stringify(homepage) !== JSON.stringify(expectedHomepage))
-  throw new Error('Homepage 生成文件与 GachaBasicInfo 最近跃迁选择结果不一致');
+  throw new Error('Homepage differs from pinned source and trusted baseline');
 
 const audit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'utf8')) as {
   upstreamTables: Record<string, number>;

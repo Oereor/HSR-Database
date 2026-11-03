@@ -39,7 +39,7 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-`predev` 自动执行 `data:ensure` 与 `assets:ensure`，准备或复用生成数据和普通资源；启动后以终端实际地址为准。
+`predev` 依次执行 `messages:compile`、`data:ensure` 与 `assets:ensure`，先准备站点消息，再准备或复用生成数据和普通资源；启动后以终端实际地址为准。
 这些准备步骤不刷新 tracked enemy snapshot。需要离线核对时运行 `pnpm validate:enemy-assets`。
 
 联网操作先确认代理端口，再配置进程代理变量；本地通常使用 7890，以 [AGENTS.md](../AGENTS.md#internet-connectivity) 为准。
@@ -63,7 +63,7 @@ pnpm dev
 | `pnpm test`                               | 运行 Vitest；优先用 `pnpm exec vitest run <相关测试文件>` 做定向验证            |
 | `pnpm test:components`                    | 组件浏览器测试                                                                  |
 | `pnpm test:e2e` / `pnpm test:e2e:smoke`   | 桌面/移动 E2E / 发布门禁 smoke                                                  |
-| `pnpm build`                              | 使用本地数据源，经 prebuild 准备数据、资源与评分 Benchmark 校验，再生成静态站点 |
+| `pnpm build`                              | 使用本地数据源，经 prebuild 编译站点消息、准备数据与资源、校验评分 Benchmark，再生成静态站点 |
 | `pnpm ci:develop` / `pnpm ci:validate`    | 自准备 pinned 输入的轻量开发验证 / 完整 correctness 验证                        |
 
 数据生成结果主要位于 `src/lib/generated/`、`static/generated/`，普通视觉资源位于 `src/lib/generated-assets/`、`static/generated-assets/`；这些目录的生成内容被忽略。
@@ -118,3 +118,15 @@ title: '更新标题'
 标题包含冒号等 YAML 特殊字符时加引号。不要维护额外索引或只添加一种语言。
 现有 Vite 插件在 dev/build 中发现并验证日期、重复 ID、标题与语言配对；deployment profile 也经过同一 Vite 构建。
 开发服务器未发现新文件时重启。契约见[架构的 Changelog workflow](architecture/localization-and-data-generation.md#changelog-workflow)。
+
+## 首页版本快照
+
+首页在构建期比较当前数据与上一游戏版本的稳定实体 ID。`pnpm upstreams:update` 在写入新 lock 前自动准备 `data/homepage/<pin SHA>.json`；自动化更新 PR 同时提交快照。普通 CI 和 Vercel 构建离线读取快照，缺失或摘要不符时明确失败，不依赖 shallow checkout 中的历史。
+
+单独刷新当前 pin 使用 `pnpm homepage:refresh`。本地已有完整上游历史时可使用 `pnpm homepage:refresh --source-root ../TurnBasedGameData`，该入口只读取外部仓库。网络入口沿 GitHub 第一父链查找上一实际游戏版本，仅获取五张身份表；设置 `GITHUB_TOKEN` 可使用认证 API 配额。本机网络操作需按环境设置代理（Node 24 使用 `NODE_USE_ENV_PROXY=1` 与 `HTTPS_PROXY`），不得绕过代理规则。提交生成快照后再运行数据生成。
+
+快照记录完整来源 SHA、提交标题、相邻第一父关系、版本和规范 JSON 摘要；摘要用于完整性校验，不是数字签名。已缓存 pin 不重复获取数据，同版本更新复用相同历史基线并验证版本边界，历史异常或未知生产版本格式会报错。版本跨度按上游实际序列处理，例如 3.8 到 4.0。
+
+角色合并 AvatarConfig 与 AvatarConfigLD，光锥使用 EquipmentID，遗器使用 SetID，敌方单位使用 MonsterTemplateID。生成器检查身份提取与当前 catalog 完全一致；详情路由仍由同一 catalog 生成。新增列表去重并按数值 ID 排序，页面使用当前语言 catalog 展示。首页展示上限分别为 6、6、4、6，完整新增 ID 保留在生成数据中，分类标题链接到对应 overview。
+
+这里的新增是游戏数据快照差异，并不保证正式实装时间。当前角色和光锥只有 Release 标记，敌方模板没有可靠的实装版本字段；遗器具有 ReleaseVersion。当前 pin 的 Release 均为 true，抽查 v4.0–v4.6 的遗器未发现未来 ReleaseVersion。此证据不能排除其他类别提前预置。ReleaseVersion 只用于调查核对，不补造名单，不引入 ID 范围或人工过滤规则。

@@ -448,10 +448,11 @@ export interface EnemySkill {
   detail?: EnemySkillDetail;
 }
 
-export interface HomepageRecentWarpData {
-  schemaVersion: 1;
-  avatarUps: Array<{ gachaId: number; avatarId: string }>;
-  weaponUps: Array<{ gachaId: number; equipmentId: string }>;
+export interface HomepageVersionData {
+  schemaVersion: 2;
+  gameVersion: string;
+  baseline: { version: string; repository: string; commit: string; digest: string };
+  additions: Record<'characters' | 'light-cones' | 'relics' | 'enemies', string[]>;
 }
 
 export interface GeneratedArtifactMetadata {
@@ -467,7 +468,7 @@ export interface PublicSiteVersion {
 }
 
 export interface DataManifest {
-  schemaVersion: 56;
+  schemaVersion: 57;
   ratingV2PolicyInput: { schemaVersion: 2; bytes: number; sha256: string };
   ratingV2BenchmarkInput: { schemaVersion: 4; bytes: number; sha256: string; auditSha256: string };
   sourceCommit: string;

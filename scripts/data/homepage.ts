@@ -1,133 +1,167 @@
-import type { CatalogEntry, HomepageRecentWarpData } from '../../src/lib/domain/types.js';
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
+import type { HomepageVersionData } from '../../src/lib/domain/types.js';
+import { canonicalJsonDigest, parseGameVersion } from './source-metadata.js';
+import { siteRoot } from './paths.js';
 
-export const HOMEPAGE_RECENT_WARP_LIMIT = 6;
-
-export interface HomepageGachaRow {
-  GachaID?: unknown;
-  GachaType?: unknown;
-  PrefabPath?: unknown;
+export const homepageCategories = ['characters', 'light-cones', 'relics', 'enemies'] as const;
+export type HomepageCategory = (typeof homepageCategories)[number];
+export type EntityIds = Record<HomepageCategory, string[]>;
+export interface HistoryCommit {
+  sha: string;
+  subject: string;
+  parent: string | null;
+}
+export interface HomepageBaseline {
+  schemaVersion: 1;
+  repository: string;
+  gameVersion: string;
+  baselineVersion: string;
+  baselineCommit: string;
+  evidence: HistoryCommit[];
+  ids: EntityIds;
+  digest: string;
+}
+export const compareEntityIds = (a: string, b: string) =>
+  a.length - b.length || (a < b ? -1 : a > b ? 1 : 0);
+export function sortedIds(ids: string[]): string[] {
+  if (ids.some((id) => !/^[1-9]\d*$/.test(id)))
+    throw new Error('Homepage contains invalid entity ID');
+  return [...new Set(ids)].sort(compareEntityIds);
 }
 
-export function assertHomepageRecentWarpData(
-  data: HomepageRecentWarpData,
-  characterCatalog: CatalogEntry[],
-  lightConeCatalog: CatalogEntry[]
-): void {
-  if (data.schemaVersion !== 1) throw new Error('Homepage 生成数据 schema 不受支持');
+/** Same identity inventory as the domain builders; LD supplements regular avatars. */
+export function extractHomepageIds(
+  tables: Record<string, Array<Record<string, unknown>>>
+): EntityIds {
+  const take = (name: string, key: string) => {
+    if (!Array.isArray(tables[name])) throw new Error(`Homepage missing identity table ${name}`);
+    return tables[name].map((row) => String(row[key]));
+  };
+  return {
+    characters: sortedIds([
+      ...take('AvatarConfig', 'AvatarID'),
+      ...take('AvatarConfigLD', 'AvatarID')
+    ]),
+    'light-cones': sortedIds(take('EquipmentConfig', 'EquipmentID')),
+    relics: sortedIds(take('RelicSetConfig', 'SetID')),
+    enemies: sortedIds(take('MonsterTemplateConfig', 'MonsterTemplateID'))
+  };
+}
 
-  const validateSelection = <T extends { gachaId: number }>(
-    records: T[],
-    entityIdOf: (record: T) => string,
-    catalog: CatalogEntry[],
-    label: string
-  ) => {
-    if (records.length !== HOMEPAGE_RECENT_WARP_LIMIT)
-      throw new Error(`Homepage ${label}最近跃迁不是 ${HOMEPAGE_RECENT_WARP_LIMIT} 条`);
-    const entities = new Map(catalog.map((entry) => [entry.id, entry]));
-    for (let index = 0; index < records.length; index += 1) {
-      const record = records[index];
-      if (!Number.isSafeInteger(record.gachaId) || record.gachaId <= 0)
-        throw new Error(`Homepage ${label}最近跃迁包含无效 GachaID`);
-      if (index > 0 && records[index - 1].gachaId <= record.gachaId)
-        throw new Error(`Homepage ${label}最近跃迁未按 GachaID 严格降序`);
-      const entityId = entityIdOf(record);
-      const entity = entities.get(entityId);
-      if (!entity || entity.rarity !== 5)
-        throw new Error(`Homepage ${label}最近跃迁包含无效目录实体：${entityId}`);
+export function selectPreviousVersion(evidence: HistoryCommit[]) {
+  const current = parseGameVersion(evidence[0]?.subject ?? '').gameVersion;
+  if (!current) throw new Error('Homepage pin has no production game version');
+  for (let i = 0; i < evidence.length; i++) {
+    const entry = evidence[i];
+    if (
+      !/^[a-f0-9]{40}$/.test(entry.sha) ||
+      (entry.parent !== null && !/^[a-f0-9]{40}$/.test(entry.parent))
+    )
+      throw new Error('Homepage invalid commit identity');
+    if (i && evidence[i - 1].parent !== entry.sha)
+      throw new Error('Homepage disconnected history evidence');
+    const version = parseGameVersion(entry.subject).gameVersion;
+    if (!version) throw new Error(`Homepage unrecognized version in history: ${entry.sha}`);
+    if (version !== current) {
+      const [a, b] = current.split('.').map(Number);
+      const [x, y] = version.split('.').map(Number);
+      if (x > a || (x === a && y >= b)) throw new Error('Homepage history version regression');
+      if (i !== evidence.length - 1) throw new Error('Homepage extraneous baseline evidence');
+      return { gameVersion: current, baselineVersion: version, baselineCommit: entry.sha };
     }
-  };
-
-  validateSelection(data.avatarUps, (record) => record.avatarId, characterCatalog, '角色');
-  validateSelection(data.weaponUps, (record) => record.equipmentId, lightConeCatalog, '光锥');
-}
-
-interface RecentWarpOptions<TIdKey extends 'avatarId' | 'equipmentId'> {
-  type: 'AvatarUp' | 'WeaponUp';
-  idKey: TIdKey;
-  prefabPattern: RegExp;
-  catalog: CatalogEntry[];
-  entityLabel: '角色' | '光锥';
-}
-
-function parseGachaId(row: HomepageGachaRow, type: string): number {
-  const gachaId =
-    typeof row.GachaID === 'number'
-      ? row.GachaID
-      : typeof row.GachaID === 'string' && row.GachaID.trim()
-        ? Number(row.GachaID)
-        : Number.NaN;
-  if (!Number.isSafeInteger(gachaId) || gachaId <= 0)
-    throw new Error(`${type} 包含无效 GachaID：${String(row.GachaID)}`);
-  return gachaId;
-}
-
-function selectRecentWarps<TIdKey extends 'avatarId' | 'equipmentId'>(
-  rows: HomepageGachaRow[],
-  options: RecentWarpOptions<TIdKey>
-): Array<{ gachaId: number } & Record<TIdKey, string>> {
-  const matching = rows
-    .filter((row) => row.GachaType === options.type)
-    .map((row) => ({ row, gachaId: parseGachaId(row, options.type) }))
-    .sort((left, right) => right.gachaId - left.gachaId);
-
-  if (matching.length < HOMEPAGE_RECENT_WARP_LIMIT)
-    throw new Error(
-      `${options.type} 记录不足：需要 ${HOMEPAGE_RECENT_WARP_LIMIT} 条，实际 ${matching.length} 条`
-    );
-
-  const selected = matching.slice(0, HOMEPAGE_RECENT_WARP_LIMIT);
-  for (let index = 1; index < selected.length; index += 1) {
-    if (selected[index - 1].gachaId <= selected[index].gachaId)
-      throw new Error(`${options.type} 最近记录的 GachaID 不是严格降序`);
   }
-
-  const catalog = new Map(options.catalog.map((entry) => [entry.id, entry]));
-  return selected.map(({ row, gachaId }) => {
-    if (typeof row.PrefabPath !== 'string')
-      throw new Error(`Unable to resolve ${options.type} ${gachaId}: PrefabPath 缺失`);
-    const match = options.prefabPattern.exec(row.PrefabPath);
-    const entityId = match?.[1];
-    if (!entityId)
-      throw new Error(
-        `Unable to resolve ${options.type} ${gachaId}: PrefabPath ${row.PrefabPath} 无法解析`
-      );
-    const entity = catalog.get(entityId);
-    if (!entity)
-      throw new Error(
-        `Unable to resolve ${options.type} ${gachaId}: ${options.entityLabel} ${entityId} 不在目录中`
-      );
-    if (entity.rarity !== 5)
-      throw new Error(
-        `Unable to resolve ${options.type} ${gachaId}: ${options.entityLabel} ${entityId} 不是五星`
-      );
-    return { gachaId, [options.idKey]: entityId } as {
-      gachaId: number;
-    } & Record<TIdKey, string>;
-  });
+  throw new Error('Homepage missing previous game-version baseline; run pnpm upstreams:update');
 }
 
-export function buildHomepageRecentWarpData(
-  rows: HomepageGachaRow[],
-  characterCatalog: CatalogEntry[],
-  lightConeCatalog: CatalogEntry[]
-): HomepageRecentWarpData {
-  const data: HomepageRecentWarpData = {
-    schemaVersion: 1,
-    avatarUps: selectRecentWarps(rows, {
-      type: 'AvatarUp',
-      idKey: 'avatarId',
-      prefabPattern: /AvatarGacha_(\d+)\.prefab$/,
-      catalog: characterCatalog,
-      entityLabel: '角色'
-    }),
-    weaponUps: selectRecentWarps(rows, {
-      type: 'WeaponUp',
-      idKey: 'equipmentId',
-      prefabPattern: /LightConeGacha_(\d+)\.prefab$/,
-      catalog: lightConeCatalog,
-      entityLabel: '光锥'
+export function assertBaseline(data: HomepageBaseline): void {
+  if (
+    data.schemaVersion !== 1 ||
+    !/^https:\/\/github\.com\/[\w.-]+\/[\w.-]+\.git$/.test(data.repository)
+  )
+    throw new Error('Homepage unsupported baseline schema/repository');
+  const selected = selectPreviousVersion(data.evidence);
+  if (Object.entries(selected).some(([key, value]) => data[key as keyof typeof selected] !== value))
+    throw new Error('Homepage baseline metadata differs from history');
+  for (const category of homepageCategories)
+    if (JSON.stringify(data.ids[category]) !== JSON.stringify(sortedIds(data.ids[category])))
+      throw new Error('Homepage baseline IDs must be sorted and unique');
+  const { digest, ...contents } = data;
+  if (canonicalJsonDigest(contents) !== digest)
+    throw new Error('Homepage baseline digest mismatch');
+}
+
+export async function loadHomepageBaseline(
+  sourceCommit: string,
+  root = siteRoot
+): Promise<HomepageBaseline> {
+  try {
+    const lock = JSON.parse(await readFile(path.join(root, 'upstream.lock.json'), 'utf8'));
+    const data: HomepageBaseline = JSON.parse(
+      await readFile(path.join(root, 'data/homepage', `${sourceCommit}.json`), 'utf8')
+    );
+    assertBaseline(data);
+    if (
+      data.evidence[0].sha !== sourceCommit ||
+      data.repository !== lock.turnBasedGameData.repository
+    )
+      throw new Error('Homepage baseline source mismatch');
+    return data;
+  } catch (cause) {
+    throw new Error(
+      'Homepage trusted baseline unavailable; run pnpm upstreams:update and commit data/homepage/',
+      { cause }
+    );
+  }
+}
+
+export function buildHomepageVersionData(
+  baseline: HomepageBaseline,
+  current: EntityIds,
+  gameVersion: string | null
+): HomepageVersionData {
+  assertBaseline(baseline);
+  if (gameVersion !== baseline.gameVersion)
+    throw new Error('Homepage current game version mismatch');
+  const additions = Object.fromEntries(
+    homepageCategories.map((category) => {
+      const previous = new Set(baseline.ids[category]);
+      return [category, sortedIds(current[category]).filter((id) => !previous.has(id))];
     })
+  ) as EntityIds;
+  return {
+    schemaVersion: 2,
+    gameVersion,
+    baseline: {
+      version: baseline.baselineVersion,
+      repository: baseline.repository,
+      commit: baseline.baselineCommit,
+      digest: baseline.digest
+    },
+    additions
   };
-  assertHomepageRecentWarpData(data, characterCatalog, lightConeCatalog);
-  return data;
+}
+
+export function assertHomepageVersionData(
+  data: HomepageVersionData,
+  catalogs: Record<HomepageCategory, Array<{ id: string }>>
+): void {
+  if (
+    data.schemaVersion !== 2 ||
+    !/^\d+\.\d+$/.test(data.gameVersion) ||
+    !/^\d+\.\d+$/.test(data.baseline.version) ||
+    !/^[a-f0-9]{64}$/.test(data.baseline.digest) ||
+    !/^https:\/\/github\.com\/[\w.-]+\/[\w.-]+\.git$/.test(data.baseline.repository) ||
+    !/^[a-f0-9]{40}$/.test(data.baseline.commit)
+  )
+    throw new Error('Homepage invalid version data');
+  for (const category of homepageCategories) {
+    const ids = data.additions[category];
+    const available = new Set(catalogs[category].map(({ id }) => id));
+    if (
+      JSON.stringify(ids) !== JSON.stringify(sortedIds(ids)) ||
+      ids.some((id) => !available.has(id))
+    )
+      throw new Error(`Homepage invalid catalog selection: ${category}`);
+  }
 }

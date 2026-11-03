@@ -19,6 +19,7 @@ jobs:
     env:
       AUTOMATION_BRANCH: automation/update-upstreams
       HSR_DATA_ROOT: .upstream/TurnBasedGameData
+      GITHUB_TOKEN: ${{ github.token }}
       ENEMY_UPDATE_REPORT: data/audit/enemy-update.json
     steps:
       - name: Checkout develop
@@ -83,8 +84,8 @@ jobs:
         id: changes
         shell: bash
         run: |
-          git add upstream.lock.json data/search/character-official-names.generated.json data/search/character-player-aliases.json static/generated-enemy-assets
-          if git diff --cached --quiet -- upstream.lock.json data/search/character-official-names.generated.json data/search/character-player-aliases.json static/generated-enemy-assets; then
+          git add upstream.lock.json data/homepage data/search/character-official-names.generated.json data/search/character-player-aliases.json static/generated-enemy-assets
+          if git diff --cached --quiet -- upstream.lock.json data/homepage data/search/character-official-names.generated.json data/search/character-player-aliases.json static/generated-enemy-assets; then
             echo 'changed=false' >> "$GITHUB_OUTPUT"
             echo 'No maintained output changes detected.'
           else
@@ -138,7 +139,7 @@ jobs:
             echo
             echo 'Managed file diff:'
             echo '```text'
-            git diff --stat origin/develop...HEAD -- upstream.lock.json data/search/character-official-names.generated.json data/search/character-player-aliases.json static/generated-enemy-assets
+            git diff --stat origin/develop...HEAD -- upstream.lock.json data/homepage data/search/character-official-names.generated.json data/search/character-player-aliases.json static/generated-enemy-assets
             echo '```'
             git diff --name-status origin/develop...HEAD -- static/generated-enemy-assets | awk 'BEGIN { added=0; changed=0; removed=0 } /^A[[:space:]]/ { added++ } /^M[[:space:]]/ { changed++ } /^D[[:space:]]/ { removed++ } END { printf "Enemy files: added %d, changed %d, removed %d\n", added, changed, removed }'
             echo

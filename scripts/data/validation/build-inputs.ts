@@ -1,3 +1,5 @@
+import { assertHomepageVersionData, homepageCategories } from '../homepage.js';
+import type { HomepageVersionData } from '../../../src/lib/domain/types.js';
 import {
   assertCharacterTrainingData,
   assertLightConeTrainingData,
@@ -210,6 +212,21 @@ export async function validateBuildInputs(
     { generated: generatedRoot, staticGenerated: staticGeneratedRoot },
     {
       async onArtifact(logicalPath, value, metadata) {
+        if (/^views\/(zh-CN|en)\/homepage\.json$/.test(logicalPath)) {
+          assertArtifactLocale(logicalPath, metadata);
+          const homepage = value as HomepageVersionData;
+          assertHomepageVersionData(
+            homepage,
+            Object.fromEntries(
+              homepageCategories.map((category) => [
+                category,
+                manifest.routes[category].map((id) => ({ id }))
+              ])
+            ) as Record<(typeof homepageCategories)[number], Array<{ id: string }>>
+          );
+          if (homepage.gameVersion !== manifest.gameVersion)
+            throw new Error('Homepage version differs from manifest');
+        }
         if (logicalPath.startsWith('static/generated/training/')) {
           if (metadata.locale !== undefined)
             throw new Error('Training cost artifacts must be locale-neutral');

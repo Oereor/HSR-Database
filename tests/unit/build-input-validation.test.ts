@@ -203,7 +203,17 @@ async function createFixture(): Promise<Fixture> {
       await writeArtifact(`views/${locale}/endgame/${mode}.json`, datasets[mode], locale);
     await writeArtifact(
       `views/${locale}/homepage.json`,
-      { schemaVersion: 1, avatarUps: [], weaponUps: [] },
+      {
+        schemaVersion: 2,
+        gameVersion: '4.5',
+        baseline: {
+          version: '4.4',
+          repository: 'https://github.com/example/data.git',
+          commit: 'b'.repeat(40),
+          digest: 'c'.repeat(64)
+        },
+        additions: { characters: [], 'light-cones': [], relics: [], enemies: [] }
+      },
       locale
     );
     await writeArtifact(`views/${locale}/search-inputs.json`, { catalogs: {} }, locale);
@@ -366,7 +376,7 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 56,
+    schemaVersion: 57,
     ratingV2PolicyInput: (await readRatingV2PolicyInput(ratingV2PolicyFile)).metadata,
     ratingV2BenchmarkInput: await readRatingV2BenchmarkInput(),
     sourceCommit: commit,
