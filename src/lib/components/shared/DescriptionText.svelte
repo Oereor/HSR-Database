@@ -15,15 +15,17 @@
   );
 </script>
 
-{#each segments as segment}
-  {#if segment.kind === 'special-effect-trigger'}<button
-      type="button"
-      class="special-effect-trigger"
-      aria-label={m.special_effect_view()}
-      on:click={(event) => onOpenSpecialEffects?.(event.currentTarget)}
-      >{#each segment.tokens as token}<InlineGameTextToken
-          {token}
-          iconUrl={specialEffectIconUrl}
-        />{/each}</button
-    >{:else}{#each segment.tokens as token}<InlineGameTextToken {token} />{/each}{/if}
-{/each}
+<span class="game-text">
+  {#each segments as segment}
+    {#if segment.kind === 'special-effect-trigger'}<button
+        type="button"
+        class="special-effect-trigger"
+        aria-label={m.special_effect_view()}
+        on:click={(event) => onOpenSpecialEffects?.(event.currentTarget)}
+        >{#each segment.tokens as token}<InlineGameTextToken
+            {token}
+            iconUrl={specialEffectIconUrl}
+          />{/each}</button
+      >{:else}{#each segment.tokens as token}<InlineGameTextToken {token} />{/each}{/if}
+  {/each}
+</span>
