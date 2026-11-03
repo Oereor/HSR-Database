@@ -288,3 +288,136 @@ MonsterSkillConfig 已属于全局游戏表源清单，部署输入也已覆盖 
 
 [^issue]: Oereor. HSR-Database 深渊血量信息分阶段展示. GitHub Issue #53, 2026. [Issue #53](https://github.com/Oereor/HSR-Database/issues/53).
 [^upstream]: DimbreathBot. TurnBasedGameData，锁定提交 74a7b96fba32f00cf495a5c00b0311bd02207aaf. GitHub, 2026. [固定提交数据树](https://github.com/DimbreathBot/TurnBasedGameData/tree/74a7b96fba32f00cf495a5c00b0311bd02207aaf).
+
+## 8. 补充调查：OverrideSkillParams 中 -1 的语义
+
+补充调查日期：2026-11-03；网站代码基线 `bce5d87ef0b163202ad8f6e46a2642826303f4a4`，分支 `develop`。上游仍为第 1 节的锁定提交 `74a7b96fba32f00cf495a5c00b0311bd02207aaf`。本节追加证据及当前决策，保留前文历史统计，不将反事实计算纳入已验证覆盖率。
+
+**判断：分布与多个消费字段强烈支持“选择性跳过覆盖／继承基础参数”的假设，但目前不足以可靠确认统一的引擎规则。暂不建议修改共享 effectiveSkillParams()；Iron Tomb Core 的 P1/P2 继续保持 unresolved，Issue #53 可以按局部 unresolved 策略推进。**
+
+亚婆离（Template `5034010`）沿用用户已确定的回退策略：保留现有基础 HP 展示，不从缺失的 Character Config 推断阶段数量，不增加特殊处理。本节不调查其阶段或护盾机制。
+
+### 8.1 全量覆盖参数统计
+
+统计遍历完整 `ExcelOutput/MonsterConfig.json`，不限制于 Endgame，按每个具体 Monster 的覆盖记录计数。数组统计对象严格为 `OverrideSkillParams[].PBLPLDJKPEI[]`；每项经无损读取后比较十进制值，覆盖行的 `BOKJJKFCFME` 与 `MonsterSkillConfig.SkillID` 对应。
+
+| 指标 | 数量 |
+| --- | ---: |
+| MonsterConfig 总记录 | 2,722 |
+| OverrideSkillParams 非空的 Monster | 131 |
+| 覆盖记录／数组参数位置 | 292 / 645 |
+| 含 -1 的 Monster／Template／SkillID | 64 / 48 / 70 |
+| 含 -1 的覆盖记录／参数位置 | 86 / 201 |
+| 这些记录中混合包含 -1 与非负值／全为 -1 | 86 / 0 |
+| -1 位置存在基础参数／基础参数也是 -1／缺少基础参数 | 201 / 0 / 0 |
+| 其他负覆盖值／显式零覆盖值 | 0 / 34 |
+| MonsterSkillConfig 全部基础 ParamList 中的负值 | 0 |
+
+292 条覆盖记录均可找到对应 SkillID，其中 14 条提供空参数数组。201 个 -1 位置对应的基础值包括 0、概率和倍率小数、整数、120、300 等，没有集中于 HP 参数；86 条记录中的非负值负责其他位置的显式配置。该形态与“只修改部分位置，其余位置用占位符保留”相符。
+
+同一覆盖行另外两个混淆命名标量字段 `NFNILIEFKHJ`、`ANLGHKHLFDE` 分别有 247、290 次取值为 -1。它们不是 PBLPLDJKPEI 数组元素，现有 effectiveSkillParams() 也不读取它们。相邻字段重复使用 -1 是格式线索，但字段含义及合并规则未确认，不能把它们的潜在标记语义直接转移给参数数组。
+
+**已验证事实**是分布、位置和基础值；**合理推断**是 -1 可能表示跳过覆盖。零值已经被显式使用，不能把 0 也归为继承值；本批数组没有其他负数，也不能据此引入“所有负数都继承”的规则。基础 ParamList 没有负值同样不证明所有参数消费字段都禁止负值。
+
+### 8.2 代表案例及实际引用
+
+下列原始路径均相对锁定的 TurnBasedGameData。Monster 和技能数组分别来自 `ExcelOutput/MonsterConfig.json`、`ExcelOutput/MonsterSkillConfig.json`。所有参数索引均从 0 起；Character 的 `DynamicValues.Floats[hash].ReadInfo` 指定 Type=SkillParam、TriggerKey 和 Index，再由实际配置中的表达式引用该 hash。
+
+#### 8.2.1 Iron Tomb Core：阶段倍率与伤害共用同一种覆盖形态
+
+Monster `403501001`，Template `4035010`：
+
+- Character：`Config/ConfigCharacter/Monster/Monster_W4_IronTombCore_00_Config.json`。
+- Ability：`Config/ConfigAbility/Monster/Monster_W4_IronTombCore_00_Ability.json`。
+- Skill `403501010` / PassiveSkill02：基础 `[0.5, 0.35, 1, 1.25, 1]`，覆盖 `[-1, -1, -1, -1, 1]`。
+- hash `-2011261060` → PassiveSkill02[2] → `PhaseList[PhaseNum=1].PhaseMaxHPRatio`；hash `-1187209710` → PassiveSkill02[3] → `PhaseList[PhaseNum=2].PhaseMaxHPRatio`。基础倍率为 1、1.25；现有覆盖结果为 -1、-1。
+- 同一 Monster 的 Skill `403501006` / Skill06：基础 `[5, 0.08, 3, 2]`，覆盖 `[-1, 0.06, 5]`。hash `-1122549516` → Skill06[0]，被 `Monster_W4_IronTombCore_00_Skill06_Phase02` 多个 `AttackProperty.DamagePercentage` 引用。现有参数为 `[-1, 0.06, 5, 2]`；继承假设下才会变成 `[5, 0.06, 5, 2]`。
+
+这些引用说明问题不限于 HP，也说明基础数组的尾项与显式覆盖位置需要分开处理。负 HP 倍率不适合静态展示、负伤害候选被当前网站解析器拒绝，均支持继续核查标记语义；网站自身的拒绝规则不能作为游戏引擎合并规则的证明。
+
+#### 8.2.2 FireProwler：同一数组同时影响伤害与层数
+
+Monster `403401003`，Template `4034010`，Skill `403401001` / Skill01：
+
+- Character：`Config/ConfigCharacter/Monster/Monster_W4_FireProwler_00_Config.json`。
+- Ability：`Config/ConfigAbility/Monster/Monster_W4_FireProwler_00_Ability.json`。
+- 基础 `[4, 2, 0.05, 8, 0.05]`，覆盖 `[-1, -1, 0.05, -1, 0.05]`。
+- hash `-1126825319` → Skill01[0]，hash `-335668838` → Skill01[1]；在 `Monster_W4_FireProwler_00_Skill01_Phase02` 与 `Monster_W4_FireProwler_00_Skill01_Assist` 中进入 `AttackProperty.DamagePercentage`。
+- hash `-1157393854` → Skill01[3]，在 `Monster_W4_FireProwler_00_PassiveSkill01` 等 Ability 中进入 AddModifier 的 MaxLayer、LayerAddWhenStack。
+
+把 -1 解释为继承会保留基础伤害倍率 4/2 和层数参数 8，配置形态与保留部分基础能力相符。但仅有引用不足以排除“某些位置禁用／交由消费方特殊处理”等替代解释；本节没有执行这些 Ability 或推导其实际战斗效果。
+
+#### 8.2.3 ArgentiTotem：覆盖位置是韧性伤害
+
+Monster `302103005`，Template `3021030`，Skill `302103002` / SkillP01：
+
+- Character：`Config/ConfigCharacter/Monster/Monster_W2_ArgentiTotem_00_Config.json`。
+- Ability：`Config/ConfigAbility/Monster/Monster_W2_ArgentiTotem_00_Ability.json`。
+- 基础 `[0.6, 30, 0.8, 60]`，覆盖 `[0.25, -1, 0.5]`；现有有效数组为 `[0.25, -1, 0.5, 60]`。
+- hash `-213833750` → SkillP01[1] → `Monster_W2_ArgentiTotem_00_SkillP01_Phase01.OnStart[10].FailedTaskList[2].AttackProperty.StanceValue`。
+
+继承假设下该位置为 30，但“该参数被引用”不能证明 30 就是具体 Monster 的游戏实际值。这个案例主要用于确认 -1 横跨多个数值用途，不能只为 HP 分支单独硬编码合并规则。
+
+#### 8.2.4 Iron Tomb Core Part：不能把所有消费场景的负值都视为异常
+
+Monster `403206001`，Template `4032060`：
+
+- Character：`Config/ConfigCharacter/Monster/Monster_W4_IronTombCorePart_00_Config.json`。
+- Ability：`Config/ConfigAbility/Monster/Monster_W4_IronTombCorePart_00_Ability.json`。
+- Skill `403206001` / Skill01 与 `403206003` / Skill03 均为基础 `[3, 0.25, 0.05]`、覆盖 `[2.8, -1, 0.03]`。
+- hash `-1433019565` → Skill01[1] → `Monster_W4_IronTombCorePart_00_Skill01_Phase02.OnStart[8].AddNormalizedValue`。
+- hash `234321181` → Skill03[1] → `Monster_W4_IronTombCorePart_00_Skill03_Phase02.OnStart[6].AddNormalizedValue`。
+- 两处消费节点均为 `RPG.GameCore.ModifyActionDelay`。
+
+按当前共享工具的字面覆盖，两个位置均为 -1，网站 normalizedActionShift() 将其解释为 advance、ratio=1；若采用继承规则，则读取基础 0.25，变成 delay、ratio=0.25。
+
+**这是当前解析器两种规则下的已验证输出差异，不是游戏提前／延后行为的实测。** 行动位移有可解释的负值消费场景，所以“负 HP 不合理”不足以证明任何参数位置的 -1 都应继承；反过来，此例也没有证明游戏确实按字面消费覆盖数组中的 -1。
+
+### 8.3 能够确认与仍缺少的证据
+
+| 假设 | 当前证据 | 判断 |
+| --- | --- | --- |
+| -1 跳过该位置覆盖、保留基础值 | 全部 86 条为混合数组；201 个位置均有基础值；多个伤害／HP／层数引用与保留基础值的解释相符 | 强支持的推断，尚未验证合并实现 |
+| -1 禁用参数或某部分能力 | 部分消费字段有特殊负值的解释空间，但导出配置未提供统一禁用规则 | 不能确认，也不能仅靠数值分布排除 |
+| -1 一律作为普通数值替换 | 当前网站确实如此实现，行动位移也能产生有意义的解析结果；但 HP 和伤害会产生不可用负值 | 网站实现事实，不等于游戏规则事实 |
+| 所有负数、0 等都代表继承 | 没有其他负覆盖值；存在 34 个显式零值 | 不支持泛化 |
+
+当前锁定源提供表和 Character／Ability 配置，没有取得处理 OverrideSkillParams 的游戏引擎合并代码或明确格式说明。DynamicValue 仅说明 ReadInfo 读取哪个参数位置，不能直接说明它读到的是原始覆盖值、合并后的基础值，还是消费方处理过的值。公共代码精确关键词检索也没有取得可核对的合并实现；空搜索结果不证明这种实现不存在。
+
+要提升为可靠规则，至少还需获得可对应当前数据格式的覆盖合并实现／明确语义说明，或能区分“基础值继承、字面 -1、禁用”的针对性运行时验证。尤其应覆盖行动位移这种负值可被解释的消费场景，不能只以恢复预期 HP 的结果自证规则正确。
+
+### 8.4 修改共享工具的反事实影响
+
+分析方法：通过 readTable() 读取 MonsterConfig、MonsterTemplateConfig、MonsterSkillConfig、MonsterStatusConfig；保持一份原始内存表，另复制 Monster 表，只把 PBLPLDJKPEI 中数值为 -1 的位置替换为对应基础 ParamList 项。分别调用现有 buildEnemySkillDetails()，按 MonsterID + SkillID 对比 damage、applications、actionShifts。源文件和 effectiveSkillParams() 均未修改。
+
+该实验回答“共享规则改变会影响哪些当前可解析技能详情”，不回答“哪种规则符合游戏”。它不生成完整数据、不过 locale projection，也不模拟战斗。两种规则均输出 2,083 个 Monster 的非空技能详情映射；变化涉及 **4 个 Monster 的 6 条详情**。
+
+| MonsterID | SkillID | 当前字面覆盖输出 | 假设 -1 继承后的输出 |
+| --- | --- | --- | --- |
+| 403206001 | 403206001 | 主目标伤害 2.8；行动提前 100% | 主目标伤害 2.8；行动延后 25% |
+| 403206001 | 403206003 | 主目标伤害 2.8；行动提前 100% | 主目标伤害 2.8；行动延后 25% |
+| 403401003 | 403401004 | 全体伤害候选 3 | 保留全体 3，增加主目标 4、相邻 2 |
+| 403401003 | 403401001 | 无详情输出 | 增加主目标 4、相邻 2 的伤害详情 |
+| 403501001 | 403501006 | 无详情输出 | 增加倍率 5 的伤害候选，目标角色未确定 |
+| 405201004 | 405201001 | 无详情输出 | 增加全体倍率 1.8 的伤害详情 |
+
+共 4 条详情的 damage 字段、2 条详情的 actionShifts 字段变化；applications 未变化。3 条从无详情变为有详情，指已有 SkillID 新增可解析详情，**不代表新增了游戏技能**。伤害负值诊断由 4 次变为 0；这反映候选不再被当前解析器拒绝，不能充当游戏语义验证。
+
+最后一例的 Monster `405201004` 引用 Template `4052010`，Character 为 `Config/ConfigCharacter/Monster/Monster_W2_Mecha02_02_Config.json`，Ability 为 `Config/ConfigAbility/Monster/Monster_W2_Mecha02_02_Ability.json`。Skill `405201001` / Skill01 的基础 `[1.8, 0.7]` 被覆盖为 `[-1, 0.9]`；hash `-1126825319` → Skill01[0] → `Monster_W2_Mecha02_02_Skill01_Phase02.OnStart[2].AttackProperty.DamagePercentage`。
+
+共享调用链为 `effectiveSkillParams → buildEnemySkillDetails → parseEnemySkillDetail → damage / applications / actionShifts`，后续还会进入敌人 domain 与双语言投影。因此修改影响越过 Endgame HP；不能把它当成只修 Iron Tomb Core 的局部改动。
+
+64 个含 -1 的 Monster 不等于 64 个都会改变当前详情输出：缺失或未匹配的 Ability、当前不支持的表达式、未提取的参数用途、目标和分支限制都会缩小可见差异。6 条是当前解析能力下的详情差异数量，不是全游戏影响上限，也不证明未改变详情输出的负覆盖位置都没有作用。参数冲突仍沿用原工具的拒绝策略，本实验没有为提高覆盖率放宽表达式或冲突规则。
+
+### 8.5 四项答复与实施决策
+
+1. **-1 是否能够可靠认定为特殊覆盖标记？尚不能。** 大量混合覆盖和多个消费字段强烈支持标记假设，但缺少覆盖合并实现、明确说明或能区分竞争假设的运行时证据。应把“支持继承解释”与“证实引擎继承规则”分开表述。
+2. **是否建议修改共享 effectiveSkillParams()？目前不建议。** 保留现有实现，不硬编码 -1 → 原始值，也不推广到所有负值或零值。若未来取得证据，再单独评估共享行为调整，并针对本节 6 条详情差异做定向验证；本节不实现或新增测试。
+3. **Iron Tomb Core 的两个 occurrence 是否可以恢复完整静态阶段 HP？目前不能。** 普通／Hard 仍使用具体 Monster `403501001`；现有解析结果为 `[-1, -1, 1]`，P1/P2 保留 unresolved，P3 可保留第 5.4 节的静态值。`[1, 1.25, 1]` 及对应完整 HP 只能作为继承假设成立后的条件结果，不提升为已验证数据，不更新历史 352/354 的完整覆盖统计。
+4. **Issue #53 是否可以继续实施？可以。** 采用第 6 节的局部 unresolved 策略：有效阶段继续计算，显式失败不回退成 1，不阻断其他敌人的静态展示。亚婆离继续保留基础 HP，不推断阶段数，不增加专用处理；本节没有开展其战斗机制调查。
+
+### 8.6 补充调查验证记录
+
+全量统计复核使用与锁定文件一致的上游；共享参数、技能详情、语义和伤害解析文件与前轮调查代码基线相比无变化，反事实对比仍适用。分析通过标准输入和内存表执行，没有保留临时脚本，没有运行完整构建、数据生成或测试套件。
+
+文档检查覆盖表格列数、代码围栏、相对链接和行尾空白；同时验证本节之前的原文内容保持不变。最终仅本审计报告修改，两个外部仓库的 Git status 均与补充调查开始时一致（干净）。
