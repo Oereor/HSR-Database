@@ -16,16 +16,13 @@
   export let level: number | undefined = undefined;
 
   let imageMissing = !occurrence.portraitUrl?.trim();
-  $: elementProps = occurrence.enemyHref ? { href: localizedHref(occurrence.enemyHref) } : {};
 </script>
 
-<svelte:element
-  this={occurrence.enemyHref ? 'a' : 'article'}
-  {...elementProps}
+<article
   class:endgame-enemy--compact={variant === 'compact'}
   class:endgame-enemy--link={!!occurrence.enemyHref}
   class:endgame-enemy--with-art={!imageMissing}
-  class={`endgame-enemy ${occurrence.enemyHref ? 'group' : ''} focus-visible:ring-ring/50 block h-full w-full max-w-[260px] min-w-0 justify-self-start rounded-xl outline-none focus-visible:ring-3`}
+  class={`endgame-enemy ${occurrence.enemyHref ? 'group cursor-pointer' : ''} has-[:focus-visible]:ring-ring/50 relative isolate block h-full w-full max-w-[260px] min-w-0 justify-self-start rounded-xl has-[:focus-visible]:ring-3`}
   data-endgame-enemy-card
   data-enemy-card-variant={variant}
   data-monster-id={occurrence.monsterId}
@@ -95,7 +92,15 @@
         <h5
           class="endgame-enemy__name text-foreground group-hover:text-primary m-0 text-sm leading-relaxed font-semibold wrap-anywhere"
         >
-          <GameText text={occurrence.name} />
+          {#if occurrence.enemyHref}
+            <a
+              href={localizedHref(occurrence.enemyHref)}
+              class="outline-none after:absolute after:inset-0 after:z-10 after:rounded-xl"
+              data-endgame-enemy-link><GameText text={occurrence.name} /></a
+            >
+          {:else}
+            <GameText text={occurrence.name} />
+          {/if}
         </h5>
       </header>
 
@@ -151,4 +156,4 @@
       </dl>
     </Card.Content>
   </Card.Root>
-</svelte:element>
+</article>

@@ -62,6 +62,12 @@ export type EnemyHpFinalResolution =
         | 'invalid-pf-hp-added-ratio';
     };
 
+export interface EnemyHpPhase {
+  phase: number;
+  ratio: { status: 'default' | 'resolved'; value: DecimalString } | { status: 'unresolved' };
+  maxHp?: DecimalString;
+}
+
 export interface EnemyHpFactors {
   hpBase: DecimalString;
   instanceRatio: DecimalString;
@@ -69,6 +75,7 @@ export interface EnemyHpFactors {
   eliteRatio: DecimalString;
   baseEncounterMaxHpPerBar: DecimalString;
   final: EnemyHpFinalResolution;
+  phases?: EnemyHpPhase[];
   eliteGroupId: number;
   eliteGroupTable: EliteGroupTable;
   eliteContextSource: EliteContextSource;
@@ -421,7 +428,7 @@ export type EndgameGroup =
   MocGroup | PureFictionGroup | ApocalypticShadowGroup | AnomalyArbitrationGroup;
 
 interface EndgameModeDatasetBase<TMode extends EndgameMode, TGroup extends EndgameGroup> {
-  schemaVersion: 25;
+  schemaVersion: 26;
   mode: TMode;
   groups: TGroup[];
 }

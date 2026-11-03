@@ -10,6 +10,26 @@ import { getEnemyPortraitMap } from '../../src/lib/server/enemy-assets';
 import type { EndgameOccurrenceShard } from '../../src/lib/domain/search-index';
 
 describe('Endgame Search portrait delivery', () => {
+  it('delivers identical phase HP through serialized English and server-built Chinese shards', async () => {
+    const shards = await Promise.all(
+      ['zh-CN', 'en'].map((locale) =>
+        getEndgameOccurrenceShard('4035010', locale as 'zh-CN' | 'en')
+      )
+    );
+    const hp = shards.map((shard) =>
+      Object.values(shard!.occurrences).map((item) => item.occurrence.hp)
+    );
+    expect(hp[0]).toEqual(hp[1]);
+    expect(hp[0]).toHaveLength(2);
+    expect(
+      hp[0].every((item) => item.display === 'phases' && item.phases?.every((p) => p.exact))
+    ).toBe(true);
+    expect(
+      hp[0]
+        .flatMap((item) => item.phases!)
+        .every((p) => Object.keys(p).every((key) => ['phase', 'exact', 'rounded'].includes(key)))
+    ).toBe(true);
+  });
   it('keeps cached enemy references isolated by locale', async () => {
     const [zh, en] = await Promise.all([
       getEndgameGroup('moc', 1034, 'zh-CN'),

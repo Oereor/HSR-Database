@@ -145,6 +145,8 @@ export interface EnemyOccurrenceView {
     exactPerBar?: DecimalString;
     roundedPerBar: string;
     phaseCount?: number;
+    display?: 'plain' | 'uniform' | 'phases';
+    phases?: Array<{ phase: number; exact?: DecimalString; rounded: string }>;
   };
   speed: {
     exact?: DecimalString;
@@ -382,6 +384,7 @@ export function occurrenceIdentity(occurrence: EnemyOccurrence): string {
     occurrence.hp.levelRatio,
     occurrence.hp.eliteRatio,
     occurrence.hp.baseEncounterMaxHpPerBar,
+    occurrence.hp.phases?.map(({ phase, maxHp }) => [phase, maxHp ?? null]),
     occurrence.hp.final.status,
     occurrence.hp.final.status === 'resolved'
       ? occurrence.hp.final.maxHpPerBar
@@ -426,6 +429,25 @@ export function buildOccurrenceView(
   presentation: EndgameViewPresentation = ZH_CN_ENDGAME_VIEW_PRESENTATION
 ): EnemyOccurrenceView {
   const mechanics = occurrence.mechanics;
+  const phases = occurrence.hp.phases?.map(({ phase, maxHp }) => ({
+    phase,
+    ...(maxHp !== undefined ? { exact: maxHp } : {}),
+    rounded: maxHp !== undefined ? formatFullHp(maxHp) : presentation.unavailable
+  }));
+  const multiple = phases && phases.length > 1;
+  const uniform =
+    multiple &&
+    phases.every(
+      ({ exact }) =>
+        exact !== undefined &&
+        phases[0].exact !== undefined &&
+        formatExactDecimal(exact) === formatExactDecimal(phases[0].exact)
+    );
+  const phaseView = {
+    display: (multiple ? (uniform ? 'uniform' : 'phases') : 'plain') as
+      'plain' | 'uniform' | 'phases',
+    ...(multiple ? { phases } : {})
+  };
   return {
     identity: occurrenceIdentity(occurrence),
     ...(occurrence.voracityLevel !== undefined ? { voracityLevel: occurrence.voracityLevel } : {}),
@@ -440,11 +462,12 @@ export function buildOccurrenceView(
     hp:
       occurrence.hp.final.status === 'resolved'
         ? {
+            ...phaseView,
             exactPerBar: occurrence.hp.final.maxHpPerBar,
             roundedPerBar: formatFullHp(occurrence.hp.final.maxHpPerBar),
             ...(mechanics.phaseCount ? { phaseCount: mechanics.phaseCount } : {})
           }
-        : { roundedPerBar: presentation.unavailable },
+        : { ...phaseView, roundedPerBar: presentation.unavailable },
     speed:
       occurrence.speed.status === 'resolved'
         ? {

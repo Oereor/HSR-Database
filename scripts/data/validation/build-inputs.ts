@@ -314,7 +314,7 @@ export async function validateBuildInputs(
           const [, locale, mode] = endgameMatch as [string, Locale, EndgameMode];
           if (
             !isRecord(value) ||
-            value.schemaVersion !== 25 ||
+            value.schemaVersion !== 26 ||
             value.mode !== mode ||
             !Array.isArray(value.groups)
           )
@@ -382,7 +382,7 @@ export async function validateBuildInputs(
           const targetId = shardMatch[1];
           if (
             !isRecord(value) ||
-            value.schemaVersion !== 3 ||
+            value.schemaVersion !== 4 ||
             value.locale !== 'en' ||
             !isRecord(value.target) ||
             value.target.kind !== 'endgame' ||

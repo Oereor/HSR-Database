@@ -4,7 +4,11 @@ import ImageFixture from './ImageFixture.svelte';
 
 const target = document.getElementById('app')!;
 const hydrateButton = document.getElementById('hydrate');
-if (location.pathname === '/description-text') {
+if (location.pathname === '/phase-hp') {
+  void import('./PhaseHpFixture.svelte').then(({ default: PhaseHpFixture }) =>
+    mount(PhaseHpFixture, { target })
+  );
+} else if (location.pathname === '/description-text') {
   void import('./DescriptionFixture.svelte').then(({ default: DescriptionFixture }) => {
     hydrateButton!.addEventListener('click', () => hydrate(DescriptionFixture, { target }), {
       once: true

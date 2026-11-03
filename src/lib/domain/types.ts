@@ -467,7 +467,7 @@ export interface PublicSiteVersion {
 }
 
 export interface DataManifest {
-  schemaVersion: 55;
+  schemaVersion: 56;
   ratingV2PolicyInput: { schemaVersion: 2; bytes: number; sha256: string };
   ratingV2BenchmarkInput: { schemaVersion: 4; bytes: number; sha256: string; auditSha256: string };
   sourceCommit: string;

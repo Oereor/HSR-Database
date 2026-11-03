@@ -88,10 +88,10 @@ async function createFixture(): Promise<Fixture> {
     enemies: ['4']
   };
   const datasets = {
-    moc: { schemaVersion: 25, mode: 'moc', groups: [{ groupId: 10 }] },
-    pf: { schemaVersion: 25, mode: 'pf', groups: [{ groupId: 20 }] },
-    as: { schemaVersion: 25, mode: 'as', groups: [{ groupId: 30 }] },
-    aa: { schemaVersion: 25, mode: 'aa', groups: [{ groupId: 40 }] }
+    moc: { schemaVersion: 26, mode: 'moc', groups: [{ groupId: 10 }] },
+    pf: { schemaVersion: 26, mode: 'pf', groups: [{ groupId: 20 }] },
+    as: { schemaVersion: 26, mode: 'as', groups: [{ groupId: 30 }] },
+    aa: { schemaVersion: 26, mode: 'aa', groups: [{ groupId: 40 }] }
   } as unknown as EndgameDatasetByMode;
   const artifacts: DataManifest['artifacts'] = {};
 
@@ -235,7 +235,7 @@ async function createFixture(): Promise<Fixture> {
   await writeArtifact(
     'views/en/endgame-occurrences/4',
     {
-      schemaVersion: 3,
+      schemaVersion: 4,
       locale: 'en',
       target: { kind: 'endgame', id: '4' },
       periods: [],
@@ -366,7 +366,7 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 55,
+    schemaVersion: 56,
     ratingV2PolicyInput: (await readRatingV2PolicyInput(ratingV2PolicyFile)).metadata,
     ratingV2BenchmarkInput: await readRatingV2BenchmarkInput(),
     sourceCommit: commit,
@@ -525,7 +525,7 @@ describe('production build-input validation', () => {
 
     const shard = await createFixture();
     await shard.rewrite('views/en/endgame-occurrences/4', {
-      schemaVersion: 3,
+      schemaVersion: 4,
       locale: 'en',
       target: { kind: 'endgame', id: '5' },
       periods: [],

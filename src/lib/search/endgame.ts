@@ -79,7 +79,7 @@ export function createEndgameSearchExpander(
         .then(() => fetchShard(targetId, locale))
         .then((shard) => {
           if (
-            shard.schemaVersion !== 3 ||
+            shard.schemaVersion !== 4 ||
             shard.locale !== locale ||
             shard.target.kind !== 'endgame' ||
             shard.target.id !== targetId

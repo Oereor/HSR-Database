@@ -14,7 +14,11 @@ import type {
   EndgameStage,
   EnemyOccurrence
 } from '../../src/lib/domain/endgame.js';
-import { ENDGAME_MODES, presentedStageWaves } from '../../src/lib/domain/endgame-view.js';
+import {
+  ENDGAME_MODES,
+  presentedStageWaves,
+  formatFullHp
+} from '../../src/lib/domain/endgame-view.js';
 import {
   endgameOccurrenceLocatorKey,
   type EndgameOccurrenceLocator,
@@ -24,7 +28,7 @@ import {
 } from '../../src/lib/domain/search-index.js';
 import { searchTargetKey } from '../../src/lib/search/documents.js';
 import type { LocalizationHealthSummary } from './localization.js';
-import { decimalEquals, multiplyDecimals, parseDecimal } from './decimal.js';
+import { decimalEquals, multiplyDecimals, parseDecimal, compareDecimals } from './decimal.js';
 import { buildGeneratedRouteInventory } from './routes.js';
 
 export interface ValidationIssue {
@@ -428,7 +432,7 @@ function validateEndgame(
   const positive = (value: unknown) => Number.isSafeInteger(value) && Number(value) > 0;
   for (const mode of ENDGAME_MODES) {
     const dataset = projection.endgame[mode];
-    if (!dataset || dataset.schemaVersion !== 25 || dataset.mode !== mode) {
+    if (!dataset || dataset.schemaVersion !== 26 || dataset.mode !== mode) {
       issues.push(issue('error', 'endgame', 'dataset-schema', `mode=${mode} must use schema=25`));
       continue;
     }
@@ -642,6 +646,40 @@ function validateEndgame(
                   final.maxHpPerBar
                 );
                 if (numeric) issues.push(numeric);
+                if (occurrence.hp.phases !== undefined) {
+                  try {
+                    const phases = occurrence.hp.phases;
+                    if (!Array.isArray(phases) || !phases.length)
+                      throw new Error('Invalid phase list');
+                    for (const [index, phase] of phases.entries()) {
+                      if (phase.phase !== index + 1) throw new Error('Invalid phase number');
+                      const ratio = phase.ratio;
+                      if (ratio.status === 'unresolved') {
+                        if (phase.maxHp !== undefined) throw new Error('Unresolved phase has HP');
+                      } else {
+                        if (
+                          !['default', 'resolved'].includes(ratio.status) ||
+                          compareDecimals(parseDecimal(ratio.value), parseDecimal('0')) <= 0 ||
+                          (ratio.status === 'default' &&
+                            !decimalEquals(ratio.value, parseDecimal('1'))) ||
+                          phase.maxHp === undefined ||
+                          !decimalEquals(
+                            phase.maxHp,
+                            multiplyDecimals([parseDecimal(final.maxHpPerBar), ratio.value])
+                          )
+                        )
+                          throw new Error('Invalid static phase HP');
+                      }
+                    }
+                  } catch (error) {
+                    issues.push(
+                      issue('error', 'endgame', 'phase-hp', String(error), {
+                        entityId: String(occurrence.monsterId),
+                        path: occurrencePath
+                      })
+                    );
+                  }
+                }
               } else if (
                 final.status !== 'unresolved' ||
                 ![
@@ -1250,7 +1288,7 @@ export function validateProductProjection(
     const shard = projection.occurrenceShards[target.id];
     if (
       !shard ||
-      shard.schemaVersion !== 3 ||
+      shard.schemaVersion !== 4 ||
       shard.locale !== projection.locale ||
       shard.target.kind !== 'endgame' ||
       shard.target.id !== target.id
@@ -1356,6 +1394,32 @@ export function validateProductProjection(
           )
         );
       if (shardItem) {
+        const hp = shardItem.occurrence.hp;
+        if (hp.display === 'uniform' || hp.display === 'phases') {
+          try {
+            if (!hp.phases || hp.phases.length < 2) throw new Error('Missing phase rows');
+            for (const [index, phase] of hp.phases.entries()) {
+              if (
+                phase.phase !== index + 1 ||
+                Object.keys(phase).some((key) => !['phase', 'exact', 'rounded'].includes(key)) ||
+                phase.rounded !== (phase.exact !== undefined ? formatFullHp(phase.exact) : '-')
+              )
+                throw new Error('Invalid public phase row');
+            }
+            const uniform = hp.phases.every(
+              (p) =>
+                p.exact !== undefined &&
+                hp.phases![0].exact !== undefined &&
+                decimalEquals(p.exact, hp.phases![0].exact!)
+            );
+            if ((hp.display === 'uniform') !== uniform)
+              throw new Error('Invalid phase presentation');
+          } catch (error) {
+            issues.push(
+              issue('error', 'search', 'shard-phase-hp', String(error), { entityId: target.id })
+            );
+          }
+        }
         const positiveInteger = (value: number | undefined) =>
           value === undefined || (Number.isSafeInteger(value) && value > 0);
         if (

@@ -288,7 +288,7 @@ describe('Search V2', () => {
       occurrences: [reference(firstLocator), reference(secondLocator, { stage: 1 })]
     };
     const shard: EndgameOccurrenceShard = {
-      schemaVersion: 3,
+      schemaVersion: 4,
       locale: 'zh-CN',
       target: { kind: 'endgame', id: 'a' },
       periods: [
@@ -348,7 +348,7 @@ describe('Search V2', () => {
     );
     const entry = { id: '2', name: '敌人', occurrences: [] };
     const fetchShard = vi.fn(async (targetId: string, locale: 'zh-CN' | 'en') => ({
-      schemaVersion: 3 as const,
+      schemaVersion: 4 as const,
       locale,
       target: { kind: 'endgame' as const, id: targetId },
       periods: [],
@@ -399,7 +399,7 @@ describe('Search V2', () => {
     });
     const [oldRef, secondRef, firstRef] = endgameIndex.endgameTargets[0].occurrences;
     const shard: EndgameOccurrenceShard = {
-      schemaVersion: 3,
+      schemaVersion: 4,
       locale: 'zh-CN',
       target: { kind: 'endgame', id: 'boss' },
       periods: [

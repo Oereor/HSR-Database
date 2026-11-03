@@ -107,7 +107,7 @@ export function buildEndgameOccurrenceShards(
           };
         }
         const shard: EndgameOccurrenceShard = {
-          schemaVersion: 3,
+          schemaVersion: 4,
           locale: input.locale,
           target: { kind: 'endgame', id: target.id },
           periods: [...groups.values()].map((group) => ({
