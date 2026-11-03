@@ -13,12 +13,13 @@ export default defineConfig({
       name: 'image-hydration-fixture',
       configureServer(server) {
         server.middlewares.use(async (request, response, next) => {
-          if (request.url !== '/hydration') return next();
+          if (request.url !== '/hydration' && request.url !== '/description-text') return next();
           try {
-            const { renderImage } = await server.ssrLoadModule('/server.ts');
-            const { body, head } = renderImage();
+            const { renderImage, renderDescription } = await server.ssrLoadModule('/server.ts');
+            const { body, head } =
+              request.url === '/description-text' ? await renderDescription() : renderImage();
             const html = await server.transformIndexHtml(
-              '/hydration',
+              request.url,
               `<!doctype html>
               <html lang="en"><head><title>Hydration fixture</title>${head}</head>
               <body><div id="app">${body}</div><button id="hydrate">Hydrate</button>

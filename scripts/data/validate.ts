@@ -1,4 +1,5 @@
 import { validateTrainingSemantics } from './validation/training.js';
+import { validatePhaseHpSemantics } from './validation/phase-hp.js';
 import { normalizeEnemySkillKind, normalizeEnemySkillTag } from './enemy-skill-policy.js';
 import { createTextResolver } from './localization.js';
 import { parameterized } from './domain/shared.js';
@@ -215,7 +216,7 @@ const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
 
 for (const mode of endgameModes) {
   const dataset = endgame[mode];
-  if (dataset.schemaVersion !== 25 || dataset.mode !== mode)
+  if (dataset.schemaVersion !== 26 || dataset.mode !== mode)
     throw new Error(`Endgame ${mode} schema 或模式标记错误`);
   if (new Set(dataset.groups.map((group) => group.groupId)).size !== dataset.groups.length)
     throw new Error(`Endgame ${mode} 存在重复 GroupID`);
@@ -420,6 +421,7 @@ const [rawTemplates, rawConfigs, rawHardLevels, rawElites, rawEnemySkills] = awa
   readTable<Record<string, any>>(rawRoot, 'MonsterSkillConfig')
 ]);
 const rawSkillById = new Map(rawEnemySkills.map((row) => [String(row.SkillID), row]));
+await validatePhaseHpSemantics(rawRoot, endgame, rawTemplates, rawConfigs, rawEnemySkills);
 const skillDescriptionResolvers = await Promise.all(
   (['zh-CN', 'en'] as const).map(async (locale) => ({
     locale,
@@ -1182,7 +1184,7 @@ for (const target of enSearch.endgameTargets) {
     endgameOccurrenceLocatorKey(locator)
   );
   if (
-    shard.schemaVersion !== 3 ||
+    shard.schemaVersion !== 4 ||
     shard.locale !== 'en' ||
     shard.target.kind !== 'endgame' ||
     shard.target.id !== target.id ||

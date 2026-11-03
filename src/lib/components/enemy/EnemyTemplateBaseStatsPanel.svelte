@@ -4,25 +4,18 @@
   import type { DecimalString } from '$lib/domain/endgame';
   import type { EnemyTemplateBaseStats } from '$lib/domain/types';
   import * as m from '$lib/paraglide/messages.js';
+  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import StatList from '$lib/components/shared/StatList.svelte';
   import StatRow from '$lib/components/shared/StatRow.svelte';
 
   export let baseStats: EnemyTemplateBaseStats;
 
-  type StatValue = { value: string; tone: 'default' | 'unavailable' };
-  const unavailable = (): StatValue => ({
-    value: m.common_data_unavailable(),
-    tone: 'unavailable'
-  });
-  const numeric = (value: DecimalString | undefined): StatValue =>
-    value === undefined ? unavailable() : { value: formatRoundedDecimal(value), tone: 'default' };
-  const toughness = (value: DecimalString | undefined): StatValue => {
-    if (value === undefined) return unavailable();
-    const converted = internalStanceToToughness(value);
-    return numeric(converted);
-  };
-  const percentage = (value: DecimalString | undefined): StatValue =>
-    value === undefined ? unavailable() : { value: formatRatioPercentage(value), tone: 'default' };
+  const numeric = (value: DecimalString | undefined): string =>
+    value === undefined ? '-' : formatRoundedDecimal(value);
+  const toughness = (value: DecimalString | undefined): string =>
+    numeric(value === undefined ? undefined : internalStanceToToughness(value));
+  const percentage = (value: DecimalString | undefined): string =>
+    value === undefined ? '-' : formatRatioPercentage(value);
 
   $: rows = [
     ['hp', m.enemy_base_hp(), numeric(baseStats.hp)],
@@ -41,18 +34,10 @@
 </script>
 
 <div class="enemy-template-stats-panel">
-  <h2>{m.enemy_stats_section()}</h2>
+  <SectionHeading level={2} headingLevel={2}>{m.enemy_stats_section()}</SectionHeading>
   <StatList ariaLabel={m.enemy_template_stats_aria()}>
     {#each rows as row (row[0])}
-      <StatRow data-enemy-template-stat={row[0]} label={row[1]} {...row[2]} />
+      <StatRow data-enemy-template-stat={row[0]} label={row[1]} value={row[2]} />
     {/each}
   </StatList>
 </div>
-
-<style>
-  .enemy-template-stats-panel h2 {
-    margin: 0;
-    font-size: var(--font-section-title);
-    line-height: 1.2;
-  }
-</style>

@@ -15,7 +15,7 @@ const statFields = `base perLevel fixed stages hp attack defence speed toughness
 criticalChance criticalDamage aggro max ratio value status reason resolvedInternal baseInternal instanceRatio
 instanceValue instanceValueInternal levelRatio hardLevelRatio eliteRatio configuredValue internalStance display
 perBar barCount runtimeStatus hpBase baseEncounterMaxHpPerBar final maxHpPerBar eliteGroupId eliteGroupTable
-eliteContextSource eliteContextConfidence phaseCount effectiveTotalHp effectiveTotalHpStatus`;
+eliteContextSource eliteContextConfidence phase maxHp exact rounded roundedPerBar exactPerBar phaseCount effectiveTotalHp effectiveTotalHpStatus`;
 const characterFields = `baseAvatarId gender profile profiles base enhanced energy max iconCode iconPath iconKey iconKeys
 skillCards variants progressions traces eidolons equipmentRecommendation lightConeIds cavernSetIds planarSetIds
 mainStatOptions subStatPropertyTypes propertyTypes sourcePointType extraEffects specialEffects relation kind

@@ -76,6 +76,7 @@ export const ENDGAME_TABLE_NAMES = [
   'StageInvasionConfig',
   'StageInvasionBuff',
   'MonsterConfig',
+  'MonsterSkillConfig',
   'MonsterTemplateConfig',
   'HardLevelGroup',
   'EliteGroup',

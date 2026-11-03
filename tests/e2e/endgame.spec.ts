@@ -937,9 +937,13 @@ test('四种 Endgame 模式的统一敌方卡使用整卡链接并显示可访�
     const card = page.locator('[data-endgame-enemy-card]').first();
     const templateId = await card.getAttribute('data-template-id');
     expect(templateId).not.toBeNull();
-    expect(await card.evaluate((element) => element.tagName)).toBe('A');
-    await expect(card).toHaveAttribute('href', `/enemies/${templateId}/`);
-    await expect(card.locator('a')).toHaveCount(0);
+    expect(await card.evaluate((element) => element.tagName)).toBe('ARTICLE');
+    await expect(card.locator('[data-endgame-enemy-link]')).toHaveAttribute(
+      'href',
+      `/enemies/${templateId}/`
+    );
+    await expect(card.locator('a')).toHaveCount(1);
+    await expect(card.locator('a button')).toHaveCount(0);
     const weaknesses = page.locator(
       '[data-endgame-enemy-card] .endgame-weaknesses [data-icon-kind="element"]'
     );
@@ -959,13 +963,17 @@ test('Endgame 敌方卡保留原生链接的点击、键盘与新标签页行为
   const sourceUrl = '/endgame/moc/1034/?encounter=5312';
   await page.goto(sourceUrl);
   let card = page.locator('[data-endgame-enemy-card]').first();
-  const href = await card.getAttribute('href');
+  const href = await card.locator('[data-endgame-enemy-link]').getAttribute('href');
   expect(href).toMatch(/^\/enemies\/\d+\/$/);
   await expect(card).toHaveCSS('cursor', 'pointer');
-  expect(await card.evaluate((element) => (element as HTMLElement).tabIndex)).toBe(0);
+  expect(
+    await card
+      .locator('[data-endgame-enemy-link]')
+      .evaluate((element) => (element as HTMLElement).tabIndex)
+  ).toBe(0);
 
-  await card.focus();
-  await expect(card).toBeFocused();
+  await card.locator('[data-endgame-enemy-link]').focus();
+  await expect(card.locator('[data-endgame-enemy-link]')).toBeFocused();
   expect(await card.evaluate((element) => getComputedStyle(element).boxShadow)).not.toBe('none');
   await page.keyboard.press('Enter');
   await expect(page).toHaveURL(new RegExp(`${href}$`));

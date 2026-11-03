@@ -133,18 +133,25 @@ test('Hero level controls keep keyboard behavior and mixed missing icons keep la
   expect(new Set(after).size).toBe(1);
 });
 
-test('Enemy Hero missing values use shared muted state with no icon column', async ({ page }) => {
+test('Enemy Hero missing values use normal numeric styling with no icon column', async ({
+  page
+}) => {
   for (const prefix of ['', '/en']) {
     await page.goto(`${prefix}/enemies/3002040/`);
     const list = page.locator('.hero-basic-data-pane .hero-stat-list');
     await expect(list.locator('.hero-stat-row')).toHaveCount(8);
     await expect(list.locator('.hero-stat-icon')).toHaveCount(0);
-    const unavailable = list.locator('.stat-value--unavailable');
+    const unavailable = list.locator('dd strong').filter({ hasText: /^-$/ });
+    const normal = list.locator('dd strong').filter({ hasNotText: /^-$/ }).first();
     expect(await unavailable.count()).toBeGreaterThan(0);
     for (const value of await unavailable.all()) {
-      await expect(value).not.toBeEmpty();
-      await expect(value).toHaveCSS('font-weight', '400');
-      await expect(value).toHaveCSS('color', 'rgb(127, 141, 165)');
+      for (const property of ['font-weight', 'font-size', 'color', 'text-align']) {
+        const expected = await normal.evaluate(
+          (element, property) => getComputedStyle(element).getPropertyValue(property),
+          property
+        );
+        await expect(value).toHaveCSS(property, expected);
+      }
     }
   }
 });

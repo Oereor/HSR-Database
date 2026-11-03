@@ -1,4 +1,8 @@
 <script lang="ts">
+  import { browser } from '$app/environment';
+  import * as Select from '$lib/components/ui/select';
+  import LanguagesIcon from '@lucide/svelte/icons/languages';
+  import type { Locale } from '$lib/paraglide/runtime.js';
   import { onDestroy } from 'svelte';
   import { afterNavigate } from '$app/navigation';
   import { page } from '$app/stores';
@@ -11,16 +15,18 @@
   import { m } from '$lib/paraglide/messages.js';
   import { getBrandIconUrl, getUtilityIconUrl } from '$lib/data/visual-assets';
   import type { PublicSiteVersion } from '$lib/domain/types';
-  import { localizedHref } from '$lib/i18n/routing';
+  import { localizedHref, localeCounterpartHref } from '$lib/i18n/routing';
   import { siteName } from '$lib/site';
   import PrimaryNavigation from './PrimaryNavigation.svelte';
   import SearchBar from '../search/SearchBar.svelte';
 
   let {
     siteVersion,
+    locale,
     onOpenChangelog = () => undefined
   }: {
     siteVersion: PublicSiteVersion;
+    locale: Locale;
     onOpenChangelog?: () => void;
   } = $props();
   const sidebar = Sidebar.useSidebar();
@@ -37,6 +43,12 @@
       : m.navigation_unknown_version()
   );
   const snapshotLabel = $derived(m.navigation_snapshot({ versionLabel, revision }));
+
+  function switchLocale(value: string) {
+    if (!browser || (value !== 'zh-CN' && value !== 'en') || value === locale) return;
+    const { pathname, search, hash } = window.location;
+    window.location.assign(localeCounterpartHref(`${pathname}${search}${hash}`, value));
+  }
 
   function openSearch() {
     sidebar.setOpen(true);
@@ -163,6 +175,22 @@
         </Sidebar.MenuButton></Sidebar.MenuItem
       ></Sidebar.Menu
     >
+    <Select.Root type="single" value={locale} onValueChange={switchLocale}>
+      <Select.Trigger
+        data-language-select
+        aria-label={m.settings_language()}
+        class="border-sidebar-border text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-11 w-full bg-transparent px-2 shadow-none group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:border-transparent group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:[&>svg:last-child]:hidden"
+      >
+        <LanguagesIcon class="size-4 shrink-0" aria-hidden="true" />
+        <span class="min-w-0 flex-1 truncate text-left group-data-[collapsible=icon]:hidden"
+          >{locale === 'zh-CN' ? '简体中文' : 'English'}</span
+        >
+      </Select.Trigger>
+      <Select.Content side="top" align="start" class="z-60" data-language-options>
+        <Select.Item value="zh-CN" label="简体中文" data-locale="zh-CN">简体中文</Select.Item>
+        <Select.Item value="en" label="English" data-locale="en">English</Select.Item>
+      </Select.Content>
+    </Select.Root>
     <Tooltip.Root disabled={sidebar.open || sidebar.isMobile}>
       <Tooltip.Trigger>
         {#snippet child({ props })}

@@ -47,6 +47,7 @@ import {
 } from './decimal.js';
 import { resolveEnemyConfiguredStat, resolveEnemyInternalStance } from './enemy-stats.js';
 import { readRaw, readTable } from './raw.js';
+import { createEnemyPhaseHpResolver } from './enemy-phase-hp.js';
 import { ENDGAME_TABLE_NAMES } from './source-requirements.js';
 import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-fiction-hp.js';
 import {
@@ -372,7 +373,7 @@ export interface EndgameDomain {
   audit: EndgameAudit;
 }
 
-const SCHEMA_VERSION = 25 as const;
+const SCHEMA_VERSION = 26 as const;
 const MODES: EndgameMode[] = ['moc', 'pf', 'as', 'aa'];
 const MAX_SAMPLES = 20;
 const PF_ROUNDING_METADATA = {
@@ -554,6 +555,7 @@ export function resolveStageInfiniteGroupId(
 }
 
 interface Tables {
+  monsterSkills: Record<string, unknown>[];
   schedules: Record<'moc' | 'pf' | 'as', ScheduleRow[]>;
   globalSchedules: GlobalScheduleRow[];
   groups: Record<'moc' | 'pf' | 'as', ChallengeGroupRow[]>;
@@ -592,6 +594,7 @@ async function loadTables(root: string): Promise<Tables> {
     never[]
   >;
   return {
+    monsterSkills: table.MonsterSkillConfig,
     schedules: {
       moc: table.ScheduleDataChallengeMaze,
       pf: table.ScheduleDataChallengeStory,
@@ -701,6 +704,7 @@ async function fileExists(file: string): Promise<boolean> {
 
 export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
   const tables = await loadTables(root);
+  const resolvePhaseHp = createEnemyPhaseHpResolver(root, tables.monsterSkills);
   const diagnostics = new Diagnostics();
   const context = (mode: EndgameMode, extra: Record<string, string | number | undefined>) => ({
     mode,
@@ -1229,6 +1233,7 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
             rounding: 'display-half-up' as const
           };
     const scan = await scanMechanics(template);
+    const phases = await resolvePhaseHp(monster, template, finalHp);
     const statContext = {
       ...context(mode, contextData),
       stageId: stage.StageID,
@@ -1318,6 +1323,7 @@ export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
         eliteRatio,
         baseEncounterMaxHpPerBar,
         final: finalHp,
+        ...(phases ? { phases } : {}),
         eliteGroupId: resolvedEliteGroupId,
         eliteGroupTable: elite.table,
         eliteContextSource: actualContextSource,

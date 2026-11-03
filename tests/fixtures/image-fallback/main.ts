@@ -4,7 +4,17 @@ import ImageFixture from './ImageFixture.svelte';
 
 const target = document.getElementById('app')!;
 const hydrateButton = document.getElementById('hydrate');
-if (location.pathname === '/slider') {
+if (location.pathname === '/phase-hp') {
+  void import('./PhaseHpFixture.svelte').then(({ default: PhaseHpFixture }) =>
+    mount(PhaseHpFixture, { target })
+  );
+} else if (location.pathname === '/description-text') {
+  void import('./DescriptionFixture.svelte').then(({ default: DescriptionFixture }) => {
+    hydrateButton!.addEventListener('click', () => hydrate(DescriptionFixture, { target }), {
+      once: true
+    });
+  });
+} else if (location.pathname === '/slider') {
   void import('./SliderFixture.svelte').then(({ default: SliderFixture }) =>
     mount(SliderFixture, { target })
   );

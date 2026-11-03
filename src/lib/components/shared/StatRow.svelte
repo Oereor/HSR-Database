@@ -6,7 +6,7 @@
   export let label: string;
   export let value: string | number;
   export let iconUrl: string | undefined = undefined;
-  export let tone: 'default' | 'scaling' | 'unavailable' = 'default';
+  export let tone: 'default' | 'scaling' = 'default';
 </script>
 
 <div
@@ -34,14 +34,9 @@
     <strong
       class={cn(
         'text-base tabular-nums',
-        tone === 'scaling'
-          ? 'text-(--skill-scaling-value-color)'
-          : tone === 'unavailable'
-            ? 'font-normal text-(--text-muted)'
-            : 'text-foreground'
+        tone === 'scaling' ? 'text-(--skill-scaling-value-color)' : 'text-foreground'
       )}
-      class:scaling-value={tone === 'scaling'}
-      class:stat-value--unavailable={tone === 'unavailable'}>{value}</strong
+      class:scaling-value={tone === 'scaling'}>{value}</strong
     >
   </dd>
 </div>

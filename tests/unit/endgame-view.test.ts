@@ -397,7 +397,10 @@ describe('Endgame occurrence 投影', () => {
         final: { status: 'unresolved', reason: 'unsupported-pf-wave-ability' }
       }
     });
-    expect(buildOccurrenceView(unresolved).hp).toEqual({ roundedPerBar: ENDGAME_MISSING_VALUE });
+    expect(buildOccurrenceView(unresolved).hp).toEqual({
+      display: 'plain',
+      roundedPerBar: ENDGAME_MISSING_VALUE
+    });
   });
 
   it('未解析的 Toughness 使用统一缺失值，合法零值保持为零', () => {
@@ -773,5 +776,39 @@ describe('Voracity occurrence identity', () => {
     expect(buildOccurrenceView(plain)).not.toHaveProperty('voracityLevel');
     expect(buildOccurrenceView(second).hp).toEqual(buildOccurrenceView(plain).hp);
     expect(second.hp).toEqual(plain.hp);
+  });
+});
+
+describe('static phase HP presentation', () => {
+  const withPhases = (values: Array<string | undefined>) => {
+    const item = occurrence();
+    item.hp.phases = values.map((value, index) => ({
+      phase: index + 1,
+      ratio:
+        value === undefined
+          ? { status: 'unresolved' }
+          : { status: 'resolved', value: decimal('1') },
+      ...(value !== undefined ? { maxHp: decimal(value) } : {})
+    }));
+    return item;
+  };
+  it('compresses only exactly equal resolved phases and keeps partial rows private-data-free', () => {
+    expect(buildOccurrenceView(withPhases(['100', '100.00'])).hp.display).toBe('uniform');
+    expect(buildOccurrenceView(withPhases(['100.1', '100.2'])).hp.display).toBe('phases');
+    const partial = buildOccurrenceView(withPhases(['100', undefined])).hp;
+    expect(buildOccurrenceView(withPhases(['100', undefined])).identity).not.toContain('"ratio":');
+    expect(partial.display).toBe('phases');
+    expect(partial.phases).toEqual([
+      { phase: 1, exact: '100', rounded: '100' },
+      { phase: 2, rounded: '-' }
+    ]);
+    expect(buildOccurrenceView(withPhases(['100'])).hp.display).toBe('plain');
+    const unknown = occurrence();
+    unknown.mechanics.phaseCount = 3;
+    expect(buildOccurrenceView(unknown).hp.display).toBe('plain');
+    expect(buildOccurrenceView(unknown).hp.phases).toBeUndefined();
+    expect(occurrenceIdentity(withPhases(['100', '125']))).not.toBe(
+      occurrenceIdentity(withPhases(['100', '100']))
+    );
   });
 });

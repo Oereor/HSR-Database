@@ -43,7 +43,7 @@ it('builds schedule-only shards identically across the AS boundary', async () =>
     clock.mockRestore();
   }
   expect(after).toEqual(before);
-  expect(after[target.id].schemaVersion).toBe(3);
+  expect(after[target.id].schemaVersion).toBe(4);
   for (const { mode, period } of after[target.id].periods) {
     expect(period).not.toHaveProperty('status');
     expect(period.schedule).toEqual(

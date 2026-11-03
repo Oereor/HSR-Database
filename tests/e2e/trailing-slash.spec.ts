@@ -1,3 +1,4 @@
+import { switchLanguage } from '../helpers/language';
 import { expect, test } from '@playwright/test';
 
 test('canonical deep links return real HTML 200 in both locales', async ({ page }) => {
@@ -41,26 +42,13 @@ test('canonical deep links return real HTML 200 in both locales', async ({ page 
   }
 });
 
-test('locale document links preserve future UID, repeated queries and hash', async ({ page }) => {
-  await page.goto('/characters/1304/?uid=168902602&foo=a&foo=b#stats');
-  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
-  await page.locator('.settings-trigger').click();
-  const english = page.locator('.language-segments a').filter({ hasText: /^EN$/ });
-  await expect(english).toHaveAttribute(
-    'href',
-    '/en/characters/1304/?uid=168902602&foo=a&foo=b#stats'
-  );
-  await english.click();
-  await expect(page).toHaveURL(/\/en\/characters\/1304\/\?uid=168902602&foo=a&foo=b#stats$/);
-  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
-  await page.locator('.settings-trigger').click();
-  const chinese = page.locator('.language-segments a').filter({ hasText: /^中文$/ });
-  await expect(chinese).toHaveAttribute(
-    'href',
-    '/characters/1304/?uid=168902602&foo=a&foo=b#stats'
-  );
-  await chinese.click();
-  await expect(page).toHaveURL(/\/characters\/1304\/\?uid=168902602&foo=a&foo=b#stats$/);
+test('locale document navigation preserves future UID, repeated queries and hash', async ({
+  page
+}) => {
+  const suffix = '/characters/1304/?uid=168902602&foo=a&foo=b#stats';
+  await page.goto(suffix);
+  await switchLanguage(page, 'en', `/en${suffix}`);
+  await switchLanguage(page, 'zh-CN', suffix);
 });
 
 test('search submit preserves hash and canonical history across back/forward', async ({ page }) => {

@@ -30,7 +30,6 @@
   <StatRow
     label="synthetic text label"
     value="synthetic unavailable value"
-    tone="unavailable"
     data-fixture-stat="text"
   />
 </StatList>

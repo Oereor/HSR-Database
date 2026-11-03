@@ -50,7 +50,7 @@ export interface EndgameOccurrenceShardPeriod {
 }
 
 export interface EndgameOccurrenceShard {
-  schemaVersion: 3;
+  schemaVersion: 4;
   locale: SearchLocale;
   target: { kind: 'endgame'; id: string };
   periods: EndgameOccurrenceShardPeriod[];

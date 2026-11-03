@@ -1,70 +1,55 @@
+import { openLanguageSelect, switchLanguage } from '../helpers/language';
 import { readFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 
-test('settings popover supports Escape, focus return and outside dismissal', async ({ page }) => {
+test('sidebar language Select supports keyboard, focus return and outside dismissal', async ({
+  page,
+  isMobile
+}) => {
   await page.goto('/');
-  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
-  const trigger = page.locator('.settings-trigger');
-  await trigger.focus();
-  await page.keyboard.press('Enter');
-  const panel = page.locator('#site-settings-panel');
-  await expect(panel).toBeVisible();
+  const trigger = await openLanguageSelect(page);
+  const panel = page.getByRole('listbox');
+  await expect(trigger).toHaveAccessibleName(/.+/);
   const box = await panel.boundingBox();
   expect(box!.x).toBeGreaterThanOrEqual(0);
+  expect(box!.y).toBeGreaterThanOrEqual(0);
+  expect(box!.y + box!.height).toBeLessThanOrEqual(page.viewportSize()!.height);
   expect(box!.x + box!.width).toBeLessThanOrEqual(page.viewportSize()!.width);
   await page.keyboard.press('Escape');
   await expect(panel).toBeHidden();
   await expect(trigger).toBeFocused();
-  await trigger.click();
+  await page.keyboard.press('Enter');
   await expect(panel).toBeVisible();
-  await page.locator('.home-hero h1').click();
+  await page.locator(isMobile ? '.navigator-snapshot' : '.home-hero h1').click();
   await expect(panel).toBeHidden();
+  if (!isMobile) {
+    await expect(trigger.locator('span')).toBeHidden();
+    await page.locator('[data-slot="sidebar-trigger"]').click();
+    await expect(trigger.locator('span')).toBeVisible();
+  }
+  await trigger.focus();
+  await page.keyboard.press('Enter');
+  await page.keyboard.press('ArrowDown');
+  await Promise.all([
+    page.waitForURL('**/en/', { waitUntil: 'load' }),
+    page.keyboard.press('Enter')
+  ]);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
 });
 
 async function switchTo(page: Page, locale: 'en' | 'zh-CN', pathname: string) {
-  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
-  await page.locator('.settings-trigger').click();
-  const link = page.locator(
-    locale === 'en'
-      ? '.language-segments a[href^="/en/"]'
-      : '.language-segments a:not([href^="/en/"])'
-  );
-  const target = new URL((await link.getAttribute('href'))!, page.url());
-  expect(target.pathname.replace(/\/$/, '')).toBe(pathname.replace(/\/$/, ''));
   const previous = new URL(page.url());
-  expect(target.search).toBe(previous.search);
-  expect(target.hash).toBe(previous.hash);
-  await Promise.all([
-    page.waitForURL(
-      (url) =>
-        url.pathname.replace(/\/$/, '') === target.pathname.replace(/\/$/, '') &&
-        url.search === target.search &&
-        url.hash === target.hash,
-      { waitUntil: 'load' }
-    ),
-    link.click()
-  ]);
-  await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
-  expect(new URL(page.url()).pathname.replace(/\/$/, '')).toBe(pathname.replace(/\/$/, ''));
-  expect(new URL(page.url()).search).toBe(target.search);
-  expect(new URL(page.url()).hash).toBe(target.hash);
-  await expect(page.locator('html')).toHaveAttribute('lang', locale);
-  await page.locator('.settings-trigger').click();
-  const currentLocale = page.locator('.language-segments [aria-current="true"]');
-  await expect(currentLocale).toHaveCount(1);
-  const currentHref = await currentLocale.getAttribute('href');
-  expect(new URL(currentHref!, page.url()).href).toBe(target.href);
-  await expect(page.locator('.settings-panel__heading strong')).not.toHaveText('');
-  let navigated = false;
-  const listener = () => {
-    navigated = true;
-  };
-  page.on('framenavigated', listener);
-  await page.locator('.language-segments [aria-current="true"]').click();
-  await expect(page.locator('.settings-panel')).toBeVisible();
-  expect(navigated).toBe(false);
-  page.off('framenavigated', listener);
-  await page.locator('.settings-trigger').click();
+  const target = `${pathname.endsWith('/') ? pathname : `${pathname}/`}${previous.search}${previous.hash}`;
+  await switchLanguage(page, locale, target);
+  await openLanguageSelect(page);
+  const selected = page.getByRole('option', { selected: true });
+  await expect(selected).toHaveAttribute('data-locale', locale);
+  await page.evaluate(() =>
+    document.documentElement.setAttribute('data-navigation-marker', 'retained')
+  );
+  await selected.click();
+  await expect(page.getByRole('listbox')).toBeHidden();
+  await expect(page.locator('html')).toHaveAttribute('data-navigation-marker', 'retained');
 }
 
 for (const path of [

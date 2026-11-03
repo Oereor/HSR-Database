@@ -1,3 +1,4 @@
+import { switchLanguage } from '../helpers/language';
 import { setSliderValue } from '../helpers/slider';
 import { expect, test } from '@playwright/test';
 
@@ -241,8 +242,7 @@ test('detail back navigation: language switch preserves the Player source and bu
   const query = '?uid=100000001&build=area%3Ashowcase%3Aposition%3A1%3Aorder%3A0&from=player';
   await page.locator(`a[href="/characters/1304/${query}"]`).click();
   for (const prefix of ['/en', '']) {
-    await page.locator('.settings-trigger').click();
-    await page.locator(`.language-segments a[href="${prefix}/characters/1304/${query}"]`).click();
+    await switchLanguage(page, prefix ? 'en' : 'zh-CN', `${prefix}/characters/1304/${query}`);
     await expect(page).toHaveURL(`${prefix}/characters/1304/${query}`);
     await expect(page.locator('.back-link')).toHaveAttribute(
       'href',
