@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { render } from 'svelte/server';
 import StatListFixture from '../fixtures/StatListFixture.svelte';
 import StatRow from '../../src/lib/components/shared/StatRow.svelte';
+import EnemyStatsPanel from '../../src/lib/components/enemy/EnemyStatsPanel.svelte';
 import EnemyTemplateBaseStatsPanel from '../../src/lib/components/enemy/EnemyTemplateBaseStatsPanel.svelte';
 import type { DecimalString } from '../../src/lib/domain/endgame';
 import type { EnemyTemplateBaseStats } from '../../src/lib/domain/types';
@@ -19,7 +20,7 @@ describe('Hero stat presentation', () => {
     expect(flush).toContain('data-fixture-list="stats"');
   });
 
-  it('renders a semantic list with numeric and unavailable text values and forwards field markers', () => {
+  it('renders a semantic list with numeric and arbitrary text values and forwards field markers', () => {
     const { body } = render(StatListFixture);
     expect(body).toMatch(/<dl[^>]*aria-label="synthetic stat list"/);
     expect(body.match(/<dt[ >]/g)).toHaveLength(2);
@@ -28,7 +29,6 @@ describe('Hero stat presentation', () => {
     expect(body).toContain('data-fixture-stat="text"');
     expect(body).toContain('1234');
     expect(body).toContain('synthetic unavailable value');
-    expect(body).toContain('stat-value--unavailable');
     expect(body).not.toContain('hero-stat-icon');
     expect(body).not.toContain('<img ');
   });
@@ -53,6 +53,13 @@ describe('Hero stat presentation', () => {
     expect(normal).not.toContain('scaling-value');
     expect(normal).toContain('&lt;synthetic value>');
     expect(normal).toContain('synthetic label');
+  });
+
+  it('preserves zero, percentage and empty string values without interpreting text as missing', () => {
+    for (const value of [0, '0%', '', '-']) {
+      const body = render(StatRow, { props: { label: 'synthetic', value } }).body;
+      expect(body).toContain(`>${value}</strong>`);
+    }
   });
 
   it('composes a colored elemental label without repeating its text or announcing its icon', () => {
@@ -96,7 +103,6 @@ describe('Enemy template stat adapter', () => {
     ).toEqual(fields);
     const values = [...body.matchAll(/<strong[^>]*>([^<]*)<\/strong>/g)].map((match) => match[1]);
     expect(values).toEqual(['1,235', '18', '210', '102', '30', '50%', '20%', '50%']);
-    expect(body).not.toContain('stat-value--unavailable');
     expect(body).not.toContain('hero-stat-icon');
   });
 
@@ -111,7 +117,9 @@ describe('Enemy template stat adapter', () => {
         }
       }
     });
-    expect(body.match(/stat-value--unavailable/g)).toHaveLength(4);
+    expect(body.match(/<strong[^>]*>-<\/strong>/g)).toHaveLength(4);
+    const classes = [...body.matchAll(/<strong[^>]*class="([^"]*)"/g)].map((match) => match[1]);
+    expect(new Set(classes).size).toBe(1);
     expect(body.match(/<strong[^>]*>0<\/strong>/g)).toHaveLength(3);
     expect(body).toMatch(/<strong[^>]*>0%<\/strong>/);
   });
@@ -120,9 +128,31 @@ describe('Enemy template stat adapter', () => {
     const { body } = render(EnemyTemplateBaseStatsPanel, {
       props: { baseStats: { ...baseStats, stance: decimal('1') } }
     });
-    expect(body.match(/stat-value--unavailable/g)).toHaveLength(1);
-    expect(body).toMatch(
-      /data-enemy-template-stat="toughness"[\s\S]*?<strong[^>]*stat-value--unavailable/
-    );
+    expect(body.match(/<strong[^>]*>-<\/strong>/g)).toHaveLength(1);
+    expect(body).toMatch(/data-enemy-template-stat="toughness"[\s\S]*?<strong[^>]*>-<\/strong>/);
+  });
+});
+
+describe('Enemy actual stat adapter', () => {
+  it('renders missing numeric values as dashes while preserving zero and formatted values', () => {
+    const { body } = render(EnemyStatsPanel, {
+      props: {
+        level: 1,
+        progression: {
+          minLevel: 1,
+          maxLevel: 1,
+          defaultLevel: 1,
+          hp: [null],
+          attack: [decimal('0')],
+          defence: [decimal('1234.6')],
+          speed: [decimal('100')],
+          toughness: [null],
+          effectHit: [decimal('0')],
+          effectResistance: [decimal('0.2')]
+        }
+      }
+    });
+    const values = [...body.matchAll(/<strong[^>]*>([^<]*)<\/strong>/g)].map((match) => match[1]);
+    expect(values).toEqual(['-', '0', '1,235', '100', '-', '0%', '20%']);
   });
 });

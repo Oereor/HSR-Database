@@ -1,3 +1,4 @@
+import { switchLanguage } from '../helpers/language';
 import { expect, test, type Page } from '@playwright/test';
 import { setSliderValue } from '../helpers/slider';
 
@@ -17,21 +18,11 @@ test('homepage and client navigation remain usable', async ({ page }) => {
 test('search locale switching preserves the route and results', async ({ page }) => {
   await page.goto('/search/?q=March#search-results-characters');
   await expectAppReady(page);
-  await page.locator('.settings-trigger').click();
-  const english = page.locator('.language-segments a[href^="/en"]');
-  const englishHref = new URL((await english.getAttribute('href'))!, page.url()).href;
-  await Promise.all([page.waitForURL(englishHref, { waitUntil: 'load' }), english.click()]);
-  await expectAppReady(page);
-  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await switchLanguage(page, 'en', '/en/search/?q=March#search-results-characters');
   await expect(page.locator('#search-results-characters')).toBeVisible();
   await expect(page.locator('a[href^="/en/characters/"]').first()).toBeVisible();
 
-  await page.locator('.settings-trigger').click();
-  const chinese = page.locator('.language-segments a:not([href^="/en"])');
-  const chineseHref = new URL((await chinese.getAttribute('href'))!, page.url()).href;
-  await Promise.all([page.waitForURL(chineseHref, { waitUntil: 'load' }), chinese.click()]);
-  await expectAppReady(page);
-  await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
+  await switchLanguage(page, 'zh-CN', '/search/?q=March#search-results-characters');
   await expect(page).toHaveURL(/\/search\/\?q=March#search-results-characters$/);
 });
 

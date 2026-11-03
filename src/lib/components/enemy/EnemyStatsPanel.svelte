@@ -15,9 +15,9 @@
   $: row = getEnemyStatsAtLevel(progression, level);
 
   const integer = (value: EnemyStatCompactValue): string =>
-    value === null ? m.common_data_unavailable() : formatRoundedDecimal(value);
+    value === null ? '-' : formatRoundedDecimal(value);
   const percent = (value: EnemyStatCompactValue): string =>
-    value === null ? m.common_data_unavailable() : formatRatioPercentage(value);
+    value === null ? '-' : formatRatioPercentage(value);
 
   $: stats = row
     ? [

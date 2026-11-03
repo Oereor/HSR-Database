@@ -11,7 +11,6 @@
   import { siteName } from '$lib/site';
   import ChangelogModal from '$lib/components/layout/ChangelogModal.svelte';
   import { Toaster } from '$lib/components/ui/sonner';
-  import SettingsPopover from '$lib/components/layout/SettingsPopover.svelte';
   import GlobalBreadcrumb from '$lib/components/layout/GlobalBreadcrumb.svelte';
   import { resolveBreadcrumbs, type BreadcrumbData } from '$lib/breadcrumbs';
   import { onMount } from 'svelte';
@@ -62,9 +61,12 @@
   data-app-ready={appReady}
   style={`--page-nav-height: ${pageNavHeight};`}
 >
-  <Navigator siteVersion={data.siteVersion} onOpenChangelog={() => changelogModal?.open()} />
+  <Navigator
+    locale={data.locale}
+    siteVersion={data.siteVersion}
+    onOpenChangelog={() => changelogModal?.open()}
+  />
   <ChangelogModal locale={data.locale} bind:this={changelogModal} />
-  <SettingsPopover locale={data.locale} />
 
   <main>
     <GlobalBreadcrumb items={breadcrumbs} />
