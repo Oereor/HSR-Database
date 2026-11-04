@@ -1,3 +1,5 @@
+import type { DATA_MANIFEST_SCHEMA_VERSION } from './data-manifest.js';
+
 export type EntityKind = 'character' | 'light-cone' | 'relic' | 'enemy';
 
 declare const textHashBrand: unique symbol;
@@ -468,7 +470,7 @@ export interface PublicSiteVersion {
 }
 
 export interface DataManifest {
-  schemaVersion: 57;
+  schemaVersion: typeof DATA_MANIFEST_SCHEMA_VERSION;
   ratingV2PolicyInput: { schemaVersion: 2; bytes: number; sha256: string };
   ratingV2BenchmarkInput: { schemaVersion: 4; bytes: number; sha256: string; auditSha256: string };
   sourceCommit: string;

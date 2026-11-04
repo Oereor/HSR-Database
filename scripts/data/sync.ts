@@ -11,6 +11,7 @@ import type {
   RelicProperty
 } from '../../src/lib/domain/types.js';
 import { parseTextHash } from '../../src/lib/domain/types.js';
+import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
 import {
   createTextResolver,
   loadTextMap,
@@ -1103,7 +1104,7 @@ export async function syncData(): Promise<DataManifest> {
   };
   const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
   const manifestWithoutRevision: Omit<DataManifest, 'dataRevision'> = {
-    schemaVersion: 57,
+    schemaVersion: DATA_MANIFEST_SCHEMA_VERSION,
     ratingV2PolicyInput: (await readRatingV2PolicyInput()).metadata,
     ratingV2BenchmarkInput: await readRatingV2BenchmarkInput(),
     sourceCommit: commit,

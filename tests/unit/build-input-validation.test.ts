@@ -1,3 +1,4 @@
+import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
 import { createHash } from 'node:crypto';
 import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -376,7 +377,7 @@ async function createFixture(): Promise<Fixture> {
     };
   };
   const manifest = {
-    schemaVersion: 57,
+    schemaVersion: DATA_MANIFEST_SCHEMA_VERSION,
     ratingV2PolicyInput: (await readRatingV2PolicyInput(ratingV2PolicyFile)).metadata,
     ratingV2BenchmarkInput: await readRatingV2BenchmarkInput(),
     sourceCommit: commit,

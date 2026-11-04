@@ -1,3 +1,4 @@
+import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
 import { describe, expect, it, vi } from 'vitest';
 import type { Character, DataManifest, Enemy } from '../../src/lib/domain/types';
 import type { EndgameDatasetByMode, EnemyOccurrence } from '../../src/lib/domain/endgame';
@@ -315,7 +316,7 @@ function fixture(): { manifest: DataManifest; projection: ProductProjectionForVa
   const routes = { characters: [], 'light-cones': [], relics: [], enemies: ['100'] };
   const inventory = buildGeneratedRouteInventory(routes, endgame);
   const manifest = {
-    schemaVersion: 57,
+    schemaVersion: DATA_MANIFEST_SCHEMA_VERSION,
     generatedLocales: ['zh-CN', 'en'],
     publicLocale: 'zh-CN',
     publicLocales: ['zh-CN', 'en'],
