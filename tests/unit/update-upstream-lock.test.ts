@@ -6,8 +6,11 @@ import type { GitCommandRunner } from '../../scripts/deployment/git';
 import {
   compareAndUpdateLock,
   parseLsRemoteHead,
-  updateUpstreamLockFile
+  updateUpstreamLockFile as realUpdate
 } from '../../scripts/update-upstream-lock';
+
+const updateUpstreamLockFile: typeof realUpdate = (root, runner, writer) =>
+  realUpdate(root, runner, writer, async () => undefined);
 
 const turnOld = '1'.repeat(40);
 const turnNew = '2'.repeat(40);
@@ -49,6 +52,26 @@ afterEach(async () => {
 });
 
 describe('upstream lock updater', () => {
+  it('keeps the lock unchanged if homepage history cannot be established', async () => {
+    const root = await fixture();
+    const writes: string[] = [];
+    await expect(
+      realUpdate(
+        root,
+        runner(turnNew),
+        async (file) => {
+          writes.push(file);
+        },
+        async () => {
+          throw new Error('baseline unavailable');
+        }
+      )
+    ).rejects.toThrow(/baseline unavailable/);
+    expect(writes).toEqual([]);
+    expect(JSON.parse(await readFile(path.join(root, 'upstream.lock.json'), 'utf8'))).toEqual(
+      valid
+    );
+  });
   it('does not write when both upstreams are unchanged', async () => {
     const root = await fixture();
     const writes: string[] = [];

@@ -1,3 +1,4 @@
+import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
 import { expect, it } from 'vitest';
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -9,9 +10,9 @@ import {
 } from '../../scripts/data/generated-artifacts';
 import { publishGeneratedDirectories } from '../../scripts/data/sync';
 
-it('accepts the schema-55 training/detail tree and validates every emitted artifact', async () => {
+it('accepts the current training/detail tree and validates every emitted artifact', async () => {
   const manifest = await readDataManifest();
-  expect(manifest.schemaVersion).toBe(56);
+  expect(manifest.schemaVersion).toBe(DATA_MANIFEST_SCHEMA_VERSION);
   expect(manifest.publicLocales).toEqual(['zh-CN', 'en']);
   expect(manifest.publicLocale).toBe('zh-CN');
   expect(manifest.generatedLocales).toEqual(['zh-CN', 'en']);
@@ -47,7 +48,16 @@ it('accepts the schema-55 training/detail tree and validates every emitted artif
   });
 }, 30_000);
 
-it.each([46, 48, 49, 50, 51, 52])(
+it.each([
+  46,
+  48,
+  49,
+  50,
+  51,
+  52,
+  DATA_MANIFEST_SCHEMA_VERSION - 1,
+  DATA_MANIFEST_SCHEMA_VERSION + 1
+])(
   'rejects manifest schema %i so stale generated caches cannot be reused',
   async (schemaVersion: number) => {
     const manifest = await readDataManifest();

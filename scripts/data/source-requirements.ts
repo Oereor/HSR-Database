@@ -28,7 +28,6 @@ export const DATA_GENERATION_TABLE_NAMES = [
   'AvatarPromotionConfig',
   'AvatarPropertyConfig',
   'EquipmentConfig',
-  'GachaBasicInfo',
   'ItemConfigEquipment',
   'EquipmentSkillConfig',
   'EquipmentPromotionConfig',

@@ -2,10 +2,9 @@ import { createHash } from 'node:crypto';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { DataManifest, GeneratedArtifactMetadata } from '../../src/lib/domain/types.js';
+import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
 import { readCacheJson, type ManifestReadFailure } from '../deployment/cache-diagnostics.js';
-
-export const DATA_MANIFEST_SCHEMA_VERSION = 56 as const;
 
 export interface GeneratedArtifactValidationSummary {
   files: number;

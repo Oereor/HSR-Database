@@ -4,7 +4,7 @@ import type {
   CatalogEntry,
   DataManifest,
   EnemyCatalogEntry,
-  HomepageRecentWarpData,
+  HomepageVersionData,
   PublicSiteVersion,
   RelicCatalogEntry,
   RelicProperty
@@ -29,8 +29,8 @@ export const getPublicSiteVersion = async (): Promise<PublicSiteVersion> => {
   const manifest = await getManifest();
   return { gameVersion: manifest.gameVersion, dataRevision: manifest.dataRevision.slice(0, 8) };
 };
-export const getHomepageRecentWarps = (locale: SearchLocale) =>
-  readJson<HomepageRecentWarpData>(locale, 'homepage.json');
+export const getHomepageVersionData = (locale: SearchLocale) =>
+  readJson<HomepageVersionData>(locale, 'homepage.json');
 export const getCatalog = (locale: SearchLocale, category: CategorySlug) =>
   readJson<CatalogEntry[]>(locale, 'catalogs', `${category}.json`);
 export const getEnemyCatalog = (locale: SearchLocale) =>

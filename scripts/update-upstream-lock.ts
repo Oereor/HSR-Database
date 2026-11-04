@@ -1,3 +1,4 @@
+import { refreshHomepageBaseline } from './data/homepage-history.js';
 import { writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -5,7 +6,8 @@ import {
   LOCK_FILE,
   parseUpstreamLock,
   readUpstreamLock,
-  type UpstreamLock
+  type UpstreamLock,
+  type UpstreamPin
 } from './deployment/lock.js';
 import { runGit, type GitCommandRunner } from './deployment/git.js';
 
@@ -75,7 +77,8 @@ export function compareAndUpdateLock(
 export async function updateUpstreamLockFile(
   siteRoot: string,
   runner: GitCommandRunner = runGit,
-  writer: LockWriter = (file, contents) => writeFile(file, contents, 'utf8')
+  writer: LockWriter = (file, contents) => writeFile(file, contents, 'utf8'),
+  refreshHomepage: (root: string, pin: UpstreamPin) => Promise<unknown> = refreshHomepageBaseline
 ): Promise<UpstreamUpdateResult> {
   const lock = await readUpstreamLock(siteRoot);
   const latestEntries = await Promise.all(
@@ -92,6 +95,7 @@ export async function updateUpstreamLockFile(
     console.log(`  latest: ${entry.latestSha}`);
     console.log(`  update: ${entry.changed ? 'yes' : 'no'}`);
   }
+  await refreshHomepage(siteRoot, result.lock.turnBasedGameData);
   if (result.changed) {
     const file = path.join(siteRoot, LOCK_FILE);
     await writer(file, `${JSON.stringify(result.lock, null, 2)}\n`);

@@ -1,3 +1,4 @@
+import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -742,7 +743,7 @@ describe('真实数据管线', () => {
     const lightCone = JSON.parse(
       await readFile(path.join(localizedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
-    expect(manifest.schemaVersion).toBe(56);
+    expect(manifest.schemaVersion).toBe(DATA_MANIFEST_SCHEMA_VERSION);
     expect(manifest).toMatchObject(parseGameVersion(manifest.sourceVersion));
     expect(character.name).toBe('三月七·存护');
     expect(character.baseStats.iconKeys).toEqual({

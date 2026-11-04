@@ -4,6 +4,7 @@ import profilesJson from '../../generated/runtime/relic-rating-v2.json' with { t
 import manifest from '../../generated/manifest.json' with { type: 'json' };
 import probabilityJson from '../../../../data/relic-score/probability-model.json' with { type: 'json' };
 import { createHash } from 'node:crypto';
+import { DATA_MANIFEST_SCHEMA_VERSION } from '../../domain/data-manifest.js';
 import type { PlayerRuntimeData } from '../../player/runtime-data.js';
 import type { RatingV2Profiles } from '../../relic-score/v2/profile.js';
 import {
@@ -28,7 +29,7 @@ export function getProductionRatingV2Scorer(runtime: PlayerRuntimeData): Scorer 
     const benchmark = benchmarkJson as unknown as RatingV2Benchmark;
     const declared = manifest.ratingV2BenchmarkInput;
     if (
-      manifest.schemaVersion !== 56 ||
+      manifest.schemaVersion !== DATA_MANIFEST_SCHEMA_VERSION ||
       profiles.sourceCommit !== manifest.sourceCommit ||
       !declared
     )

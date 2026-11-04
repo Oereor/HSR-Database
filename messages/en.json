@@ -27,13 +27,14 @@
   "home_og_description": "An unofficial searchable database for Honkai: Star Rail characters, Light Cones, Relics, enemies, and endgame modes.",
   "home_hero_eyebrow": "HONKAI: STAR RAIL",
   "home_hero_title": "Data Archive",
+  "home_hero_game_title": "Honkai: Star Rail",
+  "home_hero_archive_title": "Data Archive",
+  "home_hero_data_version": "DATA VERSION",
   "home_tagline": "May this journey lead us starward.",
   "home_directory_aria": "Database directory",
   "home_categories_aria": "Database categories",
   "home_search_label": "Search the database",
   "home_search_placeholder": "Enter a name to search",
-  "home_recent_character_warp": "Recent Limited Character Warps",
-  "home_recent_light_cone_warp": "Recent Limited Light Cone Warps",
   "changelog_eyebrow": "SITE UPDATES",
   "changelog_title": "Changelog",
   "changelog_close_aria": "Close changelog",
@@ -426,5 +427,10 @@
   "material_detail_retry": "Retry",
   "player_relic_rating_v2_review_required": "This character's relic preferences require review.",
   "player_relic_rating_v2_main_unavailable": "Main stat preferences cannot be normalized.",
-  "breadcrumb_aria": "Breadcrumb"
+  "breadcrumb_aria": "Breadcrumb",
+  "home_new_characters": "New Characters in v{version}",
+  "home_new_light_cones": "New Light Cones in v{version}",
+  "home_new_relics": "New Relics in v{version}",
+  "home_new_enemies": "New Enemies in v{version}",
+  "home_section_count": "Showing {shown} of {total}"
 }

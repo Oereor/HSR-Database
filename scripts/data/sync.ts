@@ -11,6 +11,7 @@ import type {
   RelicProperty
 } from '../../src/lib/domain/types.js';
 import { parseTextHash } from '../../src/lib/domain/types.js';
+import { DATA_MANIFEST_SCHEMA_VERSION } from '../../src/lib/domain/data-manifest.js';
 import {
   createTextResolver,
   loadTextMap,
@@ -54,7 +55,14 @@ import {
 } from './search-documents.js';
 import { buildEndgameDomain } from './endgame.js';
 import { projectEndgame } from './projection/endgame.js';
-import { buildHomepageRecentWarpData } from './homepage.js';
+import {
+  buildHomepageVersionData,
+  loadHomepageBaseline,
+  extractHomepageIds,
+  sortedIds,
+  homepageCategories,
+  assertHomepageVersionData
+} from './homepage.js';
 import { canonicalJsonDigest, readPreparedSourceMetadata } from './source-metadata.js';
 import { buildCharacterDomain } from './domain/character.js';
 import { readTrainingSourceTable } from './training-sources.js';
@@ -211,6 +219,7 @@ export async function syncData(): Promise<DataManifest> {
   const locale = getPublicLocale();
   const generatedLocales = getGeneratedLocales();
   const sourceMetadata = readPreparedSourceMetadata(root);
+  const homepageBaseline = await loadHomepageBaseline(sourceMetadata.sourceCommit);
   const commit = sourceMetadata.sourceCommit;
   const sourceVersion = sourceMetadata.sourceVersion;
   const gameVersion = {
@@ -824,11 +833,27 @@ export async function syncData(): Promise<DataManifest> {
         ? { kind: 'maintained', value: maintainedPlayerAliases }
         : { kind: 'none' }
     );
-    const homepage = buildHomepageRecentWarpData(
-      tables.GachaBasicInfo,
-      characterCatalog,
-      lightConeCatalog
+    const homepageCatalogs = {
+      characters: characterCatalog,
+      'light-cones': lightConeCatalog,
+      relics: relicCatalog,
+      enemies: enemyCatalog
+    };
+    // AvatarConfig is already merged with LD by the shared source loader.
+    const identityIds = extractHomepageIds({ ...tables, AvatarConfigLD: [] });
+    for (const category of homepageCategories) {
+      if (
+        JSON.stringify(identityIds[category]) !==
+        JSON.stringify(sortedIds(homepageCatalogs[category].map(({ id }) => id)))
+      )
+        throw new Error(`Homepage identity extractor differs from catalog: ${category}`);
+    }
+    const homepage = buildHomepageVersionData(
+      homepageBaseline,
+      identityIds,
+      sourceMetadata.gameVersion
     );
+    assertHomepageVersionData(homepage, homepageCatalogs);
     const occurrenceShards = buildEndgameOccurrenceShards({
       locale: config.locale,
       datasets: endgame.datasets,
@@ -1079,7 +1104,7 @@ export async function syncData(): Promise<DataManifest> {
   };
   const { routePaths } = buildGeneratedRouteInventory(routes, baseProjection.endgame.datasets);
   const manifestWithoutRevision: Omit<DataManifest, 'dataRevision'> = {
-    schemaVersion: 56,
+    schemaVersion: DATA_MANIFEST_SCHEMA_VERSION,
     ratingV2PolicyInput: (await readRatingV2PolicyInput()).metadata,
     ratingV2BenchmarkInput: await readRatingV2BenchmarkInput(),
     sourceCommit: commit,

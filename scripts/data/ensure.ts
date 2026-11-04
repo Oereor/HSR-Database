@@ -3,7 +3,7 @@ import path from 'node:path';
 import type {
   CatalogEntry,
   DataManifest,
-  HomepageRecentWarpData
+  HomepageVersionData
 } from '../../src/lib/domain/types.js';
 import { CHARACTER_NAMING_POLICY_VERSION } from '../../src/lib/search/name-metadata.js';
 import { SEARCH_NORMALIZATION_VERSION } from '../../src/lib/search/normalization.js';
@@ -13,7 +13,13 @@ import {
   refreshArtifactMetadata,
   validateGeneratedArtifacts
 } from './generated-artifacts.js';
-import { assertHomepageRecentWarpData } from './homepage.js';
+import {
+  assertHomepageVersionData,
+  loadHomepageBaseline,
+  buildHomepageVersionData,
+  homepageCategories,
+  type EntityIds
+} from './homepage.js';
 import { assertDataRoot, generatedRoot, resolveDataRoot, sourceCommit } from './paths.js';
 import { ensureSearchDocuments, searchArtifactPaths } from './search-documents.js';
 import { getGeneratedLocales } from './locale-registry.js';
@@ -52,19 +58,30 @@ async function cacheValid(candidate: DataManifest | undefined): Promise<boolean>
     await validateGeneratedArtifacts(candidate);
     for (const { locale } of getGeneratedLocales()) {
       const productRoot = path.join(generatedRoot, 'views', locale);
-      const [homepage, characterCatalog, lightConeCatalog, searchInputs] = await Promise.all([
-        readFile(path.join(productRoot, 'homepage.json'), 'utf8').then(
-          (value) => JSON.parse(value) as HomepageRecentWarpData
-        ),
-        readFile(path.join(productRoot, 'catalogs', 'characters.json'), 'utf8').then(
-          (value) => JSON.parse(value) as CatalogEntry[]
-        ),
-        readFile(path.join(productRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
-          (value) => JSON.parse(value) as CatalogEntry[]
-        ),
-        readFile(searchArtifactPaths(locale).inputs, 'utf8').then((value) => JSON.parse(value))
-      ]);
-      assertHomepageRecentWarpData(homepage, characterCatalog, lightConeCatalog);
+      const homepage: HomepageVersionData = JSON.parse(
+        await readFile(path.join(productRoot, 'homepage.json'), 'utf8')
+      );
+      const catalogs = Object.fromEntries(
+        await Promise.all(
+          homepageCategories.map(async (category) => [
+            category,
+            JSON.parse(
+              await readFile(path.join(productRoot, 'catalogs', `${category}.json`), 'utf8')
+            )
+          ])
+        )
+      ) as Record<(typeof homepageCategories)[number], CatalogEntry[]>;
+      const searchInputs = JSON.parse(await readFile(searchArtifactPaths(locale).inputs, 'utf8'));
+      assertHomepageVersionData(homepage, catalogs);
+      const baseline = await loadHomepageBaseline(candidate.sourceCommit);
+      const ids = Object.fromEntries(
+        homepageCategories.map((category) => [category, catalogs[category].map(({ id }) => id)])
+      ) as EntityIds;
+      if (
+        JSON.stringify(homepage) !==
+        JSON.stringify(buildHomepageVersionData(baseline, ids, candidate.gameVersion))
+      )
+        return false;
       if (
         searchInputs.official?.schemaVersion !== 1 ||
         searchInputs.official?.sourceCommit !== candidate.sourceCommit ||
