@@ -6,10 +6,11 @@
   export let href: string;
   export let total: number;
   export let shown: number;
+  export let compact = false;
 </script>
 
 {#if total > 0}
-  <section class="home-section" aria-labelledby={id}>
+  <section class="home-section min-w-0" class:home-section--compact={compact} aria-labelledby={id}>
     <SectionHeading {id}>
       <a class="home-section__heading" {href}>
         <span>{title}</span>
@@ -19,12 +20,19 @@
         </span>
       </a>
     </SectionHeading>
-    <div class="home-section__grid" data-homepage-category={id}><slot /></div>
+    <div
+      class={compact
+        ? 'grid grid-cols-[repeat(auto-fill,min(100%,12rem))] justify-start gap-3'
+        : 'home-section__grid'}
+      data-homepage-category={id}
+    >
+      <slot />
+    </div>
   </section>
 {/if}
 
 <style>
-  .home-section {
+  .home-section:not(.home-section--compact) {
     padding-top: var(--space-12);
   }
   .home-section :global(h2) {

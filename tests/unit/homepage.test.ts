@@ -149,16 +149,32 @@ describe('homepage version history and diff', () => {
       source.commit = async (id) => ({ sha: id, subject: 'OSPRODWin4.6.0', parent: null });
       await expect(refreshHomepageBaseline(root, pin, source)).rejects.toThrow(/baseline/);
     }));
-  it('selects available artwork by rarity and stable ID; supports empty and missing assets', () => {
-    const entries = [
-      { id: '10', rarity: 5 },
-      { id: '2', rarity: 5 },
-      { id: '1', rarity: 4 }
-    ];
+  it('selects only the first five-star in diff order without changing the input', () => {
+    const entries = Object.freeze([
+      { id: '1', rarity: 4 },
+      { id: '90', rarity: 5 },
+      { id: '2', rarity: 5 }
+    ]);
+    const resolve = vi.fn((id: string) => `/art/${id}`);
+    expect(selectHomepageArtwork(entries, resolve)).toBe('/art/90');
+    expect(resolve.mock.calls).toEqual([['90']]);
+    expect(entries.map(({ id }) => id)).toEqual(['1', '90', '2']);
+  });
+  it('does not substitute another entity when the selected artwork is missing', () => {
+    const resolve = vi.fn(() => undefined);
     expect(
-      selectHomepageArtwork(entries, (id) => (id === '2' ? undefined : `/art/${id}`), 2)
-    ).toEqual(['/art/10', '/art/1']);
-    expect(selectHomepageArtwork(entries, () => undefined, 2)).toEqual([]);
-    expect(selectHomepageArtwork([], (id) => id, 1)).toEqual([]);
+      selectHomepageArtwork(
+        [
+          { id: '90', rarity: 5 },
+          { id: '2', rarity: 5 }
+        ],
+        resolve
+      )
+    ).toBeUndefined();
+    expect(resolve.mock.calls).toEqual([['90']]);
+    resolve.mockClear();
+    expect(selectHomepageArtwork([{ id: '1', rarity: 4 }], resolve)).toBeUndefined();
+    expect(selectHomepageArtwork([], resolve)).toBeUndefined();
+    expect(resolve).not.toHaveBeenCalled();
   });
 });

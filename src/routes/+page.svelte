@@ -27,13 +27,11 @@
   );
   $: characterArt = selectHomepageArtwork(
     data.newCharacters,
-    (id) => getCharacterPortraitUrl(id) ?? getCharacterPreviewUrl(id),
-    1
-  )[0];
+    (id) => getCharacterPortraitUrl(id) ?? getCharacterPreviewUrl(id)
+  );
   $: lightConeArt = selectHomepageArtwork(
     data.newLightCones,
-    (id) => getLightConePortraitUrl(id) ?? getLightConePreviewUrl(id),
-    2
+    (id) => getLightConePortraitUrl(id) ?? getLightConePreviewUrl(id)
   );
   $: version = data.siteVersion.gameVersion ?? data.homepage.gameVersion;
   const name = siteName();
@@ -49,15 +47,41 @@
 <div class="homepage">
   <section class="home-hero" aria-labelledby="home-title">
     <div class="home-hero__identity">
-      <p class="home-hero__eyebrow">{m.home_hero_eyebrow()}</p>
-      <h1 id="home-title">{m.home_hero_title()}</h1>
-      <p class="home-hero__tagline">{m.home_tagline()}</p>
-      <span class="home-hero__version">✦ v{version}</span>
+      <p class="home-hero__eyebrow flex items-center gap-3">
+        <span class="h-px w-8 shrink-0 bg-current" aria-hidden="true"></span>
+        {m.home_hero_eyebrow({}, { locale: data.locale })}
+      </p>
+      <div class="home-hero__title-group flex min-w-0 items-end gap-4">
+        <h1
+          id="home-title"
+          class="min-w-0"
+          aria-label={m.home_hero_title({}, { locale: data.locale })}
+        >
+          {#if data.locale === 'zh-CN'}
+            <span class="home-hero__game-title block">
+              {m.home_hero_game_title({}, { locale: data.locale })}
+            </span>
+            <span class="home-hero__archive-title block">
+              {m.home_hero_archive_title({}, { locale: data.locale })}
+            </span>
+          {:else}
+            <span class="home-hero__english-title block">
+              {m.home_hero_title({}, { locale: data.locale })}
+            </span>
+          {/if}
+        </h1>
+        <div class="home-hero__version grid shrink-0 gap-1">
+          <span class="home-hero__version-label">
+            {m.home_hero_data_version({}, { locale: data.locale })}
+          </span>
+          <span class="home-hero__version-number">v{version}</span>
+        </div>
+      </div>
       <div class="home-search">
         <SearchBar
           id="home-search"
-          label={m.home_search_label()}
-          placeholder={m.home_search_placeholder()}
+          label={m.home_search_label({}, { locale: data.locale })}
+          placeholder={m.home_search_placeholder({}, { locale: data.locale })}
         />
       </div>
     </div>
@@ -68,11 +92,11 @@
           alt=""
           class="home-hero__character"
         />{/if}
-      {#each lightConeArt as src, index}
-        <div class="home-hero__cone" class:home-hero__cone--back={index === 1}>
-          <AssetImage decorative {src} alt="" />
+      {#if lightConeArt}
+        <div class="home-hero__cone">
+          <AssetImage decorative src={lightConeArt} alt="" />
         </div>
-      {/each}
+      {/if}
     </div>
   </section>
 
@@ -85,52 +109,66 @@
     {/each}
   </nav>
 
-  <HomepageSection
-    id="new-characters"
-    title={m.home_new_characters({ version })}
-    href={localizedHref('/characters')}
-    total={data.newCharacters.length}
-    shown={Math.min(data.newCharacters.length, 6)}
-  >
-    {#each data.newCharacters.slice(0, 6) as entry}
-      <CharacterOverviewCard
-        {entry}
-        href={localizedHref(`/characters/${entry.id}`)}
-        imageUrl={getCharacterPreviewUrl(entry.id)}
-        density="compact"
-      />
-    {/each}
-  </HomepageSection>
-  <HomepageSection
-    id="new-light-cones"
-    title={m.home_new_light_cones({ version })}
-    href={localizedHref('/light-cones')}
-    total={data.newLightCones.length}
-    shown={Math.min(data.newLightCones.length, 6)}
-  >
-    {#each data.newLightCones.slice(0, 6) as entry}
-      <LightConeOverviewCard
-        {entry}
-        href={localizedHref(`/light-cones/${entry.id}`)}
-        imageUrl={getLightConePreviewUrl(entry.id)}
-      />
-    {/each}
-  </HomepageSection>
-  <HomepageSection
-    id="new-relics"
-    title={m.home_new_relics({ version })}
-    href={localizedHref('/relics')}
-    total={data.newRelics.length}
-    shown={Math.min(data.newRelics.length, 4)}
-  >
-    {#each data.newRelics.slice(0, 4) as entry}
-      <RelicOverviewCard
-        {entry}
-        href={localizedHref(`/relics/${entry.id}`)}
-        imageUrl={getRelicSetIconUrl(entry.id)}
-      />
-    {/each}
-  </HomepageSection>
+  {#if data.newCharacters.length || data.newLightCones.length || data.newRelics.length}
+    <div class="home-additions mt-12 space-y-12">
+      {#if data.newCharacters.length || data.newLightCones.length}
+        <div
+          class={'home-primary-additions grid grid-cols-1 items-start gap-12 lg:gap-6 ' +
+            (data.newCharacters.length && data.newLightCones.length ? 'lg:grid-cols-2' : '')}
+        >
+          <HomepageSection
+            compact
+            id="new-characters"
+            title={m.home_new_characters({ version })}
+            href={localizedHref('/characters')}
+            total={data.newCharacters.length}
+            shown={Math.min(data.newCharacters.length, 6)}
+          >
+            {#each data.newCharacters.slice(0, 6) as entry}
+              <CharacterOverviewCard
+                {entry}
+                href={localizedHref(`/characters/${entry.id}`)}
+                imageUrl={getCharacterPreviewUrl(entry.id)}
+                density="compact"
+              />
+            {/each}
+          </HomepageSection>
+          <HomepageSection
+            compact
+            id="new-light-cones"
+            title={m.home_new_light_cones({ version })}
+            href={localizedHref('/light-cones')}
+            total={data.newLightCones.length}
+            shown={Math.min(data.newLightCones.length, 6)}
+          >
+            {#each data.newLightCones.slice(0, 6) as entry}
+              <LightConeOverviewCard
+                {entry}
+                href={localizedHref(`/light-cones/${entry.id}`)}
+                imageUrl={getLightConePreviewUrl(entry.id)}
+              />
+            {/each}
+          </HomepageSection>
+        </div>
+      {/if}
+      <HomepageSection
+        compact
+        id="new-relics"
+        title={m.home_new_relics({ version })}
+        href={localizedHref('/relics')}
+        total={data.newRelics.length}
+        shown={Math.min(data.newRelics.length, 4)}
+      >
+        {#each data.newRelics.slice(0, 4) as entry}
+          <RelicOverviewCard
+            {entry}
+            href={localizedHref(`/relics/${entry.id}`)}
+            imageUrl={getRelicSetIconUrl(entry.id)}
+          />
+        {/each}
+      </HomepageSection>
+    </div>
+  {/if}
   <HomepageSection
     id="new-enemies"
     title={m.home_new_enemies({ version })}
@@ -178,44 +216,62 @@
     box-shadow: 0 0 50px rgb(152 178 239 / 8%);
   }
   .home-hero__identity {
+    container-type: inline-size;
     position: relative;
     z-index: 3;
     display: grid;
     width: min(56%, 40rem);
-    gap: 0.85rem;
+    gap: var(--space-4);
     padding: 3rem 0;
   }
   .home-hero__eyebrow {
     color: var(--gold);
     font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.2em;
   }
   .home-hero h1 {
     margin: 0;
     color: var(--text-primary);
-    font-size: var(--font-hero-home-title);
+    letter-spacing: -0.015em;
     font-weight: 600;
-    line-height: 1.25;
+    line-height: 1.05;
     text-wrap: balance;
+  }
+  .home-hero__game-title {
+    margin-bottom: var(--space-2);
+    font-size: clamp(0.875rem, 5cqi, 1.875rem);
+    line-height: 1.4;
+  }
+  .home-hero__archive-title {
+    font-size: clamp(2.75rem, 16cqi, 5.5rem);
+    font-weight: var(--font-hero-title-weight);
+    letter-spacing: 0.025em;
+  }
+  .home-hero__english-title {
+    font-size: clamp(2rem, 10cqi, 4rem);
+    line-height: 1.1;
   }
   .home-hero p {
     margin: 0;
   }
-  .home-hero__tagline {
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
   .home-hero__version {
-    justify-self: start;
-    border: 1px solid rgb(211 179 114 / 45%);
-    border-radius: 2rem;
-    padding: 0.25rem 0.8rem;
+    border-left: 1px solid var(--gold);
+    padding-left: clamp(0.75rem, 3cqi, 1.5rem);
+    margin-bottom: 0.3rem;
     color: var(--gold);
-    font-size: 0.85rem;
+  }
+  .home-hero__version-label {
+    font-size: clamp(0.5625rem, 1.8cqi, 0.6875rem);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+  }
+  .home-hero__version-number {
+    font-size: clamp(1.5rem, 6cqi, 2.75rem);
+    line-height: 1.1;
   }
   .home-search {
-    margin-top: 0.8rem;
+    margin-top: var(--space-4);
     width: 100%;
   }
   .home-hero__art {
@@ -249,13 +305,6 @@
   .home-hero__cone :global(img) {
     width: 100%;
     height: auto;
-  }
-  .home-hero__cone--back {
-    z-index: 0;
-    right: 20%;
-    top: 12%;
-    transform: rotate(-10deg);
-    opacity: 0.8;
   }
   .home-directory {
     display: grid;
@@ -313,17 +362,29 @@
       right: 8%;
       top: 18%;
     }
-    .home-hero__cone--back {
-      right: 23%;
-      top: 5%;
-    }
     .home-hero__art:empty {
       height: 2rem;
     }
   }
   @media (max-width: 520px) {
-    .home-hero h1 {
-      font-size: var(--font-hero-home-title-mobile);
+    .home-hero__title-group {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .home-hero__game-title {
+      font-size: clamp(1rem, 5cqi, 1.5rem);
+    }
+    .home-hero__archive-title {
+      font-size: clamp(3.25rem, 20cqi, 5rem);
+    }
+    .home-hero__english-title {
+      font-size: clamp(2.5rem, 12cqi, 3.5rem);
+    }
+    .home-hero__version {
+      margin-bottom: 0;
+    }
+    .home-search {
+      margin-top: var(--space-2);
     }
     .home-directory {
       grid-template-columns: minmax(0, 1fr);
