@@ -4,6 +4,7 @@
   export let imageUrl: string | undefined = undefined;
   export let imageAlt = '';
   export let artworkFit: 'contain' | 'cover' | 'scale-down' = 'contain';
+  export let variant: 'default' | 'recommendation' = 'default';
 
   let imageMissing = !imageUrl?.trim();
   $: elementProps = href ? { href } : {};
@@ -16,6 +17,7 @@
   class:compact-entity-card--link={!!href}
   class:compact-entity-card--missing={imageMissing}
   class:compact-entity-card--split={!!$$slots.aside}
+  class:compact-entity-card--recommendation={variant === 'recommendation'}
   class="compact-entity-card"
   data-image-missing={imageMissing}
 >
@@ -157,6 +159,44 @@
   .compact-entity-card__arrow {
     color: var(--gold);
     font-size: 1rem;
+  }
+
+  .compact-entity-card--recommendation {
+    grid-template-columns: 4rem minmax(0, 1fr) auto;
+    gap: var(--space-3);
+    border-radius: var(--radius-card);
+    padding: var(--space-3);
+    color: var(--card-foreground);
+  }
+
+  .compact-entity-card--recommendation .compact-entity-card__artwork {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .compact-entity-card--recommendation .compact-entity-card__title {
+    display: block;
+    overflow: visible;
+    color: var(--foreground);
+    font-weight: 600;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+  }
+
+  .compact-entity-card--recommendation .compact-entity-card__secondary,
+  .compact-entity-card--recommendation .compact-entity-card__tertiary,
+  .compact-entity-card--recommendation .compact-entity-card__arrow {
+    color: var(--muted-foreground);
+  }
+
+  .compact-entity-card--recommendation:hover {
+    border-color: var(--muted-foreground);
+    background: var(--accent);
+    transform: none;
+  }
+
+  .compact-entity-card--recommendation:focus-visible {
+    outline-color: var(--ring);
   }
 
   @media (max-width: 520px) {

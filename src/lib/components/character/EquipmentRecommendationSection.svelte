@@ -1,4 +1,6 @@
 <script lang="ts">
+  import * as Card from '$lib/components/ui/card';
+  import { Separator } from '$lib/components/ui/separator';
   import type { EquipmentRecommendationView } from '$lib/domain/equipment-recommendation-view';
   import { localizedHref } from '$lib/i18n/routing';
   import { relicCategoryLabel, relicSlotLabel } from '$lib/i18n/product';
@@ -31,6 +33,7 @@
     <div class="compact-entity-grid">
       {#each recommendation.lightCones as lightCone (lightCone.id)}
         <CompactEntityCard
+          variant="recommendation"
           href={localizedHref(`/light-cones/${lightCone.id}`)}
           imageUrl={getLightConePreviewUrl(lightCone.id)}
         >
@@ -52,60 +55,64 @@
   </div>
 
   <div class="equipment-recommendation__group">
-    <SectionHeading level={2}>{m.equipment_relics()}</SectionHeading>
-    <div class="equipment-recommendation__subgroup">
-      <SectionHeading level={3}>{relicCategoryLabel('cavern')}</SectionHeading>
-      <div class="compact-entity-grid">
-        {#each recommendation.cavernSets as relicSet (relicSet.id)}
-          <CompactEntityCard
-            href={localizedHref(`/relics/${relicSet.id}`)}
-            imageUrl={getRelicSetIconUrl(relicSet.id)}
-          >
-            <svelte:fragment slot="title"><GameText text={relicSet.name} /></svelte:fragment>
-            <svelte:fragment slot="secondary">{relicCategoryLabel('cavern')}</svelte:fragment>
-          </CompactEntityCard>
-        {/each}
-      </div>
+    <SectionHeading level={2}>{relicCategoryLabel('cavern')}</SectionHeading>
+    <div class="compact-entity-grid">
+      {#each recommendation.cavernSets as relicSet (relicSet.id)}
+        <CompactEntityCard
+          variant="recommendation"
+          href={localizedHref(`/relics/${relicSet.id}`)}
+          imageUrl={getRelicSetIconUrl(relicSet.id)}
+        >
+          <svelte:fragment slot="title"><GameText text={relicSet.name} /></svelte:fragment>
+          <svelte:fragment slot="secondary">{relicCategoryLabel('cavern')}</svelte:fragment>
+        </CompactEntityCard>
+      {/each}
     </div>
-    <div class="equipment-recommendation__subgroup">
-      <SectionHeading level={3}>{relicCategoryLabel('planar')}</SectionHeading>
-      <div class="compact-entity-grid">
-        {#each recommendation.planarSets as relicSet (relicSet.id)}
-          <CompactEntityCard
-            href={localizedHref(`/relics/${relicSet.id}`)}
-            imageUrl={getRelicSetIconUrl(relicSet.id)}
-          >
-            <svelte:fragment slot="title"><GameText text={relicSet.name} /></svelte:fragment>
-            <svelte:fragment slot="secondary">{relicCategoryLabel('planar')}</svelte:fragment>
-          </CompactEntityCard>
-        {/each}
-      </div>
+  </div>
+  <div class="equipment-recommendation__group">
+    <SectionHeading level={2}>{relicCategoryLabel('planar')}</SectionHeading>
+    <div class="compact-entity-grid">
+      {#each recommendation.planarSets as relicSet (relicSet.id)}
+        <CompactEntityCard
+          variant="recommendation"
+          href={localizedHref(`/relics/${relicSet.id}`)}
+          imageUrl={getRelicSetIconUrl(relicSet.id)}
+        >
+          <svelte:fragment slot="title"><GameText text={relicSet.name} /></svelte:fragment>
+          <svelte:fragment slot="secondary">{relicCategoryLabel('planar')}</svelte:fragment>
+        </CompactEntityCard>
+      {/each}
     </div>
   </div>
 
   <div class="equipment-recommendation__group">
     <SectionHeading level={2}>{m.equipment_recommended_stats()}</SectionHeading>
-    <article class="recommendation-stats-surface">
-      <div class="recommendation-main-stats">
+    <Card.Root class="recommendation-stats-surface gap-4 py-4">
+      <Card.Content
+        class="recommendation-main-stats grid grid-cols-[repeat(auto-fit,minmax(min(100%,12rem),1fr))] gap-4 px-4"
+      >
         {#each recommendation.mainStats as stat (stat.slot)}
-          <section class="recommendation-main-stat" data-relic-slot={stat.slot}>
-            <h4>{relicSlotLabel(stat.slot)}</h4>
-            <div>
+          <section class="recommendation-main-stat min-w-0 space-y-2" data-relic-slot={stat.slot}>
+            <h4 class="text-muted-foreground m-0 text-sm font-semibold">
+              {relicSlotLabel(stat.slot)}
+            </h4>
+            <div class="grid gap-2">
               {#each stat.properties as property (property.propertyType)}
                 <RelicPropertyToken {property} />
               {/each}
             </div>
           </section>
         {/each}
-      </div>
-      <div class="recommendation-substats">
-        <h4>{m.equipment_substats()}</h4>
-        <div>
+      </Card.Content>
+      <Separator />
+      <Card.Content class="recommendation-substats space-y-2 px-4">
+        <h4 class="text-muted-foreground m-0 text-sm font-semibold">{m.equipment_substats()}</h4>
+        <div class="flex flex-wrap gap-2">
           {#each recommendation.subStats as property (property.propertyType)}
             <RelicPropertyToken {property} chip />
           {/each}
         </div>
-      </div>
-    </article>
+      </Card.Content>
+    </Card.Root>
   </div>
 </section>

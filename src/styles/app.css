@@ -848,80 +848,11 @@ main {
   align-items: stretch;
   gap: var(--space-3);
 }
-.equipment-recommendation__group,
-.equipment-recommendation__subgroup {
+.equipment-recommendation__group {
   min-width: 0;
 }
 .equipment-recommendation__group + .equipment-recommendation__group {
-  margin-top: var(--space-8);
-}
-.equipment-recommendation__subgroup + .equipment-recommendation__subgroup {
   margin-top: var(--space-6);
-}
-.recommendation-stats-surface {
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-card);
-  background: var(--card);
-}
-.recommendation-main-stats {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-.recommendation-main-stat {
-  display: grid;
-  min-width: 0;
-  align-content: start;
-  gap: var(--space-4);
-  padding: var(--space-6);
-}
-.recommendation-main-stat + .recommendation-main-stat {
-  border-left: 1px solid var(--border);
-}
-.recommendation-main-stat h4,
-.recommendation-substats h4 {
-  margin: 0;
-  color: var(--faint);
-  font-size: var(--font-helper);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  line-height: 1.3;
-}
-.recommendation-main-stat > div {
-  display: grid;
-  gap: var(--space-3);
-}
-.recommendation-main-stat .relic-property-token {
-  font-weight: 600;
-}
-.recommendation-substats {
-  display: grid;
-  gap: var(--space-4);
-  border-top: 1px solid var(--border);
-  padding: var(--space-6);
-}
-.recommendation-substats > div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-3);
-}
-.relic-property-token {
-  display: inline-flex;
-  min-width: 0;
-  align-items: center;
-  gap: 0.45rem;
-  color: var(--text-primary);
-  font-size: var(--font-meta-value);
-  line-height: 1.3;
-}
-.relic-property-token--chip {
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: rgb(255 255 255 / 3%);
-  padding: var(--space-2) var(--space-3);
-  color: var(--text-primary);
-  font-size: var(--font-helper);
-  font-weight: 500;
 }
 
 @media (max-width: 1080px) {
@@ -972,35 +903,12 @@ main {
   }
 }
 
-@media (max-width: 640px) {
-  .recommendation-main-stats {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .recommendation-main-stat:nth-child(3) {
-    border-left: 0;
-  }
-  .recommendation-main-stat:nth-child(n + 3) {
-    border-top: 1px solid var(--border);
-  }
-}
-
 @media (max-width: 520px) {
   .enemy-battle-column {
     padding: var(--space-4);
   }
   .enemy-summon-list {
     grid-template-columns: 1fr;
-  }
-  .recommendation-main-stats {
-    grid-template-columns: 1fr;
-  }
-  .recommendation-main-stat + .recommendation-main-stat {
-    border-top: 1px solid var(--border);
-    border-left: 0;
-  }
-  .recommendation-main-stat,
-  .recommendation-substats {
-    padding: var(--space-4);
   }
   .enhancement-control {
     width: 100%;
