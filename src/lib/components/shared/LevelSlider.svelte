@@ -4,6 +4,7 @@
   import { Badge } from '$lib/components/ui/badge';
   import { m } from '$lib/paraglide/messages.js';
 
+  export let compact = false;
   export let id: string;
   export let label: string;
   export let value: number;
@@ -20,10 +21,17 @@
   $: resolvedDisplayValue = displayValue ?? value;
 </script>
 
-<div class:skill-level-control--readonly={!interactive} class="skill-level-control">
+<div
+  class:skill-level-control--compact={compact}
+  class:skill-level-control--readonly={!interactive}
+  class="skill-level-control"
+>
   <div>
-    <Label id={`${id}-label`} for={id} onclick={() => document.getElementById(id)?.focus()}
-      >{label}</Label
+    <Label
+      class={compact ? 'sr-only' : undefined}
+      id={`${id}-label`}
+      for={id}
+      onclick={() => document.getElementById(id)?.focus()}>{label}</Label
     >
     <span class="skill-level-control__value">
       {#if leadingTag}<Badge variant="outline" class="skill-effect-tag text-primary"
@@ -34,7 +42,7 @@
   </div>
   <Slider
     type="single"
-    class="my-3"
+    class={compact ? 'w-[clamp(4rem,16vw,10rem)] shrink-0' : 'my-3'}
     bind:value
     {min}
     {max}
@@ -57,7 +65,19 @@
       'data-slider-step': step
     }}
   />
-  <div class="skill-level-range" aria-hidden="true">
-    <span>Lv.{ariaValueMin}</span><span>Lv.{ariaValueMax}</span>
-  </div>
+  {#if !compact}<div class="skill-level-range" aria-hidden="true">
+      <span>Lv.{ariaValueMin}</span><span>Lv.{ariaValueMax}</span>
+    </div>{/if}
 </div>
+
+<style>
+  .skill-level-control--compact {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0;
+  }
+  .skill-level-control--compact > div:first-child {
+    display: contents;
+  }
+</style>

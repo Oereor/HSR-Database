@@ -1,5 +1,7 @@
 <script lang="ts">
   export let characterAccent: string | undefined = undefined;
+  import AssetImage from '$lib/components/shared/AssetImage.svelte';
+  import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import { Badge } from '$lib/components/ui/badge';
   import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
@@ -26,9 +28,16 @@
 
 <section class="skill-variant" data-skill-id={variant.id}>
   <slot name="prefix" />
-  <div class="skill-variant__heading">
-    <h4><GameText text={variant.name} /></h4>
-    <div class="skill-variant__heading-meta">
+  <div class="skill-variant__heading flex items-start gap-3">
+    <AssetImage
+      src={getCharacterDetailIconUrl(variant.iconKey)}
+      alt=""
+      class="size-10 shrink-0 object-contain"
+      fallbackClass="size-10 shrink-0"
+    />
+    <div class="flex min-w-0 flex-1 flex-wrap items-center gap-x-2 gap-y-1">
+      <h4><GameText text={variant.name} /></h4>
+
       <SkillEffectTag effect={variant.combatMeta.effect} />
       {#if variant.source === 'avatar-global-buff'}
         <Badge variant="outline" class="skill-effect-tag text-primary">{m.skill_exclusive()}</Badge>

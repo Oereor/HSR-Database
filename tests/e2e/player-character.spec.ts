@@ -491,9 +491,9 @@ test('reuses the Player cache and renders real progression without changing stat
     })
   ).toBe(true);
 
-  const basicLevel = page.locator('[data-skill-category="basic"] [role="slider"]');
-  await expect(basicLevel).toBeDisabled();
-  await expect(basicLevel).toHaveAttribute('aria-valuenow', '6');
+  const basicCard = page.locator('[data-skill-category="basic"]');
+  await expect(basicCard.getByRole('slider')).toHaveCount(0);
+  await expect(basicCard.locator('output')).toHaveText('Lv.6');
 
   await expect(page.locator('[data-trace-id="1304101"]')).toHaveAttribute(
     'data-player-state',

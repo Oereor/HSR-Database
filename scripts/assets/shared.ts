@@ -293,7 +293,11 @@ export async function readAssetRequirements(
           profile
             ? [
                 profile.energy.iconKey,
-                ...profile.skillCards.map((card) => card.iconKey),
+                ...profile.skillCards.flatMap((card) => [
+                  card.iconKey,
+                  ...card.variants.map((variant) => variant.iconKey)
+                ]),
+                ...profile.specialEffects.map((entry) => entry.skill.iconKey),
                 ...profile.traces.map((trace) => trace.iconKey),
                 ...profile.eidolons.map((eidolon) => eidolon.iconKey)
               ]

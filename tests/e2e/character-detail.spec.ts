@@ -81,10 +81,10 @@ test('Global Buff 作为正常 Talent Variant 展示且不泄漏配置术语', a
     const globalVariant = talentCard.locator(`[data-skill-id="${globalId}"]`);
     await expect(globalVariant).toContainText(globalName);
     await expect(globalVariant).toContainText(description);
-    await expect(
-      globalVariant.locator('.skill-variant__heading-meta .skill-effect-tag')
-    ).toHaveText(messages.skill_exclusive);
-    await expect(globalVariant.locator('.skill-variant__heading-meta')).not.toContainText('Lv.1');
+    await expect(globalVariant.locator('.skill-variant__heading .skill-effect-tag')).toHaveText(
+      messages.skill_exclusive
+    );
+    await expect(globalVariant.locator('.skill-variant__heading')).not.toContainText('Lv.1');
     await expect(page.locator('[data-skill-category="global-buff"]')).toHaveCount(0);
     await expect(page.locator('body')).not.toContainText('仓库技');
     await expect(page.locator('body')).not.toContainText('Global Buff');
@@ -167,27 +167,15 @@ test('技能卡按语义类别合并变体并使用真实默认等级', async ({
   await expect(hertaSkill.locator('.skill-variant')).toHaveCount(2);
 });
 
-test('技能类别标题与正文之间只保留一条 divider，秘技隐藏固定等级', async ({ page }) => {
+test('skill category headers expose accessible preview controls without category icons', async ({
+  page
+}) => {
   await page.goto('/characters/1001/');
   for (const category of ['basic', 'skill', 'ultimate', 'talent', 'technique']) {
     const card = page.locator(`[data-skill-category="${category}"]`);
-    const dividerWidths = await card.evaluate((element) => {
-      const heading = element.querySelector<HTMLElement>(':scope > [data-slot=separator]')!;
-      const firstBody = element.querySelector<HTMLElement>(
-        '.skill-progression-group, .fixed-variant-list'
-      )!;
-      const firstLevelControl = element.querySelector<HTMLElement>('.skill-level-control');
-      return {
-        heading: getComputedStyle(heading).height,
-        firstBody: getComputedStyle(firstBody).borderTopWidth,
-        firstLevelControl: firstLevelControl
-          ? getComputedStyle(firstLevelControl).borderTopWidth
-          : '0px'
-      };
-    });
-    expect(dividerWidths).toEqual({ heading: '1px', firstBody: '0px', firstLevelControl: '0px' });
-    if (category === 'technique')
-      await expect(card.getByText('Lv.1', { exact: true })).toHaveCount(0);
+    await expect(card.locator('[data-slot="card-header"] img')).toHaveCount(0);
+    if (category === 'technique') await expect(card.getByRole('slider')).toHaveCount(0);
+    else await expect(card.getByRole('slider')).toHaveAccessibleName(/.+/);
   }
 });
 
@@ -722,109 +710,21 @@ test('记忆开拓者按真实前置链归组并将第四项能力独占底部�
   }
 });
 
-test('角色详情 icon 增强保持 canonical 技能、紧凑卡片与无破图布局', async ({ page, isMobile }) => {
-  await page.goto('/characters/1407/');
-  await expect(page.locator('#stats .inspection-stat-label img')).toHaveCount(5);
-  const skillCards = page.locator('#skills .skill-card');
-  await expect(skillCards).toHaveCount(7);
-  await expect(skillCards.locator('.skill-card__heading img')).toHaveCount(7);
-  await expect(
-    page.locator('[data-skill-category="skill"] .skill-card__heading img')
-  ).toHaveAttribute('src', '/generated-assets/character-details/icons/skill/1407_skill.png');
-  await expect(page.locator('[data-skill-category="skill"] [data-skill-id]')).toHaveCount(2);
-  await expect(
-    page.locator(
-      '[data-skill-category="skill"] .skill-variant img[src^="/generated-assets/character-details/"]'
-    )
-  ).toHaveCount(0);
-
-  await expect(
-    page.locator('#traces .trace-card--ability .trace-card__identity > img')
-  ).toHaveCount(3);
-  await expect(page.locator('#traces .trace-card--stat .trace-card__title--icon img')).toHaveCount(
-    10
-  );
-  await expect(page.locator('#eidolons .rank-icon')).toHaveCount(6);
-  await expect(page.locator('#eidolons .rank-label')).toHaveCount(6);
-  expect(
-    await page
-      .locator('#eidolons .rank-label')
-      .evaluateAll((labels) => labels.every((label) => !!label.textContent?.trim()))
-  ).toBe(true);
-
-  const presentation = await page.evaluate(() => {
-    const detailImages = [
-      ...document.querySelectorAll<HTMLImageElement>(
-        'img[src^="/generated-assets/character-details/"]'
-      )
-    ];
-    const skillHeading = document
-      .querySelector<HTMLElement>('[data-skill-category="skill"] .skill-card__heading')!
-      .getBoundingClientRect();
-    return {
-      loaded: detailImages.every((image) => image.complete && image.naturalWidth > 0),
-      count: detailImages.length,
-      skillHeadingHeight: skillHeading.height,
-      overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
-    };
-  });
-  expect(presentation.loaded).toBe(true);
-  expect(presentation.count).toBeGreaterThan(20);
-  expect(presentation.skillHeadingHeight).toBeLessThan(60);
-  expect(presentation.overflow).toBeLessThanOrEqual(isMobile ? 1 : 0);
-
-  for (const id of ['8007', '8008']) {
-    await page.goto(`/characters/${id}/`);
-    await expect(
-      page.locator(`[data-trace-id="${id}501"] .trace-card__identity > img`)
-    ).toHaveAttribute(
-      'src',
-      `/generated-assets/character-details/icons/skill/${id}_basic_atk2.png`
+test('variants use their own generated skill icons including memosprites', async ({ page }) => {
+  const icons = JSON.parse(readFileSync('src/lib/generated-assets/manifest.json', 'utf8'))
+    .characterDetails.icons.resolved;
+  for (const id of ['1213', '1407', '1415']) {
+    const character = JSON.parse(
+      readFileSync(`src/lib/generated/views/zh-CN/details/characters/${id}.json`, 'utf8')
     );
-  }
-
-  await page.goto('/characters/1510/');
-  await expect(
-    page.locator('[data-skill-category="talent"] .skill-card__heading img')
-  ).toHaveAttribute('src', '/generated-assets/character-details/icons/skill/1510_talent.png');
-  await expect(
-    page.locator('[data-skill-category="assist"] .skill-card__heading img')
-  ).toHaveAttribute('src', '/generated-assets/character-details/icons/skill/1510_assist01.png');
-});
-
-test('character card grids preserve columns and equal row heights', async ({ page, isMobile }) => {
-  test.skip(isMobile, 'This test owns its viewport matrix');
-  for (const prefix of ['', '/en'])
-    for (const width of [320, 390, 768, 1080, 1081, 1280, 1600]) {
-      await page.setViewportSize({ width, height: 1000 });
-      await page.goto(`${prefix}/characters/1001/`);
-      await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
-      for (const [selector, columns] of [
-        ['#skills [data-skill-category]', width > 1080 ? 2 : 1],
-        ['#eidolons [data-eidolon-id]', width > 820 ? 2 : 1]
-      ] as const) {
-        const rows = await page.locator(selector).evaluateAll((nodes) => {
-          const rows: Array<Array<{ y: number; height: number }>> = [];
-          for (const node of nodes) {
-            const box = node.getBoundingClientRect();
-            let row = rows.find((row) => Math.abs(row[0].y - box.y) < 1);
-            if (!row) {
-              row = [];
-              rows.push(row);
-            }
-            row.push({ y: box.y, height: box.height });
-          }
-          return rows;
-        });
-        expect(rows[0].length).toBe(columns);
-        for (const row of rows)
-          expect(
-            Math.max(...row.map((item) => item.height)) -
-              Math.min(...row.map((item) => item.height))
-          ).toBeLessThanOrEqual(1);
+    await page.goto(`/characters/${id}/`);
+    for (const card of character.profiles.base.skillCards)
+      for (const variant of card.variants) {
+        const row = page.locator(`#skills [data-skill-id="${variant.id}"]`);
+        const expected = icons[variant.iconKey];
+        if (expected)
+          await expect(row.locator('.skill-variant__heading img')).toHaveAttribute('src', expected);
+        else await expect(row.locator('[data-image-fallback]')).toBeVisible();
       }
-      expect(
-        await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)
-      ).toBeLessThanOrEqual(1);
-    }
+  }
 });

@@ -193,6 +193,16 @@ function projectSkillVariant(
     order: variant.order,
     source: variant.source,
     progressionId: variant.progressionId ?? null,
+    ...(variant.iconPath
+      ? {
+          iconKey: configuredCharacterDetailIconKey(
+            'skill',
+            variant.id,
+            variant.iconPath,
+            `${variant.source === 'memosprite' ? 'AvatarServantSkillConfig' : 'AvatarSkillConfig'}.${variant.id}`
+          )
+        }
+      : {}),
     scalingParamIndexes: levels.scalingParamIndexes,
     levels: levels.levels,
     attackType: variant.attackType,

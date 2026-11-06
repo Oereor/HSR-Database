@@ -95,6 +95,7 @@ export interface SemanticTag {
 }
 
 export interface SkillVariant {
+  iconKey?: import('./character-detail-icons.js').CharacterDetailIconKey;
   id: string;
   name: string;
   type?: string;
