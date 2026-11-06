@@ -3,12 +3,14 @@
   import { Badge } from '$lib/components/ui/badge';
   import { Separator } from '$lib/components/ui/separator';
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
+  import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
   import SkillExtraEffects from '$lib/components/shared/SkillExtraEffects.svelte';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import type { Eidolon } from '$lib/domain/types';
   import type { PlayerEidolonState } from '$lib/player/character';
   import { m } from '$lib/paraglide/messages.js';
+  export let characterAccent: string | undefined = undefined;
   export let eidolon: Eidolon;
   export let playerState: PlayerEidolonState | undefined = undefined;
 </script>
@@ -46,8 +48,12 @@
   <Separator />
   <Card.Content class="space-y-3">
     <p class="text-secondary-foreground m-0 text-base leading-relaxed">
-      <GameText text={eidolon.description || m.common_localized_description_unavailable()} />
+      {#if eidolon.descriptionTokens?.length}
+        <DescriptionText tokens={eidolon.descriptionTokens} {characterAccent} />
+      {:else}<GameText
+          text={eidolon.description || m.common_localized_description_unavailable()}
+        />{/if}
     </p>
-    <SkillExtraEffects effects={eidolon.extraEffects ?? []} />
+    <SkillExtraEffects effects={eidolon.extraEffects ?? []} {characterAccent} />
   </Card.Content>
 </Card.Root>

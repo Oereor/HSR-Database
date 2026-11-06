@@ -74,6 +74,7 @@ export interface ExtraEffect {
   id: string;
   name: string;
   description: string;
+  descriptionTokens?: DescriptionToken[];
 }
 
 export type SkillExtraEffect = ExtraEffect;
@@ -161,6 +162,7 @@ export interface Trace {
   id: string;
   name: string;
   description: string;
+  descriptionTokens?: DescriptionToken[];
   type: TraceType;
   iconKey?: import('./character-detail-icons.js').CharacterDetailIconKey;
   propertyType?: string;
@@ -212,6 +214,7 @@ export interface Eidolon {
   rank: number;
   name: string;
   description: string;
+  descriptionTokens?: DescriptionToken[];
   iconKey?: import('./character-detail-icons.js').CharacterDetailIconKey;
   extraEffects?: SkillExtraEffect[];
 }

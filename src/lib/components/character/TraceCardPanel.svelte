@@ -41,6 +41,7 @@
           <Card.Content>
             <TraceEntryContent
               {trace}
+              {characterAccent}
               playerState={index ? resolvePlayerTraceState(trace.id, index) : undefined}
             />
           </Card.Content>
@@ -138,6 +139,7 @@
           <Card.Content
             ><TraceEntryContent
               {trace}
+              {characterAccent}
               playerState={index ? resolvePlayerTraceState(trace.id, index) : undefined}
             /></Card.Content
           >

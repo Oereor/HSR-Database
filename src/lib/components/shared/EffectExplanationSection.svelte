@@ -1,8 +1,10 @@
 <script lang="ts">
+  import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
   import type { ExtraEffect } from '$lib/domain/types';
   import { m } from '$lib/paraglide/messages.js';
 
+  export let characterAccent: string | undefined = undefined;
   export let effects: ExtraEffect[] = [];
   export let context: 'skill' | 'stage-effect' = 'skill';
 </script>
@@ -19,7 +21,11 @@
       {#each effects as effect, index (`${effect.id}:${index}`)}
         <section data-extra-effect={effect.id}>
           <h4><GameText text={effect.name} /></h4>
-          <p><GameText text={effect.description} /></p>
+          <p>
+            {#if characterAccent && effect.descriptionTokens?.length}
+              <DescriptionText tokens={effect.descriptionTokens} {characterAccent} />
+            {:else}<GameText text={effect.description} />{/if}
+          </p>
         </section>
       {/each}
     </div>

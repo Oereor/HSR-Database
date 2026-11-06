@@ -670,6 +670,7 @@
       {#if activeProfile.eidolons.length}<div class="grid grid-cols-1 gap-4">
           {#each activeProfile.eidolons as rank (rank.id)}<EidolonCard
               eidolon={rank}
+              characterAccent={getElementColor(detail.element)}
               playerState={activePlayerCharacter
                 ? resolvePlayerEidolonState(rank, activePlayerCharacter.progression.rank)
                 : undefined}

@@ -8,7 +8,8 @@ import type {
   Character as CharacterView,
   CharacterSpecialEffectEntry,
   Trace,
-  Eidolon
+  Eidolon,
+  DescriptionToken
 } from '../../../src/lib/domain/types.js';
 import type { TextResolver } from '../localization.js';
 import {
@@ -34,7 +35,7 @@ function projectDescription(
   source: import('../../../src/lib/domain/neutral.js').NeutralTextSource | undefined,
   field: { domain: string; entityId: string; field: string },
   gender?: 'female' | 'male'
-): string {
+): { description: string; descriptionTokens: DescriptionToken[] } {
   if (!source) {
     context.resolver.recordAbsent(
       { entity: field.domain, id: field.entityId, field: field.field },
@@ -45,7 +46,7 @@ function projectDescription(
         productRouteReachability: 'reachable'
       }
     );
-    return '';
+    return { description: '', descriptionTokens: [] };
   }
   const projected = context.resolver.projectGameText(source, {
     gender,
@@ -58,12 +59,12 @@ function projectDescription(
       productRouteReachability: 'reachable'
     }
   });
-  if (projected.status !== 'available') return '';
+  if (projected.status !== 'available') return { description: '', descriptionTokens: [] };
   if (projected.value.diagnostics.some(({ code }) => code === 'invalid-param'))
     throw new Error(
       `[${field.domain}.${field.entityId}.${field.field}] invalid GameText parameter`
     );
-  return projected.value.markup;
+  return { description: projected.value.markup, descriptionTokens: projected.value.tokens };
 }
 
 export interface CharacterProjectionContext {
@@ -110,7 +111,7 @@ function projectExtraEffects(
       { domain: 'character', entityId: domain.id, field: `extraEffect.${id}.description` },
       domain.gender
     );
-    return [{ id, name, description }];
+    return [{ id, name, ...description }];
   });
 }
 
@@ -305,14 +306,14 @@ function projectProfile(
           field: `trace.${trace.id}.name`
         })
       : '';
-    let description = '';
-    if (trace.descriptionSource)
-      description = projectDescription(
-        context,
-        trace.descriptionSource,
-        { domain: 'character', entityId: domain.id, field: `trace.${trace.id}.description` },
-        domain.gender
-      );
+    let { description, descriptionTokens } = trace.descriptionSource
+      ? projectDescription(
+          context,
+          trace.descriptionSource,
+          { domain: 'character', entityId: domain.id, field: `trace.${trace.id}.description` },
+          domain.gender
+        )
+      : { description: '', descriptionTokens: [] };
     if (!description && trace.statDescriptionSource) {
       const result = context.resolver.projectGameText(
         {
@@ -336,7 +337,10 @@ function projectProfile(
           }
         }
       );
-      if (result.status === 'available') description = gameTextToPlain(result.value.text);
+      if (result.status === 'available') {
+        description = gameTextToPlain(result.value.text);
+        descriptionTokens = result.value.tokens;
+      }
     }
     if (!name && !description) return [];
     const iconKey = trace.iconPath
@@ -352,6 +356,7 @@ function projectProfile(
         id: trace.id,
         name,
         description,
+        descriptionTokens,
         type: trace.type,
         ...(trace.type === 'stat' &&
         trace.sourcePointType === 1 &&
@@ -398,7 +403,7 @@ function projectProfile(
             field: `eidolon.${eidolon.id}.name`
           })
         : '',
-      description: projectDescription(
+      ...projectDescription(
         context,
         eidolon.descriptionSource,
         { domain: 'character', entityId: domain.id, field: `eidolon.${eidolon.id}.description` },
