@@ -33,7 +33,6 @@
     <div class="compact-entity-grid">
       {#each recommendation.lightCones as lightCone (lightCone.id)}
         <CompactEntityCard
-          variant="recommendation"
           href={localizedHref(`/light-cones/${lightCone.id}`)}
           imageUrl={getLightConePreviewUrl(lightCone.id)}
         >
@@ -59,7 +58,6 @@
     <div class="compact-entity-grid">
       {#each recommendation.cavernSets as relicSet (relicSet.id)}
         <CompactEntityCard
-          variant="recommendation"
           href={localizedHref(`/relics/${relicSet.id}`)}
           imageUrl={getRelicSetIconUrl(relicSet.id)}
         >
@@ -74,7 +72,6 @@
     <div class="compact-entity-grid">
       {#each recommendation.planarSets as relicSet (relicSet.id)}
         <CompactEntityCard
-          variant="recommendation"
           href={localizedHref(`/relics/${relicSet.id}`)}
           imageUrl={getRelicSetIconUrl(relicSet.id)}
         >
@@ -87,12 +84,15 @@
 
   <div class="equipment-recommendation__group">
     <SectionHeading level={2}>{m.equipment_recommended_stats()}</SectionHeading>
-    <Card.Root class="recommendation-stats-surface gap-4 py-4">
+    <Card.Root class="recommendation-stats-surface @container/recommendation-stats gap-4 py-4">
       <Card.Content
-        class="recommendation-main-stats grid grid-cols-[repeat(auto-fit,minmax(min(100%,12rem),1fr))] gap-4 px-4"
+        class="recommendation-main-stats grid grid-cols-1 gap-4 px-4 @min-[28rem]/recommendation-stats:grid-cols-2 @min-[54rem]/recommendation-stats:grid-cols-4"
       >
         {#each recommendation.mainStats as stat (stat.slot)}
-          <section class="recommendation-main-stat min-w-0 space-y-2" data-relic-slot={stat.slot}>
+          <section
+            class="recommendation-main-stat flex min-w-0 flex-col gap-3"
+            data-relic-slot={stat.slot}
+          >
             <h4 class="text-muted-foreground m-0 text-sm font-semibold">
               {relicSlotLabel(stat.slot)}
             </h4>
@@ -105,7 +105,7 @@
         {/each}
       </Card.Content>
       <Separator />
-      <Card.Content class="recommendation-substats space-y-2 px-4">
+      <Card.Content class="recommendation-substats flex flex-col gap-3 px-4">
         <h4 class="text-muted-foreground m-0 text-sm font-semibold">{m.equipment_substats()}</h4>
         <div class="flex flex-wrap gap-2">
           {#each recommendation.subStats as property (property.propertyType)}
