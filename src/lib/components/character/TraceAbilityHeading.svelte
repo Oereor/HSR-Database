@@ -26,7 +26,9 @@
     </div>
   </div>
   <div class="trace-card__tags">
-    <Badge variant="outline" class="skill-effect-tag text-primary">{m.trace_extra_ability()}</Badge>
+    <Badge variant="outline" class="skill-effect-tag text-primary"
+      >{trace.type === 'stat' ? m.trace_stat_bonus() : m.trace_extra_ability()}</Badge
+    >
     {#if playerState === 'unresolved'}<Badge
         variant="outline"
         class="player-progression-state text-primary"

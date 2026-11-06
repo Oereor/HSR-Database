@@ -666,7 +666,7 @@
     </section>
     <section id="eidolons" class="detail-section section-nav-target">
       <SectionHeading level={1}>{m.detail_eidolons()}</SectionHeading>
-      {#if activeProfile.eidolons.length}<div class="stack-list">
+      {#if activeProfile.eidolons.length}<div class="grid grid-cols-1 gap-4">
           {#each activeProfile.eidolons as rank (rank.id)}<EidolonCard
               eidolon={rank}
               playerState={activePlayerCharacter

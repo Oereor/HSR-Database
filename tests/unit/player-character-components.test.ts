@@ -349,7 +349,7 @@ describe('Player Character presentation', () => {
     expect(playerBody).toContain('data-player-state="inactive"');
     expect(playerBody).toContain('data-player-state="unresolved"');
     expect(playerBody).not.toContain('data-player-state-label="active"');
-    expect(playerBody).not.toContain('data-player-state-label="inactive"');
+    expect(playerBody).toContain('data-player-state-label="inactive"');
     expect(playerBody).toContain('data-player-state-label="unresolved"');
     expect(staticBody).not.toContain('data-player-state=');
   });

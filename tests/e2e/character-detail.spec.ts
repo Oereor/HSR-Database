@@ -632,81 +632,27 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   await expect(page.locator('[data-skill-id="150909"]')).toHaveCount(0);
 });
 
-test('行迹使用三列能力分组与紧凑属性卡直接展示完整内容', async ({ page, isMobile }) => {
-  await page.goto('/characters/1001/');
-  const traces = page.locator('#traces');
-  const abilityGroups = traces.locator('[data-trace-group]');
-  const abilities = abilityGroups.locator('.trace-card--ability');
-  const purity = traces.locator('[data-trace-id="1001101"]');
-  const ice = traces.locator('[data-trace-id="1001201"]');
-  await expect(abilityGroups).toHaveCount(3);
-  await expect(abilities).toHaveCount(3);
-  await expect(purity.locator('.skill-effect-tag')).not.toHaveText('');
-  await expect(purity.locator('.trace-card__condition')).toBeVisible();
-  await expect(purity).toContainText('解除指定我方单体的1个负面效果');
-  await expect(ice.locator('.skill-effect-tag')).not.toHaveText('');
-  await expect(ice.locator('.trace-card__condition')).toHaveCount(0);
-  await expect(ice).toHaveAttribute('data-trace-standalone');
-  await expect(traces.getByText('Lv.1', { exact: true })).toHaveCount(0);
-  await expect(traces.locator('svg, .trace-tree-viewport, .trace-detail')).toHaveCount(0);
-  await expect(traces.locator('button[data-trace-id]')).toHaveCount(0);
-
-  const geometry = await traces.evaluate((section) => {
-    const box = (element: Element) => element.getBoundingClientRect();
-    const abilityNodes = [
-      ...section.querySelectorAll<HTMLElement>('[data-trace-group] > .trace-card--ability')
-    ];
-    const statNodes = [...section.querySelectorAll<HTMLElement>('.trace-card--stat')];
-    return {
-      abilityTops: abilityNodes.map((node) => box(node).top),
-      abilityLefts: abilityNodes.map((node) => box(node).left),
-      abilityWidths: abilityNodes.map((node) => box(node).width),
-      abilityHeight: box(abilityNodes[0]).height,
-      statHeight: Math.min(...statNodes.map((node) => box(node).height))
-    };
-  });
-  expect(
-    new Set((isMobile ? geometry.abilityLefts : geometry.abilityTops).map(Math.round)).size
-  ).toBe(1);
-  if (isMobile) expect(new Set(geometry.abilityTops.map(Math.round)).size).toBe(3);
-  expect(new Set(geometry.abilityWidths.map(Math.round)).size).toBe(1);
-  expect(geometry.abilityHeight).toBeGreaterThan(geometry.statHeight);
-});
-
-test('记忆开拓者按真实前置链归组并将第四项能力独占底部整行', async ({ page }) => {
-  for (const id of ['8007', '8008']) {
+test('trace summaries retain node breakdown and eidolons retain source ordering', async ({
+  page
+}) => {
+  for (const id of ['1001', '8007']) {
+    const character = JSON.parse(
+      readFileSync(`src/lib/generated/views/zh-CN/details/characters/${id}.json`, 'utf8')
+    );
+    const profile = character.profiles.base;
     await page.goto(`/characters/${id}/`);
-    const traces = page.locator('#traces');
-    const groups = traces.locator('[data-trace-group]');
-    await expect(groups).toHaveCount(3);
-    await expect(traces.locator('[data-trace-type="ability"]')).toHaveCount(4);
-    await expect(traces.getByRole('heading', { name: '未完的尾声', exact: true })).toHaveCount(1);
-    const special = traces.locator(`[data-trace-id="${id}501"]`);
-    await expect(special).toHaveAttribute('data-trace-special');
-    await expect(special.locator('.trace-card__condition')).toHaveCount(0);
-    await expect(groups.nth(0).locator('[data-trace-type="stat"]')).toHaveCount(2);
-    await expect(groups.nth(1).locator('[data-trace-type="stat"]')).toHaveCount(2);
-    await expect(groups.nth(2).locator('[data-trace-type="stat"]')).toHaveCount(3);
-    await expect(groups.nth(2).locator(`[data-trace-id="${id}208"]`)).toBeVisible();
-    await expect(groups.nth(2).locator(`[data-trace-id="${id}209"]`)).toBeVisible();
-    await expect(groups.nth(2).locator(`[data-trace-id="${id}210"]`)).toBeVisible();
-    await expect(traces.locator('[data-trace-standalone]')).toHaveCount(3);
-
-    const geometry = await traces.evaluate((section) => {
-      const specialBox = section
-        .querySelector<HTMLElement>('[data-trace-special]')!
-        .getBoundingClientRect();
-      const independentBox = section
-        .querySelector<HTMLElement>('[data-trace-independent-section]')!
-        .getBoundingClientRect();
-      return {
-        specialWidth: specialBox.width,
-        independentWidth: independentBox.width,
-        bodyOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
-      };
-    });
-    expect(Math.abs(geometry.specialWidth - geometry.independentWidth)).toBeLessThanOrEqual(2);
-    expect(geometry.bodyOverflow).toBe(0);
+    const details = page.locator('#traces details');
+    for (let i = 0; i < (await details.count()); i++)
+      await details.nth(i).locator('summary').click();
+    await expect(page.locator('#traces [data-trace-id]')).toHaveCount(profile.traces.length);
+    for (const stat of profile.traces.filter((trace: { statBonus?: unknown }) => trace.statBonus)) {
+      await expect(page.locator(`#traces [data-trace-id="${stat.id}"]`)).toBeVisible();
+    }
+    const eidolons = page.locator('#eidolons [data-eidolon-id]');
+    await expect(eidolons).toHaveCount(6);
+    expect(
+      await eidolons.evaluateAll((nodes) => nodes.map((n) => n.getAttribute('data-eidolon-id')))
+    ).toEqual(profile.eidolons.map((e: { id: string }) => e.id));
   }
 });
 

@@ -23,6 +23,10 @@ import { configuredCharacterDetailIconKey } from '../character-detail-icons.js';
 import { annotateSpecialEffectCards } from '../special-effect-triggers.js';
 import { normalizeElementType } from '../../../src/lib/domain/elements.js';
 import { formatGameMarkup } from '../text.js';
+import {
+  PLAYER_PROPERTY_SEMANTICS,
+  isPlayerPropertyType
+} from '../../../src/lib/player/property-semantics.js';
 import { gameTextToPlain } from '../../../src/lib/domain/game-text.js';
 
 function projectDescription(
@@ -349,6 +353,20 @@ function projectProfile(
         name,
         description,
         type: trace.type,
+        ...(trace.type === 'stat' &&
+        trace.sourcePointType === 1 &&
+        !trace.descriptionSource &&
+        !trace.extraEffectIds?.length &&
+        trace.statBonuses?.length === 1 &&
+        isPlayerPropertyType(trace.statBonuses[0].propertyType)
+          ? {
+              statBonus: {
+                propertyType: trace.statBonuses[0].propertyType,
+                value: Number(trace.statBonuses[0].value),
+                percent: PLAYER_PROPERTY_SEMANTICS[trace.statBonuses[0].propertyType].percent
+              }
+            }
+          : {}),
         ...(iconKey ? { iconKey } : {}),
         ...(trace.propertyType ? { propertyType: trace.propertyType } : {}),
         sourcePointType: trace.sourcePointType,

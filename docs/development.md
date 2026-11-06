@@ -59,6 +59,14 @@ pnpm dev
 
 [^fontsource]: Fontsource. Installing Fonts. [自托管与按字符集加载说明](https://fontsource.org/docs/getting-started/install).
 
+## 角色详情展示
+
+角色详情暂时关闭养成计算及材料请求，底层计算与资源保留，光锥养成不受影响。Hero 等级和技能等级均为独立预览；技能按 progression ID 共享状态，切换角色或基础/强化形态时重置，玩家模式使用只读实际等级。
+
+描述 Token 保留动态与固定 RAW PARAM 身份；显式游戏颜色优先，动态参数沿用橙色，固定参数仅在明确的角色属性上下文中使用属性色。技能变体的 iconKey 来自各自原始 SkillIcon，不使用类别或升级行迹图标代替。
+
+行迹仅聚合已验证、无额外条件且同属性同单位的结构化 StatusAddList 加成。普通模式显示完整总量；玩家模式只计算明确已解锁节点，未知状态另行标记。展开明细保留原节点、归属、解锁条件与状态。
+
 ## 常用命令与生成产物
 
 命令定义见 [package.json](../package.json)。按需要选择，不把下表作为每次修改的完整检查清单。

@@ -157,6 +157,7 @@ export interface LightConePassiveSkill {
 export type TraceType = 'stat' | 'ability';
 
 export interface Trace {
+  statBonus?: { propertyType: string; value: number; percent: boolean };
   id: string;
   name: string;
   description: string;

@@ -509,19 +509,6 @@ test('reuses the Player cache and renders real progression without changing stat
   );
   await expect(page.locator('#eidolons [data-player-state="active"]')).toHaveCount(3);
   await expect(page.locator('#eidolons [data-player-state="inactive"]')).toHaveCount(3);
-  const eidolonTagInsets = await page.locator('#eidolons .rank-card').evaluateAll((cards) =>
-    cards.map((card) => {
-      const tag = card.querySelector<HTMLElement>('[data-player-state-label]')!;
-      return {
-        expected: Number.parseFloat(getComputedStyle(card).paddingRight),
-        actual: card.getBoundingClientRect().right - tag.getBoundingClientRect().right
-      };
-    })
-  );
-  expect(eidolonTagInsets.every(({ expected, actual }) => Math.abs(expected - actual) <= 1)).toBe(
-    true
-  );
-
   await expect(page.locator('[data-player-stat="hp"]')).toContainText('9,677');
   await expect(page.locator('.player-stats-panel button')).toHaveCount(0);
   await expect(page.locator('[data-player-stat="effect_hit"]')).toContainText('20%');

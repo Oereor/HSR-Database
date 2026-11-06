@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { groupTracesForDisplay } from '../../src/lib/domain/trace-groups';
+import { summarizeTraceStats, formatTraceBonus } from '../../src/lib/domain/trace-summary';
 import type { Character, Trace } from '../../src/lib/domain/types';
 
 const generatedRoot = path.join(process.cwd(), 'src', 'lib', 'generated');
@@ -24,6 +25,52 @@ const trace = (
 });
 
 describe('行迹卡片展示分组', () => {
+  it('sums structured bonuses, retains ownership and never merges property units or conditional nodes', () => {
+    const ability = trace('ability', 0, [], 'ability');
+    const bonus = (
+      id: string,
+      value: number,
+      propertyType = 'HPAddedRatio',
+      percent = true
+    ): Trace => ({
+      ...trace(id, 1, ['ability']),
+      propertyType,
+      statBonus: { propertyType, value, percent }
+    });
+    const conditional = {
+      ...bonus('conditional', 9),
+      extraEffects: [{ id: 'effect', name: 'effect', description: 'effect' }]
+    };
+    const summary = summarizeTraceStats([
+      ability,
+      bonus('a', 0.1),
+      bonus('b', 0.2),
+      bonus('flat', 5, 'HPDelta', false),
+      conditional,
+      trace('unknown', 2)
+    ]);
+    expect(summary.summaries.map((group) => group.value)).toEqual([0.3, 5]);
+    expect(summary.summaries[0].nodes.map((node) => node.owner?.id)).toEqual([
+      'ability',
+      'ability'
+    ]);
+    expect(summary.independent.map((node) => node.id)).toEqual(['conditional', 'unknown']);
+    expect(formatTraceBonus(summary.summaries[0].value, true, 'en')).toBe('30%');
+  });
+  it('counts only unlocked player nodes, retains zero and signals unresolved nodes', () => {
+    const nodes = ['a', 'b', 'c'].map((id) => ({
+      ...trace(id, 1),
+      propertyType: 'SpeedDelta',
+      statBonus: { propertyType: 'SpeedDelta', value: 2, percent: false }
+    }));
+    expect(summarizeTraceStats(nodes, () => 'inactive').summaries[0].value).toBe(0);
+    const group = summarizeTraceStats(nodes, (node) =>
+      node.id === 'a' ? 'active' : node.id === 'b' ? 'inactive' : 'unresolved'
+    ).summaries[0];
+    expect(group.value).toBe(2);
+    expect(group.unresolved).toBe(true);
+    expect(group.nodes.map((node) => node.state)).toEqual(['active', 'inactive', 'unresolved']);
+  });
   it('按属性节点自己的前置链进行直接和间接归组', () => {
     const groups = groupTracesForDisplay([
       trace('ability-a', 6, [], 'ability'),

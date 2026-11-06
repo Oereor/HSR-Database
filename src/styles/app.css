@@ -426,17 +426,9 @@ main {
   font-size: var(--font-body);
   font-weight: 650;
 }
-.trace-card-panel,
-.trace-ability-group {
+.trace-card-panel {
   display: grid;
-  gap: 0.75rem;
-}
-.trace-ability-groups,
-.trace-independent-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  align-items: start;
+  gap: var(--space-6);
 }
 .trace-card__heading {
   display: flex;
@@ -942,10 +934,6 @@ main {
     margin-bottom: 1.35rem;
   }
   .stack-list {
-    grid-template-columns: 1fr;
-  }
-  .trace-ability-groups,
-  .trace-independent-grid {
     grid-template-columns: 1fr;
   }
 }

@@ -793,6 +793,7 @@ describe('真实数据管线', () => {
     expect(baseProfile(character).traces.find((trace) => trace.id === '1001201')).toMatchObject({
       type: 'stat',
       propertyType: 'IceAddedRatio',
+      statBonus: { propertyType: 'IceAddedRatio', value: 0.032, percent: true },
       iconKey: 'property--IceAddedRatio',
       sourcePointType: 1,
       prerequisiteIds: [],

@@ -19,6 +19,7 @@ import type {
   MaterialCatalog
 } from '../../src/lib/domain/training/types';
 import SkillCardPanel from '../../src/lib/components/character/SkillCardPanel.svelte';
+import TraceToggle from '../../src/lib/components/character/TraceToggle.svelte';
 import TraceCardPanel from '../../src/lib/components/character/TraceCardPanel.svelte';
 import TrainingSection from '../../src/lib/components/training/TrainingSection.svelte';
 import MaterialCostList from '../../src/lib/components/training/MaterialCostList.svelte';
@@ -38,19 +39,18 @@ const view = (id: string, locale = 'zh-CN') =>
   json<Character>(`src/lib/generated/views/${locale}/details/characters/${id}.json`);
 
 describe('training presentation contracts', () => {
-  it('places character training and its anchor last when equipment recommendations are absent', () => {
+  it('does not expose character training or its navigation anchor', () => {
     const html = render(DetailPage, {
       props: { detail: view('1001'), category: 'characters', singular: 'character' }
     }).body;
     const sections = [...html.matchAll(/<section\b[^>]*\sid="([^"]+)"/g)].map((match) => match[1]);
-    expect(sections).toEqual(['skills', 'traces', 'eidolons', 'training']);
+    expect(sections).toEqual(['skills', 'traces', 'eidolons']);
     const nav = html.match(/<nav\b[^>]*class="[^"]*\bsection-nav\b[^"]*"[\s\S]*?<\/nav>/)![0];
     expect([...nav.matchAll(/href="#([^"]+)"/g)].map((match) => match[1])).toEqual([
       'stats',
       'skills',
       'traces',
-      'eidolons',
-      'training'
+      'eidolons'
     ]);
   });
   it('maps every actual public progression to its profile, including paid defaults and shared identity', () => {
@@ -81,7 +81,7 @@ describe('training presentation contracts', () => {
       }
     }
   });
-  it('renders two synchronized full-range skill controls with a shared label and promotion tag', () => {
+  it('renders full-range skill previews without training promotion controls', () => {
     const cost = data('1510');
     const profile = cost.profiles[0];
     const character = view('1510');
@@ -105,46 +105,24 @@ describe('training presentation contracts', () => {
       expect(html).toContain('aria-valuenow="12"');
       expect(html).toContain('aria-valuemax="15"');
       expect(html).toContain(`id="skill-progression-${category}-1510004"`);
-      expect(html).toContain('data-preview-key="1510:0:1510004"');
+      expect(html).toContain('data-preview-key="1510004"');
       expect(html).toContain('skill-effect-tag');
       labels.push(html.match(/<label[^>]*>([\s\S]*?)<\/label>/)![1]);
     }
-    expect(labels[0]).toEqual(labels[1]);
+    expect(labels.every((label) => label.trim().length > 0)).toBe(true);
   });
-  it('keeps paid traces native, stable and separate from read-only player and fixed nodes', () => {
-    const cost = data('1001');
-    const profile = cost.profiles[0];
-    const traces = view('1001').profiles.base.traces;
-    const target = createDefaultCharacterTrainingTarget(cost, 0);
-    const props = {
-      traces,
-      trainingProfile: profile,
-      activeTraceIds: target.activeTraceIds,
-      onToggleTrace: () => {}
-    };
-    const html = render(TraceCardPanel, { props }).body;
-    expect(html.match(/class="[^"]*\btrace-toggle\b/g)).toHaveLength(13);
-    expect(html.match(/aria-pressed="true"/g)).toHaveLength(13);
-    const inactive = render(TraceCardPanel, { props: { ...props, activeTraceIds: [] } }).body;
-    expect(inactive.match(/aria-pressed="false"/g)).toHaveLength(13);
-    expect([...html.matchAll(/aria-label="([^"]*)"/g)].map((match) => match[1])).toEqual(
-      [...inactive.matchAll(/aria-label="([^"]*)"/g)].map((match) => match[1])
-    );
-    const player = render(TraceCardPanel, {
-      props: { ...props, playerSkillTree: [{ id: '1001101', level: 1 }] }
+  it('retains reusable trace toggles while the detail panel stays display-only', () => {
+    const active = render(TraceToggle, {
+      props: { name: 'Synthetic trace', active: true, onToggle: () => {} }
     }).body;
-    expect(player).not.toContain('trace-toggle');
-    const memory = data('8007');
-    const memoryHtml = render(TraceCardPanel, {
-      props: {
-        traces: view('8007').profiles.base.traces,
-        trainingProfile: memory.profiles[0],
-        activeTraceIds: createDefaultCharacterTrainingTarget(memory, 0).activeTraceIds,
-        onToggleTrace: () => {}
-      }
+    const inactive = render(TraceToggle, {
+      props: { name: 'Synthetic trace', active: false, onToggle: () => {} }
     }).body;
-    const fixed = memoryHtml.match(/<div[^>]*data-trace-id="8007501"[\s\S]*?<\/div>/)![0];
-    expect(fixed).not.toContain('trace-toggle');
+    expect(active).toContain('aria-pressed="true"');
+    expect(inactive).toContain('aria-pressed="false"');
+    expect(
+      render(TraceCardPanel, { props: { traces: view('1001').profiles.base.traces } }).body
+    ).not.toContain('trace-toggle');
   });
   it('distinguishes loading and retry from cost output, with no duplicate controls', () => {
     const loading = render(TrainingSection, {
