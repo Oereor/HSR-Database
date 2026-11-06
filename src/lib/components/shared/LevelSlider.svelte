@@ -42,7 +42,7 @@
   </div>
   <Slider
     type="single"
-    class={compact ? 'w-[clamp(4rem,16vw,10rem)] shrink-0' : 'my-3'}
+    class={compact ? 'min-w-0 flex-1' : 'my-3'}
     bind:value
     {min}
     {max}
@@ -75,7 +75,12 @@
     display: flex;
     align-items: center;
     gap: var(--space-3);
+    min-width: 0;
     margin: 0;
+  }
+  .skill-level-control--compact .skill-level-control__value {
+    flex-shrink: 0;
+    white-space: nowrap;
   }
   .skill-level-control--compact > div:first-child {
     display: contents;

@@ -198,13 +198,32 @@ describe('Character detail icon enrichment', () => {
       order: 1,
       iconKey: 'skill-tree--1407002',
       progressions: [],
-      variants: []
+      variants: [
+        {
+          id: 'synthetic-variant',
+          name: 'Synthetic variant',
+          order: 0,
+          source: 'avatar',
+          progressionId: null,
+          scalingParamIndexes: [],
+          levels: [],
+          combatMeta: {},
+          iconKey: 'skill-tree--1407002'
+        }
+      ]
     };
     expect(render(SkillCardPanel, { props: { card } }).body).toContain(
       '/generated-assets/character-details/icons/skill/1407_skill.png'
     );
     expect(
-      render(SkillCardPanel, { props: { card: { ...card, iconKey: undefined } } }).body
+      render(SkillCardPanel, {
+        props: {
+          card: {
+            ...card,
+            variants: card.variants.map((variant) => ({ ...variant, iconKey: undefined }))
+          }
+        }
+      }).body
     ).not.toContain('<img ');
   });
 

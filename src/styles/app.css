@@ -350,6 +350,13 @@ main {
 .character-detail-card > [data-slot='card-content'] {
   padding-block: var(--space-4);
 }
+.skill-card {
+  container-type: inline-size;
+}
+.skill-card__controls:has([role='slider']) {
+  width: 20rem;
+  max-width: 55%;
+}
 .skill-card-grid {
   grid-template-columns: minmax(0, 1fr);
   align-items: stretch;
@@ -369,7 +376,7 @@ main {
 }
 .skill-variant__heading {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.75rem;
 }
 .skill-variant__heading h4 {
@@ -564,7 +571,7 @@ main {
 }
 .skill-combat-meta > div {
   display: grid;
-  grid-template-columns: 5.25rem minmax(0, 1fr);
+  grid-template-columns: max-content minmax(0, 1fr);
   gap: 0.65rem;
   align-items: baseline;
 }
@@ -581,6 +588,12 @@ main {
   font-variant-numeric: tabular-nums;
   font-weight: 500;
   line-height: 1.6;
+}
+@container skill-content (min-width: 48rem) {
+  .skill-combat-meta {
+    display: flex;
+    gap: var(--space-8);
+  }
 }
 .rank-card__content {
   flex: 1 1 auto;
@@ -909,6 +922,13 @@ main {
 }
 
 @media (max-width: 1080px) {
+  .skill-card {
+    container-type: inline-size;
+  }
+  .skill-card__controls:has([role='slider']) {
+    width: 20rem;
+    max-width: 55%;
+  }
   .skill-card-grid {
     grid-template-columns: 1fr;
   }

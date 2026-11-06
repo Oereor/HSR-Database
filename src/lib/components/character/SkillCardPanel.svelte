@@ -52,14 +52,13 @@
   data-skill-category={card.category}
 >
   <Card.Header class="flex flex-row items-center justify-between gap-3">
-    <Card.Title class="min-w-0 truncate text-lg" title={card.displayLabel}
-      >{card.displayLabel}</Card.Title
-    >
-    <div class="flex shrink-0 flex-col gap-2">
+    <Card.Title class="min-w-0 text-lg" title={card.displayLabel}>{card.displayLabel}</Card.Title>
+    <div class="skill-card__controls flex min-w-0 shrink-0 flex-col gap-2">
       {#each card.progressions as progression (progression.id)}
         {@const level = levels[progression.id]}
         <div data-preview-key={!playerSkillTree ? progression.id : undefined}>
-          {#if card.progressions.length > 1}<span class="text-muted-foreground text-xs"
+          {#if card.progressions.length > 1}<span
+              class="text-muted-foreground block text-xs wrap-anywhere"
               >{card.variants
                 .filter((v) => progression.variantIds.includes(v.id))
                 .map((v) => gameTextToPlain(v.name))
@@ -93,7 +92,9 @@
     </div>
   </Card.Header>
   <Separator />
-  <Card.Content class="text-secondary-foreground space-y-4 [&_p]:text-base [&_p]:leading-relaxed">
+  <Card.Content
+    class="text-secondary-foreground @container/skill-content space-y-4 [&_p]:text-base [&_p]:leading-relaxed"
+  >
     {#if Object.values(levels).includes(null)}<p class="text-muted-foreground text-sm">
         {m.player_character_skill_level_unknown()}
       </p>{/if}
