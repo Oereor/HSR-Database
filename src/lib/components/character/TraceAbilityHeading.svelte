@@ -18,17 +18,17 @@
     <AssetImage src={iconUrl} alt="" fallbackClass="trace-card__icon-fallback" />
     <div>
       <h3><GameText text={trace.name} /></h3>
-      {#if trace.promotionLimit}<p class="trace-card__condition">
-          <span>{m.trace_unlock_condition()}</span>{m.trace_promotion({
+      <div class="trace-card__condition flex-wrap items-center">
+        <Badge variant="outline" class="skill-effect-tag text-primary">
+          {trace.type === 'stat' ? m.trace_stat_bonus() : m.trace_extra_ability()}
+        </Badge>
+        {#if trace.promotionLimit}<span>{m.trace_unlock_condition()}</span>{m.trace_promotion({
             promotion: trace.promotionLimit
-          })}
-        </p>{/if}
+          })}{/if}
+      </div>
     </div>
   </div>
   <div class="trace-card__tags">
-    <Badge variant="outline" class="skill-effect-tag text-primary"
-      >{trace.type === 'stat' ? m.trace_stat_bonus() : m.trace_extra_ability()}</Badge
-    >
     {#if playerState === 'unresolved'}<Badge
         variant="outline"
         class="player-progression-state text-primary"

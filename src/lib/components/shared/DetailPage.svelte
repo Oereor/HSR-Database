@@ -659,6 +659,7 @@
       <SectionHeading level={1}>{m.detail_traces()}</SectionHeading>
       {#if activeProfile.traces.length}<TraceCardPanel
           traces={activeProfile.traces}
+          characterAccent={getElementColor(detail.element)}
           playerSkillTree={activePlayerCharacter?.skillTree}
         />{:else}<p class="data-placeholder">
           {m.detail_traces_unavailable()}

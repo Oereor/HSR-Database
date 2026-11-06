@@ -4,7 +4,8 @@
   import { Badge } from '$lib/components/ui/badge';
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
-  import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
+  import * as Collapsible from '$lib/components/ui/collapsible';
+  import ChevronDown from '@lucide/svelte/icons/chevron-down';
   import TraceEntryContent from './TraceEntryContent.svelte';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import { summarizeTraceStats, formatTraceBonus } from '$lib/domain/trace-summary';
@@ -15,21 +16,18 @@
   import { m } from '$lib/paraglide/messages.js';
 
   export let traces: Trace[];
+  export let characterAccent: string | undefined = undefined;
   export let playerSkillTree: PlayerCharacter['skillTree'] | undefined = undefined;
   $: index = playerSkillTree ? createPlayerSkillTreeIndex(playerSkillTree) : undefined;
   $: summary = summarizeTraceStats(
     traces,
     index ? (trace) => resolvePlayerTraceState(trace.id, index!) : undefined
   );
-  $: byId = new Map(traces.map((trace) => [trace.id, trace]));
-  const prerequisites = (trace: Trace, map: Map<string, Trace>) =>
-    trace.prerequisiteIds.flatMap((id) => map.get(id) ?? []);
 </script>
 
-<div class="trace-card-panel">
+<div class="trace-card-panel @container/traces" style:--character-accent={characterAccent}>
   {#if summary.abilities.length}
     <section class="space-y-4" data-trace-abilities>
-      <SectionHeading level={3} headingLevel={3}>{m.trace_extra_ability()}</SectionHeading>
       {#each summary.abilities as trace (trace.id)}
         <Card.Root
           role="article"
@@ -43,7 +41,6 @@
           <Card.Content>
             <TraceEntryContent
               {trace}
-              prerequisites={prerequisites(trace, byId)}
               playerState={index ? resolvePlayerTraceState(trace.id, index) : undefined}
             />
           </Card.Content>
@@ -52,8 +49,10 @@
     </section>
   {/if}
   {#if summary.summaries.length || summary.independent.length}
-    <section class="space-y-4" data-trace-stat-summaries>
-      <SectionHeading level={3} headingLevel={3}>{m.trace_stat_bonus()}</SectionHeading>
+    <section
+      class="grid grid-cols-1 items-start gap-4 @min-[64rem]/traces:grid-cols-3"
+      data-trace-stat-summaries
+    >
       {#each summary.summaries as stat (`${stat.propertyType}:${stat.percent}`)}
         <Card.Root
           role="article"
@@ -71,7 +70,7 @@
               />
               <span><GameText text={stat.nodes[0].trace.name} /></span>
             </Card.Title>
-            <output class="text-foreground shrink-0 tabular-nums"
+            <output class="shrink-0 font-semibold tabular-nums" style:color={characterAccent}
               >{stat.value > 0 ? '+' : ''}{formatTraceBonus(
                 stat.value,
                 stat.percent,
@@ -84,31 +83,45 @@
             {#if stat.unresolved}<Badge variant="outline" data-player-state-label="unresolved"
                 >{m.player_character_status_unknown()}</Badge
               >{/if}
-            <details>
-              <summary class="text-muted-foreground cursor-pointer text-sm"
-                >{m.trace_breakdown()}</summary
+            <Collapsible.Root>
+              <Collapsible.Trigger
+                class="text-muted-foreground group focus-visible:ring-ring flex w-full cursor-pointer items-center gap-2 rounded-sm text-left text-sm focus-visible:ring-2 focus-visible:outline-none"
               >
-              <div class="space-y-4 pt-4">
-                {#each stat.nodes as node, i (node.trace.id)}
-                  {#if i}<Separator />{/if}
-                  <div
-                    class="trace-card trace-card--stat"
-                    data-trace-id={node.trace.id}
-                    data-trace-type="stat"
-                    data-trace-owner={node.owner?.id}
-                    data-trace-standalone={node.owner ? undefined : ''}
-                    data-player-state={node.state}
-                  >
-                    <TraceEntryContent
-                      trace={node.trace}
-                      owner={node.owner}
-                      prerequisites={prerequisites(node.trace, byId)}
-                      playerState={node.state}
-                    />
-                  </div>
-                {/each}
-              </div>
-            </details>
+                <ChevronDown class="size-4 shrink-0 group-data-[state=open]:rotate-180" />
+                {m.trace_breakdown()}
+              </Collapsible.Trigger>
+              <Collapsible.Content>
+                <div class="divide-border divide-y pt-2">
+                  {#each stat.nodes as node (node.trace.id)}
+                    <div
+                      class="flex items-baseline justify-between gap-2 py-2 text-sm"
+                      data-trace-id={node.trace.id}
+                      data-trace-type="stat"
+                      data-trace-owner={node.owner?.id}
+                      data-trace-standalone={node.owner ? undefined : ''}
+                      data-player-state={node.state}
+                    >
+                      <span
+                        class="shrink-0 font-semibold tabular-nums"
+                        style:color={characterAccent}
+                      >
+                        {node.trace.statBonus!.value > 0 ? '+' : ''}{formatTraceBonus(
+                          node.trace.statBonus!.value,
+                          stat.percent,
+                          getLocale()
+                        )}
+                      </span>
+                      <span class="text-muted-foreground text-right whitespace-nowrap">
+                        {#if node.trace.promotionLimit}
+                          {m.trace_unlock_condition()}
+                          {m.trace_promotion({ promotion: node.trace.promotionLimit })}
+                        {:else}{m.trace_no_promotion_requirement()}{/if}
+                      </span>
+                    </div>
+                  {/each}
+                </div>
+              </Collapsible.Content>
+            </Collapsible.Root>
           </Card.Content>
         </Card.Root>
       {/each}
@@ -123,8 +136,6 @@
           <Card.Content
             ><TraceEntryContent
               {trace}
-              owner={summary.owners.get(trace.id)}
-              prerequisites={prerequisites(trace, byId)}
               playerState={index ? resolvePlayerTraceState(trace.id, index) : undefined}
             /></Card.Content
           >

@@ -148,6 +148,7 @@ test('多命途角色名称由统一规则生成', async ({ page }) => {
 
 test('技能卡按语义类别合并变体并使用真实默认等级', async ({ page }) => {
   await page.goto('/characters/1213/');
+  await page.waitForLoadState('networkidle');
   const basicCard = page.locator('[data-skill-category="basic"]');
   await expect(basicCard).toHaveCount(1);
   await expect(basicCard.locator('.skill-variant')).toHaveCount(4);
@@ -641,9 +642,9 @@ test('trace summaries retain node breakdown and eidolons retain source ordering'
     );
     const profile = character.profiles.base;
     await page.goto(`/characters/${id}/`);
-    const details = page.locator('#traces details');
-    for (let i = 0; i < (await details.count()); i++)
-      await details.nth(i).locator('summary').click();
+    await page.waitForLoadState('networkidle');
+    const details = page.locator('#traces [data-slot="collapsible-trigger"]');
+    for (let i = 0; i < (await details.count()); i++) await details.nth(i).click();
     await expect(page.locator('#traces [data-trace-id]')).toHaveCount(profile.traces.length);
     for (const stat of profile.traces.filter((trace: { statBonus?: unknown }) => trace.statBonus)) {
       await expect(page.locator(`#traces [data-trace-id="${stat.id}"]`)).toBeVisible();

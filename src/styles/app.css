@@ -510,7 +510,7 @@ main {
 .trace-card__identity {
   display: flex;
   min-width: 0;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.75rem;
 }
 .trace-card__identity > :is(img, .trace-card__icon-fallback) {
