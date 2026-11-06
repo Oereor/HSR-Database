@@ -15,11 +15,11 @@
 
 <Card.Root
   role="article"
-  class="rank-card gap-0"
+  class="rank-card character-detail-card"
   data-eidolon-id={eidolon.id}
   data-player-state={playerState}
 >
-  <Card.Header class="flex flex-row items-start gap-4 pb-4">
+  <Card.Header class="flex flex-row items-center gap-4">
     <AssetImage
       class="rank-icon"
       src={getCharacterDetailIconUrl(eidolon.iconKey)}
@@ -43,8 +43,8 @@
       <Card.Title class="text-lg"><GameText text={eidolon.name} /></Card.Title>
     </div>
   </Card.Header>
-  <Separator class="mx-6 w-auto data-horizontal:w-auto" />
-  <Card.Content class="space-y-3 pt-4">
+  <Separator />
+  <Card.Content class="space-y-3">
     <p class="text-secondary-foreground m-0 text-base leading-relaxed">
       <GameText text={eidolon.description || m.common_localized_description_unavailable()} />
     </p>

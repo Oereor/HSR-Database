@@ -339,6 +339,17 @@ main {
   font-size: var(--font-body);
   line-height: 1.7;
 }
+/* Opt-in spacing for character cards with a separate header. */
+.character-detail-card {
+  gap: 0;
+  padding-block: 0;
+}
+.character-detail-card > [data-slot='card-header'] {
+  padding-block: var(--space-3);
+}
+.character-detail-card > [data-slot='card-content'] {
+  padding-block: var(--space-4);
+}
 .skill-card-grid {
   grid-template-columns: minmax(0, 1fr);
   align-items: stretch;

@@ -46,8 +46,12 @@
     1;
 </script>
 
-<Card.Root role="article" class="skill-card gap-0" data-skill-category={card.category}>
-  <Card.Header class="flex flex-row items-center justify-between gap-3 pb-4">
+<Card.Root
+  role="article"
+  class="skill-card character-detail-card"
+  data-skill-category={card.category}
+>
+  <Card.Header class="flex flex-row items-center justify-between gap-3">
     <Card.Title class="min-w-0 truncate text-lg" title={card.displayLabel}
       >{card.displayLabel}</Card.Title
     >
@@ -88,10 +92,8 @@
       {/each}
     </div>
   </Card.Header>
-  <Separator class="mx-6 w-auto data-horizontal:w-auto" />
-  <Card.Content
-    class="text-secondary-foreground space-y-4 pt-4 [&_p]:text-base [&_p]:leading-relaxed"
-  >
+  <Separator />
+  <Card.Content class="text-secondary-foreground space-y-4 [&_p]:text-base [&_p]:leading-relaxed">
     {#if Object.values(levels).includes(null)}<p class="text-muted-foreground text-sm">
         {m.player_character_skill_level_unknown()}
       </p>{/if}

@@ -57,11 +57,11 @@
       {#each summary.summaries as stat (`${stat.propertyType}:${stat.percent}`)}
         <Card.Root
           role="article"
-          class="trace-stat-summary gap-0"
+          class="trace-stat-summary character-detail-card"
           data-trace-property={stat.propertyType}
           data-trace-total={stat.value}
         >
-          <Card.Header class="flex flex-row items-center justify-between gap-4 pb-4">
+          <Card.Header class="flex flex-row items-center justify-between gap-4">
             <Card.Title class="flex min-w-0 items-center gap-3 text-lg">
               <AssetImage
                 src={getCharacterDetailIconUrl(stat.nodes[0].trace.iconKey)}
@@ -79,8 +79,8 @@
               )}</output
             >
           </Card.Header>
-          <Separator class="mx-6 w-auto data-horizontal:w-auto" />
-          <Card.Content class="pt-4">
+          <Separator />
+          <Card.Content>
             {#if stat.unresolved}<Badge variant="outline" data-player-state-label="unresolved"
                 >{m.player_character_status_unknown()}</Badge
               >{/if}
