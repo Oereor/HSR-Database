@@ -642,7 +642,7 @@
   {#key `${detail.id}:${profileMode}:${playerContextState}:${playerUid ?? ''}:${playerCharacter?.buildId ?? ''}`}
     <section id="skills" class="detail-section section-nav-target">
       <SectionHeading level={1}>{m.detail_skills()}</SectionHeading>
-      {#if activeProfile.skillCards.length}<div class="stack-list skill-card-grid">
+      {#if activeProfile.skillCards.length}<div class="skill-card-grid">
           {#each activeProfile.skillCards as card (card.category)}<SkillCardPanel
               {card}
               characterAccent={getElementColor(detail.element)}

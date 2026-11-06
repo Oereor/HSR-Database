@@ -163,7 +163,6 @@
 
   .compact-entity-card--recommendation {
     grid-template-columns: 4rem minmax(0, 1fr) auto;
-    gap: var(--space-3);
     border-radius: var(--radius-card);
     padding: var(--space-3);
     color: var(--card-foreground);

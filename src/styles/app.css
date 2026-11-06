@@ -214,11 +214,6 @@ main {
   letter-spacing: -0.012em;
   margin-bottom: 1.75rem;
 }
-.stack-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.8rem;
-}
 .game-text {
   white-space: pre-line;
 }
@@ -358,13 +353,14 @@ main {
   max-width: 55%;
 }
 .skill-card-grid {
+  display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: stretch;
   gap: var(--space-4);
 }
 .progression-group-label {
   color: var(--gold-soft);
-  font-size: var(--font-helper) !important;
+  font-size: var(--font-helper);
 }
 .skill-variant-list {
   display: grid;
@@ -494,10 +490,7 @@ main {
 }
 .trace-card:is([data-player-state='inactive'], [data-training-state='inactive'])
   .trace-card__identity
-  > :is(img, .trace-card__icon-fallback),
-.trace-card:is([data-player-state='inactive'], [data-training-state='inactive'])
-  .trace-card__title--icon
-  img {
+  > :is(img, .trace-card__icon-fallback) {
   opacity: 0.68;
 }
 .trace-card[data-player-state='unresolved'] {
@@ -528,11 +521,6 @@ main {
 .trace-card__heading--icon .trace-card__condition {
   margin: 0.45rem 0 0;
 }
-.trace-card__title--icon {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-}
 .trace-card--ability .trace-card__heading h3 {
   font-size: var(--font-major-title);
 }
@@ -558,14 +546,6 @@ main {
   font-size: 0.9375rem;
   font-weight: 400;
   line-height: 1.55;
-}
-.trace-independent-section {
-  margin-top: 1.5rem;
-  border-top: 1px solid var(--border);
-  padding-top: 1.25rem;
-}
-.trace-card--special {
-  margin-bottom: 1rem;
 }
 .skill-combat-meta {
   display: grid;
@@ -846,16 +826,6 @@ main {
 }
 
 @media (max-width: 1080px) {
-  .skill-card {
-    container-type: inline-size;
-  }
-  .skill-card__controls:has([role='slider']) {
-    width: 20rem;
-    max-width: 55%;
-  }
-  .skill-card-grid {
-    grid-template-columns: 1fr;
-  }
   .enemy-battle-panel,
   .enemy-battle-panel--two-column {
     grid-template-columns: minmax(0, 1fr);
@@ -887,9 +857,6 @@ main {
   }
   .detail-section > h2 {
     margin-bottom: 1.35rem;
-  }
-  .stack-list {
-    grid-template-columns: 1fr;
   }
 }
 
