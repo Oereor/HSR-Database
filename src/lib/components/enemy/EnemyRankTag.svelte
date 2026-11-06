@@ -8,7 +8,7 @@
   .enemy-rank-tag {
     border: 1px solid var(--border-strong);
     border-radius: 999px;
-    background: rgb(7 10 18 / 72%);
+    background: color-mix(in srgb, var(--background) 72%, transparent);
     padding: 0.45rem 0.75rem;
     color: var(--gold-soft);
     font-size: var(--font-helper);

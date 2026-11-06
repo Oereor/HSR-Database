@@ -52,8 +52,7 @@
     />
     {#if $$slots.overlay}<span
         class="entity-overview-card__overlay absolute inset-x-2 top-2 flex justify-end"
-        ><Badge
-          class="bg-background/85 h-auto max-w-full py-1 text-center whitespace-normal backdrop-blur-sm"
+        ><Badge class="bg-background/85 h-auto max-w-full py-1 text-center whitespace-normal"
           ><slot name="overlay" /></Badge
         ></span
       >{/if}

@@ -35,7 +35,7 @@
   >
     <div
       class={`endgame-enemy__artwork border-border pointer-events-none relative grid w-full shrink-0 items-end justify-items-center overflow-hidden border-b ${variant === 'compact' ? 'h-[170px]' : 'h-[190px]'}`}
-      style="background: radial-gradient(circle at 50% 78%, rgb(215 181 109 / 12%), transparent 52%), linear-gradient(180deg, rgb(255 255 255 / 3%), transparent);"
+      style="background: var(--secondary);"
       aria-hidden="true"
     >
       <AssetImage
@@ -60,24 +60,24 @@
             >
               <Badge
                 variant="outline"
-                class="endgame-enemy__voracity border-red-400/30 bg-red-950/75 text-red-300 backdrop-blur-sm"
+                class="endgame-enemy__voracity border-red-400/30 bg-red-950/75 text-red-300"
                 data-voracity-level={occurrence.voracityLevel}
                 >{m.endgame_enemy_voracity({ level: occurrence.voracityLevel })}</Badge
               >
               {#if level !== undefined}<Badge
                   variant="outline"
-                  class="endgame-enemy__level bg-background/80 text-muted-foreground tabular-nums backdrop-blur-sm"
+                  class="endgame-enemy__level bg-background/80 text-muted-foreground tabular-nums"
                   >Lv.{level}</Badge
                 >{/if}
             </span>
           {:else if level !== undefined}<Badge
               variant="outline"
-              class="endgame-enemy__level bg-background/80 text-muted-foreground tabular-nums backdrop-blur-sm"
+              class="endgame-enemy__level bg-background/80 text-muted-foreground tabular-nums"
               >Lv.{level}</Badge
             >{/if}
           {#if occurrence.count}<Badge
               variant="outline"
-              class="endgame-enemy__count bg-background/80 text-primary backdrop-blur-sm"
+              class="endgame-enemy__count bg-background/80 text-primary"
               aria-label={m.endgame_enemy_count_aria({ count: occurrence.count })}
               >×{occurrence.count}</Badge
             >{/if}

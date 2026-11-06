@@ -64,7 +64,7 @@
     padding: var(--space-2) var(--space-3);
     border: 1px solid var(--border);
     border-radius: 8px;
-    background: rgb(14 20 34 / 45%);
+    background: var(--card);
     font-size: 0.875rem;
     text-align: left;
   }

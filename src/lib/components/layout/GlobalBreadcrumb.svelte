@@ -47,7 +47,6 @@
     padding-top: env(safe-area-inset-top);
     flex-shrink: 0;
     border-bottom: 1px solid var(--border);
-    background: color-mix(in srgb, var(--background) 94%, transparent);
-    backdrop-filter: blur(16px);
+    background: var(--background);
   }
 </style>

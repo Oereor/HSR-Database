@@ -20,20 +20,11 @@
     filter: saturate(0.82);
   }
 
-  .endgame-hero-artwork::before {
-    position: absolute;
-    inset: 15% 3% 5% 8%;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgb(109 128 198 / 14%), transparent 70%);
-    content: '';
-  }
-
   .endgame-hero-artwork__icon {
     position: absolute;
     display: grid;
     place-items: center;
     opacity: 0.5;
-    filter: drop-shadow(0 0 18px currentColor);
   }
 
   .endgame-hero-artwork__icon--moc {

@@ -53,7 +53,7 @@
     overflow: hidden;
     border: 1px solid var(--border);
     border-radius: var(--radius-control);
-    background: rgb(14 20 34 / 68%);
+    background: var(--card);
     padding: 0.45rem 0.85rem 0.45rem 0.45rem;
     color: inherit;
     transition:
@@ -64,7 +64,7 @@
 
   .compact-entity-card--link:hover {
     border-color: var(--border-strong);
-    background: rgb(20 28 46 / 78%);
+    background: var(--secondary);
     transform: translateY(-1px);
   }
 
@@ -86,7 +86,7 @@
     place-items: center;
     overflow: hidden;
     border-radius: calc(var(--radius-control) - 2px);
-    background: radial-gradient(circle, rgb(215 181 109 / 13%), transparent 70%);
+    background: var(--secondary);
   }
 
   .compact-entity-card__artwork :global(img) {

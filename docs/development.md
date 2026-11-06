@@ -53,6 +53,8 @@ pnpm dev
 
 验收需区分构建字体总量和单页实际请求量；检查字体响应、实际渲染字体和缓存复用，不能仅检查 CSS 中的字体名称。生产字体位于带内容哈希的 `_app/immutable/assets/` 下，更新包会生成新的资源地址；本地 preview 的响应头不能作为线上缓存策略的证明。
 
+颜色在 `src/styles/theme.css` 的 shadcn 语义 Token 中定义，`--bg`、`--surface` 和旧文字变量单向映射到这些 Token；`app.css` 保留间距、字号与全局布局基础。默认深色，未来浅色主题通过覆写语义 Token 接入。普通背景采用纯色；稀有度、属性和技能倍率保留原有语义颜色，立绘的可读性遮罩保留透明度与位置。
+
 ### 参考文献
 
 [^fontsource]: Fontsource. Installing Fonts. [自托管与按字符集加载说明](https://fontsource.org/docs/getting-started/install).

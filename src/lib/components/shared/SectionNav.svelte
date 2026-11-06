@@ -125,7 +125,7 @@
     height: var(--section-nav-height);
     overflow-x: auto;
     border-bottom: 1px solid var(--border);
-    background: rgb(7 10 18 / 94%);
+    background: var(--background);
     overscroll-behavior-inline: contain;
     scrollbar-width: thin;
     white-space: nowrap;

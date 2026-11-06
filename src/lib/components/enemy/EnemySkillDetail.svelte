@@ -135,7 +135,7 @@
     align-self: start;
     border: 1px solid var(--border);
     border-radius: var(--radius-card);
-    background: rgb(14 20 34 / 68%);
+    background: var(--card);
     padding: clamp(1rem, 2vw, 1.5rem);
   }
   .enemy-skill-detail__heading {

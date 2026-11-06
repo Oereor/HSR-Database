@@ -117,7 +117,7 @@
   .semantic-icon-label[data-icon-presentation='character-element-identity'][data-label-size='hero'] {
     border: 1px solid var(--border-strong);
     border-radius: 999px;
-    background: rgb(7 10 18 / 72%);
+    background: color-mix(in srgb, var(--background) 72%, transparent);
     color: var(--gold-soft);
     font-weight: 500;
   }

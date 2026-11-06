@@ -24,7 +24,7 @@
   class="endgame-mode-switcher pointer-events-none sticky top-[var(--global-sticky-top)] z-10 mt-1 mb-6 flex h-[var(--endgame-mode-nav-height)] min-w-0 items-center justify-center sm:mb-8"
 >
   <nav
-    class="endgame-mode-switcher__island bg-card/95 border-border pointer-events-auto flex w-full max-w-full min-w-0 [scrollbar-width:none] gap-1 overflow-x-auto overscroll-x-contain rounded-lg border p-1 backdrop-blur-sm sm:w-max [&::-webkit-scrollbar]:hidden"
+    class="endgame-mode-switcher__island bg-card border-border pointer-events-auto flex w-full max-w-full min-w-0 [scrollbar-width:none] gap-1 overflow-x-auto overscroll-x-contain rounded-lg border p-1 sm:w-max [&::-webkit-scrollbar]:hidden"
     aria-label={m.endgame_mode_switcher_aria()}
     bind:this={navigation}
   >

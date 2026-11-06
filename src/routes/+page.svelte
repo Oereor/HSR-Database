@@ -198,22 +198,7 @@
     min-height: 440px;
     overflow: hidden;
     border-bottom: 1px solid var(--border);
-    background:
-      radial-gradient(ellipse at 76% 35%, rgb(99 125 199 / 22%), transparent 60%),
-      radial-gradient(ellipse at 55% 100%, rgb(203 165 87 / 10%), transparent 55%);
-  }
-  .home-hero::before {
-    position: absolute;
-    z-index: -1;
-    content: '';
-    width: 70%;
-    height: 55%;
-    right: -10%;
-    top: 14%;
-    border: 1px solid rgb(211 179 114 / 20%);
-    border-radius: 50%;
-    transform: rotate(-28deg);
-    box-shadow: 0 0 50px rgb(152 178 239 / 8%);
+    background: var(--background);
   }
   .home-hero__identity {
     container-type: inline-size;
@@ -291,7 +276,6 @@
     bottom: -18%;
     left: -5%;
     object-fit: contain;
-    filter: drop-shadow(0 10px 40px rgb(87 126 205 / 20%));
   }
   .home-hero__cone {
     position: absolute;
@@ -320,7 +304,7 @@
     padding: 1rem 1.25rem;
     border: 1px solid var(--border);
     border-radius: var(--radius-control);
-    background: linear-gradient(110deg, rgb(25 35 53 / 65%), rgb(10 15 25 / 30%));
+    background: var(--card);
   }
   .home-directory__entry:hover {
     border-color: var(--gold);

@@ -76,7 +76,7 @@
     min-width: 0;
     border: 1px solid var(--border);
     border-radius: 8px;
-    background: rgb(14 20 34 / 45%);
+    background: var(--card);
     transition:
       border-color var(--motion),
       background var(--motion);

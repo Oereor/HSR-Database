@@ -3,24 +3,6 @@
 @import './theme.css';
 
 :root {
-  color-scheme: dark;
-  --bg: #070a12;
-  --surface: #0e1422;
-  --surface-2: #151d2d;
-  --surface-3: #1b2538;
-  --text-primary: #f2f5fb;
-  --text-body: #d4dbe8;
-  --text-secondary: #aab6ca;
-  --text-muted: #7f8da5;
-  --text: var(--text-primary);
-  --faint: var(--text-secondary);
-  --gold: #d7b56d;
-  --gold-soft: #f1dca2;
-  --skill-scaling-value-color: #f2a45f;
-  --surface-border: rgb(180 198 230 / 16%);
-  --surface-border-strong: rgb(215 181 109 / 42%);
-  --border: var(--surface-border);
-  --border-strong: var(--surface-border-strong);
   --radius-card: 14px;
   --radius-control: 10px;
   --radius: var(--radius-card);
@@ -73,21 +55,8 @@
   body {
     margin: 0;
     min-width: 0;
-    background:
-      radial-gradient(circle at 72% 12%, rgb(47 72 128 / 17%), transparent 34rem),
-      radial-gradient(circle at 10% 85%, rgb(126 88 36 / 8%), transparent 35rem), var(--bg);
+    background: var(--background);
     color: var(--text);
-  }
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.25;
-    background-image: radial-gradient(circle, rgb(255 255 255 / 55%) 0 1px, transparent 1.5px);
-    background-size: 79px 79px;
-    mask-image: linear-gradient(to bottom, black, transparent 75%);
   }
   a {
     color: inherit;
@@ -228,7 +197,7 @@ main {
   margin: 0.15rem 0 1.25rem;
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: rgb(14 20 34 / 75%);
+  background: var(--card);
   padding: 0.55rem 0.65rem 0.55rem 0.8rem;
 }
 .enhancement-control > span {
@@ -494,7 +463,7 @@ main {
 }
 .trace-card:is([data-player-state='inactive'], [data-training-state='inactive']) {
   border-color: var(--border);
-  background: rgb(14 20 34 / 74%);
+  background: var(--card);
   box-shadow: none;
   filter: grayscale(1);
 }
@@ -624,7 +593,7 @@ main {
 }
 .rank-card[data-player-state='inactive'] {
   border-color: var(--border);
-  background: rgb(14 20 34 / 72%);
+  background: var(--card);
 }
 .rank-card[data-player-state='inactive'] > .rank-icon,
 .rank-card[data-player-state='inactive'] h3 {
@@ -667,7 +636,7 @@ main {
   scroll-snap-align: start;
   border: 1px solid var(--border);
   border-radius: var(--radius-control);
-  background: rgb(14 20 34 / 68%);
+  background: var(--card);
   color: var(--text-primary);
   padding: var(--space-2) var(--space-3);
   line-height: 1.2;
@@ -723,7 +692,7 @@ main {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
-  background: linear-gradient(145deg, rgb(17 24 40 / 78%), rgb(11 16 28 / 70%));
+  background: var(--card);
   overflow: hidden;
 }
 .enemy-battle-panel--two-column {
@@ -876,7 +845,7 @@ main {
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
-  background: rgb(14 20 34 / 68%);
+  background: var(--card);
 }
 .recommendation-main-stats {
   display: grid;

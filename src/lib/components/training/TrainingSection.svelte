@@ -54,7 +54,7 @@
     </div>
   {:else if result && catalog && expenses}
     <Card.Root
-      class="training-result grid gap-6 rounded-[var(--radius-card)] bg-[rgb(14_20_34_/_80%)] p-4 shadow-none"
+      class="training-result bg-card grid gap-6 rounded-[var(--radius-card)] p-4 shadow-none"
       data-training-promotion={result.target.promotion}
       data-training-level={result.target.level}
     >

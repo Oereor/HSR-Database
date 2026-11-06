@@ -34,7 +34,7 @@
     z-index: 0;
     inset: 0;
     overflow: hidden;
-    background: linear-gradient(145deg, rgb(255 255 255 / 3%), transparent 55%);
+    background: var(--card);
   }
 
   .detail-artwork-stage :global(img) {

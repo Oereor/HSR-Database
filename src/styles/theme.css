@@ -10,29 +10,49 @@
 @custom-variant data-vertical (&[data-orientation='vertical']);
 
 :root {
-  --sidebar: var(--surface);
+  color-scheme: dark;
+  --background: #050505;
+  --foreground: #f5f5f5;
+  --card: #141414;
+  --card-foreground: var(--foreground);
+  --popover: #1c1c1c;
+  --popover-foreground: var(--foreground);
+  --sidebar: #0b0b0b;
   --sidebar-foreground: var(--foreground);
   --sidebar-accent: var(--accent);
   --sidebar-accent-foreground: var(--accent-foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
-  --background: var(--bg);
-  --foreground: var(--text-primary);
-  --card: var(--surface);
-  --card-foreground: var(--text-primary);
-  --popover: var(--surface-2);
-  --popover-foreground: var(--text-primary);
-  --primary: var(--gold);
-  --primary-foreground: #0b0d12;
-  --secondary: var(--surface-2);
-  --secondary-foreground: var(--text-body);
-  --muted: var(--surface-2);
-  --muted-foreground: var(--text-secondary);
-  --accent: var(--surface-3);
-  --accent-foreground: var(--text-primary);
+  --primary: #d7b56d;
+  --primary-foreground: var(--background);
+  --secondary: #1c1c1c;
+  --secondary-foreground: #d4d4d4;
+  --muted: var(--secondary);
+  --muted-foreground: #b8b8b8;
+  --accent: #242424;
+  --accent-foreground: var(--foreground);
   --destructive: oklch(0.704 0.191 22.216);
-  --input: var(--surface-border);
-  --ring: var(--gold);
+  --border: #333333;
+  --input: var(--border);
+  --ring: var(--primary);
+
+  /* Project semantics and compatibility aliases point to the semantic palette. */
+  --bg: var(--background);
+  --surface: var(--card);
+  --surface-2: var(--secondary);
+  --surface-3: var(--accent);
+  --text-primary: var(--foreground);
+  --text-body: var(--secondary-foreground);
+  --text-secondary: var(--muted-foreground);
+  --text-muted: #a3a3a3;
+  --text: var(--foreground);
+  --faint: var(--muted-foreground);
+  --gold: var(--primary);
+  --gold-soft: #f1dca2;
+  --skill-scaling-value-color: #f2a45f;
+  --surface-border: var(--border);
+  --surface-border-strong: rgb(215 181 109 / 42%);
+  --border-strong: var(--surface-border-strong);
 }
 
 @theme inline {

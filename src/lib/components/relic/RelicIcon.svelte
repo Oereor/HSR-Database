@@ -37,25 +37,21 @@
     position: absolute;
     z-index: 0;
     inset: 0;
-    background:
-      radial-gradient(circle at 58% 42%, rgb(215 181 109 / 13%), transparent 22%),
-      linear-gradient(145deg, rgb(255 255 255 / 3%), transparent 55%);
+    background: var(--secondary);
     padding: 2rem 2rem 9rem;
   }
 
   .relic-icon-stage--card {
     min-height: 184px;
     border-bottom: 1px solid rgb(255 255 255 / 5%);
-    background:
-      radial-gradient(circle at 50% 56%, rgb(215 181 109 / 11%), transparent 45%),
-      linear-gradient(180deg, rgb(255 255 255 / 2%), transparent);
+    background: var(--secondary);
   }
 
   .relic-icon-stage--piece {
     width: 64px;
     height: 64px;
     border-radius: var(--radius-control);
-    background: radial-gradient(circle, rgb(215 181 109 / 11%), transparent 70%);
+    background: var(--secondary);
   }
 
   .relic-icon-stage.relic-icon-stage--piece :global(img) {
@@ -71,7 +67,7 @@
   .relic-icon-stage--header {
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgb(215 181 109 / 11%), transparent 68%);
+    background: var(--secondary);
   }
 
   .relic-icon-stage :global(img) {
@@ -104,7 +100,7 @@
     height: 5rem;
     border: 1px solid var(--border);
     border-radius: 50%;
-    background: rgb(7 10 18 / 58%);
+    background: color-mix(in srgb, var(--background) 58%, transparent);
     --image-fallback-font-size: 2rem;
   }
 
