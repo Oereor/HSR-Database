@@ -45,6 +45,18 @@ pnpm dev
 联网操作先确认代理端口，再配置进程代理变量；本地通常使用 7890，以 [AGENTS.md](../AGENTS.md#internet-connectivity) 为准。
 不要把代理、私有路径、token 或本地 `.vercel/` 状态提交到仓库。
 
+## 字体与主题维护
+
+全站无衬线字体由根布局引入锁定版本的 `@fontsource-variable/inter` 和 `@fontsource-variable/noto-sans-sc`，经 Vite 打包为同源 WOFF2 资源。两者使用 100–900 可变字重和 `font-display: swap`；Noto Sans SC 保留供应方的 `unicode-range` 分片，浏览器只请求页面字符需要的文件，不预加载完整中文字库。包的自托管方式见 Fontsource[^fontsource]。
+
+`--font-family-sans` 是字体唯一入口，Tailwind 的 `--font-sans` 引用它；表单和 Toast 同样使用该入口，UID 与代码保留明确的等宽语义。更新字体时只更新对应包及锁文件，保留 [Inter 许可证](../static/licenses/Inter-OFL-1.1.txt) 和 [Noto Sans SC 许可证](../static/licenses/NotoSansSC-OFL-1.1.txt)。
+
+验收需区分构建字体总量和单页实际请求量；检查字体响应、实际渲染字体和缓存复用，不能仅检查 CSS 中的字体名称。生产字体位于带内容哈希的 `_app/immutable/assets/` 下，更新包会生成新的资源地址；本地 preview 的响应头不能作为线上缓存策略的证明。
+
+### 参考文献
+
+[^fontsource]: Fontsource. Installing Fonts. [自托管与按字符集加载说明](https://fontsource.org/docs/getting-started/install).
+
 ## 常用命令与生成产物
 
 命令定义见 [package.json](../package.json)。按需要选择，不把下表作为每次修改的完整检查清单。

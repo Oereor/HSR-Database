@@ -54,8 +54,8 @@
   --endgame-mode-nav-height: 3.5rem;
   --global-sticky-top: calc(var(--site-header-height) + var(--breadcrumb-height));
   --font-family-sans:
-    Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
-    'Microsoft YaHei', sans-serif;
+    'Inter Variable', 'Noto Sans SC Variable', ui-sans-serif, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-family: var(--font-family-sans);
   background: var(--bg);
   color: var(--text);
@@ -95,6 +95,7 @@
   }
   button,
   input,
+  textarea,
   select {
     font: inherit;
   }
@@ -104,6 +105,7 @@
   }
   button,
   input,
+  textarea,
   select {
     color: var(--text);
   }

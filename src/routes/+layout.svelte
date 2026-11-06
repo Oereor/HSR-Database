@@ -1,4 +1,6 @@
 <script lang="ts">
+  import '@fontsource-variable/inter/wght.css';
+  import '@fontsource-variable/noto-sans-sc/wght.css';
   import '../styles/app.css';
   import '../styles/presentation/detail-hero.css';
   import { page } from '$app/stores';
