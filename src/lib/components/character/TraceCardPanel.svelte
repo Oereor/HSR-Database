@@ -111,12 +111,14 @@
                           getLocale()
                         )}
                       </span>
-                      <span class="text-muted-foreground text-right whitespace-nowrap">
-                        {#if node.trace.promotionLimit}
-                          {m.trace_unlock_condition()}
-                          {m.trace_promotion({ promotion: node.trace.promotionLimit })}
-                        {:else}{m.trace_no_promotion_requirement()}{/if}
-                      </span>
+                      {#if node.trace.promotionLimit}
+                        <span class="text-right whitespace-nowrap">
+                          <span class="text-muted-foreground">{m.trace_unlock_condition()}</span>
+                          <span class="text-[var(--gold-soft)]"
+                            >{m.trace_promotion({ promotion: node.trace.promotionLimit })}</span
+                          >
+                        </span>
+                      {/if}
                     </div>
                   {/each}
                 </div>

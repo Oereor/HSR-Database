@@ -24,6 +24,27 @@ const trace = (
   ...(type === 'ability' && sourcePointType !== 5 ? { promotionLimit: 2 } : {})
 });
 
+describe('trace bonus display precision', () => {
+  it.each([
+    [0.186999998, '18.7%'],
+    [0.026999999, '2.7%'],
+    [0.04, '4.0%'],
+    [0, '0.0%'],
+    [0.01249, '1.2%'],
+    [0.0125, '1.3%'],
+    [0.01251, '1.3%']
+  ])('formats %s as %s in both supported locales', (value, expected) => {
+    for (const locale of ['zh-CN', 'en']) {
+      expect(formatTraceBonus(value, true, locale)).toBe(expected);
+    }
+  });
+
+  it('preserves non-percentage precision', () => {
+    expect(formatTraceBonus(2.6999999, false, 'en')).toBe('2.6999999');
+    expect(formatTraceBonus(4, false, 'zh-CN')).toBe('4');
+  });
+});
+
 describe('行迹卡片展示分组', () => {
   it('sums structured bonuses, retains ownership and never merges property units or conditional nodes', () => {
     const ability = trace('ability', 0, [], 'ability');
@@ -55,7 +76,7 @@ describe('行迹卡片展示分组', () => {
       'ability'
     ]);
     expect(summary.independent.map((node) => node.id)).toEqual(['conditional', 'unknown']);
-    expect(formatTraceBonus(summary.summaries[0].value, true, 'en')).toBe('30%');
+    expect(formatTraceBonus(summary.summaries[0].value, true, 'en')).toBe('30.0%');
   });
   it('counts only unlocked player nodes, retains zero and signals unresolved nodes', () => {
     const nodes = ['a', 'b', 'c'].map((id) => ({

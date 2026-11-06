@@ -1,4 +1,70 @@
 import { expect, test } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+
+test('skill descriptions and trace conditions retain compact readable spacing', async ({
+  page
+}) => {
+  for (const id of ['1407', '1103']) {
+    const character = JSON.parse(
+      readFileSync(`src/lib/generated/views/zh-CN/details/characters/${id}.json`, 'utf8')
+    );
+    const promotionById = Object.fromEntries(
+      character.profiles.base.traces.map((trace: { id: string; promotionLimit?: number }) => [
+        trace.id,
+        trace.promotionLimit ?? 0
+      ])
+    );
+    await page.goto(`/characters/${id}/`);
+    await page.waitForLoadState('networkidle');
+    for (const trigger of await page.locator('#traces [data-slot="collapsible-trigger"]').all())
+      await trigger.click();
+    for (const width of [320, 390, 1440]) {
+      await page.setViewportSize({ width, height: 900 });
+      const result = await page.evaluate((promotions) => {
+        const headings = [...document.querySelectorAll('#skills .skill-variant__heading')];
+        const directDescriptions = headings.filter((heading) =>
+          heading.nextElementSibling?.matches('.levelled-description, .data-placeholder')
+        );
+        const abilityCondition = document.querySelector(
+          '[data-trace-abilities] .trace-card__condition'
+        )!;
+        const labelColor = getComputedStyle(abilityCondition.querySelector(':scope > span')!).color;
+        const promotionColor = getComputedStyle(abilityCondition).color;
+        return {
+          hasDirectDescriptions: directDescriptions.length > 0,
+          descriptionSpacing: directDescriptions.every(
+            (heading) =>
+              Math.abs(
+                heading.nextElementSibling!.getBoundingClientRect().top -
+                  heading.getBoundingClientRect().bottom -
+                  12
+              ) < 1
+          ),
+          metadataSpacing: headings
+            .filter((heading) => heading.nextElementSibling?.matches('dl'))
+            .every((heading) => getComputedStyle(heading.nextElementSibling!).marginTop === '8px'),
+          conditions: [...document.querySelectorAll('[data-trace-property] [data-trace-id]')].every(
+            (row) => {
+              if (!promotions[row.getAttribute('data-trace-id')!])
+                return row.childElementCount === 1;
+              const condition = row.children[1];
+              return (
+                row.childElementCount === 2 &&
+                condition.childElementCount === 2 &&
+                getComputedStyle(condition.children[0]).color === labelColor &&
+                getComputedStyle(condition.children[1]).color === promotionColor
+              );
+            }
+          )
+        };
+      }, promotionById);
+      expect(result.hasDirectDescriptions).toBe(true);
+      expect(result.descriptionSpacing).toBe(true);
+      expect(result.metadataSpacing).toBe(true);
+      expect(result.conditions).toBe(true);
+    }
+  }
+});
 
 test('character cards adapt to their container and retain accessible breakdowns', async ({
   page
@@ -41,9 +107,10 @@ test('character cards adapt to their container and retain accessible breakdowns'
               [...card.querySelectorAll('[data-trace-id]')].every((row) => {
                 const children = [...row.children].map(bounds);
                 return (
-                  children.length === 2 &&
-                  children[0].right <= children[1].left &&
-                  children[1].right <= bounds(row).right + 1
+                  children.length >= 1 &&
+                  children.length <= 2 &&
+                  (children.length === 1 || children[0].right <= children[1].left) &&
+                  children.at(-1)!.right <= bounds(row).right + 1
                 );
               })
             ),

@@ -374,6 +374,9 @@ main {
 .skill-variant {
   min-width: 0;
 }
+.skill-variant__heading + :is(.levelled-description, .data-placeholder) {
+  margin-top: var(--space-3);
+}
 .skill-variant__heading {
   display: flex;
   align-items: center;

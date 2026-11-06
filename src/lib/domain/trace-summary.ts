@@ -57,8 +57,9 @@ export function summarizeTraceStats(traces: Trace[], stateOf?: (trace: Trace) =>
 }
 
 export function formatTraceBonus(value: number, percent: boolean, locale: string): string {
-  const number = new Intl.NumberFormat(locale, { maximumFractionDigits: 10 }).format(
-    Number((value * (percent ? 100 : 1)).toFixed(10))
-  );
+  const number = new Intl.NumberFormat(locale, {
+    minimumFractionDigits: percent ? 1 : 0,
+    maximumFractionDigits: percent ? 1 : 10
+  }).format(Number((value * (percent ? 100 : 1)).toFixed(10)));
   return `${number}${percent ? '%' : ''}`;
 }
