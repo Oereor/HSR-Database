@@ -4,13 +4,17 @@
 
   export let token: {
     value: string;
-    type?: 'text' | 'scaling-value' | 'icon';
+    type?: 'text' | 'scaling-value' | 'fixed-param' | 'icon';
     icon?: InlineGameTextIcon;
     color?: string;
     italic?: boolean;
     underline?: boolean;
     unbreak?: boolean;
   };
+  export let characterAccent: string | undefined = undefined;
+  $: resolvedColor =
+    token.color ??
+    (token.type === 'fixed-param' && characterAccent ? 'var(--character-accent)' : undefined);
   export let iconUrl: string | undefined = undefined;
 </script>
 
@@ -19,7 +23,7 @@
     class:game-text__unbreak={token.unbreak}
     data-game-icon={token.icon.spriteName}
     data-game-icon-id={token.icon.id}
-    style:color={token.color}
+    style:color={resolvedColor}
     aria-hidden="true"
     ><AssetImage
       src={iconUrl}
@@ -33,20 +37,20 @@
     class:description-token--unbreak={token.unbreak}
     class:scaling-value={token.type === 'scaling-value'}
     data-game-color={token.color}
-    style:color={token.color}><em>{token.value}</em></u
+    style:color={resolvedColor}><em>{token.value}</em></u
   >{:else if token.underline}<u
     class:description-token--unbreak={token.unbreak}
     class:scaling-value={token.type === 'scaling-value'}
     data-game-color={token.color}
-    style:color={token.color}>{token.value}</u
+    style:color={resolvedColor}>{token.value}</u
   >{:else if token.italic}<em
     class:description-token--unbreak={token.unbreak}
     class:scaling-value={token.type === 'scaling-value'}
     data-game-color={token.color}
-    style:color={token.color}>{token.value}</em
+    style:color={resolvedColor}>{token.value}</em
   >{:else}<span
     class:description-token--unbreak={token.unbreak}
     class:scaling-value={token.type === 'scaling-value'}
     data-game-color={token.color}
-    style:color={token.color}>{token.value}</span
+    style:color={resolvedColor}>{token.value}</span
   >{/if}

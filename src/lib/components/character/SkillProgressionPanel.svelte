@@ -1,4 +1,5 @@
 <script lang="ts">
+  export let characterAccent: string | undefined = undefined;
   import type { SkillProgression, SkillVariant } from '$lib/domain/types';
   import SkillVariantView from '$lib/components/character/SkillVariantView.svelte';
   import { gameTextToPlain } from '$lib/domain/game-text';
@@ -84,6 +85,7 @@
       <SkillVariantView
         {variant}
         {selectedLevel}
+        {characterAccent}
         {specialEffectsAvailable}
         {specialEffectIconUrl}
         {onOpenSpecialEffects}

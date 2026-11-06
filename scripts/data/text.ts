@@ -52,7 +52,8 @@ function trimTokens(tokens: DescriptionToken[]): DescriptionToken[] {
 function interpolateTemplate(
   source: string,
   params: readonly number[] = [],
-  scalingParamIndexes: ReadonlySet<number> = new Set()
+  scalingParamIndexes: ReadonlySet<number> = new Set(),
+  markFixedParams = false
 ): { text: string; diagnostics: DescriptionDiagnostic[]; usedParameterIndexes: number[] } {
   const diagnostics: DescriptionDiagnostic[] = [];
   const usedParameterIndexes = new Set<number>();
@@ -77,7 +78,9 @@ function interpolateTemplate(
       const rendered = `${formatParameter(value, match[2], Boolean(match[3]))}${match[3]}`;
       result += scalingParamIndexes.has(parameterIndex)
         ? `<scaling-value>${rendered}</scaling-value>`
-        : rendered;
+        : markFixedParams
+          ? `<fixed-param>${rendered}</fixed-param>`
+          : rendered;
     }
     cursor = start + placeholder.length;
   }
@@ -94,10 +97,16 @@ function formatTemplate(
   params: readonly number[] = [],
   scalingParamIndexes: ReadonlySet<number> = new Set()
 ): FormattedDescription {
-  const interpolated = interpolateTemplate(source, params, scalingParamIndexes);
+  const interpolated = interpolateTemplate(source, params, scalingParamIndexes, true);
   const descriptionTokens = trimTokens(
     parseGameTextWithScaling(interpolated.text).map((token) => ({
-      type: token.icon ? 'icon' : token.scaling ? 'scaling-value' : 'text',
+      type: token.icon
+        ? 'icon'
+        : token.scaling
+          ? 'scaling-value'
+          : token.fixed
+            ? 'fixed-param'
+            : 'text',
       value: token.value,
       ...(token.icon ? { icon: token.icon } : {}),
       ...(token.color ? { color: token.color } : {}),

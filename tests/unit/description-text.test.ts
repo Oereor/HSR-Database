@@ -1,11 +1,29 @@
 import { describe, expect, it } from 'vitest';
 import { render } from 'svelte/server';
 import DescriptionText from '../../src/lib/components/shared/DescriptionText.svelte';
-import { formatDescription } from '../../scripts/data/text';
+import { formatDescription, formatGameMarkup } from '../../scripts/data/text';
 import { descriptionCases, specialEffectTokens } from '../fixtures/description-text';
 
 // Component SSR must retain the original token contents; CSS controls their line layout.
 describe('DescriptionText SSR', () => {
+  it('retains fixed parameter identity without coloring ordinary numbers or leaking markup', () => {
+    const source = 'Literal 7: <u><i>#1[i]</i></u> / #2[i]% / <color=#123456>#3[i]</color>';
+    const result = formatDescription(source, [3, 0.5, 9], new Set([1]));
+    expect(
+      result.descriptionTokens.filter((t) => t.type === 'fixed-param').map((t) => t.value)
+    ).toEqual(['3', '9']);
+    expect(result.descriptionTokens.find((t) => t.type === 'scaling-value')?.value).toBe('50%');
+    expect(result.descriptionTokens[0]).toEqual({ type: 'text', value: 'Literal 7: ' });
+    const colored = render(DescriptionText, {
+      props: { tokens: result.descriptionTokens, characterAccent: '#abcdef' }
+    }).body;
+    expect(colored).toContain('var(--character-accent)');
+    expect(colored).toMatch(/style="color: #123456;?"[^>]*>9/);
+    const generic = render(DescriptionText, { props: { tokens: result.descriptionTokens } }).body;
+    expect(generic).not.toContain('var(--character-accent)');
+    expect(formatGameMarkup(source, [3, 0.5, 9]).text).not.toContain('fixed-param');
+    expect(result.description).not.toContain('fixed-param');
+  });
   it.each(descriptionCases)(
     'preserves $id newlines and uses the existing GameText wrapper',
     ({ tokens }) => {

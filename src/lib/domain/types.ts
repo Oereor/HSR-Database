@@ -24,7 +24,7 @@ export interface InlineGameTextIcon {
 
 export interface DescriptionToken {
   semanticReference?: `character-special-effects:${string}`;
-  type: 'text' | 'scaling-value' | 'icon';
+  type: 'text' | 'scaling-value' | 'fixed-param' | 'icon';
   value: string;
   icon?: InlineGameTextIcon;
   color?: string;

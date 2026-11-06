@@ -1,4 +1,5 @@
 <script lang="ts">
+  export let characterAccent: string | undefined = undefined;
   import * as Card from '$lib/components/ui/card';
   import { Separator } from '$lib/components/ui/separator';
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
@@ -53,6 +54,7 @@
         variants={card.variants.filter((variant) => progression.variantIds.includes(variant.id))}
         categoryLabel={card.displayLabel}
         showGroupLabel={card.progressions.length > 1}
+        {characterAccent}
         {specialEffectsAvailable}
         {specialEffectIconUrl}
         {onOpenSpecialEffects}
@@ -69,6 +71,7 @@
             {variant}
             selectedLevel={fixedLevel(variant)?.level ?? 1}
             showLevel={card.category !== 'technique'}
+            {characterAccent}
             {specialEffectsAvailable}
             {specialEffectIconUrl}
             {onOpenSpecialEffects}

@@ -1,4 +1,5 @@
 <script lang="ts">
+  export let characterAccent: string | undefined = undefined;
   import { Badge } from '$lib/components/ui/badge';
   import DescriptionText from '$lib/components/shared/DescriptionText.svelte';
   import GameText from '$lib/components/shared/GameText.svelte';
@@ -34,10 +35,11 @@
       {:else if showLevel}<span>Lv.{selected?.level ?? selectedLevel}</span>{/if}
     </div>
   </div>
-  <SkillCombatMeta meta={variant.combatMeta} />
+  <SkillCombatMeta meta={variant.combatMeta} {characterAccent} />
   {#if selected?.descriptionTokens.length}<p class="levelled-description">
       <DescriptionText
         tokens={selected.descriptionTokens}
+        {characterAccent}
         {specialEffectsAvailable}
         {specialEffectIconUrl}
         onOpenSpecialEffects={openSpecialEffectsFromDescription}

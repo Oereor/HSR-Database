@@ -645,6 +645,7 @@
       {#if activeProfile.skillCards.length}<div class="stack-list skill-card-grid">
           {#each activeProfile.skillCards as card (card.category)}<SkillCardPanel
               {card}
+              characterAccent={getElementColor(detail.element)}
               {specialEffectsAvailable}
               {specialEffectIconUrl}
               onOpenSpecialEffects={openSpecialEffects}
@@ -688,6 +689,7 @@
       open={specialEffectsOpen}
       entries={specialEffects}
       targets={specialEffectTargets}
+      characterAccent={getElementColor(detail.element)}
       ownerCharacterId={detail.id}
       selectedLevel={specialEffectLevel}
       onRequestClose={requestSpecialEffectsClose}
