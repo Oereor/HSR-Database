@@ -21,15 +21,15 @@
   data-eidolon-id={eidolon.id}
   data-player-state={playerState}
 >
-  <Card.Header class="flex flex-row items-center gap-4">
+  <Card.Header class="flex flex-row items-center gap-3">
     <AssetImage
       class="rank-icon"
       src={getCharacterDetailIconUrl(eidolon.iconKey)}
       alt=""
       fallbackClass="rank-icon"
     />
-    <div class="rank-card__content space-y-2">
-      <div class="rank-card__meta">
+    <div class="rank-card__content min-w-0 flex-1 space-y-2">
+      <div class="flex min-w-0 flex-wrap items-center justify-between gap-2">
         <Badge variant="outline" class="rank-label text-muted-foreground"
           >{m.eidolon_rank({ rank: eidolon.rank })}</Badge
         >
@@ -42,7 +42,7 @@
               : m.player_character_inactive()}</Badge
           >{/if}
       </div>
-      <Card.Title class="text-lg"><GameText text={eidolon.name} /></Card.Title>
+      <Card.Title><GameText text={eidolon.name} /></Card.Title>
     </div>
   </Card.Header>
   <Separator />

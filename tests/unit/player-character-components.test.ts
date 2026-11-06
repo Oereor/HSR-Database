@@ -354,23 +354,26 @@ describe('Player Character presentation', () => {
     expect(staticBody).not.toContain('data-player-state=');
   });
 
-  it('shows Eidolon state only in Player mode', () => {
-    const eidolon: Eidolon = {
-      id: '130401',
-      rank: 1,
-      name: '星魂一',
-      description: '说明'
-    };
-    const staticBody = render(EidolonCard, { props: { eidolon } }).body;
-    const playerBody = render(EidolonCard, {
-      props: { eidolon, playerState: 'inactive' }
-    }).body;
+  it.each(['active', 'inactive'] as const)(
+    'shows %s Eidolon state only in Player mode',
+    (state) => {
+      const eidolon: Eidolon = {
+        id: '130401',
+        rank: 1,
+        name: '星魂一',
+        description: '说明'
+      };
+      const staticBody = render(EidolonCard, { props: { eidolon } }).body;
+      const playerBody = render(EidolonCard, {
+        props: { eidolon, playerState: state }
+      }).body;
 
-    expect(staticBody).not.toContain('data-player-state=');
-    expect(playerBody).toContain('data-player-state="inactive"');
-    expect(playerBody).toContain('data-player-state-label="inactive"');
-    expect(playerBody).toContain('rank-card__content');
-  });
+      expect(staticBody).not.toContain('data-player-state=');
+      expect(playerBody).toContain(`data-player-state="${state}"`);
+      expect(playerBody).toContain(`data-player-state-label="${state}"`);
+      expect(playerBody).toContain('rank-card__content');
+    }
+  );
 });
 
 describe('Player Hero stat composition', () => {

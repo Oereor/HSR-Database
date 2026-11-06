@@ -598,22 +598,12 @@ main {
     gap: var(--space-8);
   }
 }
-.rank-card__content {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-.rank-card__meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2);
-}
 .rank-card[data-player-state='inactive'] {
   border-color: var(--border);
   background: var(--card);
 }
-.rank-card[data-player-state='inactive'] > .rank-icon,
-.rank-card[data-player-state='inactive'] h3 {
+.rank-card[data-player-state='inactive'] > [data-slot='card-header'] .rank-icon,
+.rank-card[data-player-state='inactive'] > [data-slot='card-header'] [data-slot='card-title'] {
   opacity: 0.58;
 }
 .rank-icon {
