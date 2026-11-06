@@ -5,7 +5,7 @@
   import * as m from '$lib/paraglide/messages.js';
   import LevelSlider from '$lib/components/shared/LevelSlider.svelte';
 
-  import type { SkillPreviewControl } from '$lib/domain/training/detail-view';
+  import type { SkillPreviewControl } from '$lib/domain/character-preview';
 
   export let previewControl: SkillPreviewControl | undefined = undefined;
   export let onPreviewLevelChange: ((level: number) => void) | undefined = undefined;

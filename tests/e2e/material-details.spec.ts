@@ -10,7 +10,7 @@ const plain = (value: string) => gameTextToPlain(value).replace(/\s+/g, ' ').tri
 const fixture = <T>(locale: string, file: string): T =>
   JSON.parse(readFileSync(`static/generated/${locale}/${file}.json`, 'utf8'));
 
-async function ready(page: Page, path = '/characters/1001/') {
+async function ready(page: Page, path = '/light-cones/20000/') {
   await page.goto(path);
   await expect(page.locator('#training')).toHaveAttribute('data-training-state', 'ready');
 }
@@ -30,7 +30,7 @@ async function trainingSnapshot(page: Page) {
 
 for (const locale of ['zh-CN', 'en'] as const) {
   const prefix = locale === 'en' ? '/en' : '';
-  for (const path of ['/characters/1001/', '/light-cones/20000/']) {
+  for (const path of ['/light-cones/20000/']) {
     test(`material details are lazy, cached, accessible and preserve targets (${locale} ${path})`, async ({
       page
     }, testInfo) => {

@@ -9,7 +9,7 @@
   import type { PlayerCharacter } from '$lib/player/contract';
   import { createPlayerSkillTreeIndex, resolvePlayerSkillLevel } from '$lib/player/character';
 
-  import type { SkillPreviewControl } from '$lib/domain/training/detail-view';
+  import type { SkillPreviewControl } from '$lib/domain/character-preview';
 
   export let previewControls: Record<string, SkillPreviewControl> | undefined = undefined;
   export let onPreviewLevelChange: ((progressionId: string, level: number) => void) | undefined =
