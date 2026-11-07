@@ -29,6 +29,21 @@ export interface ResolvedLayout {
   nodes: (LayoutSlot & { kind: NodeKind; radius: number })[];
 }
 
+export function layoutHalfSize(layouts: readonly ResolvedLayout[]): number {
+  const reference = Math.max(...layouts.map((layout) => layout.referenceRadius));
+  return (
+    Math.max(
+      reference,
+      ...layouts.flatMap(({ nodes }) =>
+        nodes.map(
+          ({ center, radius }) => Math.max(Math.abs(center[0]), Math.abs(center[1])) + radius
+        )
+      )
+    ) +
+    reference * 0.13
+  );
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }

@@ -21,6 +21,7 @@ import {
 } from '../../src/lib/domain/visual-assets.js';
 import {
   parseCharacterDetailIconKey,
+  type CharacterDetailIconKind,
   type CharacterDetailIconKey
 } from '../../src/lib/domain/character-detail-icons.js';
 import {
@@ -38,7 +39,10 @@ import {
   generatedLightConePortraitRoot
 } from './paths.js';
 import { staticGeneratedRoot } from '../data/paths.js';
-import { assertTrainingSharedData } from '../../src/lib/domain/training/validation.js';
+import {
+  assertCharacterTrainingData,
+  assertTrainingSharedData
+} from '../../src/lib/domain/training/validation.js';
 import { trainingId } from '../../src/lib/domain/training/index.js';
 import { AssetFilesystemObservation, observeAssetFilesystem } from './observation.js';
 import { createBoundedPoolState, runBoundedPool, throwBoundedPoolFailures } from './pool.js';
@@ -282,12 +286,27 @@ export async function readAssetRequirements(
     await readFile(path.join(staticGeneratedRoot, 'training', 'shared.json'), 'utf8')
   );
   assertTrainingSharedData(trainingShared);
+  const characterTrainingIconKeys = (
+    await Promise.all(
+      characterCatalog.map(async ({ id }) => {
+        const shard: unknown = JSON.parse(
+          await readFile(
+            path.join(staticGeneratedRoot, 'training', 'characters', `${trainingId(id)}.json`),
+            'utf8'
+          )
+        );
+        assertCharacterTrainingData(shard);
+        return shard.profiles.flatMap(({ nodes }) => nodes.map(({ iconKey }) => iconKey));
+      })
+    )
+  ).flat();
   return {
     materialIds: trainingShared.materials.map((material) => material.id),
     characterIds: uniqueSorted(characterCatalog.map((entry) => entry.id)),
     playerAvatars: await readPlayerAvatarRequirements(dataRoot),
-    characterDetailIconKeys: uniqueSorted(
-      characterDetails.flatMap((character) => [
+    characterDetailIconKeys: uniqueSorted([
+      ...characterTrainingIconKeys,
+      ...characterDetails.flatMap((character) => [
         ...Object.values(character.baseStats.iconKeys ?? {}),
         ...Object.values(character.profiles).flatMap((profile) =>
           profile
@@ -304,7 +323,7 @@ export async function readAssetRequirements(
             : []
         )
       ])
-    ) as CharacterDetailIconKey[],
+    ]) as CharacterDetailIconKey[],
     lightConeIds: uniqueSorted(lightConeCatalog.map((entry) => entry.id)),
     relicSetIds: uniqueSorted(relicCatalog.map((entry) => entry.id)),
     relicPieces: relicDetails
@@ -816,6 +835,10 @@ export async function readRelicPropertyIconSources(
   return sources;
 }
 
+function isCharacterDetailIconDirectory(kind: CharacterDetailIconKind, directory: string) {
+  return kind === 'skill-tree' || directory === (kind === 'property' ? 'property' : 'skill');
+}
+
 export async function readCharacterDetailIconSources(
   sourceRoot: string,
   iconKeys: CharacterDetailIconKey[]
@@ -846,11 +869,9 @@ export async function readCharacterDetailIconSources(
     const source = resolveOptionalIndexedAssetPath(sourceRoot, entry.icon);
     if (!source) continue;
     const relative = path.relative(sourceRoot, source).replaceAll('\\', '/');
-    const expectedDirectory = parsed.kind === 'property' ? 'property' : 'skill';
-    if (!new RegExp(`^icon/${expectedDirectory}/[A-Za-z0-9_-]+\\.png$`, 'i').test(relative))
-      throw new Error(
-        `角色详情 icon ${iconKey} 的路径不属于 icon/${expectedDirectory}：${relative}`
-      );
+    const match = /^icon\/(skill|property)\/[A-Za-z0-9_-]+\.png$/i.exec(relative);
+    if (!match || !isCharacterDetailIconDirectory(parsed.kind, match[1].toLowerCase()))
+      throw new Error(`角色详情 icon ${iconKey} 的来源目录异常：${relative}`);
     sources.set(iconKey, source);
   }
   return sources;
@@ -1435,11 +1456,10 @@ export async function validateGeneratedAssetFiles(
       );
     if (!parsedKey || !match)
       throw new Error(`角色详情 icon manifest 映射异常：${iconKey} -> ${url}`);
-    const expectedKind = parsedKey.kind === 'property' ? 'property' : 'skill';
-    if (match[1] !== expectedKind)
+    if (!isCharacterDetailIconDirectory(parsedKey.kind, match[1]))
       throw new Error(`角色详情 icon manifest 目录不一致：${iconKey} -> ${url}`);
     const iconPath = path.join(
-      expectedKind === 'property'
+      match[1] === 'property'
         ? output.characterDetailPropertyIcons
         : output.characterDetailSkillIcons,
       match[2]

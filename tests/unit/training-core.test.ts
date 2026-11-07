@@ -79,7 +79,7 @@ const profile: CharacterTrainingProfile = {
   ]
 };
 const data: CharacterTrainingData = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   avatarId: '1',
   expGroup: '1',
   promotions,

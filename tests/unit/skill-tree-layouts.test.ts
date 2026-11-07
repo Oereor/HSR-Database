@@ -1,10 +1,17 @@
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
 import {
   layoutSlugs,
   resolveLayout,
   validateGeometry,
   validateLayout
-} from '../../scripts/dev/skill-tree-layouts/layout';
+} from '../../src/lib/domain/training/skill-tree-layout';
+import {
+  isToggleableTrainingNode,
+  resolveTrainingSkillTree
+} from '../../src/lib/domain/training/skill-tree';
+import type { CharacterTrainingData } from '../../src/lib/domain/training/types';
+import type { CatalogEntry } from '../../src/lib/domain/types';
 
 const geometry = { referenceRadius: 2, nodeRadii: { skill: 0.12, ability: 0.17, stat: 0.09 } };
 
@@ -82,5 +89,46 @@ describe('skill tree layout geometry', () => {
     expect(() =>
       validateGeometry({ ...geometry, nodeRadii: { ...geometry.nodeRadii, ability: invalid } })
     ).toThrow(/nodeRadii\.ability/);
+  });
+});
+
+const json = <T>(path: string): T => JSON.parse(readFileSync(path, 'utf8'));
+const training = (id: string) =>
+  json<CharacterTrainingData>(`static/generated/training/characters/${id}.json`);
+
+describe('character skill tree mapping', () => {
+  it('maps all generated profiles to their path with PointID icon references', () => {
+    const characters = json<CatalogEntry[]>(
+      'src/lib/generated/views/zh-CN/catalogs/characters.json'
+    );
+    const covered = new Set<string>();
+    for (const { id, path } of characters) {
+      for (const profile of training(id).profiles) {
+        const tree = resolveTrainingSkillTree(path!, profile);
+        covered.add(tree.slug);
+        for (const { anchorType, node } of tree.nodes) {
+          expect(node.anchorType).toBe(anchorType);
+          expect(node.iconKey).toBe(`skill-tree--${node.pointId}`);
+          expect(isToggleableTrainingNode(node)).toBe(node.kind === 'trace');
+        }
+        const omitted = profile.nodes.filter(
+          (node) => !tree.nodes.some((entry) => entry.node === node)
+        );
+        expect(omitted.map(({ pointId }) => pointId)).toEqual(
+          id === '8007' || id === '8008' ? [`${id}501`] : []
+        );
+      }
+    }
+    expect([...covered].sort()).toEqual([...layoutSlugs].sort());
+  });
+
+  it('diagnoses missing, duplicate and unmapped anchors in the profile', () => {
+    const profile = training('1001').profiles[0];
+    profile.nodes[0].anchorType = undefined;
+    profile.nodes[1].anchorType = profile.nodes[2].anchorType;
+    profile.nodes[3].anchorType = 'Point99';
+    expect(() => resolveTrainingSkillTree('Knight', profile)).toThrow(
+      /1001:0.*missing AnchorType.*duplicate AnchorType.*unmapped AnchorType Point99.*unfilled template slot/
+    );
   });
 });

@@ -1,6 +1,9 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
-import type { LayoutSlug } from './layout';
+import {
+  layoutHalfSize,
+  type LayoutSlug
+} from '../../../src/lib/domain/training/skill-tree-layout.js';
 import { readLayouts } from './validate';
 
 const names: Record<LayoutSlug, string> = {
@@ -15,15 +18,7 @@ const names: Record<LayoutSlug, string> = {
   elation: '欢愉'
 };
 const layouts = readLayouts();
-const reference = layouts[0].referenceRadius;
-const halfSize =
-  Math.max(
-    reference,
-    ...layouts.flatMap(({ nodes }) =>
-      nodes.map(({ center, radius }) => Math.max(Math.abs(center[0]), Math.abs(center[1])) + radius)
-    )
-  ) +
-  reference * 0.13;
+const halfSize = layoutHalfSize(layouts);
 const viewBox = `-${halfSize} -${halfSize} ${2 * halfSize} ${2 * halfSize}`;
 
 const cards = layouts.map(({ slug, nodes, referenceRadius }) => {

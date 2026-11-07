@@ -20,13 +20,14 @@ import {
   validateTrainingProfile,
   TRAINING_CREDIT_ITEM_ID
 } from './index.js';
+import { parseCharacterDetailIconKey } from '../character-detail-icons.js';
 
 function record(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === 'object' && !Array.isArray(value);
 }
 
-function schema(value: unknown): void {
-  if (!record(value) || value.schemaVersion !== 1)
+function schema(value: unknown, version = 1): void {
+  if (!record(value) || value.schemaVersion !== version)
     throw new TrainingError('unsupported-schema', 'training');
 }
 
@@ -76,7 +77,7 @@ export function assertTrainingSharedData(value: unknown): asserts value is Train
 export function assertCharacterTrainingData(
   value: unknown
 ): asserts value is CharacterTrainingData {
-  schema(value);
+  schema(value, 2);
   const data = value as CharacterTrainingData;
   trainingId(data.avatarId);
   trainingId(data.expGroup);
@@ -89,10 +90,16 @@ export function assertCharacterTrainingData(
     if (profile.avatarId !== data.avatarId || seen.has(profile.enhancedId))
       throw new TrainingError('profile-key-mismatch', data.avatarId);
     seen.add(profile.enhancedId);
-    for (const node of profile.nodes)
+    for (const node of profile.nodes) {
+      if (node.iconKey !== undefined) {
+        const icon = typeof node.iconKey === 'string' && parseCharacterDetailIconKey(node.iconKey);
+        if (!icon || icon.kind !== 'skill-tree' || icon.identity !== node.pointId)
+          throw new TrainingError('invalid-skill-tree-icon-key', node.key);
+      }
       for (const step of node.steps)
         if (step.requiredPromotion >= data.promotions.length)
           throw new TrainingError('promotion-limit-out-of-range', node.key);
+    }
   }
   if (!seen.has(0)) throw new TrainingError('missing-base-profile', data.avatarId);
 }

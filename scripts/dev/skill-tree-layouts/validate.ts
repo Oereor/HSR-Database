@@ -1,7 +1,12 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { parseArgs } from 'node:util';
-import { layoutSlugs, resolveLayout, validateGeometry, validateLayout } from './layout';
+import {
+  layoutSlugs,
+  resolveLayout,
+  validateGeometry,
+  validateLayout
+} from '../../../src/lib/domain/training/skill-tree-layout.js';
 
 const layoutDirectory = resolve(import.meta.dirname, '../../../data/skill-tree-layouts');
 

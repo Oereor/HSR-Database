@@ -1,3 +1,5 @@
+import type { CharacterDetailIconKey } from '../character-detail-icons.js';
+
 export type ItemId = string;
 export type Cost = Record<ItemId, number>;
 export type ProgressionKey = string;
@@ -25,6 +27,8 @@ export interface TrainingNode {
   key: ProgressionKey;
   pointId: string;
   pointType: number;
+  anchorType?: string;
+  iconKey?: CharacterDetailIconKey;
   kind: 'skill' | 'trace' | 'default' | 'fixed';
   defaultUnlock: boolean;
   maxLevel: number;
@@ -41,7 +45,7 @@ export interface CharacterTrainingProfile {
 }
 
 export interface CharacterTrainingData {
-  schemaVersion: 1;
+  schemaVersion: 2;
   avatarId: string;
   expGroup: string;
   promotions: PromotionCostStage[];

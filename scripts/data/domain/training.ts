@@ -14,6 +14,8 @@ import {
   trainingInteger
 } from '../../../src/lib/domain/training/index.js';
 import { validateTrainingBundle } from '../../../src/lib/domain/training/validation.js';
+import { resolveTrainingSkillTree } from '../../../src/lib/domain/training/skill-tree.js';
+import { configuredCharacterDetailIconKey } from '../character-detail-icons.js';
 import { rows, textSource } from './shared.js';
 
 export { TRAINING_TABLE_NAMES } from '../training-sources.js';
@@ -136,7 +138,14 @@ export function buildTrainingDomain(
           );
           const first = ordered[0];
           for (const row of ordered)
-            for (const field of ['MaxLevel', 'PointType', 'PrePoint', 'LevelUpSkillID'])
+            for (const field of [
+              'MaxLevel',
+              'PointType',
+              'PrePoint',
+              'LevelUpSkillID',
+              'AnchorType',
+              'IconPath'
+            ])
               if (JSON.stringify(row[field]) !== JSON.stringify(first[field]))
                 throw new Error(
                   `[training/source] inconsistent ${character.id}:${enhancedId}:${pointId} ${field}`
@@ -156,6 +165,13 @@ export function buildTrainingDomain(
             key: progressionKey(character.id, enhancedId, pointId),
             pointId,
             pointType: number(first.PointType, 'PointType', 1),
+            anchorType: typeof first.AnchorType === 'string' ? first.AnchorType : undefined,
+            iconKey: configuredCharacterDetailIconKey(
+              'skill-tree',
+              pointId,
+              first.IconPath,
+              `AvatarSkillTreeConfig.${pointId}`
+            ),
             kind,
             defaultUnlock,
             maxLevel,
@@ -177,7 +193,9 @@ export function buildTrainingDomain(
               }))
           };
         });
-      return [{ avatarId: character.id, enhancedId, nodes }];
+      const trainingProfile = { avatarId: character.id, enhancedId, nodes };
+      resolveTrainingSkillTree(character.pathCode, trainingProfile);
+      return [trainingProfile];
     });
     const expectedProfileIds = new Set(profiles.map((profile) => profile.enhancedId));
     if (
@@ -189,7 +207,7 @@ export function buildTrainingDomain(
     )
       throw new Error(`[training/source] orphan Profile ${character.id}`);
     return {
-      schemaVersion: 1,
+      schemaVersion: 2,
       avatarId: character.id,
       expGroup: id(avatar.ExpGroup),
       promotions: chain,
