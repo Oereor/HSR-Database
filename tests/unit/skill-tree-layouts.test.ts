@@ -105,6 +105,20 @@ describe('character skill tree mapping', () => {
     for (const { id, path } of characters) {
       for (const profile of training(id).profiles) {
         const tree = resolveTrainingSkillTree(path!, profile);
+        if (!covered.has(tree.slug)) {
+          const axisCoverage = ([0, 1] as const).map((axis) => {
+            const start = Math.min(
+              ...tree.nodes.map(({ center, radius }) => center[axis] - radius)
+            );
+            const end = Math.max(...tree.nodes.map(({ center, radius }) => center[axis] + radius));
+            expect(start / tree.halfSize).toBeGreaterThanOrEqual(-0.960001);
+            expect(end / tree.halfSize).toBeLessThanOrEqual(0.960001);
+            return (end - start) / (2 * tree.halfSize);
+          });
+          expect(Math.max(...axisCoverage)).toBeGreaterThanOrEqual(0.89);
+          expect(Math.max(...axisCoverage)).toBeLessThanOrEqual(0.900001);
+          expect(tree.cropRatio).toBeLessThan(1);
+        }
         covered.add(tree.slug);
         for (const { anchorType, node } of tree.nodes) {
           expect(node.anchorType).toBe(anchorType);

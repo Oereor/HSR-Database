@@ -84,8 +84,12 @@
   }
   @container training-target (min-width: 54rem) {
     .training-target__settings.with-tree {
-      grid-template-columns: minmax(16rem, 24rem) minmax(36rem, 39rem);
-      justify-content: center;
+      /* The old tree column received half the space above the two column minimums. */
+      --tree-reference-width: min(39rem, calc((100cqw + 20rem - var(--space-6)) / 2));
+      display: flex;
+    }
+    .training-target__settings.with-tree > .training-target__skills {
+      flex: 1;
     }
   }
   .training-target__skills {

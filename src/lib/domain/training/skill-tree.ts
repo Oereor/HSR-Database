@@ -14,7 +14,8 @@ import {
   layoutSlugs,
   resolveLayout,
   validateGeometry,
-  validateLayout
+  validateLayout,
+  type ResolvedLayout
 } from './skill-tree-layout.js';
 import type { CharacterTrainingProfile, TrainingNode } from './types.js';
 
@@ -30,12 +31,22 @@ const configs = {
   remembrance
 };
 const geometry = validateGeometry(geometryConfig);
-const layouts = layoutSlugs.map((slug) => ({
-  slug,
-  path: paths[slug].pathCode,
-  ...resolveLayout(slug, validateLayout(configs[slug]), geometry)
-}));
-const halfSize = layoutHalfSize(layouts);
+const layouts = layoutSlugs.map((slug) => {
+  const layout = resolveLayout(slug, validateLayout(configs[slug]), geometry);
+  return { slug, path: paths[slug].pathCode, ...layout, halfSize: cropHalfSize(layout.nodes) };
+});
+const referenceHalfSize = layoutHalfSize(layouts);
+
+function cropHalfSize(nodes: ResolvedLayout['nodes']): number {
+  const bounds = ([0, 1] as const).map((axis) => ({
+    start: Math.min(...nodes.map(({ center, radius }) => center[axis] - radius)),
+    end: Math.max(...nodes.map(({ center, radius }) => center[axis] + radius))
+  }));
+  const span = Math.max(...bounds.map(({ start, end }) => end - start));
+  const extent = Math.max(...bounds.map(({ start, end }) => Math.max(-start, end)));
+  // Target 90% coverage while leaving 2% on the closest edge of the centered square.
+  return Math.max(span / (2 * 0.9), extent / (1 - 2 * 0.02));
+}
 
 export function isToggleableTrainingNode(node: TrainingNode): boolean {
   return node.kind === 'trace' && [1, 3, 5].includes(node.pointType);
@@ -81,5 +92,11 @@ export function resolveTrainingSkillTree(path: string, profile: CharacterTrainin
     return [];
   });
   if (errors.length) throw new Error(`${context}: ${errors.join(' | ')}`);
-  return { slug: layout.slug, referenceRadius: layout.referenceRadius, halfSize, nodes };
+  return {
+    slug: layout.slug,
+    referenceRadius: layout.referenceRadius,
+    halfSize: layout.halfSize,
+    cropRatio: layout.halfSize / referenceHalfSize,
+    nodes
+  };
 }

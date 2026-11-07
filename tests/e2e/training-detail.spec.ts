@@ -205,27 +205,60 @@ test('trace buttons preserve branch dependencies and update the character receip
   await page.keyboard.press('Escape');
   await expect(credit).toBeFocused();
 
-  const bounds = await tree.boundingBox();
-  const sliderBounds = await page.locator('.training-target__skills').boundingBox();
-  expect(bounds).not.toBeNull();
-  expect(Math.abs(bounds!.width - bounds!.height)).toBeLessThan(1);
   const background = tree.locator('img.tree-path');
   await expect(background).toHaveAttribute('src', '/generated-assets/paths/large/Knight.png');
   await expect
     .poll(() => background.evaluate((img) => (img as HTMLImageElement).naturalWidth))
     .toBe(512);
+  await expect(tree).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+
+  for (const [anchor, iconRatio] of [
+    ['Point01', 0.66],
+    ['Point06', 0.84],
+    ['Point09', 0.84]
+  ] as const) {
+    const slot = tree.locator(`[data-anchor="${anchor}"]`);
+    const circle = (await slot.boundingBox())!;
+    const icon = (await slot.locator('img').boundingBox())!;
+    expect(Math.abs(icon.width - iconRatio * circle.width)).toBeLessThan(1);
+  }
+
+  const bounds = async () => {
+    const canvas = (await tree.boundingBox())!;
+    const settings = (await page.locator('.training-target__settings.with-tree').boundingBox())!;
+    const sliders = (await page.locator('.training-target__skills').boundingBox())!;
+    const pathIcon = (await background.boundingBox())!;
+    expect(Math.abs(canvas.width - canvas.height)).toBeLessThan(1);
+    expect(Math.abs(pathIcon.x + pathIcon.width / 2 - canvas.x - canvas.width / 2)).toBeLessThan(1);
+    expect(Math.abs(pathIcon.y + pathIcon.height / 2 - canvas.y - canvas.height / 2)).toBeLessThan(
+      1
+    );
+    return { canvas, settings, sliders, pathIcon };
+  };
+
+  const checkStacked = async () => {
+    const { canvas, settings, sliders, pathIcon } = await bounds();
+    expect(canvas.y).toBeGreaterThanOrEqual(sliders.y + sliders.height);
+    expect(Math.abs(canvas.x + canvas.width / 2 - settings.x - settings.width / 2)).toBeLessThan(1);
+    const oldWidth = Math.min(settings.width, 39 * 16);
+    expect(canvas.width).toBeLessThan(oldWidth);
+    expect(Math.abs(pathIcon.width - 0.64 * oldWidth)).toBeLessThan(1);
+  };
+
   if (page.viewportSize()!.width < 768) {
-    expect(bounds!.y).toBeGreaterThanOrEqual(sliderBounds!.y + sliderBounds!.height);
-    expect(Math.abs(bounds!.width - sliderBounds!.width)).toBeLessThan(1);
+    await checkStacked();
   } else {
-    expect(bounds!.x).toBeGreaterThanOrEqual(sliderBounds!.x + sliderBounds!.width);
-    expect(bounds!.width).toBeGreaterThanOrEqual(36 * 16);
+    const { canvas, settings, sliders, pathIcon } = await bounds();
+    expect(Math.abs(canvas.x + canvas.width - settings.x - settings.width)).toBeLessThan(1);
+    expect(Math.abs(sliders.x - settings.x)).toBeLessThan(1);
+    const gap = await page
+      .locator('.training-target__settings.with-tree')
+      .evaluate((element) => Number.parseFloat(getComputedStyle(element).columnGap));
+    expect(Math.abs(canvas.x - sliders.x - sliders.width - gap)).toBeLessThan(1);
+    const oldWidth = Math.min(39 * 16, (settings.width + 20 * 16 - gap) / 2);
+    expect(Math.abs(pathIcon.width - 0.64 * oldWidth)).toBeLessThan(1);
     await page.setViewportSize({ width: 900, height: page.viewportSize()!.height });
-    const stackedTree = (await tree.boundingBox())!;
-    const stackedSliders = (await page.locator('.training-target__skills').boundingBox())!;
-    expect(stackedTree.y).toBeGreaterThanOrEqual(stackedSliders.y + stackedSliders.height);
-    expect(Math.abs(stackedTree.width - stackedTree.height)).toBeLessThan(1);
-    expect(stackedTree.width).toBeGreaterThanOrEqual(bounds!.width);
+    await checkStacked();
   }
 });
 

@@ -57,9 +57,10 @@
     data-training-tree={layout.slug}
     data-training-profile={profile.enhancedId}
     style:--tree-accent={accent}
+    style:--tree-crop={layout.cropRatio}
   >
     <AssetImage src={getPathIconUrl(path, 'large')} decorative class="tree-path" />
-    {#each layout.nodes as { anchorType, center: [x, y], radius, node } (node.pointId)}
+    {#each layout.nodes as { anchorType, center: [x, y], radius, kind, node } (node.pointId)}
       {@const label =
         traceLabels.get(node.pointId) ||
         skillLabels.get(node.pointId) ||
@@ -70,6 +71,7 @@
         <button
           type="button"
           class="tree-node"
+          class:tree-node--trace={kind !== 'skill'}
           aria-label={label}
           aria-pressed={active.has(node.pointId)}
           title={label}
@@ -81,6 +83,7 @@
       {:else}
         <span
           class="tree-node"
+          class:tree-node--trace={kind !== 'skill'}
           role="img"
           aria-label={label}
           title={label}
@@ -101,12 +104,10 @@
   .skill-tree {
     position: relative;
     isolation: isolate;
-    width: 100%;
-    max-width: 39rem;
+    flex: none;
+    width: calc(var(--tree-reference-width, min(100%, 39rem)) * var(--tree-crop));
     margin-inline: auto;
     aspect-ratio: 1;
-    border-radius: var(--radius-card);
-    background: #17191e;
     container-type: inline-size;
   }
 
@@ -120,7 +121,7 @@
     top: 50%;
     left: 50%;
     pointer-events: none;
-    width: 64%;
+    width: calc(64% / var(--tree-crop));
     aspect-ratio: 1;
     object-fit: contain;
     opacity: 0.08;
@@ -161,6 +162,11 @@
     height: 66%;
     object-fit: contain;
     filter: brightness(0) invert(1);
+  }
+
+  .tree-node--trace > :global(.tree-icon) {
+    width: 84%;
+    height: 84%;
   }
 
   .tree-node[aria-pressed='true'] > :global(.tree-icon) {
