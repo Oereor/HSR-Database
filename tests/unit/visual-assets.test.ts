@@ -330,6 +330,10 @@ describe('视觉资源管线', () => {
       '/generated-assets/elements/Lightning.png'
     );
     expect(resolvePathIconAsset('Memory', source)).toBe('/generated-assets/paths/Memory.png');
+    expect(resolvePathIconAsset('Memory', source, 'large')).toBe(
+      '/generated-assets/paths/large/Memory.png'
+    );
+    expect(resolvePathIconAsset('unknown', source, 'large')).toBeUndefined();
     expect(resolveNavigationIconAsset('overview', source)).toBe(
       '/generated-assets/navigation/overview.png'
     );

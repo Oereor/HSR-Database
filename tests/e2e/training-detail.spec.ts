@@ -209,9 +209,24 @@ test('trace buttons preserve branch dependencies and update the character receip
   const sliderBounds = await page.locator('.training-target__skills').boundingBox();
   expect(bounds).not.toBeNull();
   expect(Math.abs(bounds!.width - bounds!.height)).toBeLessThan(1);
-  if (page.viewportSize()!.width < 768)
+  const background = tree.locator('img.tree-path');
+  await expect(background).toHaveAttribute('src', '/generated-assets/paths/large/Knight.png');
+  await expect
+    .poll(() => background.evaluate((img) => (img as HTMLImageElement).naturalWidth))
+    .toBe(512);
+  if (page.viewportSize()!.width < 768) {
     expect(bounds!.y).toBeGreaterThanOrEqual(sliderBounds!.y + sliderBounds!.height);
-  else expect(bounds!.x).toBeGreaterThanOrEqual(sliderBounds!.x + sliderBounds!.width);
+    expect(Math.abs(bounds!.width - sliderBounds!.width)).toBeLessThan(1);
+  } else {
+    expect(bounds!.x).toBeGreaterThanOrEqual(sliderBounds!.x + sliderBounds!.width);
+    expect(bounds!.width).toBeGreaterThanOrEqual(36 * 16);
+    await page.setViewportSize({ width: 900, height: page.viewportSize()!.height });
+    const stackedTree = (await tree.boundingBox())!;
+    const stackedSliders = (await page.locator('.training-target__skills').boundingBox())!;
+    expect(stackedTree.y).toBeGreaterThanOrEqual(stackedSliders.y + stackedSliders.height);
+    expect(Math.abs(stackedTree.width - stackedTree.height)).toBeLessThan(1);
+    expect(stackedTree.width).toBeGreaterThanOrEqual(bounds!.width);
+  }
 });
 
 test('changing enhanced form keeps the character level and replaces the trace profile', async ({

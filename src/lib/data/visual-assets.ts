@@ -203,12 +203,13 @@ export function resolveElementIconAsset(
 
 export function resolvePathIconAsset(
   path: string | undefined,
-  source: VisualAssetManifest = manifest
+  source: VisualAssetManifest = manifest,
+  size: 'standard' | 'large' = 'standard'
 ): string | undefined {
   return resolveAsset(
     path,
     source.paths,
-    'paths',
+    size === 'large' ? 'paths/large' : 'paths',
     'png',
     source === manifest ? sets.path : undefined
   );
@@ -287,8 +288,10 @@ export const getRelicPropertyIconUrl = (iconKey: string | undefined): string | u
   resolveRelicPropertyIconAsset(iconKey);
 export const getElementIconUrl = (element: string | undefined): string | undefined =>
   resolveElementIconAsset(element);
-export const getPathIconUrl = (path: string | undefined): string | undefined =>
-  resolvePathIconAsset(path);
+export const getPathIconUrl = (
+  path: string | undefined,
+  size: 'standard' | 'large' = 'standard'
+): string | undefined => resolvePathIconAsset(path, manifest, size);
 export const getNavigationIconUrl = (iconKey: NavigationIconKey): string | undefined =>
   resolveNavigationIconAsset(iconKey);
 export const getBrandIconUrl = (iconKey: BrandIconKey): string | undefined =>

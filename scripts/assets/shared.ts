@@ -51,7 +51,7 @@ import { readCacheJson, type ManifestReadFailure } from '../deployment/cache-dia
 // Windows may otherwise retain recently inspected files in libvips' cache during rollback cleanup.
 sharp.cache(false);
 
-export const VISUAL_ASSET_SCHEMA_VERSION = 18 as const;
+export const VISUAL_ASSET_SCHEMA_VERSION = 19 as const;
 
 export const ELEMENT_SOURCE_NAMES: Readonly<Record<string, string>> = {
   Physical: 'Physical',
@@ -137,6 +137,7 @@ export interface AssetOutputPaths {
   relicPropertyIcons: string;
   elements: string;
   paths: string;
+  largePaths: string;
   navigation: string;
   branding: string;
   utility: string;
@@ -490,6 +491,7 @@ export function assetOutputPaths(root = generatedAssetRoot): AssetOutputPaths {
     relicPropertyIcons: path.join(root, 'relic-properties'),
     elements: path.join(root, 'elements'),
     paths: path.join(root, 'paths'),
+    largePaths: path.join(root, 'paths', 'large'),
     navigation: path.join(root, 'navigation'),
     branding: path.join(root, 'branding'),
     utility: path.join(root, 'utility'),
@@ -515,6 +517,7 @@ async function prepareOutputDirectories(output: AssetOutputPaths): Promise<void>
       output.relicPropertyIcons,
       output.elements,
       output.paths,
+      output.largePaths,
       output.navigation,
       output.branding,
       output.utility,
@@ -1153,7 +1156,10 @@ export async function generateVisualAssetsWithStats(
     (code) => path.join(sourceRoot, 'icon', 'path', `${PATH_SOURCE_NAMES[code]}.png`),
     (code) => path.join(output.paths, `${code}.png`),
     'sharp',
-    writeSemanticIconAsset
+    async (source, outputPath) => {
+      await writeSemanticIconAsset(source, outputPath);
+      await copyFile(source, path.join(output.largePaths, path.basename(outputPath)));
+    }
   );
   const navigationIcons = planRequested(
     requirements.navigationIcons,
@@ -1342,6 +1348,7 @@ const expectedFiles = (
   ],
   [output.elements, manifest.elements.available.map((code) => `${code}.png`)],
   [output.paths, manifest.paths.available.map((code) => `${code}.png`)],
+  [output.largePaths, manifest.paths.available.map((code) => `${code}.png`)],
   [output.navigation, manifest.navigation.icons.available.map((iconKey) => `${iconKey}.png`)],
   [output.branding, manifest.branding.icons.available.map((iconKey) => `${iconKey}.png`)],
   [output.utility, manifest.utility.icons.available.map((iconKey) => `${iconKey}.png`)],
@@ -1363,6 +1370,7 @@ const assetOutputDirectories = (output: AssetOutputPaths): string[] => [
   output.relicPropertyIcons,
   output.elements,
   output.paths,
+  output.largePaths,
   output.navigation,
   output.branding,
   output.utility,
@@ -1513,6 +1521,9 @@ export async function validateGeneratedAssetFiles(
     const metadata = await actual.metadata(path.join(output.paths, `${code}.png`));
     if (metadata.width !== 64 || metadata.height !== 64)
       throw new Error(`命途图标尺寸异常：${code}`);
+    const large = await actual.metadata(path.join(output.largePaths, `${code}.png`));
+    if (large.format !== 'png' || large.width !== 512 || large.height !== 512)
+      throw new Error(`高清命途图标格式或尺寸异常：${code}`);
   }
   for (const iconKey of manifest.navigation.icons.available) {
     const metadata = await actual.metadata(path.join(output.navigation, `${iconKey}.png`));

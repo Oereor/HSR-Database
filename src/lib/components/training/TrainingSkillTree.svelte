@@ -58,12 +58,7 @@
     data-training-profile={profile.enhancedId}
     style:--tree-accent={accent}
   >
-    <div
-      class="tree-ring"
-      aria-hidden="true"
-      style:--ring-size={`${(100 * layout.referenceRadius) / layout.halfSize}%`}
-    ></div>
-    <AssetImage src={getPathIconUrl(path)} decorative class="tree-path" />
+    <AssetImage src={getPathIconUrl(path, 'large')} decorative class="tree-path" />
     {#each layout.nodes as { anchorType, center: [x, y], radius, node } (node.pointId)}
       {@const label =
         traceLabels.get(node.pointId) ||
@@ -107,7 +102,7 @@
     position: relative;
     isolation: isolate;
     width: 100%;
-    max-width: 26rem;
+    max-width: 39rem;
     margin-inline: auto;
     aspect-ratio: 1;
     border-radius: var(--radius-card);
@@ -115,29 +110,17 @@
     container-type: inline-size;
   }
 
-  .tree-ring,
   .skill-tree > :global(.tree-path),
   .tree-node {
     position: absolute;
     translate: -50% -50%;
   }
 
-  .tree-ring,
   .skill-tree > :global(.tree-path) {
     top: 50%;
     left: 50%;
     pointer-events: none;
-  }
-
-  .tree-ring {
-    width: var(--ring-size);
-    aspect-ratio: 1;
-    border: 1px solid #656b75;
-    border-radius: 50%;
-  }
-
-  .skill-tree > :global(.tree-path) {
-    width: 54%;
+    width: 64%;
     aspect-ratio: 1;
     object-fit: contain;
     opacity: 0.08;

@@ -73,15 +73,19 @@
 </div>
 
 <style>
+  .training-target {
+    container: training-target / inline-size;
+  }
   .training-target__settings {
     display: grid;
     align-items: start;
     gap: var(--space-6);
     margin-top: var(--space-4);
   }
-  @media (min-width: 768px) {
+  @container training-target (min-width: 54rem) {
     .training-target__settings.with-tree {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: minmax(16rem, 24rem) minmax(36rem, 39rem);
+      justify-content: center;
     }
   }
   .training-target__skills {
