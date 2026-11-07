@@ -38,18 +38,21 @@ const view = (id: string, locale = 'zh-CN') =>
   json<Character>(`src/lib/generated/views/${locale}/details/characters/${id}.json`);
 
 describe('training presentation contracts', () => {
-  it('does not expose character training or its navigation anchor', () => {
+  it('prerenders the character training navigation and loading state', () => {
     const html = render(DetailPage, {
       props: { detail: view('1001'), category: 'characters', singular: 'character' }
     }).body;
     const sections = [...html.matchAll(/<section\b[^>]*\sid="([^"]+)"/g)].map((match) => match[1]);
-    expect(sections).toEqual(['skills', 'traces', 'eidolons']);
+    expect(sections).toContain('training');
+    expect(html).toContain('data-training-state="loading"');
+    expect(html).not.toContain('data-training-tree=');
     const nav = html.match(/<nav\b[^>]*class="[^"]*\bsection-nav\b[^"]*"[\s\S]*?<\/nav>/)![0];
     expect([...nav.matchAll(/href="#([^"]+)"/g)].map((match) => match[1])).toEqual([
       'stats',
       'skills',
       'traces',
-      'eidolons'
+      'eidolons',
+      'training'
     ]);
   });
   it('maps every actual public progression to its profile, including paid defaults and shared identity', () => {
