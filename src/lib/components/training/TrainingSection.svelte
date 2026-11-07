@@ -2,7 +2,7 @@
   import * as Card from '$lib/components/ui/card';
   import SectionHeading from '$lib/components/shared/SectionHeading.svelte';
   import TrainingTargetSummary from './TrainingTargetSummary.svelte';
-  import TrainingTraceSummary from './TrainingTraceSummary.svelte';
+  import TrainingSkillTree from './TrainingSkillTree.svelte';
   import TrainingExpenseGroup from './TrainingExpenseGroup.svelte';
   import {
     createTrainingExpenseCosts,
@@ -11,10 +11,11 @@
   } from '$lib/domain/training/detail-view';
   import type {
     CharacterTrainingResult,
+    CharacterTrainingProfile,
     LightConeTrainingResult,
     MaterialCatalog
   } from '$lib/domain/training/types';
-  import type { Trace } from '$lib/domain/types';
+  import type { CharacterProfile } from '$lib/domain/types';
   import { m } from '$lib/paraglide/messages.js';
 
   export let result: CharacterTrainingResult | LightConeTrainingResult | undefined = undefined;
@@ -26,7 +27,15 @@
     undefined;
   export let levelControl: TrainingLevelControl | undefined = undefined;
   export let skillTargets: TrainingSkillTarget[] = [];
-  export let activeTraces: Trace[] = [];
+  export let skillTree:
+    | {
+        path: string;
+        profile: CharacterTrainingProfile;
+        presentation: CharacterProfile;
+        accent: string;
+        onToggle: (pointId: string) => void;
+      }
+    | undefined = undefined;
   export let onLevelChange: ((level: number) => void) | undefined = undefined;
   export let onSkillTrainingLevelChange: ((key: string, level: number) => void) | undefined =
     undefined;
@@ -61,10 +70,13 @@
       <TrainingTargetSummary
         {levelControl}
         skills={skillTargets}
+        showTree={!!skillTree && !!character}
         {onLevelChange}
         {onSkillTrainingLevelChange}
       >
-        {#if character}<TrainingTraceSummary traces={activeTraces} />{/if}
+        {#if character && skillTree}
+          <TrainingSkillTree {...skillTree} activeTraceIds={character.target.activeTraceIds} />
+        {/if}
       </TrainingTargetSummary>
       <TrainingExpenseGroup
         kind="upgrade"

@@ -8,6 +8,7 @@
 
   export let levelControl: TrainingLevelControl | undefined = undefined;
   export let skills: TrainingSkillTarget[] = [];
+  export let showTree = false;
   export let onLevelChange: ((level: number) => void) | undefined = undefined;
   export let onSkillTrainingLevelChange: ((key: string, level: number) => void) | undefined =
     undefined;
@@ -27,55 +28,66 @@
       onValueChange={onLevelChange}
     />
   {/if}
-  {#if skills.length}
-    <div class="training-target__skills">
-      {#each skills as skill (skill.key)}
-        {@const index = skill.availableLevels.indexOf(skill.trainingLevel)}
-        {@const label = skill.jointLabel
-          ? m.training_talent_assist_level()
-          : m.skill_level({ category: skill.categoryLabel })}
-        <div
-          class="training-target__skill"
-          data-training-skill={skill.key}
-          data-training-key={skill.key}
-          data-training-level={skill.trainingLevel}
-        >
-          <AssetImage
-            src={getCharacterDetailIconUrl(skill.iconKey)}
-            alt=""
-            width={32}
-            height={32}
-            fallbackClass="training-target__icon-fallback"
-          />
-          <div class="training-target__skill-control">
-            <LevelSlider
-              id={`training-skill-${skill.key.replaceAll(':', '-')}`}
-              label={skill.variantLabel ? `${label} · ${skill.variantLabel}` : label}
-              value={index}
-              min={0}
-              max={skill.availableLevels.length - 1}
-              displayValue={skill.trainingLevel}
-              ariaValueMin={skill.availableLevels[0]}
-              ariaValueMax={skill.availableLevels.at(-1) ?? skill.availableLevels[0]}
-              interactive={!!onSkillTrainingLevelChange}
-              onValueChange={(nextIndex) =>
-                onSkillTrainingLevelChange?.(skill.key, skill.availableLevels[nextIndex])}
+  {#if skills.length || showTree}
+    <div class="training-target__settings" class:with-tree={showTree}>
+      <div class="training-target__skills">
+        {#each skills as skill (skill.key)}
+          {@const index = skill.availableLevels.indexOf(skill.trainingLevel)}
+          {@const label = skill.jointLabel
+            ? m.training_talent_assist_level()
+            : m.skill_level({ category: skill.categoryLabel })}
+          <div
+            class="training-target__skill"
+            data-training-skill={skill.key}
+            data-training-key={skill.key}
+            data-training-level={skill.trainingLevel}
+          >
+            <AssetImage
+              src={getCharacterDetailIconUrl(skill.iconKey)}
+              alt=""
+              width={32}
+              height={32}
+              fallbackClass="training-target__icon-fallback"
             />
+            <div class="training-target__skill-control">
+              <LevelSlider
+                id={`training-skill-${skill.key.replaceAll(':', '-')}`}
+                label={skill.variantLabel ? `${label} · ${skill.variantLabel}` : label}
+                value={index}
+                min={0}
+                max={skill.availableLevels.length - 1}
+                displayValue={skill.trainingLevel}
+                ariaValueMin={skill.availableLevels[0]}
+                ariaValueMax={skill.availableLevels.at(-1) ?? skill.availableLevels[0]}
+                interactive={!!onSkillTrainingLevelChange}
+                onValueChange={(nextIndex) =>
+                  onSkillTrainingLevelChange?.(skill.key, skill.availableLevels[nextIndex])}
+              />
+            </div>
           </div>
-        </div>
-      {/each}
+        {/each}
+      </div>
+      {#if showTree}<slot />{/if}
     </div>
   {/if}
-  <slot />
 </div>
 
 <style>
+  .training-target__settings {
+    display: grid;
+    align-items: start;
+    gap: var(--space-6);
+    margin-top: var(--space-4);
+  }
+  @media (min-width: 768px) {
+    .training-target__settings.with-tree {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
   .training-target__skills {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: var(--space-6);
-    row-gap: var(--space-4);
-    margin-top: var(--space-4);
+    gap: var(--space-4);
+    min-width: 0;
   }
   .training-target__skill {
     display: flex;
@@ -92,11 +104,6 @@
     width: 32px;
     height: 32px;
     flex: 0 0 32px;
-  }
-  @media (max-width: 640px) {
-    .training-target__skills {
-      grid-template-columns: minmax(0, 1fr);
-    }
   }
   .training-target :global(.skill-level-control) {
     border-top: 0;

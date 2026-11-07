@@ -3,8 +3,7 @@ import { readFileSync } from 'node:fs';
 import { render } from 'svelte/server';
 import {
   createSkillPreviewControls,
-  createTrainingSkillTargets,
-  createTrainingTraceSummary
+  createTrainingSkillTargets
 } from '../../src/lib/domain/training/detail-view';
 import {
   createDefaultCharacterTrainingTarget,
@@ -24,7 +23,7 @@ import TraceCardPanel from '../../src/lib/components/character/TraceCardPanel.sv
 import TrainingSection from '../../src/lib/components/training/TrainingSection.svelte';
 import MaterialCostList from '../../src/lib/components/training/MaterialCostList.svelte';
 import DetailPage from '../../src/lib/components/shared/DetailPage.svelte';
-import TrainingTraceSummary from '../../src/lib/components/training/TrainingTraceSummary.svelte';
+import TrainingSkillTree from '../../src/lib/components/training/TrainingSkillTree.svelte';
 import TrainingTargetSummary from '../../src/lib/components/training/TrainingTargetSummary.svelte';
 
 vi.mock('$app/stores', async () => {
@@ -189,11 +188,13 @@ describe('training presentation contracts', () => {
           promotion: 6
         },
         skillTargets,
-        activeTraces: createTrainingTraceSummary(
-          character.profiles.base.traces,
-          cost.profiles[0],
-          target.activeTraceIds
-        ),
+        skillTree: {
+          path: character.path!,
+          profile: cost.profiles[0],
+          presentation: character.profiles.base,
+          accent: '#fcf',
+          onToggle: () => {}
+        },
         onLevelChange: () => {},
         onSkillTrainingLevelChange: () => {},
         onRetry: () => {}
@@ -225,25 +226,28 @@ describe('training presentation contracts', () => {
     expect(missingSkill).toContain('training-target__icon-fallback');
     expect(missingSkill).toContain('data-image-fallback');
     expect(missingSkill).not.toContain('skill-effect-tag');
-    expect(html).toContain('data-training-trace-group="ability"');
-    expect(html).toContain('data-training-trace-group="stat"');
+    expect(html).toContain('data-training-tree="erudition"');
+    expect(html.match(/aria-pressed="true"/g)).toHaveLength(target.activeTraceIds.length);
   });
-  it('keeps trace summaries strictly read-only, including empty and missing-icon states', () => {
-    const traces = view('1001').profiles.base.traces;
-    const html = render(TrainingTraceSummary, {
-      props: { traces: [{ ...traces[0], iconKey: undefined }] }
+  it('renders only paid traces as toggle buttons and handles missing icons', () => {
+    const character = view('1001');
+    const profile = data('1001').profiles[0];
+    const skill = profile.nodes.find((node) => node.kind === 'skill')!;
+    skill.iconKey = undefined;
+    const html = render(TrainingSkillTree, {
+      props: {
+        path: character.path!,
+        profile,
+        presentation: character.profiles.base,
+        activeTraceIds: ['1001201'],
+        accent: '#fcf',
+        onToggle: () => {}
+      }
     }).body;
-    expect(html).toContain(`data-training-trace-id="${traces[0].id}"`);
-    expect(html).not.toMatch(/<(?:button|input|a)\b/);
-    expect(html).not.toContain('aria-pressed');
-    expect(html).not.toContain('data-trace-id=');
+    expect(html.match(/<button\b/g)).toHaveLength(13);
+    expect(html.match(/aria-pressed="true"/g)).toHaveLength(1);
+    expect(html).toMatch(new RegExp(`<span[^>]*data-point-id="${skill.pointId}"`));
     expect(html).toContain('data-image-fallback');
-    expect(html).toContain('data-training-trace-group="ability"');
-    expect(html).toContain('data-training-trace-group="stat"');
-    expect(html).toContain(`data-training-trace-type="${traces[0].type}"`);
-    const empty = render(TrainingTraceSummary, { props: { traces: [] } }).body;
-    expect(empty).toContain('data-training-trace-count="0"');
-    expect(empty).not.toContain('data-training-trace-id=');
   });
   it('reuses the cone receipt without skills, traces or a second total calculation', () => {
     const cost = json<LightConeTrainingData>('static/generated/training/light-cones/20000.json');
@@ -274,6 +278,6 @@ describe('training presentation contracts', () => {
     );
     expect(html.match(/role="slider"/g)).toHaveLength(1);
     expect(html).not.toContain('data-training-skill');
-    expect(html).not.toContain('data-training-trace-count');
+    expect(html).not.toContain('data-training-tree');
   });
 });
