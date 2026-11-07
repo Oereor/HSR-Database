@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import {
+  resolveConnections,
+  validateConnectionLayouts
+} from '../../src/lib/domain/training/skill-tree-connections';
+import {
   layoutSlugs,
   resolveLayout,
   validateGeometry,
@@ -96,6 +100,40 @@ const json = <T>(path: string): T => JSON.parse(readFileSync(path, 'utf8'));
 const training = (id: string) =>
   json<CharacterTrainingData>(`static/generated/training/characters/${id}.json`);
 
+describe('skill tree connections', () => {
+  const slots = validateLayout([
+    { anchorType: 'Point01', center: [0, 0] },
+    { anchorType: 'Point02', center: [-0.5, 1] },
+    { anchorType: 'Point03', center: [0.5, 1] }
+  ]);
+  const fork = {
+    junctions: { fork: [0, 0.75] },
+    paths: [
+      { type: 'line', through: ['Point01', 'fork'] },
+      { type: 'curve', through: ['Point02', 'fork', 'Point03'] }
+    ]
+  };
+
+  it('shares a non-node junction and interpolates through it and the anchor centers', () => {
+    const [trunk, branches] = resolveConnections(fork, slots);
+    expect(trunk).toBe('M 0 0 L 0 0.75');
+    expect(branches).toMatch(/^M -0\.5 1 C .* 0 0\.75 C .* 0\.5 1$/);
+  });
+
+  it('rejects missing paths, unresolved references, nonfinite points and duplicate geometry', () => {
+    expect(() => validateConnectionLayouts({ abundance: fork })).toThrow(/all nine/);
+    for (const [through, error] of [
+      [['Point01', 'Point99'], /unknown connection point/],
+      [['Point01', [Infinity, 0]], /finite coordinates/],
+      [['Point01', [0, 0]], /degenerate connection/],
+      [['fork', 'Point01'], /duplicate connection/]
+    ] as const)
+      expect(() =>
+        resolveConnections({ ...fork, paths: [...fork.paths, { type: 'line', through }] }, slots)
+      ).toThrow(error);
+  });
+});
+
 describe('character skill tree mapping', () => {
   it('maps all generated profiles to their path with PointID icon references', () => {
     const characters = json<CatalogEntry[]>(
@@ -106,6 +144,10 @@ describe('character skill tree mapping', () => {
       for (const profile of training(id).profiles) {
         const tree = resolveTrainingSkillTree(path!, profile);
         if (!covered.has(tree.slug)) {
+          expect(tree.connections.length).toBeGreaterThan(0);
+          expect(tree.connections.every((d) => /^M /.test(d) && !/NaN|Infinity/.test(d))).toBe(
+            true
+          );
           const axisCoverage = ([0, 1] as const).map((axis) => {
             const start = Math.min(
               ...tree.nodes.map(({ center, radius }) => center[axis] - radius)

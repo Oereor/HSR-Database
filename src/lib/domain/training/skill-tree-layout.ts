@@ -29,6 +29,21 @@ export interface ResolvedLayout {
   nodes: (LayoutSlot & { kind: NodeKind; radius: number })[];
 }
 
+export function skillTreeViewBox(halfSize: number): string {
+  return `-${halfSize} -${halfSize} ${2 * halfSize} ${2 * halfSize}`;
+}
+
+export function cropHalfSize(nodes: ResolvedLayout['nodes']): number {
+  const bounds = ([0, 1] as const).map((axis) => ({
+    start: Math.min(...nodes.map(({ center, radius }) => center[axis] - radius)),
+    end: Math.max(...nodes.map(({ center, radius }) => center[axis] + radius))
+  }));
+  const span = Math.max(...bounds.map(({ start, end }) => end - start));
+  const extent = Math.max(...bounds.map(({ start, end }) => Math.max(-start, end)));
+  // Target 90% coverage while leaving 2% on the closest edge of the centered square.
+  return Math.max(span / (2 * 0.9), extent / (1 - 2 * 0.02));
+}
+
 export function layoutHalfSize(layouts: readonly ResolvedLayout[]): number {
   const reference = Math.max(...layouts.map((layout) => layout.referenceRadius));
   return (

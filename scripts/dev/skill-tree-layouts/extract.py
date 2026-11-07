@@ -416,7 +416,7 @@ def write_json(path, value):
     path.write_text(json.dumps(round_numbers(value), indent=2, allow_nan=False) + "\n", encoding="utf-8", newline="\n")
 
 
-def extract(path_info, input_dir, output, slug):
+def extract(path_info, input_dir, output, slug, reference_only=False):
     try:
         raw = (input_dir / path_info["file"]).read_bytes()
         image = cv.imdecode(np.frombuffer(raw, dtype=np.uint8), cv.IMREAD_COLOR)
@@ -429,6 +429,10 @@ def extract(path_info, input_dir, output, slug):
     gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY).astype(np.float32)
     reference, diagnostics = detect_reference(gray)
     result = {"source": source, "reference": reference, "referenceFit": diagnostics}
+    if reference_only:
+        if reference is None:
+            result["failure"] = diagnostics.get("failure", "no reference ring")
+        return result
     nodes = []
     candidates = []
     if reference is not None:
@@ -465,6 +469,7 @@ def main():
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
     parser.add_argument("--output", type=Path, required=True, help="new directory inside this repository")
     parser.add_argument("--path", choices=PATHS, help="extract a single path for local diagnostics")
+    parser.add_argument("--reference-only", action="store_true", help="calibrate screenshots without detecting nodes")
     args = parser.parse_args()
     output = args.output.resolve()
     formal_dir = REPO / "data" / "skill-tree-layouts"
@@ -475,10 +480,10 @@ def main():
     output.mkdir(parents=True)
     cv.setNumThreads(1)
     selected = [args.path] if args.path else PATHS
-    results = {slug: extract(PATHS[slug], args.input, output, slug) for slug in selected}
+    results = {slug: extract(PATHS[slug], args.input, output, slug, args.reference_only) for slug in selected}
     write_json(output / "diagnostics.json", results)
     for slug, result in results.items():
-        status = result.get("failure") or (
+        status = result.get("failure") or ("reference calibrated" if args.reference_only else
             f'{result["nodeCount"]} nodes, {len(result["unresolvedCandidates"])} unconfirmed candidates'
         )
         print(f"{slug}: {status}")

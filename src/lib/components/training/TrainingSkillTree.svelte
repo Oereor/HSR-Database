@@ -7,6 +7,11 @@
     isToggleableTrainingNode,
     resolveTrainingSkillTree
   } from '$lib/domain/training/skill-tree';
+  import {
+    skillTreeLineStyle,
+    skillTreeRingStyle
+  } from '$lib/domain/training/skill-tree-connections';
+  import { skillTreeViewBox } from '$lib/domain/training/skill-tree-layout';
   import type { CharacterTrainingProfile } from '$lib/domain/training/types';
   import type { CharacterProfile, SkillCard } from '$lib/domain/types';
   import { m } from '$lib/paraglide/messages.js';
@@ -61,6 +66,33 @@
     style:--tree-crop={layout.cropRatio}
   >
     <AssetImage src={getPathIconUrl(path, 'large')} decorative class="tree-path" />
+    <svg
+      class="tree-connections"
+      viewBox={skillTreeViewBox(layout.halfSize)}
+      aria-hidden="true"
+      focusable="false"
+      fill="none"
+    >
+      <circle
+        cx="0"
+        cy="0"
+        r={layout.referenceRadius}
+        stroke={skillTreeRingStyle.stroke}
+        stroke-opacity={skillTreeRingStyle.opacity}
+        stroke-width={skillTreeRingStyle.width * layout.referenceRadius}
+      />
+      <g
+        stroke={skillTreeLineStyle.stroke}
+        opacity={skillTreeLineStyle.opacity}
+        stroke-width={skillTreeLineStyle.width * layout.referenceRadius}
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        {#each layout.connections as d (d)}
+          <path {d} />
+        {/each}
+      </g>
+    </svg>
     {#each layout.nodes as { anchorType, center: [x, y], radius, kind, node } (node.pointId)}
       {@const label =
         traceLabels.get(node.pointId) ||
@@ -151,6 +183,14 @@
     border-radius: 50%;
     background: #000;
     color: #fff;
+  }
+
+  .tree-connections {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
   }
 
   button.tree-node {

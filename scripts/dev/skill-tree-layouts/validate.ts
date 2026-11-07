@@ -2,6 +2,11 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import {
+  resolveConnections,
+  validateConnectionLayouts
+} from '../../../src/lib/domain/training/skill-tree-connections.js';
+import {
+  cropHalfSize,
   layoutSlugs,
   resolveLayout,
   validateGeometry,
@@ -21,17 +26,28 @@ function readConfig<T>(directory: string, file: string, validate: (data: unknown
 
 export function readLayouts(directory = layoutDirectory) {
   const geometry = readConfig(directory, 'geometry.json', validateGeometry);
+  const connections = readConfig(directory, 'connections.json', validateConnectionLayouts);
   return layoutSlugs.map((slug) => {
     const slots = readConfig(directory, `${slug}.json`, validateLayout);
-    return { slug, ...resolveLayout(slug, slots, geometry) };
+    const layout = resolveLayout(slug, slots, geometry);
+    try {
+      return {
+        slug,
+        ...layout,
+        halfSize: cropHalfSize(layout.nodes),
+        connections: resolveConnections(connections[slug], slots)
+      };
+    } catch (error) {
+      throw new Error(`connections.json (${slug}): ${(error as Error).message}`, { cause: error });
+    }
   });
 }
 
 if (import.meta.main) {
   const { values } = parseArgs({ options: { directory: { type: 'string' } } });
   try {
-    for (const { slug, nodes } of readLayouts(values.directory)) {
-      console.log(`${slug}: ${nodes.length} slots`);
+    for (const { slug, nodes, connections } of readLayouts(values.directory)) {
+      console.log(`${slug}: ${nodes.length} slots, ${connections.length} paths`);
     }
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));

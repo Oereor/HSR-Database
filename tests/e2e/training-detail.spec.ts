@@ -161,6 +161,13 @@ test('trace buttons preserve branch dependencies and update the character receip
   await ready(page);
   const tree = page.locator('[data-training-tree="preservation"]');
   const node = (id: string) => tree.locator(`[data-point-id="${id}"]`);
+  const lines = tree.locator('svg.tree-connections');
+  await expect(lines).toBeVisible();
+  await expect(lines).toHaveCSS('pointer-events', 'none');
+  const paths = () =>
+    lines.locator('path').evaluateAll((elements) => elements.map((path) => path.getAttribute('d')));
+  const initialPaths = await paths();
+  expect(initialPaths.length).toBeGreaterThan(0);
   const fullCost = await materials(page);
   const skill = node('1001001');
   await expect(skill).toHaveRole('img');
@@ -172,6 +179,7 @@ test('trace buttons preserve branch dependencies and update the character receip
     await expect(node(id)).toHaveAttribute('aria-pressed', 'false');
   await expect(node('1001209')).toHaveAttribute('aria-pressed', 'true');
   await expect.poll(() => materials(page)).not.toEqual(fullCost);
+  expect(await paths()).toEqual(initialPaths);
 
   await node('1001203').click();
   for (const id of ['1001201', '1001101', '1001202', '1001203'])
