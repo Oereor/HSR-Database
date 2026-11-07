@@ -47,13 +47,15 @@ const skill: TrainingNode = {
   steps: Array.from({ length: 10 }, (_, i): TrainingStep => ({
     level: i + 1,
     requiredPromotion: [0, 1, 2, 3, 4, 4, 5, 5, 6, 6][i],
+    requiredCharacterLevel: 0,
     cost: i === 0 ? {} : { '2': i * 10 }
   }))
 };
 const trace = (
   pointId: string,
   prerequisiteIds: string[] = [],
-  requiredPromotion = 0
+  requiredPromotion = 0,
+  requiredCharacterLevel = 0
 ): TrainingNode => ({
   key: progressionKey('1', 0, pointId),
   pointId,
@@ -64,7 +66,7 @@ const trace = (
   prerequisiteIds,
   linkedSkillIds: [],
   bindings: [],
-  steps: [{ level: 1, requiredPromotion, cost: { '2': 1 } }]
+  steps: [{ level: 1, requiredPromotion, requiredCharacterLevel, cost: { '2': 1 } }]
 });
 const profile: CharacterTrainingProfile = {
   avatarId: '1',
@@ -79,7 +81,7 @@ const profile: CharacterTrainingProfile = {
   ]
 };
 const data: CharacterTrainingData = {
-  schemaVersion: 2,
+  schemaVersion: 3,
   avatarId: '1',
   expGroup: '1',
   promotions,
@@ -176,14 +178,14 @@ describe('training core', () => {
   });
 
   it('activates ancestors atomically and removes every dependent branch', () => {
-    expect(activateTrace(profile, ['24'], '23', 6)).toEqual({
+    expect(activateTrace(profile, ['24'], '23', { level: 80, promotion: 6 })).toEqual({
       ok: true,
       activeTraceIds: ['20', '21', '22', '23', '24']
     });
-    expect(activateTrace(profile, ['24'], '23', 4)).toMatchObject({
+    expect(activateTrace(profile, ['24'], '23', { level: 60, promotion: 4 })).toMatchObject({
       ok: false,
       activeTraceIds: ['24'],
-      error: { code: 'promotion-required', pointIds: ['23'] }
+      error: { code: 'requirements-unmet', pointIds: ['23'], requiredPromotion: 6 }
     });
     expect(deactivateTrace(profile, ['20', '21', '22', '23', '24'], '20')).toEqual(['24']);
     expect(deactivateTrace(profile, ['20', '21', '22', '23', '24'], '21')).toEqual([
@@ -210,7 +212,7 @@ describe('training core', () => {
           : node
       )
     };
-    expect(activateTrace(lowerTarget, ['24'], '23', 3)).toMatchObject({
+    expect(activateTrace(lowerTarget, ['24'], '23', { level: 50, promotion: 3 })).toMatchObject({
       ok: false,
       activeTraceIds: ['24'],
       error: { pointIds: ['22'] }
@@ -218,16 +220,71 @@ describe('training core', () => {
     const fixed: TrainingNode = {
       ...trace('30'),
       kind: 'fixed',
-      steps: [{ level: 1, requiredPromotion: 0, cost: {} }]
+      steps: [{ level: 1, requiredPromotion: 0, requiredCharacterLevel: 0, cost: {} }]
     };
     const graph = { ...profile, nodes: [...profile.nodes, fixed, trace('31', ['30'])] };
-    expect(activateTrace(graph, [], '31', 6)).toMatchObject({
+    expect(activateTrace(graph, [], '31', { level: 80, promotion: 6 })).toMatchObject({
       ok: false,
       activeTraceIds: [],
       error: { code: 'non-activatable-prerequisite', pointIds: ['30'] }
     });
-    expect(() => activateTrace(graph, [], '30', 6)).toThrow();
+    expect(() => activateTrace(graph, [], '30', { level: 80, promotion: 6 })).toThrow();
     expect(() => createDefaultCharacterTrainingTarget({ ...data, profiles: [graph] }, 0)).toThrow();
+  });
+
+  it('enforces independent character level and promotion gates across the whole branch', () => {
+    const graph = {
+      ...profile,
+      nodes: [trace('30', [], 0, 75), trace('31', ['30']), trace('32', [], 6, 80), trace('33')]
+    };
+    const gatedData = { ...data, profiles: [graph] };
+    const target = { avatarId: '1', enhancedId: 0, level: 74, activeTraceIds: ['33'] };
+    const original = calculateCharacterTrainingTarget(gatedData, shared, target);
+    const rejected = activateTrace(graph, target.activeTraceIds, '31', { level: 70, promotion: 6 });
+    expect(rejected).toEqual({
+      ok: false,
+      activeTraceIds: ['33'],
+      error: {
+        code: 'requirements-unmet',
+        pointIds: ['30'],
+        requiredPromotion: 0,
+        requiredCharacterLevel: 75
+      }
+    });
+    expect(
+      calculateCharacterTrainingTarget(gatedData, shared, {
+        ...target,
+        activeTraceIds: rejected.activeTraceIds
+      }).totalCost
+    ).toEqual(original.totalCost);
+    expect(() =>
+      calculateCharacterTrainingTarget(gatedData, shared, {
+        ...target,
+        activeTraceIds: ['30', '31', '33']
+      })
+    ).toThrow(/trace-requirements-unmet/);
+    for (const progress of [
+      { level: 80, promotion: 5 },
+      { level: 70, promotion: 6 }
+    ])
+      expect(activateTrace(graph, [], '32', progress)).toMatchObject({
+        ok: false,
+        activeTraceIds: [],
+        error: { requiredPromotion: 6, requiredCharacterLevel: 80 }
+      });
+    expect(activateTrace(graph, [], '32', { level: 80, promotion: 6 }).ok).toBe(true);
+    expect(activateTrace(graph, [], '31', { level: 75, promotion: 6 })).toEqual({
+      ok: true,
+      activeTraceIds: ['30', '31']
+    });
+    const full = createDefaultCharacterTrainingTarget(gatedData, 0);
+    const at75 = reconcileCharacterLevel(gatedData, full, 75);
+    expect(at75.activeTraceIds).toEqual(['30', '31', '33']);
+    const at74 = reconcileCharacterLevel(gatedData, at75, 74);
+    expect(at74.activeTraceIds).toEqual(['33']);
+    expect(calculateCharacterTrainingTarget(gatedData, shared, at74).traceCost).toEqual(
+      original.traceCost
+    );
   });
 
   it('rejects duplicate, dangling, self and cyclic relationships, and profile mismatches', () => {

@@ -6,6 +6,7 @@ import type {
   MaterialIdentity,
   TrainingSharedData
 } from './types.js';
+import { CHARACTER_TRAINING_SCHEMA_VERSION } from './types.js';
 import {
   calculateCharacterTrainingTarget,
   calculateLightConeTrainingTarget,
@@ -77,7 +78,7 @@ export function assertTrainingSharedData(value: unknown): asserts value is Train
 export function assertCharacterTrainingData(
   value: unknown
 ): asserts value is CharacterTrainingData {
-  schema(value, 2);
+  schema(value, CHARACTER_TRAINING_SCHEMA_VERSION);
   const data = value as CharacterTrainingData;
   trainingId(data.avatarId);
   trainingId(data.expGroup);
@@ -96,9 +97,12 @@ export function assertCharacterTrainingData(
         if (!icon || icon.kind !== 'skill-tree' || icon.identity !== node.pointId)
           throw new TrainingError('invalid-skill-tree-icon-key', node.key);
       }
-      for (const step of node.steps)
+      for (const step of node.steps) {
         if (step.requiredPromotion >= data.promotions.length)
           throw new TrainingError('promotion-limit-out-of-range', node.key);
+        if (step.requiredCharacterLevel > data.promotions.at(-1)!.maxLevel)
+          throw new TrainingError('character-level-limit-out-of-range', node.key);
+      }
     }
   }
   if (!seen.has(0)) throw new TrainingError('missing-base-profile', data.avatarId);

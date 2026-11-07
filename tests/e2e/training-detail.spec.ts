@@ -262,6 +262,35 @@ test('trace buttons preserve branch dependencies and update the character receip
   }
 });
 
+test('trace level gates apply within the same ascension and leave blocked costs unchanged', async ({
+  page
+}) => {
+  await page.goto('/characters/1001/');
+  await ready(page);
+  const level = page.locator('#training-character-level-1001');
+  const training = page.locator('[data-training-promotion]');
+  const lv75 = page.locator('[data-training-tree] [data-point-id="1001209"]');
+  const lv80 = page.locator('[data-training-tree] [data-point-id="1001210"]');
+
+  await setSliderValue(level, '70');
+  await expect(training).toHaveAttribute('data-training-promotion', '5');
+  await setSliderValue(level, '75');
+  await expect(training).toHaveAttribute('data-training-promotion', '6');
+  await expect(lv75).toHaveAttribute('aria-pressed', 'false');
+  await expect(lv75).toHaveAccessibleDescription(/75/);
+  await lv75.press('Space');
+  await expect(lv75).toHaveAttribute('aria-pressed', 'true');
+  const before = await materials(page);
+  await lv80.click();
+  await expect(lv80).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.locator('[data-sonner-toast] [data-description]')).toContainText(/80/);
+  expect(await materials(page)).toEqual(before);
+
+  await setSliderValue(level, '74');
+  await expect(training).toHaveAttribute('data-training-promotion', '6');
+  await expect(lv75).toHaveAttribute('aria-pressed', 'false');
+});
+
 test('changing enhanced form keeps the character level and replaces the trace profile', async ({
   page
 }) => {

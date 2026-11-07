@@ -13,6 +13,7 @@ import type {
   LightConeTrainingTarget,
   PromotionCostStage,
   ResolvedSkillTraining,
+  TraceCharacterProgress,
   TraceTransition,
   TrainingCosts,
   TrainingNode,
@@ -113,6 +114,7 @@ function validateNode(node: TrainingNode): void {
   for (const [index, step] of node.steps.entries()) {
     if (step.level !== index + 1) throw new TrainingError('non-contiguous-node-levels', node.key);
     trainingInteger(step.requiredPromotion, `${node.key} promotion`);
+    trainingInteger(step.requiredCharacterLevel, `${node.key} character level requirement`);
     if (step.requiredPromotion < lastPromotion)
       throw new TrainingError('non-monotonic-promotion-limit', node.key);
     lastPromotion = step.requiredPromotion;
@@ -276,7 +278,7 @@ function ancestors(
 function assertTraceState(
   nodes: ReadonlyMap<string, TrainingNode>,
   activeIds: readonly string[],
-  promotion?: number
+  progress?: TraceCharacterProgress
 ): void {
   if (!Array.isArray(activeIds) || new Set(activeIds).size !== activeIds.length)
     throw new TrainingError('duplicate-active-trace', 'activeTraceIds');
@@ -287,10 +289,15 @@ function assertTraceState(
       const node = nodes.get(parent)!;
       if (node.kind === 'fixed' || (node.kind === 'trace' && !active.has(parent)))
         throw new TrainingError('inactive-prerequisite', `${id}:${parent}`);
-      if (promotion !== undefined && node.steps[0].requiredPromotion > promotion)
-        throw new TrainingError('trace-promotion-required', parent);
+      if (progress && !meetsTraceRequirements(node, progress))
+        throw new TrainingError('trace-requirements-unmet', parent);
     }
   }
+}
+
+function meetsTraceRequirements(node: TrainingNode, { level, promotion }: TraceCharacterProgress) {
+  const { requiredCharacterLevel, requiredPromotion } = node.steps[0];
+  return level >= requiredCharacterLevel && promotion >= requiredPromotion;
 }
 
 const sortedIds = (ids: Iterable<string>): string[] =>
@@ -300,26 +307,37 @@ export function activateTrace(
   profile: CharacterTrainingProfile,
   activeIds: readonly string[],
   traceId: string,
-  promotion: number
+  progress: TraceCharacterProgress
 ): TraceTransition {
-  trainingInteger(promotion, 'promotion');
+  trainingInteger(progress.level, 'level', 1);
+  trainingInteger(progress.promotion, 'promotion');
   const nodes = nodeIndex(profile);
-  assertTraceState(nodes, activeIds, promotion);
+  assertTraceState(nodes, activeIds, progress);
   if (nodes.get(traceId)?.kind !== 'trace')
     throw new TrainingError('not-activatable-trace', traceId);
   const closure = ancestors(nodes, traceId);
-  const blocked = [...closure].filter(
-    (id) => nodes.get(id)!.steps[0].requiredPromotion > promotion
-  );
-  const fixed = [...closure].filter((id) => nodes.get(id)!.kind === 'fixed');
-  if (blocked.length || fixed.length)
+  const blocked = [...closure]
+    .map((id) => nodes.get(id)!)
+    .filter((node) => !meetsTraceRequirements(node, progress));
+  if (blocked.length)
     return {
       ok: false,
       activeTraceIds: [...activeIds],
       error: {
-        code: blocked.length ? 'promotion-required' : 'non-activatable-prerequisite',
-        pointIds: sortedIds(blocked.length ? blocked : fixed)
+        code: 'requirements-unmet',
+        pointIds: sortedIds(blocked.map((node) => node.pointId)),
+        requiredPromotion: Math.max(...blocked.map((node) => node.steps[0].requiredPromotion)),
+        requiredCharacterLevel: Math.max(
+          ...blocked.map((node) => node.steps[0].requiredCharacterLevel)
+        )
       }
+    };
+  const fixed = [...closure].filter((id) => nodes.get(id)!.kind === 'fixed');
+  if (fixed.length)
+    return {
+      ok: false,
+      activeTraceIds: [...activeIds],
+      error: { code: 'non-activatable-prerequisite', pointIds: sortedIds(fixed) }
     };
   return {
     ok: true,
@@ -415,7 +433,7 @@ export function createDefaultCharacterTrainingTarget(
   const promotion = derivePromotion(data.promotions, level);
   let activeTraceIds: string[] = [];
   for (const node of profile.nodes.filter((node) => node.kind === 'trace')) {
-    const transition = activateTrace(profile, activeTraceIds, node.pointId, promotion);
+    const transition = activateTrace(profile, activeTraceIds, node.pointId, { level, promotion });
     if (!transition.ok)
       throw new TrainingError(transition.error.code, transition.error.pointIds.join(','));
     activeTraceIds = transition.activeTraceIds;
@@ -440,12 +458,12 @@ export function reconcileCharacterLevel(
   const promotion = derivePromotion(data.promotions, level);
   const nodes = nodeIndex(profile);
   const active = target.activeTraceIds ?? [];
-  assertTraceState(nodes, active, oldPromotion);
+  assertTraceState(nodes, active, { level: target.level, promotion: oldPromotion });
   normalizeSkills(profile, target.trainingLevels ?? {}, oldPromotion);
   const removed = descendants(
     nodes,
     [...nodes.values()]
-      .filter((node) => node.steps[0].requiredPromotion > promotion)
+      .filter((node) => !meetsTraceRequirements(node, { level, promotion }))
       .map((node) => node.pointId)
   );
   const skills = profile.nodes
@@ -506,7 +524,7 @@ export function calculateCharacterTrainingTarget(
   const promotion = derivePromotion(data.promotions, target.level);
   const skills = normalizeSkills(profile, target.trainingLevels ?? {}, promotion);
   const activeTraceIds = target.activeTraceIds ?? [];
-  assertTraceState(nodeIndex(profile), activeTraceIds, promotion);
+  assertTraceState(nodeIndex(profile), activeTraceIds, { level: target.level, promotion });
   const steps: CostSourceStep[] = data.promotions.slice(0, promotion).map((stage) => ({
     source: 'promotion',
     promotion: stage.promotion,

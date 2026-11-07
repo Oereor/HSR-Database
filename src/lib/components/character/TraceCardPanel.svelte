@@ -7,6 +7,7 @@
   import * as Collapsible from '$lib/components/ui/collapsible';
   import ChevronDown from '@lucide/svelte/icons/chevron-down';
   import TraceEntryContent from './TraceEntryContent.svelte';
+  import { traceRequirementText } from './trace-requirements';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
   import { summarizeTraceStats, formatTraceBonus } from '$lib/domain/trace-summary';
   import type { Trace } from '$lib/domain/types';
@@ -112,11 +113,14 @@
                           getLocale()
                         )}
                       </span>
-                      {#if node.trace.promotionLimit}
-                        <span class="text-right whitespace-nowrap">
+                      {#if node.trace.promotionLimit || node.trace.characterLevelLimit}
+                        <span class="text-right">
                           <span class="text-muted-foreground">{m.trace_unlock_condition()}</span>
                           <span class="text-[var(--gold-soft)]"
-                            >{m.trace_promotion({ promotion: node.trace.promotionLimit })}</span
+                            >{traceRequirementText(
+                              node.trace.promotionLimit,
+                              node.trace.characterLevelLimit
+                            )}</span
                           >
                         </span>
                       {/if}

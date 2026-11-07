@@ -1,5 +1,6 @@
 <script lang="ts">
   import AssetImage from '$lib/components/shared/AssetImage.svelte';
+  import { traceRequirementText } from '$lib/components/character/trace-requirements';
   import { getCharacterDetailIconUrl, getPathIconUrl } from '$lib/data/visual-assets';
   import { gameTextToPlain } from '$lib/domain/game-text';
   import {
@@ -68,18 +69,29 @@
       {@const source = getCharacterDetailIconUrl(node.iconKey)}
       {@const position = `--x:${50 + (50 * x) / layout.halfSize}%;--y:${50 + (50 * y) / layout.halfSize}%;--size:${(100 * radius) / layout.halfSize}%`}
       {#if isToggleableTrainingNode(node)}
+        {@const step = node.steps[0]}
+        {@const requirements = traceRequirementText(
+          step.requiredPromotion,
+          step.requiredCharacterLevel
+        )}
+        {@const description = requirements
+          ? `${m.trace_unlock_condition()} ${requirements}`
+          : undefined}
+        {@const descriptionId = `training-trace-${profile.avatarId}-${profile.enhancedId}-${node.pointId}-requirements`}
         <button
           type="button"
           class="tree-node"
           class:tree-node--trace={kind !== 'skill'}
           aria-label={label}
+          aria-describedby={description ? descriptionId : undefined}
           aria-pressed={active.has(node.pointId)}
-          title={label}
+          title={description ? `${label}\n${description}` : label}
           data-point-id={node.pointId}
           data-anchor={anchorType}
           style={position}
           on:click={() => onToggle(node.pointId)}>{@render icon(source)}</button
         >
+        {#if description}<span id={descriptionId} class="sr-only">{description}</span>{/if}
       {:else}
         <span
           class="tree-node"

@@ -162,12 +162,15 @@ describe('receipt training projections', () => {
     const remaining = deactivateTrace(profile, target.activeTraceIds, '1001201');
     expect(remaining).toEqual(['1001103', '1001204', '1001207', '1001208', '1001209', '1001210']);
 
-    const first = activateTrace(profile, remaining, '1001203', 6);
+    const first = activateTrace(profile, remaining, '1001203', { level: 80, promotion: 6 });
     expect(first.ok).toBe(true);
     expect(first.activeTraceIds).toEqual(
       expect.arrayContaining(['1001201', '1001101', '1001202', '1001203'])
     );
-    const second = activateTrace(profile, first.activeTraceIds, '1001206', 6);
+    const second = activateTrace(profile, first.activeTraceIds, '1001206', {
+      level: 80,
+      promotion: 6
+    });
     expect(second.ok).toBe(true);
     const full = calculateCharacterTrainingTarget(cost, shared, target);
     const restored = calculateCharacterTrainingTarget(cost, shared, {
@@ -178,11 +181,14 @@ describe('receipt training projections', () => {
     expect(restored.totalCost).toEqual(full.totalCost);
 
     const lowered = reconcileCharacterLevel(cost, { ...target, activeTraceIds: remaining }, 1);
-    const blocked = activateTrace(profile, lowered.activeTraceIds, '1001203', 0);
+    const blocked = activateTrace(profile, lowered.activeTraceIds, '1001203', {
+      level: 1,
+      promotion: 0
+    });
     expect(blocked).toMatchObject({
       ok: false,
       activeTraceIds: [],
-      error: { code: 'promotion-required' }
+      error: { code: 'requirements-unmet' }
     });
     expect(lowered.activeTraceIds).toEqual([]);
   });

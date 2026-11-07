@@ -6,11 +6,13 @@
   import type { Trace } from '$lib/domain/types';
   import * as m from '$lib/paraglide/messages.js';
   import type { PlayerProgressionState } from '$lib/player/character';
+  import { traceRequirementText } from './trace-requirements';
 
   export let trace: Trace;
   export let playerState: PlayerProgressionState | undefined = undefined;
 
   $: iconUrl = getCharacterDetailIconUrl(trace.iconKey);
+  $: requirements = traceRequirementText(trace.promotionLimit, trace.characterLevelLimit);
 </script>
 
 <div class="trace-card__heading trace-card__heading--icon">
@@ -22,9 +24,7 @@
         <Badge variant="outline" class="skill-effect-tag text-primary">
           {trace.type === 'stat' ? m.trace_stat_bonus() : m.trace_extra_ability()}
         </Badge>
-        {#if trace.promotionLimit}<span>{m.trace_unlock_condition()}</span>{m.trace_promotion({
-            promotion: trace.promotionLimit
-          })}{/if}
+        {#if requirements}<span>{m.trace_unlock_condition()}</span>{requirements}{/if}
       </div>
     </div>
   </div>

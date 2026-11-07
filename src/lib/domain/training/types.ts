@@ -13,6 +13,7 @@ export interface PromotionCostStage {
 export interface TrainingStep {
   level: number;
   requiredPromotion: number;
+  requiredCharacterLevel: number;
   cost: Cost;
 }
 
@@ -44,8 +45,10 @@ export interface CharacterTrainingProfile {
   nodes: TrainingNode[];
 }
 
+export const CHARACTER_TRAINING_SCHEMA_VERSION = 3 as const;
+
 export interface CharacterTrainingData {
-  schemaVersion: 2;
+  schemaVersion: typeof CHARACTER_TRAINING_SCHEMA_VERSION;
   avatarId: string;
   expGroup: string;
   promotions: PromotionCostStage[];
@@ -164,10 +167,22 @@ export interface LightConeTrainingResult extends TrainingCosts {
   target: LightConeTrainingTarget & { promotion: number };
 }
 
+export interface TraceCharacterProgress {
+  level: number;
+  promotion: number;
+}
+
 export type TraceTransition =
   | { ok: true; activeTraceIds: string[] }
   | {
       ok: false;
       activeTraceIds: string[];
-      error: { code: 'promotion-required' | 'non-activatable-prerequisite'; pointIds: string[] };
+      error:
+        | {
+            code: 'requirements-unmet';
+            pointIds: string[];
+            requiredPromotion: number;
+            requiredCharacterLevel: number;
+          }
+        | { code: 'non-activatable-prerequisite'; pointIds: string[] };
     };

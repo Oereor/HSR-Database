@@ -7,6 +7,7 @@ import type {
   TrainingNode,
   TrainingSharedData
 } from '../../../src/lib/domain/training/types.js';
+import { CHARACTER_TRAINING_SCHEMA_VERSION } from '../../../src/lib/domain/training/types.js';
 import {
   mergeCosts,
   progressionKey,
@@ -153,6 +154,7 @@ export function buildTrainingDomain(
           const steps = ordered.map((row) => ({
             level: number(row.Level ?? 1, 'Level', 1),
             requiredPromotion: number(row.AvatarPromotionLimit ?? 0, 'AvatarPromotionLimit'),
+            requiredCharacterLevel: number(row.AvatarLevelLimit ?? 0, 'AvatarLevelLimit'),
             cost: cost(row.MaterialList)
           }));
           steps.forEach((step) => rememberCost(step.cost));
@@ -207,7 +209,7 @@ export function buildTrainingDomain(
     )
       throw new Error(`[training/source] orphan Profile ${character.id}`);
     return {
-      schemaVersion: 2,
+      schemaVersion: CHARACTER_TRAINING_SCHEMA_VERSION,
       avatarId: character.id,
       expGroup: id(avatar.ExpGroup),
       promotions: chain,

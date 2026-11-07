@@ -255,6 +255,8 @@ function buildProfile(
         iconPath: typeof row.IconPath === 'string' ? row.IconPath : undefined,
         promotionLimit:
           row.AvatarPromotionLimit === undefined ? undefined : Number(row.AvatarPromotionLimit),
+        characterLevelLimit:
+          row.AvatarLevelLimit === undefined ? undefined : Number(row.AvatarLevelLimit),
         anchorOrder: anchor ? Number(anchor[1]) : undefined,
         statDescriptionSource: textSource(property?.PropertyNameSkillTree),
         statBonuses: Array.isArray(row.StatusAddList)

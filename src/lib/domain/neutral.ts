@@ -90,6 +90,7 @@ export interface NeutralTrace {
   params: readonly DecimalString[];
   iconPath?: string;
   promotionLimit?: number;
+  characterLevelLimit?: number;
   anchorOrder?: number;
   statDescriptionSource?: NeutralTextSource;
   statValues?: readonly DecimalString[];

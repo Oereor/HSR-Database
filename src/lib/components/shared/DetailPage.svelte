@@ -38,6 +38,7 @@
   import { formatDocumentTitle } from '$lib/site';
   import { trailingSlashHref } from '$lib/i18n/routing';
   import { m } from '$lib/paraglide/messages.js';
+  import { traceRequirementText } from '$lib/components/character/trace-requirements';
   import { fetchPlayerProfile } from '$lib/player/client';
   import type { PlayerCharacter } from '$lib/player/contract';
   import { findPlayerCharacter, resolvePlayerEidolonState } from '$lib/player/character';
@@ -469,24 +470,21 @@
       };
       return;
     }
-    const transition = activateTrace(
-      trainingProfile,
-      activeTraceIds,
-      pointId,
-      derivePromotion(characterTrainingData.promotions, characterTarget.level)
-    );
+    const transition = activateTrace(trainingProfile, activeTraceIds, pointId, {
+      level: characterTarget.level,
+      promotion: derivePromotion(characterTrainingData.promotions, characterTarget.level)
+    });
     if (transition.ok) {
       characterTarget = { ...characterTarget, activeTraceIds: transition.activeTraceIds };
       return;
     }
-    const { code, pointIds } = transition.error;
+    const error = transition.error;
     const description =
-      code === 'promotion-required'
-        ? m.training_trace_promotion_required({
-            promotion: Math.max(
-              ...trainingProfile.nodes
-                .filter((node) => pointIds.includes(node.pointId))
-                .map((node) => node.steps[0].requiredPromotion)
+      error.code === 'requirements-unmet'
+        ? m.training_trace_requirements_unmet({
+            requirements: traceRequirementText(
+              error.requiredPromotion,
+              error.requiredCharacterLevel
             )
           })
         : m.training_trace_unavailable();

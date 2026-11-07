@@ -169,6 +169,7 @@ export interface Trace {
   sourcePointType: number;
   prerequisiteIds: string[];
   promotionLimit?: number;
+  characterLevelLimit?: number;
   anchorOrder: number;
   extraEffects?: SkillExtraEffect[];
 }

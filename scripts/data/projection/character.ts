@@ -377,6 +377,9 @@ function projectProfile(
         sourcePointType: trace.sourcePointType,
         prerequisiteIds: trace.prerequisiteIds,
         ...(trace.promotionLimit !== undefined ? { promotionLimit: trace.promotionLimit } : {}),
+        ...(trace.characterLevelLimit !== undefined
+          ? { characterLevelLimit: trace.characterLevelLimit }
+          : {}),
         anchorOrder: trace.anchorOrder ?? 0,
         ...(trace.extraEffectIds?.length
           ? { extraEffects: projectExtraEffects(domain, context, trace.extraEffectIds) }
