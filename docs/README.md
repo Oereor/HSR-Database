@@ -27,6 +27,8 @@
 [investigations/](investigations/) 保存配置调查、功能实施、性能测量及修复验收；[audits/](audits/) 保存审计与阶段收敛记录。
 目录中未单独标为维护指南的报告均描述其原阶段；其中“当前”“已通过”“待办”、数量与版本不代表今日状态。
 
+- [2026-11-08 发布前技术债与部署体积审计](audits/2026-11-08-发布前技术债与部署体积审计.md)
+
 搜索和部署的旧测量分别汇集于[搜索实施历史](investigations/search-v2-implementation-history.md)与[部署基础历史](investigations/vercel-deployment-foundation-history.md)。
 遗器评分与敌人技能历史留在各自专题目录；[战斗模拟可行性](combat-simulation/)和[贪饕机制调查](voracity-effect/)保留独立主题，不代表完整模拟器已实现。
 
