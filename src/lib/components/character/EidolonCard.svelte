@@ -29,7 +29,7 @@
       fallbackClass="rank-icon"
     />
     <div class="rank-card__content min-w-0 flex-1 space-y-2">
-      <div class="flex min-w-0 flex-wrap items-center justify-between gap-2">
+      <div class="flex min-w-0 flex-wrap items-center gap-2">
         <Badge variant="outline" class="rank-label text-muted-foreground"
           >{m.eidolon_rank({ rank: eidolon.rank })}</Badge
         >
