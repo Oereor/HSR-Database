@@ -52,8 +52,9 @@
   {/if}
   {#if summary.summaries.length || summary.independent.length}
     <section
-      class="grid grid-cols-1 items-start gap-4 @min-[64rem]/traces:grid-cols-3"
+      class="trace-stat-grid grid grid-cols-1 items-start gap-4"
       data-trace-stat-summaries
+      data-card-count={summary.summaries.length + summary.independent.length}
     >
       {#each summary.summaries as stat (`${stat.propertyType}:${stat.percent}`)}
         <Card.Root
@@ -62,17 +63,20 @@
           data-trace-property={stat.propertyType}
           data-trace-total={stat.value}
         >
-          <Card.Header class="flex flex-row items-center justify-between gap-4">
-            <Card.Title class="flex min-w-0 items-center gap-3 text-lg">
+          <Card.Header class="flex flex-row flex-wrap items-center gap-x-4 gap-y-2">
+            <Card.Title class="flex max-w-full min-w-0 items-center gap-3 text-lg">
               <AssetImage
                 src={getCharacterDetailIconUrl(stat.nodes[0].trace.iconKey)}
                 alt=""
                 class="size-8 shrink-0 object-contain"
                 fallbackClass="size-8 shrink-0"
               />
-              <span><GameText text={stat.nodes[0].trace.name} /></span>
+              <span class="min-w-0 wrap-anywhere"><GameText text={stat.nodes[0].trace.name} /></span
+              >
             </Card.Title>
-            <output class="shrink-0 font-semibold tabular-nums" style:color={characterAccent}
+            <output
+              class="ms-auto shrink-0 font-semibold tabular-nums"
+              style:color={characterAccent}
               >{stat.value > 0 ? '+' : ''}{formatTraceBonus(
                 stat.value,
                 stat.percent,
@@ -152,3 +156,23 @@
     </section>
   {/if}
 </div>
+
+<style>
+  @container traces (min-width: 29rem) {
+    .trace-stat-grid[data-card-count='2'] {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @container traces (min-width: 44rem) {
+    .trace-stat-grid[data-card-count='3'] {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @container traces (min-width: 59rem) {
+    .trace-stat-grid[data-card-count='4'] {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

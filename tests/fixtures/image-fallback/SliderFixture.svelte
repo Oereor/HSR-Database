@@ -29,6 +29,14 @@
     ariaValueMin={2}
     ariaValueMax={10}
   />
+  <LevelSlider
+    compact
+    id="fixture-compact"
+    label="Synthetic compact level"
+    value={9}
+    min={1}
+    max={10}
+  />
   <button onclick={() => (value = 14)}>External update</button>
   <button onclick={() => (disabled = !disabled)}>Toggle disabled</button>
   <output data-events>{JSON.stringify(events)}</output>

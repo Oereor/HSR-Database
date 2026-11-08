@@ -8,11 +8,13 @@ test('skill descriptions and trace conditions retain compact readable spacing', 
     const character = JSON.parse(
       readFileSync(`src/lib/generated/views/zh-CN/details/characters/${id}.json`, 'utf8')
     );
-    const promotionById = Object.fromEntries(
-      character.profiles.base.traces.map((trace: { id: string; promotionLimit?: number }) => [
-        trace.id,
-        trace.promotionLimit ?? 0
-      ])
+    const hasRequirementById = Object.fromEntries(
+      character.profiles.base.traces.map(
+        (trace: { id: string; promotionLimit?: number; characterLevelLimit?: number }) => [
+          trace.id,
+          Boolean(trace.promotionLimit || trace.characterLevelLimit)
+        ]
+      )
     );
     await page.goto(`/characters/${id}/`);
     await page.waitForLoadState('networkidle');
@@ -20,7 +22,7 @@ test('skill descriptions and trace conditions retain compact readable spacing', 
       await trigger.click();
     for (const width of [320, 390, 1440]) {
       await page.setViewportSize({ width, height: 900 });
-      const result = await page.evaluate((promotions) => {
+      const result = await page.evaluate((requirements) => {
         const headings = [...document.querySelectorAll('#skills .skill-variant__heading')];
         const directDescriptions = headings.filter((heading) =>
           heading.nextElementSibling?.matches('.levelled-description, .data-placeholder')
@@ -45,7 +47,7 @@ test('skill descriptions and trace conditions retain compact readable spacing', 
             .every((heading) => getComputedStyle(heading.nextElementSibling!).marginTop === '8px'),
           conditions: [...document.querySelectorAll('[data-trace-property] [data-trace-id]')].every(
             (row) => {
-              if (!promotions[row.getAttribute('data-trace-id')!])
+              if (!requirements[row.getAttribute('data-trace-id')!])
                 return row.childElementCount === 1;
               const condition = row.children[1];
               return (
@@ -57,7 +59,7 @@ test('skill descriptions and trace conditions retain compact readable spacing', 
             }
           )
         };
-      }, promotionById);
+      }, hasRequirementById);
       expect(result.hasDirectDescriptions).toBe(true);
       expect(result.descriptionSpacing).toBe(true);
       expect(result.metadataSpacing).toBe(true);
@@ -71,7 +73,7 @@ test('character cards adapt to their container and retain accessible breakdowns'
 }, testInfo) => {
   test.setTimeout(120_000);
   for (const locale of ['', '/en']) {
-    for (const id of ['1001', '1213', '8007']) {
+    for (const id of ['1001', '1213', '8007', '1503']) {
       await page.goto(`${locale}/characters/${id}/`);
       await page.waitForLoadState('networkidle');
       const triggers = page.locator('#traces [data-slot="collapsible-trigger"]');
@@ -96,7 +98,12 @@ test('character cards adapt to their container and retain accessible breakdowns'
             columns: getComputedStyle(
               document.querySelector('[data-trace-stat-summaries]')!
             ).gridTemplateColumns.split(' ').length,
-            expectedColumns: bounds(panel).width >= 1024 ? 3 : 1,
+            expectedColumns:
+              bounds(panel).width >=
+              (cards.length * 14 + cards.length - 1) *
+                parseFloat(getComputedStyle(document.documentElement).fontSize)
+                ? cards.length
+                : 1,
             metaHorizontal: meta ? getComputedStyle(meta).display === 'flex' : false,
             expectedMetaHorizontal:
               content.clientWidth -

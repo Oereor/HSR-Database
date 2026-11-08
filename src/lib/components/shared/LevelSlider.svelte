@@ -82,6 +82,10 @@
     flex-shrink: 0;
     white-space: nowrap;
   }
+  .skill-level-control--compact output {
+    display: inline-block;
+    min-inline-size: 5ch;
+  }
   .skill-level-control--compact > div:first-child {
     display: contents;
   }

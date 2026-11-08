@@ -48,6 +48,19 @@ test('mapped slider announces actual levels and drag emits distinct scalar chang
   expect(events.every((value, index) => value % 2 === 0 && value !== events[index - 1])).toBe(true);
 });
 
+test('compact level tracks keep their position and width from level 9 to 10', async ({ page }) => {
+  await page.goto('/slider');
+  const slider = page.getByRole('slider', { name: 'Synthetic compact level' });
+  const track = page.locator('.skill-level-control--compact [data-slot="slider-track"]');
+  await expect(slider).toHaveAttribute('aria-valuenow', '9');
+  const before = (await track.boundingBox())!;
+  await slider.press('ArrowRight');
+  await expect(slider).toHaveAttribute('aria-valuenow', '10');
+  const after = (await track.boundingBox())!;
+  expect(after.x).toBe(before.x);
+  expect(after.width).toBe(before.width);
+});
+
 test('touch interaction uses the same controlled scalar value', async ({ browser }) => {
   const context = await browser.newContext({
     hasTouch: true,
