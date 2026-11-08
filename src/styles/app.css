@@ -495,15 +495,16 @@ main {
   margin: var(--space-2) 0 var(--space-3);
 }
 .skill-combat-meta > div {
-  display: grid;
-  grid-template-columns: max-content minmax(0, 1fr);
+  display: flex;
   gap: 0.65rem;
   align-items: baseline;
 }
 .skill-combat-meta dt {
+  flex: none;
   color: var(--text-secondary);
   font-size: var(--font-meta-key);
   font-weight: 500;
+  white-space: nowrap;
 }
 .skill-combat-meta dd {
   min-width: 0;
@@ -513,11 +514,18 @@ main {
   font-variant-numeric: tabular-nums;
   font-weight: 500;
   line-height: 1.6;
+  overflow-wrap: anywhere;
 }
 @container skill-content (min-width: 48rem) {
   .skill-combat-meta {
     display: flex;
-    gap: var(--space-8);
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-8);
+  }
+  .skill-combat-meta > div {
+    flex: none;
+    inline-size: max-content;
+    max-inline-size: 100%;
   }
 }
 .rank-card[data-player-state='inactive'] {
