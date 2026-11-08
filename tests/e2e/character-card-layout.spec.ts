@@ -68,6 +68,81 @@ test('skill descriptions and trace conditions retain compact readable spacing', 
   }
 });
 
+test('skill metadata keeps labels together after navigation and reload', async ({ page }) => {
+  const metadata = page.locator(
+    '#skills :is([data-skill-id="140101"], [data-skill-id="140102"], [data-skill-id="140109"]) .skill-combat-meta'
+  );
+  const measureFields = (locators = metadata) =>
+    locators.evaluateAll((lists) =>
+      lists.map((list) => {
+        const bounds = list.getBoundingClientRect();
+        const textRects = (element: Element) => {
+          const range = document.createRange();
+          range.selectNodeContents(element);
+          return Array.from(range.getClientRects());
+        };
+        return Array.from(list.children, (field) => {
+          const [label, value] = field.children;
+          const labelRects = textRects(label);
+          const valueRects = textRects(value);
+          return {
+            labelTop: label.getBoundingClientRect().top,
+            labelLines: labelRects.length,
+            valueRectCount: valueRects.length,
+            fits: [...labelRects, ...valueRects].every(
+              (rect) => rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1
+            )
+          };
+        });
+      })
+    );
+
+  await page.setViewportSize({ width: 1194, height: 834 });
+  await page.goto('/characters/');
+  const app = page.locator('.site-shell');
+  await expect(app).toHaveAttribute('data-app-ready', 'true');
+  await page.locator('a[href="/characters/1401/"]').click();
+  await expect(page).toHaveURL(/\/characters\/1401\/$/);
+
+  for (const phase of ['navigation', 'reload']) {
+    if (phase === 'reload') await page.reload();
+    await expect(app).toHaveAttribute('data-app-ready', 'true');
+    await expect(metadata).toHaveCount(3);
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+    });
+    for (const fields of await measureFields()) {
+      expect(fields).toHaveLength(3);
+      for (const field of fields) {
+        expect(field.labelLines, phase).toBe(1);
+        expect(Math.abs(field.labelTop - fields[0].labelTop), phase).toBeLessThan(1);
+        expect(field.fits, phase).toBe(true);
+      }
+    }
+  }
+
+  const skillMeta = page.locator('[data-skill-id="140102"] .skill-combat-meta');
+  await skillMeta.locator('[data-combat-meta="energy-gain"] dd').evaluate((value) => {
+    value.textContent = 'W'.repeat(120);
+  });
+  const [[battlePoint, energy, toughness]] = await measureFields(skillMeta);
+  expect(energy.labelTop).toBeGreaterThan(battlePoint.labelTop + 1);
+  expect(toughness.labelTop).toBeGreaterThan(energy.labelTop + 1);
+  expect(energy.labelLines).toBe(1);
+  expect(energy.valueRectCount).toBeGreaterThan(1);
+  expect(energy.fits).toBe(true);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  for (const [battlePoint, energy, toughness] of await measureFields()) {
+    expect(energy.labelTop).toBeGreaterThan(battlePoint.labelTop + 1);
+    expect(toughness.labelTop).toBeGreaterThan(energy.labelTop + 1);
+    expect(
+      [battlePoint, energy, toughness].every((field) => field.labelLines === 1 && field.fits)
+    ).toBe(true);
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(391);
+});
+
 test('character cards adapt to their container and retain accessible breakdowns', async ({
   page
 }, testInfo) => {

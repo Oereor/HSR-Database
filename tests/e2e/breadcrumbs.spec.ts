@@ -1,5 +1,72 @@
 import { expect, test } from '@playwright/test';
 
+test('shell bounds stay stable when navigation removes the scrollbar', async ({
+  playwright,
+  baseURL,
+  storageState,
+  isMobile
+}) => {
+  test.skip(isMobile, 'This regression exercises desktop scrollbar gutters');
+  const browser = await playwright.chromium.launch({
+    ignoreDefaultArgs: ['--hide-scrollbars'],
+    args: ['--disable-features=OverlayScrollbar,OverlayScrollbars']
+  });
+  try {
+    const page = await browser.newPage({
+      baseURL,
+      storageState,
+      viewport: { width: 1920, height: 1080 }
+    });
+    const measureShell = () =>
+      page.evaluate(() => {
+        const root = document.documentElement;
+        return {
+          verticalOverflow: root.scrollHeight > root.clientHeight,
+          scrollbarWidth: innerWidth - root.clientWidth,
+          horizontalOverflow: root.scrollWidth - root.clientWidth,
+          bounds: [
+            'main > .content.site-container',
+            '.global-breadcrumb > .site-container',
+            '.site-footer > .site-container'
+          ].map((selector) => {
+            const { left, width } = document.querySelector(selector)!.getBoundingClientRect();
+            return { left, width };
+          })
+        };
+      });
+
+    await page.goto('/characters/');
+    await expect(page.locator('.site-shell')).toHaveAttribute('data-app-ready', 'true');
+    const longPage = await measureShell();
+    expect(longPage.verticalOverflow).toBe(true);
+    expect(longPage.scrollbarWidth).toBeGreaterThan(0);
+
+    const navigation = page.locator('.primary-navigation');
+    await navigation.locator('a[href="/player/"]').click();
+    await page.waitForURL('/player/');
+    await expect(page.locator('.player-page__heading')).toBeVisible();
+    const shortPage = await measureShell();
+    expect(shortPage.verticalOverflow).toBe(false);
+
+    await navigation.locator('a[href="/characters/"]').click();
+    await page.waitForURL('/characters/');
+    await expect(page.locator('.entity-overview-card').first()).toBeVisible();
+    const returnedPage = await measureShell();
+    expect(returnedPage.verticalOverflow).toBe(true);
+
+    const origin = longPage.bounds[0];
+    for (const layout of [longPage, shortPage, returnedPage]) {
+      expect(layout.horizontalOverflow).toBeLessThanOrEqual(1);
+      for (const box of layout.bounds) {
+        expect(Math.abs(box.left - origin.left)).toBeLessThanOrEqual(1);
+        expect(Math.abs(box.width - origin.width)).toBeLessThanOrEqual(1);
+      }
+    }
+  } finally {
+    await browser.close();
+  }
+});
+
 for (const prefix of ['', '/en']) {
   test(`four-level breadcrumbs keep the current page visible on narrow screens (${prefix || 'zh-CN'})`, async ({
     page
