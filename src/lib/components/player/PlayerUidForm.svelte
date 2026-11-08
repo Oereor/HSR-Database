@@ -1,5 +1,5 @@
 <script lang="ts">
-  import * as InputGroup from '$lib/components/ui/input-group';
+  import SearchInputGroup from '$lib/components/shared/SearchInputGroup.svelte';
   import { Label } from '$lib/components/ui/label';
   import { m } from '$lib/paraglide/messages.js';
 
@@ -18,26 +18,23 @@
   aria-busy={busy}
   on:submit|preventDefault={() => onSubmit(value)}
 >
-  <Label for={inputId}>{m.player_uid_label()}</Label>
-  <InputGroup.Root class="player-uid-form__controls">
-    <InputGroup.Input
-      id={inputId}
-      name="uid"
-      type="text"
-      inputmode="numeric"
-      autocomplete="off"
-      placeholder={m.player_uid_placeholder()}
-      bind:value
-      aria-invalid={errorMessage ? 'true' : undefined}
-      aria-describedby={errorMessage ? errorId : undefined}
-      oninput={onInput}
-    />
-    <InputGroup.Addon align="inline-end">
-      <InputGroup.Button variant="default" size="sm" type="submit" disabled={busy}
-        >{m.player_query()}</InputGroup.Button
-      >
-    </InputGroup.Addon>
-  </InputGroup.Root>
+  <Label class="sr-only" for={inputId}>{m.player_uid_label()}</Label>
+  <SearchInputGroup
+    id={inputId}
+    bind:value
+    placeholder={m.player_uid_placeholder()}
+    submitLabel={m.player_query()}
+    className="player-uid-form__controls"
+    {busy}
+    inputProps={{
+      name: 'uid',
+      inputmode: 'numeric',
+      autocomplete: 'off',
+      'aria-invalid': errorMessage ? 'true' : undefined,
+      'aria-describedby': errorMessage ? errorId : undefined,
+      oninput: onInput
+    }}
+  />
   {#if errorMessage}
     <p
       id={errorId}
