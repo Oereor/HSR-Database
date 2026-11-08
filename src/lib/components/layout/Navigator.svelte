@@ -93,7 +93,7 @@
 <Sidebar.Root collapsible="icon" class="navigator-panel">
   <Sidebar.Header>
     <div class="navigator-brand flex h-14 shrink-0 items-center gap-2 overflow-hidden">
-      <Tooltip.Root disabled={!sidebar.isMobile && (!sidebar.open || !sidebar.expandedReady)}>
+      <Tooltip.Root disabled={sidebar.isMobile || !sidebar.open || !sidebar.expandedReady}>
         <Tooltip.Trigger>
           {#snippet child({ props })}
             <a
