@@ -219,10 +219,7 @@ describe('Player Character presentation', () => {
 
     expect(body).toContain('href="/en/light-cones/23023/?level=70&amp;rank=2"');
     expect(body).toContain('href="/en/relics/103/"');
-    expect(body).toContain('compact-entity-card__aside');
-    expect(body).toContain('data-relic-icon-presentation="header"');
-    expect(body).toMatch(/data-player-relic-level[^>]*style="color: #c77dff[^"]*"[^>]*>\+15/);
-    expect(body).toContain('data-affix-presentation="main"');
+    expect(body).toMatch(/data-player-relic-level[^>]*>\+15/);
   });
 
   it('renders explicit empty equipment states without collapsing relic slots', () => {

@@ -99,7 +99,7 @@ for (const prefix of ['', '/en']) {
       await page.goto(prefix + '/characters/1510/');
       await ready(page);
       await expect(page.locator('.section-nav a[href="#training"]')).toHaveCount(1);
-      await expect(page.locator('#traces .trace-toggle')).toHaveCount(0);
+      await expect(page.locator('#traces [aria-pressed]')).toHaveCount(0);
       const groups = page.locator('#skills [data-preview-key="1510004"]');
       await expect(groups).toHaveCount(2);
       const sliders = groups.getByRole('slider');

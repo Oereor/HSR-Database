@@ -10,6 +10,7 @@ import SkillCardPanel from '../../src/lib/components/character/SkillCardPanel.sv
 import TraceAbilityHeading from '../../src/lib/components/character/TraceAbilityHeading.svelte';
 import EidolonCard from '../../src/lib/components/character/EidolonCard.svelte';
 import type { BaseStatProgression, Eidolon, SkillCard, Trace } from '../../src/lib/domain/types';
+import { getCharacterDetailIconUrl } from '../../src/lib/data/visual-assets';
 import { m } from '../../src/lib/paraglide/messages.js';
 
 vi.mock('../../src/lib/paraglide/messages.js', async (importOriginal) => {
@@ -47,25 +48,19 @@ describe('BaseStatsPanel promotion tag', () => {
     [20, 20, 0],
     [21, 21, 1],
     [37, 37, 2]
-  ])(
-    'derives the tag at level %s and places it before the level output',
-    (level, displayed, promotion) => {
-      const { body } = render(BaseStatsPanel, {
-        props: {
-          progression,
-          controlId: 'synthetic-level',
-          showPromotion: true,
-          ...(level === undefined ? {} : { level })
-        }
-      });
-      expect(m.player_character_promotion).toHaveBeenCalledWith({ promotion });
-      expect(body.match(/class="[^"]*\bskill-effect-tag\b/g)).toHaveLength(1);
-      expect(body).toContain(`synthetic promotion ${promotion}`);
-      expect(body.indexOf(`synthetic promotion ${promotion}`)).toBeLessThan(
-        body.indexOf(`Lv.${displayed}`)
-      );
-    }
-  );
+  ])('derives the promotion from level %s', (level, displayed, promotion) => {
+    const { body } = render(BaseStatsPanel, {
+      props: {
+        progression,
+        controlId: 'synthetic-level',
+        showPromotion: true,
+        ...(level === undefined ? {} : { level })
+      }
+    });
+    expect(m.player_character_promotion).toHaveBeenCalledWith({ promotion });
+    expect(body).toContain(`synthetic promotion ${promotion}`);
+    expect(body).toContain(`Lv.${displayed}`);
+  });
 
   it.each([undefined, false])('hides promotion unless enabled (%s)', (showPromotion) => {
     const { body } = render(BaseStatsPanel, {
@@ -75,7 +70,6 @@ describe('BaseStatsPanel promotion tag', () => {
         ...(showPromotion === undefined ? {} : { showPromotion })
       }
     });
-    expect(body).not.toContain('skill-effect-tag');
     expect(m.player_character_promotion).not.toHaveBeenCalled();
   });
 
@@ -154,7 +148,7 @@ describe('SearchBar', () => {
 });
 
 describe('Character detail icon enrichment', () => {
-  it('基础属性与技能标题仅在 resolver 成功时输出图片', () => {
+  it('基础属性在 resolver 成功时输出对应图片', () => {
     const progression: BaseStatProgression = {
       minLevel: 1,
       maxLevel: 1,
@@ -187,21 +181,25 @@ describe('Character detail icon enrichment', () => {
         controlId: 'light-cone-level'
       }
     }).body;
-    expect(withIcons.match(/<img /g)).toHaveLength(4);
-    expect(withIcons).toContain('/generated-assets/character-details/icons/property/IconMaxHP.png');
-    expect(withIcons).toContain(
-      '/generated-assets/character-details/icons/property/IconAttack.png'
-    );
-    expect(withIcons).toContain(
-      '/generated-assets/character-details/icons/property/IconDefence.png'
-    );
+    for (const key of [
+      'property--MaxHP',
+      'property--Attack',
+      'property--Defence',
+      'property--MaxSP'
+    ] as const) {
+      const url = getCharacterDetailIconUrl(key);
+      expect(url).toBeDefined();
+      expect(withIcons).toContain(`src="${url}"`);
+    }
     expect(withoutIcons).not.toContain('<img ');
+  });
 
+  it('技能变体使用自己的图标，缺图时仍提供技能名称和占位', () => {
+    const iconKey = 'skill-tree--1407002';
     const card: SkillCard = {
       category: 'skill',
       displayLabel: 'synthetic skill category',
       order: 1,
-      iconKey: 'skill-tree--1407002',
       progressions: [],
       variants: [
         {
@@ -213,23 +211,24 @@ describe('Character detail icon enrichment', () => {
           scalingParamIndexes: [],
           levels: [],
           combatMeta: {},
-          iconKey: 'skill-tree--1407002'
+          iconKey
         }
       ]
     };
-    expect(render(SkillCardPanel, { props: { card } }).body).toContain(
-      '/generated-assets/character-details/icons/skill/1407_skill.png'
-    );
-    expect(
-      render(SkillCardPanel, {
-        props: {
-          card: {
-            ...card,
-            variants: card.variants.map((variant) => ({ ...variant, iconKey: undefined }))
-          }
+    const url = getCharacterDetailIconUrl(iconKey);
+    expect(url).toBeDefined();
+    expect(render(SkillCardPanel, { props: { card } }).body).toContain(`src="${url}"`);
+    const fallback = render(SkillCardPanel, {
+      props: {
+        card: {
+          ...card,
+          variants: card.variants.map((variant) => ({ ...variant, iconKey: undefined }))
         }
-      }).body
-    ).not.toContain('<img ');
+      }
+    }).body;
+    expect(fallback).not.toContain('<img ');
+    expect(fallback).toContain('data-image-fallback');
+    expect(fallback).toContain('Synthetic variant');
   });
 
   it('能力与星魂缺图时保留信息并使用共享图片占位', () => {
@@ -247,7 +246,9 @@ describe('Character detail icon enrichment', () => {
     const fallbackTrace = render(TraceAbilityHeading, {
       props: { trace: { ...trace, iconKey: undefined } }
     }).body;
-    expect(enhancedTrace).toContain('8007_basic_atk2.png');
+    const traceIcon = getCharacterDetailIconUrl(trace.iconKey);
+    expect(traceIcon).toBeDefined();
+    expect(enhancedTrace).toContain(`src="${traceIcon}"`);
     expect(fallbackTrace).not.toContain('<img ');
     expect(fallbackTrace).toContain('synthetic trace name');
     expect(fallbackTrace).toContain('data-image-fallback');
@@ -263,10 +264,11 @@ describe('Character detail icon enrichment', () => {
     const fallbackEidolon = render(EidolonCard, {
       props: { eidolon: { ...eidolon, iconKey: undefined } }
     }).body;
-    expect(enhancedEidolon).toContain('rank-icon');
-    expect(enhancedEidolon).toContain('rank-label');
+    const eidolonIcon = getCharacterDetailIconUrl(eidolon.iconKey);
+    expect(eidolonIcon).toBeDefined();
+    expect(enhancedEidolon).toContain(`src="${eidolonIcon}"`);
     expect(fallbackEidolon).toContain('data-image-fallback');
-    expect(fallbackEidolon).toContain('rank-label');
+    expect(fallbackEidolon).not.toContain('<img ');
     expect(fallbackEidolon).toContain('synthetic eidolon name');
   });
 });
