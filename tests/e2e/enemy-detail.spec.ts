@@ -385,7 +385,7 @@ test('Skill Browser 紧凑数值列、图标槽和长文本在双语不同宽度
 
       await selector.locator('[data-enemy-skill-option="200401002"]').click();
       const detail = page.locator('[data-enemy-skill-detail="200401002"]');
-      const metadata = detail.locator('header .enemy-skill-detail__metadata');
+      const metadata = detail.locator('header');
       await expect(metadata.locator('[data-icon-kind="element"]')).toHaveCount(1);
       await expect(metadata.locator('[data-skill-effect]')).toHaveCount(1);
       expect(
@@ -395,6 +395,15 @@ test('Skill Browser 紧凑数值列、图标槽和长文本在双语不同宽度
           return !!(tag.compareDocumentPosition(icon) & Node.DOCUMENT_POSITION_FOLLOWING);
         })
       ).toBe(true);
+      if (width === 1440) {
+        const centers = await metadata.locator(':scope > *').evaluateAll((elements) =>
+          elements.map((element) => {
+            const { top, height } = element.getBoundingClientRect();
+            return top + height / 2;
+          })
+        );
+        expect(Math.max(...centers) - Math.min(...centers)).toBeLessThanOrEqual(1);
+      }
       const damage = detail.locator('[data-enemy-skill-damage]');
       await expect(damage.locator('h5')).toHaveCount(1);
       const grid = damage.locator('.enemy-skill-fact-grid');

@@ -50,18 +50,14 @@
 <article class="enemy-skill-detail" data-enemy-skill-detail={skill.id}>
   <header class="enemy-skill-detail__heading">
     <h3><GameText text={skill.name} /></h3>
-    {#if skill.damageType || skill.tag}
-      <div class="enemy-skill-detail__metadata">
-        <SkillEffectTag effect={skill.tag} />
-        {#if skill.damageType}
-          <SemanticIconLabel
-            kind="element"
-            code={skill.damageType.element}
-            label={skill.damageType.name}
-            color={getElementColor(skill.damageType.element)}
-          />
-        {/if}
-      </div>
+    <SkillEffectTag effect={skill.tag} />
+    {#if skill.damageType}
+      <SemanticIconLabel
+        kind="element"
+        code={skill.damageType.element}
+        label={skill.damageType.name}
+        color={getElementColor(skill.damageType.element)}
+      />
     {/if}
   </header>
   <p class:muted={!skill.description} class="enemy-skill-detail__description">
@@ -141,7 +137,7 @@
   .enemy-skill-detail__heading {
     display: flex;
     flex-wrap: wrap;
-    align-items: baseline;
+    align-items: center;
     gap: var(--space-2) var(--space-3);
   }
   .enemy-skill-detail h3 {
@@ -153,10 +149,7 @@
     line-height: 1.35;
     overflow-wrap: anywhere;
   }
-  .enemy-skill-detail__metadata {
-    display: contents;
-  }
-  .enemy-skill-detail__metadata :global(.semantic-icon-label) {
+  .enemy-skill-detail__heading > :global(.semantic-icon-label) {
     min-width: 0;
     max-width: 100%;
     overflow-wrap: anywhere;
