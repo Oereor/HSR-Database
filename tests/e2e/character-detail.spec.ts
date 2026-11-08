@@ -536,6 +536,8 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
   const dialog = page.locator('.special-effect-dialog');
   await expect(dialog).toBeVisible();
   await expect(dialog.locator('[data-special-effect-kind="servant-skill-link"]')).toHaveCount(14);
+  await expect(dialog.locator('.skill-variant__heading img')).toHaveCount(0);
+  await expect(page.locator('#skills .skill-variant__heading img').first()).toBeAttached();
   await expect(dialog.locator('[data-special-effect-order]').first()).toHaveAttribute(
     'data-special-effect-order',
     '1'
@@ -606,6 +608,7 @@ test('Character Special Effect trigger 打开共享 modal 并保持 relation 与
     2
   );
   await expect(himekoDialog.locator('[data-skill-id="151025"]')).toBeVisible();
+  await expect(himekoDialog.locator('.skill-variant__heading img')).toHaveCount(0);
   await expect(himekoDialog.locator('[data-skill-id="151026"]')).toBeVisible();
   await expect(himekoDialog.getByRole('slider')).toHaveCount(0);
   await expect(himekoDialog.locator('.special-effect-dialog__level')).toHaveText('Lv.10');

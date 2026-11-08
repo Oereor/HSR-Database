@@ -65,7 +65,12 @@
       {#if open}
         <div class="skill-variant-list special-effect-entry-list">
           {#each entries as entry (entry.skill.id)}
-            <SkillVariantView variant={entry.skill} {selectedLevel} {characterAccent}>
+            <SkillVariantView
+              variant={entry.skill}
+              {selectedLevel}
+              {characterAccent}
+              compactHeading
+            >
               <svelte:fragment slot="prefix"
                 ><SpecialEffectRelation {entry} {targets} {ownerCharacterId} /></svelte:fragment
               >

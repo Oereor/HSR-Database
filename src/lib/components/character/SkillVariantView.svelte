@@ -14,6 +14,7 @@
   export let variant: SkillVariant;
   export let selectedLevel: number;
   export let showLevel = false;
+  export let compactHeading = false;
   export let specialEffectsAvailable = false;
   export let specialEffectIconUrl: string | undefined = undefined;
   export let onOpenSpecialEffects:
@@ -29,13 +30,19 @@
 <section class="skill-variant" data-skill-id={variant.id}>
   <slot name="prefix" />
   <div class="skill-variant__heading">
-    <AssetImage
-      src={getCharacterDetailIconUrl(variant.iconKey)}
-      alt=""
-      class="size-10 shrink-0 object-contain"
-      fallbackClass="size-10 shrink-0"
-    />
-    <div class="flex min-w-0 flex-1 flex-col gap-1">
+    {#if !compactHeading}
+      <AssetImage
+        src={getCharacterDetailIconUrl(variant.iconKey)}
+        alt=""
+        class="size-10 shrink-0 object-contain"
+        fallbackClass="size-10 shrink-0"
+      />
+    {/if}
+    <div
+      class={compactHeading
+        ? 'flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-1 wrap-anywhere'
+        : 'flex min-w-0 flex-1 flex-col gap-1'}
+    >
       <h4><GameText text={variant.name} /></h4>
 
       <div class="skill-variant__heading-meta flex-wrap">
